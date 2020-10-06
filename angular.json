@@ -33,11 +33,11 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "deploy": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "with": "src/environments/environment.deploy.ts"
                 }
               ],
               "optimization": true,
@@ -69,8 +69,8 @@
             "browserTarget": "num-portal-webapp:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "num-portal-webapp:build:production"
+            "deploy": {
+              "browserTarget": "num-portal-webapp:build:deploy"
             }
           }
         },
