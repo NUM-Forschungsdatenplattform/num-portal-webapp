@@ -1,0 +1,8 @@
+{
+    "env": {
+        "name": "#{env_name}"
+    },
+    "api": {
+        "url": "#{api_url}"
+    }
+}
