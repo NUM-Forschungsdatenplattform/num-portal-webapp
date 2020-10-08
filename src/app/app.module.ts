@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppConfigService } from './config/app-config.service';
+import { initKeycloak } from './core/auth/initKeycloak';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -23,6 +25,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    KeycloakAngularModule,
     CoreModule,
     LayoutModule,
     AppRoutingModule,
@@ -42,7 +45,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useFactory: (configService: AppConfigService) => () => configService.loadConfig(),
       deps: [AppConfigService],
       multi: true
-    }
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
   ],
   bootstrap: [AppComponent]
 })
