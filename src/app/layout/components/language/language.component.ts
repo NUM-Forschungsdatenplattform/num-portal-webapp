@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'num-language',
@@ -17,10 +17,6 @@ constructor(public translate: TranslateService) {
   }
 
   ngOnInit(): void {
-  }
-
-  switchLanguage(): void {
-    this.translate.use(this.translate.currentLang === 'de' ? 'en' : 'de');
   }
 
 }

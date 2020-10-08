@@ -1,7 +1,9 @@
-<button
-  type="button"
+<mat-button-toggle-group
+  #group="matButtonToggleGroup"
   aria-label="Select language"
-  mat-button
-  (click)="switchLanguage()">
-  {{ 'HEADER.LANGUAGE' | translate }}
-</button>
+  (change)="translate.use(group.value)"
+  [value]="translate.currentLang">
+
+  <mat-button-toggle value="de">DE</mat-button-toggle>
+  <mat-button-toggle value="en">EN</mat-button-toggle>
+</mat-button-toggle-group>
