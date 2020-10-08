@@ -1,6 +1,6 @@
 <mat-button-toggle-group class="num-mat-lang-toggle-button"
   #group="matButtonToggleGroup"
-  attr.aria-label="{{'LANGUAGE.LABEL' | translate}}"
+  [attr.aria-label]="'LANGUAGE.LABEL' | translate"
   (change)="translate.use(group.value)"
   [value]="translate.currentLang">
 
