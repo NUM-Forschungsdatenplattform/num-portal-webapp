@@ -1,5 +1,16 @@
 {
   "DASHBOARD": {
     "WELCOME": "Welcome to the NUM Portal!"
+  },
+  "LANGUAGE": {
+    "LABEL": "Select language"
+  },
+  "APPLAYOUT": {
+    "SIDENAV": {
+      "LABEL": "Sidenav"
+    },
+    "TOGGLE": {
+      "LABEL": "Toggle sidenav"
+    }
   }
 }

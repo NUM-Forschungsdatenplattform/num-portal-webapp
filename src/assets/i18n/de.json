@@ -1,5 +1,16 @@
 {
   "DASHBOARD": {
     "WELCOME": "Willkommen auf dem NUM Portal!"
+  },
+  "LANGUAGE": {
+    "LABEL": "Sprache auswählen"
+  },
+  "APPLAYOUT": {
+    "SIDENAV": {
+      "LABEL": "Seitennavigation"
+    },
+    "TOGGLE": {
+      "LABEL": "Seitennavigation umschalten"
+    }
   }
 }

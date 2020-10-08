@@ -2,7 +2,8 @@
   <!-- Header Content -->
   <button
     type="button"
-    aria-label="Toggle sidenav"
+    attr.aria-label="Toggle sidenav"
+    attr.aria-label="{{'APPLAYOUT.TOGGLE.LABEL' | translate}}"
     mat-icon-button
     (click)="drawer.toggle()"
     *ngIf="isHandset$ | async">
@@ -17,6 +18,7 @@
     fixedInViewport
     fixedTopGap="64"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    attr.aria-label="{{'APPLAYOUT.SIDENAV.LABEL' | translate}}"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
 
