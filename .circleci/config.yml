@@ -1,0 +1,82 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:14.9.0-buster
+    steps:
+      - checkout
+      - run:
+          name: Run Linter
+          command: |
+            echo 'LINTING NOT IMPLEMENTED!'
+      - run:
+          name: Run unit tests
+          command: |
+            echo 'UNIT TESTS NOT IMPLEMENTED!'
+      - run:
+          name: Run CVE scan
+          command: |
+            echo 'CVE SCAN NOT IMPLEMENTED!'
+      - run:
+          name: Run Sonar
+          command: |
+            echo 'SONAR NOT IMPLEMENTED!'
+  tag_and_bump_version:
+    docker:
+      - image: circleci/node:14.9.0-buster
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "97:e5:b6:05:44:08:ff:5c:e9:c5:66:53:37:99:54:5d"
+      - run:
+          name: Bump npm version
+          # TODO we need a proper user.email here
+          command: |
+            git config user.email "rolle.saarinen@appsfactory.de"
+            git config user.name "CircleCI"
+            npm version patch
+            git push --set-upstream origin $CIRCLE_BRANCH
+            git push origin --tags
+
+  build_and_deploy:
+    docker:
+      - image: circleci/node:14.9.0-buster
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_HUB_PASSWORD
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - run:
+          name: Build and tag image and push
+          command: |
+            if [ $CIRCLE_BRANCH = "master" ]; then
+                TAG=$(node -p "require('./package.json').version")
+            else
+                TAG=$CIRCLE_BRANCH
+            fi
+            docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
+            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+            docker push $DOCKER_USER/num-portal-webapp:$TAG
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - tag_and_bump_version:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - build_and_deploy:
+          requires:
+            - tag_and_bump_version
+          filters:
+            branches:
+              only: master|develop|staging
