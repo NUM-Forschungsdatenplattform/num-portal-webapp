@@ -5,4 +5,9 @@ export interface IAppConfig {
     api: {
         url: string
     };
+    auth: {
+        baseUrl: string,
+        realm: string,
+        clientId: string
+    };
 }

@@ -4,5 +4,10 @@
     },
     "api": {
         "url": ""
+    },
+    "auth": {
+        "baseUrl": "http://localhost:8080",
+        "realm": "test-realm",
+        "clientId": "app"
     }
 }

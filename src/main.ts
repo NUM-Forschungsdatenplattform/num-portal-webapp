@@ -9,4 +9,8 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .catch((err) => {
+    console.error(err);
+    const rootElement = document.getElementsByTagName('num-root')[0];
+    rootElement.innerHTML = err;
+  });
