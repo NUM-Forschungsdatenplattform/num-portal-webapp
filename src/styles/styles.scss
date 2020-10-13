@@ -19,12 +19,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './custom-material';
+@import './font';
 
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
 }
 
-body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
