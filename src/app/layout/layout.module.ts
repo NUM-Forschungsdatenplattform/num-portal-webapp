@@ -8,20 +8,30 @@ import { HeaderComponent } from './components/header/header.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { LanguageComponent } from './components/language/language.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FONT_AWESOME_ICONS } from './font-awesome-icons';
+
+const SHARED_MODULES = [
+  MaterialModule,
+  FlexLayoutModule,
+  FontAwesomeModule
+];
 
 @NgModule({
   declarations: [AppLayoutComponent, HeaderComponent, SideMenuComponent, LanguageComponent],
   imports: [
     CommonModule,
-    MaterialModule,
-    FlexLayoutModule,
     RouterModule,
     TranslateModule,
+    ...SHARED_MODULES,
   ],
   exports: [
-    MaterialModule,
-    FlexLayoutModule,
     AppLayoutComponent,
+    ...SHARED_MODULES
   ]
 })
-export class LayoutModule { }
+export class LayoutModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(...FONT_AWESOME_ICONS);
+  }
+}
