@@ -28,6 +28,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "keycloak-angular": "^8.0.1",
+    "keycloak-js": "^11.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

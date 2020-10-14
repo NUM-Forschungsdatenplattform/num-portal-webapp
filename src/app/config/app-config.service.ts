@@ -5,10 +5,12 @@ import { IAppConfig } from './app-config.model';
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigService {
-  static config: IAppConfig;
   private readonly CONFIG_URL = `assets/config/config.${environment.name}.json`;
 
+  config: IAppConfig = null;
+
   constructor(private http: HttpClient) {}
+
 
   public loadConfig(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
@@ -16,7 +18,7 @@ export class AppConfigService {
         .get<IAppConfig>(this.CONFIG_URL)
         .toPromise()
         .then((config) => {
-          AppConfigService.config = config;
+          this.config = config;
           return resolve();
         })
         .catch((error) => {

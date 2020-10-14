@@ -8,21 +8,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 import { AppConfigService } from './config/app-config.service';
+import { KeycloakInitService } from './core/auth/keycloak-init.service';
+import { KeycloakAngularModule } from 'keycloak-angular';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-    return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    KeycloakAngularModule,
     CoreModule,
     LayoutModule,
     AppRoutingModule,
@@ -30,20 +30,26 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: (configService: AppConfigService) => () => configService.loadConfig(),
-      deps: [AppConfigService],
-      multi: true
-    }
+      multi: true,
+      deps: [AppConfigService, KeycloakInitService],
+      useFactory: (
+        configService: AppConfigService,
+        keycloakInitService: KeycloakInitService
+      ) => () =>
+        configService
+          .loadConfig()
+          .then(() => keycloakInitService.initKeycloak()),
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
