@@ -10,14 +10,13 @@ workflows:
             - test
           filters:
             branches:
-              only: master
+              only: develop|/release\/.*/]|/hotfix\/.*/
       - build_and_deploy:
           requires:
             - tag_and_bump_version
           filters:
             branches:
-              only: master|develop|staging
-
+              only: master|develop
 
 
 
@@ -54,11 +53,14 @@ jobs:
             - "ab:aa:49:91:bb:88:31:93:45:48:38:79:5e:60:53:9d"
       - run:
           name: Bump npm version
-          # TODO we need a proper user.email here
           command: |
             git config user.email "50235421+ehrbase-tech-user@users.noreply.github.com"
             git config user.name "ci-bot"
-            npm version patch
+            if [ $CIRCLE_BRANCH = "develop" || $CIRCLE_BRANCH = *hotfix/*]; then
+              npm version patch
+            else
+              npm version minor
+            fi
             git push --set-upstream origin $CIRCLE_BRANCH
             git push origin --tags
 
