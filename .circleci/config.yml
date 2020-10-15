@@ -5,18 +5,20 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - tag_and_bump_version:
+      - tag_version:
           requires:
             - test
           filters:
             branches:
-              only: develop|/release\/.*/]|/hotfix\/.*/
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+)$/
       - build_and_deploy:
           requires:
-            - tag_and_bump_version
+            - tag_version
           filters:
             branches:
-              only: master|develop
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master|develop)$/
 
 
 
@@ -43,7 +45,7 @@ jobs:
           name: Run Sonar
           command: |
             echo 'SONAR NOT IMPLEMENTED!'
-  tag_and_bump_version:
+  tag_version:
     docker:
       - image: cimg/node:14.9.0
     steps:
@@ -56,11 +58,9 @@ jobs:
           command: |
             git config user.email "50235421+ehrbase-tech-user@users.noreply.github.com"
             git config user.name "ci-bot"
-            if [ $CIRCLE_BRANCH = "develop" || $CIRCLE_BRANCH = *hotfix/*]; then
-              npm version patch
-            else
-              npm version minor
-            fi
+            VERSION_NUMBER="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')"
+            echo "Updating the application version from the branch to ${VERSION_NUMBER}"
+            npm version $VERSION_NUMBER
             git push --set-upstream origin $CIRCLE_BRANCH
             git push origin --tags
 
@@ -79,9 +79,11 @@ jobs:
           name: Build and tag image and push
           command: |
             if [ $CIRCLE_BRANCH = "master" ]; then
-                TAG=$(node -p "require('./package.json').version")
+              TAG=$(node -p "require('./package.json').version")
+            elif [ $CIRCLE_BRANCH = "develop" ]; then
+              TAG=$CIRCLE_BRANCH
             else
-                TAG=$CIRCLE_BRANCH
+              TAG="$(node -p "require('./package.json').version")-rc"
             fi
             docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
             echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
