@@ -1,10 +1,36 @@
-<mat-nav-list>
-    <a mat-list-item href="home">
-        <fa-icon icon="th"></fa-icon>
-        Übersicht
+<div fxLayout="column" fxFill>
+<mat-nav-list fxLayout="column" fxFlex>
+    <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
+        <fa-icon mat-list-icon icon="th"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.DASHBOARD' | translate }}</div>
     </a>
-    <a mat-list-item href="#">
-        <fa-icon icon="microscope"></fa-icon>
-        Studien
+    <a mat-list-item routerLink="/studies" routerLinkActive="active-list-item">
+        <fa-icon mat-list-icon icon="microscope"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.STUDIES' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink="/phenotypes" routerLinkActive="active-list-item">
+        <fa-icon mat-list-icon icon="seedling"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.PHENOTYPES' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink routerLink="/cohorts" routerLinkActive="active-list-item">
+        <fa-icon mat-list-icon icon="cubes"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.COHORTS' | translate }}</div>
+    </a>
+
+    <span fxFlex></span>
+    <mat-divider></mat-divider>
+
+    <a mat-list-item routerLink routerLink="#">
+        <fa-icon mat-list-icon icon="bell"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.NOTIFICATIONS' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink routerLink="#">
+        <fa-icon mat-list-icon icon="cog"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.PROFILE' | translate }}</div>
+    </a>
+    <a mat-list-item routerLink routerLink="#">
+        <fa-icon mat-list-icon icon="sign-out-alt"></fa-icon>
+        <div mat-line>{{ 'SIDEMENU.SIGNOUT' | translate }}</div>
     </a>
 </mat-nav-list>
+</div>

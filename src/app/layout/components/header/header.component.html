@@ -1,7 +1,21 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="light">
+  <mat-toolbar-row>
     <ng-content></ng-content>
 
     <span>NUM Portal</span>
     <span class="header-spacer"></span>
+
+    <fa-icon icon="envelope"></fa-icon>
+    <a mat-button href="#" style="padding:0 5px">
+      KONTAKT
+    </a>
+
+    <fa-icon icon="globe-europe"></fa-icon>
     <num-language></num-language>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row>
+    Heading
+  </mat-toolbar-row>
+
 </mat-toolbar>

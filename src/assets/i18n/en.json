@@ -12,5 +12,14 @@
     "TOGGLE": {
       "LABEL": "Toggle sidenav"
     }
+  },
+  "SIDEMENU": {
+    "DASHBOARD": "Dashboard",
+    "STUDIES": "Studies",
+    "PHENOTYPES": "Phenotypes",
+    "COHORTS": "Cohorts",
+    "NOTIFICATIONS": "Notifications",
+    "PROFILE": "Profile",
+    "SIGNOUT": "Sign out"
   }
 }

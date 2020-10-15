@@ -12,5 +12,14 @@
     "TOGGLE": {
       "LABEL": "Seitennavigation umschalten"
     }
+  },
+  "SIDEMENU": {
+    "DASHBOARD": "Übersicht",
+    "STUDIES": "Studien",
+    "PHENOTYPES": "Phänotypen",
+    "COHORTS": "Kohorten",
+    "NOTIFICATIONS": "Benachrichtigungen",
+    "PROFILE": "Profil",
+    "SIGNOUT": "Abmelden"
   }
 }

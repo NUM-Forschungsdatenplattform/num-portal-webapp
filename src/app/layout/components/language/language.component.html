@@ -1,9 +1,23 @@
-<mat-button-toggle-group class="num-mat-lang-toggle-button"
+<!-- <mat-button-toggle-group class="num-mat-lang-toggle-button"
   #group="matButtonToggleGroup"
   [attr.aria-label]="'LANGUAGE.LABEL' | translate"
   (change)="translate.use(group.value)"
   [value]="translate.currentLang">
 
-  <mat-button-toggle value="de">DE</mat-button-toggle>
-  <mat-button-toggle value="en">EN</mat-button-toggle>
-</mat-button-toggle-group>
+  <mat-button-toggle value="de">DEUTSCH</mat-button-toggle>
+  <mat-button-toggle value="en">ENGLISH</mat-button-toggle>
+</mat-button-toggle-group> -->
+
+<button mat-button style="padding:0 5px"
+  [ngClass]=" { 'active' : translate.currentLang === 'de' }"
+  (click)="translate.use('de')">
+  DEUTSCH
+</button>
+
+<b class="divider">|</b>
+
+<button mat-button style="padding:0 5px"
+  [ngClass]=" { 'active' : translate.currentLang === 'en' }"
+  (click)="translate.use('en')">
+  ENGLISH
+</button>

@@ -1,21 +1,7 @@
-<num-header>
-  <!-- Header Content -->
-  <button
-    type="button"
-    [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-
-    <fa-icon icon="bars"></fa-icon>
-  </button>
-</num-header>
-
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container autosize class="sidenav-container">
   <mat-sidenav
     #drawer
     fixedInViewport
-    fixedTopGap="64"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [attr.aria-label]="'APPLAYOUT.SIDENAV.LABEL' | translate"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -26,7 +12,25 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <num-header>
+      <!-- Header Content -->
+      <button
+        type="button"
+        [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+
+        <fa-icon icon="bars"></fa-icon>
+      </button>
+    </num-header>
+
     <!-- Page Content -->
     <router-outlet></router-outlet>
+
+    <num-footer>
+      <!-- Footer Content -->
+    </num-footer>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,13 @@
+@use '~src/styles/colors';
+
+.mat-button .active {
+  color: rgba(0, 0, 0, 1);
+}
+
+.mat-button:not(.active) {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.divider {
+  color: colors.$num-accent-color;
+}
