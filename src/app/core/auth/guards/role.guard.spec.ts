@@ -1,13 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { KeycloakService } from 'keycloak-angular';
 
 import { RoleGuard } from './role.guard';
 
 describe('AuthGuardGuard', () => {
   let guard: RoleGuard;
+  let keycloak = {
+
+  } as KeycloakService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(RoleGuard);
+    guard = new RoleGuard(keycloak);
   });
 
   it('should be created', () => {

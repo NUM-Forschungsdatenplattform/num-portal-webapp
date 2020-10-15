@@ -7,6 +7,12 @@ module.exports = {
   testMatch: ["**/+(*.)+(spec).+(ts)"],
   setupFilesAfterEnv: ["<rootDir>/src/test.ts"],
   collectCoverage: true,
+  collectCoverageFrom: [
+    '<rootDir>/src/app/**/*.ts',
+    '!<rootDir>/src/app/**/index.ts',
+    '!<rootDir>/src/app/**/*.module.ts',
+    '!<rootDir>/src/app/**/font-awesome-icons.ts'
+  ],
   coverageReporters: [
     "html",
     "text-summary",
