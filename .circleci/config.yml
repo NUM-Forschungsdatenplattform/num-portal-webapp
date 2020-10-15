@@ -83,7 +83,7 @@ jobs:
             elif [ $CIRCLE_BRANCH = "develop" ]; then
               TAG=$CIRCLE_BRANCH
             else
-              TAG="$(node -p "require('./package.json').version")-rc"
+              TAG="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')-rc"
             fi
             docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
             echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
