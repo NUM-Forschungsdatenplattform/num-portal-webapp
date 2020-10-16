@@ -1,0 +1,20 @@
+@mixin side-menu-component-theme($theme) {
+
+  $accent: map-get($theme, accent);
+
+  .mat-list-item {
+    fa-icon {
+      &:not(.active) {
+        color: rgba(0, 0, 0, 1);
+      }
+      &.active {
+        color: mat-color($accent);
+      }
+    }
+  }
+
+  .mat-divider {
+    border: medium solid mat-color($accent);
+  }
+
+}

@@ -1,0 +1,8 @@
+@import './custom-components/header/header.component.scss-theme';
+@import './custom-components/side-menu/side-menu.component.scss-theme';
+
+
+@mixin custom-components-theme($theme) {
+  @include header-component-theme($theme);
+  @include side-menu-component-theme($theme);
+}

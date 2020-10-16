@@ -1,22 +1,18 @@
 <mat-nav-list fxLayout="column" fxFill>
-
-  <button mat-raised-button color="accent">TEST</button>
-  <button mat-raised-button color="primary-lighter">TEST</button>
-
-    <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
-        <fa-icon mat-list-icon icon="th"></fa-icon>
+    <a mat-list-item routerLink="/home">
+        <fa-icon mat-list-icon icon="th" routerLinkActive="active"></fa-icon>
         <div>{{ 'SIDEMENU.DASHBOARD' | translate }}</div>
     </a>
-    <a mat-list-item routerLink="/studies" routerLinkActive="active-list-item">
-        <fa-icon mat-list-icon icon="microscope"></fa-icon>
+    <a mat-list-item routerLink="/studies">
+        <fa-icon mat-list-icon icon="microscope" routerLinkActive="active"></fa-icon>
         <div>{{ 'SIDEMENU.STUDIES' | translate }}</div>
     </a>
-    <a mat-list-item routerLink="/phenotypes" routerLinkActive="active-list-item">
-        <fa-icon mat-list-icon icon="seedling"></fa-icon>
+    <a mat-list-item routerLink="/phenotypes">
+        <fa-icon mat-list-icon icon="seedling" routerLinkActive="active"></fa-icon>
         <div>{{ 'SIDEMENU.PHENOTYPES' | translate }}</div>
     </a>
-    <a mat-list-item routerLink routerLink="/cohorts" routerLinkActive="active-list-item">
-        <fa-icon mat-list-icon icon="cubes"></fa-icon>
+    <a mat-list-item routerLink routerLink="/cohorts">
+        <fa-icon mat-list-icon icon="cubes" routerLinkActive="active"></fa-icon>
         <div>{{ 'SIDEMENU.COHORTS' | translate }}</div>
     </a>
 
