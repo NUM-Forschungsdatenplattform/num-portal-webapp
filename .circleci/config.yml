@@ -1,0 +1,90 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - tag_version:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+)$/
+      - build_and_deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master|develop)$/
+
+
+
+jobs:
+  test:
+    docker:
+      # - image: circleci/node:14.9.0-buster
+      - image: cimg/node:14.9.0
+    steps:
+      - checkout
+      - run:
+          name: Run Linter
+          command: |
+            echo 'LINTING NOT IMPLEMENTED!'
+      - run:
+          name: Run unit tests
+          command: |
+            echo 'UNIT TESTS NOT IMPLEMENTED!'
+      - run:
+          name: Run CVE scan
+          command: |
+            echo 'CVE SCAN NOT IMPLEMENTED!'
+      - run:
+          name: Run Sonar
+          command: |
+            echo 'SONAR NOT IMPLEMENTED!'
+  tag_version:
+    docker:
+      - image: cimg/node:14.9.0
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "ab:aa:49:91:bb:88:31:93:45:48:38:79:5e:60:53:9d"
+      - run:
+          name: Bump npm version
+          command: |
+            git config user.email "50235421+ehrbase-tech-user@users.noreply.github.com"
+            git config user.name "ci-bot"
+            VERSION_NUMBER="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')"
+            echo "Updating the application version from the branch to ${VERSION_NUMBER}"
+            npm version $VERSION_NUMBER
+            git push --set-upstream origin $CIRCLE_BRANCH
+            git push origin --tags
+
+  build_and_deploy:
+    docker:
+      - image: cimg/node:14.9.0
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_HUB_PASSWORD
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - run:
+          name: Build and tag image and push
+          command: |
+            if [ $CIRCLE_BRANCH = "master" ]; then
+              TAG=$(node -p "require('./package.json').version")
+            elif [ $CIRCLE_BRANCH = "develop" ]; then
+              TAG=$CIRCLE_BRANCH
+            else
+              TAG="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')-rc"
+            fi
+            docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
+            echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+            docker push $DOCKER_USER/num-portal-webapp:$TAG

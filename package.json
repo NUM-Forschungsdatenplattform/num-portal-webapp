@@ -1,10 +1,10 @@
 {
   "name": "num-portal-webapp",
-  "version": "0.0.0",
+  "version": "0.0.13",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
     "test": "jest",
     "lint": "ng lint",
     "e2e": "ng e2e"
