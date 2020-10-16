@@ -21,5 +21,10 @@
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out"
+  },
+  "FOOTER": {
+    "DISCLOSURE": "Disclosure",
+    "DATAPROTECTION": "Data Protection",
+    "CONTACT": "Contact"
   }
 }

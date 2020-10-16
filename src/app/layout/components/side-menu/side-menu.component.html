@@ -1,20 +1,23 @@
-<div fxLayout="column" fxFill>
-<mat-nav-list fxLayout="column" fxFlex>
+<mat-nav-list fxLayout="column" fxFill>
+
+  <button mat-raised-button color="accent">TEST</button>
+  <button mat-raised-button color="primary-lighter">TEST</button>
+
     <a mat-list-item routerLink="/home" routerLinkActive="active-list-item">
         <fa-icon mat-list-icon icon="th"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.DASHBOARD' | translate }}</div>
+        <div>{{ 'SIDEMENU.DASHBOARD' | translate }}</div>
     </a>
     <a mat-list-item routerLink="/studies" routerLinkActive="active-list-item">
         <fa-icon mat-list-icon icon="microscope"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.STUDIES' | translate }}</div>
+        <div>{{ 'SIDEMENU.STUDIES' | translate }}</div>
     </a>
     <a mat-list-item routerLink="/phenotypes" routerLinkActive="active-list-item">
         <fa-icon mat-list-icon icon="seedling"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.PHENOTYPES' | translate }}</div>
+        <div>{{ 'SIDEMENU.PHENOTYPES' | translate }}</div>
     </a>
     <a mat-list-item routerLink routerLink="/cohorts" routerLinkActive="active-list-item">
         <fa-icon mat-list-icon icon="cubes"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.COHORTS' | translate }}</div>
+        <div>{{ 'SIDEMENU.COHORTS' | translate }}</div>
     </a>
 
     <span fxFlex></span>
@@ -22,15 +25,14 @@
 
     <a mat-list-item routerLink routerLink="#">
         <fa-icon mat-list-icon icon="bell"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.NOTIFICATIONS' | translate }}</div>
+        <div>{{ 'SIDEMENU.NOTIFICATIONS' | translate }}</div>
     </a>
     <a mat-list-item routerLink routerLink="#">
         <fa-icon mat-list-icon icon="cog"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.PROFILE' | translate }}</div>
+        <div>{{ 'SIDEMENU.PROFILE' | translate }}</div>
     </a>
     <a mat-list-item routerLink routerLink="#">
         <fa-icon mat-list-icon icon="sign-out-alt"></fa-icon>
-        <div mat-line>{{ 'SIDEMENU.SIGNOUT' | translate }}</div>
+        <div>{{ 'SIDEMENU.SIGNOUT' | translate }}</div>
     </a>
 </mat-nav-list>
-</div>

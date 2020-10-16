@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'studies',
-    canActivate: [RoleGuard],
+    canLoad: [RoleGuard],
     loadChildren: () =>
       import('./modules/studies/studies.module'
       ).then(m => m.StudiesModule),

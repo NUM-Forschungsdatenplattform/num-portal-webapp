@@ -8,7 +8,7 @@
   <mat-button-toggle value="en">ENGLISH</mat-button-toggle>
 </mat-button-toggle-group> -->
 
-<button mat-button style="padding:0 5px"
+<button mat-button
   [ngClass]=" { 'active' : translate.currentLang === 'de' }"
   (click)="translate.use('de')">
   DEUTSCH
@@ -16,7 +16,7 @@
 
 <b class="divider">|</b>
 
-<button mat-button style="padding:0 5px"
+<button mat-button
   [ngClass]=" { 'active' : translate.currentLang === 'en' }"
   (click)="translate.use('en')">
   ENGLISH

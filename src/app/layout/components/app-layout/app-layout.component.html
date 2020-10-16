@@ -1,4 +1,4 @@
-<mat-sidenav-container autosize class="sidenav-container">
+<mat-sidenav-container autosize fullscreen class="sidenav-container">
   <mat-sidenav
     #drawer
     fixedInViewport
@@ -11,7 +11,7 @@
     <num-side-menu></num-side-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column">
     <num-header>
       <!-- Header Content -->
       <button
@@ -28,7 +28,7 @@
     <!-- Page Content -->
     <router-outlet></router-outlet>
 
-    <num-footer>
+    <num-footer fxFlexOffset="auto">
       <!-- Footer Content -->
     </num-footer>
 

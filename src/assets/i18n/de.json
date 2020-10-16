@@ -21,5 +21,10 @@
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden"
+  },
+  "FOOTER": {
+    "DISCLOSURE": "Impressum",
+    "DATAPROTECTION": "Datenschutz",
+    "CONTACT": "Kontakt"
   }
 }
