@@ -7,7 +7,7 @@ describe('AppConfigService', () => {
   const config = {config: 'test'};
   const httpClient = ({
     get: () => of(config),
-  } as unknown) as HttpClient;
+  }) as unknown as HttpClient;
 
   beforeEach(() => {
     appConfigService = new AppConfigService(httpClient);
