@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   async isAllowed(route: ActivatedRouteSnapshot | Route, redirectUri: string): Promise<boolean> {
     const isLoggedIn = await this.keycloak.isLoggedIn();
-    console.log(isLoggedIn);
     if (isLoggedIn) {
       return Promise.resolve(true);
     }
