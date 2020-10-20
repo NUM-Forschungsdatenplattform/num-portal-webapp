@@ -39,10 +39,12 @@ export class KeycloakInitService {
       reject later to finally kill the app gracefully.
   */
 
-  public initKeycloak(): Promise<void> {
+  public initKeycloak(isTest: boolean): Promise<boolean> {
     /* Remove this, once authentication is ready to be used ---> */
     /////////////////////////
-    return Promise.resolve();
+    if (!isTest){
+      return Promise.resolve(true);
+    }
     /////////////////////////
     /* Remove this, once authentication is ready to be used <--- */
 
@@ -69,7 +71,7 @@ export class KeycloakInitService {
         .then(() => {
           clearTimeout(happyTimeout);
           clearTimeout(terminationTimer);
-          return resolve();
+          return resolve(true);
         })
         .catch((err) => {
           return reject(err);

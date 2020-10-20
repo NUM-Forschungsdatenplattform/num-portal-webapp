@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanLoad, Route, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 
 @Injectable({
@@ -12,17 +11,14 @@ export class RoleGuard implements CanActivate, CanLoad {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url;
     return this.isAllowed(route, redirectUri);
   }
 
   canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const redirectUri = segments.reduce((path, currentSegment) => {
-      return `${path}/${currentSegment.path}`;
-    }, '');
+    route: Route): Promise<boolean> {
+    const redirectUri = window.location.origin + '/' + route.path;
     return this.isAllowed(route, redirectUri);
   }
 
@@ -38,9 +34,9 @@ export class RoleGuard implements CanActivate, CanLoad {
     }
 
     if (!(allowedRoles instanceof Array) || allowedRoles.length === 0) {
-      return true;
+      return Promise.resolve(true);
     }
 
-    return allowedRoles.some(role => userRoles.indexOf(role) >= 0);
+    return Promise.resolve(allowedRoles.some(role => userRoles.indexOf(role) >= 0));
   }
 }

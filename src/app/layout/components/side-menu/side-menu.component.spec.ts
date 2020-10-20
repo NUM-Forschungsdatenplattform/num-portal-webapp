@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { SideMenuComponent } from './side-menu.component';
+import { MaterialModule } from '../../material/material.module';
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent;
@@ -8,9 +10,9 @@ describe('SideMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SideMenuComponent ]
-    })
-    .compileComponents();
+      declarations: [SideMenuComponent],
+      imports: [FontAwesomeTestingModule, MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
