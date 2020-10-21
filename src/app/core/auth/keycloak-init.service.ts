@@ -39,7 +39,7 @@ export class KeycloakInitService {
       reject later to finally kill the app gracefully.
   */
 
-  public initKeycloak(isTest: boolean): Promise<boolean> {
+  public initKeycloak(isTest: boolean = false): Promise<boolean> {
     /* Remove this, once authentication is ready to be used ---> */
     /////////////////////////
     if (!isTest){

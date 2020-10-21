@@ -1,15 +1,3 @@
-@use '~src/styles/colors';
-
-.mat-button {
-  padding: 0 5px;
-  .active {
-    color: rgba(0, 0, 0, 1);
-  }
-  &:not(.active) {
-    color: rgba(0, 0, 0, 0.6);
-  }
-}
-
-.divider {
-  color: colors.$num-accent-color;
+:host {
+  line-height: 20px;
 }

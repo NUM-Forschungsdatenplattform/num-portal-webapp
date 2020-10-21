@@ -1,0 +1,41 @@
+@mixin language-component_themed($theme) {
+
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+
+  .num-mat-lang-toggle-button {
+    border: none;
+  
+    .mat-button-toggle {
+      background-color: transparent;
+  
+      button {
+        text-transform: uppercase !important;
+      }
+    }
+  
+    .mat-button-toggle-appearance-standard {
+      color: mat-color($primary, 200);
+  
+      &.mat-button-toggle-checked {
+       color: mat-color($primary);
+      }
+  
+      &.mat-button-toggle + .mat-button-toggle {
+        border-left: solid 2px mat-color($accent);
+      }
+    }
+  
+    .mat-button-toggle-focus-overlay {
+      height: 100%;
+      border: none !important;
+    }
+  
+    .mat-button-toggle-label-content {
+      line-height: 20px;
+    }
+  }
+
+}
+
+

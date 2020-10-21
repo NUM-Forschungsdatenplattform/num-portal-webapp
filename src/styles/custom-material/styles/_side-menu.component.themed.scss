@@ -1,4 +1,4 @@
-@mixin side-menu-component-theme($theme) {
+@mixin side-menu-component_themed($theme) {
 
   $accent: map-get($theme, accent);
 

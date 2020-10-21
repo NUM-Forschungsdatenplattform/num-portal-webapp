@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { IAppConfig } from 'src/app/config/app-config.model';
+import { AppConfigService } from 'src/app/config/app-config.service';
 
 @Component({
   selector: 'num-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
+  config: IAppConfig;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private appConfig: AppConfigService) {
+    this.config = appConfig.config;
   }
 
 }

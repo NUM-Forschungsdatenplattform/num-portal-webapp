@@ -9,5 +9,9 @@
         "baseUrl": "#{auth_baseUrl}",
         "realm": "#{auth_realm}",
         "clientId": "#{auth_clientId}"
+    },
+    "legal": {
+        "version": "#{legal_version}",
+        "copyrightOwner": "#{legal_copyrightOwner}"
     }
 }

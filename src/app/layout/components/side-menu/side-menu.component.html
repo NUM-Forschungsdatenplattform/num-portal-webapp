@@ -1,34 +1,38 @@
-<mat-nav-list fxLayout="column" fxFill>
-    <a mat-list-item routerLink="/home">
-        <fa-icon mat-list-icon icon="th" routerLinkActive="active"></fa-icon>
-        <div>{{ 'SIDEMENU.DASHBOARD' | translate }}</div>
-    </a>
-    <a mat-list-item routerLink="/studies">
-        <fa-icon mat-list-icon icon="microscope" routerLinkActive="active"></fa-icon>
-        <div>{{ 'SIDEMENU.STUDIES' | translate }}</div>
-    </a>
-    <a mat-list-item routerLink="/phenotypes">
-        <fa-icon mat-list-icon icon="seedling" routerLinkActive="active"></fa-icon>
-        <div>{{ 'SIDEMENU.PHENOTYPES' | translate }}</div>
-    </a>
-    <a mat-list-item routerLink routerLink="/cohorts">
-        <fa-icon mat-list-icon icon="cubes" routerLinkActive="active"></fa-icon>
-        <div>{{ 'SIDEMENU.COHORTS' | translate }}</div>
-    </a>
+<mat-nav-list fxLayout="column" fxFill fxFlex="225px">
+  <a class="navbar-item" routerLink="/home">
+    <img src="assets/logo.svg" alt="app-logo"/>
+  </a>
 
-    <span fxFlex></span>
-    <mat-divider></mat-divider>
+  <a class="menu-item"
+    *ngFor="let item of mainNavItems"
+    mat-list-item
+    [routerLink]="item.routeTo"
+    (click)="menuItemClicked()"
+  >
+    <fa-icon
+      size="lg"
+      [fixedWidth]="true"
+      [icon]="item.icon"
+      routerLinkActive="active"
+    ></fa-icon>
+    <div>{{ item.translationKey | translate }}</div>
+  </a>
 
-    <a mat-list-item routerLink routerLink="#">
-        <fa-icon mat-list-icon icon="bell"></fa-icon>
-        <div>{{ 'SIDEMENU.NOTIFICATIONS' | translate }}</div>
-    </a>
-    <a mat-list-item routerLink routerLink="#">
-        <fa-icon mat-list-icon icon="cog"></fa-icon>
-        <div>{{ 'SIDEMENU.PROFILE' | translate }}</div>
-    </a>
-    <a mat-list-item routerLink routerLink="#">
-        <fa-icon mat-list-icon icon="sign-out-alt"></fa-icon>
-        <div>{{ 'SIDEMENU.SIGNOUT' | translate }}</div>
-    </a>
+  <span fxFlex></span>
+  <mat-divider></mat-divider>
+
+  <a
+    *ngFor="let item of secondaryNavItems"
+    mat-list-item
+    [routerLink]="item.routeTo"
+    (click)="menuItemClicked()"
+  >
+    <fa-icon
+      size="lg"
+      [fixedWidth]="true"
+      [icon]="item.icon"
+      routerLinkActive="active"
+    ></fa-icon>
+    <div>{{ item.translationKey | translate }}</div>
+  </a>
 </mat-nav-list>

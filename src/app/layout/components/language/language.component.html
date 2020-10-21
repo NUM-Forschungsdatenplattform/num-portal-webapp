@@ -1,23 +1,10 @@
-<!-- <mat-button-toggle-group class="num-mat-lang-toggle-button"
+<fa-icon class="num-fc--a" icon="globe-europe" size="lg" [fixedWidth]="true"></fa-icon>
+<mat-button-toggle-group class="num-mat-lang-toggle-button"
   #group="matButtonToggleGroup"
   [attr.aria-label]="'LANGUAGE.LABEL' | translate"
   (change)="translate.use(group.value)"
   [value]="translate.currentLang">
 
-  <mat-button-toggle value="de">DEUTSCH</mat-button-toggle>
-  <mat-button-toggle value="en">ENGLISH</mat-button-toggle>
-</mat-button-toggle-group> -->
-
-<button mat-button
-  [ngClass]=" { 'active' : translate.currentLang === 'de' }"
-  (click)="translate.use('de')">
-  DEUTSCH
-</button>
-
-<b class="divider">|</b>
-
-<button mat-button
-  [ngClass]=" { 'active' : translate.currentLang === 'en' }"
-  (click)="translate.use('en')">
-  ENGLISH
-</button>
+  <mat-button-toggle value="de">{{ 'LANGUAGE.GERMAN' | translate }}</mat-button-toggle>
+  <mat-button-toggle value="en">{{ 'LANGUAGE.ENGLISH' | translate }}</mat-button-toggle>
+</mat-button-toggle-group>

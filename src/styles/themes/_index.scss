@@ -1,4 +1,6 @@
-@import './colors';
+@import './colors/accent-theme.palette.scss';
+@import './colors/primary-theme.palette.scss';
+@import './colors/warn-theme.palette.scss';
 
 $num-portal-webapp-primary: mat-palette($num-primary-palette);
 $num-portal-webapp-accent: mat-palette($num-accent-palette);

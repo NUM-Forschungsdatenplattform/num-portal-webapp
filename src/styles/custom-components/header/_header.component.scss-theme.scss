@@ -1,9 +1,0 @@
-@mixin header-component-theme($theme) {
-
-  $accent: map-get($theme, accent);
-
-  fa-icon {
-    color: mat-color($accent);
-  }
-
-}

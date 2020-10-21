@@ -1,5 +1,4 @@
-@use '~src/styles/colors';
 
 .test {
-    color: colors.$num-accent-color;
+    color: var(--num-color--accent);
 }

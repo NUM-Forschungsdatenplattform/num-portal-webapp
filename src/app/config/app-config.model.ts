@@ -10,4 +10,8 @@ export interface IAppConfig {
         realm: string,
         clientId: string
     };
+    legal: {
+        version: string,
+        copyrightOwner: string
+    };
 }

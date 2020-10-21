@@ -1,18 +1,12 @@
 @import '~@angular/material/theming';
+@import './font';
+@import './themes';
+@import './custom-material';
 
 @include mat-core();
-
-
-@import './theme';
-@import './custom-themes';
-
-
 @include angular-material-theme($num-portal-webapp-theme);
-@include custom-components-theme($num-portal-webapp-theme);
 
-
-@import './custom-material';
-@import './font';
+@include custom-material_themed($num-portal-webapp-theme);
 
 html, body {
   height: 100%;

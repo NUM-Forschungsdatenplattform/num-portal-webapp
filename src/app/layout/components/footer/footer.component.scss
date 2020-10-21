@@ -1,13 +1,13 @@
-.page-footer {
-  background-color: rgba(0, 0, 0, 0.6);
-  color: rgba(255, 255, 255, 1);
-  height: 60px;
+.mat-toolbar {
+  font-size: 14px;
+  height: 35px;
 }
 
-.mat-button {
-  padding: 0 5px;
+.version-row {
+  height: 20px;
+  font-size: 12px;
 }
 
-.divider {
-  color: rgba(255, 255, 255, 1);
+.version {
+  padding: 0 16px 0 0;
 }

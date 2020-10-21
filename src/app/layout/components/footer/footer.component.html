@@ -1,12 +1,15 @@
-<div class="page-footer">
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div>© 2020 und so weiter. Version 1.0.0</div>
-    <div>
-      <a mat-button href="#">{{ 'FOOTER.DISCLOSURE' | translate }}</a>
-      <b class="divider">|</b>
-      <a mat-button href="#">{{ 'FOOTER.DATAPROTECTION' | translate }}</a>
-      <b class="divider">|</b>
-      <a mat-button href="#">{{ 'FOOTER.CONTACT' | translate }}</a>
-    </div>
-  </div>
-</div>
+<mat-toolbar color="primary" role="contentinfo">
+  <mat-toolbar-row>
+    <div>© 2020 {{ config.legal.copyrightOwner }}</div>
+    <span fxFlex></span>
+    <a mat-button href="#">{{ 'LEGAL.DISCLOSURE' | translate }}</a>
+    <mat-divider [vertical]="true"></mat-divider>
+    <a mat-button href="#">{{ 'LEGAL.DATAPROTECTION' | translate }}</a>
+    <mat-divider [vertical]="true"></mat-divider>
+    <a mat-button href="#">{{ 'LEGAL.CONTACT' | translate }}</a>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="version-row">
+    <span fxFlex></span>
+    <div class="version">Version {{ config.legal.version }}</div>
+  </mat-toolbar-row>
+</mat-toolbar>
