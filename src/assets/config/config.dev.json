@@ -3,7 +3,7 @@
         "name": "dev"
     },
     "api": {
-        "url": ""
+        "baseUrl": "/api"
     },
     "auth": {
         "baseUrl": "http://localhost:8080",

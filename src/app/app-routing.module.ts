@@ -49,6 +49,18 @@ const routes: Routes = [
         /* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module'
       ).then((m) => m.CohortsModule),
   },
+  {
+    path: 'aqls',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'aqls',
+      roles: [],
+    },
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module'
+      ).then((m) => m.AqlsModule),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

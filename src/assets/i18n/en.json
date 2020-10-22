@@ -22,6 +22,7 @@
     "PHENOTYPES_OVERVIEW": "Overview",
     "PHENOTYPES_EDITOR": "Editor",
     "COHORTS": "Cohorts",
+    "AQLS": "AQL Queries",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out"
