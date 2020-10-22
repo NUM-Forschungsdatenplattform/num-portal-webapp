@@ -1,10 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AqlService } from './services/aql.service';
 
 
 
 @NgModule({
   declarations: [],
+  providers: [AqlService],
   imports: [
     CommonModule
   ]

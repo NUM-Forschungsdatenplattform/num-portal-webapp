@@ -3,7 +3,7 @@
         "name": "#{env_name}"
     },
     "api": {
-        "url": "#{api_url}"
+        "baseUrl": "#{api_baseUrl}"
     },
     "auth": {
         "baseUrl": "#{auth_baseUrl}",

@@ -3,7 +3,7 @@ export interface IAppConfig {
         name: string
     };
     api: {
-        url: string
+        baseUrl: string
     };
     auth: {
         baseUrl: string,

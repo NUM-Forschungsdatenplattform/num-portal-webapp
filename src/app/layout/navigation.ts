@@ -31,6 +31,11 @@ export const mainNavItems: INavItem[] = [
     icon: 'cubes',
     translationKey: 'NAVIGATION.COHORTS',
   },
+  {
+    routeTo: 'aqls',
+    icon: 'dna',
+    translationKey: 'NAVIGATION.AQLS',
+  },
 ];
 
 export const secondaryNavItems: INavItem[] = [
