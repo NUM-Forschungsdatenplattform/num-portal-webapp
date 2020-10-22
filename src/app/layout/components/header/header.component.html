@@ -1,7 +1,58 @@
-<mat-toolbar color="primary">
-    <ng-content></ng-content>
+<mat-toolbar color="light" class="toolbar" fxLayoutGap="20px">
+  <ng-content></ng-content>
 
-    <span>NUM Portal</span>
-    <span class="header-spacer"></span>
-    <num-language></num-language>
+  <span fxFlex></span>
+
+  <a mat-button href="#" class="num-button-align">
+    <fa-icon class="num-fc--a" icon="envelope" size="lg" [fixedWidth]="true"></fa-icon>
+    {{ "LEGAL.CONTACT" | translate }}
+  </a>
+
+  <num-language></num-language>
 </mat-toolbar>
+
+<section
+  role="heading"
+  fxLayout="row"
+  fxLayoutAlign="center start"
+  *ngIf="currentMainNavItem"
+>
+  <div
+    class="titlebar"
+    role="presentation"
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="95%"
+    fxFlex.gt-md="90%"
+    fxFlex.gt-lg="1200px"
+  >
+    <h1 class="mat-h1">
+      <fa-icon
+        class="num-fc--a"
+        [icon]="currentMainNavItem.icon"
+        size="lg"
+        [fixedWidth]="true"
+      ></fa-icon>
+      {{ currentMainNavItem.translationKey | translate }}
+    </h1>
+
+    <nav
+      mat-tab-nav-bar
+      [backgroundColor]="'#fff'"
+      color="accent"
+      *ngIf="currentTabNav"
+    >
+      <a
+        mat-tab-link
+        *ngFor="let tab of currentTabNav"
+        [routerLink]="tab.routeTo"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [active]="rla.isActive"
+      >
+        {{ tab.translationKey | translate }}
+      </a>
+    </nav>
+  </div>
+</section>

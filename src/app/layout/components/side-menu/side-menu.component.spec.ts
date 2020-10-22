@@ -3,6 +3,8 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 
 import { SideMenuComponent } from './side-menu.component';
 import { MaterialModule } from '../../material/material.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent;
@@ -11,7 +13,12 @@ describe('SideMenuComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SideMenuComponent],
-      imports: [FontAwesomeTestingModule, MaterialModule],
+      imports: [
+        FontAwesomeTestingModule,
+        MaterialModule,
+        RouterTestingModule.withRoutes([]),
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents();
   });
 
@@ -23,5 +30,21 @@ describe('SideMenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create', () => {
+    jest.spyOn(component.toggleSideMenu, 'emit');
+    component.mainNavItems = [
+      {
+        icon: 'test',
+        routeTo: '/test',
+        translationKey: 'test'
+      }
+    ];
+    fixture.detectChanges();
+    const nativeElement = fixture.debugElement.nativeElement;
+    const button = nativeElement.querySelector('.menu-item');
+    button.click();
+    expect(component.toggleSideMenu.emit).toHaveBeenCalled();
   });
 });

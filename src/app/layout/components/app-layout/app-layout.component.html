@@ -1,32 +1,42 @@
-<num-header>
-  <!-- Header Content -->
-  <button
-    type="button"
-    [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-
-    <fa-icon icon="bars"></fa-icon>
-  </button>
-</num-header>
-
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container autosize fullscreen class="sidenav-container">
   <mat-sidenav
     #drawer
     fixedInViewport
-    fixedTopGap="64"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [attr.role]="(isHandset) ? 'dialog' : 'navigation'"
     [attr.aria-label]="'APPLAYOUT.SIDENAV.LABEL' | translate"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false">
+    [mode]="(isHandset) ? 'over' : 'side'"
+    [opened]="(isHandset) === false">
 
-    <!-- Menu Content-->
-    <num-side-menu></num-side-menu>
+    <num-side-menu (toggleSideMenu)="toggleMenu()" fxFlex="100"></num-side-menu>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column">
     <!-- Page Content -->
-    <router-outlet></router-outlet>
+    <num-header role="banner">
+      <button
+        id="menu-toggle-button"
+        type="button"
+        [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
+        mat-icon-button
+        (click)="toggleMenu()"
+        *ngIf="isHandset">
+
+        <fa-icon icon="bars"></fa-icon>
+      </button>
+    </num-header>
+
+    <div fxLayout="row" fxLayoutAlign="center start" role="presentation">
+      <main 
+        fxLayout="column"
+        fxLayoutAlign="center start"
+        fxFlex="95%"
+        fxFlex.gt-md="90%"
+        fxFlex.gt-lg="1200px">
+        <router-outlet ></router-outlet>
+      </main>  
+    </div>
+    
+    <num-footer fxFlexOffset="auto"></num-footer>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,0 +1,18 @@
+/* import of not themed classes */
+@import "./styles/num-button-align";
+
+/* import of themed mixins */
+@import "./styles/lang-toggle-button.themed";
+@import "./styles/color-variables.themed";
+@import "./styles/color-classes.themed";
+@import "./styles/side-menu.component.themed";
+
+/* export themed mixins */
+@mixin custom-material_themed($theme) {
+  @include color-variables_themed($theme);
+  @include color-classes_themed($theme);
+  @include side-menu-component_themed($theme);
+  @include language-component_themed($theme);
+}
+
+

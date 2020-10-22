@@ -3,6 +3,8 @@
     "WELCOME": "Willkommen auf dem NUM Portal!"
   },
   "LANGUAGE": {
+    "GERMAN": "Deutsch",
+    "ENGLISH": "Englisch",
     "LABEL": "Sprache auswählen"
   },
   "APPLAYOUT": {
@@ -12,5 +14,21 @@
     "TOGGLE": {
       "LABEL": "Seitennavigation umschalten"
     }
+  },
+  "NAVIGATION": {
+    "DASHBOARD": "Übersicht",
+    "STUDIES": "Studien",
+    "PHENOTYPES": "Phänotypen",
+    "PHENOTYPES_OVERVIEW": "Übersicht",
+    "PHENOTYPES_EDITOR": "Editor",
+    "COHORTS": "Kohorten",
+    "NOTIFICATIONS": "Benachrichtigungen",
+    "PROFILE": "Profil",
+    "SIGNOUT": "Abmelden"
+  },
+  "LEGAL": {
+    "DISCLOSURE": "Impressum",
+    "DATAPROTECTION": "Datenschutz",
+    "CONTACT": "Kontakt"
   }
 }

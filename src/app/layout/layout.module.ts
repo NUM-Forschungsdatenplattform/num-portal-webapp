@@ -10,6 +10,7 @@ import { LanguageComponent } from './components/language/language.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { FONT_AWESOME_ICONS } from './font-awesome-icons';
+import { FooterComponent } from './components/footer/footer.component';
 
 const SHARED_MODULES = [
   MaterialModule,
@@ -18,7 +19,7 @@ const SHARED_MODULES = [
 ];
 
 @NgModule({
-  declarations: [AppLayoutComponent, HeaderComponent, SideMenuComponent, LanguageComponent],
+  declarations: [AppLayoutComponent, HeaderComponent, SideMenuComponent, LanguageComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule,

@@ -1,0 +1,15 @@
+@import './colors/accent-theme.palette.scss';
+@import './colors/primary-theme.palette.scss';
+@import './colors/warn-theme.palette.scss';
+
+$num-portal-webapp-primary: mat-palette($num-primary-palette);
+$num-portal-webapp-accent: mat-palette($num-accent-palette);
+$num-portal-webapp-warn: mat-palette($num-warn-palette);
+
+$num-portal-webapp-theme: mat-light-theme((
+  color: (
+    primary: $num-portal-webapp-primary,
+    accent: $num-portal-webapp-accent,
+    warn: $num-portal-webapp-warn,
+  )
+));

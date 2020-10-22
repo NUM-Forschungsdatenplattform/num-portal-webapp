@@ -1,3 +1,15 @@
-.header-spacer {
-  flex: 1 1 auto;
+.toolbar {
+  background: transparent;
+  font-size: 14px;
 }
+
+.titlebar {
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+  margin: 0 0 35px 0;
+}
+
+.mat-tab-label-active {
+  color: black;
+  opacity: 1;
+}
+

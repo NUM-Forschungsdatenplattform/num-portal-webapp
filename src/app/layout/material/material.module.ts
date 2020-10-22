@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -13,6 +14,7 @@ const MATERIAL_MODULES = [
   MatToolbarModule,
   MatButtonModule,
   MatButtonToggleModule,
+  MatTabsModule,
 ];
 
 @NgModule({

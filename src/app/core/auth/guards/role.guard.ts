@@ -23,7 +23,12 @@ export class RoleGuard implements CanActivate, CanLoad {
   }
 
   async isAllowed(route: ActivatedRouteSnapshot | Route, redirectUri: string): Promise<boolean> {
-    const allowedRoles = route.data.roles;
+    const allowedRoles = route.data?.roles;
+
+    if (!(allowedRoles instanceof Array) || allowedRoles.length === 0) {
+      return Promise.resolve(true);
+    }
+
     const userRoles = this.keycloak.getUserRoles(true);
     const isLoggedIn = await this.keycloak.isLoggedIn();
 
@@ -31,10 +36,6 @@ export class RoleGuard implements CanActivate, CanLoad {
       await this.keycloak.login({
         redirectUri,
       });
-    }
-
-    if (!(allowedRoles instanceof Array) || allowedRoles.length === 0) {
-      return Promise.resolve(true);
     }
 
     return Promise.resolve(allowedRoles.some(role => userRoles.indexOf(role) >= 0));
