@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhenotypeService } from 'src/app/core/services/phenotype.service';
 
 @Component({
   selector: 'num-phenotypes',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhenotypesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private phenotypeService: PhenotypeService) { }
 
   ngOnInit(): void {
+    this.phenotypeService.getAll().subscribe();
   }
 
 }

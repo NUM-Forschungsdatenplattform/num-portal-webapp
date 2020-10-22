@@ -36,7 +36,7 @@ describe('AqlsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create and call getAll on aqlService', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
