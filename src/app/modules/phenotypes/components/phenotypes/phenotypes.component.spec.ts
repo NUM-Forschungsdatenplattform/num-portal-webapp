@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 import { of, Subject } from 'rxjs';
 import { IPhenotype } from 'src/app/core/models/phenotype.interface';
 import { PhenotypeService } from 'src/app/core/services/phenotype.service';
@@ -14,13 +16,17 @@ describe('PhenotypesComponent', () => {
   const phenotypesSubject$ = new Subject<IPhenotype[]>();
   const phenotypeService = {
     phenotypesObservable$: phenotypesSubject$.asObservable(),
-    getAll: () => of()
+    getAll: () => of(),
   } as PhenotypeService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PhenotypesComponent, PhenotypeTableComponent],
-      imports: [MaterialModule],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: PhenotypeService,

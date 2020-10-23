@@ -1,8 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 import { of, Subject } from 'rxjs';
 import { IPhenotype } from 'src/app/core/models/phenotype.interface';
 import { PhenotypeService } from 'src/app/core/services/phenotype.service';
 import { MaterialModule } from 'src/app/layout/material/material.module';
+import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock';
 
 import { PhenotypeTableComponent } from './phenotype-table.component';
 
@@ -21,6 +24,8 @@ describe('PhenotypeTableComponent', () => {
       declarations: [ PhenotypeTableComponent ],
       imports: [
         MaterialModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
       ],
       providers: [{
         provide: PhenotypeService, useValue: phenotypeService
@@ -37,5 +42,13 @@ describe('PhenotypeTableComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('When phenotypes are received by the component', () => {
+    it('should set them into the datasource.data', () => {
+      phenotypesSubject$.next(mockPhenotypes);
+      fixture.detectChanges();
+      expect(component.dataSource.data).toBe(mockPhenotypes);
+    });
   });
 });
