@@ -10,9 +10,6 @@ export class AqlsComponent implements OnInit {
 
   constructor(private aqlService: AqlService) { }
 
-  displayedColumns: string[] = ['id', 'name'];
-  dataSource = this.aqlService.aqlsObservable$;
-
   ngOnInit(): void {
     this.aqlService.getAll().subscribe();
   }

@@ -2,19 +2,19 @@
 
   $accent: map-get($theme, accent);
 
-  .mat-list-item {
-    fa-icon {
-      &:not(.active) {
-        color: rgba(0, 0, 0, 1);
-      }
-      &.active {
+  .num-mat-list-item {
+    &--active {
+      background: rgba($color: mat-color($accent), $alpha: 0.2);
+
+      fa-icon {
         color: mat-color($accent);
       }
     }
-  }
 
-  .mat-divider {
-    border: medium solid mat-color($accent);
+    &:hover,
+    &:focus {
+      background: rgba($color: mat-color($accent), $alpha: 0.3) !important;
+    }
   }
 
 }

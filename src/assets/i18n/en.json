@@ -31,5 +31,6 @@
     "DISCLOSURE": "Disclosure",
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
-  }
+  },
+  "AVAILABLE_PHENOTYPES": "Available Phenotypes"
 }

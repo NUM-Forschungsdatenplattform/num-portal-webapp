@@ -5,44 +5,50 @@ import { of, Subject } from 'rxjs';
 import { IPhenotype } from 'src/app/core/models/phenotype.interface';
 import { PhenotypeService } from 'src/app/core/services/phenotype.service';
 import { MaterialModule } from 'src/app/layout/material/material.module';
-import { PhenotypeTableComponent } from '../phenotype-table/phenotype-table.component';
+import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock';
 
-import { PhenotypesComponent } from './phenotypes.component';
+import { PhenotypeTableComponent } from './phenotype-table.component';
 
-describe('PhenotypesComponent', () => {
-  let component: PhenotypesComponent;
-  let fixture: ComponentFixture<PhenotypesComponent>;
+describe('PhenotypeTableComponent', () => {
+  let component: PhenotypeTableComponent;
+  let fixture: ComponentFixture<PhenotypeTableComponent>;
 
   const phenotypesSubject$ = new Subject<IPhenotype[]>();
   const phenotypeService = {
     phenotypesObservable$: phenotypesSubject$.asObservable(),
-    getAll: () => of(),
+    getAll: () => of()
   } as PhenotypeService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhenotypesComponent, PhenotypeTableComponent],
+      declarations: [ PhenotypeTableComponent ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
       ],
-      providers: [
-        {
-          provide: PhenotypeService,
-          useValue: phenotypeService,
-        },
-      ],
-    }).compileComponents();
+      providers: [{
+        provide: PhenotypeService, useValue: phenotypeService
+      }]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhenotypesComponent);
+    fixture = TestBed.createComponent(PhenotypeTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('When phenotypes are received by the component', () => {
+    it('should set them into the datasource.data', () => {
+      phenotypesSubject$.next(mockPhenotypes);
+      fixture.detectChanges();
+      expect(component.dataSource.data).toBe(mockPhenotypes);
+    });
   });
 });

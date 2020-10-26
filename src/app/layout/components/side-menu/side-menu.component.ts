@@ -15,7 +15,9 @@ export class SideMenuComponent {
 
   constructor() { }
 
-  menuItemClicked(): void {
+  menuItemClicked($event: Event): void {
+    const target = $event.currentTarget as HTMLElement;
+    target.blur();
     this.toggleSideMenu.emit();
   }
 }

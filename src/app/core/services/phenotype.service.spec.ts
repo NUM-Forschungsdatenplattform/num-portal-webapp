@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import { AppConfigService } from 'src/app/config/app-config.service';
-import { mockAqls } from 'src/mocks/data-mocks/aqls.mock';
+import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock';
 
-import { AqlService } from './aql.service';
+import { PhenotypeService } from './phenotype.service';
 
-describe('AqlService', () => {
-  let service: AqlService;
+describe('PhenotypeService', () => {
+  let service: PhenotypeService;
 
   const httpClient = ({
-    get: () => of(mockAqls),
+    get: () => of(mockPhenotypes),
   } as unknown) as HttpClient;
 
   const appConfig = {
@@ -20,9 +20,8 @@ describe('AqlService', () => {
     },
   } as AppConfigService;
 
-
   beforeEach(() => {
-    service = new AqlService(httpClient, appConfig);
+    service = new PhenotypeService(httpClient, appConfig);
   });
 
   it('should be created', () => {
@@ -30,17 +29,17 @@ describe('AqlService', () => {
   });
 
   describe('When a call to getAll method comes in', () => {
-    it('should calls the api - with success', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls));
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotypes));
       service.getAll().subscribe();
       expect(httpClient.get).toHaveBeenCalled();
     });
 
-    it('should calls the api - with error', () => {
+    it('should call the api - with error', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'));
       jest.spyOn(service, 'handleError');
       service.getAll().subscribe();
-      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql');
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/phenotype');
       expect(service.handleError).toHaveBeenCalled();
     });
   });

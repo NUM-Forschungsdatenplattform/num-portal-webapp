@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -17,6 +19,8 @@ const MATERIAL_MODULES = [
   MatButtonToggleModule,
   MatTabsModule,
   MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({
