@@ -14,7 +14,7 @@ describe('AqlsComponent', () => {
   const aqlsSubject$ = new Subject<IAql[]>();
   const aqlService = {
     aqlsObservable$: aqlsSubject$.asObservable(),
-    getAll: () => of()
+    getAll: () => of(),
   } as AqlService;
 
   beforeEach(async () => {
