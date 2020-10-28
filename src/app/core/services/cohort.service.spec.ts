@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
-import { of, throwError } from 'rxjs';
-import { AppConfigService } from 'src/app/config/app-config.service';
+import { HttpClient } from '@angular/common/http'
+import { TestBed } from '@angular/core/testing'
+import { of, throwError } from 'rxjs'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
-import { CohortService } from './cohort.service';
+import { CohortService } from './cohort.service'
 
 describe('CohortService', () => {
-  let service: CohortService;
+  let service: CohortService
 
   const httpClient = ({
     get: () => of(),
-    post: () => of()
-  } as unknown) as HttpClient;
+    post: () => of(),
+  } as unknown) as HttpClient
 
   const appConfig = {
     config: {
@@ -19,40 +19,40 @@ describe('CohortService', () => {
         baseUrl: 'localhost/api',
       },
     },
-  } as AppConfigService;
+  } as AppConfigService
 
   beforeEach(() => {
-    service = new CohortService(httpClient, appConfig);
-  });
+    service = new CohortService(httpClient, appConfig)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    expect(service).toBeTruthy()
+  })
 
   describe('When executing a cohort definition', () => {
-    const cohortId = 123;
-    const cohortSize = 321;
+    const cohortId = 123
+    const cohortSize = 321
 
     it('should call the api with the cohort id provided and return the response', async () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => of(cohortSize));
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(cohortSize))
       const request = {
         url: `${appConfig.config.api.baseUrl}/cohort/${cohortId}/size`,
-        body: {}
-      };
+        body: {},
+      }
 
-      const result = await service.executeCohort(cohortId).toPromise();
+      const result = await service.executeCohort(cohortId).toPromise()
 
-      expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body);
-      expect(result).toEqual(cohortSize);
-    });
+      expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
+      expect(result).toEqual(cohortSize)
+    })
 
     it('should call the api and handle erros', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'));
-      jest.spyOn(service, 'handleError');
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
 
-      service.executeCohort(cohortId).subscribe();
+      service.executeCohort(cohortId).subscribe()
 
-      expect(service.handleError).toHaveBeenCalled();
-    });
-  });
-});
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+})

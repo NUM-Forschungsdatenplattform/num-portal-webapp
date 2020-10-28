@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { PhenotypeService } from 'src/app/core/services/phenotype.service';
+import { Component, OnInit } from '@angular/core'
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 
 @Component({
   selector: 'num-phenotypes',
   templateUrl: './phenotypes.component.html',
-  styleUrls: ['./phenotypes.component.scss']
+  styleUrls: ['./phenotypes.component.scss'],
 })
 export class PhenotypesComponent implements OnInit {
-
-  constructor(private phenotypeService: PhenotypeService) { }
+  constructor(private phenotypeService: PhenotypeService) {}
 
   ngOnInit(): void {
-    this.phenotypeService.getAll().subscribe();
+    this.phenotypeService.getAll().subscribe()
   }
-
 }

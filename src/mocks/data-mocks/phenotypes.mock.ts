@@ -1,6 +1,6 @@
-import { LogicalOperator } from 'src/app/core/models/logical-operator.enum';
-import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum';
-import { IPhenotype } from 'src/app/core/models/phenotype.interface';
+import { LogicalOperator } from 'src/app/core/models/logical-operator.enum'
+import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum'
+import { IPhenotype } from 'src/app/core/models/phenotype.interface'
 
 export const mockPhenotype1: IPhenotype = {
   name: 'Blood pressure',
@@ -69,7 +69,7 @@ export const mockPhenotype1: IPhenotype = {
       },
     ],
   },
-};
+}
 
 export const mockPhenotype2: IPhenotype = {
   name: 'Secon Blood pressure',
@@ -138,6 +138,6 @@ export const mockPhenotype2: IPhenotype = {
       },
     ],
   },
-};
+}
 
-export const mockPhenotypes: IPhenotype[] = [mockPhenotype1, mockPhenotype2];
+export const mockPhenotypes: IPhenotype[] = [mockPhenotype1, mockPhenotype2]

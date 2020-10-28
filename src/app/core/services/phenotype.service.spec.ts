@@ -1,16 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { of, throwError } from 'rxjs';
-import { AppConfigService } from 'src/app/config/app-config.service';
-import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock';
+import { HttpClient } from '@angular/common/http'
+import { of, throwError } from 'rxjs'
+import { AppConfigService } from 'src/app/config/app-config.service'
+import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
 
-import { PhenotypeService } from './phenotype.service';
+import { PhenotypeService } from './phenotype.service'
 
 describe('PhenotypeService', () => {
-  let service: PhenotypeService;
+  let service: PhenotypeService
 
   const httpClient = ({
     get: () => of(mockPhenotypes),
-  } as unknown) as HttpClient;
+  } as unknown) as HttpClient
 
   const appConfig = {
     config: {
@@ -18,29 +18,29 @@ describe('PhenotypeService', () => {
         baseUrl: 'localhost/api',
       },
     },
-  } as AppConfigService;
+  } as AppConfigService
 
   beforeEach(() => {
-    service = new PhenotypeService(httpClient, appConfig);
-  });
+    service = new PhenotypeService(httpClient, appConfig)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    expect(service).toBeTruthy()
+  })
 
   describe('When a call to getAll method comes in', () => {
     it('should call the api - with success', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotypes));
-      service.getAll().subscribe();
-      expect(httpClient.get).toHaveBeenCalled();
-    });
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotypes))
+      service.getAll().subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
 
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'));
-      jest.spyOn(service, 'handleError');
-      service.getAll().subscribe();
-      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/phenotype');
-      expect(service.handleError).toHaveBeenCalled();
-    });
-  });
-});
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.getAll().subscribe()
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/phenotype')
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+})

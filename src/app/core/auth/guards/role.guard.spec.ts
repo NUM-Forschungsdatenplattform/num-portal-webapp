@@ -1,163 +1,159 @@
-import {
-  ActivatedRouteSnapshot,
-  Route,
-  RouterStateSnapshot,
-} from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
+import { ActivatedRouteSnapshot, Route, RouterStateSnapshot } from '@angular/router'
+import { KeycloakService } from 'keycloak-angular'
 
-import { RoleGuard } from './role.guard';
+import { RoleGuard } from './role.guard'
 
 describe('AuthGuardGuard', () => {
-  let guard: RoleGuard;
+  let guard: RoleGuard
   const keycloak = {
     isLoggedIn: () => Promise.resolve(true),
     getUserRoles: () => [],
     login: () => {},
-  } as KeycloakService;
+  } as KeycloakService
 
   beforeEach(() => {
-    guard = new RoleGuard(keycloak);
-  });
+    guard = new RoleGuard(keycloak)
+  })
 
   afterEach(() => {
-    jest.clearAllMocks();
-  });
+    jest.clearAllMocks()
+  })
 
   it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
+    expect(guard).toBeTruthy()
+  })
 
   describe('When the user is logged in and has required roles', () => {
     const activatedRoute = ({
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot;
+    } as unknown) as ActivatedRouteSnapshot
 
     const route = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as Route;
-    const state = {} as RouterStateSnapshot;
+    } as Route
+    const state = {} as RouterStateSnapshot
 
     it('grants access to the route in [canActivate] guard', () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true);
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true)
       jest
         .spyOn(keycloak, 'getUserRoles')
-        .mockImplementation(() => ['user', 'has', 'required', 'role']);
+        .mockImplementation(() => ['user', 'has', 'required', 'role'])
       return guard.canActivate(activatedRoute, state).then((result) => {
-        expect(result).toBeTruthy();
-      });
-    });
+        expect(result).toBeTruthy()
+      })
+    })
 
     it('grants access to the route in [canLoad] guard', async () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true);
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true)
       jest
         .spyOn(keycloak, 'getUserRoles')
-        .mockImplementation(() => ['user', 'has', 'required', 'role']);
-      const result = await guard.canLoad(route);
-      expect(result).toBeTruthy();
-    });
-  });
+        .mockImplementation(() => ['user', 'has', 'required', 'role'])
+      const result = await guard.canLoad(route)
+      expect(result).toBeTruthy()
+    })
+  })
 
   describe('When the user is logged in and has not the required roles', () => {
     const activatedRoute = ({
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot;
+    } as unknown) as ActivatedRouteSnapshot
 
     const route = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as Route;
-    const state = {} as RouterStateSnapshot;
+    } as Route
+    const state = {} as RouterStateSnapshot
 
     it('grants no access to the route in [canActivate] guard', () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true);
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true)
       jest
         .spyOn(keycloak, 'getUserRoles')
-        .mockImplementation(() => ['user', 'has', 'no required', 'role']);
+        .mockImplementation(() => ['user', 'has', 'no required', 'role'])
       return guard.canActivate(activatedRoute, state).then((result) => {
-        expect(result).toBeFalsy();
-      });
-    });
+        expect(result).toBeFalsy()
+      })
+    })
 
     it('grants no access to the route in [canLoad] guard', async () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true);
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(true)
       jest
         .spyOn(keycloak, 'getUserRoles')
-        .mockImplementation(() => ['user', 'has', 'no required', 'role']);
-      const result = await guard.canLoad(route);
-      expect(result).toBeFalsy();
-    });
-  });
+        .mockImplementation(() => ['user', 'has', 'no required', 'role'])
+      const result = await guard.canLoad(route)
+      expect(result).toBeFalsy()
+    })
+  })
 
   describe('When the user is not logged in', () => {
-    const host = 'http://localhost';
-    const path = 'test/url';
+    const host = 'http://localhost'
+    const path = 'test/url'
     const activatedRoute = ({
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot;
+    } as unknown) as ActivatedRouteSnapshot
 
     const route = {
       path,
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as Route;
+    } as Route
 
     const state = {
       url: path,
-    } as RouterStateSnapshot;
+    } as RouterStateSnapshot
 
     it('calls keycloak.login to let the user login in [canActivate] guard', async () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(false);
-      jest.spyOn(keycloak, 'login');
-      jest.spyOn(keycloak, 'getUserRoles');
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(false)
+      jest.spyOn(keycloak, 'login')
+      jest.spyOn(keycloak, 'getUserRoles')
 
-      const result = await guard.canActivate(activatedRoute, state);
+      const result = await guard.canActivate(activatedRoute, state)
       expect(keycloak.login).toHaveBeenCalledWith({
         redirectUri: host + state.url,
-      });
-    });
+      })
+    })
 
     it('calls keycloak.login to let the user login in [canLoad] guard', async () => {
-      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(false);
-      jest.spyOn(keycloak, 'login');
-      jest.spyOn(keycloak, 'getUserRoles');
+      jest.spyOn(keycloak, 'isLoggedIn').mockResolvedValue(false)
+      jest.spyOn(keycloak, 'login')
+      jest.spyOn(keycloak, 'getUserRoles')
 
-      const result = await guard.canLoad(route);
+      const result = await guard.canLoad(route)
       expect(keycloak.login).toHaveBeenCalledWith({
         redirectUri: host + '/' + path,
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('When no roles are specified', () => {
-    const path = 'test/url';
-    const activatedRoute = ({} as unknown) as ActivatedRouteSnapshot;
+    const path = 'test/url'
+    const activatedRoute = ({} as unknown) as ActivatedRouteSnapshot
 
     const route = {
       path,
-    } as Route;
+    } as Route
 
     const state = {
       url: path,
-    } as RouterStateSnapshot;
+    } as RouterStateSnapshot
 
     it('it grants access to the route in [canActivate] guard', async () => {
-      const result = await guard.canActivate(activatedRoute, state);
-      expect(result).toBeTruthy();
-    });
+      const result = await guard.canActivate(activatedRoute, state)
+      expect(result).toBeTruthy()
+    })
 
     it('it grants access to the route in [canLoad] guard', async () => {
-      const result = await guard.canLoad(route);
-      expect(result).toBeTruthy();
-    });
-  });
-});
+      const result = await guard.canLoad(route)
+      expect(result).toBeTruthy()
+    })
+  })
+})

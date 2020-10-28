@@ -1,5 +1,5 @@
 export interface IAql {
-  id: number;
-  name: string;
-  query: string;
+  id: number
+  name: string
+  query: string
 }
