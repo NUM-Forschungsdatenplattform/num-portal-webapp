@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivationEnd, Router, RouterEvent } from '@angular/router';
-import { Subscription } from 'rxjs';
-import INavItem from '../../models/nav-item.interface';
-import { mainNavItems } from '../../navigation';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { ActivationEnd, Router, RouterEvent } from '@angular/router'
+import { Subscription } from 'rxjs'
+import INavItem from '../../models/nav-item.interface'
+import { mainNavItems } from '../../navigation'
 
 @Component({
   selector: 'num-header',
@@ -10,42 +10,38 @@ import { mainNavItems } from '../../navigation';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private subscriptions = new Subscription();
+  private subscriptions = new Subscription()
 
-  mainNavItems = mainNavItems;
-  currentNavId: string;
-  currentMainNavItem: INavItem;
-  currentTabNav: INavItem[] = null;
+  mainNavItems = mainNavItems
+  currentNavId: string
+  currentMainNavItem: INavItem
+  currentTabNav: INavItem[] = null
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.router.events.subscribe((event) =>
-        this.handleRouterEvent(event as RouterEvent)
-      )
-    );
+      this.router.events.subscribe((event) => this.handleRouterEvent(event as RouterEvent))
+    )
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe()
   }
 
   handleRouterEvent(routerEvent: RouterEvent): void {
     if (routerEvent instanceof ActivationEnd) {
-      const navId = routerEvent.snapshot.data.navId;
+      const navId = routerEvent.snapshot.data.navId
       if (navId !== this.currentNavId) {
-        this.currentNavId = navId;
-        this.setHeader();
+        this.currentNavId = navId
+        this.setHeader()
       }
     }
   }
 
   setHeader(): void {
-    const navItem = this.mainNavItems.find(
-      (item) => item.routeTo === this.currentNavId
-    );
-    this.currentMainNavItem = navItem;
-    this.currentTabNav = navItem?.tabNav;
+    const navItem = this.mainNavItems.find((item) => item.routeTo === this.currentNavId)
+    this.currentMainNavItem = navItem
+    this.currentTabNav = navItem?.tabNav
   }
 }

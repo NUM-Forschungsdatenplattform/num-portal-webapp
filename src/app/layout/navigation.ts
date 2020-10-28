@@ -1,4 +1,4 @@
-import INavItem from './models/nav-item.interface';
+import INavItem from './models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
   {
@@ -24,7 +24,7 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'phenotypes/editor',
         translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
       },
-    ]
+    ],
   },
   {
     routeTo: 'cohorts',
@@ -36,7 +36,7 @@ export const mainNavItems: INavItem[] = [
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',
   },
-];
+]
 
 export const secondaryNavItems: INavItem[] = [
   {
@@ -54,4 +54,4 @@ export const secondaryNavItems: INavItem[] = [
     icon: 'sign-out-alt',
     translationKey: 'NAVIGATION.SIGNOUT',
   },
-];
+]

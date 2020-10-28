@@ -1,54 +1,52 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule } from '@ngx-translate/core';
-import { of, Subject } from 'rxjs';
-import { IPhenotype } from 'src/app/core/models/phenotype.interface';
-import { PhenotypeService } from 'src/app/core/services/phenotype.service';
-import { MaterialModule } from 'src/app/layout/material/material.module';
-import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { TranslateModule } from '@ngx-translate/core'
+import { of, Subject } from 'rxjs'
+import { IPhenotype } from 'src/app/core/models/phenotype.interface'
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { MaterialModule } from 'src/app/layout/material/material.module'
+import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
 
-import { PhenotypeTableComponent } from './phenotype-table.component';
+import { PhenotypeTableComponent } from './phenotype-table.component'
 
 describe('PhenotypeTableComponent', () => {
-  let component: PhenotypeTableComponent;
-  let fixture: ComponentFixture<PhenotypeTableComponent>;
+  let component: PhenotypeTableComponent
+  let fixture: ComponentFixture<PhenotypeTableComponent>
 
-  const phenotypesSubject$ = new Subject<IPhenotype[]>();
+  const phenotypesSubject$ = new Subject<IPhenotype[]>()
   const phenotypeService = {
     phenotypesObservable$: phenotypesSubject$.asObservable(),
-    getAll: () => of()
-  } as PhenotypeService;
+    getAll: () => of(),
+  } as PhenotypeService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhenotypeTableComponent ],
-      imports: [
-        MaterialModule,
-        BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+      declarations: [PhenotypeTableComponent],
+      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      providers: [
+        {
+          provide: PhenotypeService,
+          useValue: phenotypeService,
+        },
       ],
-      providers: [{
-        provide: PhenotypeService, useValue: phenotypeService
-      }]
-    })
-    .compileComponents();
-  });
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhenotypeTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(PhenotypeTableComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
   describe('When phenotypes are received by the component', () => {
     it('should set them into the datasource.data', () => {
-      phenotypesSubject$.next(mockPhenotypes);
-      fixture.detectChanges();
-      expect(component.dataSource.data).toBe(mockPhenotypes);
-    });
-  });
-});
+      phenotypesSubject$.next(mockPhenotypes)
+      fixture.detectChanges()
+      expect(component.dataSource.data).toBe(mockPhenotypes)
+    })
+  })
+})

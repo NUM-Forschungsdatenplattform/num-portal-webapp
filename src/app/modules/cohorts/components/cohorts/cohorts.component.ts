@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CohortService } from 'src/app/core/services/cohort.service';
+import { Component, OnInit } from '@angular/core'
+import { CohortService } from 'src/app/core/services/cohort.service'
 
 @Component({
   selector: 'num-cohorts',
@@ -9,21 +9,19 @@ import { CohortService } from 'src/app/core/services/cohort.service';
 export class CohortsComponent implements OnInit {
   constructor(private cohortService: CohortService) {}
 
-  cohortSize: number;
-  cohortId: number;
-  error: boolean;
+  cohortSize: number
+  cohortId: number
+  error: boolean
 
   ngOnInit(): void {}
 
   checkCohortSize(): void {
-    this.cohortSize = null;
+    this.cohortSize = null
     if (!this.cohortId) {
-      this.error = true;
+      this.error = true
     } else {
-      this.error = false;
-      this.cohortService
-        .executeCohort(this.cohortId)
-        .subscribe((size) => (this.cohortSize = size));
+      this.error = false
+      this.cohortService.executeCohort(this.cohortId).subscribe((size) => (this.cohortSize = size))
     }
   }
 }

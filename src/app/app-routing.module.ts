@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { RoleGuard } from './core/auth/guards/role.guard';
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { RoleGuard } from './core/auth/guards/role.guard'
 
 const routes: Routes = [
   {
@@ -21,9 +21,9 @@ const routes: Routes = [
       roles: [],
     },
     loadChildren: () =>
-      import(
-        /* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module'
-      ).then((m) => m.StudiesModule),
+      import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
+        (m) => m.StudiesModule
+      ),
   },
   {
     path: 'phenotypes',
@@ -45,9 +45,9 @@ const routes: Routes = [
       roles: [],
     },
     loadChildren: () =>
-      import(
-        /* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module'
-      ).then((m) => m.CohortsModule),
+      import(/* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module').then(
+        (m) => m.CohortsModule
+      ),
   },
   {
     path: 'aqls',
@@ -57,13 +57,13 @@ const routes: Routes = [
       roles: [],
     },
     loadChildren: () =>
-      import(
-        /* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module'
-      ).then((m) => m.AqlsModule),
+      import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
+        (m) => m.AqlsModule
+      ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
