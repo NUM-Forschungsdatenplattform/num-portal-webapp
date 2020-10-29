@@ -5,18 +5,13 @@
 
   <a mat-button href="#" class="num-button-align">
     <fa-icon class="num-fc--a" icon="envelope" size="lg" [fixedWidth]="true"></fa-icon>
-    {{ "LEGAL.CONTACT" | translate }}
+    {{ 'LEGAL.CONTACT' | translate }}
   </a>
 
   <num-language></num-language>
 </mat-toolbar>
 
-<section
-  role="heading"
-  fxLayout="row"
-  fxLayoutAlign="center start"
-  *ngIf="currentMainNavItem"
->
+<section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
     class="titlebar"
     role="presentation"
@@ -36,12 +31,7 @@
       {{ currentMainNavItem.translationKey | translate }}
     </h1>
 
-    <nav
-      mat-tab-nav-bar
-      [backgroundColor]="'#fff'"
-      color="accent"
-      *ngIf="currentTabNav"
-    >
+    <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">
       <a
         mat-tab-link
         *ngFor="let tab of currentTabNav"
