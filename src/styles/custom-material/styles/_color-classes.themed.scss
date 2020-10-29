@@ -1,5 +1,4 @@
 @mixin color-classes_themed($theme) {
-
   $accent: map-get($theme, accent);
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);

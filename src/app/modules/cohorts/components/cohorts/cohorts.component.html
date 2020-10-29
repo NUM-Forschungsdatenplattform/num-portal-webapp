@@ -2,18 +2,18 @@
 <p>Provide an id to execute a cohort definition</p>
 <mat-divider class="num-d-w--1 num-d-c--a"></mat-divider>
 <div fxLayout="column">
-    <mat-form-field appearance="fill">
-        <mat-label id="label">Input</mat-label>
-        <input matInput aria-labelledby="label" type="number" [(ngModel)]="cohortId">
-    </mat-form-field>
-    <button mat-raised-button color="accent" (click)="checkCohortSize()">Execute</button>
+  <mat-form-field appearance="fill">
+    <mat-label id="label">Input</mat-label>
+    <input matInput aria-labelledby="label" type="number" [(ngModel)]="cohortId" />
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="checkCohortSize()">Execute</button>
 </div>
 
 <mat-divider class="num-d-w--1 num-d-c--a"></mat-divider>
 
 <div *ngIf="cohortSize">
-    <p class="mat-h3">Here is your result:</p>
-    <p>The size of the cohort: {{ cohortSize }}</p>
+  <p class="mat-h3">Here is your result:</p>
+  <p>The size of the cohort: {{ cohortSize }}</p>
 </div>
 
 <p *ngIf="error">Please provide an id</p>

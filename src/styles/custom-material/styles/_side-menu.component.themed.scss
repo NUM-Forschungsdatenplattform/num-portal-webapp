@@ -1,5 +1,4 @@
 @mixin side-menu-component_themed($theme) {
-
   $accent: map-get($theme, accent);
 
   .num-mat-list-item {
@@ -16,5 +15,4 @@
       background: rgba($color: mat-color($accent), $alpha: 0.3) !important;
     }
   }
-
 }

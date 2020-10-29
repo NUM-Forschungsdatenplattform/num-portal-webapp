@@ -1,5 +1,5 @@
 <div class="header" role="presentation">
-  <h2 class="mat-h2">{{ "AVAILABLE_PHENOTYPES" | translate}}</h2>
+  <h2 class="mat-h2">{{ 'AVAILABLE_PHENOTYPES' | translate }}</h2>
   <mat-divider class="num-d-c--a num-d-w--1"></mat-divider>
 </div>
 
@@ -22,10 +22,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table> 
- 
+  </table>
+
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
-
-
