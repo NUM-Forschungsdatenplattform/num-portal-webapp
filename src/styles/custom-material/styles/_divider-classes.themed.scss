@@ -3,13 +3,14 @@
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);
 
-  /* Hint: 
+  /* Hint:
     class="num-d-w--1 num-d-c--a" || class="num-divider-width--1 num-divider-color--a"
     class="num-d-w--2 num-d-c--a" || class="num-divider-width--2 num-divider-color--a"
     class="num-d-w--3 num-d-c--a" || class="num-divider-width--3 num-divider-color--a"
   */
 
   .mat-divider {
+    margin: 15px 0 !important;
     border-style: solid;
 
     $border-widths: 3;
