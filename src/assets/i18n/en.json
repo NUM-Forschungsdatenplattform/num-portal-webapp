@@ -32,5 +32,11 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
-  "AVAILABLE_PHENOTYPES": "Available Phenotypes"
+  "AVAILABLE_PHENOTYPES": "Available Phenotypes",
+  "FORM": {
+    "GENERAL_INFO": "General Information",
+    "TITLE": "Title",
+    "DESCRIPTION": "Description",
+    "CHARACTERS": "Characters"
+  }
 }
