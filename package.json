@@ -38,7 +38,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1001.4",
+    "@angular-devkit/build-angular": "^0.1002.0",
     "@angular/cli": "~10.1.4",
     "@angular/compiler-cli": "~10.1.4",
     "@types/jasmine": "~3.5.0",
@@ -69,7 +69,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts}": [
-        "ng-lint-staged lint --fix --"
+      "ng-lint-staged lint --fix --"
     ]
   }
 }
