@@ -18,10 +18,12 @@ export const mainNavItems: INavItem[] = [
     tabNav: [
       {
         routeTo: 'phenotypes',
+        id: 'overview',
         translationKey: 'NAVIGATION.PHENOTYPES_OVERVIEW',
       },
       {
-        routeTo: 'phenotypes/editor',
+        routeTo: 'phenotypes/new/editor',
+        id: 'editor',
         translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
       },
     ],

@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentNavId: string
   currentMainNavItem: INavItem
   currentTabNav: INavItem[] = null
+  currentTabNavSelected: string
 
   constructor(private router: Router) {}
 
@@ -31,6 +32,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   handleRouterEvent(routerEvent: RouterEvent): void {
     if (routerEvent instanceof ActivationEnd) {
+      this.currentTabNavSelected = routerEvent.snapshot.firstChild?.data?.tabNavId
+
       const navId = routerEvent.snapshot.data.navId
       if (navId !== this.currentNavId) {
         this.currentNavId = navId

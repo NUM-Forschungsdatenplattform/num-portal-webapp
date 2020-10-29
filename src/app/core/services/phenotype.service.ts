@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, throwError } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { Ptor } from 'protractor'
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
+import { catchError, filter, map, tap, throwIfEmpty } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IPhenotype } from '../models/phenotype.interface'
 
@@ -27,6 +28,27 @@ export class PhenotypeService {
       }),
       catchError(this.handleError)
     )
+  }
+
+  get(id: number): Observable<IPhenotype> {
+    let result: IPhenotype
+    if (this.phenotypes.length) {
+      result = this.phenotypes.find((phenotype) => phenotype.id === id)
+    }
+
+    if (!result) {
+      return this.getAll().pipe(
+        map((phenotypesArray) => {
+          const searchResult = phenotypesArray.find((phenotype) => phenotype.id === id)
+          if (searchResult) {
+            return searchResult
+          }
+          throw new Error('Not Found')
+        })
+      )
+    }
+
+    return of(result)
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

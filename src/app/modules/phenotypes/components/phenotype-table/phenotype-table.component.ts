@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { IPhenotype } from 'src/app/core/models/phenotype.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
@@ -13,7 +14,7 @@ import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 })
 export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private phenotypeService: PhenotypeService) {}
+  constructor(private phenotypeService: PhenotypeService, private router: Router) {}
 
   displayedColumns: string[] = ['id', 'name', 'description']
   dataSource = new MatTableDataSource()
@@ -39,5 +40,9 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
 
   handleData(phenotypes: IPhenotype[]): void {
     this.dataSource.data = phenotypes
+  }
+
+  handleRowClick(phenotype: IPhenotype): void {
+    this.router.navigate(['phenotypes', phenotype.id, 'editor'])
   }
 }
