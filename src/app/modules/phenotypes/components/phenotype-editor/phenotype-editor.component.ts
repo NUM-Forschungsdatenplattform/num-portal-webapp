@@ -10,19 +10,20 @@ import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 })
 export class PhenotypeEditorComponent implements OnInit {
   resolvedData: IPhenotypeResolved
-  generalInfoForm: FormGroup
+  phenotypeForm: FormGroup
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
-    this.generalInfoForm = new FormGroup({
+    this.phenotypeForm = new FormGroup({
       title: new FormControl(this.resolvedData.phenotype?.name),
       description: new FormControl(this.resolvedData.phenotype?.description),
     })
   }
 
   saveForm(): void {
-    console.log('Save')
+    //console.log(JSON.stringify(this.resolvedData.phenotype.convertToApiInterface()))
+    console.log(this.resolvedData.phenotype.convertToApiInterface())
   }
 }

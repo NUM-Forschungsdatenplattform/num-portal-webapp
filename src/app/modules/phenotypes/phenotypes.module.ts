@@ -7,9 +7,21 @@ import { SharedModule } from 'src/app/shared/shared.module'
 import { PhenotypeEditorComponent } from './components/phenotype-editor/phenotype-editor.component'
 import { PhenotypeTableComponent } from './components/phenotype-table/phenotype-table.component'
 import { LayoutModule } from 'src/app/layout/layout.module'
+import { PhenotypeEditorGeneralInfoComponent } from './components/phenotype-editor-general-info/phenotype-editor-general-info.component'
+import { PhenotypeEditorConnectorComponent } from './components/phenotype-editor-connector/phenotype-editor-connector.component';
+import { PhenotypeEditorConnectorGroupComponent } from './components/phenotype-editor-connector-group/phenotype-editor-connector-group.component';
+import { PhenotypeEditorConnectorAqlComponent } from './components/phenotype-editor-connector-aql/phenotype-editor-connector-aql.component'
 
 @NgModule({
-  declarations: [PhenotypesComponent, PhenotypeEditorComponent, PhenotypeTableComponent],
+  declarations: [
+    PhenotypesComponent,
+    PhenotypeEditorComponent,
+    PhenotypeTableComponent,
+    PhenotypeEditorGeneralInfoComponent,
+    PhenotypeEditorConnectorComponent,
+    PhenotypeEditorConnectorGroupComponent,
+    PhenotypeEditorConnectorAqlComponent,
+  ],
   imports: [CommonModule, PhenotypesRoutingModule, SharedModule, LayoutModule],
 })
 export class PhenotypesModule {}

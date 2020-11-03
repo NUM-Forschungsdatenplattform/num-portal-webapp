@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs'
 import { map, catchError, tap } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { IPhenotypeResolved } from './models/phenotype-resolved.interface'
+import { PhenotypeUiModel } from './models/phenotype-ui.model'
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,9 @@ export class PhenotypeResolver implements Resolve<IPhenotypeResolved> {
 
     return this.phenotypeService.get(+id).pipe(
       map((phenotype) => {
-        return { phenotype, error: null }
+        const uiModel = new PhenotypeUiModel(phenotype)
+        console.log(uiModel)
+        return { phenotype: uiModel, error: null }
       }),
       catchError((error) => {
         return of({ phenotype: null, error })

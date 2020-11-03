@@ -1,0 +1,51 @@
+<section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <span>Gruppe {{ parentGroupIndex }}</span>
+
+  <mat-form-field appearance="standard" class="num-operator-select">
+    <mat-select [(value)]="phenotypeQuery.operator">
+      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+        {{ operator }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span fxFlex></span>
+
+  <mat-slide-toggle labelPosition="before" [(ngModel)]="phenotypeQuery.isNegated"
+    >Negation</mat-slide-toggle
+  >
+</section>
+
+<section role="listitem" *ngFor="let child of phenotypeQuery.children; let i = index">
+  <num-phenotype-editor-connector-group
+    role="list"
+    class="group"
+    *ngIf="child.type === phenotypeQueryType.Group"
+    [phenotypeQuery]="child"
+    [parentGroupIndex]="groupIndex"
+    [selfGroupIndex]="child.indexInGroup"
+    fxFlex="100%"
+  ></num-phenotype-editor-connector-group>
+
+  <num-phenotype-editor-connector-aql
+    class="aql mat-elevation-z2"
+    [ngClass]="{ 'aql--last': i === phenotypeQuery.children.length - 1 }"
+    *ngIf="child.type === phenotypeQueryType.Aql"
+    [phenotypeQuery]="child"
+    fxFlex="100%"
+    role="listitem"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  ></num-phenotype-editor-connector-aql>
+</section>
+
+<section role="presentation" class="button-row" fxLayoutGap="20px">
+  <button mat-flat-button class="num-button-align" color="primary" (click)="addQuery()">
+    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+    {{ 'ADD_QUERY' | translate }}
+  </button>
+  <button mat-stroked-button class="num-button-align" color="primary" (click)="addGroup()">
+    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+    {{ 'ADD_GROUP' | translate }}
+  </button>
+</section>

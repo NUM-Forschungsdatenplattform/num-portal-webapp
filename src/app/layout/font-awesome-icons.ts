@@ -9,6 +9,7 @@ import { faBell } from '@fortawesome/free-solid-svg-icons'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faDna } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
   faTh,
@@ -22,4 +23,5 @@ export const FONT_AWESOME_ICONS = [
   faCog,
   faSignOutAlt,
   faDna,
+  faPlus,
 ]

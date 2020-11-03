@@ -12,6 +12,8 @@ import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatCardModule } from '@angular/material/card'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatSelectModule } from '@angular/material/select'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -27,6 +29,8 @@ const MATERIAL_MODULES = [
   MatSortModule,
   MatPaginatorModule,
   MatCardModule,
+  MatSlideToggleModule,
+  MatSelectModule,
 ]
 
 @NgModule({

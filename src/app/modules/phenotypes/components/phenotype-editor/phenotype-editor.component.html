@@ -1,42 +1,14 @@
-<section role="region" aria-labelledby="general-info-label" fxLayout="column" fxFlex="100%">
-  <h2 class="mat-h2">{{ 'FORM.GENERAL_INFO' | translate }}</h2>
-  <mat-divider class="num-d-c--a num-d-w--1"></mat-divider>
+<section fxLayoutGap="54px" fxLayout="column">
+  <num-phenotype-editor-general-info [form]="phenotypeForm"></num-phenotype-editor-general-info>
+  <num-phenotype-editor-connector
+    [phenotypeQuery]="resolvedData.phenotype?.query"
+  ></num-phenotype-editor-connector>
 
-  <mat-card>
-    <mat-card-content fxLayout="column" fxFlex="100%">
-      <p id="general-info-label" fxFlex="100%">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus.
-      </p>
-
-      <form fxLayout="column" fxFlex="100%" (ngSubmit)="saveForm()" [formGroup]="generalInfoForm">
-        <mat-form-field appearance="outline" color="accent">
-          <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
-          <input
-            formControlName="title"
-            matInput
-            placeholder="Title"
-            aria-labelledby="title-label"
-          />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" color="accent" fxFlex="100%">
-          <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}</mat-label>
-          <textarea
-            formControlName="description"
-            #textarea
-            matInput
-            style="resize: none"
-            aria-labelledby="desc-label"
-            maxlength="1000"
-            rows="10"
-          ></textarea>
-          <mat-hint
-            >{{ textarea.value?.length || 0 }}/1000 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
-          >
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <section role="region" fxLayout="column">
+    <mat-divider class="button-row-divider num-d-w--1"></mat-divider>
+    <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+      <button mat-stroked-button color="primary">Abrechen</button>
+      <button mat-raised-button color="primary" (click)="saveForm()">Phänotyp erstellen</button>
+    </div>
+  </section>
 </section>

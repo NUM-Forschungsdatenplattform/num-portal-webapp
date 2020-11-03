@@ -33,6 +33,9 @@
     "CONTACT": "Contact"
   },
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
+  "CONNECT_AQL": "Connect AQL Queries together",
+  "ADD_QUERY": "Add query",
+  "ADD_GROUP": "Add group",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",

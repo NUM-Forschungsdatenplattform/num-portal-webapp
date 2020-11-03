@@ -33,6 +33,9 @@
     "CONTACT": "Kontakt"
   },
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
+  "CONNECT_AQL": "AQL Queries zusammenstellen",
+  "ADD_QUERY": "Query hinzufügen",
+  "ADD_GROUP": "Gruppe hinzufügen",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",

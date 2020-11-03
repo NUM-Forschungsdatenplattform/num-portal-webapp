@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
-import { IPhenotype } from 'src/app/core/models/phenotype.interface'
+import { IPhenotypeApi } from 'src/app/core/models/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 
 @Component({
@@ -38,11 +38,11 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
     this.subscriptions.unsubscribe()
   }
 
-  handleData(phenotypes: IPhenotype[]): void {
+  handleData(phenotypes: IPhenotypeApi[]): void {
     this.dataSource.data = phenotypes
   }
 
-  handleRowClick(phenotype: IPhenotype): void {
+  handleRowClick(phenotype: IPhenotypeApi): void {
     this.router.navigate(['phenotypes', phenotype.id, 'editor'])
   }
 }
