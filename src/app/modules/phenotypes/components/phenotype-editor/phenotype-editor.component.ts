@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
@@ -17,7 +17,10 @@ export class PhenotypeEditorComponent implements OnInit {
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
     this.phenotypeForm = new FormGroup({
-      title: new FormControl(this.resolvedData.phenotype?.name),
+      title: new FormControl(this.resolvedData.phenotype?.name, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       description: new FormControl(this.resolvedData.phenotype?.description),
     })
   }
