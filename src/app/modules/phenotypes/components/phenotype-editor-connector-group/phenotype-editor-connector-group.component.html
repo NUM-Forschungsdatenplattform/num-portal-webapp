@@ -51,7 +51,13 @@
     {{ 'ADD_GROUP' | translate }}
   </button>
 
-  <button mat-stroked-button class="num-button-align" color="primary" (click)="deleteSelf()">
+  <button
+    mat-stroked-button
+    class="num-button-align"
+    color="primary"
+    (click)="deleteSelf()"
+    *ngIf="groupType === phenotypeGroupType.Sub"
+  >
     Delete
   </button>
 </section>

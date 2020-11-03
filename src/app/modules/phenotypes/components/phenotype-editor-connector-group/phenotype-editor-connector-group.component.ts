@@ -12,6 +12,7 @@ import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enu
 import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
 
 import debounce from 'lodash-es/debounce'
+import { PhenotypeGroupType } from '../../models/phenotype-group-type.enum'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -20,6 +21,7 @@ import debounce from 'lodash-es/debounce'
 })
 export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges {
   readonly phenotypeQueryType = PhenotypeQueryType
+  readonly phenotypeGroupType = PhenotypeGroupType
   readonly logicalOperator = LogicalOperator
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
@@ -41,7 +43,7 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   constructor() {}
 
   ngOnInit(): void {
-    this.groupType = !this.selfGroupIndex ? 'MAIN_GROUP' : 'SUB_GROUP'
+    this.groupType = !this.selfGroupIndex ? PhenotypeGroupType.Main : PhenotypeGroupType.Sub
   }
 
   ngOnChanges(changes: SimpleChanges): void {
