@@ -1,8 +1,17 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core'
 import { LogicalOperator } from 'src/app/core/models/logical-operator.enum'
 import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum'
-import { IPhenotypeQueryApi } from 'src/app/core/models/phenotype-query-api.interface'
 import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
+
+import debounce from 'lodash-es/debounce'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -10,26 +19,38 @@ import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
   styleUrls: ['./phenotype-editor-connector-group.component.scss'],
 })
 export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges {
-  phenotypeQueryType = PhenotypeQueryType
-  logicalOperator = LogicalOperator
-  logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
+  readonly phenotypeQueryType = PhenotypeQueryType
+  readonly logicalOperator = LogicalOperator
+  readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
   @Input() phenotypeQuery: IPhenotypeQuery
-  @Input() parentGroupIndex: number[]
-  @Input() selfGroupIndex: number
+  @Input() parentGroupIndex: number[] | null
+  @Input() selfGroupIndex: number | null
+  @Input() index: number
+
+  @Output() delete = new EventEmitter()
+
+  enumerateGroupsThrottled = debounce(() => this.enumerateGroups(), 100, {
+    leading: true,
+    trailing: false,
+  })
 
   groupIndex: number[]
+  groupType: string
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.groupType = !this.selfGroupIndex ? 'MAIN_GROUP' : 'SUB_GROUP'
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
-          case 'phenotypeQuery': {
-            this.groupIndex = [...this.parentGroupIndex, this.selfGroupIndex]
-            this.enumerateGroups()
+          case 'selfGroupIndex':
+          case 'parentGroupIndex': {
+            this.enumerateGroupsThrottled()
           }
         }
       }
@@ -37,34 +58,24 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   }
 
   enumerateGroups(): void {
-    console.log('Enum')
+    this.groupIndex = [...(this.parentGroupIndex ? this.parentGroupIndex : [])]
+    if (this.selfGroupIndex !== null) {
+      this.groupIndex.push(this.selfGroupIndex)
+    }
+
     let counter = 1
-    for (let i = 0; i < this.phenotypeQuery.children.length; i++) {
-      const query = this.phenotypeQuery.children[i]
+
+    this.phenotypeQuery.children.forEach((query) => {
       if (query.type === PhenotypeQueryType.Group) {
-        this.phenotypeQuery.children[i].indexInGroup = counter
+        query.indexInGroup = counter
         counter++
       }
-    }
+    })
   }
 
   addQuery(): void {
-    const aql = this.generateAql()
-    const copy = JSON.parse(JSON.stringify(this.phenotypeQuery.children))
-    copy.push(aql)
-    this.phenotypeQuery.children = copy
-  }
-
-  generateAql(): IPhenotypeQuery {
-    return {
-      isNegated: false,
-      type: PhenotypeQueryType.Aql,
-      aql: {
-        id: new Date().getSeconds(),
-        name: 'test',
-        query: 'test-query',
-      },
-    }
+    // Open Modal
+    console.log('addQuery')
   }
 
   addGroup(): void {
@@ -72,11 +83,19 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
       isNegated: false,
       type: PhenotypeQueryType.Group,
       operator: LogicalOperator.And,
-      children: [this.generateAql()],
+      children: [],
     }
-    const copy = JSON.parse(JSON.stringify(this.phenotypeQuery.children))
-    copy.push(group)
-    this.phenotypeQuery.children = copy
-    this.enumerateGroups()
+
+    this.phenotypeQuery.children.push(group)
+    this.enumerateGroupsThrottled()
+  }
+
+  deleteChild(index: number): void {
+    this.phenotypeQuery.children.splice(index, 1)
+    this.enumerateGroupsThrottled()
+  }
+
+  deleteSelf(): void {
+    this.delete.emit(this.index)
   }
 }

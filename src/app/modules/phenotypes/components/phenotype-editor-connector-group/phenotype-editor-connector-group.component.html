@@ -1,5 +1,5 @@
 <section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <span>Gruppe {{ parentGroupIndex }}</span>
+  <span class="mat-body-strong">{{ groupType | translate }} {{ groupIndex | groupIndex }}</span>
 
   <mat-form-field appearance="standard" class="num-operator-select">
     <mat-select [(value)]="phenotypeQuery.operator">
@@ -24,6 +24,8 @@
     [phenotypeQuery]="child"
     [parentGroupIndex]="groupIndex"
     [selfGroupIndex]="child.indexInGroup"
+    [index]="i"
+    (delete)="deleteChild($event)"
     fxFlex="100%"
   ></num-phenotype-editor-connector-group>
 
@@ -47,5 +49,9 @@
   <button mat-stroked-button class="num-button-align" color="primary" (click)="addGroup()">
     <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
     {{ 'ADD_GROUP' | translate }}
+  </button>
+
+  <button mat-stroked-button class="num-button-align" color="primary" (click)="deleteSelf()">
+    Delete
   </button>
 </section>

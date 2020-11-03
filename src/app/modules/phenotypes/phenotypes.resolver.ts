@@ -20,18 +20,17 @@ export class PhenotypeResolver implements Resolve<IPhenotypeResolved> {
     const id = route.paramMap.get('id')
 
     if (id === 'new') {
-      return of({ phenotype: null, error: null })
+      return of({ phenotype: new PhenotypeUiModel(), error: null })
     }
 
     if (isNaN(+id)) {
       const message = `Id was not a number: ${id}`
-      return of({ phenotype: null, error: message })
+      return of({ phenotype: new PhenotypeUiModel(), error: message })
     }
 
     return this.phenotypeService.get(+id).pipe(
       map((phenotype) => {
         const uiModel = new PhenotypeUiModel(phenotype)
-        console.log(uiModel)
         return { phenotype: uiModel, error: null }
       }),
       catchError((error) => {

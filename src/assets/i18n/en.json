@@ -36,6 +36,8 @@
   "CONNECT_AQL": "Connect AQL Queries together",
   "ADD_QUERY": "Add query",
   "ADD_GROUP": "Add group",
+  "MAIN_GROUP": "Maingroup",
+  "SUB_GROUP": "Subgroup",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",

@@ -10,11 +10,20 @@ export class PhenotypeUiModel {
   description: string
   query: IPhenotypeQuery
 
-  constructor(phenotypeApi: IPhenotypeApi) {
-    this.id = phenotypeApi.id
-    this.name = phenotypeApi.name
-    this.description = phenotypeApi.description
-    this.query = this.convertQueryToUi(phenotypeApi.query)
+  constructor(phenotypeApi?: IPhenotypeApi) {
+    this.id = phenotypeApi?.id || 0
+    this.name = phenotypeApi?.name || undefined
+    this.description = phenotypeApi?.description || undefined
+    this.query = phenotypeApi ? this.convertQueryToUi(phenotypeApi.query) : this.createEmptyGroup()
+  }
+
+  createEmptyGroup(): IPhenotypeQuery {
+    return {
+      isNegated: false,
+      type: PhenotypeQueryType.Group,
+      operator: LogicalOperator.And,
+      children: [],
+    }
   }
 
   private convertQueryToUi(apiQuery: IPhenotypeQueryApi): IPhenotypeQuery {
