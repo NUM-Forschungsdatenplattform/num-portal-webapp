@@ -8,9 +8,10 @@ import { PhenotypeEditorComponent } from './components/phenotype-editor/phenotyp
 import { PhenotypeTableComponent } from './components/phenotype-table/phenotype-table.component'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { PhenotypeEditorGeneralInfoComponent } from './components/phenotype-editor-general-info/phenotype-editor-general-info.component'
-import { PhenotypeEditorConnectorComponent } from './components/phenotype-editor-connector/phenotype-editor-connector.component';
-import { PhenotypeEditorConnectorGroupComponent } from './components/phenotype-editor-connector-group/phenotype-editor-connector-group.component';
+import { PhenotypeEditorConnectorComponent } from './components/phenotype-editor-connector/phenotype-editor-connector.component'
+import { PhenotypeEditorConnectorGroupComponent } from './components/phenotype-editor-connector-group/phenotype-editor-connector-group.component'
 import { PhenotypeEditorConnectorAqlComponent } from './components/phenotype-editor-connector-aql/phenotype-editor-connector-aql.component'
+import { DialogAddAqlsComponent } from './components/dialog-add-aqls/dialog-add-aqls.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { PhenotypeEditorConnectorAqlComponent } from './components/phenotype-edi
     PhenotypeEditorConnectorComponent,
     PhenotypeEditorConnectorGroupComponent,
     PhenotypeEditorConnectorAqlComponent,
+    DialogAddAqlsComponent,
   ],
   imports: [CommonModule, PhenotypesRoutingModule, SharedModule, LayoutModule],
+  entryComponents: [DialogAddAqlsComponent],
 })
 export class PhenotypesModule {}
