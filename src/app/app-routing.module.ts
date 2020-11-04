@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'studies',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'studies',
       roles: [],
@@ -27,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'phenotypes',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'phenotypes',
       roles: [],
@@ -39,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'cohorts',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'cohorts',
       roles: [],
@@ -51,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'aqls',
       roles: [],

@@ -21,6 +21,7 @@ export class KeycloakInitService {
 
   private KEYCLOAK_CONFIG: KeycloakConfig
   private KEYCLOAK_INIT_OPTIONS: KeycloakInitOptions
+  private KEYCLOAK_BEARER_EXCLUDED_URLS = ['assets']
 
   constructor(
     private http: HttpClient,
@@ -41,9 +42,9 @@ export class KeycloakInitService {
   public initKeycloak(isTest: boolean = false): Promise<boolean> {
     /* Remove this, once authentication is ready to be used ---> */
     /////////////////////////
-    if (!isTest) {
-      return Promise.resolve(true)
-    }
+    // if (!isTest) {
+    //   return Promise.resolve(true)
+    // }
     /////////////////////////
     /* Remove this, once authentication is ready to be used <--- */
 
@@ -64,6 +65,7 @@ export class KeycloakInitService {
       const init = this.keycloak.init({
         config: this.KEYCLOAK_CONFIG,
         initOptions: this.KEYCLOAK_INIT_OPTIONS,
+        bearerExcludedUrls: this.KEYCLOAK_BEARER_EXCLUDED_URLS,
       })
 
       return Promise.race([init, terminationTimeout])
