@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { mainNavItems, secondaryNavItems } from '../../navigation'
+import INavItem from '../../models/nav-item.interface'
+import { KeycloakService } from 'keycloak-angular'
 
 @Component({
   selector: 'num-side-menu',
@@ -12,11 +14,20 @@ export class SideMenuComponent {
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor() {}
+  constructor(private keycloak: KeycloakService) {}
 
-  menuItemClicked($event: Event): void {
+  menuItemClicked($event: Event, item?: INavItem): void {
+    if (item.translationKey === 'NAVIGATION.SIGNOUT') {
+      const redirectUri = window.location.origin + '/home'
+      this.logout(redirectUri)
+    }
+
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
+  }
+
+  logout(redirectUri: string): void {
+    this.keycloak.logout(redirectUri)
   }
 }

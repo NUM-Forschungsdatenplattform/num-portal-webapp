@@ -6,6 +6,7 @@ import { RoleGuard } from './core/auth/guards/role.guard'
 const routes: Routes = [
   {
     path: 'home',
+    canLoad: [AuthGuard],
     data: {
       navId: 'home',
     },
