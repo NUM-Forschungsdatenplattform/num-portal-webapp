@@ -47,6 +47,8 @@ describe('Keycloak Init Service', () => {
       silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html',
     }
 
+    const bearerExcludedUrls = ['assets']
+
     it('Calls init on keycloak with correct config and options', async () => {
       jest.spyOn(keycloak, 'init')
       jest.spyOn(httpClient, 'get')
@@ -56,6 +58,7 @@ describe('Keycloak Init Service', () => {
       expect(keycloak.init).toHaveBeenCalledWith({
         config: keycloakConfig,
         initOptions,
+        bearerExcludedUrls,
       })
       expect(httpClient.get).not.toHaveBeenCalled()
     })

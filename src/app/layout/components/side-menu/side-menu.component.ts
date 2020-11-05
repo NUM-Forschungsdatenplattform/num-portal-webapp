@@ -16,7 +16,7 @@ export class SideMenuComponent {
 
   constructor(private keycloak: KeycloakService) {}
 
-  menuItemClicked($event: Event, item?: INavItem): void {
+  menuItemClicked($event: Event, item: INavItem): void {
     if (item.translationKey === 'NAVIGATION.SIGNOUT') {
       const redirectUri = window.location.origin + '/home'
       this.logout(redirectUri)
