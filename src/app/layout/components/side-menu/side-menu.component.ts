@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { mainNavItems, secondaryNavItems } from '../../navigation'
+import { mainNavItems, secondaryNavItems } from '../../../core/constants/navigation'
 
 @Component({
   selector: 'num-side-menu',

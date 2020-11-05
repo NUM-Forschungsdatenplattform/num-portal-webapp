@@ -1,4 +1,4 @@
-import INavItem from './models/nav-item.interface'
+import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
   {

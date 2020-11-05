@@ -32,6 +32,11 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
+  "MY_AQLS": "Meine AQLs",
+  "ORGANISATION_AQLS": "AQLs meiner Organisation",
+  "ALL_AQLS": "Alle AQLs",
+  "SELECTED_AQLS": "Ausgewählte AQL-Queries",
+  "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "CONNECT_AQL": "AQL Queries zusammenstellen",
   "ADD_QUERY": "Query hinzufügen",

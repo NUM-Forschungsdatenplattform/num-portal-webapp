@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
-import { DialogSize } from 'src/app/core/models/dialog-size.enum'
-import { DialogService } from 'src/app/core/services/dialog.service'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
-import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 
 @Component({
   selector: 'num-phenotype-editor',
@@ -15,7 +12,7 @@ export class PhenotypeEditorComponent implements OnInit {
   resolvedData: IPhenotypeResolved
   phenotypeForm: FormGroup
 
-  constructor(private route: ActivatedRoute, private dialogService: DialogService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
@@ -26,15 +23,6 @@ export class PhenotypeEditorComponent implements OnInit {
       ]),
       description: new FormControl(this.resolvedData.phenotype?.description),
     })
-    this.openDialog()
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialogService.openDialog(
-      DialogAddAqlsComponent,
-      { title: 'This is the Title' },
-      DialogSize.Medium
-    )
   }
 
   saveForm(): void {

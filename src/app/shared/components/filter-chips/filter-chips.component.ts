@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { MatChipSelectionChange } from '@angular/material/chips'
+import { IFilterChip } from '../../models/filter-chip.interface'
 
 @Component({
   selector: 'num-filter-chips',
   templateUrl: './filter-chips.component.html',
-  styleUrls: ['./filter-chips.component.scss']
+  styleUrls: ['./filter-chips.component.scss'],
 })
 export class FilterChipsComponent implements OnInit {
+  constructor() {}
+  @Input() filterChips: IFilterChip<string | number>[]
+  @Output() selectionChange = new EventEmitter()
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  handleClickOnChip($event: any): void {
+    $event.isSelected = !$event.isSelected
+    this.selectionChange.emit(this.filterChips)
   }
-
 }

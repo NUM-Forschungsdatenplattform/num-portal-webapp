@@ -12,6 +12,8 @@ import { faDna } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
   faTh,
@@ -28,4 +30,6 @@ export const FONT_AWESOME_ICONS = [
   faPlus,
   faSearch,
   faTimesCircle,
+  faCheck,
+  faTrash,
 ]

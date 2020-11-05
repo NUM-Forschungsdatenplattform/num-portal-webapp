@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
-import { mainNavItems } from '../../navigation'
+import { mainNavItems } from '../../../core/constants/navigation'
 
 @Component({
   selector: 'num-header',

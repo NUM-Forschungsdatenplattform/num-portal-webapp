@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { MatSelectModule } from '@angular/material/select'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatChipsModule } from '@angular/material/chips'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -33,6 +34,7 @@ const MATERIAL_MODULES = [
   MatSlideToggleModule,
   MatSelectModule,
   MatDialogModule,
+  MatChipsModule,
 ]
 
 @NgModule({

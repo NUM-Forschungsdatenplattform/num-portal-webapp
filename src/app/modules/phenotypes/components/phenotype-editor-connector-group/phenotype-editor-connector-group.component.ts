@@ -13,6 +13,9 @@ import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
 
 import debounce from 'lodash-es/debounce'
 import { PhenotypeGroupType } from '../../models/phenotype-group-type.enum'
+import { DialogService } from 'src/app/core/services/dialog.service'
+import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
+import { DialogSize } from 'src/app/core/models/dialog-size.enum'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -40,7 +43,7 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   groupIndex: number[]
   groupType: string
 
-  constructor() {}
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.groupType = !this.selfGroupIndex ? PhenotypeGroupType.Main : PhenotypeGroupType.Sub
@@ -76,8 +79,19 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   }
 
   addQuery(): void {
-    // Open Modal
-    console.log('addQuery')
+    this.openDialog()
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialogService.openDialog(
+      DialogAddAqlsComponent,
+      { title: 'ADD_AQL_DIALOG_HEADER' },
+      DialogSize.Medium
+    )
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`) // Pizza!
+    })
   }
 
   addGroup(): void {
