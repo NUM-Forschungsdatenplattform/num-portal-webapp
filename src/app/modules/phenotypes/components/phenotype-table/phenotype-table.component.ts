@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
-import { IPhenotypeApi } from 'src/app/core/models/phenotype-api.interface'
+import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 
 @Component({

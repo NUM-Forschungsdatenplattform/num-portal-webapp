@@ -1,4 +1,4 @@
-import { IAql } from 'src/app/core/models/aql.interface'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 
 export const mockAql1: IAql = {
   id: 1,

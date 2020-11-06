@@ -1,6 +1,6 @@
-import { LogicalOperator } from 'src/app/core/models/logical-operator.enum'
-import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum'
-import { IPhenotypeApi } from 'src/app/core/models/phenotype-api.interface'
+import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
+import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
+import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 
 export const mockPhenotype1: IPhenotypeApi = {
   name: 'Blood pressure',

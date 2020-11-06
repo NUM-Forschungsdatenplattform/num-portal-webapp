@@ -1,7 +1,7 @@
-import { LogicalOperator } from 'src/app/core/models/logical-operator.enum'
-import { IPhenotypeApi } from 'src/app/core/models/phenotype-api.interface'
-import { IPhenotypeQueryApi } from 'src/app/core/models/phenotype-query-api.interface'
-import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum'
+import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
+import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
+import { IPhenotypeQueryApi } from 'src/app/shared/models/phenotype/phenotype-query-api.interface'
+import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
 import { IPhenotypeQuery } from './phenotype-query.interface'
 
 export class PhenotypeUiModel {

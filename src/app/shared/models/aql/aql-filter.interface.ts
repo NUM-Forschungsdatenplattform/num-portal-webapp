@@ -1,4 +1,4 @@
-import { AqlFilterChipId } from 'src/app/shared/models/aql-filter-chip.enum'
+import { AqlFilterChipId } from 'src/app/shared/models/aql/aql-filter-chip.enum'
 import { IFilterChip } from 'src/app/shared/models/filter-chip.interface'
 
 export interface IAqlFilter {

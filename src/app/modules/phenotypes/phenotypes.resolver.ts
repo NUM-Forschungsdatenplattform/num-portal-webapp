@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
 
 import { Observable, of } from 'rxjs'
-import { map, catchError, tap } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { IPhenotypeResolved } from './models/phenotype-resolved.interface'
-import { PhenotypeUiModel } from './models/phenotype-ui.model'
+import { PhenotypeUiModel } from '../../shared/models/phenotype/phenotype-ui.model'
 
 @Injectable({
   providedIn: 'root',

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, filter, map, tap, throwIfEmpty } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
-import { IPhenotypeApi } from '../models/phenotype-api.interface'
+import { IPhenotypeApi } from '../../shared/models/phenotype/phenotype-api.interface'
 
 @Injectable({
   providedIn: 'root',

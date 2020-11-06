@@ -7,17 +7,17 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core'
-import { LogicalOperator } from 'src/app/core/models/logical-operator.enum'
-import { PhenotypeQueryType } from 'src/app/core/models/phenotype-query-type.enum'
-import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
+import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
+import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
+import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
 import debounce from 'lodash-es/debounce'
-import { PhenotypeGroupType } from '../../models/phenotype-group-type.enum'
+import { PhenotypeGroupType } from '../../../../shared/models/phenotype/phenotype-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
-import { DialogSize } from 'src/app/core/models/dialog-size.enum'
-import { IAql } from 'src/app/core/models/aql.interface'
-import { DialogConfig } from 'src/app/core/models/dialog-config.interface'
+import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',

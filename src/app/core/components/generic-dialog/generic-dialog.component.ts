@@ -11,7 +11,7 @@ import {
 } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Subscription } from 'rxjs'
-import { DialogConfig } from '../../models/dialog-config.interface'
+import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
   selector: 'num-generic-dialog',

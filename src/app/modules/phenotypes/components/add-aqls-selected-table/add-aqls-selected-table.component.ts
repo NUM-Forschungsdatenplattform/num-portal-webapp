@@ -11,7 +11,7 @@ import {
 } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { IAql } from 'src/app/core/models/aql.interface'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 
 @Component({
   selector: 'num-add-aqls-selected-table',

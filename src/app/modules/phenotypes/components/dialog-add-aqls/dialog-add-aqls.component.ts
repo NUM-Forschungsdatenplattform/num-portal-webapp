@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { take } from 'rxjs/operators'
-import { IAqlFilter } from 'src/app/core/models/aql-filter.interface'
-import { IAql } from 'src/app/core/models/aql.interface'
+import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
 
 @Component({

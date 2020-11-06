@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { IPhenotypeQueryApi } from 'src/app/core/models/phenotype-query-api.interface'
+import { IPhenotypeQueryApi } from 'src/app/shared/models/phenotype/phenotype-query-api.interface'
 
 @Component({
   selector: 'num-phenotype-editor-connector',

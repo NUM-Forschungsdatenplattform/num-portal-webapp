@@ -13,7 +13,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
-import { IAql } from 'src/app/core/models/aql.interface'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
 
 @Component({

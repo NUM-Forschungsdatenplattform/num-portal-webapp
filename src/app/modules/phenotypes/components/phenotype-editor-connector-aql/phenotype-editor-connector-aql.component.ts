@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { IPhenotypeQuery } from '../../models/phenotype-query.interface'
+import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
 @Component({
   selector: 'num-phenotype-editor-connector-aql',
