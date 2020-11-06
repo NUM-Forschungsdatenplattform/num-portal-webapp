@@ -14,7 +14,7 @@ export class DialogAddAqlsComponent implements OnInit {
   @Output() closeDialog = new EventEmitter()
 
   filterConfig: IAqlFilter
-  selectedAqls: IAql[] = []
+  dialogInput: IAql[] = []
 
   constructor(private aqlService: AqlService) {
     this.aqlService.filterConfigObservable$
@@ -32,5 +32,9 @@ export class DialogAddAqlsComponent implements OnInit {
 
   handleFilterChange(): void {
     this.aqlService.setFilter(this.filterConfig)
+  }
+
+  handleDialogConfirm(): void {
+    this.closeDialog.emit(this.dialogInput)
   }
 }

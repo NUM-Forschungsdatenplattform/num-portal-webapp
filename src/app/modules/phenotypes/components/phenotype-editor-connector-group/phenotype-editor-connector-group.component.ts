@@ -16,6 +16,8 @@ import { PhenotypeGroupType } from '../../models/phenotype-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 import { DialogSize } from 'src/app/core/models/dialog-size.enum'
+import { IAql } from 'src/app/core/models/aql.interface'
+import { DialogConfig } from 'src/app/core/models/dialog-config.interface'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -83,14 +85,42 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   }
 
   openDialog(): void {
-    const dialogRef = this.dialogService.openDialog(
-      DialogAddAqlsComponent,
-      { title: 'ADD_AQL_DIALOG_HEADER' },
-      DialogSize.Medium
-    )
+    const dialogContentPayload: IAql[] = this.phenotypeQuery.children.reduce((aqls, child) => {
+      if (child.type === PhenotypeQueryType.Aql) {
+        aqls.push(child.aql)
+      }
+      return aqls
+    }, [] as IAql[])
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`) // Pizza!
+    const dialogConfig: DialogConfig = {
+      dialogContentComponent: DialogAddAqlsComponent,
+      title: 'ADD_AQL_DIALOG_HEADER',
+      confirmButtonText: 'BUTTON.APPLY_SELECTION',
+      cancelButtonText: 'BUTTON.CANCEL',
+      dialogSize: DialogSize.Medium,
+      dialogContentPayload,
+    }
+
+    const dialogRef = this.dialogService.openDialog(dialogConfig)
+
+    dialogRef.afterClosed().subscribe((confirmResult: IAql[] | undefined) => {
+      if (Array.isArray(confirmResult)) {
+        let aqlPhenotypeQueries: IPhenotypeQuery[] = []
+        const currentGroups = this.phenotypeQuery.children.filter(
+          (child) => child.type === PhenotypeQueryType.Group
+        )
+
+        if (confirmResult.length) {
+          aqlPhenotypeQueries = confirmResult.map((aql) => {
+            return {
+              isNegated: false,
+              type: PhenotypeQueryType.Aql,
+              aql,
+            }
+          })
+        }
+        this.phenotypeQuery.children = [...aqlPhenotypeQueries, ...currentGroups]
+      }
     })
   }
 

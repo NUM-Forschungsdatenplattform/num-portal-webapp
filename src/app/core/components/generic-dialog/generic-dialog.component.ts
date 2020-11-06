@@ -6,14 +6,11 @@ import {
   ComponentRef,
   Inject,
   OnDestroy,
-  OnInit,
-  Type,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Subscription } from 'rxjs'
-import { DialogConfigData } from '../../models/dialog-config-data.interface'
 import { DialogConfig } from '../../models/dialog-config.interface'
 
 @Component({
@@ -29,22 +26,24 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private resolver: ComponentFactoryResolver,
-    @Inject(MAT_DIALOG_DATA) public dialogConfigData: DialogConfigData,
+    @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig,
     private dialogRef: MatDialogRef<GenericDialogComponent>
   ) {}
 
   ngAfterViewInit(): void {
     const componentFactory = this.resolver.resolveComponentFactory(
-      this.dialogConfigData.dialogContentComponent
+      this.dialogConfig.dialogContentComponent
     )
     this.componentRef = this.viewContainerRef.createComponent(componentFactory)
-    this.changeDetectorRef.detectChanges()
-
+    if (this.dialogConfig.dialogContentPayload) {
+      this.componentRef.instance.dialogInput = this.dialogConfig.dialogContentPayload
+    }
     this.subscriptions.add(
-      this.componentRef.instance.closeDialog.subscribe(() => {
-        this.dialogRef.close()
+      this.componentRef.instance.closeDialog.subscribe((value) => {
+        this.dialogRef.close(value)
       })
     )
+    this.changeDetectorRef.detectChanges()
   }
 
   ngOnDestroy(): void {
@@ -52,5 +51,13 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
     if (this.componentRef) {
       this.componentRef.destroy()
     }
+  }
+
+  handleDialogConfirm(): void {
+    this.componentRef.instance.handleDialogConfirm()
+  }
+
+  handleDialogClose(): void {
+    this.dialogRef.close(undefined)
   }
 }

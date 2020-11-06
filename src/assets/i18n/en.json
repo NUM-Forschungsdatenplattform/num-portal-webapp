@@ -48,5 +48,9 @@
     "TITLE": "Title",
     "DESCRIPTION": "Description",
     "CHARACTERS": "Characters"
+  },
+  "BUTTON": {
+    "CANCEL": "Cancel",
+    "APPLY_SELECTION": "Apply Selection"
   }
 }

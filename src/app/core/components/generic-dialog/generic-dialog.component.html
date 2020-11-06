@@ -1,9 +1,25 @@
 <section fxFlex="50vw">
-  <h1 mat-dialog-title>{{ dialogConfigData.dialogContentData.title | translate }}</h1>
+  <h1 mat-dialog-title>{{ dialogConfig.title | translate }}</h1>
   <mat-dialog-content>
     <ng-template #dialogContent></ng-template>
   </mat-dialog-content>
-  <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+  <div
+    mat-dialog-actions
+    [fxLayoutAlign]="
+      !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText ? 'center' : 'space-between'
+    "
+    class="button-row"
+  >
+    <button mat-stroked-button (click)="handleDialogClose()" *ngIf="dialogConfig.cancelButtonText">
+      {{ dialogConfig.cancelButtonText | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="handleDialogConfirm()"
+      *ngIf="dialogConfig.confirmButtonText"
+    >
+      {{ dialogConfig.confirmButtonText | translate }}
+    </button>
   </div>
 </section>

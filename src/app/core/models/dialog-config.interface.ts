@@ -1,5 +1,12 @@
-import { DialogConfigData } from './dialog-config-data.interface'
+import { DialogSize } from './dialog-size.enum'
+import { ComponentType } from '@angular/cdk/portal'
+import { TemplateRef } from '@angular/core'
 
 export interface DialogConfig {
-  data: DialogConfigData
+  dialogContentComponent: any
+  dialogContentPayload?: any
+  dialogSize: DialogSize
+  title: string
+  confirmButtonText?: string
+  cancelButtonText?: string
 }

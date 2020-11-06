@@ -48,6 +48,10 @@
     "TITLE": "Titel",
     "DESCRIPTION": "Beschreibung",
     "CHARACTERS": "Zeichen"
+  },
+  "BUTTON": {
+    "CANCEL": "Abbrechen",
+    "APPLY_SELECTION": "Auswahl Übernehmen"
   }
 
 }
