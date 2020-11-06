@@ -12,11 +12,16 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
 import { Component } from '@angular/core'
 import { of } from 'rxjs'
+import { KeycloakService } from 'keycloak-angular'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
   let fixture: ComponentFixture<AppLayoutComponent>
   let breakpointObserver: BreakpointObserver
+
+  const keycloak = {
+    logout: () => {},
+  } as KeycloakService
 
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}
@@ -36,6 +41,12 @@ describe('AppLayoutComponent', () => {
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
+      ],
+      providers: [
+        {
+          provide: KeycloakService,
+          useValue: keycloak,
+        },
       ],
     }).compileComponents()
   })
