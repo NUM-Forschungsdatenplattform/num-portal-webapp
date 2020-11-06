@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
 @Component({
@@ -7,7 +8,7 @@ import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-q
   styleUrls: ['./phenotype-editor-connector-aql.component.scss'],
 })
 export class PhenotypeEditorConnectorAqlComponent implements OnInit {
-  @Input() phenotypeQuery: IPhenotypeQuery
+  @Input() phenotypeAql: AqlUiModel
   constructor() {}
 
   ngOnInit(): void {}

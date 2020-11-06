@@ -2,7 +2,7 @@
   <span class="mat-body-strong">{{ groupType | translate }} {{ groupIndex | groupIndex }}</span>
 
   <mat-form-field appearance="standard" class="num-operator-select">
-    <mat-select [(value)]="phenotypeQuery.operator">
+    <mat-select [(value)]="phenotypeGroup.logicalOperator">
       <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
         {{ operator }}
       </mat-option>
@@ -11,19 +11,18 @@
 
   <span fxFlex></span>
 
-  <mat-slide-toggle labelPosition="before" [(ngModel)]="phenotypeQuery.isNegated"
+  <mat-slide-toggle labelPosition="before" [(ngModel)]="phenotypeGroup.isNegated"
     >Negation</mat-slide-toggle
   >
 </section>
 
-<section role="listitem" *ngFor="let child of phenotypeQuery.children; let i = index">
+<section role="listitem" *ngFor="let child of phenotypeGroup.children; let i = index">
   <num-phenotype-editor-connector-group
     role="list"
     class="group"
     *ngIf="child.type === phenotypeQueryType.Group"
-    [phenotypeQuery]="child"
+    [phenotypeGroup]="child"
     [parentGroupIndex]="groupIndex"
-    [selfGroupIndex]="child.indexInGroup"
     [index]="i"
     (delete)="deleteChild($event)"
     fxFlex="100%"
@@ -31,9 +30,9 @@
 
   <num-phenotype-editor-connector-aql
     class="aql mat-elevation-z2"
-    [ngClass]="{ 'aql--last': i === phenotypeQuery.children.length - 1 }"
+    [ngClass]="{ 'aql--last': i === phenotypeGroup.children.length - 1 }"
     *ngIf="child.type === phenotypeQueryType.Aql"
-    [phenotypeQuery]="child"
+    [phenotypeAql]="child"
     fxFlex="100%"
     role="listitem"
     fxLayout="row"

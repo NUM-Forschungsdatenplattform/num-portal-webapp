@@ -11,6 +11,7 @@ import {
 } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IAql } from 'src/app/shared/models/aql/aql.interface'
 
 @Component({
@@ -20,10 +21,10 @@ import { IAql } from 'src/app/shared/models/aql/aql.interface'
 })
 export class AddAqlsSelectedTableComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator
-  @Input() selectedAqls: IAql[]
-  @Output() selectedAqlsChange = new EventEmitter<IAql[]>()
+  @Input() selectedAqls: AqlUiModel[]
+  @Output() selectedAqlsChange = new EventEmitter<AqlUiModel[]>()
 
-  dataSource = new MatTableDataSource<IAql>()
+  dataSource = new MatTableDataSource<AqlUiModel>()
 
   constructor() {}
   displayedColumns: string[] = ['name', 'author', 'organisation', 'icon']
@@ -38,7 +39,7 @@ export class AddAqlsSelectedTableComponent implements OnInit, AfterViewInit, OnC
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'selectedAqls': {
-            const changedData = changes[propName].currentValue as IAql[]
+            const changedData = changes[propName].currentValue as AqlUiModel[]
             this.dataSource.data = changedData
           }
         }
@@ -46,7 +47,7 @@ export class AddAqlsSelectedTableComponent implements OnInit, AfterViewInit, OnC
     }
   }
 
-  handleRowClick(row: IAql): void {
+  handleRowClick(row: AqlUiModel): void {
     const data = this.dataSource.data.filter((aql) => aql.id !== row.id)
     this.selectedAqlsChange.emit(data)
   }

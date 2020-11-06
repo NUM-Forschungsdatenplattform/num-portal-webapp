@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { IPhenotypeQueryApi } from 'src/app/shared/models/phenotype/phenotype-query-api.interface'
+import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
 
 @Component({
   selector: 'num-phenotype-editor-connector',
@@ -7,7 +7,7 @@ import { IPhenotypeQueryApi } from 'src/app/shared/models/phenotype/phenotype-qu
   styleUrls: ['./phenotype-editor-connector.component.scss'],
 })
 export class PhenotypeEditorConnectorComponent implements OnInit {
-  @Input() phenotypeQuery: IPhenotypeQueryApi
+  @Input() phenotypeQuery: PhenotypeGroupUiModel
   constructor() {}
 
   ngOnInit(): void {}

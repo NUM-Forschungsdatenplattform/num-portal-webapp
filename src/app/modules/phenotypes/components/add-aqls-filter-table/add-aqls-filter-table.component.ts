@@ -15,6 +15,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
 @Component({
   selector: 'num-add-aqls-filter-table',
@@ -24,11 +25,11 @@ import { AqlService } from 'src/app/core/services/aql.service'
 export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription()
   @ViewChild(MatPaginator) paginator: MatPaginator
-  @Input() selectedAqls: IAql[]
-  @Output() selectedAqlsChange = new EventEmitter<IAql[]>()
+  @Input() selectedAqls: AqlUiModel[]
+  @Output() selectedAqlsChange = new EventEmitter<AqlUiModel[]>()
 
   constructor(private aqlService: AqlService) {}
-  dataSource = new MatTableDataSource()
+  dataSource = new MatTableDataSource<IAql>()
   displayedColumns: string[] = ['name', 'author', 'organisation', 'icon']
   lookupSelectedAql: { [id: number]: boolean } = {}
 
@@ -67,6 +68,6 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
 
   handleRowClick(row: IAql): void {
     this.lookupSelectedAql[row.id] = true
-    this.selectedAqlsChange.emit([...this.selectedAqls, row])
+    this.selectedAqlsChange.emit([...this.selectedAqls, new AqlUiModel(row)])
   }
 }

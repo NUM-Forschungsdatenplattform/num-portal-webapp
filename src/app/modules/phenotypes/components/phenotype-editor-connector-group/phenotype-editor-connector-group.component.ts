@@ -9,7 +9,7 @@ import {
 } from '@angular/core'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
-import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
+//import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
 import debounce from 'lodash-es/debounce'
 import { PhenotypeGroupType } from '../../../../shared/models/phenotype/phenotype-group-type.enum'
@@ -18,6 +18,8 @@ import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.compo
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
+import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -30,14 +32,13 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   readonly logicalOperator = LogicalOperator
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
-  @Input() phenotypeQuery: IPhenotypeQuery
+  @Input() phenotypeGroup: PhenotypeGroupUiModel
   @Input() parentGroupIndex: number[] | null
-  @Input() selfGroupIndex: number | null
   @Input() index: number
 
   @Output() delete = new EventEmitter()
 
-  enumerateGroupsThrottled = debounce(() => this.enumerateGroups(), 100, {
+  enumerateGroupsDebounced = debounce(() => this.enumerateGroups(), 100, {
     leading: true,
     trailing: false,
   })
@@ -48,7 +49,9 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
-    this.groupType = !this.selfGroupIndex ? PhenotypeGroupType.Main : PhenotypeGroupType.Sub
+    this.groupType = !this.phenotypeGroup.indexInGroup
+      ? PhenotypeGroupType.Main
+      : PhenotypeGroupType.Sub
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,7 +60,7 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
         switch (propName) {
           case 'selfGroupIndex':
           case 'parentGroupIndex': {
-            this.enumerateGroupsThrottled()
+            this.enumerateGroupsDebounced()
           }
         }
       }
@@ -66,15 +69,15 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
 
   enumerateGroups(): void {
     this.groupIndex = [...(this.parentGroupIndex ? this.parentGroupIndex : [])]
-    if (this.selfGroupIndex !== null) {
-      this.groupIndex.push(this.selfGroupIndex)
+    if (this.phenotypeGroup.indexInGroup !== null) {
+      this.groupIndex.push(this.phenotypeGroup.indexInGroup)
     }
 
     let counter = 1
 
-    this.phenotypeQuery.children.forEach((query) => {
-      if (query.type === PhenotypeQueryType.Group) {
-        query.indexInGroup = counter
+    this.phenotypeGroup.children.forEach((child) => {
+      if (child instanceof PhenotypeGroupUiModel) {
+        child.indexInGroup = counter
         counter++
       }
     })
@@ -85,12 +88,15 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   }
 
   openDialog(): void {
-    const dialogContentPayload: IAql[] = this.phenotypeQuery.children.reduce((aqls, child) => {
-      if (child.type === PhenotypeQueryType.Aql) {
-        aqls.push(child.aql)
-      }
-      return aqls
-    }, [] as IAql[])
+    const dialogContentPayload: AqlUiModel[] = this.phenotypeGroup.children.reduce(
+      (aqls, child) => {
+        if (child instanceof AqlUiModel) {
+          aqls.push(child)
+        }
+        return aqls
+      },
+      [] as AqlUiModel[]
+    )
 
     const dialogConfig: DialogConfig = {
       dialogContentComponent: DialogAddAqlsComponent,
@@ -103,42 +109,25 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
-    dialogRef.afterClosed().subscribe((confirmResult: IAql[] | undefined) => {
+    dialogRef.afterClosed().subscribe((confirmResult: AqlUiModel[] | undefined) => {
       if (Array.isArray(confirmResult)) {
-        let aqlPhenotypeQueries: IPhenotypeQuery[] = []
-        const currentGroups = this.phenotypeQuery.children.filter(
-          (child) => child.type === PhenotypeQueryType.Group
+        const currentGroups = this.phenotypeGroup.children.filter(
+          (child) => child instanceof PhenotypeGroupUiModel
         )
 
-        if (confirmResult.length) {
-          aqlPhenotypeQueries = confirmResult.map((aql) => {
-            return {
-              isNegated: false,
-              type: PhenotypeQueryType.Aql,
-              aql,
-            }
-          })
-        }
-        this.phenotypeQuery.children = [...aqlPhenotypeQueries, ...currentGroups]
+        this.phenotypeGroup.children = [...confirmResult, ...currentGroups]
       }
     })
   }
 
   addGroup(): void {
-    const group: IPhenotypeQuery = {
-      isNegated: false,
-      type: PhenotypeQueryType.Group,
-      operator: LogicalOperator.And,
-      children: [],
-    }
-
-    this.phenotypeQuery.children.push(group)
-    this.enumerateGroupsThrottled()
+    this.phenotypeGroup.children.push(new PhenotypeGroupUiModel())
+    this.enumerateGroupsDebounced()
   }
 
   deleteChild(index: number): void {
-    this.phenotypeQuery.children.splice(index, 1)
-    this.enumerateGroupsThrottled()
+    this.phenotypeGroup.children.splice(index, 1)
+    this.enumerateGroupsDebounced()
   }
 
   deleteSelf(): void {

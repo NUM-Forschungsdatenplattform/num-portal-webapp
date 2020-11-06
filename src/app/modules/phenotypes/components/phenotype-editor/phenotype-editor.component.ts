@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
+import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
 @Component({
@@ -27,6 +28,6 @@ export class PhenotypeEditorComponent implements OnInit {
 
   saveForm(): void {
     //console.log(JSON.stringify(this.resolvedData.phenotype.convertToApiInterface()))
-    console.log(this.resolvedData.phenotype.convertToApiInterface())
+    //console.log(this.resolvedData.phenotype.convertToApiInterface())
   }
 }
