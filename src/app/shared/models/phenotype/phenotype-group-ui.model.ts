@@ -18,10 +18,6 @@ export class PhenotypeGroupUiModel {
 
   public convertToUi(apiGroup: IPhenotypeQueryApi, isNegated: boolean = false): void {
     this.isNegated = isNegated
-    // if (apiGroup.operator === LogicalOperator.Not) {
-    //   const
-    // }
-    debugger
     this.logicalOperator =
       apiGroup.operator === LogicalOperator.And ? LogicalOperator.And : LogicalOperator.Or
 

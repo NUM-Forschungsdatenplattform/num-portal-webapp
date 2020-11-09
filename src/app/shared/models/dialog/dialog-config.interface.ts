@@ -7,6 +7,7 @@ export interface DialogConfig {
   dialogContentPayload?: any
   dialogSize: DialogSize
   title: string
+  hasCloseIcon?: boolean
   confirmButtonText?: string
   cancelButtonText?: string
 }

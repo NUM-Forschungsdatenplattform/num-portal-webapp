@@ -2,6 +2,10 @@
   height: 55px;
   border-left: 8px solid grey;
   padding: 0 15px;
+
+  &.configured {
+    border-left: 8px solid #10603c;
+  }
 }
 
 .not-icon {

@@ -5,11 +5,12 @@ import { CohortService } from './services/cohort.service'
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component'
 import { LayoutModule } from '../layout/layout.module'
 import { TranslateModule } from '@ngx-translate/core'
+import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
   declarations: [GenericDialogComponent],
   providers: [AqlService, CohortService],
-  imports: [CommonModule, LayoutModule, TranslateModule],
+  imports: [CommonModule, LayoutModule, TranslateModule, SharedModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

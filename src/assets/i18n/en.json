@@ -32,25 +32,30 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
-  "MY_AQLS": "Meine AQLs",
-  "ORGANISATION_AQLS": "AQLs meiner Organisation",
-  "ALL_AQLS": "Alle AQLs",
+  "MY_AQLS": "My AQLs",
+  "ORGANISATION_AQLS": "AQLs of my organisation",
+  "ALL_AQLS": "All AQLs",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
+  "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
-  "ADD_QUERY": "Add query",
-  "ADD_GROUP": "Add group",
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
     "DESCRIPTION": "Description",
+    "AUTHOR": "Author",
     "CHARACTERS": "Characters"
   },
   "BUTTON": {
     "CANCEL": "Cancel",
-    "APPLY_SELECTION": "Apply Selection"
+    "APPLY_SELECTION": "Apply Selection",
+    "DELETE_FROM_LIST": "Delete from list",
+    "CONFIRM_CHANGES": "Confirm changes",
+    "ADD_QUERY": "Add query",
+    "ADD_GROUP": "Add group",
+    "DELETE_GROUP": "Delete group"
   }
 }

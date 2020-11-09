@@ -30,8 +30,12 @@
 
   <num-phenotype-editor-connector-aql
     class="aql mat-elevation-z2"
-    [ngClass]="{ 'aql--last': i === phenotypeGroup.children.length - 1 }"
+    [ngClass]="{
+      'aql--last': i === phenotypeGroup.children.length - 1,
+      configured: $any(child).areParameterConfigured
+    }"
     *ngIf="child.type === phenotypeQueryType.Aql"
+    (configureAql)="editQuery(i)"
     [phenotypeAql]="child"
     fxFlex="100%"
     role="listitem"
@@ -43,20 +47,22 @@
 <section role="presentation" class="button-row" fxLayoutGap="20px">
   <button mat-flat-button class="num-button-align" color="primary" (click)="addQuery()">
     <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-    {{ 'ADD_QUERY' | translate }}
+    {{ 'BUTTON.ADD_QUERY' | translate }}
   </button>
   <button mat-stroked-button class="num-button-align" color="primary" (click)="addGroup()">
     <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-    {{ 'ADD_GROUP' | translate }}
+    {{ 'BUTTON.ADD_GROUP' | translate }}
   </button>
 
+  <span fxFlex></span>
+
   <button
-    mat-stroked-button
+    mat-button
     class="num-button-align"
     color="primary"
     (click)="deleteSelf()"
     *ngIf="groupType === phenotypeGroupType.Sub"
   >
-    Delete
+    {{ 'BUTTON.DELETE_GROUP' | translate }}
   </button>
 </section>

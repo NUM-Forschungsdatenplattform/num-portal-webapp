@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
@@ -9,7 +9,12 @@ import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-q
 })
 export class PhenotypeEditorConnectorAqlComponent implements OnInit {
   @Input() phenotypeAql: AqlUiModel
+  @Output() configureAql = new EventEmitter()
   constructor() {}
 
   ngOnInit(): void {}
+
+  handleClick(): void {
+    this.configureAql.emit()
+  }
 }

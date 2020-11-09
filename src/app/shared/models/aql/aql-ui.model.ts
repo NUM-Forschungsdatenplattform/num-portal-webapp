@@ -9,7 +9,7 @@ export class AqlUiModel {
   name: string
   query: string
   isNegated: boolean
-  parameter: string[]
+  parameter: { name: string; value?: string }[]
   areParameterConfigured = true
 
   constructor(aql: IAql, isNegated: boolean = false) {
@@ -17,7 +17,9 @@ export class AqlUiModel {
     this.name = aql.name
     this.query = aql.query
     this.isNegated = isNegated
-    this.parameter = aql.query.match(PARAMETER_REGEX) || []
+    this.parameter = (aql.query.match(PARAMETER_REGEX) || []).map((name) => {
+      return { name, value: undefined }
+    })
 
     if (this.parameter.length) {
       this.areParameterConfigured = false

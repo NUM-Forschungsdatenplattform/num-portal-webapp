@@ -36,4 +36,8 @@ export class DialogAddAqlsComponent implements OnInit {
   handleDialogConfirm(): void {
     this.closeDialog.emit(this.dialogInput)
   }
+
+  handleDialogCancel(): void {
+    this.closeDialog.emit()
+  }
 }

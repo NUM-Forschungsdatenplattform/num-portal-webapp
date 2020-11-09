@@ -37,21 +37,26 @@
   "ALL_AQLS": "Alle AQLs",
   "SELECTED_AQLS": "Ausgewählte AQL-Queries",
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
+  "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "CONNECT_AQL": "AQL Queries zusammenstellen",
-  "ADD_QUERY": "Query hinzufügen",
-  "ADD_GROUP": "Gruppe hinzufügen",
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
     "DESCRIPTION": "Beschreibung",
+    "AUTHOR": "Autor",
     "CHARACTERS": "Zeichen"
   },
   "BUTTON": {
     "CANCEL": "Abbrechen",
-    "APPLY_SELECTION": "Auswahl Übernehmen"
+    "APPLY_SELECTION": "Auswahl Übernehmen",
+    "DELETE_FROM_LIST": "Aus Liste löschen",
+    "CONFIRM_CHANGES": "Änderungen übernehmen",
+    "ADD_QUERY": "Query hinzufügen",
+    "ADD_GROUP": "Gruppe hinzufügen",
+    "DELETE_GROUP": "Gruppe löschen"
   }
 
 }

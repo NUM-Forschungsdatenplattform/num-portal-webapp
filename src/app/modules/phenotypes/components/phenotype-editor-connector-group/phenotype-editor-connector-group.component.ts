@@ -9,17 +9,16 @@ import {
 } from '@angular/core'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
-//import { IPhenotypeQuery } from '../../../../shared/models/phenotype/phenotype-query.interface'
 
 import debounce from 'lodash-es/debounce'
 import { PhenotypeGroupType } from '../../../../shared/models/phenotype/phenotype-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { DialogEditAqlComponent } from '../dialog-edit-aql/dialog-edit-aql.component'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -83,11 +82,30 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
     })
   }
 
-  addQuery(): void {
-    this.openDialog()
+  editQuery(itemIndex: number): void {
+    const selectedAql = this.phenotypeGroup.children[itemIndex] as AqlUiModel
+    const dialogConfig: DialogConfig = {
+      dialogContentComponent: DialogEditAqlComponent,
+      title: 'CONFIGURE_AQL_DIALOG_HEADER',
+      confirmButtonText: 'BUTTON.CONFIRM_CHANGES',
+      cancelButtonText: 'BUTTON.DELETE_FROM_LIST',
+      dialogSize: DialogSize.Medium,
+      hasCloseIcon: true,
+      dialogContentPayload: selectedAql,
+    }
+
+    const dialogRef = this.dialogService.openDialog(dialogConfig)
+
+    dialogRef.afterClosed().subscribe((confirmResult: AqlUiModel | undefined) => {
+      if (confirmResult instanceof AqlUiModel) {
+        this.phenotypeGroup.children[itemIndex] = confirmResult
+      } else if (confirmResult === false) {
+        this.deleteChild(itemIndex)
+      }
+    })
   }
 
-  openDialog(): void {
+  addQuery(): void {
     const dialogContentPayload: AqlUiModel[] = this.phenotypeGroup.children.reduce(
       (aqls, child) => {
         if (child instanceof AqlUiModel) {

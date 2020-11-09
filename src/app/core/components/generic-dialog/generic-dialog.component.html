@@ -1,8 +1,21 @@
-<section fxFlex="50vw">
-  <h1 mat-dialog-title>{{ dialogConfig.title | translate }}</h1>
+<section fxFlex.gt-md="50vw">
+  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
+    <h1 mat-dialog-title>{{ dialogConfig.title | translate }}</h1>
+    <fa-icon
+      *ngIf="dialogConfig.hasCloseIcon"
+      role="button"
+      [attr.aria-label]="'BUTTON.CANCEL' | translate"
+      class="pointer close-icon"
+      icon="times"
+      (click)="handleDialogClose()"
+      [fixedWidth]="true"
+    ></fa-icon>
+  </section>
+
   <mat-dialog-content>
     <ng-template #dialogContent></ng-template>
   </mat-dialog-content>
+
   <div
     mat-dialog-actions
     [fxLayoutAlign]="
@@ -10,7 +23,7 @@
     "
     class="button-row"
   >
-    <button mat-stroked-button (click)="handleDialogClose()" *ngIf="dialogConfig.cancelButtonText">
+    <button mat-stroked-button (click)="handleDialogCancel()" *ngIf="dialogConfig.cancelButtonText">
       {{ dialogConfig.cancelButtonText | translate }}
     </button>
     <button
