@@ -43,7 +43,7 @@ describe('SideMenuComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should create', () => {
+  it('Calls emit on toggleSideMenu when menu item is clicked', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     component.mainNavItems = [
       {
@@ -57,5 +57,23 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+  })
+
+  it('Calls logout function when logout button is clicked', () => {
+    jest.spyOn(component, 'logout')
+
+    component.mainNavItems = [
+      {
+        icon: 'test',
+        routeTo: '#logout',
+        translationKey: 'test',
+      },
+    ]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector('.mat-list-item')
+    button.click()
+    fixture.detectChanges()
+    expect(component.logout).toHaveBeenCalled()
   })
 })

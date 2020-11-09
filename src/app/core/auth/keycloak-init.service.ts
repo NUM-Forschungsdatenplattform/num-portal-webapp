@@ -12,6 +12,7 @@ export class KeycloakInitService {
   private readonly ERROR_INIT_FAIL = 'App was not able to initialize the authentication service'
   private readonly ERROR_TIMEOUT = `${this.ERROR_INIT_FAIL} after waiting for ${this.TERMINATION_TIMEOUT} ms`
   private readonly ERROR_UNREACHABLE = `${this.ERROR_INIT_FAIL} while connecting to the authentication server`
+  private readonly KEYCLOAK_BEARER_EXCLUDED_URLS = ['assets']
 
   private BASE_URL: string
   private REALM: string
@@ -21,7 +22,6 @@ export class KeycloakInitService {
 
   private KEYCLOAK_CONFIG: KeycloakConfig
   private KEYCLOAK_INIT_OPTIONS: KeycloakInitOptions
-  private KEYCLOAK_BEARER_EXCLUDED_URLS = ['assets']
 
   constructor(
     private http: HttpClient,
@@ -40,14 +40,6 @@ export class KeycloakInitService {
   */
 
   public initKeycloak(isTest: boolean = false): Promise<boolean> {
-    /* Remove this, once authentication is ready to be used ---> */
-    /////////////////////////
-    // if (!isTest) {
-    //   return Promise.resolve(true)
-    // }
-    /////////////////////////
-    /* Remove this, once authentication is ready to be used <--- */
-
     let terminationTimer: number
     this.initVariables()
 
