@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
@@ -14,7 +15,7 @@ export class PhenotypeEditorComponent implements OnInit {
   resolvedData: IPhenotypeResolved
   phenotypeForm: FormGroup
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private phenotypeService: PhenotypeService) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
@@ -28,15 +29,16 @@ export class PhenotypeEditorComponent implements OnInit {
   }
 
   saveForm(): void {
-    const now = new Date()
-    const utcSeconds = (now.getTime() + now.getTimezoneOffset() * 60_000) / 1_000
+    const id = this.resolvedData.phenotype.id === 0 ? null : this.resolvedData.phenotype.id
     const formValues = this.phenotypeForm.value
-    const apiQuery = this.resolvedData.phenotype.convertToApiInterface()
-    apiQuery.description = formValues.description
-    apiQuery.name = formValues.title
-    apiQuery.id = utcSeconds
-    console.log(apiQuery)
-    //console.log(JSON.stringify(this.resolvedData.phenotype.convertToApiInterface()))
-    //console.log(this.resolvedData.phenotype.convertToApiInterface())
+    const apiQuery = this.resolvedData.phenotype.convertToApiInterface(
+      id,
+      formValues.title,
+      formValues.description
+    )
+
+    this.phenotypeService.create(apiQuery).subscribe((result) => {
+      // TODO display message to the user
+    })
   }
 }

@@ -36,7 +36,7 @@ export class AqlUiModel {
       aql: {
         id: this.id,
         name: this.name,
-        query: this.query,
+        query: this.insertParamsForApi(this.query),
       },
     }
   }
@@ -47,5 +47,13 @@ export class AqlUiModel {
       operator: LogicalOperator.Not,
       children: [this.getAqlForApi()],
     }
+  }
+
+  private insertParamsForApi(queryString: string): string {
+    let resultString = queryString
+    this.parameter.forEach((param) => {
+      resultString = resultString.replace(param.name, param.value ? param.value : param.name)
+    })
+    return resultString
   }
 }

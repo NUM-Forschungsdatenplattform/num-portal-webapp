@@ -22,16 +22,12 @@ export class PhenotypeService {
   }
 
   getAll(): Observable<IPhenotypeApi[]> {
-    return (
-      of(mockPhenotypes)
-        // return this.httpClient.get<IPhenotypeApi[]>(this.baseUrl)
-        .pipe(
-          tap((phenotypes) => {
-            this.phenotypes = phenotypes
-            this.phenotypesSubject$.next(phenotypes)
-          }),
-          catchError(this.handleError)
-        )
+    return this.httpClient.get<IPhenotypeApi[]>(this.baseUrl).pipe(
+      tap((phenotypes) => {
+        this.phenotypes = phenotypes
+        this.phenotypesSubject$.next(phenotypes)
+      }),
+      catchError(this.handleError)
     )
   }
 
@@ -54,6 +50,16 @@ export class PhenotypeService {
     }
 
     return of(result)
+  }
+
+  create(phenotype: IPhenotypeApi): Observable<any> {
+    return this.httpClient.post<IPhenotypeApi>(this.baseUrl, phenotype).pipe(
+      tap((result) => {
+        this.phenotypes.push(result)
+        this.phenotypesSubject$.next(this.phenotypes)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

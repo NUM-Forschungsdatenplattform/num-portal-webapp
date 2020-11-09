@@ -1,8 +1,14 @@
 <section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <span class="mat-body-strong">{{ groupType | translate }} {{ groupIndex | groupIndex }}</span>
+  <span class="mat-body-strong"
+    ><span class="not-icon" *ngIf="phenotypeGroup.isNegated">&not;</span>
+    {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
+  >
 
   <mat-form-field appearance="standard" class="num-operator-select">
-    <mat-select [(value)]="phenotypeGroup.logicalOperator">
+    <mat-select
+      [(value)]="phenotypeGroup.logicalOperator"
+      [disabled]="phenotypeGroup.children.length <= 1"
+    >
       <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
         {{ operator }}
       </mat-option>

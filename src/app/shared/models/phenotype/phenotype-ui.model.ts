@@ -1,4 +1,5 @@
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
+import { AqlUiModel } from '../aql/aql-ui.model'
 import { LogicalOperator } from '../logical-operator.enum'
 import { PhenotypeGroupUiModel } from './phenotype-group-ui.model'
 import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
@@ -29,11 +30,11 @@ export class PhenotypeUiModel {
     }
   }
 
-  public convertToApiInterface(): IPhenotypeApi {
+  public convertToApiInterface(id?: number, name?: string, description?: string): IPhenotypeApi {
     const apiModel: IPhenotypeApi = {
-      description: this.description,
-      id: this.id,
-      name: this.name,
+      description: description || this.description,
+      id: id || this.id,
+      name: name || this.name,
       query: this.query.convertToApi(),
     }
 
