@@ -18,15 +18,11 @@ export class SideMenuComponent {
 
   menuItemClicked($event: Event, item: INavItem): void {
     if (item.routeTo === '#logout') {
-      this.logout()
+      this.keycloak.logout()
     }
 
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
-  }
-
-  logout(redirectUri?: string): void {
-    this.keycloak.logout(redirectUri)
   }
 }

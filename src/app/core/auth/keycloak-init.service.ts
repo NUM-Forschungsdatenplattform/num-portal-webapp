@@ -39,7 +39,7 @@ export class KeycloakInitService {
       reject later to finally kill the app gracefully.
   */
 
-  public initKeycloak(isTest: boolean = false): Promise<boolean> {
+  public initKeycloak(): Promise<boolean> {
     let terminationTimer: number
     this.initVariables()
 

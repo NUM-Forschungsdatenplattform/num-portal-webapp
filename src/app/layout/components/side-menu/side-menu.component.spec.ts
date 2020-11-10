@@ -37,6 +37,8 @@ describe('SideMenuComponent', () => {
     fixture = TestBed.createComponent(SideMenuComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(component.toggleSideMenu, 'emit')
+    jest.spyOn(keycloak, 'logout').mockImplementation(() => Promise.resolve())
   })
 
   it('should create', () => {
@@ -44,7 +46,6 @@ describe('SideMenuComponent', () => {
   })
 
   it('Calls emit on toggleSideMenu when menu item is clicked', () => {
-    jest.spyOn(component.toggleSideMenu, 'emit')
     component.mainNavItems = [
       {
         icon: 'test',
@@ -60,9 +61,8 @@ describe('SideMenuComponent', () => {
   })
 
   it('Calls logout function when logout button is clicked', () => {
-    jest.spyOn(component, 'logout')
-
-    component.mainNavItems = [
+    component.mainNavItems = null
+    component.secondaryNavItems = [
       {
         icon: 'test',
         routeTo: '#logout',
@@ -70,10 +70,11 @@ describe('SideMenuComponent', () => {
       },
     ]
     fixture.detectChanges()
+    console.log(component)
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     fixture.detectChanges()
-    expect(component.logout).toHaveBeenCalled()
+    expect(keycloak.logout).toHaveBeenCalled()
   })
 })

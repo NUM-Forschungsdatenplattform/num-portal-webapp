@@ -53,7 +53,7 @@ describe('Keycloak Init Service', () => {
       jest.spyOn(keycloak, 'init')
       jest.spyOn(httpClient, 'get')
 
-      await initService.initKeycloak(true)
+      await initService.initKeycloak()
 
       expect(keycloak.init).toHaveBeenCalledWith({
         config: keycloakConfig,
@@ -76,7 +76,7 @@ describe('Keycloak Init Service', () => {
         return Promise.resolve(true)
       })
 
-      initService.initKeycloak(true).then((result) => {
+      initService.initKeycloak().then((result) => {
         expect(result).toBeDefined()
       })
       expect(httpClient.get).toHaveBeenCalledWith(testUrl)
@@ -89,7 +89,7 @@ describe('Keycloak Init Service', () => {
         return Promise.resolve(true)
       })
 
-      initService.initKeycloak(true).catch((error) => {
+      initService.initKeycloak().catch((error) => {
         expect(error).toBeDefined()
       })
       expect(httpClient.get).toHaveBeenCalledWith(testUrl)
@@ -107,7 +107,7 @@ describe('Keycloak Init Service', () => {
         return Promise.resolve(true)
       })
 
-      initService.initKeycloak(true).catch((error) => {
+      initService.initKeycloak().catch((error) => {
         expect(error).toBeDefined()
       })
     })
