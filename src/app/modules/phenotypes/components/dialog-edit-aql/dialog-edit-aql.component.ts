@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import cloneDeep from 'lodash-es/cloneDeep'
-import { query } from '@angular/animations'
+import { cloneDeep } from 'lodash-es'
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
 
 @Component({

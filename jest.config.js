@@ -26,4 +26,7 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
     prefix: "<rootDir>/",
   }),
+  moduleNameMapper: {
+    '^lodash-es$': '<rootDir>/node_modules/lodash/index.js'
+  },
 };

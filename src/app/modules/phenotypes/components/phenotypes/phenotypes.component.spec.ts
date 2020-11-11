@@ -5,9 +5,9 @@ import { of, Subject } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { PhenotypeTableComponent } from '../phenotype-table/phenotype-table.component'
 
 import { PhenotypesComponent } from './phenotypes.component'
+import { Component } from '@angular/core'
 
 describe('PhenotypesComponent', () => {
   let component: PhenotypesComponent
@@ -19,9 +19,12 @@ describe('PhenotypesComponent', () => {
     getAll: () => of(),
   } as PhenotypeService
 
+  @Component({ selector: 'num-phenotype-table', template: '' })
+  class PhenotypeTableStubComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhenotypesComponent, PhenotypeTableComponent],
+      declarations: [PhenotypesComponent, PhenotypeTableStubComponent],
       imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
       providers: [
         {

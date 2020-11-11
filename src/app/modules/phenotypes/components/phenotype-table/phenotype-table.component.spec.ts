@@ -8,10 +8,13 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
 
 import { PhenotypeTableComponent } from './phenotype-table.component'
+import { Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('PhenotypeTableComponent', () => {
   let component: PhenotypeTableComponent
   let fixture: ComponentFixture<PhenotypeTableComponent>
+  let router: Router
 
   const phenotypesSubject$ = new Subject<IPhenotypeApi[]>()
   const phenotypeService = {
@@ -22,7 +25,12 @@ describe('PhenotypeTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PhenotypeTableComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+        RouterTestingModule.withRoutes([]),
+      ],
       providers: [
         {
           provide: PhenotypeService,
@@ -33,6 +41,7 @@ describe('PhenotypeTableComponent', () => {
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(PhenotypeTableComponent)
     component = fixture.componentInstance
     fixture.detectChanges()

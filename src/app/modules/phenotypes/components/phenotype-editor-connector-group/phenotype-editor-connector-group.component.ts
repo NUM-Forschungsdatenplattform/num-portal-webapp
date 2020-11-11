@@ -10,7 +10,7 @@ import {
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
 
-import debounce from 'lodash-es/debounce'
+import { debounce } from 'lodash-es'
 import { PhenotypeGroupType } from '../../../../shared/models/phenotype/phenotype-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
@@ -42,7 +42,7 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
     trailing: false,
   })
 
-  groupIndex: number[]
+  groupIndex: number[] = []
   groupType: string
 
   constructor(private dialogService: DialogService) {}

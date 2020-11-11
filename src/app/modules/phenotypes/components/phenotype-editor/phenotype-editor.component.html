@@ -7,14 +7,14 @@
   <section role="region" fxLayout="column">
     <mat-divider class="button-row-divider num-d-w--1"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <button mat-stroked-button color="primary">Abrechen</button>
+      <button mat-stroked-button color="primary">{{ 'BUTTON.CANCEL' | translate }}</button>
       <button
         mat-raised-button
         color="primary"
         [disabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
         (click)="saveForm()"
       >
-        Phänotyp erstellen
+        {{ 'BUTTON.CREATE_PHENOTYPE' | translate }}
       </button>
     </div>
   </section>

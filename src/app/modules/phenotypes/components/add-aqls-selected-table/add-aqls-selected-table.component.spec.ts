@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
+import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { AddAqlsSelectedTableComponent } from './add-aqls-selected-table.component'
 
@@ -9,6 +12,7 @@ describe('AddAqlsSelectionTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddAqlsSelectedTableComponent],
+      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

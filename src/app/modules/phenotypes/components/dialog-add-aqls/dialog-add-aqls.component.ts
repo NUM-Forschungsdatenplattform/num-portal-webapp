@@ -3,6 +3,7 @@ import { take } from 'rxjs/operators'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-dialog-add-aqls',
@@ -11,7 +12,7 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 })
 export class DialogAddAqlsComponent implements OnInit {
   @Output() closeDialog = new EventEmitter()
-
+  private subscriptions = new Subscription()
   filterConfig: IAqlFilter
   dialogInput: AqlUiModel[] = []
 

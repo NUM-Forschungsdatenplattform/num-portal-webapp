@@ -1,25 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 
-import { PhenotypeEditorConnectorAqlComponent } from './phenotype-editor-connector-aql.component';
+import { PhenotypeEditorConnectorAqlComponent } from './phenotype-editor-connector-aql.component'
 
 describe('PhenotypeEditorConnectorAqlComponent', () => {
-  let component: PhenotypeEditorConnectorAqlComponent;
-  let fixture: ComponentFixture<PhenotypeEditorConnectorAqlComponent>;
+  let component: PhenotypeEditorConnectorAqlComponent
+  let fixture: ComponentFixture<PhenotypeEditorConnectorAqlComponent>
+  const inputApiAql: IAql = {
+    id: 1,
+    name: 'Test',
+    query: '',
+  }
+  const inputAql = new AqlUiModel(inputApiAql, true)
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PhenotypeEditorConnectorAqlComponent ]
-    })
-    .compileComponents();
-  });
+      declarations: [PhenotypeEditorConnectorAqlComponent],
+      imports: [FontAwesomeTestingModule],
+    }).compileComponents()
+  })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhenotypeEditorConnectorAqlComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(PhenotypeEditorConnectorAqlComponent)
+    component = fixture.componentInstance
+    component.phenotypeAql = inputAql
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

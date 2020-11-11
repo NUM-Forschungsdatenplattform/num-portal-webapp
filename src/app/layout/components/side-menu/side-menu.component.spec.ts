@@ -43,7 +43,7 @@ describe('SideMenuComponent', () => {
     ]
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector('.menu-item')
+    const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalled()
   })

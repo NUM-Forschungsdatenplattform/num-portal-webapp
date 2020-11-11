@@ -56,6 +56,7 @@
     "CONFIRM_CHANGES": "Confirm changes",
     "ADD_QUERY": "Add query",
     "ADD_GROUP": "Add group",
-    "DELETE_GROUP": "Delete group"
+    "DELETE_GROUP": "Delete group",
+    "CREATE_PHENOTYPE": "Create Phenotype"
   }
 }
