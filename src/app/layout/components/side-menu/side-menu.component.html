@@ -3,17 +3,19 @@
     <img src="assets/logo.svg" alt="app-logo" />
   </a>
 
-  <a
-    class="num-mat-list-item"
-    [routerLinkActive]="'num-mat-list-item--active'"
-    *ngFor="let item of mainNavItems"
-    mat-list-item
-    [routerLink]="item.routeTo"
-    (click)="menuItemClicked($event)"
-  >
-    <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
-    <div>{{ item.translationKey | translate }}</div>
-  </a>
+  <ng-template ngFor let-item [ngForOf]="mainNavItems">
+    <a
+      *userHasRole="getAllowedRoles(item.routeTo)"
+      class="num-mat-list-item"
+      [routerLinkActive]="'num-mat-list-item--active'"
+      mat-list-item
+      [routerLink]="item.routeTo"
+      (click)="menuItemClicked($event)"
+    >
+      <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
+      <div>{{ item.translationKey | translate }}</div>
+    </a>
+  </ng-template>
 
   <span fxFlex></span>
   <mat-divider class="num-d-c--a num-d-w--2"></mat-divider>

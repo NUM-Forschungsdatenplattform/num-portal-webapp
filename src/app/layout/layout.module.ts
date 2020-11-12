@@ -7,10 +7,10 @@ import { AppLayoutComponent } from './components/app-layout/app-layout.component
 import { HeaderComponent } from './components/header/header.component'
 import { SideMenuComponent } from './components/side-menu/side-menu.component'
 import { LanguageComponent } from './components/language/language.component'
-import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import { FONT_AWESOME_ICONS } from './font-awesome-icons'
 import { FooterComponent } from './components/footer/footer.component'
+import { SharedModule } from '../shared/shared.module'
 
 const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
 
@@ -22,7 +22,7 @@ const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
     LanguageComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, RouterModule, TranslateModule, ...SHARED_MODULES],
+  imports: [CommonModule, RouterModule, SharedModule, ...SHARED_MODULES],
   exports: [AppLayoutComponent, ...SHARED_MODULES],
 })
 export class LayoutModule {

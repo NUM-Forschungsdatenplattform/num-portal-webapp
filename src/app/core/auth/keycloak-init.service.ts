@@ -41,9 +41,9 @@ export class KeycloakInitService {
   public initKeycloak(isTest: boolean = false): Promise<boolean> {
     /* Remove this, once authentication is ready to be used ---> */
     /////////////////////////
-    if (!isTest) {
-      return Promise.resolve(true)
-    }
+    // if (!isTest) {
+    //   return Promise.resolve(true)
+    // }
     /////////////////////////
     /* Remove this, once authentication is ready to be used <--- */
 

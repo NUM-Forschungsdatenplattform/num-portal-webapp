@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { RoleGuard } from './core/auth/guards/role.guard'
+import { AuthGuard } from './core/auth/guards/auth.guard'
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'home',
+    canLoad: [AuthGuard],
     data: {
       navId: 'home',
     },
@@ -15,10 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'studies',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'studies',
-      roles: [],
+      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -27,10 +29,10 @@ const routes: Routes = [
   },
   {
     path: 'phenotypes',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [],
+      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
     },
     loadChildren: () =>
       import(
@@ -39,10 +41,10 @@ const routes: Routes = [
   },
   {
     path: 'cohorts',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'cohorts',
-      roles: [],
+      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module').then(
@@ -51,10 +53,10 @@ const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [RoleGuard],
+    canLoad: [AuthGuard, RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [],
+      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
