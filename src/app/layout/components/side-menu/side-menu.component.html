@@ -5,7 +5,7 @@
 
   <ng-template ngFor let-item [ngForOf]="mainNavItems">
     <a
-      *userHasRole="getAllowedRoles(item.routeTo)"
+      *userHasRole="item.roles"
       class="num-mat-list-item"
       [routerLinkActive]="'num-mat-list-item--active'"
       mat-list-item
