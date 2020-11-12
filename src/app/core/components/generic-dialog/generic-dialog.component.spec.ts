@@ -3,6 +3,7 @@ import {
   Component,
   ComponentFactoryResolver,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
@@ -21,16 +22,28 @@ describe('GenericDialogComponent', () => {
   let component: GenericDialogComponent
   let fixture: ComponentFixture<GenericDialogComponent>
 
+  const closeEmitter = new EventEmitter()
+  const confirmHandler = jest.fn()
+  const cancelHandler = jest.fn()
   @Component({ selector: 'num-test-component', template: '' })
   class StubComponent {
-    @Output() closeDialog = new EventEmitter()
+    @Output() closeDialog = closeEmitter
+    @Input() handleDialogConfirm = confirmHandler
+    @Input() handleDialogCancel = cancelHandler
   }
 
   const dialogConfig: DialogConfig = {
     title: 'Test',
     dialogSize: DialogSize.Medium,
     dialogContentComponent: StubComponent,
+    dialogContentPayload: {
+      test: 'test',
+    },
   }
+
+  const matDialogRef = {
+    close: () => {},
+  } as MatDialogRef<GenericDialogComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,7 +57,7 @@ describe('GenericDialogComponent', () => {
       providers: [
         ChangeDetectorRef,
         { provide: MAT_DIALOG_DATA, useValue: dialogConfig },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: matDialogRef },
       ],
     })
     TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -55,6 +68,7 @@ describe('GenericDialogComponent', () => {
   })
 
   beforeEach(() => {
+    jest.spyOn(matDialogRef, 'close')
     fixture = TestBed.createComponent(GenericDialogComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -62,5 +76,37 @@ describe('GenericDialogComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+  it('should create the dynamic content-component', () => {
+    expect(component.componentRef).toBeTruthy()
+  })
+
+  it('should set the contentPayload to the dynamic content-component', () => {
+    expect(component.componentRef.instance.dialogInput).toEqual(dialogConfig.dialogContentPayload)
+  })
+
+  it('it should close the dialog with the provided payload when the child emmits a closeEvent', () => {
+    const valueToEmit = 'Test'
+    closeEmitter.emit(valueToEmit)
+
+    expect(matDialogRef.close).toHaveBeenCalledWith(valueToEmit)
+  })
+
+  it('should handle the confirm attempt in the child component', () => {
+    component.handleDialogConfirm()
+
+    expect(confirmHandler).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle the cancel attempt in the child component', () => {
+    component.handleDialogCancel()
+
+    expect(cancelHandler).toHaveBeenCalledTimes(1)
+  })
+
+  it('should close the dialog with undefined on a close attempt', () => {
+    component.handleDialogClose()
+
+    expect(matDialogRef.close).toHaveBeenCalledWith(undefined)
   })
 })

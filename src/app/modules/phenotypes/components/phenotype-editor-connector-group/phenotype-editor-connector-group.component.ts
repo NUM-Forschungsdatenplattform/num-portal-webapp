@@ -19,6 +19,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { DialogEditAqlComponent } from '../dialog-edit-aql/dialog-edit-aql.component'
+import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -57,7 +58,6 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
-          case 'selfGroupIndex':
           case 'parentGroupIndex': {
             this.enumerateGroupsDebounced()
           }
@@ -85,12 +85,8 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   editQuery(itemIndex: number): void {
     const selectedAql = this.phenotypeGroup.children[itemIndex] as AqlUiModel
     const dialogConfig: DialogConfig = {
+      ...EDIT_DIALOG_CONFIG,
       dialogContentComponent: DialogEditAqlComponent,
-      title: 'CONFIGURE_AQL_DIALOG_HEADER',
-      confirmButtonText: 'BUTTON.CONFIRM_CHANGES',
-      cancelButtonText: 'BUTTON.DELETE_FROM_LIST',
-      dialogSize: DialogSize.Medium,
-      hasCloseIcon: true,
       dialogContentPayload: selectedAql,
     }
 
@@ -117,11 +113,8 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
     )
 
     const dialogConfig: DialogConfig = {
+      ...ADD_DIALOG_CONFIG,
       dialogContentComponent: DialogAddAqlsComponent,
-      title: 'ADD_AQL_DIALOG_HEADER',
-      confirmButtonText: 'BUTTON.APPLY_SELECTION',
-      cancelButtonText: 'BUTTON.CANCEL',
-      dialogSize: DialogSize.Medium,
       dialogContentPayload,
     }
 

@@ -4,20 +4,27 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
+import { Subscription } from 'rxjs'
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'num-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit, OnChanges {
+export class SearchComponent implements OnInit, OnChanges, OnDestroy {
+  /* istanbul ignore next */
+  private readonly debounceTime = environment.name === 'test' ? 10 : 200
   searchForm: FormGroup
   constructor() {}
+
+  private subscriptions = new Subscription()
 
   @Input() searchText: string
   @Output() searchTextChange = new EventEmitter()
@@ -29,13 +36,15 @@ export class SearchComponent implements OnInit, OnChanges {
       query: new FormControl(this.searchText || ''),
     })
 
-    this.searchForm
-      .get('query')
-      .valueChanges.pipe(debounceTime(200))
-      .subscribe((value) => {
-        this.currentText = value
-        this.searchTextChange.emit(value)
-      })
+    this.subscriptions.add(
+      this.searchForm
+        .get('query')
+        .valueChanges.pipe(debounceTime(this.debounceTime))
+        .subscribe((value) => {
+          this.currentText = value
+          this.searchTextChange.emit(value)
+        })
+    )
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,6 +60,10 @@ export class SearchComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   patchInput(value: string): void {

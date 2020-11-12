@@ -5,7 +5,7 @@ import { of, Subject } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
+import { mockPhenotype1, mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
 
 import { PhenotypeTableComponent } from './phenotype-table.component'
 import { Router } from '@angular/router'
@@ -56,6 +56,14 @@ describe('PhenotypeTableComponent', () => {
       phenotypesSubject$.next(mockPhenotypes)
       fixture.detectChanges()
       expect(component.dataSource.data).toBe(mockPhenotypes)
+    })
+  })
+
+  describe('When phenotype row is clicked', () => {
+    it('should call the router to navigate to the editor with the id of the phenotype selected', () => {
+      jest.spyOn(router, 'navigate').mockImplementation()
+      component.handleRowClick(mockPhenotype1)
+      expect(router.navigate).toHaveBeenCalledWith(['phenotypes', mockPhenotype1.id, 'editor'])
     })
   })
 })

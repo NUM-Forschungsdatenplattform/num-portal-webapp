@@ -1,17 +1,19 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { text } from '@fortawesome/fontawesome-svg-core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../constants/default-filter-aql'
 import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
 import { IAql } from '../../shared/models/aql/aql.interface'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AqlService {
+  /* istanbul ignore next */
+  private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
 
   private aqls: IAql[] = []
@@ -30,7 +32,7 @@ export class AqlService {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
     this.filterConfigObservable$
       .pipe(
-        throttleTime(300, undefined, { leading: true, trailing: true }),
+        throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
         switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
@@ -64,6 +66,7 @@ export class AqlService {
 
   filterItems(allAqls: IAql[], filterSet: IAqlFilter): IAql[] {
     let result: IAql[] = allAqls
+
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allAqls.filter((aql) => aql.name.toUpperCase().includes(textFilter))

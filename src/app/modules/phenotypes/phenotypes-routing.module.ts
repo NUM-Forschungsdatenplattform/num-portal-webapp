@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { PhenotypeEditorComponent } from './components/phenotype-editor/phenotype-editor.component'
 import { PhenotypesComponent } from './components/phenotypes/phenotypes.component'
-import { PhenotypeResolver } from './phenotypes.resolver'
+import { PhenotypeResolver } from './phenotype.resolver'
 
 const routes: Routes = [
   {

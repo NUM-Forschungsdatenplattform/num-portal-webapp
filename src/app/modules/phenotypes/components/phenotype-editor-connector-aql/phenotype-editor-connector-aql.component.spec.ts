@@ -32,4 +32,10 @@ describe('PhenotypeEditorConnectorAqlComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should emit the configure aql event when click handler is triggered', () => {
+    jest.spyOn(component.configureAql, 'emit')
+    component.handleClick()
+    expect(component.configureAql.emit).toHaveBeenCalledTimes(1)
+  })
 })

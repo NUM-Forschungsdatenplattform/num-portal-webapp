@@ -34,7 +34,7 @@ export class PhenotypeResolver implements Resolve<IPhenotypeResolved> {
         return { phenotype: uiModel, error: null }
       }),
       catchError((error) => {
-        return of({ phenotype: null, error })
+        return of({ phenotype: new PhenotypeUiModel(), error })
       })
     )
   }

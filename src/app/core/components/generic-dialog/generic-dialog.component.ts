@@ -34,10 +34,10 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
     const componentFactory = this.resolver.resolveComponentFactory(
       this.dialogConfig.dialogContentComponent
     )
+
     this.componentRef = this.viewContainerRef.createComponent(componentFactory)
-    if (this.dialogConfig.dialogContentPayload) {
-      this.componentRef.instance.dialogInput = this.dialogConfig.dialogContentPayload
-    }
+    this.componentRef.instance.dialogInput = this.dialogConfig.dialogContentPayload
+
     this.subscriptions.add(
       this.componentRef.instance.closeDialog.subscribe((value) => {
         this.dialogRef.close(value)
@@ -47,10 +47,7 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
-    if (this.componentRef) {
-      this.componentRef.destroy()
-    }
+    this.componentRef.destroy()
   }
 
   handleDialogConfirm(): void {

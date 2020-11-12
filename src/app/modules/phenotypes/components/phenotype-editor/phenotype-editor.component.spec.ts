@@ -6,6 +6,7 @@ import { of } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
+import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
 import { PhenotypeEditorComponent } from './phenotype-editor.component'
@@ -65,5 +66,21 @@ describe('PhenotypeEditorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  describe('On the attempt to save the phenotype', () => {
+    it('should call the phenotype serivceses create method', async () => {
+      const mockObservable = of(mockPhenotype1)
+      jest.spyOn(phenotypeService, 'create').mockReturnValue(mockObservable)
+      component.resolvedData = {
+        error: null,
+        phenotype: new PhenotypeUiModel(mockPhenotype1),
+      }
+      mockObservable.subscribe((result) => {
+        expect(result).toEqual(mockPhenotype1)
+      })
+      fixture.detectChanges()
+      component.saveForm()
+    })
   })
 })

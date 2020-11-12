@@ -12,4 +12,16 @@ export const mockAql2: IAql = {
   query: 'quer2',
 }
 
+export const mockAql3: IAql = {
+  id: 3,
+  name: 'name3 with parame',
+  query: 'quer3 has this $parameter and also $this',
+}
+
+export const mockAql4: IAql = {
+  id: 4,
+  name: 'name4 with parameter',
+  query: 'quer4 has just this $parameter',
+}
+
 export const mockAqls: IAql[] = [mockAql1, mockAql2]

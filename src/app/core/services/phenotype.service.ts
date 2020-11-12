@@ -1,8 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Ptor } from 'protractor'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, filter, map, tap, throwIfEmpty } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
 import { IPhenotypeApi } from '../../shared/models/phenotype/phenotype-api.interface'
@@ -53,13 +52,9 @@ export class PhenotypeService {
   }
 
   create(phenotype: IPhenotypeApi): Observable<any> {
-    return this.httpClient.post<IPhenotypeApi>(this.baseUrl, phenotype).pipe(
-      tap((result) => {
-        this.phenotypes.push(result)
-        this.phenotypesSubject$.next(this.phenotypes)
-      }),
-      catchError(this.handleError)
-    )
+    return this.httpClient
+      .post<IPhenotypeApi>(this.baseUrl, phenotype)
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

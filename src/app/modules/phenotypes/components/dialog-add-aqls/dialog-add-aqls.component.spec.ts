@@ -24,6 +24,7 @@ describe('DialogAddAqlsComponent', () => {
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
+    setFilter: (_: any) => {},
   } as AqlService
 
   beforeEach(async () => {
@@ -55,9 +56,31 @@ describe('DialogAddAqlsComponent', () => {
     fixture = TestBed.createComponent(DialogAddAqlsComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(aqlService, 'setFilter')
+    jest.spyOn(component.closeDialog, 'emit')
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should set the filter in the aqlService on searchChange', () => {
+    component.handleSearchChange()
+    expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the aqlService on filterChange', () => {
+    component.handleFilterChange()
+    expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should emit the close event with current aqls on confirmation', () => {
+    component.handleDialogConfirm()
+    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
+  })
+
+  it('should emit the close event on dialog cancel', () => {
+    component.handleDialogCancel()
+    expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
   })
 })

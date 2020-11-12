@@ -52,7 +52,7 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'selectedAqls': {
-            const changedData = changes[propName].currentValue as IAql[]
+            const changedData = changes[propName].currentValue as AqlUiModel[]
             const selectedAqls: { [id: number]: boolean } = {}
             changedData.forEach((selectedAql) => (selectedAqls[selectedAql.id] = true))
             this.lookupSelectedAql = selectedAqls

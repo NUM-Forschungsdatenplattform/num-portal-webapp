@@ -27,6 +27,7 @@ module.exports = {
     prefix: "<rootDir>/",
   }),
   moduleNameMapper: {
+    '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
     '^lodash-es$': '<rootDir>/node_modules/lodash/index.js'
   },
 };
