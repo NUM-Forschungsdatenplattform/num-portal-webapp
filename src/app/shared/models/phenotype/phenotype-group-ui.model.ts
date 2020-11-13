@@ -21,7 +21,7 @@ export class PhenotypeGroupUiModel {
     this.logicalOperator =
       apiGroup.operator === LogicalOperator.And ? LogicalOperator.And : LogicalOperator.Or
 
-    if (apiGroup.children) {
+    if (apiGroup.children.length) {
       this.children = apiGroup.children.map(this.mapChildrenToUi)
     }
   }
