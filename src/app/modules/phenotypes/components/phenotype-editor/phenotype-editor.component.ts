@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
-import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
-import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
 @Component({
@@ -24,7 +22,10 @@ export class PhenotypeEditorComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
       ]),
-      description: new FormControl(this.resolvedData.phenotype?.description),
+      description: new FormControl(this.resolvedData.phenotype?.description, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
     })
   }
 

@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module'
 @NgModule({
   declarations: [GenericDialogComponent],
   providers: [AqlService, CohortService],
-  imports: [CommonModule, LayoutModule, TranslateModule, SharedModule],
+  imports: [CommonModule, LayoutModule, SharedModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

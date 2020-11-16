@@ -19,8 +19,8 @@
     "DASHBOARD": "Übersicht",
     "STUDIES": "Studien",
     "PHENOTYPES": "Phänotypen",
-    "PHENOTYPES_OVERVIEW": "Übersicht",
-    "PHENOTYPES_EDITOR": "Editor",
+    "PHENOTYPES_OVERVIEW": "Phänotypen-Übersicht",
+    "PHENOTYPES_EDITOR": "Phänotypen-Editor",
     "COHORTS": "Kohorten",
     "AQLS": "AQL Queries",
     "NOTIFICATIONS": "Benachrichtigungen",
@@ -32,6 +32,7 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
+  "SEARCH_AQLS": "AQL suchen",
   "MY_AQLS": "Meine AQLs",
   "ORGANISATION_AQLS": "AQLs meiner Organisation",
   "ALL_AQLS": "Alle AQLs",
@@ -39,9 +40,10 @@
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
-  "CONNECT_AQL": "AQL Queries zusammenstellen",
+  "CONNECT_AQL": "AQL Abfragen zusammenstellen",
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
+  "LOGICAL_OPERATOR": "Logischer Operator",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
@@ -57,7 +59,9 @@
     "ADD_QUERY": "Query hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
     "DELETE_GROUP": "Gruppe löschen",
-    "CREATE_PHENOTYPE": "Phänotyp erstellen"
+    "CREATE_PHENOTYPE": "Phänotyp erstellen",
+    "SELECT": "Select",
+    "DESELECT": "Deselect"
   }
 
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IAql } from 'src/app/shared/models/aql/aql.interface'
@@ -20,7 +21,13 @@ describe('DialogEditAqlComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogEditAqlComponent],
-      imports: [BrowserAnimationsModule, MaterialModule, FormsModule, ReactiveFormsModule],
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents()
   })
 

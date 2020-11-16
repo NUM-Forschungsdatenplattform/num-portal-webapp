@@ -18,6 +18,8 @@
     <th mat-header-cell *matHeaderCellDef>icon</th>
     <td mat-cell *matCellDef="let element">
       <fa-icon
+        role="button"
+        [attr.aria-label]="'SELECT' | translate"
         icon="plus"
         class="num-fc--a pointer"
         size="lg"

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { MatChipSelectionChange } from '@angular/material/chips'
 import { IFilterChip } from '../../models/filter-chip.interface'
 
 @Component({

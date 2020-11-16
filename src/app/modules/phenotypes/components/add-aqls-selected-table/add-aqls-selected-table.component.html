@@ -19,6 +19,8 @@
     <th mat-header-cell *matHeaderCellDef>icon</th>
     <td mat-cell *matCellDef="let element">
       <fa-icon
+        role="button"
+        [attr.aria-label]="'DESELECT' | translate"
         class="pointer"
         icon="trash"
         size="lg"

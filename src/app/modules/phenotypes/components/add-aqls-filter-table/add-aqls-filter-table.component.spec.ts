@@ -1,6 +1,7 @@
 import { SimpleChange } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -30,7 +31,7 @@ describe('AddAqlsFilterTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddAqlsFilterTableComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule],
+      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: AqlService,

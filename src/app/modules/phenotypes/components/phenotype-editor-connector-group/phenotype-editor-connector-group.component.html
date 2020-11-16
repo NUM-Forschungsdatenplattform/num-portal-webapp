@@ -6,6 +6,7 @@
 
   <mat-form-field appearance="standard" class="num-operator-select">
     <mat-select
+      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="phenotypeGroup.logicalOperator"
       [disabled]="phenotypeGroup.children.length <= 1"
     >

@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit, OnChanges, OnDestroy {
 
   private subscriptions = new Subscription()
 
+  @Input() label: string
   @Input() searchText: string
   @Output() searchTextChange = new EventEmitter()
 

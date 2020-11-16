@@ -1,7 +1,7 @@
 <form fxLayout="column" fxFlex="100%" [formGroup]="searchForm">
   <mat-form-field appearance="outline" color="accent" floatLabel="auto">
     <input formControlName="query" matInput placeholder="" aria-labelledby="title-label" />
-    <mat-label>Search</mat-label>
+    <mat-label>{{ label | translate }}</mat-label>
     <fa-icon
       matSuffix
       class="fa-icon"
