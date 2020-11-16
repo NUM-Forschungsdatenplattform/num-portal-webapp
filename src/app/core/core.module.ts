@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common'
 import { AqlService } from './services/aql.service'
 import { CohortService } from './services/cohort.service'
 
+import { OAuthModule } from 'angular-oauth2-oidc'
+
 @NgModule({
-  declarations: [],
+  imports: [CommonModule, OAuthModule.forRoot()],
   providers: [AqlService, CohortService],
-  imports: [CommonModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

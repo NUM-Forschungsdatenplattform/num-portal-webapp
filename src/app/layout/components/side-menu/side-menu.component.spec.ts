@@ -5,15 +5,15 @@ import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { KeycloakService } from 'keycloak-angular'
+import { OAuthService } from 'angular-oauth2-oidc'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
   let fixture: ComponentFixture<SideMenuComponent>
 
-  const keycloak = {
-    logout: () => {},
-  } as KeycloakService
+  const authService = {
+    logOut: () => {},
+  } as OAuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,8 +26,8 @@ describe('SideMenuComponent', () => {
       ],
       providers: [
         {
-          provide: KeycloakService,
-          useValue: keycloak,
+          provide: OAuthService,
+          useValue: authService,
         },
       ],
     }).compileComponents()
@@ -38,7 +38,7 @@ describe('SideMenuComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
-    jest.spyOn(keycloak, 'logout').mockImplementation(() => Promise.resolve())
+    jest.spyOn(authService, 'logOut').mockImplementation(() => Promise.resolve())
   })
 
   it('should create', () => {
@@ -75,6 +75,6 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     fixture.detectChanges()
-    expect(keycloak.logout).toHaveBeenCalled()
+    expect(authService.logOut).toHaveBeenCalled()
   })
 })

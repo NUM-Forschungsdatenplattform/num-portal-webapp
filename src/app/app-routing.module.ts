@@ -17,10 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'studies',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: [],
+      roles: ['Researcher'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -29,10 +29,10 @@ const routes: Routes = [
   },
   {
     path: 'phenotypes',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [],
+      roles: ['xxx'],
     },
     loadChildren: () =>
       import(
@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'cohorts',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [],
     data: {
       navId: 'cohorts',
       roles: [],
@@ -53,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [],
     data: {
       navId: 'aqls',
       roles: [],
