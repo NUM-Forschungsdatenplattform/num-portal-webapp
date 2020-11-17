@@ -2,10 +2,24 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { PhenotypeEditorComponent } from './components/phenotype-editor/phenotype-editor.component'
 import { PhenotypesComponent } from './components/phenotypes/phenotypes.component'
+import { PhenotypeResolver } from './phenotype.resolver'
 
 const routes: Routes = [
-  { path: '', component: PhenotypesComponent },
-  { path: 'editor', component: PhenotypeEditorComponent },
+  {
+    path: ':id/editor',
+    component: PhenotypeEditorComponent,
+    resolve: { resolvedData: PhenotypeResolver },
+    data: {
+      tabNavId: 'editor',
+    },
+  },
+  {
+    path: '',
+    component: PhenotypesComponent,
+    data: {
+      tabNavId: 'overview',
+    },
+  },
 ]
 
 @NgModule({
