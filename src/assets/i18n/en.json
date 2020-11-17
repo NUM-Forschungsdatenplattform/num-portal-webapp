@@ -18,6 +18,8 @@
   "NAVIGATION": {
     "DASHBOARD": "Dashboard",
     "STUDIES": "Studies",
+    "STUDIES_OVERVIEW": "Studies Overview",
+    "STUDIES_EDITOR": "Study Editor",
     "PHENOTYPES": "Phenotypes",
     "PHENOTYPES_OVERVIEW": "Phenotypes Overview",
     "PHENOTYPES_EDITOR": "Phenotype Editor",

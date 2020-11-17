@@ -10,6 +10,18 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'studies',
     icon: 'microscope',
     translationKey: 'NAVIGATION.STUDIES',
+    tabNav: [
+      {
+        routeTo: 'studies',
+        id: 'overview',
+        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+      },
+      {
+        routeTo: 'studies/new/editor',
+        id: 'editor',
+        translationKey: 'NAVIGATION.STUDIES_EDITOR',
+      },
+    ],
   },
   {
     routeTo: 'phenotypes',
