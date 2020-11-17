@@ -6,6 +6,8 @@ export class StudyUiModel {
   studyId: number | null
   name: string
   description?: string
+  primaryHypothesis = 'Currently not implemented on backend'
+  secondaryHypothesis?: string
   cohortGroup: CohortGroupUiModel
   constructor(apiStudy?: IStudyApi) {
     this.id = apiStudy?.id || null
