@@ -60,7 +60,7 @@
     "ADD_GROUP": "Add group",
     "DELETE_GROUP": "Delete group",
     "CREATE_PHENOTYPE": "Create Phenotype",
-    "SELECT": "Auswählen",
-    "DESELECT": "Abwählen"
+    "SELECT": "Select",
+    "DESELECT": "Deselect"
   }
 }

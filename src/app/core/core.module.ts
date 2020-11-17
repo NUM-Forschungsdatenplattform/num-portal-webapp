@@ -4,7 +4,6 @@ import { AqlService } from './services/aql.service'
 import { CohortService } from './services/cohort.service'
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component'
 import { LayoutModule } from '../layout/layout.module'
-import { TranslateModule } from '@ngx-translate/core'
 import { SharedModule } from '../shared/shared.module'
 
 @NgModule({
