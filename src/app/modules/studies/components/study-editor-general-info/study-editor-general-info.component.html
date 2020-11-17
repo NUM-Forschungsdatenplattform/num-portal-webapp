@@ -1,0 +1,70 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h3 class="mat-h3">{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="general-info-label"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <p id="general-info-label" fxFlex="100%">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </p>
+
+    <form fxLayout="column" fxFlex="100%" [formGroup]="form">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
+        <input formControlName="title" matInput placeholder="Title" aria-labelledby="title-label" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent" fxFlex="100%">
+        <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}</mat-label>
+        <textarea
+          formControlName="description"
+          #textarea
+          matInput
+          style="resize: none"
+          aria-labelledby="desc-label"
+          rows="10"
+        ></textarea>
+      </mat-form-field>
+
+      <section role="presentation" fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+          <mat-label id="label-primaryHypothesis">{{
+            'FORM.PRIMARY_HYPOTHESIS' | translate
+          }}</mat-label>
+          <textarea
+            formControlName="primaryHypothesis"
+            #textarea
+            matInput
+            style="resize: none"
+            aria-labelledby="label-primaryHypothesis"
+            rows="10"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+          <mat-label id="label-secondaryHypothesis">{{
+            'FORM.SECONDARY_HYPOTHESIS' | translate
+          }}</mat-label>
+          <textarea
+            formControlName="secondaryHypothesis"
+            #textarea
+            matInput
+            style="resize: none"
+            aria-labelledby="label-secondaryHypothesis"
+            rows="10"
+          ></textarea>
+        </mat-form-field>
+      </section>
+    </form>
+  </section>
+</mat-expansion-panel>

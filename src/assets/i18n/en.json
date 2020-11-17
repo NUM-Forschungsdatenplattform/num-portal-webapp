@@ -50,6 +50,8 @@
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
     "DESCRIPTION": "Description",
+    "PRIMARY_HYPOTHESIS": "Primary Hypothesis",
+    "SECONDARY_HYPOTHESIS": "Secondary Hypothesis",
     "AUTHOR": "Author",
     "CHARACTERS": "Characters"
   },
