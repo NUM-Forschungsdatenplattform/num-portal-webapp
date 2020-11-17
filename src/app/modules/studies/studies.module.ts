@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common'
 
 import { StudiesRoutingModule } from './studies-routing.module'
 import { StudiesComponent } from './components/studies/studies.component'
-import { SharedModule } from 'src/app/shared/shared.module'
+import { SharedModule } from 'src/app/shared/shared.module';
+import { StudyEditorComponent } from './components/study-editor/study-editor.component'
 
 @NgModule({
-  declarations: [StudiesComponent],
+  declarations: [StudiesComponent, StudyEditorComponent],
   imports: [CommonModule, StudiesRoutingModule, SharedModule],
 })
 export class StudiesModule {}
