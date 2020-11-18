@@ -53,22 +53,26 @@ describe('AuthGuard', () => {
       url: path,
     } as RouterStateSnapshot
 
-    it('calls keycloak.login to let the user login in [canActivate] guard', async () => {
+    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canActivate] guard', async () => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(false)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(false)
       jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
 
       const result = await guard.canActivate(activatedRoute, state)
-      expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalled()
+      expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalledWith({
+        customRedirectUri: host + state.url,
+      })
     })
 
-    it('calls keycloak.login to let the user login in [canLoad] guard', async () => {
+    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canLoad] guard', async () => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(false)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(false)
       jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
 
       const result = await guard.canLoad(route)
-      expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalled()
+      expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalledWith({
+        customRedirectUri: host + '/' + path,
+      })
     })
   })
 })

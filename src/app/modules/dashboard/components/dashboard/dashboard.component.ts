@@ -22,7 +22,9 @@ export class DashboardComponent implements OnInit {
     if (isLoggedIn) {
       const profile = await this.oauthService.loadUserProfile()
       const roles = profile.groups
-      this.authTest = 'Hello ' + profile.name + ', Roles: ' + roles.join(', ')
+      if (roles) {
+        this.authTest = 'Hello ' + profile.name + ', Roles: ' + roles.join(', ')
+      }
     } else {
       this.authTest = 'Not logged in'
     }

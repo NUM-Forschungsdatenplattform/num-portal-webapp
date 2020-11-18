@@ -70,7 +70,6 @@ describe('SideMenuComponent', () => {
       },
     ]
     fixture.detectChanges()
-    console.log(component)
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()

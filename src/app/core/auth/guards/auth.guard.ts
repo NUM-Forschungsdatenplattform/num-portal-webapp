@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate, CanLoad {
       return Promise.resolve(true)
     }
 
-    await this.oauthService.loadDiscoveryDocumentAndLogin()
+    await this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
     return Promise.resolve(true)
   }
 }

@@ -32,7 +32,7 @@ const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: ['xxx'],
+      roles: ['Researcher'],
     },
     loadChildren: () =>
       import(

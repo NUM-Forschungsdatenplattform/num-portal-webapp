@@ -31,16 +31,21 @@ export class RoleGuard implements CanActivate, CanLoad {
       return Promise.resolve(true)
     }
 
-    let userRoles: string[]
-    await this.oauthService.loadUserProfile().then((userinfo) => (userRoles = userinfo.groups))
-
     const isLoggedIn =
       this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
 
     if (!isLoggedIn) {
-      await this.oauthService.loadDiscoveryDocumentAndLogin()
+      await this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
     }
 
-    return Promise.resolve(allowedRoles.some((role) => userRoles.indexOf(role) >= 0))
+    let userRoles: string[]
+    await this.oauthService.loadUserProfile().then((userinfo) => {
+      userRoles = userinfo.groups
+    })
+
+    if (userRoles) {
+      return Promise.resolve(allowedRoles.some((role) => userRoles.indexOf(role) >= 0))
+    }
+    return Promise.resolve(false)
   }
 }
