@@ -1,0 +1,41 @@
+<section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
+  <h2><span class="not-icon num-fc--a" *ngIf="aql.isNegated">&not;</span>{{ aql.name }}</h2>
+  <mat-slide-toggle labelPosition="before" [(ngModel)]="aql.isNegated">Negation</mat-slide-toggle>
+</section>
+
+<table class="general-info">
+  <tbody>
+    <tr>
+      <td>{{ 'FORM.AUTHOR' | translate }}:</td>
+      <td>Lars Schäfer</td>
+    </tr>
+    <tr>
+      <td>{{ 'FORM.DESCRIPTION' | translate }}:</td>
+      <td>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
+        imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="query" [innerHtml]="queryHighlighted"></div>
+
+<form [formGroup]="parameterForm" *ngIf="aql.parameter.length">
+  <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
+    <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ aql.parameter[i].name }}: </mat-label>
+        <input
+          matInput
+          id="{{ 'param' + i }}"
+          type="text"
+          placeholder="Parameter"
+          formControlName="parameter"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<mat-divider class="num-d-w--1"></mat-divider>

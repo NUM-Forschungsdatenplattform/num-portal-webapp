@@ -1,0 +1,15 @@
+<mat-card class="filter-area mat-elevation-z4">
+  <num-filter-chips
+    [filterChips]="filterConfig.filterChips"
+    (selectionChange)="handleFilterChange()"
+  ></num-filter-chips>
+  <num-search
+    label="SEARCH_AQLS"
+    [(searchText)]="filterConfig.searchText"
+    (searchTextChange)="handleSearchChange()"
+  ></num-search>
+
+  <num-add-aqls-filter-table [(selectedAqls)]="dialogInput"></num-add-aqls-filter-table>
+</mat-card>
+
+<num-add-aqls-selected-table [(selectedAqls)]="dialogInput"></num-add-aqls-selected-table>

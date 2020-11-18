@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { mainNavItems, secondaryNavItems } from '../../navigation'
 import INavItem from '../../models/nav-item.interface'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { mainNavItems, secondaryNavItems } from '../../../core/constants/navigation'
 
 @Component({
   selector: 'num-side-menu',

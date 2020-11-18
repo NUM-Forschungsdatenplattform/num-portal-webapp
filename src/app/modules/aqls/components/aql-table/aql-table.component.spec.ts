@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Subject } from 'rxjs'
-import { IAql } from 'src/app/core/models/aql.interface'
+import { IAql } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 

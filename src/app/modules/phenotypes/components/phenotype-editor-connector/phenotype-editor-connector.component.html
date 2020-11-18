@@ -1,0 +1,27 @@
+<section
+  role="region"
+  aria-labelledby="general-info-label"
+  fxLayout="column"
+  fxFlex="100%"
+  fxLayoutGap="20px"
+>
+  <section role="presentation">
+    <h2 class="mat-h2">{{ 'CONNECT_AQL' | translate }}</h2>
+    <mat-divider class="num-d-c--a num-d-w--1"></mat-divider>
+  </section>
+
+  <mat-card fxLayout="column">
+    <mat-card-content fxFlex="100%">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </mat-card-content>
+
+    <num-phenotype-editor-connector-group
+      role="list"
+      [phenotypeGroup]="phenotypeQuery"
+      [parentGroupIndex]="null"
+      fxFlex="100%"
+    ></num-phenotype-editor-connector-group>
+  </mat-card>
+</section>

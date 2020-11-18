@@ -1,0 +1,12 @@
+.mat-button-base {
+  text-transform: uppercase;
+}
+
+.num-button-align {
+  &.mat-button .mat-button-wrapper > *,
+  &.mat-stroked-button .mat-button-wrapper > *,
+  &.mat-raised-button .mat-button-wrapper > *,
+  &.mat-flat-button .mat-button-wrapper > * {
+    vertical-align: baseline !important;
+  }
+}

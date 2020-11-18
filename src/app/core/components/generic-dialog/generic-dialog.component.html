@@ -1,0 +1,38 @@
+<section fxFlex.gt-md="50vw">
+  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
+    <h1 mat-dialog-title>{{ dialogConfig.title | translate }}</h1>
+    <fa-icon
+      *ngIf="dialogConfig.hasCloseIcon"
+      role="button"
+      [attr.aria-label]="'BUTTON.CANCEL' | translate"
+      class="pointer close-icon"
+      icon="times"
+      (click)="handleDialogClose()"
+      [fixedWidth]="true"
+    ></fa-icon>
+  </section>
+
+  <mat-dialog-content>
+    <ng-template #dialogContent></ng-template>
+  </mat-dialog-content>
+
+  <div
+    mat-dialog-actions
+    [fxLayoutAlign]="
+      !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText ? 'center' : 'space-between'
+    "
+    class="button-row"
+  >
+    <button mat-stroked-button (click)="handleDialogCancel()" *ngIf="dialogConfig.cancelButtonText">
+      {{ dialogConfig.cancelButtonText | translate }}
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="handleDialogConfirm()"
+      *ngIf="dialogConfig.confirmButtonText"
+    >
+      {{ dialogConfig.confirmButtonText | translate }}
+    </button>
+  </div>
+</section>
