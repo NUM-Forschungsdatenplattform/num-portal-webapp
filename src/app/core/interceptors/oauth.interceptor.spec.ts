@@ -64,11 +64,11 @@ describe('OAuthInterceptor', () => {
           expect(response).toBeTruthy()
         })
 
-        httpMock.expectOne((r) => r.headers['Authorization'] === undefined)
+        httpMock.expectOne((r) => !r.headers.keys().includes('Authorization'))
       }
     ))
   })
-  describe('When the Backend returns an error', () => {
+  describe('When the Backend returns 401: Unauthorized', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
       (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
@@ -81,6 +81,22 @@ describe('OAuthInterceptor', () => {
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
         expect(authService.logOut).toHaveBeenCalled()
+      }
+    ))
+  })
+  describe('When the Backend returns another error', () => {
+    it('should not logout the user', inject(
+      [HttpClient, HttpTestingController, OAuthService],
+      (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
+        const mockErrorResponse = { status: 500, statusText: 'Internal Server Error' }
+        const data = 'Internal Server Error'
+
+        jest.spyOn(authService, 'logOut')
+
+        http.get('/data').subscribe()
+
+        httpMock.expectOne('/data').flush(data, mockErrorResponse)
+        expect(authService.logOut).not.toHaveBeenCalled()
       }
     ))
   })
