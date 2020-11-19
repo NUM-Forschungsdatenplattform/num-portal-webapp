@@ -30,8 +30,10 @@ export class OAuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(catchError(this.handleError.bind(this)))
   }
 
-  public handleError(error: HttpErrorResponse): Observable<never> {
-    this.oauthService.logOut()
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    if (error.status === 401) {
+      this.oauthService.logOut()
+    }
     return throwError(error)
   }
 }

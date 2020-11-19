@@ -72,8 +72,8 @@ describe('OAuthInterceptor', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
       (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
-        const mockErrorResponse = { status: 400, statusText: 'Bad Request' }
-        const data = 'Invalid request parameters'
+        const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
+        const data = 'Unauthorized'
 
         jest.spyOn(authService, 'logOut')
 
