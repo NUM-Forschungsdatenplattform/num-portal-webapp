@@ -1,9 +1,8 @@
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { inject, TestBed } from '@angular/core/testing'
-import { OAuthStorage } from 'angular-oauth2-oidc'
+import { OAuthStorage, OAuthService } from 'angular-oauth2-oidc'
 import { OAuthInterceptor } from './oauth.interceptor'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
-import { of } from 'rxjs'
 
 describe('OAuthInterceptor', () => {
   let authInterceptor: OAuthInterceptor
@@ -12,11 +11,16 @@ describe('OAuthInterceptor', () => {
     getItem: (_access_token: string) => 'test_token',
   } as OAuthStorage
 
+  const authService = {
+    logOut: () => {},
+  } as OAuthService
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         { provide: OAuthStorage, useValue: authStorage },
+        { provide: OAuthService, useValue: authService },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: OAuthInterceptor,
@@ -25,7 +29,7 @@ describe('OAuthInterceptor', () => {
       ],
     })
 
-    authInterceptor = new OAuthInterceptor(authStorage)
+    authInterceptor = new OAuthInterceptor(authService, authStorage)
   })
 
   afterEach(() => {
@@ -61,6 +65,22 @@ describe('OAuthInterceptor', () => {
         })
 
         httpMock.expectOne((r) => r.headers['Authorization'] === undefined)
+      }
+    ))
+  })
+  describe('When the Backend returns an error', () => {
+    it('should logout the user', inject(
+      [HttpClient, HttpTestingController, OAuthService],
+      (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
+        const mockErrorResponse = { status: 400, statusText: 'Bad Request' }
+        const data = 'Invalid request parameters'
+
+        jest.spyOn(authService, 'logOut')
+
+        http.get('/data').subscribe()
+
+        httpMock.expectOne('/data').flush(data, mockErrorResponse)
+        expect(authService.logOut).toHaveBeenCalled()
       }
     ))
   })
