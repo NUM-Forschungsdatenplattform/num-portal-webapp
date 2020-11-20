@@ -1,9 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TestUserHasRoleComponent } from 'src/mocks/component-mocks/test-user-has-role.component'
 import { UserHasRoleDirective } from './user-has-role.directive'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DebugElement } from '@angular/core'
 import { By } from '@angular/platform-browser'
+
+import { Component } from '@angular/core'
+@Component({
+  template: ` <div>
+    <span *userHasRole="allowedRoles">Test content</span>
+  </div>`,
+})
+export class TestUserHasRoleComponent {
+  allowedRoles: string[] = []
+}
 
 describe('Directive: UserHasRoleDirective', () => {
   let component: TestUserHasRoleComponent
@@ -34,8 +43,7 @@ describe('Directive: UserHasRoleDirective', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TestUserHasRoleComponent)
     component = fixture.componentInstance
-    // divEl = fixture.debugElement.query(By.css('div'))
-    // fixture.detectChanges()
+    fixture.detectChanges()
   })
 
   afterEach(() => {
@@ -53,6 +61,7 @@ describe('Directive: UserHasRoleDirective', () => {
 
       fixture.detectChanges()
       const divEl = fixture.debugElement.query(By.css('div'))
+      fixture.detectChanges()
       expect(divEl.nativeElement.textContent.trim()).toBe('Test Content')
     })
   })
