@@ -6,13 +6,13 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router'
-import { KeycloakService } from 'keycloak-angular'
+import { OAuthService } from 'angular-oauth2-oidc'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private keycloak: KeycloakService) {}
+  constructor(private oauthService: OAuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -25,13 +25,13 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   async isAllowed(route: ActivatedRouteSnapshot | Route, redirectUri: string): Promise<boolean> {
-    const isLoggedIn = await this.keycloak.isLoggedIn()
+    const isLoggedIn =
+      this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
+
     if (isLoggedIn) {
       return Promise.resolve(true)
     }
 
-    await this.keycloak.login({
-      redirectUri,
-    })
+    return this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
   }
 }

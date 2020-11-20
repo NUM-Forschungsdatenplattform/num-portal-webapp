@@ -1,4 +1,4 @@
-import INavItem from './models/nav-item.interface'
+import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
   {
@@ -18,10 +18,12 @@ export const mainNavItems: INavItem[] = [
     tabNav: [
       {
         routeTo: 'phenotypes',
+        id: 'overview',
         translationKey: 'NAVIGATION.PHENOTYPES_OVERVIEW',
       },
       {
-        routeTo: 'phenotypes/editor',
+        routeTo: 'phenotypes/new/editor',
+        id: 'editor',
         translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
       },
     ],
@@ -50,7 +52,7 @@ export const secondaryNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.PROFILE',
   },
   {
-    routeTo: '#',
+    routeTo: '#logout',
     icon: 'sign-out-alt',
     translationKey: 'NAVIGATION.SIGNOUT',
   },

@@ -1,0 +1,12 @@
+<label for="filter-chips">Filter</label>
+<mat-chip-list id="filter-chips" aria-label="Filter" [multiple]="true">
+  <mat-chip
+    color="primary"
+    *ngFor="let chip of filterChips"
+    [selected]="chip.isSelected"
+    (click)="handleClickOnChip(chip)"
+  >
+    <fa-icon icon="check"></fa-icon>
+    {{ chip.title | translate }}
+  </mat-chip>
+</mat-chip-list>

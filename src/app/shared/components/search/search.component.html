@@ -1,0 +1,15 @@
+<form fxLayout="column" fxFlex="100%" [formGroup]="searchForm">
+  <mat-form-field appearance="outline" color="accent" floatLabel="auto">
+    <input formControlName="query" matInput placeholder="" aria-labelledby="title-label" />
+    <mat-label>{{ label | translate }}</mat-label>
+    <fa-icon
+      matSuffix
+      class="fa-icon"
+      [icon]="!searchForm.value.query ? 'search' : 'times-circle'"
+      [ngClass]="{ 'fa-icon--pointable': searchForm.value.query }"
+      size="lg"
+      [fixedWidth]="true"
+      (click)="clearInput()"
+    ></fa-icon>
+  </mat-form-field>
+</form>

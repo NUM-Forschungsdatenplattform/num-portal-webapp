@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { mainNavItems, secondaryNavItems } from '../../navigation'
 import { routes } from '../../../app-routing.module'
+import INavItem from '../../models/nav-item.interface'
+import { OAuthService } from 'angular-oauth2-oidc'
+import { mainNavItems, secondaryNavItems } from '../../../core/constants/navigation'
 
 @Component({
   selector: 'num-side-menu',
@@ -14,7 +16,7 @@ export class SideMenuComponent implements OnInit {
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor() {}
+  constructor(private oauthService: OAuthService) {}
 
   ngOnInit() {
     mainNavItems.forEach((item) => {
@@ -23,7 +25,10 @@ export class SideMenuComponent implements OnInit {
     })
   }
 
-  menuItemClicked($event: Event): void {
+  menuItemClicked($event: Event, item: INavItem): void {
+    if (item.routeTo === '#logout') {
+      this.oauthService.logOut()
+    }
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()

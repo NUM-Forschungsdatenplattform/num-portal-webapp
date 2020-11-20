@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { OAuthService } from 'angular-oauth2-oidc'
 import { AppConfigService } from '../../../../config/app-config.service'
-import { KeycloakService } from 'keycloak-angular'
 
 @Component({
   selector: 'num-dashboard',
@@ -8,7 +8,7 @@ import { KeycloakService } from 'keycloak-angular'
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private appConfig: AppConfigService, private keycloak: KeycloakService) {}
+  constructor(private appConfig: AppConfigService, private oauthService: OAuthService) {}
 
   config = this.appConfig.config
   authTest: string
@@ -18,12 +18,13 @@ export class DashboardComponent implements OnInit {
   }
 
   async init(): Promise<void> {
-    const isLoggedIn = await this.keycloak.isLoggedIn()
+    const isLoggedIn = this.oauthService.hasValidAccessToken()
     if (isLoggedIn) {
-      const profile = await this.keycloak.loadUserProfile()
-      const roles = this.keycloak.getUserRoles()
-
-      this.authTest = 'Hello ' + profile.username + ', Roles: ' + roles.join(', ')
+      const profile = await this.oauthService.loadUserProfile()
+      const roles = profile.groups
+      if (roles) {
+        this.authTest = 'Hello ' + profile.name + ', Roles: ' + roles.join(', ')
+      }
     } else {
       this.authTest = 'Not logged in'
     }

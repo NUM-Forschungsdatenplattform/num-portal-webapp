@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { RoleGuard } from './core/auth/guards/role.guard'
 import { AuthGuard } from './core/auth/guards/auth.guard'
+import { RoleGuard } from './core/auth/guards/role.guard'
 
 export const routes: Routes = [
   {
@@ -17,7 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'studies',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'studies',
       roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
@@ -29,7 +29,7 @@ export const routes: Routes = [
   },
   {
     path: 'phenotypes',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
       roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
@@ -41,7 +41,7 @@ export const routes: Routes = [
   },
   {
     path: 'cohorts',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'cohorts',
       roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
@@ -53,7 +53,7 @@ export const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [AuthGuard, RoleGuard],
+    canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
       roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
@@ -68,7 +68,11 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      enableTracing: false,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -5,10 +5,15 @@ import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
+import { OAuthService } from 'angular-oauth2-oidc'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
   let fixture: ComponentFixture<SideMenuComponent>
+
+  const authService = {
+    logOut: () => {},
+  } as OAuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +24,12 @@ describe('SideMenuComponent', () => {
         RouterTestingModule.withRoutes([]),
         TranslateModule.forRoot(),
       ],
+      providers: [
+        {
+          provide: OAuthService,
+          useValue: authService,
+        },
+      ],
     }).compileComponents()
   })
 
@@ -26,14 +37,15 @@ describe('SideMenuComponent', () => {
     fixture = TestBed.createComponent(SideMenuComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(component.toggleSideMenu, 'emit')
+    jest.spyOn(authService, 'logOut').mockImplementation(() => Promise.resolve())
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should create', () => {
-    jest.spyOn(component.toggleSideMenu, 'emit')
+  it('Calls emit on toggleSideMenu when menu item is clicked', () => {
     component.mainNavItems = [
       {
         icon: 'test',
@@ -43,8 +55,25 @@ describe('SideMenuComponent', () => {
     ]
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector('.menu-item')
+    const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+  })
+
+  it('Calls logout function when logout button is clicked', () => {
+    component.mainNavItems = null
+    component.secondaryNavItems = [
+      {
+        icon: 'test',
+        routeTo: '#logout',
+        translationKey: 'test',
+      },
+    ]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector('.mat-list-item')
+    button.click()
+    fixture.detectChanges()
+    expect(authService.logOut).toHaveBeenCalled()
   })
 })
