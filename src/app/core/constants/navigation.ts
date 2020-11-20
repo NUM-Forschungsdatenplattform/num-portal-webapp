@@ -52,7 +52,7 @@ export const secondaryNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.PROFILE',
   },
   {
-    routeTo: '#',
+    routeTo: '#logout',
     icon: 'sign-out-alt',
     translationKey: 'NAVIGATION.SIGNOUT',
   },

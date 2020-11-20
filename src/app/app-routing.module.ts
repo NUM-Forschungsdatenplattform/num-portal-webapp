@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 
 const routes: Routes = [
   {
     path: 'home',
+    canLoad: [AuthGuard],
     data: {
       navId: 'home',
     },
@@ -18,7 +20,7 @@ const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: [],
+      roles: ['Researcher'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -30,7 +32,7 @@ const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [],
+      roles: ['Researcher'],
     },
     loadChildren: () =>
       import(
@@ -39,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'cohorts',
-    canLoad: [RoleGuard],
+    canLoad: [],
     data: {
       navId: 'cohorts',
       roles: [],
@@ -51,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [RoleGuard],
+    canLoad: [],
     data: {
       navId: 'aqls',
       roles: [],

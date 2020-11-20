@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
-import { KeycloakService } from 'keycloak-angular'
+import { OAuthService } from 'angular-oauth2-oidc'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
+import { OAuthModule } from 'angular-oauth2-oidc'
+
 describe('DashboardComponent', () => {
   let component: DashboardComponent
   let fixture: ComponentFixture<DashboardComponent>
 
   let appConfig: AppConfigService
-  let keycloak: KeycloakService
+  let authService: OAuthService
 
   const config = ({
     env: 'test',
@@ -19,14 +21,14 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [TranslateModule.forRoot(), HttpClientTestingModule],
-      providers: [KeycloakService],
+      imports: [TranslateModule.forRoot(), HttpClientTestingModule, OAuthModule.forRoot()],
+      providers: [OAuthService],
     }).compileComponents()
   })
 
   beforeEach(() => {
     appConfig = TestBed.inject(AppConfigService)
-    keycloak = TestBed.inject(KeycloakService)
+    authService = TestBed.inject(OAuthService)
 
     fixture = TestBed.createComponent(DashboardComponent)
     component = fixture.componentInstance

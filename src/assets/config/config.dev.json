@@ -1,17 +1,17 @@
 {
-    "env": {
-        "name": "dev"
-    },
-    "api": {
-        "baseUrl": "/api"
-    },
-    "auth": {
-        "baseUrl": "http://localhost:8080",
-        "realm": "test-realm",
-        "clientId": "app"
-    },
-    "legal": {
-        "version": "0.9.0",
-        "copyrightOwner": "Num Core Team"
-    }
+  "env": {
+    "name": "dev"
+  },
+  "api": {
+    "baseUrl": "/api"
+  },
+  "auth": {
+    "baseUrl": "https://temp-keycloak.10.214.4.21.xip.io",
+    "realm": "Num",
+    "clientId": "numPortalWebapp"
+  },
+  "legal": {
+    "version": "0.9.0",
+    "copyrightOwner": "Num Core Team"
+  }
 }

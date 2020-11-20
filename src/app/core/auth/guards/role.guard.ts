@@ -6,13 +6,13 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router'
-import { KeycloakService } from 'keycloak-angular'
+import { OAuthService } from 'angular-oauth2-oidc'
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate, CanLoad {
-  constructor(private keycloak: KeycloakService) {}
+  constructor(private oauthService: OAuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -31,15 +31,21 @@ export class RoleGuard implements CanActivate, CanLoad {
       return Promise.resolve(true)
     }
 
-    const userRoles = this.keycloak.getUserRoles(true)
-    const isLoggedIn = await this.keycloak.isLoggedIn()
+    const isLoggedIn =
+      this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
 
     if (!isLoggedIn) {
-      await this.keycloak.login({
-        redirectUri,
-      })
+      await this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
     }
 
-    return Promise.resolve(allowedRoles.some((role) => userRoles.indexOf(role) >= 0))
+    let userRoles: string[]
+    await this.oauthService.loadUserProfile().then((userinfo) => {
+      userRoles = userinfo.groups
+    })
+
+    if (userRoles) {
+      return Promise.resolve(allowedRoles.some((role) => userRoles.indexOf(role) >= 0))
+    }
+    return Promise.resolve(false)
   }
 }
