@@ -6,10 +6,12 @@ import { GenericDialogComponent } from './components/generic-dialog/generic-dial
 import { LayoutModule } from '../layout/layout.module'
 import { SharedModule } from '../shared/shared.module'
 
+import { OAuthModule } from 'angular-oauth2-oidc'
+
 @NgModule({
-  declarations: [GenericDialogComponent],
+  imports: [CommonModule, LayoutModule, SharedModule, OAuthModule.forRoot()],
   providers: [AqlService, CohortService],
-  imports: [CommonModule, LayoutModule, SharedModule],
+  declarations: [GenericDialogComponent],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

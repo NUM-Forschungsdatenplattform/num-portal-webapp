@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
+import INavItem from '../../models/nav-item.interface'
+import { OAuthService } from 'angular-oauth2-oidc'
 import { mainNavItems, secondaryNavItems } from '../../../core/constants/navigation'
 
 @Component({
@@ -12,9 +14,13 @@ export class SideMenuComponent {
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor() {}
+  constructor(private oauthService: OAuthService) {}
 
-  menuItemClicked($event: Event): void {
+  menuItemClicked($event: Event, item: INavItem): void {
+    if (item.routeTo === '#logout') {
+      this.oauthService.logOut()
+    }
+
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()

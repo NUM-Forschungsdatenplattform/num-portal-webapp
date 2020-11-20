@@ -9,7 +9,7 @@
     *ngFor="let item of mainNavItems"
     mat-list-item
     [routerLink]="item.routeTo"
-    (click)="menuItemClicked($event)"
+    (click)="menuItemClicked($event, item)"
   >
     <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
     <div>{{ item.translationKey | translate }}</div>
@@ -24,7 +24,7 @@
     *ngFor="let item of secondaryNavItems"
     mat-list-item
     [routerLink]="item.routeTo"
-    (click)="menuItemClicked()"
+    (click)="menuItemClicked($event, item)"
   >
     <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon" routerLinkActive="active"></fa-icon>
     <div>{{ item.translationKey | translate }}</div>
