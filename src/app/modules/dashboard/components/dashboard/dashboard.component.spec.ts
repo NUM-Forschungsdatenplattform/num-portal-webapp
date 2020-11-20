@@ -6,13 +6,16 @@ import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
 import { OAuthModule } from 'angular-oauth2-oidc'
+import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
   let fixture: ComponentFixture<DashboardComponent>
 
   let appConfig: AppConfigService
-  let authService: OAuthService
+  const authService = {
+    loadUserProfile: () => Promise.resolve({}),
+  } as OAuthService
 
   const config = ({
     env: 'test',
@@ -21,14 +24,23 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [TranslateModule.forRoot(), HttpClientTestingModule, OAuthModule.forRoot()],
-      providers: [OAuthService],
+      imports: [
+        TranslateModule.forRoot(),
+        HttpClientTestingModule,
+        OAuthModule.forRoot(),
+        DirectivesModule,
+      ],
+      providers: [
+        {
+          provide: OAuthService,
+          useValue: authService,
+        },
+      ],
     }).compileComponents()
   })
 
   beforeEach(() => {
     appConfig = TestBed.inject(AppConfigService)
-    authService = TestBed.inject(OAuthService)
 
     fixture = TestBed.createComponent(DashboardComponent)
     component = fixture.componentInstance

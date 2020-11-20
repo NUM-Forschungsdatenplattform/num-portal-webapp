@@ -1,9 +1,9 @@
 import { Component } from '@angular/core'
 @Component({
-  template: `<div *myCustomIf="allowedRoles">
-    <p>Researcher Content</p>
+  template: ` <div>
+    <span *userHasRole="allowedRoles">Test content</span>
   </div>`,
 })
 export class TestUserHasRoleComponent {
-  allowedRoles: string[] = ['Researcher']
+  allowedRoles: string[] = []
 }

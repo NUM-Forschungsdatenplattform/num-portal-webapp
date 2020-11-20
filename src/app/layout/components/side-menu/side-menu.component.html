@@ -10,7 +10,7 @@
       [routerLinkActive]="'num-mat-list-item--active'"
       mat-list-item
       [routerLink]="item.routeTo"
-      (click)="menuItemClicked($event)"
+      (click)="menuItemClicked($event, item)"
     >
       <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
       <div>{{ item.translationKey | translate }}</div>

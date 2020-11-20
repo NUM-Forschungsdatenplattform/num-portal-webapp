@@ -3,5 +3,6 @@ export default interface INavItem {
   icon?: string
   translationKey: string
   tabNav?: INavItem[]
+  id?: string
   roles?: string[]
 }

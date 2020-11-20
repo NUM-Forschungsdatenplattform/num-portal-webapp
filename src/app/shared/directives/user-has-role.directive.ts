@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core'
-import { KeycloakService } from 'keycloak-angular'
+import { OAuthService } from 'angular-oauth2-oidc'
 
 @Directive({
   selector: '[userHasRole]',
@@ -8,20 +8,27 @@ export class UserHasRoleDirective {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
-    private keycloak: KeycloakService
+    private oauthService: OAuthService
   ) {}
 
   @Input() set userHasRole(allowedRoles: string[]) {
-    const userRoles = this.keycloak.getUserRoles(true)
+    let userRoles: string[]
+    this.oauthService.loadUserProfile().then((userinfo) => {
+      userRoles = userinfo.groups
 
-    if (allowedRoles) {
-      if (allowedRoles.some((role) => userRoles.indexOf(role) >= 0)) {
-        this.viewContainer.createEmbeddedView(this.templateRef)
+      if (userRoles) {
+        if (allowedRoles) {
+          if (allowedRoles.some((role) => userRoles.indexOf(role) >= 0)) {
+            this.viewContainer.createEmbeddedView(this.templateRef)
+          } else {
+            this.viewContainer.clear()
+          }
+        } else {
+          this.viewContainer.createEmbeddedView(this.templateRef)
+        }
       } else {
         this.viewContainer.clear()
       }
-    } else {
-      this.viewContainer.createEmbeddedView(this.templateRef)
-    }
+    })
   }
 }

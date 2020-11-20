@@ -6,6 +6,7 @@ import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -13,6 +14,7 @@ describe('SideMenuComponent', () => {
 
   const authService = {
     logOut: () => {},
+    loadUserProfile: () => Promise.resolve({}),
   } as OAuthService
 
   beforeEach(async () => {
@@ -23,6 +25,7 @@ describe('SideMenuComponent', () => {
         MaterialModule,
         RouterTestingModule.withRoutes([]),
         TranslateModule.forRoot(),
+        DirectivesModule,
       ],
       providers: [
         {
