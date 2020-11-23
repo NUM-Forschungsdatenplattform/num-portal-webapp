@@ -13,6 +13,7 @@ import { LanguageComponent } from '../language/language.component'
 import { Component } from '@angular/core'
 import { of } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -21,6 +22,7 @@ describe('AppLayoutComponent', () => {
 
   const authService = {
     logOut: () => {},
+    loadUserProfile: () => Promise.resolve({}),
   } as OAuthService
 
   @Component({ selector: 'num-footer', template: '' })
@@ -41,6 +43,7 @@ describe('AppLayoutComponent', () => {
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
+        DirectivesModule,
       ],
       providers: [
         {

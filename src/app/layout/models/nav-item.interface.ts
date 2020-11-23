@@ -4,4 +4,5 @@ export default interface INavItem {
   translationKey: string
   tabNav?: INavItem[]
   id?: string
+  roles?: string[]
 }
