@@ -34,10 +34,6 @@ export class DialogAddPhenotypesComponent implements OnInit {
     this.phenotypeService.setFilter(this.filterConfig)
   }
 
-  handleFilterChange(): void {
-    this.phenotypeService.setFilter(this.filterConfig)
-  }
-
   handleDialogConfirm(): void {
     this.closeDialog.emit(this.dialogInput)
   }

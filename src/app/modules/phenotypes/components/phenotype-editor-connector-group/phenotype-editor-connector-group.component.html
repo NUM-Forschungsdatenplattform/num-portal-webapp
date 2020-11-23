@@ -4,7 +4,11 @@
     {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
   >
 
-  <mat-form-field appearance="standard" class="num-operator-select">
+  <mat-form-field
+    appearance="standard"
+    class="num-operator-select"
+    [style.visibility]="phenotypeGroup.children.length <= 1 ? 'hidden' : 'visible'"
+  >
     <mat-select
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="phenotypeGroup.logicalOperator"

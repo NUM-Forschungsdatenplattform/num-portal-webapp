@@ -27,10 +27,14 @@ describe('StudyEditorComponent', () => {
   class StubGeneralInfoComponent {
     @Input() form: any
   }
+  @Component({ selector: 'num-study-editor-connector', template: '' })
+  class StubStudyEditorConnector {
+    @Input() cohortNode: any
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudyEditorComponent, StubGeneralInfoComponent],
+      declarations: [StudyEditorComponent, StubGeneralInfoComponent, StubStudyEditorConnector],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,

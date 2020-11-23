@@ -54,6 +54,7 @@ describe('PhenotypeEditorConnectorGroupComponent', () => {
     fixture = TestBed.createComponent(PhenotypeEditorConnectorGroupComponent)
     component = fixture.componentInstance
     jest.restoreAllMocks()
+    jest.clearAllMocks()
   })
 
   describe('When the group components gets initialised with a phenotypeGroup', () => {

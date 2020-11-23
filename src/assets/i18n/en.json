@@ -35,7 +35,7 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
-  "SEARCH_PHENOTYPES": "Phenotype search",
+  "SEARCH_PHENOTYPES": "Search Phenotype",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "SEARCH_AQLS": "AQL search",
   "MY_AQLS": "My AQLs",
@@ -46,6 +46,7 @@
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
+  "DEFINE_COHORT": "Define Cohort",
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",

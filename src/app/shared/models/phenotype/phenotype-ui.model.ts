@@ -45,7 +45,10 @@ export class PhenotypeUiModel {
   private collectParameters(query: IPhenotypeQueryApi, result: string[]): void {
     query.children.forEach((child) => {
       if (child.type === ConnectorNodeType.Aql) {
-        ;(child.aql.query.match(PARAMETER_REGEX) || []).forEach((param) => result.push(param))
+        const parametersInAql = child.aql.query.match(PARAMETER_REGEX)
+        if (parametersInAql) {
+          parametersInAql.forEach((param) => result.push(param))
+        }
       } else {
         this.collectParameters(child, result)
       }
@@ -63,15 +66,6 @@ export class PhenotypeUiModel {
       this.areParameterConfigured = false
     }
   }
-  // private collectParameters(query: IPhenotypeQueryApi): void {
-  //   this.parameter = [...new Set(JSON.stringify(query).match(PARAMETER_REGEX))].map((name) => {
-  //     return { name, value: undefined }
-  //   })
-
-  //   if (this.parameter.length) {
-  //     this.areParameterConfigured = false
-  //   }
-  // }
 
   public convertToApiInterface(id?: number, name?: string, description?: string): IPhenotypeApi {
     const apiModel: IPhenotypeApi = {

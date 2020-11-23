@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { TranslateModule } from '@ngx-translate/core'
+import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AddPhenotypesPreviewComponent } from './add-phenotypes-preview.component'
 
 describe('AddPhenotypesPreviewComponent', () => {
@@ -8,6 +10,7 @@ describe('AddPhenotypesPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddPhenotypesPreviewComponent],
+      imports: [MaterialModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 
