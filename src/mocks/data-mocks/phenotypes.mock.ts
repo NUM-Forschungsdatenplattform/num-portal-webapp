@@ -1,5 +1,5 @@
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 
 export const mockPhenotype1: IPhenotypeApi = {
@@ -7,15 +7,15 @@ export const mockPhenotype1: IPhenotypeApi = {
   description: 'Blood pressure is relevant for this and that',
   id: 1,
   query: {
-    type: PhenotypeQueryType.Group,
+    type: ConnectorNodeType.Group,
     operator: LogicalOperator.And,
     children: [
       {
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         operator: LogicalOperator.Or,
         children: [
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 1,
               name: 'High Blood pressure',
@@ -24,7 +24,7 @@ export const mockPhenotype1: IPhenotypeApi = {
             },
           },
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 2,
               name: 'High Blood pressure',
@@ -33,7 +33,7 @@ export const mockPhenotype1: IPhenotypeApi = {
             },
           },
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 3,
               name: 'High Blood pressure',
@@ -44,11 +44,11 @@ export const mockPhenotype1: IPhenotypeApi = {
         ],
       },
       {
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         operator: LogicalOperator.Not,
         children: [
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 1,
               name: 'High Blood pressure',
@@ -59,7 +59,7 @@ export const mockPhenotype1: IPhenotypeApi = {
         ],
       },
       {
-        type: PhenotypeQueryType.Aql,
+        type: ConnectorNodeType.Aql,
         aql: {
           id: 2,
           name: 'High Blood pressure',
@@ -76,23 +76,23 @@ export const mockPhenotype2: IPhenotypeApi = {
   id: 2,
   name: 'Blood pressure',
   query: {
-    type: PhenotypeQueryType.Group,
+    type: ConnectorNodeType.Group,
     operator: LogicalOperator.Not,
     children: [
       {
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         operator: LogicalOperator.And,
         children: [
           {
-            type: PhenotypeQueryType.Group,
+            type: ConnectorNodeType.Group,
             operator: LogicalOperator.Not,
             children: [
               {
-                type: PhenotypeQueryType.Group,
+                type: ConnectorNodeType.Group,
                 operator: LogicalOperator.Or,
                 children: [
                   {
-                    type: PhenotypeQueryType.Aql,
+                    type: ConnectorNodeType.Aql,
                     aql: {
                       id: 1,
                       query:
@@ -101,7 +101,7 @@ export const mockPhenotype2: IPhenotypeApi = {
                     },
                   },
                   {
-                    type: PhenotypeQueryType.Aql,
+                    type: ConnectorNodeType.Aql,
                     aql: {
                       id: 2,
                       query:
@@ -110,7 +110,7 @@ export const mockPhenotype2: IPhenotypeApi = {
                     },
                   },
                   {
-                    type: PhenotypeQueryType.Aql,
+                    type: ConnectorNodeType.Aql,
                     aql: {
                       id: 3,
                       query:
@@ -123,11 +123,11 @@ export const mockPhenotype2: IPhenotypeApi = {
             ],
           },
           {
-            type: PhenotypeQueryType.Group,
+            type: ConnectorNodeType.Group,
             operator: LogicalOperator.Not,
             children: [
               {
-                type: PhenotypeQueryType.Aql,
+                type: ConnectorNodeType.Aql,
                 aql: {
                   id: 1,
                   query:
@@ -138,7 +138,7 @@ export const mockPhenotype2: IPhenotypeApi = {
             ],
           },
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 2,
               query:
@@ -157,19 +157,19 @@ export const mockPhenotype3: IPhenotypeApi = {
   description: 'Blood pressure is relevant for this and that',
   id: 3,
   query: {
-    type: PhenotypeQueryType.Group,
+    type: ConnectorNodeType.Group,
     operator: LogicalOperator.And,
     children: [
       {
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         operator: LogicalOperator.Or,
         children: [
           {
-            type: PhenotypeQueryType.Group,
+            type: ConnectorNodeType.Group,
             operator: LogicalOperator.Or,
             children: [
               {
-                type: PhenotypeQueryType.Aql,
+                type: ConnectorNodeType.Aql,
                 aql: {
                   id: 1,
                   name: 'High Blood pressure',
@@ -180,7 +180,7 @@ export const mockPhenotype3: IPhenotypeApi = {
             ],
           },
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 2,
               name: 'High Blood pressure',
@@ -189,7 +189,7 @@ export const mockPhenotype3: IPhenotypeApi = {
             },
           },
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 3,
               name: 'High Blood pressure',
@@ -200,11 +200,11 @@ export const mockPhenotype3: IPhenotypeApi = {
         ],
       },
       {
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         operator: LogicalOperator.Not,
         children: [
           {
-            type: PhenotypeQueryType.Aql,
+            type: ConnectorNodeType.Aql,
             aql: {
               id: 1,
               name: 'High Blood pressure',
@@ -215,7 +215,7 @@ export const mockPhenotype3: IPhenotypeApi = {
         ],
       },
       {
-        type: PhenotypeQueryType.Aql,
+        type: ConnectorNodeType.Aql,
         aql: {
           id: 2,
           name: 'High Blood pressure',

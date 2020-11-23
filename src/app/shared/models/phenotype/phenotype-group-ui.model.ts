@@ -1,10 +1,10 @@
 import { AqlUiModel } from '../aql/aql-ui.model'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
-import { PhenotypeQueryType } from './phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 
 export class PhenotypeGroupUiModel {
-  type = PhenotypeQueryType.Group
+  type = ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (PhenotypeGroupUiModel | AqlUiModel)[]
@@ -27,10 +27,10 @@ export class PhenotypeGroupUiModel {
   }
 
   private mapChildrenToUi = (child: IPhenotypeQueryApi): PhenotypeGroupUiModel | AqlUiModel => {
-    if (child.type === PhenotypeQueryType.Group && child.operator === LogicalOperator.Not) {
+    if (child.type === ConnectorNodeType.Group && child.operator === LogicalOperator.Not) {
       const firstChild = child.children[0]
 
-      if (firstChild.type === PhenotypeQueryType.Aql) {
+      if (firstChild.type === ConnectorNodeType.Aql) {
         return new AqlUiModel(firstChild.aql, true)
       }
       const negatedGroup = new PhenotypeGroupUiModel()
@@ -38,7 +38,7 @@ export class PhenotypeGroupUiModel {
       return negatedGroup
     }
 
-    if (child.type === PhenotypeQueryType.Aql) {
+    if (child.type === ConnectorNodeType.Aql) {
       return new AqlUiModel(child.aql, false)
     }
     const newGroup = new PhenotypeGroupUiModel()
@@ -52,7 +52,7 @@ export class PhenotypeGroupUiModel {
 
   private convertGroupToApiGroup(): IPhenotypeQueryApi {
     return {
-      type: PhenotypeQueryType.Group,
+      type: ConnectorNodeType.Group,
       operator: this.logicalOperator,
       children: this.children.map(this.mapChildrentoApi),
     }
@@ -60,11 +60,11 @@ export class PhenotypeGroupUiModel {
 
   private convertGroupToNegatedApiGroup(): IPhenotypeQueryApi {
     return {
-      type: PhenotypeQueryType.Group,
+      type: ConnectorNodeType.Group,
       operator: LogicalOperator.Not,
       children: [
         {
-          type: PhenotypeQueryType.Group,
+          type: ConnectorNodeType.Group,
           operator: this.logicalOperator,
           children: this.children.map(this.mapChildrentoApi),
         },

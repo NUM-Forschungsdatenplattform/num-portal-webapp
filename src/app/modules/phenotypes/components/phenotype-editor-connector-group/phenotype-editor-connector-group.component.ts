@@ -8,10 +8,9 @@ import {
   SimpleChanges,
 } from '@angular/core'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { PhenotypeQueryType } from 'src/app/shared/models/phenotype/phenotype-query-type.enum'
 
 import { debounce } from 'lodash-es'
-import { PhenotypeGroupType } from '../../../../shared/models/phenotype/phenotype-group-type.enum'
+import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
@@ -19,6 +18,7 @@ import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { DialogEditAqlComponent } from '../dialog-edit-aql/dialog-edit-aql.component'
 import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -26,8 +26,8 @@ import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
   styleUrls: ['./phenotype-editor-connector-group.component.scss'],
 })
 export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges {
-  readonly phenotypeQueryType = PhenotypeQueryType
-  readonly phenotypeGroupType = PhenotypeGroupType
+  readonly connectorNodeType = ConnectorNodeType
+  readonly connectorGroupType = ConnectorGroupType
   readonly logicalOperator = LogicalOperator
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
@@ -49,8 +49,8 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
 
   ngOnInit(): void {
     this.groupType = !this.phenotypeGroup.indexInGroup
-      ? PhenotypeGroupType.Main
-      : PhenotypeGroupType.Sub
+      ? ConnectorGroupType.Main
+      : ConnectorGroupType.Sub
   }
 
   ngOnChanges(changes: SimpleChanges): void {

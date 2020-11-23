@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
-import { PhenotypeGroupType } from 'src/app/shared/models/phenotype/phenotype-group-type.enum'
+import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
 import { GroupIndexPipe } from 'src/app/shared/pipes/group-index.pipe'
 import { mockAql1, mockAql2, mockAql3, mockAql4 } from 'src/mocks/data-mocks/aqls.mock'
@@ -56,21 +56,18 @@ describe('PhenotypeEditorConnectorGroupComponent', () => {
     jest.restoreAllMocks()
   })
 
-  // DeleteChild -> children.length
-  // DeleteSelf -> Emitter with index
-
   describe('When the group components gets initialised with a phenotypeGroup', () => {
     it('should be the main group if indexInGroup is not specified', () => {
       component.phenotypeGroup = new PhenotypeGroupUiModel()
       fixture.detectChanges()
-      expect(component.groupType).toEqual(PhenotypeGroupType.Main)
+      expect(component.groupType).toEqual(ConnectorGroupType.Main)
     })
 
     it('should not be a sub group if indexInGroup is specified', () => {
       component.phenotypeGroup = new PhenotypeGroupUiModel()
       component.phenotypeGroup.indexInGroup = 1
       fixture.detectChanges()
-      expect(component.groupType).toEqual(PhenotypeGroupType.Sub)
+      expect(component.groupType).toEqual(ConnectorGroupType.Sub)
     })
   })
 

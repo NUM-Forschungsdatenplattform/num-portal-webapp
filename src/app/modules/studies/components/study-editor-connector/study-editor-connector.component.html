@@ -1,0 +1,28 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h3 class="mat-h3">{{ 'TODO: Build Cohort' | translate }}*</h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="general-info-label"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <div>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </div>
+
+    <num-study-editor-connector-group
+      role="list"
+      [cohortGroup]="cohortNode"
+      [parentGroupIndex]="null"
+      fxFlex="100%"
+    ></num-study-editor-connector-group>
+  </section>
+</mat-expansion-panel>
