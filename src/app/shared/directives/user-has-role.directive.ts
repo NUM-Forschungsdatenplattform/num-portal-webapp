@@ -2,7 +2,7 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 
 @Directive({
-  selector: '[userHasRole]',
+  selector: '[numUserHasRole]',
 })
 export class UserHasRoleDirective {
   constructor(
@@ -11,7 +11,7 @@ export class UserHasRoleDirective {
     private oauthService: OAuthService
   ) {}
 
-  @Input() set userHasRole(allowedRoles: string[]) {
+  @Input() set numUserHasRole(allowedRoles: string[]) {
     let userRoles: string[]
     this.oauthService.loadUserProfile().then((userinfo) => {
       userRoles = userinfo.groups

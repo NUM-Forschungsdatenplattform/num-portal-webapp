@@ -1,106 +1,117 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { UserHasRoleDirective } from './user-has-role.directive'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { DebugElement } from '@angular/core'
-import { By } from '@angular/platform-browser'
-
 import { Component } from '@angular/core'
-@Component({
-  template: ` <div>
-    <span *userHasRole="allowedRoles">Test content</span>
-  </div>`,
-})
-export class TestUserHasRoleComponent {
-  allowedRoles: string[] = []
-}
 
 describe('Directive: UserHasRoleDirective', () => {
+  const testContent = 'TestContent'
+  @Component({
+    template: ` <div>
+      <span *numUserHasRole="allowedRoles">${testContent}</span>
+    </div>`,
+  })
+  class TestUserHasRoleComponent {
+    allowedRoles: string[] = []
+  }
+
   let component: TestUserHasRoleComponent
   let fixture: ComponentFixture<TestUserHasRoleComponent>
-  let divEl: DebugElement
-
   const userInfo = {
     sub: 'sub123-456',
     groups: ['user', 'has', 'some', 'role'],
   }
-
-  const authService = ({
-    loadUserProfile: () => Promise.resolve(userInfo),
-  } as unknown) as OAuthService
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TestUserHasRoleComponent, UserHasRoleDirective],
-      providers: [
-        {
-          provide: OAuthService,
-          useValue: authService,
-        },
-      ],
-    }).compileComponents()
-  })
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TestUserHasRoleComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-  })
-
-  it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-
-  describe('When the user has the required roles', () => {
-    it('shows the element', () => {
-      jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
-      component.allowedRoles = ['some', 'allowed', 'roles']
-
-      fixture.detectChanges()
-      const divEl = fixture.debugElement.query(By.css('div'))
-      fixture.detectChanges()
-      expect(divEl.nativeElement.textContent.trim()).toBe('Test Content')
+  const undefinedUserInfo = {
+    sub: 'sub123-456',
+    groups: undefined,
+  }
+  describe('When the userinfo is defined', () => {
+    const authService = ({
+      loadUserProfile: () => Promise.resolve(userInfo),
+    } as unknown) as OAuthService
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        declarations: [TestUserHasRoleComponent, UserHasRoleDirective],
+        providers: [
+          {
+            provide: OAuthService,
+            useValue: authService,
+          },
+        ],
+      }).compileComponents()
+    })
+    beforeEach(() => {
+      jest.restoreAllMocks()
+      fixture = TestBed.createComponent(TestUserHasRoleComponent)
+      component = fixture.componentInstance
+    })
+    describe('When the user has the required roles', () => {
+      beforeEach(() => {
+        jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
+        component.allowedRoles = ['some', 'allowed', 'roles']
+        fixture.detectChanges()
+      })
+      it('shows the element', () => {
+        const debugElement = fixture.debugElement.nativeElement
+        const htmlElement = debugElement.querySelector('span')
+        expect(htmlElement.textContent).toEqual(testContent)
+      })
+    })
+    describe('When the user does not have the required roles', () => {
+      beforeEach(() => {
+        jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
+        component.allowedRoles = ['no', 'allowed', 'roles']
+        fixture.detectChanges()
+      })
+      it('does not show the element', () => {
+        const debugElement = fixture.debugElement.nativeElement
+        const htmlElement = debugElement.querySelector('span')
+        expect(htmlElement).toBeFalsy()
+      })
+    })
+    describe('When the allowed roles are undefined', () => {
+      beforeEach(() => {
+        jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
+        component.allowedRoles = undefined
+        fixture.detectChanges()
+      })
+      it('shows the element', () => {
+        const debugElement = fixture.debugElement.nativeElement
+        const htmlElement = debugElement.querySelector('span')
+        expect(htmlElement.textContent).toEqual(testContent)
+      })
     })
   })
-
-  describe('When the user does not have the required roles', () => {
-    it('does not show the element', () => {
-      jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
-      component.allowedRoles = ['no', 'allowed', 'roles']
-
-      fixture.detectChanges()
-      divEl = fixture.debugElement.query(By.css('div'))
-      expect(divEl.nativeElement.textContent.trim()).toBe('')
+  describe('When the userInfo is not defined', () => {
+    const authService = ({
+      loadUserProfile: () => Promise.resolve(undefinedUserInfo),
+    } as unknown) as OAuthService
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        declarations: [TestUserHasRoleComponent, UserHasRoleDirective],
+        providers: [
+          {
+            provide: OAuthService,
+            useValue: authService,
+          },
+        ],
+      }).compileComponents()
     })
-  })
-
-  describe('When the allowed roles are undefined', () => {
-    it('shows the element', () => {
-      jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(userInfo)
-      component.allowedRoles = undefined
-
-      fixture.detectChanges()
-      divEl = fixture.debugElement.query(By.css('div'))
-      expect(divEl.nativeElement.textContent.trim()).toBe('Test Content')
+    beforeEach(() => {
+      jest.restoreAllMocks()
+      fixture = TestBed.createComponent(TestUserHasRoleComponent)
+      component = fixture.componentInstance
     })
-  })
-
-  describe('When the userRoles are undefined', () => {
-    const undefinedUser = {
-      sub: 'sub123-456',
-      groups: undefined,
-    }
-
-    it('does not show the element', () => {
-      jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(undefinedUser)
-      component.allowedRoles = ['some', 'allowed', 'roles']
-
-      fixture.detectChanges()
-      divEl = fixture.debugElement.query(By.css('div'))
-      expect(divEl.nativeElement.textContent.trim()).toBe('')
+    describe('When the userRoles are undefined', () => {
+      beforeEach(() => {
+        jest.spyOn(authService, 'loadUserProfile').mockResolvedValue(undefinedUserInfo)
+        component.allowedRoles = ['some', 'allowed', 'roles']
+        fixture.detectChanges()
+      })
+      it('does not show the element', () => {
+        const debugElement = fixture.debugElement.nativeElement
+        const htmlElement = debugElement.querySelector('span')
+        expect(htmlElement).toBeFalsy()
+      })
     })
   })
 })
