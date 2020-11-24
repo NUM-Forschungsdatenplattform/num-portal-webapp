@@ -20,7 +20,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
+      roles: ['Study Coordinator'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(

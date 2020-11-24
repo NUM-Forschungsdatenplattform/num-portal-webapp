@@ -16,18 +16,18 @@ export class UserHasRoleDirective {
     this.oauthService.loadUserProfile().then((userinfo) => {
       userRoles = userinfo.groups
 
-      if (userRoles) {
-        if (allowedRoles) {
+      if (allowedRoles && allowedRoles.length) {
+        if (userRoles && userRoles.length) {
           if (allowedRoles.some((role) => userRoles.indexOf(role) >= 0)) {
             this.viewContainer.createEmbeddedView(this.templateRef)
           } else {
             this.viewContainer.clear()
           }
         } else {
-          this.viewContainer.createEmbeddedView(this.templateRef)
+          this.viewContainer.clear()
         }
       } else {
-        this.viewContainer.clear()
+        this.viewContainer.createEmbeddedView(this.templateRef)
       }
     })
   }
