@@ -1,13 +1,20 @@
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="dataSource" [attr.aria-label]="'AVAILABLE_PHENOTYPES' | translate">
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>name</th>
-    <td class="pointer" mat-cell *matCellDef="let element" (click)="handleRowClick(element)">
+    <th scope="col" mat-header-cell *matHeaderCellDef>name</th>
+    <td
+      class="pointer"
+      mat-cell
+      *matCellDef="let element"
+      (click)="handleRowClick(element)"
+      (focus)="handleRowClick(element)"
+      tabindex="0"
+    >
       {{ element.name }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="icon">
-    <th mat-header-cell *matHeaderCellDef>icon</th>
+    <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
     <td mat-cell *matCellDef="let element">
       <button
         color="accent"
