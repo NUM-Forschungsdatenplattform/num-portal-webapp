@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
     "test": "jest",
+    "test-ci": "node --expose-gc ./node_modules/.bin/jest  --ci -w=1 --logHeapUsage",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "pretty-quick": "pretty-quick --pattern \"src/**/*.{scss,html}\"",
@@ -66,7 +67,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html}' && lint-staged"
+      "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html,ts}' && lint-staged"
     }
   },
   "lint-staged": {

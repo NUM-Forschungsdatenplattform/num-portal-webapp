@@ -18,7 +18,7 @@ export class SideMenuComponent implements OnInit {
 
   constructor(private oauthService: OAuthService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     mainNavItems.forEach((item) => {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
       item.roles = roles
