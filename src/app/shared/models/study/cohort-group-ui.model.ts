@@ -1,9 +1,9 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { PhenotypeUiModel } from '../phenotype/phenotype-ui.model'
-import { CohortGroupType } from './cohort-group-type.enum'
+import { ConnectorNodeType } from '../connector-node-type.enum'
 
 export class CohortGroupUiModel {
-  type: CohortGroupType
+  type = ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (CohortGroupUiModel | PhenotypeUiModel)[]

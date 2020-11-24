@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
-
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'

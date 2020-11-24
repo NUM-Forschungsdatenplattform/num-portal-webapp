@@ -1,5 +1,5 @@
 import { LogicalOperator } from '../logical-operator.enum'
-import { CohortGroupType } from './cohort-group-type.enum'
+import { ConnectorNodeType } from '../connector-node-type.enum'
 import { IDictionary } from '../dictionary.interface'
 
 /**
@@ -14,7 +14,7 @@ export interface ICohortGroupApi {
   /**
    * Type of the cohort group
    */
-  type: CohortGroupType
+  type: ConnectorNodeType
 
   /**
    * Cohort group operation to be applied to the children

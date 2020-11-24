@@ -1,27 +1,30 @@
-<mat-accordion [multi]="true" fxFlex="100%">
-  <num-study-editor-general-info [form]="studyForm"></num-study-editor-general-info>
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2 class="mat-h2">{{ 'NAVIGATION.CONFIGURE_STUDY' | translate }}</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
+    imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
+  </p>
+  <mat-accordion [multi]="true" fxFlex="100%">
+    <num-study-editor-general-info [form]="studyForm"></num-study-editor-general-info>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Select OpenEHR templates </mat-panel-title>
-    </mat-expansion-panel-header>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <h3>Select OpenEHR templates</h3>
+      </mat-expansion-panel-header>
 
-    <p>Coming soon</p>
-  </mat-expansion-panel>
+      <p>Coming soon</p>
+    </mat-expansion-panel>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Cohort Assembly</mat-panel-title>
-    </mat-expansion-panel-header>
+    <num-study-editor-connector
+      [cohortNode]="resolvedData.study?.cohortGroup"
+    ></num-study-editor-connector>
 
-    <p>Coming soon</p>
-  </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <h3>Select Researchers</h3>
+      </mat-expansion-panel-header>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Select Researchers </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <p>Coming soon</p>
-  </mat-expansion-panel>
-</mat-accordion>
+      <p>Coming soon</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</section>

@@ -1,7 +1,7 @@
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
-import { PhenotypeQueryType } from '../phenotype/phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { AqlUiModel } from './aql-ui.model'
 
 describe('AqlUiModel', () => {
@@ -40,7 +40,7 @@ describe('AqlUiModel', () => {
       const convertedModel = model.convertToApi()
 
       const expectedAqlQuery = {
-        type: PhenotypeQueryType.Aql,
+        type: ConnectorNodeType.Aql,
         aql: testCase.aql,
       }
 
@@ -48,7 +48,7 @@ describe('AqlUiModel', () => {
         expect(convertedModel).toEqual(expectedAqlQuery)
       } else {
         const expectedResult: IPhenotypeQueryApi = {
-          type: PhenotypeQueryType.Group,
+          type: ConnectorNodeType.Group,
           operator: LogicalOperator.Not,
           children: [expectedAqlQuery],
         }
