@@ -1,0 +1,79 @@
+<section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <span class="mat-body-strong"
+    ><span class="not-icon" *ngIf="cohortGroup.isNegated">&not;</span> {{ groupType | translate }}
+    {{ groupIndex | groupIndex }}</span
+  >
+
+  <mat-form-field
+    appearance="standard"
+    class="num-operator-select"
+    [style.visibility]="cohortGroup.children.length <= 1 ? 'hidden' : 'visible'"
+  >
+    <mat-select
+      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+      [(value)]="cohortGroup.logicalOperator"
+      [disabled]="cohortGroup.children.length <= 1"
+    >
+      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+        {{ operator }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span fxFlex></span>
+
+  <mat-slide-toggle labelPosition="before" [(ngModel)]="cohortGroup.isNegated"
+    >Negation</mat-slide-toggle
+  >
+</section>
+
+<section role="listitem" *ngFor="let child of cohortGroup.children; let i = index">
+  <num-study-editor-connector-group
+    role="list"
+    class="group"
+    *ngIf="child.type === connectorNodeType.Group"
+    [cohortGroup]="child"
+    [parentGroupIndex]="groupIndex"
+    [index]="i"
+    (delete)="deleteChild($event)"
+    fxFlex="100%"
+  ></num-study-editor-connector-group>
+
+  <num-study-editor-connector-phenotype
+    class="phenotype mat-elevation-z2"
+    [ngClass]="{
+      'phenotype--last': i === cohortGroup.children.length - 1,
+      configured: $any(child).areParameterConfigured
+    }"
+    *ngIf="child.type === connectorNodeType.Phenotype"
+    (configurePhenotype)="editPhenotype(i)"
+    [phenotype]="child"
+    fxFlex="100%"
+    role="listitem"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  ></num-study-editor-connector-phenotype>
+</section>
+
+<section role="presentation" class="button-row" fxLayoutGap="20px">
+  <button mat-flat-button class="num-button-align" color="primary" (click)="addPhenotype()">
+    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+    {{ 'BUTTON.ADD_PHENOTYPE' | translate }}
+  </button>
+  <button mat-stroked-button class="num-button-align" color="primary" (click)="addGroup()">
+    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+    {{ 'BUTTON.ADD_GROUP' | translate }}
+  </button>
+
+  <span fxFlex></span>
+
+  <button
+    mat-button
+    class="num-button-align"
+    color="primary"
+    (click)="deleteSelf()"
+    *ngIf="groupType === connectorGroupType.Sub"
+  >
+    {{ 'BUTTON.DELETE_GROUP' | translate }}
+  </button>
+</section>

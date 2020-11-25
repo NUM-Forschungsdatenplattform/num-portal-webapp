@@ -1,9 +1,9 @@
 import { IAql } from '../aql/aql.interface'
 import { LogicalOperator } from '../logical-operator.enum'
-import { PhenotypeQueryType } from './phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 
 export interface IPhenotypeQueryApi {
-  type: PhenotypeQueryType
+  type: ConnectorNodeType
   operator?: LogicalOperator
   children?: IPhenotypeQueryApi[]
   aql?: IAql

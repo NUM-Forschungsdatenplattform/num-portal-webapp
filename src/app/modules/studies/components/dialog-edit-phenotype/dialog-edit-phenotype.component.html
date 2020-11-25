@@ -1,0 +1,43 @@
+<section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
+  <h2>
+    <span class="not-icon num-fc--a" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype.name }}
+  </h2>
+  <mat-slide-toggle labelPosition="before" [(ngModel)]="phenotype.isNegated"
+    >Negation</mat-slide-toggle
+  >
+</section>
+
+<table class="general-info">
+  <tbody>
+    <tr>
+      <td>{{ 'FORM.AUTHOR' | translate }}:</td>
+      <td>Lars Schäfer</td>
+    </tr>
+    <tr>
+      <td>{{ 'FORM.DESCRIPTION' | translate }}:</td>
+      <td>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
+        imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="parameterForm" *ngIf="phenotype.parameter.length">
+  <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
+    <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ phenotype.parameter[i].name }}: </mat-label>
+        <input
+          matInput
+          id="{{ 'param' + i }}"
+          type="text"
+          placeholder="Parameter"
+          formControlName="parameter"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<mat-divider class="num-d-w--1"></mat-divider>

@@ -4,7 +4,11 @@
     {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
   >
 
-  <mat-form-field appearance="standard" class="num-operator-select">
+  <mat-form-field
+    appearance="standard"
+    class="num-operator-select"
+    [style.visibility]="phenotypeGroup.children.length <= 1 ? 'hidden' : 'visible'"
+  >
     <mat-select
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="phenotypeGroup.logicalOperator"
@@ -27,7 +31,7 @@
   <num-phenotype-editor-connector-group
     role="list"
     class="group"
-    *ngIf="child.type === phenotypeQueryType.Group"
+    *ngIf="child.type === connectorNodeType.Group"
     [phenotypeGroup]="child"
     [parentGroupIndex]="groupIndex"
     [index]="i"
@@ -41,7 +45,7 @@
       'aql--last': i === phenotypeGroup.children.length - 1,
       configured: $any(child).areParameterConfigured
     }"
-    *ngIf="child.type === phenotypeQueryType.Aql"
+    *ngIf="child.type === connectorNodeType.Aql"
     (configureAql)="editQuery(i)"
     [phenotypeAql]="child"
     fxFlex="100%"
@@ -68,7 +72,7 @@
     class="num-button-align"
     color="primary"
     (click)="deleteSelf()"
-    *ngIf="groupType === phenotypeGroupType.Sub"
+    *ngIf="groupType === connectorGroupType.Sub"
   >
     {{ 'BUTTON.DELETE_GROUP' | translate }}
   </button>

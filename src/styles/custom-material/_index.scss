@@ -8,6 +8,7 @@
 @import './styles/color-classes.themed';
 @import './styles/divider-classes.themed';
 @import './styles/side-menu.component.themed';
+@import './styles/general_table.themed';
 
 /* export themed mixins */
 @mixin custom-material_themed($theme) {
@@ -16,4 +17,5 @@
   @include divider-classes_themed($theme);
   @include side-menu-component_themed($theme);
   @include language-component_themed($theme);
+  @include general_table_themed($theme);
 }
