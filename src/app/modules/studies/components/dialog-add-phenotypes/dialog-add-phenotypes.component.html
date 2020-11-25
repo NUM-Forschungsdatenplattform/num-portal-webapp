@@ -1,0 +1,26 @@
+<num-search
+  label="SEARCH_PHENOTYPES"
+  [(searchText)]="filterConfig.searchText"
+  (searchTextChange)="handleSearchChange()"
+></num-search>
+
+<section
+  class="phenotype-selection"
+  role="presentation"
+  fxLayout="column"
+  fxLayout.gt-sm="row"
+  fxLayoutGap="24px"
+>
+  <mat-card class="filter-area mat-elevation-z4" fxFlex="100%" fxFlex.gt-sm="50%">
+    <num-add-phenotypes-filter-table
+      [(selectedPhenotypes)]="dialogInput"
+      (phenotypePreview)="handlePreviewClick($event)"
+    ></num-add-phenotypes-filter-table>
+  </mat-card>
+
+  <mat-card class="filter-area mat-elevation-z4" fxFlex="100%" fxFlex.gt-sm="50%">
+    <num-add-phenotypes-preview [previewInput]="phenotypePreview"></num-add-phenotypes-preview>
+  </mat-card>
+</section>
+
+<mat-divider class="num-d-w--1"></mat-divider>

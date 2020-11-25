@@ -20,8 +20,10 @@ module.exports = {
     "lcov",
     "text",
     "clover",
-    "cobertura",
+    "cobertura"
   ],
+  reporters: ["default", "jest-junit"],
+
   coverageDirectory: "<rootDir>/coverage",
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
     prefix: "<rootDir>/",

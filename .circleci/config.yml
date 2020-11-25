@@ -4,7 +4,8 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - test:
+          context: org-global
       - tag_version:
           requires:
             - test
@@ -29,22 +30,23 @@ jobs:
       - image: cimg/node:14.9.0
     steps:
       - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
       - run:
           name: Run Linter
-          command: |
-            echo 'LINTING NOT IMPLEMENTED!'
+          command: npm run lint
       - run:
           name: Run unit tests
-          command: |
-            echo 'UNIT TESTS NOT IMPLEMENTED!'
+          command: npm run test-ci
+          enviroment:
+            NODE_OPTIONS: --max_old_space_size=4096
+      - store_test_results:
+          path: ./reports/junit/
       - run:
           name: Run CVE scan
-          command: |
-            echo 'CVE SCAN NOT IMPLEMENTED!'
-      - run:
-          name: Run Sonar
-          command: |
-            echo 'SONAR NOT IMPLEMENTED!'
+          command: npm audit
+      - sonarcloud/scan
   tag_version:
     docker:
       - image: cimg/node:14.9.0
@@ -88,3 +90,7 @@ jobs:
             docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
             echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
             docker push $DOCKER_USER/num-portal-webapp:$TAG
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+  node: circleci/node@4.1.0

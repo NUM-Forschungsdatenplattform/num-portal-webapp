@@ -1,10 +1,11 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
-import { PhenotypeQueryType } from '../phenotype/phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IAql } from './aql.interface'
-const PARAMETER_REGEX = /\$\w+/g
+import { PARAMETER_REGEX } from '../../../core/constants/constants'
+
 export class AqlUiModel {
-  type = PhenotypeQueryType.Aql
+  type = ConnectorNodeType.Aql
   id: number
   name: string
   query: string
@@ -32,7 +33,7 @@ export class AqlUiModel {
 
   private getAqlForApi(): IPhenotypeQueryApi {
     return {
-      type: PhenotypeQueryType.Aql,
+      type: ConnectorNodeType.Aql,
       aql: {
         id: this.id,
         name: this.name,
@@ -43,7 +44,7 @@ export class AqlUiModel {
 
   private convertToNegatedApiGroup(): IPhenotypeQueryApi {
     return {
-      type: PhenotypeQueryType.Group,
+      type: ConnectorNodeType.Group,
       operator: LogicalOperator.Not,
       children: [this.getAqlForApi()],
     }

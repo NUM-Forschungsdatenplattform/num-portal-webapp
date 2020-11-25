@@ -1,24 +1,23 @@
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
-import { mockPhenotype1, mockPhenotype2 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { AqlUiModel } from '../aql/aql-ui.model'
 import { LogicalOperator } from '../logical-operator.enum'
 import { PhenotypeGroupUiModel } from './phenotype-group-ui.model'
 import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
-import { PhenotypeQueryType } from './phenotype-query-type.enum'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 describe('PhenotypeGroupUiModel', () => {
   const testPhenotype: IPhenotypeQueryApi = {
-    type: PhenotypeQueryType.Group,
+    type: ConnectorNodeType.Group,
     operator: LogicalOperator.Or,
     children: [
       {
-        type: PhenotypeQueryType.Aql,
+        type: ConnectorNodeType.Aql,
         aql: mockAql1,
       },
     ],
   }
 
   const testPhenotype2: IPhenotypeQueryApi = {
-    type: PhenotypeQueryType.Group,
+    type: ConnectorNodeType.Group,
     operator: LogicalOperator.Or,
     children: [],
   }
@@ -42,7 +41,7 @@ describe('PhenotypeGroupUiModel', () => {
       const expectedResult = {
         indexInGroup: null,
         isNegated: false,
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         logicalOperator: LogicalOperator.Or,
         children: [new AqlUiModel(mockAql1)],
       }
@@ -66,7 +65,7 @@ describe('PhenotypeGroupUiModel', () => {
       const expectedResult = {
         indexInGroup: null,
         isNegated: false,
-        type: PhenotypeQueryType.Group,
+        type: ConnectorNodeType.Group,
         logicalOperator: LogicalOperator.Or,
         children: [],
       }

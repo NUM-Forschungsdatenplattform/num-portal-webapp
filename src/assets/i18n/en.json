@@ -18,6 +18,9 @@
   "NAVIGATION": {
     "DASHBOARD": "Dashboard",
     "STUDIES": "Studies",
+    "STUDIES_OVERVIEW": "Studies Overview",
+    "STUDIES_EDITOR": "Study Editor",
+    "CONFIGURE_STUDY": "Configure Study",
     "PHENOTYPES": "Phenotypes",
     "PHENOTYPES_OVERVIEW": "Phenotypes Overview",
     "PHENOTYPES_EDITOR": "Phenotype Editor",
@@ -33,6 +36,8 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
+  "SEARCH_PHENOTYPES": "Search Phenotype",
+  "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "SEARCH_AQLS": "AQL search",
   "MY_AQLS": "My AQLs",
   "ORGANISATION_AQLS": "AQLs of my organisation",
@@ -42,6 +47,7 @@
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
+  "DEFINE_COHORT": "Define Cohort",
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
@@ -49,6 +55,8 @@
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
     "DESCRIPTION": "Description",
+    "PRIMARY_HYPOTHESIS": "Primary Hypothesis",
+    "SECONDARY_HYPOTHESIS": "Secondary Hypothesis",
     "AUTHOR": "Author",
     "CHARACTERS": "Characters"
   },
@@ -58,6 +66,7 @@
     "DELETE_FROM_LIST": "Delete from list",
     "CONFIRM_CHANGES": "Confirm changes",
     "ADD_QUERY": "Add query",
+    "ADD_PHENOTYPE": "Add phenotype",
     "ADD_GROUP": "Add group",
     "DELETE_GROUP": "Delete group",
     "CREATE_PHENOTYPE": "Create Phenotype",

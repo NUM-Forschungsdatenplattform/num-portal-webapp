@@ -3,9 +3,8 @@
 ## Description
 
 Currently, the pipeline has been divided into 3 different stages, which are executed
-in sequential order. First phase is testing where we would run the different quality 
-steps, like linting, testing, sonar and CVE-scan. These are not currently implemented
-and could also be divided into separate jobs that could be run in parallel.
+in sequential order. First phase is testing where the different quality related
+steps, like linting, testing, sonar and CVE-scan are run.
 
 Second step is only executed in master branch, and it uses the `npm version` to
 bump the application version in package.json and to push that version bump alongside
