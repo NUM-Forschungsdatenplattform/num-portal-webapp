@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { Subscription } from 'rxjs'
 import { MatTableDataSource } from '@angular/material/table'
@@ -11,7 +11,7 @@ import { IUser } from 'src/app/shared/models/admin/user.interface'
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss'],
 })
-export class UserTableComponent implements OnInit {
+export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(private adminService: AdminService) {}
 
