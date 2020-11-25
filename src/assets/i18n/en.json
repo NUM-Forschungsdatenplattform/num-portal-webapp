@@ -23,6 +23,7 @@
     "PHENOTYPES_EDITOR": "Phenotype Editor",
     "COHORTS": "Cohorts",
     "AQLS": "AQL Queries",
+    "ADMIN": "Admin",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out"
@@ -62,5 +63,10 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SELECT": "Select",
     "DESELECT": "Deselect"
-  }
+  },
+  "TABLE": {
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name"
+  },
+  "UNAPPROVED_USERS": "Unapproved Users"
 }

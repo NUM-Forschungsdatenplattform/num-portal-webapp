@@ -23,6 +23,7 @@
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
     "COHORTS": "Kohorten",
     "AQLS": "AQL Queries",
+    "ADMIN": "Admin",
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden"
@@ -62,6 +63,10 @@
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SELECT": "Auswählen",
     "DESELECT": "Abwählen"
-  }
-
+  },
+  "TABLE": {
+    "FIRST_NAME": "Vorname",
+    "LAST_NAME": "Nachname"
+  },
+  "UNAPPROVED_USERS": "Benutzer mit fehlender Autorisierung"
 }

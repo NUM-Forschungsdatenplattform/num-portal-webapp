@@ -20,7 +20,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
+      roles: ['Study Coordinator'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -61,6 +61,18 @@ export const routes: Routes = [
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
         (m) => m.AqlsModule
+      ),
+  },
+  {
+    path: 'admin',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'admin',
+      roles: ['Organization Admin'],
+    },
+    loadChildren: () =>
+      import(/* webpackChunkName: "Aqls.Module" */ './modules/admin/admin.module').then(
+        (m) => m.AdminModule
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
