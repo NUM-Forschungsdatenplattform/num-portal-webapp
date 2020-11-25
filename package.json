@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
     "test": "jest",
+    "test-ci": "JEST_JUNIT_OUTPUT_DIR=./reports/junit/ node --expose-gc ./node_modules/.bin/jest --ci -w=1 --reporters=default --reporters=jest-junit",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "pretty-quick": "pretty-quick --pattern \"src/**/*.{scss,html}\"",
@@ -51,6 +52,7 @@
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "jest": "^26.5.3",
+    "jest-junit": "^12.0.0",
     "jest-preset-angular": "^8.3.1",
     "lint-staged": "^10.5.0",
     "lodash": "^4.17.20",
@@ -66,7 +68,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html}' && lint-staged"
+      "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html,ts}' && lint-staged"
     }
   },
   "lint-staged": {

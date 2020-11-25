@@ -8,7 +8,7 @@ describe('OAuthInterceptor', () => {
   let authInterceptor: OAuthInterceptor
 
   const authStorage = {
-    getItem: (_access_token: string) => 'test_token',
+    getItem: (accessToken: string) => 'test_token',
   } as OAuthStorage
 
   const authService = {
@@ -71,32 +71,32 @@ describe('OAuthInterceptor', () => {
   describe('When the Backend returns 401: Unauthorized', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
-      (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
+      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
         const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
         const data = 'Unauthorized'
 
-        jest.spyOn(authService, 'logOut')
+        jest.spyOn(injectedAuthService, 'logOut')
 
         http.get('/data').subscribe()
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(authService.logOut).toHaveBeenCalled()
+        expect(injectedAuthService.logOut).toHaveBeenCalled()
       }
     ))
   })
   describe('When the Backend returns another error', () => {
     it('should not logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
-      (http: HttpClient, httpMock: HttpTestingController, authService: OAuthService) => {
+      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
         const mockErrorResponse = { status: 500, statusText: 'Internal Server Error' }
         const data = 'Internal Server Error'
 
-        jest.spyOn(authService, 'logOut')
+        jest.spyOn(injectedAuthService, 'logOut')
 
         http.get('/data').subscribe()
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(authService.logOut).not.toHaveBeenCalled()
+        expect(injectedAuthService.logOut).not.toHaveBeenCalled()
       }
     ))
   })
