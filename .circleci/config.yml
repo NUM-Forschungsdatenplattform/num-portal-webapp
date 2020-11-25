@@ -42,7 +42,7 @@ jobs:
           enviroment:
             NODE_OPTIONS: --max_old_space_size=4096
       - store_test_results:
-          path: coverage
+          path: ./reports/junit/
       - run:
           name: Run CVE scan
           command: npm audit
