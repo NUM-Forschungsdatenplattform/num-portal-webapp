@@ -1,12 +1,16 @@
-<section fxLayoutGap="60px" fxLayout="column">
+<section fxLayout="column">
   <h2>{{ 'CREATE_PHENOTYPE' | translate }}</h2>
-  <p>
+  <p class="num-margin-b-40">
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
     Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
     mus.
   </p>
-  <num-phenotype-editor-general-info [form]="phenotypeForm"></num-phenotype-editor-general-info>
+  <num-phenotype-editor-general-info
+    [form]="phenotypeForm"
+    class="num-margin-b-40"
+  ></num-phenotype-editor-general-info>
   <num-phenotype-editor-connector
+    class="num-margin-b-60"
     [phenotypeQuery]="resolvedData.phenotype?.query"
   ></num-phenotype-editor-connector>
 
