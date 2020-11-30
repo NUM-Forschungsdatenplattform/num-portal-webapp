@@ -43,6 +43,6 @@
     class="num-mat-table-row"
     mat-row
     *matRowDef="let row; columns: displayedColumns"
-    [ngClass]="{ 'num-mat-table-row--active': idOfHighlightedRow == row.id }"
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row.id }"
   ></tr>
 </table>

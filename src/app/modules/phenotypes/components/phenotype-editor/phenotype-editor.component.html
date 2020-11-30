@@ -1,4 +1,10 @@
-<section fxLayoutGap="54px" fxLayout="column">
+<section fxLayoutGap="60px" fxLayout="column">
+  <h2>{{ 'CREATE_PHENOTYPE' | translate }}</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+    mus.
+  </p>
   <num-phenotype-editor-general-info [form]="phenotypeForm"></num-phenotype-editor-general-info>
   <num-phenotype-editor-connector
     [phenotypeQuery]="resolvedData.phenotype?.query"
@@ -7,15 +13,13 @@
   <section role="region" fxLayout="column">
     <mat-divider class="button-row-divider num-d-w--1"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <button mat-stroked-button color="primary">{{ 'BUTTON.CANCEL' | translate }}</button>
-      <button
-        mat-raised-button
-        color="primary"
-        [disabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
+      <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
+      <num-button
+        type="primary"
         (click)="saveForm()"
+        [isDisabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
+        >{{ 'BUTTON.CREATE_PHENOTYPE' | translate }}</num-button
       >
-        {{ 'BUTTON.CREATE_PHENOTYPE' | translate }}
-      </button>
     </div>
   </section>
 </section>

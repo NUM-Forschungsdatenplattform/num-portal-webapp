@@ -14,6 +14,7 @@ import { Component } from '@angular/core'
 import { of } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
+import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -44,6 +45,7 @@ describe('AppLayoutComponent', () => {
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         DirectivesModule,
+        SharedComponentsModule,
       ],
       providers: [
         {

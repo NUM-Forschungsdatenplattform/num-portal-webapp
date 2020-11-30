@@ -1,0 +1,39 @@
+<main>
+  <h1>Buttons</h1>
+
+  <caption>
+    Regular
+  </caption>
+  <section class="general">
+    <num-button type="primary">Primary</num-button>
+    <num-button type="secondary">Secondary</num-button>
+    <num-button type="basic">Basic</num-button>
+  </section>
+
+  <caption>
+    Regular - disabled
+  </caption>
+  <section class="general-disabled">
+    <num-button type="primary" [isDisabled]="true">Primary</num-button>
+    <num-button type="secondary" [isDisabled]="true">Secondary</num-button>
+    <num-button type="basic" [isDisabled]="true">Basic</num-button>
+  </section>
+
+  <caption>
+    With Icon
+  </caption>
+  <section class="with-icons">
+    <num-button type="primary" icon="plus">Primary</num-button>
+    <num-button type="secondary" icon="plus">Secondary</num-button>
+    <num-button type="basic" icon="plus">Basic</num-button>
+  </section>
+
+  <caption>
+    With Icon - disabled
+  </caption>
+  <section class="with-icons-disabled">
+    <num-button type="primary" icon="plus" [isDisabled]="true">Primary</num-button>
+    <num-button type="secondary" icon="plus" [isDisabled]="true">Secondary</num-button>
+    <num-button type="basic" icon="plus" [isDisabled]="true">Basic</num-button>
+  </section>
+</main>

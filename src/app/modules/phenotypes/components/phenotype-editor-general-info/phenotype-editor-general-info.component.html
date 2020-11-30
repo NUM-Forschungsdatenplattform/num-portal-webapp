@@ -5,20 +5,17 @@
   fxFlex="100%"
   fxLayoutGap="20px"
 >
-  <section role="presentation">
-    <h2 class="mat-h2">{{ 'FORM.GENERAL_INFO' | translate }}</h2>
-    <mat-divider class="num-d-c--a num-d-w--1"></mat-divider>
-  </section>
+  <h2>{{ 'FORM.GENERAL_INFO' | translate }}</h2>
 
   <mat-card>
     <mat-card-content fxLayout="column" fxFlex="100%">
-      <p id="general-info-label" fxFlex="100%">
+      <p id="general-info-label">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
         Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
         ridiculus mus.
       </p>
 
-      <form fxLayout="column" fxFlex="100%" [formGroup]="form">
+      <form fxLayout="column" [formGroup]="form">
         <mat-form-field appearance="outline" color="accent">
           <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
           <input
@@ -29,7 +26,7 @@
           />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" color="accent" fxFlex="100%">
+        <mat-form-field appearance="outline" color="accent">
           <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}</mat-label>
           <textarea
             formControlName="description"

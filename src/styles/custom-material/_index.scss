@@ -1,14 +1,17 @@
 /* import of not themed classes */
-@import './styles/button-classes';
 @import './styles/select-classes';
 
 /* import of themed mixins */
+@import './styles/buttons.themed';
 @import './styles/lang-toggle-button.themed';
 @import './styles/color-variables.themed';
 @import './styles/color-classes.themed';
 @import './styles/divider-classes.themed';
 @import './styles/side-menu.component.themed';
 @import './styles/general_table.themed';
+@import './styles/footer.themed';
+@import './styles/typography.themed';
+@import './styles/mat-chip.themed';
 
 /* export themed mixins */
 @mixin custom-material_themed($theme) {
@@ -18,4 +21,8 @@
   @include side-menu-component_themed($theme);
   @include language-component_themed($theme);
   @include general_table_themed($theme);
+  @include footer_themed($theme);
+  @include typography_themed($theme);
+  @include buttons($theme);
+  @include mat-chip_themed($theme);
 }

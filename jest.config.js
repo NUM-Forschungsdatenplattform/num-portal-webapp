@@ -11,7 +11,9 @@ module.exports = {
     '<rootDir>/src/app/**/*.ts',
     '!<rootDir>/src/app/**/index.ts',
     '!<rootDir>/src/app/**/*.module.ts',
-    '!<rootDir>/src/app/**/font-awesome-icons.ts'
+    '!<rootDir>/src/app/**/font-awesome-icons.ts',
+    '!<rootDir>/src/playground/**',
+    '!<rootDir>/src/main.playground.ts'
   ],
   coverageReporters: [
     "html",

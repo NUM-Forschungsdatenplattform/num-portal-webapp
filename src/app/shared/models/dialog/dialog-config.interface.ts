@@ -8,4 +8,5 @@ export interface DialogConfig {
   hasCloseIcon?: boolean
   confirmButtonText?: string
   cancelButtonText?: string
+  isDecision?: boolean
 }

@@ -1,6 +1,12 @@
 <section fxFlex.gt-md="50vw">
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
-    <h1 mat-dialog-title>{{ dialogConfig.title | translate }}</h1>
+    <h1
+      class="mat-display-1"
+      mat-dialog-title
+      [ngClass]="{ 'decision-dialog': dialogConfig.isDecision }"
+    >
+      {{ dialogConfig.title | translate }}
+    </h1>
     <fa-icon
       *ngIf="dialogConfig.hasCloseIcon"
       role="button"
@@ -23,16 +29,18 @@
     "
     class="button-row"
   >
-    <button mat-stroked-button (click)="handleDialogCancel()" *ngIf="dialogConfig.cancelButtonText">
-      {{ dialogConfig.cancelButtonText | translate }}
-    </button>
-    <button
-      mat-flat-button
-      color="primary"
+    <num-button
+      type="secondary"
+      (click)="handleDialogCancel()"
+      *ngIf="dialogConfig.cancelButtonText"
+      >{{ dialogConfig.cancelButtonText | translate }}</num-button
+    >
+
+    <num-button
+      type="primary"
       (click)="handleDialogConfirm()"
       *ngIf="dialogConfig.confirmButtonText"
+      >{{ dialogConfig.confirmButtonText | translate }}</num-button
     >
-      {{ dialogConfig.confirmButtonText | translate }}
-    </button>
   </div>
 </section>

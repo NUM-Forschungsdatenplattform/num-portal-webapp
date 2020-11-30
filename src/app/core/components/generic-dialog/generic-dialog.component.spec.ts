@@ -16,7 +16,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing'
 import { GenericDialogComponent } from './generic-dialog.component'
-import { of } from 'rxjs'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 
 describe('GenericDialogComponent', () => {
   let component: GenericDialogComponent
@@ -47,7 +47,7 @@ describe('GenericDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GenericDialogComponent, StubComponent],
+      declarations: [GenericDialogComponent, StubComponent, ButtonComponent],
       imports: [
         MaterialModule,
         FlexLayoutModule,

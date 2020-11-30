@@ -1,0 +1,18 @@
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+section {
+  display: flex;
+  justify-content: space-around;
+  max-width: 600px;
+  min-width: 300px;
+  width: 65vw;
+  padding: 32px;
+  border: 1px solid grey;
+  margin: 0 0 82px 0;
+}
