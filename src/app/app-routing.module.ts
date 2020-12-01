@@ -63,6 +63,18 @@ export const routes: Routes = [
         (m) => m.AqlsModule
       ),
   },
+  {
+    path: 'admin',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'admin',
+      roles: ['Organization Admin'],
+    },
+    loadChildren: () =>
+      import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(
+        (m) => m.AdminModule
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ]
