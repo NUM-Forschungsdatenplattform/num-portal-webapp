@@ -1,6 +1,6 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <h3 class="mat-h3">{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
+    <h3 class="accordion">{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
   </mat-expansion-panel-header>
 
   <section
@@ -10,19 +10,19 @@
     fxFlex="100%"
     fxLayoutGap="20px"
   >
-    <p id="general-info-label" fxFlex="100%">
+    <p id="general-info-label">
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
       Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
       mus.
     </p>
 
-    <form fxLayout="column" fxFlex="100%" [formGroup]="form">
+    <form fxLayout="column" [formGroup]="form">
       <mat-form-field appearance="outline" color="accent">
         <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
         <input formControlName="title" matInput placeholder="Title" aria-labelledby="title-label" />
       </mat-form-field>
 
-      <mat-form-field appearance="outline" color="accent" fxFlex="100%">
+      <mat-form-field appearance="outline" color="accent">
         <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}</mat-label>
         <textarea
           formControlName="description"

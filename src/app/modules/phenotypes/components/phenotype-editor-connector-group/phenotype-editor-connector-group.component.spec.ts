@@ -18,6 +18,7 @@ import { DialogEditAqlComponent } from '../dialog-edit-aql/dialog-edit-aql.compo
 import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
 
 import { PhenotypeEditorConnectorGroupComponent } from './phenotype-editor-connector-group.component'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 
 describe('PhenotypeEditorConnectorGroupComponent', () => {
   let component: PhenotypeEditorConnectorGroupComponent
@@ -38,7 +39,12 @@ describe('PhenotypeEditorConnectorGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhenotypeEditorConnectorGroupComponent, AqlStubComponent, GroupIndexPipe],
+      declarations: [
+        PhenotypeEditorConnectorGroupComponent,
+        AqlStubComponent,
+        GroupIndexPipe,
+        ButtonComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,

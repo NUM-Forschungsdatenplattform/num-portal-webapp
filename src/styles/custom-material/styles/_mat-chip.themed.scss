@@ -1,0 +1,16 @@
+@mixin mat-chip_themed($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+
+  .mat-chip.mat-standard-chip {
+    font-size: 14px;
+    &.mat-chip-selected.mat-primary {
+      background: mat-color($primary, 500);
+      color: mat-contrast($primary, 500);
+
+      fa-icon {
+        color: mat-color($accent, 500);
+      }
+    }
+  }
+}

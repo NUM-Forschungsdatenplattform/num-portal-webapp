@@ -25,7 +25,7 @@ export const mainNavItems: INavItem[] = [
   },
   {
     routeTo: 'phenotypes',
-    icon: 'seedling',
+    icon: 'cubes',
     translationKey: 'NAVIGATION.PHENOTYPES',
     tabNav: [
       {

@@ -1,14 +1,18 @@
 @mixin general_table_themed($theme) {
   $accent: map-get($theme, accent);
 
-  .num-mat-table-row {
-    &--active {
-      background: rgba($color: mat-color($accent), $alpha: 0.2);
+  .mat-row {
+    &--active,
+    &--selected {
+      background: mat-color($accent, 50);
     }
 
-    &:hover,
+    &:hover {
+      background: mat-color($accent, 100) !important;
+    }
+
     &:focus {
-      background: rgba($color: mat-color($accent), $alpha: 0.3);
+      background: mat-color($accent, 200) !important;
     }
   }
 }

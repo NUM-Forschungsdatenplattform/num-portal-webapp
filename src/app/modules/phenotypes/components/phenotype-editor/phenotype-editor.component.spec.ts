@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute } from '@angular/router'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
@@ -43,8 +45,9 @@ describe('PhenotypeEditorComponent', () => {
         PhenotypeEditorComponent,
         StubGeneralInfoComponent,
         StubEditorConnectorComponent,
+        ButtonComponent,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         {
           provide: ActivatedRoute,

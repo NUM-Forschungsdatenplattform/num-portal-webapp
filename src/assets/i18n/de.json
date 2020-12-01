@@ -37,6 +37,7 @@
     "CONTACT": "Kontakt"
   },
   "SEARCH_PHENOTYPES": "Phänotypen suchen",
+  "CREATE_PHENOTYPE": "Phänotyp erstellen",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "SEARCH_AQLS": "AQL suchen",
   "MY_AQLS": "Meine AQLs",

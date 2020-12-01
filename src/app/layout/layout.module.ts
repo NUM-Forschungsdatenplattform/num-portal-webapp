@@ -12,6 +12,7 @@ import { FONT_AWESOME_ICONS } from './font-awesome-icons'
 import { FooterComponent } from './components/footer/footer.component'
 import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from '../shared/directives/directives.module'
+import { SharedComponentsModule } from '../shared/components/shared-components.module'
 
 const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
 
@@ -23,8 +24,15 @@ const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
     LanguageComponent,
     FooterComponent,
   ],
-  imports: [CommonModule, RouterModule, TranslateModule, DirectivesModule, ...SHARED_MODULES],
-  exports: [AppLayoutComponent, ...SHARED_MODULES],
+  imports: [
+    ...SHARED_MODULES,
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    DirectivesModule,
+    SharedComponentsModule,
+  ],
+  exports: [...SHARED_MODULES, AppLayoutComponent],
 })
 export class LayoutModule {
   constructor(library: FaIconLibrary) {

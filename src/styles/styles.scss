@@ -2,10 +2,11 @@
 @import './font';
 @import './themes';
 @import './custom-material';
+@import './general-styles/_margin-bottom-classes';
 
-@include mat-core();
+$num-typography: map-get($num-portal-webapp-theme, num-typography);
+@include mat-core($num-typography);
 @include angular-material-theme($num-portal-webapp-theme);
-
 @include custom-material_themed($num-portal-webapp-theme);
 
 html,

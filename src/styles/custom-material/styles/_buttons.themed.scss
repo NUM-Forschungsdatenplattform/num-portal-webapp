@@ -1,0 +1,107 @@
+@mixin buttons($theme) {
+  $raised-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $additional: map-get($theme, additional);
+
+  .mat-button-base {
+    text-transform: uppercase !important;
+  }
+
+  .num-button {
+    &.mat-button .mat-button-wrapper > *,
+    &.mat-stroked-button .mat-button-wrapper > *,
+    &.mat-raised-button .mat-button-wrapper > *,
+    &.mat-flat-button .mat-button-wrapper > * {
+      vertical-align: baseline !important;
+    }
+
+    fa-icon {
+      margin: 0 4px 0 0;
+    }
+
+    &.cdk-keyboard-focused .mat-button-focus-overlay {
+      display: none;
+    }
+
+    // Primaray Button
+    &.mat-flat-button.mat-primary {
+      line-height: 34px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: mat-color($primary, 500);
+      fa-icon {
+        color: mat-color($accent, 500);
+      }
+
+      &:hover:not(.mat-button-disabled) {
+        background: mat-color($primary, 700);
+        box-shadow: $raised-shadow;
+      }
+
+      &.cdk-keyboard-focused {
+        background: mat-color($primary, 700);
+        border-color: mat-color($accent, 500);
+      }
+
+      &.mat-button-disabled {
+        background: mat-color($primary, 100);
+        border-color: mat-color($primary, 100);
+        fa-icon {
+          color: mat-color($accent, 200);
+        }
+      }
+    }
+
+    // Secondary Button
+    &.mat-stroked-button.mat-primary {
+      border-color: mat-color($primary, 500);
+
+      fa-icon {
+        color: mat-color($accent, 500);
+      }
+
+      &:hover:not(.mat-button-disabled) {
+        background: mat-color($accent, 100);
+        box-shadow: $raised-shadow;
+      }
+
+      &.cdk-keyboard-focused {
+        background: mat-color($accent, 200);
+      }
+
+      &.mat-button-disabled {
+        fa-icon {
+          color: mat-color($accent, 200);
+        }
+        color: mat-color($additional, mid-grey);
+      }
+    }
+
+    // Basic Button
+    &.mat-button.mat-primary {
+      color: mat-color($additional, mid-grey);
+
+      fa-icon {
+        color: mat-color($accent, 500);
+      }
+
+      &:hover:not(.mat-button-disabled) {
+        background: mat-color($accent, 100);
+        box-shadow: $raised-shadow;
+      }
+
+      &.cdk-keyboard-focused {
+        background: mat-color($accent, 200);
+        border-color: mat-color($accent, 500);
+      }
+
+      &.mat-button-disabled {
+        fa-icon {
+          color: mat-color($accent, 200);
+        }
+        color: mat-color($additional, mid-grey);
+      }
+    }
+  }
+}

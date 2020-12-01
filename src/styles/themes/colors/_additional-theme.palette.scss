@@ -1,0 +1,20 @@
+$num-additional-palette: (
+  white: #ffffff,
+  page-background: #f9f9f9,
+  light-grey: #d2d2d2,
+  mid-grey: #737373,
+  dark-grey: #232323,
+  error: #b30519,
+  warning: #eeb70c,
+  success: #30d288,
+  contrast: (
+    white: #232323,
+    page-background: #232323,
+    light-grey: #232323,
+    mid-grey: #ffffff,
+    dark-grey: #ffffff,
+    error: #ffffff,
+    warning: #232323,
+    success: #232323,
+  ),
+);
