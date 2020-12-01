@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "pretty-quick": "pretty-quick --pattern \"src/**/*.{scss,html}\"",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "playground": "angular-playground"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,7 @@
     "@types/jest": "^26.0.14",
     "@types/lodash-es": "^4.17.3",
     "@types/node": "^12.11.1",
+    "angular-playground": "^7.1.1",
     "codelyzer": "^6.0.0",
     "husky": "^4.3.0",
     "jasmine-core": "~3.6.0",

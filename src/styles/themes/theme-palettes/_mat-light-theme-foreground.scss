@@ -1,0 +1,20 @@
+@function mat-light-theme-foreground($primary, $accent, $additional) {
+  @return (
+    text: mat-color($additional, dark-grey),
+    disabled-button: rgba(white, 0.65),
+    // defaults below
+    base: black,
+    divider: $dark-dividers,
+    dividers: $dark-dividers,
+    disabled: $dark-disabled-text,
+    disabled-text: $dark-disabled-text,
+    elevation: black,
+    hint-text: $dark-disabled-text,
+    secondary-text: $dark-secondary-text,
+    icon: rgba(black, 0.54),
+    icons: rgba(black, 0.54),
+    slider-min: rgba(black, 0.87),
+    slider-off: rgba(black, 0.26),
+    slider-off-active: rgba(black, 0.38)
+  );
+}

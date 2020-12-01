@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
 import { MaterialModule } from '../../material/material.module'
 import INavItem from '../../models/nav-item.interface'
+import { ButtonComponent } from '../../../shared/components/button/button.component'
 import { LanguageComponent } from '../language/language.component'
 import { HeaderComponent } from './header.component'
 
@@ -51,7 +52,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent, LanguageComponent, StubComponent],
+      declarations: [HeaderComponent, LanguageComponent, StubComponent, ButtonComponent],
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,

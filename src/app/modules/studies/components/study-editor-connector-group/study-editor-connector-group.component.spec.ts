@@ -6,6 +6,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog.service'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
@@ -48,7 +49,12 @@ describe('StudyEditorConnectorGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudyEditorConnectorGroupComponent, PhenotypeStubComponent, GroupIndexPipe],
+      declarations: [
+        StudyEditorConnectorGroupComponent,
+        PhenotypeStubComponent,
+        GroupIndexPipe,
+        ButtonComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,

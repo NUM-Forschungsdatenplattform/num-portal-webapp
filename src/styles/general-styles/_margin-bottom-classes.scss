@@ -1,0 +1,7 @@
+$margins: 20, 40, 60;
+
+@each $margin in $margins {
+  .num-margin-b-#{$margin} {
+    margin-bottom: #{$margin}px !important;
+  }
+}

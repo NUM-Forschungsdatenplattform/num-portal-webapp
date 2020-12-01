@@ -56,24 +56,16 @@
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <button mat-flat-button class="num-button-align" color="primary" (click)="addQuery()">
-    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-    {{ 'BUTTON.ADD_QUERY' | translate }}
-  </button>
-  <button mat-stroked-button class="num-button-align" color="primary" (click)="addGroup()">
-    <fa-icon class="num-fc--a" icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-    {{ 'BUTTON.ADD_GROUP' | translate }}
-  </button>
+  <num-button type="primary" (click)="addQuery()" icon="plus">{{
+    'BUTTON.ADD_QUERY' | translate
+  }}</num-button>
+  <num-button type="secondary" (click)="addGroup()" icon="plus">{{
+    'BUTTON.ADD_GROUP' | translate
+  }}</num-button>
 
   <span fxFlex></span>
 
-  <button
-    mat-button
-    class="num-button-align"
-    color="primary"
-    (click)="deleteSelf()"
-    *ngIf="groupType === connectorGroupType.Sub"
-  >
-    {{ 'BUTTON.DELETE_GROUP' | translate }}
-  </button>
+  <num-button *ngIf="groupType === connectorGroupType.Sub" type="basic" (click)="deleteSelf()">{{
+    'BUTTON.DELETE_GROUP' | translate
+  }}</num-button>
 </section>
