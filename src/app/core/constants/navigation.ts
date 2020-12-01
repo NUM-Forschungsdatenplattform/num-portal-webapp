@@ -53,7 +53,7 @@ export const mainNavItems: INavItem[] = [
   {
     routeTo: 'admin',
     icon: 'users-cog',
-    translationKey: 'NAVIGATION.ADMIN',
+    translationKey: 'NAVIGATION.USER_MANAGEMENT',
   },
 ]
 

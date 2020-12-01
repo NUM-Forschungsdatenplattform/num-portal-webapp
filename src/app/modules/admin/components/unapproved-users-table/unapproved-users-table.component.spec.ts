@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
-import { UserTableComponent } from './user-table.component'
+import { UnapprovedUsersTableComponent } from './unapproved-users-table.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { mockUnapprovedUsers } from 'src/mocks/data-mocks/admin.mock'
 import { IUser } from 'src/app/shared/models/admin/user.interface'
 
-describe('UserTableComponent', () => {
-  let component: UserTableComponent
-  let fixture: ComponentFixture<UserTableComponent>
+describe('UnapprovedUsersTableComponent', () => {
+  let component: UnapprovedUsersTableComponent
+  let fixture: ComponentFixture<UnapprovedUsersTableComponent>
 
   const unapprovedUsersSubject$ = new Subject<IUser[]>()
   const adminService = {
@@ -20,7 +20,7 @@ describe('UserTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UserTableComponent],
+      declarations: [UnapprovedUsersTableComponent],
       imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
       providers: [
         {
@@ -32,7 +32,7 @@ describe('UserTableComponent', () => {
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserTableComponent)
+    fixture = TestBed.createComponent(UnapprovedUsersTableComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

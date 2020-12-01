@@ -5,10 +5,10 @@ import { AdminRoutingModule } from './admin-routing.module'
 import { AdminComponent } from './components/admin/admin.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
-import { UserTableComponent } from './components/user-table/user-table.component'
+import { UnapprovedUsersTableComponent } from './components/unapproved-users-table/unapproved-users-table.component'
 
 @NgModule({
-  declarations: [AdminComponent, UserTableComponent],
+  declarations: [AdminComponent, UnapprovedUsersTableComponent],
   imports: [CommonModule, AdminRoutingModule, SharedModule, LayoutModule],
 })
 export class AdminModule {}

@@ -71,7 +71,7 @@ export const routes: Routes = [
       roles: ['Organization Admin'],
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Aqls.Module" */ './modules/admin/admin.module').then(
+      import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(
         (m) => m.AdminModule
       ),
   },

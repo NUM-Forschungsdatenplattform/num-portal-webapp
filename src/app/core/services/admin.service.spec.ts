@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { mockUnapprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUnapprovedUsers } from 'src/mocks/data-mocks/admin.mock'
 import { AdminService } from './admin.service'
 
 describe('AdminService', () => {
   let service: AdminService
 
   const httpClient = ({
-    get: () => of(mockUnapprovedUsers, mockUser),
+    get: () => of(mockUnapprovedUsers),
     post: () => of({}),
   } as unknown) as HttpClient
 
@@ -33,6 +33,10 @@ describe('AdminService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUnapprovedUsers))
       service.getUnapprovedUsers().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/admin/user?approved=false')
+
+      service.unapprovedUsersObservable$.subscribe((users) => {
+        expect(users).toEqual(mockUnapprovedUsers)
+      })
     })
 
     it('should call the api - with error', () => {

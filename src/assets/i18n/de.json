@@ -26,7 +26,7 @@
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
     "COHORTS": "Kohorten",
     "AQLS": "AQL Queries",
-    "ADMIN": "Admin",
+    "USER_MANAGEMENT": "Benutzerverwaltung",
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden"
@@ -74,9 +74,9 @@
     "SELECT": "Auswählen",
     "DESELECT": "Abwählen"
   },
-  "TABLE": {
+  "USER": {
+    "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname"
-  },
-  "UNAPPROVED_USERS": "Benutzer mit fehlender Autorisierung"
+  }
 }

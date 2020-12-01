@@ -7,11 +7,11 @@ import { MatPaginator } from '@angular/material/paginator'
 import { IUser } from 'src/app/shared/models/admin/user.interface'
 
 @Component({
-  selector: 'num-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss'],
+  selector: 'num-unapproved-users-table',
+  templateUrl: './unapproved-users-table.component.html',
+  styleUrls: ['./unapproved-users-table.component.scss'],
 })
-export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(private adminService: AdminService) {}
 
@@ -39,6 +39,7 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.data = users
   }
 
-  // handleRowClick(user: IUser): void {
-  // }
+  handleRowClick(user: IUser): void {
+    console.log('row click will be handled in the following subtask')
+  }
 }
