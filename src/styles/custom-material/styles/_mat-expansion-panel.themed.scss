@@ -1,0 +1,10 @@
+@mixin mat-expansion-panel_themed($theme) {
+  $accent: map-get($theme, accent);
+
+  .mat-expansion-indicator::after {
+    color: mat-color($accent);
+    padding: 5px !important;
+    margin-top: -10px;
+    border-width: 0 3.5px 3.5px 0 !important;
+  }
+}

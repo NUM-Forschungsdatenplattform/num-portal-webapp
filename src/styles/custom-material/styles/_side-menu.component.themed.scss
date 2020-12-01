@@ -1,6 +1,5 @@
 @mixin side-menu-component_themed($theme) {
   $accent: map-get($theme, accent);
-  $typography: map-get($theme, typography);
 
   .num-mat-list-item {
     font-size: 16px !important;
