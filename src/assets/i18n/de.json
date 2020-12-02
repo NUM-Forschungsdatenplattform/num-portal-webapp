@@ -45,6 +45,7 @@
   "ALL_AQLS": "Alle AQLs",
   "SELECTED_AQLS": "Ausgewählte AQL-Queries",
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
+  "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "CONNECT_AQL": "AQL Abfragen zusammenstellen",
@@ -72,11 +73,18 @@
     "DELETE_GROUP": "Gruppe löschen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SELECT": "Auswählen",
-    "DESELECT": "Abwählen"
+    "DESELECT": "Abwählen",
+    "APPROVE_USER": "Benutzer bestätigen"
   },
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname"
+  },
+  "ROLE": {
+    "ASSIGN_ROLES": "Rollen zuweisen",
+    "RESEARCHER": "Wissenschaftler",
+    "ORGANIZATION_ADMIN": "Organisations-Administrator",
+    "STUDY_COORDINATOR": "Studienkoordinator"
   }
 }
