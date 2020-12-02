@@ -5,6 +5,6 @@ import { Component } from '@angular/core'
   templateUrl: './pg_typography.component.html',
   styleUrls: ['./pg_typography.component.scss'],
 })
-export class TypographyComponent {
+export class PgTypographyComponent {
   constructor() {}
 }
