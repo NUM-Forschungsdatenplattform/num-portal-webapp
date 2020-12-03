@@ -1,25 +1,18 @@
-import { ICohortGroupApi } from './cohort-group-api.interface'
+import { IUserDetails } from '../user/user-details.interface'
+import { StudyStatus } from './study-status.enum'
+import { IStudyTemplateInfoApi } from './study-template-info-api.interface'
 
 export interface IStudyApi {
-  /**
-   * The unique identifier
-   */
-  id: number | null
-
-  /**
-   * Reference to the study
-   */
-  studyId: number | null
-
-  /**
-   * The name of the cohort
-   */
-  name: string
-
-  /**
-   * The description of the cohort
-   */
+  cohortId?: number
+  coordinator?: IUserDetails
+  createDate?: Date
   description?: string
-
-  cohortGroup: ICohortGroupApi
+  firstHypotheses?: string
+  id?: number | null
+  modifiedDate?: Date
+  name?: string
+  researchers?: IUserDetails[]
+  secondHypotheses?: string
+  status?: StudyStatus
+  templates?: IStudyTemplateInfoApi
 }
