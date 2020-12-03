@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
-import { IRoleI18n } from 'src/app/shared/models/admin/role.interface'
+import { TranslateService } from '@ngx-translate/core'
+import { IRoleUi } from 'src/app/shared/models/user/role-ui.interface'
 import { available_roles } from '../../available_roles'
 
 @Component({
@@ -11,33 +12,35 @@ import { available_roles } from '../../available_roles'
 export class AddUserRolesComponent implements OnInit {
   @Input() selectedRoles: string[]
   @Output() selectedRolesChange = new EventEmitter<string[]>()
-  constructor() {}
 
-  nameOfHighlightedRow: string
-  dataSource = new MatTableDataSource<IRoleI18n>()
+  constructor(private translate: TranslateService) {}
+
+  idOfHighlightedRow: string
+  dataSource = new MatTableDataSource<IRoleUi>()
   displayedColumns: string[] = ['role', 'icon']
 
-  // roles: string[] = ['ROLE.RESEARCHER', 'ROLE.STUDY_COORDINATOR', 'ROLE.ORGANIZATION_ADMIN']
   roles = available_roles
-  lookupSelectedRole: { [name: string]: boolean } = {}
+  lookupSelectedRole: { [id: string]: boolean } = {}
+  currentLang: string
 
   ngOnInit(): void {
     this.dataSource.data = this.roles
+    this.currentLang = this.translate.currentLang
   }
 
-  handleRowClick(row: string): void {
-    this.nameOfHighlightedRow = row
+  handleRowClick(row: IRoleUi): void {
+    this.idOfHighlightedRow = row.id
   }
 
-  handleSelectClick(row: string): void {
-    this.lookupSelectedRole[row] = true
-    this.selectedRoles.push(row)
+  handleSelectClick(row: IRoleUi): void {
+    this.lookupSelectedRole[row.id] = true
+    this.selectedRoles.push(row.id)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 
-  handleDeselectClick(row: string): void {
-    this.lookupSelectedRole[row] = false
-    this.selectedRoles = this.selectedRoles.filter((item) => item !== row)
+  handleDeselectClick(row: IRoleUi): void {
+    this.lookupSelectedRole[row.id] = false
+    this.selectedRoles = this.selectedRoles.filter((item) => item !== row.id)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 }

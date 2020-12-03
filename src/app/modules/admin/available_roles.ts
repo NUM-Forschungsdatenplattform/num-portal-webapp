@@ -1,22 +1,22 @@
-import { IRoleI18n } from 'src/app/shared/models/admin/role.interface'
+import { IRoleUi } from 'src/app/shared/models/user/role-ui.interface'
 
-export const available_roles: IRoleI18n[] = [
+export const available_roles: IRoleUi[] = [
   {
-    id: '1',
+    id: 'RESEARCHER',
     name: {
       en: 'Researcher',
       de: 'Wissenschaftler',
     },
   },
   {
-    id: '2',
+    id: 'STUDY_COORDINATOR',
     name: {
       en: 'Study Coordinator',
       de: 'Studienkoordinator',
     },
   },
   {
-    id: '3',
+    id: 'ORGANIZATION_ADMIN',
     name: {
       en: 'Organization Admin',
       de: 'Organisations-Administrator',

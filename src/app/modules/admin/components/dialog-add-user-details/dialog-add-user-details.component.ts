@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
   selector: 'num-dialog-add-user-details',
@@ -17,11 +17,12 @@ export class DialogAddUserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput
-    // this.aqlService.getAll().subscribe()
   }
 
   handleDialogConfirm(): void {
-    console.log(this.dialogInput, this.roles)
+    this.roles.forEach((role) => {
+      this.adminService.addUserRoles(this.dialogInput.id, role).subscribe()
+    })
     this.closeDialog.emit()
   }
 

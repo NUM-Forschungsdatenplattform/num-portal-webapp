@@ -1,9 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +32,20 @@ export class AdminService {
         this.unapprovedUsersSubject$.next(users)
       })
     )
+  }
+
+  addUserRoles(userId: string, role: string): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'text/plain',
+      }),
+      responseType: 'text' as 'json',
+    }
+
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
