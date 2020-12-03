@@ -1,4 +1,4 @@
-export interface IStudyUserDetailApi {
+export interface IUserDetails {
   approved?: boolean
   organizationId?: string
   userId: string
