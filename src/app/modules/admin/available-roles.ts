@@ -1,6 +1,6 @@
 import { IRoleUi } from 'src/app/shared/models/user/role-ui.interface'
 
-export const available_roles: IRoleUi[] = [
+export const availableRoles: IRoleUi[] = [
   {
     id: 'RESEARCHER',
     name: {

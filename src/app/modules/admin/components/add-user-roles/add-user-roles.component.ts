@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { TranslateService } from '@ngx-translate/core'
 import { IRoleUi } from 'src/app/shared/models/user/role-ui.interface'
-import { available_roles } from '../../available_roles'
+import { availableRoles } from '../../available-roles'
 
 @Component({
   selector: 'num-add-user-roles',
@@ -19,7 +19,7 @@ export class AddUserRolesComponent implements OnInit {
   dataSource = new MatTableDataSource<IRoleUi>()
   displayedColumns: string[] = ['role', 'icon']
 
-  roles = available_roles
+  roles = availableRoles
   lookupSelectedRole: { [id: string]: boolean } = {}
   currentLang: string
 

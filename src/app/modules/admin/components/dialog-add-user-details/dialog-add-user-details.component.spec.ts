@@ -15,7 +15,7 @@ describe('DialogAddUserDetailsComponent', () => {
   let fixture: ComponentFixture<DialogAddUserDetailsComponent>
 
   const adminService = {
-    addUserRoles: (_userId: string, _role: string) => of(),
+    addUserRoles: (userId: string, role: string) => of(),
   } as AdminService
 
   beforeEach(async () => {
