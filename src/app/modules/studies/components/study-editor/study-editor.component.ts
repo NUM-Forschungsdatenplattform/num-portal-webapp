@@ -24,11 +24,11 @@ export class StudyEditorComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
       ]),
-      primaryHypothesis: new FormControl(this.resolvedData.study?.primaryHypothesis, [
+      primaryHypothesis: new FormControl(this.resolvedData.study?.firstHypotheses, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      secondaryHypothesis: new FormControl(this.resolvedData.study?.secondaryHypothesis),
+      secondaryHypothesis: new FormControl(this.resolvedData.study?.secondHypotheses),
     })
   }
 }
