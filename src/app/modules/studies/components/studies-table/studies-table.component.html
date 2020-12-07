@@ -1,0 +1,25 @@
+<h3 id="studies-header">{{ 'AVAILABLE_STUDIES' | translate }}</h3>
+
+<div role="presentation" class="mat-elevation-z1 num-margin-b-60">
+  <table aria-labelledby="studies-header" mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="id">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
