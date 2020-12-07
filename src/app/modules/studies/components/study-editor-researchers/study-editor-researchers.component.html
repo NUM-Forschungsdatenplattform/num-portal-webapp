@@ -1,0 +1,25 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <h3 class="accordion">Select Researchers</h3>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="general-info-label"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <div>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </div>
+
+    <mat-card> No researchers selected yet. </mat-card>
+
+    <num-button type="primary" icon="plus" (click)="addResearchers()">
+      {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
+    </num-button>
+  </section>
+</mat-expansion-panel>
