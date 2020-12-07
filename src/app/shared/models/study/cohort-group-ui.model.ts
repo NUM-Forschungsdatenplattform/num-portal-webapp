@@ -5,13 +5,14 @@ import { ConnectorGroupUiModel } from '../connector-group-ui.model'
 import { ICohortGroupApi } from './cohort-group-api.interface'
 
 export class CohortGroupUiModel extends ConnectorGroupUiModel {
-  type = ConnectorNodeType.Group
+  type: ConnectorNodeType.CohortGroup
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (CohortGroupUiModel | PhenotypeUiModel)[]
   indexInGroup: number | null = null
   constructor() {
     super()
+    this.type = ConnectorNodeType.CohortGroup
     this.logicalOperator = LogicalOperator.And
     this.isNegated = false
     this.children = []

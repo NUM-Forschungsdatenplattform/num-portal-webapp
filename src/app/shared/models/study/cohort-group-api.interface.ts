@@ -35,5 +35,5 @@ export interface ICohortGroupApi extends IConnectorGroupApi {
   /**
    * Cohort group parameter map representing the name of the aql parameter and the corresponding value
    */
-  parameters?: IDictionary<string>[]
+  parameters?: { [Key: string]: string }
 }
