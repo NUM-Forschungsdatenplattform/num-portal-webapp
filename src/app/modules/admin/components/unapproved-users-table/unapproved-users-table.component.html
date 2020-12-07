@@ -1,0 +1,34 @@
+<h3 id="unapproved-users-header">{{ 'USER.UNAPPROVED_USERS' | translate }}</h3>
+
+<div role="presentation" class="mat-elevation-z1 num-margin-b-60">
+  <table mat-table [dataSource]="dataSource" matSort aria-labelledby="unapproved-users-header">
+    <ng-container matColumnDef="id">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'USER.FIRST_NAME' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'USER.LAST_NAME' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr (click)="handleRowClick(row)" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>
+</div>

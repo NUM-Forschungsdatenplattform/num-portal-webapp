@@ -50,6 +50,11 @@ export const mainNavItems: INavItem[] = [
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',
   },
+  {
+    routeTo: 'admin',
+    icon: 'users-cog',
+    translationKey: 'NAVIGATION.USER_MANAGEMENT',
+  },
 ]
 
 export const secondaryNavItems: INavItem[] = [
