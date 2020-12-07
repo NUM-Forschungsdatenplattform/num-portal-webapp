@@ -3,17 +3,20 @@ import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IAql } from './aql.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
+import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
 
-export class AqlUiModel {
-  type = ConnectorNodeType.Aql
+export class AqlUiModel implements ConnectorMainNodeUi {
+  type: ConnectorNodeType.Aql
   id: number
   name: string
   query: string
   isNegated: boolean
   parameter: { name: string; value?: string }[]
   areParameterConfigured = true
+  indexInGroup: number | null
 
   constructor(aql: IAql, isNegated: boolean = false) {
+    this.type = ConnectorNodeType.Aql
     this.id = aql.id
     this.name = aql.name
     this.query = aql.query
