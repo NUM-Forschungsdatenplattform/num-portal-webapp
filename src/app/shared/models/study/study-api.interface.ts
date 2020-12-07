@@ -14,5 +14,5 @@ export interface IStudyApi {
   researchers?: IUserDetails[]
   secondHypotheses?: string
   status?: StudyStatus
-  templates?: IStudyTemplateInfoApi
+  templates?: IStudyTemplateInfoApi[]
 }

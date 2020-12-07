@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { StudyService } from '../core/services/study.service'
+import { StudyService } from '../../core/services/study.service'
 import { IStudyResolved } from './study-resolved.interface'
 
 @Injectable({
