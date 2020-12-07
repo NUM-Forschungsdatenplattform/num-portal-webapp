@@ -91,11 +91,10 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     return {
       type: ConnectorNodeType.Phenotype,
       phenotypeId: this.id,
-      parameters: this.parameter.map((param) => {
-        return {
-          [param.name]: param.value,
-        }
-      }),
+      parameters: this.parameter.reduce((hashMap, param) => {
+        hashMap[param.name] = param.value
+        return hashMap
+      }, {}),
     }
   }
 

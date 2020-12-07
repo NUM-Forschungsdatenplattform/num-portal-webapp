@@ -5,7 +5,7 @@ import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enu
 import { ConnectorGroupUiModel } from '../connector-group-ui.model'
 
 export class PhenotypeGroupUiModel extends ConnectorGroupUiModel {
-  type = ConnectorNodeType.Group
+  type: ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (PhenotypeGroupUiModel | AqlUiModel)[]
@@ -13,6 +13,7 @@ export class PhenotypeGroupUiModel extends ConnectorGroupUiModel {
 
   constructor() {
     super()
+    this.type = ConnectorNodeType.Group
     this.logicalOperator = LogicalOperator.And
     this.isNegated = false
     this.children = []

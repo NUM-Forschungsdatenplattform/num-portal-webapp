@@ -39,7 +39,7 @@ export class StudyService {
 
   update(study: IStudyApi, id: number): Observable<IStudyApi> {
     return this.httpClient
-      .patch<IStudyApi>(`${this.baseUrl}/${id}`, study)
+      .put<IStudyApi>(`${this.baseUrl}/${id}`, study)
       .pipe(catchError(this.handleError))
   }
 
