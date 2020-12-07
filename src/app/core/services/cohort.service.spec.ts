@@ -40,7 +40,7 @@ describe('CohortService', () => {
         body: {},
       }
 
-      const result = await service.executeCohort(cohortId).toPromise()
+      const result = await service.getCohortSize(cohortId).toPromise()
 
       expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
       expect(result).toEqual(cohortSize)
@@ -50,7 +50,7 @@ describe('CohortService', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
 
-      service.executeCohort(cohortId).subscribe()
+      service.getCohortSize(cohortId).subscribe()
 
       expect(service.handleError).toHaveBeenCalled()
     })

@@ -13,6 +13,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
@@ -31,5 +32,6 @@ export const FONT_AWESOME_ICONS = [
   faTimesCircle,
   faTimes,
   faCheck,
+  faCheckCircle,
   faTrash,
 ]

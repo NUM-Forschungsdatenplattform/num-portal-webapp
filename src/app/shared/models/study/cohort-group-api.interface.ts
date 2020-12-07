@@ -1,11 +1,12 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { IDictionary } from '../dictionary.interface'
+import { IConnectorGroupApi } from '../connectorGroupApi.interface'
 
 /**
  * Either a CohortGroup or Phenotype
  */
-export interface ICohortGroupApi {
+export interface ICohortGroupApi extends IConnectorGroupApi {
   /**
    * The unique identifier
    */
