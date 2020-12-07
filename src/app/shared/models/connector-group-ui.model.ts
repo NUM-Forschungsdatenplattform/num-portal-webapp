@@ -4,7 +4,7 @@ import { IConnectorGroupApi } from './connectorGroupApi.interface'
 import { ConnectorMainNodeUi } from './connector-main-node-ui.interface'
 
 export abstract class ConnectorGroupUiModel {
-  type = ConnectorNodeType.Group
+  abstract type: ConnectorNodeType.Group | ConnectorNodeType.CohortGroup
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (ConnectorGroupUiModel | ConnectorMainNodeUi)[]
@@ -35,7 +35,7 @@ export abstract class ConnectorGroupUiModel {
 
   private convertGroupToApiGroup(): IConnectorGroupApi {
     return {
-      type: ConnectorNodeType.Group,
+      type: this.type,
       operator: this.logicalOperator,
       children: this.children.map(this.mapChildrentoApi),
     }
@@ -43,11 +43,11 @@ export abstract class ConnectorGroupUiModel {
 
   private convertGroupToNegatedApiGroup(): IConnectorGroupApi {
     return {
-      type: ConnectorNodeType.Group,
+      type: this.type,
       operator: LogicalOperator.Not,
       children: [
         {
-          type: ConnectorNodeType.Group,
+          type: this.type,
           operator: this.logicalOperator,
           children: this.children.map(this.mapChildrentoApi),
         },
