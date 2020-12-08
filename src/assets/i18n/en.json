@@ -81,10 +81,8 @@
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name"
   },
-  "ROLE": {
-    "ASSIGN_ROLES": "Assign Roles",
-    "RESEARCHER": "Researcher",
-    "ORGANIZATION_ADMIN": "Organization Administrator",
-    "STUDY_COORDINATOR": "Study Coordinator"
-  }
+  "ASSIGN_ROLES": "Assign Roles",
+  "RESEARCHER": "Researcher",
+  "ORGANIZATION_ADMIN": "Organization Administrator",
+  "STUDY_COORDINATOR": "Study Coordinator"
 }

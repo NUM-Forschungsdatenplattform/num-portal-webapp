@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
-import { TranslateService } from '@ngx-translate/core'
-import { IRoleUi } from 'src/app/shared/models/user/role-ui.interface'
-import { availableRoles } from '../../available-roles'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-add-user-roles',
@@ -10,37 +8,30 @@ import { availableRoles } from '../../available-roles'
   styleUrls: ['./add-user-roles.component.scss'],
 })
 export class AddUserRolesComponent implements OnInit {
+  readonly roles = Object.values(AvailableRoles)
+
   @Input() selectedRoles: string[]
   @Output() selectedRolesChange = new EventEmitter<string[]>()
 
-  constructor(private translate: TranslateService) {}
-
-  idOfHighlightedRow: string
-  dataSource = new MatTableDataSource<IRoleUi>()
+  dataSource = new MatTableDataSource<string>()
   displayedColumns: string[] = ['role', 'icon']
-
-  roles = availableRoles
   lookupSelectedRole: { [id: string]: boolean } = {}
-  currentLang: string
+
+  constructor() {}
 
   ngOnInit(): void {
     this.dataSource.data = this.roles
-    this.currentLang = this.translate.currentLang
   }
 
-  handleRowClick(row: IRoleUi): void {
-    this.idOfHighlightedRow = row.id
-  }
-
-  handleSelectClick(row: IRoleUi): void {
-    this.lookupSelectedRole[row.id] = true
-    this.selectedRoles.push(row.id)
+  handleSelectClick(row: string): void {
+    this.lookupSelectedRole[row] = true
+    this.selectedRoles.push(row)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 
-  handleDeselectClick(row: IRoleUi): void {
-    this.lookupSelectedRole[row.id] = false
-    this.selectedRoles = this.selectedRoles.filter((item) => item !== row.id)
+  handleDeselectClick(row: string): void {
+    this.lookupSelectedRole[row] = false
+    this.selectedRoles = this.selectedRoles.filter((item) => item !== row)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 }
