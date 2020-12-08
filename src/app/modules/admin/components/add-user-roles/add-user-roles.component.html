@@ -1,35 +1,33 @@
-<div id="select-title" class="mat-body-strong">{{ 'ASSIGN_ROLES' | translate }}</div>
+<div id="select-title" class="mat-body-strong">{{ 'ROLE.ASSIGN_ROLES' | translate }}</div>
 <table mat-table [dataSource]="dataSource" aria-labelledby="select-title">
   <ng-container matColumnDef="role">
     <th scope="col" mat-header-cell *matHeaderCellDef>role</th>
     <td mat-cell *matCellDef="let element">
-      {{ element | translate }}
+      {{ element.name | translate }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="icon">
     <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
     <td mat-cell *matCellDef="let element">
-      <fa-icon
-        role="button"
+      <button
+        color="accent"
+        mat-icon-button
+        *ngIf="!lookupSelectedRole[element.id]; else selectedIcon"
         [attr.aria-label]="'BUTTON.SELECT' | translate"
-        icon="plus"
-        class="num-fc--a pointer"
-        size="lg"
-        [fixedWidth]="true"
-        *ngIf="!lookupSelectedRole[element]; else selectedIcon"
         (click)="handleSelectClick(element)"
-      ></fa-icon>
+      >
+        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+      </button>
       <ng-template #selectedIcon>
-        <fa-icon
-          role="button"
+        <button
+          class="num-fc--d"
+          mat-icon-button
           [attr.aria-label]="'BUTTON.DESELECT' | translate"
-          icon="check"
-          class="num-fc--d pointer"
-          size="lg"
-          [fixedWidth]="true"
           (click)="handleDeselectClick(element)"
-        ></fa-icon>
+        >
+          <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
       </ng-template>
     </td>
   </ng-container>

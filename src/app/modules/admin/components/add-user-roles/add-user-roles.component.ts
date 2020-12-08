@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IEnumItem } from 'src/app/shared/models/enum-item.interface'
 
 @Component({
   selector: 'num-add-user-roles',
@@ -8,12 +9,15 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
   styleUrls: ['./add-user-roles.component.scss'],
 })
 export class AddUserRolesComponent implements OnInit {
-  readonly roles = Object.values(AvailableRoles)
+  readonly roles: IEnumItem<string>[] = Object.keys(AvailableRoles).map((key) => ({
+    id: key,
+    name: AvailableRoles[key],
+  }))
 
   @Input() selectedRoles: string[]
   @Output() selectedRolesChange = new EventEmitter<string[]>()
 
-  dataSource = new MatTableDataSource<string>()
+  dataSource = new MatTableDataSource<IEnumItem<string>>()
   displayedColumns: string[] = ['role', 'icon']
   lookupSelectedRole: { [id: string]: boolean } = {}
 
@@ -23,15 +27,15 @@ export class AddUserRolesComponent implements OnInit {
     this.dataSource.data = this.roles
   }
 
-  handleSelectClick(row: string): void {
-    this.lookupSelectedRole[row] = true
-    this.selectedRoles.push(row)
+  handleSelectClick(row: IEnumItem<string>): void {
+    this.lookupSelectedRole[row.id] = true
+    this.selectedRoles.push(row.id)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 
-  handleDeselectClick(row: string): void {
-    this.lookupSelectedRole[row] = false
-    this.selectedRoles = this.selectedRoles.filter((item) => item !== row)
+  handleDeselectClick(row: IEnumItem<string>): void {
+    this.lookupSelectedRole[row.id] = false
+    this.selectedRoles = this.selectedRoles.filter((item) => item !== row.id)
     this.selectedRolesChange.emit(this.selectedRoles)
   }
 }

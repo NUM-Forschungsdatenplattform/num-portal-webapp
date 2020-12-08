@@ -81,8 +81,10 @@
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname"
   },
-  "ASSIGN_ROLES": "Rollen zuweisen",
-  "RESEARCHER": "Wissenschaftler",
-  "ORGANIZATION_ADMIN": "Organisations-Administrator",
-  "STUDY_COORDINATOR": "Studienkoordinator"
+  "ROLE": {
+    "ASSIGN_ROLES": "Rollen zuweisen",
+    "RESEARCHER": "Wissenschaftler",
+    "ORGANIZATION_ADMIN": "Organisations-Administrator",
+    "STUDY_COORDINATOR": "Studienkoordinator"
+  }
 }

@@ -8,7 +8,10 @@ describe('AddUserRolesComponent', () => {
   let component: AddUserRolesComponent
   let fixture: ComponentFixture<AddUserRolesComponent>
 
-  const mockRole = 'TEST'
+  const mockRole = {
+    id: 'TEST',
+    name: 'ROLE.TEST',
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,18 +38,18 @@ describe('AddUserRolesComponent', () => {
     })
 
     it('should emit the selectedRoles array', () => {
-      expect(component.selectedRolesChange.emit).toHaveBeenCalledWith([mockRole])
+      expect(component.selectedRolesChange.emit).toHaveBeenCalledWith([mockRole.id])
     })
 
     it('should set the id key in the lookup to true', () => {
-      expect(component.lookupSelectedRole[mockRole]).toEqual(true)
+      expect(component.lookupSelectedRole[mockRole.id]).toEqual(true)
     })
   })
 
   describe('When the icon in the row is clicked to deselect a role', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedRolesChange, 'emit')
-      component.selectedRoles = [mockRole]
+      component.selectedRoles = [mockRole.id]
       component.handleDeselectClick(mockRole)
     })
 
@@ -55,7 +58,7 @@ describe('AddUserRolesComponent', () => {
     })
 
     it('should set the id key in the lookup to false', () => {
-      expect(component.lookupSelectedRole[mockRole]).toEqual(false)
+      expect(component.lookupSelectedRole[mockRole.id]).toEqual(false)
     })
   })
 })
