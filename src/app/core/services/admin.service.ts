@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Injectable({
@@ -45,6 +46,19 @@ export class AdminService {
 
     return this.httpClient
       .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  addUserOrganization(userId: string, organization: IOrganization): Observable<IOrganization> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+      responseType: 'text' as 'json',
+    }
+    return this.httpClient
+      .post<IOrganization>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

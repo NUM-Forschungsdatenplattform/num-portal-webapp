@@ -54,6 +54,18 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'admin',
     icon: 'users-cog',
     translationKey: 'NAVIGATION.USER_MANAGEMENT',
+    tabNav: [
+      {
+        routeTo: 'admin',
+        id: 'unapproved',
+        translationKey: 'NAVIGATION.UNAPPROVED_USERS',
+      },
+      {
+        routeTo: 'admin/users',
+        id: 'approved',
+        translationKey: 'NAVIGATION.APPROVED_USERS',
+      },
+    ],
   },
 ]
 

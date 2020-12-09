@@ -27,6 +27,8 @@
     "COHORTS": "Cohorts",
     "AQLS": "AQL Queries",
     "USER_MANAGEMENT": "User Management",
+    "UNAPPROVED_USERS": "Unapproved Users",
+    "APPROVED_USERS": "Approved Users",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out"
@@ -77,7 +79,6 @@
     "APPROVE_USER": "Approve User"
   },
   "USER": {
-    "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name"
   },
@@ -86,5 +87,6 @@
     "RESEARCHER": "Researcher",
     "ORGANIZATION_ADMIN": "Organization Administrator",
     "STUDY_COORDINATOR": "Study Coordinator"
-  }
+  },
+  "SEARCH_ORGANIZATIONS": "Search Organization"
 }
