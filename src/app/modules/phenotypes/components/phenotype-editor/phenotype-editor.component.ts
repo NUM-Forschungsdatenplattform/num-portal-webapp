@@ -37,9 +37,14 @@ export class PhenotypeEditorComponent implements OnInit {
       formValues.title,
       formValues.description
     )
-
-    this.phenotypeService.create(apiQuery).subscribe((result) => {
-      // TODO display message to the user
-    })
+    if (apiQuery.query) {
+      this.phenotypeService.create(apiQuery).subscribe((result) => {
+        // TODO display message to the user
+      })
+    } else {
+      // Only empty groups leads to null
+      // TODO: display message to the user
+      console.log('Query is invalid')
+    }
   }
 }

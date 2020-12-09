@@ -82,10 +82,12 @@ export class StudyEditorComponent implements OnInit {
     this.studyService.create(study).subscribe((studyResult) => {
       cohort.studyId = studyResult.id
       this.study.id = studyResult.id
-      this.cohortService.save(cohort).subscribe((cohortResult) => {
-        console.log(cohortResult)
-        // TODO display message to the user
-      })
+      if (cohort.cohortGroup) {
+        this.cohortService.save(cohort).subscribe((cohortResult) => {
+          console.log(cohortResult)
+          // TODO display message to the user
+        })
+      }
     })
   }
 
