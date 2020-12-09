@@ -1,6 +1,5 @@
 export enum ConnectorNodeType {
-  Group = 'group',
-  CohortGroup = 'GROUP',
+  Group = 'GROUP',
   Phenotype = 'PHENOTYPE',
-  Aql = 'aql',
+  Aql = 'AQL',
 }
