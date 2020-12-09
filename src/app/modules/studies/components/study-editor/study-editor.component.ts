@@ -81,14 +81,10 @@ export class StudyEditorComponent implements OnInit {
     const { study, cohort } = this.getStudyForApi()
     this.studyService.create(study).subscribe((studyResult) => {
       cohort.studyId = studyResult.id
-      study.id = studyResult.id
+      this.study.id = studyResult.id
       this.cohortService.save(cohort).subscribe((cohortResult) => {
-        study.cohortId = cohortResult.id
-        cohort.id = cohortResult.id
-        this.studyService.update(study, study.id).subscribe((studyUpdateResult) => {
-          console.log(studyUpdateResult)
-          // TODO display message to the user
-        })
+        console.log(cohortResult)
+        // TODO display message to the user
       })
     })
   }
