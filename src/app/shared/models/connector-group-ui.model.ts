@@ -4,7 +4,7 @@ import { IConnectorGroupApi } from './connectorGroupApi.interface'
 import { ConnectorMainNodeUi } from './connector-main-node-ui.interface'
 
 export abstract class ConnectorGroupUiModel {
-  abstract type: ConnectorNodeType.Group | ConnectorNodeType.CohortGroup
+  abstract type: ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
   children: (ConnectorGroupUiModel | ConnectorMainNodeUi)[]

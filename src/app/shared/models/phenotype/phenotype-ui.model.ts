@@ -20,7 +20,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   /** **used in the cohort definition** for flagging if all parameters are set */
   areParameterConfigured = true
   /** **used in the cohort definition** to set parameters */
-  parameter: { name: string; value?: string }[]
+  parameter: { name: string; value?: string }[] = []
 
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
 

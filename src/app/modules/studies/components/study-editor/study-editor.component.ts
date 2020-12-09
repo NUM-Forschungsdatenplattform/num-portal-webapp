@@ -77,18 +77,28 @@ export class StudyEditorComponent implements OnInit {
     return { study, cohort }
   }
 
-  save(): void {
+  saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
+    return this.cohortService.save(cohort).toPromise()
+  }
+
+  saveStudy(study: IStudyApi): Promise<IStudyApi> {
+    return this.studyService.create(study).toPromise()
+  }
+
+  async save(): Promise<void> {
     const { study, cohort } = this.getStudyForApi()
-    this.studyService.create(study).subscribe((studyResult) => {
-      cohort.studyId = studyResult.id
+    try {
+      const studyResult = await this.saveStudy(study)
       this.study.id = studyResult.id
       if (cohort.cohortGroup) {
-        this.cohortService.save(cohort).subscribe((cohortResult) => {
-          console.log(cohortResult)
-          // TODO display message to the user
-        })
+        cohort.studyId = studyResult.id
+        await this.saveCohort(cohort)
       }
-    })
+      // TODO: Display message to user
+    } catch (error) {
+      console.log(error)
+      // TODO: Display message to user
+    }
   }
 
   sendForApproval(): void {
