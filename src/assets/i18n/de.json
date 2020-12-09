@@ -55,6 +55,7 @@
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
+  "ASSIGN_ROLES": "Rollen zuweisen",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
@@ -83,7 +84,6 @@
     "LAST_NAME": "Nachname"
   },
   "ROLE": {
-    "ASSIGN_ROLES": "Rollen zuweisen",
     "RESEARCHER": "Wissenschaftler",
     "ORGANIZATION_ADMIN": "Organisations-Administrator",
     "STUDY_COORDINATOR": "Studienkoordinator"
