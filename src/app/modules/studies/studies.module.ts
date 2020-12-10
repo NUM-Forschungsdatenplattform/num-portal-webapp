@@ -14,6 +14,7 @@ import { DialogEditPhenotypeComponent } from './components/dialog-edit-phenotype
 import { DialogAddPhenotypesComponent } from './components/dialog-add-phenotypes/dialog-add-phenotypes.component'
 import { AddPhenotypesFilterTableComponent } from './components/add-phenotypes-filter-table/add-phenotypes-filter-table.component'
 import { AddPhenotypesPreviewComponent } from './components/add-phenotypes-preview/add-phenotypes-preview.component'
+import { StudiesTableComponent } from './components/studies-table/studies-table.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddPhenotypesPreviewComponent } from './components/add-phenotypes-previ
     DialogAddPhenotypesComponent,
     AddPhenotypesFilterTableComponent,
     AddPhenotypesPreviewComponent,
+    StudiesTableComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule],
 })

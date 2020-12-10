@@ -21,7 +21,7 @@ export class CohortsComponent implements OnInit {
       this.error = true
     } else {
       this.error = false
-      this.cohortService.executeCohort(this.cohortId).subscribe((size) => (this.cohortSize = size))
+      this.cohortService.getCohortSize(this.cohortId).subscribe((size) => (this.cohortSize = size))
     }
   }
 }

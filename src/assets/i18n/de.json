@@ -56,13 +56,15 @@
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
     "DESCRIPTION": "Beschreibung",
-    "PRIMARY_HYPOTHESIS": "Primäre Hypothese",
-    "SECONDARY_HYPOTHESIS": "Sekundäre Hypothese",
+    "FIRST_HYPOTHESES": "Primäre Hypothese",
+    "SECOND_HYPOTHESES": "Sekundäre Hypothese",
     "AUTHOR": "Autor",
     "CHARACTERS": "Zeichen"
   },
   "BUTTON": {
+    "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
+    "REQUEST_APPROVAL": "Genehmigung anfragen",
     "APPLY_SELECTION": "Auswahl Übernehmen",
     "DELETE_FROM_LIST": "Aus Liste löschen",
     "CONFIRM_CHANGES": "Änderungen übernehmen",
