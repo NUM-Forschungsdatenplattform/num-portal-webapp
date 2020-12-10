@@ -5,7 +5,7 @@ import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
 import { fakeAsync, flushMicrotasks, tick } from '@angular/core/testing'
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 
 describe('AqlService', () => {
   let service: AqlService
@@ -75,7 +75,7 @@ describe('AqlService', () => {
         filterChips: [],
         searchText: 'name1',
       }
-      let filterResult: IAql[]
+      let filterResult: IAqlApi[]
       const callHelper = jest.fn((result) => (filterResult = result))
       service.filteredAqlsObservable$.subscribe(callHelper)
 

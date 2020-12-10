@@ -1,0 +1,24 @@
+<section fxLayout="column">
+  <h2>{{ 'CREATE_AQL' | translate }}</h2>
+  <p class="num-margin-b-40">
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+    mus.
+  </p>
+  <num-aql-editor-general-info
+    [form]="aqlForm"
+    class="num-margin-b-40"
+  ></num-aql-editor-general-info>
+
+  <num-aql-editor-creator></num-aql-editor-creator>
+
+  <section role="region" fxLayout="column">
+    <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+    <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+      <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
+      <num-button type="primary" (click)="save()" [isDisabled]="!aqlForm.valid">{{
+        'BUTTON.SAVE_QUERY' | translate
+      }}</num-button>
+    </div>
+  </section>
+</section>

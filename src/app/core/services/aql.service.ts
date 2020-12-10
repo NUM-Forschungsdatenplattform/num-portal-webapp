@@ -5,7 +5,7 @@ import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../constants/default-filter-aql'
 import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
-import { IAql } from '../../shared/models/aql/aql.interface'
+import { IAqlApi } from '../../shared/models/aql/aql.interface'
 import { environment } from '../../../environments/environment'
 
 @Injectable({
@@ -16,11 +16,11 @@ export class AqlService {
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
 
-  private aqls: IAql[] = []
+  private aqls: IAqlApi[] = []
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
   public aqlsObservable$ = this.aqlsSubject$.asObservable()
 
-  private filteredAqls: IAql[] = []
+  private filteredAqls: IAqlApi[] = []
   private filteredAqlsSubject$ = new BehaviorSubject(this.filteredAqls)
   public filteredAqlsObservable$ = this.filteredAqlsSubject$.asObservable()
 
@@ -38,8 +38,8 @@ export class AqlService {
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
   }
 
-  getAll(): Observable<IAql[]> {
-    return this.httpClient.get<IAql[]>(this.baseUrl).pipe(
+  getAll(): Observable<IAqlApi[]> {
+    return this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
       tap((aqls) => {
         this.aqls = aqls
         this.aqlsSubject$.next(aqls)
@@ -48,11 +48,32 @@ export class AqlService {
     )
   }
 
+  get(id: number): Observable<IAqlApi> {
+    let result: IAqlApi
+    if (this.aqls.length) {
+      result = this.aqls.find((aql) => aql.id === id)
+    }
+
+    if (!result) {
+      return this.getAll().pipe(
+        map((aqlsArray) => {
+          const searchResult = aqlsArray.find((aql) => aql.id === id)
+          if (searchResult) {
+            return searchResult
+          }
+          throw new Error('Not Found')
+        })
+      )
+    }
+
+    return of(result)
+  }
+
   setFilter(filterSet: IAqlFilter): void {
     this.filterConfigSubject$.next(filterSet)
   }
 
-  private getFilterResult$(filterSet: IAqlFilter): Observable<IAql[]> {
+  private getFilterResult$(filterSet: IAqlFilter): Observable<IAqlApi[]> {
     if (this.aqls.length) {
       return of(this.filterItems(this.aqls, filterSet))
     } else {
@@ -64,8 +85,8 @@ export class AqlService {
     }
   }
 
-  filterItems(allAqls: IAql[], filterSet: IAqlFilter): IAql[] {
-    let result: IAql[] = allAqls
+  filterItems(allAqls: IAqlApi[], filterSet: IAqlFilter): IAqlApi[] {
+    let result: IAqlApi[] = allAqls
 
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toUpperCase()
