@@ -20,7 +20,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: ['Study Coordinator'],
+      roles: ['STUDY_COORDINATOR'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -32,7 +32,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
+      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
     },
     loadChildren: () =>
       import(
@@ -44,7 +44,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'cohorts',
-      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
+      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module').then(
@@ -56,7 +56,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: ['Organization Admin', 'Study Coordinator', 'Researcher'],
+      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
@@ -68,7 +68,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'admin',
-      roles: ['Organization Admin'],
+      roles: ['ORGANIZATION_ADMIN'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(

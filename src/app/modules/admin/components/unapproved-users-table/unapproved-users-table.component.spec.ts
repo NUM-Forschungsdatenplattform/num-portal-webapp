@@ -5,8 +5,12 @@ import { UnapprovedUsersTableComponent } from './unapproved-users-table.componen
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { mockUnapprovedUsers } from 'src/mocks/data-mocks/admin.mock'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { mockUnapprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { IUser } from 'src/app/shared/models/user/user.interface'
+import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
+import { ADD_DIALOG_CONFIG } from './constants'
+import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
+import { DialogService } from 'src/app/core/services/dialog.service'
 
 describe('UnapprovedUsersTableComponent', () => {
   let component: UnapprovedUsersTableComponent
@@ -18,6 +22,15 @@ describe('UnapprovedUsersTableComponent', () => {
     getUnapprovedUsers: () => of(),
   } as AdminService
 
+  const afterClosedSubject$ = new Subject()
+  const mockDialogService = ({
+    openDialog: jest.fn().mockImplementation((_: any) => {
+      return {
+        afterClosed: () => afterClosedSubject$.asObservable(),
+      }
+    }),
+  } as unknown) as DialogService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UnapprovedUsersTableComponent],
@@ -27,6 +40,7 @@ describe('UnapprovedUsersTableComponent', () => {
           provide: AdminService,
           useValue: adminService,
         },
+        { provide: DialogService, useValue: mockDialogService },
       ],
     }).compileComponents()
   })
@@ -46,6 +60,21 @@ describe('UnapprovedUsersTableComponent', () => {
       unapprovedUsersSubject$.next(mockUnapprovedUsers)
       fixture.detectChanges()
       expect(component.dataSource.data).toBe(mockUnapprovedUsers)
+    })
+  })
+
+  describe('When user row is clicked', () => {
+    const dialogConfig: DialogConfig = {
+      ...ADD_DIALOG_CONFIG,
+      dialogContentComponent: DialogAddUserDetailsComponent,
+      dialogContentPayload: mockUser,
+    }
+    beforeEach(() => {
+      fixture.detectChanges()
+    })
+    it('should call the dialog service with the dialogConfig to open the edit dialog', () => {
+      component.handleRowClick(mockUser)
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
     })
   })
 })

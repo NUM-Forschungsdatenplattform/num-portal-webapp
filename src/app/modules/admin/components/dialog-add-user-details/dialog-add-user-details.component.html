@@ -1,0 +1,18 @@
+<table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
+  <tbody>
+    <tr>
+      <th scope="row">Name:</th>
+      <td>{{ userDetails.firstName }} {{ userDetails.lastName }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Email:</th>
+      <td>
+        {{ userDetails.email }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<mat-card class="filter-area mat-elevation-z4">
+  <num-add-user-roles [(selectedRoles)]="roles"></num-add-user-roles>
+</mat-card>

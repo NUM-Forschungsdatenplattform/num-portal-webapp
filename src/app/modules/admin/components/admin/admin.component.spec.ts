@@ -6,7 +6,7 @@ import { AdminService } from 'src/app/core/services/admin.service'
 import { AdminComponent } from './admin.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { Component } from '@angular/core'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 
 describe('AdminComponent', () => {
   let component: AdminComponent

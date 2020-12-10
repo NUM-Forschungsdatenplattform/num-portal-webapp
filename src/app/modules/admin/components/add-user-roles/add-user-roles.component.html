@@ -1,0 +1,37 @@
+<div id="select-title" class="mat-body-strong">{{ 'ASSIGN_ROLES' | translate }}</div>
+<table mat-table [dataSource]="dataSource" aria-labelledby="select-title">
+  <ng-container matColumnDef="role">
+    <th scope="col" mat-header-cell *matHeaderCellDef>role</th>
+    <td mat-cell *matCellDef="let element">
+      {{ 'ROLE.' + element | translate }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="icon">
+    <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        color="accent"
+        mat-icon-button
+        *ngIf="!lookupSelectedRole[element]; else selectedIcon"
+        [attr.aria-label]="'BUTTON.SELECT' | translate"
+        (click)="handleSelectClick(element)"
+      >
+        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+      </button>
+      <ng-template #selectedIcon>
+        <button
+          class="num-fc--d"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.DESELECT' | translate"
+          (click)="handleDeselectClick(element)"
+        >
+          <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
+  <tr class="num-mat-table-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

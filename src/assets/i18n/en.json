@@ -45,6 +45,7 @@
   "ALL_AQLS": "All AQLs",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
+  "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
@@ -52,6 +53,7 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
+  "ASSIGN_ROLES": "Assign Roles",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
@@ -74,11 +76,17 @@
     "DELETE_GROUP": "Delete group",
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SELECT": "Select",
-    "DESELECT": "Deselect"
+    "DESELECT": "Deselect",
+    "APPROVE_USER": "Approve User"
   },
   "USER": {
     "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name"
+  },
+  "ROLE": {
+    "RESEARCHER": "Researcher",
+    "ORGANIZATION_ADMIN": "Organization Administrator",
+    "STUDY_COORDINATOR": "Study Coordinator"
   }
 }
