@@ -26,6 +26,8 @@
     "PHENOTYPES_EDITOR": "Phenotype Editor",
     "COHORTS": "Cohorts",
     "AQLS": "AQL Queries",
+    "AQLS_OVERVIEW": "AQL Queries",
+    "AQLS_EDITOR": "AQL Editor",
     "USER_MANAGEMENT": "User Management",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
@@ -38,6 +40,7 @@
   },
   "SEARCH_PHENOTYPES": "Search Phenotype",
   "CREATE_PHENOTYPE": "Create Phenotype",
+  "CREATE_AQL": "Create AQL Query",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "SEARCH_AQLS": "AQL search",
   "MY_AQLS": "My AQLs",
@@ -48,6 +51,8 @@
   "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
+  "AVAILABLE_AQLS": "Available AQL Queries",
+  "BUILD_QUERY": "Build the Query",
   "CONNECT_AQL": "Assemble AQL Queries",
   "DEFINE_COHORT": "Define Cohort",
   "MAIN_GROUP": "Maingroup",
@@ -61,7 +66,11 @@
     "FIRST_HYPOTHESES": "Primary Hypothesis",
     "SECOND_HYPOTHESES": "Secondary Hypothesis",
     "AUTHOR": "Author",
-    "CHARACTERS": "Characters"
+    "CHARACTERS": "Characters",
+    "PURPOSE": "Purpose",
+    "USE": "Use",
+    "PUBLIC_CHECKBOX": "AQL query is for public use",
+    "NO_EDIT_LATER": "(cannot be edited later)"
   },
   "BUTTON": {
     "SAVE": "Save",
@@ -75,6 +84,7 @@
     "ADD_GROUP": "Add group",
     "DELETE_GROUP": "Delete group",
     "CREATE_PHENOTYPE": "Create Phenotype",
+    "SAVE_QUERY": "Save AQL Query",
     "SELECT": "Select",
     "DESELECT": "Deselect",
     "APPROVE_USER": "Approve User"

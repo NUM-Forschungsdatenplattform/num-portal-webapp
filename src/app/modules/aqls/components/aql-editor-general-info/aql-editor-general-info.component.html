@@ -1,0 +1,62 @@
+<section
+  role="region"
+  aria-labelledby="general-info-label"
+  fxLayout="column"
+  fxFlex="100%"
+  fxLayoutGap="20px"
+>
+  <h3>{{ 'FORM.GENERAL_INFO' | translate }}</h3>
+
+  <mat-card>
+    <mat-card-content fxLayout="column" fxFlex="100%">
+      <p id="general-info-label">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus.
+      </p>
+
+      <form fxLayout="column" [formGroup]="form">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}*</mat-label>
+          <input
+            formControlName="title"
+            matInput
+            placeholder="Title"
+            aria-labelledby="title-label"
+          />
+        </mat-form-field>
+
+        <section role="presentation" fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+            <mat-label id="label-purpose">{{ 'FORM.PURPOSE' | translate }}*</mat-label>
+            <textarea
+              formControlName="purpose"
+              #textarea
+              matInput
+              style="resize: none"
+              aria-labelledby="label-purpose"
+              rows="10"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+            <mat-label id="label-use">{{ 'FORM.USE' | translate }}*</mat-label>
+            <textarea
+              formControlName="use"
+              #textarea
+              matInput
+              style="resize: none"
+              aria-labelledby="label-use"
+              rows="10"
+            ></textarea>
+          </mat-form-field>
+        </section>
+
+        <mat-checkbox id="isPublic" color="accent" formControlName="isPublic">{{
+          'FORM.PUBLIC_CHECKBOX' | translate
+        }}</mat-checkbox>
+        <mat-hint>{{ 'FORM.NO_EDIT_LATER' | translate }}</mat-hint>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

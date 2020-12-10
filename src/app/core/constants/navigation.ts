@@ -49,6 +49,18 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'aqls',
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',
+    tabNav: [
+      {
+        routeTo: 'aqls',
+        id: 'overview',
+        translationKey: 'NAVIGATION.AQLS_OVERVIEW',
+      },
+      {
+        routeTo: 'aqls/new/editor',
+        id: 'editor',
+        translationKey: 'NAVIGATION.AQLS_EDITOR',
+      },
+    ],
   },
   {
     routeTo: 'admin',
