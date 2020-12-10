@@ -51,7 +51,7 @@
   "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
-  "AVAILABLE_AQLS": "Verfügbare AQL-Queries",
+  "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
   "BUILD_QUERY": "Abfrage erstellen",
   "CONNECT_AQL": "AQL Abfragen zusammenstellen",
   "DEFINE_COHORT": "Kohorte definieren",
