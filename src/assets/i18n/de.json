@@ -46,12 +46,17 @@
   "SELECTED_AQLS": "Ausgewählte AQL-Queries",
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
+  "SELECT_RESEARCHERS": "Ausgewählte Forscher",
+  "SEARCH_RESEARCHERS": "Phänotypen suchen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "CONNECT_AQL": "AQL Abfragen zusammenstellen",
   "DEFINE_COHORT": "Kohorte definieren",
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
+  "RESEARCHERS": {
+    "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
+  },
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
@@ -78,6 +83,7 @@
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
-    "LAST_NAME": "Nachname"
+    "LAST_NAME": "Nachname",
+    "NAME": "Name"
   }
 }

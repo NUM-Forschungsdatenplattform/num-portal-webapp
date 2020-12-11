@@ -45,6 +45,8 @@
   "ALL_AQLS": "All AQLs",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
+  "SELECT_RESEARCHERS": "Select Researchers",
+  "SEARCH_RESEARCHERS": "Search Researchers",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
@@ -52,6 +54,9 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
+  "RESEARCHERS": {
+    "PLEASE_SELECT_AT_LEAST_1_PERSON": "Please select at least 1 person"
+  },
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
@@ -78,6 +83,7 @@
   "USER": {
     "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
-    "LAST_NAME": "Last name"
+    "LAST_NAME": "Last name",
+    "NAME": "Name"
   }
 }

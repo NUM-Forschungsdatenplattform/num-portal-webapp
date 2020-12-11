@@ -11,6 +11,10 @@ import { IUser } from 'src/app/shared/models/admin/user.interface'
 export class AdminService {
   private baseUrl: string
 
+  private approvedUsers: IUser[] = []
+  private approvedUsersSubject$ = new BehaviorSubject(this.approvedUsers)
+  public approvedUsersObservable$ = this.approvedUsersSubject$.asObservable()
+
   private unapprovedUsers: IUser[] = []
   private unapprovedUsersSubject$ = new BehaviorSubject(this.unapprovedUsers)
   public unapprovedUsersObservable$ = this.unapprovedUsersSubject$.asObservable()
@@ -23,6 +27,15 @@ export class AdminService {
     return this.httpClient
       .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}`)
       .pipe(catchError(this.handleError))
+  }
+
+  getApprovedUsers(): Observable<IUser[]> {
+    return this.getUsers(true).pipe(
+      tap((users) => {
+        this.approvedUsers = users
+        this.approvedUsersSubject$.next(users)
+      })
+    )
   }
 
   getUnapprovedUsers(): Observable<IUser[]> {

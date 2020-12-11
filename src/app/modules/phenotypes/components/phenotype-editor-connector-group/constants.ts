@@ -21,3 +21,13 @@ export const ADD_DIALOG_CONFIG: DialogConfig = {
   dialogContentComponent: undefined,
   dialogContentPayload: undefined,
 }
+
+export const ADD_RESEARCHERS_DIALOG_CONFIG: DialogConfig = {
+  title: 'SELECT_RESEARCHERS',
+  confirmButtonText: 'BUTTON.APPLY_SELECTION',
+  cancelButtonText: 'BUTTON.CANCEL',
+  dialogSize: DialogSize.Medium,
+
+  dialogContentComponent: undefined,
+  dialogContentPayload: undefined,
+}

@@ -1,6 +1,6 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <h3 class="accordion">Select Researchers</h3>
+    <h3 class="accordion">{{ 'SELECT_RESEARCHERS' | translate }}</h3>
   </mat-expansion-panel-header>
 
   <section
@@ -16,7 +16,15 @@
       mus.
     </div>
 
-    <mat-card> No researchers selected yet. </mat-card>
+    <mat-card>
+      <div *ngIf="studyResearchers.length === 0">No researchers selected yet.</div>
+      <mat-list else>
+        <mat-list-item *ngFor="let researcher of studyResearchers; last as last">
+          {{ researcher.firstName }} {{ researcher.lastName }}
+          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
 
     <num-button type="primary" icon="plus" (click)="addResearchers()">
       {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
