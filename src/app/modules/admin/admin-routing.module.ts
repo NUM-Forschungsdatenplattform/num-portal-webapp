@@ -9,14 +9,14 @@ const routes: Routes = [
     path: 'all',
     component: ApprovedUsersComponent,
     data: {
-      tabNavId: 'all',
+      tabNavId: 'approved',
     },
   },
   {
     path: '',
     component: AdminComponent,
     data: {
-      tabNavId: 'new',
+      tabNavId: 'unapproved',
     },
   },
 ]

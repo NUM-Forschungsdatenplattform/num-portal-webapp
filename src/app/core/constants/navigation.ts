@@ -57,12 +57,12 @@ export const mainNavItems: INavItem[] = [
     tabNav: [
       {
         routeTo: 'users',
-        id: 'new',
+        id: 'unapproved',
         translationKey: 'NAVIGATION.NEW_USERS',
       },
       {
         routeTo: 'users/all',
-        id: 'all',
+        id: 'approved',
         translationKey: 'NAVIGATION.ALL_USERS',
       },
     ],

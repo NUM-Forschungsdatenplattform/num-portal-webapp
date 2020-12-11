@@ -82,7 +82,7 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SELECT": "Select",
     "DESELECT": "Deselect",
-    "SAVE": "Speichern"
+    "SAVE": "Save"
   },
   "USER": {
     "FIRST_NAME": "First name",

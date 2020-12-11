@@ -5,7 +5,7 @@ export const ADD_DIALOG_CONFIG: DialogConfig = {
   title: 'EDIT_USER_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.SAVE',
   cancelButtonText: 'BUTTON.CANCEL',
-  dialogSize: DialogSize.Small,
+  dialogSize: DialogSize.Medium,
 
   dialogContentComponent: undefined,
   dialogContentPayload: undefined,

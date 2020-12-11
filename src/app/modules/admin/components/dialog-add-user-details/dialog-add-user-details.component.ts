@@ -24,14 +24,12 @@ export class DialogAddUserDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.dialogInput)
     this.userDetails = this.dialogInput
     this.organizationService.getAll().subscribe()
   }
 
   handleDialogConfirm(): void {
-    console.log(this.roles, this.organization)
-
+    // TODO: Adapt to new add Roles method when implemented in the backend
     this.roles.forEach((role) => {
       this.adminService.addUserRoles(this.dialogInput.id, role).subscribe()
     })
