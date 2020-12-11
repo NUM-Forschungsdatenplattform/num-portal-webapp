@@ -15,6 +15,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faUsersCog } from '@fortawesome/free-solid-svg-icons'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
   faTh,
@@ -34,4 +35,5 @@ export const FONT_AWESOME_ICONS = [
   faCheck,
   faTrash,
   faUsersCog,
+  faPencilAlt,
 ]

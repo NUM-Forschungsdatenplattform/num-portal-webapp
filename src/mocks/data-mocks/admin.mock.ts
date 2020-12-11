@@ -12,7 +12,7 @@ export const mockUser: IUser = {
   username: 'mock-user-1',
 }
 
-export const mockUnapprovedUsers: IUser[] = [
+export const mockUsers: IUser[] = [
   {
     approved: false,
     email: 'mockUser1@gmail.com',

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
+import { OrganizationService } from 'src/app/core/services/organization.service'
+import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
@@ -12,17 +14,28 @@ export class DialogAddUserDetailsComponent implements OnInit {
   dialogInput: IUser
   userDetails: IUser
   roles: string[] = []
+  organization: IOrganization = {
+    id: '',
+  }
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private organizationService: OrganizationService
+  ) {}
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput
+    this.organizationService.getAll().subscribe()
   }
 
   handleDialogConfirm(): void {
+    // TODO: Adapt to new add Roles method when implemented in the backend
     this.roles.forEach((role) => {
       this.adminService.addUserRoles(this.dialogInput.id, role).subscribe()
     })
+
+    this.adminService.addUserOrganization(this.dialogInput.id, this.organization).subscribe()
+
     this.closeDialog.emit()
   }
 

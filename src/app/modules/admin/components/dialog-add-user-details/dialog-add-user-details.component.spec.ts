@@ -3,10 +3,15 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
+import { OrganizationService } from 'src/app/core/services/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { SearchComponent } from 'src/app/shared/components/search/search.component'
+import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { DialogAddUserDetailsComponent } from './dialog-add-user-details.component'
 
@@ -14,13 +19,27 @@ describe('DialogAddUserDetailsComponent', () => {
   let component: DialogAddUserDetailsComponent
   let fixture: ComponentFixture<DialogAddUserDetailsComponent>
 
-  const adminService = {
+  const organizationsSubject$ = new Subject<IOrganization>()
+
+  const adminService = ({
     addUserRoles: (userId: string, role: string) => of(),
-  } as AdminService
+    addUserOrganization: (userId: string, organization: string) => of(),
+  } as unknown) as AdminService
+
+  const organizationService = ({
+    organizationsObservable$: organizationsSubject$.asObservable(),
+    getAll: () => of(mockOrganizations),
+    setFilter: () => {},
+  } as unknown) as OrganizationService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddUserDetailsComponent, AddUserRolesComponent],
+      declarations: [
+        DialogAddUserDetailsComponent,
+        AddUserRolesComponent,
+        AddUserOrganizationComponent,
+        SearchComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
@@ -33,6 +52,10 @@ describe('DialogAddUserDetailsComponent', () => {
           provide: AdminService,
           useValue: adminService,
         },
+        {
+          provide: OrganizationService,
+          useValue: organizationService,
+        },
       ],
     }).compileComponents()
   })
@@ -42,8 +65,9 @@ describe('DialogAddUserDetailsComponent', () => {
     component = fixture.componentInstance
     component.dialogInput = mockUser
     fixture.detectChanges()
-    jest.spyOn(adminService, 'addUserRoles')
     jest.spyOn(component.closeDialog, 'emit')
+    jest.spyOn(adminService, 'addUserRoles')
+    jest.spyOn(adminService, 'addUserOrganization')
   })
 
   it('should create', () => {
@@ -69,6 +93,18 @@ describe('DialogAddUserDetailsComponent', () => {
 
     it('should call addUserRoles with userId for each role', () => {
       expect(adminService.addUserRoles).toHaveBeenCalledTimes(3)
+    })
+  })
+
+  describe('When an organization is assigned and the dialog is confirmed', () => {
+    beforeEach(() => {
+      component.organization = mockOrganization1
+      component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should call addUserOrganization with userId', () => {
+      expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization1)
     })
   })
 })

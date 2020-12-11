@@ -1,0 +1,18 @@
+@mixin general_select_themed($theme) {
+  $accent: map-get($theme, accent);
+
+  .mat-option {
+    &--active,
+    &--selected {
+      background: mat-color($accent, 50);
+    }
+
+    &:hover {
+      background: mat-color($accent, 100) !important;
+    }
+
+    &:focus {
+      background: mat-color($accent, 200) !important;
+    }
+  }
+}

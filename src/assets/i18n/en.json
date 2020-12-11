@@ -27,6 +27,8 @@
     "COHORTS": "Cohorts",
     "AQLS": "AQL Queries",
     "USER_MANAGEMENT": "User Management",
+    "NEW_USERS": "New Users",
+    "ALL_USERS": "All Users",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out"
@@ -45,7 +47,6 @@
   "ALL_AQLS": "All AQLs",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
-  "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "CONNECT_AQL": "Assemble AQL Queries",
@@ -53,7 +54,13 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
-  "ASSIGN_ROLES": "Assign Roles",
+  "EDIT_USER_DIALOG_HEADER": "Edit User",
+  "ASSIGN_ROLES": "Assign user role(s)",
+  "ASSIGN_ORGANIZATION": "Assign user to an organization",
+  "EDIT_USER_TEXT": "The user will be informed about the approval by e-mail.",
+  "SELECT_ORGANIZATION": "Select Organization",
+  "ACTION": "Action",
+  "REGISTER_DATE": "Register Date",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
@@ -75,10 +82,9 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SELECT": "Select",
     "DESELECT": "Deselect",
-    "APPROVE_USER": "Approve User"
+    "SAVE": "Save"
   },
   "USER": {
-    "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name"
   },
@@ -86,5 +92,8 @@
     "RESEARCHER": "Researcher",
     "ORGANIZATION_ADMIN": "Organization Administrator",
     "STUDY_COORDINATOR": "Study Coordinator"
-  }
+  },
+  "SEARCH_ORGANIZATIONS": "Search Organization",
+  "MANAGE_NEW_USERS": "Manage New Users",
+  "MANAGE_ALL_USERS": "Manage All Users"
 }
