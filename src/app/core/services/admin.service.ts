@@ -16,6 +16,10 @@ export class AdminService {
   private unapprovedUsersSubject$ = new BehaviorSubject(this.unapprovedUsers)
   public unapprovedUsersObservable$ = this.unapprovedUsersSubject$.asObservable()
 
+  private approvedUsers: IUser[] = []
+  private approvedUsersSubject$ = new BehaviorSubject(this.approvedUsers)
+  public approvedUsersObservable$ = this.approvedUsersSubject$.asObservable()
+
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin`
   }
@@ -31,6 +35,15 @@ export class AdminService {
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
+      })
+    )
+  }
+
+  getApprovedUsers(): Observable<IUser[]> {
+    return this.getUsers(true).pipe(
+      tap((users) => {
+        this.approvedUsers = users
+        this.approvedUsersSubject$.next(users)
       })
     )
   }

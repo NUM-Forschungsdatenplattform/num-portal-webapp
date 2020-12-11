@@ -51,19 +51,19 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.AQLS',
   },
   {
-    routeTo: 'admin',
+    routeTo: 'users',
     icon: 'users-cog',
     translationKey: 'NAVIGATION.USER_MANAGEMENT',
     tabNav: [
       {
-        routeTo: 'admin',
-        id: 'unapproved',
-        translationKey: 'NAVIGATION.UNAPPROVED_USERS',
+        routeTo: 'users',
+        id: 'new',
+        translationKey: 'NAVIGATION.NEW_USERS',
       },
       {
-        routeTo: 'admin/users',
-        id: 'approved',
-        translationKey: 'NAVIGATION.APPROVED_USERS',
+        routeTo: 'users/all',
+        id: 'all',
+        translationKey: 'NAVIGATION.ALL_USERS',
       },
     ],
   },

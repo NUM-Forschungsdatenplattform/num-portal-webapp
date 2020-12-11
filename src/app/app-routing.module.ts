@@ -64,10 +64,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'admin',
+    path: 'users',
     canLoad: [RoleGuard],
     data: {
-      navId: 'admin',
+      navId: 'users',
       roles: ['ORGANIZATION_ADMIN'],
     },
     loadChildren: () =>

@@ -3,12 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of, Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
-import { IOrganizationFilter } from 'src/app/shared/models/user/organization-filter.interface'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
@@ -20,8 +19,7 @@ describe('DialogAddUserDetailsComponent', () => {
   let component: DialogAddUserDetailsComponent
   let fixture: ComponentFixture<DialogAddUserDetailsComponent>
 
-  const filteredOrganizationsSubject$ = new Subject<IOrganization>()
-  const filterConfigSubject$ = new BehaviorSubject<IOrganizationFilter>({ searchText: '' })
+  const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = ({
     addUserRoles: (userId: string, role: string) => of(),
@@ -29,8 +27,7 @@ describe('DialogAddUserDetailsComponent', () => {
   } as unknown) as AdminService
 
   const organizationService = ({
-    filteredOrganizationsObservable$: filteredOrganizationsSubject$.asObservable(),
-    filterConfigObservable$: filterConfigSubject$.asObservable(),
+    organizationsObservable$: organizationsSubject$.asObservable(),
     getAll: () => of(mockOrganizations),
     setFilter: () => {},
   } as unknown) as OrganizationService
@@ -71,10 +68,9 @@ describe('DialogAddUserDetailsComponent', () => {
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(adminService, 'addUserRoles')
     jest.spyOn(adminService, 'addUserOrganization')
-    jest.spyOn(organizationService, 'setFilter')
   })
 
-  it('should create and call getAll() Organizations', () => {
+  it('should create', () => {
     expect(component).toBeTruthy()
   })
 
@@ -109,16 +105,6 @@ describe('DialogAddUserDetailsComponent', () => {
 
     it('should call addUserOrganization with userId', () => {
       expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization1)
-    })
-  })
-
-  describe('When an organization is searched', () => {
-    beforeEach(() => {
-      component.handleSearchChange()
-    })
-
-    it('should set the filter in the aqlService on searchChange', () => {
-      expect(organizationService.setFilter).toHaveBeenCalledWith(component.filterConfig)
     })
   })
 })

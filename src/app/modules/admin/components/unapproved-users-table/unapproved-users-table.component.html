@@ -1,10 +1,21 @@
-<h3 id="unapproved-users-header">{{ 'NAVIGATION.UNAPPROVED_USERS' | translate }}</h3>
+<h3 id="unapproved-users-header">{{ 'NAVIGATION.NEW_USERS' | translate }}</h3>
 
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
   <table mat-table [dataSource]="dataSource" matSort aria-labelledby="unapproved-users-header">
-    <ng-container matColumnDef="id">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <ng-container matColumnDef="icon">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'ACTION' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          color="accent"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          (click)="handleSelectClick(element)"
+        >
+          <fa-icon icon="pencil-alt" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="firstName">
@@ -26,8 +37,15 @@
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="registerDate">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'REGISTER_DATE' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.registerDate }}</td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr (click)="handleRowClick(row)" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>

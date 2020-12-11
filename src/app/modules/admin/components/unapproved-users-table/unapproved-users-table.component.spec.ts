@@ -5,12 +5,13 @@ import { UnapprovedUsersTableComponent } from './unapproved-users-table.componen
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { mockUnapprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
 import { DialogService } from 'src/app/core/services/dialog.service'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 describe('UnapprovedUsersTableComponent', () => {
   let component: UnapprovedUsersTableComponent
@@ -34,7 +35,12 @@ describe('UnapprovedUsersTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UnapprovedUsersTableComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule,
+        FontAwesomeTestingModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AdminService,
@@ -57,13 +63,13 @@ describe('UnapprovedUsersTableComponent', () => {
 
   describe('When unapproved users are received by the component', () => {
     it('should set them into the datasource.data', () => {
-      unapprovedUsersSubject$.next(mockUnapprovedUsers)
+      unapprovedUsersSubject$.next(mockUsers)
       fixture.detectChanges()
-      expect(component.dataSource.data).toBe(mockUnapprovedUsers)
+      expect(component.dataSource.data).toBe(mockUsers)
     })
   })
 
-  describe('When user row is clicked', () => {
+  describe('When an icon in a row is clicked', () => {
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
       dialogContentComponent: DialogAddUserDetailsComponent,
@@ -73,7 +79,7 @@ describe('UnapprovedUsersTableComponent', () => {
       fixture.detectChanges()
     })
     it('should call the dialog service with the dialogConfig to open the edit dialog', () => {
-      component.handleRowClick(mockUser)
+      component.handleSelectClick(mockUser)
       expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
     })
   })

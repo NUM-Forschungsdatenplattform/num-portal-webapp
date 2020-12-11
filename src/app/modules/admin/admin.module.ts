@@ -9,7 +9,7 @@ import { UnapprovedUsersTableComponent } from './components/unapproved-users-tab
 import { DialogAddUserDetailsComponent } from './components/dialog-add-user-details/dialog-add-user-details.component'
 import { AddUserRolesComponent } from './components/add-user-roles/add-user-roles.component'
 import { AddUserOrganizationComponent } from './components/add-user-organization/add-user-organization.component'
-import { ApprovedUsersTableComponent } from './components/approved-users-table/approved-users-table.component'
+import { ApprovedUsersComponent } from './components/approved-users/approved-users.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { ApprovedUsersTableComponent } from './components/approved-users-table/a
     DialogAddUserDetailsComponent,
     AddUserRolesComponent,
     AddUserOrganizationComponent,
-    ApprovedUsersTableComponent,
+    ApprovedUsersComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, LayoutModule],
 })

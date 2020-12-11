@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 
 import { AdminComponent } from './components/admin/admin.component'
-import { ApprovedUsersTableComponent } from './components/approved-users-table/approved-users-table.component'
+import { ApprovedUsersComponent } from './components/approved-users/approved-users.component'
 
 const routes: Routes = [
   {
-    path: 'users',
-    component: ApprovedUsersTableComponent,
+    path: 'all',
+    component: ApprovedUsersComponent,
     data: {
-      tabNavId: 'approved',
+      tabNavId: 'all',
     },
   },
   {
     path: '',
     component: AdminComponent,
     data: {
-      tabNavId: 'unapproved',
+      tabNavId: 'new',
     },
   },
 ]

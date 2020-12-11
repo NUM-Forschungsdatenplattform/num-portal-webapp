@@ -1,3 +1,4 @@
+<p>{{ 'EDIT_USER_TEXT' | translate }}</p>
 <table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
   <tbody>
     <tr>
@@ -14,11 +15,6 @@
 </table>
 
 <mat-card class="filter-area mat-elevation-z4">
-  <num-search
-    label="SEARCH_ORGANIZATIONS"
-    [(searchText)]="filterConfig.searchText"
-    (searchTextChange)="handleSearchChange()"
-  ></num-search>
   <num-add-user-organization [(selectedOrganization)]="organization"></num-add-user-organization>
 </mat-card>
 
