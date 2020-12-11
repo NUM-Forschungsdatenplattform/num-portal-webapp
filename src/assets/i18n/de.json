@@ -26,6 +26,8 @@
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
     "COHORTS": "Kohorten",
     "AQLS": "AQL Queries",
+    "AQLS_OVERVIEW": "AQL Abfragen",
+    "AQLS_EDITOR": "Abfragen-Editor",
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
@@ -38,6 +40,7 @@
   },
   "SEARCH_PHENOTYPES": "Phänotypen suchen",
   "CREATE_PHENOTYPE": "Phänotyp erstellen",
+  "CREATE_AQL": "AQL Abfrage erstellen",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "SEARCH_AQLS": "AQL suchen",
   "MY_AQLS": "Meine AQLs",
@@ -45,15 +48,19 @@
   "ALL_AQLS": "Alle AQLs",
   "SELECTED_AQLS": "Ausgewählte AQL-Queries",
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
+  "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "SELECT_RESEARCHERS": "Ausgewählte Forscher",
   "SEARCH_RESEARCHERS": "Phänotypen suchen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
+  "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
+  "BUILD_QUERY": "Abfrage erstellen",
   "CONNECT_AQL": "AQL Abfragen zusammenstellen",
   "DEFINE_COHORT": "Kohorte definieren",
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
+  "ASSIGN_ROLES": "Rollen zuweisen",
   "RESEARCHERS": {
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
   },
@@ -61,13 +68,19 @@
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
     "DESCRIPTION": "Beschreibung",
-    "PRIMARY_HYPOTHESIS": "Primäre Hypothese",
-    "SECONDARY_HYPOTHESIS": "Sekundäre Hypothese",
+    "FIRST_HYPOTHESES": "Primäre Hypothese",
+    "SECOND_HYPOTHESES": "Sekundäre Hypothese",
     "AUTHOR": "Autor",
-    "CHARACTERS": "Zeichen"
+    "CHARACTERS": "Zeichen",
+    "PURPOSE": "Zweck",
+    "USE": "Verwendung",
+    "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
+    "NO_EDIT_LATER": "(kann später nicht bearbeitet werden)"
   },
   "BUTTON": {
+    "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
+    "REQUEST_APPROVAL": "Genehmigung anfragen",
     "APPLY_SELECTION": "Auswahl Übernehmen",
     "DELETE_FROM_LIST": "Aus Liste löschen",
     "CONFIRM_CHANGES": "Änderungen übernehmen",
@@ -77,13 +90,20 @@
     "ADD_GROUP": "Gruppe hinzufügen",
     "DELETE_GROUP": "Gruppe löschen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
+    "SAVE_QUERY": "AQL Abfrage speichern",
     "SELECT": "Auswählen",
-    "DESELECT": "Abwählen"
+    "DESELECT": "Abwählen",
+    "APPROVE_USER": "Benutzer bestätigen"
   },
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname",
     "NAME": "Name"
+  },
+  "ROLE": {
+    "RESEARCHER": "Wissenschaftler",
+    "ORGANIZATION_ADMIN": "Organisations-Administrator",
+    "STUDY_COORDINATOR": "Studienkoordinator"
   }
 }

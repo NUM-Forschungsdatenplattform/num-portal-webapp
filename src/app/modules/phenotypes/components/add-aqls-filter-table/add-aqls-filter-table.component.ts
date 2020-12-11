@@ -13,7 +13,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
@@ -29,7 +29,7 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
   @Output() selectedAqlsChange = new EventEmitter<AqlUiModel[]>()
 
   constructor(private aqlService: AqlService) {}
-  dataSource = new MatTableDataSource<IAql>()
+  dataSource = new MatTableDataSource<IAqlApi>()
   displayedColumns: string[] = ['name', 'author', 'organisation', 'icon']
   lookupSelectedAql: { [id: number]: boolean } = {}
 
@@ -62,11 +62,11 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
     }
   }
 
-  handleData(aqls: IAql[]): void {
+  handleData(aqls: IAqlApi[]): void {
     this.dataSource.data = aqls
   }
 
-  handleRowClick(row: IAql): void {
+  handleRowClick(row: IAqlApi): void {
     this.lookupSelectedAql[row.id] = true
     this.selectedAqlsChange.emit([...this.selectedAqls, new AqlUiModel(row)])
   }

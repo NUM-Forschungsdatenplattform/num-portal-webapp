@@ -5,7 +5,7 @@ import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
 import { fakeAsync, flushMicrotasks, tick } from '@angular/core/testing'
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 
 describe('AqlService', () => {
   let service: AqlService
@@ -64,6 +64,29 @@ describe('AqlService', () => {
     })
   })
 
+  describe('When a call to get method comes in', () => {
+    it('should return with a single aql found on the backend', async () => {
+      const result = await service.get(1).toPromise()
+      expect(result.id).toEqual(1)
+    })
+
+    it('should return with a single aql found in memory', async () => {
+      const preFillMemory = await service.getAll().toPromise()
+      const result = await service.get(1).toPromise()
+      expect(result.id).toEqual(1)
+    })
+
+    it('should return with an not found error when not found', async () => {
+      const result = await service
+        .get(123)
+        .toPromise()
+        .catch((error) => {
+          expect(error).toBeTruthy()
+          expect(error).toEqual(new Error('Not Found'))
+        })
+    })
+  })
+
   describe('When multiple filter are passed in', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of([]))
@@ -75,7 +98,7 @@ describe('AqlService', () => {
         filterChips: [],
         searchText: 'name1',
       }
-      let filterResult: IAql[]
+      let filterResult: IAqlApi[]
       const callHelper = jest.fn((result) => (filterResult = result))
       service.filteredAqlsObservable$.subscribe(callHelper)
 

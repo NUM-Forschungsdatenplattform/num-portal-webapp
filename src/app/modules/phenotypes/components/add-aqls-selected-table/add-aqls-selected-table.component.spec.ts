@@ -4,7 +4,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 
 import { AddAqlsSelectedTableComponent } from './add-aqls-selected-table.component'
 
@@ -12,7 +12,7 @@ describe('AddAqlsSelectionTableComponent', () => {
   let component: AddAqlsSelectedTableComponent
   let fixture: ComponentFixture<AddAqlsSelectedTableComponent>
 
-  const aqlRow: IAql = {
+  const aqlRow: IAqlApi = {
     id: 123,
     name: 'test',
     query: 'query test string',

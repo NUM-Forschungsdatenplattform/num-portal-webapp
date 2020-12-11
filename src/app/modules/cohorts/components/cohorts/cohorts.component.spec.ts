@@ -13,7 +13,7 @@ describe('CohortsComponent', () => {
   let fixture: ComponentFixture<CohortsComponent>
 
   const cohortService = {
-    executeCohort: (id: number) => of(),
+    getCohortSize: (id: number) => of(),
   } as CohortService
 
   beforeEach(async () => {

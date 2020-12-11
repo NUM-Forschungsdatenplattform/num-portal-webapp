@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -19,6 +20,7 @@ import { DialogEditPhenotypeComponent } from '../dialog-edit-phenotype/dialog-ed
 import { EDIT_DIALOG_CONFIG } from './constants'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogAddPhenotypesComponent } from '../dialog-add-phenotypes/dialog-add-phenotypes.component'
+import { cloneDeep } from 'lodash-es'
 
 @Component({
   selector: 'num-study-editor-connector-group',
@@ -32,6 +34,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
   @Input() cohortGroup: CohortGroupUiModel
+  @Output() chortGroupChanges = new EventEmitter<CohortGroupUiModel>()
   @Input() parentGroupIndex: number[] | null
   @Input() index: number
 
@@ -45,7 +48,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
   groupIndex: number[] = []
   groupType: string
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.groupType = !this.cohortGroup.indexInGroup
@@ -97,6 +100,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
       } else if (confirmResult === false) {
         this.deleteChild(itemIndex)
       }
+      this.changeDetectorRef.markForCheck()
     })
   }
 
@@ -127,6 +131,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
 
         this.cohortGroup.children = [...confirmResult, ...currentGroups]
       }
+      this.changeDetectorRef.markForCheck()
     })
   }
 
