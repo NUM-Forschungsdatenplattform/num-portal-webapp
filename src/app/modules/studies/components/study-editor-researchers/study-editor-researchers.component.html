@@ -16,14 +16,30 @@
       mus.
     </div>
 
-    <mat-card>
-      <div *ngIf="studyResearchers.length === 0">No researchers selected yet.</div>
-      <mat-list else>
-        <mat-list-item *ngFor="let researcher of studyResearchers; last as last">
-          {{ researcher.firstName }} {{ researcher.lastName }}
-          <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-        </mat-list-item>
-      </mat-list>
+    <mat-card class="researchers-container mat-elevation-z2">
+      <div class="no-results" *ngIf="studyResearchers.length === 0; else researchersList">
+        {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
+      </div>
+      <ng-template #researchersList>
+        <ul class="researchers-list">
+          <li
+            class="researchers-list_item"
+            *ngFor="let researcher of studyResearchers; last as last"
+          >
+            <div class="researchers-list_item-name">
+              {{ researcher.firstName }} {{ researcher.lastName }}
+            </div>
+            <button
+              mat-button
+              color="primary"
+              class="researchers-list_item-delete"
+              (click)="deleteResearcher(researcher.id)"
+            >
+              <fa-icon icon="trash"></fa-icon>
+            </button>
+          </li>
+        </ul>
+      </ng-template>
     </mat-card>
 
     <num-button type="primary" icon="plus" (click)="addResearchers()">

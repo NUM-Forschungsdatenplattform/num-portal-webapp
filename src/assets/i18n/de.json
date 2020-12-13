@@ -38,7 +38,7 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
-  "SEARCH_PHENOTYPES": "Phänotypen suchen",
+  "SEARCH_PHENOTYPES": "Forscher suchen",
   "CREATE_PHENOTYPE": "Phänotyp erstellen",
   "CREATE_AQL": "AQL Abfrage erstellen",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
@@ -62,6 +62,7 @@
   "LOGICAL_OPERATOR": "Logischer Operator",
   "ASSIGN_ROLES": "Rollen zuweisen",
   "RESEARCHERS": {
+    "NO_RESEARCHERS_SELECTED": "Noch keine Forscher ausgewählt.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
   },
   "FORM": {
@@ -99,7 +100,7 @@
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname",
-    "NAME": "Name"
+    "FULL_NAME": "Name"
   },
   "ROLE": {
     "RESEARCHER": "Wissenschaftler",

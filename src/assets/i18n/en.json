@@ -62,6 +62,7 @@
   "LOGICAL_OPERATOR": "Logical operator",
   "ASSIGN_ROLES": "Assign Roles",
   "RESEARCHERS": {
+    "NO_RESEARCHERS_SELECTED": "No researchers selected yet.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Please select at least 1 person"
   },
   "FORM": {
@@ -99,7 +100,7 @@
     "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
     "LAST_NAME": "Last name",
-    "NAME": "Name"
+    "FULL_NAME": "Name"
   },
   "ROLE": {
     "RESEARCHER": "Researcher",

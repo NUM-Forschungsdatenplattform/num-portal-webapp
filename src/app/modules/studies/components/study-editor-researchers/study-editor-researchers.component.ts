@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { DialogService } from 'src/app/core/services/dialog.service'
-import { ADD_RESEARCHERS_DIALOG_CONFIG } from 'src/app/modules/phenotypes/components/phenotype-editor-connector-group/constants'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-add-researchers.component'
 
 @Component({
@@ -16,13 +16,11 @@ export class StudyEditorResearchersComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addResearchers() {
-    const dialogContentPayload = {}
-
+  addResearchers(): void {
     const dialogConfig: DialogConfig = {
       ...ADD_RESEARCHERS_DIALOG_CONFIG,
       dialogContentComponent: DialogAddResearchersComponent,
-      dialogContentPayload,
+      dialogContentPayload: this.studyResearchers,
     }
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
@@ -31,6 +29,12 @@ export class StudyEditorResearchersComponent implements OnInit {
       if (Array.isArray(confirmResult)) {
         this.studyResearchers = confirmResult
       }
+    })
+  }
+
+  deleteResearcher(researcherId: string): void {
+    this.studyResearchers = this.studyResearchers.filter((researcher: IUser) => {
+      return researcher.id !== researcherId
     })
   }
 }

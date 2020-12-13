@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .search-container {
+    flex: 0 1 auto;
+  }
+
+  .table-container {
+    flex: 1 1 auto;
+    height: 50vh;
+    overflow-y: auto;
+    border: 1px solid black;
+    padding: 0;
+    min-width: 700px;
+
+    table {
+      width: 100%;
+
+      .mat-header-row {
+        display: none;
+      }
+    }
+  }
+}

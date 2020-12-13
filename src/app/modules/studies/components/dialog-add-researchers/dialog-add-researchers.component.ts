@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
-import { IUser } from 'src/app/shared/models/admin/user.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -13,31 +13,37 @@ export class DialogAddResearchersComponent implements OnInit {
 
   @Output() closeDialog = new EventEmitter()
   users: IUser[]
+  dialogInput: IUser[]
   dataSource = new MatTableDataSource()
   displayedColumns: string[] = ['name', 'email', 'select']
-  searchText: String = ''
+  searchText = ''
   selectedResearchers: string[] = []
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
+    this.selectedResearchers = this.dialogInput.map((user: IUser) => {
+      return user.id
+    })
+
     // TODO Mina: Use approved users
     this.adminService.getUnapprovedUsers().subscribe()
     this.subscriptions.add(
       this.adminService.unapprovedUsersObservable$.subscribe((users) => {
         this.users = this.dataSource.data = users
+        console.log('userss', users)
       })
     )
   }
 
-  handleSearchChange() {
+  handleSearchChange(): void {
     if (this.searchText === '') {
       this.dataSource.data = this.users
     } else {
-      let searchText = this.searchText.toLowerCase()
+      const searchText = this.searchText.toLowerCase()
 
       this.dataSource.data = this.users.filter((user: IUser) => {
-        let firstName = user.firstName.toLowerCase(),
-          lastName = user.lastName.toLowerCase()
+        const firstName = user.firstName.toLowerCase()
+        const lastName = user.lastName.toLowerCase()
 
         return (
           firstName.includes(searchText) ||
@@ -61,7 +67,7 @@ export class DialogAddResearchersComponent implements OnInit {
   }
 
   handleDialogConfirm(): void {
-    let selectedUsers = this.users.filter((user: IUser) => {
+    const selectedUsers = this.users.filter((user: IUser) => {
       return this.selectedResearchers.includes(user.id)
     })
 
