@@ -21,16 +21,16 @@ export class DialogAddResearchersComponent implements OnInit {
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.selectedResearchers = this.dialogInput.map((user: IUser) => {
-      return user.id
-    })
+    if (this.dialogInput && this.dialogInput.length > 0) {
+      this.selectedResearchers = this.dialogInput.map((user: IUser) => {
+        return user.id
+      })
+    }
 
-    // TODO Mina: Use approved users
-    this.adminService.getUnapprovedUsers().subscribe()
+    // HERE: Use approved users
     this.subscriptions.add(
-      this.adminService.unapprovedUsersObservable$.subscribe((users) => {
+      this.adminService.approvedUsersObservable$.subscribe((users) => {
         this.users = this.dataSource.data = users
-        console.log('userss', users)
       })
     )
   }

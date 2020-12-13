@@ -12,6 +12,29 @@ export const mockUser: IUser = {
   username: 'mock-user-1',
 }
 
+export const mockApprovedUsers: IUser[] = [
+  {
+    approved: true,
+    email: 'mockUser1@gmail.com',
+    externalOrganizationId: '123',
+    firstName: 'Max',
+    id: '123-456',
+    lastName: 'Mustermann',
+    roles: ['some', 'role'],
+    username: 'mock-user-1',
+  },
+  {
+    approved: true,
+    email: 'mockUser2@gmail.com',
+    externalOrganizationId: '456',
+    firstName: 'Andrea',
+    id: '456-789',
+    lastName: 'Musterfrau',
+    roles: ['no', 'roles'],
+    username: 'mock-user-2',
+  },
+]
+
 export const mockUnapprovedUsers: IUser[] = [
   {
     approved: false,
