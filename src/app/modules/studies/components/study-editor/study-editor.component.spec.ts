@@ -51,6 +51,8 @@ describe('StudyEditorComponent', () => {
   class StubStudyEditorConnector {
     @Input() cohortNode: any
   }
+  @Component({ selector: 'num-study-editor-researchers', template: '' })
+  class StudyEditorResearchers {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -58,6 +60,7 @@ describe('StudyEditorComponent', () => {
         StudyEditorComponent,
         StubGeneralInfoComponent,
         StubStudyEditorConnector,
+        StudyEditorResearchers,
         ButtonComponent,
       ],
       imports: [

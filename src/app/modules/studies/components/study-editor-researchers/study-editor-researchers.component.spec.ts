@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { TranslateModule } from '@ngx-translate/core'
 
 import { StudyEditorResearchersComponent } from './study-editor-researchers.component'
 
@@ -9,6 +10,7 @@ describe('StudyEditorResearchersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StudyEditorResearchersComponent],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents()
   })
 
