@@ -8,5 +8,12 @@ import { Component, OnInit } from '@angular/core'
 export class AqlEditorCeatorComponent implements OnInit {
   constructor() {}
 
+  code = ''
+  editor: monaco.editor.IStandaloneCodeEditor
+
   ngOnInit(): void {}
+
+  onEditorInit(editor: monaco.editor.IStandaloneCodeEditor): void {
+    this.editor = editor
+  }
 }
