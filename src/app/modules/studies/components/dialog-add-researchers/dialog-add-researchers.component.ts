@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin.service'
@@ -16,9 +15,6 @@ export class DialogAddResearchersComponent implements OnInit {
   dialogInput: IUser[]
   @Output() closeDialog = new EventEmitter()
 
-  dataSource = new MatTableDataSource()
-  displayedColumns: string[] = ['name', 'email', 'select']
-
   users: IUser[]
   selectedResearchers: { [id: number]: boolean } = {}
   filterConfig: IUserFilter
@@ -34,9 +30,9 @@ export class DialogAddResearchersComponent implements OnInit {
 
     this.adminService.getApprovedUsers().subscribe()
     this.subscriptions.add(
-      this.adminService.filteredApprovedUsersObservable$.subscribe(
-        (users) => (this.users = this.dataSource.data = users)
-      )
+      this.adminService.filteredApprovedUsersObservable$.subscribe((users) => {
+        this.users = [...users]
+      })
     )
   }
 
@@ -52,8 +48,8 @@ export class DialogAddResearchersComponent implements OnInit {
     this.adminService.setFilter(this.filterConfig)
   }
 
-  handleSelectClick(user: IUser, isSelected: boolean): void {
-    this.selectedResearchers[user.id] = !isSelected
+  selectedResearchersChange(selectedResearchers: { [id: number]: boolean }): void {
+    this.selectedResearchers = selectedResearchers
   }
 
   handleDialogConfirm(): void {

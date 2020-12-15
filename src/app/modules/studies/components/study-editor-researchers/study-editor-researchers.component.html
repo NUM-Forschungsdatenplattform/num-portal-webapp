@@ -16,7 +16,7 @@
       mus.
     </div>
 
-    <mat-card class="researchers-container mat-elevation-z0">
+    <div class="researchers-container">
       <div class="no-results" *ngIf="studyResearchers.length === 0; else researchersList">
         {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
       </div>
@@ -40,7 +40,7 @@
           </li>
         </ul>
       </ng-template>
-    </mat-card>
+    </div>
 
     <num-button type="primary" icon="plus" (click)="addResearchers()">
       {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
