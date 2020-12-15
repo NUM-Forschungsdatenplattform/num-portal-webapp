@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
+import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { IUser } from 'src/app/shared/models/user/user.interface'
+import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -11,64 +13,52 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
 export class DialogAddResearchersComponent implements OnInit {
   private subscriptions = new Subscription()
 
-  @Output() closeDialog = new EventEmitter()
-  users: IUser[]
   dialogInput: IUser[]
+  @Output() closeDialog = new EventEmitter()
+
   dataSource = new MatTableDataSource()
   displayedColumns: string[] = ['name', 'email', 'select']
-  searchText = ''
-  selectedResearchers: string[] = []
-  constructor(private adminService: AdminService) {}
+
+  users: IUser[]
+  selectedResearchers: { [id: number]: boolean } = {}
+  filterConfig: IUserFilter
+
+  constructor(private adminService: AdminService) {
+    this.adminService.filterConfigObservable$
+      .pipe(take(1))
+      .subscribe((config) => (this.filterConfig = config))
+  }
 
   ngOnInit(): void {
-    if (this.dialogInput && this.dialogInput.length > 0) {
-      this.selectedResearchers = this.dialogInput.map((user: IUser) => {
-        return user.id
-      })
-    }
+    this.handleDilaogInput()
 
-    // HERE: Use approved users
+    this.adminService.getApprovedUsers().subscribe()
     this.subscriptions.add(
-      this.adminService.approvedUsersObservable$.subscribe((users) => {
-        this.users = this.dataSource.data = users
-      })
+      this.adminService.filteredApprovedUsersObservable$.subscribe(
+        (users) => (this.users = this.dataSource.data = users)
+      )
     )
   }
 
+  handleDilaogInput(): void {
+    if (!(this.dialogInput && this.dialogInput.length > 0)) return
+
+    this.dialogInput.forEach((user: IUser) => {
+      this.selectedResearchers[user.id] = true
+    })
+  }
+
   handleSearchChange(): void {
-    if (this.searchText === '') {
-      this.dataSource.data = this.users
-    } else {
-      const searchText = this.searchText.toLowerCase()
-
-      this.dataSource.data = this.users.filter((user: IUser) => {
-        const firstName = user.firstName.toLowerCase()
-        const lastName = user.lastName.toLowerCase()
-
-        return (
-          firstName.includes(searchText) ||
-          lastName.includes(searchText) ||
-          searchText.includes(firstName) ||
-          searchText.includes(lastName)
-        )
-      })
-    }
+    this.adminService.setFilter(this.filterConfig)
   }
 
   handleSelectClick(user: IUser, isSelected: boolean): void {
-    if (!isSelected) {
-      if (!this.selectedResearchers.includes(user.id)) {
-        this.selectedResearchers.push(user.id)
-      }
-    } else {
-      const index = this.selectedResearchers.indexOf(user.id, 0)
-      this.selectedResearchers.splice(index, 1)
-    }
+    this.selectedResearchers[user.id] = !isSelected
   }
 
   handleDialogConfirm(): void {
     const selectedUsers = this.users.filter((user: IUser) => {
-      return this.selectedResearchers.includes(user.id)
+      return this.selectedResearchers[user.id]
     })
 
     this.closeDialog.emit(selectedUsers)

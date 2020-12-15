@@ -38,7 +38,7 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
-  "SEARCH_PHENOTYPES": "Forscher suchen",
+  "SEARCH_PHENOTYPES": "Phänotypen suchen",
   "CREATE_PHENOTYPE": "Phänotyp erstellen",
   "CREATE_AQL": "AQL Abfrage erstellen",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
@@ -51,7 +51,7 @@
   "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "SELECT_RESEARCHERS": "Ausgewählte Forscher",
-  "SEARCH_RESEARCHERS": "Phänotypen suchen",
+  "SEARCH_RESEARCHERS": "Forscher suchen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
   "BUILD_QUERY": "Abfrage erstellen",

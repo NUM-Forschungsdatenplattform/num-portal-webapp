@@ -1,7 +1,7 @@
 <div class="search-container">
   <num-search
     label="SEARCH_RESEARCHERS"
-    [(searchText)]="searchText"
+    [(searchText)]="filterConfig.searchText"
     (searchTextChange)="handleSearchChange()"
   >
   </num-search>
@@ -28,7 +28,7 @@
           color="accent"
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
-          *ngIf="!selectedResearchers.includes(element.id); else selectedIcon"
+          *ngIf="!selectedResearchers[element.id]; else selectedIcon"
           (click)="handleSelectClick(element, false)"
         >
           <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
