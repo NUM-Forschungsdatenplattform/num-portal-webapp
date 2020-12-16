@@ -1,4 +1,7 @@
-<section fxFlex.gt-md="50vw">
+<section
+  [ngClass]="{ 'num-large-dialog': dialogConfig.dialogSize === DialogSize.Large }"
+  fxLayout="column"
+>
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
     <h1
       class="mat-display-1"
@@ -24,6 +27,7 @@
 
   <div
     mat-dialog-actions
+    fxFlexOffset="auto"
     [fxLayoutAlign]="
       !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText ? 'center' : 'space-between'
     "

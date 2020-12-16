@@ -11,6 +11,7 @@ import {
 } from '@angular/core'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Subscription } from 'rxjs'
+import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
@@ -19,6 +20,7 @@ import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interf
   styleUrls: ['./generic-dialog.component.scss'],
 })
 export class GenericDialogComponent implements AfterViewInit, OnDestroy {
+  DialogSize = DialogSize
   @ViewChild('dialogContent', { read: ViewContainerRef }) viewContainerRef: ViewContainerRef
   private subscriptions = new Subscription()
   componentRef: ComponentRef<any>

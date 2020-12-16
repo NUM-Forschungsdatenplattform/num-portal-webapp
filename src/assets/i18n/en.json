@@ -50,6 +50,7 @@
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
   "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
+  "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_AQLS": "Available AQL Queries",
   "BUILD_QUERY": "Build the Query",
@@ -87,7 +88,8 @@
     "SAVE_QUERY": "Save AQL Query",
     "SELECT": "Select",
     "DESELECT": "Deselect",
-    "APPROVE_USER": "Approve User"
+    "APPROVE_USER": "Approve User",
+    "OPEN_AQL_BUILDER": "Build query"
   },
   "USER": {
     "UNAPPROVED_USERS": "Unapproved Users",
