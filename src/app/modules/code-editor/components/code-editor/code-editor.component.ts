@@ -11,6 +11,7 @@ import {
 } from '@angular/core'
 import { fromEvent, Subscription } from 'rxjs'
 import { MonacoLoaderService } from 'src/app/core/services/monaco-loader.service'
+import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { editorConstructionOptions } from '../../num-editor-options'
 import { numEditorTheme } from '../../num-editor.theme'
 
@@ -60,6 +61,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   configureMonaco(): void {
     monaco.editor.defineTheme('num-editor-theme', numEditorTheme)
     monaco.languages.register({ id: this.LANG_NAME })
+    monaco.languages.setMonarchTokensProvider(this.LANG_NAME, numAqlTokenProvider)
   }
 
   createEditor(): void {
