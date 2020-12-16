@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MonacoLoaderService } from 'src/app/core/services/monaco-loader.service'
+import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { numEditorTheme } from '../../num-editor.theme'
 
 import { CodeEditorComponent } from './code-editor.component'
@@ -24,6 +25,7 @@ describe('CodeEditorComponent', () => {
 
   const monacoLanguageMock = {
     register: jest.fn(),
+    setMonarchTokensProvider: jest.fn(),
   }
 
   const monacoMock = {
@@ -63,6 +65,13 @@ describe('CodeEditorComponent', () => {
 
   it('should register the num aql lang', () => {
     expect(monacoLanguageMock.register).toHaveBeenCalledWith({ id: LANG_NAME })
+  })
+
+  it('should set the MonarchTokensProvider', () => {
+    expect(monacoLanguageMock.setMonarchTokensProvider).toHaveBeenCalledWith(
+      LANG_NAME,
+      numAqlTokenProvider
+    )
   })
 
   it('should register the num lang theme', () => {
