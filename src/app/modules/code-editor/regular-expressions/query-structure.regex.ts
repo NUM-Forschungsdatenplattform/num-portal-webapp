@@ -4,6 +4,7 @@ const queryStructure = [
   'SELECT',
   'FROM',
   'WHERE',
+  'CONTAINS',
   'ORDER BY',
   'LIMIT',
   'DESC',

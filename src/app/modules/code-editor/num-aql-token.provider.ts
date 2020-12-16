@@ -29,6 +29,7 @@ export const numAqlTokenProvider: monaco.languages.IMonarchLanguage = {
       { include: '@functions' },
       { include: '@datetimes' },
       { include: '@numbers' },
+      { include: '@strings' },
     ],
     queryStructure: [[queryStructureRegExp, 'num-keyword']],
     ehrReferenceModelClass: [[ehrReferenceModelClassRegExp, 'num-referenceModel']],
@@ -47,10 +48,10 @@ export const numAqlTokenProvider: monaco.languages.IMonarchLanguage = {
       [dateBasicRegExp, 'num-datetime'],
       [timeExtendedRegExp, 'num-datetime'],
     ],
-    numbers: [
-      [/0[xX][0-9a-fA-F]*/, 'number'],
-      [/[$][+-]*\d*(\.\d*)?/, 'number'],
-      [/((\d+(\.\d*)?)|(\.\d+))([eE][\-+]?\d+)?/, 'number'],
+    numbers: [[/((\d+(\.\d*)?)|(\.\d+))/, 'number']],
+    strings: [
+      [/"(.*?)"/, 'string'],
+      [/\'(.*?)\'/, 'string'],
     ],
   },
 }
