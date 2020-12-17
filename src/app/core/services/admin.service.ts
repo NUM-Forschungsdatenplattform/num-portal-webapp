@@ -12,10 +12,10 @@ import { environment } from 'src/environments/environment'
   providedIn: 'root',
 })
 export class AdminService {
-  private baseUrl: string
-
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
+
+  private baseUrl: string
 
   private approvedUsers: IUser[] = []
   private approvedUsersSubject$ = new BehaviorSubject(this.approvedUsers)
@@ -51,8 +51,7 @@ export class AdminService {
   }
 
   getApprovedUsers(): Observable<IUser[]> {
-    // TODO Mina: change to true
-    return this.getUsers(false).pipe(
+    return this.getUsers(true).pipe(
       tap((users) => {
         this.approvedUsers = users
         this.approvedUsersSubject$.next(users)
@@ -67,6 +66,20 @@ export class AdminService {
         this.unapprovedUsersSubject$.next(users)
       })
     )
+  }
+
+  addUserRoles(userId: string, role: string): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'text/plain',
+      }),
+      responseType: 'text' as 'json',
+    }
+
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
+      .pipe(catchError(this.handleError))
   }
 
   setFilter(filterSet: IUserFilter): void {
@@ -104,20 +117,6 @@ export class AdminService {
     }
 
     return result
-  }
-
-  addUserRoles(userId: string, role: string): Observable<string> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-      }),
-      responseType: 'text' as 'json',
-    }
-
-    return this.httpClient
-      .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
-      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

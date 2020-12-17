@@ -2,8 +2,7 @@
   label="SEARCH_RESEARCHERS"
   [(searchText)]="filterConfig.searchText"
   (searchTextChange)="handleSearchChange()"
->
-</num-search>
+></num-search>
 
 <section role="presentation" fxLayout="column" fxLayoutGap="24px">
   <h2 class="mat-display-2" fxFlex="100%" fxFlex.gt-sm="100%">
@@ -11,11 +10,10 @@
   </h2>
 
   <mat-card class="filter-area mat-elevation-z4" fxFlex="100%" fxFlex.gt-sm="100%">
-    <num-add-researchers-filter-table
-      *ngIf="users && users.length > 0"
-      [users]="users"
-      [(selectedResearchers)]="dialogInput"
-      (selectedResearchersChange)="selectedResearchersChange($event)"
-    ></num-add-researchers-filter-table>
+    <num-filter-table
+      *ngIf="usersTableItems && usersTableItems.length > 0"
+      [items]="usersTableItems"
+      (selectedItemsChange)="selectedResearchersChange($event)"
+    ></num-filter-table>
   </mat-card>
 </section>

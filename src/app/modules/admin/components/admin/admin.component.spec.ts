@@ -12,8 +12,11 @@ describe('AdminComponent', () => {
   let component: AdminComponent
   let fixture: ComponentFixture<AdminComponent>
 
+  const approvedUsersSubject$ = new Subject<IUser[]>()
   const unapprovedUsersSubject$ = new Subject<IUser[]>()
   const adminService = {
+    approvedUsersObservable$: approvedUsersSubject$.asObservable(),
+    getApprovedUsers: () => of(),
     unapprovedUsersObservable$: unapprovedUsersSubject$.asObservable(),
     getUnapprovedUsers: () => of(),
   } as AdminService

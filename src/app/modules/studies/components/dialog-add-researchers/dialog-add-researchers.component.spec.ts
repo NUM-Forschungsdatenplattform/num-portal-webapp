@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
+import { FilterTableComponent } from 'src/app/shared/components/filter-table/filter-table.component'
 import { DialogAddResearchersComponent } from './dialog-add-researchers.component'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { of, Subject } from 'rxjs'
@@ -17,15 +18,15 @@ describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
   let fixture: ComponentFixture<DialogAddResearchersComponent>
 
-  const approvedUsersSubject$ = new Subject<IUser[]>()
+  const filteredApprovedUsersSubject$ = new Subject<IUser[]>()
   const adminService = {
-    approvedUsersObservable$: approvedUsersSubject$.asObservable(),
-    getUnapprovedUsers: () => of(),
+    filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
+    getApprovedUsers: () => of(),
   } as AdminService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddResearchersComponent, SearchComponent],
+      declarations: [DialogAddResearchersComponent, SearchComponent, FilterTableComponent],
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,
@@ -54,9 +55,9 @@ describe('DialogAddResearchersComponent', () => {
 
   describe('When approved users are received by the component', () => {
     it('should set them into the datasource.data', () => {
-      approvedUsersSubject$.next(mockApprovedUsers)
+      filteredApprovedUsersSubject$.next(mockApprovedUsers)
       fixture.detectChanges()
-      expect(component.dataSource.data).toBe(mockApprovedUsers)
+      expect(component.users).toBe(mockApprovedUsers)
     })
   })
 })

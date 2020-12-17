@@ -17,7 +17,6 @@ import { AddPhenotypesPreviewComponent } from './components/add-phenotypes-previ
 import { StudiesTableComponent } from './components/studies-table/studies-table.component'
 import { StudyEditorResearchersComponent } from './components/study-editor-researchers/study-editor-researchers.component'
 import { DialogAddResearchersComponent } from './components/dialog-add-researchers/dialog-add-researchers.component'
-import { AddResearchersFilterTableComponent } from './components/add-researchers-filter-table/add-researchers-filter-table.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { AddResearchersFilterTableComponent } from './components/add-researchers
     StudiesTableComponent,
     StudyEditorResearchersComponent,
     DialogAddResearchersComponent,
-    AddResearchersFilterTableComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule],
 })
