@@ -1,0 +1,15 @@
+<num-search
+  label="SEARCH_EHR_TEMPLATE"
+  [(searchText)]="filterConfig.searchText"
+  (searchTextChange)="handleSearchChange()"
+></num-search>
+
+<h2 class="mat-display-2">{{ 'SELECT_A_EHR_TEMPLATE' | translate }}</h2>
+
+<mat-card class="filter-area mat-elevation-z4 num-margin-b-20">
+  <num-add-templates-filter-table
+    [(selectedTemplates)]="dialogInput"
+  ></num-add-templates-filter-table>
+</mat-card>
+
+<mat-divider class="num-d-w--1"></mat-divider>

@@ -1,0 +1,23 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h3 id="select-header" class="accordion">{{ 'SELECT_EHR_TEMPLATE' | translate }}</h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="select-header"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <num-add-template-selected-table
+      [(selectedTemplates)]="templates"
+    ></num-add-template-selected-table>
+
+    <num-button type="primary" icon="plus" (click)="addTemplate()">{{
+      'BUTTON.ADD_TEMPLATE' | translate
+    }}</num-button>
+  </section>
+</mat-expansion-panel>

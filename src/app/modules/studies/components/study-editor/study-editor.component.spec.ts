@@ -52,6 +52,11 @@ describe('StudyEditorComponent', () => {
     @Input() cohortNode: any
   }
 
+  @Component({ selector: 'num-study-editor-templates', template: '' })
+  class StudyEditorTemplatesStubComponent {
+    @Input() templates: any
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -59,6 +64,7 @@ describe('StudyEditorComponent', () => {
         StubGeneralInfoComponent,
         StubStudyEditorConnector,
         ButtonComponent,
+        StudyEditorTemplatesStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,

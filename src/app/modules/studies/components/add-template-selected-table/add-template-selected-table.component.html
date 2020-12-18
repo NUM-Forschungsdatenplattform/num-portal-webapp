@@ -1,0 +1,33 @@
+<table mat-table [attr.aria-label]="'SELECTED_EHR_TEMPLATES' | translate" [dataSource]="dataSource">
+  <ng-container matColumnDef="name">
+    <th scope="col" mat-header-cell *matHeaderCellDef>name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="icon">
+    <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        [attr.aria-label]="'DESELECT' | translate"
+        class="pointer"
+        mat-icon-button
+        (click)="handleRowClick(element)"
+      >
+        <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div role="row" fxLayoutAlign="center start" *ngIf="!hasData">
+  {{ 'NO_SELECTED_EHR_TEMPLATE' | translate }}
+</div>
+
+<mat-paginator
+  [pageSizeOptions]="[4]"
+  showFirstLastButtons
+  [style.visibility]="hasData ? 'visible' : 'hidden'"
+></mat-paginator>

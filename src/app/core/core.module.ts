@@ -5,7 +5,6 @@ import { CohortService } from './services/cohort.service'
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component'
 import { LayoutModule } from '../layout/layout.module'
 import { SharedModule } from '../shared/shared.module'
-
 import { OAuthModule } from 'angular-oauth2-oidc'
 
 @NgModule({
