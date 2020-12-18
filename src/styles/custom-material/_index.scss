@@ -13,6 +13,7 @@
 @import './styles/typography.themed';
 @import './styles/mat-chip.themed';
 @import './styles/mat-expansion-panel.themed';
+@import './styles/code-editor.themed';
 
 /* export themed mixins */
 @mixin custom-material_themed($theme) {
@@ -27,4 +28,5 @@
   @include buttons($theme);
   @include mat-chip_themed($theme);
   @include mat-expansion-panel_themed($theme);
+  @include code-editor_themed($theme);
 }
