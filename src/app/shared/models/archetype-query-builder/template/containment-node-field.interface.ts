@@ -12,7 +12,7 @@ export interface IContainmentNodeField {
   /**
    * The reference model type (may not be complete)
    */
-  rmType: ReferenceModelType | string
+  rmType: ReferenceModelType
 
   /**
    * The machine-readable path to the field
