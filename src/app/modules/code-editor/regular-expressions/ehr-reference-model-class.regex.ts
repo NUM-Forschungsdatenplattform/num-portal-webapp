@@ -3,6 +3,7 @@ const ehrReferenceModelClasses = [
   'EHR_ACCESS',
   'EHR_STATUS',
   'VERSION',
+  'VERSIONED_OBJECT',
   'VERSIONED_EHR_ACCESS',
   'VERSIONED_EHR_STATUS',
   'VERSIONED_FOLDER',
