@@ -9,6 +9,7 @@ import { AqlEditorGeneralInfoComponent } from './components/aql-editor-general-i
 import { AqlsComponent } from './components/aqls/aqls.component'
 import { AqlEditorCeatorComponent } from './components/aql-editor-creator/aql-editor-creator.component'
 import { CodeEditorModule } from '../code-editor/code-editor.module'
+import { DialogAqlBuilderComponent } from './components/dialog-aql-builder/dialog-aql-builder.component'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CodeEditorModule } from '../code-editor/code-editor.module'
     AqlEditorComponent,
     AqlEditorGeneralInfoComponent,
     AqlEditorCeatorComponent,
+    DialogAqlBuilderComponent,
   ],
   imports: [CommonModule, AqlsRoutingModule, SharedModule, LayoutModule, CodeEditorModule],
 })

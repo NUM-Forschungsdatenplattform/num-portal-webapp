@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
+import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
@@ -7,7 +8,7 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
   templateUrl: './dialog-add-user-details.component.html',
   styleUrls: ['./dialog-add-user-details.component.scss'],
 })
-export class DialogAddUserDetailsComponent implements OnInit {
+export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUser> {
   @Output() closeDialog = new EventEmitter()
   dialogInput: IUser
   userDetails: IUser

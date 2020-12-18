@@ -50,6 +50,7 @@
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
   "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
+  "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
   "BUILD_QUERY": "Abfrage erstellen",
@@ -87,7 +88,8 @@
     "SAVE_QUERY": "AQL Abfrage speichern",
     "SELECT": "Auswählen",
     "DESELECT": "Abwählen",
-    "APPROVE_USER": "Benutzer bestätigen"
+    "APPROVE_USER": "Benutzer bestätigen",
+    "OPEN_AQL_BUILDER": "Abfrage erstellen"
   },
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",

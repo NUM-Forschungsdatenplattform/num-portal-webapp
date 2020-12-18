@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { take } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 
@@ -9,7 +10,7 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
   templateUrl: './dialog-add-phenotypes.component.html',
   styleUrls: ['./dialog-add-phenotypes.component.scss'],
 })
-export class DialogAddPhenotypesComponent implements OnInit {
+export class DialogAddPhenotypesComponent implements OnInit, IGenericDialog<PhenotypeUiModel[]> {
   @Output() closeDialog = new EventEmitter()
 
   filterConfig: IPhenotypeFilter

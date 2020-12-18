@@ -16,12 +16,52 @@ describe('DialogService', () => {
   @Component({ selector: 'num-test-component', template: '' })
   class StubComponent {}
 
-  const dialogConfig: DialogConfig = {
+  const dialogConfig = {
     title: 'Test',
-    dialogSize: DialogSize.Medium,
     dialogContentComponent: StubComponent,
     dialogContentPayload: {
       test: 'test',
+    },
+  }
+
+  const dialogConfigSmall: DialogConfig = {
+    ...dialogConfig,
+    dialogSize: DialogSize.Small,
+  }
+  const dialogConfigMedium: DialogConfig = {
+    ...dialogConfig,
+    dialogSize: DialogSize.Medium,
+  }
+  const dialogConfigLarge: DialogConfig = {
+    ...dialogConfig,
+    dialogSize: DialogSize.Large,
+  }
+
+  const sizes = {
+    small: {
+      config: dialogConfigSmall,
+      size: {
+        width: '95vw',
+        maxWidth: '400px',
+        maxHeight: '300px',
+      },
+    },
+    medium: {
+      config: dialogConfigMedium,
+      size: {
+        width: '95vw',
+        maxWidth: '1000px',
+        maxHeight: '800px',
+      },
+    },
+    large: {
+      config: dialogConfigLarge,
+      size: {
+        width: '98vw',
+        maxWidth: '2000px',
+        height: '98vh',
+        maxHeight: '2000px',
+      },
     },
   }
 
@@ -38,13 +78,19 @@ describe('DialogService', () => {
       jest.spyOn(dialog, 'open')
     })
 
-    test.each([true, undefined])(
+    test.each([
+      { disableClose: true, size: 'small' },
+      { disableClose: true, size: 'large' },
+      { disableClose: undefined, size: 'medium' },
+    ])(
       'should call the matDialog open function with correct parameters',
-      (disableClose) => {
-        service.openDialog(dialogConfig, disableClose)
+      ({ disableClose, size }) => {
+        const config = sizes[size].config
+        service.openDialog(config, disableClose)
         disableClose = disableClose ? true : false
         expect(dialog.open).toHaveBeenCalledWith(GenericDialogComponent, {
-          data: dialogConfig,
+          ...sizes[size].size,
+          data: config,
           disableClose,
         })
       }
