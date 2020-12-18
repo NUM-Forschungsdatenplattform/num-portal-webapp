@@ -1,3 +1,4 @@
+import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
@@ -6,9 +7,24 @@ describe('DialogAqlBuilderComponent', () => {
   let component: DialogAqlBuilderComponent
   let fixture: ComponentFixture<DialogAqlBuilderComponent>
 
+  @Component({ selector: 'num-aql-builder-templates', template: '' })
+  class TemplatesStubComponent {}
+  @Component({ selector: 'num-aql-builder-select', template: '' })
+  class SelectStubComponent {}
+  @Component({ selector: 'num-aql-builder-contains', template: '' })
+  class ContainsStubComponent {}
+  @Component({ selector: 'num-aql-builder-where', template: '' })
+  class WhereStubComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAqlBuilderComponent],
+      declarations: [
+        DialogAqlBuilderComponent,
+        TemplatesStubComponent,
+        SelectStubComponent,
+        ContainsStubComponent,
+        WhereStubComponent,
+      ],
     }).compileComponents()
   })
 
