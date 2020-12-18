@@ -1,6 +1,5 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { ConnectorNodeType } from '../connector-node-type.enum'
-import { IDictionary } from '../dictionary.interface'
 import { IConnectorGroupApi } from '../connectorGroupApi.interface'
 
 /**
