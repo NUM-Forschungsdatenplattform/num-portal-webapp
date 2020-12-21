@@ -1,12 +1,20 @@
-import { HttpClientModule, HttpRequest } from '@angular/common/http'
+import { HttpClient, HttpClientModule, HttpRequest } from '@angular/common/http'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { inject, TestBed } from '@angular/core/testing'
+import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockApprovedUsers, mockUnapprovedUsers } from 'src/mocks/data-mocks/admin.mock'
 
 import { AdminService } from './admin.service'
 
 describe('AdminService', () => {
+  let adminService: AdminService
+
+  const httpClient = ({
+    get: () => of(mockApprovedUsers, mockUnapprovedUsers),
+    post: () => of({}),
+  } as unknown) as HttpClient
+
   const appConfig = {
     config: {
       api: {
@@ -20,86 +28,29 @@ describe('AdminService', () => {
       imports: [HttpClientModule, HttpClientTestingModule],
       providers: [AdminService, { provide: AppConfigService, useValue: appConfig }],
     })
+
+    adminService = new AdminService(httpClient, appConfig)
+    jest.restoreAllMocks()
   })
 
-  afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {
-    httpMock.verify()
-  }))
+  it('should be created', () => {
+    expect(adminService).toBeTruthy()
+  })
 
   describe('When a call to getApprovedUsers method comes in', () => {
-    it(`should call the api - with success`, inject(
-      [AdminService, HttpTestingController],
-      (service: AdminService, httpMock: HttpTestingController) => {
-        service.getApprovedUsers().subscribe()
+    it('should call - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockApprovedUsers))
+      adminService.getApprovedUsers().subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
 
-        httpMock
-          .expectOne((req: HttpRequest<any>) => {
-            return req.url === `localhost/api/admin/user?approved=true` && req.method === 'GET'
-          })
-          .flush(mockApprovedUsers)
-
-        service.approvedUsersObservable$.subscribe((users) => {
-          expect(users).toEqual(mockApprovedUsers)
-        })
-      }
-    ))
-
-    it(`should call the api - with error`, inject(
-      [AdminService, HttpTestingController],
-      (service: AdminService, httpMock: HttpTestingController) => {
-        const mockErrorResponse = { status: 400, statusText: 'Bad Request' }
-        const data = 'Invalid request parameters'
-
-        jest.spyOn(service, 'handleError')
-        service.getApprovedUsers().subscribe()
-
-        httpMock
-          .expectOne((req: HttpRequest<any>) => {
-            return req.url === `localhost/api/admin/user?approved=true` && req.method === 'GET'
-          })
-          .flush(data, mockErrorResponse)
-
-        expect(service.handleError).toHaveBeenCalled()
-      }
-    ))
-  })
-
-  describe('When a call to getUnapprovedUsers method comes in', () => {
-    it(`should call the api - with success`, inject(
-      [AdminService, HttpTestingController],
-      (service: AdminService, httpMock: HttpTestingController) => {
-        service.getUnapprovedUsers().subscribe()
-
-        httpMock
-          .expectOne((req: HttpRequest<any>) => {
-            return req.url === `localhost/api/admin/user?approved=false` && req.method === 'GET'
-          })
-          .flush(mockUnapprovedUsers)
-
-        service.unapprovedUsersObservable$.subscribe((users) => {
-          expect(users).toEqual(mockUnapprovedUsers)
-        })
-      }
-    ))
-
-    it(`should call the api - with error`, inject(
-      [AdminService, HttpTestingController],
-      (service: AdminService, httpMock: HttpTestingController) => {
-        const mockErrorResponse = { status: 400, statusText: 'Bad Request' }
-        const data = 'Invalid request parameters'
-
-        jest.spyOn(service, 'handleError')
-        service.getUnapprovedUsers().subscribe()
-
-        httpMock
-          .expectOne((req: HttpRequest<any>) => {
-            return req.url === `localhost/api/admin/user?approved=false` && req.method === 'GET'
-          })
-          .flush(data, mockErrorResponse)
-
-        expect(service.handleError).toHaveBeenCalled()
-      }
-    ))
+    it('should call - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(adminService, 'handleError')
+      adminService.getApprovedUsers().subscribe()
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/admin/user?approved=true')
+      expect(adminService.handleError).toHaveBeenCalled()
+    })
   })
 
   describe('When a call to addUserRoles method comes in', () => {

@@ -10,17 +10,22 @@ import { SearchComponent } from 'src/app/shared/components/search/search.compone
 import { FilterTableComponent } from 'src/app/shared/components/filter-table/filter-table.component'
 import { DialogAddResearchersComponent } from './dialog-add-researchers.component'
 import { AdminService } from 'src/app/core/services/admin.service'
-import { of, Subject } from 'rxjs'
+import { BehaviorSubject, of, Subject } from 'rxjs'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockApprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 
 describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
   let fixture: ComponentFixture<DialogAddResearchersComponent>
 
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()
+  const filterConfigSubject$ = new BehaviorSubject<IUserFilter>({ searchText: '' })
+
   const adminService = {
     filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
+    filterConfigObservable$: filterConfigSubject$.asObservable(),
+
     getApprovedUsers: () => of(),
   } as AdminService
 
