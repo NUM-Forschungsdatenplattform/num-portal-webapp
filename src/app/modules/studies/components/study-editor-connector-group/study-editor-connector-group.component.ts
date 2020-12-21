@@ -20,7 +20,6 @@ import { DialogEditPhenotypeComponent } from '../dialog-edit-phenotype/dialog-ed
 import { EDIT_DIALOG_CONFIG } from './constants'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogAddPhenotypesComponent } from '../dialog-add-phenotypes/dialog-add-phenotypes.component'
-import { cloneDeep } from 'lodash-es'
 
 @Component({
   selector: 'num-study-editor-connector-group',

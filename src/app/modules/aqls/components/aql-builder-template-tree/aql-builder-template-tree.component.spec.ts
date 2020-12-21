@@ -7,7 +7,6 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockCoronaAnamnese } from 'src/mocks/data-mocks/aqb/corona-anamnese.mock'
 import { mockSimpleContainment } from 'src/mocks/data-mocks/aqb/simple-containment.mock'
-import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 import { AqlBuilderTemplateTreeComponent } from './aql-builder-template-tree.component'
 
