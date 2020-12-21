@@ -14,6 +14,7 @@ import { AqlBuilderTemplatesComponent } from './components/aql-builder-templates
 import { AqlBuilderSelectComponent } from './components/aql-builder-select/aql-builder-select.component'
 import { AqlBuilderContainsComponent } from './components/aql-builder-contains/aql-builder-contains.component'
 import { AqlBuilderWhereComponent } from './components/aql-builder-where/aql-builder-where.component'
+import { AqlBuilderTemplateTreeComponent } from './components/aql-builder-template-tree/aql-builder-template-tree.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AqlBuilderWhereComponent } from './components/aql-builder-where/aql-bui
     AqlBuilderSelectComponent,
     AqlBuilderContainsComponent,
     AqlBuilderWhereComponent,
+    AqlBuilderTemplateTreeComponent,
   ],
   imports: [CommonModule, AqlsRoutingModule, SharedModule, LayoutModule, CodeEditorModule],
 })

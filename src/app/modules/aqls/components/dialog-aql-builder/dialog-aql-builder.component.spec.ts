@@ -1,5 +1,9 @@
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { of, Subject } from 'rxjs'
+import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
+import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
+import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 
@@ -8,13 +12,26 @@ describe('DialogAqlBuilderComponent', () => {
   let fixture: ComponentFixture<DialogAqlBuilderComponent>
 
   @Component({ selector: 'num-aql-builder-templates', template: '' })
-  class TemplatesStubComponent {}
+  class TemplatesStubComponent {
+    @Input()
+    templates: any
+
+    @Input()
+    selectedTemplates: any
+  }
   @Component({ selector: 'num-aql-builder-select', template: '' })
   class SelectStubComponent {}
   @Component({ selector: 'num-aql-builder-contains', template: '' })
   class ContainsStubComponent {}
   @Component({ selector: 'num-aql-builder-where', template: '' })
   class WhereStubComponent {}
+
+  const templatesSubject$ = new Subject<IEhrbaseTemplate[]>()
+
+  const aqlEditorService = ({
+    getTemplates: jest.fn(),
+    templatesObservable$: templatesSubject$.asObservable(),
+  } as unknown) as AqlEditorService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,6 +42,7 @@ describe('DialogAqlBuilderComponent', () => {
         ContainsStubComponent,
         WhereStubComponent,
       ],
+      providers: [{ provide: AqlEditorService, useValue: aqlEditorService }],
     }).compileComponents()
   })
 
@@ -32,11 +50,18 @@ describe('DialogAqlBuilderComponent', () => {
     fixture = TestBed.createComponent(DialogAqlBuilderComponent)
     component = fixture.componentInstance
     jest.spyOn(component.closeDialog, 'emit')
+    jest.spyOn(aqlEditorService, 'getTemplates').mockImplementation(() => of())
     fixture.detectChanges()
   })
 
-  it('should create', () => {
+  it('should create and fetch templates', () => {
     expect(component).toBeTruthy()
+    expect(aqlEditorService.getTemplates).toHaveBeenCalled()
+  })
+
+  it('should set the templates to the component once they are received', () => {
+    templatesSubject$.next(mockAqbTemplates)
+    expect(component.templates).toEqual(mockAqbTemplates)
   })
 
   it('should emit the close event with current dialogInput on confirmation', () => {

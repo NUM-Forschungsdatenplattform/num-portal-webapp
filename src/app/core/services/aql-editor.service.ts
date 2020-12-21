@@ -22,7 +22,7 @@ export class AqlEditorService {
   private containmentCache: IDictionary<IContainmentNode> = {}
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
-    this.baseUrl = `${appConfig.config.aqlEditor.baseUrl}/rest/v1`
+    this.baseUrl = `${appConfig.config.aqlEditor.baseUrl}/aqleditor/rest/v1`
   }
 
   getTemplates(): Observable<IEhrbaseTemplate[]> {

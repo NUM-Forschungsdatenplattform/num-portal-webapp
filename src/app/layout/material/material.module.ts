@@ -18,6 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatChipsModule } from '@angular/material/chips'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatTreeModule } from '@angular/material/tree'
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -39,6 +41,8 @@ const MATERIAL_MODULES = [
   MatChipsModule,
   MatExpansionModule,
   MatCheckboxModule,
+  MatTreeModule,
+  MatProgressBarModule,
 ]
 
 @NgModule({
