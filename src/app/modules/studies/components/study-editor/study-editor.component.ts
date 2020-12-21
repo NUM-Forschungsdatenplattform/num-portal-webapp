@@ -10,6 +10,7 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { IUserDetails } from 'src/app/shared/models/user/user-details.interface'
 import { IStudyResolved } from '../../study-resolved.interface'
+import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-template-info-api.interface'
 
 @Component({
   selector: 'num-study-editor',
@@ -28,6 +29,10 @@ export class StudyEditorComponent implements OnInit {
 
   set researchers(newValue: IUserDetails[]) {
     this.researchers = newValue
+  }
+
+  get studyTemplate(): IStudyTemplateInfoApi[] {
+    return this.study.templates
   }
 
   studyForm: FormGroup

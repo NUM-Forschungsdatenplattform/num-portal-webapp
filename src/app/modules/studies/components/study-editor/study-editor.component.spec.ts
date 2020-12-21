@@ -57,6 +57,11 @@ describe('StudyEditorComponent', () => {
     @Input() researchers: IUserDetails[]
   }
 
+  @Component({ selector: 'num-study-editor-templates', template: '' })
+  class StudyEditorTemplatesStubComponent {
+    @Input() templates: any
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -65,6 +70,7 @@ describe('StudyEditorComponent', () => {
         StubStudyEditorConnector,
         StudyEditorResearchers,
         ButtonComponent,
+        StudyEditorTemplatesStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,

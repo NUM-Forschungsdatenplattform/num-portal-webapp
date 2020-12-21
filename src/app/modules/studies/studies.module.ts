@@ -14,6 +14,10 @@ import { DialogEditPhenotypeComponent } from './components/dialog-edit-phenotype
 import { DialogAddPhenotypesComponent } from './components/dialog-add-phenotypes/dialog-add-phenotypes.component'
 import { AddPhenotypesFilterTableComponent } from './components/add-phenotypes-filter-table/add-phenotypes-filter-table.component'
 import { AddPhenotypesPreviewComponent } from './components/add-phenotypes-preview/add-phenotypes-preview.component'
+import { StudyEditorTemplatesComponent } from './components/study-editor-templates/study-editor-templates.component'
+import { AddTemplatesFilterTableComponent } from './components/add-templates-filter-table/add-templates-filter-table.component'
+import { DialogAddTemplateComponent } from './components/dialog-add-template/dialog-add-template.component'
+import { AddTemplateSelectedTableComponent } from './components/add-template-selected-table/add-template-selected-table.component'
 import { StudiesTableComponent } from './components/studies-table/studies-table.component'
 import { StudyEditorResearchersComponent } from './components/study-editor-researchers/study-editor-researchers.component'
 import { DialogAddResearchersComponent } from './components/dialog-add-researchers/dialog-add-researchers.component'
@@ -28,8 +32,12 @@ import { DialogAddResearchersComponent } from './components/dialog-add-researche
     StudyEditorConnectorPhenotypeComponent,
     DialogEditPhenotypeComponent,
     DialogAddPhenotypesComponent,
+    DialogAddTemplateComponent,
     AddPhenotypesFilterTableComponent,
     AddPhenotypesPreviewComponent,
+    StudyEditorTemplatesComponent,
+    AddTemplatesFilterTableComponent,
+    AddTemplateSelectedTableComponent,
     StudiesTableComponent,
     StudyEditorResearchersComponent,
     DialogAddResearchersComponent,

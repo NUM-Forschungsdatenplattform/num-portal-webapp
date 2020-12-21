@@ -2,13 +2,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { cloneDeep } from 'lodash-es'
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
+import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
 @Component({
   selector: 'num-dialog-edit-aql',
   templateUrl: './dialog-edit-aql.component.html',
   styleUrls: ['./dialog-edit-aql.component.scss'],
 })
-export class DialogEditAqlComponent implements OnInit {
+export class DialogEditAqlComponent implements OnInit, IGenericDialog<AqlUiModel> {
   constructor(private formBuilder: FormBuilder) {}
 
   @Output() closeDialog = new EventEmitter()

@@ -75,7 +75,7 @@ describe('DialogAddPhenotypesComponent', () => {
     expect(component.phenotypePreview).toEqual(phenotypeUi)
   })
 
-  it('should emit the close event with current aqls on confirmation', () => {
+  it('should emit the close event with current phenotypes on confirmation', () => {
     component.handleDialogConfirm()
     expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
   })

@@ -14,6 +14,23 @@
         Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
         ridiculus mus.
       </p>
+
+      <num-button
+        type="primary"
+        icon="plus"
+        (click)="openBuilderDialog()"
+        class="num-margin-b-40"
+        >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
+      >
+
+      <div style="height: 300px">
+        <num-code-editor
+          class="editor"
+          style="height: 100%"
+          [value]="code"
+          (editorInit)="onEditorInit($event)"
+        ></num-code-editor>
+      </div>
     </mat-card-content>
   </mat-card>
 </section>

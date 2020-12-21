@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
+import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 
 @Component({
@@ -8,7 +9,7 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
   templateUrl: './dialog-edit-phenotype.component.html',
   styleUrls: ['./dialog-edit-phenotype.component.scss'],
 })
-export class DialogEditPhenotypeComponent implements OnInit {
+export class DialogEditPhenotypeComponent implements OnInit, IGenericDialog<PhenotypeUiModel> {
   constructor(private formBuilder: FormBuilder) {}
 
   @Output() closeDialog = new EventEmitter()
