@@ -1,33 +1,12 @@
 .researchers-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 15px;
   border: 1px solid black;
 
-  .researchers-list {
-    padding: 0;
+  table {
     width: 100%;
 
-    &_item {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      border-bottom: 1px solid lightgray;
-      padding: 12px 0 12px 12px;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      &-name {
-        font-size: 18px;
-      }
-
-      &-delete {
-        margin-left: auto;
-        cursor: pointer;
-      }
+    .mat-column-icon {
+      width: 25%;
+      text-align: right;
     }
   }
 

@@ -11,7 +11,6 @@ import {
 } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IFilterTable } from '../../models/filter-table.interface'
 
 @Component({
@@ -45,13 +44,9 @@ export class FilterTableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
-        switch (propName) {
-          case 'items': {
-            const changedData = changes[propName].currentValue as IFilterTable[]
-            this.dataSource.data = changedData
-          }
-        }
+      if (changes.hasOwnProperty(propName) && propName === 'items') {
+        const changedData = changes[propName].currentValue as IFilterTable[]
+        this.dataSource.data = changedData
       }
     }
   }

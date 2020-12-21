@@ -4,6 +4,7 @@ import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-add-researchers.component'
+import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'num-study-editor-researchers',
@@ -12,14 +13,16 @@ import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-
 })
 export class StudyEditorResearchersComponent implements OnInit {
   constructor(private dialogService: DialogService) {}
-  studyResearchers: IUser[] = []
+
+  dataSource = new MatTableDataSource<IUser>()
+  displayedColumns: string[] = ['user', 'icon']
 
   @Input() researchers: IUser[]
   @Output() researchersChange = new EventEmitter()
 
   ngOnInit(): void {
     if (this.researchers && this.researchers.length > 0) {
-      this.studyResearchers = this.researchers
+      this.dataSource.data = this.researchers
     }
   }
 
@@ -27,21 +30,21 @@ export class StudyEditorResearchersComponent implements OnInit {
     const dialogConfig: DialogConfig = {
       ...ADD_RESEARCHERS_DIALOG_CONFIG,
       dialogContentComponent: DialogAddResearchersComponent,
-      dialogContentPayload: this.studyResearchers,
+      dialogContentPayload: this.dataSource.data,
     }
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
     dialogRef.afterClosed().subscribe((confirmResult: IUser[] | undefined) => {
       if (Array.isArray(confirmResult)) {
-        this.studyResearchers = confirmResult
+        this.dataSource.data = confirmResult
         this.researchersChange.emit(confirmResult)
       }
     })
   }
 
   deleteResearcher(researcherId: string): void {
-    this.studyResearchers = this.studyResearchers.filter((researcher: IUser) => {
+    this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
       return researcher.id !== researcherId
     })
   }
