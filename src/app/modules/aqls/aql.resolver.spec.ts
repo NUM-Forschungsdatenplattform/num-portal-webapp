@@ -1,9 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  convertToParamMap,
-  Route,
-  RouterStateSnapshot,
-} from '@angular/router'
+import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router'
 import { of, throwError } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.model'

@@ -1,5 +1,4 @@
-import { Component, Input, Output } from '@angular/core'
-import { TestBed } from '@angular/core/testing'
+import { Component } from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
