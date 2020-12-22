@@ -43,6 +43,7 @@ export class AqlService {
       tap((aqls) => {
         this.aqls = aqls
         this.aqlsSubject$.next(aqls)
+        this.filterConfigSubject$.next(this.filterSet)
       }),
       catchError(this.handleError)
     )
@@ -70,6 +71,7 @@ export class AqlService {
   }
 
   setFilter(filterSet: IAqlFilter): void {
+    this.filterSet = filterSet
     this.filterConfigSubject$.next(filterSet)
   }
 
