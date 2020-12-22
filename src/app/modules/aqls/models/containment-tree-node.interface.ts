@@ -2,6 +2,7 @@ import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-bui
 
 export interface IContainmentTreeNode extends Partial<IContainmentNodeField> {
   archetypeId?: string
+  parentArchetypeId?: string
   displayName: string
   children?: IContainmentTreeNode[]
 }

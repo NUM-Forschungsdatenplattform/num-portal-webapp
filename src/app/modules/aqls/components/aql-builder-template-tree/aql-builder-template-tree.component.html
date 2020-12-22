@@ -13,7 +13,7 @@
     [dataSource]="nestedDataSource"
     [treeControl]="nestedTreeControl"
     class="num-tree"
-    *ngIf="containmentArchetypeId; else spinner"
+    *ngIf="compositionId; else spinner"
   >
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <ul>

@@ -3,6 +3,7 @@
     fxFlex="400px"
     [templates]="templates"
     [selectedTemplates]="selectedTemplates"
+    (selectedItem)="handleItemSelect($event)"
   ></num-aql-builder-templates>
 
   <section role="region" fxFlex="auto" fxLayoutGap="32px">

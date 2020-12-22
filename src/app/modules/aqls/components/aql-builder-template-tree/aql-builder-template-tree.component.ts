@@ -1,5 +1,5 @@
 import { NestedTreeControl } from '@angular/cdk/tree'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTreeNestedDataSource } from '@angular/material/tree'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
@@ -18,10 +18,13 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   @Input()
   template: IEhrbaseTemplate
 
+  @Output()
+  selectedItem = new EventEmitter<{ item: IContainmentTreeNode; compositionId: string }>()
+
   nestedTreeControl = new NestedTreeControl<IContainmentTreeNode>((node) => node.children)
   nestedDataSource = new MatTreeNestedDataSource<IContainmentTreeNode>()
 
-  containmentArchetypeId: string
+  compositionId: string
 
   hasChild(_: number, node: IContainmentTreeNode): boolean {
     return node.children != null && node.children.length > 0
@@ -34,8 +37,19 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   }
 
   handleData(containment: IContainmentNode): void {
-    this.nestedDataSource.data = this.convertChild(containment).children
-    this.containmentArchetypeId = containment.archetypeId
+    this.compositionId = containment.archetypeId
+    const firstNode = [this.convertChild(containment)]
+    this.nestedDataSource.data = firstNode
+    this.nestedTreeControl.dataNodes = firstNode
+    this.initialExpand()
+  }
+
+  initialExpand(): void {
+    const firstControl = this.nestedTreeControl.dataNodes[0]
+    this.nestedTreeControl.expand(firstControl)
+    this.nestedTreeControl
+      .getChildren(firstControl)
+      .forEach((child) => this.nestedTreeControl.expand(child))
   }
 
   splitAndTitleCase(input: string): string {
@@ -50,23 +64,25 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   convertChild(node: IContainmentNode): IContainmentTreeNode {
     return {
       archetypeId: node.archetypeId,
-      displayName: this.splitAndTitleCase(node.archetypeId.split('.')[1] || node.archetypeId),
+      displayName: node.archetypeId.includes('EHR-COMPOSITION')
+        ? this.splitAndTitleCase(this.template.templateId)
+        : this.splitAndTitleCase(node.archetypeId.split('.')[1] || node.archetypeId),
       children: [
-        ...node.fields.map((field) => this.convertField(field)),
+        ...node.fields.map((field) => this.convertField(field, node.archetypeId)),
         ...node.children.map((child) => this.convertChild(child)),
       ],
     }
   }
 
-  convertField(field: IContainmentNodeField): IContainmentTreeNode {
+  convertField(field: IContainmentNodeField, parentArchetypeId: string): IContainmentTreeNode {
     return {
       ...field,
+      parentArchetypeId,
       displayName: this.splitAndTitleCase(field.name),
     }
   }
 
   handleItemDoubleClick(item: IContainmentTreeNode): void {
-    // TODO: Handle Item
-    console.log(item)
+    this.selectedItem.emit({ item, compositionId: this.compositionId })
   }
 }
