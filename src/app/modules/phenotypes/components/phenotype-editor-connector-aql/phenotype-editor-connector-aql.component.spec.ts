@@ -12,6 +12,12 @@ describe('PhenotypeEditorConnectorAqlComponent', () => {
     id: 1,
     name: 'Test',
     query: '',
+    description: '',
+    createDate: '',
+    modifiedDate: '',
+    organizationId: '',
+    ownerId: '',
+    publicAql: true,
   }
   const inputAql = new AqlUiModel(inputApiAql, true)
 

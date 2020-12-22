@@ -1,11 +1,11 @@
-export interface IAqlApi {
+export interface IAqlQueryApi {
   id: number
   name: string
-  query: string
   description: string
+  query: string
   createDate: string
   modifiedDate: string
   organizationId: string
   ownerId: string
-  publicAql: boolean
+  publicAql: string
 }

@@ -96,6 +96,11 @@ export class AqlService {
     return result
   }
 
+  save(aqlQuery: IAqlApi): Observable<IAqlApi> {
+    debugger
+    return this.httpClient.post<IAqlApi>(this.baseUrl, aqlQuery).pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }
