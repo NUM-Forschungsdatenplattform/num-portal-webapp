@@ -13,18 +13,39 @@ export class AqlBuilderUiModel {
   ownerId: string
   publicAql: boolean
   purpose: string
-  use: string
+  usage: string
   isPublic: boolean
 
   constructor(aql?: IAqlApi) {
     this.id = aql?.id || 0
     this.name = aql?.name || undefined
     this.query = aql?.query || undefined
-    this.description = aql?.description || undefined
+    this.purpose = aql?.purpose || undefined
+    this.usage = aql?.usage || undefined
     this.createDate = aql?.createDate || undefined
     this.modifiedDate = aql?.modifiedDate || undefined
     this.organizationId = aql?.organizationId || undefined
     this.ownerId = aql?.ownerId || undefined
     this.publicAql = aql?.publicAql
+  }
+
+  public convertToApi(
+    name?: string,
+    purpose?: string,
+    usage?: string,
+    publicAql?: boolean
+  ): IAqlApi {
+    return {
+      id: this.id,
+      name: name || this.name,
+      query: 'tekam',
+      purpose: purpose || this.purpose,
+      usage: usage || this.usage,
+      createDate: this.createDate,
+      modifiedDate: this.modifiedDate,
+      organizationId: this.organizationId,
+      ownerId: this.ownerId,
+      publicAql: publicAql || this.publicAql,
+    }
   }
 }

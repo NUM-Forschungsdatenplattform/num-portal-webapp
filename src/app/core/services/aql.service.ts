@@ -97,7 +97,9 @@ export class AqlService {
   }
 
   save(aqlQuery: IAqlApi): Observable<IAqlApi> {
-    debugger
+    // TODO: Ask for a BE change and adopt to the correct model
+    aqlQuery.description = aqlQuery.purpose
+
     return this.httpClient.post<IAqlApi>(this.baseUrl, aqlQuery).pipe(catchError(this.handleError))
   }
 

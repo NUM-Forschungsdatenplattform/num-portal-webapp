@@ -23,6 +23,7 @@ export class AqlEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
+
     this.generateForm()
   }
 
@@ -37,26 +38,34 @@ export class AqlEditorComponent implements OnInit {
     })
   }
 
-  // save(): void {
-  //   console.log(this.aqlForm)
-  // }
-
-  getAqlForApi(): IAqlApi {
+  getAqlForApi222(): IAqlApi {
     const formValues = this.aqlForm.value
 
     const aqlQueryModel: IAqlApi = {
       id: this.aql?.id,
       name: formValues.title,
       query: formValues.query,
-      description: formValues.description,
+      purpose: formValues.purpose,
+      usage: formValues.usage,
       publicAql: formValues.isPublic,
       createDate: this.aql?.createDate,
       modifiedDate: this.aql?.modifiedDate,
       organizationId: this.aql?.organizationId,
       ownerId: this.aql?.ownerId,
     }
-    debugger
+
     return aqlQueryModel
+  }
+
+  getAqlForApi(): IAqlApi {
+    const formValues = this.aqlForm.value
+
+    return this.aql?.convertToApi(
+      formValues.title,
+      formValues.purpose,
+      formValues.usage,
+      formValues.publicAql
+    )
   }
 
   saveAqlQuery(aqlQuery: IAqlApi): Promise<IAqlApi> {
@@ -65,7 +74,7 @@ export class AqlEditorComponent implements OnInit {
 
   async save(): Promise<void> {
     const aqlQuery = this.getAqlForApi()
-    debugger
+
     try {
       await this.saveAqlQuery(aqlQuery)
       // TODO: Display message to user

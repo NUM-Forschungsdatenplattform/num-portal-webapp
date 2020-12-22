@@ -10,7 +10,8 @@ export class AqlUiModel implements ConnectorMainNodeUi {
   id: number
   name: string
   query: string
-  description: string
+  purpose: string
+  usage: string
   createDate: string
   modifiedDate: string
   organizationId: string
@@ -26,7 +27,8 @@ export class AqlUiModel implements ConnectorMainNodeUi {
     this.id = aql.id
     this.name = aql.name
     this.query = aql.query
-    this.description = aql.description
+    this.purpose = aql.purpose
+    this.usage = aql.usage
     this.createDate = aql.createDate
     this.modifiedDate = aql.modifiedDate
     this.ownerId = aql.ownerId
@@ -52,7 +54,8 @@ export class AqlUiModel implements ConnectorMainNodeUi {
         id: this.id,
         name: this.name,
         query: this.insertParamsForApi(this.query),
-        description: this.description,
+        purpose: this.purpose,
+        usage: this.usage,
         createDate: this.createDate,
         modifiedDate: this.modifiedDate,
         organizationId: this.organizationId,
