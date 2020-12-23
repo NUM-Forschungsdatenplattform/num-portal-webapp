@@ -49,8 +49,6 @@
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
   "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
-  "SELECT_RESEARCHERS": "Select Researchers",
-  "SEARCH_RESEARCHERS": "Search Researchers",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
@@ -69,6 +67,8 @@
   "LOGICAL_OPERATOR": "Logical operator",
   "ASSIGN_ROLES": "Assign Roles",
   "RESEARCHERS": {
+    "SELECT_RESEARCHERS": "Select Researchers",
+    "SEARCH_RESEARCHERS": "Search Researchers",
     "NO_RESEARCHERS_SELECTED": "No researchers selected yet.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Please select at least 1 person"
   },

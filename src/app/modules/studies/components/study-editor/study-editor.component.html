@@ -11,10 +11,7 @@
 
     <num-study-editor-connector [cohortNode]="cohortGroup"></num-study-editor-connector>
 
-    <num-study-editor-researchers
-      [researchers]="researchers"
-      (researchersChange)="handleResearchersChange($event)"
-    ></num-study-editor-researchers>
+    <num-study-editor-researchers [researchers]="researchers"></num-study-editor-researchers>
   </mat-accordion>
 
   <section role="region" fxLayout="column">

@@ -1,11 +1,11 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <h3 class="accordion">{{ 'SELECT_RESEARCHERS' | translate }}</h3>
+    <h3 class="accordion">{{ 'RESEARCHERS.SELECT_RESEARCHERS' | translate }}</h3>
   </mat-expansion-panel-header>
 
   <section
     role="region"
-    aria-labelledby="general-info-label"
+    aria-labelledby="currently lorem ipsum"
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
@@ -21,7 +21,7 @@
         {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
       </div>
       <ng-template #researchersList>
-        <table mat-table [dataSource]="dataSource" aria-labelledby="select-title">
+        <table mat-table [dataSource]="dataSource" aria-labelledby="select-researcher">
           <ng-container matColumnDef="user">
             <th scope="col" mat-header-cell *matHeaderCellDef>Researcher</th>
             <td mat-cell *matCellDef="let element">

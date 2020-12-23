@@ -115,8 +115,4 @@ export class StudyEditorComponent implements OnInit {
     this.study.status = StudyStatus.Pending
     this.save()
   }
-
-  handleResearchersChange(researchers: IUserDetails[]): void {
-    console.log('researchers', researchers)
-  }
 }

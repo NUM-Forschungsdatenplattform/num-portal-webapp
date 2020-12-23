@@ -5,12 +5,13 @@ import { AdminService } from 'src/app/core/services/admin.service'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IFilterTable } from 'src/app/shared/models/filter-table.interface'
+import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
   styleUrls: ['./dialog-add-researchers.component.scss'],
 })
-export class DialogAddResearchersComponent implements OnInit, OnDestroy {
+export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGenericDialog<IUser[]> {
   private subscriptions = new Subscription()
 
   dialogInput: IUser[]

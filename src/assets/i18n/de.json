@@ -50,8 +50,6 @@
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
   "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
-  "SELECT_RESEARCHERS": "Ausgewählte Forscher",
-  "SEARCH_RESEARCHERS": "Forscher suchen",
   "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
@@ -69,6 +67,8 @@
   "LOGICAL_OPERATOR": "Logischer Operator",
   "ASSIGN_ROLES": "Rollen zuweisen",
   "RESEARCHERS": {
+    "SELECT_RESEARCHERS": "Ausgewählte Forscher",
+    "SEARCH_RESEARCHERS": "Forscher suchen",
     "NO_RESEARCHERS_SELECTED": "Noch keine Forscher ausgewählt.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
   },

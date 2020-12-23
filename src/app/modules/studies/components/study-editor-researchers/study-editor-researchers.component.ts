@@ -18,7 +18,6 @@ export class StudyEditorResearchersComponent implements OnInit {
   displayedColumns: string[] = ['user', 'icon']
 
   @Input() researchers: IUser[]
-  @Output() researchersChange = new EventEmitter()
 
   ngOnInit(): void {
     if (this.researchers && this.researchers.length > 0) {
@@ -37,14 +36,13 @@ export class StudyEditorResearchersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmResult: IUser[] | undefined) => {
       if (Array.isArray(confirmResult)) {
-        this.dataSource.data = confirmResult
-        this.researchersChange.emit(confirmResult)
+        this.researchers = this.dataSource.data = confirmResult
       }
     })
   }
 
   deleteResearcher(researcherId: string): void {
-    this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
+    this.researchers = this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
       return researcher.id !== researcherId
     })
   }
