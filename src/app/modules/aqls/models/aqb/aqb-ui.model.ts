@@ -1,3 +1,5 @@
+import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
+import { IAqbSelectClause } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-clause.interface'
 import { IContainmentTreeNode } from '../containment-tree-node.interface'
 import { AqbContainsUiModel } from './aqb-contains-ui.model'
 import { IAqbSelectClick } from './aqb-select-click.interface'
@@ -48,5 +50,18 @@ export class AqbUiModel {
 
   deleteReference(archetypeId: string): void {
     delete this.references[archetypeId]
+  }
+
+  convertToApi(): IArchetypeQueryBuilder {
+    const select: IAqbSelectClause = {
+      statement: this.select.map((selectItem) => selectItem.convertToApi()),
+    }
+
+    const contains = this.contains.convertToApi()
+
+    return {
+      select,
+      contains,
+    }
   }
 }

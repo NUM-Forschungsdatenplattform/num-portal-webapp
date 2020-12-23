@@ -1,7 +1,10 @@
+import { IAqbContainmentNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-containment-node.interface'
+import { IAqbLogicalOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-logical-operator-node.interface'
+import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
 import { AqbContainsCompositionUiModel } from './aqb-contains-composition-ui.model'
 
+type PossibleContains = IAqbContainmentNode | IAqbLogicalOperatorNode<PossibleContains>
 export class AqbContainsUiModel {
   compositions = new Map<string, AqbContainsCompositionUiModel>()
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
@@ -28,5 +31,18 @@ export class AqbContainsUiModel {
 
     composition.setContainsItem(archetypeId, archetypeReferenceId)
     this.compositions.set(compositionId, composition)
+  }
+
+  convertToApi(): PossibleContains {
+    const compositions = Array.from(this.compositions.values())
+    if (compositions.length > 1) {
+      const contains: IAqbLogicalOperatorNode<PossibleContains> = {
+        _type: AqbNodeType.LogicalOperator,
+        symbol: LogicalOperator.And,
+        values: compositions.map((composition) => composition.convertToApi()),
+      }
+      return contains
+    }
+    return compositions[0].convertToApi()
   }
 }

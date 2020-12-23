@@ -18,11 +18,10 @@ import { IContainmentTreeNode } from '../../models/containment-tree-node.interfa
 export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDialog<any> {
   constructor(private aqlEditorService: AqlEditorService) {}
 
-  dialogInput: any
+  dialogInput: AqbUiModel
   subscriptions = new Subscription()
   templates: IEhrbaseTemplate[]
   selectedTemplates = new FormControl()
-  aqbModel = new AqbUiModel()
 
   compositions: AqbContainsCompositionUiModel[] = []
 
@@ -35,6 +34,7 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
         this.handleTemplates(templates)
       )
     )
+    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
   }
 
   ngOnDestroy(): void {
@@ -46,8 +46,8 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
   }
 
   handleItemSelect(clickEvent: IAqbSelectClick): void {
-    this.aqbModel.handleElementSelect(clickEvent)
-    this.compositions = Array.from(this.aqbModel.contains.compositions.values())
+    this.dialogInput.handleElementSelect(clickEvent)
+    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
   }
 
   handleDialogConfirm(): void {
