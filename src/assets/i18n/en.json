@@ -91,6 +91,7 @@
     "ADD_TEMPLATE": "Add Template",
     "ADD_GROUP": "Add group",
     "DELETE_GROUP": "Delete group",
+    "DELETE_COMPOSITION": "Delete composition",
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_QUERY": "Save AQL Query",
     "SELECT": "Select",

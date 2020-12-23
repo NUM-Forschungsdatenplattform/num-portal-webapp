@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
@@ -18,12 +19,7 @@ export class AqlBuilderTemplatesComponent implements OnInit {
   selectedTemplates: FormControl
 
   @Output()
-  selectedItem = new EventEmitter<{ item: IContainmentTreeNode; compositionId: string }>()
+  selectedItem = new EventEmitter<IAqbSelectClick>()
 
   ngOnInit(): void {}
-
-  onItemSelect(selectedItem: { item: IContainmentTreeNode; compositionId: string }): void {
-    console.log(selectedItem)
-    this.selectedItem.emit(selectedItem)
-  }
 }

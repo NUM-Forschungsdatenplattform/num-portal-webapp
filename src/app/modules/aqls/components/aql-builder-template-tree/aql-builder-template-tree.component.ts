@@ -5,6 +5,7 @@ import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
@@ -19,7 +20,7 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   template: IEhrbaseTemplate
 
   @Output()
-  selectedItem = new EventEmitter<{ item: IContainmentTreeNode; compositionId: string }>()
+  selectedItem = new EventEmitter<IAqbSelectClick>()
 
   nestedTreeControl = new NestedTreeControl<IContainmentTreeNode>((node) => node.children)
   nestedDataSource = new MatTreeNestedDataSource<IContainmentTreeNode>()
@@ -83,6 +84,10 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   }
 
   handleItemDoubleClick(item: IContainmentTreeNode): void {
-    this.selectedItem.emit({ item, compositionId: this.compositionId })
+    this.selectedItem.emit({
+      item,
+      compositionId: this.compositionId,
+      templateId: this.template.templateId,
+    })
   }
 }

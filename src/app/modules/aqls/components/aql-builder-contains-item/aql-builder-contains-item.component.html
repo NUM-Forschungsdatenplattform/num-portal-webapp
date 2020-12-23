@@ -1,0 +1,9 @@
+<div>{{ item.archetypeId | archetype: false }}</div>
+
+<fa-icon
+  class="pointer"
+  icon="trash"
+  size="lg"
+  [fixedWidth]="true"
+  (click)="deleteSelf()"
+></fa-icon>

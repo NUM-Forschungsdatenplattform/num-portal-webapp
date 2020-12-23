@@ -91,6 +91,7 @@
     "ADD_GROUP": "Gruppe hinzufügen",
     "ADD_TEMPLATE": "Vorlage hinzufügen",
     "DELETE_GROUP": "Gruppe löschen",
+    "DELETE_COMPOSITION": "Composition löschen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_QUERY": "AQL Abfrage speichern",
     "SELECT": "Auswählen",

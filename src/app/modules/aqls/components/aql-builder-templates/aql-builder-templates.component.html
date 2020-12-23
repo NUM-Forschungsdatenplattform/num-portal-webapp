@@ -11,6 +11,6 @@
   <num-aql-builder-template-tree
     *ngFor="let template of selectedTemplates.value"
     [template]="template"
-    (selectedItem)="onItemSelect($event)"
+    (selectedItem)="selectedItem.emit($event)"
   ></num-aql-builder-template-tree>
 </mat-accordion>

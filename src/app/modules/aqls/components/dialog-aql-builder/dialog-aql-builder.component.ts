@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
+import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
+import { AqbContainsUiModel } from '../../models/aqb/aqb-contains-ui.model'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
+import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
@@ -18,6 +22,9 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
   subscriptions = new Subscription()
   templates: IEhrbaseTemplate[]
   selectedTemplates = new FormControl()
+  aqbModel = new AqbUiModel()
+
+  compositions: AqbContainsCompositionUiModel[] = []
 
   @Output() closeDialog = new EventEmitter()
 
@@ -38,8 +45,9 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
     this.templates = templates
   }
 
-  handleItemSelect(item: { item: IContainmentTreeNode; compositionId: string }): void {
-    console.log(item)
+  handleItemSelect(clickEvent: IAqbSelectClick): void {
+    this.aqbModel.handleElementSelect(clickEvent)
+    this.compositions = Array.from(this.aqbModel.contains.compositions.values())
   }
 
   handleDialogConfirm(): void {
