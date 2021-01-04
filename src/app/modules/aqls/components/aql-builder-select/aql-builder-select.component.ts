@@ -13,4 +13,8 @@ export class AqlBuilderSelectComponent implements OnInit {
   aqbModel: AqbUiModel
 
   ngOnInit(): void {}
+
+  deleteItem(index: number): void {
+    this.aqbModel.select.splice(index, 1)
+  }
 }

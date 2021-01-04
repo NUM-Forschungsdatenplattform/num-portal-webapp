@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
 
 @Component({
@@ -12,9 +12,12 @@ export class AqlBuilderSelectItemComponent implements OnInit {
   @Input()
   item: AqbSelectItemUiModel
 
+  @Output()
+  deleteItem = new EventEmitter()
+
   ngOnInit(): void {}
 
   deleteSelf(): void {
-    console.log('TODO: Item should be deleted and reference cleared')
+    this.deleteItem.emit()
   }
 }

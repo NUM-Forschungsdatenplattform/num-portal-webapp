@@ -2,9 +2,10 @@
 <div class="placeholder group-box">
   <num-aql-builder-select-item
     class="aqb-item mat-elevation-z2"
-    *ngFor="let item of aqbModel.select"
-    [item]="item"
     fxLayout="row"
     fxLayoutAlign="space-between center"
+    *ngFor="let item of aqbModel.select; let index"
+    [item]="item"
+    (deleteItem)="deleteItem(index)"
   ></num-aql-builder-select-item>
 </div>
