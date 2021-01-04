@@ -1,4 +1,5 @@
 mat-tree {
+  margin-left: -24px;
   max-height: 550px;
   overflow-y: scroll;
 }
@@ -22,5 +23,5 @@ mat-panel-title {
 }
 
 .num-tree ul {
-  padding-inline-start: 16px;
+  padding-inline-start: 12px;
 }

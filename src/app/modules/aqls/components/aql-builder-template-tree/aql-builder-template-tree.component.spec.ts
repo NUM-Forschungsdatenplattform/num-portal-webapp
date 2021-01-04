@@ -64,8 +64,8 @@ describe('AqlBuilderTemplateTreeComponent', () => {
 
       const data = component.nestedDataSource.data
 
-      expect(data.length).toEqual(3)
-      expect(data[0].displayName).toEqual('Test Field1 | value')
+      expect(data.length).toEqual(1)
+      expect(data[0].displayName).toEqual('Test')
     })
   })
 })

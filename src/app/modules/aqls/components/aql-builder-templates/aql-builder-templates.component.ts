@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 
 @Component({
   selector: 'num-aql-builder-templates',
@@ -8,12 +9,16 @@ import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/
   styleUrls: ['./aql-builder-templates.component.scss'],
 })
 export class AqlBuilderTemplatesComponent implements OnInit {
+  constructor() {}
+
   @Input()
   templates: IEhrbaseTemplate[]
 
   @Input()
   selectedTemplates: FormControl
-  constructor() {}
+
+  @Output()
+  selectedItem = new EventEmitter<IAqbSelectClick>()
 
   ngOnInit(): void {}
 }

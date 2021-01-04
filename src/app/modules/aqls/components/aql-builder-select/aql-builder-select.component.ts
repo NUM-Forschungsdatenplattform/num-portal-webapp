@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
+import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
 @Component({
   selector: 'num-aql-builder-select',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core'
 })
 export class AqlBuilderSelectComponent implements OnInit {
   constructor() {}
+
+  @Input()
+  aqbModel: AqbUiModel
 
   ngOnInit(): void {}
 }

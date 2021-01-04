@@ -1,9 +1,14 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
+import { MaterialModule } from 'src/app/layout/material/material.module'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
+import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 
@@ -20,9 +25,15 @@ describe('DialogAqlBuilderComponent', () => {
     selectedTemplates: any
   }
   @Component({ selector: 'num-aql-builder-select', template: '' })
-  class SelectStubComponent {}
+  class SelectStubComponent {
+    @Input()
+    aqbModel: any
+  }
   @Component({ selector: 'num-aql-builder-contains', template: '' })
-  class ContainsStubComponent {}
+  class ContainsStubComponent {
+    @Input()
+    compositions: any
+  }
   @Component({ selector: 'num-aql-builder-where', template: '' })
   class WhereStubComponent {}
 
@@ -41,7 +52,9 @@ describe('DialogAqlBuilderComponent', () => {
         SelectStubComponent,
         ContainsStubComponent,
         WhereStubComponent,
+        ButtonComponent,
       ],
+      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [{ provide: AqlEditorService, useValue: aqlEditorService }],
     }).compileComponents()
   })
@@ -51,6 +64,7 @@ describe('DialogAqlBuilderComponent', () => {
     component = fixture.componentInstance
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(aqlEditorService, 'getTemplates').mockImplementation(() => of())
+    component.dialogInput = new AqbUiModel()
     fixture.detectChanges()
   })
 
@@ -65,8 +79,6 @@ describe('DialogAqlBuilderComponent', () => {
   })
 
   it('should emit the close event with current dialogInput on confirmation', () => {
-    component.dialogInput = 'test'
-    fixture.detectChanges()
     component.handleDialogConfirm()
     expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
   })

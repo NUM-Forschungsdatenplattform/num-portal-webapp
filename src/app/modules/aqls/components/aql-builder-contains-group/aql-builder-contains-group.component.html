@@ -1,0 +1,67 @@
+<section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <span class="mat-body-strong" *ngIf="groupType === connectorGroupType.Sub">
+    {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
+  >
+  <span class="mat-body-strong" *ngIf="group.type === connectorNodeType.Aqb_Composition">
+    {{ $any(group).compositionId | archetype }} ({{ $any(group).templateId }})</span
+  >
+
+  <mat-form-field
+    appearance="standard"
+    class="num-operator-select"
+    [style.visibility]="group.children.length <= 1 ? 'hidden' : 'visible'"
+  >
+    <mat-select
+      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+      [(value)]="group.logicalOperator"
+      [disabled]="group.children.length <= 1"
+    >
+      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+        {{ operator }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<section role="listitem" *ngFor="let child of group.children; let i = index">
+  <num-aql-builder-contains-group
+    role="list"
+    class="group"
+    *ngIf="child.type === connectorNodeType.Group"
+    [group]="child"
+    [parentGroupIndex]="groupIndex"
+    [index]="i"
+    (delete)="deleteChild($event)"
+    fxFlex="100%"
+  ></num-aql-builder-contains-group>
+
+  <num-aql-builder-contains-item
+    class="aqb-item mat-elevation-z2"
+    [ngClass]="{
+      'aqb-item--last': i === group.children.length - 1
+    }"
+    *ngIf="child.type === connectorNodeType.Aqb_Item"
+    [item]="child"
+    fxFlex="100%"
+    role="listitem"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  ></num-aql-builder-contains-item>
+</section>
+
+<section role="presentation" class="button-row" fxLayoutGap="20px">
+  <!--
+    TODO: ENABLE WITH DELETION STORY:
+    <num-button type="secondary" (click)="addGroup()" icon="plus">{{
+    'BUTTON.ADD_GROUP' | translate
+  }}</num-button> -->
+
+  <span fxFlex></span>
+
+  <num-button type="basic" (click)="deleteSelf()">{{
+    (group.type === connectorNodeType.Aqb_Composition
+      ? 'BUTTON.DELETE_COMPOSITION'
+      : 'BUTTON.DELETE_GROUP'
+    ) | translate
+  }}</num-button>
+</section>

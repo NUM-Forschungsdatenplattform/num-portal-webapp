@@ -4,6 +4,9 @@ import { Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
+import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
+import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
 @Component({
   selector: 'num-dialog-aql-builder',
@@ -13,10 +16,12 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDialog<any> {
   constructor(private aqlEditorService: AqlEditorService) {}
 
-  dialogInput: any
+  dialogInput: AqbUiModel
   subscriptions = new Subscription()
   templates: IEhrbaseTemplate[]
   selectedTemplates = new FormControl()
+
+  compositions: AqbContainsCompositionUiModel[] = []
 
   @Output() closeDialog = new EventEmitter()
 
@@ -27,6 +32,7 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
         this.handleTemplates(templates)
       )
     )
+    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
   }
 
   ngOnDestroy(): void {
@@ -35,6 +41,11 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
 
   handleTemplates(templates: IEhrbaseTemplate[]): void {
     this.templates = templates
+  }
+
+  handleItemSelect(clickEvent: IAqbSelectClick): void {
+    this.dialogInput.handleElementSelect(clickEvent)
+    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
   }
 
   handleDialogConfirm(): void {
