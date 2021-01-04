@@ -106,18 +106,16 @@ describe('AdminService', () => {
     it(`should call the api - with success`, inject(
       [AdminService, HttpTestingController],
       (service: AdminService, httpMock: HttpTestingController) => {
-        const role = 'TEST_ROLE'
+        const roles = ['TEST_ROLE1', 'TEST_ROLE2']
         const id = '123-456'
-        service.addUserRoles(id, role).subscribe()
+        service.addUserRoles(id, roles).subscribe()
 
         httpMock.expectOne((req: HttpRequest<any>) => {
           return (
             req.url === `localhost/api/admin/user/${id}/role` &&
             req.method === 'POST' &&
             req.headers.get('Content-Type') === 'application/json' &&
-            req.headers.get('Accept') === 'text/plain' &&
-            req.responseType === ('text' as 'json') &&
-            req.body === `"${role}"`
+            req.body === roles
           )
         })
       }
@@ -126,7 +124,7 @@ describe('AdminService', () => {
     it(`should call the api - with error`, inject(
       [AdminService, HttpTestingController],
       (service: AdminService, httpMock: HttpTestingController) => {
-        const role = 'TEST_ROLE'
+        const role = ['TEST_ROLE1', 'TEST_ROLE2']
         const id = '123-456'
         const mockErrorResponse = { status: 400, statusText: 'Bad Request' }
         const data = 'Invalid request parameters'

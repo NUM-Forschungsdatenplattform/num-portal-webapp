@@ -29,10 +29,7 @@ export class DialogAddUserDetailsComponent implements OnInit {
   }
 
   handleDialogConfirm(): void {
-    // TODO: Adapt to new add Roles method when implemented in the backend
-    this.roles.forEach((role) => {
-      this.adminService.addUserRoles(this.dialogInput.id, role).subscribe()
-    })
+    this.adminService.addUserRoles(this.dialogInput.id, this.roles).subscribe()
 
     this.adminService.addUserOrganization(this.dialogInput.id, this.organization).subscribe()
 
