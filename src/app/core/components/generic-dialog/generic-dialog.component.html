@@ -26,6 +26,7 @@
   </mat-dialog-content>
 
   <div
+    *ngIf="!dialogConfig.hideGenericButtons"
     mat-dialog-actions
     fxFlexOffset="auto"
     [fxLayoutAlign]="

@@ -1,7 +1,11 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
+import { MaterialModule } from 'src/app/layout/material/material.module'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
@@ -48,7 +52,9 @@ describe('DialogAqlBuilderComponent', () => {
         SelectStubComponent,
         ContainsStubComponent,
         WhereStubComponent,
+        ButtonComponent,
       ],
+      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [{ provide: AqlEditorService, useValue: aqlEditorService }],
     }).compileComponents()
   })

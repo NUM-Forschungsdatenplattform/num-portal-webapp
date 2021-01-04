@@ -9,4 +9,5 @@ export interface DialogConfig {
   confirmButtonText?: string
   cancelButtonText?: string
   isDecision?: boolean
+  hideGenericButtons?: boolean
 }

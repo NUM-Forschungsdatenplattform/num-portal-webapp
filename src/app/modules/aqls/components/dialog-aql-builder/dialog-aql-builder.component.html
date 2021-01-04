@@ -12,3 +12,16 @@
     <num-aql-builder-where></num-aql-builder-where>
   </section>
 </section>
+
+<div class="button-row">
+  <num-button type="secondary" (click)="handleDialogCancel()">{{
+    'BUTTON.CANCEL' | translate
+  }}</num-button>
+
+  <num-button
+    type="primary"
+    [isDisabled]="!dialogInput.select.length"
+    (click)="handleDialogConfirm()"
+    >{{ 'BUTTON.APPLY_SELECTION' | translate }}</num-button
+  >
+</div>
