@@ -48,17 +48,15 @@ export class AdminService {
     )
   }
 
-  addUserRoles(userId: string, role: string): Observable<string> {
+  addUserRoles(userId: string, role: string[]): Observable<string[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Accept: 'text/plain',
       }),
-      responseType: 'text' as 'json',
     }
 
     return this.httpClient
-      .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
+      .post<string[]>(`${this.baseUrl}/user/${userId}/role`, role, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

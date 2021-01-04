@@ -22,7 +22,7 @@ describe('DialogAddUserDetailsComponent', () => {
   const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = ({
-    addUserRoles: (userId: string, role: string) => of(),
+    addUserRoles: (userId: string, roles: string[]) => of(),
     addUserOrganization: (userId: string, organization: string) => of(),
   } as unknown) as AdminService
 
@@ -91,8 +91,12 @@ describe('DialogAddUserDetailsComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should call addUserRoles with userId for each role', () => {
-      expect(adminService.addUserRoles).toHaveBeenCalledTimes(3)
+    it('should call addUserRoles with userId', () => {
+      expect(adminService.addUserRoles).toHaveBeenCalledWith(mockUser.id, [
+        'some',
+        'assigned',
+        'role',
+      ])
     })
   })
 
