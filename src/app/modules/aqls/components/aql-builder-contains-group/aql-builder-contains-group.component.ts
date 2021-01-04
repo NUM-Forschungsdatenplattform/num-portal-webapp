@@ -40,7 +40,7 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
   })
 
   groupIndex: number[] = []
-  groupType: string
+  groupType: ConnectorGroupType
 
   ngOnInit(): void {
     this.groupType = !this.group.indexInGroup ? ConnectorGroupType.Main : ConnectorGroupType.Sub
@@ -86,6 +86,6 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
 
   deleteSelf(): void {
     console.log('TODO: Group deletion should clear references')
-    //this.delete.emit(this.index)
+    // this.delete.emit(this.index)
   }
 }

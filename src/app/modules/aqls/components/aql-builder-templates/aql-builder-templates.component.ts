@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
-import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
   selector: 'num-aql-builder-templates',

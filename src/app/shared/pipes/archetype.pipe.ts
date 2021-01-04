@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core'
 })
 export class ArchetypePipe implements PipeTransform {
   transform(value: string, isSelect?: boolean): string {
-    console.log('is Select: ', isSelect)
     const typeAndName = value.split('openEHR-EHR-')[1]
 
     if (typeAndName) {

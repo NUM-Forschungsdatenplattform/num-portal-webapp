@@ -1,6 +1,5 @@
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IAqbSelectClause } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-clause.interface'
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
 import { AqbContainsUiModel } from './aqb-contains-ui.model'
 import { IAqbSelectClick } from './aqb-select-click.interface'
 import { AqbSelectItemUiModel } from './aqb-select-item-ui.model'

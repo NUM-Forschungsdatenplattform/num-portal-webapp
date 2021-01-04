@@ -43,10 +43,8 @@ export class AqlEditorCeatorComponent implements OnInit {
   handleDialogConfirm(aqbModel: AqbUiModel): void {
     this.aqbModel = aqbModel
     const aqbApiModel = aqbModel.convertToApi()
-    console.log(aqbApiModel)
     this.aqlEditorService.buildAql(aqbApiModel).subscribe((result) => {
       this.code = result.q
-      console.log(result)
     })
   }
 }

@@ -4,6 +4,7 @@ import { of, Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
+import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 
@@ -20,9 +21,15 @@ describe('DialogAqlBuilderComponent', () => {
     selectedTemplates: any
   }
   @Component({ selector: 'num-aql-builder-select', template: '' })
-  class SelectStubComponent {}
+  class SelectStubComponent {
+    @Input()
+    aqbModel: any
+  }
   @Component({ selector: 'num-aql-builder-contains', template: '' })
-  class ContainsStubComponent {}
+  class ContainsStubComponent {
+    @Input()
+    compositions: any
+  }
   @Component({ selector: 'num-aql-builder-where', template: '' })
   class WhereStubComponent {}
 
@@ -51,6 +58,7 @@ describe('DialogAqlBuilderComponent', () => {
     component = fixture.componentInstance
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(aqlEditorService, 'getTemplates').mockImplementation(() => of())
+    component.dialogInput = new AqbUiModel()
     fixture.detectChanges()
   })
 
@@ -65,8 +73,6 @@ describe('DialogAqlBuilderComponent', () => {
   })
 
   it('should emit the close event with current dialogInput on confirmation', () => {
-    component.dialogInput = 'test'
-    fixture.detectChanges()
     component.handleDialogConfirm()
     expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
   })
