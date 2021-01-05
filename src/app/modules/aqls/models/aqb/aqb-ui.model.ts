@@ -33,7 +33,6 @@ export class AqbUiModel {
       archetypeId,
       archetypeReferenceId
     )
-    console.log(this)
   }
 
   setReference(archetypeId: string): number {
@@ -47,8 +46,30 @@ export class AqbUiModel {
     return this.referenceCounter
   }
 
+  handleDeletionByComposition(compositionIds: string[]): void {
+    const referenceIds = []
+    compositionIds.forEach((compositionId) => {
+      referenceIds.push(this.references.get(compositionId))
+      this.deleteReference(compositionId)
+    })
+
+    this.select = this.select.filter((item) => !referenceIds.includes(item.compositionReferenceId))
+
+    this.contains.deleteComposition(referenceIds)
+  }
+
+  handleDeletionByArchetype(archetypeIds: string[]): void {
+    const referenceIds = []
+    archetypeIds.forEach((archetypeId) => {
+      referenceIds.push(this.references.get(archetypeId))
+      this.deleteReference(archetypeId)
+    })
+
+    this.select = this.select.filter((item) => !referenceIds.includes(item.archetypeReferenceId))
+  }
+
   deleteReference(archetypeId: string): void {
-    delete this.references[archetypeId]
+    this.references.delete(archetypeId)
   }
 
   convertToApi(): IArchetypeQueryBuilder {

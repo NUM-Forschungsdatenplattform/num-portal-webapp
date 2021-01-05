@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AqbContainsItemUiModel } from '../../models/aqb/aqb-contains-item-ui.model'
 
 @Component({
@@ -12,9 +12,12 @@ export class AqlBuilderContainsItemComponent implements OnInit {
   @Input()
   item: AqbContainsItemUiModel
 
+  @Output()
+  deleteItem = new EventEmitter<string>()
+
   ngOnInit(): void {}
 
   deleteSelf(): void {
-    console.log('TODO: Item should be deleted in the group')
+    this.deleteItem.emit(this.item.archetypeId)
   }
 }

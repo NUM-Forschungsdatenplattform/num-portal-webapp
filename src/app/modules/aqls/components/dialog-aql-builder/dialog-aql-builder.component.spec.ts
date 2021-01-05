@@ -18,21 +18,18 @@ describe('DialogAqlBuilderComponent', () => {
 
   @Component({ selector: 'num-aql-builder-templates', template: '' })
   class TemplatesStubComponent {
-    @Input()
-    templates: any
+    @Input() templates: any
 
-    @Input()
-    selectedTemplates: any
+    @Input() selectedTemplates: any
   }
   @Component({ selector: 'num-aql-builder-select', template: '' })
   class SelectStubComponent {
-    @Input()
-    aqbModel: any
+    @Input() aqbModel: any
   }
   @Component({ selector: 'num-aql-builder-contains', template: '' })
   class ContainsStubComponent {
-    @Input()
-    compositions: any
+    @Input() compositions: any
+    @Input() aqbModel: any
   }
   @Component({ selector: 'num-aql-builder-where', template: '' })
   class WhereStubComponent {}

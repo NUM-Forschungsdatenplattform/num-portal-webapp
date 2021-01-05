@@ -8,7 +8,9 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
 import { GroupIndexPipe } from 'src/app/shared/pipes/group-index.pipe'
+import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
 import { AqbContainsGroupUiModel } from '../../models/aqb/aqb-contains-group-ui.model'
+import { AqbContainsItemUiModel } from '../../models/aqb/aqb-contains-item-ui.model'
 
 import { AqlBuilderContainsGroupComponent } from './aql-builder-contains-group.component'
 
@@ -79,6 +81,9 @@ describe('AqlBuilderContainsGroupComponent', () => {
     }
     test.each([case1, case2, case3])('should reevaluate the groupIndex', (testcase) => {
       component.group = new AqbContainsGroupUiModel()
+      const child1 = new AqbContainsItemUiModel('testComp1', 1, 'testArchetypeId1', 2)
+      const child2 = new AqbContainsGroupUiModel()
+      component.group.children = [child1, child2]
       component.group.indexInGroup = testcase.indexInGroup
       component.parentGroupIndex = testcase.parentGroupIndex
 
@@ -87,6 +92,44 @@ describe('AqlBuilderContainsGroupComponent', () => {
       fixture.detectChanges()
 
       expect(component.groupIndex).toEqual(testcase.expectedResult)
+    })
+  })
+
+  describe('When the group is supposed to be deleted', () => {
+    it('should emit its index if its not a composition group', () => {
+      component.index = 123
+      jest.spyOn(component.delete, 'emit')
+      component.deleteSelf()
+      expect(component.delete.emit).toHaveBeenCalledWith(component.index)
+    })
+
+    it('should emit the composition id if its a composition', () => {
+      const compId = 'testCompositionId'
+      const templId = 'testTemplateId'
+      component.group = new AqbContainsCompositionUiModel(templId, compId, 1)
+      jest.spyOn(component.deleteComposition, 'emit')
+      component.deleteSelf()
+      expect(component.deleteComposition.emit).toHaveBeenCalledWith(compId)
+    })
+  })
+
+  describe('When a child item is supposed to be deleted from the group', () => {
+    beforeEach(() => {
+      jest.spyOn(component.deleteArchetypes, 'emit')
+      component.group = new AqbContainsGroupUiModel()
+      const child1 = new AqbContainsItemUiModel('testComp1', 1, 'testArchetypeId1', 2)
+      const child2 = new AqbContainsItemUiModel('testComp2', 3, 'testArchetypeId2', 4)
+      component.group.children = [child1, child2]
+
+      component.deleteChildItem(1, 'testArchetypeId1')
+    })
+
+    it('should delete the item from the group based on its index', () => {
+      expect(component.group.children.length).toEqual(1)
+    })
+
+    it('should emit the archetypeId to the parent', () => {
+      expect(component.deleteArchetypes.emit).toHaveBeenCalledWith(['testArchetypeId1'])
     })
   })
 })

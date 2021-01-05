@@ -45,4 +45,12 @@ describe('AqlBuilderContainsItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  describe('When the item is supposed to be deleted', () => {
+    it('should emit its archetypeId to its parent', () => {
+      jest.spyOn(component.deleteItem, 'emit')
+      component.deleteSelf()
+      expect(component.deleteItem.emit).toHaveBeenCalledWith(archetypeId)
+    })
+  })
 })

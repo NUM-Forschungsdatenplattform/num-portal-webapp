@@ -21,7 +21,7 @@ describe('AqlEditorService', () => {
   const appConfig = {
     config: {
       aqlEditor: {
-        baseUrl: 'localhost',
+        baseUrl: 'localhost/aqleditor',
       },
     },
   } as AppConfigService

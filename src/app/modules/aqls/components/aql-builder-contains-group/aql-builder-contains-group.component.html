@@ -27,12 +27,13 @@
   <num-aql-builder-contains-group
     role="list"
     class="group"
+    fxFlex="100%"
     *ngIf="child.type === connectorNodeType.Group"
     [group]="child"
     [parentGroupIndex]="groupIndex"
     [index]="i"
-    (delete)="deleteChild($event)"
-    fxFlex="100%"
+    (delete)="deleteChildGroup($event)"
+    (deleteArchetypes)="this.deleteArchetypes.emit($event)"
   ></num-aql-builder-contains-group>
 
   <num-aql-builder-contains-item
@@ -42,6 +43,7 @@
     }"
     *ngIf="child.type === connectorNodeType.Aqb_Item"
     [item]="child"
+    (deleteItem)="deleteChildItem(i, $event)"
     fxFlex="100%"
     role="listitem"
     fxLayout="row"

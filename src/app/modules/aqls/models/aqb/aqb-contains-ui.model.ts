@@ -6,7 +6,7 @@ import { AqbContainsCompositionUiModel } from './aqb-contains-composition-ui.mod
 
 type PossibleContains = IAqbContainmentNode | IAqbLogicalOperatorNode<PossibleContains>
 export class AqbContainsUiModel {
-  compositions = new Map<string, AqbContainsCompositionUiModel>()
+  compositions = new Map<number, AqbContainsCompositionUiModel>()
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
 
   constructor() {
@@ -20,7 +20,7 @@ export class AqbContainsUiModel {
     archetypeId: string,
     archetypeReferenceId: number
   ): void {
-    let composition = this.compositions.get(compositionId)
+    let composition = this.compositions.get(compositionReferenceId)
     if (composition === undefined || composition === null) {
       composition = new AqbContainsCompositionUiModel(
         templateId,
@@ -30,7 +30,13 @@ export class AqbContainsUiModel {
     }
 
     composition.setContainsItem(archetypeId, archetypeReferenceId)
-    this.compositions.set(compositionId, composition)
+    this.compositions.set(compositionReferenceId, composition)
+  }
+
+  deleteComposition(compositionReferenceIds: number[]): void {
+    compositionReferenceIds.forEach((compositionReferenceId) =>
+      this.compositions.delete(compositionReferenceId)
+    )
   }
 
   convertToApi(): PossibleContains {
