@@ -14,7 +14,7 @@ import { BUILDER_DIALOG_CONFIG } from './constants'
 export class AqlEditorCeatorComponent implements OnInit {
   constructor(private dialogService: DialogService, private aqlEditorService: AqlEditorService) {}
 
-  code = ''
+  aqlQuery = ''
   editor: monaco.editor.IStandaloneCodeEditor
   aqbModel = new AqbUiModel()
 
@@ -44,7 +44,7 @@ export class AqlEditorCeatorComponent implements OnInit {
     this.aqbModel = aqbModel
     const aqbApiModel = aqbModel.convertToApi()
     this.aqlEditorService.buildAql(aqbApiModel).subscribe((result) => {
-      this.code = result.q
+      this.aqlQuery = result.q
     })
   }
 }

@@ -8,6 +8,7 @@ import { DialogService } from 'src/app/core/services/dialog.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
+import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'
@@ -37,8 +38,15 @@ describe('AqlEditorCeatorComponent', () => {
     }),
   } as unknown) as DialogService
 
+  const builderResponse: IArchetypeQueryBuilderResponse = {
+    parameters: {},
+    q: 'test',
+  }
+
   const mockAqlEditorService = ({
-    buildAql: jest.fn().mockImplementation((aqbModel: IArchetypeQueryBuilder) => of('test')),
+    buildAql: jest
+      .fn()
+      .mockImplementation((aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
   } as unknown) as AqlEditorService
 
   beforeEach(async () => {
@@ -85,6 +93,26 @@ describe('AqlEditorCeatorComponent', () => {
         dialogConfig.dialogContentComponent
       )
       expect(dialogCallParameter.dialogContentPayload).toEqual(dialogConfig.dialogContentPayload)
+    })
+
+    describe('When the builder dialog is confirm-closed', () => {
+      const model = new AqbUiModel()
+      const convertedModel = model.convertToApi()
+      beforeEach(() => {
+        component.openBuilderDialog()
+        afterClosedSubject$.next(model)
+      })
+      it('should call the aqlEditorService to generate the query and set the aqlQuery from the response', () => {
+        expect(mockAqlEditorService.buildAql).toHaveBeenCalledWith(convertedModel)
+        expect(component.aqlQuery).toEqual(builderResponse.q)
+      })
+    })
+
+    it('should do nothing, when its not a confirm-close', () => {
+      jest.spyOn(component, 'handleDialogConfirm')
+      component.openBuilderDialog()
+      afterClosedSubject$.next()
+      expect(component.handleDialogConfirm).not.toHaveBeenCalled()
     })
   })
 })

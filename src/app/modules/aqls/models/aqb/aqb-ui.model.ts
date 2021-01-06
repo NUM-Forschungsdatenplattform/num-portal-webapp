@@ -35,7 +35,7 @@ export class AqbUiModel {
     )
   }
 
-  setReference(archetypeId: string): number {
+  private setReference(archetypeId: string): number {
     const reference = this.references.get(archetypeId)
     if (reference !== null && reference !== undefined) {
       return reference
@@ -55,7 +55,7 @@ export class AqbUiModel {
 
     this.select = this.select.filter((item) => !referenceIds.includes(item.compositionReferenceId))
 
-    this.contains.deleteComposition(referenceIds)
+    this.contains.deleteCompositions(referenceIds)
   }
 
   handleDeletionByArchetype(archetypeIds: string[]): void {
@@ -68,7 +68,7 @@ export class AqbUiModel {
     this.select = this.select.filter((item) => !referenceIds.includes(item.archetypeReferenceId))
   }
 
-  deleteReference(archetypeId: string): void {
+  private deleteReference(archetypeId: string): void {
     this.references.delete(archetypeId)
   }
 

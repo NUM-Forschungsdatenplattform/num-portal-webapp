@@ -33,7 +33,7 @@ export class AqbContainsUiModel {
     this.compositions.set(compositionReferenceId, composition)
   }
 
-  deleteComposition(compositionReferenceIds: number[]): void {
+  deleteCompositions(compositionReferenceIds: number[]): void {
     compositionReferenceIds.forEach((compositionReferenceId) =>
       this.compositions.delete(compositionReferenceId)
     )
@@ -48,7 +48,10 @@ export class AqbContainsUiModel {
         values: compositions.map((composition) => composition.convertToApi()),
       }
       return contains
+    } else if (compositions.length) {
+      return compositions[0].convertToApi()
+    } else {
+      return null
     }
-    return compositions[0].convertToApi()
   }
 }
