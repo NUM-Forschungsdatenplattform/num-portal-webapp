@@ -15,7 +15,7 @@ export class DialogEditUserDetailsComponent implements OnInit {
   userDetails: IUser
   roles: string[] = []
   organization: IOrganization = null
-  showRoles = false
+  showRoles: boolean = false
 
   constructor(
     private adminService: AdminService,
@@ -32,7 +32,7 @@ export class DialogEditUserDetailsComponent implements OnInit {
     this.adminService.getUserRoles(this.dialogInput.id).subscribe(
       (roles) => {
         roles.forEach((role) => {
-          this.roles.push(role['name'])
+          this.roles.push(role.name)
         })
       },
       (err) => {},

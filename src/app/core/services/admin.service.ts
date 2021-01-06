@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { environment } from 'src/environments/environment'
@@ -69,9 +70,9 @@ export class AdminService {
     )
   }
 
-  getUserRoles(userId: string): Observable<string[]> {
+  getUserRoles(userId: string): Observable<IRole[]> {
     return this.httpClient
-      .get<string[]>(`${this.baseUrl}/user/${userId}/role`)
+      .get<IRole[]>(`${this.baseUrl}/user/${userId}/role`)
       .pipe(catchError(this.handleError))
   }
 
