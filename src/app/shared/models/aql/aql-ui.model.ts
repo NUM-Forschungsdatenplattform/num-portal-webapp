@@ -1,38 +1,25 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
-import { IAqlApi } from './aql.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
+import { IAqlPhenotypeApi } from './aql-phenotype.interface'
 
 export class AqlUiModel implements ConnectorMainNodeUi {
   type: ConnectorNodeType.Aql
   id: number
   name: string
   query: string
-  purpose: string
-  usage: string
-  createDate: string
-  modifiedDate: string
-  organizationId: string
-  ownerId: string
-  publicAql: boolean
   isNegated: boolean
   parameter: { name: string; value?: string }[]
   areParameterConfigured = true
   indexInGroup: number | null
 
-  constructor(aql: IAqlApi, isNegated: boolean = false) {
+  constructor(aql: IAqlPhenotypeApi, isNegated: boolean = false) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
     this.name = aql.name
     this.query = aql.query
-    this.purpose = aql.purpose
-    this.usage = aql.usage
-    this.createDate = aql.createDate
-    this.modifiedDate = aql.modifiedDate
-    this.ownerId = aql.ownerId
-    this.publicAql = aql.publicAql
     this.isNegated = isNegated
     this.parameter = (aql.query.match(PARAMETER_REGEX) || []).map((name) => {
       return { name, value: undefined }
@@ -54,13 +41,6 @@ export class AqlUiModel implements ConnectorMainNodeUi {
         id: this.id,
         name: this.name,
         query: this.insertParamsForApi(this.query),
-        purpose: this.purpose,
-        usage: this.usage,
-        createDate: this.createDate,
-        modifiedDate: this.modifiedDate,
-        organizationId: this.organizationId,
-        ownerId: this.ownerId,
-        publicAql: this.publicAql,
       },
     }
   }

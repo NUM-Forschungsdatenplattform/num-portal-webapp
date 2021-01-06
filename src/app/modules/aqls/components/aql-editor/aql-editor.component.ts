@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql.service'
-import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.model'
+import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 
@@ -13,7 +13,7 @@ import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 })
 export class AqlEditorComponent implements OnInit {
   resolvedData: IAqlResolved
-  get aql(): AqlBuilderUiModel {
+  get aql(): AqlEditorUiModel {
     return this.resolvedData.aql
   }
 

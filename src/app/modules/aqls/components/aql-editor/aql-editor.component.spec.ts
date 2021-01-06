@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { AqlService } from 'src/app/core/services/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.model'
+import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 
 import { AqlEditorComponent } from './aql-editor.component'
@@ -24,7 +24,7 @@ describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
   let fixture: ComponentFixture<AqlEditorComponent>
 
-  const resolvedData: IAqlResolved = { aql: new AqlBuilderUiModel(), error: null }
+  const resolvedData: IAqlResolved = { aql: new AqlEditorUiModel(), error: null }
   const route = ({
     snapshot: {
       data: {
@@ -83,7 +83,7 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'save').mockImplementation(() => mockAqlObservable)
       component.resolvedData = {
         error: null,
-        aql: new AqlBuilderUiModel(mockAql1),
+        aql: new AqlEditorUiModel(mockAql1),
       }
     })
 

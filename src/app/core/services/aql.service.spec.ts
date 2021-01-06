@@ -5,7 +5,7 @@ import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.model'
+import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 
 describe('AqlService', () => {
   let service: AqlService
@@ -98,7 +98,7 @@ describe('AqlService', () => {
         filterChips: [],
         searchText: 'name1',
       }
-      let filterResult: AqlBuilderUiModel[]
+      let filterResult: AqlEditorUiModel[]
       const callHelper = jest.fn((result) => (filterResult = result))
       service.filteredAqlsObservable$.subscribe(callHelper)
 

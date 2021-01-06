@@ -1,6 +1,6 @@
 import { IAqlApi } from './aql.interface'
 
-export class AqlBuilderUiModel {
+export class AqlEditorUiModel {
   id: number
   name: string
   query: string
@@ -13,7 +13,7 @@ export class AqlBuilderUiModel {
   publicAql: boolean
   description?: string
 
-  constructor(aql?: AqlBuilderUiModel) {
+  constructor(aql?: IAqlApi) {
     this.id = aql?.id || 0
     this.name = aql?.name || undefined
     this.query = aql?.query || ''
