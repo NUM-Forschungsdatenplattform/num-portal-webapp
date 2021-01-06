@@ -67,4 +67,9 @@ describe('ApprovedUsersComponent', () => {
   it('should call getApprovedUsers', () => {
     expect(adminService.getApprovedUsers).toHaveBeenCalled()
   })
+
+  it('should set the filter in the adminService on searchChange', () => {
+    component.handleSearchChange()
+    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
 })
