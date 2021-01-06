@@ -10,6 +10,15 @@ import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.mode
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 
 import { AqlEditorComponent } from './aql-editor.component'
+import { of } from 'rxjs'
+import { mockStudy1 } from '../../../../../mocks/data-mocks/studies.mock'
+import { mockCohort1 } from '../../../../../mocks/data-mocks/cohorts.mock'
+import { StudyUiModel } from '../../../../shared/models/study/study-ui.model'
+import { CohortGroupUiModel } from '../../../../shared/models/study/cohort-group-ui.model'
+import { LogicalOperator } from '../../../../shared/models/logical-operator.enum'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { PhenotypeUiModel } from '../../../../shared/models/phenotype/phenotype-ui.model'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -25,7 +34,7 @@ describe('AqlEditorComponent', () => {
   } as unknown) as ActivatedRoute
 
   const aqlService = ({
-    create: () => jest.fn(),
+    save: jest.fn(),
   } as unknown) as AqlService
 
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
@@ -66,5 +75,23 @@ describe('AqlEditorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  describe('On the attempt to save the AQL', () => {
+    beforeEach(() => {
+      const mockAqlObservable = of(mockAql1)
+      jest.spyOn(aqlService, 'save').mockImplementation(() => mockAqlObservable)
+      component.resolvedData = {
+        error: null,
+        aql: new AqlBuilderUiModel(mockAql1),
+      }
+    })
+
+    it('should call the AQL save method', async (done) => {
+      component.save().then(() => {
+        expect(aqlService.save).toHaveBeenCalledTimes(1)
+        done()
+      })
+    })
   })
 })

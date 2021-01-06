@@ -38,25 +38,6 @@ export class AqlEditorComponent implements OnInit {
     })
   }
 
-  getAqlForApi222(): IAqlApi {
-    const formValues = this.aqlForm.value
-
-    const aqlQueryModel: IAqlApi = {
-      id: this.aql?.id,
-      name: formValues.title,
-      query: formValues.query,
-      purpose: formValues.purpose,
-      usage: formValues.usage,
-      publicAql: formValues.isPublic,
-      createDate: this.aql?.createDate,
-      modifiedDate: this.aql?.modifiedDate,
-      organizationId: this.aql?.organizationId,
-      ownerId: this.aql?.ownerId,
-    }
-
-    return aqlQueryModel
-  }
-
   getAqlForApi(): IAqlApi {
     const formValues = this.aqlForm.value
 
@@ -64,19 +45,15 @@ export class AqlEditorComponent implements OnInit {
       formValues.title,
       formValues.purpose,
       formValues.usage,
-      formValues.publicAql
+      formValues.isPublic
     )
-  }
-
-  saveAqlQuery(aqlQuery: IAqlApi): Promise<IAqlApi> {
-    return this.aqlService.save(aqlQuery).toPromise()
   }
 
   async save(): Promise<void> {
     const aqlQuery = this.getAqlForApi()
 
     try {
-      await this.saveAqlQuery(aqlQuery)
+      await this.aqlService.save(aqlQuery).toPromise()
       // TODO: Display message to user
     } catch (error) {
       console.log(error)

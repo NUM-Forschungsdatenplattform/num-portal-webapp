@@ -4,20 +4,14 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-
 import { AddAqlsSelectedTableComponent } from './add-aqls-selected-table.component'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 
 describe('AddAqlsSelectionTableComponent', () => {
   let component: AddAqlsSelectedTableComponent
   let fixture: ComponentFixture<AddAqlsSelectedTableComponent>
 
-  const aqlRow: IAqlApi = {
-    id: 123,
-    name: 'test',
-    query: 'query test string',
-  }
-  const aql = new AqlUiModel(aqlRow)
+  const aql = new AqlUiModel(mockAql1)
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
