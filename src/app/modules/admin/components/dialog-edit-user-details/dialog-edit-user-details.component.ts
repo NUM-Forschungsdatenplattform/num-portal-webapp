@@ -15,7 +15,7 @@ export class DialogEditUserDetailsComponent implements OnInit {
   userDetails: IUser
   roles: string[] = []
   organization: IOrganization = null
-  showRoles: boolean = false
+  showRoles = false
 
   constructor(
     private adminService: AdminService,
