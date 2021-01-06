@@ -43,7 +43,9 @@ describe('AqlEditorComponent', () => {
   }
 
   @Component({ selector: 'num-aql-editor-creator', template: '' })
-  class StubEditorCreatorComponent {}
+  class StubEditorCreatorComponent {
+    @Input() aqlQuery: any
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
