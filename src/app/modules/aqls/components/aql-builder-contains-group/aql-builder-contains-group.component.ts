@@ -32,7 +32,9 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
   @Input() parentGroupIndex: number[] | null
   @Input() index: number
 
-  @Output() delete = new EventEmitter()
+  @Output() delete = new EventEmitter<number>()
+  @Output() deleteArchetypes = new EventEmitter<string[]>()
+  @Output() deleteComposition = new EventEmitter<string>()
 
   enumerateGroupsDebounced = debounce(() => this.enumerateGroups(), 100, {
     leading: true,
@@ -79,13 +81,23 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
     this.enumerateGroupsDebounced()
   }
 
-  deleteChild(index: number): void {
-    this.group.children.splice(index, 1)
+  deleteChildGroup(index: number): void {
+    const deletedGroup = this.group.children.splice(index, 1)[0] as AqbContainsGroupUiModel
+    const archetypeIds = deletedGroup.collectArchetypeReferences([])
+    this.deleteArchetypes.emit(archetypeIds)
     this.enumerateGroupsDebounced()
   }
 
+  deleteChildItem(index: number, archetypeId: string): void {
+    this.group.children.splice(index, 1)
+    this.deleteArchetypes.emit([archetypeId])
+  }
+
   deleteSelf(): void {
-    console.log('TODO: Group deletion should clear references')
-    // this.delete.emit(this.index)
+    if (this.group instanceof AqbContainsCompositionUiModel) {
+      this.deleteComposition.emit(this.group.compositionId)
+    } else {
+      this.delete.emit(this.index)
+    }
   }
 }

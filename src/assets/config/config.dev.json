@@ -11,7 +11,7 @@
     "clientId": "numPortalWebapp"
   },
   "aqlEditor": {
-    "baseUrl": ""
+    "baseUrl": "/aqleditor"
   },
   "legal": {
     "version": "0.9.0",

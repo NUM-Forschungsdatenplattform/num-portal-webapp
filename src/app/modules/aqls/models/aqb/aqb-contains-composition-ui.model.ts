@@ -10,7 +10,7 @@ type PossibleContains = IAqbContainmentNode | IAqbLogicalOperatorNode<PossibleCo
 export class AqbContainsCompositionUiModel {
   type = ConnectorNodeType.Aqb_Composition
   indexInGroup: number | null = null
-  existingItems = new Map<string, boolean>()
+  existingItems = new Map<number, boolean>()
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   children: (AqbContainsItemUiModel | AqbContainsGroupUiModel)[]
   templateId: string
@@ -26,8 +26,7 @@ export class AqbContainsCompositionUiModel {
   }
 
   setContainsItem(archetypeId: string, archetypeReferenceId: number): void {
-    const isExisting = !!this.existingItems.get(archetypeId)
-    console.log(isExisting)
+    const isExisting = !!this.existingItems.get(archetypeReferenceId)
     if (!isExisting && archetypeId !== this.compositionId) {
       const containsItem = new AqbContainsItemUiModel(
         this.compositionId,
@@ -36,7 +35,7 @@ export class AqbContainsCompositionUiModel {
         archetypeReferenceId
       )
       this.children.push(containsItem)
-      this.existingItems.set(archetypeId, true)
+      this.existingItems.set(archetypeReferenceId, true)
     }
   }
 

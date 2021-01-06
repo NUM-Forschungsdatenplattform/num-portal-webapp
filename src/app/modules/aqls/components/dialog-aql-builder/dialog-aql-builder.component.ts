@@ -7,6 +7,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { cloneDeep } from 'lodash-es'
 
 @Component({
   selector: 'num-dialog-aql-builder',
@@ -17,6 +18,8 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
   constructor(private aqlEditorService: AqlEditorService) {}
 
   dialogInput: AqbUiModel
+  aqbModel: AqbUiModel
+
   subscriptions = new Subscription()
   templates: IEhrbaseTemplate[]
   selectedTemplates = new FormControl()
@@ -26,13 +29,14 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
   @Output() closeDialog = new EventEmitter()
 
   ngOnInit(): void {
+    this.aqbModel = cloneDeep(this.dialogInput)
     this.aqlEditorService.getTemplates().subscribe()
     this.subscriptions.add(
       this.aqlEditorService.templatesObservable$.subscribe((templates) =>
         this.handleTemplates(templates)
       )
     )
-    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
+    this.compositions = Array.from(this.aqbModel.contains.compositions.values())
   }
 
   ngOnDestroy(): void {
@@ -44,12 +48,12 @@ export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDia
   }
 
   handleItemSelect(clickEvent: IAqbSelectClick): void {
-    this.dialogInput.handleElementSelect(clickEvent)
-    this.compositions = Array.from(this.dialogInput.contains.compositions.values())
+    this.aqbModel.handleElementSelect(clickEvent)
+    this.compositions = Array.from(this.aqbModel.contains.compositions.values())
   }
 
   handleDialogConfirm(): void {
-    this.closeDialog.emit(this.dialogInput)
+    this.closeDialog.emit(this.aqbModel)
   }
 
   handleDialogCancel(): void {

@@ -38,4 +38,15 @@ export class AqbContainsGroupUiModel {
       }
     }
   }
+
+  collectArchetypeReferences(references: string[]): string[] {
+    return this.children.reduce((arr, item) => {
+      if (item instanceof AqbContainsItemUiModel) {
+        arr.push(item.archetypeId)
+        return arr
+      } else {
+        return item.collectArchetypeReferences(arr)
+      }
+    }, references)
+  }
 }
