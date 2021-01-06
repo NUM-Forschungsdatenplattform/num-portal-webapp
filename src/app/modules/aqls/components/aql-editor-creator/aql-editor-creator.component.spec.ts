@@ -24,6 +24,7 @@ describe('AqlEditorCeatorComponent', () => {
   @Component({ selector: 'num-code-editor', template: '' })
   class CodeEditorStubComponent {
     @Input() value: string
+    @Input() aqlQuery: string
     @Output() editorInit = editorInitEmitter
   }
 
