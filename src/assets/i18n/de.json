@@ -86,14 +86,18 @@
   },
   "USER": {
     "FIRST_NAME": "Vorname",
-    "LAST_NAME": "Nachname"
+    "LAST_NAME": "Nachname",
+    "ORGANIZATION": "Organisation",
+    "ROLES": "Rollen"
   },
   "ROLE": {
     "RESEARCHER": "Wissenschaftler",
     "ORGANIZATION_ADMIN": "Organisations-Administrator",
-    "STUDY_COORDINATOR": "Studienkoordinator"
+    "STUDY_COORDINATOR": "Studienkoordinator",
+    "ADMIN": "Administrator"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "MANAGE_NEW_USERS": "Neue Benutzer verwalten",
-  "MANAGE_ALL_USERS": "Alle Benutzer verwalten"
+  "MANAGE_ALL_USERS": "Alle Benutzer verwalten",
+  "SEARCH_USERNAME": "Benutzernamen suchen"
 }

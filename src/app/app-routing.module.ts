@@ -68,7 +68,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'users',
-      roles: ['ORGANIZATION_ADMIN'],
+      roles: ['ORGANIZATION_ADMIN', 'ADMIN'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(

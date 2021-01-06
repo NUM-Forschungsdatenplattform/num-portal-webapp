@@ -20,6 +20,7 @@ describe('AddUserRolesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AddUserRolesComponent)
     component = fixture.componentInstance
+    component.selectedRoles = []
     fixture.detectChanges()
   })
 
@@ -30,7 +31,6 @@ describe('AddUserRolesComponent', () => {
   describe('When the icon in the row is clicked to select a role', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedRolesChange, 'emit')
-      component.selectedRoles = []
       component.handleSelectClick(mockRole)
     })
 

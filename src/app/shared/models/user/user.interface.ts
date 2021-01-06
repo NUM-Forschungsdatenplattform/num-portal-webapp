@@ -1,7 +1,9 @@
+import { IOrganization } from './organization.interface'
+
 export interface IUser {
   approved?: boolean
   email: string
-  externalOrganizationId?: string
+  organization?: IOrganization
   firstName: string
   id: string
   lastName: string
