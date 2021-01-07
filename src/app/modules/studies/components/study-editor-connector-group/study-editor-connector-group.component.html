@@ -56,16 +56,19 @@
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <num-button type="primary" icon="plus" (click)="addPhenotype()">{{
+  <num-button type="primary" icon="plus" (singleClick)="addPhenotype()">{{
     'BUTTON.ADD_PHENOTYPE' | translate
   }}</num-button>
-  <num-button type="secondary" icon="plus" (click)="addGroup()">{{
+  <num-button type="secondary" icon="plus" (singleClick)="addGroup()">{{
     'BUTTON.ADD_GROUP' | translate
   }}</num-button>
 
   <span fxFlex></span>
 
-  <num-button *ngIf="groupType === connectorGroupType.Sub" type="basic" (click)="deleteSelf()">{{
-    'BUTTON.DELETE_GROUP' | translate
-  }}</num-button>
+  <num-button
+    *ngIf="groupType === connectorGroupType.Sub"
+    type="basic"
+    (singleClick)="deleteSelf()"
+    >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
+  >
 </section>
