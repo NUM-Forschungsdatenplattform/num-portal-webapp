@@ -33,6 +33,21 @@ export class StudyUiModel {
     this.cohortGroup = cohortGroup || new CohortGroupUiModel()
     this.researchers = researchers || []
     this.templates = apiStudy?.templates || []
+    this.cohortGroup = new CohortGroupUiModel()
+
+    if (cohortGroup) {
+      this.convertCohortToUi(cohortGroup.cohortGroup)
+    }
+  }
+
+  private convertCohortToUi(cohortGroup: ICohortGroupApi): void {
+    if (cohortGroup.operator === LogicalOperator.Not) {
+      const isNegated = true
+      const firstChild = cohortGroup.children[0]
+      this.cohortGroup.convertToUi(firstChild, isNegated)
+    } else {
+      this.cohortGroup.convertToUi(cohortGroup, false)
+    }
   }
 
   public convertToApiInterface(

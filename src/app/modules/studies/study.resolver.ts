@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
-import { Observable, of } from 'rxjs'
-import { map, catchError } from 'rxjs/operators'
+import { combineLatest, Observable, of } from 'rxjs'
+import { map, catchError, mergeMap } from 'rxjs/operators'
+import { CohortService } from 'src/app/core/services/cohort.service'
+import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
+import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { StudyService } from '../../core/services/study.service'
 import { IStudyResolved } from './study-resolved.interface'
@@ -10,7 +13,7 @@ import { IStudyResolved } from './study-resolved.interface'
   providedIn: 'root',
 })
 export class StudyResolver implements Resolve<IStudyResolved> {
-  constructor(private studyService: StudyService) {}
+  constructor(private studyService: StudyService, private cohortService: CohortService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStudyResolved> {
     const id = route.paramMap.get('id')
@@ -25,10 +28,14 @@ export class StudyResolver implements Resolve<IStudyResolved> {
     }
 
     return this.studyService.get(+id).pipe(
-      map((study) => {
-        const uiModel = new StudyUiModel(study)
-        return { study: uiModel, error: null }
-      }),
+      mergeMap((study) =>
+        this.cohortService.get(study.cohortId).pipe(
+          map((cohort) => {
+            const uiModel = new StudyUiModel(study, cohort)
+            return { study: uiModel, error: null }
+          })
+        )
+      ),
       catchError((error) => {
         return of({ study: new StudyUiModel(), error })
       })
