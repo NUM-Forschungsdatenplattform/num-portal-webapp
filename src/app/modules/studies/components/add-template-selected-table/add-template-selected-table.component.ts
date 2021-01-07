@@ -32,7 +32,6 @@ export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit,
 
   ngAfterViewInit(): void {
     this.dataSource.data = this.selectedTemplates || []
-    this.dataSource.paginator = this.paginator
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="dataSource" matSort aria-labelledby="filter-table-header">
+  <ng-container
+    *ngFor="let columnPath of columnPaths; let colIndex = index"
+    [matColumnDef]="columnKeys[colIndex]"
+  >
+    <th scope="col" mat-header-cell *matHeaderCellDef>columnPath</th>
+    <ng-container *ngIf="columnPath[0] !== 'select'">
+      <td mat-cell *matCellDef="let element">{{ element | nestedAccess: columnPath }}</td>
+    </ng-container>
+    <ng-container *ngIf="columnPath[0] === 'select'">
+      <td mat-cell *matCellDef="let element" class="right-align">
+        <button
+          color="accent"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
+          (click)="handleSelectClick(element)"
+        >
+          <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+        <ng-template #selectedIcon>
+          <button
+            class="num-fc--d"
+            mat-icon-button
+            [attr.aria-label]="'BUTTON.DESELECT' | translate"
+            (click)="handleDeselectClick(element)"
+          >
+            <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
+          </button>
+        </ng-template>
+      </td>
+    </ng-container>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnKeys" hidden></tr>
+  <tr mat-row *matRowDef="let row; columns: columnKeys"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

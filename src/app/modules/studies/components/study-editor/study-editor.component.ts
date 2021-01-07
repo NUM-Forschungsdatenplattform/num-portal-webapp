@@ -8,6 +8,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
+import { IUserDetails } from 'src/app/shared/models/user/user-details.interface'
 import { IStudyResolved } from '../../study-resolved.interface'
 import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-template-info-api.interface'
 
@@ -28,6 +29,10 @@ export class StudyEditorComponent implements OnInit {
 
   get studyTemplate(): IStudyTemplateInfoApi[] {
     return this.study.templates
+  }
+
+  get researchers(): IUserDetails[] {
+    return this.study.researchers
   }
 
   studyForm: FormGroup
