@@ -25,12 +25,12 @@
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
       <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
       <div role="presentation" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
-        <num-button type="secondary" [isDisabled]="!formTitle.valid" (click)="save()">{{
+        <num-button type="secondary" [isDisabled]="!formTitle.valid" (singleClick)="save()">{{
           'BUTTON.SAVE' | translate
         }}</num-button>
         <num-button
           type="primary"
-          (click)="sendForApproval()"
+          (singleClick)="sendForApproval()"
           [isDisabled]="!studyForm.valid || !study.researchers.length || !study.templates.length"
           >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
         >

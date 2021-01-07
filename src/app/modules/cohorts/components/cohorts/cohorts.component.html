@@ -6,7 +6,7 @@
     <mat-label id="label">Input</mat-label>
     <input matInput aria-labelledby="label" type="number" [(ngModel)]="cohortId" />
   </mat-form-field>
-  <num-button type="primary" (click)="checkCohortSize()">Execute</num-button>
+  <num-button type="primary" (singleClick)="checkCohortSize()">Execute</num-button>
 </div>
 
 <mat-divider class="num-d-w--1 num-d-c--a"></mat-divider>

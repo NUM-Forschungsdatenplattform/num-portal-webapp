@@ -20,7 +20,7 @@
       <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
       <num-button
         type="primary"
-        (click)="saveForm()"
+        (singleClick)="saveForm()"
         [isDisabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
         >{{ 'BUTTON.CREATE_PHENOTYPE' | translate }}</num-button
       >
