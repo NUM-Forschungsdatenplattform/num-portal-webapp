@@ -44,7 +44,6 @@ export class FilterTableComponent<T> implements OnInit, OnChanges, AfterViewInit
   }
 
   handleSelectClick(row: any): void {
-    const identifier = row[this.identifierName]
     this.selectedItemsChange.emit([...this.selectedItems, row])
   }
 

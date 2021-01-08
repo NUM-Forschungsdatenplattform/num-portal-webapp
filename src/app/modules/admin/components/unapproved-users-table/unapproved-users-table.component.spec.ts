@@ -5,7 +5,7 @@ import { UnapprovedUsersTableComponent } from './unapproved-users-table.componen
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { mockUnapprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
@@ -57,9 +57,9 @@ describe('UnapprovedUsersTableComponent', () => {
 
   describe('When unapproved users are received by the component', () => {
     it('should set them into the datasource.data', () => {
-      unapprovedUsersSubject$.next(mockUnapprovedUsers)
+      unapprovedUsersSubject$.next(mockUsers)
       fixture.detectChanges()
-      expect(component.dataSource.data).toBe(mockUnapprovedUsers)
+      expect(component.dataSource.data).toBe(mockUsers)
     })
   })
 

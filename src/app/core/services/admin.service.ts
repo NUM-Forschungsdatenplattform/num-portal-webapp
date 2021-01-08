@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUser } from 'src/app/shared/models/user/user.interface'
+import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
-import { DEFAULT_USER_FILTER } from '../constants/default-filter-user'
+import { IUser } from 'src/app/shared/models/user/user.interface'
 import { environment } from 'src/environments/environment'
+import { DEFAULT_USER_FILTER } from '../constants/default-filter-user'
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +19,13 @@ export class AdminService {
 
   private baseUrl: string
 
-  private approvedUsers: IUser[] = []
-  private approvedUsersSubject$ = new BehaviorSubject(this.approvedUsers)
-  public approvedUsersObservable$ = this.approvedUsersSubject$.asObservable()
-
   private unapprovedUsers: IUser[] = []
   private unapprovedUsersSubject$ = new BehaviorSubject(this.unapprovedUsers)
   public unapprovedUsersObservable$ = this.unapprovedUsersSubject$.asObservable()
+
+  private approvedUsers: IUser[] = []
+  private approvedUsersSubject$ = new BehaviorSubject(this.approvedUsers)
+  public approvedUsersObservable$ = this.approvedUsersSubject$.asObservable()
 
   private filteredApprovedUsers: IUser[] = []
   private filteredApprovedUsersSubject$ = new BehaviorSubject(this.filteredApprovedUsers)
@@ -50,15 +52,6 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
-  getApprovedUsers(): Observable<IUser[]> {
-    return this.getUsers(true).pipe(
-      tap((users) => {
-        this.approvedUsers = users
-        this.approvedUsersSubject$.next(users)
-      })
-    )
-  }
-
   getUnapprovedUsers(): Observable<IUser[]> {
     return this.getUsers(false).pipe(
       tap((users) => {
@@ -68,17 +61,33 @@ export class AdminService {
     )
   }
 
-  addUserRoles(userId: string, role: string): Observable<string> {
+  getApprovedUsers(): Observable<IUser[]> {
+    return this.getUsers(true).pipe(
+      tap((users) => {
+        this.approvedUsers = users
+        this.approvedUsersSubject$.next(users)
+      })
+    )
+  }
+
+  getUserRoles(userId: string): Observable<IRole[]> {
+    return this.httpClient
+      .get<IRole[]>(`${this.baseUrl}/user/${userId}/role`)
+      .pipe(catchError(this.handleError))
+  }
+
+  addUserRoles(userId: string, role: string[]): Observable<string[]> {
+    return this.httpClient
+      .post<string[]>(`${this.baseUrl}/user/${userId}/role`, role)
+      .pipe(catchError(this.handleError))
+  }
+
+  addUserOrganization(userId: string, organization: IOrganization): Observable<IOrganization> {
     const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Accept: 'text/plain',
-      }),
       responseType: 'text' as 'json',
     }
-
     return this.httpClient
-      .post<string>(`${this.baseUrl}/user/${userId}/role`, `"${role}"`, httpOptions)
+      .post<IOrganization>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
       .pipe(catchError(this.handleError))
   }
 
@@ -91,32 +100,33 @@ export class AdminService {
       return of(this.filterItems(this.approvedUsers, filterSet))
     } else {
       return this.getApprovedUsers().pipe(
-        map((approvedUsersArray) => {
-          return this.filterItems(approvedUsersArray, filterSet)
+        map((userArray) => {
+          return this.filterItems(userArray, filterSet)
         })
       )
     }
   }
 
-  filterItems(approvedUsers: IUser[], filterSet: IUserFilter): IUser[] {
-    let result: IUser[] = this.approvedUsers
+  filterItems(allApprovedUsers: IUser[], filterSet: IUserFilter): IUser[] {
+    let result: IUser[] = allApprovedUsers
 
     if (filterSet.searchText && filterSet.searchText.length) {
-      const searchText = filterSet.searchText.toLowerCase()
-      result = approvedUsers.filter((user: IUser) => {
-        const firstName = user.firstName.toLowerCase()
-        const lastName = user.lastName.toLowerCase()
-
-        return (
-          firstName.includes(searchText) ||
-          lastName.includes(searchText) ||
-          searchText.includes(firstName) ||
-          searchText.includes(lastName)
-        )
-      })
+      const textFilter = filterSet.searchText.toUpperCase()
+      result = allApprovedUsers.filter(
+        (user) =>
+          user.lastName.toUpperCase().includes(textFilter) ||
+          user.firstName.toUpperCase().includes(textFilter) ||
+          user.firstName.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
+          user.lastName.concat(' ', user.firstName).toUpperCase().includes(textFilter)
+      )
     }
 
     return result
+  }
+
+  refreshFilterResult(): void {
+    this.approvedUsers = []
+    this.filterConfigSubject$.next(this.filterSet)
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

@@ -5,11 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 import { FilterTableComponent } from './filter-table.component'
-import { mockFilterTableItem, mockFilterTableItem1 } from 'src/mocks/data-mocks/filtertable.mock'
+import { MatTableDataSource } from '@angular/material/table'
+import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
+import { PipesModule } from '../../pipes/pipes.module'
 
 describe('FilterTableComponent', () => {
-  let component: FilterTableComponent
-  let fixture: ComponentFixture<FilterTableComponent>
+  let component: FilterTableComponent<any>
+  let fixture: ComponentFixture<FilterTableComponent<any>>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +21,7 @@ describe('FilterTableComponent', () => {
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
+        PipesModule,
       ],
     }).compileComponents()
   })
@@ -26,6 +29,13 @@ describe('FilterTableComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FilterTableComponent)
     component = fixture.componentInstance
+
+    component.dataSource = new MatTableDataSource(mockUsers)
+    component.identifierName = 'id'
+    component.columnKeys = ['firstName', 'lastName', 'info', 'isSelected']
+    component.columnPaths = [['firstName'], ['lastName'], ['organization', 'name'], ['select']]
+    component.selectedItems = []
+
     fixture.detectChanges()
   })
 
@@ -33,23 +43,14 @@ describe('FilterTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  describe('When Items are received by the component', () => {
-    it('should set them into the datasource.data', () => {
-      fixture.detectChanges()
-      expect(component.dataSource.data).toBe(component.items)
-    })
-  })
-
   describe('When select button for a row is clicked', () => {
     beforeEach(() => {
-      component.items = [mockFilterTableItem, mockFilterTableItem1]
-      fixture.detectChanges()
+      jest.spyOn(component.selectedItemsChange, 'emit')
+      component.handleSelectClick(mockUsers[0])
     })
 
     it('should item isSelected to true', () => {
-      component.handleSelectClick(mockFilterTableItem)
-
-      expect(component.items[0].isSelected).toEqual(true)
+      expect(component.selectedItemsChange.emit).toHaveBeenCalledWith([mockUsers[0]])
     })
   })
 })

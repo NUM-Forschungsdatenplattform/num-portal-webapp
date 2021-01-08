@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockRoles, mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { DialogAddUserDetailsComponent } from './dialog-add-user-details.component'
 
@@ -14,9 +14,12 @@ describe('DialogAddUserDetailsComponent', () => {
   let component: DialogAddUserDetailsComponent
   let fixture: ComponentFixture<DialogAddUserDetailsComponent>
 
-  const adminService = {
-    addUserRoles: (userId: string, role: string) => of(),
-  } as AdminService
+  const adminService = ({
+    addUserRoles: (userId: string, roles: string[]) => of(),
+    addUserOrganization: (userId: string, organization: string) => of(),
+    getUserRoles: (userId: string) => of(mockRoles),
+    refreshFilterResult: () => [],
+  } as unknown) as AdminService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -58,17 +61,5 @@ describe('DialogAddUserDetailsComponent', () => {
   it('should emit the close event on dialog cancel', () => {
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
-  })
-
-  describe('When roles are assigned and the dialog is confirmed', () => {
-    beforeEach(() => {
-      component.roles = ['some', 'assigned', 'role']
-      component.handleDialogConfirm()
-      fixture.detectChanges()
-    })
-
-    it('should call addUserRoles with userId for each role', () => {
-      expect(adminService.addUserRoles).toHaveBeenCalledTimes(3)
-    })
   })
 })

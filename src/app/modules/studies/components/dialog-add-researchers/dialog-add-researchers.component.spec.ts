@@ -12,12 +12,27 @@ import { DialogAddResearchersComponent } from './dialog-add-researchers.componen
 import { AdminService } from 'src/app/core/services/admin.service'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockApprovedUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
+import { PipesModule } from 'src/app/shared/pipes/pipes.module'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { MatTableDataSource } from '@angular/material/table'
 
 describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
   let fixture: ComponentFixture<DialogAddResearchersComponent>
+
+  const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
+
+  @Component({ selector: 'num-filter-table', template: '' })
+  class FilterTableStubComponent {
+    @Input() dataSource: MatTableDataSource<IUser>
+    @Input() identifierName: string
+    @Input() columnKeys: string[]
+    @Input() columnPaths: string[][]
+    @Input() selectedItems: IUser[]
+    @Output() selectedItemsChange = selectedItemsChangeEmitter
+  }
 
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()
   const filterConfigSubject$ = new BehaviorSubject<IUserFilter>({ searchText: '' })
@@ -31,13 +46,14 @@ describe('DialogAddResearchersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddResearchersComponent, SearchComponent, FilterTableComponent],
+      declarations: [DialogAddResearchersComponent, SearchComponent, FilterTableStubComponent],
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        PipesModule,
       ],
       providers: [
         {
@@ -60,9 +76,9 @@ describe('DialogAddResearchersComponent', () => {
 
   describe('When approved users are received by the component', () => {
     it('should set them into the datasource.data', () => {
-      filteredApprovedUsersSubject$.next(mockApprovedUsers)
+      filteredApprovedUsersSubject$.next(mockUsers)
       fixture.detectChanges()
-      expect(component.users).toBe(mockApprovedUsers)
+      expect(component.dataSource.data).toBe(mockUsers)
     })
   })
 })
