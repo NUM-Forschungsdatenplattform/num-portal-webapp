@@ -11,7 +11,6 @@ import {
 } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
-import { IStudyUser } from '../../models/user/study-user.interface'
 
 @Component({
   selector: 'num-filter-table',

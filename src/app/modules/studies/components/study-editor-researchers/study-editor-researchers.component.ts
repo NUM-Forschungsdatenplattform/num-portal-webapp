@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
