@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
@@ -18,6 +18,7 @@ export class StudyEditorResearchersComponent implements OnInit {
   displayedColumns: string[] = ['user', 'icon']
 
   @Input() researchers: IUser[]
+  @Output() researchersChange = new EventEmitter<IUser[]>()
 
   ngOnInit(): void {
     if (this.researchers && this.researchers.length > 0) {
@@ -36,14 +37,16 @@ export class StudyEditorResearchersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((confirmResult: IUser[] | undefined) => {
       if (Array.isArray(confirmResult)) {
-        this.researchers = this.dataSource.data = confirmResult
+        this.dataSource.data = confirmResult
+        this.researchersChange.emit(confirmResult)
       }
     })
   }
 
   deleteResearcher(researcherId: string): void {
-    this.researchers = this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
+    this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
       return researcher.id !== researcherId
     })
+    this.researchersChange.emit(this.dataSource.data)
   }
 }

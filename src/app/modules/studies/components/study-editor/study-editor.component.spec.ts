@@ -16,7 +16,7 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { IUserDetails } from 'src/app/shared/models/user/user-details.interface'
+import { IStudyUser } from 'src/app/shared/models/user/study-user.interface'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { IStudyResolved } from '../../study-resolved.interface'
@@ -54,7 +54,7 @@ describe('StudyEditorComponent', () => {
   }
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {
-    @Input() researchers: IUserDetails[]
+    @Input() researchers: IStudyUser[]
   }
 
   @Component({ selector: 'num-study-editor-templates', template: '' })

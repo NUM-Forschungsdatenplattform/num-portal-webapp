@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from '../../../../core/services/dialog.service'
@@ -13,7 +13,17 @@ import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-te
 export class StudyEditorTemplatesComponent implements OnInit {
   constructor(private dialogService: DialogService) {}
 
-  @Input() templates: IStudyTemplateInfoApi[]
+  templatesValue: IStudyTemplateInfoApi[] = []
+  @Output() templatesChange = new EventEmitter<IStudyTemplateInfoApi[]>()
+  @Input()
+  get templates(): IStudyTemplateInfoApi[] {
+    return this.templatesValue
+  }
+  set templates(templates: IStudyTemplateInfoApi[]) {
+    this.templatesValue = templates
+    this.templatesChange.emit(templates)
+  }
+
   ngOnInit(): void {}
 
   addTemplate(): void {

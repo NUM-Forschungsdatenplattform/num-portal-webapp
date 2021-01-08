@@ -49,7 +49,7 @@ export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit,
   }
 
   handleRowClick(row: IStudyTemplateInfoApi): void {
-    const data = this.dataSource.data.filter((template) => template.id !== row.id)
+    const data = this.dataSource.data.filter((template) => template.templateId !== row.templateId)
     this.selectedTemplatesChange.emit(data)
   }
 }

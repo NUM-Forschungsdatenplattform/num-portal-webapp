@@ -20,7 +20,7 @@ describe('AddTemplateSelectedTableComponent', () => {
   }
 
   const studyTemplate: IStudyTemplateInfoApi = {
-    id: templateRow.templateId,
+    templateId: templateRow.templateId,
     name: templateRow.name,
   }
 
