@@ -17,6 +17,7 @@
           class="pointer"
           mat-icon-button
           color="accent"
+          [disabled]="isDisabled"
           (click)="handleRowClick(element)"
         >
           <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>

@@ -20,6 +20,7 @@ import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-templat
 })
 export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator
+  @Input() isDisabled: boolean
   @Input() selectedTemplates: IStudyTemplateInfoApi[]
   @Output() selectedTemplatesChange = new EventEmitter<IStudyTemplateInfoApi[]>()
 
@@ -40,7 +41,7 @@ export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit,
         switch (propName) {
           case 'selectedTemplates': {
             const changedData = changes[propName].currentValue as IStudyTemplateInfoApi[]
-            this.hasData = changedData?.length > 0 ? true : false
+            this.hasData = changedData?.length > 0
             this.dataSource.data = changedData
           }
         }

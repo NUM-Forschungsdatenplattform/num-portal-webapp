@@ -15,6 +15,7 @@ export class StudyEditorTemplatesComponent implements OnInit {
 
   templatesValue: IStudyTemplateInfoApi[] = []
   @Output() templatesChange = new EventEmitter<IStudyTemplateInfoApi[]>()
+  @Input() isDisabled: boolean
   @Input()
   get templates(): IStudyTemplateInfoApi[] {
     return this.templatesValue

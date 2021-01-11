@@ -23,6 +23,7 @@ describe('StudyEditorTemplatesComponent', () => {
   @Component({ selector: 'num-add-template-selected-table', template: '' })
   class AddTemplatesSelectedTableStubComponent {
     @Input() selectedTemplates: any
+    @Input() isDisabled: boolean
     @Output() selectedTemplatesChange = selectedTemplateEmitter
   }
 
@@ -89,6 +90,7 @@ describe('StudyEditorTemplatesComponent', () => {
 
     it('should open the dialog with the list of existing templates', () => {
       component.templates = studyTemplateArr
+      component.isDisabled = false
       fixture.detectChanges()
       component.addTemplate()
       expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
