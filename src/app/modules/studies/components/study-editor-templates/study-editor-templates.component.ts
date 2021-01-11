@@ -4,7 +4,6 @@ import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from '../../../../core/services/dialog.service'
 import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-template-info-api.interface'
 import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-template.component'
-import { StudyStatus } from '../../../../shared/models/study/study-status.enum'
 
 @Component({
   selector: 'num-study-editor-templates',
@@ -15,9 +14,8 @@ export class StudyEditorTemplatesComponent implements OnInit {
   constructor(private dialogService: DialogService) {}
 
   templatesValue: IStudyTemplateInfoApi[] = []
-  isDisable = false
   @Output() templatesChange = new EventEmitter<IStudyTemplateInfoApi[]>()
-  @Input() studyStatus: boolean
+  @Input() isDisabled: boolean
   @Input()
   get templates(): IStudyTemplateInfoApi[] {
     return this.templatesValue
@@ -27,9 +25,7 @@ export class StudyEditorTemplatesComponent implements OnInit {
     this.templatesChange.emit(templates)
   }
 
-  ngOnInit(): void {
-    this.isDisable = this.studyStatus
-  }
+  ngOnInit(): void {}
 
   addTemplate(): void {
     const dialogContentPayload = this.templates

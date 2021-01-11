@@ -60,6 +60,7 @@ describe('StudyEditorComponent', () => {
   @Component({ selector: 'num-study-editor-templates', template: '' })
   class StudyEditorTemplatesStubComponent {
     @Input() templates: any
+    @Input() isDisabled: boolean
   }
 
   beforeEach(async () => {

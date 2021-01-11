@@ -9,7 +9,7 @@
 
     <num-study-editor-templates
       [(templates)]="study.templates"
-      [studyStatus]="study.getDisableStatusBasedStudyStatus(study.status)"
+      [isDisabled]="templatesDisabled"
     ></num-study-editor-templates>
 
     <num-study-editor-connector [cohortNode]="cohortGroup"></num-study-editor-connector>

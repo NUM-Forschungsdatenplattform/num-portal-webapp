@@ -20,7 +20,7 @@ import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-templat
 })
 export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator
-  @Input() disableStatus: boolean
+  @Input() isDisabled: boolean
   @Input() selectedTemplates: IStudyTemplateInfoApi[]
   @Output() selectedTemplatesChange = new EventEmitter<IStudyTemplateInfoApi[]>()
 

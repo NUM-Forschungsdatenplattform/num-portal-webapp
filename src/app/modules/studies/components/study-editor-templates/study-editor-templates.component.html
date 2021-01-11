@@ -23,11 +23,15 @@
 
     <num-add-template-selected-table
       [(selectedTemplates)]="templates"
-      [disableStatus]="isDisable"
+      [isDisabled]="isDisabled"
     ></num-add-template-selected-table>
 
-    <num-button type="primary" icon="plus" [isDisabled]="isDisable" (singleClick)="addTemplate()">{{
-      'BUTTON.ADD_TEMPLATE' | translate
-    }}</num-button>
+    <num-button
+      type="primary"
+      icon="plus"
+      [isDisabled]="isDisabled"
+      (singleClick)="addTemplate()"
+      >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
+    >
   </section>
 </mat-expansion-panel>

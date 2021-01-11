@@ -18,6 +18,7 @@ import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-tem
 })
 export class StudyEditorComponent implements OnInit {
   resolvedData: IStudyResolved
+  templatesDisabled: boolean
   get study(): StudyUiModel {
     return this.resolvedData.study
   }
@@ -44,6 +45,7 @@ export class StudyEditorComponent implements OnInit {
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
     this.generateForm()
+    this.checkTemplatesVisibility(this.study.status)
   }
 
   generateForm(): void {
@@ -109,5 +111,13 @@ export class StudyEditorComponent implements OnInit {
   sendForApproval(): void {
     this.study.status = StudyStatus.Pending
     this.save()
+  }
+
+  checkTemplatesVisibility(studyStatus: StudyStatus): void {
+    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
+      this.templatesDisabled = false
+    } else {
+      this.templatesDisabled = true
+    }
   }
 }
