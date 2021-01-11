@@ -23,9 +23,10 @@
 
     <num-add-template-selected-table
       [(selectedTemplates)]="templates"
+      [disableStatus]="isDisable"
     ></num-add-template-selected-table>
 
-    <num-button type="primary" icon="plus" (singleClick)="addTemplate()">{{
+    <num-button type="primary" icon="plus" [isDisabled]="isDisable" (singleClick)="addTemplate()">{{
       'BUTTON.ADD_TEMPLATE' | translate
     }}</num-button>
   </section>
