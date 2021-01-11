@@ -65,6 +65,12 @@
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
+  "RESEARCHERS": {
+    "SELECT_RESEARCHERS": "Ausgewählte Forscher",
+    "SEARCH_RESEARCHERS": "Forscher suchen",
+    "NO_RESEARCHERS_SELECTED": "Noch keine Forscher ausgewählt.",
+    "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
+  },
   "ASSIGN_ROLES": "Rollen zuweisen",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
@@ -88,6 +94,7 @@
     "CONFIRM_CHANGES": "Änderungen übernehmen",
     "ADD_QUERY": "Query hinzufügen",
     "ADD_PHENOTYPE": "Phänotyp hinzufügen",
+    "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
     "ADD_TEMPLATE": "Vorlage hinzufügen",
     "DELETE_GROUP": "Gruppe löschen",
@@ -102,6 +109,7 @@
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
+    "NAME": "Name",
     "LAST_NAME": "Nachname"
   },
   "ROLE": {

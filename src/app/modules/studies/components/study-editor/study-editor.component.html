@@ -7,17 +7,13 @@
   <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-60">
     <num-study-editor-general-info [form]="studyForm"></num-study-editor-general-info>
 
-    <num-study-editor-templates [templates]="studyTemplate"> </num-study-editor-templates>
+    <num-study-editor-templates [(templates)]="study.templates"> </num-study-editor-templates>
 
     <num-study-editor-connector [cohortNode]="cohortGroup"></num-study-editor-connector>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <h3 class="accordion">Select Researchers</h3>
-      </mat-expansion-panel-header>
-
-      <p>Coming soon</p>
-    </mat-expansion-panel>
+    <num-study-editor-researchers
+      [(researchers)]="study.researchers"
+    ></num-study-editor-researchers>
   </mat-accordion>
 
   <section role="region" fxLayout="column">

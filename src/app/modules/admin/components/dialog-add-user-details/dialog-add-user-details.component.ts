@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
+import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
@@ -13,6 +14,10 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
   dialogInput: IUser
   userDetails: IUser
   roles: string[] = []
+  organization: IOrganization = {
+    id: '',
+    name: 'test',
+  }
 
   constructor(private adminService: AdminService) {}
 
@@ -21,9 +26,10 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
   }
 
   handleDialogConfirm(): void {
-    this.roles.forEach((role) => {
-      this.adminService.addUserRoles(this.dialogInput.id, role).subscribe()
-    })
+    this.adminService.addUserRoles(this.dialogInput.id, this.roles).subscribe()
+
+    this.adminService.addUserOrganization(this.dialogInput.id, this.organization).subscribe()
+
     this.closeDialog.emit()
   }
 

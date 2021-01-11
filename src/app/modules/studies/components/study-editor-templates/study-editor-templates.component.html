@@ -1,7 +1,10 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <h3 id="select-header" class="accordion">{{ 'SELECT_EHR_TEMPLATE' | translate }}</h3>
+      <h3 id="select-header" class="accordion">
+        <fa-icon icon="check-circle" *ngIf="templatesValue.length"></fa-icon>
+        {{ 'SELECT_EHR_TEMPLATE' | translate }}*
+      </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
 
@@ -12,6 +15,12 @@
     fxFlex="100%"
     fxLayoutGap="20px"
   >
+    <div>
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+      mus.
+    </div>
+
     <num-add-template-selected-table
       [(selectedTemplates)]="templates"
     ></num-add-template-selected-table>

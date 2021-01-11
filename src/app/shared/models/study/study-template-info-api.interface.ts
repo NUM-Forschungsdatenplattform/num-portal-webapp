@@ -2,6 +2,6 @@ export interface IStudyTemplateInfoApi {
   /**
    * The ehrbase identifier of the template
    */
-  id: string
+  templateId: string
   name: string
 }

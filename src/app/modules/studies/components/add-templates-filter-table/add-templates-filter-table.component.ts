@@ -54,7 +54,7 @@ export class AddTemplatesFilterTableComponent
             const changedData = changes[propName].currentValue as IStudyTemplateInfoApi[]
             const selectedTemplates: { [id: number]: boolean } = {}
             changedData.forEach(
-              (selectedTemplate) => (selectedTemplates[selectedTemplate.id] = true)
+              (selectedTemplate) => (selectedTemplates[selectedTemplate.templateId] = true)
             )
             this.lookupSelectedTemplates = selectedTemplates
           }
@@ -74,7 +74,7 @@ export class AddTemplatesFilterTableComponent
   handleSelectClick(row: ITemplateMetaDataApi): void {
     this.lookupSelectedTemplates[row.templateId] = true
     const studyTemplate: IStudyTemplateInfoApi = {
-      id: row.templateId,
+      templateId: row.templateId,
       name: row.name,
     }
     this.selectedTemplatesChange.emit([...this.selectedTemplates, studyTemplate])
@@ -82,7 +82,7 @@ export class AddTemplatesFilterTableComponent
 
   handleDeselectClick(row: ITemplateMetaDataApi): void {
     const newSelection = this.selectedTemplates.filter(
-      (selectedTemplate) => selectedTemplate.id !== row.templateId
+      (selectedTemplate) => selectedTemplate.templateId !== row.templateId
     )
     this.lookupSelectedTemplates[row.templateId] = false
     this.selectedTemplatesChange.emit(newSelection)

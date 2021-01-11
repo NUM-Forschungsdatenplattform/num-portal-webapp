@@ -1,4 +1,5 @@
-import { IUserDetails } from '../user/user-details.interface'
+import { IStudyUser } from '../user/study-user.interface'
+import { IUser } from '../user/user.interface'
 import { ICohortGroupApi } from './cohort-group-api.interface'
 import { CohortGroupUiModel } from './cohort-group-ui.model'
 import { IStudyApi } from './study-api.interface'
@@ -9,18 +10,18 @@ export class StudyUiModel {
   cohortId: number | null
   cohortGroup: CohortGroupUiModel
   /** The coordinator of the study. Is automatically asigned based on the auth-token */
-  coordinator?: IUserDetails
+  coordinator?: IStudyUser
   description?: string
   firstHypotheses?: string
   id: number | null
   modifiedDate?: Date
   name?: string
-  researchers: IUserDetails[]
+  researchers: IUser[]
   secondHypotheses?: string
   status: StudyStatus
   templates: IStudyTemplateInfoApi[]
 
-  constructor(apiStudy?: IStudyApi, cohortGroup?: CohortGroupUiModel) {
+  constructor(apiStudy?: IStudyApi, researchers?: IUser[], cohortGroup?: CohortGroupUiModel) {
     this.coordinator = apiStudy?.coordinator || undefined
     this.description = apiStudy?.description || undefined
     this.firstHypotheses = apiStudy?.firstHypotheses || undefined
@@ -30,7 +31,7 @@ export class StudyUiModel {
     this.secondHypotheses = apiStudy?.secondHypotheses || undefined
     this.status = apiStudy?.status || StudyStatus.Draft
     this.cohortGroup = cohortGroup || new CohortGroupUiModel()
-    this.researchers = apiStudy?.researchers || []
+    this.researchers = researchers || []
     this.templates = apiStudy?.templates || []
   }
 
@@ -49,7 +50,7 @@ export class StudyUiModel {
       firstHypotheses: firstHypotheses || this.firstHypotheses,
       secondHypotheses: secondHypotheses || this.secondHypotheses,
       cohortId: cohortId || this.cohortId,
-      researchers: this.researchers,
+      researchers: this.getResearchersForApi(),
       status: this.status,
       templates: this.templates,
     }
@@ -57,5 +58,15 @@ export class StudyUiModel {
     const cohortGroup = this.cohortGroup.convertToApi()
 
     return { study, cohortGroup }
+  }
+
+  private getResearchersForApi(): IStudyUser[] {
+    return this.researchers.map((researcher) => {
+      return {
+        userId: researcher.id,
+        organizationId: researcher.organization?.id,
+        approved: researcher.approved,
+      }
+    })
   }
 }

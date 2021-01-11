@@ -65,6 +65,12 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
+  "RESEARCHERS": {
+    "SELECT_RESEARCHERS": "Select Researchers",
+    "SEARCH_RESEARCHERS": "Find Researchers",
+    "NO_RESEARCHERS_SELECTED": "No researchers selected yet.",
+    "PLEASE_SELECT_AT_LEAST_1_PERSON": "Please select at least 1 person"
+  },
   "ASSIGN_ROLES": "Assign Roles",
   "FORM": {
     "GENERAL_INFO": "General Information",
@@ -89,6 +95,7 @@
     "ADD_QUERY": "Add query",
     "ADD_PHENOTYPE": "Add phenotype",
     "ADD_TEMPLATE": "Add Template",
+    "ADD_RESEARCHERS": "Add researchers",
     "ADD_GROUP": "Add group",
     "DELETE_GROUP": "Delete group",
     "DELETE_COMPOSITION": "Delete composition",
@@ -102,6 +109,7 @@
   "USER": {
     "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
+    "NAME": "Name",
     "LAST_NAME": "Last name"
   },
   "ROLE": {
