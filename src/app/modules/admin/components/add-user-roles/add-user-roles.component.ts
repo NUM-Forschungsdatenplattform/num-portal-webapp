@@ -19,6 +19,7 @@ export class AddUserRolesComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource.data = Object.values(AvailableRoles)
+    this.selectedRoles.forEach((role) => (this.lookupSelectedRole[role] = true))
   }
 
   handleSelectClick(row: string): void {
