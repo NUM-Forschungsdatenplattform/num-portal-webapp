@@ -5,6 +5,7 @@ import { CohortGroupUiModel } from './cohort-group-ui.model'
 import { IStudyApi } from './study-api.interface'
 import { StudyStatus } from './study-status.enum'
 import { IStudyTemplateInfoApi } from './study-template-info-api.interface'
+import { DialogSize } from '../dialog/dialog-size.enum'
 
 export class StudyUiModel {
   cohortId: number | null
@@ -68,5 +69,28 @@ export class StudyUiModel {
         approved: researcher.approved,
       }
     })
+  }
+
+  public getDisableStatusBasedStudyStatus(studyStatus: StudyStatus): boolean {
+    switch (studyStatus) {
+      case StudyStatus.Draft:
+        return false
+      case StudyStatus.Change_request:
+        return false
+      case StudyStatus.Pending:
+        return true
+      case StudyStatus.Approved:
+        return true
+      case StudyStatus.Published:
+        return true
+      case StudyStatus.Reviewing:
+        return true
+      case StudyStatus.Denied:
+        return true
+      case StudyStatus.Closed:
+        return true
+      default:
+        return true
+    }
   }
 }
