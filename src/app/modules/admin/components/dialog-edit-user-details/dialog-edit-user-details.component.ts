@@ -14,7 +14,9 @@ export class DialogEditUserDetailsComponent implements OnInit {
   dialogInput: IUser
   userDetails: IUser
   roles: string[] = []
-  organization: IOrganization = null
+  organization: IOrganization = {
+    id: '',
+  }
   showRoles = false
 
   constructor(
@@ -24,7 +26,9 @@ export class DialogEditUserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput
-    this.organization = this.dialogInput.organization
+    if (this.dialogInput.organization) {
+      this.organization = this.dialogInput.organization
+    }
 
     this.organizationService.getAll().subscribe()
 
