@@ -57,6 +57,7 @@ export class AdminService {
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
+        this.setFilter(this.filterSet)
       })
     )
   }
@@ -93,6 +94,7 @@ export class AdminService {
 
   setFilter(filterSet: IUserFilter): void {
     this.filterConfigSubject$.next(filterSet)
+    this.filterSet = filterSet
   }
 
   private getFilterResult$(filterSet: IUserFilter): Observable<IUser[]> {
