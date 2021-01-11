@@ -12,9 +12,13 @@
       [isDisabled]="templatesDisabled"
     ></num-study-editor-templates>
 
-    <num-study-editor-connector [cohortNode]="cohortGroup"></num-study-editor-connector>
+    <num-study-editor-connector
+      [cohortNode]="cohortGroup"
+      [loadingComplete]="isCohortsFetched"
+    ></num-study-editor-connector>
 
     <num-study-editor-researchers
+      [loadingComplete]="isResearchersFetched"
       [(researchers)]="study.researchers"
       [isDisabled]="researchersDisabled"
     ></num-study-editor-researchers>
@@ -31,7 +35,7 @@
         <num-button
           type="primary"
           (singleClick)="sendForApproval()"
-          [isDisabled]="!studyForm.valid || !study.researchers.length || !study.templates.length"
+          [isDisabled]="!studyForm.valid || !study.researchers?.length || !study.templates.length"
           >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
         >
       </div>

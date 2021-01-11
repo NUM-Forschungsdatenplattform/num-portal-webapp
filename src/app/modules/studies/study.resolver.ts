@@ -28,14 +28,10 @@ export class StudyResolver implements Resolve<IStudyResolved> {
     }
 
     return this.studyService.get(+id).pipe(
-      mergeMap((study) =>
-        this.cohortService.get(study.cohortId).pipe(
-          map((cohort) => {
-            const uiModel = new StudyUiModel(study, cohort)
-            return { study: uiModel, error: null }
-          })
-        )
-      ),
+      map((study) => {
+        const uiModel = new StudyUiModel(study)
+        return { study: uiModel, error: null }
+      }),
       catchError((error) => {
         return of({ study: new StudyUiModel(), error })
       })

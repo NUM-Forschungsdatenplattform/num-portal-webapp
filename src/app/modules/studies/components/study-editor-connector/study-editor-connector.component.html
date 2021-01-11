@@ -11,12 +11,17 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
+  <ng-template #spinner>
+    <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+  </ng-template>
+
   <section
     role="region"
     aria-labelledby="general-info-label"
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
+    *ngIf="loadingComplete; else spinner"
   >
     <div>
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.

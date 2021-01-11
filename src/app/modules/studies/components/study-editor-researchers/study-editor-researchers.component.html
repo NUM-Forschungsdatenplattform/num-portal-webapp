@@ -7,12 +7,17 @@
     </h3>
   </mat-expansion-panel-header>
 
+  <ng-template #spinner>
+    <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+  </ng-template>
+
   <section
     role="region"
     aria-labelledby="select-description"
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
+    *ngIf="loadingComplete; else spinner"
   >
     <div id="select-description">
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
@@ -21,7 +26,7 @@
     </div>
 
     <div class="researchers-container">
-      <div class="no-results" *ngIf="dataSource.data.length === 0; else researchersList">
+      <div class="no-results" *ngIf="!dataSource.data?.length; else researchersList">
         {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
       </div>
       <ng-template #researchersList>
