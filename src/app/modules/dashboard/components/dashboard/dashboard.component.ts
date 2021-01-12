@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { AuthService } from 'src/app/core/auth/auth.service'
 import { AppConfigService } from '../../../../config/app-config.service'
 
 @Component({
@@ -8,7 +9,11 @@ import { AppConfigService } from '../../../../config/app-config.service'
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private appConfig: AppConfigService, private oauthService: OAuthService) {}
+  constructor(
+    private appConfig: AppConfigService,
+    private oauthService: OAuthService,
+    private authService: AuthService
+  ) {}
 
   config = this.appConfig.config
   authTest: string
@@ -18,8 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async init(): Promise<void> {
-    const isLoggedIn = this.oauthService.hasValidAccessToken()
-    if (isLoggedIn) {
+    if (this.authService.isLoggedIn) {
       const profile = await this.oauthService.loadUserProfile()
       const roles = profile.groups
       if (roles) {

@@ -31,7 +31,8 @@
     "ALL_USERS": "All Users",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
-    "SIGNOUT": "Sign out"
+    "SIGNOUT": "Sign out",
+    "SIGNIN": "Sign in"
   },
   "LEGAL": {
     "DISCLOSURE": "Disclosure",

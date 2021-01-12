@@ -7,12 +7,13 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { AuthService } from '../auth.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate, CanLoad {
-  constructor(private oauthService: OAuthService) {}
+  constructor(private oauthService: OAuthService, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -31,11 +32,8 @@ export class RoleGuard implements CanActivate, CanLoad {
       return Promise.resolve(true)
     }
 
-    const isLoggedIn =
-      this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
-
-    if (!isLoggedIn) {
-      await this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
+    if (!this.authService.isLoggedIn) {
+      this.authService.login()
     }
 
     let userRoles: string[]

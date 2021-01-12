@@ -24,6 +24,8 @@ describe('AppLayoutComponent', () => {
   const authService = {
     logOut: () => {},
     loadUserProfile: () => Promise.resolve({}),
+    hasValidIdToken: () => true,
+    hasValidAccessToken: () => true,
   } as OAuthService
 
   @Component({ selector: 'num-footer', template: '' })

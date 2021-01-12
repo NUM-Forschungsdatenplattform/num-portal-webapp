@@ -54,3 +54,12 @@ export const mockRoles: IRole[] = [
     name: 'ADMIN',
   },
 ]
+
+export const mockOAuthUser = {
+  family_name: 'Musterfrau',
+  given_name: 'Andrea',
+  groups: ['ADMIN'],
+  name: 'Andrea Musterfrau',
+  sub: '123-456',
+  typ: 'ID',
+}
