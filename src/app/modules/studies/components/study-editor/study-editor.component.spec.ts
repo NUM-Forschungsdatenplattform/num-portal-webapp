@@ -55,6 +55,7 @@ describe('StudyEditorComponent', () => {
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {
     @Input() researchers: IStudyUser[]
+    @Input() isDisabled: boolean
   }
 
   @Component({ selector: 'num-study-editor-templates', template: '' })

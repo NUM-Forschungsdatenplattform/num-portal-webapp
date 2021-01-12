@@ -18,6 +18,7 @@ export class StudyEditorResearchersComponent implements OnInit {
   displayedColumns: string[] = ['user', 'icon']
 
   @Input() researchers: IUser[]
+  @Input() isDisabled: boolean
   @Output() researchersChange = new EventEmitter<IUser[]>()
 
   ngOnInit(): void {

@@ -40,6 +40,7 @@
                 mat-icon-button
                 color="accent"
                 class="researchers-list_item-delete"
+                [disabled]="isDisabled"
                 (click)="deleteResearcher(element.id)"
               >
                 <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
@@ -57,7 +58,12 @@
       </ng-template>
     </div>
 
-    <num-button type="primary" icon="plus" (click)="addResearchers()">
+    <num-button
+      type="primary"
+      icon="plus"
+      [isDisabled]="isDisabled"
+      (singleClick)="addResearchers()"
+    >
       {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
     </num-button>
   </section>
