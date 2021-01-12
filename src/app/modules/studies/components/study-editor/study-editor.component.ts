@@ -19,6 +19,7 @@ import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-tem
 export class StudyEditorComponent implements OnInit {
   resolvedData: IStudyResolved
   templatesDisabled: boolean
+  researchersDisabled: boolean
   get study(): StudyUiModel {
     return this.resolvedData.study
   }
@@ -118,6 +119,18 @@ export class StudyEditorComponent implements OnInit {
       this.templatesDisabled = false
     } else {
       this.templatesDisabled = true
+    }
+  }
+
+  checkResearcherVisibility(studyStatus: StudyStatus): void {
+    if (
+      studyStatus === StudyStatus.Draft ||
+      studyStatus === StudyStatus.Change_request ||
+      studyStatus === StudyStatus.Approved
+    ) {
+      this.researchersDisabled = false
+    } else {
+      this.researchersDisabled = true
     }
   }
 }
