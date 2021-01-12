@@ -61,6 +61,6 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
   }
 
   handleDialogClose(): void {
-    this.dialogRef.close(undefined)
+    this.dialogRef.close()
   }
 }

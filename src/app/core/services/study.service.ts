@@ -30,7 +30,9 @@ export class StudyService {
   }
 
   get(id: number): Observable<IStudyApi> {
-    return this.httpClient.get<IStudyApi>(`${this.baseUrl}/${id}`)
+    return this.httpClient
+      .get<IStudyApi>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError))
   }
 
   create(study: IStudyApi): Observable<IStudyApi> {

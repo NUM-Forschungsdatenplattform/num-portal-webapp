@@ -14,11 +14,11 @@
 
     <num-study-editor-connector
       [cohortNode]="cohortGroup"
-      [loadingComplete]="isCohortsFetched"
+      [isLoadingComplete]="isCohortsFetched"
     ></num-study-editor-connector>
 
     <num-study-editor-researchers
-      [loadingComplete]="isResearchersFetched"
+      [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="study.researchers"
       [isDisabled]="researchersDisabled"
     ></num-study-editor-researchers>

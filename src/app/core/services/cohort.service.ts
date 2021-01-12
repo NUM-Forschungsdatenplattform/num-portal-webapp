@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
 

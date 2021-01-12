@@ -61,6 +61,7 @@ describe('GenericDialogComponent', () => {
   })
 
   beforeEach(() => {
+    jest.restoreAllMocks()
     jest.spyOn(matDialogRef, 'close')
     fixture = TestBed.createComponent(GenericDialogComponent)
     component = fixture.componentInstance
@@ -100,6 +101,6 @@ describe('GenericDialogComponent', () => {
   it('should close the dialog with undefined on a close attempt', () => {
     component.handleDialogClose()
 
-    expect(matDialogRef.close).toHaveBeenCalledWith(undefined)
+    expect(matDialogRef.close).toBeCalledWith()
   })
 })

@@ -18,7 +18,7 @@ export class StudyEditorResearchersComponent implements OnInit {
   displayedColumns: string[] = ['user', 'icon']
 
   @Input() isDisabled: boolean
-  @Input() loadingComplete: boolean
+  @Input() isLoadingComplete: boolean
 
   researchersValue: IUser[] = []
   @Output() researchersChange = new EventEmitter<IUser[]>()

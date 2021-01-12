@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
 import { Observable, of } from 'rxjs'
-import { map, catchError, mergeMap } from 'rxjs/operators'
-import { CohortService } from 'src/app/core/services/cohort.service'
+import { map, catchError } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { StudyService } from '../../core/services/study.service'
@@ -12,11 +11,7 @@ import { IStudyResolved } from './study-resolved.interface'
   providedIn: 'root',
 })
 export class StudyResolver implements Resolve<IStudyResolved> {
-  constructor(
-    private studyService: StudyService,
-    private cohortService: CohortService,
-    private phenotypeService: PhenotypeService
-  ) {}
+  constructor(private studyService: StudyService, private phenotypeService: PhenotypeService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStudyResolved> {
     const id = route.paramMap.get('id')

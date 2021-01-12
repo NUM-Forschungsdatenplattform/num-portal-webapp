@@ -35,19 +35,19 @@ export class DialogService {
           maxWidth: '400px',
           maxHeight: '300px',
         }
-      case DialogSize.Medium:
-      default:
-        return {
-          width: '95vw',
-          maxWidth: '1000px',
-          maxHeight: '800px',
-        }
       case DialogSize.Large:
         return {
           width: '98vw',
           maxWidth: '2000px',
           height: '98vh',
           maxHeight: '2000px',
+        }
+      case DialogSize.Medium:
+      default:
+        return {
+          width: '95vw',
+          maxWidth: '1000px',
+          maxHeight: '800px',
         }
     }
   }
