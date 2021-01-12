@@ -24,12 +24,14 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
 
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
 
-  constructor(phenotypeApi?: IPhenotypeApi, isNegated: boolean = false) {
+  isLoadingComplete = true
+
+  constructor(phenotypeApi?: IPhenotypeApi, isNegated?: boolean) {
     this.type = ConnectorNodeType.Phenotype
     this.id = phenotypeApi?.id || 0
     this.name = phenotypeApi?.name || undefined
     this.description = phenotypeApi?.description || undefined
-    this.isNegated = isNegated
+    this.isNegated = isNegated || false
     this.query = new PhenotypeGroupUiModel()
     if (phenotypeApi) {
       this.convertQueryToUi(phenotypeApi.query)

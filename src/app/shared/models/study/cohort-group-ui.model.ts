@@ -3,6 +3,8 @@ import { PhenotypeUiModel } from '../phenotype/phenotype-ui.model'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorGroupUiModel } from '../connector-group-ui.model'
 import { ICohortGroupApi } from './cohort-group-api.interface'
+import { ICohortApi } from './cohort-api.interface'
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 
 export class CohortGroupUiModel extends ConnectorGroupUiModel {
   type: ConnectorNodeType.Group
@@ -10,7 +12,8 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
   isNegated: boolean
   children: (CohortGroupUiModel | PhenotypeUiModel)[]
   indexInGroup: number | null = null
-  constructor() {
+
+  constructor(cohortApi?: ICohortApi, private phenotypeService?: PhenotypeService) {
     super()
     this.type = ConnectorNodeType.Group
     this.logicalOperator = LogicalOperator.And
@@ -32,19 +35,27 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
       const firstChild = child.children[0]
 
       if (firstChild.type === ConnectorNodeType.Phenotype) {
-        // TODO: Get from Service, negate
-        return new PhenotypeUiModel()
+        let model = new PhenotypeUiModel()
+        model.isLoadingComplete = model.areParameterConfigured = false
+        this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
+          model = new PhenotypeUiModel(phenotype)
+        })
+        return model
       }
-      const negatedGroup = new CohortGroupUiModel()
+      const negatedGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
       negatedGroup.convertToUi(firstChild, true)
       return negatedGroup
     }
 
     if (child.type === ConnectorNodeType.Phenotype) {
-      // TODO: Get from Service, do not negate
-      return new PhenotypeUiModel()
+      let model = new PhenotypeUiModel()
+      model.isLoadingComplete = model.areParameterConfigured = false
+      this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
+        model = new PhenotypeUiModel(phenotype)
+      })
+      return model
     }
-    const newGroup = new CohortGroupUiModel()
+    const newGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
     newGroup.convertToUi(child, false)
     return newGroup
   }

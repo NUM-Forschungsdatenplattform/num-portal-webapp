@@ -8,6 +8,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.
   styleUrls: ['./study-editor-connector.component.scss'],
 })
 export class StudyEditorConnectorComponent implements OnInit {
+  @Input() isLoadingComplete: boolean
   @Input() cohortNode: CohortGroupUiModel
   constructor() {}
 
