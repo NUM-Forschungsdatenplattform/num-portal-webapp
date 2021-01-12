@@ -1,7 +1,7 @@
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'
-import { ICohortApi } from './cohort-api.interface'
 import { ICohortGroupApi } from './cohort-group-api.interface'
 import { CohortGroupUiModel } from './cohort-group-ui.model'
 import { IStudyApi } from './study-api.interface'
@@ -24,7 +24,7 @@ export class StudyUiModel {
   status: StudyStatus
   templates: IStudyTemplateInfoApi[]
 
-  constructor(apiStudy?: IStudyApi) {
+  constructor(apiStudy?: IStudyApi, private phenotypeService?: PhenotypeService) {
     this.coordinator = apiStudy?.coordinator || undefined
     this.description = apiStudy?.description || undefined
     this.firstHypotheses = apiStudy?.firstHypotheses || undefined
@@ -41,7 +41,7 @@ export class StudyUiModel {
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {
-    this.cohortGroup = new CohortGroupUiModel()
+    this.cohortGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
     if (!cohortGroup) {
       return
     }
