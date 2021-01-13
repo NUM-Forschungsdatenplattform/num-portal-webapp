@@ -25,7 +25,7 @@ export class StudyEditorComponent implements OnInit {
   isTemplatesDisabled: boolean
   isResearchersDisabled: boolean
   isGeneralInfoDisabled: boolean
-  isConnectorDisabled = true
+  isConnectorDisabled: boolean
 
   generalInfoData: IDefinitionList[]
   get study(): StudyUiModel {
@@ -53,10 +53,7 @@ export class StudyEditorComponent implements OnInit {
     this.generateForm()
     this.fetchCohort()
     this.fetchResearcher()
-    this.checkTemplatesVisibility(this.study.status)
-    this.checkResearcherVisibility(this.study.status)
-    this.checkGeneralInfoVisibility(this.study.status)
-    this.checkChohortsVisibility(this.study.status)
+    this.checkVisibility(this.study.status)
     this.getGeneralInfoListData()
   }
 
@@ -157,39 +154,23 @@ export class StudyEditorComponent implements OnInit {
     this.save()
   }
 
-  checkTemplatesVisibility(studyStatus: StudyStatus): void {
+  checkVisibility(studyStatus: StudyStatus): void {
     if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
+      this.isConnectorDisabled = false
+      this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false
+      this.isResearchersDisabled = false
     } else {
+      this.isConnectorDisabled = true
+      this.isGeneralInfoDisabled = true
       this.isTemplatesDisabled = true
+      this.isResearchersDisabled = true
     }
-  }
 
-  checkResearcherVisibility(studyStatus: StudyStatus): void {
-    if (
-      studyStatus === StudyStatus.Draft ||
-      studyStatus === StudyStatus.Change_request ||
-      studyStatus === StudyStatus.Approved
-    ) {
+    if (studyStatus === StudyStatus.Approved) {
       this.isResearchersDisabled = false
     } else {
       this.isResearchersDisabled = true
-    }
-  }
-
-  checkGeneralInfoVisibility(studyStatus: StudyStatus): void {
-    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
-      this.isGeneralInfoDisabled = false
-    } else {
-      this.isGeneralInfoDisabled = true
-    }
-  }
-
-  checkChohortsVisibility(studyStatus: StudyStatus): void {
-    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
-      this.isConnectorDisabled = false
-    } else {
-      this.isConnectorDisabled = true
     }
   }
 }
