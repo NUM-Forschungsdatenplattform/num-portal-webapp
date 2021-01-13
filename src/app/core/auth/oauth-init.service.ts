@@ -26,11 +26,11 @@ export class OAuthInitService {
     private appConfig: AppConfigService,
     private httpClient: HttpClient
   ) {
-    this.oauthService.events.subscribe((event) => {
-      if (event.type === 'token_received') {
-        this.createUserDetails().subscribe()
-      }
-    })
+    // this.oauthService.events.subscribe((event) => {
+    //   if (event.type === 'token_received') {
+    //     this.createUserDetails().subscribe()
+    //   }
+    // })
   }
 
   public initOAuth(): Promise<boolean> {
@@ -85,22 +85,22 @@ export class OAuthInitService {
     }
   }
 
-  private createUserDetails(): Observable<string> {
-    const httpOptions = {
-      responseType: 'text' as 'json',
-    }
+  // private createUserDetails(): Observable<string> {
+  //   const httpOptions = {
+  //     responseType: 'text' as 'json',
+  //   }
 
-    return from(this.oauthService.loadUserProfile()).pipe(
-      switchMap((userInfo) => {
-        return this.httpClient.post<string>(
-          `${this.appConfig.config.api.baseUrl}/admin/user/${userInfo.sub}`,
-          '',
-          httpOptions
-        )
-      }),
-      catchError(this.handleError)
-    )
-  }
+  //   return from(this.oauthService.loadUserProfile()).pipe(
+  //     switchMap((userInfo) => {
+  //       return this.httpClient.post<string>(
+  //         `${this.appConfig.config.api.baseUrl}/admin/user/${userInfo.sub}`,
+  //         '',
+  //         httpOptions
+  //       )
+  //     }),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
