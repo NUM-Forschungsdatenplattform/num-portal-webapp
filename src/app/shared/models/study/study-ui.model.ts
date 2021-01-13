@@ -1,3 +1,5 @@
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'
 import { ICohortGroupApi } from './cohort-group-api.interface'
@@ -17,11 +19,12 @@ export class StudyUiModel {
   modifiedDate?: Date
   name?: string
   researchers: IUser[]
+  researchersApi: IStudyUser[]
   secondHypotheses?: string
   status: StudyStatus
   templates: IStudyTemplateInfoApi[]
 
-  constructor(apiStudy?: IStudyApi, researchers?: IUser[], cohortGroup?: CohortGroupUiModel) {
+  constructor(apiStudy?: IStudyApi, private phenotypeService?: PhenotypeService) {
     this.coordinator = apiStudy?.coordinator || undefined
     this.description = apiStudy?.description || undefined
     this.firstHypotheses = apiStudy?.firstHypotheses || undefined
@@ -30,9 +33,25 @@ export class StudyUiModel {
     this.name = apiStudy?.name || undefined
     this.secondHypotheses = apiStudy?.secondHypotheses || undefined
     this.status = apiStudy?.status || StudyStatus.Draft
-    this.cohortGroup = cohortGroup || new CohortGroupUiModel()
-    this.researchers = researchers || []
+    this.cohortId = apiStudy?.cohortId || null
+    this.researchers = []
+    this.researchersApi = apiStudy?.researchers || []
     this.templates = apiStudy?.templates || []
+    this.cohortGroup = new CohortGroupUiModel()
+  }
+
+  addCohortGroup(cohortGroup?: ICohortGroupApi): void {
+    this.cohortGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
+    if (!cohortGroup) {
+      return
+    }
+    if (cohortGroup.operator === LogicalOperator.Not) {
+      const isNegated = true
+      const firstChild = cohortGroup.children[0]
+      this.cohortGroup.convertToUi(firstChild, isNegated)
+    } else {
+      this.cohortGroup.convertToUi(cohortGroup, false)
+    }
   }
 
   public convertToApiInterface(

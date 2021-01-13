@@ -18,3 +18,30 @@ export const mockStudy1: IStudyApi = {
   createDate: new Date(),
   modifiedDate: new Date(),
 }
+
+export const mockStudy2: IStudyApi = {
+  id: 2,
+  name: 'Test Title 2',
+  description: 'Test Description 2',
+  templates: [],
+  cohortId: 2,
+  coordinator: {
+    userId: '1',
+    organizationId: '1',
+    approved: true,
+  },
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+    {
+      userId: 'abc-2',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis',
+  status: StudyStatus.Pending,
+  createDate: new Date(),
+  modifiedDate: new Date(),
+}
+
+export const mockStudies = [mockStudy1, mockStudy2]

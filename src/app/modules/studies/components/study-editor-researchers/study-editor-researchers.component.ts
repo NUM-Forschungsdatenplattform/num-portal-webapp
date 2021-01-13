@@ -17,14 +17,23 @@ export class StudyEditorResearchersComponent implements OnInit {
   dataSource = new MatTableDataSource<IUser>()
   displayedColumns: string[] = ['user', 'icon']
 
-  @Input() researchers: IUser[]
   @Input() isDisabled: boolean
+  @Input() isLoadingComplete: boolean
+
+  researchersValue: IUser[] = []
   @Output() researchersChange = new EventEmitter<IUser[]>()
+  @Input()
+  get researchers(): IUser[] {
+    return this.researchersValue
+  }
+  set researchers(researchers: IUser[]) {
+    this.researchersValue = researchers
+    this.dataSource.data = researchers
+    this.researchersChange.emit(researchers)
+  }
 
   ngOnInit(): void {
-    if (this.researchers && this.researchers.length > 0) {
-      this.dataSource.data = this.researchers
-    }
+    this.dataSource.data = this.researchers
   }
 
   addResearchers(): void {
@@ -39,7 +48,7 @@ export class StudyEditorResearchersComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmResult: IUser[] | undefined) => {
       if (Array.isArray(confirmResult)) {
         this.dataSource.data = confirmResult
-        this.researchersChange.emit(confirmResult)
+        this.researchers = confirmResult
       }
     })
   }
@@ -48,6 +57,6 @@ export class StudyEditorResearchersComponent implements OnInit {
     this.dataSource.data = this.dataSource.data.filter((researcher: IUser) => {
       return researcher.id !== researcherId
     })
-    this.researchersChange.emit(this.dataSource.data)
+    this.researchers = this.dataSource.data
   }
 }

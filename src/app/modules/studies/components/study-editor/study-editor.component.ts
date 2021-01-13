@@ -9,6 +9,7 @@ import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { IStudyResolved } from '../../study-resolved.interface'
+import { AdminService } from 'src/app/core/services/admin.service'
 import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-template-info-api.interface'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
@@ -19,6 +20,9 @@ import { IDefinitionList } from '../../../../shared/models/definition-list.inter
 })
 export class StudyEditorComponent implements OnInit {
   resolvedData: IStudyResolved
+  isResearchersFetched: boolean
+  isCohortsFetched: boolean
+
   templatesDisabled: boolean
   researchersDisabled: boolean
   generalInfoDisabled: boolean
@@ -31,10 +35,6 @@ export class StudyEditorComponent implements OnInit {
     return this.study.cohortGroup
   }
 
-  get studyTemplate(): IStudyTemplateInfoApi[] {
-    return this.study.templates
-  }
-
   studyForm: FormGroup
   get formTitle(): FormControl {
     return this.studyForm.get('title') as FormControl
@@ -43,16 +43,42 @@ export class StudyEditorComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private studyService: StudyService,
-    private cohortService: CohortService
+    private cohortService: CohortService,
+    private adminService: AdminService
   ) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
     this.generateForm()
+    this.fetchCohort()
+    this.fetchResearcher()
     this.checkTemplatesVisibility(this.study.status)
     this.checkResearcherVisibility(this.study.status)
     this.checkGeneralInfoVisibility(this.study.status)
     this.getGeneralInfoListData()
+  }
+
+  fetchCohort(): void {
+    if (this.study.cohortId === null || this.study.cohortId === undefined) {
+      this.isCohortsFetched = true
+    } else {
+      this.cohortService.get(this.study.cohortId).subscribe((cohortApi) => {
+        this.study.addCohortGroup(cohortApi?.cohortGroup)
+        this.isCohortsFetched = true
+      })
+    }
+  }
+
+  fetchResearcher(): void {
+    const userIds = this.study.researchersApi.map((researcher) => researcher.userId)
+    if (!userIds.length) {
+      this.isResearchersFetched = true
+    } else {
+      this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
+        this.study.researchers = researchers
+        this.isResearchersFetched = true
+      })
+    }
   }
 
   generateForm(): void {

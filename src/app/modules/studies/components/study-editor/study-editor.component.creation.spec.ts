@@ -6,7 +6,9 @@ import { ActivatedRoute } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
+import { AdminService } from 'src/app/core/services/admin.service'
 import { CohortService } from 'src/app/core/services/cohort.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
@@ -16,7 +18,6 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { IStudyUser } from 'src/app/shared/models/user/study-user.interface'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { IStudyResolved } from '../../study-resolved.interface'
@@ -24,7 +25,7 @@ import { IStudyResolved } from '../../study-resolved.interface'
 import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
-describe('StudyEditorComponent', () => {
+describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
   let fixture: ComponentFixture<StudyEditorComponent>
 
@@ -43,7 +44,16 @@ describe('StudyEditorComponent', () => {
 
   const cohortService = ({
     save: jest.fn(),
+    get: jest.fn(),
   } as unknown) as CohortService
+
+  const adminService = ({
+    getUsersById: jest.fn(),
+  } as unknown) as AdminService
+
+  const phenotypeService = ({
+    get: jest.fn().mockImplementation(() => of()),
+  } as unknown) as PhenotypeService
 
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -54,11 +64,13 @@ describe('StudyEditorComponent', () => {
   @Component({ selector: 'num-study-editor-connector', template: '' })
   class StubStudyEditorConnector {
     @Input() cohortNode: any
+    @Input() isLoadingComplete: boolean
   }
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {
-    @Input() researchers: IStudyUser[]
+    @Input() researchers: any[]
     @Input() isDisabled: boolean
+    @Input() isLoadingComplete: boolean
   }
 
   @Component({ selector: 'num-study-editor-templates', template: '' })
@@ -96,6 +108,10 @@ describe('StudyEditorComponent', () => {
         {
           provide: CohortService,
           useValue: cohortService,
+        },
+        {
+          provide: AdminService,
+          useValue: adminService,
         },
       ],
     }).compileComponents()
