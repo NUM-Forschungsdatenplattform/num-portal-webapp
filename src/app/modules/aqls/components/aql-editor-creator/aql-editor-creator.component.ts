@@ -5,7 +5,6 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'
 import { BUILDER_DIALOG_CONFIG } from './constants'
-import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   selector: 'num-aql-editor-creator',
