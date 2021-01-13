@@ -13,6 +13,7 @@ import { StudyService } from 'src/app/core/services/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
+import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
@@ -61,7 +62,10 @@ describe('StudyEditorComponent', () => {
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
+    @Input() isDisabled: boolean
+    @Input() generalInfoData: IDefinitionList[]
   }
+
   @Component({ selector: 'num-study-editor-connector', template: '' })
   class StubStudyEditorConnector {
     @Input() cohortNode: any

@@ -23,6 +23,7 @@ import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { IStudyResolved } from '../../study-resolved.interface'
 
 import { StudyEditorComponent } from './study-editor.component'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
@@ -57,6 +58,8 @@ describe('StudyEditorComponent On Creation', () => {
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
+    @Input() isDisabled: boolean
+    @Input() generalInfoData: IDefinitionList[]
   }
   @Component({ selector: 'num-study-editor-connector', template: '' })
   class StubStudyEditorConnector {

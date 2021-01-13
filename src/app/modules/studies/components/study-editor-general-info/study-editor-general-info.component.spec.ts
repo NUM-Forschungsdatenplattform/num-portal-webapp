@@ -6,14 +6,21 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { StudyEditorGeneralInfoComponent } from './study-editor-general-info.component'
+import { Component, Input } from '@angular/core'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 describe('StudyEditorGeneralInfoComponent', () => {
   let component: StudyEditorGeneralInfoComponent
   let fixture: ComponentFixture<StudyEditorGeneralInfoComponent>
 
+  @Component({ selector: 'num-definition-list', template: '' })
+  class DefinitionListStubComponent {
+    @Input() dataSource: IDefinitionList[]
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudyEditorGeneralInfoComponent],
+      declarations: [StudyEditorGeneralInfoComponent, DefinitionListStubComponent],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
@@ -27,6 +34,7 @@ describe('StudyEditorGeneralInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StudyEditorGeneralInfoComponent)
     component = fixture.componentInstance
+    component.isDisabled = false
     component.form = new FormGroup({
       title: new FormControl(),
       description: new FormControl(),

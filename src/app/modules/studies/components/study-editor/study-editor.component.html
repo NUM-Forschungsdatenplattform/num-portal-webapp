@@ -5,7 +5,11 @@
     imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
   </p>
   <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-60">
-    <num-study-editor-general-info [form]="studyForm"></num-study-editor-general-info>
+    <num-study-editor-general-info
+      [form]="studyForm"
+      [isDisabled]="generalInfoDisabled"
+      [generalInfoData]="generalInfoData"
+    ></num-study-editor-general-info>
 
     <num-study-editor-templates
       [(templates)]="study.templates"

@@ -10,6 +10,8 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { IStudyResolved } from '../../study-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin.service'
+import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-template-info-api.interface'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 @Component({
   selector: 'num-study-editor',
@@ -23,6 +25,8 @@ export class StudyEditorComponent implements OnInit {
 
   templatesDisabled: boolean
   researchersDisabled: boolean
+  generalInfoDisabled: boolean
+  generalInfoData: IDefinitionList[]
   get study(): StudyUiModel {
     return this.resolvedData.study
   }
@@ -49,6 +53,9 @@ export class StudyEditorComponent implements OnInit {
     this.fetchCohort()
     this.fetchResearcher()
     this.checkTemplatesVisibility(this.study.status)
+    this.checkResearcherVisibility(this.study.status)
+    this.checkGeneralInfoVisibility(this.study.status)
+    this.getGeneralInfoListData()
   }
 
   fetchCohort(): void {
@@ -110,6 +117,15 @@ export class StudyEditorComponent implements OnInit {
     return { study, cohort }
   }
 
+  getGeneralInfoListData(): void {
+    this.generalInfoData = [
+      { title: 'FORM.TITLE', description: this.study?.name },
+      { title: 'FORM.DESCRIPTION', description: this.study?.description },
+      { title: 'FORM.FIRST_HYPOTHESES', description: this.study?.firstHypotheses },
+      { title: 'FORM.SECOND_HYPOTHESES', description: this.study?.secondHypotheses },
+    ]
+  }
+
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
     return this.cohortService.save(cohort).toPromise()
   }
@@ -156,6 +172,14 @@ export class StudyEditorComponent implements OnInit {
       this.researchersDisabled = false
     } else {
       this.researchersDisabled = true
+    }
+  }
+
+  checkGeneralInfoVisibility(studyStatus: StudyStatus): void {
+    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
+      this.generalInfoDisabled = false
+    } else {
+      this.generalInfoDisabled = true
     }
   }
 }

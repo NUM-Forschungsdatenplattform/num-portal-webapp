@@ -6,12 +6,15 @@
     </h3>
   </mat-expansion-panel-header>
 
+  <num-definition-list [dataSource]="generalInfoData" *ngIf="isDisabled"></num-definition-list>
+
   <section
     role="region"
     aria-labelledby="general-info-label"
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
+    *ngIf="!isDisabled"
   >
     <p id="general-info-label">
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
