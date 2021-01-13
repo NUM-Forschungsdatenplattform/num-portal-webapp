@@ -31,10 +31,8 @@ export class AqlEditorComponent implements OnInit {
     this.aqlForm = new FormGroup({
       title: new FormControl(this.aql?.name, [Validators.required, Validators.minLength(3)]),
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
-      use: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
-      isPublic: new FormControl({ value: this.aql?.publicAql, disabled: this.aql.id === null }, [
-        Validators.requiredTrue,
-      ]),
+      use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
+      isPublic: new FormControl({ value: this.aql?.publicAql, disabled: this.aql.id !== null }),
     })
   }
 
@@ -44,8 +42,8 @@ export class AqlEditorComponent implements OnInit {
     return this.aql?.convertToApi(
       formValues.title,
       formValues.purpose,
-      formValues.usage,
-      formValues.publicAql
+      formValues.use,
+      formValues.isPublic
     )
   }
 

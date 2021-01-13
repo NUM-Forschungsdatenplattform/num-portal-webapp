@@ -82,8 +82,7 @@
     "CHARACTERS": "Zeichen",
     "PURPOSE": "Zweck",
     "USE": "Verwendung",
-    "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
-    "NO_EDIT_LATER": "(kann später nicht bearbeitet werden)"
+    "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren"
   },
   "BUTTON": {
     "SAVE": "Speichern",

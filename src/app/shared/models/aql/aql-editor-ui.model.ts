@@ -11,10 +11,9 @@ export class AqlEditorUiModel {
   organizationId: string
   ownerId: string
   publicAql: boolean
-  description?: string
 
   constructor(aql?: IAqlApi) {
-    this.id = aql?.id || 0
+    this.id = aql?.id || null
     this.name = aql?.name || undefined
     this.query = aql?.query || ''
     this.purpose = aql?.purpose || undefined
@@ -23,7 +22,7 @@ export class AqlEditorUiModel {
     this.modifiedDate = aql?.modifiedDate || undefined
     this.organizationId = aql?.organizationId || undefined
     this.ownerId = aql?.ownerId || undefined
-    this.publicAql = aql?.publicAql
+    this.publicAql = aql?.publicAql || true
   }
 
   public convertToApi(name: string, purpose: string, usage: string, publicAql: boolean): IAqlApi {

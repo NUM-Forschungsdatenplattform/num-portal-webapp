@@ -40,7 +40,6 @@ describe('AqlUiModel', () => {
       const model = new AqlUiModel(testCase.aql, testCase.negated)
 
       const convertedModel = model.convertToApi()
-      console.log(convertedModel)
 
       const expectedAql: IAqlPhenotypeApi = {
         name: testCase.aql.name,

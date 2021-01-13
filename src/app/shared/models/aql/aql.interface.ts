@@ -9,5 +9,4 @@ export interface IAqlApi {
   modifiedDate?: string
   organizationId?: string
   ownerId?: string
-  description?: string
 }
