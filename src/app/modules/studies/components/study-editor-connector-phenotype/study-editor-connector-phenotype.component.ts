@@ -8,6 +8,7 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
 })
 export class StudyEditorConnectorPhenotypeComponent implements OnInit {
   @Input() phenotype: PhenotypeUiModel
+  @Input() isDisabled: boolean
   @Output() configurePhenotype = new EventEmitter()
   constructor() {}
 

@@ -26,6 +26,8 @@ export class StudyEditorComponent implements OnInit {
   templatesDisabled: boolean
   researchersDisabled: boolean
   generalInfoDisabled: boolean
+  isConnectorDisabled = true
+
   generalInfoData: IDefinitionList[]
   get study(): StudyUiModel {
     return this.resolvedData.study
