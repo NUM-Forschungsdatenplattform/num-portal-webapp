@@ -15,6 +15,7 @@ describe('StudyEditorConnectorComponent', () => {
   class GroupStubComponent {
     @Input() cohortGroup: any
     @Input() parentGroupIndex: any
+    @Input() isDisabled: boolean
   }
 
   beforeEach(async () => {

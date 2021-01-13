@@ -45,6 +45,7 @@ describe('StudyEditorConnectorGroupComponent', () => {
   @Component({ selector: 'num-study-editor-connector-phenotype', template: '' })
   class PhenotypeStubComponent {
     @Input() phenotype: any
+    @Input() isDisabled: boolean
   }
 
   beforeEach(async () => {
@@ -268,6 +269,7 @@ describe('StudyEditorConnectorGroupComponent', () => {
   describe('When an item in the group gets deleted', () => {
     beforeEach(() => {
       component.cohortGroup = new CohortGroupUiModel()
+      component.isDisabled = false
       component.cohortGroup.children = [
         new CohortGroupUiModel(),
         new PhenotypeUiModel(mockPhenotype1),

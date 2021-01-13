@@ -65,6 +65,7 @@ describe('StudyEditorComponent On Creation', () => {
   class StubStudyEditorConnector {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
+    @Input() isDisabled: boolean
   }
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {
