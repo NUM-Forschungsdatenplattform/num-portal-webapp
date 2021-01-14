@@ -32,7 +32,9 @@ describe('Directive: UserHasRoleDirective', () => {
     } as unknown) as OAuthService
 
     const authService = ({
-      isLoggedIn: true,
+      get isLoggedIn() {
+        return true
+      },
     } as unknown) as AuthService
 
     beforeEach(async () => {
@@ -102,7 +104,9 @@ describe('Directive: UserHasRoleDirective', () => {
     } as unknown) as OAuthService
 
     const authService = ({
-      isLoggedIn: true,
+      get isLoggedIn() {
+        return true
+      },
     } as unknown) as AuthService
 
     beforeEach(async () => {

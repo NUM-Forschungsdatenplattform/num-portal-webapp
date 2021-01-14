@@ -8,16 +8,11 @@ import { OAuthInitService } from './oauth-init.service'
 describe('OAuth Init Service', () => {
   let initService: OAuthInitService
 
-  const mockEvent = {
-    type: 'token_received',
-  }
-
   const authService = ({
     configure: () => {},
     loadDiscoveryDocumentAndTryLogin: () => Promise.resolve(true),
     setupAutomaticSilentRefresh: () => {},
     loadUserProfile: () => Promise.resolve(mockOAuthUser),
-    events: of(mockEvent),
   } as unknown) as OAuthService
 
   const appConfig = {
@@ -41,8 +36,7 @@ describe('OAuth Init Service', () => {
   beforeEach(() => {
     jest.spyOn(authService, 'loadUserProfile')
     jest.spyOn(httpClient, 'post')
-    initService = new OAuthInitService(authService, appConfig, httpClient)
-    jest.spyOn(initService, 'handleError')
+    initService = new OAuthInitService(authService, appConfig)
   })
 
   it('should be created', () => {
@@ -103,21 +97,6 @@ describe('OAuth Init Service', () => {
       initService.initOAuth().catch((error) => {
         expect(error).toBeDefined()
       })
-    })
-  })
-
-  describe('When the user logs in', () => {
-    it('should call the api - with success', () => {
-      const httpOptions = {
-        responseType: 'text' as 'json',
-      }
-
-      expect(authService.loadUserProfile).toHaveBeenCalled()
-      expect(httpClient.post).toHaveBeenCalledWith(
-        `localhost/api/admin/user/${mockOAuthUser.sub}`,
-        '',
-        httpOptions
-      )
     })
   })
 })

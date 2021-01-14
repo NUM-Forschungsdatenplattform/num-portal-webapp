@@ -5,9 +5,9 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
-import { OAuthModule } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
+import { Subject } from 'rxjs'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -15,27 +15,27 @@ describe('DashboardComponent', () => {
 
   let appConfig: AppConfigService
 
-  const oauthService = {
-    loadUserProfile: () => Promise.resolve({}),
-  } as OAuthService
+  const userInfoSubject$ = new Subject<any>()
 
   const authService = {
-    isLoggedIn: true,
+    get isLoggedIn() {
+      return true
+    },
+    userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
   const config = ({
     env: 'test',
   } as unknown) as IAppConfig
 
+  const oauthService = ({
+    loadUserProfile: () => Promise.resolve(),
+  } as unknown) as OAuthService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [
-        TranslateModule.forRoot(),
-        HttpClientTestingModule,
-        OAuthModule.forRoot(),
-        DirectivesModule,
-      ],
+      imports: [TranslateModule.forRoot(), HttpClientTestingModule, DirectivesModule],
       providers: [
         {
           provide: OAuthService,

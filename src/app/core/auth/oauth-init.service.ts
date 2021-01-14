@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { OAuthService, AuthConfig, OAuthErrorEvent } from 'angular-oauth2-oidc'
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import { from, Observable, throwError } from 'rxjs'
-import { catchError, switchMap } from 'rxjs/operators'
-
+import { OAuthService, AuthConfig } from 'angular-oauth2-oidc'
 @Injectable({
   providedIn: 'root',
 })
@@ -21,17 +17,7 @@ export class OAuthInitService {
 
   private AUTH_CONFIG: AuthConfig
 
-  constructor(
-    private oauthService: OAuthService,
-    private appConfig: AppConfigService,
-    private httpClient: HttpClient
-  ) {
-    // this.oauthService.events.subscribe((event) => {
-    //   if (event.type === 'token_received') {
-    //     this.createUserDetails().subscribe()
-    //   }
-    // })
-  }
+  constructor(private oauthService: OAuthService, private appConfig: AppConfigService) {}
 
   public initOAuth(): Promise<boolean> {
     let terminationTimer: number
@@ -83,26 +69,5 @@ export class OAuthInitService {
       clearHashAfterLogin: false,
       nonceStateSeparator: 'semicolon',
     }
-  }
-
-  // private createUserDetails(): Observable<string> {
-  //   const httpOptions = {
-  //     responseType: 'text' as 'json',
-  //   }
-
-  //   return from(this.oauthService.loadUserProfile()).pipe(
-  //     switchMap((userInfo) => {
-  //       return this.httpClient.post<string>(
-  //         `${this.appConfig.config.api.baseUrl}/admin/user/${userInfo.sub}`,
-  //         '',
-  //         httpOptions
-  //       )
-  //     }),
-  //     catchError(this.handleError)
-  //   )
-  // }
-
-  handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
   }
 }

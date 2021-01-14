@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, Route, RouterStateSnapshot } from '@angular/router'
-import { OAuthService } from 'angular-oauth2-oidc'
+import { Subject } from 'rxjs'
 import { AuthService } from '../auth.service'
 
 import { RoleGuard } from './role.guard'
@@ -7,17 +7,18 @@ import { RoleGuard } from './role.guard'
 describe('RoleGuard', () => {
   let guard: RoleGuard
 
-  const oauthService = ({
-    loadUserProfile: () => Promise.resolve({}),
-  } as unknown) as OAuthService
+  const userInfoSubject$ = new Subject<any>()
 
-  const authService = {
+  const authService = ({
     login: () => {},
-    isLoggedIn: true,
-  } as AuthService
+    get isLoggedIn() {
+      return true
+    },
+    userInfoObservable$: userInfoSubject$.asObservable(),
+  } as unknown) as AuthService
 
   beforeEach(() => {
-    guard = new RoleGuard(oauthService, authService)
+    guard = new RoleGuard(authService)
   })
 
   afterEach(() => {
@@ -48,16 +49,16 @@ describe('RoleGuard', () => {
     }
 
     it('grants access to the route in [canActivate] guard', async () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       return guard.canActivate(activatedRoute, state).then((result) => {
         expect(result).toBeTruthy()
       })
     })
 
     it('grants access to the route in [canLoad] guard', async () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       const result = await guard.canLoad(route)
       expect(result).toBeTruthy()
     })
@@ -83,16 +84,16 @@ describe('RoleGuard', () => {
     }
 
     it('grants no access to the route in [canActivate] guard', () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       return guard.canActivate(activatedRoute, state).then((result) => {
         expect(result).toBeFalsy()
       })
     })
 
     it('grants no access to the route in [canLoad] guard', async () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       const result = await guard.canLoad(route)
       expect(result).toBeFalsy()
     })
@@ -118,16 +119,16 @@ describe('RoleGuard', () => {
     }
 
     it('grants no access to the route in [canActivate] guard', () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       return guard.canActivate(activatedRoute, state).then((result) => {
         expect(result).toBeFalsy()
       })
     })
 
     it('grants no access to the route in [canLoad] guard', async () => {
-      authService.isLoggedIn = true
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(userInfo)
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
+      userInfoSubject$.next(userInfo)
       const result = await guard.canLoad(route)
       expect(result).toBeFalsy()
     })
@@ -154,8 +155,7 @@ describe('RoleGuard', () => {
     } as RouterStateSnapshot
 
     it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canActivate] guard', async () => {
-      authService.isLoggedIn = false
-      jest.spyOn(oauthService, 'loadUserProfile')
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(false)
       jest.spyOn(authService, 'login')
 
       const result = await guard.canActivate(activatedRoute, state)
@@ -163,8 +163,7 @@ describe('RoleGuard', () => {
     })
 
     it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canLoad] guard', async () => {
-      authService.isLoggedIn = false
-      jest.spyOn(oauthService, 'loadUserProfile')
+      jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(false)
       jest.spyOn(authService, 'login')
 
       const result = await guard.canLoad(route)
