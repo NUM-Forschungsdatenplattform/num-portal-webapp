@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CohortService } from 'src/app/core/services/cohort.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
@@ -11,13 +11,24 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { IStudyResolved } from '../../study-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { Subscription } from 'rxjs'
+import { StudyMenuKeys } from '../studies-table/menu-items'
 
+enum PossibleModes {
+  EDIT = StudyMenuKeys.Edit,
+  PREVIEW = StudyMenuKeys.Preview,
+  REVIEW = StudyMenuKeys.Review,
+}
 @Component({
   selector: 'num-study-editor',
   templateUrl: './study-editor.component.html',
   styleUrls: ['./study-editor.component.scss'],
 })
-export class StudyEditorComponent implements OnInit {
+export class StudyEditorComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
+  mode: PossibleModes
+  possibleModes = PossibleModes
+
   resolvedData: IStudyResolved
   isResearchersFetched: boolean
   isCohortsFetched: boolean
@@ -50,11 +61,30 @@ export class StudyEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
+    this.subscriptions.add(
+      this.route.queryParams.subscribe((params) => this.handleQueryParams(params))
+    )
+
     this.generateForm()
     this.fetchCohort()
     this.fetchResearcher()
-    this.checkVisibility(this.study.status)
     this.getGeneralInfoListData()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
+  handleQueryParams(params: Params): void {
+    const mode = ('' + params.mode).toUpperCase()
+    if (mode in PossibleModes) {
+      this.mode = PossibleModes[mode]
+    } else if (this.study.id === null) {
+      this.mode = PossibleModes.EDIT
+    } else {
+      this.mode = PossibleModes.PREVIEW
+    }
+    this.checkVisibility()
   }
 
   fetchCohort(): void {
@@ -154,8 +184,14 @@ export class StudyEditorComponent implements OnInit {
     this.save()
   }
 
-  checkVisibility(studyStatus: StudyStatus): void {
-    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
+  checkVisibility(): void {
+    const studyStatus = this.study.status
+    if (this.mode === PossibleModes.PREVIEW) {
+      this.isConnectorDisabled = true
+      this.isGeneralInfoDisabled = true
+      this.isTemplatesDisabled = true
+      this.isResearchersDisabled = true
+    } else if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
       this.isConnectorDisabled = false
       this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false

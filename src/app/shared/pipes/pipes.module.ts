@@ -4,8 +4,15 @@ import { ArchetypePipe } from './archetype.pipe'
 import { GroupIndexPipe } from './group-index.pipe'
 import { NestedAccessPipe } from './nested-access.pipe'
 import { IsSelectedPipe } from './is-selected.pipe'
+import { ItemVisibilityPipe } from './item-visibility.pipe'
 
-const SHARED_DECLARATIONS = [GroupIndexPipe, ArchetypePipe, NestedAccessPipe, IsSelectedPipe]
+const SHARED_DECLARATIONS = [
+  GroupIndexPipe,
+  ArchetypePipe,
+  NestedAccessPipe,
+  IsSelectedPipe,
+  ItemVisibilityPipe,
+]
 
 @NgModule({
   declarations: [...SHARED_DECLARATIONS],

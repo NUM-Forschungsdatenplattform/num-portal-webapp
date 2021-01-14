@@ -53,6 +53,7 @@
   "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
+  "AVAILABLE_STUDIES": "Verfügbare Studien",
   "BUILD_QUERY": "Abfrage erstellen",
   "CONNECT_AQL": "AQL Abfragen zusammenstellen",
   "DEFINE_COHORT": "Kohorte definieren",
@@ -103,7 +104,14 @@
     "SELECT": "Auswählen",
     "DESELECT": "Abwählen",
     "APPROVE_USER": "Benutzer bestätigen",
-    "OPEN_AQL_BUILDER": "Abfrage erstellen"
+    "OPEN_AQL_BUILDER": "Abfrage erstellen",
+    "PREVIEW": "Vorschau",
+    "EDIT": "Bearbeiten",
+    "EDIT_RESEARCHERS": "Forscher bearbeiten",
+    "PUBLISH": "Veröffentlichen",
+    "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
+    "CLOSE_STUDY": "Studie schließen",
+    "REVIEW_STUDY": "Studie überprüfen"
   },
   "USER": {
     "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
