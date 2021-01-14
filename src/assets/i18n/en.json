@@ -82,8 +82,7 @@
     "CHARACTERS": "Characters",
     "PURPOSE": "Purpose",
     "USE": "Use",
-    "PUBLIC_CHECKBOX": "AQL query is for public use",
-    "NO_EDIT_LATER": "(cannot be edited later)"
+    "PUBLIC_CHECKBOX": "AQL query is for public use"
   },
   "BUTTON": {
     "SAVE": "Save",

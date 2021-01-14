@@ -1,9 +1,9 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
-import { IAqlApi } from './aql.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
+import { IAqlPhenotypeApi } from './aql-phenotype.interface'
 
 export class AqlUiModel implements ConnectorMainNodeUi {
   type: ConnectorNodeType.Aql
@@ -15,7 +15,7 @@ export class AqlUiModel implements ConnectorMainNodeUi {
   areParameterConfigured = true
   indexInGroup: number | null
 
-  constructor(aql: IAqlApi, isNegated: boolean = false) {
+  constructor(aql: IAqlPhenotypeApi, isNegated: boolean = false) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
     this.name = aql.name

@@ -12,11 +12,6 @@ import { DialogEditAqlComponent } from './dialog-edit-aql.component'
 describe('DialogEditAqlComponent', () => {
   let component: DialogEditAqlComponent
   let fixture: ComponentFixture<DialogEditAqlComponent>
-  const inputApiAql: IAqlApi = {
-    id: 1,
-    name: 'Test',
-    query: '',
-  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

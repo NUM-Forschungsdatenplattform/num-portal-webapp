@@ -43,6 +43,9 @@ export class AqlService {
       tap((aqls) => {
         this.aqls = aqls
         this.aqlsSubject$.next(aqls)
+        if (aqls.length) {
+          this.setFilter(this.filterSet)
+        }
       }),
       catchError(this.handleError)
     )
@@ -94,6 +97,10 @@ export class AqlService {
     }
 
     return result
+  }
+
+  save(aqlQuery: IAqlApi): Observable<IAqlApi> {
+    return this.httpClient.post<IAqlApi>(this.baseUrl, aqlQuery).pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

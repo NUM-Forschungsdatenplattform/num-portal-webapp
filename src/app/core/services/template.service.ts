@@ -45,6 +45,9 @@ export class TemplateService {
       tap((templates) => {
         this.templates = templates
         this.templatesSubject$.next(templates)
+        if (templates.length) {
+          this.setFilter(this.filterSet)
+        }
       }),
       catchError(this.handleError)
     )

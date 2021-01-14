@@ -3,6 +3,8 @@ import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { AqlUiModel } from './aql-ui.model'
+import { IPhenotypeApi } from '../phenotype/phenotype-api.interface'
+import { IAqlPhenotypeApi } from './aql-phenotype.interface'
 
 describe('AqlUiModel', () => {
   const testCase1 = {
@@ -39,9 +41,15 @@ describe('AqlUiModel', () => {
 
       const convertedModel = model.convertToApi()
 
-      const expectedAqlQuery = {
+      const expectedAql: IAqlPhenotypeApi = {
+        name: testCase.aql.name,
+        id: testCase.aql.id,
+        query: testCase.aql.query,
+      }
+
+      const expectedAqlQuery: IPhenotypeQueryApi = {
         type: ConnectorNodeType.Aql,
-        aql: testCase.aql,
+        aql: expectedAql,
       }
 
       if (testCase.expectNegated === false) {

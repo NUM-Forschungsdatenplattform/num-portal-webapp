@@ -1,19 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-
 import { PhenotypeEditorConnectorAqlComponent } from './phenotype-editor-connector-aql.component'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 
 describe('PhenotypeEditorConnectorAqlComponent', () => {
   let component: PhenotypeEditorConnectorAqlComponent
   let fixture: ComponentFixture<PhenotypeEditorConnectorAqlComponent>
-  const inputApiAql: IAqlApi = {
-    id: 1,
-    name: 'Test',
-    query: '',
-  }
-  const inputAql = new AqlUiModel(inputApiAql, true)
+
+  const inputAql = new AqlUiModel(mockAql1, true)
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

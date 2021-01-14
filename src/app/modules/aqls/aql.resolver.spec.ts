@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router'
 import { of, throwError } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql.service'
-import { AqlBuilderUiModel } from 'src/app/shared/models/aql/aql-builder-ui.model'
+import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlResolver } from './aql.resolver'
 
@@ -29,8 +29,8 @@ describe('AqlsResolver', () => {
       const result = await resolver.resolve(activatedRoute, state).toPromise()
 
       expect(result.error).toBeNull()
-      expect(result.aql).toBeInstanceOf(AqlBuilderUiModel)
-      expect(result.aql.id).toEqual(0)
+      expect(result.aql).toBeInstanceOf(AqlEditorUiModel)
+      expect(result.aql.id).toEqual(null)
     })
 
     it('should provide an error message when the id was not "new" and not a number', async () => {
@@ -40,7 +40,7 @@ describe('AqlsResolver', () => {
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.error).toBeDefined()
-      expect(result.aql.id).toEqual(0)
+      expect(result.aql.id).toEqual(null)
     })
 
     it('should return the correct aql if the id is found', async () => {
@@ -61,7 +61,7 @@ describe('AqlsResolver', () => {
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.error).toBeDefined()
-      expect(result.aql.id).toEqual(0)
+      expect(result.aql.id).toEqual(null)
     })
   })
 })

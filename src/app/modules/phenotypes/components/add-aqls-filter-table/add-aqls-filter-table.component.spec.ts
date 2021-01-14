@@ -21,12 +21,7 @@ describe('AddAqlsFilterTableComponent', () => {
     getAll: () => of(),
   } as AqlService
 
-  const aqlRow: IAqlApi = {
-    id: 123,
-    name: 'test',
-    query: 'query test string',
-  }
-  const aql = new AqlUiModel(aqlRow)
+  const aql = new AqlUiModel(mockAql1)
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -62,7 +57,7 @@ describe('AddAqlsFilterTableComponent', () => {
   describe('When a row is clicked to select an aql', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedAqlsChange, 'emit')
-      component.handleRowClick(aqlRow)
+      component.handleRowClick(mockAql1)
     })
 
     it('should emit the selectedAqls array', () => {
@@ -70,7 +65,7 @@ describe('AddAqlsFilterTableComponent', () => {
     })
 
     it('should set the id key in the lookup to true', () => {
-      expect(component.lookupSelectedAql[123]).toEqual(true)
+      expect(component.lookupSelectedAql[1]).toEqual(true)
     })
   })
 
@@ -80,7 +75,7 @@ describe('AddAqlsFilterTableComponent', () => {
       const change = new SimpleChange([], component.selectedAqls, false)
       component.ngOnChanges({ selectedAqls: change })
       fixture.detectChanges()
-      expect(component.lookupSelectedAql[123]).toEqual(true)
+      expect(component.lookupSelectedAql[1]).toEqual(true)
     })
   })
 })

@@ -1,6 +1,6 @@
-import { AqlBuilderUiModel } from '../../../shared/models/aql/aql-builder-ui.model'
+import { AqlEditorUiModel } from '../../../shared/models/aql/aql-editor-ui.model'
 
 export interface IAqlResolved {
   error: string
-  aql: AqlBuilderUiModel
+  aql: AqlEditorUiModel
 }

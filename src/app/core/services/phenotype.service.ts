@@ -45,6 +45,9 @@ export class PhenotypeService {
       tap((phenotypes) => {
         this.phenotypes = phenotypes
         this.phenotypesSubject$.next(phenotypes)
+        if (phenotypes.length) {
+          this.setFilter(this.filterSet)
+        }
       }),
       catchError(this.handleError)
     )

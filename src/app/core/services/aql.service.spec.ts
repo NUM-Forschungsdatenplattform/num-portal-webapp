@@ -2,16 +2,18 @@ import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
-import { mockAqls } from 'src/mocks/data-mocks/aqls.mock'
+import { mockAql1, mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
-import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
+import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 
 describe('AqlService', () => {
   let service: AqlService
+  const baseUrl = 'localhost/api/aql'
 
   let throttleTime: number
   const httpClient = ({
-    get: () => of(mockAqls),
+    get: jest.fn(),
+    post: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -29,6 +31,9 @@ describe('AqlService', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks()
+    jest.clearAllMocks()
+    jest.resetAllMocks()
+    jest.spyOn(httpClient, 'get').mockImplementation(() => of())
     service = new AqlService(httpClient, appConfig)
   })
 
@@ -64,6 +69,9 @@ describe('AqlService', () => {
   })
 
   describe('When a call to get method comes in', () => {
+    beforeEach(() => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
+    })
     it('should return with a single aql found on the backend', async () => {
       const result = await service.get(1).toPromise()
       expect(result.id).toEqual(1)
@@ -88,16 +96,17 @@ describe('AqlService', () => {
 
   describe('When multiple filter are passed in', () => {
     beforeEach(() => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of([]))
+      jest.restoreAllMocks()
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
       throttleTime = (service as any).throttleTime
     })
 
-    it('should debounce the filtering', (done) => {
+    it('should debounce the filtering', async (done) => {
       const filterConfigLast: IAqlFilter = {
         filterChips: [],
         searchText: 'name1',
       }
-      let filterResult: IAqlApi[]
+      let filterResult: AqlEditorUiModel[]
       const callHelper = jest.fn((result) => (filterResult = result))
       service.filteredAqlsObservable$.subscribe(callHelper)
 
@@ -130,6 +139,22 @@ describe('AqlService', () => {
         expect(filterResult[0].id).toEqual(1)
         done()
       }, throttleTime * 3)
+    })
+  })
+
+  describe('When a call to save method comes in', () => {
+    it('should post to the api with the aqls as payload', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockAql1))
+      service.save(mockAql1).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAql1)
+    })
+
+    it('should call handleError on api error', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.save(mockAql1).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAql1)
+      expect(service.handleError).toHaveBeenCalled()
     })
   })
 })
