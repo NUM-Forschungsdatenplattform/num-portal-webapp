@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Params, Router } from '@angular/router'
+import { ActivatedRoute, Params } from '@angular/router'
 import { CohortService } from 'src/app/core/services/cohort.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
@@ -186,12 +186,12 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   checkVisibility(): void {
     const studyStatus = this.study.status
-    if (this.mode === PossibleModes.PREVIEW) {
-      this.isConnectorDisabled = true
-      this.isGeneralInfoDisabled = true
-      this.isTemplatesDisabled = true
-      this.isResearchersDisabled = true
-    } else if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
+    const inPreview = this.mode === PossibleModes.PREVIEW
+    const inEditByStatus = !(
+      studyStatus !== StudyStatus.Draft && studyStatus !== StudyStatus.Change_request
+    )
+
+    if (inEditByStatus && !inPreview) {
       this.isConnectorDisabled = false
       this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false
@@ -203,7 +203,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
       this.isResearchersDisabled = true
     }
 
-    if (studyStatus === StudyStatus.Approved) {
+    if (studyStatus === StudyStatus.Approved && !inPreview) {
       this.isResearchersDisabled = false
     }
   }

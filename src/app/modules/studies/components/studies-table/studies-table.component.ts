@@ -8,7 +8,6 @@ import { StudyService } from 'src/app/core/services/study.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
-import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, StudyMenuKeys } from './menu-items'
 
 @Component({
