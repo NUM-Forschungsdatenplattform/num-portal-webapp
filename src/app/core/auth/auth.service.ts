@@ -55,7 +55,7 @@ export class AuthService {
       )
   }
 
-  private fetchUserInfo(): void {
+  fetchUserInfo(): void {
     if (!this.isLoggedIn) {
       return
     }
