@@ -44,7 +44,7 @@ export class AqlService {
         this.aqls = aqls
         this.aqlsSubject$.next(aqls)
         if (aqls.length) {
-          this.filterConfigSubject$.next(this.filterSet)
+          this.setFilter(this.filterSet)
         }
       }),
       catchError(this.handleError)
@@ -73,7 +73,6 @@ export class AqlService {
   }
 
   setFilter(filterSet: IAqlFilter): void {
-    this.filterSet = filterSet
     this.filterConfigSubject$.next(filterSet)
   }
 

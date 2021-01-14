@@ -192,7 +192,6 @@ describe('AdminService', () => {
     })
 
     it('should debounce the filtering', async (done) => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of([]))
       const filterConfigLast: IUserFilter = {
         searchText: 'Musterfrau',
       }
