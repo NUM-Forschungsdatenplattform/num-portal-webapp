@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Params } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of } from 'rxjs'
+import { BehaviorSubject, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { CohortService } from 'src/app/core/services/cohort.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype.service'
@@ -30,12 +30,15 @@ describe('StudyEditorComponent On Creation', () => {
   let fixture: ComponentFixture<StudyEditorComponent>
 
   const resolvedData: IStudyResolved = { study: new StudyUiModel(), error: null }
+
+  const queryParamsSubject$ = new BehaviorSubject<Params>({})
   const route = ({
     snapshot: {
       data: {
         resolvedData,
       },
     },
+    queryParams: queryParamsSubject$.asObservable(),
   } as unknown) as ActivatedRoute
 
   const studyService = ({

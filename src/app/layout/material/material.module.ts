@@ -20,6 +20,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatTreeModule } from '@angular/material/tree'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatMenuModule } from '@angular/material/menu'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -43,6 +44,7 @@ const MATERIAL_MODULES = [
   MatCheckboxModule,
   MatTreeModule,
   MatProgressBarModule,
+  MatMenuModule,
 ]
 
 @NgModule({

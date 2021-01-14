@@ -53,6 +53,7 @@
   "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_AQLS": "Available AQL Queries",
+  "AVAILABLE_STUDIES": "Available Studies",
   "BUILD_QUERY": "Build the Query",
   "CONNECT_AQL": "Assemble AQL Queries",
   "DEFINE_COHORT": "Define Cohort",
@@ -103,7 +104,14 @@
     "SELECT": "Select",
     "DESELECT": "Deselect",
     "APPROVE_USER": "Approve User",
-    "OPEN_AQL_BUILDER": "Build query"
+    "OPEN_AQL_BUILDER": "Build query",
+    "PREVIEW": "Preview",
+    "EDIT": "Edit",
+    "EDIT_RESEARCHERS": "Edit researchers",
+    "PUBLISH": "Publish",
+    "WITHDRAW_APPROVAL": "Withdraw approval request",
+    "CLOSE_STUDY": "Close study",
+    "REVIEW_STUDY": "Review"
   },
   "USER": {
     "UNAPPROVED_USERS": "Unapproved Users",
