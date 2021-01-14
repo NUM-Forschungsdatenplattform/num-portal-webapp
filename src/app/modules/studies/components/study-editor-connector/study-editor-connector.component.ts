@@ -9,6 +9,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.
 })
 export class StudyEditorConnectorComponent implements OnInit {
   @Input() isLoadingComplete: boolean
+  @Input() isDisabled: boolean
   @Input() cohortNode: CohortGroupUiModel
   constructor() {}
 

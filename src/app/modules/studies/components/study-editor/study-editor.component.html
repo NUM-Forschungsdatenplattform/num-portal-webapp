@@ -4,27 +4,29 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
     imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
   </p>
+
   <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-60">
     <num-study-editor-general-info
       [form]="studyForm"
-      [isDisabled]="generalInfoDisabled"
+      [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
     ></num-study-editor-general-info>
 
     <num-study-editor-templates
       [(templates)]="study.templates"
-      [isDisabled]="templatesDisabled"
+      [isDisabled]="isTemplatesDisabled"
     ></num-study-editor-templates>
 
     <num-study-editor-connector
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
     ></num-study-editor-connector>
 
     <num-study-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="study.researchers"
-      [isDisabled]="researchersDisabled"
+      [isDisabled]="isResearchersDisabled"
     ></num-study-editor-researchers>
   </mat-accordion>
 

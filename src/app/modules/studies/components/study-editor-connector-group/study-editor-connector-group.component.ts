@@ -36,6 +36,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
   @Output() chortGroupChanges = new EventEmitter<CohortGroupUiModel>()
   @Input() parentGroupIndex: number[] | null
   @Input() index: number
+  @Input() isDisabled: boolean
 
   @Output() delete = new EventEmitter()
 

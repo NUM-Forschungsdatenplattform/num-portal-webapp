@@ -12,12 +12,7 @@ import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
-import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
-import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
-import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
@@ -70,6 +65,7 @@ describe('StudyEditorComponent', () => {
   class StubStudyEditorConnector {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
+    @Input() isDisabled: boolean
   }
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {

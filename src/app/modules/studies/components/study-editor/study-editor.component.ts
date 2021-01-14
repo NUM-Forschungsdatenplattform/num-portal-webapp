@@ -10,7 +10,6 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { IStudyResolved } from '../../study-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin.service'
-import { IStudyTemplateInfoApi } from '../../../../shared/models/study/study-template-info-api.interface'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 @Component({
@@ -23,9 +22,11 @@ export class StudyEditorComponent implements OnInit {
   isResearchersFetched: boolean
   isCohortsFetched: boolean
 
-  templatesDisabled: boolean
-  researchersDisabled: boolean
-  generalInfoDisabled: boolean
+  isTemplatesDisabled: boolean
+  isResearchersDisabled: boolean
+  isGeneralInfoDisabled: boolean
+  isConnectorDisabled: boolean
+
   generalInfoData: IDefinitionList[]
   get study(): StudyUiModel {
     return this.resolvedData.study
@@ -52,9 +53,7 @@ export class StudyEditorComponent implements OnInit {
     this.generateForm()
     this.fetchCohort()
     this.fetchResearcher()
-    this.checkTemplatesVisibility(this.study.status)
-    this.checkResearcherVisibility(this.study.status)
-    this.checkGeneralInfoVisibility(this.study.status)
+    this.checkVisibility(this.study.status)
     this.getGeneralInfoListData()
   }
 
@@ -155,31 +154,21 @@ export class StudyEditorComponent implements OnInit {
     this.save()
   }
 
-  checkTemplatesVisibility(studyStatus: StudyStatus): void {
+  checkVisibility(studyStatus: StudyStatus): void {
     if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
-      this.templatesDisabled = false
+      this.isConnectorDisabled = false
+      this.isGeneralInfoDisabled = false
+      this.isTemplatesDisabled = false
+      this.isResearchersDisabled = false
     } else {
-      this.templatesDisabled = true
+      this.isConnectorDisabled = true
+      this.isGeneralInfoDisabled = true
+      this.isTemplatesDisabled = true
+      this.isResearchersDisabled = true
     }
-  }
 
-  checkResearcherVisibility(studyStatus: StudyStatus): void {
-    if (
-      studyStatus === StudyStatus.Draft ||
-      studyStatus === StudyStatus.Change_request ||
-      studyStatus === StudyStatus.Approved
-    ) {
-      this.researchersDisabled = false
-    } else {
-      this.researchersDisabled = true
-    }
-  }
-
-  checkGeneralInfoVisibility(studyStatus: StudyStatus): void {
-    if (studyStatus === StudyStatus.Draft || studyStatus === StudyStatus.Change_request) {
-      this.generalInfoDisabled = false
-    } else {
-      this.generalInfoDisabled = true
+    if (studyStatus === StudyStatus.Approved) {
+      this.isResearchersDisabled = false
     }
   }
 }
