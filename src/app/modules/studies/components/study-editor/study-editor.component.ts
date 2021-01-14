@@ -169,8 +169,6 @@ export class StudyEditorComponent implements OnInit {
 
     if (studyStatus === StudyStatus.Approved) {
       this.isResearchersDisabled = false
-    } else {
-      this.isResearchersDisabled = true
     }
   }
 }
