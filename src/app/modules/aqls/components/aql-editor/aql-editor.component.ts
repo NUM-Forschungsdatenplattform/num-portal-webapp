@@ -32,7 +32,7 @@ export class AqlEditorComponent implements OnInit {
       title: new FormControl(this.aql?.name, [Validators.required, Validators.minLength(3)]),
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
       use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
-      isPublic: new FormControl({ value: this.aql?.publicAql }),
+      isPublic: new FormControl(this.aql?.publicAql),
     })
   }
 
@@ -49,7 +49,6 @@ export class AqlEditorComponent implements OnInit {
 
   async save(): Promise<void> {
     const aqlQuery = this.getAqlForApi()
-
     try {
       await this.aqlService.save(aqlQuery).toPromise()
       // TODO: Display message to user
