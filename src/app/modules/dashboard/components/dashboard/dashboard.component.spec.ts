@@ -18,7 +18,7 @@ describe('DashboardComponent', () => {
   const userInfoSubject$ = new Subject<any>()
 
   const authService = {
-    get isLoggedIn() {
+    get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: userInfoSubject$.asObservable(),

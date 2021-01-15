@@ -49,6 +49,7 @@ describe('OAuth Init Service', () => {
       clientId: `${appConfig.config.auth.clientId}`,
       responseType: 'code',
       redirectUri: window.location.origin + '/home',
+      silentRefreshRedirectUri: window.location.origin + '/assets/silent-refresh.html',
       scope: 'openid profile email roles',
       useSilentRefresh: true,
       silentRefreshTimeout: 5000,

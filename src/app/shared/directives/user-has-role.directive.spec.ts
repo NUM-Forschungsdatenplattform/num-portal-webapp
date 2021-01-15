@@ -32,7 +32,7 @@ describe('Directive: UserHasRoleDirective', () => {
     } as unknown) as OAuthService
 
     const authService = ({
-      get isLoggedIn() {
+      get isLoggedIn(): boolean {
         return true
       },
     } as unknown) as AuthService
@@ -104,7 +104,7 @@ describe('Directive: UserHasRoleDirective', () => {
     } as unknown) as OAuthService
 
     const authService = ({
-      get isLoggedIn() {
+      get isLoggedIn(): boolean {
         return true
       },
     } as unknown) as AuthService
