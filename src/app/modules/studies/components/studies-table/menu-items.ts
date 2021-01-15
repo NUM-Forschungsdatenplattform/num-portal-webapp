@@ -71,7 +71,7 @@ export const MENU_ITEM_CLOSE_STUDY: IItemVisibility = {
 export const MENU_ITEM_REVIEW_STUDY: IItemVisibility = {
   translationKey: 'BUTTON.REVIEW_STUDY',
   id: StudyMenuKeys.Review,
-  disabledUnless: [StudyStatus.Approved, StudyStatus.Published],
+  disabledUnless: [StudyStatus.Pending, StudyStatus.Reviewing],
 }
 
 /**

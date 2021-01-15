@@ -1,0 +1,88 @@
+<section role="region" fxLayout="column">
+  <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+  <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button type="secondary" (singleClick)="cancel.emit()">{{
+      (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
+    }}</num-button>
+
+    <div
+      role="presentation"
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+      fxLayoutGap="8px"
+      [ngSwitch]="editorMode"
+    >
+      <ng-container
+        *ngSwitchCase="possibleModes.PREVIEW"
+        [ngTemplateOutlet]="previewButtonRow"
+      ></ng-container>
+
+      <ng-container
+        *ngSwitchCase="possibleModes.REVIEW"
+        [ngTemplateOutlet]="reviewButtonRow"
+      ></ng-container>
+
+      <ng-container
+        *ngSwitchCase="possibleModes.EDIT"
+        [ngTemplateOutlet]="editButtonRow"
+      ></ng-container>
+    </div>
+  </div>
+</section>
+
+<ng-template #editButtonRow>
+  <num-button
+    type="primary"
+    *ngIf="studyStatus === possibleStatus.Approved; else fullEdit"
+    (singleClick)="saveResearchers.emit()"
+    [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
+    >{{ 'BUTTON.SAVE' | translate }}</num-button
+  >
+  <ng-template #fullEdit>
+    <num-button
+      type="secondary"
+      [isDisabled]="
+        !isFormValid ||
+        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.Change_request)
+      "
+      (singleClick)="saveAll.emit()"
+      >{{ 'BUTTON.SAVE' | translate }}</num-button
+    >
+    <num-button
+      type="primary"
+      (singleClick)="saveAsApprovalRequest.emit()"
+      [isDisabled]="
+        !isFormValid ||
+        !isResearchersDefined ||
+        !isTemplatesDefined ||
+        !isCohortDefined ||
+        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.Change_request)
+      "
+      >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
+    >
+  </ng-template>
+</ng-template>
+
+<ng-template #reviewButtonRow>
+  <num-button type="primary" (singleClick)="saveAsApprovalReply.emit()" [isDisabled]="true">{{
+    'BUTTON.TODO' | translate
+  }}</num-button>
+</ng-template>
+
+<ng-template #previewButtonRow>
+  <num-button
+    type="primary"
+    (singleClick)="startEdit.emit()"
+    [isDisabled]="
+      !(
+        studyStatus === possibleStatus.Draft ||
+        studyStatus === possibleStatus.Change_request ||
+        studyStatus === possibleStatus.Approved
+      )
+    "
+    >{{
+      (studyStatus === possibleStatus.Approved ? 'BUTTON.EDIT_RESEARCHERS' : 'BUTTON.EDIT')
+        | translate
+    }}</num-button
+  >
+</ng-template>

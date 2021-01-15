@@ -1,9 +1,11 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { catchError, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
+import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +45,21 @@ export class StudyService {
     return this.httpClient
       .put<IStudyApi>(`${this.baseUrl}/${id}`, study)
       .pipe(catchError(this.handleError))
+  }
+
+  updateStatusById(id: number, newStatus: StudyStatus): Observable<IStudyApi> {
+    return this.get(id).pipe(
+      switchMap((study) => {
+        if (!!isStatusSwitchable[study.status][newStatus]) {
+          study.status = newStatus
+          return this.update(study, study.id)
+        }
+        return throwError('STATUS_NOT_SWITCHABLE')
+      }),
+      tap(() => {
+        this.getAll().subscribe()
+      })
+    )
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

@@ -4,12 +4,13 @@ import { OAuthService, UserInfo } from 'angular-oauth2-oidc'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private userInfo: UserInfo = { sub: undefined }
+  private userInfo: IAuthUserInfo = { sub: undefined }
   private userInfoSubject$ = new BehaviorSubject(this.userInfo)
   public userInfoObservable$ = this.userInfoSubject$.asObservable()
 

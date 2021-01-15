@@ -32,8 +32,8 @@ export class DialogService {
       case DialogSize.Small:
         return {
           width: '95vw',
-          maxWidth: '400px',
-          maxHeight: '300px',
+          maxWidth: '500px',
+          maxHeight: '400px',
         }
       case DialogSize.Large:
         return {

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CohortService } from 'src/app/core/services/cohort.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
@@ -13,12 +13,8 @@ import { AdminService } from 'src/app/core/services/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { Subscription } from 'rxjs'
 import { StudyMenuKeys } from '../studies-table/menu-items'
+import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 
-enum PossibleModes {
-  EDIT = StudyMenuKeys.Edit,
-  PREVIEW = StudyMenuKeys.Preview,
-  REVIEW = StudyMenuKeys.Review,
-}
 @Component({
   selector: 'num-study-editor',
   templateUrl: './study-editor.component.html',
@@ -26,8 +22,8 @@ enum PossibleModes {
 })
 export class StudyEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
-  mode: PossibleModes
-  possibleModes = PossibleModes
+  mode: PossibleStudyEditorMode
+  possibleModes = PossibleStudyEditorMode
 
   resolvedData: IStudyResolved
   isResearchersFetched: boolean
@@ -53,6 +49,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private studyService: StudyService,
     private cohortService: CohortService,
@@ -77,14 +74,15 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   handleQueryParams(params: Params): void {
     const mode = ('' + params.mode).toUpperCase()
-    if (mode in PossibleModes) {
-      this.mode = PossibleModes[mode]
+    if (mode in PossibleStudyEditorMode) {
+      this.mode = PossibleStudyEditorMode[mode]
     } else if (this.study.id === null) {
-      this.mode = PossibleModes.EDIT
+      this.mode = PossibleStudyEditorMode.EDIT
     } else {
-      this.mode = PossibleModes.PREVIEW
+      this.mode = PossibleStudyEditorMode.PREVIEW
     }
     this.checkVisibility()
+    document.querySelector('mat-sidenav-content').scrollTo(0, 0)
   }
 
   fetchCohort(): void {
@@ -160,7 +158,16 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   saveStudy(study: IStudyApi): Promise<IStudyApi> {
-    return this.studyService.create(study).toPromise()
+    if (study.id === null || study.id === undefined) {
+      return this.studyService.create(study).toPromise()
+    } else {
+      return this.studyService.update(study, study.id).toPromise()
+    }
+  }
+
+  startEdit(): void {
+    const queryParams = { mode: PossibleStudyEditorMode.EDIT.toString().toLowerCase() }
+    this.router.navigate(['studies', this.study.id, 'editor'], { queryParams })
   }
 
   async save(): Promise<void> {
@@ -168,9 +175,10 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     try {
       const studyResult = await this.saveStudy(study)
       this.study.id = studyResult.id
-      if (cohort.cohortGroup) {
+      if (cohort.cohortGroup && (study.cohortId === null || study.cohortId === undefined)) {
         cohort.studyId = studyResult.id
-        await this.saveCohort(cohort)
+        const cohortResult = await this.saveCohort(cohort)
+        this.study.cohortId = cohortResult.id
       }
       // TODO: Display message to user
     } catch (error) {
@@ -184,14 +192,27 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     this.save()
   }
 
+  saveResearchers(): void {
+    this.save()
+  }
+
+  saveAsApprovalReply(): void {
+    console.log('TODO: Implement Approval')
+  }
+
+  cancel(): void {
+    this.router.navigate(['studies'])
+  }
+
   checkVisibility(): void {
     const studyStatus = this.study.status
-    const inPreview = this.mode === PossibleModes.PREVIEW
+    const inPreview = this.mode === PossibleStudyEditorMode.PREVIEW
+    const inReview = this.mode === PossibleStudyEditorMode.REVIEW
     const inEditByStatus = !(
       studyStatus !== StudyStatus.Draft && studyStatus !== StudyStatus.Change_request
     )
 
-    if (inEditByStatus && !inPreview) {
+    if (inEditByStatus && !inPreview && !inReview) {
       this.isConnectorDisabled = false
       this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false
@@ -203,7 +224,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
       this.isResearchersDisabled = true
     }
 
-    if (studyStatus === StudyStatus.Approved && !inPreview) {
+    if (studyStatus === StudyStatus.Approved && !inPreview && !inReview) {
       this.isResearchersDisabled = false
     }
   }
