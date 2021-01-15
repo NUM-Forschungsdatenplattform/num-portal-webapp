@@ -46,10 +46,7 @@ export class AdminService {
       .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
   }
 
-  private getUsers(approved: boolean, withRoles?: boolean): Observable<IUser[]> {
-    if (!withRoles) {
-      withRoles = false
-    }
+  private getUsers(approved: boolean, withRoles: boolean = false): Observable<IUser[]> {
     return this.httpClient
       .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}&withRoles=${withRoles}`)
       .pipe(catchError(this.handleError))
