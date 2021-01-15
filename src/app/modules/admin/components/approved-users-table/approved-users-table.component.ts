@@ -60,6 +60,6 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
       dialogContentPayload,
     }
 
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
+    this.dialogService.openDialog(dialogConfig)
   }
 }

@@ -92,11 +92,16 @@ describe('AdminService', () => {
   describe('When a call to approveUser method comes in', () => {
     it(`should call the api - with success`, () => {
       const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+
       jest.spyOn(httpClient, 'post')
       service.approveUser(id).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/approve`,
-        undefined
+        undefined,
+        httpOptions
       )
     })
     it(`should call the api - with error`, () => {

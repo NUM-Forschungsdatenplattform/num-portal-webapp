@@ -89,7 +89,7 @@ export class AdminService {
       responseType: 'text' as 'json',
     }
     return this.httpClient
-      .post<string>(`${this.baseUrl}/user/${userId}/approve`, undefined)
+      .post<string>(`${this.baseUrl}/user/${userId}/approve`, undefined, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

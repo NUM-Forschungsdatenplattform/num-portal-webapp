@@ -10,6 +10,7 @@ import localeDe from '@angular/common/locales/de'
 registerLocaleData(localeEn, 'en')
 registerLocaleData(localeDe, 'de')
 import { PipesModule } from './pipes/pipes.module'
+import { LayoutModule } from '../layout/layout.module'
 
 const SHARED_MODULES = [
   TranslateModule,
@@ -22,6 +23,7 @@ const SHARED_MODULES = [
 
 @NgModule({
   declarations: [],
+  imports: [...SHARED_MODULES, CommonModule, LayoutModule],
   exports: [...SHARED_MODULES],
   providers: [DatePipe],
 })
