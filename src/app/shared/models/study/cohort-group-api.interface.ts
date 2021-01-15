@@ -1,11 +1,11 @@
 import { LogicalOperator } from '../logical-operator.enum'
 import { ConnectorNodeType } from '../connector-node-type.enum'
-import { IDictionary } from '../dictionary.interface'
+import { IConnectorGroupApi } from '../connectorGroupApi.interface'
 
 /**
  * Either a CohortGroup or Phenotype
  */
-export interface ICohortGroupApi {
+export interface ICohortGroupApi extends IConnectorGroupApi {
   /**
    * The unique identifier
    */
@@ -34,5 +34,5 @@ export interface ICohortGroupApi {
   /**
    * Cohort group parameter map representing the name of the aql parameter and the corresponding value
    */
-  parameters?: IDictionary<string>[]
+  parameters?: { [Key: string]: string }
 }

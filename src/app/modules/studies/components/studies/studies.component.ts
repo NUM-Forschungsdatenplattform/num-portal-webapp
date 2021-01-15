@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { StudyService } from 'src/app/core/services/study.service'
 
 @Component({
   selector: 'num-studies',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./studies.component.scss'],
 })
 export class StudiesComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(private studyService: StudyService) {}
+  ngOnInit(): void {
+    this.studyService.getAll().subscribe()
+  }
 }

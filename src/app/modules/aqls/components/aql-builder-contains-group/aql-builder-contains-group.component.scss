@@ -1,0 +1,21 @@
+:host {
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  border-radius: 6px;
+  padding: 0 20px 20px 20px;
+}
+
+.aqb-item {
+  &:not(&--last) {
+    margin: 0 0 12px 0;
+  }
+}
+
+.group {
+  margin: 0 0 24px 0;
+}
+
+.button-row {
+  margin: 25px 0 0 0;
+}

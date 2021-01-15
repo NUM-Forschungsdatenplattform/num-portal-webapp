@@ -1,7 +1,12 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <h3 class="accordion">{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
+    <h3 class="accordion">
+      <fa-icon icon="check-circle" *ngIf="form.valid"></fa-icon
+      >{{ 'FORM.GENERAL_INFO' | translate }}*
+    </h3>
   </mat-expansion-panel-header>
+
+  <num-definition-list [dataSource]="generalInfoData" *ngIf="isDisabled"></num-definition-list>
 
   <section
     role="region"
@@ -9,6 +14,7 @@
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
+    *ngIf="!isDisabled"
   >
     <p id="general-info-label">
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
@@ -36,29 +42,29 @@
 
       <section role="presentation" fxLayout="row" fxLayoutGap="20px">
         <mat-form-field appearance="outline" color="accent" fxFlex="50%">
-          <mat-label id="label-primaryHypothesis">{{
-            'FORM.PRIMARY_HYPOTHESIS' | translate
+          <mat-label id="label-firstHypotheses">{{
+            'FORM.FIRST_HYPOTHESES' | translate
           }}</mat-label>
           <textarea
-            formControlName="primaryHypothesis"
+            formControlName="firstHypotheses"
             #textarea
             matInput
             style="resize: none"
-            aria-labelledby="label-primaryHypothesis"
+            aria-labelledby="label-firstHypotheses"
             rows="10"
           ></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline" color="accent" fxFlex="50%">
-          <mat-label id="label-secondaryHypothesis">{{
-            'FORM.SECONDARY_HYPOTHESIS' | translate
+          <mat-label id="label-secondHypotheses">{{
+            'FORM.SECOND_HYPOTHESES' | translate
           }}</mat-label>
           <textarea
-            formControlName="secondaryHypothesis"
+            formControlName="secondHypotheses"
             #textarea
             matInput
             style="resize: none"
-            aria-labelledby="label-secondaryHypothesis"
+            aria-labelledby="label-secondHypotheses"
             rows="10"
           ></textarea>
         </mat-form-field>

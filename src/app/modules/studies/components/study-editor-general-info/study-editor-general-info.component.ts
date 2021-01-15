@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 @Component({
   selector: 'num-study-editor-general-info',
@@ -9,5 +10,7 @@ import { FormGroup } from '@angular/forms'
 export class StudyEditorGeneralInfoComponent implements OnInit {
   constructor() {}
   @Input() form: FormGroup
+  @Input() isDisabled: boolean
+  @Input() generalInfoData: IDefinitionList[]
   ngOnInit(): void {}
 }

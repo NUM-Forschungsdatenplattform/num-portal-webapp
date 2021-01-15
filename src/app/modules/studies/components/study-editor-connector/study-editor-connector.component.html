@@ -1,9 +1,19 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <h3 class="accordion">{{ 'DEFINE_COHORT' | translate }}*</h3>
+      <h3 class="accordion">
+        <fa-icon
+          icon="check-circle"
+          *ngIf="cohortNode.children.length && cohortNode.areParameterConfigured"
+        ></fa-icon
+        >{{ 'DEFINE_COHORT' | translate }}*
+      </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
+
+  <ng-template #spinner>
+    <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+  </ng-template>
 
   <section
     role="region"
@@ -11,6 +21,7 @@
     fxLayout="column"
     fxFlex="100%"
     fxLayoutGap="20px"
+    *ngIf="isLoadingComplete; else spinner"
   >
     <div>
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
@@ -22,6 +33,7 @@
       role="list"
       [cohortGroup]="cohortNode"
       [parentGroupIndex]="null"
+      [isDisabled]="isDisabled"
       fxFlex="100%"
     ></num-study-editor-connector-group>
   </section>

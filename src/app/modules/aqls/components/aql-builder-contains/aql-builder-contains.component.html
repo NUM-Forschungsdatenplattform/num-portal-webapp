@@ -1,0 +1,14 @@
+<h2 class="mat-display-2">Contains</h2>
+
+<div class="group-box" fxLayout="column" fxLayoutGap="20px">
+  <num-aql-builder-contains-group
+    *ngFor="let composition of compositions; let i = index"
+    role="list"
+    class="group"
+    [group]="composition"
+    [parentGroupIndex]="null"
+    [index]="i"
+    (deleteArchetypes)="deleteArchetypes($event)"
+    (deleteComposition)="deleteComposition($event)"
+  ></num-aql-builder-contains-group>
+</div>

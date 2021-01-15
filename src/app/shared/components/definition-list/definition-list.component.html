@@ -1,0 +1,6 @@
+<dl>
+  <ng-container *ngFor="let dataRow of dataSource; let rowIndex = index">
+    <dt class="mat-body-strong">{{ dataRow.title | translate }}</dt>
+    <dd>{{ dataRow.description }}</dd>
+  </ng-container>
+</dl>

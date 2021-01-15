@@ -1,4 +1,4 @@
-import { IAql } from 'src/app/shared/models/aql/aql.interface'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 
@@ -8,5 +8,5 @@ export interface IPhenotypeQuery {
   isNegated: boolean
   children?: IPhenotypeQuery[]
   indexInGroup?: number
-  aql?: IAql
+  aql?: IAqlApi
 }

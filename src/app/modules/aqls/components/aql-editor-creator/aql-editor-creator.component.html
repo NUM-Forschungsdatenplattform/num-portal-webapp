@@ -1,0 +1,36 @@
+<section
+  role="region"
+  aria-labelledby="creator-label"
+  fxLayout="column"
+  fxFlex="100%"
+  fxLayoutGap="20px"
+  class="num-margin-b-60"
+>
+  <h3>{{ 'BUILD_QUERY' | translate }}</h3>
+  <mat-card>
+    <mat-card-content fxLayout="column" fxFlex="100%">
+      <p id="creator-label">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus.
+      </p>
+
+      <num-button
+        type="primary"
+        icon="plus"
+        (singleClick)="openBuilderDialog()"
+        class="num-margin-b-40"
+        >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
+      >
+
+      <div style="height: 300px">
+        <num-code-editor
+          class="editor"
+          style="height: 100%"
+          [(value)]="aqlQuery"
+          (editorInit)="onEditorInit($event)"
+        ></num-code-editor>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

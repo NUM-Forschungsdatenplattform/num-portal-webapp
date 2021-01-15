@@ -3,7 +3,7 @@ import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockRoles, mockUsers } from 'src/mocks/data-mocks/admin.mock'
+import { mockRoles, mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
 import { AdminService } from './admin.service'
 
@@ -112,6 +112,26 @@ describe('AdminService', () => {
         `localhost/api/admin/user/${id}/approve`,
         undefined
       )
+    })
+  })
+
+  describe('When a call to getUserById method comes in', () => {
+    it(`should call the api - with success`, () => {
+      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => of(mockUser))
+      service.getUserById(mockUser.id).subscribe((user) => {
+        expect(user).toEqual(mockUser)
+      })
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/${mockUser.id}`)
+    })
+    it(`should call the api - with error`, () => {
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
+      service
+        .getUserById(mockUser.id)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/${mockUser.id}`)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -206,7 +226,6 @@ describe('AdminService', () => {
     })
 
     it('should debounce the filtering', async (done) => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of([]))
       const filterConfigLast: IUserFilter = {
         searchText: 'Musterfrau',
       }

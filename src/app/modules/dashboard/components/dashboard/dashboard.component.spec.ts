@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { TranslateModule } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DashboardComponent } from './dashboard.component'

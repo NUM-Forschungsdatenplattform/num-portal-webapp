@@ -5,6 +5,6 @@ import { Component } from '@angular/core'
   templateUrl: './pg_buttons.component.html',
   styleUrls: ['./pg_buttons.component.scss'],
 })
-export class ButtonsComponent {
+export class PgButtonsComponent {
   constructor() {}
 }

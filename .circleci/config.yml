@@ -45,7 +45,7 @@ jobs:
           path: ./reports/junit/
       - run:
           name: Run CVE scan
-          command: npm audit
+          command: npm audit --audit-level=critical
       - sonarcloud/scan
   tag_version:
     docker:

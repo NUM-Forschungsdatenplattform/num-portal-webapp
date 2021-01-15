@@ -1,4 +1,7 @@
-<section fxFlex.gt-md="50vw">
+<section
+  [ngClass]="{ 'num-large-dialog': dialogConfig.dialogSize === DialogSize.Large }"
+  fxLayout="column"
+>
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
     <h1
       class="mat-display-1"
@@ -23,7 +26,9 @@
   </mat-dialog-content>
 
   <div
+    *ngIf="!dialogConfig.hideGenericButtons"
     mat-dialog-actions
+    fxFlexOffset="auto"
     [fxLayoutAlign]="
       !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText ? 'center' : 'space-between'
     "
@@ -31,14 +36,14 @@
   >
     <num-button
       type="secondary"
-      (click)="handleDialogCancel()"
+      (singleClick)="handleDialogCancel()"
       *ngIf="dialogConfig.cancelButtonText"
       >{{ dialogConfig.cancelButtonText | translate }}</num-button
     >
 
     <num-button
       type="primary"
-      (click)="handleDialogConfirm()"
+      (singleClick)="handleDialogConfirm()"
       *ngIf="dialogConfig.confirmButtonText"
       >{{ dialogConfig.confirmButtonText | translate }}</num-button
     >

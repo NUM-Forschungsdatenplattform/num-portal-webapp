@@ -1,0 +1,21 @@
+main {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon-list {
+  margin-right: -32px;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  width: 95vw;
+  padding: 12px;
+  border: 1px solid grey;
+  margin: 0 32px 8px 0;
+}

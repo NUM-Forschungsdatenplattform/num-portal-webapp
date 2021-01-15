@@ -1,0 +1,18 @@
+.group-box {
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  border-radius: 6px;
+  padding: 20px;
+  width: 100%;
+  min-height: 200px;
+}
+
+.aqb-item {
+  &:not(&--last) {
+    margin: 0 0 12px 0;
+  }
+
+  height: 55px;
+  padding: 0 15px;
+}

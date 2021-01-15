@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { StudyEditorConnectorPhenotypeComponent } from './study-editor-connector-phenotype.component'
@@ -11,7 +12,7 @@ describe('StudyEditorConnectorPhenotypeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StudyEditorConnectorPhenotypeComponent],
-      imports: [FontAwesomeTestingModule],
+      imports: [FontAwesomeTestingModule, MaterialModule],
     }).compileComponents()
   })
 

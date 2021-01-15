@@ -4,27 +4,34 @@ import { PhenotypeGroupUiModel } from './phenotype-group-ui.model'
 import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorNodeType } from '../connector-node-type.enum'
+import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
+import { ICohortGroupApi } from '../study/cohort-group-api.interface'
 
-export class PhenotypeUiModel {
+export class PhenotypeUiModel implements ConnectorMainNodeUi {
   id: number
   name: string
   description: string
   query: PhenotypeGroupUiModel
-
-  type = ConnectorNodeType.Phenotype
+  indexInGroup: number | null
+  type: ConnectorNodeType.Phenotype
 
   /** **used in the cohort definition** for flagging if this is negated */
   isNegated: boolean
   /** **used in the cohort definition** for flagging if all parameters are set */
   areParameterConfigured = true
   /** **used in the cohort definition** to set parameters */
-  parameter: { name: string; value?: string }[]
+  parameter: { name: string; value?: string }[] = []
 
-  constructor(phenotypeApi?: IPhenotypeApi, isNegated: boolean = false) {
+  logicalOperator: LogicalOperator.And | LogicalOperator.Or
+
+  isLoadingComplete = true
+
+  constructor(phenotypeApi?: IPhenotypeApi, isNegated?: boolean) {
+    this.type = ConnectorNodeType.Phenotype
     this.id = phenotypeApi?.id || 0
     this.name = phenotypeApi?.name || undefined
     this.description = phenotypeApi?.description || undefined
-    this.isNegated = isNegated
+    this.isNegated = isNegated || false
     this.query = new PhenotypeGroupUiModel()
     if (phenotypeApi) {
       this.convertQueryToUi(phenotypeApi.query)
@@ -76,5 +83,28 @@ export class PhenotypeUiModel {
     }
 
     return apiModel
+  }
+
+  public convertToApi(): ICohortGroupApi {
+    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForStudyApi()
+  }
+
+  private getPhenotypeForStudyApi(): ICohortGroupApi {
+    return {
+      type: ConnectorNodeType.Phenotype,
+      phenotypeId: this.id,
+      parameters: this.parameter.reduce((hashMap, param) => {
+        hashMap[param.name] = param.value
+        return hashMap
+      }, {}),
+    }
+  }
+
+  private convertToNegatedApiGroup(): IPhenotypeQueryApi {
+    return {
+      type: ConnectorNodeType.Group,
+      operator: LogicalOperator.Not,
+      children: [this.getPhenotypeForStudyApi()],
+    }
   }
 }

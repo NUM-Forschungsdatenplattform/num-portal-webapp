@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,20 @@ export class CohortService {
     this.baseUrl = `${appConfig.config.api.baseUrl}/cohort`
   }
 
-  executeCohort(id: number): Observable<number> {
+  get(id: number): Observable<ICohortApi> {
+    if (id === undefined || id === null) {
+      return of(undefined)
+    }
+    return this.httpClient
+      .get<ICohortApi>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError))
+  }
+
+  save(cohort: ICohortApi): Observable<ICohortApi> {
+    return this.httpClient.post<ICohortApi>(this.baseUrl, cohort).pipe(catchError(this.handleError))
+  }
+
+  getCohortSize(id: number): Observable<number> {
     return this.httpClient
       .post<number>(`${this.baseUrl}/${id}/size`, {})
       .pipe(catchError(this.handleError))

@@ -1,0 +1,9 @@
+@mixin code-editor_themed($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
+
+  .monaco-editor.vs .line-numbers {
+    color: mat-color($additional, dark-grey);
+  }
+}

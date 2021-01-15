@@ -1,5 +1,7 @@
 export enum ConnectorNodeType {
-  Group = 'group',
-  Phenotype = 'phenotype',
-  Aql = 'aql',
+  Group = 'GROUP',
+  Phenotype = 'PHENOTYPE',
+  Aql = 'AQL',
+  Aqb_Composition = 'AQB_COMPOSITION',
+  Aqb_Item = 'AQB_ITEM',
 }

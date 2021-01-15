@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -32,8 +33,10 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
 
   @Input() cohortGroup: CohortGroupUiModel
+  @Output() chortGroupChanges = new EventEmitter<CohortGroupUiModel>()
   @Input() parentGroupIndex: number[] | null
   @Input() index: number
+  @Input() isDisabled: boolean
 
   @Output() delete = new EventEmitter()
 
@@ -45,7 +48,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
   groupIndex: number[] = []
   groupType: string
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.groupType = !this.cohortGroup.indexInGroup
@@ -97,6 +100,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
       } else if (confirmResult === false) {
         this.deleteChild(itemIndex)
       }
+      this.changeDetectorRef.markForCheck()
     })
   }
 
@@ -127,6 +131,7 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
 
         this.cohortGroup.children = [...confirmResult, ...currentGroups]
       }
+      this.changeDetectorRef.markForCheck()
     })
   }
 

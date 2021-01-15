@@ -6,3 +6,12 @@
 .close-icon {
   font-size: 26px;
 }
+
+.num-large-dialog {
+  height: 100%;
+
+  .mat-dialog-content {
+    max-height: unset;
+    overflow: visible;
+  }
+}

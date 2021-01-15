@@ -12,7 +12,7 @@
     <mat-select
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="cohortGroup.logicalOperator"
-      [disabled]="cohortGroup.children.length <= 1"
+      [disabled]="cohortGroup.children.length <= 1 || isDisabled"
     >
       <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
         {{ operator }}
@@ -22,7 +22,10 @@
 
   <span fxFlex></span>
 
-  <mat-slide-toggle labelPosition="before" [(ngModel)]="cohortGroup.isNegated"
+  <mat-slide-toggle
+    labelPosition="before"
+    [(ngModel)]="cohortGroup.isNegated"
+    [disabled]="isDisabled"
     >Negation</mat-slide-toggle
   >
 </section>
@@ -35,6 +38,7 @@
     [cohortGroup]="child"
     [parentGroupIndex]="groupIndex"
     [index]="i"
+    [isDisabled]="isDisabled"
     (delete)="deleteChild($event)"
     fxFlex="100%"
   ></num-study-editor-connector-group>
@@ -48,6 +52,7 @@
     *ngIf="child.type === connectorNodeType.Phenotype"
     (configurePhenotype)="editPhenotype(i)"
     [phenotype]="child"
+    [isDisabled]="isDisabled"
     fxFlex="100%"
     role="listitem"
     fxLayout="row"
@@ -56,16 +61,20 @@
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <num-button type="primary" icon="plus" (click)="addPhenotype()">{{
+  <num-button [isDisabled]="isDisabled" type="primary" icon="plus" (singleClick)="addPhenotype()">{{
     'BUTTON.ADD_PHENOTYPE' | translate
   }}</num-button>
-  <num-button type="secondary" icon="plus" (click)="addGroup()">{{
+  <num-button [isDisabled]="isDisabled" type="secondary" icon="plus" (singleClick)="addGroup()">{{
     'BUTTON.ADD_GROUP' | translate
   }}</num-button>
 
   <span fxFlex></span>
 
-  <num-button *ngIf="groupType === connectorGroupType.Sub" type="basic" (click)="deleteSelf()">{{
-    'BUTTON.DELETE_GROUP' | translate
-  }}</num-button>
+  <num-button
+    [isDisabled]="isDisabled"
+    *ngIf="groupType === connectorGroupType.Sub"
+    type="basic"
+    (singleClick)="deleteSelf()"
+    >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
+  >
 </section>

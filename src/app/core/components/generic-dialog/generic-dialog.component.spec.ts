@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ComponentFactoryResolver,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core'
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
@@ -68,6 +61,7 @@ describe('GenericDialogComponent', () => {
   })
 
   beforeEach(() => {
+    jest.restoreAllMocks()
     jest.spyOn(matDialogRef, 'close')
     fixture = TestBed.createComponent(GenericDialogComponent)
     component = fixture.componentInstance
@@ -107,6 +101,6 @@ describe('GenericDialogComponent', () => {
   it('should close the dialog with undefined on a close attempt', () => {
     component.handleDialogClose()
 
-    expect(matDialogRef.close).toHaveBeenCalledWith(undefined)
+    expect(matDialogRef.close).toBeCalledWith()
   })
 })

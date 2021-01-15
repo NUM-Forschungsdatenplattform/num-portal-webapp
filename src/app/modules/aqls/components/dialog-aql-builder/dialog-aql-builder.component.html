@@ -1,0 +1,30 @@
+<section role="presentation" fxLayoutGap="32px" fxLayout="row">
+  <num-aql-builder-templates
+    fxFlex="400px"
+    [templates]="templates"
+    [selectedTemplates]="selectedTemplates"
+    (selectedItem)="handleItemSelect($event)"
+  ></num-aql-builder-templates>
+
+  <section role="region" fxFlex="auto" fxLayoutGap="32px">
+    <num-aql-builder-select [aqbModel]="aqbModel"></num-aql-builder-select>
+    <num-aql-builder-contains
+      [aqbModel]="aqbModel"
+      [compositions]="compositions"
+    ></num-aql-builder-contains>
+    <num-aql-builder-where></num-aql-builder-where>
+  </section>
+</section>
+
+<div class="button-row">
+  <num-button type="secondary" (singleClick)="handleDialogCancel()">{{
+    'BUTTON.CANCEL' | translate
+  }}</num-button>
+
+  <num-button
+    type="primary"
+    [isDisabled]="!aqbModel.select.length"
+    (click)="handleDialogConfirm()"
+    >{{ 'BUTTON.APPLY_SELECTION' | translate }}</num-button
+  >
+</div>

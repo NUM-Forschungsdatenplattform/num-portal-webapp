@@ -8,11 +8,20 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { FilterChipsComponent } from './filter-chips/filter-chips.component'
 import { SearchComponent } from './search/search.component'
+import { FilterTableComponent } from './filter-table/filter-table.component'
+import { PipesModule } from '../pipes/pipes.module'
+import { DefinitionListComponent } from './definition-list/definition-list.component'
 
-const SHARED_DECLARATIONS = [SearchComponent, FilterChipsComponent, ButtonComponent]
+const SHARED_DECLARATIONS = [
+  SearchComponent,
+  FilterChipsComponent,
+  ButtonComponent,
+  FilterTableComponent,
+  DefinitionListComponent,
+]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS],
+  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -21,6 +30,7 @@ const SHARED_DECLARATIONS = [SearchComponent, FilterChipsComponent, ButtonCompon
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    PipesModule,
   ],
   exports: [...SHARED_DECLARATIONS],
 })

@@ -1,3 +1,16 @@
-<div><span class="not-icon" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype.name }}</div>
+<ng-container *ngIf="phenotype.isLoadingComplete; else spinner">
+  <div><span class="not-icon" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype.name }}</div>
 
-<fa-icon class="pointer" icon="cog" size="lg" [fixedWidth]="true" (click)="handleClick()"></fa-icon>
+  <fa-icon
+    *ngIf="!isDisabled"
+    class="pointer"
+    icon="cog"
+    size="lg"
+    [fixedWidth]="true"
+    (click)="handleClick()"
+  ></fa-icon>
+</ng-container>
+
+<ng-template #spinner>
+  <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+</ng-template>

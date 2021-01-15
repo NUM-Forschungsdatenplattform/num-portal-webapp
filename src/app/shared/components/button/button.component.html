@@ -4,6 +4,8 @@
   color="primary"
   [disabled]="isDisabled"
   *ngIf="type === 'primary'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
 >
   <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
   <ng-container *ngTemplateOutlet="content"></ng-container>
@@ -15,6 +17,8 @@
   color="primary"
   [disabled]="isDisabled"
   *ngIf="type === 'secondary'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
 >
   <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
   <ng-container *ngTemplateOutlet="content"></ng-container>
@@ -26,6 +30,8 @@
   color="primary"
   [disabled]="isDisabled"
   *ngIf="type === 'basic'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
 >
   <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
   <ng-container *ngTemplateOutlet="content"></ng-container>

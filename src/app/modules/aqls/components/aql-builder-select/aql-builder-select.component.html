@@ -1,0 +1,11 @@
+<h2 class="mat-display-2">Select</h2>
+<div class="placeholder group-box">
+  <num-aql-builder-select-item
+    class="aqb-item mat-elevation-z2"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    *ngFor="let item of aqbModel.select; let index"
+    [item]="item"
+    (deleteItem)="deleteItem(index)"
+  ></num-aql-builder-select-item>
+</div>

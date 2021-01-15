@@ -4,27 +4,56 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
     imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
   </p>
-  <mat-accordion [multi]="true" fxFlex="100%">
-    <num-study-editor-general-info [form]="studyForm"></num-study-editor-general-info>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <h3 class="accordion">Select OpenEHR templates</h3>
-      </mat-expansion-panel-header>
+  <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-60">
+    <num-study-editor-general-info
+      [form]="studyForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+    ></num-study-editor-general-info>
 
-      <p>Coming soon</p>
-    </mat-expansion-panel>
+    <num-study-editor-templates
+      [(templates)]="study.templates"
+      [isDisabled]="isTemplatesDisabled"
+    ></num-study-editor-templates>
 
     <num-study-editor-connector
-      [cohortNode]="resolvedData.study?.cohortGroup"
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
     ></num-study-editor-connector>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <h3 class="accordion">Select Researchers</h3>
-      </mat-expansion-panel-header>
-
-      <p>Coming soon</p>
-    </mat-expansion-panel>
+    <num-study-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="study.researchers"
+      [isDisabled]="isResearchersDisabled"
+    ></num-study-editor-researchers>
   </mat-accordion>
+
+  <section role="region" fxLayout="column">
+    <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+    <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+      <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
+      <div role="presentation" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
+        <num-button
+          type="secondary"
+          *ngIf="mode !== possibleModes.PREVIEW"
+          [isDisabled]="!formTitle.valid"
+          (singleClick)="save()"
+          >{{ 'BUTTON.SAVE' | translate }}</num-button
+        >
+        <num-button
+          type="primary"
+          (singleClick)="sendForApproval()"
+          [isDisabled]="
+            !studyForm.valid ||
+            !study.researchers.length ||
+            !study.templates.length ||
+            !cohortGroup.children.length
+          "
+          >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
+        >
+      </div>
+    </div>
+  </section>
 </section>

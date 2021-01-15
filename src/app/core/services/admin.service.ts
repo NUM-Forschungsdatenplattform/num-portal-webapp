@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, of, throwError, forkJoin } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
@@ -52,11 +52,24 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
+  getUserById(id: string): Observable<IUser> {
+    return this.httpClient
+      .get<IUser>(`${this.baseUrl}/user/${id}`)
+      .pipe(catchError(this.handleError))
+  }
+
+  getUsersByIds(ids: string[]): Observable<IUser[]> {
+    return forkJoin(ids.map((id) => this.getUserById(id)))
+  }
+
   getUnapprovedUsers(): Observable<IUser[]> {
     return this.getUsers(false).pipe(
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
+        if (users.length) {
+          this.setFilter(this.filterSet)
+        }
       })
     )
   }
@@ -75,7 +88,6 @@ export class AdminService {
     const httpOptions = {
       responseType: 'text' as 'json',
     }
-
     return this.httpClient
       .post<string>(`${this.baseUrl}/user/${userId}/approve`, undefined)
       .pipe(catchError(this.handleError))
