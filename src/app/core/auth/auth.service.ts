@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { OAuthService } from 'angular-oauth2-oidc'
-import { BehaviorSubject, Observable, of, ReplaySubject, throwError } from 'rxjs'
+import { OAuthService, UserInfo } from 'angular-oauth2-oidc'
+import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 
@@ -9,8 +9,8 @@ import { AppConfigService } from 'src/app/config/app-config.service'
   providedIn: 'root',
 })
 export class AuthService {
-  private userInfo: any = {}
-  private userInfoSubject$ = new ReplaySubject(this.userInfo)
+  private userInfo: UserInfo = { sub: undefined }
+  private userInfoSubject$ = new BehaviorSubject(this.userInfo)
   public userInfoObservable$ = this.userInfoSubject$.asObservable()
 
   constructor(
@@ -43,23 +43,23 @@ export class AuthService {
   }
 
   private createUser(userId: string): Observable<any> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
     return this.httpClient
-      .post<any>(`${this.appConfig.config.api.baseUrl}/admin/user/${userId}`, undefined)
-      .pipe(
-        catchError((error) => {
-          if (error.status !== 409) {
-            return this.handleError
-          }
-          return of()
-        })
+      .post<any>(
+        `${this.appConfig.config.api.baseUrl}/admin/user/${userId}`,
+        undefined,
+        httpOptions
       )
+      .pipe(catchError(this.handleError))
   }
 
   fetchUserInfo(): void {
     if (!this.isLoggedIn) {
       return
     }
-    this.oauthService.loadUserProfile().then((userInfo) => {
+    this.oauthService.loadUserProfile().then((userInfo: UserInfo) => {
       if (this.userInfo.sub !== userInfo.sub) {
         this.createUser(userInfo.sub).subscribe()
 
@@ -70,7 +70,7 @@ export class AuthService {
   }
 
   private clearUserInfo(): void {
-    this.userInfo = {}
+    this.userInfo = { sub: undefined }
     this.userInfoSubject$.next(this.userInfo)
   }
 

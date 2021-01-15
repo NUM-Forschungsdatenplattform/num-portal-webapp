@@ -11,7 +11,7 @@ describe('RoleGuard', () => {
 
   const authService = ({
     login: () => {},
-    get isLoggedIn() {
+    get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: userInfoSubject$.asObservable(),
