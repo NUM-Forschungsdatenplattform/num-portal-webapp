@@ -94,10 +94,7 @@ describe('DialogEditUserDetailsComponent', () => {
     })
 
     it('should call addUserRoles with userId', () => {
-      expect(adminService.addUserRoles).toHaveBeenCalledWith(mockUser.id, [
-        mockRoles[0].name,
-        mockRoles[1].name,
-      ])
+      expect(adminService.addUserRoles).toHaveBeenCalledWith(mockUser.id, mockUser.roles)
     })
     it('should call refreshFilterResult', () => {
       expect(adminService.refreshFilterResult).toHaveBeenCalled()

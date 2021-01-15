@@ -41,7 +41,9 @@ describe('AdminService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getUnapprovedUsers().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=false`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=false&withRoles=false`
+      )
       service.unapprovedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
       })
@@ -54,7 +56,9 @@ describe('AdminService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=false`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=false&withRoles=false`
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -63,7 +67,9 @@ describe('AdminService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getApprovedUsers().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=true`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=true&withRoles=true`
+      )
       service.approvedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
       })
@@ -76,7 +82,36 @@ describe('AdminService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=true`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=true&withRoles=true`
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to approveUser method comes in', () => {
+    it(`should call the api - with success`, () => {
+      const id = '123-456'
+      jest.spyOn(httpClient, 'post')
+      service.approveUser(id).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/approve`,
+        undefined
+      )
+    })
+    it(`should call the api - with error`, () => {
+      const id = '123-456'
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
+      service
+        .approveUser(id)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/approve`,
+        undefined
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })

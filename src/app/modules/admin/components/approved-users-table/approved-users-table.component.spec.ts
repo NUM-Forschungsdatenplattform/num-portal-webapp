@@ -12,6 +12,7 @@ import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { DialogService } from 'src/app/core/services/dialog.service'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('ApprovedUsersTableComponent', () => {
   let component: ApprovedUsersTableComponent
@@ -33,7 +34,7 @@ describe('ApprovedUsersTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ApprovedUsersTableComponent],
+      declarations: [ApprovedUsersTableComponent, LocalizedDatePipe],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,

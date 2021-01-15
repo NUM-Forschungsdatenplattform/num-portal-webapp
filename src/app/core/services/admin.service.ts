@@ -46,9 +46,9 @@ export class AdminService {
       .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
   }
 
-  private getUsers(approved: boolean): Observable<IUser[]> {
+  private getUsers(approved: boolean, withRoles: boolean = false): Observable<IUser[]> {
     return this.httpClient
-      .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}`)
+      .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}&withRoles=${withRoles}`)
       .pipe(catchError(this.handleError))
   }
 
@@ -62,13 +62,23 @@ export class AdminService {
   }
 
   getApprovedUsers(): Observable<IUser[]> {
-    return this.getUsers(true).pipe(
+    return this.getUsers(true, true).pipe(
       tap((users) => {
         this.approvedUsers = users
         this.approvedUsersSubject$.next(users)
         this.setFilter(this.filterSet)
       })
     )
+  }
+
+  approveUser(userId: string): Observable<string> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/approve`, undefined)
+      .pipe(catchError(this.handleError))
   }
 
   getUserRoles(userId: string): Observable<IRole[]> {

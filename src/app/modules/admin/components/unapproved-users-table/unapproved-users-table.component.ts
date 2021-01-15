@@ -19,7 +19,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
   private subscriptions = new Subscription()
   constructor(private adminService: AdminService, private dialogService: DialogService) {}
 
-  displayedColumns: string[] = ['icon', 'firstName', 'lastName', 'email', 'registerDate']
+  displayedColumns: string[] = ['icon', 'firstName', 'lastName', 'email', 'createdTimestamp']
   dataSource = new MatTableDataSource()
 
   @ViewChild(MatSort) sort: MatSort

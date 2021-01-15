@@ -25,7 +25,7 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
     'lastName',
     'organization',
     'roles',
-    'registerDate',
+    'createdTimestamp',
   ]
   dataSource = new MatTableDataSource()
 

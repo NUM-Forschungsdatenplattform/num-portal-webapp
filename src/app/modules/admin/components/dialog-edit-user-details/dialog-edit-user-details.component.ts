@@ -17,7 +17,6 @@ export class DialogEditUserDetailsComponent implements OnInit {
   organization: IOrganization = {
     id: '',
   }
-  showRoles = false
 
   constructor(
     private adminService: AdminService,
@@ -29,21 +28,11 @@ export class DialogEditUserDetailsComponent implements OnInit {
     if (this.dialogInput.organization) {
       this.organization = this.dialogInput.organization
     }
+    if (this.dialogInput.roles) {
+      this.roles = this.dialogInput.roles
+    }
 
     this.organizationService.getAll().subscribe()
-
-    // TODO: Remove when roles are included in userInfo
-    this.adminService.getUserRoles(this.dialogInput.id).subscribe(
-      (roles) => {
-        roles.forEach((role) => {
-          this.roles.push(role.name)
-        })
-      },
-      (err) => {},
-      () => {
-        this.showRoles = true
-      }
-    )
   }
 
   handleDialogConfirm(): void {
