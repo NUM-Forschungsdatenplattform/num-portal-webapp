@@ -32,9 +32,13 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   private componentValue: string
 
   @Input() set value(value: string) {
-    this.componentValue = value
-    this.setValue(this.componentValue)
+    if (this.componentValue !== value) {
+      this.componentValue = value
+      this.setValue(this.componentValue)
+    }
   }
+
+  @Output() valueChange = new EventEmitter<string>()
 
   @Output() editorInit = new EventEmitter<monaco.editor.IStandaloneCodeEditor>()
 
@@ -78,6 +82,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   attachEditorEvents(): void {
     this.codeEditor.onDidChangeModelContent((event: monaco.editor.IModelContentChangedEvent) => {
       this.componentValue = this.codeEditor.getValue()
+      this.valueChange.emit(this.componentValue)
     })
   }
 
