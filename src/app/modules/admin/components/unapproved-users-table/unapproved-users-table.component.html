@@ -37,11 +37,11 @@
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="registerDate">
+    <ng-container matColumnDef="createdTimestamp">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'REGISTER_DATE' | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.registerDate }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.createdTimestamp | localizedDate }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

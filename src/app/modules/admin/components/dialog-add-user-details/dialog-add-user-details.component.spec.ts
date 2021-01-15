@@ -22,8 +22,10 @@ describe('DialogAddUserDetailsComponent', () => {
   const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = ({
+    approveUser: jest.fn().mockImplementation(() => of('Success')),
     addUserRoles: (userId: string, roles: string[]) => of(),
     addUserOrganization: (userId: string, organization: string) => of(),
+    getUnapprovedUsers: () => of(),
   } as unknown) as AdminService
 
   const organizationService = ({
@@ -68,6 +70,8 @@ describe('DialogAddUserDetailsComponent', () => {
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(adminService, 'addUserRoles')
     jest.spyOn(adminService, 'addUserOrganization')
+    jest.spyOn(adminService, 'approveUser')
+    jest.spyOn(adminService, 'getUnapprovedUsers')
   })
 
   it('should create', () => {
@@ -84,31 +88,28 @@ describe('DialogAddUserDetailsComponent', () => {
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
   })
 
-  describe('When roles are assigned and the dialog is confirmed', () => {
+  describe('When the dialog is confirmed', () => {
     beforeEach(() => {
+      component.organization = mockOrganization1
       component.roles = ['some', 'assigned', 'role']
       component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
-    it('should call addUserRoles with userId', () => {
+    it('should call approveUser and getUnapprovedUsers methods', () => {
+      expect(adminService.approveUser).toHaveBeenCalledWith(mockUser.id)
+      expect(adminService.getUnapprovedUsers).toHaveBeenCalled()
+    })
+
+    it('should call addUserOrganization and addUserRoles after approveUser method completes', () => {
+      jest.spyOn(adminService, 'approveUser')
+
+      expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization1)
       expect(adminService.addUserRoles).toHaveBeenCalledWith(mockUser.id, [
         'some',
         'assigned',
         'role',
       ])
-    })
-  })
-
-  describe('When an organization is assigned and the dialog is confirmed', () => {
-    beforeEach(() => {
-      component.organization = mockOrganization1
-      component.handleDialogConfirm()
-      fixture.detectChanges()
-    })
-
-    it('should call addUserOrganization with userId', () => {
-      expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization1)
     })
   })
 })

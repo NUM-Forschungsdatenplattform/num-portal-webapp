@@ -29,9 +29,11 @@ export class DialogAddUserDetailsComponent implements OnInit {
   }
 
   handleDialogConfirm(): void {
-    this.adminService.addUserRoles(this.dialogInput.id, this.roles).subscribe()
-
-    this.adminService.addUserOrganization(this.dialogInput.id, this.organization).subscribe()
+    this.adminService.approveUser(this.dialogInput.id).subscribe(() => {
+      this.adminService.addUserRoles(this.userDetails.id, this.roles).subscribe()
+      this.adminService.addUserOrganization(this.userDetails.id, this.organization).subscribe()
+    })
+    this.adminService.getUnapprovedUsers().subscribe()
 
     this.closeDialog.emit()
   }

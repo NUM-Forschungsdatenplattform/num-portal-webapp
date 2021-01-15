@@ -95,7 +95,7 @@
     "RESEARCHER": "Wissenschaftler",
     "ORGANIZATION_ADMIN": "Organisations-Administrator",
     "STUDY_COORDINATOR": "Studienkoordinator",
-    "ADMIN": "Administrator"
+    "SUPER_ADMIN": "Administrator"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "MANAGE_NEW_USERS": "Neue Benutzer verwalten",
