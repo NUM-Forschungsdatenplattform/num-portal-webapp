@@ -3,7 +3,7 @@ export interface IAqlApi {
   name: string
   query: string
   purpose: string
-  usage: string
+  use: string
   publicAql: boolean
   createDate?: string
   modifiedDate?: string
