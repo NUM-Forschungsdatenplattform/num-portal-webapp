@@ -7,7 +7,7 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs'
+import { Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 @Injectable()
@@ -33,6 +33,8 @@ export class OAuthInterceptor implements HttpInterceptor {
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 401) {
       this.oauthService.logOut()
+    } else if (error.status === 409 && error.url.includes('/api/admin/user/')) {
+      return of()
     }
     return throwError(error)
   }

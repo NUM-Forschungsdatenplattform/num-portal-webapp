@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc'
-
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +32,7 @@ export class OAuthInitService {
 
       this.oauthService.configure(this.AUTH_CONFIG)
       const init = this.oauthService
-        .loadDiscoveryDocumentAndLogin()
+        .loadDiscoveryDocumentAndTryLogin()
         .then(() => {
           this.oauthService.setupAutomaticSilentRefresh()
         })
@@ -62,6 +61,7 @@ export class OAuthInitService {
       clientId: this.CLIENT_ID,
       responseType: 'code',
       redirectUri: window.location.origin + '/home',
+      silentRefreshRedirectUri: window.location.origin + '/assets/silent-refresh.html',
       scope: 'openid profile email roles',
       useSilentRefresh: true,
       silentRefreshTimeout: 5000,

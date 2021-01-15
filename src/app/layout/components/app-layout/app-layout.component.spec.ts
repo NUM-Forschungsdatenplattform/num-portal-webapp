@@ -15,6 +15,7 @@ import { of } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
+import { HttpClient } from '@angular/common/http'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -24,7 +25,15 @@ describe('AppLayoutComponent', () => {
   const authService = {
     logOut: () => {},
     loadUserProfile: () => Promise.resolve({}),
+    hasValidIdToken: () => true,
+    hasValidAccessToken: () => true,
+    events: of(),
   } as OAuthService
+
+  const httpClient = ({
+    get: () => of(),
+    post: () => of(),
+  } as unknown) as HttpClient
 
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}
@@ -51,6 +60,10 @@ describe('AppLayoutComponent', () => {
         {
           provide: OAuthService,
           useValue: authService,
+        },
+        {
+          provide: HttpClient,
+          useValue: httpClient,
         },
       ],
     }).compileComponents()
