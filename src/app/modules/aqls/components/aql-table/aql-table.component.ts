@@ -30,7 +30,7 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   ngOnInit(): void {
-    this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
+    this.aqlService.aqlsObservable$.subscribe((aqls) => this.handleData(aqls))
   }
 
   ngOnDestroy(): void {
@@ -39,10 +39,6 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
-  }
-
-  handleFilterChange(): void {
-    this.aqlService.setFilter(this.filterConfig)
   }
 
   handleSearchChange(): void {

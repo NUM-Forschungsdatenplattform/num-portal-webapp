@@ -7,8 +7,8 @@
       <mat-select
         class="filter-select"
         fxFlex="25%"
+        [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
         [(value)]="selected"
-        (selectionChange)="handleFilterChange()"
       >
         <mat-option value="ALL_AQLS">{{ 'ALL_AQLS' | translate }}</mat-option>
         <mat-option value="MY_AQLS">{{ 'MY_AQLS' | translate }}</mat-option>
