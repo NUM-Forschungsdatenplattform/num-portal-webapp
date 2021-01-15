@@ -106,6 +106,9 @@ describe('AdminService', () => {
     })
     it(`should call the api - with error`, () => {
       const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
       jest.spyOn(service, 'handleError')
       jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
       service
@@ -115,7 +118,8 @@ describe('AdminService', () => {
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/approve`,
-        undefined
+        undefined,
+        httpOptions
       )
     })
   })
