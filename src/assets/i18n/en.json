@@ -48,6 +48,7 @@
   "MY_AQLS": "My AQLs",
   "ORGANISATION_AQLS": "AQLs of my organisation",
   "ALL_AQLS": "All AQLs",
+  "FILTER": "Filter",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
