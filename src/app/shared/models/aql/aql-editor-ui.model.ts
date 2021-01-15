@@ -17,7 +17,7 @@ export class AqlEditorUiModel {
     this.name = aql?.name || undefined
     this.query = aql?.query || ''
     this.purpose = aql?.purpose || undefined
-    this.usage = aql?.usage || undefined
+    this.usage = aql?.use || undefined
     this.createDate = aql?.createDate || undefined
     this.modifiedDate = aql?.modifiedDate || undefined
     this.organizationId = aql?.organizationId || undefined
@@ -25,13 +25,13 @@ export class AqlEditorUiModel {
     this.publicAql = aql?.publicAql || true
   }
 
-  public convertToApi(name: string, purpose: string, usage: string, publicAql: boolean): IAqlApi {
+  public convertToApi(name: string, purpose: string, use: string, publicAql: boolean): IAqlApi {
     return {
       id: this.id,
       name,
       query: this.query,
       purpose,
-      usage,
+      use,
       publicAql,
     }
   }
