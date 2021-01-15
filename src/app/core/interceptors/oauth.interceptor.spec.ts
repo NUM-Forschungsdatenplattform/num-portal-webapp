@@ -84,6 +84,7 @@ describe('OAuthInterceptor', () => {
       }
     ))
   })
+
   describe('When the Backend returns another error', () => {
     it('should not logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],

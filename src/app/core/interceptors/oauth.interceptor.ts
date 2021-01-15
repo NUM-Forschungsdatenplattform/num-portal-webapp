@@ -7,13 +7,14 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs'
+import { Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 @Injectable()
 export class OAuthInterceptor implements HttpInterceptor {
   excludedUrls = ['assets', '/assets']
   excludedUrlsRegEx = this.excludedUrls.map((url) => new RegExp('^' + url, 'i'))
+  url: string
 
   constructor(private oauthService: OAuthService, private authStorage: OAuthStorage) {}
 
@@ -21,6 +22,7 @@ export class OAuthInterceptor implements HttpInterceptor {
     return this.excludedUrlsRegEx.some((toBeExcluded) => toBeExcluded.test(req.url))
   }
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.url = req.url
     if (this.isExcluded(req)) {
       return next.handle(req)
     }
@@ -33,6 +35,8 @@ export class OAuthInterceptor implements HttpInterceptor {
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 401) {
       this.oauthService.logOut()
+    } else if (error.status === 409 && this.url.startsWith('/api/admin/user/')) {
+      return of()
     }
     return throwError(error)
   }

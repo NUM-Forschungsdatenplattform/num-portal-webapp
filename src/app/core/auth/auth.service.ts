@@ -45,14 +45,7 @@ export class AuthService {
   private createUser(userId: string): Observable<any> {
     return this.httpClient
       .post<any>(`${this.appConfig.config.api.baseUrl}/admin/user/${userId}`, undefined)
-      .pipe(
-        catchError((error) => {
-          if (error.status !== 409) {
-            return this.handleError
-          }
-          return of()
-        })
-      )
+      .pipe(catchError(this.handleError))
   }
 
   fetchUserInfo(): void {
