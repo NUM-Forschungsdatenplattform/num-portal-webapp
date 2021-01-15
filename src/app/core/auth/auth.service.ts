@@ -43,8 +43,15 @@ export class AuthService {
   }
 
   private createUser(userId: string): Observable<any> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
     return this.httpClient
-      .post<any>(`${this.appConfig.config.api.baseUrl}/admin/user/${userId}`, undefined)
+      .post<any>(
+        `${this.appConfig.config.api.baseUrl}/admin/user/${userId}`,
+        undefined,
+        httpOptions
+      )
       .pipe(catchError(this.handleError))
   }
 

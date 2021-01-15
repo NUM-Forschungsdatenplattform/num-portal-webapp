@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 
 export const routes: Routes = [
   {
     path: 'home',
-    // canLoad: [AuthGuard],
     data: {
       navId: 'home',
     },
