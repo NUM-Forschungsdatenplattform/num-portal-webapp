@@ -63,13 +63,25 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
-    routeTo: 'admin',
+    routeTo: 'users',
     icon: 'users-cog',
     translationKey: 'NAVIGATION.USER_MANAGEMENT',
+    tabNav: [
+      {
+        routeTo: 'users',
+        id: 'unapproved',
+        translationKey: 'NAVIGATION.NEW_USERS',
+      },
+      {
+        routeTo: 'users/all',
+        id: 'approved',
+        translationKey: 'NAVIGATION.ALL_USERS',
+      },
+    ],
   },
 ]
 
-export const secondaryNavItems: INavItem[] = [
+export const secondaryNavItemsLoggedIn: INavItem[] = [
   {
     routeTo: '#',
     icon: 'bell',
@@ -84,5 +96,13 @@ export const secondaryNavItems: INavItem[] = [
     routeTo: '#logout',
     icon: 'sign-out-alt',
     translationKey: 'NAVIGATION.SIGNOUT',
+  },
+]
+
+export const secondaryNavItemsLoggedOut: INavItem[] = [
+  {
+    routeTo: '#login',
+    icon: 'sign-in-alt',
+    translationKey: 'NAVIGATION.SIGNIN',
   },
 ]

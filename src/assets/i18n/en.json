@@ -29,9 +29,12 @@
     "AQLS_OVERVIEW": "AQL Queries",
     "AQLS_EDITOR": "AQL Editor",
     "USER_MANAGEMENT": "User Management",
+    "NEW_USERS": "New Users",
+    "ALL_USERS": "All Users",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
-    "SIGNOUT": "Sign out"
+    "SIGNOUT": "Sign out",
+    "SIGNIN": "Sign in"
   },
   "LEGAL": {
     "DISCLOSURE": "Disclosure",
@@ -48,7 +51,6 @@
   "ALL_AQLS": "All AQLs",
   "SELECTED_AQLS": "Selected AQL Queries",
   "ADD_AQL_DIALOG_HEADER": "Select and Group AQL Queries",
-  "APPROVE_USER_DIALOG_HEADER": "Approve User and Assign Roles",
   "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
   "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
@@ -66,6 +68,13 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
+  "EDIT_USER_DIALOG_HEADER": "Edit User",
+  "ASSIGN_ROLES": "Assign user role(s)",
+  "ASSIGN_ORGANIZATION": "Assign user to an organization",
+  "EDIT_USER_TEXT": "The user will be informed about the approval by e-mail.",
+  "SELECT_ORGANIZATION": "Select Organization",
+  "ACTION": "Action",
+  "REGISTER_DATE": "Register Date",
   "RESEARCHERS": {
     "SELECT_RESEARCHERS": "Select Researchers",
     "SEARCH_RESEARCHERS": "Find Researchers",
@@ -114,14 +123,21 @@
     "REVIEW_STUDY": "Review"
   },
   "USER": {
-    "UNAPPROVED_USERS": "Unapproved Users",
     "FIRST_NAME": "First name",
-    "NAME": "Name",
-    "LAST_NAME": "Last name"
+    "LAST_NAME": "Last name",
+    "ORGANIZATION": "Organization",
+    "ROLES": "Roles",
+    "NAME": "Name"
   },
   "ROLE": {
     "RESEARCHER": "Researcher",
     "ORGANIZATION_ADMIN": "Organization Administrator",
-    "STUDY_COORDINATOR": "Study Coordinator"
-  }
+    "STUDY_COORDINATOR": "Study Coordinator",
+    "SUPER_ADMIN": "Admin",
+    "STUDY_APPROVER": "Study Approver"
+  },
+  "SEARCH_ORGANIZATIONS": "Search Organization",
+  "MANAGE_NEW_USERS": "Manage New Users",
+  "MANAGE_ALL_USERS": "Manage All Users",
+  "SEARCH_USERNAME": "Search user name"
 }

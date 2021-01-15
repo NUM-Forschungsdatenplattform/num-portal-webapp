@@ -49,13 +49,13 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   generateMenuForRole(): void {
     // TODO: Get roles from new auth service
-    const roles = [AvailableRoles.Study_coordinator, AvailableRoles.Researcher]
+    const roles = [AvailableRoles.StudyCoordinator, AvailableRoles.Researcher]
     let menu = [MENU_ITEM_PREVIEW]
-    if (roles.includes(AvailableRoles.Study_coordinator)) {
+    if (roles.includes(AvailableRoles.StudyCoordinator)) {
       menu = [...menu, ...COORDINATOR_MENU]
     }
 
-    if (roles.includes(AvailableRoles.Study_approver)) {
+    if (roles.includes(AvailableRoles.StudyApprover)) {
       menu = [...menu, ...APPROVER_MENU]
     }
 

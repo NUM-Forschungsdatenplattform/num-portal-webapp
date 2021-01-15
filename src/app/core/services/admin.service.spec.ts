@@ -41,7 +41,9 @@ describe('AdminService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getUnapprovedUsers().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=false`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=false&withRoles=false`
+      )
       service.unapprovedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
       })
@@ -54,7 +56,9 @@ describe('AdminService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=false`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=false&withRoles=false`
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -63,7 +67,9 @@ describe('AdminService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getApprovedUsers().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=true`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=true&withRoles=true`
+      )
       service.approvedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
       })
@@ -76,8 +82,45 @@ describe('AdminService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user?approved=true`)
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/admin/user?approved=true&withRoles=true`
+      )
       expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to approveUser method comes in', () => {
+    it(`should call the api - with success`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+
+      jest.spyOn(httpClient, 'post')
+      service.approveUser(id).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/approve`,
+        undefined,
+        httpOptions
+      )
+    })
+    it(`should call the api - with error`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
+      service
+        .approveUser(id)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/approve`,
+        undefined,
+        httpOptions
+      )
     })
   })
 
@@ -205,25 +248,25 @@ describe('AdminService', () => {
       /* First filter call after throttle time */
       setTimeout(() => {
         service.setFilter(filterConfig)
-        expect(callHelper).toBeCalled()
+        expect(callHelper).toBeCalledTimes(3)
       }, throttleTime + 1)
 
       setTimeout(() => {
         /* Second filter call but within throttle time */
         service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
+        expect(callHelper).toHaveBeenCalledTimes(3)
       }, throttleTime + 1)
 
       setTimeout(() => {
         /* Third filter call but within throttle time */
         service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
+        expect(callHelper).toHaveBeenCalledTimes(3)
       }, throttleTime + 10)
 
       setTimeout(() => {
         /* Fourth filter call, meanwhile the third filter was pushed */
         service.setFilter(filterConfigLast)
-        expect(callHelper).toHaveBeenCalledTimes(4)
+        expect(callHelper).toHaveBeenCalledTimes(5)
         expect(filterResult.length).toEqual(1)
         expect(filterResult[0].id).toEqual('456-789')
         done()

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 
 export const routes: Routes = [
   {
     path: 'home',
-    canLoad: [AuthGuard],
     data: {
       navId: 'home',
     },
@@ -64,11 +62,11 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'admin',
+    path: 'users',
     canLoad: [RoleGuard],
     data: {
-      navId: 'admin',
-      roles: ['ORGANIZATION_ADMIN'],
+      navId: 'users',
+      roles: ['ORGANIZATION_ADMIN', 'SUPER_ADMIN'],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(

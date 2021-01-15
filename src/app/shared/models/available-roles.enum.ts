@@ -1,6 +1,7 @@
 export enum AvailableRoles {
   Researcher = 'RESEARCHER',
-  Study_coordinator = 'STUDY_COORDINATOR',
-  Study_approver = 'STUDY_APPROVER',
-  Organization_admin = 'ORGANIZATION_ADMIN',
+  StudyCoordinator = 'STUDY_COORDINATOR',
+  OrganizationAdmin = 'ORGANIZATION_ADMIN',
+  SuperAdmin = 'SUPER_ADMIN',
+  StudyApprover = 'STUDY_APPROVER',
 }

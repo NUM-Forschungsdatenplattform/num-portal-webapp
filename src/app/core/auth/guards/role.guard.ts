@@ -6,13 +6,17 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router'
-import { OAuthService } from 'angular-oauth2-oidc'
+import { AuthService } from '../auth.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate, CanLoad {
-  constructor(private oauthService: OAuthService) {}
+  userRoles: string[] = []
+
+  constructor(private authService: AuthService) {
+    this.authService.userInfoObservable$.subscribe((user: any) => (this.userRoles = user.groups))
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -31,20 +35,12 @@ export class RoleGuard implements CanActivate, CanLoad {
       return Promise.resolve(true)
     }
 
-    const isLoggedIn =
-      this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
-
-    if (!isLoggedIn) {
-      await this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })
+    if (!this.authService.isLoggedIn) {
+      this.authService.login()
     }
 
-    let userRoles: string[]
-    await this.oauthService.loadUserProfile().then((userinfo) => {
-      userRoles = userinfo.groups
-    })
-
-    if (userRoles) {
-      return Promise.resolve(allowedRoles.some((role) => userRoles.indexOf(role) >= 0))
+    if (this.userRoles) {
+      return Promise.resolve(allowedRoles.some((role) => this.userRoles.indexOf(role) >= 0))
     }
     return Promise.resolve(false)
   }

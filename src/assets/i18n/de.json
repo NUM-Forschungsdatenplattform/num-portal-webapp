@@ -29,9 +29,12 @@
     "AQLS_OVERVIEW": "AQL Abfragen",
     "AQLS_EDITOR": "Abfragen-Editor",
     "USER_MANAGEMENT": "Benutzerverwaltung",
+    "NEW_USERS": "Neue Benutzer",
+    "ALL_USERS": "Alle Benutzer",
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
-    "SIGNOUT": "Abmelden"
+    "SIGNOUT": "Abmelden",
+    "SIGNIN": "Anmelden"
   },
   "LEGAL": {
     "DISCLOSURE": "Impressum",
@@ -48,7 +51,6 @@
   "ALL_AQLS": "Alle AQLs",
   "SELECTED_AQLS": "Ausgewählte AQL-Queries",
   "ADD_AQL_DIALOG_HEADER": "AQL Abfrage auswählen und in die Gruppe einfügen",
-  "APPROVE_USER_DIALOG_HEADER": "Benutzer bestätigen und Rollen zuweisen",
   "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
   "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
@@ -66,6 +68,13 @@
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
+  "EDIT_USER_DIALOG_HEADER": "Benutzer bearbeiten",
+  "ASSIGN_ROLES": "Benutzerrolle(n) zuordnen",
+  "ASSIGN_ORGANIZATION": "Benutzer einer Organisation zuordnen",
+  "EDIT_USER_TEXT": "Der Benutzer wird über die Bestätigung per E-Mail informiert.",
+  "SELECT_ORGANIZATION": "Organisation auswählen",
+  "ACTION": "Aktion",
+  "REGISTER_DATE": "Datum der Registrierung",
   "RESEARCHERS": {
     "SELECT_RESEARCHERS": "Ausgewählte Forscher",
     "SEARCH_RESEARCHERS": "Forscher suchen",
@@ -114,14 +123,21 @@
     "REVIEW_STUDY": "Studie überprüfen"
   },
   "USER": {
-    "UNAPPROVED_USERS": "Nicht autorisierte Benutzer",
     "FIRST_NAME": "Vorname",
-    "NAME": "Name",
-    "LAST_NAME": "Nachname"
+    "LAST_NAME": "Nachname",
+    "ORGANIZATION": "Organisation",
+    "ROLES": "Rollen",
+    "NAME": "Name"
   },
   "ROLE": {
     "RESEARCHER": "Wissenschaftler",
     "ORGANIZATION_ADMIN": "Organisations-Administrator",
-    "STUDY_COORDINATOR": "Studienkoordinator"
-  }
+    "STUDY_COORDINATOR": "Studienkoordinator",
+    "SUPER_ADMIN": "Administrator",
+    "STUDY_APPROVER": "Studienprüfer"
+  },
+  "SEARCH_ORGANIZATIONS": "Organisation suchen",
+  "MANAGE_NEW_USERS": "Neue Benutzer verwalten",
+  "MANAGE_ALL_USERS": "Alle Benutzer verwalten",
+  "SEARCH_USERNAME": "Benutzernamen suchen"
 }

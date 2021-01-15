@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin.service'
+import { OrganizationService } from 'src/app/core/services/organization.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -16,19 +17,24 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
   roles: string[] = []
   organization: IOrganization = {
     id: '',
-    name: 'test',
   }
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private organizationService: OrganizationService
+  ) {}
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput
+    this.organizationService.getAll().subscribe()
   }
 
   handleDialogConfirm(): void {
-    this.adminService.addUserRoles(this.dialogInput.id, this.roles).subscribe()
-
-    this.adminService.addUserOrganization(this.dialogInput.id, this.organization).subscribe()
+    this.adminService.approveUser(this.dialogInput.id).subscribe(() => {
+      this.adminService.addUserRoles(this.userDetails.id, this.roles).subscribe()
+      this.adminService.addUserOrganization(this.userDetails.id, this.organization).subscribe()
+    })
+    this.adminService.getUnapprovedUsers().subscribe()
 
     this.closeDialog.emit()
   }

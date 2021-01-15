@@ -19,7 +19,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
   private subscriptions = new Subscription()
   constructor(private adminService: AdminService, private dialogService: DialogService) {}
 
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email']
+  displayedColumns: string[] = ['icon', 'firstName', 'lastName', 'email', 'createdTimestamp']
   dataSource = new MatTableDataSource()
 
   @ViewChild(MatSort) sort: MatSort
@@ -43,7 +43,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
     this.dataSource.data = users
   }
 
-  handleRowClick(user: IUser): void {
+  handleSelectClick(user: IUser): void {
     const dialogContentPayload: IUser = user
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,

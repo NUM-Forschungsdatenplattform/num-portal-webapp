@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { OAuthInitService } from './oauth-init.service'
 
 describe('OAuth Init Service', () => {
@@ -7,8 +10,9 @@ describe('OAuth Init Service', () => {
 
   const authService = ({
     configure: () => {},
-    loadDiscoveryDocumentAndLogin: () => Promise.resolve(true),
+    loadDiscoveryDocumentAndTryLogin: () => Promise.resolve(true),
     setupAutomaticSilentRefresh: () => {},
+    loadUserProfile: () => Promise.resolve(mockOAuthUser),
   } as unknown) as OAuthService
 
   const appConfig = {
@@ -18,10 +22,20 @@ describe('OAuth Init Service', () => {
         clientId: 'test-app',
         realm: 'test-realm',
       },
+      api: {
+        baseUrl: 'localhost/api',
+      },
     },
   } as AppConfigService
 
+  const httpClient = ({
+    get: () => of(),
+    post: () => of(),
+  } as unknown) as HttpClient
+
   beforeEach(() => {
+    jest.spyOn(authService, 'loadUserProfile')
+    jest.spyOn(httpClient, 'post')
     initService = new OAuthInitService(authService, appConfig)
   })
 
@@ -35,6 +49,7 @@ describe('OAuth Init Service', () => {
       clientId: `${appConfig.config.auth.clientId}`,
       responseType: 'code',
       redirectUri: window.location.origin + '/home',
+      silentRefreshRedirectUri: window.location.origin + '/assets/silent-refresh.html',
       scope: 'openid profile email roles',
       useSilentRefresh: true,
       silentRefreshTimeout: 5000,
@@ -46,20 +61,20 @@ describe('OAuth Init Service', () => {
 
     it('Calls init on OAuth Server with correct config and options', async () => {
       jest.spyOn(authService, 'configure')
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
+      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin')
       jest.spyOn(authService, 'setupAutomaticSilentRefresh')
 
       await initService.initOAuth()
 
       expect(authService.configure).toHaveBeenCalledWith(authConfig)
-      expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalled()
+      expect(authService.loadDiscoveryDocumentAndTryLogin).toHaveBeenCalled()
       expect(authService.setupAutomaticSilentRefresh).toHaveBeenCalled()
     })
   })
 
   describe('When OAuth Server gets initialized with no success', () => {
     it('fails', async () => {
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin').mockImplementation(() => {
+      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin').mockImplementation(() => {
         return Promise.reject()
       })
 
@@ -75,7 +90,7 @@ describe('OAuth Init Service', () => {
     })
 
     it('fails', async () => {
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin').mockImplementation(() => {
+      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin').mockImplementation(() => {
         jest.advanceTimersByTime(25_000)
         return Promise.resolve(true)
       })
