@@ -8,7 +8,6 @@ import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { CohortService } from 'src/app/core/services/cohort.service'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
 import { StudyService } from 'src/app/core/services/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
@@ -46,6 +45,7 @@ describe('StudyEditorComponent On Creation', () => {
   const studyService = ({
     create: jest.fn(),
     update: jest.fn(),
+    getCommentsByStudyId: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
@@ -82,6 +82,15 @@ describe('StudyEditorComponent On Creation', () => {
     @Input() isDisabled: boolean
   }
 
+  const postCommentEmitter = new EventEmitter()
+  @Component({ selector: 'num-study-editor-comments', template: '' })
+  class StudyEditorCommentsStubComponent {
+    @Input() isLoadingComplete: any
+    @Input() comments: any[]
+    @Input() form: any
+    @Output() postComment = postCommentEmitter
+  }
+
   const saveAllEmitter = new EventEmitter()
   const saveResearchersEmitter = new EventEmitter()
   const saveAsApprovalRequestEmitter = new EventEmitter()
@@ -115,6 +124,7 @@ describe('StudyEditorComponent On Creation', () => {
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
         StudyEditorButtonsStubComponent,
+        StudyEditorCommentsStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,

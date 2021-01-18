@@ -42,6 +42,7 @@ export class RoleGuard implements CanActivate, CanLoad {
     if (this.userRoles) {
       return Promise.resolve(allowedRoles.some((role) => this.userRoles.indexOf(role) >= 0))
     }
+
     return Promise.resolve(false)
   }
 }

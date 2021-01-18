@@ -18,6 +18,7 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
+import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
 import { IStudyResolved } from '../../study-resolved.interface'
 
 import { StudyEditorComponent } from './study-editor.component'
@@ -29,6 +30,8 @@ describe('StudyEditorComponent', () => {
 
   const studyService = ({
     create: jest.fn(),
+    getCommentsByStudyId: jest.fn(),
+    createCommentByStudyId: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
@@ -85,6 +88,15 @@ describe('StudyEditorComponent', () => {
     @Input() isDisabled: boolean
   }
 
+  const postCommentEmitter = new EventEmitter()
+  @Component({ selector: 'num-study-editor-comments', template: '' })
+  class StudyEditorCommentsStubComponent {
+    @Input() isLoadingComplete: any
+    @Input() comments: any[]
+    @Input() form: any
+    @Output() postComment = postCommentEmitter
+  }
+
   const saveAllEmitter = new EventEmitter()
   const saveResearchersEmitter = new EventEmitter()
   const saveAsApprovalRequestEmitter = new EventEmitter()
@@ -118,6 +130,7 @@ describe('StudyEditorComponent', () => {
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
         StudyEditorButtonsStubComponent,
+        StudyEditorCommentsStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -153,6 +166,7 @@ describe('StudyEditorComponent', () => {
     jest.restoreAllMocks()
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
+    jest.spyOn(studyService, 'getCommentsByStudyId').mockImplementation(() => of(studyCommentMocks))
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
@@ -208,6 +222,47 @@ describe('StudyEditorComponent', () => {
         expect(component.isResearchersFetched).toBeTruthy()
         done()
       })
+    })
+  })
+
+  describe('When the components gets initialized and the studyId is specified', () => {
+    it('should call the study service to fetch related comments and flag comments as fetched', async (done) => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+
+      expect(studyService.getCommentsByStudyId).toHaveBeenCalledWith(1)
+      fixture.whenStable().then(() => {
+        expect(component.isCommentsFetched).toBeTruthy()
+        expect(component.studyComments).toEqual(studyCommentMocks)
+        done()
+      })
+    })
+  })
+
+  describe('When the comment component emits the event to post a comment', () => {
+    beforeEach(() => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+
+      jest
+        .spyOn(studyService, 'createCommentByStudyId')
+        .mockImplementation(() => of(studyCommentMock1))
+
+      component.commentForm.patchValue({ text: 'Test 123' })
+    })
+    it('should call the study service to create the comment', () => {
+      postCommentEmitter.emit()
+      expect(studyService.createCommentByStudyId).toHaveBeenCalledWith(1, 'Test 123')
+    })
+
+    it('should reset the form after posting', () => {
+      expect(component.commentForm.value.text).not.toEqual(null)
+      postCommentEmitter.emit()
+      expect(component.commentForm.value.text).toEqual(null)
     })
   })
 })

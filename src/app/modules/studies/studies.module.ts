@@ -23,6 +23,7 @@ import { StudyEditorResearchersComponent } from './components/study-editor-resea
 import { DialogAddResearchersComponent } from './components/dialog-add-researchers/dialog-add-researchers.component'
 import { StudyEditorButtonsComponent } from './components/study-editor-buttons/study-editor-buttons.component'
 import { DialogConfirmStudyComponent } from './components/dialog-confirm-study/dialog-confirm-study.component'
+import { StudyEditorCommentsComponent } from './components/study-editor-comments/study-editor-comments.component'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DialogConfirmStudyComponent } from './components/dialog-confirm-study/d
     DialogAddResearchersComponent,
     StudyEditorButtonsComponent,
     DialogConfirmStudyComponent,
+    StudyEditorCommentsComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule],
 })
