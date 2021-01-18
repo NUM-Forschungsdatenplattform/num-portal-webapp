@@ -5,6 +5,7 @@ import { catchError, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
+import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 
 @Injectable({
@@ -60,6 +61,18 @@ export class StudyService {
         this.getAll().subscribe()
       })
     )
+  }
+
+  getCommentsByStudyId(id: number): Observable<IStudyComment[]> {
+    return this.httpClient
+      .get<IStudyComment[]>(`${this.baseUrl}/${id}/comment`)
+      .pipe(catchError(this.handleError))
+  }
+
+  createCommentByStudyId(id: number, text: string): Observable<IStudyComment> {
+    return this.httpClient
+      .post<IStudyComment>(`${this.baseUrl}/${id}/comment`, { text })
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

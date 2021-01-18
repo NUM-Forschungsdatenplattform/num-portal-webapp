@@ -73,6 +73,11 @@
   "ASSIGN_ORGANIZATION": "Assign user to an organization",
   "EDIT_USER_TEXT": "The user will be informed about the approval by e-mail.",
   "SELECT_ORGANIZATION": "Select Organization",
+  "COMMENTS": "Comments",
+  "WRITE_COMMENT": "Write comment",
+  "LEAVE_COMMENT": "Leave a comment here to share your thoughts",
+  "SHOW_OLDER_POSTS": "Show older posts",
+  "SHOW_LESS": "Show less",
   "ACTION": "Action",
   "REGISTER_DATE": "Register Date",
   "RESEARCHERS": {
@@ -81,7 +86,6 @@
     "NO_RESEARCHERS_SELECTED": "No researchers selected yet.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Please select at least 1 person"
   },
-  "ASSIGN_ROLES": "Assign Roles",
   "FORM": {
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
@@ -121,7 +125,8 @@
     "PUBLISH": "Publish",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
     "CLOSE_STUDY": "Close study",
-    "REVIEW_STUDY": "Review"
+    "REVIEW_STUDY": "Review",
+    "SEND_COMMENT": "Send comment"
   },
   "USER": {
     "FIRST_NAME": "First name",

@@ -13,6 +13,7 @@ import { AdminService } from 'src/app/core/services/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { Subscription } from 'rxjs'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
+import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 
 @Component({
   selector: 'num-study-editor',
@@ -27,11 +28,14 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   resolvedData: IStudyResolved
   isResearchersFetched: boolean
   isCohortsFetched: boolean
+  isCommentsFetched: boolean
 
   isTemplatesDisabled: boolean
   isResearchersDisabled: boolean
   isGeneralInfoDisabled: boolean
   isConnectorDisabled: boolean
+
+  studyComments: IStudyComment[] = []
 
   generalInfoData: IDefinitionList[]
   get study(): StudyUiModel {
@@ -42,10 +46,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     return this.study.cohortGroup
   }
 
+  commentForm: FormGroup
   studyForm: FormGroup
-  get formTitle(): FormControl {
-    return this.studyForm.get('title') as FormControl
-  }
 
   constructor(
     private router: Router,
@@ -64,6 +66,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     this.generateForm()
     this.fetchCohort()
     this.fetchResearcher()
+    this.fetchComments()
     this.getGeneralInfoListData()
   }
 
@@ -107,6 +110,17 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  fetchComments(): void {
+    if (this.study.id === null || this.study.id === undefined) {
+      this.isCommentsFetched = true
+    } else {
+      this.studyService.getCommentsByStudyId(this.study.id).subscribe((comments) => {
+        this.studyComments = comments
+        this.isCommentsFetched = true
+      })
+    }
+  }
+
   generateForm(): void {
     this.studyForm = new FormGroup({
       title: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
@@ -119,6 +133,10 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
         Validators.minLength(3),
       ]),
       secondHypotheses: new FormControl(this.study?.secondHypotheses),
+    })
+
+    this.commentForm = new FormGroup({
+      text: new FormControl('', [Validators.required, Validators.minLength(3)]),
     })
   }
 
@@ -201,6 +219,17 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   cancel(): void {
     this.router.navigate(['studies'])
+  }
+
+  postComment(): void {
+    const formValues = this.commentForm.value
+    this.studyService
+      .createCommentByStudyId(this.study.id, formValues.text)
+      .subscribe((comment) => {
+        this.commentForm.reset()
+        this.commentForm.setErrors(null)
+        this.studyComments.push(comment)
+      })
   }
 
   checkVisibility(): void {

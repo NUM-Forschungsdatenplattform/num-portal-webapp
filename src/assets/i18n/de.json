@@ -73,6 +73,11 @@
   "ASSIGN_ORGANIZATION": "Benutzer einer Organisation zuordnen",
   "EDIT_USER_TEXT": "Der Benutzer wird über die Bestätigung per E-Mail informiert.",
   "SELECT_ORGANIZATION": "Organisation auswählen",
+  "COMMENTS": "Kommentare",
+  "WRITE_COMMENT": "Kommentar schreiben",
+  "LEAVE_COMMENT": "Hinterlassen Sie hier einen Kommentar, um Ihre Gedanken mitzuteilen",
+  "SHOW_OLDER_POSTS": "Ältere Beiträge anzeigen",
+  "SHOW_LESS": "Weniger anzeigen",
   "ACTION": "Aktion",
   "REGISTER_DATE": "Datum der Registrierung",
   "RESEARCHERS": {
@@ -81,7 +86,6 @@
     "NO_RESEARCHERS_SELECTED": "Noch keine Forscher ausgewählt.",
     "PLEASE_SELECT_AT_LEAST_1_PERSON": "Bitte wählen Sie mindestens 1 Person aus"
   },
-  "ASSIGN_ROLES": "Rollen zuweisen",
   "FORM": {
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
@@ -121,7 +125,8 @@
     "PUBLISH": "Veröffentlichen",
     "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
     "CLOSE_STUDY": "Studie schließen",
-    "REVIEW_STUDY": "Studie überprüfen"
+    "REVIEW_STUDY": "Studie überprüfen",
+    "SEND_COMMENT": "Kommentar senden"
   },
   "USER": {
     "FIRST_NAME": "Vorname",

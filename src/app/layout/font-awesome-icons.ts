@@ -1,3 +1,4 @@
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faTh } from '@fortawesome/free-solid-svg-icons'
 import { faMicroscope } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -20,6 +21,7 @@ import { faUsersCog } from '@fortawesome/free-solid-svg-icons'
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
   faTh,
@@ -44,4 +46,6 @@ export const FONT_AWESOME_ICONS = [
   faPencilAlt,
   faAngleRight,
   faEllipsisV,
+  faClock,
+  faUser,
 ]

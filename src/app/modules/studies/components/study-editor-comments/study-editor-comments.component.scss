@@ -1,0 +1,25 @@
+:host {
+  margin: 40px 0 0 0;
+}
+
+.older-comments-toggle {
+  margin: 0 0 10px 0;
+  cursor: pointer;
+}
+
+.comments {
+  margin: 0 0 40px 0;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.comment {
+  white-space: pre-line;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  border-radius: 7px;
+}
+
+.comment-info {
+  font-size: 14px;
+}
