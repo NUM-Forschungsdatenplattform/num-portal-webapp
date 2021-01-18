@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { OAuthService, UserInfo } from 'angular-oauth2-oidc'
+import { OAuthService } from 'angular-oauth2-oidc'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
@@ -56,18 +56,22 @@ export class AuthService {
       .pipe(catchError(this.handleError))
   }
 
-  fetchUserInfo(): void {
+  async fetchUserInfo(): Promise<void> {
     if (!this.isLoggedIn) {
-      return
+      return Promise.resolve()
     }
-    this.oauthService.loadUserProfile().then((userInfo: UserInfo) => {
+
+    try {
+      const userInfo = await this.oauthService.loadUserProfile()
       if (this.userInfo.sub !== userInfo.sub) {
         this.createUser(userInfo.sub).subscribe()
-
-        this.userInfo = userInfo
-        this.userInfoSubject$.next(userInfo)
       }
-    })
+      this.userInfo = userInfo
+      this.userInfoSubject$.next(this.userInfo)
+    } catch (error) {
+      this.clearUserInfo()
+      Promise.reject('Failed to fetch userInfo')
+    }
   }
 
   private clearUserInfo(): void {
