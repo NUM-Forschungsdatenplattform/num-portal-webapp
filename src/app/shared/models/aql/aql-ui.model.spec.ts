@@ -3,7 +3,6 @@ import { LogicalOperator } from '../logical-operator.enum'
 import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { AqlUiModel } from './aql-ui.model'
-import { IPhenotypeApi } from '../phenotype/phenotype-api.interface'
 import { IAqlPhenotypeApi } from './aql-phenotype.interface'
 
 describe('AqlUiModel', () => {

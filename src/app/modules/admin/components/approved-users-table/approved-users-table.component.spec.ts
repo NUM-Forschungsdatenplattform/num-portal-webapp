@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { of, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { ApprovedUsersTableComponent } from './approved-users-table.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'

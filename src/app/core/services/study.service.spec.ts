@@ -36,7 +36,7 @@ describe('StudyService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockStudies))
       service.getAll().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/study`)
+      expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
       service.studiesObservable$.subscribe((studies) => {
         expect(studies).toEqual(mockStudies)
       })

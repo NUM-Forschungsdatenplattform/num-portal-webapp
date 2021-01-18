@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of } from 'rxjs'
@@ -24,10 +24,12 @@ import { IStudyResolved } from '../../study-resolved.interface'
 
 import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
   let fixture: ComponentFixture<StudyEditorComponent>
+  let router: Router
 
   const resolvedData: IStudyResolved = { study: new StudyUiModel(), error: null }
 
@@ -43,6 +45,7 @@ describe('StudyEditorComponent On Creation', () => {
 
   const studyService = ({
     create: jest.fn(),
+    update: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
@@ -53,10 +56,6 @@ describe('StudyEditorComponent On Creation', () => {
   const adminService = ({
     getUsersById: jest.fn(),
   } as unknown) as AdminService
-
-  const phenotypeService = ({
-    get: jest.fn().mockImplementation(() => of()),
-  } as unknown) as PhenotypeService
 
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -83,6 +82,29 @@ describe('StudyEditorComponent On Creation', () => {
     @Input() isDisabled: boolean
   }
 
+  const saveAllEmitter = new EventEmitter()
+  const saveResearchersEmitter = new EventEmitter()
+  const saveAsApprovalRequestEmitter = new EventEmitter()
+  const saveAsApprovalReplyEmitter = new EventEmitter()
+  const startEditEmitter = new EventEmitter()
+  const cancelEmitter = new EventEmitter()
+  @Component({ selector: 'num-study-editor-buttons', template: '' })
+  class StudyEditorButtonsStubComponent {
+    @Input() editorMode: any
+    @Input() studyStatus: any
+    @Input() isFormValid: any
+    @Input() isResearchersDefined: any
+    @Input() isTemplatesDefined: any
+    @Input() isCohortDefined: any
+
+    @Output() saveAll = saveAllEmitter
+    @Output() saveResearchers = saveResearchersEmitter
+    @Output() saveAsApprovalRequest = saveAsApprovalRequestEmitter
+    @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
+    @Output() startEdit = startEditEmitter
+    @Output() cancel = cancelEmitter
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -92,6 +114,7 @@ describe('StudyEditorComponent On Creation', () => {
         StudyEditorResearchers,
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
+        StudyEditorButtonsStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -99,6 +122,7 @@ describe('StudyEditorComponent On Creation', () => {
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
+        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {
@@ -122,6 +146,7 @@ describe('StudyEditorComponent On Creation', () => {
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(StudyEditorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -142,6 +167,7 @@ describe('StudyEditorComponent On Creation', () => {
         error: null,
         study: new StudyUiModel(mockStudy1),
       }
+      component.resolvedData.study.id = null
     })
     it('should call the study create method', async () => {
       await component.save()
@@ -165,6 +191,7 @@ describe('StudyEditorComponent On Creation', () => {
         error: null,
         study: new StudyUiModel(mockStudy1),
       }
+      component.resolvedData.study.id = undefined
     })
     it('should set the study status to pending and call the save save method', async () => {
       await component.sendForApproval()
@@ -183,11 +210,15 @@ describe('StudyEditorComponent On Creation', () => {
         error: null,
         study: new StudyUiModel(mockStudy1),
       }
+
       const cohortGroup = new CohortGroupUiModel()
       cohortGroup.logicalOperator = LogicalOperator.And
       cohortGroup.type = ConnectorNodeType.Group
       cohortGroup.children = [new PhenotypeUiModel()]
       component.resolvedData.study.cohortGroup = cohortGroup
+
+      component.resolvedData.study.id = undefined
+      component.resolvedData.study.cohortId = undefined
     })
     it('should call the study create method', async () => {
       await component.save()

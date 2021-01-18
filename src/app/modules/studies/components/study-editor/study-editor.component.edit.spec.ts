@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Params, Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of } from 'rxjs'
@@ -24,6 +25,7 @@ import { StudyEditorComponent } from './study-editor.component'
 describe('StudyEditorComponent', () => {
   let component: StudyEditorComponent
   let fixture: ComponentFixture<StudyEditorComponent>
+  let router: Router
 
   const studyService = ({
     create: jest.fn(),
@@ -83,6 +85,29 @@ describe('StudyEditorComponent', () => {
     @Input() isDisabled: boolean
   }
 
+  const saveAllEmitter = new EventEmitter()
+  const saveResearchersEmitter = new EventEmitter()
+  const saveAsApprovalRequestEmitter = new EventEmitter()
+  const saveAsApprovalReplyEmitter = new EventEmitter()
+  const startEditEmitter = new EventEmitter()
+  const cancelEmitter = new EventEmitter()
+  @Component({ selector: 'num-study-editor-buttons', template: '' })
+  class StudyEditorButtonsStubComponent {
+    @Input() editorMode: any
+    @Input() studyStatus: any
+    @Input() isFormValid: any
+    @Input() isResearchersDefined: any
+    @Input() isTemplatesDefined: any
+    @Input() isCohortDefined: any
+
+    @Output() saveAll = saveAllEmitter
+    @Output() saveResearchers = saveResearchersEmitter
+    @Output() saveAsApprovalRequest = saveAsApprovalRequestEmitter
+    @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
+    @Output() startEdit = startEditEmitter
+    @Output() cancel = cancelEmitter
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -92,6 +117,7 @@ describe('StudyEditorComponent', () => {
         StudyEditorResearchers,
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
+        StudyEditorButtonsStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -99,6 +125,7 @@ describe('StudyEditorComponent', () => {
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
+        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {
@@ -122,6 +149,7 @@ describe('StudyEditorComponent', () => {
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     jest.restoreAllMocks()
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))

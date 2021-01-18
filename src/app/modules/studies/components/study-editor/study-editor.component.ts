@@ -12,7 +12,6 @@ import { IStudyResolved } from '../../study-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { Subscription } from 'rxjs'
-import { StudyMenuKeys } from '../studies-table/menu-items'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 
 @Component({
@@ -82,7 +81,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
       this.mode = PossibleStudyEditorMode.PREVIEW
     }
     this.checkVisibility()
-    document.querySelector('mat-sidenav-content').scrollTo(0, 0)
+    document.querySelector('mat-sidenav-content')?.scrollTo(0, 0)
   }
 
   fetchCohort(): void {

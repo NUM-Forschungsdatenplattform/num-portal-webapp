@@ -50,8 +50,6 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
     )
-
-    this.generateMenuForRole()
   }
 
   ngAfterViewInit(): void {
@@ -68,6 +66,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleUserInfo(userInfo: IAuthUserInfo): void {
     this.roles = userInfo.groups
+    this.generateMenuForRole()
   }
 
   generateMenuForRole(): void {
@@ -108,9 +107,6 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
       case StudyMenuKeys.Publish:
         this.handleWithDialog(PUBLISH_STUDY_DIALOG_CONFIG, StudyStatus.Published, id)
-        break
-
-      default:
         break
     }
   }
