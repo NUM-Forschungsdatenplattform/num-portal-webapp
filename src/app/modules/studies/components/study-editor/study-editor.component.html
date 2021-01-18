@@ -30,30 +30,18 @@
     ></num-study-editor-researchers>
   </mat-accordion>
 
-  <section role="region" fxLayout="column">
-    <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
-    <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
-      <div role="presentation" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
-        <num-button
-          type="secondary"
-          *ngIf="mode !== possibleModes.PREVIEW"
-          [isDisabled]="!formTitle.valid"
-          (singleClick)="save()"
-          >{{ 'BUTTON.SAVE' | translate }}</num-button
-        >
-        <num-button
-          type="primary"
-          (singleClick)="sendForApproval()"
-          [isDisabled]="
-            !studyForm.valid ||
-            !study.researchers.length ||
-            !study.templates.length ||
-            !cohortGroup.children.length
-          "
-          >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
-        >
-      </div>
-    </div>
-  </section>
+  <num-study-editor-buttons
+    [editorMode]="mode"
+    [studyStatus]="study.status"
+    [isFormValid]="studyForm.valid"
+    [isResearchersDefined]="study.researchers.length"
+    [isTemplatesDefined]="study.templates.length"
+    [isCohortDefined]="study.cohortGroup.children.length"
+    (saveAll)="save()"
+    (saveResearchers)="saveResearchers()"
+    (saveAsApprovalRequest)="sendForApproval()"
+    (saveAsApprovalReply)="saveAsApprovalReply()"
+    (startEdit)="startEdit()"
+    (cancel)="cancel()"
+  ></num-study-editor-buttons>
 </section>

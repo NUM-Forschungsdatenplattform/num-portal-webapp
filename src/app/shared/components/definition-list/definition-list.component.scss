@@ -3,7 +3,14 @@ dl {
   margin-block-end: 0;
 }
 
+dt {
+  margin: 0 0 2px 0;
+}
+
 dd {
   margin-inline-start: 0;
-  margin: 0 0 16px 0;
+
+  &:not(:last-of-type) {
+    margin: 0 0 24px 0;
+  }
 }

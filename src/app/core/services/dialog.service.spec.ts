@@ -41,8 +41,8 @@ describe('DialogService', () => {
       config: dialogConfigSmall,
       size: {
         width: '95vw',
-        maxWidth: '400px',
-        maxHeight: '300px',
+        maxWidth: '500px',
+        maxHeight: '400px',
       },
     },
     medium: {

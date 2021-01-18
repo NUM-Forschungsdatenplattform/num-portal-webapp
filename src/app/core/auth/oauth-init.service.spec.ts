@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { of, throwError } from 'rxjs'
+import { of } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { OAuthInitService } from './oauth-init.service'

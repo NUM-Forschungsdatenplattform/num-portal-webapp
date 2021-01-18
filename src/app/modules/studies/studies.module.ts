@@ -21,6 +21,8 @@ import { AddTemplateSelectedTableComponent } from './components/add-template-sel
 import { StudiesTableComponent } from './components/studies-table/studies-table.component'
 import { StudyEditorResearchersComponent } from './components/study-editor-researchers/study-editor-researchers.component'
 import { DialogAddResearchersComponent } from './components/dialog-add-researchers/dialog-add-researchers.component'
+import { StudyEditorButtonsComponent } from './components/study-editor-buttons/study-editor-buttons.component'
+import { DialogConfirmStudyComponent } from './components/dialog-confirm-study/dialog-confirm-study.component'
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { DialogAddResearchersComponent } from './components/dialog-add-researche
     StudiesTableComponent,
     StudyEditorResearchersComponent,
     DialogAddResearchersComponent,
+    StudyEditorButtonsComponent,
+    DialogConfirmStudyComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule],
 })

@@ -97,6 +97,7 @@
   "BUTTON": {
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
+    "BACK": "Zurück",
     "REQUEST_APPROVAL": "Genehmigung anfragen",
     "APPLY_SELECTION": "Auswahl Übernehmen",
     "DELETE_FROM_LIST": "Aus Liste löschen",
@@ -139,5 +140,13 @@
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "MANAGE_NEW_USERS": "Neue Benutzer verwalten",
   "MANAGE_ALL_USERS": "Alle Benutzer verwalten",
-  "SEARCH_USERNAME": "Benutzernamen suchen"
+  "SEARCH_USERNAME": "Benutzernamen suchen",
+  "CONFIRM_DIALOG": {
+    "WITHDRAW_APPROVAL_TITLE": "Möchten Sie die Genehmigungsanfrage zurückziehen?",
+    "WITHDRAW_APPROVAL_CONTENT": "Wenn Sie Ihre Genehmigungsanfrage zurückziehen, können Sie anschließend die Studie wieder bearbeiten.\n\nSie müssen jedoch die Genehmigung der Studie dann erneut anfragen, damit die Studie überprüft werden kann.",
+    "CLOSE_STUDY_TITLE": "Wollen Sie die Studie wirklich beenden?",
+    "CLOSE_STUDY_CONTENT": "Wenn die Studie beendet wird, kann an den Daten nicht mehr geforscht werden.\n\nDie Studie kann nicht erneut veröffentlich werden.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie beendet haben.",
+    "PUBLISH_STUDY_TITLE": "Wollen Sie die Studie wirklich veröffentlichen?",
+    "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben."
+  }
 }

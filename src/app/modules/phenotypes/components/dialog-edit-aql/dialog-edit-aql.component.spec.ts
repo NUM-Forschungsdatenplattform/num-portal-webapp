@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 
 import { DialogEditAqlComponent } from './dialog-edit-aql.component'

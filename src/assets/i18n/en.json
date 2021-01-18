@@ -97,6 +97,7 @@
   "BUTTON": {
     "SAVE": "Save",
     "CANCEL": "Cancel",
+    "BACK": "Back",
     "REQUEST_APPROVAL": "Request approval",
     "APPLY_SELECTION": "Apply Selection",
     "DELETE_FROM_LIST": "Delete from list",
@@ -139,5 +140,13 @@
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "MANAGE_NEW_USERS": "Manage New Users",
   "MANAGE_ALL_USERS": "Manage All Users",
-  "SEARCH_USERNAME": "Search user name"
+  "SEARCH_USERNAME": "Search user name",
+  "CONFIRM_DIALOG": {
+    "WITHDRAW_APPROVAL_TITLE": "Do you want to withdraw the approval request?",
+    "WITHDRAW_APPROVAL_CONTENT": "If you withdraw your approval request, you can then process the study again.\n\nHowever, you must then request approval of the study again so that the study can be reviewed.",
+    "CLOSE_STUDY_TITLE": "Do you really want to close the study?",
+    "CLOSE_STUDY_CONTENT": "If the study is closed, no further research can be conducted on the data.\n\nThe study cannot be republished.\n\nAll selected researchers will also be informed that you have terminated the study.",
+    "PUBLISH_STUDY_TITLE": "Do you really want to publish the study?",
+    "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study."
+  }
 }
