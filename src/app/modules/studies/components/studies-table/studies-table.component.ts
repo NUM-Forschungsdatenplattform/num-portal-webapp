@@ -34,7 +34,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService
   ) {}
 
-  displayedColumns: string[] = ['menu', 'id', 'name', 'description']
+  displayedColumns: string[] = ['menu', 'id', 'name', 'status']
   dataSource = new MatTableDataSource()
 
   menuItems: IItemVisibility[] = []
