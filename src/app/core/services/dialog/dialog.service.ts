@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
-import { GenericDialogComponent } from '../components/generic-dialog/generic-dialog.component'
-import { DialogConfig } from '../../shared/models/dialog/dialog-config.interface'
+import { GenericDialogComponent } from '../../components/generic-dialog/generic-dialog.component'
+import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interface'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 
 interface ISize {

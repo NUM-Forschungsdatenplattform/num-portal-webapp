@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { DEFAULT_AQL_FILTER } from '../constants/default-filter-aql'
-import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
-import { IAqlApi } from '../../shared/models/aql/aql.interface'
-import { environment } from '../../../environments/environment'
+import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
+import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
+import { IAqlApi } from '../../../shared/models/aql/aql.interface'
+import { environment } from '../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root',

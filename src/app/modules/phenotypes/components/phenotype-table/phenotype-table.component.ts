@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 
 @Component({
   selector: 'num-phenotype-table',

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
-import { DialogService } from '../../../../core/services/dialog.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-template-info-api.interface'
 import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-template.component'
 

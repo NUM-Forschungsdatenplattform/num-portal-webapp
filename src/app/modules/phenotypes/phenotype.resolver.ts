@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { IPhenotypeResolved } from './models/phenotype-resolved.interface'
 import { PhenotypeUiModel } from '../../shared/models/phenotype/phenotype-ui.model'
 

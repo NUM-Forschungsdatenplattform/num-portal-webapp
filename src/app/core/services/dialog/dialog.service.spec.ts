@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
-import { GenericDialogComponent } from '../components/generic-dialog/generic-dialog.component'
+import { GenericDialogComponent } from '../../components/generic-dialog/generic-dialog.component'
 
 import { DialogService } from './dialog.service'
 

@@ -1,8 +1,8 @@
 import { TemplateService } from './template.service'
 import { of, throwError } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { mockTemplates } from '../../../mocks/data-mocks/templates.mock'
-import { AppConfigService } from '../../config/app-config.service'
+import { mockTemplates } from '../../../../mocks/data-mocks/templates.mock'
+import { AppConfigService } from '../../../config/app-config.service'
 
 describe('TemplateService', () => {
   let service: TemplateService

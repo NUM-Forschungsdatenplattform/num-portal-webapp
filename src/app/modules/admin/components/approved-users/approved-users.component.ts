@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { take } from 'rxjs/operators'
-import { AdminService } from 'src/app/core/services/admin.service'
+import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 
 @Component({

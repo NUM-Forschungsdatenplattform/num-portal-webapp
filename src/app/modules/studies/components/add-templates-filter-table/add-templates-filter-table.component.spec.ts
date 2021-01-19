@@ -4,7 +4,7 @@ import { AddTemplatesFilterTableComponent } from './add-templates-filter-table.c
 import { mockTemplate1 } from '../../../../../mocks/data-mocks/templates.mock'
 import { of, Subject } from 'rxjs'
 import { ITemplateMetaDataApi } from '../../../../shared/models/template/template-api.interface'
-import { TemplateService } from '../../../../core/services/template.service'
+import { TemplateService } from '../../../../core/services/template/template.service'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'

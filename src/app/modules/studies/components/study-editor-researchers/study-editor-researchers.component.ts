@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { DialogService } from 'src/app/core/services/dialog.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'

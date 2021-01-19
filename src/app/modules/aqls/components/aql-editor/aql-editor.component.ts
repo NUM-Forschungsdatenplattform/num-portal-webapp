@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'

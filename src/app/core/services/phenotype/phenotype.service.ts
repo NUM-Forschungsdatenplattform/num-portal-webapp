@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IPhenotypeApi } from '../../shared/models/phenotype/phenotype-api.interface'
-import { environment } from '../../../environments/environment'
-import { DEFAULT_PHENOTYPE_FILTER } from '../constants/default-filter-phenotype'
+import { IPhenotypeApi } from '../../../shared/models/phenotype/phenotype-api.interface'
+import { environment } from '../../../../environments/environment'
+import { DEFAULT_PHENOTYPE_FILTER } from '../../constants/default-filter-phenotype'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 
 @Injectable({

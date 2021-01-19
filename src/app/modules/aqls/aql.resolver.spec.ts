@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router'
 import { of, throwError } from 'rxjs'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlResolver } from './aql.resolver'

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
-import { AdminService } from 'src/app/core/services/admin.service'
+import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'

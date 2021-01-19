@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { DialogAddResearchersComponent } from './dialog-add-researchers.component'
-import { AdminService } from 'src/app/core/services/admin.service'
+import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'

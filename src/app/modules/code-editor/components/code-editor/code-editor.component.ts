@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core'
 import { fromEvent, Subscription } from 'rxjs'
-import { MonacoLoaderService } from 'src/app/core/services/monaco-loader.service'
+import { MonacoLoaderService } from 'src/app/core/services/monaco-loader/monaco-loader.service'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { editorConstructionOptions } from '../../num-editor-options'
 import { numEditorTheme } from '../../num-editor.theme'

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { of, Subject } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlTableComponent } from '../aql-table/aql-table.component'
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { AdminService } from 'src/app/core/services/admin.service'
-import { OrganizationService } from 'src/app/core/services/organization.service'
+import { AdminService } from 'src/app/core/services/admin/admin.service'
+import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 

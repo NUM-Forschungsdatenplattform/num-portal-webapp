@@ -12,7 +12,7 @@ import {
 } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
-import { TemplateService } from 'src/app/core/services/template.service'
+import { TemplateService } from 'src/app/core/services/template/template.service'
 import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-template-info-api.interface'
 import { ITemplateMetaDataApi } from 'src/app/shared/models/template/template-api.interface'
 import { MatPaginator } from '@angular/material/paginator'

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 
 @Component({
   selector: 'num-phenotypes',
