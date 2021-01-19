@@ -171,7 +171,11 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
-    return this.cohortService.save(cohort).toPromise()
+    if (cohort.id === null || cohort.id === undefined) {
+      return this.cohortService.create(cohort).toPromise()
+    } else {
+      return this.cohortService.update(cohort, cohort.id).toPromise()
+    }
   }
 
   saveStudy(study: IStudyApi): Promise<IStudyApi> {
@@ -192,7 +196,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     try {
       const studyResult = await this.saveStudy(study)
       this.study.id = studyResult.id
-      if (cohort.cohortGroup && (study.cohortId === null || study.cohortId === undefined)) {
+      if (cohort.cohortGroup) {
         cohort.studyId = studyResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.study.cohortId = cohortResult.id
@@ -252,7 +256,11 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
       this.isResearchersDisabled = true
     }
 
-    if (studyStatus === StudyStatus.Approved && !inPreview && !inReview) {
+    if (
+      (studyStatus === StudyStatus.Approved || studyStatus === StudyStatus.Published) &&
+      !inPreview &&
+      !inReview
+    ) {
       this.isResearchersDisabled = false
     }
   }

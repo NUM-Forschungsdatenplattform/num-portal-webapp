@@ -49,7 +49,8 @@ describe('StudyEditorComponent On Creation', () => {
   } as unknown) as StudyService
 
   const cohortService = ({
-    save: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
     get: jest.fn(),
   } as unknown) as CohortService
 
@@ -172,7 +173,7 @@ describe('StudyEditorComponent On Creation', () => {
       const mockStudyObservable = of(mockStudy1)
       const mockCohortObservable = of(mockCohort1)
       jest.spyOn(studyService, 'create').mockImplementation(() => mockStudyObservable)
-      jest.spyOn(cohortService, 'save').mockImplementation(() => mockCohortObservable)
+      jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
       component.resolvedData = {
         error: null,
         study: new StudyUiModel(mockStudy1),
@@ -184,9 +185,9 @@ describe('StudyEditorComponent On Creation', () => {
       expect(studyService.create).toHaveBeenCalledTimes(1)
     })
 
-    it('should not call the cohort save method', async () => {
+    it('should not call the cohort create method', async () => {
       await component.save()
-      expect(cohortService.save).not.toHaveBeenCalled()
+      expect(cohortService.create).not.toHaveBeenCalled()
     })
   })
 
@@ -195,7 +196,7 @@ describe('StudyEditorComponent On Creation', () => {
       const mockStudyObservable = of(mockStudy1)
       const mockCohortObservable = of(mockCohort1)
       jest.spyOn(studyService, 'create').mockImplementation(() => mockStudyObservable)
-      jest.spyOn(cohortService, 'save').mockImplementation(() => mockCohortObservable)
+      jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
       jest.spyOn(component, 'save')
       component.resolvedData = {
         error: null,
@@ -203,7 +204,7 @@ describe('StudyEditorComponent On Creation', () => {
       }
       component.resolvedData.study.id = undefined
     })
-    it('should set the study status to pending and call the save save method', async () => {
+    it('should set the study status to pending and call the save method', async () => {
       await component.sendForApproval()
       expect(component.study.status).toEqual(StudyStatus.Pending)
       expect(component.save).toHaveBeenCalledTimes(1)
@@ -215,7 +216,7 @@ describe('StudyEditorComponent On Creation', () => {
       const mockStudyObservable = of(mockStudy1)
       const mockCohortObservable = of(mockCohort1)
       jest.spyOn(studyService, 'create').mockImplementation(() => mockStudyObservable)
-      jest.spyOn(cohortService, 'save').mockImplementation(() => mockCohortObservable)
+      jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
       component.resolvedData = {
         error: null,
         study: new StudyUiModel(mockStudy1),
@@ -235,9 +236,9 @@ describe('StudyEditorComponent On Creation', () => {
       expect(studyService.create).toHaveBeenCalledTimes(1)
     })
 
-    it('should call the cohort save method', async () => {
+    it('should call the cohort create method', async () => {
       await component.save()
-      expect(cohortService.save).toHaveBeenCalledTimes(1)
+      expect(cohortService.create).toHaveBeenCalledTimes(1)
     })
   })
 })

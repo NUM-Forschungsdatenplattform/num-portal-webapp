@@ -24,8 +24,14 @@ export class CohortService {
       .pipe(catchError(this.handleError))
   }
 
-  save(cohort: ICohortApi): Observable<ICohortApi> {
+  create(cohort: ICohortApi): Observable<ICohortApi> {
     return this.httpClient.post<ICohortApi>(this.baseUrl, cohort).pipe(catchError(this.handleError))
+  }
+
+  update(cohort: ICohortApi, id: number): Observable<ICohortApi> {
+    return this.httpClient
+      .put<ICohortApi>(`${this.baseUrl}/${id}`, cohort)
+      .pipe(catchError(this.handleError))
   }
 
   getCohortSize(id: number): Observable<number> {
