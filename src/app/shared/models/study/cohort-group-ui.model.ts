@@ -37,8 +37,8 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
       if (firstChild.type === ConnectorNodeType.Phenotype) {
         let model = new PhenotypeUiModel()
         model.isLoadingComplete = model.areParameterConfigured = false
-        this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
-          model = new PhenotypeUiModel(phenotype)
+        this.phenotypeService.get(firstChild.phenotypeId).subscribe((phenotype) => {
+          model = new PhenotypeUiModel(phenotype, true)
         })
         return model
       }
