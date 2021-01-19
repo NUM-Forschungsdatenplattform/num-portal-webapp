@@ -40,9 +40,11 @@
       <td mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="description">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
-      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    <ng-container matColumnDef="status">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{ (element.status ? 'STUDY_STATUS.' + element.status : undefined) | translate }}
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

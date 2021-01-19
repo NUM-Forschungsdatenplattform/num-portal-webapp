@@ -153,5 +153,15 @@
     "CLOSE_STUDY_CONTENT": "If the study is closed, no further research can be conducted on the data.\n\nThe study cannot be republished.\n\nAll selected researchers will also be informed that you have terminated the study.",
     "PUBLISH_STUDY_TITLE": "Do you really want to publish the study?",
     "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study."
+  },
+  "STUDY_STATUS": {
+    "APPROVED": "Approved",
+    "CHANGE_REQUEST": "Change request",
+    "CLOSED": "Closed",
+    "DENIED": "Denied",
+    "DRAFT": "Draft",
+    "PENDING": "Pending approval",
+    "PUBLISHED": "Published",
+    "REVIEWING": "In review"
   }
 }
