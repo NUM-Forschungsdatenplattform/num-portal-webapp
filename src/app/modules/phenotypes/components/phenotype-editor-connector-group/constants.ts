@@ -2,7 +2,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 
 export const EDIT_DIALOG_CONFIG: DialogConfig = {
-  title: 'CONFIGURE_AQL_DIALOG_HEADER',
+  title: 'AQL.CONFIGURE_AQL_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.CONFIRM_CHANGES',
   cancelButtonText: 'BUTTON.DELETE_FROM_LIST',
   dialogSize: DialogSize.Medium,
@@ -13,7 +13,7 @@ export const EDIT_DIALOG_CONFIG: DialogConfig = {
 }
 
 export const ADD_DIALOG_CONFIG: DialogConfig = {
-  title: 'ADD_AQL_DIALOG_HEADER',
+  title: 'AQL.ADD_AQL_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',
   cancelButtonText: 'BUTTON.CANCEL',
   dialogSize: DialogSize.Medium,

@@ -1,25 +1,28 @@
-<h3 id="aql-headline">{{ 'AVAILABLE_AQLS' | translate }}</h3>
+<h3 id="aql-headline">{{ 'AQL.AVAILABLE_AQLS' | translate }}</h3>
 
 <section fxLayout="column">
   <section fxLayout="row">
     <ng-container>
-      <p class="filter-title">{{ 'FILTER' | translate }}</p>
+      <p class="filter-title">{{ 'AQL.FILTER' | translate }}</p>
       <mat-select
+        [attr.aria-label]="'SELECT_FILTER_ITEM' | translate"
         class="filter-select"
         fxFlex="25%"
         [(value)]="selected"
         (selectionChange)="handleFilterChange()"
       >
-        <mat-option value="ALL_AQLS">{{ 'ALL_AQLS' | translate }}</mat-option>
-        <mat-option value="MY_AQLS">{{ 'MY_AQLS' | translate }}</mat-option>
-        <mat-option value="ORGANISATION_AQLS">{{ 'ORGANISATION_AQLS' | translate }}</mat-option>
+        <mat-option value="AqlFilterId.AllAql">{{ 'AQL.ALL_AQLS' | translate }}</mat-option>
+        <mat-option value="AQL.MY_AQLS">{{ 'AQL.MY_AQLS' | translate }}</mat-option>
+        <mat-option value="AQL.ORGANISATION_AQLS">{{
+          'AQL.ORGANISATION_AQLS' | translate
+        }}</mat-option>
       </mat-select>
     </ng-container>
 
     <num-search
       fxFlexOffset="auto"
       fxFlex="25%"
-      label="SEARCH_AQLS"
+      label="AQL.SEARCH_AQLS"
       [(searchText)]="filterConfig.searchText"
       (searchTextChange)="handleSearchChange()"
     ></num-search>
@@ -33,18 +36,20 @@
       class="mat-elevation-z1"
     >
       <ng-container matColumnDef="name">
-        <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.NAME' | translate }}</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="author">
-        <th scope="col" mat-header-cell *matHeaderCellDef>author</th>
-        <td mat-cell *matCellDef="let element">Lars Schäfer</td>
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.AUTHOR' | translate }}</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.owner.firstName }} {{ element.owner.lastName }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="organisation">
-        <th scope="col" mat-header-cell *matHeaderCellDef>organisation</th>
-        <td mat-cell *matCellDef="let element">Appsfactory GmbH</td>
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.ORGANIZATION' | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.owner.organization.name }}</td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

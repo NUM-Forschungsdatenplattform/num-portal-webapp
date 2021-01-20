@@ -1,4 +1,8 @@
-<table [attr.aria-label]="'ADD_AQL_DIALOG_HEADER' | translate" mat-table [dataSource]="dataSource">
+<table
+  [attr.aria-label]="'AQL.ADD_AQL_DIALOG_HEADER' | translate"
+  mat-table
+  [dataSource]="dataSource"
+>
   <ng-container matColumnDef="name">
     <th scope="col" mat-header-cell *matHeaderCellDef>name</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>

@@ -7,6 +7,7 @@ import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
 import { MatSort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
+import { AqlFilterId } from '../../../../shared/models/aql/aql-filter-chip.enum'
 
 @Component({
   selector: 'num-aql-table',
@@ -24,7 +25,7 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['name', 'author', 'organisation']
   dataSource = new MatTableDataSource()
   filterConfig: IAqlFilter
-  selected = 'ALL_AQLS'
+  selected = AqlFilterId.AllAql
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator

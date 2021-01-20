@@ -93,7 +93,15 @@ export class AqlService {
 
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toUpperCase()
-      result = allAqls.filter((aql) => aql.name.toUpperCase().includes(textFilter))
+      result = allAqls.filter(
+        (aql) =>
+          aql.name.toUpperCase().includes(textFilter) ||
+          aql.owner.organization.name.toUpperCase().includes(textFilter) ||
+          aql.owner.lastName.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
+          aql.owner.lastName.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
+      )
     }
 
     return result
