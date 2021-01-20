@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { StudyService } from 'src/app/core/services/study.service'
+import { StudyService } from 'src/app/core/services/study/study.service'
 
 @Component({
   selector: 'num-studies',

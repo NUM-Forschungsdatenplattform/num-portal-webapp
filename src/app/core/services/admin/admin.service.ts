@@ -8,7 +8,7 @@ import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { environment } from 'src/environments/environment'
-import { DEFAULT_USER_FILTER } from '../constants/default-filter-user'
+import { DEFAULT_USER_FILTER } from '../../constants/default-filter-user'
 
 @Injectable({
   providedIn: 'root',

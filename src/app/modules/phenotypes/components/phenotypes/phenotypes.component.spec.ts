@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { PhenotypesComponent } from './phenotypes.component'

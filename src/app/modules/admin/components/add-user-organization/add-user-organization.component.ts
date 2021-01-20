@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { Subscription } from 'rxjs'
-import { OrganizationService } from 'src/app/core/services/organization.service'
+import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 
 @Component({

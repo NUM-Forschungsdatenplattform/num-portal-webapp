@@ -4,7 +4,7 @@ import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorGroupUiModel } from '../connector-group-ui.model'
 import { ICohortGroupApi } from './cohort-group-api.interface'
 import { ICohortApi } from './cohort-api.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 
 export class CohortGroupUiModel extends ConnectorGroupUiModel {
   type: ConnectorNodeType.Group

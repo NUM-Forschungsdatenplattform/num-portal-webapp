@@ -1,4 +1,4 @@
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'

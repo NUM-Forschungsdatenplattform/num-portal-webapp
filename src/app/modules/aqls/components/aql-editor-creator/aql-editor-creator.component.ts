@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
-import { DialogService } from 'src/app/core/services/dialog.service'
+import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'

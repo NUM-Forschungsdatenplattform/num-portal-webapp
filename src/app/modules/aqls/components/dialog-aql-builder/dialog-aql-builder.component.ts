@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
-import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
+import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'

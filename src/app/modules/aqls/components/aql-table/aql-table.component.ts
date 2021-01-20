@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 
 @Component({
   selector: 'num-aql-table',

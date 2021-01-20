@@ -11,7 +11,7 @@ import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 
 import { debounce } from 'lodash-es'
 import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
-import { DialogService } from 'src/app/core/services/dialog.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'

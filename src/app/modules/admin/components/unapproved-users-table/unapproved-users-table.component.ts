@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { AdminService } from 'src/app/core/services/admin.service'
+import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatSort } from '@angular/material/sort'
@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
-import { DialogService } from 'src/app/core/services/dialog.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
 
 @Component({

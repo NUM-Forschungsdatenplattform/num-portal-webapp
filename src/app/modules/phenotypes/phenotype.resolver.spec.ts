@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router'
 import { of, throwError } from 'rxjs'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { PhenotypeResolver } from './phenotype.resolver'

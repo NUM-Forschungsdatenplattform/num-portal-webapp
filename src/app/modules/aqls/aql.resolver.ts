@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlResolved } from './models/aql-resolved.interface'
 import { AqlEditorUiModel } from '../../shared/models/aql/aql-editor-ui.model'
 

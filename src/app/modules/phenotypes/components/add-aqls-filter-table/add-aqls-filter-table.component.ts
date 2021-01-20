@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
 @Component({

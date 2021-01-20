@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { CohortService } from 'src/app/core/services/cohort.service'
+import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 
 @Component({
   selector: 'num-cohorts',

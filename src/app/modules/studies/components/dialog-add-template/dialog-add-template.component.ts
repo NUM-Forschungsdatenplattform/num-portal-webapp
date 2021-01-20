@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { ITemplateFilter } from '../../../../shared/models/template/template-filter.interface'
-import { TemplateService } from '../../../../core/services/template.service'
+import { TemplateService } from '../../../../core/services/template/template.service'
 import { take } from 'rxjs/operators'
 import { IStudyTemplateInfoApi } from 'src/app/shared/models/study/study-template-info-api.interface'
 

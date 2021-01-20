@@ -1,7 +1,7 @@
 import { NestedTreeControl } from '@angular/cdk/tree'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTreeNestedDataSource } from '@angular/material/tree'
-import { AqlEditorService } from 'src/app/core/services/aql-editor.service'
+import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'

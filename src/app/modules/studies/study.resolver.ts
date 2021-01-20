@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { StudyService } from 'src/app/core/services/study/study.service'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { StudyService } from '../../core/services/study.service'
 import { IStudyResolved } from './study-resolved.interface'
 
 @Injectable({

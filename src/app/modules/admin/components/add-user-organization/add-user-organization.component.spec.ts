@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { AddUserOrganizationComponent } from './add-user-organization.component'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
 import { mockOrganization1, mockOrganization2 } from 'src/mocks/data-mocks/organizations.mock'
-import { OrganizationService } from 'src/app/core/services/organization.service'
+import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { Subject } from 'rxjs'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { MonacoLoaderService } from 'src/app/core/services/monaco-loader.service'
+import { MonacoLoaderService } from 'src/app/core/services/monaco-loader/monaco-loader.service'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { numEditorTheme } from '../../num-editor.theme'
 

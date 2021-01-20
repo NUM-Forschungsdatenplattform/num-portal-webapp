@@ -10,7 +10,7 @@ import {
 } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
-import { PhenotypeService } from 'src/app/core/services/phenotype.service'
+import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 

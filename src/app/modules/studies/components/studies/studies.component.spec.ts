@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
-import { StudyService } from 'src/app/core/services/study.service'
+import { StudyService } from 'src/app/core/services/study/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { StudiesComponent } from './studies.component'
