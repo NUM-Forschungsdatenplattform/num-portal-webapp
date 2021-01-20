@@ -38,7 +38,7 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
         let model = new PhenotypeUiModel()
         model.isLoadingComplete = model.areParameterConfigured = false
         this.phenotypeService.get(firstChild.phenotypeId).subscribe((phenotype) => {
-          model = new PhenotypeUiModel(phenotype, true)
+          model = new PhenotypeUiModel(phenotype, true, firstChild.parameters)
         })
         return model
       }
@@ -51,7 +51,7 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
       let model = new PhenotypeUiModel()
       model.isLoadingComplete = model.areParameterConfigured = false
       this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
-        model = new PhenotypeUiModel(phenotype)
+        model = new PhenotypeUiModel(phenotype, false, child.parameters)
       })
       return model
     }
