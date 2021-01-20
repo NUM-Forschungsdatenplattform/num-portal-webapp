@@ -38,18 +38,6 @@ export const routes: Routes = [
       ).then((m) => m.PhenotypesModule),
   },
   {
-    path: 'cohorts',
-    canLoad: [RoleGuard],
-    data: {
-      navId: 'cohorts',
-      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
-    },
-    loadChildren: () =>
-      import(/* webpackChunkName: "Cohorts.Module" */ './modules/cohorts/cohorts.module').then(
-        (m) => m.CohortsModule
-      ),
-  },
-  {
     path: 'aqls',
     canLoad: [RoleGuard],
     data: {

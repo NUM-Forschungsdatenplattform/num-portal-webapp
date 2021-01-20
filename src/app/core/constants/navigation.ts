@@ -41,11 +41,6 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
-    routeTo: 'cohorts',
-    icon: 'cubes',
-    translationKey: 'NAVIGATION.COHORTS',
-  },
-  {
     routeTo: 'aqls',
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',
