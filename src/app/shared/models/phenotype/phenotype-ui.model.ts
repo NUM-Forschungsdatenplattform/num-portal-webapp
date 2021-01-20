@@ -6,6 +6,7 @@ import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
 import { ICohortGroupApi } from '../study/cohort-group-api.interface'
+import { IDictionary } from '../dictionary.interface'
 
 export class PhenotypeUiModel implements ConnectorMainNodeUi {
   id: number
@@ -26,7 +27,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
 
   isLoadingComplete = true
 
-  constructor(phenotypeApi?: IPhenotypeApi, isNegated?: boolean) {
+  constructor(phenotypeApi?: IPhenotypeApi, isNegated?: boolean, parameters?: IDictionary<string>) {
     this.type = ConnectorNodeType.Phenotype
     this.id = phenotypeApi?.id || 0
     this.name = phenotypeApi?.name || undefined
@@ -35,7 +36,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     this.query = new PhenotypeGroupUiModel()
     if (phenotypeApi) {
       this.convertQueryToUi(phenotypeApi.query)
-      this.handleParameters(phenotypeApi.query)
+      this.handleParameters(phenotypeApi.query, parameters)
     }
   }
 
@@ -62,14 +63,16 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     })
   }
 
-  private handleParameters(query: IPhenotypeQueryApi): void {
-    const parameters: string[] = []
-    this.collectParameters(query, parameters)
-    this.parameter = [...new Set(parameters)].map((name) => {
-      return { name, value: undefined }
+  private handleParameters(query: IPhenotypeQueryApi, savedParameters?: IDictionary<string>): void {
+    const collectedParameters: string[] = []
+    this.collectParameters(query, collectedParameters)
+    this.parameter = [...new Set(collectedParameters)].map((name) => {
+      return { name, value: savedParameters ? savedParameters[name] : undefined }
     })
 
-    if (this.parameter.length) {
+    if (
+      this.parameter.filter((param) => param.value === undefined || param.value === null).length
+    ) {
       this.areParameterConfigured = false
     }
   }
