@@ -14,6 +14,7 @@ import { StudyService } from 'src/app/core/services/study/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
+import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
@@ -30,12 +31,14 @@ describe('StudyEditorComponent', () => {
 
   const studyService = ({
     create: jest.fn(),
+    update: jest.fn(),
     getCommentsByStudyId: jest.fn(),
     createCommentByStudyId: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
-    save: jest.fn(),
+    create: jest.fn(),
+    update: jest.fn(),
     get: jest.fn(),
   } as unknown) as CohortService
 
@@ -164,9 +167,13 @@ describe('StudyEditorComponent', () => {
   beforeEach(() => {
     router = TestBed.inject(Router)
     jest.restoreAllMocks()
+    jest.clearAllMocks()
+    jest.spyOn(router, 'navigate').mockImplementation()
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
+    jest.spyOn(cohortService, 'update').mockImplementation(() => of(mockCohort1))
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
     jest.spyOn(studyService, 'getCommentsByStudyId').mockImplementation(() => of(studyCommentMocks))
+    jest.spyOn(studyService, 'update').mockImplementation(() => of(mockStudy1))
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
@@ -263,6 +270,66 @@ describe('StudyEditorComponent', () => {
       expect(component.commentForm.value.text).not.toEqual(null)
       postCommentEmitter.emit()
       expect(component.commentForm.value.text).toEqual(null)
+    })
+  })
+
+  describe('When the buttons component emits to saveAll', () => {
+    beforeEach(() => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+
+      fixture.detectChanges()
+      saveAllEmitter.emit('')
+    })
+
+    it('should update the study if its an existing study', () => {
+      expect(studyService.update).toHaveBeenCalledTimes(1)
+    })
+    it('should update the cohort if its an existing cohort', () => {
+      expect(cohortService.update).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('When the buttons component emits to saveResearchers', () => {
+    it('should update the study if its an existing study', () => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+      jest.spyOn(component, 'save')
+
+      fixture.detectChanges()
+      saveResearchersEmitter.emit()
+      expect(component.save).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('When the buttons component emits to startEdit', () => {
+    it('should navigate to the editor with the study id and edit mode', () => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+
+      fixture.detectChanges()
+      startEditEmitter.emit()
+
+      const queryParams = { mode: PossibleStudyEditorMode.EDIT.toString().toLowerCase() }
+
+      expect(router.navigate).toHaveBeenCalledWith(['studies', resolvedData.study.id, 'editor'], {
+        queryParams,
+      })
+    })
+  })
+
+  describe('When the buttons component emits to cancel', () => {
+    it('should navigate back to the studies overview', () => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+
+      fixture.detectChanges()
+      cancelEmitter.emit()
+      expect(router.navigate).toHaveBeenCalledWith(['studies'])
     })
   })
 })

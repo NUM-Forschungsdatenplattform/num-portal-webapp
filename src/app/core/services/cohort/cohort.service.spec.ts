@@ -8,9 +8,18 @@ import { CohortService } from './cohort.service'
 describe('CohortService', () => {
   let service: CohortService
 
+  const mockCohort: ICohortApi = {
+    id: null,
+    name: 'Test Name',
+    studyId: 1,
+    description: 'Test Description',
+    cohortGroup: undefined,
+  }
+
   const httpClient = ({
-    get: () => of(),
-    post: () => of(),
+    get: jest.fn(),
+    post: jest.fn(),
+    put: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -23,6 +32,7 @@ describe('CohortService', () => {
 
   beforeEach(() => {
     service = new CohortService(httpClient, appConfig)
+    jest.spyOn(service, 'handleError')
   })
 
   it('should be created', () => {
@@ -48,7 +58,6 @@ describe('CohortService', () => {
 
     it('should call the api and handle erros', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
-      jest.spyOn(service, 'handleError')
 
       service.getCohortSize(cohortId).subscribe()
 
@@ -60,23 +69,15 @@ describe('CohortService', () => {
     it('should call the api with the cohort id', () => {
       const cohortId = 2
       jest.spyOn(httpClient, 'get').mockImplementation(() => of())
-      service.get(cohortId)
+      service.get(cohortId).subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
         `${appConfig.config.api.baseUrl}/cohort/${cohortId}`
       )
     })
   })
 
-  describe('When a cohort is supposed to be saved', () => {
+  describe('When a cohort is supposed to be created', () => {
     it('should call the api to post the cohort', () => {
-      const mockCohort: ICohortApi = {
-        id: null,
-        name: 'Test Name',
-        studyId: 1,
-        description: 'Test Description',
-        cohortGroup: undefined,
-      }
-
       const request = {
         url: `${appConfig.config.api.baseUrl}/cohort`,
         body: mockCohort,
@@ -84,8 +85,28 @@ describe('CohortService', () => {
 
       jest.spyOn(httpClient, 'post').mockImplementation(() => of())
 
-      service.save(mockCohort)
+      service.create(mockCohort).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
+    })
+  })
+
+  describe('When a cohort is supposed to be updated', () => {
+    const id = 1
+    const request = {
+      url: `${appConfig.config.api.baseUrl}/cohort/${id}`,
+      body: mockCohort,
+    }
+    it('should call the api to update the cohort', () => {
+      jest.spyOn(httpClient, 'put').mockImplementation(() => of())
+      service.update(mockCohort, id).subscribe()
+      expect(httpClient.put).toHaveBeenCalledWith(request.url, request.body)
+    })
+
+    it('should call the api and handle errors if they occur', () => {
+      jest.spyOn(httpClient, 'put').mockImplementationOnce(() => throwError('Not today'))
+      service.update(mockCohort, id).subscribe()
+      expect(httpClient.put).toHaveBeenCalledWith(request.url, request.body)
+      expect(service.handleError).toHaveBeenCalledTimes(1)
     })
   })
 })
