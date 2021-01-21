@@ -16,10 +16,7 @@ export class FilterSelectComponent implements OnInit {
 
   handleFilterChange($event: any): void {
     const selectedValue = $event
-    const filterItems = this.filterItem.map((filterItem) => {
-      // if (filterItem.id === selectedValue) {
-      // }
-    })
+    const filterItems = this.filterItem.filter((filterItem) => filterItem.id === selectedValue)
     this.selectionChange.emit(filterItems)
   }
 }
