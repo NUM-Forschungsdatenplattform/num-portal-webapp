@@ -2,22 +2,28 @@
 
 <section fxLayout="column">
   <section fxLayout="row">
-    <ng-container>
-      <p class="filter-title">{{ 'AQL.FILTER' | translate }}</p>
+    <num-filter-select
+      fxFlex="25%"
+      [filterItem]="filterConfig.filterItem"
+      [selectedItem]="selectedItem"
+      (selectionChange)="handleFilterChange()"
+    >
+    </num-filter-select>
+
+    <!--<p class="filter-title">{{ 'AQL.FILTER' | translate }}</p>
       <mat-select
         [attr.aria-label]="'SELECT_FILTER_ITEM' | translate"
         class="filter-select"
         fxFlex="25%"
-        [(value)]="selected"
+        [(value)]="selectedItem"
         (selectionChange)="handleFilterChange()"
       >
-        <mat-option value="AqlFilterId.AllAql">{{ 'AQL.ALL_AQLS' | translate }}</mat-option>
+        <mat-option value="AQL.ALL_AQLS">{{ 'AQL.ALL_AQLS' | translate }}</mat-option>
         <mat-option value="AQL.MY_AQLS">{{ 'AQL.MY_AQLS' | translate }}</mat-option>
         <mat-option value="AQL.ORGANISATION_AQLS">{{
           'AQL.ORGANISATION_AQLS' | translate
         }}</mat-option>
-      </mat-select>
-    </ng-container>
+      </mat-select>-->
 
     <num-search
       fxFlexOffset="auto"

@@ -25,7 +25,7 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
   displayedColumns: string[] = ['name', 'author', 'organisation']
   dataSource = new MatTableDataSource()
   filterConfig: IAqlFilter
-  selected = AqlFilterId.AllAql
+  selectedItem = 'AQL.ALL_AQLS'
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator

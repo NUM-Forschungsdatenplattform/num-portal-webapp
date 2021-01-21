@@ -3,7 +3,7 @@ import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
 
 export const DEFAULT_AQL_FILTER: IAqlFilter = {
   searchText: '',
-  filterChips: [
+  filterItem: [
     {
       id: AqlFilterId.MyAql,
       title: 'AQL.MY_AQLS',

@@ -90,7 +90,6 @@ export class AqlService {
 
   filterItems(allAqls: IAqlApi[], filterSet: IAqlFilter): IAqlApi[] {
     let result: IAqlApi[] = allAqls
-
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allAqls.filter(
@@ -104,7 +103,7 @@ export class AqlService {
       )
     }
 
-    return result
+    if (filterSet.filterItem) return result
   }
 
   save(aqlQuery: IAqlApi): Observable<IAqlApi> {

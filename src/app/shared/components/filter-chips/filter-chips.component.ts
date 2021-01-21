@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { IFilterChip } from '../../models/filter-chip.interface'
+import { IFilterItem } from '../../models/filter-chip.interface'
 
 @Component({
   selector: 'num-filter-chips',
@@ -8,7 +8,7 @@ import { IFilterChip } from '../../models/filter-chip.interface'
 })
 export class FilterChipsComponent implements OnInit {
   constructor() {}
-  @Input() filterChips: IFilterChip<string | number>[]
+  @Input() filterChips: IFilterItem<string | number>[]
   @Output() selectionChange = new EventEmitter()
 
   ngOnInit(): void {}

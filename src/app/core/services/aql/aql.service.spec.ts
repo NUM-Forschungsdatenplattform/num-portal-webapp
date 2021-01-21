@@ -25,7 +25,7 @@ describe('AqlService', () => {
   } as AppConfigService
 
   const filterConfig: IAqlFilter = {
-    filterChips: [],
+    filterItem: [],
     searchText: 'test',
   }
 
@@ -103,7 +103,7 @@ describe('AqlService', () => {
 
     it('should debounce the filtering', async (done) => {
       const filterConfigLast: IAqlFilter = {
-        filterChips: [],
+        filterItem: [],
         searchText: 'name1',
       }
       let filterResult: AqlEditorUiModel[]
