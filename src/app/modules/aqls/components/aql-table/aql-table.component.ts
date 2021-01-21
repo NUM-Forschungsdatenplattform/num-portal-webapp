@@ -7,7 +7,6 @@ import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
 import { MatSort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
-import { AqlFilterId } from '../../../../shared/models/aql/aql-filter-chip.enum'
 
 @Component({
   selector: 'num-aql-table',
@@ -42,8 +41,15 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSource.paginator = this.paginator
   }
 
-  handleFilterChange(): void {
-    this.aqlService.setFilter(this.filterConfig)
+  handleFilterChange($event: any): void {
+    const selectedValue = $event
+    const filteredConfig = {
+      ...this.filterConfig,
+      filterItem: this.filterConfig.filterItem.filter(
+        (filterItem) => filterItem.id === selectedValue
+      ),
+    }
+    this.aqlService.setFilter(filteredConfig)
   }
 
   handleSearchChange(): void {

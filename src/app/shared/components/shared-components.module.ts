@@ -11,7 +11,6 @@ import { SearchComponent } from './search/search.component'
 import { FilterTableComponent } from './filter-table/filter-table.component'
 import { PipesModule } from '../pipes/pipes.module'
 import { DefinitionListComponent } from './definition-list/definition-list.component'
-import { FilterSelectComponent } from './filter-select/filter-select.component'
 
 const SHARED_DECLARATIONS = [
   SearchComponent,
@@ -22,7 +21,7 @@ const SHARED_DECLARATIONS = [
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent, FilterSelectComponent],
+  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -33,6 +32,6 @@ const SHARED_DECLARATIONS = [
     TranslateModule,
     PipesModule,
   ],
-  exports: [...SHARED_DECLARATIONS, FilterSelectComponent],
+  exports: [...SHARED_DECLARATIONS],
 })
 export class SharedComponentsModule {}
