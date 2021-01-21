@@ -25,8 +25,8 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription()
   @ViewChild(MatPaginator) paginator: MatPaginator
-  @Input() selectedAqls: IAqlApi[]
-  @Output() selectedAqlsChange = new EventEmitter<IAqlApi[]>()
+  @Input() selectedAqls: AqlUiModel[]
+  @Output() selectedAqlsChange = new EventEmitter<AqlUiModel[]>()
 
   constructor(private aqlService: AqlService) {}
   dataSource = new MatTableDataSource<IAqlApi>()
@@ -52,7 +52,7 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'selectedAqls': {
-            const changedData = changes[propName].currentValue as IAqlApi[]
+            const changedData = changes[propName].currentValue as AqlUiModel[]
             const selectedAqls: { [id: number]: boolean } = {}
             changedData.forEach((selectedAql) => (selectedAqls[selectedAql.id] = true))
             this.lookupSelectedAql = selectedAqls
@@ -68,6 +68,6 @@ export class AddAqlsFilterTableComponent implements OnInit, AfterViewInit, OnDes
 
   handleRowClick(row: IAqlApi): void {
     this.lookupSelectedAql[row.id] = true
-    this.selectedAqlsChange.emit([...this.selectedAqls, row])
+    this.selectedAqlsChange.emit([...this.selectedAqls, new AqlUiModel(row)])
   }
 }

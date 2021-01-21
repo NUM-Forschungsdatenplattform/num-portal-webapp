@@ -5,16 +5,26 @@
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
+  <!--  <ng-container matColumnDef="author">-->
+  <!--    <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.AUTHOR' | translate }}</th>-->
+  <!--    <td mat-cell *matCellDef="let element">-->
+  <!--      {{ element.owner.firstName }} {{ element.owner.lastName }}-->
+  <!--    </td>-->
+  <!--  </ng-container>-->
+
+  <!--  <ng-container matColumnDef="organisation">-->
+  <!--    <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.ORGANIZATION' | translate }}</th>-->
+  <!--    <td mat-cell *matCellDef="let element">{{ element.owner.organization.name }}</td>-->
+  <!--  </ng-container>-->
+
   <ng-container matColumnDef="author">
-    <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.AUTHOR' | translate }}</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.owner.firstName }} {{ element.owner.lastName }}
-    </td>
+    <th scope="col" mat-header-cell *matHeaderCellDef>author</th>
+    <td mat-cell *matCellDef="let element">Lars Schäfer</td>
   </ng-container>
 
   <ng-container matColumnDef="organisation">
-    <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.ORGANIZATION' | translate }}</th>
-    <td mat-cell *matCellDef="let element">{{ element.owner.organization.name }}</td>
+    <th scope="col" mat-header-cell *matHeaderCellDef>organisation</th>
+    <td mat-cell *matCellDef="let element">Appsfactory GmbH</td>
   </ng-container>
 
   <ng-container matColumnDef="icon">

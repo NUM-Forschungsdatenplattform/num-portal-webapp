@@ -37,7 +37,7 @@ export class AqlService {
     private authService: AuthService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
-    this.user = this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
+    this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
