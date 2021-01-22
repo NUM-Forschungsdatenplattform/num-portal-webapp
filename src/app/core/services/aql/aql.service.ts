@@ -7,6 +7,8 @@ import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { environment } from '../../../../environments/environment'
+import { AuthService } from '../../auth/auth.service'
+import { AqlFilterEnum } from '../../../shared/models/aql/aql-filter-chip.enum'
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,7 @@ export class AqlService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
+  user: any = {}
 
   private aqls: IAqlApi[] = []
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
@@ -28,8 +31,13 @@ export class AqlService {
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private authService: AuthService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
+    this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
@@ -103,7 +111,16 @@ export class AqlService {
       )
     }
 
-    if (filterSet.filterItem) return result
+    if (filterSet.filterItem) {
+      filterSet.filterItem.forEach((filterItem) => {
+        if (filterItem.id === AqlFilterEnum.MyAql) {
+          result = result.filter((aql) => aql.owner.id === this.user.sub)
+        } /*else if (filterItem.id === AqlFilterEnum.OrganisationAql) {
+          result = result.filter((aql) => aql.owner.organization === this.user.organization)
+        }*/
+      })
+    }
+    return result
   }
 
   save(aqlQuery: IAqlApi): Observable<IAqlApi> {

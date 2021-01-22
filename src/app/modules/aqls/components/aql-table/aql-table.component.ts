@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { AqlService } from 'src/app/core/services/aql.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'

@@ -5,7 +5,7 @@ import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { mockAql1, mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
-import { AuthService } from '../auth/auth.service'
+import { AuthService } from 'src/app/core/auth/auth.service'
 
 describe('AqlService', () => {
   let service: AqlService
