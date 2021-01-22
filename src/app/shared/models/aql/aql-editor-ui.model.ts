@@ -1,4 +1,5 @@
 import { IAqlApi } from './aql.interface'
+import { IUser } from '../user/user.interface'
 
 export class AqlEditorUiModel {
   id: number
@@ -9,7 +10,7 @@ export class AqlEditorUiModel {
   createDate: string
   modifiedDate: string
   organizationId: string
-  ownerId: string
+  owner: IUser
   publicAql: boolean
 
   constructor(aql?: IAqlApi) {
@@ -21,7 +22,7 @@ export class AqlEditorUiModel {
     this.createDate = aql?.createDate || undefined
     this.modifiedDate = aql?.modifiedDate || undefined
     this.organizationId = aql?.organizationId || undefined
-    this.ownerId = aql?.ownerId || undefined
+    this.owner = aql?.owner || undefined
     this.publicAql = aql?.publicAql || true
   }
 

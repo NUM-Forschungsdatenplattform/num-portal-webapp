@@ -13,6 +13,7 @@ export const mockUser: IUser = {
   lastName: 'Mustermann',
   roles: ['some', 'role'],
   username: 'mock-user-1',
+  createdTimestamp: 1603140166809,
 }
 
 export const mockUsers: IUser[] = [
@@ -28,6 +29,7 @@ export const mockUsers: IUser[] = [
     lastName: 'Mustermann',
     roles: ['some', 'role'],
     username: 'mock-user-1',
+    createdTimestamp: 1603140166809,
   },
   {
     approved: false,
@@ -41,6 +43,7 @@ export const mockUsers: IUser[] = [
     lastName: 'Musterfrau',
     roles: ['no', 'roles'],
     username: 'mock-user-2',
+    createdTimestamp: 1603140166809,
   },
 ]
 

@@ -1,21 +1,66 @@
-<h3 id="aql-headline">{{ 'AVAILABLE_AQLS' | translate }}</h3>
+<h3 id="aql-headline">{{ 'AQL.AVAILABLE_AQLS' | translate }}</h3>
 
-<table
-  aria-labelledby="aql-headline"
-  mat-table
-  [dataSource]="dataSource | async"
-  class="mat-elevation-z1"
->
-  <ng-container matColumnDef="id">
-    <th scope="col" mat-header-cell *matHeaderCellDef>ID</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+<section fxLayout="column">
+  <section fxLayout="row">
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
+    <!--    <label for="filter-select" class="filter-title">-->
+    <!--      {{ 'AQL.FILTER' | translate }}-->
+    <!--    </label>-->
+    <!--    <mat-select-->
+    <!--      id="filter-select"-->
+    <!--      class="filter-select"-->
+    <!--      fxFlex="25%"-->
+    <!--      [attr.aria-label]="'SELECT_FILTER_ITEM' | translate"-->
+    <!--      (selectionChange)="handleFilterChange($event.value)"-->
+    <!--      [(value)]="selectedItem"-->
+    <!--    >-->
+    <!--      <mat-option color="primary" *ngFor="let items of filterConfig.filterItem" [value]="items.id">-->
+    <!--        {{ items.title | translate }}-->
+    <!--      </mat-option>-->
+    <!--    </mat-select>-->
+
+    <num-search
+      fxFlexOffset="auto"
+      fxFlex="25%"
+      label="AQL.SEARCH_AQLS"
+      [(searchText)]="filterConfig.searchText"
+      (searchTextChange)="handleSearchChange()"
+    ></num-search>
+  </section>
+
+  <ng-container>
+    <table
+      aria-labelledby="aql-headline"
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z1"
+    >
+      <ng-container matColumnDef="name">
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.NAME' | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.AUTHOR' | translate }}</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.owner.firstName }} {{ element.owner.lastName }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="organisation">
+        <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'AQL.ORGANIZATION' | translate }}</th>
+        <td mat-cell *matCellDef="let element">{{ element.owner.organization.name }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th scope="col" mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+</section>

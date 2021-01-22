@@ -19,7 +19,7 @@ describe('DialogAddAqlsComponent', () => {
   let component: DialogAddAqlsComponent
   let fixture: ComponentFixture<DialogAddAqlsComponent>
   const filteredAqlsSubject$ = new Subject<IAqlApi[]>()
-  const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterChips: [] })
+  const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterItem: [] })
   const aqlService = {
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
