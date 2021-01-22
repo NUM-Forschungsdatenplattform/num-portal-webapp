@@ -23,10 +23,6 @@ describe('DialogAddResearchersComponent', () => {
 
   const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
 
-  const mockEvent = ({
-    rowClick: jest.fn().mockImplementation,
-  } as unknown) as Event
-
   @Component({ selector: 'num-filter-table', template: '' })
   class FilterTableStubComponent {
     @Input() dataSource: MatTableDataSource<IUser>
@@ -36,7 +32,6 @@ describe('DialogAddResearchersComponent', () => {
     @Input() selectedItems: IUser[]
     @Output() selectedItemsChange = selectedItemsChangeEmitter
     @Input() idOfHighlightedRow: string | number
-    @Output() rowClick = mockEvent
   }
 
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()

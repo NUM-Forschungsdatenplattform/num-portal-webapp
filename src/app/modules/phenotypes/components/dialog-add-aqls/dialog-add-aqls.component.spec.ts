@@ -30,9 +30,6 @@ describe('DialogAddAqlsComponent', () => {
   } as AqlService
 
   const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
-  const mockEvent = ({
-    rowClick: jest.fn().mockImplementation,
-  } as unknown) as Event
 
   @Component({ selector: 'num-filter-table', template: '' })
   class FilterTableStubComponent {
@@ -43,7 +40,6 @@ describe('DialogAddAqlsComponent', () => {
     @Input() selectedItems: IUser[]
     @Output() selectedItemsChange = selectedItemsChangeEmitter
     @Input() idOfHighlightedRow: string | number
-    @Output() rowClick = mockEvent
   }
 
   @Component({ selector: 'num-definition-list', template: '' })
