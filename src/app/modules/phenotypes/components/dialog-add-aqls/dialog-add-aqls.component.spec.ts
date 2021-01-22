@@ -10,8 +10,6 @@ import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/fil
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { AddAqlsFilterTableComponent } from '../add-aqls-filter-table/add-aqls-filter-table.component'
-import { AddAqlsSelectedTableComponent } from '../add-aqls-selected-table/add-aqls-selected-table.component'
 
 import { DialogAddAqlsComponent } from './dialog-add-aqls.component'
 
@@ -29,13 +27,7 @@ describe('DialogAddAqlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DialogAddAqlsComponent,
-        AddAqlsFilterTableComponent,
-        AddAqlsSelectedTableComponent,
-        FilterChipsComponent,
-        SearchComponent,
-      ],
+      declarations: [DialogAddAqlsComponent, FilterChipsComponent, SearchComponent],
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,

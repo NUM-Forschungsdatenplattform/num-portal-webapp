@@ -103,7 +103,6 @@ export class AqlService {
       result = allAqls.filter(
         (aql) =>
           aql.name.toUpperCase().includes(textFilter) ||
-          aql.owner.organization.name.toUpperCase().includes(textFilter) ||
           aql.owner.lastName.toUpperCase().includes(textFilter) ||
           aql.owner.firstName.toUpperCase().includes(textFilter) ||
           aql.owner.firstName.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
@@ -113,11 +112,13 @@ export class AqlService {
 
     if (filterSet.filterItem) {
       filterSet.filterItem.forEach((filterItem) => {
-        if (filterItem.id === AqlFilterEnum.MyAql) {
-          result = result.filter((aql) => aql.owner.id === this.user.sub)
-        } /*else if (filterItem.id === AqlFilterEnum.OrganisationAql) {
-          result = result.filter((aql) => aql.owner.organization === this.user.organization)
-        }*/
+        if (filterItem.isSelected) {
+          if (filterItem.id === AqlFilterEnum.MyAql) {
+            result = result.filter((aql) => aql.owner.id === this.user.sub)
+          } /*else if (filterItem.id === AqlFilterEnum.OrganisationAql) {
+            result = result.filter((aql) => aql.owner.organization === this.user.organization)
+          }*/
+        }
       })
     }
     return result
