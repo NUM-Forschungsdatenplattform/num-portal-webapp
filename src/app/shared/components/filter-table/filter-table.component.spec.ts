@@ -46,7 +46,10 @@ describe('FilterTableComponent', () => {
   describe('When select button for a row is clicked', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedItemsChange, 'emit')
-      component.handleSelectClick(mockUsers[0])
+      const mockEvent = ({
+        stopPropagation: jest.fn().mockImplementation,
+      } as unknown) as Event
+      component.handleSelectClick(mockEvent, mockUsers[0])
     })
 
     it('should item isSelected to true', () => {
