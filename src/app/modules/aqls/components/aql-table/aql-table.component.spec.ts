@@ -10,6 +10,9 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ReactiveFormsModule } from '@angular/forms'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -24,9 +27,26 @@ describe('AqlTableComponent', () => {
     setFilter: (_: any) => {},
   } as AqlService
 
+  @Component({ selector: 'num-definition-list', template: '' })
+  class DefinitionListStubComponent {
+    @Input() dataSource: IDefinitionList[]
+  }
+
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlTableComponent, SearchComponent],
+      declarations: [
+        AqlTableComponent,
+        SearchComponent,
+        DefinitionListStubComponent,
+        StubFilterChipsComponent,
+      ],
       imports: [
         MaterialModule,
         ReactiveFormsModule,

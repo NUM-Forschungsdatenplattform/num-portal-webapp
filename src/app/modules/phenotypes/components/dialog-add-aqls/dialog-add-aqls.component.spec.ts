@@ -12,6 +12,10 @@ import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 
 import { DialogAddAqlsComponent } from './dialog-add-aqls.component'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { MatTableDataSource } from '@angular/material/table'
+import { IUser } from '../../../../shared/models/user/user.interface'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 describe('DialogAddAqlsComponent', () => {
   let component: DialogAddAqlsComponent
@@ -25,9 +29,37 @@ describe('DialogAddAqlsComponent', () => {
     setFilter: (_: any) => {},
   } as AqlService
 
+  const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
+  const mockEvent = ({
+    rowClick: jest.fn().mockImplementation,
+  } as unknown) as Event
+
+  @Component({ selector: 'num-filter-table', template: '' })
+  class FilterTableStubComponent {
+    @Input() dataSource: MatTableDataSource<IUser>
+    @Input() identifierName: string
+    @Input() columnKeys: string[]
+    @Input() columnPaths: string[][]
+    @Input() selectedItems: IUser[]
+    @Output() selectedItemsChange = selectedItemsChangeEmitter
+    @Input() idOfHighlightedRow: string | number
+    @Output() rowClick = mockEvent
+  }
+
+  @Component({ selector: 'num-definition-list', template: '' })
+  class DefinitionListStubComponent {
+    @Input() dataSource: IDefinitionList[]
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddAqlsComponent, FilterChipsComponent, SearchComponent],
+      declarations: [
+        DialogAddAqlsComponent,
+        FilterChipsComponent,
+        SearchComponent,
+        FilterTableStubComponent,
+        DefinitionListStubComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         ReactiveFormsModule,
