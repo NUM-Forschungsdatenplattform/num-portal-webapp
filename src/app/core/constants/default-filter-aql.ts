@@ -5,18 +5,18 @@ export const DEFAULT_AQL_FILTER: IAqlFilter = {
   searchText: '',
   filterItem: [
     {
+      id: AqlFilterEnum.AllAql,
+      title: 'AQL.ALL_AQLS',
+      isSelected: true,
+    },
+    {
       id: AqlFilterEnum.MyAql,
       title: 'AQL.MY_AQLS',
-      isSelected: true,
+      isSelected: false,
     },
     {
       id: AqlFilterEnum.OrganisationAql,
       title: 'AQL.ORGANISATION_AQLS',
-      isSelected: true,
-    },
-    {
-      id: AqlFilterEnum.AllAql,
-      title: 'AQL.ALL_AQLS',
       isSelected: false,
     },
   ],

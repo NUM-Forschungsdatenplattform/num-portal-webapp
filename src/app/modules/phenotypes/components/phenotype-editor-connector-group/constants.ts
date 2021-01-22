@@ -13,7 +13,7 @@ export const EDIT_DIALOG_CONFIG: DialogConfig = {
 }
 
 export const ADD_DIALOG_CONFIG: DialogConfig = {
-  title: 'AQL.ADD_AQL_DIALOG_HEADER',
+  title: 'AQL.AVAILABLE_AQLS',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',
   cancelButtonText: 'BUTTON.CANCEL',
   dialogSize: DialogSize.Medium,

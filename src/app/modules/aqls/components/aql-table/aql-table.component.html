@@ -2,21 +2,27 @@
 
 <section fxLayout="column">
   <section fxLayout="row">
-    <label for="filter-select" class="filter-title">
-      {{ 'AQL.FILTER' | translate }}
-    </label>
-    <mat-select
-      id="filter-select"
-      class="filter-select"
-      fxFlex="25%"
-      [attr.aria-label]="'SELECT_FILTER_ITEM' | translate"
-      (selectionChange)="handleFilterChange($event.value)"
-      [(value)]="selectedItem"
-    >
-      <mat-option color="primary" *ngFor="let items of filterConfig.filterItem" [value]="items.id">
-        {{ items.title | translate }}
-      </mat-option>
-    </mat-select>
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
+    <!--    <label for="filter-select" class="filter-title">-->
+    <!--      {{ 'AQL.FILTER' | translate }}-->
+    <!--    </label>-->
+    <!--    <mat-select-->
+    <!--      id="filter-select"-->
+    <!--      class="filter-select"-->
+    <!--      fxFlex="25%"-->
+    <!--      [attr.aria-label]="'SELECT_FILTER_ITEM' | translate"-->
+    <!--      (selectionChange)="handleFilterChange($event.value)"-->
+    <!--      [(value)]="selectedItem"-->
+    <!--    >-->
+    <!--      <mat-option color="primary" *ngFor="let items of filterConfig.filterItem" [value]="items.id">-->
+    <!--        {{ items.title | translate }}-->
+    <!--      </mat-option>-->
+    <!--    </mat-select>-->
 
     <num-search
       fxFlexOffset="auto"

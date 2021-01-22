@@ -14,7 +14,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
           *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
-          (click)="handleSelectClick(element)"
+          (click)="handleSelectClick($event, element)"
         >
           <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -23,7 +23,7 @@
             class="num-fc--d"
             mat-icon-button
             [attr.aria-label]="'BUTTON.DESELECT' | translate"
-            (click)="handleDeselectClick(element)"
+            (click)="handleDeselectClick($event, element)"
           >
             <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
@@ -33,7 +33,10 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnKeys" hidden></tr>
-  <tr mat-row *matRowDef="let row; columns: columnKeys"></tr>
+  <tr
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row[identifierName] }"
+    (click)="handleRowClick(row)"
+    mat-row
+    *matRowDef="let row; columns: columnKeys"
+  ></tr>
 </table>
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
