@@ -24,7 +24,6 @@
     "PHENOTYPES": "Phänotypen",
     "PHENOTYPES_OVERVIEW": "Phänotypen-Übersicht",
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
-    "COHORTS": "Kohorten",
     "AQLS": "AQL Queries",
     "AQLS_OVERVIEW": "AQL Abfragen",
     "AQLS_EDITOR": "Abfragen-Editor",
@@ -42,22 +41,16 @@
     "CONTACT": "Kontakt"
   },
   "AQL": {
-    "NAME": "Name",
-    "AUTHOR": "Autor",
-    "ORGANIZATION": "Organization",
-    "FILTER": "Filter",
     "MY_AQLS": "Meine",
     "ORGANISATION_AQLS": "Meine Organisation",
     "ALL_AQLS": "Alle",
     "CREATE_AQL": "AQL Abfrage erstellen",
     "SEARCH_AQLS": "AQL suchen",
-    "SELECTED_AQLS": "Ausgewählte AQL-Queries",
     "SELECT_AT_LEAST_ONE": "Bitte wählen sie eine oder mehrere Abfragen aus",
     "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
-    "CONNECT_AQL": "AQL Abfragen zusammenstellen",
-    "SELECT_FILTER_ITEM": "Filter auswählen"
+    "CONNECT_AQL": "AQL Abfragen zusammenstellen"
   },
   "SUMMARY": "Zusammenfassung",
   "SEARCH_PHENOTYPES": "Phänotypen suchen",
@@ -105,7 +98,10 @@
     "CHARACTERS": "Zeichen",
     "PURPOSE": "Zweck",
     "USE": "Verwendung",
-    "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren"
+    "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
+    "NAME": "Name",
+    "ORGANIZATION": "Organisation",
+    "FILTER": "Filter"
   },
   "BUTTON": {
     "SAVE": "Speichern",

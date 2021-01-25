@@ -78,4 +78,9 @@ describe('AqlTableComponent', () => {
     component.handleSearchChange()
     expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
+
+  it('should set the filter in the aqlService on filterChange', () => {
+    component.handleFilterChange()
+    expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
 })

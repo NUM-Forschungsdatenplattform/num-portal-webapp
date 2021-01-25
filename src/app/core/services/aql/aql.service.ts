@@ -7,7 +7,7 @@ import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { environment } from '../../../../environments/environment'
-import { AqlFilterEnum } from '../../../shared/models/aql/aql-filter-chip.enum'
+import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
@@ -115,9 +115,9 @@ export class AqlService {
 
     filterSet.filterItem.forEach((filterItem) => {
       if (filterItem.isSelected) {
-        if (filterItem.id === AqlFilterEnum.MyAql) {
+        if (filterItem.id === AqlFilterChipId.MyAql) {
           result = result.filter((aql) => aql.owner.id === this.user.id)
-        } else if (filterItem.id === AqlFilterEnum.OrganisationAql) {
+        } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
           result = result.filter((aql) => aql.owner.organization.id === this.user.organization.id)
         }
       }

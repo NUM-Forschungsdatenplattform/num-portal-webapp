@@ -24,7 +24,6 @@
     "PHENOTYPES": "Phenotypes",
     "PHENOTYPES_OVERVIEW": "Phenotypes Overview",
     "PHENOTYPES_EDITOR": "Phenotype Editor",
-    "COHORTS": "Cohorts",
     "AQLS": "AQL Queries",
     "AQLS_OVERVIEW": "AQL Queries",
     "AQLS_EDITOR": "AQL Editor",
@@ -42,22 +41,16 @@
     "CONTACT": "Contact"
   },
   "AQL": {
-    "NAME": "Name",
-    "AUTHOR": "Author",
-    "ORGANIZATION": "Organization",
-    "FILTER": "Filter",
     "MY_AQLS": "My AQLs",
     "ORGANISATION_AQLS": "My organisation",
     "ALL_AQLS": "All",
     "CREATE_AQL": "Create AQL Query",
     "SEARCH_AQLS": "AQL search",
-    "SELECTED_AQLS": "Selected AQL Queries",
     "SELECT_AT_LEAST_ONE": "Please select one or more Queries",
     "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
     "AVAILABLE_AQLS": "Available AQL Queries",
-    "CONNECT_AQL": "Assemble AQL Queries",
-    "SELECT_FILTER_ITEM": "Select Filter"
+    "CONNECT_AQL": "Assemble AQL Queries"
   },
   "SUMMARY": "Summary",
   "SEARCH_PHENOTYPES": "Search Phenotype",
@@ -105,7 +98,10 @@
     "CHARACTERS": "Characters",
     "PURPOSE": "Purpose",
     "USE": "Use",
-    "PUBLIC_CHECKBOX": "AQL query is for public use"
+    "PUBLIC_CHECKBOX": "AQL query is for public use",
+    "NAME": "Name",
+    "ORGANIZATION": "Organization",
+    "FILTER": "Filter"
   },
   "BUTTON": {
     "SAVE": "Save",
