@@ -9,14 +9,14 @@ import { IUserProfile } from '../../../shared/models/user/user-profile.interface
   providedIn: 'root',
 })
 export class ProfileService {
-  private baseUrl: string
-
   private userProfile = {} as IUserProfile
   private userProfileSubject$ = new BehaviorSubject(this.userProfile)
   public userProfileObservable$ = this.userProfileSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
-    this.baseUrl = `${appConfig.config.api.baseUrl}/profile`
+  constructor(private httpClient: HttpClient, private appConfig: AppConfigService) {}
+
+  get baseUrl(): string {
+    return `${this.appConfig.config.api.baseUrl}/profile`
   }
 
   get(): Observable<IUserProfile> {
