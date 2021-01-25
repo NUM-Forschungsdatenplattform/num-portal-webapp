@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
@@ -51,10 +51,13 @@ export class StudyService {
   updateStatusById(id: number, newStatus: StudyStatus): Observable<IStudyApi> {
     return this.get(id).pipe(
       switchMap((study) => {
-        if (!!isStatusSwitchable[study.status][newStatus]) {
+        if (study.status === newStatus) {
+          return of(study)
+        } else if (!!isStatusSwitchable[study.status][newStatus]) {
           study.status = newStatus
           return this.update(study, study.id)
         }
+
         return throwError('STATUS_NOT_SWITCHABLE')
       }),
       tap(() => {

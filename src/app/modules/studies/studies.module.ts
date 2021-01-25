@@ -24,6 +24,7 @@ import { DialogAddResearchersComponent } from './components/dialog-add-researche
 import { StudyEditorButtonsComponent } from './components/study-editor-buttons/study-editor-buttons.component'
 import { DialogConfirmStudyComponent } from './components/dialog-confirm-study/dialog-confirm-study.component'
 import { StudyEditorCommentsComponent } from './components/study-editor-comments/study-editor-comments.component'
+import { StudyEditorApprovalComponent } from './components/study-editor-approval/study-editor-approval.component'
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { StudyEditorCommentsComponent } from './components/study-editor-comments
     StudyEditorButtonsComponent,
     DialogConfirmStudyComponent,
     StudyEditorCommentsComponent,
+    StudyEditorApprovalComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule],
 })

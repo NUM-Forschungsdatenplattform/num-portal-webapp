@@ -34,7 +34,10 @@
   <num-button
     id="primary-save"
     type="primary"
-    *ngIf="studyStatus === possibleStatus.Approved; else fullEdit"
+    *ngIf="
+      studyStatus === possibleStatus.Approved || studyStatus === possibleStatus.Published;
+      else fullEdit
+    "
     (singleClick)="saveResearchers.emit()"
     [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
     >{{ 'BUTTON.SAVE' | translate }}</num-button
@@ -45,7 +48,7 @@
       type="secondary"
       [isDisabled]="
         !isFormValid ||
-        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.Change_request)
+        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.ChangeRequest)
       "
       (singleClick)="saveAll.emit()"
       >{{ 'BUTTON.SAVE' | translate }}</num-button
@@ -59,7 +62,7 @@
         !isResearchersDefined ||
         !isTemplatesDefined ||
         !isCohortDefined ||
-        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.Change_request)
+        (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.ChangeRequest)
       "
       >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
     >
@@ -71,8 +74,8 @@
     id="primary-reply"
     type="primary"
     (singleClick)="saveAsApprovalReply.emit()"
-    [isDisabled]="true"
-    >{{ 'BUTTON.TODO' | translate }}</num-button
+    [isDisabled]="approverForm.invalid || studyStatus !== possibleStatus.Reviewing"
+    >{{ 'BUTTON.STUDY_APPROVAL_' + approvalDecision | translate }}</num-button
   >
 </ng-template>
 
@@ -84,7 +87,7 @@
     [isDisabled]="
       !(
         studyStatus === possibleStatus.Draft ||
-        studyStatus === possibleStatus.Change_request ||
+        studyStatus === possibleStatus.ChangeRequest ||
         studyStatus === possibleStatus.Approved
       )
     "

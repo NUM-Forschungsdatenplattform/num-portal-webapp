@@ -8,12 +8,14 @@ import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { IStudyResolved } from '../../study-resolved.interface'
+import { IStudyResolved } from '../../models/study-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { Subscription } from 'rxjs'
+import { of, Subscription } from 'rxjs'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
+import { ApprovalOption } from '../../models/approval-option.enum'
+import { catchError, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'num-study-editor',
@@ -48,6 +50,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   commentForm: FormGroup
   studyForm: FormGroup
+  approverForm: FormGroup
 
   constructor(
     private router: Router,
@@ -138,6 +141,10 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     this.commentForm = new FormGroup({
       text: new FormControl('', [Validators.required, Validators.minLength(3)]),
     })
+
+    this.approverForm = new FormGroup({
+      decision: new FormControl(ApprovalOption.Approve, Validators.required),
+    })
   }
 
   getStudyForApi(): { study: IStudyApi; cohort: ICohortApi } {
@@ -218,7 +225,34 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   saveAsApprovalReply(): void {
-    console.log('TODO: Implement Approval')
+    const decision = this.approverForm.value.decision as ApprovalOption
+    let newStatus: StudyStatus
+
+    switch (decision) {
+      case ApprovalOption.Approve:
+        newStatus = StudyStatus.Approved
+        break
+      case ApprovalOption.ChangeRequest:
+        newStatus = StudyStatus.ChangeRequest
+        break
+      case ApprovalOption.Deny:
+        newStatus = StudyStatus.Denied
+        break
+    }
+
+    this.studyService
+      .updateStatusById(this.study.id, newStatus)
+      .pipe(
+        tap(() => {
+          this.router.navigate(['/studies'])
+        }),
+        catchError((error) => {
+          // TODO: Show message to user
+          console.log(error)
+          return of(error)
+        })
+      )
+      .subscribe()
   }
 
   cancel(): void {
@@ -241,7 +275,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     const inPreview = this.mode === PossibleStudyEditorMode.PREVIEW
     const inReview = this.mode === PossibleStudyEditorMode.REVIEW
     const inEditByStatus = !(
-      studyStatus !== StudyStatus.Draft && studyStatus !== StudyStatus.Change_request
+      studyStatus !== StudyStatus.Draft && studyStatus !== StudyStatus.ChangeRequest
     )
 
     if (inEditByStatus && !inPreview && !inReview) {
