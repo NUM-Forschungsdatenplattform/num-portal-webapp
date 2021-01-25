@@ -37,6 +37,7 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'data-explorer',
         id: 'data-explorer',
         translationKey: 'NAVIGATION.DATA_EXPLORER',
+        disabled: true,
       },
     ],
   },

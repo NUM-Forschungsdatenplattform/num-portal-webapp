@@ -1,4 +1,9 @@
-import { ActivatedRouteSnapshot, convertToParamMap, RouterStateSnapshot } from '@angular/router'
+import {
+  ActivatedRouteSnapshot,
+  convertToParamMap,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router'
 import { of, throwError } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
@@ -18,8 +23,12 @@ describe('Data Explorer Resolver', () => {
     get: jest.fn(),
   } as unknown) as PhenotypeService
 
+  let router = ({
+    navigate: jest.fn(),
+  } as unknown) as Router
+
   beforeEach(() => {
-    resolver = new DataExplorerResolver(studyService, phenotypeService)
+    resolver = new DataExplorerResolver(studyService, phenotypeService, router)
   })
 
   it('should be created', () => {
@@ -27,14 +36,15 @@ describe('Data Explorer Resolver', () => {
   })
 
   describe('When the resolve method is called', () => {
-    it('should provide an error message when the id was not a number', async () => {
+    it('should provide an error message and navigate back to overview when the id was not a number', async () => {
       const paramMap = convertToParamMap({ id: 'test' })
       const activatedRoute = ({
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.error).toBeDefined()
-      expect(result.study.id).toEqual(null)
+      expect(result.study).toEqual(null)
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
     })
 
     it('should return the correct study if the id is found', async () => {
@@ -47,7 +57,7 @@ describe('Data Explorer Resolver', () => {
       expect(result.study.id).toEqual(1)
     })
 
-    it('should return a new Study and an error message if the id is not found', async () => {
+    it('should return an error message and navigate back to overview if the id is not found', async () => {
       studyService.get = jest.fn().mockImplementation(() => throwError('Error'))
       const paramMap = convertToParamMap({ id: 123 })
       const activatedRoute = ({
@@ -55,7 +65,8 @@ describe('Data Explorer Resolver', () => {
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.error).toBeDefined()
-      expect(result.study.id).toEqual(null)
+      expect(result.study).toEqual(null)
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
     })
   })
 })

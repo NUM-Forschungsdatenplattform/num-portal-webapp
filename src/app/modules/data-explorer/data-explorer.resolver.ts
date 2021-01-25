@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router'
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
@@ -11,14 +11,19 @@ import { IStudyResolved } from '../studies/study-resolved.interface'
   providedIn: 'root',
 })
 export class DataExplorerResolver implements Resolve<IStudyResolved> {
-  constructor(private studyService: StudyService, private phenotypeService: PhenotypeService) {}
+  constructor(
+    private studyService: StudyService,
+    private phenotypeService: PhenotypeService,
+    private router: Router
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStudyResolved> {
     const id = route.paramMap.get('id')
 
     if (isNaN(+id)) {
+      this.router.navigate(['data-explorer/studies'])
       const message = `Id was not a number: ${id}`
-      return of({ study: new StudyUiModel(), error: message })
+      return of({ study: null, error: message })
     }
 
     return this.studyService.get(+id).pipe(
@@ -27,7 +32,8 @@ export class DataExplorerResolver implements Resolve<IStudyResolved> {
         return { study: uiModel, error: null }
       }),
       catchError((error) => {
-        return of({ study: new StudyUiModel(), error })
+        this.router.navigate(['data-explorer/studies'])
+        return of({ study: null, error })
       })
     )
   }
