@@ -16,7 +16,7 @@ export const MENU_ITEM_PREVIEW: IItemVisibility = {
   translationKey: 'BUTTON.PREVIEW',
   disabledUnless: [
     StudyStatus.Approved,
-    StudyStatus.Change_request,
+    StudyStatus.ChangeRequest,
     StudyStatus.Closed,
     StudyStatus.Denied,
     StudyStatus.Draft,
@@ -29,22 +29,17 @@ export const MENU_ITEM_PREVIEW: IItemVisibility = {
 export const MENU_ITEM_EDIT: IItemVisibility = {
   id: StudyMenuKeys.Edit,
   translationKey: 'BUTTON.EDIT',
-  disabledUnless: [StudyStatus.Draft, StudyStatus.Change_request],
+  disabledUnless: [StudyStatus.Draft, StudyStatus.ChangeRequest],
   hiddenWhen: [StudyStatus.Denied, StudyStatus.Approved, StudyStatus.Published, StudyStatus.Closed],
 }
 
 export const MENU_ITEM_EDIT_RESEARCHERS: IItemVisibility = {
   id: StudyMenuKeys.Edit_researchers,
   translationKey: 'BUTTON.EDIT_RESEARCHERS',
-  disabledUnless: [
-    StudyStatus.Denied,
-    StudyStatus.Approved,
-    StudyStatus.Published,
-    StudyStatus.Closed,
-  ],
+  disabledUnless: [StudyStatus.Approved, StudyStatus.Published],
   hiddenWhen: [
     StudyStatus.Draft,
-    StudyStatus.Change_request,
+    StudyStatus.ChangeRequest,
     StudyStatus.Reviewing,
     StudyStatus.Pending,
   ],

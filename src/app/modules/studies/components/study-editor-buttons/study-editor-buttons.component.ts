@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { FormGroup } from '@angular/forms'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
+import { ApprovalOption } from '../../models/approval-option.enum'
 
 @Component({
   selector: 'num-study-editor-buttons',
@@ -18,6 +20,7 @@ export class StudyEditorButtonsComponent implements OnInit {
   @Input() isResearchersDefined: boolean
   @Input() isTemplatesDefined: boolean
   @Input() isCohortDefined: boolean
+  @Input() approverForm: FormGroup
 
   @Output() saveAll = new EventEmitter()
   @Output() saveResearchers = new EventEmitter()
@@ -27,4 +30,8 @@ export class StudyEditorButtonsComponent implements OnInit {
   @Output() cancel = new EventEmitter()
 
   ngOnInit(): void {}
+
+  get approvalDecision(): ApprovalOption {
+    return this.approverForm.value.decision
+  }
 }
