@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatTreeModule } from '@angular/material/tree'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatMenuModule } from '@angular/material/menu'
+import { MatRadioModule } from '@angular/material/radio'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -47,6 +48,7 @@ const MATERIAL_MODULES = [
   MatTreeModule,
   MatProgressBarModule,
   MatMenuModule,
+  MatRadioModule,
 ]
 
 @NgModule({

@@ -38,10 +38,16 @@
     (postComment)="postComment()"
   ></num-study-editor-comments>
 
+  <num-study-editor-approval
+    *ngIf="mode === possibleModes.REVIEW"
+    [form]="approverForm"
+  ></num-study-editor-approval>
+
   <num-study-editor-buttons
     [editorMode]="mode"
     [studyStatus]="study.status"
     [isFormValid]="studyForm.valid"
+    [approverForm]="approverForm"
     [isResearchersDefined]="study.researchers.length"
     [isTemplatesDefined]="study.templates.length"
     [isCohortDefined]="study.cohortGroup.children.length"
