@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -15,12 +15,14 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
+import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
-import { IStudyResolved } from '../../study-resolved.interface'
+import { ApprovalOption } from '../../models/approval-option.enum'
+import { IStudyResolved } from '../../models/study-resolved.interface'
 
 import { StudyEditorComponent } from './study-editor.component'
 
@@ -34,6 +36,7 @@ describe('StudyEditorComponent', () => {
     update: jest.fn(),
     getCommentsByStudyId: jest.fn(),
     createCommentByStudyId: jest.fn(),
+    updateStatusById: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
@@ -100,6 +103,11 @@ describe('StudyEditorComponent', () => {
     @Output() postComment = postCommentEmitter
   }
 
+  @Component({ selector: 'num-study-editor-approval', template: '' })
+  class StudyEditorApprovalStubComponent {
+    @Input() form: any
+  }
+
   const saveAllEmitter = new EventEmitter()
   const saveResearchersEmitter = new EventEmitter()
   const saveAsApprovalRequestEmitter = new EventEmitter()
@@ -114,6 +122,7 @@ describe('StudyEditorComponent', () => {
     @Input() isResearchersDefined: any
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
+    @Input() approverForm: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -134,6 +143,7 @@ describe('StudyEditorComponent', () => {
         StudyEditorTemplatesStubComponent,
         StudyEditorButtonsStubComponent,
         StudyEditorCommentsStubComponent,
+        StudyEditorApprovalStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -174,6 +184,7 @@ describe('StudyEditorComponent', () => {
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
     jest.spyOn(studyService, 'getCommentsByStudyId').mockImplementation(() => of(studyCommentMocks))
     jest.spyOn(studyService, 'update').mockImplementation(() => of(mockStudy1))
+    jest.spyOn(studyService, 'updateStatusById').mockImplementation(() => of(mockStudy1))
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
@@ -331,5 +342,42 @@ describe('StudyEditorComponent', () => {
       cancelEmitter.emit()
       expect(router.navigate).toHaveBeenCalledWith(['studies'])
     })
+  })
+
+  describe('When the buttons component emits to save as approval reply', () => {
+    beforeEach(() => {
+      resolvedData.study.id = 1
+      fixture = TestBed.createComponent(StudyEditorComponent)
+      component = fixture.componentInstance
+
+      fixture.detectChanges()
+    })
+
+    const testCases = [
+      {
+        decision: ApprovalOption.Approve,
+        newState: StudyStatus.Approved,
+      },
+      {
+        decision: ApprovalOption.ChangeRequest,
+        newState: StudyStatus.ChangeRequest,
+      },
+      {
+        decision: ApprovalOption.Deny,
+        newState: StudyStatus.Denied,
+      },
+    ]
+
+    test.each(testCases)(
+      'should call the study service with the new state and navigate to overview',
+      (testCase) => {
+        component.approverForm = new FormGroup({
+          decision: new FormControl(testCase.decision, Validators.required),
+        })
+        saveAsApprovalReplyEmitter.emit()
+        expect(studyService.updateStatusById).toHaveBeenCalledWith(1, testCase.newState)
+        expect(router.navigate).toHaveBeenCalledWith(['/studies'])
+      }
+    )
   })
 })

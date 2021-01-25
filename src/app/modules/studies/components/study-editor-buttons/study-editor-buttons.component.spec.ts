@@ -64,7 +64,7 @@ describe('StudyEditorButtonsComponent', () => {
         text: 'BUTTON.EDIT',
       },
       {
-        status: StudyStatus.Change_request,
+        status: StudyStatus.ChangeRequest,
         disabled: false,
         text: 'BUTTON.EDIT',
       },

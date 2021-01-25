@@ -1,6 +1,6 @@
 export enum StudyStatus {
   Approved = 'APPROVED',
-  Change_request = 'CHANGE_REQUEST',
+  ChangeRequest = 'CHANGE_REQUEST',
   Closed = 'CLOSED',
   Denied = 'DENIED',
   Draft = 'DRAFT',

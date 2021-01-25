@@ -8,7 +8,7 @@ export const isStatusSwitchable = {
     [StudyStatus.Closed]: true,
     [StudyStatus.Published]: true,
   },
-  [StudyStatus.Change_request]: {
+  [StudyStatus.ChangeRequest]: {
     [StudyStatus.Draft]: true,
     [StudyStatus.Pending]: true,
   },
@@ -26,7 +26,7 @@ export const isStatusSwitchable = {
   },
   [StudyStatus.Reviewing]: {
     [StudyStatus.Approved]: true,
-    [StudyStatus.Change_request]: true,
+    [StudyStatus.ChangeRequest]: true,
     [StudyStatus.Denied]: true,
   },
 }

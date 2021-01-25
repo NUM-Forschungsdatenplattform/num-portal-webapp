@@ -80,6 +80,7 @@
   "SHOW_LESS": "Weniger anzeigen",
   "ACTION": "Aktion",
   "REGISTER_DATE": "Datum der Registrierung",
+  "PLEASE_CHOOSE": "Bitte wählen Sie",
   "RESEARCHERS": {
     "SELECT_RESEARCHERS": "Ausgewählte Forscher",
     "SEARCH_RESEARCHERS": "Forscher suchen",
@@ -124,9 +125,32 @@
     "EDIT_RESEARCHERS": "Forscher bearbeiten",
     "PUBLISH": "Veröffentlichen",
     "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
+    "SEND_COMMENT": "Kommentar senden",
     "CLOSE_STUDY": "Studie schließen",
     "REVIEW_STUDY": "Studie überprüfen",
-    "SEND_COMMENT": "Kommentar senden"
+    "STUDY_APPROVAL_APPROVE": "Studie genehmigen",
+    "STUDY_APPROVAL_CHANGE_REQUEST": "Überarbeitung beantragen",
+    "STUDY_APPROVAL_DENY": "Studie ablehnen"
+  },
+  "STUDY": {
+    "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
+    "APPROVAL_HINT": "Bitte teilen Sie dem Studienkoordinator mit, ob Sie die Studie genehmigen oder ablehnen. Sollten Sie die Studie ablehnen, müssen Sie einen Grund dafür angeben, bzw. erläutern, an welcher Stelle die Studie überarbeitet werden muss.",
+    "STATUS": {
+      "APPROVED": "Genehmigt",
+      "CHANGE_REQUEST": "Änderung notwendig",
+      "CLOSED": "Geschlossen",
+      "DENIED": "Abgelehnt",
+      "DRAFT": "Entwurf",
+      "PENDING": "Genehmigung ausstehend",
+      "PUBLISHED": "Veröffentlicht",
+      "REVIEWING": "Überprüfung"
+    },
+    "REVIEW": {
+      "APPROVE": "Die Studie ist genehmigt und kann veröffentlicht werden.",
+      "CHANGE_REQUEST": "Die Studie muss überarbeitet werden.",
+      "DENY": "Die Studie wird abgelehnt und damit abgeschlossen.",
+      "HINT_TO_COMMENT": "Insbesondere wenn Sie Änderungen wünschen oder die Studie ablehnen, sollten Sie den Grund als Kommentar festhalten."
+    }
   },
   "USER": {
     "FIRST_NAME": "Vorname",
@@ -150,18 +174,8 @@
     "WITHDRAW_APPROVAL_TITLE": "Möchten Sie die Genehmigungsanfrage zurückziehen?",
     "WITHDRAW_APPROVAL_CONTENT": "Wenn Sie Ihre Genehmigungsanfrage zurückziehen, können Sie anschließend die Studie wieder bearbeiten.\n\nSie müssen jedoch die Genehmigung der Studie dann erneut anfragen, damit die Studie überprüft werden kann.",
     "CLOSE_STUDY_TITLE": "Wollen Sie die Studie wirklich beenden?",
-    "CLOSE_STUDY_CONTENT": "Wenn die Studie beendet wird, kann an den Daten nicht mehr geforscht werden.\n\nDie Studie kann nicht erneut veröffentlich werden.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie beendet haben.",
+    "CLOSE_STUDY_CONTENT": "Wenn Sie die Studie beenden, stehen die Daten nicht länger für Forschungszwecke zur Verfügung.\n\nDie Studie kann nicht erneut veröffentlich werden.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie beendet haben.",
     "PUBLISH_STUDY_TITLE": "Wollen Sie die Studie wirklich veröffentlichen?",
     "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben."
-  },
-  "STUDY_STATUS": {
-    "APPROVED": "Genehmigt",
-    "CHANGE_REQUEST": "Änderung notwendig",
-    "CLOSED": "Geschlossen",
-    "DENIED": "Abgelehnt",
-    "DRAFT": "Entwurf",
-    "PENDING": "Genehmigung ausstehend",
-    "PUBLISHED": "Veröffentlicht",
-    "REVIEWING": "Überprüfung"
   }
 }

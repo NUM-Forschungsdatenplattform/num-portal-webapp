@@ -19,7 +19,7 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
-import { IStudyResolved } from '../../study-resolved.interface'
+import { IStudyResolved } from '../../models/study-resolved.interface'
 
 import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
@@ -46,6 +46,7 @@ describe('StudyEditorComponent On Creation', () => {
     create: jest.fn(),
     update: jest.fn(),
     getCommentsByStudyId: jest.fn(),
+    updateStatusById: jest.fn(),
   } as unknown) as StudyService
 
   const cohortService = ({
@@ -92,6 +93,11 @@ describe('StudyEditorComponent On Creation', () => {
     @Output() postComment = postCommentEmitter
   }
 
+  @Component({ selector: 'num-study-editor-approval', template: '' })
+  class StudyEditorApprovalStubComponent {
+    @Input() form: any
+  }
+
   const saveAllEmitter = new EventEmitter()
   const saveResearchersEmitter = new EventEmitter()
   const saveAsApprovalRequestEmitter = new EventEmitter()
@@ -106,6 +112,7 @@ describe('StudyEditorComponent On Creation', () => {
     @Input() isResearchersDefined: any
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
+    @Input() approverForm: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -126,6 +133,7 @@ describe('StudyEditorComponent On Creation', () => {
         StudyEditorTemplatesStubComponent,
         StudyEditorButtonsStubComponent,
         StudyEditorCommentsStubComponent,
+        StudyEditorApprovalStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
