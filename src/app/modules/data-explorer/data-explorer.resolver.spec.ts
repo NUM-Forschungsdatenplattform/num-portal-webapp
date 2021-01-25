@@ -7,7 +7,6 @@ import {
 import { of, throwError } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
-import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { DataExplorerResolver } from './data-explorer.resolver'
 
@@ -23,7 +22,7 @@ describe('Data Explorer Resolver', () => {
     get: jest.fn(),
   } as unknown) as PhenotypeService
 
-  let router = ({
+  const router = ({
     navigate: jest.fn(),
   } as unknown) as Router
 
