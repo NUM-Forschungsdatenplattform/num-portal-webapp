@@ -5,4 +5,5 @@ export default interface INavItem {
   tabNav?: INavItem[]
   id?: string
   roles?: string[]
+  disabled?: boolean
 }
