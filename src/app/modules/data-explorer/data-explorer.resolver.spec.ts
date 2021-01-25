@@ -48,8 +48,6 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result.error).toBeDefined()
-      expect(result.study).toEqual(null)
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
     })
 
@@ -76,8 +74,6 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result.error).toBeDefined()
-      expect(result.study).toEqual(null)
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
     })
 
@@ -91,8 +87,6 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result.error).toBeDefined()
-      expect(result.study).toEqual(null)
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
     })
 

@@ -31,8 +31,7 @@ export class DataExplorerResolver implements Resolve<IStudyResolved> {
 
     if (isNaN(+id)) {
       this.router.navigate(['data-explorer/studies'])
-      const message = `Id was not a number: ${id}`
-      return of({ study: null, error: message })
+      return of()
     }
 
     return this.studyService.get(+id).pipe(
@@ -42,8 +41,7 @@ export class DataExplorerResolver implements Resolve<IStudyResolved> {
           return { study: uiModel, error: null }
         } else {
           this.router.navigate(['data-explorer/studies'])
-          const message = `Either the study is not published or you are not a researcher of the study.`
-          return { study: null, error: message }
+          return undefined
         }
       }),
       catchError((error) => {
