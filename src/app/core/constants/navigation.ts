@@ -24,6 +24,24 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
+    routeTo: 'data-explorer',
+    icon: 'table',
+    translationKey: 'NAVIGATION.DATA_EXPLORER',
+    tabNav: [
+      {
+        routeTo: 'data-explorer/studies',
+        id: 'overview',
+        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+      },
+      {
+        routeTo: 'data-explorer',
+        id: 'data-explorer',
+        translationKey: 'NAVIGATION.DATA_EXPLORER',
+        disabled: true,
+      },
+    ],
+  },
+  {
     routeTo: 'phenotypes',
     icon: 'cubes',
     translationKey: 'NAVIGATION.PHENOTYPES',

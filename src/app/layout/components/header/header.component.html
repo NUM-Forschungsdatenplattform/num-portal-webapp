@@ -40,7 +40,7 @@
         #rla="routerLinkActive"
         [routerLinkActiveOptions]="{ exact: true }"
         [active]="tab.id === currentTabNavSelected"
-        [disabled]="tab.id === currentTabNavSelected"
+        [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
       >
         {{ tab.translationKey | translate }}
       </a>

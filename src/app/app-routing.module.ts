@@ -26,6 +26,18 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'data-explorer',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'data-explorer',
+      roles: ['RESEARCHER'],
+    },
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "DataExplorer.Module" */ './modules/data-explorer/data-explorer.module'
+      ).then((m) => m.DataExplorerModule),
+  },
+  {
     path: 'phenotypes',
     canLoad: [RoleGuard],
     data: {
