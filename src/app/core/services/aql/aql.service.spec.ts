@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { mockAql1, mockAqls } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from './aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
+import { ProfileService } from '../profile/profile.service'
 
 describe('AqlService', () => {
   let service: AqlService
   const baseUrl = 'localhost/api/aql'
+  const userProfileSubject$ = new Subject<any>()
 
   let throttleTime: number
   const httpClient = ({
@@ -24,8 +26,12 @@ describe('AqlService', () => {
     },
   } as AppConfigService
 
+  const userProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
+
   const filterConfig: IAqlFilter = {
-    filterChips: [],
+    filterItem: [],
     searchText: 'test',
   }
 
@@ -34,7 +40,7 @@ describe('AqlService', () => {
     jest.clearAllMocks()
     jest.resetAllMocks()
     jest.spyOn(httpClient, 'get').mockImplementation(() => of())
-    service = new AqlService(httpClient, appConfig)
+    service = new AqlService(httpClient, appConfig, userProfileService)
   })
 
   it('should be created', () => {
@@ -103,7 +109,7 @@ describe('AqlService', () => {
 
     it('should debounce the filtering', async (done) => {
       const filterConfigLast: IAqlFilter = {
-        filterChips: [],
+        filterItem: [],
         searchText: 'name1',
       }
       let filterResult: AqlEditorUiModel[]

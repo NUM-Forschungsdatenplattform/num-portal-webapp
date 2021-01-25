@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { AqlFilterChipId } from '../../models/aql/aql-filter-chip.enum'
-import { IFilterChip } from '../../models/filter-chip.interface'
+import { AqlFilterEnum } from '../../models/aql/aql-filter-chip.enum'
+import { IFilterItem } from '../../models/filter-chip.interface'
 
 import { FilterChipsComponent } from './filter-chips.component'
 
@@ -11,23 +11,23 @@ describe('FilterChipsComponent', () => {
   let component: FilterChipsComponent
   let fixture: ComponentFixture<FilterChipsComponent>
 
-  const filter1: IFilterChip<AqlFilterChipId> = {
-    id: AqlFilterChipId.AllAql,
+  const filter1: IFilterItem<AqlFilterEnum> = {
+    id: AqlFilterEnum.AllAql,
     title: 'test1',
     isSelected: false,
   }
-  const filter2: IFilterChip<AqlFilterChipId> = {
-    id: AqlFilterChipId.AllAql,
+  const filter2: IFilterItem<AqlFilterEnum> = {
+    id: AqlFilterEnum.AllAql,
     title: 'test2',
     isSelected: true,
   }
-  const filter3: IFilterChip<AqlFilterChipId> = {
-    id: AqlFilterChipId.AllAql,
+  const filter3: IFilterItem<AqlFilterEnum> = {
+    id: AqlFilterEnum.AllAql,
     title: 'test3',
     isSelected: false,
   }
 
-  const filterChips: IFilterChip<AqlFilterChipId>[] = [filter1, filter2, filter3]
+  const filterChips: IFilterItem<AqlFilterEnum>[] = [filter1, filter2, filter3]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

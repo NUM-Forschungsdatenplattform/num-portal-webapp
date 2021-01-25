@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { ProfileService } from '../services/profile/profile.service'
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class AuthService {
 
   constructor(
     private oauthService: OAuthService,
+    private profileService: ProfileService,
     private appConfig: AppConfigService,
     private httpClient: HttpClient
   ) {
@@ -62,6 +64,7 @@ export class AuthService {
     }
 
     try {
+      this.profileService.get().subscribe()
       const userInfo = await this.oauthService.loadUserProfile()
       if (this.userInfo.sub !== userInfo.sub) {
         this.createUser(userInfo.sub).subscribe()

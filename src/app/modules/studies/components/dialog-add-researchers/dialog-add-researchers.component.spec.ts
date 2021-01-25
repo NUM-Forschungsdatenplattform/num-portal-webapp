@@ -31,6 +31,7 @@ describe('DialogAddResearchersComponent', () => {
     @Input() columnPaths: string[][]
     @Input() selectedItems: IUser[]
     @Output() selectedItemsChange = selectedItemsChangeEmitter
+    @Input() idOfHighlightedRow: string | number
   }
 
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()

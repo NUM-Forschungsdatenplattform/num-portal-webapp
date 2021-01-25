@@ -4,6 +4,10 @@
   $primary: map-get($theme, primary);
   $additional: map-get($theme, additional);
 
+  .mat-icon-button.mat-button-disabled.mat-button-disabled {
+    color: mat-color($additional, light-grey);
+  }
+
   .mat-button-base {
     text-transform: uppercase !important;
   }

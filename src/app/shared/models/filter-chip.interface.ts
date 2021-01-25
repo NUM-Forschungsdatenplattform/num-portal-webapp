@@ -1,4 +1,4 @@
-export interface IFilterChip<T extends string | number> {
+export interface IFilterItem<T extends string | number> {
   id: T
   title: string
   isSelected: boolean

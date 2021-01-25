@@ -1,3 +1,13 @@
-.filter-area {
-  margin: 0 0 22px 0;
+.aql-selection {
+  height: 450px;
+}
+
+mat-card {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.mat-paginator {
+  display: flex;
+  justify-content: flex-start;
 }

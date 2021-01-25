@@ -9,6 +9,7 @@ dt {
 
 dd {
   margin-inline-start: 0;
+  white-space: pre-wrap;
 
   &:not(:last-of-type) {
     margin: 0 0 24px 0;

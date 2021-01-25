@@ -1,4 +1,12 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -7,12 +15,14 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
 import { cloneDeep } from 'lodash-es'
+import { MatPaginator } from '@angular/material/paginator'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
   styleUrls: ['./dialog-add-researchers.component.scss'],
 })
-export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGenericDialog<IUser[]> {
+export class DialogAddResearchersComponent
+  implements OnInit, OnDestroy, AfterViewInit, IGenericDialog<IUser[]> {
   private subscriptions = new Subscription()
 
   dialogInput: IUser[]
@@ -28,6 +38,8 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
 
   constructor(private adminService: AdminService) {}
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   ngOnInit(): void {
     this.setLastFilter()
     this.handleDilaogInput()
@@ -38,6 +50,10 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
         this.handleUsersData(users)
       })
     )
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator
   }
 
   setLastFilter(): void {

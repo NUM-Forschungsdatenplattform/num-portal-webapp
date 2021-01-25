@@ -7,6 +7,9 @@ import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { environment } from '../../../../environments/environment'
+import { AqlFilterEnum } from '../../../shared/models/aql/aql-filter-chip.enum'
+import { ProfileService } from '../profile/profile.service'
+import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +18,7 @@ export class AqlService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
+  user: IUserProfile
 
   private aqls: IAqlApi[] = []
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
@@ -28,8 +32,15 @@ export class AqlService {
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private profileService: ProfileService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
+
+    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
+
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
@@ -90,11 +101,27 @@ export class AqlService {
 
   filterItems(allAqls: IAqlApi[], filterSet: IAqlFilter): IAqlApi[] {
     let result: IAqlApi[] = allAqls
-
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toUpperCase()
-      result = allAqls.filter((aql) => aql.name.toUpperCase().includes(textFilter))
+      result = allAqls.filter(
+        (aql) =>
+          aql.name.toUpperCase().includes(textFilter) ||
+          aql.owner.lastName.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
+          aql.owner.lastName.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
+      )
     }
+
+    filterSet.filterItem.forEach((filterItem) => {
+      if (filterItem.isSelected) {
+        if (filterItem.id === AqlFilterEnum.MyAql) {
+          result = result.filter((aql) => aql.owner.id === this.user.id)
+        } else if (filterItem.id === AqlFilterEnum.OrganisationAql) {
+          result = result.filter((aql) => aql.owner.organization.id === this.user.organization.id)
+        }
+      }
+    })
 
     return result
   }
