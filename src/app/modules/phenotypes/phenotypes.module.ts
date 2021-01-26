@@ -12,8 +12,6 @@ import { PhenotypeEditorConnectorComponent } from './components/phenotype-editor
 import { PhenotypeEditorConnectorGroupComponent } from './components/phenotype-editor-connector-group/phenotype-editor-connector-group.component'
 import { PhenotypeEditorConnectorAqlComponent } from './components/phenotype-editor-connector-aql/phenotype-editor-connector-aql.component'
 import { DialogAddAqlsComponent } from './components/dialog-add-aqls/dialog-add-aqls.component'
-import { AddAqlsFilterTableComponent } from './components/add-aqls-filter-table/add-aqls-filter-table.component'
-import { AddAqlsSelectedTableComponent } from './components/add-aqls-selected-table/add-aqls-selected-table.component'
 import { DialogEditAqlComponent } from './components/dialog-edit-aql/dialog-edit-aql.component'
 
 @NgModule({
@@ -26,8 +24,6 @@ import { DialogEditAqlComponent } from './components/dialog-edit-aql/dialog-edit
     PhenotypeEditorConnectorGroupComponent,
     PhenotypeEditorConnectorAqlComponent,
     DialogAddAqlsComponent,
-    AddAqlsFilterTableComponent,
-    AddAqlsSelectedTableComponent,
     DialogEditAqlComponent,
   ],
   imports: [CommonModule, PhenotypesRoutingModule, SharedModule, LayoutModule],

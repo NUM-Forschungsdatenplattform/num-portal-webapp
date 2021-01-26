@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -7,9 +6,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewChild,
 } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
@@ -17,17 +14,17 @@ import { MatTableDataSource } from '@angular/material/table'
   templateUrl: './filter-table.component.html',
   styleUrls: ['./filter-table.component.scss'],
 })
-export class FilterTableComponent<T> implements OnInit, OnChanges, AfterViewInit {
+export class FilterTableComponent<T> implements OnInit, OnChanges {
   @Input() dataSource: MatTableDataSource<any>
   @Input() identifierName: string
   @Input() columnKeys: string[]
   @Input() columnPaths: string[][]
   @Input() selectedItems: T[]
+  @Input() idOfHighlightedRow: string | number
   @Output() selectedItemsChange = new EventEmitter<T[]>()
+  @Output() rowClick = new EventEmitter<T>()
 
   lookupSelectedItems = new Map<string | number, boolean>()
-
-  @ViewChild(MatPaginator) paginator: MatPaginator
 
   constructor() {}
 
@@ -38,15 +35,17 @@ export class FilterTableComponent<T> implements OnInit, OnChanges, AfterViewInit
     })
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
-  }
-
-  handleSelectClick(row: any): void {
+  handleSelectClick(event: Event, row: any): void {
+    event.stopPropagation()
     this.selectedItemsChange.emit([...this.selectedItems, row])
   }
 
-  handleDeselectClick(row: any): void {
+  handleRowClick(row: any): void {
+    this.rowClick.emit(row)
+  }
+
+  handleDeselectClick(event: Event, row: any): void {
+    event.stopPropagation()
     const identifier = row[this.identifierName]
     const result = this.selectedItems.filter(
       (selectedItem) => selectedItem[this.identifierName] !== identifier

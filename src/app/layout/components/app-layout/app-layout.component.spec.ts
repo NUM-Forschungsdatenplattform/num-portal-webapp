@@ -16,6 +16,7 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
 import { HttpClient } from '@angular/common/http'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -34,6 +35,10 @@ describe('AppLayoutComponent', () => {
     get: () => of(),
     post: () => of(),
   } as unknown) as HttpClient
+
+  const profileService = ({
+    get: () => jest.fn(),
+  } as unknown) as ProfileService
 
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}
@@ -64,6 +69,10 @@ describe('AppLayoutComponent', () => {
         {
           provide: HttpClient,
           useValue: httpClient,
+        },
+        {
+          provide: ProfileService,
+          useValue: profileService,
         },
       ],
     }).compileComponents()
