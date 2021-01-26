@@ -10,16 +10,18 @@ import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/fil
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { AddAqlsFilterTableComponent } from '../add-aqls-filter-table/add-aqls-filter-table.component'
-import { AddAqlsSelectedTableComponent } from '../add-aqls-selected-table/add-aqls-selected-table.component'
 
 import { DialogAddAqlsComponent } from './dialog-add-aqls.component'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { MatTableDataSource } from '@angular/material/table'
+import { IUser } from '../../../../shared/models/user/user.interface'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
 describe('DialogAddAqlsComponent', () => {
   let component: DialogAddAqlsComponent
   let fixture: ComponentFixture<DialogAddAqlsComponent>
   const filteredAqlsSubject$ = new Subject<IAqlApi[]>()
-  const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterChips: [] })
+  const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterItem: [] })
   const aqlService = {
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
@@ -27,14 +29,32 @@ describe('DialogAddAqlsComponent', () => {
     setFilter: (_: any) => {},
   } as AqlService
 
+  const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
+
+  @Component({ selector: 'num-filter-table', template: '' })
+  class FilterTableStubComponent {
+    @Input() dataSource: MatTableDataSource<IUser>
+    @Input() identifierName: string
+    @Input() columnKeys: string[]
+    @Input() columnPaths: string[][]
+    @Input() selectedItems: IUser[]
+    @Output() selectedItemsChange = selectedItemsChangeEmitter
+    @Input() idOfHighlightedRow: string | number
+  }
+
+  @Component({ selector: 'num-definition-list', template: '' })
+  class DefinitionListStubComponent {
+    @Input() dataSource: IDefinitionList[]
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         DialogAddAqlsComponent,
-        AddAqlsFilterTableComponent,
-        AddAqlsSelectedTableComponent,
         FilterChipsComponent,
         SearchComponent,
+        FilterTableStubComponent,
+        DefinitionListStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,

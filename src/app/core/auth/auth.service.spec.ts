@@ -3,6 +3,7 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { of } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
 
 describe('Auth Service', () => {
@@ -25,6 +26,10 @@ describe('Auth Service', () => {
     post: () => of(),
   } as unknown) as HttpClient
 
+  const profileService = ({
+    get: () => jest.fn(),
+  } as unknown) as ProfileService
+
   const appConfig = {
     config: {
       api: {
@@ -34,7 +39,8 @@ describe('Auth Service', () => {
   } as AppConfigService
 
   beforeEach(() => {
-    authService = new AuthService(oauthService, appConfig, httpClient)
+    jest.spyOn(profileService, 'get').mockImplementation(() => of())
+    authService = new AuthService(oauthService, profileService, appConfig, httpClient)
   })
 
   it('should be created', () => {

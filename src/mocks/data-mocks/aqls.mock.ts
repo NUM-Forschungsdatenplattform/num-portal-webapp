@@ -1,4 +1,5 @@
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
+import { mockUser } from './admin.mock'
 
 export const mockAql1: IAqlApi = {
   id: 1,
@@ -9,7 +10,7 @@ export const mockAql1: IAqlApi = {
   createDate: '',
   modifiedDate: '',
   organizationId: undefined,
-  ownerId: '',
+  owner: mockUser,
   publicAql: true,
 }
 
@@ -22,7 +23,7 @@ export const mockAql2: IAqlApi = {
   createDate: '',
   modifiedDate: '',
   organizationId: undefined,
-  ownerId: '',
+  owner: mockUser,
   publicAql: true,
 }
 
@@ -35,7 +36,7 @@ export const mockAql3: IAqlApi = {
   createDate: '',
   modifiedDate: '',
   organizationId: undefined,
-  ownerId: '',
+  owner: mockUser,
   publicAql: true,
 }
 
@@ -48,7 +49,7 @@ export const mockAql4: IAqlApi = {
   createDate: '',
   modifiedDate: '',
   organizationId: undefined,
-  ownerId: '',
+  owner: mockUser,
   publicAql: true,
 }
 

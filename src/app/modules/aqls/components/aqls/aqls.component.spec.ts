@@ -7,6 +7,10 @@ import { AqlTableComponent } from '../aql-table/aql-table.component'
 
 import { AqlsComponent } from './aqls.component'
 import { TranslateModule } from '@ngx-translate/core'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { ReactiveFormsModule } from '@angular/forms'
+import { Component } from '@angular/core'
 
 describe('AqlsComponent', () => {
   let component: AqlsComponent
@@ -18,9 +22,12 @@ describe('AqlsComponent', () => {
     getAll: () => of(),
   } as AqlService
 
+  @Component({ selector: 'num-aql-table', template: '' })
+  class AqlTableStubComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlsComponent, AqlTableComponent],
+      declarations: [AqlsComponent, AqlTableStubComponent],
       imports: [MaterialModule, TranslateModule.forRoot()],
       providers: [
         {

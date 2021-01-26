@@ -3,20 +3,20 @@ import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
 
 export const DEFAULT_AQL_FILTER: IAqlFilter = {
   searchText: '',
-  filterChips: [
+  filterItem: [
+    {
+      id: AqlFilterChipId.AllAql,
+      title: 'AQL.ALL_AQLS',
+      isSelected: true,
+    },
     {
       id: AqlFilterChipId.MyAql,
-      title: 'MY_AQLS',
-      isSelected: true,
+      title: 'AQL.MY_AQLS',
+      isSelected: false,
     },
     {
       id: AqlFilterChipId.OrganisationAql,
-      title: 'ORGANISATION_AQLS',
-      isSelected: true,
-    },
-    {
-      id: AqlFilterChipId.AllAql,
-      title: 'ALL_AQLS',
+      title: 'AQL.ORGANISATION_AQLS',
       isSelected: false,
     },
   ],

@@ -9,4 +9,5 @@ export interface IUser {
   organization?: IOrganization
   roles?: string[]
   username: string
+  createdTimestamp: number
 }

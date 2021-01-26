@@ -1,3 +1,5 @@
+import { IUser } from '../user/user.interface'
+
 export interface IAqlApi {
   id: number
   name: string
@@ -8,5 +10,5 @@ export interface IAqlApi {
   createDate?: string
   modifiedDate?: string
   organizationId?: string
-  ownerId?: string
+  owner?: IUser
 }
