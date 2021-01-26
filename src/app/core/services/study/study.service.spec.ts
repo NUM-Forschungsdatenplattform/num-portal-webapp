@@ -2,10 +2,16 @@ import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
-import { mockStudies, mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
+import {
+  mockStudies,
+  mockStudies1,
+  mockStudy1,
+  mockStudy3,
+} from 'src/mocks/data-mocks/studies.mock'
 import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
 import { cloneDeep } from 'lodash-es'
 import { StudyService } from './study.service'
+import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 
 describe('StudyService', () => {
   let service: StudyService
@@ -168,6 +174,21 @@ describe('StudyService', () => {
         })
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
       expect(httpClient.put).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When the filterStudiesByStatusAndResearcher method is called', () => {
+    it('should return the corresponding studies', () => {
+      const status = StudyStatus.Published
+      const user = mockOAuthUser
+
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of([mockStudies1]))
+
+      service
+        .filterStudiesByStatusAndResearcher(status, user.sub)
+        .subscribe((result) => expect(result).toEqual([mockStudy3]))
+
+      expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
     })
   })
 })

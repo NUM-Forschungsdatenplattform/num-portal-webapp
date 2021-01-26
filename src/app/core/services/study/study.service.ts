@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, switchMap, tap } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
@@ -76,6 +76,29 @@ export class StudyService {
     return this.httpClient
       .post<IStudyComment>(`${this.baseUrl}/${id}/comment`, { text })
       .pipe(catchError(this.handleError))
+  }
+
+  filterStudiesByStatusAndResearcher(status: string, userId: string): Observable<IStudyApi[]> {
+    if (this.studies.length) {
+      return of(this.filterItems(this.studies, status, userId))
+    } else {
+      return this.getAll().pipe(
+        map((allStudies) => {
+          return this.filterItems(allStudies, status, userId)
+        })
+      )
+    }
+  }
+
+  private filterItems(allStudies: IStudyApi[], status: string, userId: string): IStudyApi[] {
+    let result: IStudyApi[] = []
+
+    result = allStudies.filter(
+      (study) =>
+        study.status === status &&
+        study.researchers.find((researcher) => researcher.userId === userId)
+    )
+    return result
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
