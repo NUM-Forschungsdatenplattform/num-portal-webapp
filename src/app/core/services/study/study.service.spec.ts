@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import {
@@ -12,6 +12,7 @@ import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study
 import { cloneDeep } from 'lodash-es'
 import { StudyService } from './study.service'
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { ProfileService } from '../profile/profile.service'
 
 describe('StudyService', () => {
   let service: StudyService
@@ -32,8 +33,13 @@ describe('StudyService', () => {
     },
   } as AppConfigService
 
+  const userProfileSubject$ = new Subject<any>()
+  const userProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
+
   beforeEach(() => {
-    service = new StudyService(httpClient, appConfig)
+    service = new StudyService(httpClient, appConfig, userProfileService)
     mockStudy1Local = cloneDeep(mockStudy1)
     jest.restoreAllMocks()
     jest.clearAllMocks()
@@ -177,18 +183,16 @@ describe('StudyService', () => {
     })
   })
 
-  describe('When the filterStudiesByStatusAndResearcher method is called', () => {
-    it('should return the corresponding studies', () => {
-      const status = StudyStatus.Published
-      const user = mockOAuthUser
-
+  describe('When the getMyPublishedStudies method is called', () => {
+    it('should call the myPublishedStudiesSubject$.next with studies the user is assigned to as a researcher and which are in published state', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of([mockStudies1]))
+      userProfileSubject$.next(mockOAuthUser)
 
-      service
-        .filterStudiesByStatusAndResearcher(status, user.sub)
-        .subscribe((result) => expect(result).toEqual([mockStudy3]))
+      service.getMyPublishedStudies().subscribe()
 
-      expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
+      service.myPublishedStudiesObservable$
+        .toPromise()
+        .then((result) => expect(result).toEqual([mockStudy3]))
     })
   })
 })

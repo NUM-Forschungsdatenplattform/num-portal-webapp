@@ -7,19 +7,31 @@ import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { ProfileService } from '../profile/profile.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudyService {
   private baseUrl: string
+  private user: IUserProfile
 
   private studies: IStudyApi[] = []
   private studiesSubject$ = new BehaviorSubject(this.studies)
   public studiesObservable$ = this.studiesSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  private myPublishedStudies: IStudyApi[] = []
+  private myPublishedStudiesSubject$ = new BehaviorSubject(this.myPublishedStudies)
+  public myPublishedStudiesObservable$ = this.myPublishedStudiesSubject$.asObservable()
+
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private profileService: ProfileService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/study`
+    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
   }
 
   getAll(): Observable<IStudyApi[]> {
@@ -78,13 +90,19 @@ export class StudyService {
       .pipe(catchError(this.handleError))
   }
 
-  filterStudiesByStatusAndResearcher(status: string, userId: string): Observable<IStudyApi[]> {
+  getMyPublishedStudies(): Observable<IStudyApi[]> {
+    let myStudies: IStudyApi[] = []
+
     if (this.studies.length) {
-      return of(this.filterItems(this.studies, status, userId))
+      myStudies = this.filterItems(this.studies, StudyStatus.Published, this.user.id)
+      this.myPublishedStudiesSubject$.next(myStudies)
+      return of(myStudies)
     } else {
       return this.getAll().pipe(
         map((allStudies) => {
-          return this.filterItems(allStudies, status, userId)
+          myStudies = this.filterItems(allStudies, StudyStatus.Published, this.user.id)
+          this.myPublishedStudiesSubject$.next(myStudies)
+          return myStudies
         })
       )
     }

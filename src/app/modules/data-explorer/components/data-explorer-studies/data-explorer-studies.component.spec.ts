@@ -15,7 +15,7 @@ describe('DataExplorerStudiesComponent', () => {
   class DataExplorerStudiesTableStubComponent {}
 
   const studyService = ({
-    getAll: () => of(),
+    getMyPublishedStudies: () => of(),
   } as unknown) as StudyService
 
   beforeEach(async () => {
@@ -35,9 +35,14 @@ describe('DataExplorerStudiesComponent', () => {
     fixture = TestBed.createComponent(DataExplorerStudiesComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(studyService, 'getMyPublishedStudies')
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should call getMyPublishedStudies method', () => {
+    expect(studyService.getMyPublishedStudies).toHaveBeenCalled()
   })
 })

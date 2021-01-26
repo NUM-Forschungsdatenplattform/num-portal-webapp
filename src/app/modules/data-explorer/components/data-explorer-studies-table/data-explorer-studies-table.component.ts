@@ -3,10 +3,8 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
-import { AuthService } from 'src/app/core/auth/auth.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
-import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 
 @Component({
   selector: 'num-data-explorer-studies-table',
@@ -15,7 +13,7 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 })
 export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private studyService: StudyService, private authService: AuthService) {}
+  constructor(private studyService: StudyService) {}
 
   displayedColumns: string[] = [
     'icon',
@@ -31,12 +29,8 @@ export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit,
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => {
-        this.studyService
-          .filterStudiesByStatusAndResearcher(StudyStatus.Published, userInfo.sub)
-          .subscribe((studies) => {
-            this.handleData(studies)
-          })
+      this.studyService.myPublishedStudiesObservable$.subscribe((studies) => {
+        this.handleData(studies)
       })
     )
   }
