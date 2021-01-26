@@ -16,9 +16,27 @@
     <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
       <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
-      <num-button type="primary" (singleClick)="save()" [isDisabled]="!aqlForm.valid">{{
-        'BUTTON.SAVE_QUERY' | translate
-      }}</num-button>
+      <div *ngIf="!isEditMode">
+        <num-button type="primary" (singleClick)="save()" [isDisabled]="!aqlForm.valid">{{
+          'BUTTON.SAVE_QUERY' | translate
+        }}</num-button>
+      </div>
+      <div *ngIf="isEditMode">
+        <num-button
+          [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
+          (singleClick)="save()"
+          [isDisabled]="!aqlForm.valid"
+          >{{ 'BUTTON.SAVE_AS_CLONE' | translate }}</num-button
+        >
+        <num-button
+          type="primary"
+          (singleClick)="update()"
+          *ngIf="isCurrentUserOwner"
+          [isDisabled]="!aqlForm.valid"
+          class="save-button"
+          >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
+        >
+      </div>
     </div>
   </section>
 </section>

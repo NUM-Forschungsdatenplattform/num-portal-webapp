@@ -1,6 +1,7 @@
+import { AuthService } from 'src/app/core/auth/auth.service'
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
@@ -18,13 +19,26 @@ export class AqlEditorComponent implements OnInit {
   }
 
   aqlForm: FormGroup
+  isEditMode = false
+  isCurrentUserOwner = false
+  user: any = {}
 
-  constructor(private route: ActivatedRoute, private aqlService: AqlService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private aqlService: AqlService,
+    private authService: AuthService
+  ) {
+    this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
+  }
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
 
     this.generateForm()
+
+    this.isEditMode = this.aql?.query !== ''
+    this.isCurrentUserOwner = this.aql?.owner?.id === this.user?.sub
   }
 
   generateForm(): void {
@@ -51,6 +65,19 @@ export class AqlEditorComponent implements OnInit {
     const aqlQuery = this.getAqlForApi()
     try {
       await this.aqlService.save(aqlQuery).toPromise()
+      this.router.navigate(['aqls'], {})
+      // TODO: Display message to user
+    } catch (error) {
+      console.log(error)
+      // TODO: Display message to user
+    }
+  }
+
+  async update(): Promise<void> {
+    const aqlQuery = this.getAqlForApi()
+    try {
+      await this.aqlService.update(aqlQuery, this.aql?.id).toPromise()
+      this.router.navigate(['aqls'], {})
       // TODO: Display message to user
     } catch (error) {
       console.log(error)
