@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
@@ -13,7 +13,7 @@ import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
   templateUrl: './data-explorer-studies-table.component.html',
   styleUrls: ['./data-explorer-studies-table.component.scss'],
 })
-export class DataExplorerStudiesTableComponent implements OnInit {
+export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(private studyService: StudyService, private authService: AuthService) {}
 
