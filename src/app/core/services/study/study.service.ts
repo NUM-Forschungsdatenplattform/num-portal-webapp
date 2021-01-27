@@ -90,6 +90,9 @@ export class StudyService {
       .pipe(catchError(this.handleError))
   }
 
+  /**
+   * Returns the published studies where the current user is assigned to as researcher
+   */
   getMyPublishedStudies(): Observable<IStudyApi[]> {
     let myStudies: IStudyApi[] = []
 
@@ -108,7 +111,7 @@ export class StudyService {
     }
   }
 
-  private filterItems(allStudies: IStudyApi[], status: string, userId: string): IStudyApi[] {
+  private filterItems(allStudies: IStudyApi[], status: StudyStatus, userId: string): IStudyApi[] {
     let result: IStudyApi[] = []
 
     result = allStudies.filter(
