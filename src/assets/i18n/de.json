@@ -21,7 +21,7 @@
     "STUDIES_OVERVIEW": "Studien-Übersicht",
     "STUDIES_EDITOR": "Studien-Editor",
     "CONFIGURE_STUDY": "Studie konfigurieren",
-    "DATA_EXPLORER": "Data Explorer",
+    "DATA_EXPLORER": "Daten-Explorer",
     "PHENOTYPES": "Phänotypen",
     "PHENOTYPES_OVERVIEW": "Phänotypen-Übersicht",
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
@@ -183,5 +183,6 @@
     "CLOSE_STUDY_CONTENT": "Wenn Sie die Studie beenden, stehen die Daten nicht länger für Forschungszwecke zur Verfügung.\n\nDie Studie kann nicht erneut veröffentlich werden.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie beendet haben.",
     "PUBLISH_STUDY_TITLE": "Wollen Sie die Studie wirklich veröffentlichen?",
     "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben."
-  }
+  },
+  "EXPLORE_STUDY": "Studie erkunden"
 }

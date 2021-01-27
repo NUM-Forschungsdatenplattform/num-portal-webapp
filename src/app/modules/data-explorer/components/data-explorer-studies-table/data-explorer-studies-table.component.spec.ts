@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
@@ -14,6 +16,7 @@ import { DataExplorerStudiesTableComponent } from './data-explorer-studies-table
 describe('DataExplorerStudiesTableComponent', () => {
   let component: DataExplorerStudiesTableComponent
   let fixture: ComponentFixture<DataExplorerStudiesTableComponent>
+  let router: Router
 
   const myPublishedStudiesSubject$ = new Subject<IStudyApi[]>()
   const studyService = ({
@@ -29,6 +32,7 @@ describe('DataExplorerStudiesTableComponent', () => {
         TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,
+        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {
@@ -41,6 +45,7 @@ describe('DataExplorerStudiesTableComponent', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
+    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(DataExplorerStudiesTableComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -54,6 +59,17 @@ describe('DataExplorerStudiesTableComponent', () => {
     it('should set the studies, the user is assigned to as researcher and which are in published state, as table data source', () => {
       myPublishedStudiesSubject$.next([mockStudy3])
       expect(component.dataSource.data).toEqual([mockStudy3])
+    })
+  })
+
+  describe('When a study is selected', () => {
+    beforeEach(() => {
+      jest.spyOn(router, 'navigate').mockImplementation()
+    })
+    it('should navigate to the data explorer study detail page', () => {
+      const studyId = 1
+      component.handleSelectClick(studyId)
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies', studyId])
     })
   })
 })
