@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
@@ -14,7 +14,7 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
 })
-export class DataExplorerComponent implements OnInit {
+export class DataExplorerComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   resolvedData: IStudyResolved
