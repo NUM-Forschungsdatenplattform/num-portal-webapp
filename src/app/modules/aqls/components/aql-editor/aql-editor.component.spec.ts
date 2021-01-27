@@ -8,14 +8,22 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
+import { RouterTestingModule } from '@angular/router/testing'
+import { AuthService } from 'src/app/core/auth/auth.service'
 
 import { AqlEditorComponent } from './aql-editor.component'
-import { of } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
+import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
   let fixture: ComponentFixture<AqlEditorComponent>
+
+  const userInfoSubject$ = new Subject<IAuthUserInfo>()
+  const authService = {
+    userInfoObservable$: userInfoSubject$.asObservable(),
+  } as AuthService
 
   const resolvedData: IAqlResolved = { aql: new AqlEditorUiModel(), error: null }
   const route = ({
@@ -28,6 +36,7 @@ describe('AqlEditorComponent', () => {
 
   const aqlService = ({
     save: jest.fn(),
+    update: jest.fn(),
   } as unknown) as AqlService
 
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
@@ -48,7 +57,12 @@ describe('AqlEditorComponent', () => {
         StubEditorCreatorComponent,
         ButtonComponent,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+        RouterTestingModule,
+      ],
       providers: [
         {
           provide: ActivatedRoute,
@@ -57,6 +71,10 @@ describe('AqlEditorComponent', () => {
         {
           provide: AqlService,
           useValue: aqlService,
+        },
+        {
+          provide: AuthService,
+          useValue: authService,
         },
       ],
     }).compileComponents()
@@ -83,9 +101,25 @@ describe('AqlEditorComponent', () => {
     })
 
     it('should call the AQL save method', async (done) => {
+      expect(component.isEditMode).toBeFalsy()
+      expect(component.isCurrentUserOwner).toBeFalsy()
+
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         done()
+      })
+    })
+  })
+
+  describe('On the attempt to update the AQL', () => {
+    beforeEach(() => {
+      const mockAqlObservable = of(mockAql1)
+      jest.spyOn(aqlService, 'update').mockImplementation(() => mockAqlObservable)
+    })
+
+    it('should call the AQL update method', async () => {
+      component.update().then(() => {
+        expect(aqlService.update).toHaveBeenCalledTimes(1)
       })
     })
   })
