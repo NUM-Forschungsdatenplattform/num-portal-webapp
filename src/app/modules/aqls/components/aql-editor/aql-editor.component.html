@@ -21,7 +21,7 @@
           'BUTTON.SAVE_QUERY' | translate
         }}</num-button>
       </div>
-      <div *ngIf="isEditMode">
+      <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="10px">
         <num-button
           [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
           (singleClick)="save()"
@@ -33,7 +33,6 @@
           (singleClick)="update()"
           *ngIf="isCurrentUserOwner"
           [isDisabled]="!aqlForm.valid"
-          class="save-button"
           >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
         >
       </div>

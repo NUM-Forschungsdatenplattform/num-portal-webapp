@@ -6,6 +6,7 @@ import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
+import { take } from 'rxjs/operators'
 
 @Component({
   selector: 'num-aql-editor',
@@ -19,26 +20,26 @@ export class AqlEditorComponent implements OnInit {
   }
 
   aqlForm: FormGroup
-  isEditMode = false
-  isCurrentUserOwner = false
-  user: any = {}
+  isEditMode: boolean
+  isCurrentUserOwner: boolean
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private aqlService: AqlService,
     private authService: AuthService
-  ) {
-    this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
-  }
+  ) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
 
     this.generateForm()
 
-    this.isEditMode = this.aql?.query !== ''
-    this.isCurrentUserOwner = this.aql?.owner?.id === this.user?.sub
+    this.isEditMode = this.aql?.id !== null
+
+    this.authService.userInfoObservable$
+      .pipe(take(1))
+      .subscribe((user) => (this.isCurrentUserOwner = this.aql?.owner?.id === user?.sub))
   }
 
   generateForm(): void {
