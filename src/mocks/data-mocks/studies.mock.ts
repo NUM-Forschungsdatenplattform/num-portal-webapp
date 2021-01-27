@@ -44,8 +44,6 @@ export const mockStudy2: IStudyApi = {
   modifiedDate: new Date(),
 }
 
-export const mockStudies = [mockStudy1, mockStudy2]
-
 export const mockStudy3: IStudyApi = {
   id: 3,
   name: 'Test Title 3',
@@ -64,9 +62,16 @@ export const mockStudy3: IStudyApi = {
     {
       userId: 'abc-2',
     },
+    {
+      userId: '123-456',
+    },
   ],
   firstHypotheses: 'Test Hypothesis',
   status: StudyStatus.Published,
   createDate: new Date(),
   modifiedDate: new Date(),
 }
+
+export const mockStudies = [mockStudy1, mockStudy2]
+
+export const mockStudies1 = [mockStudy1, mockStudy2, mockStudy3]

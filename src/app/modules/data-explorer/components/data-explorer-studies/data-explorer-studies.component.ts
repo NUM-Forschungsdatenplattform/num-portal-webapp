@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { StudyService } from 'src/app/core/services/study/study.service'
 
 @Component({
   selector: 'num-data-explorer-studies',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./data-explorer-studies.component.scss'],
 })
 export class DataExplorerStudiesComponent implements OnInit {
-  constructor() {}
+  constructor(private studyService: StudyService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.studyService.getMyPublishedStudies().subscribe()
+  }
 }

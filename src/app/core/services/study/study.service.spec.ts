@@ -1,11 +1,18 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
-import { mockStudies, mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
+import {
+  mockStudies,
+  mockStudies1,
+  mockStudy1,
+  mockStudy3,
+} from 'src/mocks/data-mocks/studies.mock'
 import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
 import { cloneDeep } from 'lodash-es'
 import { StudyService } from './study.service'
+import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { ProfileService } from '../profile/profile.service'
 
 describe('StudyService', () => {
   let service: StudyService
@@ -26,8 +33,13 @@ describe('StudyService', () => {
     },
   } as AppConfigService
 
+  const userProfileSubject$ = new Subject<any>()
+  const userProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
+
   beforeEach(() => {
-    service = new StudyService(httpClient, appConfig)
+    service = new StudyService(httpClient, appConfig, userProfileService)
     mockStudy1Local = cloneDeep(mockStudy1)
     jest.restoreAllMocks()
     jest.clearAllMocks()
@@ -168,6 +180,19 @@ describe('StudyService', () => {
         })
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
       expect(httpClient.put).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When the getMyPublishedStudies method is called', () => {
+    it('should call the myPublishedStudiesSubject$.next with studies the user is assigned to as a researcher and which are in published state', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of([mockStudies1]))
+      userProfileSubject$.next(mockOAuthUser)
+
+      service.getMyPublishedStudies().subscribe()
+
+      service.myPublishedStudiesObservable$
+        .toPromise()
+        .then((result) => expect(result).toEqual([mockStudy3]))
     })
   })
 })

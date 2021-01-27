@@ -1,25 +1,37 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, switchMap, tap } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { ProfileService } from '../profile/profile.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudyService {
   private baseUrl: string
+  private user: IUserProfile
 
   private studies: IStudyApi[] = []
   private studiesSubject$ = new BehaviorSubject(this.studies)
   public studiesObservable$ = this.studiesSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  private myPublishedStudies: IStudyApi[] = []
+  private myPublishedStudiesSubject$ = new BehaviorSubject(this.myPublishedStudies)
+  public myPublishedStudiesObservable$ = this.myPublishedStudiesSubject$.asObservable()
+
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private profileService: ProfileService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/study`
+    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
   }
 
   getAll(): Observable<IStudyApi[]> {
@@ -76,6 +88,38 @@ export class StudyService {
     return this.httpClient
       .post<IStudyComment>(`${this.baseUrl}/${id}/comment`, { text })
       .pipe(catchError(this.handleError))
+  }
+
+  /**
+   * Returns the published studies where the current user is assigned to as researcher
+   */
+  getMyPublishedStudies(): Observable<IStudyApi[]> {
+    let myStudies: IStudyApi[] = []
+
+    if (this.studies.length) {
+      myStudies = this.filterItems(this.studies, StudyStatus.Published, this.user.id)
+      this.myPublishedStudiesSubject$.next(myStudies)
+      return of(myStudies)
+    } else {
+      return this.getAll().pipe(
+        map((allStudies) => {
+          myStudies = this.filterItems(allStudies, StudyStatus.Published, this.user.id)
+          this.myPublishedStudiesSubject$.next(myStudies)
+          return myStudies
+        })
+      )
+    }
+  }
+
+  private filterItems(allStudies: IStudyApi[], status: StudyStatus, userId: string): IStudyApi[] {
+    let result: IStudyApi[] = []
+
+    result = allStudies.filter(
+      (study) =>
+        study.status === status &&
+        study.researchers.find((researcher) => researcher.userId === userId)
+    )
+    return result
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
