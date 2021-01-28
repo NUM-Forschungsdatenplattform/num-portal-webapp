@@ -25,7 +25,7 @@
     class="mat-elevation-z1"
   >
     <mat-menu #menu="matMenu">
-      <ng-template matMenuContent let-aqlOwner="aqlOwner" let-id="id" let-userId="useId">
+      <ng-template matMenuContent let-aqlOwner="aqlOwner" let-id="id" let-userId="userId">
         <button
           class="num-mat-list-item"
           *ngFor="let menuItem of menuItems | aqlItemVisibility: aqlOwner:userId"
@@ -44,7 +44,7 @@
         <button
           mat-icon-button
           [matMenuTriggerFor]="menu"
-          [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, useId: user.id }"
+          [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, userId: user.id }"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>
