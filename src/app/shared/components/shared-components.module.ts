@@ -19,10 +19,11 @@ const SHARED_DECLARATIONS = [
   ButtonComponent,
   FilterTableComponent,
   DefinitionListComponent,
+  DialogConfirmationComponent,
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent, DialogConfirmationComponent],
+  declarations: [...SHARED_DECLARATIONS],
   imports: [
     CommonModule,
     FontAwesomeModule,

@@ -10,7 +10,7 @@ import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
 import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
-import { Params, Router } from '@angular/router'
+import { Router } from '@angular/router'
 import { AqlMenuKeys, MENU_ITEM_CLONE, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from './menu-item'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
@@ -34,7 +34,9 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(take(1))
       .subscribe((config) => (this.filterConfig = config))
 
-    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
+    this.subscriptions.add(
+      this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
+    )
   }
 
   displayedColumns: string[] = [
@@ -78,11 +80,9 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   handleMenuClick(key: string, id: number): void {
-    let queryParams: Params
     switch (key) {
       case AqlMenuKeys.Edit:
       case AqlMenuKeys.Clone:
-        queryParams = { mode: key.toLocaleLowerCase() }
         this.router.navigate(['aqls', id, 'editor'])
         break
       case AqlMenuKeys.Delete:
