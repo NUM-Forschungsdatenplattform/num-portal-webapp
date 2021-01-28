@@ -21,7 +21,7 @@
           'BUTTON.SAVE_QUERY' | translate
         }}</num-button>
       </div>
-      <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="10px">
+      <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="10px" class="editmode-on">
         <num-button
           [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
           (singleClick)="save()"

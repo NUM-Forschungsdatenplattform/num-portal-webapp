@@ -81,6 +81,10 @@ describe('AqlEditorComponent', () => {
   })
 
   beforeEach(() => {
+    route.snapshot.data.resolvedData = {
+      error: null,
+      aql: new AqlEditorUiModel(mockAql1),
+    }
     fixture = TestBed.createComponent(AqlEditorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -90,20 +94,36 @@ describe('AqlEditorComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('When in EditMode', () => {
+    const userInfo: IAuthUserInfo = {
+      sub: '',
+    }
+
+    it('should set isEditMode to true', () => {
+      expect(component.isEditMode).toBeTruthy()
+    })
+
+    it('should set isCurrentUserOwner to True', () => {
+      userInfoSubject$.next(userInfo)
+      if (userInfo.sub === component.aql.owner.id) {
+        expect(component.isCurrentUserOwner).toBeTruthy()
+      }
+    })
+
+    it('should have edit buttons shown', () => {
+      const nativeElement = fixture.debugElement.nativeElement
+      const element = nativeElement.querySelector('.editmode-on')
+      expect(element).toBeTruthy()
+    })
+  })
+
   describe('On the attempt to save the AQL', () => {
     beforeEach(() => {
       const mockAqlObservable = of(mockAql1)
       jest.spyOn(aqlService, 'save').mockImplementation(() => mockAqlObservable)
-      component.resolvedData = {
-        error: null,
-        aql: new AqlEditorUiModel(mockAql1),
-      }
     })
 
     it('should call the AQL save method', async (done) => {
-      expect(component.isEditMode).toBeFalsy()
-      expect(component.isCurrentUserOwner).toBeFalsy()
-
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         done()
