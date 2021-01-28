@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component'
 import { FilterTableComponent } from './filter-table/filter-table.component'
 import { PipesModule } from '../pipes/pipes.module'
 import { DefinitionListComponent } from './definition-list/definition-list.component'
+import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 
 const SHARED_DECLARATIONS = [
   SearchComponent,
@@ -21,7 +22,7 @@ const SHARED_DECLARATIONS = [
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent],
+  declarations: [...SHARED_DECLARATIONS, DefinitionListComponent, DialogConfirmationComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,

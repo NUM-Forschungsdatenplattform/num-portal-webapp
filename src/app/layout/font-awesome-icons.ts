@@ -23,6 +23,8 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { faTable } from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faUserLock } from '@fortawesome/free-solid-svg-icons'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
@@ -52,4 +54,6 @@ export const FONT_AWESOME_ICONS = [
   faUser,
   faTable,
   faExternalLinkAlt,
+  faEye,
+  faUserLock,
 ]

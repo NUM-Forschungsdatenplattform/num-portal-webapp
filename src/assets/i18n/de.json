@@ -103,7 +103,9 @@
     "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
     "NAME": "Name",
     "ORGANIZATION": "Organisation",
-    "FILTER": "Filter"
+    "FILTER": "Filter",
+    "ACTION": "Action",
+    "USAGE": "Usage"
   },
   "BUTTON": {
     "SAVE": "Speichern",
@@ -129,6 +131,8 @@
     "OPEN_AQL_BUILDER": "Abfrage erstellen",
     "PREVIEW": "Vorschau",
     "EDIT": "Bearbeiten",
+    "DELETE": "Löschen",
+    "CLONE": "Klonen",
     "EDIT_RESEARCHERS": "Forscher bearbeiten",
     "PUBLISH": "Veröffentlichen",
     "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
@@ -183,6 +187,8 @@
     "CLOSE_STUDY_TITLE": "Wollen Sie die Studie wirklich beenden?",
     "CLOSE_STUDY_CONTENT": "Wenn Sie die Studie beenden, stehen die Daten nicht länger für Forschungszwecke zur Verfügung.\n\nDie Studie kann nicht erneut veröffentlich werden.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie beendet haben.",
     "PUBLISH_STUDY_TITLE": "Wollen Sie die Studie wirklich veröffentlichen?",
-    "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben."
+    "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben.",
+    "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
+    "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden."
   }
 }
