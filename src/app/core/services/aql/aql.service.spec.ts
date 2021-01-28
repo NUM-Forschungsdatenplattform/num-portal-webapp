@@ -16,6 +16,7 @@ describe('AqlService', () => {
   const httpClient = ({
     get: jest.fn(),
     post: jest.fn(),
+    put: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -160,6 +161,24 @@ describe('AqlService', () => {
       jest.spyOn(service, 'handleError')
       service.save(mockAql1).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAql1)
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to update method comes in', () => {
+    it('should call the put with the aqls and Id as payload', () => {
+      const aqlId = 1
+      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockAql1))
+      service.update(mockAql1, aqlId).subscribe()
+      expect(httpClient.put).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`, mockAql1)
+    })
+
+    it('should call handleError on api error', () => {
+      const aqlId = 1
+      jest.spyOn(httpClient, 'put').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.update(mockAql1, aqlId).subscribe()
+      expect(httpClient.put).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`, mockAql1)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
