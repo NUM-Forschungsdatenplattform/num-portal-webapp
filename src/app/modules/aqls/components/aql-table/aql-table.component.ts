@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
@@ -21,7 +21,7 @@ import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AqlTableComponent implements AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   user: IUserProfile
   constructor(
@@ -34,6 +34,9 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(take(1))
       .subscribe((config) => (this.filterConfig = config))
 
+    this.subscriptions.add(
+      this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
+    )
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
     )
@@ -54,12 +57,6 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
-
-  ngOnInit(): void {
-    this.subscriptions.add(
-      this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
-    )
-  }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()

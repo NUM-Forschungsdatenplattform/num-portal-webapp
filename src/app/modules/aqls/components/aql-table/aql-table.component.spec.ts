@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BehaviorSubject, of, Subject } from 'rxjs'
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -18,14 +18,8 @@ import { IUserProfile } from '../../../../shared/models/user/user-profile.interf
 import { ProfileService } from '../../../../core/services/profile/profile.service'
 import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
-import { StudyMenuKeys } from '../../../studies/components/studies-table/menu-items'
-import {
-  CLOSE_STUDY_DIALOG_CONFIG,
-  PUBLISH_STUDY_DIALOG_CONFIG,
-  WITHDRAW_APPROVAL_DIALOG_CONFIG,
-} from '../../../studies/components/studies-table/constants'
-import { StudyStatus } from '../../../../shared/models/study/study-status.enum'
 import { AqlMenuKeys } from './menu-item'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -34,12 +28,14 @@ describe('AqlTableComponent', () => {
 
   const filteredAqlsSubject$ = new Subject<IAqlApi[]>()
   const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterItem: [] })
-  const aqlService = {
-    filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
-    filterConfigObservable$: filterConfigSubject$.asObservable(),
+
+  const aqlService = ({
+    delete: jest.fn(),
     getAll: () => of(),
     setFilter: (_: any) => {},
-  } as AqlService
+    filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
+    filterConfigObservable$: filterConfigSubject$.asObservable(),
+  } as unknown) as AqlService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {
@@ -125,5 +121,20 @@ describe('AqlTableComponent', () => {
         expect(router.navigate).toHaveBeenCalledWith(['aqls', aqlId, 'editor'])
       }
     )
+  })
+
+  describe('On the attempt to delete the AQL', () => {
+    beforeEach(() => {
+      const mockAqlObservable = of(mockAql1)
+      jest.spyOn(aqlService, 'delete').mockImplementation(() => mockAqlObservable)
+    })
+
+    it('should call the AQL delete method', async (done) => {
+      const aqlId = 1
+      component.delete(aqlId).then(() => {
+        expect(aqlService.delete).toHaveBeenCalledTimes(1)
+        done()
+      })
+    })
   })
 })
