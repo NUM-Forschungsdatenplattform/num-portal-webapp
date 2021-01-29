@@ -136,6 +136,12 @@ export class AqlService {
       .pipe(catchError(this.handleError))
   }
 
+  delete(aqlId: number): Observable<any> {
+    return this.httpClient
+      .delete<any>(`${this.baseUrl}/${aqlId}`)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

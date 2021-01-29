@@ -74,6 +74,10 @@ export class AqlEditorComponent implements OnInit {
     }
   }
 
+  cancel(): void {
+    this.router.navigate(['aqls'], {})
+  }
+
   async update(): Promise<void> {
     const aqlQuery = this.getAqlForApi()
     try {

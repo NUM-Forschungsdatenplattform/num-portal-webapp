@@ -16,6 +16,7 @@ describe('AqlService', () => {
   const httpClient = ({
     get: jest.fn(),
     post: jest.fn(),
+    delete: jest.fn(),
     put: jest.fn(),
   } as unknown) as HttpClient
 
@@ -161,6 +162,24 @@ describe('AqlService', () => {
       jest.spyOn(service, 'handleError')
       service.save(mockAql1).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAql1)
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to delete method comes in', () => {
+    it('should call to the delete to the api with the specific aql id', () => {
+      const aqlId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(aqlId))
+      service.delete(aqlId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`)
+    })
+
+    it('should call handleError on api error', () => {
+      const aqlId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.delete(aqlId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
