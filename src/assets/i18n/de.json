@@ -100,6 +100,7 @@
     "PURPOSE": "Zweck",
     "USE": "Verwendung",
     "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
+    "ETHICAL_APPROVAL_CHECKBOX": "Ja, die ethische Überprüfung ist erfolgt*",
     "NAME": "Name",
     "ORGANIZATION": "Organisation",
     "FILTER": "Filter",
@@ -192,7 +193,9 @@
     "PUBLISH_STUDY_TITLE": "Wollen Sie die Studie wirklich veröffentlichen?",
     "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben.",
     "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
-    "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden."
+    "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "APPROVE_STUDY_TITLE": "Wollen Sie die Studie wirklich genehmigen?",
+    "APPROVE_STUDY_CONTENT": "Nachdem Sie die Studie genehmigt haben, kann der Studienkoordinator die Studie freischalten, so dass der Forscher mit der Arbeit an der Studie beginnen kann."
   },
   "EXPLORE_STUDY": "Studie erkunden",
   "DATE_TIME": {

@@ -1,0 +1,23 @@
+<section fxLayout="column">
+  <p>{{ 'CONFIRM_DIALOG.APPROVE_STUDY_CONTENT' | translate }}</p>
+
+  <form [formGroup]="form" class="num-margin-b-40">
+    <mat-checkbox id="isChecked" color="accent" formControlName="check">{{
+      'FORM.ETHICAL_APPROVAL_CHECKBOX' | translate
+    }}</mat-checkbox>
+  </form>
+
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <num-button type="secondary" (singleClick)="handleDialogCancel()">{{
+      'BUTTON.CANCEL' | translate
+    }}</num-button>
+
+    <num-button
+      id="approval-button"
+      type="primary"
+      (singleClick)="handleDialogConfirm()"
+      [isDisabled]="form.invalid"
+      >{{ 'BUTTON.STUDY_APPROVAL_APPROVE' | translate }}</num-button
+    >
+  </div>
+</section>
