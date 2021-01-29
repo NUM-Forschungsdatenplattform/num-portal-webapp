@@ -21,7 +21,7 @@
     "STUDIES_OVERVIEW": "Studien-Übersicht",
     "STUDIES_EDITOR": "Studien-Editor",
     "CONFIGURE_STUDY": "Studie konfigurieren",
-    "DATA_EXPLORER": "Data Explorer",
+    "DATA_EXPLORER": "Daten-Explorer",
     "PHENOTYPES": "Phänotypen",
     "PHENOTYPES_OVERVIEW": "Phänotypen-Übersicht",
     "PHENOTYPES_EDITOR": "Phänotypen-Editor",
@@ -194,6 +194,7 @@
     "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden."
   },
+  "EXPLORE_STUDY": "Studie erkunden",
   "DATE_TIME": {
     "DATE": "Datum",
     "HOUR_SHORT": "Std.",

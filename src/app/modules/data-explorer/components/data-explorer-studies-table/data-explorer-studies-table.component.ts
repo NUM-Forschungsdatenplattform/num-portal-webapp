@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { StudyService } from 'src/app/core/services/study/study.service'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
@@ -13,7 +14,7 @@ import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 })
 export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private studyService: StudyService) {}
+  constructor(private studyService: StudyService, private router: Router) {}
 
   displayedColumns: string[] = [
     'icon',
@@ -48,6 +49,6 @@ export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit,
   }
 
   handleSelectClick(id: number): void {
-    console.log('To be continued next.')
+    this.router.navigate(['data-explorer/studies', id])
   }
 }

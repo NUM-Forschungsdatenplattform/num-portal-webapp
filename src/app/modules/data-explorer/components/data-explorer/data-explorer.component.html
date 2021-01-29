@@ -1,1 +1,39 @@
-<p>data-explorer works!</p>
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'EXPLORE_STUDY' | translate }}</h2>
+  <p class="num-margin-b-40">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
+    imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
+  </p>
+
+  <mat-accordion [multi]="true" fxFlex="100%">
+    <num-study-editor-general-info
+      [form]="studyForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+    ></num-study-editor-general-info>
+
+    <num-study-editor-templates
+      [(templates)]="study.templates"
+      [isDisabled]="isTemplatesDisabled"
+    ></num-study-editor-templates>
+
+    <num-study-editor-connector
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
+    ></num-study-editor-connector>
+
+    <num-study-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="study.researchers"
+      [isDisabled]="isResearchersDisabled"
+    ></num-study-editor-researchers>
+  </mat-accordion>
+
+  <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+  <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button id="back-button" type="secondary" (singleClick)="cancel()">{{
+      'BUTTON.BACK' | translate
+    }}</num-button>
+  </div>
+</section>

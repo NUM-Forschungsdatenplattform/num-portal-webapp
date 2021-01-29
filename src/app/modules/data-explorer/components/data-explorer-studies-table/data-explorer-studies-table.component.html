@@ -29,16 +29,18 @@
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'FORM.AUTHOR' | translate }}
       </th>
-      <!-- TO DO: change to coordinator.firstName coordinator.lastName once implemented in the backend -->
-      <td mat-cell *matCellDef="let element">{{ element.coordinator?.userId }}</td>
+      <!-- TO DO: currently not implemented in the backend - check if this is correct -->
+      <td mat-cell *matCellDef="let element">
+        {{ element.coordinator?.firstName }} {{ element.coordinator?.lastName }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="coordinatorOrganization">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'USER.ORGANIZATION' | translate }}
       </th>
-      <!-- TO DO: change to coordinator.organization.name once implemented in the backend -->
-      <td mat-cell *matCellDef="let element">{{ element.coordinator?.organizationId }}</td>
+      <!-- TO DO: currently not implemented in the backend - check if this is correct -->
+      <td mat-cell *matCellDef="let element">{{ element.coordinator?.organization?.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="createDate">

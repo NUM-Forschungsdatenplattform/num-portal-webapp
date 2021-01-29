@@ -194,6 +194,7 @@
     "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
     "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone."
   },
+  "EXPLORE_STUDY": "Explore Study",
   "DATE_TIME": {
     "DATE": "Date",
     "HOUR_SHORT": "Hr.",
