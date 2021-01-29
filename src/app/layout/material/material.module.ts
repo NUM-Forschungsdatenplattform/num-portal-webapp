@@ -23,6 +23,8 @@ import { MatTreeModule } from '@angular/material/tree'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatRadioModule } from '@angular/material/radio'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatNativeDateModule } from '@angular/material/core'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -49,11 +51,14 @@ const MATERIAL_MODULES = [
   MatProgressBarModule,
   MatMenuModule,
   MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ]
 
 @NgModule({
   declarations: [],
   imports: [...MATERIAL_MODULES],
   exports: [...MATERIAL_MODULES],
+  providers: [MatDatepickerModule],
 })
 export class MaterialModule {}

@@ -18,6 +18,8 @@ import { AqlBuilderTemplateTreeComponent } from './components/aql-builder-templa
 import { AqlBuilderContainsGroupComponent } from './components/aql-builder-contains-group/aql-builder-contains-group.component'
 import { AqlBuilderContainsItemComponent } from './components/aql-builder-contains-item/aql-builder-contains-item.component'
 import { AqlBuilderSelectItemComponent } from './components/aql-builder-select-item/aql-builder-select-item.component'
+import { AqlBuilderWhereItemComponent } from './components/aql-builder-where-item/aql-builder-where-item.component'
+import { AqlBuilderWhereGroupComponent } from './components/aql-builder-where-group/aql-builder-where-group.component'
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AqlBuilderSelectItemComponent } from './components/aql-builder-select-i
     AqlBuilderContainsGroupComponent,
     AqlBuilderContainsItemComponent,
     AqlBuilderSelectItemComponent,
+    AqlBuilderWhereItemComponent,
+    AqlBuilderWhereGroupComponent,
   ],
   imports: [CommonModule, AqlsRoutingModule, SharedModule, LayoutModule, CodeEditorModule],
 })

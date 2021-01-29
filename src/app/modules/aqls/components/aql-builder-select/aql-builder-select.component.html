@@ -1,5 +1,16 @@
-<h2 class="mat-display-2">Select</h2>
-<div class="placeholder group-box">
+<h2 id="section-heading" class="mat-display-2 pointer" (click)="setDestination()">Select</h2>
+<div
+  class="num-select-flag pointer"
+  role="button"
+  tabindex="0"
+  aria-labelledby="section-heading"
+  (keydown.enter)="setDestination()"
+  (keydown.space)="setDestination()"
+  (click)="setDestination()"
+>
+  <fa-icon icon="check"></fa-icon>
+</div>
+<div class="num-aqb-box">
   <num-aql-builder-select-item
     class="aqb-item mat-elevation-z2"
     fxLayout="row"

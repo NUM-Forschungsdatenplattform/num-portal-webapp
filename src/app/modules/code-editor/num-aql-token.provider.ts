@@ -11,7 +11,9 @@ import {
   dateBasicRegExp,
   dateExtendedRegExp,
   datetimeExtendedRegExp,
+  datetimePortalRegExp,
   timeExtendedRegExp,
+  timePortalRegExp,
 } from './regular-expressions/datetime.regex'
 
 export const numAqlTokenProvider: monaco.languages.IMonarchLanguage = {
@@ -44,9 +46,11 @@ export const numAqlTokenProvider: monaco.languages.IMonarchLanguage = {
     functions: [[aqlFunctionRegExp, 'num-function']],
     datetimes: [
       [datetimeExtendedRegExp, 'num-datetime'],
+      [datetimePortalRegExp, 'num-datetime'],
       [dateExtendedRegExp, 'num-datetime'],
       [dateBasicRegExp, 'num-datetime'],
       [timeExtendedRegExp, 'num-datetime'],
+      [timePortalRegExp, 'num-datetime'],
     ],
     numbers: [[/((\d+(\.\d*)?)|(\.\d+))/, 'num-number']],
     strings: [

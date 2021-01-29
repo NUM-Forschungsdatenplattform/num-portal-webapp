@@ -32,7 +32,9 @@ describe('DialogAqlBuilderComponent', () => {
     @Input() aqbModel: any
   }
   @Component({ selector: 'num-aql-builder-where', template: '' })
-  class WhereStubComponent {}
+  class WhereStubComponent {
+    @Input() aqbModel: any
+  }
 
   const templatesSubject$ = new Subject<IEhrbaseTemplate[]>()
 

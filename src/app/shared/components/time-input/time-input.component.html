@@ -1,0 +1,17 @@
+<form fxLayout="row" fxLayoutGap="4px" [formGroup]="form">
+  <mat-form-field
+    class="num-time-picker"
+    [appearance]="appearance || 'outline'"
+    *ngFor="let inputField of inputFields"
+  >
+    <mat-label id="label">{{ inputField.name | translate }}</mat-label>
+    <input
+      [formControlName]="inputField.formControl"
+      aria-labelledby="label"
+      type="number"
+      [min]="inputField.lowerBound"
+      [max]="inputField.upperBound"
+      matInput
+    />
+  </mat-form-field>
+</form>

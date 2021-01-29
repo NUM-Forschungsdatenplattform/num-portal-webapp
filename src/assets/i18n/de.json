@@ -105,7 +105,10 @@
     "FILTER": "Filter",
     "ACTION": "Aktion",
     "CREATION_DATE": "Erstellungsdatum",
-    "USAGE": "Nutzung"
+    "USAGE": "Nutzung",
+    "YES": "Ja",
+    "NO": "Nein",
+    "VALUE": "Wert"
   },
   "BUTTON": {
     "SAVE": "Speichern",
@@ -190,5 +193,11 @@
     "PUBLISH_STUDY_CONTENT": "Nachdem Sie die Studie veröffentlicht haben, können Sie nur noch die Liste der Forscher bearbeiten.\n\nAlle ausgewählten Forschenden werden auch darüber informiert, dass Sie die Studie veröffentlicht haben.",
     "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden."
+  },
+  "DATE_TIME": {
+    "DATE": "Datum",
+    "HOUR_SHORT": "Std.",
+    "MINUTE_SHORT": "Min.",
+    "SECOND_SHORT": "Sek."
   }
 }

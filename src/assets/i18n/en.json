@@ -105,7 +105,10 @@
     "FILTER": "Filter",
     "ACTION": "Action",
     "CREATION_DATE": "Creation Date",
-    "USAGE": "Usage"
+    "USAGE": "Usage",
+    "YES": "Yes",
+    "NO": "No",
+    "VALUE": "Value"
   },
   "BUTTON": {
     "SAVE": "Save",
@@ -190,5 +193,11 @@
     "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study.",
     "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
     "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone."
+  },
+  "DATE_TIME": {
+    "DATE": "Date",
+    "HOUR_SHORT": "Hr.",
+    "MINUTE_SHORT": "Min.",
+    "SECOND_SHORT": "Sec."
   }
 }
