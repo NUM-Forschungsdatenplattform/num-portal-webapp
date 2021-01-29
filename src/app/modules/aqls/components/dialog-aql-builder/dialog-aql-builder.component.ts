@@ -8,6 +8,7 @@ import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-com
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { cloneDeep } from 'lodash-es'
+import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 
 @Component({
   selector: 'num-dialog-aql-builder',
@@ -15,6 +16,7 @@ import { cloneDeep } from 'lodash-es'
   styleUrls: ['./dialog-aql-builder.component.scss'],
 })
 export class DialogAqlBuilderComponent implements OnInit, OnDestroy, IGenericDialog<any> {
+  AqbSelectDestination = AqbSelectDestination
   constructor(private aqlEditorService: AqlEditorService) {}
 
   dialogInput: AqbUiModel

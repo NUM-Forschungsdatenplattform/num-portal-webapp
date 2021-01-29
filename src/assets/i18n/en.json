@@ -80,7 +80,6 @@
   "LEAVE_COMMENT": "Leave a comment here to share your thoughts",
   "SHOW_OLDER_POSTS": "Show older posts",
   "SHOW_LESS": "Show less",
-  "ACTION": "Action",
   "DATE": "Date",
   "REGISTER_DATE": "Register Date",
   "PLEASE_CHOOSE": "Please choose",
@@ -103,7 +102,13 @@
     "PUBLIC_CHECKBOX": "AQL query is for public use",
     "NAME": "Name",
     "ORGANIZATION": "Organization",
-    "FILTER": "Filter"
+    "FILTER": "Filter",
+    "ACTION": "Action",
+    "CREATION_DATE": "Creation Date",
+    "USAGE": "Usage",
+    "YES": "Yes",
+    "NO": "No",
+    "VALUE": "Value"
   },
   "BUTTON": {
     "SAVE": "Save",
@@ -129,6 +134,8 @@
     "OPEN_AQL_BUILDER": "Build query",
     "PREVIEW": "Preview",
     "EDIT": "Edit",
+    "DELETE": "Delete",
+    "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Publish",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
@@ -183,7 +190,15 @@
     "CLOSE_STUDY_TITLE": "Do you really want to close the study?",
     "CLOSE_STUDY_CONTENT": "If the study is closed, no further research can be conducted on the data.\n\nThe study cannot be republished.\n\nAll selected researchers will also be informed that you have terminated the study.",
     "PUBLISH_STUDY_TITLE": "Do you really want to publish the study?",
-    "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study."
+    "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study.",
+    "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
+    "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone."
   },
-  "EXPLORE_STUDY": "Explore Study"
+  "EXPLORE_STUDY": "Explore Study",
+  "DATE_TIME": {
+    "DATE": "Date",
+    "HOUR_SHORT": "Hr.",
+    "MINUTE_SHORT": "Min.",
+    "SECOND_SHORT": "Sec."
+  }
 }

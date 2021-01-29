@@ -1,0 +1,105 @@
+<section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
+  <div class="name-field mat-body-strong">{{ item.name | archetype: true }}</div>
+
+  <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
+    <mat-label id="label">Operator</mat-label>
+    <mat-select
+      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+      [(value)]="item.comparisonOperator"
+    >
+      <mat-option *ngFor="let operator of item.comparisonOperatorOptions" [value]="operator.value">
+        {{ operator.sign }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container [formGroup]="parameterForm">
+    <mat-form-field
+      floatLabel="always"
+      appearance="outline"
+      class="input num-tiny-input value-input"
+      *ngIf="item.isParameterType"
+    >
+      <mat-label id="label">Parametername</mat-label>
+      <input aria-labelledby="label" type="text" matInput formControlName="value" />
+    </mat-form-field>
+  </ng-container>
+
+  <ng-container *ngIf="!item.isParameterType" [formGroup]="valueForm">
+    <mat-form-field
+      *ngIf="
+        item.valueType === AqbValueType.Double ||
+        item.valueType === AqbValueType.Number ||
+        item.valueType === AqbValueType.String
+      "
+      floatLabel="always"
+      appearance="outline"
+      class="input num-tiny-input value-input"
+    >
+      <mat-label id="value-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+      <input
+        aria-labelledby="value-label"
+        formControlName="value"
+        [attr.inputmode]="item.valueType === AqbValueType.String ? 'latin' : 'numeric'"
+        matInput
+        type="text"
+      />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      class="input num-tiny-input boolean-select"
+      *ngIf="item.valueType === AqbValueType.Boolean"
+    >
+      <mat-label id="boolean-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+      <mat-select aria-labelledby="boolean-label" [(value)]="item.value">
+        <mat-option *ngFor="let value of [true, false]" [value]="value">
+          {{ value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="outline"
+      class="input num-tiny-input datepicker"
+      *ngIf="item.valueType === AqbValueType.Date || item.valueType === AqbValueType.DateTime"
+    >
+      <mat-label id="datepicker-label">{{ 'DATE_TIME.DATE' | translate }}</mat-label>
+      <input
+        aria-labelledby="datepicker-label"
+        matInput
+        [matDatepicker]="picker"
+        [value]="item.value"
+        (dateChange)="datePickerChange($event)"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <num-time-input
+      appearance="outline"
+      [(date)]="item.value"
+      class="input num-tiny-input"
+      *ngIf="item.valueType === AqbValueType.Time || item.valueType === AqbValueType.DateTime"
+    ></num-time-input>
+  </ng-container>
+</section>
+
+<section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
+  <mat-form-field appearance="outline" class="num-tiny-input parameter-select">
+    <mat-label id="label">Parameter</mat-label>
+    <mat-select [attr.aria-label]="'LOGICAL_OPERATOR' | translate" [(value)]="item.isParameterType">
+      <mat-option *ngFor="let parameter of item.parameterTypeOptions" [value]="parameter.value">
+        {{ parameter.text | translate }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <fa-icon
+    class="pointer"
+    icon="trash"
+    size="lg"
+    [fixedWidth]="true"
+    (click)="deleteSelf()"
+  ></fa-icon>
+</section>

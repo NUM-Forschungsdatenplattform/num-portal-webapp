@@ -13,6 +13,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { OAuthInterceptor } from './core/interceptors/oauth.interceptor'
 import { AuthService } from './core/auth/auth.service'
+import { DateAdapter } from '@angular/material/core'
+import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http)
@@ -55,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       useClass: OAuthInterceptor,
       multi: true,
     },
+    { provide: DateAdapter, useClass: CustomDatePickerAdapter },
   ],
   bootstrap: [AppComponent],
 })

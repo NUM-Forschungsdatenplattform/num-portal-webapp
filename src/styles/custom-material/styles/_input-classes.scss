@@ -1,0 +1,63 @@
+.num-operator-select {
+  .mat-form-field-infix {
+    width: 55px;
+    bottom: 1px;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+}
+
+.num-tiny-input {
+  .mat-form-field-wrapper {
+    padding: 0;
+    margin: 0 !important;
+  }
+
+  .mat-form-field-flex {
+    padding: 0 0.1em 0 0.4em !important;
+  }
+
+  .mat-form-field-infix {
+    width: unset;
+    padding: 0.1em 0 0.35em 0 !important;
+  }
+
+  .mat-form-field-underline {
+    position: initial;
+  }
+
+  .mat-select-value {
+    max-width: unset;
+    width: unset;
+    min-width: 30px;
+    padding-right: 1em;
+  }
+
+  .mat-select-arrow-wrapper {
+    transform: translateY(-10%) !important;
+  }
+}
+
+.num-time-picker {
+  max-width: 50px;
+  .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+  .mat-form-field-infix {
+    width: unset;
+  }
+
+  .mat-form-field-underline {
+    position: initial;
+  }
+
+  .mat-select-value {
+    max-width: unset;
+    width: unset;
+    min-width: 30px;
+    padding-right: 1em;
+  }
+}

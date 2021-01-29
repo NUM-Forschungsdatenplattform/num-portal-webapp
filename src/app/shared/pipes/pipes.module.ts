@@ -6,6 +6,7 @@ import { NestedAccessPipe } from './nested-access.pipe'
 import { IsSelectedPipe } from './is-selected.pipe'
 import { ItemVisibilityPipe } from './item-visibility.pipe'
 import { LocalizedDatePipe } from './localized-date.pipe'
+import { AqlItemVisibilityPipe } from './aql-item-visibility.pipe'
 
 const SHARED_DECLARATIONS = [
   GroupIndexPipe,
@@ -14,6 +15,7 @@ const SHARED_DECLARATIONS = [
   IsSelectedPipe,
   ItemVisibilityPipe,
   LocalizedDatePipe,
+  AqlItemVisibilityPipe,
 ]
 
 @NgModule({

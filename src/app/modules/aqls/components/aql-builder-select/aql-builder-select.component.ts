@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
 @Component({
@@ -16,5 +17,9 @@ export class AqlBuilderSelectComponent implements OnInit {
 
   deleteItem(index: number): void {
     this.aqbModel.select.splice(index, 1)
+  }
+
+  setDestination(): void {
+    this.aqbModel.selectDestination = AqbSelectDestination.Select
   }
 }

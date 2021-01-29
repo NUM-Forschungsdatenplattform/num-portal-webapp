@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -19,6 +19,8 @@ import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interfa
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
   let fixture: ComponentFixture<AqlEditorComponent>
+
+  let router: Router
 
   const userInfoSubject$ = new Subject<IAuthUserInfo>()
   const authService = {
@@ -81,9 +83,11 @@ describe('AqlEditorComponent', () => {
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(AqlEditorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(router, 'navigate').mockImplementation()
   })
 
   it('should create', () => {
@@ -130,9 +134,9 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'update').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should NOT call the AQL update method', async () => {
+    it('should call the AQL update method', async () => {
       component.update().then(() => {
-        expect(aqlService.update).toHaveBeenCalledTimes(0)
+        expect(aqlService.update).toHaveBeenCalledTimes(1)
       })
     })
   })
