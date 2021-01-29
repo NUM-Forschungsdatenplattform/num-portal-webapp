@@ -122,6 +122,7 @@
     "DELETE_COMPOSITION": "Delete composition",
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_QUERY": "Save AQL Query",
+    "SAVE_AS_CLONE": "Save as clone",
     "SELECT": "Select",
     "DESELECT": "Deselect",
     "APPROVE_USER": "Approve User",

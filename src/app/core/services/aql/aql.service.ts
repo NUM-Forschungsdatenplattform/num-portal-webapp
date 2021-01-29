@@ -130,6 +130,12 @@ export class AqlService {
     return this.httpClient.post<IAqlApi>(this.baseUrl, aqlQuery).pipe(catchError(this.handleError))
   }
 
+  update(aqlQuery: IAqlApi, id: number): Observable<IAqlApi> {
+    return this.httpClient
+      .put<IAqlApi>(`${this.baseUrl}/${id}`, aqlQuery)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }
