@@ -1,0 +1,49 @@
+@mixin aqb-select-destination_themed($theme) {
+  $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
+
+  $width: 20px;
+  $height: 40px;
+
+  .num-select-flag {
+    width: $width;
+    height: $height;
+    background: mat-color($additional, light-grey);
+    float: left;
+    margin-left: -$width;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+    text-align: center;
+    line-height: $height;
+    font-size: 14px;
+
+    &:focus {
+      outline: solid 2px mat-color($accent, 500);
+    }
+
+    .active &,
+    &:active {
+      outline: none;
+      background: mat-color($accent, 500);
+    }
+  }
+
+  .num-aqb-box {
+    border-width: 1px;
+    border-style: solid;
+    border-color: mat-color($additional, light-grey);
+    padding: 20px;
+    width: 100%;
+    min-height: 200px;
+
+    &.contains {
+      border-color: mat-color($additional, mid-grey);
+    }
+
+    .active & {
+      border-color: mat-color($accent, 500);
+      border-width: 2px;
+    }
+  }
+}

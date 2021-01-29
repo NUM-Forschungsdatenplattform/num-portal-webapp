@@ -5,7 +5,7 @@ const archetypePredicate = [
   '-', // -
   '[a-zA-Z][a-zA-Z0-9_]+', // OBSERVATION
   '.', // .
-  '[a-zA-Z][a-zA-Z0-9_]+', // blood_pressure
+  '[a-zA-Z][a-zA-Z0-9(-|_)]+', // blood_pressure or blood-pressure
   '.', // .
   'v', // v
   '\\d+(\\.\\d+){0,2}', // 1 || 1.0.0

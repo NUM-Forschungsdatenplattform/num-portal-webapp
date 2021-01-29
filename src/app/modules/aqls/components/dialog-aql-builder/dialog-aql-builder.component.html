@@ -1,4 +1,4 @@
-<section role="presentation" fxLayoutGap="32px" fxLayout="row">
+<section role="presentation" fxLayoutGap="42px" fxLayout="row">
   <num-aql-builder-templates
     fxFlex="400px"
     [templates]="templates"
@@ -7,12 +7,18 @@
   ></num-aql-builder-templates>
 
   <section role="region" fxFlex="auto" fxLayoutGap="32px">
-    <num-aql-builder-select [aqbModel]="aqbModel"></num-aql-builder-select>
+    <num-aql-builder-select
+      [aqbModel]="aqbModel"
+      [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Select }"
+    ></num-aql-builder-select>
     <num-aql-builder-contains
       [aqbModel]="aqbModel"
       [compositions]="compositions"
     ></num-aql-builder-contains>
-    <num-aql-builder-where></num-aql-builder-where>
+    <num-aql-builder-where
+      [aqbModel]="aqbModel"
+      [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Where }"
+    ></num-aql-builder-where>
   </section>
 </section>
 

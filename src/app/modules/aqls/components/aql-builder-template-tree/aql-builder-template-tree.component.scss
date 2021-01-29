@@ -25,3 +25,7 @@ mat-panel-title {
 .num-tree ul {
   padding-inline-start: 12px;
 }
+
+.mat-tree-node {
+  user-select: none;
+}

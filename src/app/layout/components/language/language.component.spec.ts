@@ -3,17 +3,28 @@ import { LanguageComponent } from './language.component'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { MaterialModule } from '../../material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { DateAdapter } from '@angular/material/core'
 
 describe('LanguageComponent', () => {
   let component: LanguageComponent
   let fixture: ComponentFixture<LanguageComponent>
   let translate: TranslateService
 
+  const dateAdapterMock = ({
+    setLocale: jest.fn(),
+  } as unknown) as DateAdapter<Date>
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LanguageComponent],
       imports: [TranslateModule.forRoot(), FontAwesomeTestingModule, MaterialModule],
-      providers: [TranslateService],
+      providers: [
+        TranslateService,
+        {
+          provide: DateAdapter,
+          useValue: dateAdapterMock,
+        },
+      ],
     }).compileComponents()
   })
 
@@ -62,6 +73,15 @@ describe('LanguageComponent', () => {
     it('should create and fallback to de', () => {
       expect(component).toBeTruthy()
       expect(component.translate.use).toHaveBeenCalledWith('de')
+    })
+  })
+
+  describe('When the locale gets set', () => {
+    it('should set the dateAdapters locale', () => {
+      jest.spyOn(dateAdapterMock, 'setLocale').mockImplementation()
+      const locale = 'de'
+      component.setLocale(locale)
+      expect(dateAdapterMock.setLocale).toHaveBeenCalledWith(locale)
     })
   })
 })

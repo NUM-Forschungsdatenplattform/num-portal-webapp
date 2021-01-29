@@ -3,7 +3,7 @@
   class="num-mat-lang-toggle-button"
   #group="matButtonToggleGroup"
   [attr.aria-label]="'LANGUAGE.LABEL' | translate"
-  (change)="translate.use(group.value)"
+  (change)="setLocale(group.value)"
   [value]="translate.currentLang"
 >
   <mat-button-toggle value="de">{{ 'LANGUAGE.GERMAN' | translate }}</mat-button-toggle>
