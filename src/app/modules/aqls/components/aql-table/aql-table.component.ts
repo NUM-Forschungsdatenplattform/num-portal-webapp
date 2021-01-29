@@ -56,7 +56,9 @@ export class AqlTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   ngOnInit(): void {
-    this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
+    this.subscriptions.add(
+      this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
+    )
   }
 
   ngOnDestroy(): void {
