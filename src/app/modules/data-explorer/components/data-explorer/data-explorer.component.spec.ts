@@ -123,10 +123,6 @@ describe('DataExplorerComponent', () => {
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
   })
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy()
-  // })
-
   describe('When the components gets initialized and the cohortId is not specified', () => {
     test.each([null, undefined])('should flag the cohorts as fetched', (cohortId) => {
       const cohortIdBackup = resolvedData.study.cohortId

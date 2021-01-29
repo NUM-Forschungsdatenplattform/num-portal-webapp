@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Component, OnInit } from '@angular/core'
+import { FormGroup } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Subscription } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.interface'
@@ -14,9 +13,7 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
 })
-export class DataExplorerComponent implements OnInit, OnDestroy {
-  private subscriptions = new Subscription()
-
+export class DataExplorerComponent implements OnInit {
   resolvedData: IStudyResolved
   isResearchersFetched: boolean
   isCohortsFetched: boolean
@@ -27,6 +24,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   isConnectorDisabled = true
 
   generalInfoData: IDefinitionList[]
+
   get study(): StudyUiModel {
     return this.resolvedData.study
   }
@@ -35,7 +33,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     return this.study.cohortGroup
   }
 
-  studyForm: FormGroup
+  studyForm: FormGroup = new FormGroup({})
 
   constructor(
     private router: Router,
@@ -47,14 +45,9 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
 
-    this.generateForm()
     this.fetchCohort()
     this.fetchResearcher()
     this.getGeneralInfoListData()
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
   }
 
   fetchCohort(): void {
@@ -73,26 +66,13 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     if (!userIds.length) {
       this.isResearchersFetched = true
     } else {
+      // !! As a researcher it is not allowed to request users by id !!
+      // TO DO: Replace with new study endpoint once implemented in the backend
       this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
         this.study.researchers = researchers
         this.isResearchersFetched = true
       })
     }
-  }
-
-  generateForm(): void {
-    this.studyForm = new FormGroup({
-      title: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(this.study?.description, [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      firstHypotheses: new FormControl(this.study?.firstHypotheses, [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      secondHypotheses: new FormControl(this.study?.secondHypotheses),
-    })
   }
 
   getGeneralInfoListData(): void {
