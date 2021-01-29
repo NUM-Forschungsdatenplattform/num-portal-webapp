@@ -30,10 +30,6 @@
     (delete)="deleteChildGroup($event)"
   ></num-aql-builder-where-group>
 
-  <!--
-    (deleteArchetypes)="this.deleteArchetypes.emit($event)"
-  -->
-
   <num-aql-builder-where-item
     class="aqb-item mat-elevation-z2"
     [ngClass]="{
@@ -51,7 +47,7 @@
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
   <!--
-    TODO: ENABLE WITH DELETION STORY:
+    TODO: ENABLE WITH GROUPING STORY:
     <num-button type="secondary" (onClick)="addGroup()" icon="plus">{{
     'BUTTON.ADD_GROUP' | translate
   }}</num-button> -->

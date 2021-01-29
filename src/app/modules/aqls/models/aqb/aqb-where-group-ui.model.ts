@@ -80,7 +80,7 @@ export class AqbWhereGroupUiModel {
 
     this.children = this.children.filter((item) => {
       if (item instanceof AqbWhereGroupUiModel) {
-        return !item.children.length
+        return item.children.length > 0 ? true : false
       }
 
       return !referenceIds.includes(item.compositionReferenceId)
@@ -96,7 +96,7 @@ export class AqbWhereGroupUiModel {
 
     this.children = this.children.filter((item) => {
       if (item instanceof AqbWhereGroupUiModel) {
-        return !item.children.length
+        return item.children.length > 0 ? true : false
       }
 
       return !referenceIds.includes(item.archetypeReferenceId)
