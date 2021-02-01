@@ -195,7 +195,7 @@
     "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
     "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone.",
     "APPROVE_STUDY_TITLE": "Do you really want to approve the study?",
-    "APPROVE_STUDY_CONTENT": "After you have approved the study, the study coordinator can enable the study, so that the researcher can start working with the study."
+    "APPROVE_STUDY_CONTENT": "After you have approved the study, the study coordinator can release the study, so that the researcher can start working on the study."
   },
   "EXPLORE_STUDY": "Explore Study",
   "DATE_TIME": {
