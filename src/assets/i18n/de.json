@@ -144,7 +144,8 @@
     "REVIEW_STUDY": "Studie überprüfen",
     "STUDY_APPROVAL_APPROVE": "Studie genehmigen",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Überarbeitung beantragen",
-    "STUDY_APPROVAL_DENY": "Studie ablehnen"
+    "STUDY_APPROVAL_DENY": "Studie ablehnen",
+    "EXECUTE": "Ausführen"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",

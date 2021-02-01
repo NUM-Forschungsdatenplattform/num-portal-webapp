@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -12,9 +12,10 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
 
 import { AqlEditorComponent } from './aql-editor.component'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { mockAqlExecution1 } from 'src/mocks/data-mocks/aql-execution.mock'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -39,6 +40,7 @@ describe('AqlEditorComponent', () => {
   const aqlService = ({
     save: jest.fn(),
     update: jest.fn(),
+    execute: jest.fn(),
   } as unknown) as AqlService
 
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
@@ -46,9 +48,12 @@ describe('AqlEditorComponent', () => {
     @Input() form: any
   }
 
+  const executeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-editor-creator', template: '' })
   class StubEditorCreatorComponent {
     @Input() aqlQuery: any
+    @Input() isExecutionReady: any
+    @Output() execute = executeEmitter
   }
 
   beforeEach(async () => {
@@ -145,6 +150,33 @@ describe('AqlEditorComponent', () => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
       })
+    })
+  })
+
+  describe('On the attempt to execute the AQL', () => {
+    beforeEach(() => {
+      component.aql.id = 1
+    })
+
+    it('should call the AQL execute method and set the result', async () => {
+      const mockAqlObservable = of(mockAqlExecution1)
+      jest.spyOn(aqlService, 'execute').mockImplementation(() => mockAqlObservable)
+      component.execute().then(() => {
+        expect(aqlService.execute).toHaveBeenCalledWith(1)
+        expect(component.executionResult).toEqual(mockAqlExecution1)
+        expect(component.isExecutionLoading).toBeFalsy()
+      })
+      expect(component.isExecutionLoading).toBeTruthy()
+    })
+
+    it('should set the error if the execution fails', () => {
+      jest.spyOn(aqlService, 'execute').mockImplementation(() => throwError('Error'))
+      component.execute().catch(() => {
+        expect(aqlService.execute).toHaveBeenCalledWith(1)
+        expect(component.executionResult).toEqual(null)
+        expect(component.isExecutionLoading).toBeFalsy()
+      })
+      expect(component.isExecutionLoading).toBeTruthy()
     })
   })
 })

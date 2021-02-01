@@ -144,7 +144,8 @@
     "REVIEW_STUDY": "Review",
     "STUDY_APPROVAL_APPROVE": "Approve study",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Request revision",
-    "STUDY_APPROVAL_DENY": "Deny study"
+    "STUDY_APPROVAL_DENY": "Deny study",
+    "EXECUTE": "Execute"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",

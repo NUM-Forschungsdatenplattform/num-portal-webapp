@@ -7,6 +7,7 @@ import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { take } from 'rxjs/operators'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 
 @Component({
   selector: 'num-aql-editor',
@@ -22,6 +23,9 @@ export class AqlEditorComponent implements OnInit {
   aqlForm: FormGroup
   isEditMode: boolean
   isCurrentUserOwner: boolean
+  isExecutionLoading: boolean
+  executionResult: IAqlExecutionResponse
+  executionError: any
 
   constructor(
     private route: ActivatedRoute,
@@ -87,6 +91,19 @@ export class AqlEditorComponent implements OnInit {
     } catch (error) {
       console.log(error)
       // TODO: Display message to user
+    }
+  }
+
+  async execute(): Promise<void> {
+    this.isExecutionLoading = true
+    try {
+      this.executionResult = await this.aqlService.execute(this.aql.id).toPromise()
+      this.isExecutionLoading = false
+      this.executionError = null
+    } catch (error) {
+      this.executionError = error
+      this.isExecutionLoading = false
+      this.executionResult = null
     }
   }
 }

@@ -23,7 +23,7 @@
         >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
       >
 
-      <div style="height: 300px">
+      <div style="height: 300px" class="num-margin-b-40">
         <num-code-editor
           class="editor"
           style="height: 100%"
@@ -31,6 +31,13 @@
           (editorInit)="onEditorInit($event)"
         ></num-code-editor>
       </div>
+
+      <num-button
+        type="primary"
+        [isDisabled]="!isValidForExecution || !isExecutionReady"
+        (singleClick)="execute.emit()"
+        >{{ 'BUTTON.EXECUTE' | translate }}</num-button
+      >
     </mat-card-content>
   </mat-card>
 </section>
