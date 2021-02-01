@@ -6,9 +6,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of } from 'rxjs'
+import { BehaviorSubject, of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -23,6 +24,7 @@ import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
 import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
 import { ApprovalOption } from '../../models/approval-option.enum'
 import { IStudyResolved } from '../../models/study-resolved.interface'
+import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
 
 import { StudyEditorComponent } from './study-editor.component'
 
@@ -52,6 +54,15 @@ describe('StudyEditorComponent', () => {
   const phenotypeService = ({
     get: jest.fn().mockImplementation(() => of()),
   } as unknown) as PhenotypeService
+
+  const afterClosedSubject$ = new Subject()
+  const mockDialogService = ({
+    openDialog: jest.fn().mockImplementation((_: any) => {
+      return {
+        afterClosed: () => afterClosedSubject$.asObservable(),
+      }
+    }),
+  } as unknown) as DialogService
 
   const resolvedData: IStudyResolved = {
     study: new StudyUiModel(mockStudy1, phenotypeService),
@@ -169,6 +180,10 @@ describe('StudyEditorComponent', () => {
         {
           provide: AdminService,
           useValue: adminService,
+        },
+        {
+          provide: DialogService,
+          useValue: mockDialogService,
         },
       ],
     }).compileComponents()
@@ -375,9 +390,23 @@ describe('StudyEditorComponent', () => {
           decision: new FormControl(testCase.decision, Validators.required),
         })
         saveAsApprovalReplyEmitter.emit()
+        if (testCase.decision === ApprovalOption.Approve) {
+          afterClosedSubject$.next(true)
+        }
         expect(studyService.updateStatusById).toHaveBeenCalledWith(1, testCase.newState)
         expect(router.navigate).toHaveBeenCalledWith(['/studies'])
       }
     )
+
+    it('should open the dialog to confirm the approval on approval decision and do nothing on cancel', () => {
+      component.approverForm = new FormGroup({
+        decision: new FormControl(ApprovalOption.Approve, Validators.required),
+      })
+      saveAsApprovalReplyEmitter.emit()
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(APPROVE_STUDY_DIALOG_CONFIG)
+      afterClosedSubject$.next(false)
+      expect(studyService.updateStatusById).not.toHaveBeenCalledWith(1, StudyStatus.Approved)
+      expect(router.navigate).not.toHaveBeenCalledWith(['/studies'])
+    })
   })
 })

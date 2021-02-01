@@ -16,6 +16,8 @@ import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-st
 import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 import { ApprovalOption } from '../../models/approval-option.enum'
 import { catchError, tap } from 'rxjs/operators'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
 
 @Component({
   selector: 'num-study-editor',
@@ -57,7 +59,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private studyService: StudyService,
     private cohortService: CohortService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -226,20 +229,31 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   saveAsApprovalReply(): void {
     const decision = this.approverForm.value.decision as ApprovalOption
-    let newStatus: StudyStatus
 
     switch (decision) {
       case ApprovalOption.Approve:
-        newStatus = StudyStatus.Approved
+        this.handleApprovalWithDialog()
         break
       case ApprovalOption.ChangeRequest:
-        newStatus = StudyStatus.ChangeRequest
+        this.updateStudyStatus(StudyStatus.ChangeRequest)
         break
       case ApprovalOption.Deny:
-        newStatus = StudyStatus.Denied
+        this.updateStudyStatus(StudyStatus.Denied)
         break
     }
+  }
 
+  handleApprovalWithDialog(): void {
+    const dialogRef = this.dialogService.openDialog(APPROVE_STUDY_DIALOG_CONFIG)
+
+    dialogRef.afterClosed().subscribe((confirmResult: boolean | undefined) => {
+      if (confirmResult === true) {
+        this.updateStudyStatus(StudyStatus.Approved)
+      }
+    })
+  }
+
+  updateStudyStatus(newStatus: StudyStatus): void {
     this.studyService
       .updateStatusById(this.study.id, newStatus)
       .pipe(

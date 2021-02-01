@@ -100,6 +100,7 @@
     "PURPOSE": "Purpose",
     "USE": "Use",
     "PUBLIC_CHECKBOX": "AQL query is for public use",
+    "ETHICAL_APPROVAL_CHECKBOX": "Yes, the ethical approval is done*",
     "NAME": "Name",
     "ORGANIZATION": "Organization",
     "FILTER": "Filter",
@@ -192,7 +193,9 @@
     "PUBLISH_STUDY_TITLE": "Do you really want to publish the study?",
     "PUBLISH_STUDY_CONTENT": "After you publish the study, you can only edit the list of researchers.\n\nAll selected researches will also be informed, that you have published the study.",
     "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
-    "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone."
+    "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone.",
+    "APPROVE_STUDY_TITLE": "Do you really want to approve the study?",
+    "APPROVE_STUDY_CONTENT": "After you have approved the study, the study coordinator can release the study, so that the researcher can start working on the study."
   },
   "EXPLORE_STUDY": "Explore Study",
   "DATE_TIME": {

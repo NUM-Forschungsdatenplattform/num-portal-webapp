@@ -19,6 +19,7 @@ import { DialogConfirmStudyComponent } from './components/dialog-confirm-study/d
 import { StudyEditorCommentsComponent } from './components/study-editor-comments/study-editor-comments.component'
 import { StudyEditorApprovalComponent } from './components/study-editor-approval/study-editor-approval.component'
 import { SharedStudiesModule } from './shared-studies.module'
+import { DialogConfirmStudyApprovalComponent } from './components/dialog-confirm-study-approval/dialog-confirm-study-approval.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SharedStudiesModule } from './shared-studies.module'
     DialogConfirmStudyComponent,
     StudyEditorCommentsComponent,
     StudyEditorApprovalComponent,
+    DialogConfirmStudyApprovalComponent,
   ],
   imports: [CommonModule, StudiesRoutingModule, SharedModule, LayoutModule, SharedStudiesModule],
 })
