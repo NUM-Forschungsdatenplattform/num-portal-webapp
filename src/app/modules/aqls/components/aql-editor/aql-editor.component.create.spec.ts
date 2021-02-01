@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -46,9 +46,12 @@ describe('AqlEditorComponent', () => {
     @Input() form: any
   }
 
+  const executeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-editor-creator', template: '' })
   class StubEditorCreatorComponent {
     @Input() aqlQuery: any
+    @Input() isExecutionReady: any
+    @Output() execute = executeEmitter
   }
 
   beforeEach(async () => {
@@ -138,6 +141,13 @@ describe('AqlEditorComponent', () => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
       })
+    })
+  })
+
+  describe('On the attempt to leave the editor', () => {
+    it('should navigate back to the aqls overview page', () => {
+      component.cancel()
+      expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
     })
   })
 })

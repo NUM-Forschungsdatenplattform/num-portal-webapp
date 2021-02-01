@@ -10,7 +10,23 @@
     class="num-margin-b-40"
   ></num-aql-editor-general-info>
 
-  <num-aql-editor-creator [(aqlQuery)]="aql.query"></num-aql-editor-creator>
+  <num-aql-editor-creator
+    [(aqlQuery)]="aql.query"
+    [isExecutionReady]="isEditMode && !isExecutionLoading"
+    (execute)="execute()"
+  ></num-aql-editor-creator>
+
+  <mat-card *ngIf="executionResult" class="num-margin-b-40">
+    <div class="mat-body-strong">Columns</div>
+    <div class="num-margin-b-40">{{ executionResult.columns | json }}</div>
+
+    <div class="mat-body-strong">Rows</div>
+    <div>{{ executionResult.rows | json }}</div>
+  </mat-card>
+
+  <mat-card *ngIf="executionError" class="num-margin-b-40">{{
+    executionError.error.errors | json
+  }}</mat-card>
 
   <section role="region" fxLayout="column">
     <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>

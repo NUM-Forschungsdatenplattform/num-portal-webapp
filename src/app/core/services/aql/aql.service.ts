@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -133,6 +134,12 @@ export class AqlService {
   update(aqlQuery: IAqlApi, id: number): Observable<IAqlApi> {
     return this.httpClient
       .put<IAqlApi>(`${this.baseUrl}/${id}`, aqlQuery)
+      .pipe(catchError(this.handleError))
+  }
+
+  execute(id: number): Observable<IAqlExecutionResponse> {
+    return this.httpClient
+      .post<IAqlExecutionResponse>(`${this.baseUrl}/${id}/execute`, {})
       .pipe(catchError(this.handleError))
   }
 

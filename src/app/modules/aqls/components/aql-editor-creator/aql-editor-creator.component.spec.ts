@@ -115,4 +115,33 @@ describe('AqlEditorCeatorComponent', () => {
       expect(component.handleDialogConfirm).not.toHaveBeenCalled()
     })
   })
+
+  describe('When a query is set', () => {
+    const testcases = [
+      { q: 'This is below 25 characters', result: false },
+      {
+        q: 'This is above 25 characters but is just not including the important words',
+        result: false,
+      },
+      { q: 'This is above 25 characters but just includes the word select', result: false },
+      {
+        q: 'This is above 25 characters but just includes the words select, from',
+        result: false,
+      },
+      {
+        q: 'This is above 25 characters but just includes the words select, from, contains',
+        result: false,
+      },
+      {
+        q:
+          'This is above 25 characters and it includes the words select, from, contains, composition',
+        result: true,
+      },
+    ]
+
+    test.each(testcases)('should validate as expected', (testcase) => {
+      component.aqlQuery = testcase.q
+      expect(component.isValidForExecution).toEqual(testcase.result)
+    })
+  })
 })

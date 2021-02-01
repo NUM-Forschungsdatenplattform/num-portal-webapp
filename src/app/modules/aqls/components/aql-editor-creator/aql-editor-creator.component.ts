@@ -14,6 +14,8 @@ import { BUILDER_DIALOG_CONFIG } from './constants'
 export class AqlEditorCeatorComponent implements OnInit {
   constructor(private dialogService: DialogService, private aqlEditorService: AqlEditorService) {}
 
+  isValidForExecution: boolean
+
   aqlQueryValue: string
   @Output() aqlQueryChange = new EventEmitter<string>()
   @Input()
@@ -23,7 +25,13 @@ export class AqlEditorCeatorComponent implements OnInit {
   set aqlQuery(aqlQuery: string) {
     this.aqlQueryValue = aqlQuery
     this.aqlQueryChange.emit(aqlQuery)
+    this.isValidForExecution = this.validateExecution(aqlQuery)
   }
+
+  @Input()
+  isExecutionReady: boolean
+
+  @Output() execute = new EventEmitter()
 
   editor: monaco.editor.IStandaloneCodeEditor
   aqbModel = new AqbUiModel()
@@ -32,6 +40,17 @@ export class AqlEditorCeatorComponent implements OnInit {
 
   onEditorInit(editor: monaco.editor.IStandaloneCodeEditor): void {
     this.editor = editor
+  }
+
+  validateExecution(query: string): boolean {
+    const queryToCheck = query.toUpperCase()
+    return (
+      queryToCheck.length > 25 &&
+      queryToCheck.includes('SELECT') &&
+      queryToCheck.includes('FROM') &&
+      queryToCheck.includes('CONTAINS') &&
+      queryToCheck.includes('COMPOSITION')
+    )
   }
 
   openBuilderDialog(): void {
