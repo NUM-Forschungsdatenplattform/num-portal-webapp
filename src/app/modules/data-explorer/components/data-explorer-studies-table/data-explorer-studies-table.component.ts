@@ -8,6 +8,16 @@ import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
+import { IStudyUser } from 'src/app/shared/models/user/study-user.interface'
+
+interface IStudyUserUi extends IStudyUser {
+  userName?: string
+  organizationName?: string
+}
+
+interface IStudyApiUi extends IStudyApi {
+  coordinator?: IStudyUserUi
+}
 
 @Component({
   selector: 'num-data-explorer-studies-table',
@@ -65,23 +75,23 @@ export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit,
     this.router.navigate(['data-explorer/studies', id])
   }
 
-  fetchCoordinatorName(studies: IStudyApi[]): void {
+  fetchCoordinatorName(studies: IStudyApiUi[]): void {
     if (studies.length) {
       studies.forEach((study) => {
         this.adminService.getUserById(study.coordinator.userId).subscribe((user) => {
-          study.coordinator['userName'] = user.firstName + ' ' + user.lastName
+          study.coordinator.userName = user.firstName + ' ' + user.lastName
         })
       })
     }
   }
 
-  fetchCoordinatorOrganization(studies: IStudyApi[]): void {
+  fetchCoordinatorOrganization(studies: IStudyApiUi[]): void {
     if (studies.length) {
       studies.forEach((study) => {
         this.organizationService
           .getOrganizationById(study.coordinator.organizationId)
           .subscribe((organization) => {
-            study.coordinator['organizationName'] = organization.name
+            study.coordinator.organizationName = organization.name
           })
       })
     }
