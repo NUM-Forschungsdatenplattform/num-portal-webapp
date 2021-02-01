@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { OrganizationService } from './organization.service'
-import { mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 
 describe('OrganizationService', () => {
   let service: OrganizationService
@@ -52,6 +52,37 @@ describe('OrganizationService', () => {
     it('should call the api - with success', () => {
       service.getAll().subscribe()
       expect(httpClient.get).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getOrganizationById method comes in', () => {
+    beforeEach(() => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+    })
+
+    it('should call the api - with error', () => {
+      service
+        .getOrganizationById(mockOrganization1.id)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/organization/${mockOrganization1.id}`
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getOrganizationById method comes in', () => {
+    beforeEach(() => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockOrganization1))
+    })
+    it('should call the api - with success', () => {
+      service.getOrganizationById(mockOrganization1.id).subscribe()
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `localhost/api/organization/${mockOrganization1.id}`
+      )
     })
   })
 })

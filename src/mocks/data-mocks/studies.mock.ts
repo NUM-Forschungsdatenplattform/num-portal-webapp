@@ -51,7 +51,7 @@ export const mockStudy3: IStudyApi = {
   templates: [],
   cohortId: 3,
   coordinator: {
-    userId: '1',
+    userId: '123',
     organizationId: '1',
     approved: true,
   },
