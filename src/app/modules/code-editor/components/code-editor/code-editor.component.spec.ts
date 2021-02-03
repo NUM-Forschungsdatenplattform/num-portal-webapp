@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { Subject } from 'rxjs'
 import { MonacoLoaderService } from 'src/app/core/services/monaco-loader/monaco-loader.service'
+import { NumAqlFormattingProvider } from '../../num-aql-formatting-provider'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { numEditorTheme } from '../../num-editor.theme'
 
@@ -11,11 +13,14 @@ describe('CodeEditorComponent', () => {
 
   const LANG_NAME = 'num-aql'
 
+  const formatSubject$ = new Subject()
+
   const codeEditorMock = {
     dispose: jest.fn(),
     onDidChangeModelContent: jest.fn(),
     setValue: jest.fn(),
     layout: jest.fn(),
+    getAction: jest.fn(),
   }
 
   const monacoEditorMock = {
@@ -23,9 +28,14 @@ describe('CodeEditorComponent', () => {
     create: jest.fn().mockImplementation(() => codeEditorMock),
   }
 
+  const formatterMock = ({
+    format: jest.fn(),
+  } as unknown) as NumAqlFormattingProvider
+
   const monacoLanguageMock = {
     register: jest.fn(),
     setMonarchTokensProvider: jest.fn(),
+    registerDocumentFormattingEditProvider: jest.fn(),
   }
 
   const monacoMock = {
@@ -51,6 +61,8 @@ describe('CodeEditorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CodeEditorComponent)
     component = fixture.componentInstance
+    component.formatter = formatterMock
+    component.formatObservable$ = formatSubject$.asObservable()
     jest.spyOn(component.editorInit, 'emit')
     fixture.detectChanges()
   })
@@ -74,6 +86,16 @@ describe('CodeEditorComponent', () => {
     )
   })
 
+  it('should register the DocumentFormattingEditProvider', () => {
+    component.formatter = formatterMock
+    expect(monacoLanguageMock.registerDocumentFormattingEditProvider).toHaveBeenCalledWith(
+      LANG_NAME,
+      {
+        provideDocumentFormattingEdits: formatterMock.format,
+      }
+    )
+  })
+
   it('should register the num lang theme', () => {
     expect(monacoEditorMock.defineTheme).toHaveBeenCalledWith('num-editor-theme', numEditorTheme)
   })
@@ -91,5 +113,21 @@ describe('CodeEditorComponent', () => {
     component.value = 'test'
     fixture.detectChanges()
     expect(codeEditorMock.setValue).toHaveBeenCalledWith('test')
+  })
+
+  it('should run the formatting on new pushes of the formatObservable', () => {
+    let isTriggered = false
+    jest.spyOn(formatterMock, 'format').mockImplementation()
+    jest.spyOn(codeEditorMock, 'getAction').mockImplementation(() => {
+      return {
+        run: () => (isTriggered = true),
+      }
+    })
+
+    component.value = 'test'
+
+    formatSubject$.next()
+    fixture.detectChanges()
+    expect(isTriggered).toBeTruthy()
   })
 })

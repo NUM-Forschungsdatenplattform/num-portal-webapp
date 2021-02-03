@@ -9,11 +9,14 @@ import {
   Output,
   ViewChild,
 } from '@angular/core'
-import { fromEvent, Subscription } from 'rxjs'
+import { fromEvent, Observable, Subscription } from 'rxjs'
+import { throttleTime } from 'rxjs/operators'
 import { MonacoLoaderService } from 'src/app/core/services/monaco-loader/monaco-loader.service'
+import { NumAqlFormattingProvider } from '../../num-aql-formatting-provider'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { editorConstructionOptions } from '../../num-editor-options'
 import { numEditorTheme } from '../../num-editor.theme'
+import { environment } from 'src/environments/environment'
 
 @Component({
   selector: 'num-code-editor',
@@ -21,16 +24,20 @@ import { numEditorTheme } from '../../num-editor.theme'
   styleUrls: ['./code-editor.component.scss'],
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
+  /* istanbul ignore next */
+  private readonly throttleTime = environment.name === 'test' ? 50 : 500
   readonly LANG_NAME = 'num-aql'
   constructor(private monacoLoaderService: MonacoLoaderService) {}
 
   subscriptions = new Subscription()
+  formatter = new NumAqlFormattingProvider()
 
   @ViewChild('codeEditor') codeEditorElementRef: ElementRef
   codeEditor: monaco.editor.IStandaloneCodeEditor
 
-  private componentValue: string
+  @Input() formatObservable$: Observable<any>
 
+  private componentValue: string
   @Input() set value(value: string) {
     if (this.componentValue !== value) {
       this.componentValue = value
@@ -66,6 +73,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     monaco.editor.defineTheme('num-editor-theme', numEditorTheme)
     monaco.languages.register({ id: this.LANG_NAME })
     monaco.languages.setMonarchTokensProvider(this.LANG_NAME, numAqlTokenProvider)
+    monaco.languages.registerDocumentFormattingEditProvider(this.LANG_NAME, {
+      provideDocumentFormattingEdits: this.formatter.format,
+    })
   }
 
   createEditor(): void {
@@ -76,6 +86,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setValue(this.componentValue)
     this.attachEditorEvents()
     this.subscriptions.add(fromEvent(window, 'resize').subscribe(() => this.handleResizeEvents()))
+    this.subscriptions.add(
+      this.formatObservable$
+        .pipe(throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }))
+        .subscribe(() => this.format())
+    )
     this.editorInit.emit(this.codeEditor)
   }
 
@@ -94,5 +109,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleResizeEvents(): void {
     this.codeEditor.layout()
+  }
+
+  format(): void {
+    this.codeEditor.getAction('editor.action.formatDocument').run()
   }
 }

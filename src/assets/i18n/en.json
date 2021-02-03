@@ -121,6 +121,7 @@
     "DELETE_FROM_LIST": "Delete from list",
     "CONFIRM_CHANGES": "Confirm changes",
     "ADD_QUERY": "Add query",
+    "FORMAT_QUERY": "Format query",
     "ADD_PHENOTYPE": "Add phenotype",
     "ADD_TEMPLATE": "Add Template",
     "ADD_RESEARCHERS": "Add researchers",

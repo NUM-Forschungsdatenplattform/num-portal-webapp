@@ -2,7 +2,7 @@ export const json1 = {
   _type: 'ComparisonOperator',
   statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
   symbol: 'EQ',
-  value: { _type: 'Simple', value: '' },
+  value: { _type: 'Simple', value: ' ' },
 }
 
 export const json2 = {
@@ -20,7 +20,7 @@ export const json2 = {
       symbol: 'EQ',
       value: {
         _type: 'Simple',
-        value: '',
+        value: ' ',
       },
     },
     {
@@ -48,7 +48,7 @@ export const json3 = {
       _type: 'ComparisonOperator',
       statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
       symbol: 'EQ',
-      value: { _type: 'Simple', value: '' },
+      value: { _type: 'Simple', value: ' ' },
     },
     {
       _type: 'LogicalOperator',
