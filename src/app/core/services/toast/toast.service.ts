@@ -10,7 +10,7 @@ export class ToastService {
 
   public openToast(
     message: string,
-    config: {
+    config?: {
       type?: 'success' | 'warn' | 'error'
       action?: string | null
       duration?: number | null
@@ -21,14 +21,15 @@ export class ToastService {
       return
     }
 
-    config.type = config.type ? config.type : 'success'
-    config.action = config.action ? this.translate.instant(config.action) : null
-    const translatedText = this.translate.instant(message)
-    const snackbar = this.snackbar.open(translatedText, config.action, {
+    const type = config.type ? config.type : 'success'
+    const translatedMessage = this.translate.instant(message)
+    const translatedAction = config.action ? this.translate.instant(config.action) : null
+
+    const snackbar = this.snackbar.open(translatedMessage, translatedAction, {
       duration: config.duration ? config.duration : 4000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      panelClass: ['num-toast', `num-toast-${config.type}`],
+      panelClass: ['num-toast', `num-toast-${type}`],
     })
 
     snackbar.dismissWithAction = () => {

@@ -21,17 +21,20 @@ describe('ToastService', () => {
 
   beforeEach(() => {
     service = new ToastService(toast, mockTranslateService)
-  })
-
-  it('should run #openToast()', async () => {
     jest.spyOn(mockTranslateService, 'instant').mockImplementation(() => 'test')
     service.snackbar = service.snackbar || {}
     service.snackbar.open = jest.fn().mockReturnValue({
       dismissWithAction: {},
     })
-    service.openToast('Hello Toast', {}, {})
-    expect(service.snackbar.open).toHaveBeenCalled()
-    //expect(service.snackbar.open).toHaveBeenCalledTimes(1)
-    //expect(service.snackbar.open).toHaveBeenCalledWith()
+  })
+
+  it('should run #openToast()', async () => {
+    service.openToast('Hello Toast', {})
+    expect(service.snackbar.open).toHaveBeenCalledTimes(1)
+  })
+
+  it('should NOT run #openToast() if no message', async () => {
+    service.openToast()
+    expect(service.snackbar.open).toHaveBeenCalledTimes(0)
   })
 })
