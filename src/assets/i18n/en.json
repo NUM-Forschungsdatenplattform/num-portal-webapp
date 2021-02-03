@@ -42,6 +42,7 @@
     "CONTACT": "Contact"
   },
   "AQL": {
+    "AS": "as",
     "MY_AQLS": "My AQLs",
     "ORGANISATION_AQLS": "My organisation",
     "ALL_AQLS": "All",

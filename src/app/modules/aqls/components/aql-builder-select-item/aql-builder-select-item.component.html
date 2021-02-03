@@ -1,9 +1,21 @@
-<div>{{ item.name | archetype: true }}</div>
+<section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
+  <div class="name-field mat-body-strong">{{ item.name | archetype: true }}</div>
+</section>
 
-<fa-icon
-  class="pointer"
-  icon="trash"
-  size="lg"
-  [fixedWidth]="true"
-  (click)="deleteSelf()"
-></fa-icon>
+<section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
+  <div class="alias-prefix">{{ 'AQL.AS' | translate }}</div>
+  <ng-container [formGroup]="aliasForm">
+    <mat-form-field floatLabel="always" appearance="outline" class="num-tiny-input value-input">
+      <mat-label id="label">Alias</mat-label>
+      <input aria-labelledby="label" type="text" matInput formControlName="value" />
+    </mat-form-field>
+  </ng-container>
+
+  <fa-icon
+    class="pointer"
+    icon="trash"
+    size="lg"
+    [fixedWidth]="true"
+    (click)="deleteSelf()"
+  ></fa-icon>
+</section>

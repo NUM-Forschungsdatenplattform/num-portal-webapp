@@ -20,7 +20,7 @@ export class AqbSelectItemUiModel {
     archetypeReferenceId: number
   ) {
     this.name = item.name || item.archetypeId
-    this.givenName = item.name || item.archetypeId
+    this.givenName = ''
     this.rmType = item.rmType
     this.aqlPath = item.aqlPath || ''
     this.humanReadablePath = item.humanReadablePath
@@ -33,7 +33,7 @@ export class AqbSelectItemUiModel {
       _type: AqbNodeType.SelectField,
       aqlPath: this.aqlPath,
       containmentId: this.archetypeReferenceId,
-      name: this.givenName,
+      name: this.givenName.length ? this.givenName : this.name,
     }
   }
 }
