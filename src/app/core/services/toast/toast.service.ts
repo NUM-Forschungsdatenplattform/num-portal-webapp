@@ -2,6 +2,18 @@ import { Injectable } from '@angular/core'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
 
+enum ToastType {
+  SUCCESS = 'success',
+  WARN = 'warn',
+  ERROR = 'error',
+}
+
+interface ITaostConfig {
+  type?: ToastType
+  button?: string
+  duration?: number // 0 for infinite duration
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,11 +22,7 @@ export class ToastService {
 
   public openToast(
     message: string,
-    config?: {
-      type?: 'success' | 'warn' | 'error'
-      action?: string | null
-      duration?: number | null
-    },
+    config?: ITaostConfig,
     callback?: () => void
   ): MatSnackBarRef<any> {
     if (!message) {
@@ -23,7 +31,7 @@ export class ToastService {
 
     const type = config.type ? config.type : 'success'
     const translatedMessage = this.translate.instant(message)
-    const translatedAction = config.action ? this.translate.instant(config.action) : null
+    const translatedAction = config.button ? this.translate.instant(config.button) : null
 
     const snackbar = this.snackbar.open(translatedMessage, translatedAction, {
       duration: config.duration ? config.duration : 4000,

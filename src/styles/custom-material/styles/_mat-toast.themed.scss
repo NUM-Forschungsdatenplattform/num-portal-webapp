@@ -5,27 +5,27 @@
     font-weight: 100;
 
     &-success {
-      color: #000;
+      color: mat-color($additional, dark-grey);
       background-color: mat-color($additional, success);
 
       .mat-button-wrapper {
-        color: #000;
+        color: mat-color($additional, dark-grey);
       }
     }
     &-warn {
-      color: #000;
+      color: mat-color($additional, dark-grey);
       background-color: mat-color($additional, warning);
 
       .mat-button-wrapper {
-        color: #000;
+        color: mat-color($additional, dark-grey);
       }
     }
     &-error {
-      color: #fff;
+      color: mat-color($additional, white);
       background-color: mat-color($additional, error);
 
       .mat-button-wrapper {
-        color: #fff;
+        color: mat-color($additional, white);
       }
     }
 
