@@ -1,0 +1,36 @@
+@mixin mat-toast_themed($theme) {
+  $additional: map-get($theme, additional);
+
+  .num-toast {
+    font-weight: 100;
+
+    &-success {
+      color: #000;
+      background-color: mat-color($additional, success);
+
+      .mat-button-wrapper {
+        color: #000;
+      }
+    }
+    &-warn {
+      color: #000;
+      background-color: mat-color($additional, warning);
+
+      .mat-button-wrapper {
+        color: #000;
+      }
+    }
+    &-error {
+      color: #fff;
+      background-color: mat-color($additional, error);
+
+      .mat-button-wrapper {
+        color: #fff;
+      }
+    }
+
+    .mat-button-wrapper {
+      font-weight: 400;
+    }
+  }
+}
