@@ -10,13 +10,16 @@
 >
   <fa-icon icon="check"></fa-icon>
 </div>
-<div class="num-aqb-box">
+<div class="num-aqb-box" fxLayout="column">
   <num-aql-builder-select-item
     class="aqb-item mat-elevation-z2"
+    [ngClass]="{
+      'aqb-item--last': i === aqbModel.select.length - 1
+    }"
     fxLayout="row"
-    fxLayoutAlign="space-between center"
-    *ngFor="let item of aqbModel.select; let index"
+    fxLayoutAlign="space-between start"
+    *ngFor="let item of aqbModel.select; let i = index"
     [item]="item"
-    (deleteItem)="deleteItem(index)"
+    (deleteItem)="deleteItem(i)"
   ></num-aql-builder-select-item>
 </div>

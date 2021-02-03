@@ -12,7 +12,6 @@ import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { debounce } from 'lodash-es'
 import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { ToastService } from 'src/app/core/services/toast/toast.service'
 import { DialogAddAqlsComponent } from '../dialog-add-aqls/dialog-add-aqls.component'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
@@ -20,7 +19,6 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { DialogEditAqlComponent } from '../dialog-edit-aql/dialog-edit-aql.component'
 import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
-import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-phenotype-editor-connector-group',
@@ -47,11 +45,7 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
   groupIndex: number[] = []
   groupType: string
 
-  constructor(
-    private dialogService: DialogService,
-    private toastService: ToastService,
-    private translate: TranslateService
-  ) {}
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.groupType = !this.phenotypeGroup.indexInGroup
@@ -104,20 +98,6 @@ export class PhenotypeEditorConnectorGroupComponent implements OnInit, OnChanges
         this.deleteChild(itemIndex)
       }
     })
-  }
-
-  openToast(): void {
-    this.toastService.openToast(
-      'APPLAYOUT.TOGGLE.LABEL',
-      {
-        action: 'APPLAYOUT.TOGGLE.LABEL',
-        type: 'success',
-        duration: 0,
-      },
-      () => {
-        alert('hello cb')
-      }
-    )
   }
 
   addQuery(): void {

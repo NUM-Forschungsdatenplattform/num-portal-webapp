@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { Observable, of as observableOf, throwError } from 'rxjs'
 
 import { ToastService } from './toast.service'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
@@ -36,5 +35,19 @@ describe('ToastService', () => {
   it('should NOT run #openToast() if no message', async () => {
     service.openToast()
     expect(service.snackbar.open).toHaveBeenCalledTimes(0)
+  })
+
+  it('should run the callback and then dismiss the toast, if there is a callback', async () => {
+    let didCallbackRun = false
+
+    const snackbar = service.openToast('hello Toast', {}, () => {
+      didCallbackRun = true
+    })
+
+    snackbar.dismiss = jest.fn().mockReturnValue({})
+    snackbar.dismissWithAction()
+
+    expect(didCallbackRun).toBeTruthy()
+    expect(snackbar.dismiss).toHaveBeenCalledTimes(1)
   })
 })
