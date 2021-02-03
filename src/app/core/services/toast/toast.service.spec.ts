@@ -15,19 +15,23 @@ describe('ToastService', () => {
     open: () => ({} as MatSnackBarRef<any>),
   } as unknown) as MatSnackBar
 
+  const mockTranslateService = ({
+    instant: jest.fn(),
+  } as unknown) as TranslateService
+
   beforeEach(() => {
-    service = new ToastService(toast, {})
+    service = new ToastService(toast, mockTranslateService)
   })
 
   it('should run #openToast()', async () => {
-    service.translate = service.translate || {}
-    service.translate.instant = jest.fn()
+    jest.spyOn(mockTranslateService, 'instant').mockImplementation(() => 'test')
     service.snackbar = service.snackbar || {}
     service.snackbar.open = jest.fn().mockReturnValue({
       dismissWithAction: {},
     })
     service.openToast('Hello Toast', {}, {})
-    // expect(service.translate.instant).toHaveBeenCalled();
-    // expect(service.snackbar.open).toHaveBeenCalled();
+    expect(service.snackbar.open).toHaveBeenCalled()
+    //expect(service.snackbar.open).toHaveBeenCalledTimes(1)
+    //expect(service.snackbar.open).toHaveBeenCalledWith()
   })
 })

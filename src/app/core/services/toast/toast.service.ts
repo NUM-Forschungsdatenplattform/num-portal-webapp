@@ -23,8 +23,8 @@ export class ToastService {
 
     config.type = config.type ? config.type : 'success'
     config.action = config.action ? this.translate.instant(config.action) : null
-
-    const snackbar = this.snackbar.open(this.translate.instant(message), config.action, {
+    const translatedText = this.translate.instant(message)
+    const snackbar = this.snackbar.open(translatedText, config.action, {
       duration: config.duration ? config.duration : 4000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
