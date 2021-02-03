@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -35,6 +36,7 @@ describe('AqlBuilderSelectItemComponent', () => {
       declarations: [AqlBuilderSelectItemComponent, ArchetypePipe],
       imports: [
         MaterialModule,
+        ReactiveFormsModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
@@ -59,5 +61,25 @@ describe('AqlBuilderSelectItemComponent', () => {
       component.deleteSelf()
       expect(component.deleteItem.emit).toHaveBeenCalledTimes(1)
     })
+  })
+
+  describe('When the alias is set', () => {
+    it('should set the alias as given name into the ui model', () => {
+      const element = fixture.nativeElement.querySelector('input')
+      element.value = 'test_input'
+      element.dispatchEvent(new Event('input'))
+      expect(component.item.givenName).toEqual('test_input')
+    })
+
+    test.each(['1abc', 'abc-test', '/path', 'dd!', '{}', '😜'])(
+      'should set the current given name if the input is invalid',
+      (value) => {
+        component.item.givenName = 'before'
+        const element = fixture.nativeElement.querySelector('input')
+        element.value = value
+        element.dispatchEvent(new Event('input'))
+        expect(component.item.givenName).toEqual('before')
+      }
+    )
   })
 })
