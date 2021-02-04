@@ -26,6 +26,8 @@ describe('LanguageComponent', () => {
         },
       ],
     }).compileComponents()
+
+    localStorage.removeItem('lang')
   })
 
   describe('With browser language de', () => {
@@ -41,6 +43,7 @@ describe('LanguageComponent', () => {
     it('should create and use de', () => {
       expect(component).toBeTruthy()
       expect(translate.use).toHaveBeenCalledWith('de')
+      expect(localStorage.getItem('lang')).toEqual('de')
     })
   })
 
@@ -57,6 +60,7 @@ describe('LanguageComponent', () => {
     it('should create and use en', () => {
       expect(component).toBeTruthy()
       expect(translate.use).toHaveBeenCalledWith('en')
+      expect(localStorage.getItem('lang')).toEqual('en')
     })
   })
 
@@ -73,6 +77,24 @@ describe('LanguageComponent', () => {
     it('should create and fallback to de', () => {
       expect(component).toBeTruthy()
       expect(component.translate.use).toHaveBeenCalledWith('de')
+      expect(localStorage.getItem('lang')).toEqual('de')
+    })
+  })
+
+  describe('With browser language de, but with LocalStorage language en', () => {
+    beforeEach(() => {
+      translate = TestBed.inject(TranslateService)
+      jest.spyOn(translate, 'getBrowserLang').mockImplementation(() => 'de')
+      jest.spyOn(translate, 'use')
+      localStorage.setItem('lang', 'en')
+      fixture = TestBed.createComponent(LanguageComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+    })
+
+    it('should create and use en', () => {
+      expect(component).toBeTruthy()
+      expect(translate.use).toHaveBeenCalledWith('en')
     })
   })
 
