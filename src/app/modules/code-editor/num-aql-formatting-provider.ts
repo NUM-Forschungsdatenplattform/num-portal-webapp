@@ -57,7 +57,7 @@ export class NumAqlFormattingProvider {
       query = query.replace(pattern, keyword.split(' ').join(this.PRESERVE_SPACE_DELIMITER))
     })
 
-    const queryPartsBefore = query.replace(/\r?\n|\r/g, ' ').split(' ')
+    const queryPartsBefore = query.replace(/\r?\n|\r|\t/g, ' ').split(' ')
     this.trimLeadingWhitespaces(queryPartsBefore)
 
     let lastWasLineBreak = true
