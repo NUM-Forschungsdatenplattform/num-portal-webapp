@@ -10,9 +10,6 @@
     "realm": "#{auth_realm}",
     "clientId": "#{auth_clientId}"
   },
-  "aqlEditor": {
-    "baseUrl": "#{aqlEditor_baseUrl}"
-  },
   "legal": {
     "version": "#{legal_version}",
     "copyrightOwner": "#{legal_copyrightOwner}"

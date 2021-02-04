@@ -10,9 +10,6 @@ export interface IAppConfig {
     realm: string
     clientId: string
   }
-  aqlEditor: {
-    baseUrl: string
-  }
   legal: {
     version: string
     copyrightOwner: string
