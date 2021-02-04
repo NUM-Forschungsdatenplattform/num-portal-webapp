@@ -13,13 +13,19 @@ export class LanguageComponent implements OnInit {
     translate.setDefaultLang('de')
     this.dateAdapter.setLocale('de')
 
-    const browserLang = translate.getBrowserLang()
-    this.setLocale(browserLang.match(/de|en/) ? browserLang : 'de')
+    const selectedLang = localStorage.getItem('lang')
+    if (selectedLang && selectedLang.match(/de|en/)) {
+      this.setLocale(selectedLang)
+    } else {
+      const browserLang = translate.getBrowserLang()
+      this.setLocale(browserLang.match(/de|en/) ? browserLang : 'de')
+    }
   }
 
   ngOnInit(): void {}
 
   setLocale(locale: string): void {
+    localStorage.setItem('lang', locale)
     this.dateAdapter.setLocale(locale)
     this.translate.use(locale)
   }
