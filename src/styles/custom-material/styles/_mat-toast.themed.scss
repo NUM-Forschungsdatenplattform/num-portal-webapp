@@ -1,0 +1,36 @@
+@mixin mat-toast_themed($theme) {
+  $additional: map-get($theme, additional);
+
+  .num-toast {
+    font-weight: 100;
+
+    &-success {
+      color: mat-color($additional, dark-grey);
+      background-color: mat-color($additional, success);
+
+      .mat-button-wrapper {
+        color: mat-color($additional, dark-grey);
+      }
+    }
+    &-warn {
+      color: mat-color($additional, dark-grey);
+      background-color: mat-color($additional, warning);
+
+      .mat-button-wrapper {
+        color: mat-color($additional, dark-grey);
+      }
+    }
+    &-error {
+      color: mat-color($additional, white);
+      background-color: mat-color($additional, error);
+
+      .mat-button-wrapper {
+        color: mat-color($additional, white);
+      }
+    }
+
+    .mat-button-wrapper {
+      font-weight: 400;
+    }
+  }
+}

@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -43,6 +44,7 @@ const MATERIAL_MODULES = [
   MatSlideToggleModule,
   MatSelectModule,
   MatDialogModule,
+  MatSnackBarModule,
   MatChipsModule,
   MatExpansionModule,
   MatAutocompleteModule,
