@@ -11,6 +11,8 @@ const queryStructure = [
   'DESCENDING',
   'ASC',
   'ASCENDING',
+  'FORWARD',
+  'BACKWARD',
   'OFFSET',
   'LIMIT',
 ]

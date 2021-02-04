@@ -1,7 +1,21 @@
 export class NumAqlFormattingProvider {
+  readonly SELECT_REGEX = new RegExp('SELECT( TOP [0-9]+( forward| backward)?)?', 'i')
+  readonly ORDER_BY_REGEX = new RegExp('order by', 'i')
+  readonly LIMIT_OFFSET_REGEX = new RegExp('LIMIT +[0-9]+( +OFFSET +[0-9]+)?', 'i')
   readonly PRESERVE_SPACE_DELIMITER = ';;;;;'
-  readonly SPACE_SEPARATED_KEYWORDS = ['order by']
-  readonly AREA_BREAK_WORDS = ['from', 'where', 'select', 'order by']
+  readonly SPACE_SEPARATED_KEYWORDS = [
+    this.ORDER_BY_REGEX,
+    this.SELECT_REGEX,
+    this.LIMIT_OFFSET_REGEX,
+  ]
+  readonly AREA_BREAK_WORDS = [
+    new RegExp('from', 'i'),
+    new RegExp('where', 'i'),
+    new RegExp('select', 'i'),
+    this.ORDER_BY_REGEX,
+    this.SELECT_REGEX,
+    this.LIMIT_OFFSET_REGEX,
+  ]
   readonly LINE_BREAK_WORDS_FOR_CURRENT_LINE = ['contains']
   readonly LINE_BREAK_WORDS_FOR_NEXT_LINE = ['and', 'or']
   readonly LINE_BREAK_WHITE_SPACE_FOLLOWED_CHARS = [',']
@@ -52,12 +66,15 @@ export class NumAqlFormattingProvider {
    * @param query The query string to be formatted
    */
   formatQuery(query: string): string {
+    let singleLineQuery = query.replace(/\r?\n|\r|\t/g, ' ').replace(/( )+/g, ' ')
+
     this.SPACE_SEPARATED_KEYWORDS.forEach((keyword) => {
-      const pattern = new RegExp(keyword, 'i')
-      query = query.replace(pattern, keyword.split(' ').join(this.PRESERVE_SPACE_DELIMITER))
+      singleLineQuery = singleLineQuery.replace(keyword, (finding) => {
+        return finding.split(' ').join(this.PRESERVE_SPACE_DELIMITER)
+      })
     })
 
-    const queryPartsBefore = query.replace(/\r?\n|\r|\t/g, ' ').split(' ')
+    const queryPartsBefore = singleLineQuery.split(' ')
     this.trimLeadingWhitespaces(queryPartsBefore)
 
     let lastWasLineBreak = true
@@ -66,7 +83,7 @@ export class NumAqlFormattingProvider {
     queryPartsBefore.forEach((word, index) => {
       word = word.split(this.PRESERVE_SPACE_DELIMITER).join(' ')
       const toBeChecked = word.toLowerCase()
-      if (this.AREA_BREAK_WORDS.includes(toBeChecked)) {
+      if (this.AREA_BREAK_WORDS.find((pattern) => pattern.test(toBeChecked))) {
         this.handleAreaBreak(queryPartsResult, word, index)
         lastWasLineBreak = true
       } else if (this.LINE_BREAK_WORDS_FOR_CURRENT_LINE.includes(toBeChecked)) {
