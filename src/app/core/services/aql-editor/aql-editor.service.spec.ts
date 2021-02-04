@@ -11,7 +11,7 @@ import { AqlEditorService } from './aql-editor.service'
 
 describe('AqlEditorService', () => {
   let service: AqlEditorService
-  const baseUrl = 'localhost/aqleditor/rest/v1'
+  const baseUrl = 'localhost/aqleditor/v1'
 
   const httpClient = ({
     get: () => jest.fn(),
@@ -20,8 +20,8 @@ describe('AqlEditorService', () => {
 
   const appConfig = {
     config: {
-      aqlEditor: {
-        baseUrl: 'localhost/aqleditor',
+      api: {
+        baseUrl: 'localhost',
       },
     },
   } as AppConfigService

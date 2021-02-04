@@ -4,8 +4,5 @@
     "pathRewrite": {
       "^/api": ""
     }
-  },
-  "/aqleditor": {
-    "target": "http://localhost:8091"
   }
 }

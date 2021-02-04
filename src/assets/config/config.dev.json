@@ -10,9 +10,6 @@
     "realm": "Num",
     "clientId": "numPortalWebapp"
   },
-  "aqlEditor": {
-    "baseUrl": "/aqleditor"
-  },
   "legal": {
     "version": "0.9.0",
     "copyrightOwner": "Num Core Team"
