@@ -49,7 +49,7 @@
     "CREATE_AQL": "AQL Abfrage erstellen",
     "SEARCH_AQLS": "AQL suchen",
     "SELECT_AT_LEAST_ONE": "Bitte wählen sie eine oder mehrere Abfragen aus",
-    "CONFIGURE_AQL_DIALOG_HEADER": "AQL Query konfigurieren",
+    "CONFIGURE_AQL_DIALOG_HEADER": "AQL Abfrage konfigurieren",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
     "CONNECT_AQL": "AQL Abfragen zusammenstellen"
@@ -120,7 +120,8 @@
     "APPLY_SELECTION": "Auswahl Übernehmen",
     "DELETE_FROM_LIST": "Aus Liste löschen",
     "CONFIRM_CHANGES": "Änderungen übernehmen",
-    "ADD_QUERY": "Query hinzufügen",
+    "ADD_QUERY": "Abfrage hinzufügen",
+    "FORMAT_QUERY": "Abfrage formatieren",
     "ADD_PHENOTYPE": "Phänotyp hinzufügen",
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",

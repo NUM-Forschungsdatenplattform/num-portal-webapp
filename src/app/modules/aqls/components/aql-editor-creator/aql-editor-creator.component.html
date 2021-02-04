@@ -28,16 +28,23 @@
           class="editor"
           style="height: 100%"
           [(value)]="aqlQuery"
+          [formatObservable$]="formatObservable$"
           (editorInit)="onEditorInit($event)"
         ></num-code-editor>
       </div>
 
-      <num-button
-        type="primary"
-        [isDisabled]="!isValidForExecution || !isExecutionReady"
-        (singleClick)="execute.emit()"
-        >{{ 'BUTTON.EXECUTE' | translate }}</num-button
-      >
+      <div class="button-row" fxLayout="row" fxLayoutGap="20px">
+        <num-button
+          type="primary"
+          [isDisabled]="!isValidForExecution || !isExecutionReady"
+          (singleClick)="execute.emit()"
+          >{{ 'BUTTON.EXECUTE' | translate }}</num-button
+        >
+
+        <num-button type="primary" icon="align-left" (singleClick)="format()">{{
+          'BUTTON.FORMAT_QUERY' | translate
+        }}</num-button>
+      </div>
     </mat-card-content>
   </mat-card>
 </section>

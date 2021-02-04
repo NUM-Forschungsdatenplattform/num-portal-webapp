@@ -165,7 +165,7 @@ export class AqbWhereItemUiModel {
         break
 
       default:
-        value = this.value
+        value = this.value || ' '
         break
     }
 

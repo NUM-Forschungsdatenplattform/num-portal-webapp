@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { NumAqlFormattingProvider } from 'src/app/modules/code-editor/num-aql-formatting-provider'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'
@@ -13,6 +15,9 @@ import { BUILDER_DIALOG_CONFIG } from './constants'
 })
 export class AqlEditorCeatorComponent implements OnInit {
   constructor(private dialogService: DialogService, private aqlEditorService: AqlEditorService) {}
+  formatter = new NumAqlFormattingProvider()
+  formatSubject$ = new Subject()
+  formatObservable$ = this.formatSubject$.asObservable()
 
   isValidForExecution: boolean
 
@@ -40,6 +45,10 @@ export class AqlEditorCeatorComponent implements OnInit {
 
   onEditorInit(editor: monaco.editor.IStandaloneCodeEditor): void {
     this.editor = editor
+  }
+
+  format(): void {
+    this.formatSubject$.next()
   }
 
   validateExecution(query: string): boolean {
@@ -73,7 +82,7 @@ export class AqlEditorCeatorComponent implements OnInit {
     this.aqbModel = aqbModel
     const aqbApiModel = aqbModel.convertToApi()
     this.aqlEditorService.buildAql(aqbApiModel).subscribe((result) => {
-      this.aqlQuery = result.q
+      this.aqlQuery = this.formatter.formatQuery(result.q)
     })
   }
 }

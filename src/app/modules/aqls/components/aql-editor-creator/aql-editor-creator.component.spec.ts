@@ -24,6 +24,7 @@ describe('AqlEditorCeatorComponent', () => {
   @Component({ selector: 'num-code-editor', template: '' })
   class CodeEditorStubComponent {
     @Input() value: string
+    @Input() formatObservable$: any
     @Output() editorInit = editorInitEmitter
   }
 
@@ -38,9 +39,11 @@ describe('AqlEditorCeatorComponent', () => {
     }),
   } as unknown) as DialogService
 
+  const formattedBuilderResponse = 'SELECT\n  this'
+
   const builderResponse: IArchetypeQueryBuilderResponse = {
     parameters: {},
-    q: 'test',
+    q: 'SELECT this',
   }
 
   const mockAqlEditorService = ({
@@ -104,7 +107,7 @@ describe('AqlEditorCeatorComponent', () => {
       })
       it('should call the aqlEditorService to generate the query and set the aqlQuery from the response', () => {
         expect(mockAqlEditorService.buildAql).toHaveBeenCalledWith(convertedModel)
-        expect(component.aqlQuery).toEqual(builderResponse.q)
+        expect(component.aqlQuery).toEqual(formattedBuilderResponse)
       })
     })
 
@@ -142,6 +145,17 @@ describe('AqlEditorCeatorComponent', () => {
     test.each(testcases)('should validate as expected', (testcase) => {
       component.aqlQuery = testcase.q
       expect(component.isValidForExecution).toEqual(testcase.result)
+    })
+  })
+
+  describe('When the query is supposed to be formatted', () => {
+    it('should call next on the subject', (done) => {
+      component.formatObservable$.subscribe(() => {
+        expect(1).toEqual(1)
+        done()
+      })
+
+      component.format()
     })
   })
 })
