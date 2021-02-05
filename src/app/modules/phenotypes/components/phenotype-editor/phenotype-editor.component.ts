@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
 @Component({
@@ -13,7 +15,12 @@ export class PhenotypeEditorComponent implements OnInit {
   resolvedData: IPhenotypeResolved
   phenotypeForm: FormGroup
 
-  constructor(private route: ActivatedRoute, private phenotypeService: PhenotypeService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private phenotypeService: PhenotypeService,
+    private router: Router,
+    private toast: ToastMessageService
+  ) {}
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
@@ -29,7 +36,7 @@ export class PhenotypeEditorComponent implements OnInit {
     })
   }
 
-  saveForm(): void {
+  async saveForm(): Promise<void> {
     const id = this.resolvedData.phenotype.id === 0 ? null : this.resolvedData.phenotype.id
     const formValues = this.phenotypeForm.value
     const apiQuery = this.resolvedData.phenotype.convertToApiInterface(
@@ -38,13 +45,31 @@ export class PhenotypeEditorComponent implements OnInit {
       formValues.description
     )
     if (apiQuery.query) {
-      this.phenotypeService.create(apiQuery).subscribe((result) => {
-        // TODO display message to the user
-      })
+      try {
+        await this.phenotypeService.create(apiQuery).toPromise()
+        this.router.navigate(['phenotypes'], {})
+
+        this.toast.openToast({
+          type: ToastMessageType.Success,
+          message: 'PHENOTYPE.SAVE_SUCCESS_MESSAGE',
+        })
+      } catch (error) {
+        this.toast.openToast({
+          type: ToastMessageType.Error,
+          message: 'PHENOTYPE.SAVE_ERROR_MESSAGE',
+        })
+        console.log(error)
+      }
     } else {
       // Only empty groups leads to null
-      // TODO: display message to the user
-      console.log('Query is invalid')
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'PHENOTYPE.SAVE_NO_AQL_ERROR_MESSAGE',
+      })
     }
+  }
+
+  cancel(): void {
+    this.router.navigate(['phenotypes'], {})
   }
 }

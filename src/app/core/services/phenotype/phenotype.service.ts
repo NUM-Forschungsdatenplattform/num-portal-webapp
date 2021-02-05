@@ -103,7 +103,7 @@ export class PhenotypeService {
     return result
   }
 
-  create(phenotype: IPhenotypeApi): Observable<any> {
+  create(phenotype: IPhenotypeApi): Observable<IPhenotypeApi> {
     return this.httpClient
       .post<IPhenotypeApi>(this.baseUrl, phenotype)
       .pipe(catchError(this.handleError))

@@ -52,11 +52,18 @@
     "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
     "AVAILABLE_AQLS": "Available AQL Queries",
-    "CONNECT_AQL": "Assemble AQL Queries"
+    "CONNECT_AQL": "Assemble AQL Queries",
+    "SAVE_SUCCESS_MESSAGE": "Your AQL Query was created successfully.",
+    "SAVE_ERROR_MESSAGE": "Failed to create your AQL Query."
+  },
+  "PHENOTYPE" : {
+    "SEARCH_PHENOTYPES": "Search Phenotype",
+    "CREATE_PHENOTYPE": "Create Phenotype",
+    "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
+    "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
   },
   "SUMMARY": "Summary",
-  "SEARCH_PHENOTYPES": "Search Phenotype",
-  "CREATE_PHENOTYPE": "Create Phenotype",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_STUDIES": "Available Studies",

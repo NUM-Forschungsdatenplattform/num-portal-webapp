@@ -16,6 +16,7 @@ import { of, Subject, throwError } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { mockAqlExecution1 } from 'src/mocks/data-mocks/aql-execution.mock'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -69,6 +70,7 @@ describe('AqlEditorComponent', () => {
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         RouterTestingModule,
+        BrowserAnimationsModule,
       ],
       providers: [
         {
@@ -135,6 +137,7 @@ describe('AqlEditorComponent', () => {
     it('should call the AQL save method', async (done) => {
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
+        expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
         done()
       })
     })
@@ -149,6 +152,7 @@ describe('AqlEditorComponent', () => {
     it('should call the AQL update method', async () => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
+        expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
       })
     })
   })

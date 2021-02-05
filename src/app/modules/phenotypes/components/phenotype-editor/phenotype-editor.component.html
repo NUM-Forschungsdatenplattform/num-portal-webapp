@@ -1,5 +1,5 @@
 <section fxLayout="column">
-  <h2>{{ 'CREATE_PHENOTYPE' | translate }}</h2>
+  <h2>{{ 'PHENOTYPE.CREATE_PHENOTYPE' | translate }}</h2>
   <p class="num-margin-b-40">
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
     Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
@@ -17,7 +17,9 @@
   <section role="region" fxLayout="column">
     <mat-divider class="button-row-divider num-d-w--1"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <num-button type="secondary">{{ 'BUTTON.CANCEL' | translate }}</num-button>
+      <num-button type="secondary" (singleClick)="cancel()">{{
+        'BUTTON.CANCEL' | translate
+      }}</num-button>
       <num-button
         type="primary"
         (singleClick)="saveForm()"

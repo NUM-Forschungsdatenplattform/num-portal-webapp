@@ -8,6 +8,8 @@ import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { take } from 'rxjs/operators'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-aql-editor',
@@ -31,7 +33,8 @@ export class AqlEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private aqlService: AqlService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast: ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -71,10 +74,17 @@ export class AqlEditorComponent implements OnInit {
     try {
       await this.aqlService.save(aqlQuery).toPromise()
       this.router.navigate(['aqls'], {})
-      // TODO: Display message to user
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL.SAVE_SUCCESS_MESSAGE',
+      })
     } catch (error) {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL.SAVE_ERROR_MESSAGE',
+      })
       console.log(error)
-      // TODO: Display message to user
     }
   }
 
@@ -87,10 +97,17 @@ export class AqlEditorComponent implements OnInit {
     try {
       await this.aqlService.update(aqlQuery, this.aql?.id).toPromise()
       this.router.navigate(['aqls'], {})
-      // TODO: Display message to user
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL.SAVE_SUCCESS_MESSAGE',
+      })
     } catch (error) {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL.SAVE_ERROR_MESSAGE',
+      })
       console.log(error)
-      // TODO: Display message to user
     }
   }
 

@@ -12,9 +12,12 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
 
 import { AqlEditorComponent } from './aql-editor.component'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -40,6 +43,10 @@ describe('AqlEditorComponent', () => {
     save: jest.fn(),
     update: jest.fn(),
   } as unknown) as AqlService
+
+  const mockToast = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -67,6 +74,7 @@ describe('AqlEditorComponent', () => {
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         RouterTestingModule,
+        BrowserAnimationsModule,
       ],
       providers: [
         {
@@ -81,6 +89,10 @@ describe('AqlEditorComponent', () => {
           provide: AuthService,
           useValue: authService,
         },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
+        },
       ],
     }).compileComponents()
   })
@@ -91,6 +103,8 @@ describe('AqlEditorComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(router, 'navigate').mockImplementation()
+    jest.spyOn(mockToast, 'openToast').mockImplementation()
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -123,10 +137,26 @@ describe('AqlEditorComponent', () => {
       }
     })
 
-    it('should call the AQL save method', async (done) => {
+    it('should call the AQL save method with success', async (done) => {
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
+        expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'AQL.SAVE_SUCCESS_MESSAGE',
+        })
         done()
+      })
+    })
+
+    it('should call the AQL save method with error', async () => {
+      jest.spyOn(aqlService, 'save').mockImplementationOnce(() => throwError('Error'))
+      component.save().then(() => {
+        expect(aqlService.save).toHaveBeenCalledTimes(1)
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'AQL.SAVE_ERROR_MESSAGE',
+        })
       })
     })
   })
@@ -137,9 +167,24 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'update').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should call the AQL update method', async () => {
+    it('should call the AQL update method with success', async () => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
+        expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'AQL.SAVE_SUCCESS_MESSAGE',
+        })
+      })
+    })
+    it('should call the AQL update method with error', async () => {
+      jest.spyOn(aqlService, 'update').mockImplementationOnce(() => throwError('Error'))
+      component.update().then(() => {
+        expect(aqlService.update).toHaveBeenCalledTimes(1)
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'AQL.SAVE_ERROR_MESSAGE',
+        })
       })
     })
   })
