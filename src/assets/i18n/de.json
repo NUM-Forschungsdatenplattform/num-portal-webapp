@@ -52,11 +52,18 @@
     "CONFIGURE_AQL_DIALOG_HEADER": "AQL Abfrage konfigurieren",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
-    "CONNECT_AQL": "AQL Abfragen zusammenstellen"
+    "CONNECT_AQL": "AQL Abfragen zusammenstellen",
+    "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
+    "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden."
+  },
+  "PHENOTYPE" : {
+    "SEARCH_PHENOTYPES": "Phänotypen suchen",
+    "CREATE_PHENOTYPE": "Phänotyp erstellen",
+    "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
+    "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
   },
   "SUMMARY": "Zusammenfassung",
-  "SEARCH_PHENOTYPES": "Phänotypen suchen",
-  "CREATE_PHENOTYPE": "Phänotyp erstellen",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_STUDIES": "Verfügbare Studien",

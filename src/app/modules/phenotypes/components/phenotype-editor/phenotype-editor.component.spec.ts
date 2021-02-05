@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of } from 'rxjs'
+import { of, throwError } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -12,10 +12,17 @@ import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
 
 import { PhenotypeEditorComponent } from './phenotype-editor.component'
+import { RouterTestingModule } from '@angular/router/testing'
+import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 describe('PhenotypeEditorComponent', () => {
   let component: PhenotypeEditorComponent
   let fixture: ComponentFixture<PhenotypeEditorComponent>
+  let router: Router
+
   const resolvedData: IPhenotypeResolved = { phenotype: new PhenotypeUiModel(), error: null }
   const route = ({
     snapshot: {
@@ -26,8 +33,12 @@ describe('PhenotypeEditorComponent', () => {
   } as unknown) as ActivatedRoute
 
   const phenotypeService = ({
-    create: () => of(),
+    create: jest.fn(),
   } as unknown) as PhenotypeService
+
+  const mockToast = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({ selector: 'num-phenotype-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -47,7 +58,13 @@ describe('PhenotypeEditorComponent', () => {
         StubEditorConnectorComponent,
         ButtonComponent,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+        RouterTestingModule,
+        BrowserAnimationsModule,
+      ],
       providers: [
         {
           provide: ActivatedRoute,
@@ -57,14 +74,21 @@ describe('PhenotypeEditorComponent', () => {
           provide: PhenotypeService,
           useValue: phenotypeService,
         },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(PhenotypeEditorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(router, 'navigate').mockImplementation()
+    jest.spyOn(mockToast, 'openToast').mockImplementation()
   })
 
   it('should create', () => {
@@ -72,18 +96,78 @@ describe('PhenotypeEditorComponent', () => {
   })
 
   describe('On the attempt to save the phenotype', () => {
-    it('should call the phenotype serivceses create method', async () => {
+    beforeEach(() => {
       const mockObservable = of(mockPhenotype1)
       jest.spyOn(phenotypeService, 'create').mockReturnValue(mockObservable)
       component.resolvedData = {
         error: null,
         phenotype: new PhenotypeUiModel(mockPhenotype1),
       }
-      mockObservable.subscribe((result) => {
-        expect(result).toEqual(mockPhenotype1)
+    })
+
+    it('should call the PhenotypeSerivce.create method with Toast and Navigate', async () => {
+      component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
+        return ({
+          description: '',
+          id: 1,
+          name: 'test',
+          query: 'hello',
+        } as unknown) as IPhenotypeApi
       })
-      fixture.detectChanges()
-      component.saveForm()
+
+      component.saveForm().then(() => {
+        expect(phenotypeService.create).toHaveBeenCalledTimes(1)
+        expect(router.navigate).toHaveBeenCalledWith(['phenotypes'], {})
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'PHENOTYPE.SAVE_SUCCESS_MESSAGE',
+        })
+      })
+    })
+
+    it('should fail to call the PhenotypeSerivce.create method and show error toast', async () => {
+      component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
+        return ({
+          description: '',
+          id: 1,
+          name: 'test',
+          query: 'hello',
+        } as unknown) as IPhenotypeApi
+      })
+
+      jest.spyOn(phenotypeService, 'create').mockImplementationOnce(() => throwError('Error'))
+
+      component.saveForm().then(() => {
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'PHENOTYPE.SAVE_ERROR_MESSAGE',
+        })
+      })
+    })
+
+    it('should show error toast if no Query', async () => {
+      component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
+        return ({
+          description: '',
+          id: 1,
+          name: 'test',
+          query: undefined,
+        } as unknown) as IPhenotypeApi
+      })
+
+      component.saveForm().then(() => {
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'PHENOTYPE.SAVE_NO_AQL_ERROR_MESSAGE',
+        })
+      })
+    })
+  })
+
+  describe('On the attempt to leave the editor', () => {
+    it('should navigate back to the phenotypes page', () => {
+      component.cancel()
+      expect(router.navigate).toHaveBeenCalledWith(['phenotypes'], {})
     })
   })
 })
