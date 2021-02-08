@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { RoleGuard } from './core/auth/guards/role.guard'
+import { AvailableRoles } from './shared/models/available-roles.enum'
 
 export const routes: Routes = [
   {
@@ -18,7 +19,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'studies',
-      roles: ['STUDY_COORDINATOR'],
+      roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
@@ -30,7 +31,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'data-explorer',
-      roles: ['RESEARCHER'],
+      roles: [AvailableRoles.Researcher],
     },
     loadChildren: () =>
       import(
@@ -42,7 +43,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
+      roles: [AvailableRoles.StudyCoordinator],
     },
     loadChildren: () =>
       import(
@@ -54,7 +55,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: ['RESEARCHER', 'STUDY_COORDINATOR', 'ORGANIZATION_ADMIN'],
+      roles: [AvailableRoles.Researcher, AvailableRoles.StudyCoordinator],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
@@ -66,7 +67,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'users',
-      roles: ['ORGANIZATION_ADMIN', 'SUPER_ADMIN'],
+      roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(

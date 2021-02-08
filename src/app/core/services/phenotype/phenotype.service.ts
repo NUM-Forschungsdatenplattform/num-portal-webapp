@@ -45,7 +45,7 @@ export class PhenotypeService {
       tap((phenotypes) => {
         this.phenotypes = phenotypes
         this.phenotypesSubject$.next(phenotypes)
-        if (phenotypes.length) {
+        if (this.phenotypes.length) {
           this.setFilter(this.filterSet)
         }
       }),

@@ -15,6 +15,7 @@ import { OAuthInterceptor } from './core/interceptors/oauth.interceptor'
 import { AuthService } from './core/auth/auth.service'
 import { DateAdapter } from '@angular/material/core'
 import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
+import { OAuthStorage } from 'angular-oauth2-oidc'
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http)
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
   ],
   providers: [
+    { provide: OAuthStorage, useValue: localStorage },
     {
       provide: APP_INITIALIZER,
       multi: true,
@@ -48,9 +50,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         oauthInitService: OAuthInitService,
         authService: AuthService
       ) => () =>
-        configService
-          .loadConfig()
-          .then(() => oauthInitService.initOAuth().then(() => authService.fetchUserInfo())),
+        configService.loadConfig().then(() =>
+          oauthInitService.initOAuth().then(() => {
+            authService.fetchUserInfo().then(() => {
+              authService.initTokenHandling()
+            })
+          })
+        ),
     },
     {
       provide: HTTP_INTERCEPTORS,

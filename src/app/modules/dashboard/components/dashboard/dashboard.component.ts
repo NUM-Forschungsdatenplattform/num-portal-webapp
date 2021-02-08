@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Subscription } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { AppConfigService } from '../../../../config/app-config.service'
 
 @Component({
@@ -7,20 +10,27 @@ import { AppConfigService } from '../../../../config/app-config.service'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  user: any = {}
-  constructor(private appConfig: AppConfigService, private authService: AuthService) {
-    this.authService.userInfoObservable$.subscribe((user) => (this.user = user))
-  }
+export class DashboardComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
+  AvailableRoles = AvailableRoles
+  user: IAuthUserInfo
+  constructor(private appConfig: AppConfigService, private authService: AuthService) {}
 
   config = this.appConfig.config
   authTest: string
 
   ngOnInit(): void {
-    this.init()
+    this.subscriptions.add(
+      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+    )
   }
 
-  async init(): Promise<void> {
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
+  handleUserInfo(userInfo: IAuthUserInfo): void {
+    this.user = userInfo
     if (this.authService.isLoggedIn) {
       const roles = this.user.groups
       if (roles) {

@@ -55,7 +55,7 @@ export class AqlService {
       tap((aqls) => {
         this.aqls = aqls
         this.aqlsSubject$.next(aqls)
-        if (aqls.length) {
+        if (this.aqls.length) {
           this.setFilter(this.filterSet)
         }
       }),
