@@ -8,19 +8,27 @@ import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { Subject } from 'rxjs'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
   let fixture: ComponentFixture<SideMenuComponent>
+
+  const userInfo = {
+    sub: 'sub123-456',
+    groups: ['user', 'has', 'required', 'role'],
+  }
 
   const oauthService = {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
 
+  const userInfoSubject$ = new Subject<any>()
   const authService = {
     logout: () => {},
     login: () => {},
+    userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
   beforeEach(async () => {
@@ -67,6 +75,7 @@ describe('SideMenuComponent', () => {
         translationKey: 'test',
       },
     ]
+    userInfoSubject$.next(userInfo)
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')

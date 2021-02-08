@@ -31,12 +31,19 @@ export class OAuthInitService {
       })
 
       this.oauthService.configure(this.AUTH_CONFIG)
+
+      this.oauthService.setupAutomaticSilentRefresh()
+
       const init = this.oauthService
-        .loadDiscoveryDocumentAndTryLogin()
-        .then(() => {
-          this.oauthService.setupAutomaticSilentRefresh()
+        .loadDiscoveryDocument()
+        .then(async () => {
+          await this.oauthService.tryLoginCodeFlow().catch(async () => {
+            await this.oauthService.silentRefresh().catch(() => {
+              return
+            })
+          })
         })
-        .catch(() => {
+        .catch((error) => {
           return reject(this.ERROR_UNREACHABLE)
         })
 

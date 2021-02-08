@@ -67,9 +67,6 @@ export class AdminService {
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
-        if (users.length) {
-          this.setFilter(this.filterSet)
-        }
       })
     )
   }
@@ -79,7 +76,9 @@ export class AdminService {
       tap((users) => {
         this.approvedUsers = users
         this.approvedUsersSubject$.next(users)
-        this.setFilter(this.filterSet)
+        if (this.approvedUsers.length) {
+          this.setFilter(this.filterSet)
+        }
       })
     )
   }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
@@ -19,12 +20,16 @@ export class AuthService {
     private oauthService: OAuthService,
     private profileService: ProfileService,
     private appConfig: AppConfigService,
-    private httpClient: HttpClient
-  ) {
-    this.initTokenHandling()
-  }
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
-  private initTokenHandling(): void {
+  public initTokenHandling(): void {
+    if (this.oauthService.state) {
+      const url = new URL(decodeURIComponent(this.oauthService.state))
+      this.router.navigate([url.pathname])
+      this.oauthService.state = null
+    }
     this.oauthService.events.subscribe((event) => {
       if (event.type === 'token_received') {
         this.fetchUserInfo()
@@ -36,8 +41,8 @@ export class AuthService {
     return this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
   }
 
-  public login(): void {
-    this.oauthService.initCodeFlow()
+  public login(redirectUri?: string): void {
+    this.oauthService.initCodeFlow(redirectUri)
   }
 
   public logout(): void {
@@ -58,23 +63,30 @@ export class AuthService {
       .pipe(catchError(this.handleError))
   }
 
-  async fetchUserInfo(): Promise<void> {
-    if (!this.isLoggedIn) {
-      return Promise.resolve()
-    }
-
-    try {
-      this.profileService.get().subscribe()
-      const userInfo = await this.oauthService.loadUserProfile()
-      if (this.userInfo.sub !== userInfo.sub) {
-        this.createUser(userInfo.sub).subscribe()
+  fetchUserInfo(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      if (!this.isLoggedIn) {
+        return resolve()
       }
+
+      let userInfo
+
+      try {
+        userInfo = await this.oauthService.loadUserProfile()
+      } catch (error) {
+        this.clearUserInfo()
+        return reject('Failed to fetch userInfo')
+      }
+
+      if (this.userInfo.sub !== userInfo?.sub) {
+        await this.createUser(userInfo.sub).toPromise()
+      }
+
       this.userInfo = userInfo
       this.userInfoSubject$.next(this.userInfo)
-    } catch (error) {
-      this.clearUserInfo()
-      Promise.reject('Failed to fetch userInfo')
-    }
+
+      this.profileService.get().subscribe()
+    })
   }
 
   private clearUserInfo(): void {

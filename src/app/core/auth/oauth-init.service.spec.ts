@@ -10,7 +10,9 @@ describe('OAuth Init Service', () => {
 
   const authService = ({
     configure: () => {},
-    loadDiscoveryDocumentAndTryLogin: () => Promise.resolve(true),
+    loadDiscoveryDocument: jest.fn().mockImplementation(),
+    tryLoginCodeFlow: jest.fn().mockImplementation(),
+    silentRefresh: jest.fn().mockImplementation(),
     setupAutomaticSilentRefresh: () => {},
     loadUserProfile: () => Promise.resolve(mockOAuthUser),
   } as unknown) as OAuthService
@@ -61,20 +63,40 @@ describe('OAuth Init Service', () => {
 
     it('Calls init on OAuth Server with correct config and options', async () => {
       jest.spyOn(authService, 'configure')
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin')
+      jest.spyOn(authService, 'loadDiscoveryDocument').mockResolvedValue(undefined)
+      jest.spyOn(authService, 'tryLoginCodeFlow').mockResolvedValue(undefined)
+      jest.spyOn(authService, 'silentRefresh').mockResolvedValue(undefined)
       jest.spyOn(authService, 'setupAutomaticSilentRefresh')
 
       await initService.initOAuth()
 
       expect(authService.configure).toHaveBeenCalledWith(authConfig)
-      expect(authService.loadDiscoveryDocumentAndTryLogin).toHaveBeenCalled()
+      expect(authService.loadDiscoveryDocument).toHaveBeenCalled()
       expect(authService.setupAutomaticSilentRefresh).toHaveBeenCalled()
+    })
+
+    it('should try to login and try the silent refresh', async (done) => {
+      jest.spyOn(authService, 'configure')
+      jest.spyOn(authService, 'loadDiscoveryDocument').mockResolvedValue(undefined)
+      jest.spyOn(authService, 'tryLoginCodeFlow').mockImplementation(() => {
+        return Promise.reject()
+      })
+      jest.spyOn(authService, 'silentRefresh').mockImplementation(() => {
+        expect(true).toBeTruthy()
+        done()
+        return Promise.reject()
+      })
+      jest.spyOn(authService, 'setupAutomaticSilentRefresh')
+
+      await initService.initOAuth()
+
+      expect(authService.tryLoginCodeFlow).toHaveBeenCalled()
     })
   })
 
   describe('When OAuth Server gets initialized with no success', () => {
     it('fails', async () => {
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin').mockImplementation(() => {
+      jest.spyOn(authService, 'loadDiscoveryDocument').mockImplementation(() => {
         return Promise.reject()
       })
 
@@ -90,13 +112,14 @@ describe('OAuth Init Service', () => {
     })
 
     it('fails', async () => {
-      jest.spyOn(authService, 'loadDiscoveryDocumentAndTryLogin').mockImplementation(() => {
+      jest.spyOn(authService, 'loadDiscoveryDocument').mockImplementation(() => {
         jest.advanceTimersByTime(25_000)
-        return Promise.resolve(true)
+        return Promise.reject()
       })
 
       initService.initOAuth().catch((error) => {
         expect(error).toBeDefined()
+        expect(error).toEqual((initService as any).ERROR_UNREACHABLE)
       })
     })
   })

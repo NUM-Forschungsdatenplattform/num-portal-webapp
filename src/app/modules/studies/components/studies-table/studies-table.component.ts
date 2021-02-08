@@ -71,11 +71,11 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   generateMenuForRole(): void {
     let menu = [MENU_ITEM_PREVIEW]
-    if (this.roles.includes(AvailableRoles.StudyCoordinator)) {
+    if (this.roles?.includes(AvailableRoles.StudyCoordinator)) {
       menu = [...menu, ...COORDINATOR_MENU]
     }
 
-    if (this.roles.includes(AvailableRoles.StudyApprover)) {
+    if (this.roles?.includes(AvailableRoles.StudyApprover)) {
       menu = [...menu, ...APPROVER_MENU]
     }
 
