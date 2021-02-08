@@ -16,8 +16,11 @@ export class NumAqlFormattingProvider {
     this.SELECT_REGEX,
     this.LIMIT_OFFSET_REGEX,
   ]
-  readonly LINE_BREAK_WORDS_FOR_CURRENT_LINE = ['contains']
-  readonly LINE_BREAK_WORDS_FOR_NEXT_LINE = ['and', 'or']
+  readonly LINE_BREAK_WORDS_FOR_CURRENT_LINE = ['contains', 'and', 'or']
+  /**
+   * Here for possible future use: Words here will be kept on the same line before line break
+   */
+  readonly LINE_BREAK_WORDS_FOR_NEXT_LINE = []
   readonly LINE_BREAK_WHITE_SPACE_FOLLOWED_CHARS = [',']
 
   readonly TAB_SIZE = 2
