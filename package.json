@@ -6,7 +6,7 @@
     "start": "ng serve",
     "start:hmr": "ng serve --hmr",
     "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
-    "test": "TZ=UTC jest",
+    "test": "jest",
     "test-ci": "JEST_JUNIT_OUTPUT_DIR=./reports/junit/ node --expose-gc ./node_modules/.bin/jest --ci -w=1 --reporters=default --reporters=jest-junit",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
