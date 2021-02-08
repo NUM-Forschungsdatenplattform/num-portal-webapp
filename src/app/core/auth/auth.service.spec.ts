@@ -85,8 +85,9 @@ describe('Auth Service', () => {
       oauthService.state = undefined
       authService.initTokenHandling()
     })
-    it('should call the api to refresh the user profile if its a token event', () => {
+    it('should call the api to refresh the user profile if its a token event', async () => {
       eventSubject.next(mockEvent)
+      await Promise.resolve()
       expect(profileService.get).toHaveBeenCalledTimes(1)
     })
 

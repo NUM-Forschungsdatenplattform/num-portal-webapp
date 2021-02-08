@@ -28,7 +28,7 @@ export class UserHasRoleDirective implements OnInit, OnDestroy {
   }
 
   handleUserInfo(userInfo: IAuthUserInfo): void {
-    if (this.userInfo?.groups && this.userInfo.groups.join('') === userInfo.groups.join('')) {
+    if (this.userInfo?.groups && this.userInfo.groups.join('') === userInfo.groups?.join('')) {
       return
     } else {
       this.userInfo = userInfo

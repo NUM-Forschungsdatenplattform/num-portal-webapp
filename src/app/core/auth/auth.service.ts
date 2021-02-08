@@ -69,19 +69,23 @@ export class AuthService {
         return resolve()
       }
 
+      let userInfo
+
       try {
-        this.profileService.get().subscribe()
-        const userInfo = await this.oauthService.loadUserProfile()
-        if (this.userInfo.sub !== userInfo.sub) {
-          this.createUser(userInfo.sub).subscribe()
-        }
-        this.userInfo = userInfo
-        this.userInfoSubject$.next(this.userInfo)
-        return resolve()
+        userInfo = await this.oauthService.loadUserProfile()
       } catch (error) {
         this.clearUserInfo()
         return reject('Failed to fetch userInfo')
       }
+
+      if (this.userInfo.sub !== userInfo?.sub) {
+        await this.createUser(userInfo.sub).toPromise()
+      }
+
+      this.userInfo = userInfo
+      this.userInfoSubject$.next(this.userInfo)
+
+      this.profileService.get().subscribe()
     })
   }
 
