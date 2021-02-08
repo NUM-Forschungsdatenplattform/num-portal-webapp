@@ -5,11 +5,12 @@ import { DateHelperService } from './date-helper.service'
 describe('DateHelperService', () => {
   let service: DateHelperService
   const dateString = '2021-01-02T11:12:13+0000'
-  const date = new Date(dateString)
+  const date = new Date(2021, 0, 2, 11, 12, 13)
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
     service = TestBed.inject(DateHelperService)
+    date.getTimezoneOffset = jest.fn().mockImplementation(() => 0)
   })
 
   it('should be created', () => {
