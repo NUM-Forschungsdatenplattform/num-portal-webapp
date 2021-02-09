@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
-import { Router } from '@angular/router'
-import { Subscription } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
@@ -14,7 +12,6 @@ import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-
   styleUrls: ['./result-table.component.scss'],
 })
 export class ResultTableComponent implements OnInit {
-  private subscriptions = new Subscription()
   constructor(private aqlService: AqlService) {}
 
   displayedColumns: string[] = []
@@ -34,10 +31,6 @@ export class ResultTableComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
-  }
 
   handleData(resultSet: any): void {
     this.resultSetColumns = resultSet.columns
