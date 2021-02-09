@@ -27,6 +27,7 @@ import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { faUserLock } from '@fortawesome/free-solid-svg-icons'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { faAlignLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
   faTh,
@@ -58,4 +59,5 @@ export const FONT_AWESOME_ICONS = [
   faEye,
   faUserLock,
   faAlignLeft,
+  faCaretRight,
 ]

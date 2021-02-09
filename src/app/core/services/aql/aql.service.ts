@@ -11,6 +11,7 @@ import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { resultSetMock } from 'src/mocks/data-mocks/result-set-mock'
 
 @Injectable({
   providedIn: 'root',
@@ -147,6 +148,11 @@ export class AqlService {
     return this.httpClient
       .delete<any>(`${this.baseUrl}/${aqlId}`)
       .pipe(catchError(this.handleError))
+  }
+
+  // TO DO: Replace
+  getResultSet(): Observable<any> {
+    return of(resultSetMock)
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
