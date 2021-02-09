@@ -78,6 +78,9 @@ describe('DataExplorerComponent', () => {
     @Input() isDisabled: boolean
   }
 
+  @Component({ selector: 'num-result-table', template: '' })
+  class ResultTableStubComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -87,6 +90,7 @@ describe('DataExplorerComponent', () => {
         StudyEditorResearchers,
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
+        ResultTableStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
