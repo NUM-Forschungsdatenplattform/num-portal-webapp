@@ -37,9 +37,15 @@ export class ResultTableComponent implements OnInit {
       path: ' ',
       name: '#',
     }
+    let columns: string[] = []
+    let rows: any[] = []
+
     this.resultSetColumns = [firstColumn, ...resultSet.columns]
-    this.resultSetColumns.forEach((column) => this.displayedColumns.push(column.path))
-    resultSet.rows.forEach((element, i) => this.dataSource.data.push([i + 1, ...element]))
+    this.resultSetColumns.forEach((column) => columns.push(column.path))
+    this.displayedColumns = columns
+
+    resultSet.rows.forEach((element, i) => rows.push([i + 1, ...element]))
+    this.dataSource.data = rows
   }
 
   getRecords(): void {
