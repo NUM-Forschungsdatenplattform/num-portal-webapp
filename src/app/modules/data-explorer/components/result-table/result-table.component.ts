@@ -34,15 +34,15 @@ export class ResultTableComponent implements OnInit {
   @Input() resultSet: IAqlExecutionResponse
   @Input() configuration: DataExplorerConfigurations
 
-  private _dataRequestStatus: string
-  @Input() set dataRequestStatus(value: string) {
-    this._dataRequestStatus = value
+  private dataRequestStatusValue: DataRequestStatus
+  @Input() set dataRequestStatus(value: DataRequestStatus) {
+    this.dataRequestStatusValue = value
     if (value === DataRequestStatus.Requested) {
       this.handleData()
     }
   }
-  get dataRequestStatus(): string {
-    return this._dataRequestStatus
+  get dataRequestStatus(): DataRequestStatus {
+    return this.dataRequestStatusValue
   }
 
   ngOnInit(): void {}
