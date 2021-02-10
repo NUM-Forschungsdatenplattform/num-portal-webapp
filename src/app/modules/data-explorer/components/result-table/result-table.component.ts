@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 
 @Component({
@@ -32,20 +33,15 @@ export class ResultTableComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleData(resultSet: any): void {
+  handleData(resultSet: IAqlExecutionResponse): void {
     const firstColumn: IAqlExecutionColumn = {
       path: ' ',
       name: '#',
     }
-    let columns: string[] = []
-    let rows: any[] = []
 
     this.resultSetColumns = [firstColumn, ...resultSet.columns]
-    this.resultSetColumns.forEach((column) => columns.push(column.path))
-    this.displayedColumns = columns
-
-    resultSet.rows.forEach((element, i) => rows.push([i + 1, ...element]))
-    this.dataSource.data = rows
+    this.displayedColumns = this.resultSetColumns.map((column) => column.path)
+    this.dataSource.data = resultSet.rows.map((row, index) => [index + 1, ...row])
   }
 
   getRecords(): void {
