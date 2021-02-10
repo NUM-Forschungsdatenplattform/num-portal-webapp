@@ -8,14 +8,14 @@
     >{{ 'GET_DATA' | translate }}</num-button
   >
 
-  <h3>{{ 'RESULT_SET' | translate }}</h3>
+  <h3 id="result-set-header">{{ 'RESULT_SET' | translate }}</h3>
   <span class="num-margin-b-20"
     >{{ 'CONFIGURATION' | translate }}: {{ configuration | translate }}</span
   >
 
   <div *ngIf="resultSetRequested; else noResultSet" role="presentation" class="mat-elevation-z1">
-    <div #resultSetTable class="table-responsive">
-      <table aria-labelledby="studies-header" mat-table [dataSource]="dataSource" matSort>
+    <div class="table-responsive">
+      <table aria-labelledby="result-set-header" mat-table [dataSource]="dataSource" matSort>
         <ng-container
           *ngFor="let column of displayedColumns; let i = index"
           [matColumnDef]="column"

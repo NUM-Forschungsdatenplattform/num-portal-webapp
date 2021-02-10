@@ -33,9 +33,13 @@ export class ResultTableComponent implements OnInit {
   ngOnInit(): void {}
 
   handleData(resultSet: any): void {
-    this.resultSetColumns = resultSet.columns
-    this.dataSource.data = resultSet.rows
+    const firstColumn: IAqlExecutionColumn = {
+      path: ' ',
+      name: '#',
+    }
+    this.resultSetColumns = [firstColumn, ...resultSet.columns]
     this.resultSetColumns.forEach((column) => this.displayedColumns.push(column.path))
+    resultSet.rows.forEach((element, i) => this.dataSource.data.push([i + 1, ...element]))
   }
 
   getRecords(): void {
