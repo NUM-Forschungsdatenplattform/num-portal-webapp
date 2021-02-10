@@ -208,6 +208,12 @@
     "APPROVE_STUDY_CONTENT": "Nachdem Sie die Studie genehmigt haben, kann der Studienkoordinator die Studie freischalten, so dass der Forscher mit der Arbeit an der Studie beginnen kann."
   },
   "EXPLORE_STUDY": "Studie erkunden",
+  "RESULT_SET": "Ergebnissatz",
+  "GET_DATA": "Daten abrufen",
+  "NO_RESULTS_YET": "Noch keine Ergebnisse. Bitte drücken Sie zuerst den Button 'Daten abrufen'.",
+  "CONFIGURATION": "Konfiguration",
+  "DEFAULT": "Standart",
+  "CUSTOM": "Benutzerdefiniert",
   "DATE_TIME": {
     "DATE": "Datum",
     "HOUR_SHORT": "Std.",

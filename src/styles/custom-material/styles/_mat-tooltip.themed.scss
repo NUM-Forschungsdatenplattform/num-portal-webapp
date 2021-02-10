@@ -1,0 +1,5 @@
+@mixin mat-tooltip_themed($theme) {
+  .mat-tooltip {
+    max-width: unset !important;
+  }
+}
