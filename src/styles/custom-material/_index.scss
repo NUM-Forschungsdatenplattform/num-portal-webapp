@@ -18,6 +18,7 @@
 @import './styles/aqb-select-destination.themed';
 @import './styles/mat-toast.themed';
 @import './styles/mat-tooltip.themed';
+@import './styles/table-responsive.themed';
 
 /* export themed mixins */
 @mixin custom-material_themed($theme) {
@@ -37,4 +38,5 @@
   @include aqb-select-destination_themed($theme);
   @include mat-toast_themed($theme);
   @include mat-tooltip_themed($theme);
+  @include table_responsive_themed($theme);
 }

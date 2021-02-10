@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { catchError, delay, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
@@ -152,7 +152,7 @@ export class AqlService {
 
   // TO DO: Replace
   getResultSet(): Observable<any> {
-    return of(resultSetMock)
+    return of(resultSetMock).pipe(delay(1500))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

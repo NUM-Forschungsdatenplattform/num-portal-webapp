@@ -56,7 +56,7 @@
     "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden."
   },
-  "PHENOTYPE" : {
+  "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
@@ -155,7 +155,9 @@
     "STUDY_APPROVAL_APPROVE": "Studie genehmigen",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Überarbeitung beantragen",
     "STUDY_APPROVAL_DENY": "Studie ablehnen",
-    "EXECUTE": "Ausführen"
+    "EXECUTE": "Ausführen",
+    "GET_DATA": "Daten abrufen",
+    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
@@ -207,13 +209,15 @@
     "APPROVE_STUDY_TITLE": "Wollen Sie die Studie wirklich genehmigen?",
     "APPROVE_STUDY_CONTENT": "Nachdem Sie die Studie genehmigt haben, kann der Studienkoordinator die Studie freischalten, so dass der Forscher mit der Arbeit an der Studie beginnen kann."
   },
-  "EXPLORE_STUDY": "Studie erkunden",
-  "RESULT_SET": "Ergebnissatz",
-  "GET_DATA": "Daten abrufen",
-  "NO_RESULTS_YET": "Noch keine Ergebnisse. Bitte drücken Sie zuerst den Button 'Daten abrufen'.",
-  "CONFIGURATION": "Konfiguration",
-  "DEFAULT": "Standart",
-  "CUSTOM": "Benutzerdefiniert",
+  "DATA_EXPLORER": {
+    "EXPLORE_STUDY": "Studie erkunden",
+    "RESULT_SET": "Ergebnissatz",
+    "NO_RESULTS_YET": "Noch keine Ergebnisse. Bitte drücken Sie zuerst den Button 'Daten abrufen'.",
+    "LOADING_RESULT_SET": "Die Ergebnisse werden gerade geladen. Bitte warten Sie einen Moment.",
+    "CONFIGURATION": "Konfiguration",
+    "DEFAULT": "Standart",
+    "CUSTOM": "Benutzerdefiniert"
+  },
   "DATE_TIME": {
     "DATE": "Datum",
     "HOUR_SHORT": "Std.",

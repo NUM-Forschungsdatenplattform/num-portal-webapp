@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { Component, Input, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
-import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
+import { DataRequestStatus } from 'src/app/shared/models/data-request-status.enum'
 
 @Component({
   selector: 'num-result-table',
@@ -13,13 +13,7 @@ import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-
   styleUrls: ['./result-table.component.scss'],
 })
 export class ResultTableComponent implements OnInit {
-  constructor(private aqlService: AqlService) {}
-
-  displayedColumns: string[] = []
-  resultSetColumns: IAqlExecutionColumn[] = []
-  dataSource = new MatTableDataSource()
-  resultSetRequested = false
-  configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
+  constructor() {}
 
   @ViewChild(MatSort, { static: false }) set sorting(sort: MatSort) {
     this.dataSource.sortingDataAccessor = (item, property) => {
@@ -31,27 +25,36 @@ export class ResultTableComponent implements OnInit {
     this.dataSource.paginator = paginator
   }
 
+  displayedColumns: string[] = []
+  resultSetColumns: IAqlExecutionColumn[] = []
+  dataSource = new MatTableDataSource()
+
+  possibleStatus = DataRequestStatus
+
+  @Input() resultSet: IAqlExecutionResponse
+  @Input() configuration: DataExplorerConfigurations
+
+  private _dataRequestStatus: string
+  @Input() set dataRequestStatus(value: string) {
+    this._dataRequestStatus = value
+    if (value === DataRequestStatus.Requested) {
+      this.handleData()
+    }
+  }
+  get dataRequestStatus(): string {
+    return this._dataRequestStatus
+  }
+
   ngOnInit(): void {}
 
-  handleData(resultSet: IAqlExecutionResponse): void {
+  handleData(): void {
     const firstColumn: IAqlExecutionColumn = {
       path: ' ',
       name: '#',
     }
 
-    this.resultSetColumns = [firstColumn, ...resultSet.columns]
+    this.resultSetColumns = [firstColumn, ...this.resultSet.columns]
     this.displayedColumns = this.resultSetColumns.map((column) => column.path)
-    this.dataSource.data = resultSet.rows.map((row, index) => [index + 1, ...row])
-  }
-
-  getRecords(): void {
-    this.resultSetColumns = []
-    this.dataSource.data = []
-    this.displayedColumns = []
-
-    this.aqlService.getResultSet().subscribe((resultSet) => {
-      this.handleData(resultSet)
-    })
-    this.resultSetRequested = true
+    this.dataSource.data = this.resultSet.rows.map((row, index) => [index + 1, ...row])
   }
 }
