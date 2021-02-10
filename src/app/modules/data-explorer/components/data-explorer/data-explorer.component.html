@@ -1,11 +1,11 @@
 <section role="region" fxLayout="column" fxFlex="100%">
-  <h2>{{ 'EXPLORE_STUDY' | translate }}</h2>
+  <h2>{{ 'DATA_EXPLORER.EXPLORE_STUDY' | translate }}</h2>
   <p class="num-margin-b-40">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
     imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
   </p>
 
-  <mat-accordion [multi]="true" fxFlex="100%">
+  <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
     <num-study-editor-general-info
       [form]="studyForm"
       [isDisabled]="isGeneralInfoDisabled"
@@ -30,7 +30,20 @@
     ></num-study-editor-researchers>
   </mat-accordion>
 
-  <num-result-table></num-result-table>
+  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button type="primary" icon="caret-right" (singleClick)="getDataSet()">{{
+      'BUTTON.GET_DATA' | translate
+    }}</num-button>
+    <num-button type="secondary" icon="pen">{{
+      'BUTTON.CUSTOMIZE_CONFIGURATION' | translate
+    }}</num-button>
+  </section>
+
+  <num-result-table
+    [resultSet]="resultSet"
+    [dataRequestStatus]="dataRequestStatus"
+    [configuration]="configuration"
+  ></num-result-table>
 
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">

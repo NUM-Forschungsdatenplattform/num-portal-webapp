@@ -27,6 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -57,6 +58,7 @@ const MATERIAL_MODULES = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatTooltipModule,
+  MatProgressSpinnerModule,
 ]
 
 @NgModule({

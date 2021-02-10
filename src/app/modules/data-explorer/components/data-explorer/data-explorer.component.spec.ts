@@ -20,6 +20,11 @@ import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.in
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { resultSetMock } from 'src/mocks/data-mocks/result-set-mock'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
+import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
+import { DataRequestStatus } from 'src/app/shared/models/data-request-status.enum'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -39,6 +44,10 @@ describe('DataExplorerComponent', () => {
   const adminService = ({
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
+
+  const aqlService = ({
+    getResultSet: () => of(resultSetMock),
+  } as unknown) as AqlService
 
   const resolvedData: IStudyResolved = {
     study: new StudyUiModel(mockStudy1, phenotypeService),
@@ -79,7 +88,11 @@ describe('DataExplorerComponent', () => {
   }
 
   @Component({ selector: 'num-result-table', template: '' })
-  class ResultTableStubComponent {}
+  class ResultTableStubComponent {
+    @Input() resultSet: IAqlExecutionResponse
+    @Input() dataRequestStatus: DataRequestStatus
+    @Input() configuration: DataExplorerConfigurations
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -112,6 +125,10 @@ describe('DataExplorerComponent', () => {
         {
           provide: AdminService,
           useValue: adminService,
+        },
+        {
+          provide: AqlService,
+          useValue: aqlService,
         },
       ],
     }).compileComponents()
