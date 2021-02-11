@@ -33,7 +33,7 @@ export class OAuthInterceptor implements HttpInterceptor {
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 401) {
       this.oauthService.logOut()
-    } else if (error.status === 409 && error.url.includes('/api/admin/user/')) {
+    } else if (error.status === 409 && error.url.includes('/admin/user/')) {
       return of()
     }
     return throwError(error)
