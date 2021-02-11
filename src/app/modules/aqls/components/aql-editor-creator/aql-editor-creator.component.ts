@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { Subject } from 'rxjs'
-import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { NumAqlFormattingProvider } from 'src/app/modules/code-editor/num-aql-formatting-provider'
+import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
-import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'
 import { BUILDER_DIALOG_CONFIG } from './constants'
 
 @Component({
@@ -14,7 +15,7 @@ import { BUILDER_DIALOG_CONFIG } from './constants'
   styleUrls: ['./aql-editor-creator.component.scss'],
 })
 export class AqlEditorCeatorComponent implements OnInit {
-  constructor(private dialogService: DialogService, private aqlEditorService: AqlEditorService) {}
+  constructor(private dialogService: DialogService) {}
   formatter = new NumAqlFormattingProvider()
   formatSubject$ = new Subject()
   formatObservable$ = this.formatSubject$.asObservable()
@@ -40,6 +41,7 @@ export class AqlEditorCeatorComponent implements OnInit {
 
   editor: monaco.editor.IStandaloneCodeEditor
   aqbModel = new AqbUiModel()
+  selectedTemplateIds: string[]
 
   ngOnInit(): void {}
 
@@ -63,26 +65,29 @@ export class AqlEditorCeatorComponent implements OnInit {
   }
 
   openBuilderDialog(): void {
+    const dialogContentPayload: IAqlBuilderDialogInput = {
+      mode: AqlBuilderDialogMode.AqlEditor,
+      model: this.aqbModel,
+      selectedTemplateIds: this.selectedTemplateIds,
+    }
+
     const dialogConfig: DialogConfig = {
       ...BUILDER_DIALOG_CONFIG,
-      dialogContentComponent: DialogAqlBuilderComponent,
-      dialogContentPayload: this.aqbModel,
+      dialogContentPayload,
     }
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
-    dialogRef.afterClosed().subscribe((confirmResult: AqbUiModel | undefined) => {
-      if (confirmResult instanceof AqbUiModel) {
+    dialogRef.afterClosed().subscribe((confirmResult: IAqlBuilderDialogOutput | undefined) => {
+      if (confirmResult) {
         this.handleDialogConfirm(confirmResult)
       }
     })
   }
 
-  handleDialogConfirm(aqbModel: AqbUiModel): void {
-    this.aqbModel = aqbModel
-    const aqbApiModel = aqbModel.convertToApi()
-    this.aqlEditorService.buildAql(aqbApiModel).subscribe((result) => {
-      this.aqlQuery = this.formatter.formatQuery(result.q)
-    })
+  handleDialogConfirm(confirmResult: IAqlBuilderDialogOutput): void {
+    this.aqbModel = confirmResult.model
+    this.selectedTemplateIds = confirmResult.selectedTemplateIds
+    this.aqlQuery = confirmResult.result.q
   }
 }

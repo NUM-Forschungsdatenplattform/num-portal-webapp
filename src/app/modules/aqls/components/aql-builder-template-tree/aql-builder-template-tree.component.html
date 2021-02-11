@@ -1,23 +1,42 @@
 <mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{ template.templateId }}
+  <mat-expansion-panel-header [attr.data-test]="'aqb__containment__' + templateId + '__header'">
+    <mat-panel-title [attr.data-test]="'aqb__containment__' + templateId + '__header__title'">
+      {{ templateId }}
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <ng-template #spinner>
-    <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+  <ng-template #spinnerOrError>
+    <mat-progress-bar
+      *ngIf="!hasError"
+      [color]="'accent'"
+      mode="indeterminate"
+      [attr.data-test]="'aqb__containment__' + templateId + '__spinner'"
+    ></mat-progress-bar>
+    <div [attr.data-test]="'aqb__containment__' + templateId + '__error'" *ngIf="hasError">
+      {{ 'AQL.GET_COMPOSITION_ERROR' | translate }}
+    </div>
   </ng-template>
 
   <mat-tree
     [dataSource]="nestedDataSource"
     [treeControl]="nestedTreeControl"
     class="num-tree"
-    *ngIf="compositionId; else spinner"
+    *ngIf="compositionId; else spinnerOrError"
   >
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <ul>
-        <li class="mat-tree-node pointer" (dblclick)="handleItemDoubleClick(node)">
+        <li
+          class="mat-tree-node pointer"
+          (dblclick)="handleItemDoubleClick(node)"
+          [attr.data-test]="
+            'aqb__containment__' +
+            templateId +
+            '__node__' +
+            node.parentArchetypeId +
+            '__' +
+            node.name
+          "
+        >
           <button mat-icon-button disabled></button>
           {{ node.displayName }}
         </li>
@@ -27,7 +46,11 @@
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
       <ul>
         <li>
-          <div class="mat-tree-node pointer" (dblclick)="handleItemDoubleClick(node)">
+          <div
+            class="mat-tree-node pointer"
+            (dblclick)="handleItemDoubleClick(node)"
+            [attr.data-test]="'aqb__containment__' + templateId + '__node__' + node.archetypeId"
+          >
             <button mat-icon-button matTreeNodeToggle>
               <fa-icon
                 [icon]="'angle-right'"

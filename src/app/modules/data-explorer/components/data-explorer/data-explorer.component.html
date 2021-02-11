@@ -1,11 +1,11 @@
 <section role="region" fxLayout="column" fxFlex="100%">
-  <h2>{{ 'EXPLORE_STUDY' | translate }}</h2>
+  <h2>{{ 'DATA_EXPLORER.EXPLORE_STUDY' | translate }}</h2>
   <p class="num-margin-b-40">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
     imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
   </p>
 
-  <mat-accordion [multi]="true" fxFlex="100%">
+  <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
     <num-study-editor-general-info
       [form]="studyForm"
       [isDisabled]="isGeneralInfoDisabled"
@@ -30,10 +30,45 @@
     ></num-study-editor-researchers>
   </mat-accordion>
 
+  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading"
+      type="primary"
+      icon="play"
+      (singleClick)="getDataSet()"
+      [attr.data-test]="'data-explorer__get-data-button'"
+      >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+    >
+    <num-button
+      [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+      type="secondary"
+      icon="pen"
+      (singleClick)="openBuilderDialog()"
+      [attr.data-test]="'data-explorer__customize-configuration-button'"
+      >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+    >
+  </section>
+
+  <section
+    class="configuration-loading"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+    *ngIf="!isCompositionsFetched"
+    [attr.data-test]="'data-explorer__configuration-is-loading'"
+  >
+    <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+    <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
+  </section>
+
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-    <num-button id="back-button" type="secondary" (singleClick)="cancel()">{{
-      'BUTTON.BACK' | translate
-    }}</num-button>
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="cancel()"
+      [attr.data-test]="'data-explorer__back-button'"
+      >{{ 'BUTTON.BACK' | translate }}</num-button
+    >
   </div>
 </section>

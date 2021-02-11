@@ -54,9 +54,13 @@
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
     "CONNECT_AQL": "AQL Abfragen zusammenstellen",
     "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
-    "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden."
+    "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden.",
+    "COMPILE_ERROR_MESSAGE": "Die AQL-Abfrage konnte nicht kompiliert werden. Bitte überprüfen Sie die Konfiguration der Abfrage und versuchen Sie es erneut.",
+    "GET_COMPOSITION_ERROR": "Das Template kann nicht geladen werden. Bitte schließen Sie das Fenster und versuchen Sie es erneut.",
+    "COLUMNS": "Spalten",
+    "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt."
   },
-  "PHENOTYPE" : {
+  "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
@@ -155,7 +159,9 @@
     "STUDY_APPROVAL_APPROVE": "Studie genehmigen",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Überarbeitung beantragen",
     "STUDY_APPROVAL_DENY": "Studie ablehnen",
-    "EXECUTE": "Ausführen"
+    "EXECUTE": "Ausführen",
+    "GET_DATA": "Daten abrufen",
+    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
@@ -207,7 +213,12 @@
     "APPROVE_STUDY_TITLE": "Wollen Sie die Studie wirklich genehmigen?",
     "APPROVE_STUDY_CONTENT": "Nachdem Sie die Studie genehmigt haben, kann der Studienkoordinator die Studie freischalten, so dass der Forscher mit der Arbeit an der Studie beginnen kann."
   },
-  "EXPLORE_STUDY": "Studie erkunden",
+  "DATA_EXPLORER": {
+    "EXPLORE_STUDY": "Studie erkunden",
+    "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
+    "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
+    "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten"
+  },
   "DATE_TIME": {
     "DATE": "Datum",
     "HOUR_SHORT": "Std.",
