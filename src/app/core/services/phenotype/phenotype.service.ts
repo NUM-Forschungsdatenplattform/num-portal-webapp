@@ -109,6 +109,12 @@ export class PhenotypeService {
       .pipe(catchError(this.handleError))
   }
 
+  excute(phenotype: IPhenotypeApi): Observable<IPhenotypeApi> {
+    return this.httpClient
+      .post<IPhenotypeApi>(`${this.baseUrl}/execute`, phenotype)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

@@ -61,9 +61,12 @@
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
+    "HITS_MESSAGE_SET_ALL_PARAMETERS": "Bitte setzen Sie zuerst alle Parameter in den AQL Abfragen.",
+    "HITS_MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
   },
   "SUMMARY": "Zusammenfassung",
+  "HITS": "Treffer",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_STUDIES": "Verfügbare Studien",
@@ -155,7 +158,8 @@
     "STUDY_APPROVAL_APPROVE": "Studie genehmigen",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Überarbeitung beantragen",
     "STUDY_APPROVAL_DENY": "Studie ablehnen",
-    "EXECUTE": "Ausführen"
+    "EXECUTE": "Ausführen",
+    "DETERMINE": "Ermitteln"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",

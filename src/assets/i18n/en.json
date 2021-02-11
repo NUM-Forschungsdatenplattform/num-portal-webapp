@@ -61,9 +61,12 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
+    "HITS_MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters in the AQL queries first.",
+    "HITS_MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again.",
   },
   "SUMMARY": "Summary",
+  "HITS": "Hits",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_STUDIES": "Available Studies",
@@ -155,7 +158,8 @@
     "STUDY_APPROVAL_APPROVE": "Approve study",
     "STUDY_APPROVAL_CHANGE_REQUEST": "Request revision",
     "STUDY_APPROVAL_DENY": "Deny study",
-    "EXECUTE": "Execute"
+    "EXECUTE": "Execute",
+    "DETERMINE": "Determine"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",

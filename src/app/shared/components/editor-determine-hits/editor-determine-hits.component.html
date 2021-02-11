@@ -1,0 +1,22 @@
+<section
+  role="hits"
+  class="determin-hits"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap="10px"
+>
+  <div class="determin-hits_title mat-display-5">
+    {{ 'HITS' | translate }}
+  </div>
+
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label id="hits-label">{{ 'HITS' | translate }}</mat-label>
+    <input matInput aria-labelledby="hits-label" type="number" readonly />
+  </mat-form-field>
+
+  <num-button type="secondary" (singleClick)="determineHits()">{{
+    'BUTTON.DETERMINE' | translate
+  }}</num-button>
+
+  <div>{{ determineHitsContent?.message | translate }}</div>
+</section>

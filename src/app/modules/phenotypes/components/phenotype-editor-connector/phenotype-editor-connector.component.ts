@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
 import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype-group-ui.model'
 
 @Component({
@@ -8,6 +9,9 @@ import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype
 })
 export class PhenotypeEditorConnectorComponent implements OnInit {
   @Input() phenotypeQuery: PhenotypeGroupUiModel
+  @Input() determineHitsContent: IDetermineHits
+  @Output() determineHitsClicked = new EventEmitter()
+
   constructor() {}
 
   ngOnInit(): void {}
