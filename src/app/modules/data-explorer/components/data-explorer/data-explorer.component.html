@@ -31,12 +31,34 @@
   </mat-accordion>
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-    <num-button type="primary" icon="caret-right" (singleClick)="getDataSet()">{{
-      'BUTTON.GET_DATA' | translate
-    }}</num-button>
-    <num-button type="secondary" icon="pen">{{
-      'BUTTON.CUSTOMIZE_CONFIGURATION' | translate
-    }}</num-button>
+    <num-button
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading"
+      type="primary"
+      icon="play"
+      (singleClick)="getDataSet()"
+      [attr.data-test]="'data-explorer__get-data-button'"
+      >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+    >
+    <num-button
+      [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+      type="secondary"
+      icon="pen"
+      (singleClick)="openBuilderDialog()"
+      [attr.data-test]="'data-explorer__customize-configuration-button'"
+      >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+    >
+  </section>
+
+  <section
+    class="configuration-loading"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+    *ngIf="!isCompositionsFetched"
+    [attr.data-test]="'data-explorer__configuration-is-loading'"
+  >
+    <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+    <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
   </section>
 
   <num-result-table
@@ -47,8 +69,12 @@
 
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-    <num-button id="back-button" type="secondary" (singleClick)="cancel()">{{
-      'BUTTON.BACK' | translate
-    }}</num-button>
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="cancel()"
+      [attr.data-test]="'data-explorer__back-button'"
+      >{{ 'BUTTON.BACK' | translate }}</num-button
+    >
   </div>
 </section>

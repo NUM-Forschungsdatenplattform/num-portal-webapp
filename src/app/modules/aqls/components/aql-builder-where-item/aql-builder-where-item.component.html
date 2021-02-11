@@ -86,7 +86,11 @@
 </section>
 
 <section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
-  <mat-form-field appearance="outline" class="num-tiny-input parameter-select">
+  <mat-form-field
+    appearance="outline"
+    class="num-tiny-input parameter-select"
+    *ngIf="dialogMode === aqlBuilderDialogMode.AqlEditor"
+  >
     <mat-label id="label">Parameter</mat-label>
     <mat-select [attr.aria-label]="'LOGICAL_OPERATOR' | translate" [(value)]="item.isParameterType">
       <mat-option *ngFor="let parameter of item.parameterTypeOptions" [value]="parameter.value">

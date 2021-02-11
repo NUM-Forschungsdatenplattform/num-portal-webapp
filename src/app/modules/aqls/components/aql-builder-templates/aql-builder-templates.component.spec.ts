@@ -14,7 +14,7 @@ describe('AqlBuilderTemplatesComponent', () => {
   @Component({ selector: 'num-aql-builder-template-tree', template: '' })
   class TemplatesStubComponent {
     @Input()
-    template: any
+    templateId: any
   }
 
   beforeEach(async () => {

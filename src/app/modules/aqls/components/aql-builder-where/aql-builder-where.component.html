@@ -7,6 +7,7 @@
   (keydown.enter)="setDestination()"
   (keydown.space)="setDestination()"
   (click)="setDestination()"
+  [attr.data-test]="'aqb__where__set-destination'"
 >
   <fa-icon icon="check"></fa-icon>
 </div>
@@ -16,7 +17,11 @@
     *ngIf="aqbModel.where.children.length"
     role="list"
     class="group"
+    [dialogMode]="dialogMode"
     [group]="aqbModel.where"
     [parentGroupIndex]="null"
   ></num-aql-builder-where-group>
 </div>
+<p *ngIf="dialogMode === aqlBuilderDialogMode.DataExplorer">
+  {{ 'AQL.WHERE_RESTRICTED_TO_COHORT' | translate }}
+</p>

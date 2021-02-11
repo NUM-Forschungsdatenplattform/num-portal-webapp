@@ -54,7 +54,11 @@
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
     "CONNECT_AQL": "AQL Abfragen zusammenstellen",
     "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
-    "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden."
+    "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden.",
+    "COMPILE_ERROR_MESSAGE": "Die AQL-Abfrage konnte nicht kompiliert werden. Bitte überprüfen Sie die Konfiguration der Abfrage und versuchen Sie es erneut.",
+    "GET_COMPOSITION_ERROR": "Das Template kann nicht geladen werden. Bitte schließen Sie das Fenster und versuchen Sie es erneut.",
+    "COLUMNS": "Spalten",
+    "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt."
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
@@ -216,7 +220,10 @@
     "LOADING_RESULT_SET": "Die Ergebnisse werden gerade geladen. Bitte warten Sie einen Moment.",
     "CONFIGURATION": "Konfiguration",
     "DEFAULT": "Standart",
-    "CUSTOM": "Benutzerdefiniert"
+    "CUSTOM": "Benutzerdefiniert",
+    "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
+    "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
+    "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten"
   },
   "DATE_TIME": {
     "DATE": "Datum",

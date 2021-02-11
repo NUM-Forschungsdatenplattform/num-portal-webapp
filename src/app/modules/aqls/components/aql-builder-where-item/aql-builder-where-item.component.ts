@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Subscription } from 'rxjs'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { AqbWhereItemUiModel } from '../../models/aqb/aqb-where-item-ui.model'
 import { AqbValueType } from '../../models/aqb/aqb-where-value-type.enum'
 
@@ -11,12 +12,16 @@ import { AqbValueType } from '../../models/aqb/aqb-where-value-type.enum'
   styleUrls: ['./aql-builder-where-item.component.scss'],
 })
 export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
+  readonly aqlBuilderDialogMode = AqlBuilderDialogMode
   private subscriptions = new Subscription()
   AqbValueType = AqbValueType
   constructor() {}
 
   @Input()
   item: AqbWhereItemUiModel
+
+  @Input()
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
 
   @Output()
   deleteItem = new EventEmitter<string>()
