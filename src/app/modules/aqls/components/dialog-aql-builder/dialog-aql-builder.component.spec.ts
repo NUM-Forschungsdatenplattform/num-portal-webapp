@@ -1,14 +1,22 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
+import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
+import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
+import { COMPILE_ERROR_CONFIG } from './constants'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 
@@ -16,11 +24,13 @@ describe('DialogAqlBuilderComponent', () => {
   let component: DialogAqlBuilderComponent
   let fixture: ComponentFixture<DialogAqlBuilderComponent>
 
+  const selectClickEmitter = new EventEmitter<IAqbSelectClick>()
   @Component({ selector: 'num-aql-builder-templates', template: '' })
   class TemplatesStubComponent {
     @Input() templates: any
 
     @Input() selectedTemplates: any
+    @Output() selectedItem = selectClickEmitter
   }
   @Component({ selector: 'num-aql-builder-select', template: '' })
   class SelectStubComponent {
@@ -34,6 +44,7 @@ describe('DialogAqlBuilderComponent', () => {
   @Component({ selector: 'num-aql-builder-where', template: '' })
   class WhereStubComponent {
     @Input() aqbModel: any
+    @Input() dialogMode: any
   }
 
   const templatesSubject$ = new Subject<IEhrbaseTemplate[]>()
@@ -41,7 +52,12 @@ describe('DialogAqlBuilderComponent', () => {
   const aqlEditorService = ({
     getTemplates: jest.fn(),
     templatesObservable$: templatesSubject$.asObservable(),
+    buildAql: jest.fn(),
   } as unknown) as AqlEditorService
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -54,7 +70,10 @@ describe('DialogAqlBuilderComponent', () => {
         ButtonComponent,
       ],
       imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
-      providers: [{ provide: AqlEditorService, useValue: aqlEditorService }],
+      providers: [
+        { provide: AqlEditorService, useValue: aqlEditorService },
+        { provide: ToastMessageService, useValue: mockToastMessageService },
+      ],
     }).compileComponents()
   })
 
@@ -63,27 +82,104 @@ describe('DialogAqlBuilderComponent', () => {
     component = fixture.componentInstance
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(aqlEditorService, 'getTemplates').mockImplementation(() => of())
-    component.dialogInput = new AqbUiModel()
-    fixture.detectChanges()
+    jest.clearAllMocks()
   })
 
-  it('should create and fetch templates', () => {
-    expect(component).toBeTruthy()
-    expect(aqlEditorService.getTemplates).toHaveBeenCalled()
+  describe('When the dialog is in aqlEditor mode', () => {
+    beforeEach(() => {
+      component.dialogInput = {
+        mode: AqlBuilderDialogMode.AqlEditor,
+        model: new AqbUiModel(),
+      }
+
+      fixture.detectChanges()
+    })
+
+    it('should create and fetch templates', () => {
+      expect(component).toBeTruthy()
+      expect(aqlEditorService.getTemplates).toHaveBeenCalled()
+    })
+
+    it('should call the aqb Model to handle the clickEvent of the template tree', () => {
+      jest.spyOn(component.aqbModel, 'handleElementSelect')
+      const selectedItem: IContainmentTreeNode = {
+        name: 'test_field1::value',
+        rmType: ReferenceModelType.String,
+        aqlPath: 'test/path1',
+        humanReadablePath: 'test/path1/human',
+        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
+        displayName: 'Test Field1 | value',
+      }
+
+      const selectClickElement: IAqbSelectClick = {
+        item: selectedItem,
+        compositionId: 'comp1',
+        templateId: 'temp1',
+      }
+
+      selectClickEmitter.emit(selectClickElement)
+      fixture.detectChanges()
+      expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(selectClickElement)
+    })
+
+    it('should set the templates to the component once they are received', () => {
+      templatesSubject$.next(mockAqbTemplates)
+      const mockTemplateIds = mockAqbTemplates.map((template) => template.templateId)
+      expect(component.templates).toEqual(mockTemplateIds)
+    })
+
+    it('should set the allowedTemplates as templates, if they are specified', () => {})
+
+    it('should emit the close event with the current model, selectedTemplates and the compile result on confirmation with success', async () => {
+      const mockCompileResult: IArchetypeQueryBuilderResponse = {
+        q: 'test result',
+        parameters: { test: 'test' },
+      }
+      component.selectedTemplates.patchValue(['temp1', 'temp2'])
+      jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => of(mockCompileResult))
+      await component.handleDialogConfirm()
+
+      const expectedOutput: IAqlBuilderDialogOutput = {
+        model: component.aqbModel,
+        result: mockCompileResult,
+        selectedTemplateIds: ['temp1', 'temp2'],
+      }
+      expect(component.closeDialog.emit).toHaveBeenCalledWith(expectedOutput)
+    })
+
+    it('should show an error message if the compiling fails after dialog confirmation', async () => {
+      jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
+      await component.handleDialogConfirm()
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(COMPILE_ERROR_CONFIG)
+    })
+
+    it('should emit the close event on dialog cancel', () => {
+      component.handleDialogCancel()
+      expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+    })
   })
 
-  it('should set the templates to the component once they are received', () => {
-    templatesSubject$.next(mockAqbTemplates)
-    expect(component.templates).toEqual(mockAqbTemplates)
-  })
+  describe('When the dialog is in data explorer mode', () => {
+    const templates = ['temp1', 'temp2']
+    beforeEach(() => {
+      component.dialogInput = {
+        mode: AqlBuilderDialogMode.DataExplorer,
+        model: new AqbUiModel(),
+        selectedTemplateIds: templates,
+        allowedTemplates: templates,
+      }
 
-  it('should emit the close event with current dialogInput on confirmation', () => {
-    component.handleDialogConfirm()
-    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
-  })
+      fixture.detectChanges()
+    })
 
-  it('should emit the close event on dialog cancel', () => {
-    component.handleDialogCancel()
-    expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+    it('should not call the api to get all templates', () => {
+      expect(aqlEditorService.getTemplates).not.toHaveBeenCalled()
+    })
+
+    it('should set the selected and allowed templates', () => {
+      expect(component.selectedTemplates.value).toEqual(templates)
+      expect(component.templates).toEqual(templates)
+    })
   })
 })

@@ -4,7 +4,6 @@ import { MatTreeNestedDataSource } from '@angular/material/tree'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
-import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
@@ -17,7 +16,7 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   constructor(private aqlEditorService: AqlEditorService) {}
 
   @Input()
-  template: IEhrbaseTemplate
+  templateId: string
 
   @Output()
   selectedItem = new EventEmitter<IAqbSelectClick>()
@@ -26,15 +25,17 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   nestedDataSource = new MatTreeNestedDataSource<IContainmentTreeNode>()
 
   compositionId: string
+  hasError: boolean
 
   hasChild(_: number, node: IContainmentTreeNode): boolean {
     return node.children != null && node.children.length > 0
   }
 
   ngOnInit(): void {
-    this.aqlEditorService
-      .getContainment(this.template.templateId)
-      .subscribe((containment) => this.handleData(containment))
+    this.aqlEditorService.getContainment(this.templateId).subscribe(
+      (containment) => this.handleData(containment),
+      () => (this.hasError = true)
+    )
   }
 
   handleData(containment: IContainmentNode): void {
@@ -66,7 +67,7 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
     return {
       archetypeId: node.archetypeId,
       displayName: node.archetypeId.includes('EHR-COMPOSITION')
-        ? this.splitAndTitleCase(this.template.templateId)
+        ? this.splitAndTitleCase(this.templateId)
         : this.splitAndTitleCase(node.archetypeId.split('.')[1] || node.archetypeId),
       children: [
         ...node.fields.map((field) => this.convertField(field, node.archetypeId)),
@@ -87,7 +88,7 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
     this.selectedItem.emit({
       item,
       compositionId: this.compositionId,
-      templateId: this.template.templateId,
+      templateId: this.templateId,
     })
   }
 }

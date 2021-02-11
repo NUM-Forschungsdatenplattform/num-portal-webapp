@@ -1,16 +1,25 @@
 <mat-form-field appearance="standard" style="width: 100%" class="num-margin-b-40">
-  <mat-label>{{ 'SELECT_EHR_TEMPLATE' | translate }}</mat-label>
-  <mat-select [attr.aria-label]="'TODO' | translate" [formControl]="selectedTemplates" multiple>
-    <mat-option *ngFor="let template of templates" [value]="template">
-      {{ template.templateId }}
+  <mat-label id="select-templates-label">{{ 'SELECT_EHR_TEMPLATE' | translate }}</mat-label>
+  <mat-select
+    aria-labelledby="select-templates-label"
+    [formControl]="selectedTemplates"
+    multiple
+    [attr.data-test]="'aqb__templates-selection'"
+  >
+    <mat-option
+      *ngFor="let template of templates"
+      [value]="template"
+      [attr.data-test]="'aqb__templates-selection__' + template"
+    >
+      {{ template }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
-<mat-accordion [multi]="false">
+<mat-accordion [@.disabled]="!isViewRendered" [multi]="false">
   <num-aql-builder-template-tree
-    *ngFor="let template of selectedTemplates.value"
-    [template]="template"
+    *ngFor="let templateId of selectedTemplates.value"
+    [templateId]="templateId"
     (selectedItem)="selectedItem.emit($event)"
   ></num-aql-builder-template-tree>
 </mat-accordion>

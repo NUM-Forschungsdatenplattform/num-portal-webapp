@@ -1,8 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { NumAqlFormattingProvider } from 'src/app/modules/code-editor/num-aql-formatting-provider'
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
@@ -13,6 +14,7 @@ import { IDictionary } from 'src/app/shared/models/dictionary.interface'
   providedIn: 'root',
 })
 export class AqlEditorService {
+  formatter = new NumAqlFormattingProvider()
   private baseUrl: string
 
   private templates: IEhrbaseTemplate[] = []
@@ -50,7 +52,15 @@ export class AqlEditorService {
   }
 
   buildAql(aqbModel: IArchetypeQueryBuilder): Observable<IArchetypeQueryBuilderResponse> {
-    return this.httpClient.post<IArchetypeQueryBuilderResponse>(`${this.baseUrl}/aql`, aqbModel)
+    return this.httpClient
+      .post<IArchetypeQueryBuilderResponse>(`${this.baseUrl}/aql`, aqbModel)
+      .pipe(
+        map((result) => {
+          result.q = this.formatter.formatQuery(result.q)
+          return result
+        }),
+        catchError((error) => this.handleError(error))
+      )
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

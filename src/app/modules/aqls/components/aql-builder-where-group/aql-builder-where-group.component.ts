@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { debounce } from 'lodash-es'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
@@ -11,11 +12,15 @@ import { AqbWhereGroupUiModel } from '../../models/aqb/aqb-where-group-ui.model'
   styleUrls: ['./aql-builder-where-group.component.scss'],
 })
 export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
+  readonly aqlBuilderDialogMode = AqlBuilderDialogMode
   readonly connectorNodeType = ConnectorNodeType
   readonly connectorGroupType = ConnectorGroupType
   readonly logicalOperator = LogicalOperator
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
   constructor() {}
+
+  @Input()
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
 
   @Input() group: AqbWhereGroupUiModel
 

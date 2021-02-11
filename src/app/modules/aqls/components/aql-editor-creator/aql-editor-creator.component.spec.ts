@@ -7,12 +7,13 @@ import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.se
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
+import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
-import { DialogAqlBuilderComponent } from '../dialog-aql-builder/dialog-aql-builder.component'
-
 import { AqlEditorCeatorComponent as AqlEditorCreatorComponent } from './aql-editor-creator.component'
 import { BUILDER_DIALOG_CONFIG } from './constants'
 
@@ -29,7 +30,7 @@ describe('AqlEditorCeatorComponent', () => {
   }
 
   let dialogCallParameter: DialogConfig
-  const afterClosedSubject$ = new Subject()
+  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
   const mockDialogService = ({
     openDialog: jest.fn().mockImplementation((callParameter: any) => {
       dialogCallParameter = callParameter
@@ -38,8 +39,6 @@ describe('AqlEditorCeatorComponent', () => {
       }
     }),
   } as unknown) as DialogService
-
-  const formattedBuilderResponse = 'SELECT\n  this'
 
   const builderResponse: IArchetypeQueryBuilderResponse = {
     parameters: {},
@@ -83,10 +82,13 @@ describe('AqlEditorCeatorComponent', () => {
   })
 
   describe('When a query is supposed to be created with the builder', () => {
+    const dialogContentPayload: IAqlBuilderDialogInput = {
+      mode: AqlBuilderDialogMode.AqlEditor,
+      model: new AqbUiModel(),
+    }
     const dialogConfig: DialogConfig = {
       ...BUILDER_DIALOG_CONFIG,
-      dialogContentComponent: DialogAqlBuilderComponent,
-      dialogContentPayload: new AqbUiModel(),
+      dialogContentPayload,
     }
 
     it('should open the dialog with the config including the content payload', () => {
@@ -99,15 +101,22 @@ describe('AqlEditorCeatorComponent', () => {
     })
 
     describe('When the builder dialog is confirm-closed', () => {
-      const model = new AqbUiModel()
-      const convertedModel = model.convertToApi()
+      const dialogOutput: IAqlBuilderDialogOutput = {
+        model: new AqbUiModel(),
+        result: {
+          parameters: { test: 'test' },
+          q: 'test query',
+        },
+        selectedTemplateIds: ['temp1', 'temp2'],
+      }
       beforeEach(() => {
         component.openBuilderDialog()
-        afterClosedSubject$.next(model)
+        afterClosedSubject$.next(dialogOutput)
       })
-      it('should call the aqlEditorService to generate the query and set the aqlQuery from the response', () => {
-        expect(mockAqlEditorService.buildAql).toHaveBeenCalledWith(convertedModel)
-        expect(component.aqlQuery).toEqual(formattedBuilderResponse)
+      it('should set the dialog result to the component', () => {
+        expect(component.aqlQuery).toEqual(dialogOutput.result.q)
+        expect(component.selectedTemplateIds).toEqual(dialogOutput.selectedTemplateIds)
+        expect(component.aqbModel).toEqual(dialogOutput.model)
       })
     })
 

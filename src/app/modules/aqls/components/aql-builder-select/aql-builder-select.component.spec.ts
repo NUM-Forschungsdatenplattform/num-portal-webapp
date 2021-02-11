@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
@@ -52,6 +53,14 @@ describe('AqlBuilderSelectComponent', () => {
     it('should remove the item from array of selected in the aqbModel', () => {
       component.deleteItem(0)
       expect(component.aqbModel.select.length).toEqual(1)
+    })
+  })
+
+  describe('When the select clause is supposed to be the destination for select clicks', () => {
+    it('should set the destination in the aqb model', () => {
+      component.aqbModel.selectDestination = AqbSelectDestination.Where
+      component.setDestination()
+      expect(component.aqbModel.selectDestination).toEqual(AqbSelectDestination.Select)
     })
   })
 })

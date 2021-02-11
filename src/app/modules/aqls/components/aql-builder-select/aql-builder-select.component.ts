@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+
 import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 
