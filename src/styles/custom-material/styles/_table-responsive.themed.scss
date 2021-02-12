@@ -1,6 +1,7 @@
 @mixin table_responsive_themed($theme) {
   .table-responsive {
     display: block;
+    position: relative;
     width: 100%;
     overflow-x: auto;
     .mat-table {

@@ -14,7 +14,6 @@ import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
-import { DataRequestStatus } from 'src/app/shared/models/data-request-status.enum'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
@@ -23,7 +22,11 @@ import { IDefinitionList } from 'src/app/shared/models/definition-list.interface
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { BUILDER_DIALOG_CONFIG, COMPOSITION_LOADING_ERROR } from './constants'
+import {
+  BUILDER_DIALOG_CONFIG,
+  COMPOSITION_LOADING_ERROR,
+  RESULT_SET_LOADING_ERROR,
+} from './constants'
 
 @Component({
   selector: 'num-data-explorer',
@@ -61,7 +64,6 @@ export class DataExplorerComponent implements OnInit {
   studyForm: FormGroup = new FormGroup({})
 
   resultSet: IAqlExecutionResponse
-  dataRequestStatus: DataRequestStatus = DataRequestStatus.NotRequested
   configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
 
   constructor(
@@ -187,6 +189,7 @@ export class DataExplorerComponent implements OnInit {
     this.compiledQuery = confirmResult.result
 
     this.getDataSet()
+    this.configuration = DataExplorerConfigurations.Custom
   }
 
   cancel(): void {
@@ -195,18 +198,18 @@ export class DataExplorerComponent implements OnInit {
 
   getDataSet(): void {
     this.isDataSetLoading = true
-    console.log('Next step: Get Dataset with aql: ', this.compiledQuery.q)
-    this.isDataSetLoading = false
-    // ---------------------
-    this.dataRequestStatus = DataRequestStatus.Loading
 
-    this.aqlService.getResultSet().subscribe(
+    this.aqlService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
       (resultSet) => {
         this.resultSet = resultSet
       },
-      (err) => {},
+      (err) => {
+        this.isDataSetLoading = false
+        this.resultSet = undefined
+        this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+      },
       () => {
-        this.dataRequestStatus = DataRequestStatus.Requested
+        this.isDataSetLoading = false
       }
     )
   }
