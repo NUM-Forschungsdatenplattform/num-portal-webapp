@@ -27,13 +27,16 @@ import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.se
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { mockSimpleContainment } from 'src/mocks/data-mocks/aqb/simple-containment.mock'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
-import { BUILDER_DIALOG_CONFIG, COMPOSITION_LOADING_ERROR } from './constants'
+import {
+  BUILDER_DIALOG_CONFIG,
+  COMPOSITION_LOADING_ERROR,
+  RESULT_SET_LOADING_ERROR,
+} from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
-import { mockResultSetJson } from 'src/mocks/data-mocks/result-set-mock'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -60,7 +63,7 @@ describe('DataExplorerComponent', () => {
   } as unknown) as AdminService
 
   const aqlService = ({
-    executeAdHocAql: () => of(mockResultSetJson),
+    executeAdHocAql: jest.fn(),
   } as unknown) as AqlService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
@@ -385,6 +388,54 @@ describe('DataExplorerComponent', () => {
       component.openBuilderDialog()
       afterClosedSubject$.next()
       expect(component.handleDialogConfirm).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When the resultSet is fetched', () => {
+    const mockResultSet: IAqlExecutionResponse = {
+      q: 'some query',
+      columns: [
+        {
+          name: 'col1',
+          path: 'path to col1',
+        },
+        {
+          name: 'col2',
+          path: 'path to col2',
+        },
+      ],
+      rows: [
+        ['col1 result 1', 'col2 result 1'],
+        ['col1 result 2', 'col2 result 2'],
+      ],
+    }
+
+    beforeEach(() => {
+      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should set the response as the resultSet and flag loading as complete', () => {
+      component.getDataSet()
+
+      expect(component.isDataSetLoading).toEqual(false)
+      expect(component.resultSet).toEqual(mockResultSet)
+    })
+  })
+
+  describe('When the resultSet cannot be fetched', () => {
+    beforeEach(() => {
+      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+      component.compiledQuery = buildResponse
+    })
+
+    it('should show an error message to the user, set the resultSet as undefined and flag loading as complete', () => {
+      component.getDataSet()
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
+      expect(component.isDataSetLoading).toEqual(false)
+      expect(component.resultSet).toBeUndefined()
     })
   })
 })

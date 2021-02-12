@@ -202,14 +202,12 @@ export class DataExplorerComponent implements OnInit {
     this.aqlService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
       (resultSet) => {
         this.resultSet = resultSet
+        this.isDataSetLoading = false
       },
       (err) => {
         this.isDataSetLoading = false
         this.resultSet = undefined
         this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-      },
-      () => {
-        this.isDataSetLoading = false
       }
     )
   }
