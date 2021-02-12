@@ -21,6 +21,8 @@
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
+      [determineHitsContent]="determineHitsContent"
+      (determineHitsClicked)="determineHits()"
     ></num-study-editor-connector>
 
     <num-study-editor-researchers

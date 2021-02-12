@@ -10,12 +10,13 @@
   </div>
 
   <div class="determin-hits_count">
-    {{ determineHitsContent?.count }}
+    {{ content?.count }}
   </div>
 
-  <num-button type="secondary" (singleClick)="determineHits()">{{
-    'BUTTON.DETERMINE' | translate
-  }}</num-button>
+  <num-button type="secondary" [isDisabled]="isButtonDisabled" (singleClick)="determineHits()">
+    {{ 'BUTTON.DETERMINE' | translate }}
+  </num-button>
 
-  <div>{{ determineHitsContent?.message | translate }}</div>
+  <div *ngIf="isButtonDisabled">{{ content?.defaultMessage | translate }}</div>
+  <div *ngIf="!isButtonDisabled">{{ content?.message | translate }}</div>
 </section>

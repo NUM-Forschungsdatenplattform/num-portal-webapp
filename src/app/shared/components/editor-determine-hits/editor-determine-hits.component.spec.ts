@@ -36,9 +36,9 @@ describe('EditorDetermineHitsComponent', () => {
 
   describe('click on Determine Hits', () => {
     it('should emit the click event', () => {
-      jest.spyOn(component.determineHitsClicked, 'emit')
+      jest.spyOn(component.clicked, 'emit')
       component.determineHits()
-      expect(component.determineHitsClicked.emit).toHaveBeenCalledTimes(1)
+      expect(component.clicked.emit).toHaveBeenCalledTimes(1)
     })
   })
 })

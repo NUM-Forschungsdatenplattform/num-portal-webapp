@@ -31,10 +31,17 @@
 
     <num-study-editor-connector-group
       role="list"
+      class="num-margin-b-20"
       [cohortGroup]="cohortNode"
       [parentGroupIndex]="null"
       [isDisabled]="isDisabled"
       fxFlex="100%"
     ></num-study-editor-connector-group>
+
+    <num-editor-determine-hits
+      [isButtonDisabled]="!(cohortNode.children.length && cohortNode.areParameterConfigured)"
+      [content]="determineHitsContent"
+      (clicked)="determineHitsClicked.emit()"
+    ></num-editor-determine-hits>
   </section>
 </mat-expansion-panel>

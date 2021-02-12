@@ -19,8 +19,9 @@ describe('PhenotypeAqlConnectorComponent', () => {
 
   @Component({ selector: 'num-editor-determine-hits', template: '' })
   class EditorDetermineHitsComponent {
-    @Input() determineHitsContent: IDetermineHits
-    @Output() determineHitsClicked = new EventEmitter()
+    @Input() isButtonDisabled: boolean
+    @Input() content: IDetermineHits
+    @Output() clicked = new EventEmitter()
   }
 
   beforeEach(async () => {

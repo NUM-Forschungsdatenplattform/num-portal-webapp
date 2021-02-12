@@ -188,6 +188,11 @@
       "CHANGE_REQUEST": "Die Studie muss überarbeitet werden.",
       "DENY": "Die Studie wird abgelehnt und damit abgeschlossen.",
       "HINT_TO_COMMENT": "Insbesondere wenn Sie Änderungen wünschen oder die Studie ablehnen, sollten Sie den Grund als Kommentar festhalten."
+    },
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Bitte stellen Sie zunächst alle Parameter ein.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
     }
   },
   "USER": {

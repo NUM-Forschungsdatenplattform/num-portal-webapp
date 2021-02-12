@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 
 @Component({
@@ -11,6 +19,10 @@ export class StudyEditorConnectorComponent implements OnInit {
   @Input() isLoadingComplete: boolean
   @Input() isDisabled: boolean
   @Input() cohortNode: CohortGroupUiModel
+
+  @Input() determineHitsContent: IDetermineHits
+  @Output() determineHitsClicked = new EventEmitter()
+
   constructor() {}
 
   ngOnInit(): void {}

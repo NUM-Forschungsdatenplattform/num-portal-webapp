@@ -24,6 +24,7 @@ import { IStudyResolved } from '../../models/study-resolved.interface'
 import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { RouterTestingModule } from '@angular/router/testing'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
 
 describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
@@ -70,6 +71,8 @@ describe('StudyEditorComponent On Creation', () => {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
     @Input() isDisabled: boolean
+    @Input() determineHitsContent: IDetermineHits
+    @Output() determineHitsClicked = new EventEmitter()
   }
   @Component({ selector: 'num-study-editor-researchers', template: '' })
   class StudyEditorResearchers {

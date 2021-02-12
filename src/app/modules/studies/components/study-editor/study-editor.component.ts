@@ -18,6 +18,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
 import { catchError, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
 
 @Component({
   selector: 'num-study-editor',
@@ -28,6 +29,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   mode: PossibleStudyEditorMode
   possibleModes = PossibleStudyEditorMode
+
+  determineHitsContent: IDetermineHits
 
   resolvedData: IStudyResolved
   isResearchersFetched: boolean
@@ -74,6 +77,18 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     this.fetchResearcher()
     this.fetchComments()
     this.getGeneralInfoListData()
+
+    this.determineHitsContent = {
+      defaultMessage: 'STUDY.HITS.MESSAGE_SET_ALL_PARAMETERS',
+    }
+  }
+
+  updateDetermineHits(count?: number | null, message?: string): void {
+    this.determineHitsContent = {
+      defaultMessage: this.determineHitsContent.defaultMessage,
+      message,
+      count,
+    }
   }
 
   ngOnDestroy(): void {
@@ -267,6 +282,34 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe()
+  }
+
+  async determineHits(): Promise<void> {
+    const { study, cohort } = this.getStudyForApi()
+
+    console.log('cohort', cohort)
+
+    if (cohort) {
+      try {
+        await this.cohortService
+          .getCohortSize(cohort, study.cohortId)
+          .toPromise()
+          .then((result) => {
+            this.updateDetermineHits(result, '')
+          })
+      } catch (error) {
+        if (error.status === 451) {
+          // *** Error 451 means too few hits ***
+          this.updateDetermineHits(null, 'STUDY.HITS.MESSAGE_ERROR_FEW_HITS')
+        } else {
+          this.updateDetermineHits(null, 'STUDY.HITS.MESSAGE_ERROR_MESSAGE')
+        }
+
+        console.log(error)
+      }
+    } else {
+      this.updateDetermineHits(null, 'STUDY.HITS.MESSAGE_SET_ALL_PARAMETERS')
+    }
   }
 
   cancel(): void {

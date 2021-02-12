@@ -15,14 +15,15 @@ import { IDetermineHits } from './determineHits.interface'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorDetermineHitsComponent implements OnInit {
-  @Input() determineHitsContent: IDetermineHits
-  @Output() determineHitsClicked = new EventEmitter()
+  @Input() isButtonDisabled: boolean
+  @Input() content: IDetermineHits
+  @Output() clicked = new EventEmitter()
 
   constructor() {}
 
   ngOnInit(): void {}
 
   determineHits(): void {
-    this.determineHitsClicked.emit()
+    this.clicked.emit()
   }
 }

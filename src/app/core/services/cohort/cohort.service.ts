@@ -34,9 +34,9 @@ export class CohortService {
       .pipe(catchError(this.handleError))
   }
 
-  getCohortSize(id: number): Observable<number> {
+  getCohortSize(cohort: ICohortApi, id: number): Observable<number> {
     return this.httpClient
-      .post<number>(`${this.baseUrl}/${id}/size`, {})
+      .post<number>(`${this.baseUrl}/${id}/size`, cohort)
       .pipe(catchError(this.handleError))
   }
 

@@ -23,8 +23,9 @@
     ></num-phenotype-editor-connector-group>
 
     <num-editor-determine-hits
-      [determineHitsContent]="determineHitsContent"
-      (determineHitsClicked)="determineHitsClicked.emit()"
+      [isButtonDisabled]="isDetermineDisabled"
+      [content]="determineHitsContent"
+      (clicked)="determineHitsClicked.emit()"
     ></num-editor-determine-hits>
   </mat-card>
 </section>

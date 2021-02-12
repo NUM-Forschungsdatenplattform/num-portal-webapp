@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyEditorConnectorComponent } from './study-editor-connector.component'
 
@@ -18,9 +19,20 @@ describe('StudyEditorConnectorComponent', () => {
     @Input() isDisabled: boolean
   }
 
+  @Component({ selector: 'num-editor-determine-hits', template: '' })
+  class EditorDetermineHitsComponent {
+    @Input() isButtonDisabled: boolean
+    @Input() content: IDetermineHits
+    @Output() clicked = new EventEmitter()
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudyEditorConnectorComponent, GroupStubComponent],
+      declarations: [
+        StudyEditorConnectorComponent,
+        EditorDetermineHitsComponent,
+        GroupStubComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,

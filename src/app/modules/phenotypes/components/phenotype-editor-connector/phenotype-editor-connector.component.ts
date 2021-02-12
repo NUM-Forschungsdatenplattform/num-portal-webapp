@@ -10,6 +10,7 @@ import { PhenotypeGroupUiModel } from 'src/app/shared/models/phenotype/phenotype
 export class PhenotypeEditorConnectorComponent implements OnInit {
   @Input() phenotypeQuery: PhenotypeGroupUiModel
   @Input() determineHitsContent: IDetermineHits
+  @Input() isDetermineDisabled: boolean
   @Output() determineHitsClicked = new EventEmitter()
 
   constructor() {}
