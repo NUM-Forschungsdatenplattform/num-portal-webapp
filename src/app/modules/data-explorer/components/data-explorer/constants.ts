@@ -9,6 +9,11 @@ export const COMPOSITION_LOADING_ERROR: IToastMessageConfig = {
   type: ToastMessageType.Error,
 }
 
+export const RESULT_SET_LOADING_ERROR: IToastMessageConfig = {
+  message: 'DATA_EXPLORER.RESULT_SET_ERROR',
+  type: ToastMessageType.Error,
+}
+
 export const BUILDER_DIALOG_CONFIG: DialogConfig = {
   title: 'DATA_EXPLORER.AQL_BUILDER_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',

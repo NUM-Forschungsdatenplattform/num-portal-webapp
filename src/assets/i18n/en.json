@@ -160,7 +160,7 @@
     "STUDY_APPROVAL_CHANGE_REQUEST": "Request revision",
     "STUDY_APPROVAL_DENY": "Deny study",
     "EXECUTE": "Execute",
-    "GET_DATA": "Get data",
+    "GET_DATA": "Get Data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration"
   },
   "STUDY": {
@@ -215,9 +215,17 @@
   },
   "DATA_EXPLORER": {
     "EXPLORE_STUDY": "Explore Study",
+    "RESULT_SET": "Result Set",
+    "NO_RESULTS_YET": "No results yet. Please press the button 'Get Data' first.",
+    "LOADING_RESULT_SET": "The result set is being loaded. Please wait a moment.",
+    "EMPTY_RESULT_SET": "The configuration did not give any results. Please change the configuration and try again.",
+    "CONFIGURATION": "Configuration",
+    "DEFAULT": "Default",
+    "CUSTOM": "Custom",
     "CONFIGURATION_LOADING": "The query configuration is beeing loaded. Please wait a moment.",
     "CONFIGURATION_ERROR": "The query could not be compiled. Please open the configuration and try again.",
-    "AQL_BUILDER_DIALOG_HEADER": "Edit data query configuration"
+    "AQL_BUILDER_DIALOG_HEADER": "Edit data query configuration",
+    "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again."
   },
   "DATE_TIME": {
     "DATE": "Date",

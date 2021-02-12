@@ -1,0 +1,113 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
+import { MaterialModule } from 'src/app/layout/material/material.module'
+import { ButtonComponent } from 'src/app/shared/components/button/button.component'
+import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { PipesModule } from 'src/app/shared/pipes/pipes.module'
+import { ResultTableComponent } from './result-table.component'
+
+describe('ResultTableComponent', () => {
+  let component: ResultTableComponent
+  let fixture: ComponentFixture<ResultTableComponent>
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ResultTableComponent, ButtonComponent],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+        PipesModule,
+        FontAwesomeTestingModule,
+      ],
+      providers: [],
+    }).compileComponents()
+  })
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+    fixture = TestBed.createComponent(ResultTableComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
+
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+
+  describe('When a non-empty resultSet arrives', () => {
+    const mockResultSet: IAqlExecutionResponse = {
+      q: 'some query',
+      columns: [
+        {
+          name: 'col1',
+          path: 'path to col1',
+        },
+        {
+          name: 'col2',
+          path: 'path to col2',
+        },
+      ],
+      rows: [
+        ['col1 result 1', 'col2 result 1'],
+        ['col1 result 2', 'col2 result 2'],
+      ],
+    }
+
+    const firstColumn: IAqlExecutionColumn = {
+      path: ' ',
+      name: '#',
+    }
+
+    beforeEach(() => {
+      component.resultSet = mockResultSet
+      component.isDataSetLoading = false
+    })
+    it('should set dataSource.data equal to resultSet.rows (+ row-index)', () => {
+      expect(component.dataSource.data).toEqual([
+        [1, ...mockResultSet.rows[0]],
+        [2, ...mockResultSet.rows[1]],
+      ])
+    })
+    it('should set displayedColumns equal to the column paths (+ empty first column for row-index )', () => {
+      expect(component.displayedColumns).toEqual([' ', 'path to col1', 'path to col2'])
+    })
+    it('should set resultSetcolumns equal to resultSet.columns (+ first column for row-index)', () => {
+      expect(component.resultSetColumns).toEqual([firstColumn, ...mockResultSet.columns])
+    })
+  })
+
+  describe('When an empty resultSet arrives', () => {
+    const mockResultSet: IAqlExecutionResponse = {
+      q: 'some query',
+      columns: [
+        {
+          name: 'col1',
+          path: 'path to col1',
+        },
+        {
+          name: 'col2',
+          path: 'path to col2',
+        },
+      ],
+      rows: [],
+    }
+
+    beforeEach(() => {
+      component.resultSet = mockResultSet
+      component.isDataSetLoading = false
+    })
+    it('should not set dataSource.data', () => {
+      expect(component.dataSource.data).toHaveLength(0)
+    })
+    it('should not set displayedColumns', () => {
+      expect(component.displayedColumns).toHaveLength(0)
+    })
+    it('should not set resultSetcolumns', () => {
+      expect(component.resultSetColumns).toHaveLength(0)
+    })
+  })
+})

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { forkJoin } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -11,6 +12,8 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { IAqbSelectClick } from 'src/app/modules/aqls/models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.interface'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
@@ -19,7 +22,11 @@ import { IDefinitionList } from 'src/app/shared/models/definition-list.interface
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { BUILDER_DIALOG_CONFIG, COMPOSITION_LOADING_ERROR } from './constants'
+import {
+  BUILDER_DIALOG_CONFIG,
+  COMPOSITION_LOADING_ERROR,
+  RESULT_SET_LOADING_ERROR,
+} from './constants'
 
 @Component({
   selector: 'num-data-explorer',
@@ -56,11 +63,15 @@ export class DataExplorerComponent implements OnInit {
 
   studyForm: FormGroup = new FormGroup({})
 
+  resultSet: IAqlExecutionResponse
+  configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private cohortService: CohortService,
     private adminService: AdminService,
+    private aqlService: AqlService,
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService
@@ -178,15 +189,26 @@ export class DataExplorerComponent implements OnInit {
     this.compiledQuery = confirmResult.result
 
     this.getDataSet()
-  }
-
-  getDataSet(): void {
-    this.isDataSetLoading = true
-    console.log('Next step: Get Dataset with aql: ', this.compiledQuery.q)
-    this.isDataSetLoading = false
+    this.configuration = DataExplorerConfigurations.Custom
   }
 
   cancel(): void {
     this.router.navigate(['data-explorer/studies'])
+  }
+
+  getDataSet(): void {
+    this.isDataSetLoading = true
+
+    this.aqlService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
+      (resultSet) => {
+        this.resultSet = resultSet
+        this.isDataSetLoading = false
+      },
+      (err) => {
+        this.isDataSetLoading = false
+        this.resultSet = undefined
+        this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+      }
+    )
   }
 }
