@@ -62,8 +62,11 @@
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
-    "HITS_MESSAGE_SET_ALL_PARAMETERS": "Bitte setzen Sie zuerst alle Parameter in den AQL Abfragen.",
-    "HITS_MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    }
   },
   "SUMMARY": "Zusammenfassung",
   "HITS": "Treffer",

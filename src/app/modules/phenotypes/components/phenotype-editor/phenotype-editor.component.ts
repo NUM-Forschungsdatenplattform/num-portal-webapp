@@ -39,7 +39,7 @@ export class PhenotypeEditorComponent implements OnInit {
     })
     this.determineHitsContent = {
       count: null,
-      message: 'PHENOTYPE.HITS_MESSAGE_SET_ALL_PARAMETERS',
+      message: 'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS',
     }
   }
 
@@ -58,17 +58,35 @@ export class PhenotypeEditorComponent implements OnInit {
 
     if (apiQuery.query) {
       try {
-        await this.phenotypeService.excute(apiQuery).toPromise()
+        await this.phenotypeService
+          .execute(apiQuery)
+          .toPromise()
+          .then((result) => {
+            this.determineHitsContent = {
+              count: result.length,
+              message: '',
+            }
+          })
       } catch (error) {
-        this.determineHitsContent = {
-          count: null,
-          message: 'PHENOTYPE.HITS_MESSAGE_ERROR_MESSAGE',
+        if (error.status === 451) {
+          // *** Error 451 means too few hits ***
+          this.determineHitsContent = {
+            count: null,
+            message: 'PHENOTYPE.HITS.MESSAGE_ERROR_FEW_HITS',
+          }
+        } else {
+          this.determineHitsContent = {
+            count: null,
+            message: 'PHENOTYPE.HITS.MESSAGE_ERROR_MESSAGE',
+          }
         }
+
+        console.log(error)
       }
     } else {
       this.determineHitsContent = {
         count: null,
-        message: 'PHENOTYPE.HITS_MESSAGE_SET_ALL_PARAMETERS',
+        message: 'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS',
       }
     }
   }

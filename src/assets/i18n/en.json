@@ -62,8 +62,11 @@
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
-    "HITS_MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters in the AQL queries first.",
-    "HITS_MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again.",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "SUMMARY": "Summary",
   "HITS": "Hits",

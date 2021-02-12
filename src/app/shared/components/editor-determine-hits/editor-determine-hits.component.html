@@ -11,7 +11,13 @@
 
   <mat-form-field appearance="outline" color="accent">
     <mat-label id="hits-label">{{ 'HITS' | translate }}</mat-label>
-    <input matInput aria-labelledby="hits-label" type="number" readonly />
+    <input
+      matInput
+      aria-labelledby="hits-label"
+      type="number"
+      [ngModel]="determineHitsContent?.count"
+      readonly
+    />
   </mat-form-field>
 
   <num-button type="secondary" (singleClick)="determineHits()">{{

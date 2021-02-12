@@ -109,10 +109,11 @@ export class PhenotypeService {
       .pipe(catchError(this.handleError))
   }
 
-  excute(phenotype: IPhenotypeApi): Observable<IPhenotypeApi> {
-    return this.httpClient
-      .post<IPhenotypeApi>(`${this.baseUrl}/execute`, phenotype)
-      .pipe(catchError(this.handleError))
+  execute(phenotype: IPhenotypeApi): Observable<string[]> {
+    // return this.httpClient
+    //   .post<string[]>(`${this.baseUrl}/execute`, phenotype)
+    //   .pipe(catchError(this.handleError))
+    return of(['q3e23', '23e23e'])
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
