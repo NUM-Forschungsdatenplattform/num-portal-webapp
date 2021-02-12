@@ -227,9 +227,17 @@
   },
   "DATA_EXPLORER": {
     "EXPLORE_STUDY": "Studie erkunden",
+    "RESULT_SET": "Ergebnissatz",
+    "NO_RESULTS_YET": "Noch keine Ergebnisse. Bitte drücken Sie zuerst den Button 'Daten abrufen'.",
+    "LOADING_RESULT_SET": "Die Ergebnisse werden gerade geladen. Bitte warten Sie einen Moment.",
+    "EMPTY_RESULT_SET": "Die Konfiguration hat keine Ergebnisse geliefert. Bitte ändern Sie die Konfiguration und versuchen Sie es erneut.",
+    "CONFIGURATION": "Konfiguration",
+    "DEFAULT": "Standart",
+    "CUSTOM": "Benutzerdefiniert",
     "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
-    "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten"
+    "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
+    "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut."
   },
   "DATE_TIME": {
     "DATE": "Datum",

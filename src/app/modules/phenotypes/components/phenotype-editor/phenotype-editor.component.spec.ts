@@ -35,7 +35,7 @@ describe('PhenotypeEditorComponent', () => {
 
   const phenotypeService = ({
     create: jest.fn(),
-    execute: jest.fn(),
+    getSize: jest.fn(),
   } as unknown) as PhenotypeService
 
   const mockToast = ({
@@ -50,6 +50,7 @@ describe('PhenotypeEditorComponent', () => {
   @Component({ selector: 'num-phenotype-editor-connector', template: '' })
   class StubEditorConnectorComponent {
     @Input() phenotypeQuery: any
+    @Input() isDetermineDisabled: boolean
     @Input() determineHitsContent: IDetermineHits
     @Output() determineHitsClicked = new EventEmitter()
   }
@@ -168,14 +169,11 @@ describe('PhenotypeEditorComponent', () => {
     })
   })
 
-  describe('On Execute the Phenotypes to determine hits', () => {
+  describe('On getSize the Phenotypes to determine hits', () => {
     beforeEach(() => {
-      const mockObservable = of(['dfwed342', '234234'])
-      jest.spyOn(phenotypeService, 'execute').mockReturnValue(mockObservable)
-      component.determineHitsContent = {
-        count: null,
-        message: 'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS',
-      }
+      const mockObservable = of(2)
+      jest.spyOn(phenotypeService, 'getSize').mockReturnValue(mockObservable)
+      component.determineHitsContent.defaultMessage = 'HITS.MESSAGE_SET_ALL_PARAMETERS'
       component.resolvedData = {
         error: null,
         phenotype: new PhenotypeUiModel(mockPhenotype1),
@@ -183,7 +181,7 @@ describe('PhenotypeEditorComponent', () => {
       jest.clearAllMocks()
     })
 
-    it('should call PhenotypeSerivce.Execute, if there is a query', () => {
+    it('should call PhenotypeSerivce.getSize, if there is a query', () => {
       component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
         return ({
           description: '',
@@ -194,13 +192,13 @@ describe('PhenotypeEditorComponent', () => {
       })
 
       component.determineHits().then(() => {
-        expect(phenotypeService.execute).toHaveBeenCalledTimes(1)
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('')
         expect(component.determineHitsContent.count).toBeGreaterThan(0)
       })
     })
 
-    it('should NOT call PhenotypeSerivce.Execute, if there is no query, and set default message', () => {
+    it('should NOT call PhenotypeSerivce.getSize, if there is no query, and set default message', () => {
       component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
         return ({
           description: '',
@@ -211,7 +209,7 @@ describe('PhenotypeEditorComponent', () => {
       })
 
       component.determineHits().then(() => {
-        expect(phenotypeService.execute).toHaveBeenCalledTimes(0)
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(0)
         expect(component.determineHitsContent.message).toEqual(
           'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS'
         )
@@ -219,7 +217,7 @@ describe('PhenotypeEditorComponent', () => {
       })
     })
 
-    it('should fail to call the PhenotypeSerivce.Execute method and show Too few hits error', async () => {
+    it('should fail to call the PhenotypeSerivce.getSize method and show Too few hits error', async () => {
       component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
         return ({
           description: '',
@@ -229,9 +227,9 @@ describe('PhenotypeEditorComponent', () => {
         } as unknown) as IPhenotypeApi
       })
 
-      jest.spyOn(phenotypeService, 'execute').mockImplementationOnce(() => throwError('Error'))
+      jest.spyOn(phenotypeService, 'getSize').mockImplementationOnce(() => throwError('Error'))
       component.determineHits().then(() => {
-        expect(phenotypeService.execute).toHaveBeenCalledTimes(1)
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
         // expect(component.determineHitsContent.message).toEqual(
         //   'PHENOTYPE.HITS.MESSAGE_ERROR_FEW_HITS'
         // )
@@ -239,7 +237,7 @@ describe('PhenotypeEditorComponent', () => {
       })
     })
 
-    it('should fail to call the PhenotypeSerivce.Execute method and show general error', async () => {
+    it('should fail to call the PhenotypeSerivce.getSize method and show general error', async () => {
       component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
         return ({
           description: '',
@@ -249,9 +247,9 @@ describe('PhenotypeEditorComponent', () => {
         } as unknown) as IPhenotypeApi
       })
 
-      jest.spyOn(phenotypeService, 'execute').mockImplementationOnce(() => throwError('Error'))
+      jest.spyOn(phenotypeService, 'getSize').mockImplementationOnce(() => throwError('Error'))
       component.determineHits().then(() => {
-        expect(phenotypeService.execute).toHaveBeenCalledTimes(1)
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
           'PHENOTYPE.HITS.MESSAGE_ERROR_MESSAGE'
         )

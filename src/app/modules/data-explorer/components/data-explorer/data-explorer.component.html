@@ -61,6 +61,12 @@
     <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
   </section>
 
+  <num-result-table
+    [resultSet]="resultSet"
+    [isDataSetLoading]="isDataSetLoading"
+    [configuration]="configuration"
+  ></num-result-table>
+
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
     <num-button

@@ -19,12 +19,19 @@ import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.in
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
+import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { mockSimpleContainment } from 'src/mocks/data-mocks/aqb/simple-containment.mock'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
-import { BUILDER_DIALOG_CONFIG, COMPOSITION_LOADING_ERROR } from './constants'
+import {
+  BUILDER_DIALOG_CONFIG,
+  COMPOSITION_LOADING_ERROR,
+  RESULT_SET_LOADING_ERROR,
+} from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
@@ -55,7 +62,12 @@ describe('DataExplorerComponent', () => {
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
 
+  const aqlService = ({
+    executeAdHocAql: jest.fn(),
+  } as unknown) as AqlService
+
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
+
   const dialogService = ({
     openDialog: jest.fn().mockImplementation(() => {
       return {
@@ -111,6 +123,13 @@ describe('DataExplorerComponent', () => {
     @Input() isDisabled: boolean
   }
 
+  @Component({ selector: 'num-result-table', template: '' })
+  class ResultTableStubComponent {
+    @Input() resultSet: IAqlExecutionResponse
+    @Input() isDataSetLoading: boolean
+    @Input() configuration: DataExplorerConfigurations
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -120,6 +139,7 @@ describe('DataExplorerComponent', () => {
         StudyEditorResearchers,
         ButtonComponent,
         StudyEditorTemplatesStubComponent,
+        ResultTableStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -141,6 +161,10 @@ describe('DataExplorerComponent', () => {
         {
           provide: AdminService,
           useValue: adminService,
+        },
+        {
+          provide: AqlService,
+          useValue: aqlService,
         },
         {
           provide: DialogService,
@@ -364,6 +388,54 @@ describe('DataExplorerComponent', () => {
       component.openBuilderDialog()
       afterClosedSubject$.next()
       expect(component.handleDialogConfirm).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When the resultSet is fetched', () => {
+    const mockResultSet: IAqlExecutionResponse = {
+      q: 'some query',
+      columns: [
+        {
+          name: 'col1',
+          path: 'path to col1',
+        },
+        {
+          name: 'col2',
+          path: 'path to col2',
+        },
+      ],
+      rows: [
+        ['col1 result 1', 'col2 result 1'],
+        ['col1 result 2', 'col2 result 2'],
+      ],
+    }
+
+    beforeEach(() => {
+      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should set the response as the resultSet and flag loading as complete', () => {
+      component.getDataSet()
+
+      expect(component.isDataSetLoading).toEqual(false)
+      expect(component.resultSet).toEqual(mockResultSet)
+    })
+  })
+
+  describe('When the resultSet cannot be fetched', () => {
+    beforeEach(() => {
+      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+      component.compiledQuery = buildResponse
+    })
+
+    it('should show an error message to the user, set the resultSet as undefined and flag loading as complete', () => {
+      component.getDataSet()
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
+      expect(component.isDataSetLoading).toEqual(false)
+      expect(component.resultSet).toBeUndefined()
     })
   })
 })
