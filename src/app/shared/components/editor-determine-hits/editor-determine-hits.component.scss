@@ -1,11 +1,13 @@
 .determin-hits {
-  mat-form-field {
-    font-size: 10px;
+  margin: 5px 0;
 
-    ::ng-deep {
-      .mat-form-field-wrapper {
-        padding-bottom: 0;
-      }
-    }
+  &_count {
+    border: 1px solid var(--num-color--primary);
+    width: 90px;
+    height: 36px;
+    border-radius: 4px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 }

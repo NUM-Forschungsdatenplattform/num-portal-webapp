@@ -18,6 +18,7 @@ describe('AqlBuilderWhereGroupComponent', () => {
   @Component({ selector: 'num-aql-builder-where-item', template: '' })
   class WhereItemStubComponent {
     @Input() item: any
+    @Input() dialogMode: any
   }
 
   beforeEach(async () => {

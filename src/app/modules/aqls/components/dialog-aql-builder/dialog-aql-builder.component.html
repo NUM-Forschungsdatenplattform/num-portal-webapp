@@ -17,6 +17,7 @@
     ></num-aql-builder-contains>
     <num-aql-builder-where
       [aqbModel]="aqbModel"
+      [dialogMode]="dialogInput.mode"
       [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Where }"
     ></num-aql-builder-where>
   </section>
@@ -30,7 +31,7 @@
   <num-button
     type="primary"
     [isDisabled]="!aqbModel.select.length"
-    (click)="handleDialogConfirm()"
+    (singleClick)="handleDialogConfirm()"
     >{{ 'BUTTON.APPLY_SELECTION' | translate }}</num-button
   >
 </div>

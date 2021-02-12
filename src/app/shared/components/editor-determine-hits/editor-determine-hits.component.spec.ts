@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { EditorDetermineHitsComponent } from './editor-determine-hits.component'
 
-import { FormsModule } from '@angular/forms'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
@@ -17,7 +16,6 @@ describe('EditorDetermineHitsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [EditorDetermineHitsComponent, ButtonComponent],
       imports: [
-        FormsModule,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

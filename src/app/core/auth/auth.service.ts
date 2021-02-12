@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { BehaviorSubject, Observable, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
@@ -60,7 +60,7 @@ export class AuthService {
         undefined,
         httpOptions
       )
-      .pipe(catchError(this.handleError))
+      .pipe(catchError(() => of()))
   }
 
   fetchUserInfo(): Promise<void> {
@@ -92,9 +92,5 @@ export class AuthService {
   private clearUserInfo(): void {
     this.userInfo = { sub: undefined }
     this.userInfoSubject$.next(this.userInfo)
-  }
-
-  handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
   }
 }

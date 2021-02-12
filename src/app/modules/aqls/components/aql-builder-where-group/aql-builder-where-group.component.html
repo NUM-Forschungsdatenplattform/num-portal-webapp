@@ -24,6 +24,7 @@
     class="group"
     fxFlex="100%"
     *ngIf="child.type === connectorNodeType.Group"
+    [dialogMode]="dialogMode"
     [group]="child"
     [parentGroupIndex]="groupIndex"
     [index]="i"
@@ -37,6 +38,7 @@
     }"
     *ngIf="child.type === connectorNodeType.Aqb_Item"
     [item]="child"
+    [dialogMode]="dialogMode"
     (deleteItem)="deleteChildItem(i, $event)"
     fxFlex="100%"
     role="listitem"
@@ -46,12 +48,6 @@
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <!--
-    TODO: ENABLE WITH GROUPING STORY:
-    <num-button type="secondary" (onClick)="addGroup()" icon="plus">{{
-    'BUTTON.ADD_GROUP' | translate
-  }}</num-button> -->
-
   <span fxFlex></span>
 
   <num-button
