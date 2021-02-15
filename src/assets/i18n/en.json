@@ -58,7 +58,9 @@
     "COMPILE_ERROR_MESSAGE": "The AQL query could not be complied. Please check the query configuration and try again.",
     "GET_COMPOSITION_ERROR": "The template cannot be loaded. Please close the window and try again.",
     "COLUMNS": "Columns",
-    "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort."
+    "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
+    "VALIDATION_ERROR": "The syntax of the AQL Query is not valid",
+    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid"
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Search Phenotype",
@@ -133,6 +135,7 @@
     "CONFIRM_CHANGES": "Confirm changes",
     "ADD_QUERY": "Add query",
     "FORMAT_QUERY": "Format query",
+    "VALIDATE_QUERY": "Validate",
     "ADD_PHENOTYPE": "Add phenotype",
     "ADD_TEMPLATE": "Add Template",
     "ADD_RESEARCHERS": "Add researchers",

@@ -1,5 +1,5 @@
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -10,6 +10,7 @@ import { take } from 'rxjs/operators'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
 
 @Component({
   selector: 'num-aql-editor',
@@ -36,6 +37,8 @@ export class AqlEditorComponent implements OnInit {
     private authService: AuthService,
     private toast: ToastMessageService
   ) {}
+
+  @ViewChild('aqlCreator') aqlCreator: AqlEditorCeatorComponent
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
@@ -70,6 +73,10 @@ export class AqlEditorComponent implements OnInit {
   }
 
   async save(): Promise<void> {
+    const validationResult = await this.aqlCreator.validate()
+    if (!validationResult) {
+      return
+    }
     const aqlQuery = this.getAqlForApi()
     try {
       await this.aqlService.save(aqlQuery).toPromise()
@@ -84,7 +91,6 @@ export class AqlEditorComponent implements OnInit {
         type: ToastMessageType.Error,
         message: 'AQL.SAVE_ERROR_MESSAGE',
       })
-      console.log(error)
     }
   }
 
@@ -93,6 +99,10 @@ export class AqlEditorComponent implements OnInit {
   }
 
   async update(): Promise<void> {
+    const validationResult = await this.aqlCreator.validate()
+    if (!validationResult) {
+      return
+    }
     const aqlQuery = this.getAqlForApi()
     try {
       await this.aqlService.update(aqlQuery, this.aql?.id).toPromise()
@@ -107,7 +117,6 @@ export class AqlEditorComponent implements OnInit {
         type: ToastMessageType.Error,
         message: 'AQL.SAVE_ERROR_MESSAGE',
       })
-      console.log(error)
     }
   }
 

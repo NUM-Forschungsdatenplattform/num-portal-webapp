@@ -18,8 +18,9 @@
       <num-button
         type="primary"
         icon="plus"
-        (singleClick)="openBuilderDialog()"
         class="num-margin-b-40"
+        (singleClick)="openBuilderDialog()"
+        [attr.data-test]="'aql-editor__aql-creator__open-builder-button'"
         >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
       >
 
@@ -29,6 +30,7 @@
           style="height: 100%"
           [(value)]="aqlQuery"
           [formatObservable$]="formatObservable$"
+          [validationObservable$]="validationObservable$"
           (editorInit)="onEditorInit($event)"
         ></num-code-editor>
       </div>
@@ -36,14 +38,27 @@
       <div class="button-row" fxLayout="row" fxLayoutGap="20px">
         <num-button
           type="primary"
-          [isDisabled]="!isValidForExecution || !isExecutionReady"
           (singleClick)="execute.emit()"
+          [isDisabled]="!isValidForExecution || !isExecutionReady"
+          [attr.data-test]="'aql-editor__aql-creator__execute-button'"
           >{{ 'BUTTON.EXECUTE' | translate }}</num-button
         >
 
-        <num-button type="primary" icon="align-left" (singleClick)="format()">{{
-          'BUTTON.FORMAT_QUERY' | translate
-        }}</num-button>
+        <num-button
+          type="primary"
+          icon="align-left"
+          (singleClick)="format()"
+          [attr.data-test]="'aql-editor__aql-creator__format-button'"
+          >{{ 'BUTTON.FORMAT_QUERY' | translate }}</num-button
+        >
+
+        <num-button
+          type="primary"
+          icon="align-left"
+          (singleClick)="validate(true)"
+          [attr.data-test]="'aql-editor__aql-creator__validate-button'"
+          >{{ 'BUTTON.VALIDATE_QUERY' | translate }}</num-button
+        >
       </div>
     </mat-card-content>
   </mat-card>
