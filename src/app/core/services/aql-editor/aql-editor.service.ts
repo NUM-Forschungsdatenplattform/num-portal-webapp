@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { NumAqlFormattingProvider } from 'src/app/modules/code-editor/num-aql-formatting-provider'
+import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-builder/aql-validation-response.interface'
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
@@ -61,6 +62,12 @@ export class AqlEditorService {
         }),
         catchError((error) => this.handleError(error))
       )
+  }
+
+  validateAql(query: string): Observable<IAqlValidationResponse> {
+    return this.httpClient
+      .post<IAqlValidationResponse>(`${this.baseUrl}/aql/validate`, { q: query })
+      .pipe(catchError((error) => this.handleError(error)))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

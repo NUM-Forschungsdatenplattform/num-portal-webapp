@@ -58,7 +58,9 @@
     "COMPILE_ERROR_MESSAGE": "Die AQL-Abfrage konnte nicht kompiliert werden. Bitte überprüfen Sie die Konfiguration der Abfrage und versuchen Sie es erneut.",
     "GET_COMPOSITION_ERROR": "Das Template kann nicht geladen werden. Bitte schließen Sie das Fenster und versuchen Sie es erneut.",
     "COLUMNS": "Spalten",
-    "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt."
+    "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt.",
+    "VALIDATION_ERROR": "Die Syntax der AQL Abfrage ist nicht valide",
+    "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide"
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
@@ -133,6 +135,7 @@
     "CONFIRM_CHANGES": "Änderungen übernehmen",
     "ADD_QUERY": "Abfrage hinzufügen",
     "FORMAT_QUERY": "Abfrage formatieren",
+    "VALIDATE_QUERY": "Überprüfen",
     "ADD_PHENOTYPE": "Phänotyp hinzufügen",
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",

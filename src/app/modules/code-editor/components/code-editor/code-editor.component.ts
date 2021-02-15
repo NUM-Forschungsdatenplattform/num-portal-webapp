@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core'
 import { fromEvent, Observable, Subscription } from 'rxjs'
-import { throttleTime } from 'rxjs/operators'
+import { distinctUntilChanged, throttleTime } from 'rxjs/operators'
 import { MonacoLoaderService } from 'src/app/core/services/monaco-loader/monaco-loader.service'
 import { NumAqlFormattingProvider } from '../../num-aql-formatting-provider'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
@@ -36,6 +36,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   codeEditor: monaco.editor.IStandaloneCodeEditor
 
   @Input() formatObservable$: Observable<any>
+  @Input() validationObservable$: Observable<monaco.editor.IMarkerData[]>
 
   private componentValue: string
   @Input() set value(value: string) {
@@ -91,6 +92,15 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
         .pipe(throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }))
         .subscribe(() => this.format())
     )
+    this.subscriptions.add(
+      this.validationObservable$
+        .pipe(
+          throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
+          distinctUntilChanged()
+        )
+        .subscribe((markers) => this.setMarkers(markers))
+    )
+
     this.editorInit.emit(this.codeEditor)
   }
 
@@ -113,5 +123,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   format(): void {
     this.codeEditor.getAction('editor.action.formatDocument').run()
+  }
+
+  setMarkers(markers: monaco.editor.IMarkerData[]): void {
+    monaco.editor.setModelMarkers(this.codeEditor.getModel(), 'validationError', markers)
   }
 }

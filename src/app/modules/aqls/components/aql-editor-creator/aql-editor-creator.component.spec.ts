@@ -2,30 +2,52 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-builder/aql-validation-response.interface'
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
 import { AqlEditorCeatorComponent as AqlEditorCreatorComponent } from './aql-editor-creator.component'
-import { BUILDER_DIALOG_CONFIG } from './constants'
+import {
+  BUILDER_DIALOG_CONFIG,
+  VALIDATION_ERROR_CONFIG,
+  VALIDATION_SUCCESS_CONFIG,
+} from './constants'
 
 describe('AqlEditorCeatorComponent', () => {
   let component: AqlEditorCreatorComponent
   let fixture: ComponentFixture<AqlEditorCreatorComponent>
+
+  const monacoEditorMock = {
+    IMarkerData: {},
+  }
+
+  const monacoMock = {
+    editor: monacoEditorMock,
+    MarkerSeverity: {
+      Error: 'ERROR',
+    },
+  }
+
+  Object.defineProperty(window, 'monaco', {
+    value: monacoMock,
+  })
 
   const editorInitEmitter = new EventEmitter<any>()
   @Component({ selector: 'num-code-editor', template: '' })
   class CodeEditorStubComponent {
     @Input() value: string
     @Input() formatObservable$: any
+    @Input() validationObservable$: any
     @Output() editorInit = editorInitEmitter
   }
 
@@ -49,7 +71,12 @@ describe('AqlEditorCeatorComponent', () => {
     buildAql: jest
       .fn()
       .mockImplementation((aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
+    validateAql: jest.fn(),
   } as unknown) as AqlEditorService
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -58,6 +85,7 @@ describe('AqlEditorCeatorComponent', () => {
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         { provide: AqlEditorService, useValue: mockAqlEditorService },
+        { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
     }).compileComponents()
   })
@@ -66,6 +94,7 @@ describe('AqlEditorCeatorComponent', () => {
     fixture = TestBed.createComponent(AqlEditorCreatorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
   })
 
   it('should create', () => {
@@ -165,6 +194,69 @@ describe('AqlEditorCeatorComponent', () => {
       })
 
       component.format()
+    })
+  })
+
+  describe('When the query is supposed to be validated and is valid', () => {
+    beforeEach(() => {
+      jest
+        .spyOn(mockAqlEditorService, 'validateAql')
+        .mockImplementation(() => of({ valid: true } as IAqlValidationResponse))
+    })
+    it('it should display a message to the user that the query is valid and return true', async () => {
+      const result = await component.validate(true)
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_SUCCESS_CONFIG)
+      expect(result).toBeTruthy()
+    })
+
+    it('it should not display a message to the user that the query is valid and return true', async () => {
+      const result = await component.validate(false)
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_SUCCESS_CONFIG)
+      expect(result).toBeTruthy()
+    })
+  })
+
+  describe('When the query is supposed to be validated and is not valid', () => {
+    const validationResponse: IAqlValidationResponse = {
+      valid: false,
+      error: 'test',
+      message: 'error message here',
+      startColumn: 123,
+      startLine: 321,
+    }
+    beforeEach(() => {
+      jest
+        .spyOn(mockAqlEditorService, 'validateAql')
+        .mockImplementation(() => of(validationResponse))
+    })
+    it('it should display a message to the user that the query is not valid and return false', async () => {
+      const result = await component.validate()
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_ERROR_CONFIG)
+      expect(result).toBeFalsy()
+    })
+
+    it('should push the error markers to the validation observable', async (done) => {
+      component.validationObservable$.subscribe((validationResult: any) => {
+        expect(validationResult[0]).toBeTruthy()
+        expect(validationResult[0].message).toEqual(validationResponse.message)
+        expect(validationResult[0].startColumn).toEqual(validationResponse.startColumn)
+        expect(validationResult[0].startLineNumber).toEqual(validationResponse.startLine)
+        done()
+      })
+      const result = await component.validate()
+      expect(result).toBeFalsy()
+    })
+  })
+
+  describe('When the validation is not successfull', () => {
+    it('should display an error message to the user and return false', async () => {
+      jest
+        .spyOn(mockAqlEditorService, 'validateAql')
+        .mockImplementationOnce(() => throwError('error'))
+
+      const result = await component.validate()
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_ERROR_CONFIG)
+      expect(result).toBeFalsy()
     })
   })
 })
