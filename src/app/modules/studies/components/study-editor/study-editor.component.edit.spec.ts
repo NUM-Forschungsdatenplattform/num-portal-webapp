@@ -14,7 +14,7 @@ import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.serv
 import { StudyService } from 'src/app/core/services/study/study.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'

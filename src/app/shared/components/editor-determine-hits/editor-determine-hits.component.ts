@@ -6,7 +6,7 @@ import {
   Output,
   Input,
 } from '@angular/core'
-import { IDetermineHits } from './determineHits.interface'
+import { IDetermineHits } from './determine-hits.interface'
 
 @Component({
   selector: 'num-editor-determine-hits',

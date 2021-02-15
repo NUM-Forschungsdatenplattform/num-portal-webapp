@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { IPhenotypeResolved } from '../../models/phenotype-resolved.interface'
@@ -43,11 +43,12 @@ export class PhenotypeEditorComponent implements OnInit {
     }
   }
 
-  updateDetermineHits(count?: number | null, message?: string): void {
+  updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
     this.determineHitsContent = {
       defaultMessage: this.determineHitsContent.defaultMessage,
       message,
       count,
+      isLoading,
     }
   }
 
@@ -65,6 +66,8 @@ export class PhenotypeEditorComponent implements OnInit {
     const apiQuery = this.getApiQuery()
 
     if (apiQuery.query) {
+      this.updateDetermineHits(null, '', true)
+
       try {
         await this.phenotypeService
           .getSize(apiQuery)
@@ -79,8 +82,6 @@ export class PhenotypeEditorComponent implements OnInit {
         } else {
           this.updateDetermineHits(null, 'PHENOTYPE.HITS.MESSAGE_ERROR_MESSAGE')
         }
-
-        console.log(error)
       }
     } else {
       this.updateDetermineHits(null, 'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS')
@@ -104,7 +105,6 @@ export class PhenotypeEditorComponent implements OnInit {
           type: ToastMessageType.Error,
           message: 'PHENOTYPE.SAVE_ERROR_MESSAGE',
         })
-        console.log(error)
       }
     } else {
       // Only empty groups leads to null

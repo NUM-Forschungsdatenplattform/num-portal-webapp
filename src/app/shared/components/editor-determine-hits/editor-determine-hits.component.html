@@ -1,22 +1,35 @@
 <section
   role="hits"
-  class="determin-hits"
+  class="determine-hits"
   fxLayout="row"
   fxLayoutAlign="start center"
   fxLayoutGap="10px"
 >
-  <div class="determin-hits_title mat-display-5">
+  <div class="determine-hits_title">
     {{ 'HITS' | translate }}
   </div>
 
-  <div class="determin-hits_count">
+  <div class="determine-hits_count">
     {{ content?.count }}
   </div>
 
-  <num-button type="secondary" [isDisabled]="isButtonDisabled" (singleClick)="determineHits()">
+  <num-button
+    type="secondary"
+    (singleClick)="determineHits()"
+    [isDisabled]="isButtonDisabled || content?.isLoading"
+    data-test="generic-determine-hits__determine-button"
+  >
     {{ 'BUTTON.DETERMINE' | translate }}
   </num-button>
 
-  <div *ngIf="isButtonDisabled">{{ content?.defaultMessage | translate }}</div>
-  <div *ngIf="!isButtonDisabled">{{ content?.message | translate }}</div>
+  <mat-spinner *ngIf="content?.isLoading" color="accent" [diameter]="24"></mat-spinner>
+
+  <div
+    *ngIf="!content?.isLoading"
+    data-test="generic-determine-hits__error-message"
+    aria-live="polite"
+  >
+    <ng-container *ngIf="isButtonDisabled">{{ content?.defaultMessage | translate }}</ng-container>
+    <ng-container *ngIf="!isButtonDisabled">{{ content?.message | translate }}</ng-container>
+  </div>
 </section>

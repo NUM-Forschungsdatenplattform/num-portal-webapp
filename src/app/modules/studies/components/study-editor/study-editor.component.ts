@@ -18,7 +18,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
 import { catchError, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 @Component({
   selector: 'num-study-editor',
@@ -83,11 +83,12 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateDetermineHits(count?: number | null, message?: string): void {
+  updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
     this.determineHitsContent = {
       defaultMessage: this.determineHitsContent.defaultMessage,
       message,
       count,
+      isLoading,
     }
   }
 
@@ -287,12 +288,12 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   async determineHits(): Promise<void> {
     const { study, cohort } = this.getStudyForApi()
 
-    console.log('cohort', cohort)
-
     if (cohort) {
+      this.updateDetermineHits(null, '', true)
+
       try {
         await this.cohortService
-          .getCohortSize(cohort, study.cohortId)
+          .getSize(cohort)
           .toPromise()
           .then((result) => {
             this.updateDetermineHits(result, '')
@@ -304,8 +305,6 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
         } else {
           this.updateDetermineHits(null, 'STUDY.HITS.MESSAGE_ERROR_MESSAGE')
         }
-
-        console.log(error)
       }
     } else {
       this.updateDetermineHits(null, 'STUDY.HITS.MESSAGE_SET_ALL_PARAMETERS')

@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of } from 'rxjs'
+import { BehaviorSubject, of, throwError } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
@@ -24,7 +24,7 @@ import { IStudyResolved } from '../../models/study-resolved.interface'
 import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { RouterTestingModule } from '@angular/router/testing'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determineHits.interface'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
@@ -54,6 +54,7 @@ describe('StudyEditorComponent On Creation', () => {
     create: jest.fn(),
     update: jest.fn(),
     get: jest.fn(),
+    getSize: jest.fn(),
   } as unknown) as CohortService
 
   const adminService = ({
@@ -250,6 +251,68 @@ describe('StudyEditorComponent On Creation', () => {
     it('should call the cohort create method', async () => {
       await component.save()
       expect(cohortService.create).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('On getSize of the Cohort to determine hits', () => {
+    beforeEach(() => {
+      const mockObservable = of(2)
+      jest.spyOn(cohortService, 'getSize').mockReturnValue(mockObservable)
+      jest.spyOn(component, 'updateDetermineHits')
+      component.determineHitsContent.defaultMessage = 'HITS.MESSAGE_SET_ALL_PARAMETERS'
+
+      component.resolvedData = {
+        error: null,
+        study: new StudyUiModel(mockStudy1),
+      }
+      component.resolvedData.study.id = null
+      jest.clearAllMocks()
+    })
+
+    it('should call CohortService.getSize, if there is a query', async () => {
+      await component.determineHits().then(() => {
+        expect(cohortService.getSize).toHaveBeenCalledTimes(1)
+        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual('')
+        expect(component.determineHitsContent.count).toBeGreaterThan(0)
+      })
+    })
+
+    it('should NOT call CohortService.getSize, if there is no query, and set default message', async () => {
+      jest
+        .spyOn(component, 'getStudyForApi')
+        .mockReturnValueOnce({ study: undefined, cohort: undefined })
+
+      await component.determineHits().then(() => {
+        expect(cohortService.getSize).toHaveBeenCalledTimes(0)
+        expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual(
+          'STUDY.HITS.MESSAGE_SET_ALL_PARAMETERS'
+        )
+        expect(component.determineHitsContent.count).toEqual(null)
+      })
+    })
+
+    it('should fail to call the CohortService.getSize method and show Too few hits error', async () => {
+      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError({ status: 451 }))
+
+      await component.determineHits().then(() => {
+        expect(cohortService.getSize).toHaveBeenCalledTimes(1)
+        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual('STUDY.HITS.MESSAGE_ERROR_FEW_HITS')
+        expect(component.determineHitsContent.count).toEqual(null)
+      })
+    })
+
+    it('should fail to call the CohortService.getSize method and show general error', async () => {
+      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError('Error'))
+
+      await component.determineHits().then(() => {
+        expect(cohortService.getSize).toHaveBeenCalledTimes(1)
+        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual('STUDY.HITS.MESSAGE_ERROR_MESSAGE')
+        expect(component.determineHitsContent.count).toEqual(null)
+      })
     })
   })
 })
