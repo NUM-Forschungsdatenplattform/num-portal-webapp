@@ -54,10 +54,15 @@
 <section role="presentation" class="button-row" fxLayoutGap="20px">
   <span fxFlex></span>
 
-  <num-button type="basic" (singleClick)="deleteSelf()">{{
-    (group.type === connectorNodeType.Aqb_Composition
-      ? 'BUTTON.DELETE_COMPOSITION'
-      : 'BUTTON.DELETE_GROUP'
-    ) | translate
-  }}</num-button>
+  <num-button
+    type="basic"
+    (singleClick)="deleteSelf()"
+    [attr.data-test]="'aqb__contains__group__' + group.type + '__' + index + '__delete-button'"
+    >{{
+      (group.type === connectorNodeType.Aqb_Composition
+        ? 'BUTTON.DELETE_COMPOSITION'
+        : 'BUTTON.DELETE_GROUP'
+      ) | translate
+    }}</num-button
+  >
 </section>

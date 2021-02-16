@@ -99,11 +99,13 @@
     </mat-select>
   </mat-form-field>
 
-  <fa-icon
-    class="pointer"
-    icon="trash"
-    size="lg"
-    [fixedWidth]="true"
+  <button
+    color="primary"
+    mat-icon-button
     (click)="deleteSelf()"
-  ></fa-icon>
+    [attr.aria-label]="'BUTTON.DELETE' | translate"
+    [attr.data-test]="'aqb__where__item__' + item.name + '__delete-button'"
+  >
+    <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+  </button>
 </section>

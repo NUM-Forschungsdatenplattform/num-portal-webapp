@@ -23,6 +23,7 @@
             matInput
             placeholder="Title"
             aria-labelledby="title-label"
+            data-test="aql-editor__general-info__title-input"
           />
         </mat-form-field>
 
@@ -36,6 +37,7 @@
               style="resize: none"
               aria-labelledby="label-purpose"
               rows="10"
+              data-test="aql-editor__general-info__purpose-input"
             ></textarea>
           </mat-form-field>
 
@@ -48,13 +50,18 @@
               style="resize: none"
               aria-labelledby="label-use"
               rows="10"
+              data-test="aql-editor__general-info__use-input"
             ></textarea>
           </mat-form-field>
         </section>
 
-        <mat-checkbox id="isPublic" color="accent" formControlName="isPublic">{{
-          'FORM.PUBLIC_CHECKBOX' | translate
-        }}</mat-checkbox>
+        <mat-checkbox
+          id="isPublic"
+          color="accent"
+          formControlName="isPublic"
+          data-test="aql-editor__general-info__isPublic-checkbox"
+          >{{ 'FORM.PUBLIC_CHECKBOX' | translate }}</mat-checkbox
+        >
       </form>
     </mat-card-content>
   </mat-card>

@@ -1,9 +1,11 @@
 <div>{{ item.archetypeId | archetype: false }}</div>
 
-<fa-icon
-  class="pointer"
-  icon="trash"
-  size="lg"
-  [fixedWidth]="true"
+<button
+  color="primary"
+  mat-icon-button
   (click)="deleteSelf()"
-></fa-icon>
+  [attr.aria-label]="'BUTTON.DELETE' | translate"
+  [attr.data-test]="'aqb__contains__item__' + item.archetypeId + '__delete-button'"
+>
+  <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+</button>

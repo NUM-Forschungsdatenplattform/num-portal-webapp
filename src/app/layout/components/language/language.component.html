@@ -6,6 +6,10 @@
   (change)="setLocale(group.value)"
   [value]="translate.currentLang"
 >
-  <mat-button-toggle value="de">{{ 'LANGUAGE.GERMAN' | translate }}</mat-button-toggle>
-  <mat-button-toggle value="en">{{ 'LANGUAGE.ENGLISH' | translate }}</mat-button-toggle>
+  <mat-button-toggle value="de" data-test="header__top-row__lang-button-german">{{
+    'LANGUAGE.GERMAN' | translate
+  }}</mat-button-toggle>
+  <mat-button-toggle value="en" data-test="header__top-row__lang-button-english">{{
+    'LANGUAGE.ENGLISH' | translate
+  }}</mat-button-toggle>
 </mat-button-toggle-group>

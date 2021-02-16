@@ -20,7 +20,7 @@
         icon="plus"
         class="num-margin-b-40"
         (singleClick)="openBuilderDialog()"
-        [attr.data-test]="'aql-editor__aql-creator__open-builder-button'"
+        data-test="aql-editor__aql-creator__open-builder-button"
         >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
       >
 
@@ -40,7 +40,7 @@
           type="primary"
           (singleClick)="execute.emit()"
           [isDisabled]="!isValidForExecution || !isExecutionReady"
-          [attr.data-test]="'aql-editor__aql-creator__execute-button'"
+          data-test="aql-editor__aql-creator__execute-button"
           >{{ 'BUTTON.EXECUTE' | translate }}</num-button
         >
 
@@ -48,7 +48,7 @@
           type="primary"
           icon="align-left"
           (singleClick)="format()"
-          [attr.data-test]="'aql-editor__aql-creator__format-button'"
+          data-test="aql-editor__aql-creator__format-button"
           >{{ 'BUTTON.FORMAT_QUERY' | translate }}</num-button
         >
 
@@ -56,7 +56,7 @@
           type="primary"
           icon="align-left"
           (singleClick)="validate(true)"
-          [attr.data-test]="'aql-editor__aql-creator__validate-button'"
+          data-test="aql-editor__aql-creator__validate-button"
           >{{ 'BUTTON.VALIDATE_QUERY' | translate }}</num-button
         >
       </div>
