@@ -28,10 +28,11 @@
       <ng-template matMenuContent let-aqlOwner="aqlOwner" let-id="id" let-userId="userId">
         <button
           class="num-mat-list-item"
-          *ngFor="let menuItem of menuItems | aqlItemVisibility: aqlOwner:userId"
-          [disabled]="menuItem.isDisabled"
           mat-menu-item
+          *ngFor="let menuItem of menuItems | aqlItemVisibility: aqlOwner:userId"
           (click)="handleMenuClick(menuItem.id, id)"
+          [disabled]="menuItem.isDisabled"
+          [attr.data-test]="'aql-table__menu-item__' + menuItem.translationKey"
         >
           {{ menuItem.translationKey | translate }}
         </button>
@@ -45,6 +46,7 @@
           mat-icon-button
           [matMenuTriggerFor]="menu"
           [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, userId: user.id }"
+          [attr.data-test]="'aql-table__menu-button__element-id-' + element.id"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>

@@ -32,18 +32,15 @@
   <section role="region" fxLayout="column">
     <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <num-button
-        type="secondary"
-        (singleClick)="cancel()"
-        [attr.data-test]="'aql-editor__cancel-button'"
-        >{{ 'BUTTON.CANCEL' | translate }}</num-button
-      >
+      <num-button type="secondary" (singleClick)="cancel()" data-test="aql-editor__cancel-button">{{
+        'BUTTON.CANCEL' | translate
+      }}</num-button>
       <div *ngIf="!isEditMode">
         <num-button
           type="primary"
           (singleClick)="save()"
           [isDisabled]="!aqlForm.valid"
-          [attr.data-test]="'aql-editor__save-button'"
+          data-test="aql-editor__save-button"
           >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
         >
       </div>
@@ -52,7 +49,7 @@
           [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
           (singleClick)="save()"
           [isDisabled]="!aqlForm.valid"
-          [attr.data-test]="'aql-editor__save-as-clone-button'"
+          data-test="aql-editor__save-as-clone-button"
           >{{ 'BUTTON.SAVE_AS_CLONE' | translate }}</num-button
         >
         <num-button
@@ -60,7 +57,7 @@
           (singleClick)="update()"
           *ngIf="isCurrentUserOwner"
           [isDisabled]="!aqlForm.valid"
-          [attr.data-test]="'aql-editor__save-as-update-button'"
+          data-test="aql-editor__save-as-update-button"
           >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
         >
       </div>

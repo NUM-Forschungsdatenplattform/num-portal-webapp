@@ -24,14 +24,18 @@
 </section>
 
 <div class="button-row">
-  <num-button type="secondary" (singleClick)="handleDialogCancel()">{{
-    'BUTTON.CANCEL' | translate
-  }}</num-button>
+  <num-button
+    type="secondary"
+    (singleClick)="handleDialogCancel()"
+    data-test="aqb__cancel-button"
+    >{{ 'BUTTON.CANCEL' | translate }}</num-button
+  >
 
   <num-button
     type="primary"
     [isDisabled]="!aqbModel.select.length"
     (singleClick)="handleDialogConfirm()"
+    data-test="aqb__confirm-button"
     >{{ 'BUTTON.APPLY_SELECTION' | translate }}</num-button
   >
 </div>

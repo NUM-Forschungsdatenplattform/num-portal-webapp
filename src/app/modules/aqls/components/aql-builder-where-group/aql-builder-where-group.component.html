@@ -10,8 +10,17 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="group.logicalOperator"
       [disabled]="group.children.length <= 1"
+      [attr.data-test]="
+        'aqb__where__' + groupType + (groupIndex | groupIndex) + '__logical-operator__selector'
+      "
     >
-      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+      <mat-option
+        *ngFor="let operator of logicalOperatorArray"
+        [value]="operator"
+        [attr.data-test]="
+          'aqb__where__' + groupType + (groupIndex | groupIndex) + '__logical-operator__' + operator
+        "
+      >
         {{ operator }}
       </mat-option>
     </mat-select>

@@ -7,15 +7,23 @@
   <ng-container [formGroup]="aliasForm">
     <mat-form-field floatLabel="always" appearance="outline" class="num-tiny-input value-input">
       <mat-label id="label">Alias</mat-label>
-      <input aria-labelledby="label" type="text" matInput formControlName="value" />
+      <input
+        aria-labelledby="label"
+        type="text"
+        matInput
+        formControlName="value"
+        [attr.data-test]="'aqb__select__item__' + item.name + '__alias-input'"
+      />
     </mat-form-field>
   </ng-container>
 
-  <fa-icon
-    class="pointer"
-    icon="trash"
-    size="lg"
-    [fixedWidth]="true"
+  <button
+    color="primary"
+    mat-icon-button
     (click)="deleteSelf()"
-  ></fa-icon>
+    [attr.aria-label]="'BUTTON.DELETE' | translate"
+    [attr.data-test]="'aqb__select__item__' + item.name + '__delete-button'"
+  >
+    <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+  </button>
 </section>
