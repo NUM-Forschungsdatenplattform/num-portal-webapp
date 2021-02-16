@@ -19,7 +19,6 @@ import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.in
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
-import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -37,6 +36,7 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { StudyService } from 'src/app/core/services/study/study.service'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -62,9 +62,9 @@ describe('DataExplorerComponent', () => {
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
 
-  const aqlService = ({
+  const studyService = ({
     executeAdHocAql: jest.fn(),
-  } as unknown) as AqlService
+  } as unknown) as StudyService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
 
@@ -163,8 +163,8 @@ describe('DataExplorerComponent', () => {
           useValue: adminService,
         },
         {
-          provide: AqlService,
-          useValue: aqlService,
+          provide: StudyService,
+          useValue: studyService,
         },
         {
           provide: DialogService,
@@ -411,7 +411,7 @@ describe('DataExplorerComponent', () => {
     }
 
     beforeEach(() => {
-      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
       component.compiledQuery = buildResponse
     })
 
@@ -425,7 +425,7 @@ describe('DataExplorerComponent', () => {
 
   describe('When the resultSet cannot be fetched', () => {
     beforeEach(() => {
-      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
       component.compiledQuery = buildResponse
     })
