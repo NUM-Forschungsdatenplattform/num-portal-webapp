@@ -36,10 +36,10 @@
               [matTooltip]="column"
               matTooltipPosition="above"
             >
-              {{ resultSetColumns[i].name }}
+              {{ displayedColumnNames[i] }}
             </th>
             <td mat-cell *matCellDef="let element">
-              <pre>{{ element[i] | json }}</pre>
+              <pre>{{ (element[i] | json).replaceAll('"', '') }}</pre>
             </td>
           </ng-container>
 
