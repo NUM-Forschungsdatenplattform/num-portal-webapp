@@ -23,6 +23,7 @@
             matInput
             placeholder="Title"
             aria-labelledby="title-label"
+            data-test="phenotype-editor__general-info__title-input"
           />
         </mat-form-field>
 
@@ -36,6 +37,7 @@
             aria-labelledby="desc-label"
             maxlength="1000"
             rows="10"
+            data-test="phenotype-editor__general-info__description-input"
           ></textarea>
           <mat-hint
             >{{ textarea.value?.length || 0 }}/1000 {{ 'FORM.CHARACTERS' | translate }}</mat-hint

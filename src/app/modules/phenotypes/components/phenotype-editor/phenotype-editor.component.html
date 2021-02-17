@@ -17,13 +17,17 @@
   <section role="region" fxLayout="column">
     <mat-divider class="button-row-divider num-d-w--1"></mat-divider>
     <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-      <num-button type="secondary" (singleClick)="cancel()">{{
-        'BUTTON.CANCEL' | translate
-      }}</num-button>
+      <num-button
+        type="secondary"
+        (singleClick)="cancel()"
+        data-test="phenotype-editor__cancel-button"
+        >{{ 'BUTTON.CANCEL' | translate }}</num-button
+      >
       <num-button
         type="primary"
         (singleClick)="saveForm()"
         [isDisabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
+        data-test="phenotype-editor__save-button"
         >{{ 'BUTTON.CREATE_PHENOTYPE' | translate }}</num-button
       >
     </div>

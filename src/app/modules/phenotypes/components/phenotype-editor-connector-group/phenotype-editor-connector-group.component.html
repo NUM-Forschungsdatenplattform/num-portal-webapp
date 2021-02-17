@@ -13,8 +13,13 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="phenotypeGroup.logicalOperator"
       [disabled]="phenotypeGroup.children.length <= 1"
+      data-test="phenotype-editor__connector__group__logical-operator__selector"
     >
-      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+      <mat-option
+        *ngFor="let operator of logicalOperatorArray"
+        [value]="operator"
+        [attr.data-test]="'phenotype-editor__connector__group__logical-operator__' + operator"
+      >
         {{ operator }}
       </mat-option>
     </mat-select>
@@ -37,6 +42,7 @@
     [index]="i"
     (delete)="deleteChild($event)"
     fxFlex="100%"
+    data-test="phenotype-editor__connector__group"
   ></num-phenotype-editor-connector-group>
 
   <num-phenotype-editor-connector-aql
@@ -52,16 +58,25 @@
     role="listitem"
     fxLayout="row"
     fxLayoutAlign="space-between center"
+    data-test="phenotype-editor__connector__aql"
   ></num-phenotype-editor-connector-aql>
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <num-button type="primary" (singleClick)="addQuery()" icon="plus">{{
-    'BUTTON.ADD_QUERY' | translate
-  }}</num-button>
-  <num-button type="secondary" (singleClick)="addGroup()" icon="plus">{{
-    'BUTTON.ADD_GROUP' | translate
-  }}</num-button>
+  <num-button
+    type="primary"
+    (singleClick)="addQuery()"
+    icon="plus"
+    data-test="phenotype-editor__connector__group__add-query-button"
+    >{{ 'BUTTON.ADD_QUERY' | translate }}</num-button
+  >
+  <num-button
+    type="secondary"
+    (singleClick)="addGroup()"
+    icon="plus"
+    data-test="phenotype-editor__connector__group__add-group-button"
+    >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
+  >
 
   <span fxFlex></span>
 
@@ -69,6 +84,7 @@
     *ngIf="groupType === connectorGroupType.Sub"
     type="basic"
     (singleClick)="deleteSelf()"
+    data-test="phenotype-editor__connector__group__delete-group-button"
     >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
   >
 </section>

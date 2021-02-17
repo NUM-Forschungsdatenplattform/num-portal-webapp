@@ -8,13 +8,14 @@
       <td mat-cell *matCellDef="let element">{{ element | nestedAccess: columnPath }}</td>
     </ng-container>
     <ng-container *ngIf="columnPath[0] === 'select'">
-      <td mat-cell *matCellDef="let element" class="right-align">
+      <td mat-cell *matCellDef="let element; let i = index" class="right-align">
         <button
           color="accent"
           mat-icon-button
-          [attr.aria-label]="'BUTTON.SELECT' | translate"
           *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
           (click)="handleSelectClick($event, element)"
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          [attr.data-test]="'generic-filter-table__row-' + i + '__select-button'"
         >
           <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -22,8 +23,9 @@
           <button
             class="num-fc--d"
             mat-icon-button
-            [attr.aria-label]="'BUTTON.DESELECT' | translate"
             (click)="handleDeselectClick($event, element)"
+            [attr.aria-label]="'BUTTON.DESELECT' | translate"
+            [attr.data-test]="'generic-filter-table__row-' + i + '__deselect-button'"
           >
             <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
@@ -34,9 +36,10 @@
 
   <tr mat-header-row *matHeaderRowDef="columnKeys" hidden></tr>
   <tr
-    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row[identifierName] }"
-    (click)="handleRowClick(row)"
     mat-row
-    *matRowDef="let row; columns: columnKeys"
+    *matRowDef="let row; columns: columnKeys; let i = index"
+    (click)="handleRowClick(row)"
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row[identifierName] }"
+    [attr.data-test]="'generic-filter-table__row-' + i"
   ></tr>
 </table>

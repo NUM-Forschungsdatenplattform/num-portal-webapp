@@ -69,6 +69,7 @@
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
   },
+  "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",

@@ -2,7 +2,12 @@
   <h2 class="mat-display-2">
     <span class="not-icon num-fc--a" *ngIf="aql.isNegated">&not;</span>{{ aql.name }}
   </h2>
-  <mat-slide-toggle labelPosition="before" [(ngModel)]="aql.isNegated">Negation</mat-slide-toggle>
+  <mat-slide-toggle
+    labelPosition="before"
+    [(ngModel)]="aql.isNegated"
+    data-test="edit-aql__negation-toggle"
+    >Negation</mat-slide-toggle
+  >
 </section>
 
 <table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
@@ -27,13 +32,16 @@
   <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
     <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
       <mat-form-field appearance="outline">
-        <mat-label>{{ aql.parameter[i].name }}: </mat-label>
+        <mat-label [attr.data-test]="'edit-aql__parameter-' + i + '__label'"
+          >{{ aql.parameter[i].name }}:
+        </mat-label>
         <input
           matInput
           id="{{ 'param' + i }}"
           type="text"
           placeholder="Parameter"
           formControlName="parameter"
+          [attr.data-test]="'edit-aql__parameter-' + i + '__input'"
         />
       </mat-form-field>
     </div>
