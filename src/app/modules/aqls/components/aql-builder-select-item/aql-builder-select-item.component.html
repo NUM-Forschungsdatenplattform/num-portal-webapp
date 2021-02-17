@@ -1,5 +1,7 @@
 <section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
-  <div class="name-field mat-body-strong">{{ item.name | archetype: true }}</div>
+  <div class="name-field mat-body-strong" data-test="aqb__select__item__name">
+    {{ item.name | archetype: true }}
+  </div>
 </section>
 
 <section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
@@ -12,7 +14,7 @@
         type="text"
         matInput
         formControlName="value"
-        [attr.data-test]="'aqb__select__item__' + item.name + '__alias-input'"
+        data-test="aqb__select__item__alias-input"
       />
     </mat-form-field>
   </ng-container>
@@ -22,7 +24,7 @@
     mat-icon-button
     (click)="deleteSelf()"
     [attr.aria-label]="'BUTTON.DELETE' | translate"
-    [attr.data-test]="'aqb__select__item__' + item.name + '__delete-button'"
+    data-test="aqb__select__item__delete-button"
   >
     <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
   </button>

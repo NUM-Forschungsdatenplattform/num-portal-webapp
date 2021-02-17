@@ -1,13 +1,20 @@
 <section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
-  <div class="name-field mat-body-strong">{{ item.name | archetype: true }}</div>
+  <div class="name-field mat-body-strong" data-test="aqb__where__item__name">
+    {{ item.name | archetype: true }}
+  </div>
 
   <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
     <mat-label id="label">Operator</mat-label>
     <mat-select
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="item.comparisonOperator"
+      data-test="aqb__where__item__logical-operator__selector"
     >
-      <mat-option *ngFor="let operator of item.comparisonOperatorOptions" [value]="operator.value">
+      <mat-option
+        *ngFor="let operator of item.comparisonOperatorOptions"
+        [value]="operator.value"
+        [attr.data-test]="'aqb__where__item__logical-operator__' + operator.value"
+      >
         {{ operator.sign }}
       </mat-option>
     </mat-select>
@@ -21,7 +28,13 @@
       *ngIf="item.isParameterType"
     >
       <mat-label id="label">Parametername</mat-label>
-      <input aria-labelledby="label" type="text" matInput formControlName="value" />
+      <input
+        aria-labelledby="label"
+        type="text"
+        matInput
+        formControlName="value"
+        data-test="aqb__where__item__parameter-name-input"
+      />
     </mat-form-field>
   </ng-container>
 
@@ -43,6 +56,7 @@
         [attr.inputmode]="item.valueType === AqbValueType.String ? 'latin' : 'numeric'"
         matInput
         type="text"
+        data-test="aqb__where__item__value-input"
       />
     </mat-form-field>
 
@@ -52,8 +66,16 @@
       *ngIf="item.valueType === AqbValueType.Boolean"
     >
       <mat-label id="boolean-label">{{ 'FORM.VALUE' | translate }}</mat-label>
-      <mat-select aria-labelledby="boolean-label" [(value)]="item.value">
-        <mat-option *ngFor="let value of [true, false]" [value]="value">
+      <mat-select
+        aria-labelledby="boolean-label"
+        [(value)]="item.value"
+        data-test="aqb__where__item__boolean-value__selector"
+      >
+        <mat-option
+          *ngFor="let value of [true, false]"
+          [value]="value"
+          [attr.data-test]="'aqb__where__item__boolean-value__' + value"
+        >
           {{ value }}
         </mat-option>
       </mat-select>
@@ -71,8 +93,13 @@
         [matDatepicker]="picker"
         [value]="item.value"
         (dateChange)="datePickerChange($event)"
+        data-test="aqb__where__item__datepicker-input"
       />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+        data-test="aqb__where__item__datepicker-toggle"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
@@ -81,6 +108,7 @@
       [(date)]="item.value"
       class="input num-tiny-input"
       *ngIf="item.valueType === AqbValueType.Time || item.valueType === AqbValueType.DateTime"
+      data-test="aqb__where__item__time-value-input"
     ></num-time-input>
   </ng-container>
 </section>
@@ -92,8 +120,16 @@
     *ngIf="dialogMode === aqlBuilderDialogMode.AqlEditor"
   >
     <mat-label id="label">Parameter</mat-label>
-    <mat-select [attr.aria-label]="'LOGICAL_OPERATOR' | translate" [(value)]="item.isParameterType">
-      <mat-option *ngFor="let parameter of item.parameterTypeOptions" [value]="parameter.value">
+    <mat-select
+      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+      [(value)]="item.isParameterType"
+      data-test="aqb__where__item__is-parameter__selector"
+    >
+      <mat-option
+        *ngFor="let parameter of item.parameterTypeOptions"
+        [value]="parameter.value"
+        [attr.data-test]="'aqb__where__item__is-parameter__' + parameter.value"
+      >
         {{ parameter.text | translate }}
       </mat-option>
     </mat-select>
@@ -104,7 +140,7 @@
     mat-icon-button
     (click)="deleteSelf()"
     [attr.aria-label]="'BUTTON.DELETE' | translate"
-    [attr.data-test]="'aqb__where__item__' + item.name + '__delete-button'"
+    data-test="aqb__where__item__delete-button"
   >
     <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
   </button>
