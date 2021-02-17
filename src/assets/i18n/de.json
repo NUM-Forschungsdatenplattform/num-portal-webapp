@@ -69,6 +69,7 @@
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
   },
+  "CONFIGURE": "Konfigurieren",
   "SUMMARY": "Zusammenfassung",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
