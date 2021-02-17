@@ -1,9 +1,15 @@
 <section role="region" fxLayout="column">
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
-    <num-button id="back-button" type="secondary" (singleClick)="cancel.emit()">{{
-      (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
-    }}</num-button>
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="cancel.emit()"
+      data-test="study-editor__buttons__back-button"
+      >{{
+        (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
+      }}</num-button
+    >
 
     <div
       role="presentation"
@@ -40,6 +46,7 @@
     "
     (singleClick)="saveResearchers.emit()"
     [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
+    data-test="study-editor__buttons__primary-save-button"
     >{{ 'BUTTON.SAVE' | translate }}</num-button
   >
   <ng-template #fullEdit>
@@ -51,6 +58,7 @@
         (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.ChangeRequest)
       "
       (singleClick)="saveAll.emit()"
+      data-test="study-editor__buttons__secondary-save-button"
       >{{ 'BUTTON.SAVE' | translate }}</num-button
     >
     <num-button
@@ -64,6 +72,7 @@
         !isCohortDefined ||
         (studyStatus !== possibleStatus.Draft && studyStatus !== possibleStatus.ChangeRequest)
       "
+      data-test="study-editor__buttons__request-approval-button"
       >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
     >
   </ng-template>
@@ -75,6 +84,7 @@
     type="primary"
     (singleClick)="saveAsApprovalReply.emit()"
     [isDisabled]="approverForm.invalid || studyStatus !== possibleStatus.Reviewing"
+    data-test="study-editor__buttons__approval-reply-button"
     >{{ 'BUTTON.STUDY_APPROVAL_' + approvalDecision | translate }}</num-button
   >
 </ng-template>
@@ -91,6 +101,7 @@
         studyStatus === possibleStatus.Approved
       )
     "
+    data-test="study-editor__buttons__start-edit-button"
     >{{
       (studyStatus === possibleStatus.Approved ? 'BUTTON.EDIT_RESEARCHERS' : 'BUTTON.EDIT')
         | translate

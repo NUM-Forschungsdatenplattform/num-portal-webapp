@@ -8,8 +8,10 @@
       id="older-comments-toggle"
       *ngIf="comments.length > 2"
       (click)="toggleCommentLimit()"
-      >{{ (commentLimit ? 'SHOW_OLDER_POSTS' : 'SHOW_LESS') | translate }}</a
+      data-test="study-editor__comments__older-comments-button"
     >
+      {{ (commentLimit ? 'SHOW_OLDER_POSTS' : 'SHOW_LESS') | translate }}
+    </a>
   </div>
 
   <section role="region" class="comments" fxLayoutGap="20px" fxLayout="column">
@@ -48,13 +50,18 @@
         style="resize: none"
         aria-labelledby="desc-label"
         rows="6"
+        data-test="study-editor__comments__leave-comment-input"
       ></textarea>
     </mat-form-field>
   </form>
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="flex-end">
-    <num-button (singleClick)="postComment.emit()" [isDisabled]="form.invalid" type="primary">{{
-      'BUTTON.SEND_COMMENT' | translate
-    }}</num-button>
+    <num-button
+      (singleClick)="postComment.emit()"
+      [isDisabled]="form.invalid"
+      type="primary"
+      data-test="study-editor__comments__send-comment-button"
+      >{{ 'BUTTON.SEND_COMMENT' | translate }}</num-button
+    >
   </section>
 </mat-card>

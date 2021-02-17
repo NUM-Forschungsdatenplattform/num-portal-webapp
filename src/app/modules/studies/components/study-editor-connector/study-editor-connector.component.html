@@ -1,5 +1,5 @@
 <mat-expansion-panel>
-  <mat-expansion-panel-header>
+  <mat-expansion-panel-header data-test="studies-editor__connector__define-cohort-button">
     <mat-panel-title>
       <h3 class="accordion">
         <fa-icon
@@ -35,6 +35,7 @@
       [parentGroupIndex]="null"
       [isDisabled]="isDisabled"
       fxFlex="100%"
+      data-test="study-editor__connector__group"
     ></num-study-editor-connector-group>
   </section>
 </mat-expansion-panel>

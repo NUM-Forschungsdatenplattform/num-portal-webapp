@@ -12,6 +12,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
           (click)="handleSelectClick(element.id)"
+          data-test="data-explorer-studies__table__select-button"
         >
           <fa-icon icon="external-link-alt" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -56,5 +57,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    data-test="data-explorer-studies__table__paginator-buttons"
+  ></mat-paginator>
 </div>

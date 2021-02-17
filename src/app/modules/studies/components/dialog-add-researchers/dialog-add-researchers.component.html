@@ -15,8 +15,13 @@
     [columnPaths]="columnPaths"
     [(selectedItems)]="selectedResearchers"
     [identifierName]="'id'"
+    data-test="dialog-add-researchers__filter-table"
   ></num-filter-table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    data-test="dialog-add-researchers__paginator-buttons"
+  ></mat-paginator>
 </mat-card>
 
 <mat-divider class="num-d-w--1"></mat-divider>
