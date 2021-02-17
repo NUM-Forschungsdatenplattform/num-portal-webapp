@@ -10,7 +10,7 @@
     <mat-option
       *ngFor="let organization of organizations"
       [value]="organization.id"
-      [attr.data-test]="'user-management__add-organization__' + organization"
+      [attr.data-test]="'user-management__add-organization__' + organization.name"
     >
       {{ organization.name }}
     </mat-option>
