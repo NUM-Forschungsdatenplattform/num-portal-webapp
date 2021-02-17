@@ -1,11 +1,11 @@
-<div>{{ item.archetypeId | archetype: false }}</div>
+<div data-test="aqb__contains__item__name">{{ item.archetypeId | archetype: false }}</div>
 
 <button
   color="primary"
   mat-icon-button
   (click)="deleteSelf()"
   [attr.aria-label]="'BUTTON.DELETE' | translate"
-  [attr.data-test]="'aqb__contains__item__' + item.archetypeId + '__delete-button'"
+  data-test="aqb__contains__item__delete-button"
 >
   <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
 </button>

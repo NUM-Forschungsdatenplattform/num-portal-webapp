@@ -15,8 +15,13 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="group.logicalOperator"
       [disabled]="group.children.length <= 1"
+      data-test="aqb__contains__group__logical-operator__selector"
     >
-      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+      <mat-option
+        *ngFor="let operator of logicalOperatorArray"
+        [value]="operator"
+        [attr.data-test]="'aqb__contains__group__logical-operator__' + operator"
+      >
         {{ operator }}
       </mat-option>
     </mat-select>
@@ -34,6 +39,7 @@
     [index]="i"
     (delete)="deleteChildGroup($event)"
     (deleteArchetypes)="this.deleteArchetypes.emit($event)"
+    data-test="aqb__contains__group"
   ></num-aql-builder-contains-group>
 
   <num-aql-builder-contains-item
@@ -48,6 +54,7 @@
     role="listitem"
     fxLayout="row"
     fxLayoutAlign="space-between center"
+    data-test="aqb__contains__item"
   ></num-aql-builder-contains-item>
 </section>
 
@@ -57,7 +64,7 @@
   <num-button
     type="basic"
     (singleClick)="deleteSelf()"
-    [attr.data-test]="'aqb__contains__group__' + group.type + '__' + index + '__delete-button'"
+    data-test="aqb__contains__group__delete-button"
     >{{
       (group.type === connectorNodeType.Aqb_Composition
         ? 'BUTTON.DELETE_COMPOSITION'
