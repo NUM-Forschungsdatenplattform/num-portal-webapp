@@ -47,7 +47,7 @@ describe('OrganizationResolver', () => {
       lastName: 'user1-lastname',
       email: 'mockUser1@email.com',
       createdTimestamp: 1603140166809,
-      roles: ['role-1', 'role-2'],
+      roles: ['SUPER_ADMIN', 'role-2'],
       approved: true,
       organization: mockOrganization1,
     }
@@ -59,57 +59,51 @@ describe('OrganizationResolver', () => {
       lastName: 'user1-lastname',
       email: 'mockUser1@email.com',
       createdTimestamp: 1603140166809,
-      roles: ['ORGANIZATION_ADMIN', 'role-2'],
+      roles: ['role-1', 'role-2'],
       approved: true,
       organization: mockOrganization1,
     }
+    describe('When the id was new', () => {
+      it('should return with undefined if the user has role super-admin', async (done) => {
+        jest.useFakeTimers()
+        const paramMap = convertToParamMap({ id: 'new' })
+        const activatedRoute = ({
+          paramMap,
+        } as unknown) as ActivatedRouteSnapshot
+        resolver
+          .resolve(activatedRoute, state)
+          .toPromise()
+          .then((result) => {
+            expect(result.error).toBeNull()
+            expect(result.organization).toBeUndefined()
+            done()
+          })
 
-    it('should return with undefined if the id was new and the user does not have role organization admin', async () => {
-      const paramMap = convertToParamMap({ id: 'new' })
-      const activatedRoute = ({
-        paramMap,
-      } as unknown) as ActivatedRouteSnapshot
-      userProfileSubject$.next(mockUserProfile1)
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+        jest.advanceTimersByTime(1000)
+        userProfileSubject$.next(mockUserProfile1)
+      })
 
-      expect(result.error).toBeNull()
-      expect(result.organization).toBeUndefined()
-    })
+      it('should redirect to the editor with own organization if the user does not have role super-admin', async (done) => {
+        jest.useFakeTimers()
+        const paramMap = convertToParamMap({ id: 'new' })
+        const activatedRoute = ({
+          paramMap,
+        } as unknown) as ActivatedRouteSnapshot
+        resolver
+          .resolve(activatedRoute, state)
+          .toPromise()
+          .then((result) => {
+            expect(router.navigate).toHaveBeenCalledWith([
+              'organizations',
+              mockOrganization1.id,
+              'editor',
+            ])
+            done()
+          })
 
-    it('should redirect to organizationAdminsOrganizationId/editor if the id was new and the user does have role organization admin', async () => {
-      const paramMap = convertToParamMap({ id: 'new' })
-      const activatedRoute = ({
-        paramMap,
-      } as unknown) as ActivatedRouteSnapshot
-      userProfileSubject$.next(mockUserProfile2)
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
-
-      expect(router.navigate).toHaveBeenCalledWith([
-        'organizations',
-        mockOrganization1.id,
-        'editor',
-      ])
-    })
-
-    it('should return the correct organization if the id is found', async () => {
-      organizationService.get = jest.fn().mockImplementation(() => of(mockOrganization1))
-      const paramMap = convertToParamMap({ id: '12345a' })
-      const activatedRoute = ({
-        paramMap,
-      } as unknown) as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result.organization.id).toEqual('12345a')
-    })
-
-    it('should return an error and navigate to organizations if the id not found', async () => {
-      organizationService.get = jest.fn().mockImplementation(() => throwError('Error'))
-      const paramMap = convertToParamMap({ id: '12345a' })
-      const activatedRoute = ({
-        paramMap,
-      } as unknown) as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(router.navigate).toHaveBeenCalledWith(['organizations'])
-      expect(result).toBe('Error')
+        jest.advanceTimersByTime(1000)
+        userProfileSubject$.next(mockUserProfile2)
+      })
     })
   })
 })
