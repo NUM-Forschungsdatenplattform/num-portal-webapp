@@ -235,12 +235,12 @@
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut."
   },
   "ORGANIZATION_MANAGEMENT": {
-    "OVERVIEW": "Organisationsübersicht",
-    "OVERVIEW_HEADER": "In der folgenden Liste sehen Sie alle Organisationen im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Organisation wählen Sie diese aus der Liste aus.",
-    "CREATE": "Organisation erstellen",
-    "CREATE_HEADER": "Zum Erstellen einer Organisation müssen Sie zunächst hier den Namen der Organisation eingeben.\nNach dem erfolgreichen Anlegen der Organisation können Sie diese in einem weiteren Schritt bearbeiten, um beispielsweise die Mail-Domänen zuzuweisen.\n\n*Pflichtfeld",
-    "EDIT": "Organisation bearbeiten",
-    "EDIT_HEADER": "Auf dieser Seite können Sie der Organisation Mail-Domänen zuweisen. Dadurch können neue Nutzer an Hand ihrer E-Mail-Adresse automatisch der Organisation zugewiesen werden.\nAußerdem können Sie be Bedarf den Namen der Organisation ändern. Das sollten Sie aber nur machen, wenn es zwingend notwendig ist.\n\n*Pflichtfeld"
+    "OVERVIEW_HEADER": "Organisationsübersicht",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle Organisationen im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Organisation wählen Sie diese aus der Liste aus.",
+    "CREATE_HEADER": "Organisation erstellen",
+    "CREATE_DESCRIPTION": "Zum Erstellen einer Organisation müssen Sie zunächst hier den Namen der Organisation eingeben.\nNach dem erfolgreichen Anlegen der Organisation können Sie diese in einem weiteren Schritt bearbeiten, um beispielsweise die Mail-Domänen zuzuweisen.\n\n*Pflichtfeld",
+    "EDIT_HEADER": "Organisation bearbeiten",
+    "EDIT_DESCRIPTION": "Auf dieser Seite können Sie der Organisation Mail-Domänen zuweisen. Dadurch können neue Nutzer an Hand ihrer E-Mail-Adresse automatisch der Organisation zugewiesen werden.\nAußerdem können Sie be Bedarf den Namen der Organisation ändern. Das sollten Sie aber nur machen, wenn es zwingend notwendig ist.\n\n*Pflichtfeld"
   },
   "DATE_TIME": {
     "DATE": "Datum",

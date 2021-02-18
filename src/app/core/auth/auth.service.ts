@@ -82,10 +82,10 @@ export class AuthService {
         await this.createUser(userInfo.sub).toPromise()
       }
 
+      await this.profileService.get().toPromise()
+
       this.userInfo = userInfo
       this.userInfoSubject$.next(this.userInfo)
-
-      this.profileService.get().subscribe()
     })
   }
 
