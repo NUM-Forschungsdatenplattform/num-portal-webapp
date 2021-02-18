@@ -31,6 +31,9 @@
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Alle Benutzer",
+    "CONTENT_EDITOR": "Inhalts-Editor",
+    "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
+    "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden",
@@ -68,6 +71,12 @@
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
+  },
+  "CONTENT_EDITOR": {
+    "EDIT_INFO_CARDS_HEADER": "Info-Karten bearbeiten",
+    "EDIT_INFO_CARDS_DESCRIPTION": "Sie können auf der Willkommen-Seite Info-Karten einfügen. Sie können Information und einen Link zu einer externen Seite enthalten.",
+    "EDIT_NAVIGATION_ITEMS_HEADER": "Navigationspunkte bearbeiten",
+    "EDIT_NAVIGATION_DESCRIPTION": "Sie können in der Navigation eigene Links hinzufügen, bearbeiten oder löschen. Die Links sollten nur auf andere Webseiten verweisen, die für die Nutzer der CODEX Forschungsdatenplattform von Interesse sein können."
   },
   "CONFIGURE": "Konfigurieren",
   "SUMMARY": "Zusammenfassung",
@@ -199,7 +208,8 @@
     "ORGANIZATION_ADMIN": "Organisations-Administrator",
     "STUDY_COORDINATOR": "Studienkoordinator",
     "SUPER_ADMIN": "Administrator",
-    "STUDY_APPROVER": "Studienprüfer"
+    "STUDY_APPROVER": "Studienprüfer",
+    "CONTENT_ADMIN": "Content Admin"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "MANAGE_NEW_USERS": "Neue Benutzer verwalten",

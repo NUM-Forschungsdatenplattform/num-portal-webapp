@@ -78,7 +78,7 @@
     <ng-container matColumnDef="isPublic">
       <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'FORM.USAGE' | translate }}</th>
       <td mat-cell *matCellDef="let element">
-        <fa-icon icon="{{ element.publicAql ? 'eye' : 'user-lock' }}"></fa-icon>
+        <fa-icon [icon]="element.publicAql ? ['far', 'eye'] : 'user-lock'"></fa-icon>
       </td>
     </ng-container>
 

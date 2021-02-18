@@ -74,6 +74,18 @@ export const routes: Routes = [
         (m) => m.AdminModule
       ),
   },
+  {
+    path: 'content-editor',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'content-editor',
+      roles: [AvailableRoles.ContentAdmin],
+    },
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "ContentEditor.Module" */ './modules/content-editor/content-editor.module'
+      ).then((m) => m.ContentEditorModule),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ]

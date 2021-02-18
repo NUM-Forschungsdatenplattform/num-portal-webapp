@@ -3,7 +3,7 @@
     <mat-panel-title>
       <h3 class="accordion">
         <fa-icon
-          icon="check-circle"
+          [icon]="['far', 'check-circle']"
           *ngIf="cohortNode.children.length && cohortNode.areParameterConfigured"
         ></fa-icon
         >{{ 'DEFINE_COHORT' | translate }}*
