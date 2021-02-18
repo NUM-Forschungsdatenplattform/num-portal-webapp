@@ -1,7 +1,13 @@
 <h3 id="studies-header">{{ 'AVAILABLE_STUDIES' | translate }}</h3>
 
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
-  <table aria-labelledby="studies-header" mat-table [dataSource]="dataSource" matSort>
+  <table
+    aria-labelledby="studies-header"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    data-test="studies__table"
+  >
     <mat-menu #menu="matMenu">
       <ng-template matMenuContent let-studyStatus="studyStatus" let-id="id">
         <button
@@ -56,6 +62,6 @@
   <mat-paginator
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
-    data-test="studies__table__paginator-buttons"
+    data-test="studies__table__paginator"
   ></mat-paginator>
 </div>
