@@ -9,8 +9,13 @@
       fxLayout="column"
       fxLayoutGap="10px"
       formControlName="decision"
+      data-test="study-editor__approval__radio-group"
     >
-      <mat-radio-button *ngFor="let approvalOption of approvalOptions" [value]="approvalOption">
+      <mat-radio-button
+        *ngFor="let approvalOption of approvalOptions"
+        [value]="approvalOption"
+        [attr.data-test]="'study-editor__approval__' + approvalOption + '-radio-option'"
+      >
         {{ 'STUDY.REVIEW.' + approvalOption | translate }}</mat-radio-button
       >
     </mat-radio-group>

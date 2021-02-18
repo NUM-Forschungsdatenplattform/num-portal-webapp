@@ -10,23 +10,27 @@
       [form]="studyForm"
       [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
+      data-test="study-editor__general-info"
     ></num-study-editor-general-info>
 
     <num-study-editor-templates
       [(templates)]="study.templates"
       [isDisabled]="isTemplatesDisabled"
+      data-test="study-editor__templates"
     ></num-study-editor-templates>
 
     <num-study-editor-connector
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
+      data-test="study-editor__connector__group"
     ></num-study-editor-connector>
 
     <num-study-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="study.researchers"
       [isDisabled]="isResearchersDisabled"
+      data-test="study-editor__researchers"
     ></num-study-editor-researchers>
   </mat-accordion>
 
@@ -36,11 +40,13 @@
     [comments]="studyComments"
     [form]="commentForm"
     (postComment)="postComment()"
+    data-test="study-editor__comments"
   ></num-study-editor-comments>
 
   <num-study-editor-approval
     *ngIf="mode === possibleModes.REVIEW"
     [form]="approverForm"
+    data-test="study-editor__approval"
   ></num-study-editor-approval>
 
   <num-study-editor-buttons
@@ -57,5 +63,6 @@
     (saveAsApprovalReply)="saveAsApprovalReply()"
     (startEdit)="startEdit()"
     (cancel)="cancel()"
+    data-test="study-editor__buttons"
   ></num-study-editor-buttons>
 </section>
