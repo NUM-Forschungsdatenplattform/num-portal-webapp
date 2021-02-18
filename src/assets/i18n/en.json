@@ -73,9 +73,9 @@
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
   },
   "CONTENT_EDITOR": {
-    "EDIT_INFO_CARDS": "Edit info cards",
+    "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
     "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info cards on the Welcome page. They can contain information and a link to an external page.",
-    "EDIT_NAVIGATION_ITEMS": "Edit navigation items",
+    "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
     "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform."
   },
   "CONFIGURE": "Configure",
