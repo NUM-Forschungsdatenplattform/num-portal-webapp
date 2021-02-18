@@ -29,6 +29,12 @@ export class OrganizationService {
     )
   }
 
+  get(id: string): Observable<IOrganization> {
+    return this.httpClient
+      .get<IOrganization>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

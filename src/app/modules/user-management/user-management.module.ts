@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-import { AdminRoutingModule } from './admin-routing.module'
-import { AdminComponent } from './components/admin/admin.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { UnapprovedUsersTableComponent } from './components/unapproved-users-table/unapproved-users-table.component'
@@ -12,10 +10,12 @@ import { AddUserOrganizationComponent } from './components/add-user-organization
 import { ApprovedUsersComponent } from './components/approved-users/approved-users.component'
 import { ApprovedUsersTableComponent } from './components/approved-users-table/approved-users-table.component'
 import { DialogEditUserDetailsComponent } from './components/dialog-edit-user-details/dialog-edit-user-details.component'
+import { UnapprovedUsersComponent } from './components/unapproved-users/unapproved-users.component'
+import { UserManagementRoutingModule } from './user-management-routing.module'
 
 @NgModule({
   declarations: [
-    AdminComponent,
+    UnapprovedUsersComponent,
     UnapprovedUsersTableComponent,
     DialogAddUserDetailsComponent,
     AddUserRolesComponent,
@@ -24,6 +24,6 @@ import { DialogEditUserDetailsComponent } from './components/dialog-edit-user-de
     ApprovedUsersTableComponent,
     DialogEditUserDetailsComponent,
   ],
-  imports: [CommonModule, AdminRoutingModule, SharedModule, LayoutModule],
+  imports: [CommonModule, UserManagementRoutingModule, SharedModule, LayoutModule],
 })
-export class AdminModule {}
+export class UserManagementModule {}

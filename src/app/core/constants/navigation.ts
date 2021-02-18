@@ -92,6 +92,23 @@ export const mainNavItems: INavItem[] = [
       },
     ],
   },
+  {
+    routeTo: 'organizations',
+    icon: 'plus', // TO DO: Replace by new icon
+    translationKey: 'NAVIGATION.ORGANIZATION_MANAGEMENT',
+    tabNav: [
+      {
+        routeTo: 'organizations',
+        id: 'overview',
+        translationKey: 'NAVIGATION.ALL_ORGANIZATIONS',
+      },
+      {
+        routeTo: 'organizations/new/editor',
+        id: 'editor',
+        translationKey: 'NAVIGATION.ORGANIZATION_EDITOR',
+      },
+    ],
+  },
 ]
 
 export const secondaryNavItemsLoggedIn: INavItem[] = [
