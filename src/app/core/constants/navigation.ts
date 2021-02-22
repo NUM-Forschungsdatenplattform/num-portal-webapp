@@ -77,7 +77,7 @@ export const mainNavItems: INavItem[] = [
   },
   {
     routeTo: 'users',
-    icon: 'users-cog',
+    icon: 'user-edit',
     translationKey: 'NAVIGATION.USER_MANAGEMENT',
     tabNav: [
       {
@@ -94,7 +94,7 @@ export const mainNavItems: INavItem[] = [
   },
   {
     routeTo: 'organizations',
-    icon: 'plus', // TO DO: Replace by new icon
+    icon: 'building',
     translationKey: 'NAVIGATION.ORGANIZATION_MANAGEMENT',
     tabNav: [
       {

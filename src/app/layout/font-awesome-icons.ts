@@ -17,7 +17,6 @@ import {
   faCheck,
   faCheckCircle,
   faTrash,
-  faUsersCog,
   faAngleRight,
   faEllipsisV,
   faClock,
@@ -29,6 +28,8 @@ import {
   faAlignLeft,
   faPlay,
   faPen,
+  faBuilding,
+  faUserEdit,
 } from '@fortawesome/free-solid-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
@@ -50,7 +51,6 @@ export const FONT_AWESOME_ICONS = [
   faCheck,
   faCheckCircle,
   faTrash,
-  faUsersCog,
   faAngleRight,
   faEllipsisV,
   faClock,
@@ -62,4 +62,6 @@ export const FONT_AWESOME_ICONS = [
   faAlignLeft,
   faPlay,
   faPen,
+  faBuilding,
+  faUserEdit,
 ]

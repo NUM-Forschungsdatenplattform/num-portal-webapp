@@ -49,7 +49,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
           )
         }
       }),
-      timeout(2000),
+      timeout(10000),
       catchError((error) => {
         this.router.navigate(['organizations'])
         return of(error)
