@@ -1,7 +1,7 @@
 <mat-expansion-panel [expanded]="true">
-  <mat-expansion-panel-header>
+  <mat-expansion-panel-header data-test="studies-editor__general-info__general-info-button">
     <h3 class="accordion">
-      <fa-icon icon="check-circle" *ngIf="form.valid"></fa-icon
+      <fa-icon icon="['far', 'check-circle']" *ngIf="form.valid"></fa-icon
       >{{ 'FORM.GENERAL_INFO' | translate }}*
     </h3>
   </mat-expansion-panel-header>
@@ -24,7 +24,13 @@
     <form fxLayout="column" [formGroup]="form" *ngIf="!isDisabled">
       <mat-form-field appearance="outline" color="accent">
         <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
-        <input formControlName="title" matInput placeholder="Title" aria-labelledby="title-label" />
+        <input
+          formControlName="title"
+          matInput
+          placeholder="Title"
+          aria-labelledby="title-label"
+          data-test="study-editor__general-info__title-input"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="accent">
@@ -36,6 +42,7 @@
           style="resize: none"
           aria-labelledby="desc-label"
           rows="10"
+          data-test="study-editor__general-info__description-input"
         ></textarea>
       </mat-form-field>
 
@@ -51,6 +58,7 @@
             style="resize: none"
             aria-labelledby="label-firstHypotheses"
             rows="10"
+            data-test="study-editor__general-info__first-hypotheses-input"
           ></textarea>
         </mat-form-field>
 
@@ -65,6 +73,7 @@
             style="resize: none"
             aria-labelledby="label-secondHypotheses"
             rows="10"
+            data-test="study-editor__general-info__second-hypotheses-input"
           ></textarea>
         </mat-form-field>
       </section>

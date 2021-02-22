@@ -15,6 +15,7 @@
         [attr.aria-label]="'BUTTON.SELECT' | translate"
         *ngIf="!lookupSelectedTemplates[element.templateId]; else selectedIcon"
         (click)="handleSelectClick(element)"
+        data-test="add-templates-filter__table__select-button"
       >
         <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
       </button>
@@ -24,6 +25,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.DESELECT' | translate"
           (click)="handleDeselectClick(element)"
+          data-test="add-templates-filter__table__deselect-button"
         >
           <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -35,4 +37,8 @@
   <tr class="num-mat-table-row" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+<mat-paginator
+  [pageSizeOptions]="[5]"
+  showFirstLastButtons
+  data-test="add-templates-filter__table__paginator-buttons"
+></mat-paginator>

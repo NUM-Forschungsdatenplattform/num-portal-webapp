@@ -13,8 +13,13 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="cohortGroup.logicalOperator"
       [disabled]="cohortGroup.children.length <= 1 || isDisabled"
+      data-test="study-editor__connector__group__logical-operator__selector"
     >
-      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+      <mat-option
+        *ngFor="let operator of logicalOperatorArray"
+        [value]="operator"
+        [attr.data-test]="'study-editor__connector__group__logical-operator__' + operator"
+      >
         {{ operator }}
       </mat-option>
     </mat-select>
@@ -26,6 +31,7 @@
     labelPosition="before"
     [(ngModel)]="cohortGroup.isNegated"
     [disabled]="isDisabled"
+    data-test="study-editor__connector__group__negation-toggle"
     >Negation</mat-slide-toggle
   >
 </section>
@@ -41,6 +47,7 @@
     [isDisabled]="isDisabled"
     (delete)="deleteChild($event)"
     fxFlex="100%"
+    data-test="study-editor__connector__group"
   ></num-study-editor-connector-group>
 
   <num-study-editor-connector-phenotype
@@ -57,16 +64,27 @@
     role="listitem"
     fxLayout="row"
     fxLayoutAlign="space-between center"
+    data-test="study-editor__connector__phenotype"
   ></num-study-editor-connector-phenotype>
 </section>
 
 <section role="presentation" class="button-row" fxLayoutGap="20px">
-  <num-button [isDisabled]="isDisabled" type="primary" icon="plus" (singleClick)="addPhenotype()">{{
-    'BUTTON.ADD_PHENOTYPE' | translate
-  }}</num-button>
-  <num-button [isDisabled]="isDisabled" type="secondary" icon="plus" (singleClick)="addGroup()">{{
-    'BUTTON.ADD_GROUP' | translate
-  }}</num-button>
+  <num-button
+    [isDisabled]="isDisabled"
+    type="primary"
+    icon="plus"
+    (singleClick)="addPhenotype()"
+    data-test="study-editor__connector__group__add-phenotype-button"
+    >{{ 'BUTTON.ADD_PHENOTYPE' | translate }}</num-button
+  >
+  <num-button
+    [isDisabled]="isDisabled"
+    type="secondary"
+    icon="plus"
+    (singleClick)="addGroup()"
+    data-test="study-editor__connector__group__add-group-button"
+    >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
+  >
 
   <span fxFlex></span>
 
@@ -75,6 +93,7 @@
     *ngIf="groupType === connectorGroupType.Sub"
     type="basic"
     (singleClick)="deleteSelf()"
+    data-test="study-editor__connector__group__delete-group-button"
     >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
   >
 </section>

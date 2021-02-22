@@ -23,6 +23,7 @@
     [dataSource]="dataSource"
     matSort
     class="mat-elevation-z1"
+    data-test="aqls__table"
   >
     <mat-menu #menu="matMenu">
       <ng-template matMenuContent let-aqlOwner="aqlOwner" let-id="id" let-userId="userId">
@@ -32,7 +33,7 @@
           *ngFor="let menuItem of menuItems | aqlItemVisibility: aqlOwner:userId"
           (click)="handleMenuClick(menuItem.id, id)"
           [disabled]="menuItem.isDisabled"
-          [attr.data-test]="'aql-table__menu-item__' + menuItem.translationKey"
+          [attr.data-test]="'aqls__table__menu-item__' + menuItem.translationKey"
         >
           {{ menuItem.translationKey | translate }}
         </button>
@@ -46,7 +47,7 @@
           mat-icon-button
           [matMenuTriggerFor]="menu"
           [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, userId: user.id }"
-          [attr.data-test]="'aql-table__row__' + i + '__menu-button__row'"
+          [attr.data-test]="'aqls__table__row__' + i + '__menu-button__row'"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>
@@ -78,7 +79,7 @@
     <ng-container matColumnDef="isPublic">
       <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'FORM.USAGE' | translate }}</th>
       <td mat-cell *matCellDef="let element">
-        <fa-icon icon="{{ element.publicAql ? 'eye' : 'user-lock' }}"></fa-icon>
+        <fa-icon [icon]="element.publicAql ? ['far', 'eye'] : 'user-lock'"></fa-icon>
       </td>
     </ng-container>
 
@@ -86,5 +87,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    data-test="aqls__table__paginator"
+  ></mat-paginator>
 </section>

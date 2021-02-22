@@ -34,6 +34,9 @@
     "ORGANIZATION_MANAGEMENT": "Organization Management",
     "ORGANIZATION_EDITOR": "Organization Editor",
     "ALL_ORGANIZATIONS": "All Organizations",
+    "CONTENT_EDITOR": "Content Editor",
+    "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
+    "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out",
@@ -71,6 +74,12 @@
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
+  },
+  "CONTENT_EDITOR": {
+    "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
+    "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info cards on the Welcome page. They can contain information and a link to an external page.",
+    "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
+    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform."
   },
   "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
@@ -202,7 +211,8 @@
     "ORGANIZATION_ADMIN": "Organization Administrator",
     "STUDY_COORDINATOR": "Study Coordinator",
     "SUPER_ADMIN": "Admin",
-    "STUDY_APPROVER": "Study Approver"
+    "STUDY_APPROVER": "Study Approver",
+    "CONTENT_ADMIN": "Content Admin"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "MANAGE_NEW_USERS": "Manage New Users",

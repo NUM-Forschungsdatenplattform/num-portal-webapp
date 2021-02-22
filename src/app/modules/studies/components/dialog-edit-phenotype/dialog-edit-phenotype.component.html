@@ -2,7 +2,10 @@
   <h2 class="mat-display-2">
     <span class="not-icon num-fc--a" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype.name }}
   </h2>
-  <mat-slide-toggle labelPosition="before" [(ngModel)]="phenotype.isNegated"
+  <mat-slide-toggle
+    labelPosition="before"
+    [(ngModel)]="phenotype.isNegated"
+    data-test="dialog-edit-phenotype__negation-toggle"
     >Negation</mat-slide-toggle
   >
 </section>
@@ -34,6 +37,7 @@
           type="text"
           placeholder="Parameter"
           formControlName="parameter"
+          [attr.data-test]="'dialog-edit-phenotype__parameter-input__param' + i"
         />
       </mat-form-field>
     </div>

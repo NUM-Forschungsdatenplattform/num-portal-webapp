@@ -109,6 +109,23 @@ export const mainNavItems: INavItem[] = [
       },
     ],
   },
+  {
+    routeTo: 'content-editor',
+    icon: ['far', 'newspaper'],
+    translationKey: 'NAVIGATION.CONTENT_EDITOR',
+    tabNav: [
+      {
+        routeTo: 'content-editor',
+        id: 'welcome-page',
+        translationKey: 'NAVIGATION.CONTENT_EDITOR_WELCOME_PAGE',
+      },
+      {
+        routeTo: 'content-editor/navigation-items',
+        id: 'navigation-items',
+        translationKey: 'NAVIGATION.CONTENT_EDITOR_NAVIGATION_ITEMS',
+      },
+    ],
+  },
 ]
 
 export const secondaryNavItemsLoggedIn: INavItem[] = [
