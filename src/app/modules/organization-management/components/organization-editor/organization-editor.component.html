@@ -1,0 +1,11 @@
+<section>
+  <div *ngIf="resolvedData.organization">
+    <h2>{{ 'ORGANIZATION_MANAGEMENT.EDIT_HEADER' | translate }}</h2>
+    <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.EDIT_DESCRIPTION' | translate }}</p>
+  </div>
+
+  <div *ngIf="!resolvedData.organization">
+    <h2>{{ 'ORGANIZATION_MANAGEMENT.CREATE_HEADER' | translate }}</h2>
+    <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.CREATE_DESCRIPTION' | translate }}</p>
+  </div>
+</section>

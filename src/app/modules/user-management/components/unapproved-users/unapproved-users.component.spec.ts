@@ -3,14 +3,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
-import { AdminComponent } from './admin.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { Component } from '@angular/core'
 import { IUser } from 'src/app/shared/models/user/user.interface'
+import { UnapprovedUsersComponent } from './unapproved-users.component'
 
-describe('AdminComponent', () => {
-  let component: AdminComponent
-  let fixture: ComponentFixture<AdminComponent>
+describe('UnapprovedUsersComponent', () => {
+  let component: UnapprovedUsersComponent
+  let fixture: ComponentFixture<UnapprovedUsersComponent>
 
   const approvedUsersSubject$ = new Subject<IUser[]>()
   const unapprovedUsersSubject$ = new Subject<IUser[]>()
@@ -26,7 +26,7 @@ describe('AdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminComponent, UserTableStubComponent],
+      declarations: [UnapprovedUsersComponent, UserTableStubComponent],
       imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
       providers: [
         {
@@ -38,7 +38,7 @@ describe('AdminComponent', () => {
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminComponent)
+    fixture = TestBed.createComponent(UnapprovedUsersComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(adminService, 'getUnapprovedUsers')

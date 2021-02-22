@@ -31,6 +31,9 @@
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "All Users",
+    "ORGANIZATION_MANAGEMENT": "Organization Management",
+    "ORGANIZATION_EDITOR": "Organization Editor",
+    "ALL_ORGANIZATIONS": "All Organizations",
     "CONTENT_EDITOR": "Content Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
@@ -240,6 +243,14 @@
     "CONFIGURATION_ERROR": "The query could not be compiled. Please open the configuration and try again.",
     "AQL_BUILDER_DIALOG_HEADER": "Edit data query configuration",
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again."
+  },
+  "ORGANIZATION_MANAGEMENT": {
+    "OVERVIEW_HEADER": "Organization Overview",
+    "OVERVIEW_DESCRIPTION": "In the following list you can see all the organizations in the portal that you are authorized to edit. To edit an organization, select it from the list.",
+    "CREATE_HEADER": "Create Organization",
+    "CREATE_DESCRIPTION": "To create an organization, you must first enter the name of the organization here.\nAfter successfully creating the organization, you can edit it in a further step, for example to assign the mail domains.\n\n*Mandatory field",
+    "EDIT_HEADER": "Edit Organization",
+    "EDIT_DESCRIPTION": "On this page you can assign mail domains to the organization. This allows new users to be automatically assigned to the organization based on their email address.\nYou can also change the name of the organization if necessary. However, you should only do this if it is absolutely necessary.\n\n*Mandatory field"
   },
   "DATE_TIME": {
     "DATE": "Date",

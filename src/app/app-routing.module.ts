@@ -70,9 +70,21 @@ export const routes: Routes = [
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Admin.Module" */ './modules/admin/admin.module').then(
-        (m) => m.AdminModule
-      ),
+      import(
+        /* webpackChunkName: "UserManagement.Module" */ './modules/user-management/user-management.module'
+      ).then((m) => m.UserManagementModule),
+  },
+  {
+    path: 'organizations',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'organizations',
+      roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
+    },
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "OrganizationManagement.Module" */ './modules/organization-management/organization-management.module'
+      ).then((m) => m.OrganizationManagementModule),
   },
   {
     path: 'content-editor',

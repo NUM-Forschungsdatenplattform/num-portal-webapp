@@ -31,6 +31,9 @@
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Alle Benutzer",
+    "ORGANIZATION_MANAGEMENT": "Organisationsverwaltung",
+    "ORGANIZATION_EDITOR": "Organisationseditor",
+    "ALL_ORGANIZATIONS": "Alle Organisationen",
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
@@ -240,6 +243,14 @@
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
     "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut."
+  },
+  "ORGANIZATION_MANAGEMENT": {
+    "OVERVIEW_HEADER": "Organisationsübersicht",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle Organisationen im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Organisation wählen Sie diese aus der Liste aus.",
+    "CREATE_HEADER": "Organisation erstellen",
+    "CREATE_DESCRIPTION": "Zum Erstellen einer Organisation müssen Sie zunächst hier den Namen der Organisation eingeben.\nNach dem erfolgreichen Anlegen der Organisation können Sie diese in einem weiteren Schritt bearbeiten, um beispielsweise die Mail-Domänen zuzuweisen.\n\n*Pflichtfeld",
+    "EDIT_HEADER": "Organisation bearbeiten",
+    "EDIT_DESCRIPTION": "Auf dieser Seite können Sie der Organisation Mail-Domänen zuweisen. Dadurch können neue Nutzer an Hand ihrer E-Mail-Adresse automatisch der Organisation zugewiesen werden.\nAußerdem können Sie be Bedarf den Namen der Organisation ändern. Das sollten Sie aber nur machen, wenn es zwingend notwendig ist.\n\n*Pflichtfeld"
   },
   "DATE_TIME": {
     "DATE": "Datum",

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { AdminComponent } from './components/admin/admin.component'
 import { ApprovedUsersComponent } from './components/approved-users/approved-users.component'
+import { UnapprovedUsersComponent } from './components/unapproved-users/unapproved-users.component'
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AdminComponent,
+    component: UnapprovedUsersComponent,
     data: {
       tabNavId: 'unapproved',
     },
@@ -24,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class UserManagementRoutingModule {}
