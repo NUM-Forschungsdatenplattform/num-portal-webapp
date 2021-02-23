@@ -134,11 +134,20 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(3),
       ]),
+      goal: new FormControl(this.study?.goal, [Validators.required, Validators.minLength(3)]),
       firstHypotheses: new FormControl(this.study?.firstHypotheses, [
         Validators.required,
         Validators.minLength(3),
       ]),
       secondHypotheses: new FormControl(this.study?.secondHypotheses),
+      keywords: new FormControl(this.study?.keywords),
+      categories: new FormControl(this.study?.categories),
+      startDate: new FormControl(this.study?.startDate || new Date(), [Validators.required]),
+      endDate: new FormControl(
+        this.study?.endDate || new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+        [Validators.required]
+      ),
+      financing: new FormControl(this.study?.financing),
     })
 
     this.commentForm = new FormGroup({

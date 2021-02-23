@@ -1,4 +1,5 @@
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { StudyCategories } from 'src/app/modules/studies/components/study-editor-general-info/study-categories.enum'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'
@@ -13,14 +14,20 @@ export class StudyUiModel {
   cohortGroup: CohortGroupUiModel
   /** The coordinator of the study. Is automatically asigned based on the auth-token */
   coordinator?: IStudyUser
+  goal?: string
   description?: string
   firstHypotheses?: string
+  keywords?: string[]
+  categories?: StudyCategories[]
+  startDate?: Date
+  endDate?: Date
   id: number | null
   modifiedDate?: Date
   name?: string
   researchers: IUser[]
   researchersApi: IStudyUser[]
   secondHypotheses?: string
+  financing?: boolean
   status: StudyStatus
   templates: IStudyTemplateInfoApi[]
 
