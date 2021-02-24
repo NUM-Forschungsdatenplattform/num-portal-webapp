@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
@@ -12,7 +12,7 @@ import { IOrganization } from 'src/app/shared/models/user/organization.interface
   templateUrl: './organizations-table.component.html',
   styleUrls: ['./organizations-table.component.scss'],
 })
-export class OrganizationsTableComponent implements OnInit {
+export class OrganizationsTableComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscriptions = new Subscription()
   constructor(private organizationService: OrganizationService, private router: Router) {}
 
