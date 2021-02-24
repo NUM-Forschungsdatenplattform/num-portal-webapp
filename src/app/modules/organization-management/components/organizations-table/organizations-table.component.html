@@ -1,0 +1,49 @@
+<h3 id="all-organizations-header">{{ 'NAVIGATION.ALL_ORGANIZATIONS' | translate }}</h3>
+
+<div role="presentation" class="mat-elevation-z1 num-margin-b-60">
+  <table mat-table [dataSource]="dataSource" matSort aria-labelledby="all-organizations-header">
+    <ng-container matColumnDef="icon">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-header>
+        {{ 'FORM.ACTION' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          color="accent"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          (click)="handleSelectClick(element)"
+        >
+          <fa-icon icon="pen" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'ORGANIZATION.NAME' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="mailDomains">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-header>
+        <!-- TO DO: Check if this is valid with new backend implementation -->
+        {{ 'ORGANIZATION.MAIL_DOMAIN' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.mailDomains }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns; let i = index"
+      [attr.data-test]="'organizations__table__row-' + i"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    *ngIf="dataSource.data.length > 10"
+    [pageSizeOptions]="[10, 20, 40]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
