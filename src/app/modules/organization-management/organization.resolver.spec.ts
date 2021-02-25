@@ -8,6 +8,8 @@ import { of, Subject, throwError } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
+import { mockUserProfile1, mockUserProfile3 } from 'src/mocks/data-mocks/user-profile.mock'
 import { OrganizationResolver } from './organization.resolver'
 
 describe('OrganizationResolver', () => {
@@ -34,76 +36,133 @@ describe('OrganizationResolver', () => {
     expect(resolver).toBeTruthy()
   })
 
-  describe('When the resolve method is called', () => {
-    const mockOrganization1 = {
-      id: '12345a',
-      name: 'Organization A',
-    }
+  describe('When the resolve method is called and the user has the role SuperAdmin', () => {
+    it('should return with organization:undefined if the id was new', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: 'new' })
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(result.error).toBeNull()
+          expect(result.organization).toBeUndefined()
+          done()
+        })
 
-    const mockUserProfile1: IUserProfile = {
-      id: '1',
-      username: 'username-1',
-      firstName: 'user1-firstname',
-      lastName: 'user1-lastname',
-      email: 'mockUser1@email.com',
-      createdTimestamp: 1603140166809,
-      roles: ['SUPER_ADMIN', 'role-2'],
-      approved: true,
-      organization: mockOrganization1,
-    }
+      jest.advanceTimersByTime(1000)
+      userProfileSubject$.next(mockUserProfile3)
+    })
 
-    const mockUserProfile2: IUserProfile = {
-      id: '1',
-      username: 'username-1',
-      firstName: 'user1-firstname',
-      lastName: 'user1-lastname',
-      email: 'mockUser1@email.com',
-      createdTimestamp: 1603140166809,
-      roles: ['role-1', 'role-2'],
-      approved: true,
-      organization: mockOrganization1,
-    }
-    describe('When the id was new', () => {
-      it('should return with undefined if the user has role super-admin', async (done) => {
-        jest.useFakeTimers()
-        const paramMap = convertToParamMap({ id: 'new' })
-        const activatedRoute = ({
-          paramMap,
-        } as unknown) as ActivatedRouteSnapshot
-        resolver
-          .resolve(activatedRoute, state)
-          .toPromise()
-          .then((result) => {
-            expect(result.error).toBeNull()
-            expect(result.organization).toBeUndefined()
-            done()
-          })
+    it('should return with the organization if the id was valid', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: '1' })
 
-        jest.advanceTimersByTime(1000)
-        userProfileSubject$.next(mockUserProfile1)
-      })
+      jest.spyOn(organizationService, 'get').mockImplementation(() => of(mockOrganization1))
 
-      it('should redirect to the editor with own organization if the user does not have role super-admin', async (done) => {
-        jest.useFakeTimers()
-        const paramMap = convertToParamMap({ id: 'new' })
-        const activatedRoute = ({
-          paramMap,
-        } as unknown) as ActivatedRouteSnapshot
-        resolver
-          .resolve(activatedRoute, state)
-          .toPromise()
-          .then((result) => {
-            expect(router.navigate).toHaveBeenCalledWith([
-              'organizations',
-              mockOrganization1.id,
-              'editor',
-            ])
-            done()
-          })
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(result.error).toBeNull()
+          expect(result.organization).toBe(mockOrganization1)
+          done()
+        })
 
-        jest.advanceTimersByTime(1000)
-        userProfileSubject$.next(mockUserProfile2)
-      })
+      jest.advanceTimersByTime(1000)
+      userProfileSubject$.next(mockUserProfile3)
+    })
+
+    it('should return to the organization page if the id was invalid', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: '1' })
+
+      jest.spyOn(organizationService, 'get').mockImplementation(() => throwError('Error'))
+
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(router.navigate).toHaveBeenCalledWith(['organizations'])
+          done()
+        })
+
+      jest.advanceTimersByTime(1000)
+      userProfileSubject$.next(mockUserProfile3)
+    })
+  })
+
+  describe('When the resolve method is called and the user does not have the role SuperAdmin', () => {
+    it('should redirect to the editor with the users organization id if the the id was different from the users organizatin id', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: '2' })
+
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(router.navigate).toHaveBeenCalledWith([
+            'organizations',
+            mockOrganization1.id,
+            'editor',
+          ])
+          done()
+        })
+
+      jest.advanceTimersByTime(1000)
+      userProfileSubject$.next(mockUserProfile1)
+    })
+
+    it('should return with the organization if the id was the users organization id', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: '1' })
+
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(result.error).toBeNull()
+          expect(result.organization).toBe(mockOrganization1)
+          done()
+        })
+
+      jest.advanceTimersByTime(1000)
+      userProfileSubject$.next(mockUserProfile1)
+    })
+  })
+
+  describe('When the user profile could not be loaded after 10s', () => {
+    it('should redirect to the organizations page', async (done) => {
+      jest.useFakeTimers()
+      const paramMap = convertToParamMap({ id: '1' })
+
+      const activatedRoute = ({
+        paramMap,
+      } as unknown) as ActivatedRouteSnapshot
+      resolver
+        .resolve(activatedRoute, state)
+        .toPromise()
+        .then((result) => {
+          expect(router.navigate).toHaveBeenCalledWith(['organizations'])
+          done()
+        })
+
+      jest.advanceTimersByTime(11000)
+      userProfileSubject$.next()
     })
   })
 })
