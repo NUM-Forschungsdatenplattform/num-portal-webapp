@@ -46,7 +46,11 @@
         {{ 'USER.ROLES' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        <div *ngFor="let role of element.roles">{{ 'ROLE.' + role | translate }}</div>
+        <ng-template ngFor let-role [ngForOf]="element.roles">
+          <div *ngIf="availableRoles.includes(role)">
+            {{ 'ROLE.' + role | translate }}
+          </div>
+        </ng-template>
       </td>
     </ng-container>
 

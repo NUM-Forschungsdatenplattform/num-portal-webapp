@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-add-user-roles',
@@ -15,10 +17,25 @@ export class AddUserRolesComponent implements OnInit {
   displayedColumns: string[] = ['role', 'icon']
   lookupSelectedRole: { [id: string]: boolean } = {}
 
-  constructor() {}
+  userProfile: IUserProfile
+
+  constructor(private profileService: ProfileService) {
+    this.profileService.userProfileObservable$.subscribe((user) => (this.userProfile = user))
+  }
 
   ngOnInit(): void {
-    this.dataSource.data = Object.values(AvailableRoles)
+    this.handleData()
+  }
+
+  handleData(): void {
+    const availableRoles = Object.values(AvailableRoles)
+    if (!this.userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
+      this.dataSource.data = availableRoles.filter(
+        (role) => role !== AvailableRoles.SuperAdmin && role !== AvailableRoles.ContentAdmin
+      )
+    } else {
+      this.dataSource.data = Object.values(AvailableRoles)
+    }
     this.selectedRoles.forEach((role) => (this.lookupSelectedRole[role] = true))
   }
 
