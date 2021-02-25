@@ -1,5 +1,5 @@
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
-import { StudyCategories } from 'src/app/modules/studies/components/study-editor-general-info/study-categories.enum'
+import { StudyCategories } from 'src/app/modules/studies/components/study-editor-general-info-categories-input/study-categories.enum'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'
@@ -14,31 +14,38 @@ export class StudyUiModel {
   cohortGroup: CohortGroupUiModel
   /** The coordinator of the study. Is automatically asigned based on the auth-token */
   coordinator?: IStudyUser
-  goal?: string
   description?: string
+  goal?: string
   firstHypotheses?: string
+  secondHypotheses?: string
   keywords?: string[]
   categories?: StudyCategories[]
-  startDate?: Date
-  endDate?: Date
+  startDate?: string // Date
+  endDate?: string // Date
+  financed?: boolean
   id: number | null
-  modifiedDate?: Date
+  modifiedDate?: string // Date
   name?: string
   researchers: IUser[]
   researchersApi: IStudyUser[]
-  secondHypotheses?: string
-  financing?: boolean
   status: StudyStatus
   templates: IStudyTemplateInfoApi[]
 
   constructor(apiStudy?: IStudyApi, private phenotypeService?: PhenotypeService) {
-    this.coordinator = apiStudy?.coordinator || undefined
     this.description = apiStudy?.description || undefined
+    this.goal = apiStudy?.goal || undefined
     this.firstHypotheses = apiStudy?.firstHypotheses || undefined
+    this.secondHypotheses = apiStudy?.secondHypotheses || undefined
+    this.keywords = apiStudy?.keywords || []
+    this.categories = apiStudy?.categories || []
+    this.startDate = apiStudy?.startDate || new Date()
+    this.endDate = apiStudy?.endDate || new Date()
+    this.financed = apiStudy?.financed || false
+
     this.id = apiStudy?.id || null
+    this.coordinator = apiStudy?.coordinator || undefined
     this.modifiedDate = apiStudy?.modifiedDate || undefined
     this.name = apiStudy?.name || undefined
-    this.secondHypotheses = apiStudy?.secondHypotheses || undefined
     this.status = apiStudy?.status || StudyStatus.Draft
     this.cohortId = apiStudy?.cohortId || null
     this.researchers = []

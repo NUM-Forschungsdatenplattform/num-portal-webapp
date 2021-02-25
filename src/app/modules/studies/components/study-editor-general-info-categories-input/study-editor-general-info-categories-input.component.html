@@ -1,0 +1,50 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
+  <mat-chip-list
+    #categoryChipList
+    aria-label="Category selection"
+    data-test="study-editor__general-info__categories-chip-list"
+  >
+    <mat-chip
+      *ngFor="let category of categories"
+      (removed)="removeCategory(category)"
+      [value]="category"
+      class="chip-primary"
+      [attr.data-test]="'study-editor__general-info__categories-chip_' + category"
+    >
+      <span>{{ 'STUDY.CATEGORIES.' + category | translate }}</span>
+      <fa-icon
+        icon="times-circle"
+        class="chip__remove-icon"
+        data-test="study-editor__general-info__categories-remove-category-button"
+        matChipRemove
+      ></fa-icon>
+    </mat-chip>
+    <input
+      #categoryInput
+      placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
+      [formControl]="categoryCtrl"
+      [matAutocomplete]="categoryAutocomplete"
+      #trigger="matAutocompleteTrigger"
+      [matChipInputFor]="categoryChipList"
+      matChipInputAddOnBlur
+      (focus)="openCategoryAutocomplete()"
+      data-test="study-editor__general-info__categories-input"
+    />
+  </mat-chip-list>
+  <mat-autocomplete
+    #categoryAutocomplete="matAutocomplete"
+    (optionSelected)="addCategory($event, trigger)"
+    autoActiveFirstOption
+    data-test="study-editor__general-info__categories-autocomplete"
+  >
+    <mat-option
+      *ngFor="let category of filteredCategories | async"
+      [disabled]="category === 'NO_RESULTS'"
+      [value]="category"
+      [attr.data-test]="'study-editor__general-info__categories-option_' + category"
+    >
+      {{ 'STUDY.CATEGORIES.' + category | translate }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

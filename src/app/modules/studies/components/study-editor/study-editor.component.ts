@@ -147,7 +147,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
         this.study?.endDate || new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
         [Validators.required]
       ),
-      financing: new FormControl(this.study?.financing),
+      financed: new FormControl(this.study?.financed),
     })
 
     this.commentForm = new FormGroup({

@@ -92,87 +92,13 @@
         </mat-form-field>
       </section>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
-        <mat-chip-list
-          #keywordsChipList
-          aria-label="Keywords selection"
-          data-test="study-editor__general-info__keywords-chip-list"
-        >
-          <mat-chip
-            *ngFor="let keyword of keywords"
-            (removed)="removeKeyword(keyword)"
-            data-test="study-editor__general-info__keywords-chip-item"
-          >
-            <span>{{ keyword }}</span>
-            <fa-icon
-              icon="times-circle"
-              class="chip__remove-icon"
-              data-test="study-editor__general-info__keywords-remove-keyword-button"
-              matChipRemove
-            ></fa-icon>
-          </mat-chip>
-          <input
-            placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
-            [matChipInputFor]="keywordsChipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            matChipInputAddOnBlur
-            (matChipInputTokenEnd)="addKeyword($event)"
-            autocomplete="off"
-            data-test="study-editor__general-info__keywords-input"
-          />
-        </mat-chip-list>
-      </mat-form-field>
+      <num-study-editor-general-info-keywords-input
+        [form]="form"
+      ></num-study-editor-general-info-keywords-input>
 
-      <mat-form-field appearance="outline">
-        <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
-        <mat-chip-list
-          #categoryChipList
-          aria-label="Category selection"
-          data-test="study-editor__general-info__categories-chip-list"
-        >
-          <mat-chip
-            *ngFor="let category of categories"
-            (removed)="removeCategory(category)"
-            [value]="category"
-            [attr.data-test]="'study-editor__general-info__categories-chip_' + category"
-          >
-            <span>{{ 'STUDY.CATEGORIES.' + category | translate }}</span>
-            <fa-icon
-              icon="times-circle"
-              class="chip__remove-icon"
-              data-test="study-editor__general-info__categories-remove-category-button"
-              matChipRemove
-            ></fa-icon>
-          </mat-chip>
-          <input
-            #categoryInput
-            placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
-            [formControl]="categoryCtrl"
-            [matAutocomplete]="categoryAutocomplete"
-            #trigger="matAutocompleteTrigger"
-            [matChipInputFor]="categoryChipList"
-            matChipInputAddOnBlur
-            (focus)="openCategoryAutocomplete()"
-            data-test="study-editor__general-info__categories-input"
-          />
-        </mat-chip-list>
-        <mat-autocomplete
-          #categoryAutocomplete="matAutocomplete"
-          (optionSelected)="addCategory($event, trigger)"
-          autoActiveFirstOption
-          data-test="study-editor__general-info__categories-autocomplete"
-        >
-          <mat-option
-            *ngFor="let category of filteredCategories | async"
-            [disabled]="category === 'NO_RESULTS'"
-            [value]="category"
-            [attr.data-test]="'study-editor__general-info__categories-option_' + category"
-          >
-            {{ 'STUDY.CATEGORIES.' + category | translate }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+      <num-study-editor-general-info-categories-input
+        [form]="form"
+      ></num-study-editor-general-info-categories-input>
 
       <section role="presentation" fxLayout="row" fxLayoutGap="20px">
         <mat-form-field appearance="outline">
@@ -184,7 +110,11 @@
             (focus)="startDate.open()"
             data-test="study-editor__general-info__start-date-input"
           />
-          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDate"
+            data-test="study-editor__general-info__start-date-toggle"
+          ></mat-datepicker-toggle>
           <mat-datepicker #startDate></mat-datepicker>
         </mat-form-field>
 
@@ -197,16 +127,20 @@
             (focus)="endDate.open()"
             data-test="study-editor__general-info__end-date-input"
           />
-          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endDate"
+            data-test="study-editor__general-info__end-date-toggle"
+          ></mat-datepicker-toggle>
           <mat-datepicker #endDate></mat-datepicker>
         </mat-form-field>
       </section>
 
       <section role="presentation" class="num-margin-b-10">
-        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCING' | translate }}*</p>
+        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}*</p>
         <mat-slide-toggle
-          formControlName="financing"
-          data-test="study-editor__general-info__financing-toggle"
+          formControlName="financed"
+          data-test="study-editor__general-info__financied-toggle"
           >{{ 'FORM.FINANCED_BY_PRIVATE' | translate }}</mat-slide-toggle
         >
       </section>
