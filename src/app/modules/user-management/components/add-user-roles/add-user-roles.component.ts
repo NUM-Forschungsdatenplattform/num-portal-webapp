@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
+import { filter, map, take } from 'rxjs/operators'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
@@ -19,12 +20,19 @@ export class AddUserRolesComponent implements OnInit {
 
   userProfile: IUserProfile
 
-  constructor(private profileService: ProfileService) {
-    this.profileService.userProfileObservable$.subscribe((user) => (this.userProfile = user))
-  }
+  constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.handleData()
+    this.profileService.userProfileObservable$
+      .pipe(
+        filter((profile) => profile.id !== undefined),
+        take(1),
+        map((profile: IUserProfile) => {
+          this.userProfile = profile
+          this.handleData()
+        })
+      )
+      .subscribe()
   }
 
   handleData(): void {
