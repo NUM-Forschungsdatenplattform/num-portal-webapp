@@ -1,7 +1,13 @@
 <h3 id="all-organizations-header">{{ 'NAVIGATION.ALL_ORGANIZATIONS' | translate }}</h3>
 
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
-  <table mat-table [dataSource]="dataSource" matSort aria-labelledby="all-organizations-header">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    aria-labelledby="all-organizations-header"
+    data-test="all-organizations__table"
+  >
     <ng-container matColumnDef="icon">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-header>
         {{ 'FORM.ACTION' | translate }}
@@ -11,6 +17,7 @@
           color="accent"
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
+          data-test="all-organizations__table__action-button"
           (click)="handleSelectClick(element)"
         >
           <fa-icon icon="pen" size="lg" [fixedWidth]="true"></fa-icon>
