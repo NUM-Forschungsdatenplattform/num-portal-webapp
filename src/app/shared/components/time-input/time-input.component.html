@@ -1,0 +1,18 @@
+<form fxLayout="row" fxLayoutGap="4px" [formGroup]="form">
+  <mat-form-field
+    class="num-time-picker"
+    [appearance]="appearance || 'outline'"
+    *ngFor="let inputField of inputFields"
+  >
+    <mat-label id="label">{{ inputField.name | translate }}</mat-label>
+    <input
+      matInput
+      aria-labelledby="label"
+      type="number"
+      [formControlName]="inputField.formControl"
+      [min]="inputField.lowerBound"
+      [max]="inputField.upperBound"
+      [attr.data-test]="'generic-time-input__' + inputField.name"
+    />
+  </mat-form-field>
+</form>

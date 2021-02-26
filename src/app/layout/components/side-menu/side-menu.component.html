@@ -1,0 +1,36 @@
+<mat-nav-list fxLayout="column" fxFill fxFlex="260px">
+  <a class="navbar-item" routerLink="/home" data-test="side-menu__logo">
+    <img width="100%" src="assets/logo.svg" alt="app-logo" />
+  </a>
+
+  <ng-template ngFor let-item [ngForOf]="mainNavItems">
+    <a
+      *numUserHasRole="item.roles"
+      mat-list-item
+      class="num-mat-list-item"
+      (click)="menuItemClicked($event, item)"
+      [routerLinkActive]="'num-mat-list-item--active'"
+      [routerLink]="item.routeTo"
+      [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
+    >
+      <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
+      <div>{{ item.translationKey | translate }}</div>
+    </a>
+  </ng-template>
+
+  <span fxFlex></span>
+  <mat-divider class="num-d-c--a num-d-w--2"></mat-divider>
+
+  <a
+    class="num-mat-list-item"
+    mat-list-item
+    *ngFor="let item of secondaryNavItems"
+    (click)="menuItemClicked($event, item)"
+    [routerLinkActive]="'num-mat-list-item--active'"
+    [routerLink]="item.routeTo"
+    [attr.data-test]="'side-menu__secondary-nav__' + item.translationKey"
+  >
+    <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon" routerLinkActive="active"></fa-icon>
+    <div>{{ item.translationKey | translate }}</div>
+  </a>
+</mat-nav-list>

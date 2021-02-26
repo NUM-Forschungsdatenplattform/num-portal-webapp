@@ -1,0 +1,42 @@
+/* import of not themed classes */
+@import './styles/input-classes';
+
+/* import of themed mixins */
+@import './styles/buttons.themed';
+@import './styles/lang-toggle-button.themed';
+@import './styles/color-variables.themed';
+@import './styles/color-classes.themed';
+@import './styles/divider-classes.themed';
+@import './styles/side-menu.component.themed';
+@import './styles/general_table.themed';
+@import './styles/footer.themed';
+@import './styles/typography.themed';
+@import './styles/mat-chip.themed';
+@import './styles/mat-expansion-panel.themed';
+@import './styles/general_select.themed';
+@import './styles/code-editor.themed';
+@import './styles/aqb-select-destination.themed';
+@import './styles/mat-toast.themed';
+@import './styles/mat-tooltip.themed';
+@import './styles/table-responsive.themed';
+
+/* export themed mixins */
+@mixin custom-material_themed($theme) {
+  @include color-variables_themed($theme);
+  @include color-classes_themed($theme);
+  @include divider-classes_themed($theme);
+  @include side-menu-component_themed($theme);
+  @include language-component_themed($theme);
+  @include general_table_themed($theme);
+  @include footer_themed($theme);
+  @include typography_themed($theme);
+  @include buttons($theme);
+  @include mat-chip_themed($theme);
+  @include mat-expansion-panel_themed($theme);
+  @include general_select_themed($theme);
+  @include code-editor_themed($theme);
+  @include aqb-select-destination_themed($theme);
+  @include mat-toast_themed($theme);
+  @include mat-tooltip_themed($theme);
+  @include table_responsive_themed($theme);
+}

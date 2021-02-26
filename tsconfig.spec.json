@@ -2,9 +2,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
     "outDir": "./out-tsc/spec",
     "types": [
-      "jasmine"
+      "jest"
     ]
   },
   "files": [
@@ -13,6 +15,7 @@
   ],
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "node_modules/monaco-editor/monaco.d.ts",
   ]
 }

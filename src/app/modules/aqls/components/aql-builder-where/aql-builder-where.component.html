@@ -1,0 +1,28 @@
+<h2 id="section-heading" class="mat-display-2 pointer" (click)="setDestination()">Where</h2>
+<div
+  class="num-select-flag pointer"
+  role="button"
+  tabindex="0"
+  aria-labelledby="section-heading"
+  (keydown.enter)="setDestination()"
+  (keydown.space)="setDestination()"
+  (click)="setDestination()"
+  data-test="aqb__where__set-destination-button"
+>
+  <fa-icon icon="check"></fa-icon>
+</div>
+
+<div class="num-aqb-box" fxLayout="column" fxLayoutGap="20px">
+  <num-aql-builder-where-group
+    *ngIf="aqbModel.where.children.length"
+    role="list"
+    class="group"
+    [dialogMode]="dialogMode"
+    [group]="aqbModel.where"
+    [parentGroupIndex]="null"
+    data-test="aqb__where__group"
+  ></num-aql-builder-where-group>
+</div>
+<p *ngIf="dialogMode === aqlBuilderDialogMode.DataExplorer">
+  {{ 'AQL.WHERE_RESTRICTED_TO_COHORT' | translate }}
+</p>

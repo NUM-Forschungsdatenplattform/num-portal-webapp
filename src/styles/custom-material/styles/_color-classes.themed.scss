@@ -1,0 +1,45 @@
+@mixin color-classes_themed($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+  .num-fg-color,
+  .num-fc {
+    &--primary,
+    &--p {
+      color: mat-color($primary);
+    }
+    &--accent,
+    &--a {
+      color: mat-color($accent);
+    }
+    &--warn,
+    &--w {
+      color: mat-color($warn);
+    }
+    &--disabled,
+    &--d {
+      color: #9e9e9e; // TODO: Take it from grey-palette
+    }
+  }
+
+  .num-bg-color,
+  .num-bc {
+    &--primary,
+    &--p {
+      background: mat-color($primary);
+    }
+    &--accent,
+    &--a {
+      background: mat-color($accent);
+    }
+    &--warn,
+    &--w {
+      background: mat-color($warn);
+    }
+    &--disabled,
+    &--d {
+      background: #9e9e9e; // TODO: Take it from grey-palette
+    }
+  }
+}

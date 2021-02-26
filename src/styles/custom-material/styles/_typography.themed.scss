@@ -1,0 +1,96 @@
+@mixin typography_themed($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
+
+  h1 {
+    fa-icon {
+      margin: 0 13px 0 0;
+    }
+    &:not(.mat-display-1) {
+      margin: 0 0 20px 0 !important;
+      letter-spacing: -0.63px !important;
+    }
+
+    &.mat-display-1 {
+      margin: 0 0 20px 0 !important;
+      letter-spacing: 0 !important;
+
+      &.decision-dialog {
+        text-align: center;
+      }
+    }
+  }
+
+  h2 {
+    &:not(.mat-display-2) {
+      letter-spacing: -0.23px !important;
+      padding: 0 0 12px 0;
+      margin: 0 0 20px 0 !important;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: mat-color($accent, 500);
+    }
+
+    &.mat-display-2 {
+      margin: 0 0 16px 0 !important;
+      letter-spacing: 0 !important;
+    }
+  }
+
+  h3 {
+    padding: 0 0 10px 0;
+    margin: 0 0 20px 0 !important;
+    letter-spacing: 0 !important;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: mat-color($additional, light-grey);
+
+    &.accordion {
+      padding: 0 0 0 0;
+      margin: 0 !important;
+      border: none;
+    }
+  }
+
+  h4 {
+    margin: 0 0 16px 0 !important;
+    letter-spacing: 0 !important;
+  }
+
+  h5,
+  .mat-h5,
+  .mat-typography h5 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    margin: 0 0 8px 0 !important;
+    letter-spacing: 0 !important;
+  }
+
+  a:not(.mat-button):not(.mat-list-item):not(.mat-tab-link):not(.command-bar__scenario-link) {
+    color: mat-color($primary, 500);
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    letter-spacing: 0.5px !important;
+
+    &:hover {
+      color: mat-color($accent, 500);
+    }
+
+    &:not(.no-focus):focus {
+      color: mat-color($primary, 500);
+      outline: none;
+      background: mat-color($accent, 200);
+    }
+
+    &:active {
+      color: mat-color($primary, 500);
+    }
+
+    &:visited {
+      color: mat-color($primary, 300);
+    }
+  }
+}

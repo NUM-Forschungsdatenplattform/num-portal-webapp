@@ -1,0 +1,26 @@
+@mixin side-menu-component_themed($theme) {
+  $accent: map-get($theme, accent);
+
+  .num-mat-list-item {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 20px !important;
+    letter-spacing: 0.25px !important;
+
+    &--active {
+      background: mat-color($accent, 50);
+      font-weight: 500 !important;
+
+      fa-icon {
+        color: mat-color($accent);
+      }
+    }
+
+    &:hover {
+      background: mat-color($accent, 100) !important;
+    }
+    &:focus {
+      background: mat-color($accent, 200) !important;
+    }
+  }
+}

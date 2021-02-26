@@ -1,0 +1,85 @@
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'DATA_EXPLORER.EXPLORE_STUDY' | translate }}</h2>
+  <p class="num-margin-b-40">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
+    imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
+  </p>
+
+  <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
+    <num-study-editor-general-info
+      [form]="studyForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+      data-test="study-editor__general-info"
+    ></num-study-editor-general-info>
+
+    <num-study-editor-templates
+      [(templates)]="study.templates"
+      [isDisabled]="isTemplatesDisabled"
+      data-test="study-editor__templates"
+    ></num-study-editor-templates>
+
+    <num-study-editor-connector
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
+      data-test="study-editor__connector"
+    ></num-study-editor-connector>
+
+    <num-study-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="study.researchers"
+      [isDisabled]="isResearchersDisabled"
+      data-test="study-editor__researchers"
+    ></num-study-editor-researchers>
+  </mat-accordion>
+
+  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading"
+      type="primary"
+      icon="play"
+      (singleClick)="getDataSet()"
+      [attr.data-test]="'data-explorer__get-data-button'"
+      >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+    >
+    <num-button
+      [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+      type="secondary"
+      icon="pen"
+      (singleClick)="openBuilderDialog()"
+      [attr.data-test]="'data-explorer__customize-configuration-button'"
+      >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+    >
+  </section>
+
+  <section
+    class="configuration-loading"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+    *ngIf="!isCompositionsFetched"
+    [attr.data-test]="'data-explorer__configuration-is-loading'"
+  >
+    <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+    <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
+  </section>
+
+  <num-result-table
+    [resultSet]="resultSet"
+    [isDataSetLoading]="isDataSetLoading"
+    [configuration]="configuration"
+    data-test="data-explorer__table"
+  ></num-result-table>
+
+  <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+  <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="cancel()"
+      [attr.data-test]="'data-explorer__back-button'"
+      >{{ 'BUTTON.BACK' | translate }}</num-button
+    >
+  </div>
+</section>

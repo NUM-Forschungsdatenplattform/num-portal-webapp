@@ -1,0 +1,17 @@
+dl {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+dt {
+  margin: 0 0 2px 0;
+}
+
+dd {
+  margin-inline-start: 0;
+  white-space: pre-wrap;
+
+  &:not(:last-of-type) {
+    margin: 0 0 24px 0;
+  }
+}

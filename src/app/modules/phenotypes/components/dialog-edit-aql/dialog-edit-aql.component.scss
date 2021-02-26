@@ -1,0 +1,32 @@
+.not-icon {
+  font-size: 26px;
+  vertical-align: text-bottom;
+  margin: 0 10px 0 0;
+}
+
+.general-info {
+  margin: 0 0 25px 0;
+
+  td,
+  th {
+    vertical-align: top;
+    text-align: left;
+    padding: 0 5px 0 0;
+
+    * {
+      vertical-align: top;
+    }
+  }
+}
+
+.query {
+  word-break: break-word;
+  padding: 15px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  margin: 0 0 25px 0;
+}
+
+:host ::ng-deep span.mark {
+  color: blue;
+}

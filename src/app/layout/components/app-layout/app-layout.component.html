@@ -1,0 +1,43 @@
+<mat-sidenav-container autosize fullscreen class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    fixedInViewport
+    class="mat-elevation-z4"
+    [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [attr.aria-label]="'APPLAYOUT.SIDENAV.LABEL' | translate"
+    [mode]="isHandset ? 'over' : 'side'"
+    [opened]="isHandset === false"
+  >
+    <num-side-menu (toggleSideMenu)="toggleMenu()" fxFlex="100"></num-side-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column">
+    <!-- Page Content -->
+    <num-header role="banner">
+      <button
+        id="menu-toggle-button"
+        type="button"
+        [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
+        mat-icon-button
+        (click)="toggleMenu()"
+        *ngIf="isHandset"
+      >
+        <fa-icon icon="bars"></fa-icon>
+      </button>
+    </num-header>
+
+    <div class="safari-fix" fxLayout="row" fxLayoutAlign="center start" role="presentation">
+      <main
+        fxLayout="column"
+        fxLayoutAlign="center start"
+        fxFlex="95%"
+        fxFlex.gt-md="90%"
+        fxFlex.gt-lg="1200px"
+      >
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+
+    <num-footer fxFlexOffset="auto"></num-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

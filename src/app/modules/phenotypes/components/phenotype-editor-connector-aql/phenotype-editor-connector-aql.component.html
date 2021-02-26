@@ -1,0 +1,11 @@
+<div><span class="not-icon" *ngIf="phenotypeAql.isNegated">&not;</span>{{ phenotypeAql.name }}</div>
+
+<button
+  color="primary"
+  mat-icon-button
+  (click)="handleClick()"
+  [attr.aria-label]="'CONFIGURE' | translate"
+  data-test="phenotype-editor__connector__aql__configure-button"
+>
+  <fa-icon icon="cog" size="lg" [fixedWidth]="true"></fa-icon>
+</button>

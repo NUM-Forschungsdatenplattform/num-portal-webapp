@@ -1,0 +1,45 @@
+<table mat-table [dataSource]="dataSource" matSort aria-labelledby="filter-table-header">
+  <ng-container
+    *ngFor="let columnPath of columnPaths; let colIndex = index"
+    [matColumnDef]="columnKeys[colIndex]"
+  >
+    <th scope="col" mat-header-cell *matHeaderCellDef>columnPath</th>
+    <ng-container *ngIf="columnPath[0] !== 'select'">
+      <td mat-cell *matCellDef="let element">{{ element | nestedAccess: columnPath }}</td>
+    </ng-container>
+    <ng-container *ngIf="columnPath[0] === 'select'">
+      <td mat-cell *matCellDef="let element; let i = index" class="right-align">
+        <button
+          color="accent"
+          mat-icon-button
+          *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
+          (click)="handleSelectClick($event, element)"
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          [attr.data-test]="'generic-filter-table__row-' + i + '__select-button'"
+        >
+          <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+        <ng-template #selectedIcon>
+          <button
+            class="num-fc--d"
+            mat-icon-button
+            (click)="handleDeselectClick($event, element)"
+            [attr.aria-label]="'BUTTON.DESELECT' | translate"
+            [attr.data-test]="'generic-filter-table__row-' + i + '__deselect-button'"
+          >
+            <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
+          </button>
+        </ng-template>
+      </td>
+    </ng-container>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnKeys" hidden></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: columnKeys; let i = index"
+    (click)="handleRowClick(row)"
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row[identifierName] }"
+    [attr.data-test]="'generic-filter-table__row-' + i"
+  ></tr>
+</table>

@@ -1,0 +1,51 @@
+<table mat-table [dataSource]="dataSource" [attr.aria-label]="'AVAILABLE_PHENOTYPES' | translate">
+  <ng-container matColumnDef="name">
+    <th scope="col" mat-header-cell *matHeaderCellDef>name</th>
+    <td
+      class="pointer"
+      mat-cell
+      *matCellDef="let element"
+      (click)="handleRowClick(element)"
+      (focus)="handleRowClick(element)"
+      tabindex="0"
+      data-test="add-phenotypes-filter__table__cell-name"
+    >
+      {{ element.name }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="icon">
+    <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        color="accent"
+        mat-icon-button
+        [attr.aria-label]="'BUTTON.SELECT' | translate"
+        *ngIf="!lookupSelectedPhenotypes[element.id]; else selectedIcon"
+        (click)="handleSelectClick(element)"
+        data-test="add-phenotypes-filter__table__select-button"
+      >
+        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+      </button>
+      <ng-template #selectedIcon>
+        <button
+          class="num-fc--d"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.DESELECT' | translate"
+          (click)="handleDeselectClick(element)"
+          data-test="add-phenotypes-filter__table__deselect-button"
+        >
+          <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
+  <tr
+    class="num-mat-table-row"
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row.id }"
+  ></tr>
+</table>

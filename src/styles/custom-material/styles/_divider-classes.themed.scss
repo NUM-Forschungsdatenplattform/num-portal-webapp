@@ -1,0 +1,41 @@
+@mixin divider-classes_themed($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+  /* Hint:
+    class="num-d-w--1 num-d-c--a" || class="num-divider-width--1 num-divider-color--a"
+    class="num-d-w--2 num-d-c--a" || class="num-divider-width--2 num-divider-color--a"
+    class="num-d-w--3 num-d-c--a" || class="num-divider-width--3 num-divider-color--a"
+  */
+
+  .mat-divider {
+    border-style: solid;
+
+    $border-widths: 3;
+    @for $i from 1 through $border-widths {
+      &.num-d-w,
+      &.num-divider-width {
+        &--#{$i} {
+          border-width: #{$i}px;
+        }
+      }
+    }
+
+    &.num-d-c,
+    &.num-divider-color {
+      &--primary,
+      &--p {
+        border-color: mat-color($primary);
+      }
+      &--accent,
+      &--a {
+        border-color: mat-color($accent);
+      }
+      &--warn,
+      &--w {
+        border-color: mat-color($warn);
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { TranslateModule } from '@ngx-translate/core'
+import { MaterialModule } from 'src/app/layout/material/material.module'
+import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
+import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
+import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
+
+import { AqlBuilderSelectItemComponent } from './aql-builder-select-item.component'
+
+describe('AqlBuilderSelectItemComponent', () => {
+  let component: AqlBuilderSelectItemComponent
+  let fixture: ComponentFixture<AqlBuilderSelectItemComponent>
+
+  const compositionId = 'openEHR-EHR-COMPOSITION.report.v1'
+  const compositionReferenceId = 1
+  const archetypeId = 'openEHR-EHR-OBSERVATION.symptom_sign_screening.v0'
+  const archetypeReferenceId = 2
+
+  const containmentTreeNode: IContainmentTreeNode = {
+    archetypeId,
+    parentArchetypeId: compositionId,
+    displayName: 'Test',
+  }
+
+  const item = new AqbSelectItemUiModel(
+    containmentTreeNode,
+    compositionReferenceId,
+    archetypeReferenceId
+  )
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [AqlBuilderSelectItemComponent, ArchetypePipe],
+      imports: [
+        MaterialModule,
+        ReactiveFormsModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+        BrowserAnimationsModule,
+      ],
+    }).compileComponents()
+  })
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AqlBuilderSelectItemComponent)
+    component = fixture.componentInstance
+    component.item = item
+    fixture.detectChanges()
+  })
+
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+
+  describe('When the item is supposed to be deleted', () => {
+    it('should emit the deletion to its parent', () => {
+      jest.spyOn(component.deleteItem, 'emit')
+      component.deleteSelf()
+      expect(component.deleteItem.emit).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('When the alias is set', () => {
+    it('should set the alias as given name into the ui model', () => {
+      const element = fixture.nativeElement.querySelector('input')
+      element.value = 'test_input'
+      element.dispatchEvent(new Event('input'))
+      expect(component.item.givenName).toEqual('test_input')
+    })
+
+    test.each(['1abc', 'abc-test', '/path', 'dd!', '{}', '😜'])(
+      'should set the current given name if the input is invalid',
+      (value) => {
+        component.item.givenName = 'before'
+        const element = fixture.nativeElement.querySelector('input')
+        element.value = value
+        element.dispatchEvent(new Event('input'))
+        expect(component.item.givenName).toEqual('before')
+      }
+    )
+  })
+})

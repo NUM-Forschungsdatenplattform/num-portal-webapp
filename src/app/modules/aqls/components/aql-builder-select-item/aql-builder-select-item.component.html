@@ -1,0 +1,31 @@
+<section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
+  <div class="name-field mat-body-strong" data-test="aqb__select__item__name">
+    {{ item.name | archetype: true }}
+  </div>
+</section>
+
+<section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
+  <div class="alias-prefix">{{ 'AQL.AS' | translate }}</div>
+  <ng-container [formGroup]="aliasForm">
+    <mat-form-field floatLabel="always" appearance="outline" class="num-tiny-input value-input">
+      <mat-label id="label">Alias</mat-label>
+      <input
+        aria-labelledby="label"
+        type="text"
+        matInput
+        formControlName="value"
+        data-test="aqb__select__item__alias-input"
+      />
+    </mat-form-field>
+  </ng-container>
+
+  <button
+    color="primary"
+    mat-icon-button
+    (click)="deleteSelf()"
+    [attr.aria-label]="'BUTTON.DELETE' | translate"
+    data-test="aqb__select__item__delete-button"
+  >
+    <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+  </button>
+</section>

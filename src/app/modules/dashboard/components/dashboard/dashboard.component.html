@@ -1,0 +1,9 @@
+<h2>dashboard works! {{ config.env.name }}</h2>
+<div>
+  {{ 'DASHBOARD.WELCOME' | translate }}
+</div>
+
+<div>{{ authTest }}</div>
+
+<pre *numUserHasRole="[AvailableRoles.OrganizationAdmin]">Organizsation Admin Content</pre>
+<pre *numUserHasRole="[AvailableRoles.Researcher]">Researcher Content</pre>

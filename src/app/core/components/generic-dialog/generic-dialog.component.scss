@@ -1,0 +1,17 @@
+.button-row {
+  min-height: 80px;
+  padding: 16px 0 28px 0;
+}
+
+.close-icon {
+  font-size: 26px;
+}
+
+.num-large-dialog {
+  height: 100%;
+
+  .mat-dialog-content {
+    max-height: unset;
+    overflow: visible;
+  }
+}

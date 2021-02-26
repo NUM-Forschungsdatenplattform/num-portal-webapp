@@ -1,0 +1,65 @@
+<section
+  role="region"
+  aria-labelledby="creator-label"
+  fxLayout="column"
+  fxFlex="100%"
+  fxLayoutGap="20px"
+  class="num-margin-b-60"
+>
+  <h3>{{ 'BUILD_QUERY' | translate }}</h3>
+  <mat-card>
+    <mat-card-content fxLayout="column" fxFlex="100%">
+      <p id="creator-label">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+        ridiculus mus.
+      </p>
+
+      <num-button
+        type="primary"
+        icon="plus"
+        class="num-margin-b-40"
+        (singleClick)="openBuilderDialog()"
+        data-test="aql-editor__aql-creator__open-builder-button"
+        >{{ 'BUTTON.OPEN_AQL_BUILDER' | translate }}</num-button
+      >
+
+      <div style="height: 300px" class="num-margin-b-40">
+        <num-code-editor
+          class="editor"
+          style="height: 100%"
+          [(value)]="aqlQuery"
+          [formatObservable$]="formatObservable$"
+          [validationObservable$]="validationObservable$"
+          (editorInit)="onEditorInit($event)"
+        ></num-code-editor>
+      </div>
+
+      <div class="button-row" fxLayout="row" fxLayoutGap="20px">
+        <num-button
+          type="primary"
+          (singleClick)="execute.emit()"
+          [isDisabled]="!isValidForExecution || !isExecutionReady"
+          data-test="aql-editor__aql-creator__execute-button"
+          >{{ 'BUTTON.EXECUTE' | translate }}</num-button
+        >
+
+        <num-button
+          type="primary"
+          icon="align-left"
+          (singleClick)="format()"
+          data-test="aql-editor__aql-creator__format-button"
+          >{{ 'BUTTON.FORMAT_QUERY' | translate }}</num-button
+        >
+
+        <num-button
+          type="primary"
+          icon="align-left"
+          (singleClick)="validate(true)"
+          data-test="aql-editor__aql-creator__validate-button"
+          >{{ 'BUTTON.VALIDATE_QUERY' | translate }}</num-button
+        >
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

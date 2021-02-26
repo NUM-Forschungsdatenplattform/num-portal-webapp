@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+@import './font';
+@import './themes';
+@import './custom-material';
+@import './general-styles/_margin-bottom-classes';
+
+$num-typography: map-get($num-portal-webapp-theme, num-typography);
+@include mat-core($num-typography);
+@include angular-material-theme($num-portal-webapp-theme);
+@include custom-material_themed($num-portal-webapp-theme);
+
+html,
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

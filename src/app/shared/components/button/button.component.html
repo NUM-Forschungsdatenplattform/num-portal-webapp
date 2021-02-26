@@ -1,0 +1,40 @@
+<button
+  mat-flat-button
+  class="num-button"
+  color="primary"
+  [disabled]="isDisabled"
+  *ngIf="type === 'primary'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
+>
+  <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
+
+<button
+  mat-stroked-button
+  class="num-button"
+  color="primary"
+  [disabled]="isDisabled"
+  *ngIf="type === 'secondary'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
+>
+  <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
+
+<button
+  class="num-button"
+  mat-button
+  color="primary"
+  [disabled]="isDisabled"
+  *ngIf="type === 'basic'"
+  (click)="buttonClicked()"
+  (dblclick)="buttonDoubleClicked()"
+>
+  <fa-icon *ngIf="icon" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
+
+<ng-template #content><ng-content></ng-content></ng-template>

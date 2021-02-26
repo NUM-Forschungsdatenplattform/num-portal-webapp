@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+/* font-size | line-height |font-weight */
+$num-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  /* mat-h1 */ $headline: mat-typography-level(40px, 48px, 300),
+  /* mat-h2 */ $title: mat-typography-level(28px, 32px, 300),
+  /* mat-h3 */ $subheading-2: mat-typography-level(22px, 28px, 500),
+  /* mat-h4 */ $subheading-1: mat-typography-level(20px, 26px, 500),
+  /* .mat-body, Base body text */ $body-1: mat-typography-level(16px, 24px, 400),
+  /* .mat-body-strong, Bolder body text. */ $body-2: mat-typography-level(16px, 24px, 500),
+  $button: mat-typography-level(14px, 16px, 400),
+  /* Smaller body and hint text. */ $caption: mat-typography-level(14px, 16px, 300),
+  /* Dialog H1 */ $display-1: mat-typography-level(22px, 28px, 400),
+  /* Dialog H2 */ $display-2: mat-typography-level(18px, 24px, 400),
+  /* Dialog H3 */ $display-3: mat-typography-level(16px, 24px, 500),
+  $display-4: mat-typography-level(16px, 24px, 500),
+);

@@ -1,0 +1,37 @@
+@import './colors/accent-theme.palette.scss';
+@import './colors/primary-theme.palette.scss';
+@import './colors/additional-theme.palette.scss';
+@import './theme-palettes/mat-light-theme-background';
+@import './theme-palettes/mat-light-theme-foreground';
+@import './typography/typography.config';
+
+$num-portal-webapp-primary: mat-palette($num-primary-palette);
+$num-portal-webapp-accent: mat-palette($num-accent-palette);
+$num-portal-webapp-additional: mat-palette($num-additional-palette, warning);
+
+$mat-light-theme-foreground: mat-light-theme-foreground(
+  $num-portal-webapp-primary,
+  $num-portal-webapp-accent,
+  $num-portal-webapp-additional
+);
+
+$mat-light-theme-background: mat-light-theme-background(
+  $num-portal-webapp-primary,
+  $num-portal-webapp-accent,
+  $num-portal-webapp-additional
+);
+
+@function num-theme-builder() {
+  @return (
+    primary: $num-portal-webapp-primary,
+    accent: $num-portal-webapp-accent,
+    warn: $num-portal-webapp-additional,
+    additional: $num-portal-webapp-additional,
+    is-dark: false,
+    foreground: $mat-light-theme-foreground,
+    background: $mat-light-theme-background,
+    num-typography: $num-typography
+  );
+}
+
+$num-portal-webapp-theme: num-theme-builder();

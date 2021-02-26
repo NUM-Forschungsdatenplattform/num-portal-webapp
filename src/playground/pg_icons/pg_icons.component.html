@@ -1,0 +1,14 @@
+<main>
+  <h1>Icons</h1>
+  <div class="icon-list" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
+    <section
+      *ngFor="let icon of icons"
+      fxFlex="0 1 calc(33.3% - 32px)"
+      fxFlex.lt-md="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%"
+    >
+      <span class="mat-body-strong">{{ icon }}</span>
+      <fa-icon class="num-fc--a" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+    </section>
+  </div>
+</main>

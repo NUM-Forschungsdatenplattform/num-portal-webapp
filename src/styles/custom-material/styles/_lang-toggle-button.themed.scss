@@ -1,0 +1,49 @@
+@mixin language-component_themed($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $additional: map-get($theme, additional);
+
+  .num-mat-lang-toggle-button {
+    border: none;
+
+    .mat-button-toggle {
+      background-color: transparent;
+
+      button {
+        text-transform: uppercase !important;
+        font-size: 14px !important;
+        line-height: 16px !important;
+        font-weight: 400 !important;
+
+        &:hover {
+          background: mat-color($accent, 100);
+        }
+
+        &:focus,
+        .cdk-keyboard-focused & {
+          background: mat-color($accent, 200);
+        }
+      }
+    }
+
+    .mat-button-toggle-appearance-standard {
+      color: mat-color($additional, mid-grey);
+
+      &.mat-button-toggle-checked {
+        color: mat-color($primary);
+      }
+
+      &.mat-button-toggle + .mat-button-toggle {
+        border-left: solid 2px mat-color($accent);
+      }
+    }
+
+    .cdk-keyboard-focused .mat-button-toggle-focus-overlay {
+      display: none;
+    }
+
+    .mat-button-toggle-label-content {
+      line-height: 32px;
+    }
+  }
+}

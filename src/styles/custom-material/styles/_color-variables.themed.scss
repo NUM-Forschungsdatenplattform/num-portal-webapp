@@ -1,0 +1,11 @@
+@mixin color-variables_themed($theme) {
+  $accent: map-get($theme, accent);
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+
+  :root {
+    --num-color--primary: #{mat-color($primary)};
+    --num-color--accent: #{mat-color($accent)};
+    --num-color--warn: #{mat-color($warn)};
+  }
+}
