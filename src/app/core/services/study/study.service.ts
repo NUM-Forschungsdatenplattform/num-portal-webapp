@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/studies/state-machine'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { IStudyComment } from 'src/app/shared/models/study/study-comment.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
@@ -120,6 +121,12 @@ export class StudyService {
         study.researchers.find((researcher) => researcher.userId === userId)
     )
     return result
+  }
+
+  executeAdHocAql(aql: string, studyId: number): Observable<IAqlExecutionResponse> {
+    return this.httpClient
+      .post<IAqlExecutionResponse>(`${this.baseUrl}/${studyId}/execute`, { query: aql })
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
