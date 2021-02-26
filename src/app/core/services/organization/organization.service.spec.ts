@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError } from 'rxjs'
+import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { OrganizationService } from './organization.service'
 import { mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
-import { ProfileService } from '../profile/profile.service'
-import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
-import { mockUserProfile2, mockUserProfile3 } from 'src/mocks/data-mocks/user-profile.mock'
 
 describe('OrganizationService', () => {
   let service: OrganizationService
@@ -22,25 +19,19 @@ describe('OrganizationService', () => {
     },
   } as AppConfigService
 
-  const userProfileSubject$ = new Subject<any>()
-  const userProfileService = ({
-    userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
-
   beforeEach(() => {
     jest.restoreAllMocks()
-    service = new OrganizationService(httpClient, appConfig, userProfileService)
+    service = new OrganizationService(httpClient, appConfig)
   })
 
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
 
-  describe('When a call to getAll method comes in and the user has role SUPER_ADMIN', () => {
+  describe('When a call to getAll method comes in', () => {
     it('should call the api - with success', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockOrganizations))
       service.getAll().subscribe()
-      userProfileSubject$.next(mockUserProfile3)
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
@@ -51,18 +42,8 @@ describe('OrganizationService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      userProfileSubject$.next(mockUserProfile3)
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/organization')
       expect(service.handleError).toHaveBeenCalled()
-    })
-  })
-
-  describe('When a call to getAll method comes in and the user does not have role SUPER_ADMIN', () => {
-    it('should not call the api', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockOrganizations))
-      service.getAll().subscribe()
-      userProfileSubject$.next(mockUserProfile2)
-      expect(httpClient.get).toHaveBeenCalledTimes(0)
     })
   })
 
