@@ -1,3 +1,24 @@
 <h2>{{ 'ORGANIZATION_MANAGEMENT.OVERVIEW_HEADER' | translate }}</h2>
 
 <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.OVERVIEW_DESCRIPTION' | translate }}</p>
+
+<num-organizations-table></num-organizations-table>
+
+<section
+  *numUserHasRole="[availableRoles.SuperAdmin]"
+  role="region"
+  fxLayout="column"
+  class="num-margin-b-40"
+>
+  <h3>{{ 'ORGANIZATION_MANAGEMENT.CREATE_HEADER' | translate }}</h3>
+  <p class="num-margin-b-20">
+    {{ 'ORGANIZATION_MANAGEMENT.CREATE_DESCRIPTION_BUTTON' | translate }}
+  </p>
+  <num-button
+    type="primary"
+    icon="plus"
+    (singleClick)="createOrganization()"
+    [attr.data-test]="'organization-management__create-organization-button'"
+    >{{ 'BUTTON.CREATE_ORGANIZATION' | translate }}</num-button
+  >
+</section>

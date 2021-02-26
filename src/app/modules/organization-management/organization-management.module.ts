@@ -5,9 +5,14 @@ import { OrganizationEditorComponent } from './components/organization-editor/or
 import { OrganizationManagementRoutingModule } from './organization-management-routing.module'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
+import { OrganizationsTableComponent } from './components/organizations-table/organizations-table.component'
 
 @NgModule({
-  declarations: [OrganizationManagementComponent, OrganizationEditorComponent],
+  declarations: [
+    OrganizationManagementComponent,
+    OrganizationEditorComponent,
+    OrganizationsTableComponent,
+  ],
   imports: [CommonModule, OrganizationManagementRoutingModule, SharedModule, LayoutModule],
 })
 export class OrganizationManagementModule {}

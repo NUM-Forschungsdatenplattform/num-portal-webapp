@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router'
 
 import { Observable, of } from 'rxjs'
-import { map, catchError, timeout, filter, take } from 'rxjs/operators'
+import { map, catchError, timeout, filter, take, switchMap } from 'rxjs/operators'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
@@ -28,26 +28,8 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
     return this.profileService.userProfileObservable$.pipe(
       filter((profile) => profile.id !== undefined),
       take(1),
-      map((userProfile: IUserProfile) => {
-        if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
-          if (id !== userProfile.organization.id) {
-            return this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
-          }
-          return { organization: userProfile.organization, error: null }
-        } else {
-          if (id === 'new') {
-            return { organization: undefined, error: null }
-          }
-          this.organizationService.get(id).pipe(
-            map((organization) => {
-              return { organization, error: null }
-            }),
-            catchError((error) => {
-              this.router.navigate(['organizations'])
-              return of(error)
-            })
-          )
-        }
+      switchMap((userProfile: IUserProfile) => {
+        return this.checkUserRole(userProfile, id)
       }),
       timeout(10000),
       catchError((error) => {
@@ -55,5 +37,28 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
         return of(error)
       })
     )
+  }
+
+  checkUserRole(userProfile: IUserProfile, id: string): Observable<IOrganizationResolved> {
+    if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
+      if (id !== userProfile.organization.id) {
+        this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
+        return of()
+      }
+      return of({ organization: userProfile.organization, error: null })
+    } else {
+      if (id === 'new') {
+        return of({ organization: undefined, error: null })
+      }
+      return this.organizationService.get(id).pipe(
+        map((organization) => {
+          return { organization, error: null }
+        }),
+        catchError((error) => {
+          this.router.navigate(['organizations'])
+          return of(error)
+        })
+      )
+    }
   }
 }

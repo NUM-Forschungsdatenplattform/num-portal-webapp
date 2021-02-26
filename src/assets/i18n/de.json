@@ -177,7 +177,8 @@
     "STUDY_APPROVAL_DENY": "Studie ablehnen",
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
-    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen"
+    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
+    "CREATE_ORGANIZATION": "Organisation anlegen"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
@@ -249,8 +250,13 @@
     "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle Organisationen im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Organisation wählen Sie diese aus der Liste aus.",
     "CREATE_HEADER": "Organisation erstellen",
     "CREATE_DESCRIPTION": "Zum Erstellen einer Organisation müssen Sie zunächst hier den Namen der Organisation eingeben.\nNach dem erfolgreichen Anlegen der Organisation können Sie diese in einem weiteren Schritt bearbeiten, um beispielsweise die Mail-Domänen zuzuweisen.\n\n*Pflichtfeld",
+    "CREATE_DESCRIPTION_BUTTON": "Zum Anlegen einer neuen Organisation klicken Sie bitte auf den folgenden Button.",
     "EDIT_HEADER": "Organisation bearbeiten",
     "EDIT_DESCRIPTION": "Auf dieser Seite können Sie der Organisation Mail-Domänen zuweisen. Dadurch können neue Nutzer an Hand ihrer E-Mail-Adresse automatisch der Organisation zugewiesen werden.\nAußerdem können Sie be Bedarf den Namen der Organisation ändern. Das sollten Sie aber nur machen, wenn es zwingend notwendig ist.\n\n*Pflichtfeld"
+  },
+  "ORGANIZATION": {
+    "NAME": "Organisationen",
+    "MAIL_DOMAIN": "Mail-Domänen"
   },
   "DATE_TIME": {
     "DATE": "Datum",

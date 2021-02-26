@@ -177,7 +177,8 @@
     "STUDY_APPROVAL_DENY": "Deny study",
     "EXECUTE": "Execute",
     "GET_DATA": "Get Data",
-    "CUSTOMIZE_CONFIGURATION": "Customize configuration"
+    "CUSTOMIZE_CONFIGURATION": "Customize configuration",
+    "CREATE_ORGANIZATION": "Create organization"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",
@@ -249,8 +250,13 @@
     "OVERVIEW_DESCRIPTION": "In the following list you can see all the organizations in the portal that you are authorized to edit. To edit an organization, select it from the list.",
     "CREATE_HEADER": "Create Organization",
     "CREATE_DESCRIPTION": "To create an organization, you must first enter the name of the organization here.\nAfter successfully creating the organization, you can edit it in a further step, for example to assign the mail domains.\n\n*Mandatory field",
+    "CREATE_DESCRIPTION_BUTTON": "To create a new organization, please click the following button.",
     "EDIT_HEADER": "Edit Organization",
     "EDIT_DESCRIPTION": "On this page you can assign mail domains to the organization. This allows new users to be automatically assigned to the organization based on their email address.\nYou can also change the name of the organization if necessary. However, you should only do this if it is absolutely necessary.\n\n*Mandatory field"
+  },
+  "ORGANIZATION": {
+    "NAME": "Organizations",
+    "MAIL_DOMAIN": "Mail Domain(s)"
   },
   "DATE_TIME": {
     "DATE": "Date",
