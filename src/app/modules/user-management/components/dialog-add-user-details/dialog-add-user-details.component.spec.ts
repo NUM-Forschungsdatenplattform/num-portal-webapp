@@ -6,11 +6,14 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { DialogAddUserDetailsComponent } from './dialog-add-user-details.component'
@@ -33,6 +36,11 @@ describe('DialogAddUserDetailsComponent', () => {
     getAll: () => of(mockOrganizations),
     setFilter: () => {},
   } as unknown) as OrganizationService
+
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const profileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -58,6 +66,10 @@ describe('DialogAddUserDetailsComponent', () => {
           provide: OrganizationService,
           useValue: organizationService,
         },
+        {
+          provide: ProfileService,
+          useValue: profileService,
+        },
       ],
     }).compileComponents()
   })
@@ -66,6 +78,7 @@ describe('DialogAddUserDetailsComponent', () => {
     fixture = TestBed.createComponent(DialogAddUserDetailsComponent)
     component = fixture.componentInstance
     component.dialogInput = mockUser
+    userProfileSubject$.next(mockUserProfile1)
     fixture.detectChanges()
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(adminService, 'addUserRoles')

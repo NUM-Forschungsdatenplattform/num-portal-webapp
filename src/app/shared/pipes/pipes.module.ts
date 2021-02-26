@@ -7,6 +7,7 @@ import { IsSelectedPipe } from './is-selected.pipe'
 import { ItemVisibilityPipe } from './item-visibility.pipe'
 import { LocalizedDatePipe } from './localized-date.pipe'
 import { AqlItemVisibilityPipe } from './aql-item-visibility.pipe'
+import { AvailableRolesPipe } from './available-roles.pipe'
 
 const SHARED_DECLARATIONS = [
   GroupIndexPipe,
@@ -16,6 +17,7 @@ const SHARED_DECLARATIONS = [
   ItemVisibilityPipe,
   LocalizedDatePipe,
   AqlItemVisibilityPipe,
+  AvailableRolesPipe,
 ]
 
 @NgModule({
