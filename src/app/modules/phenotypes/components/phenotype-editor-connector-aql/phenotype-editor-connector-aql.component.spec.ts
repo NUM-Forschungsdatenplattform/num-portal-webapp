@@ -3,6 +3,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { PhenotypeEditorConnectorAqlComponent } from './phenotype-editor-connector-aql.component'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
+import { TranslateModule } from '@ngx-translate/core'
 
 describe('PhenotypeEditorConnectorAqlComponent', () => {
   let component: PhenotypeEditorConnectorAqlComponent
@@ -13,7 +14,7 @@ describe('PhenotypeEditorConnectorAqlComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PhenotypeEditorConnectorAqlComponent],
-      imports: [FontAwesomeTestingModule],
+      imports: [FontAwesomeTestingModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

@@ -4,7 +4,9 @@
   <span fxFlex></span>
 
   <a href="#">
-    <num-button type="basic" icon="envelope">{{ 'LEGAL.CONTACT' | translate }}</num-button>
+    <num-button type="basic" icon="envelope" data-test="header__top-row__contact-button">{{
+      'LEGAL.CONTACT' | translate
+    }}</num-button>
   </a>
 
   <num-language></num-language>
@@ -20,7 +22,7 @@
     fxFlex.gt-md="90%"
     fxFlex.gt-lg="1200px"
   >
-    <h1>
+    <h1 data-test="header__page-headline">
       <fa-icon
         class="num-fc--a"
         [icon]="currentMainNavItem.icon"
@@ -41,6 +43,7 @@
         [routerLinkActiveOptions]="{ exact: true }"
         [active]="tab.id === currentTabNavSelected"
         [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
+        [attr.data-test]="'header__tab-nav__' + tab.translationKey"
       >
         {{ tab.translationKey | translate }}
       </a>

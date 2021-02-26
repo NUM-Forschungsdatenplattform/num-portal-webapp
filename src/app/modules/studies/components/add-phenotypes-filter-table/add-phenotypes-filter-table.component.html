@@ -8,6 +8,7 @@
       (click)="handleRowClick(element)"
       (focus)="handleRowClick(element)"
       tabindex="0"
+      data-test="add-phenotypes-filter__table__cell-name"
     >
       {{ element.name }}
     </td>
@@ -22,6 +23,7 @@
         [attr.aria-label]="'BUTTON.SELECT' | translate"
         *ngIf="!lookupSelectedPhenotypes[element.id]; else selectedIcon"
         (click)="handleSelectClick(element)"
+        data-test="add-phenotypes-filter__table__select-button"
       >
         <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
       </button>
@@ -31,6 +33,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.DESELECT' | translate"
           (click)="handleDeselectClick(element)"
+          data-test="add-phenotypes-filter__table__deselect-button"
         >
           <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
         </button>

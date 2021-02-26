@@ -59,6 +59,7 @@ describe('AqlEditorComponent', () => {
     @Input() aqlQuery: any
     @Input() isExecutionReady: any
     @Output() execute = executeEmitter
+    validate = jest.fn().mockResolvedValue(true)
   }
 
   beforeEach(async () => {
@@ -137,7 +138,8 @@ describe('AqlEditorComponent', () => {
       }
     })
 
-    it('should call the AQL save method with success', async (done) => {
+    it('should validate the aql and call the AQL save method with success', async (done) => {
+      jest.spyOn(component.aqlCreator, 'validate').mockResolvedValue(true)
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
@@ -145,6 +147,18 @@ describe('AqlEditorComponent', () => {
           type: ToastMessageType.Success,
           message: 'AQL.SAVE_SUCCESS_MESSAGE',
         })
+        expect(component.aqlCreator.validate).toHaveBeenCalled()
+        done()
+      })
+    })
+
+    it('should validate the aql and not call the api to save if its not valid', (done) => {
+      jest.spyOn(component.aqlCreator, 'validate').mockResolvedValue(false)
+      fixture.detectChanges()
+
+      component.save().then(() => {
+        expect(aqlService.save).not.toHaveBeenCalled()
+        expect(component.aqlCreator.validate).toHaveBeenCalled()
         done()
       })
     })

@@ -286,7 +286,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   async determineHits(): Promise<void> {
-    const { study, cohort } = this.getStudyForApi()
+    const { cohort } = this.getStudyForApi()
 
     if (cohort) {
       this.updateDetermineHits(null, '', true)

@@ -55,6 +55,7 @@ describe('AqlEditorComponent', () => {
     @Input() aqlQuery: any
     @Input() isExecutionReady: any
     @Output() execute = executeEmitter
+    validate = jest.fn().mockResolvedValue(true)
   }
 
   beforeEach(async () => {
@@ -99,6 +100,7 @@ describe('AqlEditorComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(router, 'navigate').mockImplementation()
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -149,10 +151,20 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'update').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should call the AQL update method', async () => {
+    it('should call the AQL update method', async (done) => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
+        done()
+      })
+    })
+
+    it('should not call the AQL update method if the query is not valid', async (done) => {
+      jest.spyOn(component.aqlCreator, 'validate').mockResolvedValue(false)
+      component.update().then(() => {
+        expect(component.aqlCreator.validate).toHaveBeenCalled()
+        expect(aqlService.update).not.toHaveBeenCalled()
+        done()
       })
     })
   })

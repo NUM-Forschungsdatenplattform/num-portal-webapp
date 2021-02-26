@@ -10,8 +10,13 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="group.logicalOperator"
       [disabled]="group.children.length <= 1"
+      data-test="aqb__where__group__logical-operator__selector"
     >
-      <mat-option *ngFor="let operator of logicalOperatorArray" [value]="operator">
+      <mat-option
+        *ngFor="let operator of logicalOperatorArray"
+        [value]="operator"
+        [attr.data-test]="'aqb__where__group__logical-operator__' + operator"
+      >
         {{ operator }}
       </mat-option>
     </mat-select>
@@ -29,6 +34,7 @@
     [parentGroupIndex]="groupIndex"
     [index]="i"
     (delete)="deleteChildGroup($event)"
+    data-test="aqb__where__group"
   ></num-aql-builder-where-group>
 
   <num-aql-builder-where-item
@@ -44,6 +50,7 @@
     role="listitem"
     fxLayout="row"
     fxLayoutAlign="space-between start"
+    data-test="aqb__where__item"
   ></num-aql-builder-where-item>
 </section>
 
@@ -54,6 +61,7 @@
     type="basic"
     (singleClick)="deleteSelf()"
     *ngIf="groupType !== connectorGroupType.Main"
+    data-test="aqb__where__group__delete-button"
     >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
   >
 </section>

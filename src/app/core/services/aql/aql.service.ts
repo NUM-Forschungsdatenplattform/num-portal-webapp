@@ -150,12 +150,6 @@ export class AqlService {
       .pipe(catchError(this.handleError))
   }
 
-  // TO DO: Replace by new Endpoint
-  executeAdHocAql(aql: string, studyId: number): Observable<IAqlExecutionResponse> {
-    // return of(mockResultSetFlat).pipe(delay(1000))
-    return of(mockResultSetJson).pipe(delay(1000))
-  }
-
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

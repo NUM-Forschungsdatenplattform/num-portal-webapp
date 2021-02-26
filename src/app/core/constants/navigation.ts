@@ -77,7 +77,7 @@ export const mainNavItems: INavItem[] = [
   },
   {
     routeTo: 'users',
-    icon: 'users-cog',
+    icon: 'user-edit',
     translationKey: 'NAVIGATION.USER_MANAGEMENT',
     tabNav: [
       {
@@ -89,6 +89,40 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'users/all',
         id: 'approved',
         translationKey: 'NAVIGATION.ALL_USERS',
+      },
+    ],
+  },
+  {
+    routeTo: 'organizations',
+    icon: 'building',
+    translationKey: 'NAVIGATION.ORGANIZATION_MANAGEMENT',
+    tabNav: [
+      {
+        routeTo: 'organizations',
+        id: 'overview',
+        translationKey: 'NAVIGATION.ALL_ORGANIZATIONS',
+      },
+      {
+        routeTo: 'organizations/new/editor',
+        id: 'editor',
+        translationKey: 'NAVIGATION.ORGANIZATION_EDITOR',
+      },
+    ],
+  },
+  {
+    routeTo: 'content-editor',
+    icon: ['far', 'newspaper'],
+    translationKey: 'NAVIGATION.CONTENT_EDITOR',
+    tabNav: [
+      {
+        routeTo: 'content-editor',
+        id: 'welcome-page',
+        translationKey: 'NAVIGATION.CONTENT_EDITOR_WELCOME_PAGE',
+      },
+      {
+        routeTo: 'content-editor/navigation-items',
+        id: 'navigation-items',
+        translationKey: 'NAVIGATION.CONTENT_EDITOR_NAVIGATION_ITEMS',
       },
     ],
   },

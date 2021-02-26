@@ -1,0 +1,18 @@
+<div id="select-title" class="mat-body-strong">{{ 'ASSIGN_ORGANIZATION' | translate }}</div>
+<mat-form-field appearance="fill" color="accent">
+  <mat-label>{{ 'SELECT_ORGANIZATION' | translate }}</mat-label>
+  <mat-select
+    (selectionChange)="handleSelectClick()"
+    [(value)]="selectedOrganization.id"
+    data-test="user-management__add-organization__selector"
+  >
+    <mat-option>--</mat-option>
+    <mat-option
+      *ngFor="let organization of organizations"
+      [value]="organization.id"
+      [attr.data-test]="'user-management__add-organization__' + organization.name"
+    >
+      {{ organization.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

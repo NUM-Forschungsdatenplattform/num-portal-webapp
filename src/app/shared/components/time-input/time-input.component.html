@@ -6,12 +6,13 @@
   >
     <mat-label id="label">{{ inputField.name | translate }}</mat-label>
     <input
-      [formControlName]="inputField.formControl"
+      matInput
       aria-labelledby="label"
       type="number"
+      [formControlName]="inputField.formControl"
       [min]="inputField.lowerBound"
       [max]="inputField.upperBound"
-      matInput
+      [attr.data-test]="'generic-time-input__' + inputField.name"
     />
   </mat-form-field>
 </form>

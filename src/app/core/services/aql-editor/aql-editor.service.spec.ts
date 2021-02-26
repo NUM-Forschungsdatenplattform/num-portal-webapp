@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-builder/aql-validation-response.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 import { mockComplexContains } from 'src/mocks/data-mocks/aqb/complex-contains.mock'
@@ -88,17 +89,69 @@ describe('AqlEditorService', () => {
   })
 
   describe('When a query is supposed to be build by the aql-editor backend', () => {
-    test.each([mockComplexContains, mockComplexeWhere, mockOrderBy])(
-      'should post the aqb model to the api',
-      (buildModel) => {
-        const buildResponse: IArchetypeQueryBuilderResponse = {
-          q: 'result string',
-          parameters: {},
-        }
-        jest.spyOn(httpClient, 'post').mockImplementation(() => of(buildResponse))
-        service.buildAql(buildModel)
-        expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql`, buildModel)
+    it('should post the aqb model to the api and return formatted', (done) => {
+      const buildResponse: IArchetypeQueryBuilderResponse = {
+        q: 'result string',
+        parameters: {},
       }
-    )
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(buildResponse))
+      jest.spyOn(service.formatter, 'formatQuery')
+      service.buildAql(mockComplexContains).subscribe((result) => {
+        expect(result).toEqual(buildResponse)
+        done()
+      })
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql`, mockComplexContains)
+      expect(service.formatter.formatQuery).toHaveBeenCalledWith(buildResponse.q)
+    })
+
+    it('should handle the error', (done) => {
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('error'))
+
+      service.buildAql(mockComplexContains).subscribe(
+        () => {},
+        (error) => {
+          expect(error).toBeDefined()
+          done()
+        }
+      )
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql`, mockComplexContains)
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a query is supposed to be validated', () => {
+    const query = 'test test test'
+
+    it('should call the api to return the validation result on success', (done) => {
+      const validationResponse: IAqlValidationResponse = {
+        error: 'Error string',
+        message: 'Error message',
+        startColumn: 10,
+        startLine: 2,
+        valid: false,
+      }
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(validationResponse))
+      service.validateAql(query).subscribe((response) => {
+        expect(response).toEqual(validationResponse)
+        done()
+      })
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql/validate`, { q: query })
+    })
+
+    it('should call the api and handle the error', (done) => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('error'))
+      jest.spyOn(service, 'handleError')
+
+      service.validateAql(query).subscribe(
+        () => {},
+        (error) => {
+          expect(error).toBeDefined()
+          done()
+        }
+      )
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql/validate`, { q: query })
+      expect(service.handleError).toHaveBeenCalled()
+    })
   })
 })

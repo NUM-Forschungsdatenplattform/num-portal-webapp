@@ -7,7 +7,7 @@
   (keydown.enter)="setDestination()"
   (keydown.space)="setDestination()"
   (click)="setDestination()"
-  [attr.data-test]="'aqb__select__set-destination'"
+  data-test="aqb__select__set-destination-button"
 >
   <fa-icon icon="check"></fa-icon>
 </div>
@@ -22,5 +22,6 @@
     *ngFor="let item of aqbModel.select; let i = index"
     [item]="item"
     (deleteItem)="deleteItem(i)"
+    data-test="aqb__select__item"
   ></num-aql-builder-select-item>
 </div>

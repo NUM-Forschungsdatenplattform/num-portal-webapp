@@ -7,7 +7,7 @@
   (keydown.enter)="setDestination()"
   (keydown.space)="setDestination()"
   (click)="setDestination()"
-  [attr.data-test]="'aqb__where__set-destination'"
+  data-test="aqb__where__set-destination-button"
 >
   <fa-icon icon="check"></fa-icon>
 </div>
@@ -20,6 +20,7 @@
     [dialogMode]="dialogMode"
     [group]="aqbModel.where"
     [parentGroupIndex]="null"
+    data-test="aqb__where__group"
   ></num-aql-builder-where-group>
 </div>
 <p *ngIf="dialogMode === aqlBuilderDialogMode.DataExplorer">

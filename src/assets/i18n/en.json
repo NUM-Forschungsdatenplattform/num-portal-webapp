@@ -31,6 +31,12 @@
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "All Users",
+    "ORGANIZATION_MANAGEMENT": "Organization Management",
+    "ORGANIZATION_EDITOR": "Organization Editor",
+    "ALL_ORGANIZATIONS": "All Organizations",
+    "CONTENT_EDITOR": "Content Editor",
+    "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
+    "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out",
@@ -58,7 +64,9 @@
     "COMPILE_ERROR_MESSAGE": "The AQL query could not be complied. Please check the query configuration and try again.",
     "GET_COMPOSITION_ERROR": "The template cannot be loaded. Please close the window and try again.",
     "COLUMNS": "Columns",
-    "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort."
+    "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
+    "VALIDATION_ERROR": "The syntax of the AQL Query is not valid",
+    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid"
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Search Phenotype",
@@ -72,6 +80,13 @@
       "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
     }
   },
+  "CONTENT_EDITOR": {
+    "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
+    "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info cards on the Welcome page. They can contain information and a link to an external page.",
+    "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
+    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform."
+  },
+  "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
   "HITS": "Hits",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
@@ -139,6 +154,7 @@
     "CONFIRM_CHANGES": "Confirm changes",
     "ADD_QUERY": "Add query",
     "FORMAT_QUERY": "Format query",
+    "VALIDATE_QUERY": "Validate",
     "ADD_PHENOTYPE": "Add phenotype",
     "ADD_TEMPLATE": "Add Template",
     "ADD_RESEARCHERS": "Add researchers",
@@ -166,9 +182,9 @@
     "STUDY_APPROVAL_CHANGE_REQUEST": "Request revision",
     "STUDY_APPROVAL_DENY": "Deny study",
     "EXECUTE": "Execute",
-    "GET_DATA": "Get data",
+    "GET_DATA": "Get Data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
-    "DETERMINE": "Determine"
+    "CREATE_ORGANIZATION": "Create organization"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",
@@ -207,7 +223,8 @@
     "ORGANIZATION_ADMIN": "Organization Administrator",
     "STUDY_COORDINATOR": "Study Coordinator",
     "SUPER_ADMIN": "Admin",
-    "STUDY_APPROVER": "Study Approver"
+    "STUDY_APPROVER": "Study Approver",
+    "CONTENT_ADMIN": "Content Admin"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "MANAGE_NEW_USERS": "Manage New Users",
@@ -238,6 +255,19 @@
     "CONFIGURATION_ERROR": "The query could not be compiled. Please open the configuration and try again.",
     "AQL_BUILDER_DIALOG_HEADER": "Edit data query configuration",
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again."
+  },
+  "ORGANIZATION_MANAGEMENT": {
+    "OVERVIEW_HEADER": "Organization Overview",
+    "OVERVIEW_DESCRIPTION": "In the following list you can see all the organizations in the portal that you are authorized to edit. To edit an organization, select it from the list.",
+    "CREATE_HEADER": "Create Organization",
+    "CREATE_DESCRIPTION": "To create an organization, you must first enter the name of the organization here.\nAfter successfully creating the organization, you can edit it in a further step, for example to assign the mail domains.\n\n*Mandatory field",
+    "CREATE_DESCRIPTION_BUTTON": "To create a new organization, please click the following button.",
+    "EDIT_HEADER": "Edit Organization",
+    "EDIT_DESCRIPTION": "On this page you can assign mail domains to the organization. This allows new users to be automatically assigned to the organization based on their email address.\nYou can also change the name of the organization if necessary. However, you should only do this if it is absolutely necessary.\n\n*Mandatory field"
+  },
+  "ORGANIZATION": {
+    "NAME": "Organizations",
+    "MAIL_DOMAIN": "Mail Domain(s)"
   },
   "DATE_TIME": {
     "DATE": "Date",

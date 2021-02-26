@@ -14,16 +14,23 @@ describe('CodeEditorComponent', () => {
   const LANG_NAME = 'num-aql'
 
   const formatSubject$ = new Subject()
+  const validateSubject$ = new Subject<any>()
 
+  let onDidChangeModelContentCallback
   const codeEditorMock = {
     dispose: jest.fn(),
-    onDidChangeModelContent: jest.fn(),
+    onDidChangeModelContent: jest.fn().mockImplementation((callback) => {
+      onDidChangeModelContentCallback = callback
+    }),
     setValue: jest.fn(),
+    getValue: jest.fn(),
     layout: jest.fn(),
     getAction: jest.fn(),
+    getModel: jest.fn(),
   }
 
   const monacoEditorMock = {
+    setModelMarkers: jest.fn(),
     defineTheme: jest.fn(),
     create: jest.fn().mockImplementation(() => codeEditorMock),
   }
@@ -63,6 +70,7 @@ describe('CodeEditorComponent', () => {
     component = fixture.componentInstance
     component.formatter = formatterMock
     component.formatObservable$ = formatSubject$.asObservable()
+    component.validationObservable$ = validateSubject$.asObservable()
     jest.spyOn(component.editorInit, 'emit')
     fixture.detectChanges()
   })
@@ -129,5 +137,25 @@ describe('CodeEditorComponent', () => {
     formatSubject$.next()
     fixture.detectChanges()
     expect(isTriggered).toBeTruthy()
+  })
+
+  it('should set markers on new pushes to the validationObservable', () => {
+    const markers = { mock: 'true' }
+    jest.spyOn(monacoEditorMock, 'setModelMarkers').mockImplementation()
+    jest.spyOn(codeEditorMock, 'getModel').mockImplementation(() => 'model')
+    validateSubject$.next(markers)
+    fixture.detectChanges()
+    expect(monacoEditorMock.setModelMarkers).toHaveBeenCalledWith(
+      'model',
+      'validationError',
+      markers
+    )
+  })
+
+  it('should emit value changes', () => {
+    jest.spyOn(component.valueChange, 'emit')
+    jest.spyOn(codeEditorMock, 'getValue').mockImplementation(() => 'test value')
+    onDidChangeModelContentCallback()
+    expect(component.valueChange.emit).toHaveBeenCalledWith('test value')
   })
 })

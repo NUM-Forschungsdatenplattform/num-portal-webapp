@@ -4,7 +4,7 @@
     aria-labelledby="select-templates-label"
     [formControl]="selectedTemplates"
     multiple
-    [attr.data-test]="'aqb__templates-selection'"
+    data-test="aqb__templates-selection"
   >
     <mat-option
       *ngFor="let template of templates"

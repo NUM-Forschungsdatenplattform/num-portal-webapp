@@ -1,7 +1,13 @@
 <h3 id="studies-header">{{ 'AVAILABLE_STUDIES' | translate }}</h3>
 
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
-  <table aria-labelledby="studies-header" mat-table [dataSource]="dataSource" matSort>
+  <table
+    aria-labelledby="studies-header"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    data-test="studies__table"
+  >
     <mat-menu #menu="matMenu">
       <ng-template matMenuContent let-studyStatus="studyStatus" let-id="id">
         <button
@@ -10,6 +16,7 @@
           [disabled]="menuItem.isDisabled"
           mat-menu-item
           (click)="handleMenuClick(menuItem.id, id)"
+          [attr.data-test]="'studies__table__action-item__' + menuItem.id + '-button'"
         >
           {{ menuItem.translationKey | translate }}
         </button>
@@ -24,6 +31,7 @@
           mat-icon-button
           [matMenuTriggerFor]="menu"
           [matMenuTriggerData]="{ studyStatus: element.status, id: element.id }"
+          data-test="studies__table__action-menu-button"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>
@@ -51,5 +59,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    data-test="studies__table__paginator"
+  ></mat-paginator>
 </div>
