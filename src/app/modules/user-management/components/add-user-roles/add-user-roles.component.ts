@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
+import { Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
@@ -10,7 +11,8 @@ import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
   templateUrl: './add-user-roles.component.html',
   styleUrls: ['./add-user-roles.component.scss'],
 })
-export class AddUserRolesComponent implements OnInit {
+export class AddUserRolesComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
   @Input() selectedRoles: string[]
   @Output() selectedRolesChange = new EventEmitter<string[]>()
 
@@ -23,16 +25,22 @@ export class AddUserRolesComponent implements OnInit {
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.profileService.userProfileObservable$
-      .pipe(
-        filter((profile) => profile.id !== undefined),
-        take(1),
-        map((profile: IUserProfile) => {
-          this.userProfile = profile
-          this.handleData()
-        })
-      )
-      .subscribe()
+    this.subscriptions.add(
+      this.profileService.userProfileObservable$
+        .pipe(
+          filter((profile) => profile.id !== undefined),
+          take(1),
+          map((profile: IUserProfile) => {
+            this.userProfile = profile
+            this.handleData()
+          })
+        )
+        .subscribe()
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   handleData(): void {
