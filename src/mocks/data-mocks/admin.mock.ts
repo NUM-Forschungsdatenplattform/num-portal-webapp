@@ -5,7 +5,7 @@ export const mockUser: IUser = {
   approved: false,
   email: 'mockUser1@gmail.com',
   organization: {
-    id: '123',
+    id: 123,
     name: 'abc',
   },
   firstName: 'Max',
@@ -21,7 +21,7 @@ export const mockUsers: IUser[] = [
     approved: false,
     email: 'mockUser1@gmail.com',
     organization: {
-      id: '123',
+      id: 123,
       name: 'abc',
     },
     firstName: 'Max',
@@ -35,7 +35,7 @@ export const mockUsers: IUser[] = [
     approved: false,
     email: 'mockUser2@gmail.com',
     organization: {
-      id: '456',
+      id: 456,
       name: 'def',
     },
     firstName: 'Andrea',

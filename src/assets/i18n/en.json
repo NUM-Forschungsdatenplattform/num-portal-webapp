@@ -73,7 +73,12 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "CONTENT_EDITOR": {
     "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
@@ -83,6 +88,7 @@
   },
   "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
+  "HITS": "Hits",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_STUDIES": "Available Studies",
@@ -129,14 +135,17 @@
     "PUBLIC_CHECKBOX": "AQL query is for public use",
     "ETHICAL_APPROVAL_CHECKBOX": "Yes, the ethical approval is done*",
     "NAME": "Name",
-    "ORGANIZATION": "Organization",
     "FILTER": "Filter",
     "ACTION": "Action",
     "CREATION_DATE": "Creation Date",
     "USAGE": "Usage",
     "YES": "Yes",
     "NO": "No",
-    "VALUE": "Value"
+    "VALUE": "Value",
+    "ORGANIZATION_NAME": "Organization name",
+    "ORGANIZATION_NAME_PLACEHOLDER": "Enter organization name",
+    "ADD_ORGANIZATION_DOMAIN": "Add mail domain (domain part)",
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g domain.de or sub.domain.de"
   },
   "BUTTON": {
     "SAVE": "Save",
@@ -153,6 +162,7 @@
     "ADD_TEMPLATE": "Add Template",
     "ADD_RESEARCHERS": "Add researchers",
     "ADD_GROUP": "Add group",
+    "ADD": "Add",
     "DELETE_GROUP": "Delete group",
     "DELETE_COMPOSITION": "Delete composition",
     "CREATE_PHENOTYPE": "Create Phenotype",
@@ -177,7 +187,10 @@
     "STUDY_APPROVAL_DENY": "Deny study",
     "EXECUTE": "Execute",
     "GET_DATA": "Get Data",
-    "CUSTOMIZE_CONFIGURATION": "Customize configuration"
+    "CUSTOMIZE_CONFIGURATION": "Customize configuration",
+    "CREATE_ORGANIZATION": "Create organization",
+    "UPDATE_NAME": "Update name",
+    "DETERMINE": "Determine"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",
@@ -197,6 +210,11 @@
       "CHANGE_REQUEST": "The study must be revised.",
       "DENY": "The study is denied and thus closed.",
       "HINT_TO_COMMENT": "If you wish any modifications or reject the study, you should record the reason as a comment."
+    },
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters first.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
     }
   },
   "USER": {
@@ -248,9 +266,21 @@
     "OVERVIEW_HEADER": "Organization Overview",
     "OVERVIEW_DESCRIPTION": "In the following list you can see all the organizations in the portal that you are authorized to edit. To edit an organization, select it from the list.",
     "CREATE_HEADER": "Create Organization",
-    "CREATE_DESCRIPTION": "To create an organization, you must first enter the name of the organization here.\nAfter successfully creating the organization, you can edit it in a further step, for example to assign the mail domains.\n\n*Mandatory field",
+    "CREATE_DESCRIPTION": "To create an organization, you must first enter the name of the organization here.\n\nAfter successfully creating the organization, you can edit it in a further step, for example to assign the mail domains.\n\n*Mandatory field",
+    "CREATE_DESCRIPTION_BUTTON": "To create a new organization, please click the following button.",
     "EDIT_HEADER": "Edit Organization",
-    "EDIT_DESCRIPTION": "On this page you can assign mail domains to the organization. This allows new users to be automatically assigned to the organization based on their email address.\nYou can also change the name of the organization if necessary. However, you should only do this if it is absolutely necessary.\n\n*Mandatory field"
+    "EDIT_DESCRIPTION": "On this page you can assign mail domains to the organization. This allows new users to be automatically assigned to the organization based on their email address.\n\nYou can also change the name of the organization if necessary. However, you should only do this if it is absolutely necessary.\n\n*Mandatory field",
+    "MAIL_DOMAIN_EMPTY": "Please enter a mail domain above",
+    "CREATION_SUCCESS": "{{name}} was created successfully.",
+    "CREATION_ERROR": "The organization cannot be created. Please try again.",
+    "UPDATING_SUCCESS": "The organization has been successfully updated.",
+    "UPDATING_ERROR": "The organization name could not be updated. Please try again.",
+    "ADDING_DOMAIN_SUCCESS": "The mail domain has been successfully added to the organization list.",
+    "ADDING_DOMAIN_ERROR_GENERIC": "The mail domain could not be added. Please try again.",
+    "ADDING_DOMAIN_ERROR_TAKEN": "The mail domain is already in use. Please enter another mail domain.",
+    "DELETING_DOMAIN_SUCCESS": "The mail domain was successfully deleted from the organization list.",
+    "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
+    "MAIL_DOMAIN": "Mail-Domänen"
   },
   "DATE_TIME": {
     "DATE": "Date",

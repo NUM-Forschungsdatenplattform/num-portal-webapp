@@ -1,4 +1,5 @@
 export interface IOrganization {
-  id: string
+  id: number
   name?: string
+  mailDomains?: string[]
 }

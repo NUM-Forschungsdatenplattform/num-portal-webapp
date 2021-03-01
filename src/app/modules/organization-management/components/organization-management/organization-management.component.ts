@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { OrganizationService } from 'src/app/core/services/organization/organization.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-organization-management',
@@ -6,7 +9,14 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./organization-management.component.scss'],
 })
 export class OrganizationManagementComponent implements OnInit {
-  constructor() {}
+  availableRoles = AvailableRoles
+  constructor(private organizationService: OrganizationService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.organizationService.getAll().subscribe()
+  }
+
+  createOrganization(): void {
+    this.router.navigate(['organizations/new/editor'])
+  }
 }

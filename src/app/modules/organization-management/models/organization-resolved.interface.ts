@@ -1,6 +1,6 @@
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { OrganizationUiModel } from 'src/app/shared/models/organization/organization-ui.model'
 
 export interface IOrganizationResolved {
   error: string
-  organization: IOrganization | undefined
+  organization: OrganizationUiModel
 }

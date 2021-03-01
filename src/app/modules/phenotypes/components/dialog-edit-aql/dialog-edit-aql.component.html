@@ -32,16 +32,14 @@
   <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
     <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
       <mat-form-field appearance="outline">
-        <mat-label [attr.data-test]="'edit-aql__parameter-' + i + '__label'"
-          >{{ aql.parameter[i].name }}:
-        </mat-label>
+        <mat-label data-test="edit-aql__parameter__label">{{ aql.parameter[i].name }}: </mat-label>
         <input
           matInput
           id="{{ 'param' + i }}"
           type="text"
           placeholder="Parameter"
           formControlName="parameter"
-          [attr.data-test]="'edit-aql__parameter-' + i + '__input'"
+          data-test="edit-aql__parameter__input"
         />
       </mat-form-field>
     </div>

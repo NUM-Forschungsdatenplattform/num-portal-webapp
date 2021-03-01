@@ -13,7 +13,8 @@ module.exports = {
     '!<rootDir>/src/app/**/*.module.ts',
     '!<rootDir>/src/app/**/font-awesome-icons.ts',
     '!<rootDir>/src/playground/**',
-    '!<rootDir>/src/main.playground.ts'
+    '!<rootDir>/src/main.playground.ts',
+    '!<rootDir>/src/test.ts'
   ],
   coverageReporters: [
     "html",

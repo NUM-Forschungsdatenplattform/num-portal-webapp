@@ -6,6 +6,17 @@ Object.defineProperty(window, 'getComputedStyle', {
     return {
       display: 'none',
       appearance: ['-webkit-appearance'],
+      getPropertyValue: () => {},
+    }
+  },
+})
+
+Object.defineProperty(window, 'matchMedia', {
+  value: () => {
+    return {
+      matches: false,
+      addListener: () => {},
+      removeListener: () => {},
     }
   },
 })

@@ -1,4 +1,29 @@
 :host {
   width: 100%;
   white-space: pre-wrap;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .mail-domain-list {
+    border: 1px solid grey;
+    border-radius: 6px;
+    padding: 20px;
+
+    &__empty {
+      margin: 0;
+      padding: 25px;
+      width: 100%;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+
+      .mat-column-icon {
+        text-align: right;
+      }
+    }
+  }
 }

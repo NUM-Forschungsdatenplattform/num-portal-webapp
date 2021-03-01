@@ -47,7 +47,7 @@
           mat-icon-button
           [matMenuTriggerFor]="menu"
           [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, userId: user.id }"
-          [attr.data-test]="'aqls__table__row__' + i + '__menu-button__row'"
+          data-test="aqls__table__row__menu-button"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>
@@ -67,7 +67,7 @@
     </ng-container>
 
     <ng-container matColumnDef="organisation">
-      <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'FORM.ORGANIZATION' | translate }}</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef>{{ 'USER.ORGANIZATION' | translate }}</th>
       <td mat-cell *matCellDef="let element">{{ element.owner.organization?.name }}</td>
     </ng-container>
 

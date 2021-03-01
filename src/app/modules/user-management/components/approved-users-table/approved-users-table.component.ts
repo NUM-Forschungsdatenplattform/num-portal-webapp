@@ -9,6 +9,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -17,6 +18,9 @@ import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dial
 })
 export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
+
+  availableRoles = Object.values(AvailableRoles)
+
   constructor(private adminService: AdminService, private dialogService: DialogService) {}
 
   displayedColumns: string[] = [

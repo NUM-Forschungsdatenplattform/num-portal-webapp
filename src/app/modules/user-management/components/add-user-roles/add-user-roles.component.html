@@ -16,7 +16,7 @@
         *ngIf="!lookupSelectedRole[element]; else selectedIcon"
         [attr.aria-label]="'BUTTON.SELECT' | translate"
         (click)="handleSelectClick(element)"
-        [attr.data-test]="'user-management__add-roles__table__row-' + i + '__select-button'"
+        data-test="user-management__add-roles__table__row__select-button"
       >
         <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
       </button>
@@ -26,7 +26,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.DESELECT' | translate"
           (click)="handleDeselectClick(element)"
-          [attr.data-test]="'user-management__add-roles__table__row-' + i + '__deselect-button'"
+          data-test="user-management__add-roles__table__row__deselect-button"
         >
           <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
         </button>

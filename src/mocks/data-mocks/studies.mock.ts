@@ -9,7 +9,7 @@ export const mockStudy1: IStudyApi = {
   cohortId: 1,
   coordinator: {
     userId: '1',
-    organizationId: '1',
+    organizationId: 1,
     approved: true,
   },
   researchers: [],
@@ -27,7 +27,7 @@ export const mockStudy2: IStudyApi = {
   cohortId: 2,
   coordinator: {
     userId: '1',
-    organizationId: '1',
+    organizationId: 1,
     approved: true,
   },
   researchers: [
@@ -52,7 +52,7 @@ export const mockStudy3: IStudyApi = {
   cohortId: 3,
   coordinator: {
     userId: '1',
-    organizationId: '1',
+    organizationId: 1,
     approved: true,
   },
   researchers: [
