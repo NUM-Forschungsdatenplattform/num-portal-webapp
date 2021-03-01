@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 
 @Component({
   selector: 'num-organizations-table',

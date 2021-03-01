@@ -10,6 +10,12 @@ export interface IToastMessageConfig {
   message: string
 
   /**
+   * InterpolateParams for the translate function.
+   * Like: { key: value }
+   */
+  messageParameters?: object
+
+  /**
    * The time in ms after the message will be automatically hidden.
    * 0 or null for infinite duration.
    * Defaults to 4000ms

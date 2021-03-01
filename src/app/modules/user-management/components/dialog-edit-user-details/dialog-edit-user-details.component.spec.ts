@@ -9,7 +9,7 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockRoles, mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'

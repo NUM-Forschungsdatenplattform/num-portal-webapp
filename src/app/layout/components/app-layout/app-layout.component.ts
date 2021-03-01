@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core'
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { MediaMatcher } from '@angular/cdk/layout'
 import { MatSidenav } from '@angular/material/sidenav'
 
 @Component({
@@ -7,24 +7,32 @@ import { MatSidenav } from '@angular/material/sidenav'
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss'],
 })
-export class AppLayoutComponent implements OnInit {
+export class AppLayoutComponent implements OnInit, OnDestroy {
   @ViewChild('drawer', { static: true }) public drawer: MatSidenav
-  isHandset: boolean
+  isSmallDevice = false
+  matcher: MediaQueryList
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private mediaMatcher: MediaMatcher) {}
 
   ngOnInit(): void {
-    this.breakpointObserver.observe(Breakpoints.Handset).subscribe((state) => {
-      if (state.matches) {
-        this.isHandset = true
-      } else {
-        this.isHandset = false
-      }
+    this.matcher = this.mediaMatcher.matchMedia('(max-width: 960px)')
+    this.isSmallDevice = this.matcher.matches
+
+    this.matcher.addEventListener('change', (event) => {
+      this.isSmallDeviceListener(event)
     })
   }
 
+  ngOnDestroy(): void {
+    this.matcher.removeEventListener('change', this.isSmallDeviceListener)
+  }
+
+  isSmallDeviceListener(event): void {
+    this.isSmallDevice = event.matches
+  }
+
   toggleMenu(): void {
-    if (this.isHandset) {
+    if (this.isSmallDevice) {
       this.drawer.toggle()
     }
   }

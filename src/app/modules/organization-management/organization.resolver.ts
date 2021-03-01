@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router'
-
-import { Observable, of } from 'rxjs'
-import { map, catchError, timeout, filter, take, switchMap } from 'rxjs/operators'
+import { Observable, of, throwError } from 'rxjs'
+import { map, catchError, timeout, filter, take, mergeMap } from 'rxjs/operators'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { OrganizationUiModel } from 'src/app/shared/models/organization/organization-ui.model'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { IOrganizationResolved } from './models/organization-resolved.interface'
 
@@ -19,46 +19,46 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
     private router: Router
   ) {}
 
+  private isSuperAdmin(userProfile: IUserProfile): boolean {
+    return userProfile.roles.includes(AvailableRoles.SuperAdmin)
+  }
+
+  private isOwnOrganisation(userProfile: IUserProfile, id: number): boolean {
+    return id === userProfile.organization.id
+  }
+
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<IOrganizationResolved> {
-    const id = route.paramMap.get('id')
+    const requestedId = route.paramMap.get('id')
 
     return this.profileService.userProfileObservable$.pipe(
       filter((profile) => profile.id !== undefined),
       take(1),
-      switchMap((userProfile: IUserProfile) => {
-        return this.checkUserRole(userProfile, id)
+      map((userProfile: IUserProfile) => {
+        if (!this.isSuperAdmin(userProfile) && !this.isOwnOrganisation(userProfile, +requestedId)) {
+          this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
+          throwError(new Error('Forbidden to modify as organization admin'))
+        } else {
+          return isNaN(+requestedId) ? 'new' : +requestedId
+        }
+      }),
+      mergeMap((allowedId: 'new' | number) => {
+        if (allowedId === 'new') {
+          return of({ organization: new OrganizationUiModel(), error: null })
+        }
+        return this.organizationService.get(allowedId).pipe(
+          map((organization) => {
+            return { organization: new OrganizationUiModel(organization), error: null }
+          })
+        )
       }),
       timeout(10000),
       catchError((error) => {
         this.router.navigate(['organizations'])
-        return of(error)
+        return throwError(error)
       })
     )
-  }
-
-  checkUserRole(userProfile: IUserProfile, id: string): Observable<IOrganizationResolved> {
-    if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
-      if (id !== userProfile.organization.id) {
-        this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
-        return of()
-      }
-      return of({ organization: userProfile.organization, error: null })
-    } else {
-      if (id === 'new') {
-        return of({ organization: undefined, error: null })
-      }
-      return this.organizationService.get(id).pipe(
-        map((organization) => {
-          return { organization, error: null }
-        }),
-        catchError((error) => {
-          this.router.navigate(['organizations'])
-          return of(error)
-        })
-      )
-    }
   }
 }

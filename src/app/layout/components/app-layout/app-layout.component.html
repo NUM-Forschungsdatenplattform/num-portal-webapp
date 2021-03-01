@@ -3,10 +3,11 @@
     #drawer
     fixedInViewport
     class="mat-elevation-z4"
-    [attr.role]="isHandset ? 'dialog' : 'navigation'"
+    [attr.role]="isSmallDevice ? 'dialog' : 'navigation'"
     [attr.aria-label]="'APPLAYOUT.SIDENAV.LABEL' | translate"
-    [mode]="isHandset ? 'over' : 'side'"
-    [opened]="isHandset === false"
+    [mode]="isSmallDevice ? 'over' : 'side'"
+    [opened]="!isSmallDevice"
+    [disableClose]="!isSmallDevice"
   >
     <num-side-menu (toggleSideMenu)="toggleMenu()" fxFlex="100"></num-side-menu>
   </mat-sidenav>
@@ -20,7 +21,7 @@
         [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
         mat-icon-button
         (click)="toggleMenu()"
-        *ngIf="isHandset"
+        *ngIf="isSmallDevice"
       >
         <fa-icon icon="bars"></fa-icon>
       </button>

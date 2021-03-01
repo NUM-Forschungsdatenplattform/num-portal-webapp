@@ -37,7 +37,7 @@ describe('OrganizationResolver', () => {
   })
 
   describe('When the resolve method is called and the user has the role SuperAdmin', () => {
-    it('should return with organization:undefined if the id was new', async (done) => {
+    it('should return with an empty ui model if the id was new', async (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: 'new' })
       const activatedRoute = ({
@@ -48,7 +48,7 @@ describe('OrganizationResolver', () => {
         .toPromise()
         .then((result) => {
           expect(result.error).toBeNull()
-          expect(result.organization).toBeUndefined()
+          expect(result.organization.id).toBeNull()
           done()
         })
 
@@ -70,7 +70,7 @@ describe('OrganizationResolver', () => {
         .toPromise()
         .then((result) => {
           expect(result.error).toBeNull()
-          expect(result.organization).toBe(mockOrganization1)
+          expect(result.organization.id).toEqual(1)
           done()
         })
 
@@ -90,7 +90,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .then((result) => {
+        .catch((error) => {
           expect(router.navigate).toHaveBeenCalledWith(['organizations'])
           done()
         })
@@ -101,7 +101,7 @@ describe('OrganizationResolver', () => {
   })
 
   describe('When the resolve method is called and the user does not have the role SuperAdmin', () => {
-    it('should redirect to the editor with the users organization id if the the id was different from the users organizatin id', async (done) => {
+    it('should redirect to the editor with the users organization if the the id was different from the users organizatin id', async (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '2' })
 
@@ -111,7 +111,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .then((result) => {
+        .catch((error) => {
           expect(router.navigate).toHaveBeenCalledWith([
             'organizations',
             mockOrganization1.id,
@@ -125,6 +125,7 @@ describe('OrganizationResolver', () => {
     })
 
     it('should return with the organization if the id was the users organization id', async (done) => {
+      jest.spyOn(organizationService, 'get').mockImplementation(() => of(mockOrganization1))
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
@@ -136,7 +137,7 @@ describe('OrganizationResolver', () => {
         .toPromise()
         .then((result) => {
           expect(result.error).toBeNull()
-          expect(result.organization).toBe(mockOrganization1)
+          expect(result.organization.id).toEqual(1)
           done()
         })
 
@@ -156,7 +157,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .then((result) => {
+        .catch((error) => {
           expect(router.navigate).toHaveBeenCalledWith(['organizations'])
           done()
         })
