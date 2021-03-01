@@ -3,7 +3,7 @@ import { MaterialModule } from '../../material/material.module'
 import { AppLayoutComponent } from './app-layout.component'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout'
+import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
@@ -21,7 +21,6 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
   let fixture: ComponentFixture<AppLayoutComponent>
-  let breakpointObserver: BreakpointObserver
 
   const authService = {
     logOut: () => {},
@@ -39,6 +38,19 @@ describe('AppLayoutComponent', () => {
   const profileService = ({
     get: () => jest.fn(),
   } as unknown) as ProfileService
+
+  let listenerCallback: (event: any) => any
+  const mediaQueryList = ({
+    matches: true,
+    addEventListener: jest.fn().mockImplementation((type: string, callback) => {
+      listenerCallback = callback
+    }),
+    removeEventListener: jest.fn(),
+  } as unknown) as MediaQueryList
+
+  const mediaMatcher = ({
+    matchMedia: jest.fn().mockImplementation(() => mediaQueryList),
+  } as unknown) as MediaMatcher
 
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}
@@ -74,23 +86,18 @@ describe('AppLayoutComponent', () => {
           provide: ProfileService,
           useValue: profileService,
         },
+        {
+          provide: MediaMatcher,
+          useValue: mediaMatcher,
+        },
       ],
     }).compileComponents()
   })
 
-  describe('On handset devices', () => {
+  describe('On small devices', () => {
     beforeEach(() => {
-      const breakPointState = {
-        matches: true,
-        breakpoints: {
-          [Breakpoints.Handset]: true,
-          [Breakpoints.Large]: false,
-        },
-      } as BreakpointState
-
-      breakpointObserver = TestBed.inject(BreakpointObserver)
-      jest.spyOn(breakpointObserver, 'observe').mockImplementation(() => of(breakPointState))
-
+      const mediaQueryListFake = mediaQueryList as any
+      mediaQueryListFake.matches = true
       fixture = TestBed.createComponent(AppLayoutComponent)
       component = fixture.componentInstance
       fixture.detectChanges()
@@ -113,21 +120,20 @@ describe('AppLayoutComponent', () => {
       component.toggleMenu()
       expect(component.drawer.toggle).toHaveBeenCalled()
     })
+
+    it('should switch the flag to large device on change', () => {
+      const event = {
+        matches: false,
+      }
+      listenerCallback(event)
+      expect(component.isSmallDevice).toBeFalsy()
+    })
   })
 
-  describe('On non-handset devices', () => {
+  describe('On large devices', () => {
     beforeEach(() => {
-      const breakPointState = {
-        matches: false,
-        breakpoints: {
-          [Breakpoints.Handset]: false,
-          [Breakpoints.Large]: true,
-        },
-      } as BreakpointState
-
-      breakpointObserver = TestBed.inject(BreakpointObserver)
-      jest.spyOn(breakpointObserver, 'observe').mockImplementation(() => of(breakPointState))
-
+      const mediaQueryListFake = mediaQueryList as any
+      mediaQueryListFake.matches = false
       fixture = TestBed.createComponent(AppLayoutComponent)
       component = fixture.componentInstance
       fixture.detectChanges()

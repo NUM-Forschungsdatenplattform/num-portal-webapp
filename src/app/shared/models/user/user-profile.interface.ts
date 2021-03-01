@@ -1,4 +1,4 @@
-import { IOrganization } from './organization.interface'
+import { IOrganization } from '../organization/organization.interface'
 
 export interface IUserProfile {
   id: string

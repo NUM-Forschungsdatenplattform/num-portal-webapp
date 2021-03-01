@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 
 @Component({
   selector: 'num-add-user-organization',

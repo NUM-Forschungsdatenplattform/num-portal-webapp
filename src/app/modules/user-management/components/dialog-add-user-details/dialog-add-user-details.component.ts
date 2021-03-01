@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 
 @Component({
@@ -16,7 +16,7 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
   userDetails: IUser
   roles: string[] = []
   organization: IOrganization = {
-    id: '',
+    id: null,
   }
 
   constructor(

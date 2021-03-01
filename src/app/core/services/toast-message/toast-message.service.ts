@@ -10,7 +10,7 @@ export class ToastMessageService {
   constructor(private snackbar: MatSnackBar, private translate: TranslateService) {}
 
   public openToast(config: IToastMessageConfig): MatSnackBarRef<any> {
-    const translatedMessage = this.translate.instant(config.message)
+    const translatedMessage = this.translate.instant(config.message, config.messageParameters)
     const translatedAction = config.callbackButtonLabel
       ? this.translate.instant(config.callbackButtonLabel)
       : null

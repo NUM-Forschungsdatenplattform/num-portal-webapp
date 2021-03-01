@@ -26,7 +26,7 @@ export const mockUserProfile2: IUserProfile = {
 }
 
 export const mockUserProfile3: IUserProfile = {
-  id: '2',
+  id: '3',
   username: 'username-2',
   firstName: 'user2-firstname',
   lastName: 'user2-lastname',

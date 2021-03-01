@@ -4,10 +4,10 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 
@@ -68,7 +68,7 @@ describe('OrganizationsTableComponent', () => {
     })
     it('should navigate to the organization-editor', () => {
       component.handleSelectClick(mockOrganization1)
-      expect(router.navigate).toHaveBeenCalledWith(['organizations', '1', 'editor'])
+      expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
     })
   })
 })

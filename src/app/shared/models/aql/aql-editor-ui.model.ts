@@ -9,7 +9,7 @@ export class AqlEditorUiModel {
   usage: string
   createDate: string
   modifiedDate: string
-  organizationId: string
+  organizationId: number
   owner: IUser
   publicAql: boolean
 
