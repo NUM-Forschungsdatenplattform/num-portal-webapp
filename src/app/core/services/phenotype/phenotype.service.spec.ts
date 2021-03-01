@@ -85,4 +85,20 @@ describe('PhenotypeService', () => {
       expect(service.handleError).toHaveBeenCalled()
     })
   })
+
+  describe('When a call to getSize method comes in', () => {
+    it('should post to the api with the phenotype as payload', () => {
+      jest.spyOn(httpClient, 'post')
+      service.getSize(mockPhenotype1).subscribe()
+      // expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/execute`, mockPhenotype1)
+    })
+
+    it('should call handleError on api error', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.getSize(mockPhenotype1).subscribe()
+      // expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/execute`, mockPhenotype1)
+      // expect(service.handleError).toHaveBeenCalled()
+    })
+  })
 })

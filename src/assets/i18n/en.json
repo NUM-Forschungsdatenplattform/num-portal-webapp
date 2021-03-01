@@ -73,7 +73,12 @@
     "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "CONTENT_EDITOR": {
     "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
@@ -83,6 +88,7 @@
   },
   "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
+  "HITS": "Hits",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_STUDIES": "Available Studies",
@@ -178,7 +184,8 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Get Data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
-    "CREATE_ORGANIZATION": "Create organization"
+    "CREATE_ORGANIZATION": "Create organization",
+    "DETERMINE": "Determine"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",
@@ -198,6 +205,11 @@
       "CHANGE_REQUEST": "The study must be revised.",
       "DENY": "The study is denied and thus closed.",
       "HINT_TO_COMMENT": "If you wish any modifications or reject the study, you should record the reason as a comment."
+    },
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters first.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
     }
   },
   "USER": {

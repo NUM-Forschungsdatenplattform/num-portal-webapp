@@ -16,10 +16,17 @@
 
     <num-phenotype-editor-connector-group
       role="list"
+      class="num-margin-b-20"
       [phenotypeGroup]="phenotypeQuery"
       [parentGroupIndex]="null"
       fxFlex="100%"
       data-test="phenotype-editor__connector__group"
     ></num-phenotype-editor-connector-group>
+
+    <num-editor-determine-hits
+      [isButtonDisabled]="isDetermineDisabled"
+      [content]="determineHitsContent"
+      (clicked)="determineHitsClicked.emit()"
+    ></num-editor-determine-hits>
   </mat-card>
 </section>

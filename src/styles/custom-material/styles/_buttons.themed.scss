@@ -78,7 +78,8 @@
         fa-icon {
           color: mat-color($accent, 200);
         }
-        color: mat-color($additional, mid-grey);
+        color: mat-color($additional, light-grey);
+        border-color: mat-color($primary, 100);
       }
     }
 

@@ -13,6 +13,7 @@ import { PipesModule } from '../pipes/pipes.module'
 import { DefinitionListComponent } from './definition-list/definition-list.component'
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { TimeInputComponent } from './time-input/time-input.component'
+import { EditorDetermineHitsComponent } from './editor-determine-hits/editor-determine-hits.component'
 
 const SHARED_DECLARATIONS = [
   SearchComponent,
@@ -22,10 +23,11 @@ const SHARED_DECLARATIONS = [
   DefinitionListComponent,
   TimeInputComponent,
   DialogConfirmationComponent,
+  EditorDetermineHitsComponent,
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS],
+  declarations: SHARED_DECLARATIONS,
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -36,6 +38,6 @@ const SHARED_DECLARATIONS = [
     TranslateModule,
     PipesModule,
   ],
-  exports: [...SHARED_DECLARATIONS],
+  exports: SHARED_DECLARATIONS,
 })
 export class SharedComponentsModule {}

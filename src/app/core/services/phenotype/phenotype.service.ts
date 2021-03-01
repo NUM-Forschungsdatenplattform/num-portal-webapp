@@ -109,6 +109,12 @@ export class PhenotypeService {
       .pipe(catchError(this.handleError))
   }
 
+  getSize(phenotype: IPhenotypeApi): Observable<number> {
+    return this.httpClient
+      .post<number>(`${this.baseUrl}/size`, phenotype)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

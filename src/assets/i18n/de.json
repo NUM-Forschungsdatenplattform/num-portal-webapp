@@ -73,7 +73,12 @@
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    }
   },
   "CONTENT_EDITOR": {
     "EDIT_INFO_CARDS_HEADER": "Info-Karten bearbeiten",
@@ -83,6 +88,7 @@
   },
   "CONFIGURE": "Konfigurieren",
   "SUMMARY": "Zusammenfassung",
+  "HITS": "Treffer",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_STUDIES": "Verfügbare Studien",
@@ -178,7 +184,8 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
-    "CREATE_ORGANIZATION": "Organisation anlegen"
+    "CREATE_ORGANIZATION": "Organisation anlegen",
+    "DETERMINE": "Ermitteln"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
@@ -198,6 +205,11 @@
       "CHANGE_REQUEST": "Die Studie muss überarbeitet werden.",
       "DENY": "Die Studie wird abgelehnt und damit abgeschlossen.",
       "HINT_TO_COMMENT": "Insbesondere wenn Sie Änderungen wünschen oder die Studie ablehnen, sollten Sie den Grund als Kommentar festhalten."
+    },
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Bitte stellen Sie zunächst alle Parameter ein.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
     }
   },
   "USER": {
