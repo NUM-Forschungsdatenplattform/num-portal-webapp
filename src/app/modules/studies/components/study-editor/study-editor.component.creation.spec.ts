@@ -266,13 +266,17 @@ describe('StudyEditorComponent On Creation', () => {
         study: new StudyUiModel(mockStudy1),
       }
       component.resolvedData.study.id = null
+
       jest.clearAllMocks()
     })
 
     it('should call CohortService.getSize, if there is a query', async () => {
+      jest
+        .spyOn(component, 'getStudyForApi')
+        .mockReturnValueOnce({ study: mockStudy1, cohort: mockCohort1 })
+
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('')
         expect(component.determineHitsContent.count).toBeGreaterThan(0)
       })
@@ -294,22 +298,26 @@ describe('StudyEditorComponent On Creation', () => {
     })
 
     it('should fail to call the CohortService.getSize method and show Too few hits error', async () => {
+      jest
+        .spyOn(component, 'getStudyForApi')
+        .mockReturnValueOnce({ study: mockStudy1, cohort: mockCohort1 })
       jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError({ status: 451 }))
 
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('STUDY.HITS.MESSAGE_ERROR_FEW_HITS')
         expect(component.determineHitsContent.count).toEqual(null)
       })
     })
 
     it('should fail to call the CohortService.getSize method and show general error', async () => {
+      jest
+        .spyOn(component, 'getStudyForApi')
+        .mockReturnValueOnce({ study: mockStudy1, cohort: mockCohort1 })
       jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError('Error'))
 
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('STUDY.HITS.MESSAGE_ERROR_MESSAGE')
         expect(component.determineHitsContent.count).toEqual(null)
       })

@@ -184,7 +184,8 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Get Data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
-    "CREATE_ORGANIZATION": "Create organization"
+    "CREATE_ORGANIZATION": "Create organization",
+    "DETERMINE": "Determine"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Information about the approval",

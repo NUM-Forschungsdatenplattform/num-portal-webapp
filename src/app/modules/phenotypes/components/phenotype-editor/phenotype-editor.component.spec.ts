@@ -195,7 +195,6 @@ describe('PhenotypeEditorComponent', () => {
     it('should call PhenotypeSerivce.getSize, if there is a query', async () => {
       await component.determineHits().then(() => {
         expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('')
         expect(component.determineHitsContent.count).toBeGreaterThan(0)
       })
@@ -226,7 +225,6 @@ describe('PhenotypeEditorComponent', () => {
 
       await component.determineHits().then(() => {
         expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
           'PHENOTYPE.HITS.MESSAGE_ERROR_FEW_HITS'
         )
@@ -238,8 +236,6 @@ describe('PhenotypeEditorComponent', () => {
       jest.spyOn(phenotypeService, 'getSize').mockImplementationOnce(() => throwError('Error'))
 
       await component.determineHits().then(() => {
-        // // expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
-        // expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
           'PHENOTYPE.HITS.MESSAGE_ERROR_MESSAGE'
         )

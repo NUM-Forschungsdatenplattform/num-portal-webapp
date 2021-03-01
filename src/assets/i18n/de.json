@@ -184,7 +184,8 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
-    "CREATE_ORGANIZATION": "Organisation anlegen"
+    "CREATE_ORGANIZATION": "Organisation anlegen",
+    "DETERMINE": "Ermitteln"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
