@@ -293,7 +293,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
       try {
         await this.cohortService
-          .getSize(cohort)
+          .getSize(cohort.cohortGroup)
           .toPromise()
           .then((result) => {
             this.updateDetermineHits(result, '')
