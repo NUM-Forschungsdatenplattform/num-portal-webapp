@@ -64,6 +64,7 @@ describe('DataExplorerComponent', () => {
 
   const studyService = ({
     executeAdHocAql: jest.fn(),
+    exportCsv: jest.fn(),
   } as unknown) as StudyService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
@@ -436,6 +437,30 @@ describe('DataExplorerComponent', () => {
       expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
       expect(component.isDataSetLoading).toEqual(false)
       expect(component.resultSet).toBeUndefined()
+    })
+  })
+
+  describe('When the ExportCsv is Clicked', () => {
+    beforeEach(() => {
+      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of({}))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should call the studyService.exportCsv', () => {
+      component.exportCsv()
+
+      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
+      expect(component.isDataSetLoading).toEqual(false)
+    })
+
+    it('should show toast in case of error', () => {
+      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+
+      component.exportCsv()
+      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
+      expect(component.isDataSetLoading).toEqual(false)
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
     })
   })
 })

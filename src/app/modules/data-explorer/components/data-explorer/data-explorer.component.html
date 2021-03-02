@@ -72,6 +72,17 @@
     data-test="data-explorer__table"
   ></num-result-table>
 
+  <num-button
+    *ngIf="resultSet && resultSet.rows.length"
+    type="secondary"
+    icon="file-download"
+    (singleClick)="exportCsv()"
+    [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading"
+    data-test="data-explorer__export-csv-button"
+  >
+    {{ 'DATA_EXPLORER.EXPORT_CSV' | translate }}
+  </num-button>
+
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
     <num-button

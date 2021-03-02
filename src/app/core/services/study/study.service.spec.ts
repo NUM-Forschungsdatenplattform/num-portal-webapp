@@ -195,4 +195,14 @@ describe('StudyService', () => {
         .then((result) => expect(result).toEqual([mockStudy3]))
     })
   })
+
+  describe('When a Export is triggerd', () => {
+    it('should post the query', () => {
+      const query = 'query'
+      const id = 1
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(studyCommentMock1))
+      service.exportCsv(id, query).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/${id}/export`, { query })
+    })
+  })
 })

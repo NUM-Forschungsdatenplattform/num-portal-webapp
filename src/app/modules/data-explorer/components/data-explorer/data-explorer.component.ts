@@ -27,6 +27,7 @@ import {
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { StudyService } from 'src/app/core/services/study/study.service'
+import { HttpResponse } from '@angular/common/http'
 
 @Component({
   selector: 'num-data-explorer',
@@ -207,6 +208,32 @@ export class DataExplorerComponent implements OnInit {
       (err) => {
         this.isDataSetLoading = false
         this.resultSet = undefined
+        this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+      }
+    )
+  }
+
+  exportCsv(): void {
+    if (!this.compiledQuery) return
+
+    this.isDataSetLoading = true
+
+    this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
+      (response: HttpResponse<Blob>) => {
+        this.isDataSetLoading = false
+
+        const filename = 'csv_export_' + this.study.id
+        const binaryData = []
+        binaryData.push(response.body)
+        const downloadLink = document.createElement('a')
+        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: 'blob' }))
+        downloadLink.setAttribute('download', filename)
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+      },
+      () => {
+        this.isDataSetLoading = false
+
         this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
       }
     )
