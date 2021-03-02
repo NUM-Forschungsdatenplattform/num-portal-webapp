@@ -450,7 +450,6 @@ describe('DataExplorerComponent', () => {
       component.exportCsv()
 
       expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isDataSetLoading).toEqual(false)
     })
 
     it('should show toast in case of error', () => {
@@ -459,7 +458,6 @@ describe('DataExplorerComponent', () => {
 
       component.exportCsv()
       expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isDataSetLoading).toEqual(false)
       expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
     })
   })

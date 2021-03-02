@@ -216,24 +216,20 @@ export class DataExplorerComponent implements OnInit {
   exportCsv(): void {
     if (!this.compiledQuery) return
 
-    this.isDataSetLoading = true
-
     this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
-      (response: HttpResponse<Blob>) => {
-        this.isDataSetLoading = false
-
+      (response) => {
         const filename = 'csv_export_' + this.study.id
-        const binaryData = []
-        binaryData.push(response.body)
         const downloadLink = document.createElement('a')
-        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: 'blob' }))
+        downloadLink.setAttribute(
+          'href',
+          'data:text/plain;charset=utf-8,' + encodeURIComponent(response.body)
+        )
         downloadLink.setAttribute('download', filename)
+        downloadLink.style.display = 'none'
         document.body.appendChild(downloadLink)
         downloadLink.click()
       },
       () => {
-        this.isDataSetLoading = false
-
         this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
       }
     )
