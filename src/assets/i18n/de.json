@@ -260,7 +260,8 @@
     "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
     "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
-    "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut."
+    "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
+    "EXPORT_CSV": "CSV Exportieren"
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organisationsübersicht",

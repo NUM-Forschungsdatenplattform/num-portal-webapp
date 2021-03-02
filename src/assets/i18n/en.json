@@ -260,7 +260,8 @@
     "CONFIGURATION_LOADING": "The query configuration is beeing loaded. Please wait a moment.",
     "CONFIGURATION_ERROR": "The query could not be compiled. Please open the configuration and try again.",
     "AQL_BUILDER_DIALOG_HEADER": "Edit data query configuration",
-    "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again."
+    "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
+    "EXPORT_CSV": "Export CSV"
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",
