@@ -10,6 +10,7 @@ import INavItem from '../../models/nav-item.interface'
 import { ButtonComponent } from '../../../shared/components/button/button.component'
 import { LanguageComponent } from '../language/language.component'
 import { HeaderComponent } from './header.component'
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -56,6 +57,7 @@ describe('HeaderComponent', () => {
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,
+        FlexLayoutModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           {

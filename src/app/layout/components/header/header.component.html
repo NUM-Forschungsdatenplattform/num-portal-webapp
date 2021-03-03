@@ -12,6 +12,12 @@
   <num-language></num-language>
 </mat-toolbar>
 
+<section
+  class="header-image"
+  [ngClass.xs]="{ 'header-image--small': true }"
+  *ngIf="currentMainNavItem?.routeTo === 'home'"
+></section>
+
 <section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
     class="titlebar num-margin-b-60"
