@@ -125,6 +125,9 @@ export class AdminService {
       return this.getApprovedUsers().pipe(
         map((userArray) => {
           return this.filterItems(userArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
@@ -137,10 +140,10 @@ export class AdminService {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allApprovedUsers.filter(
         (user) =>
-          user.lastName.toUpperCase().includes(textFilter) ||
-          user.firstName.toUpperCase().includes(textFilter) ||
-          user.firstName.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
-          user.lastName.concat(' ', user.firstName).toUpperCase().includes(textFilter)
+          user.lastName?.toUpperCase().includes(textFilter) ||
+          user.firstName?.toUpperCase().includes(textFilter) ||
+          user.firstName?.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
+          user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter)
       )
     }
 

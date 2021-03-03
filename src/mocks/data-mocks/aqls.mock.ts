@@ -9,7 +9,6 @@ export const mockAql1: IAqlApi = {
   use: '',
   createDate: '',
   modifiedDate: '',
-  organizationId: undefined,
   owner: mockUser,
   publicAql: true,
 }
@@ -22,7 +21,6 @@ export const mockAql2: IAqlApi = {
   use: '',
   createDate: '',
   modifiedDate: '',
-  organizationId: undefined,
   owner: mockUser,
   publicAql: true,
 }
@@ -35,7 +33,6 @@ export const mockAql3: IAqlApi = {
   use: '',
   createDate: '',
   modifiedDate: '',
-  organizationId: undefined,
   owner: mockUser,
   publicAql: true,
 }
@@ -48,9 +45,70 @@ export const mockAql4: IAqlApi = {
   use: '',
   createDate: '',
   modifiedDate: '',
-  organizationId: undefined,
   owner: mockUser,
   publicAql: true,
 }
 
 export const mockAqls: IAqlApi[] = [mockAql1, mockAql2]
+
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>
+}
+export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
+  {
+    id: 1,
+    name: 'aqlName1',
+    owner: {
+      id: '1',
+      firstName: '',
+      lastName: '',
+      organization: {
+        id: 1,
+      },
+    },
+  },
+  {
+    id: 2,
+    name: 'aqlName2',
+    owner: {
+      id: '1',
+      firstName: 'firstname2',
+      lastName: null,
+      organization: {
+        id: null,
+      },
+    },
+  },
+  {
+    id: 3,
+    name: 'aqlName3',
+    owner: {
+      id: '1',
+      firstName: null,
+      lastName: null,
+      organization: null,
+    },
+  },
+  {
+    id: 4,
+    name: null,
+    owner: {
+      id: '2',
+      firstName: 'firstName4',
+      lastName: 'lastName4',
+      organization: {
+        id: 2,
+      },
+    },
+  },
+  {
+    id: 44,
+    name: null,
+    owner: {
+      id: '22',
+      firstName: 'firstName4',
+      lastName: 'lastName4',
+      organization: null,
+    },
+  },
+]

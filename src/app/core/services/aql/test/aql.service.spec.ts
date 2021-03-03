@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError } from 'rxjs'
+import { of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
-import { mockAql1, mockAqls } from 'src/mocks/data-mocks/aqls.mock'
-import { AqlService } from './aql.service'
+import { mockAql1, mockAqls, mockAqlsToFilter } from 'src/mocks/data-mocks/aqls.mock'
+import { AqlService } from '../aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
-import { ProfileService } from '../profile/profile.service'
+import { ProfileService } from '../../profile/profile.service'
+import { skipUntil } from 'rxjs/operators'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
+import { aqlFilterTestcases } from './aql-filter-testcases'
+import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 
 describe('AqlService', () => {
   let service: AqlService
@@ -38,15 +42,19 @@ describe('AqlService', () => {
   }
 
   beforeEach(() => {
-    jest.restoreAllMocks()
     jest.clearAllMocks()
-    jest.resetAllMocks()
+
     jest.spyOn(httpClient, 'get').mockImplementation(() => of())
     service = new AqlService(httpClient, appConfig, userProfileService)
   })
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  it('should set the user to the service', () => {
+    userProfileSubject$.next(mockUserProfile1)
+    expect(service.user).toEqual(mockUserProfile1)
   })
 
   describe('When a call to getAll method comes in', () => {
@@ -104,7 +112,7 @@ describe('AqlService', () => {
 
   describe('When multiple filter are passed in', () => {
     beforeEach(() => {
-      jest.restoreAllMocks()
+      jest.clearAllMocks()
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
       throttleTime = (service as any).throttleTime
     })
@@ -147,6 +155,36 @@ describe('AqlService', () => {
         expect(filterResult[0].id).toEqual(1)
         done()
       }, throttleTime * 3)
+    })
+  })
+
+  describe('When the filter logic fails to retrieve data', () => {
+    it('should result in an empty array', (done) => {
+      const anyService = service as any
+
+      anyService.aqls = []
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+
+      service.filteredAqlsObservable$
+        .pipe(skipUntil(timer(anyService.throttleTime / 2)))
+        .subscribe((result) => {
+          expect(result).toEqual([])
+          done()
+        })
+
+      setTimeout(() => {
+        service.setFilter(filterConfig)
+      }, anyService.throttleTime + 1)
+    })
+  })
+
+  describe('When passing in filters', () => {
+    test.each(aqlFilterTestcases)('It should filter as expected', (testcase) => {
+      const anyService = service as any
+      anyService.user = { id: '1', organization: { id: 1 } }
+
+      const result = service.filterItems(mockAqlsToFilter as IAqlApi[], testcase.filter)
+      expect(result.length).toEqual(testcase.resultLength)
     })
   })
 

@@ -21,7 +21,7 @@ export class AqlEditorUiModel {
     this.usage = aql?.use || undefined
     this.createDate = aql?.createDate || undefined
     this.modifiedDate = aql?.modifiedDate || undefined
-    this.organizationId = aql?.organizationId || undefined
+    this.organizationId = aql?.owner.organization?.id || undefined
     this.owner = aql?.owner || undefined
     this.publicAql = aql?.publicAql || true
   }

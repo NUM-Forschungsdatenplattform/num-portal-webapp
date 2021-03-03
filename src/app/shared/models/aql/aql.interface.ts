@@ -9,6 +9,5 @@ export interface IAqlApi {
   publicAql: boolean
   createDate?: string
   modifiedDate?: string
-  organizationId?: number
   owner?: IUser
 }

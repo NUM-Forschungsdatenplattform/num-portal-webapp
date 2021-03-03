@@ -85,6 +85,9 @@ export class PhenotypeService {
       return this.getAll().pipe(
         map((phenotypeArray) => {
           return this.filterItems(phenotypeArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
