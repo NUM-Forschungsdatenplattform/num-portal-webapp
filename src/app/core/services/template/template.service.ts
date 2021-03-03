@@ -64,6 +64,9 @@ export class TemplateService {
       return this.getAll().pipe(
         map((templatesArray) => {
           return this.filterItems(templatesArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
