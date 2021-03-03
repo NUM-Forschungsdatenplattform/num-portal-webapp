@@ -13,7 +13,7 @@
   </tbody>
 </table>
 
-<mat-card class="filter-area mat-elevation-z4">
+<mat-card class="filter-area mat-elevation-z4" *numUserHasRole="[availableRoles.SuperAdmin]">
   <num-add-user-organization
     [(selectedOrganization)]="organization"
     data-test="user-management__add-organization"
@@ -26,3 +26,8 @@
     data-test="user-management__add-roles"
   ></num-add-user-roles>
 </mat-card>
+
+<div *ngIf="!roles.length">
+  <fa-icon icon="exclamation-triangle"></fa-icon>
+  {{ 'USER_MANAGEMENT.REMOVE_ROLES_WARNING' | translate }}
+</div>

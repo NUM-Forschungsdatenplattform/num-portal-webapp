@@ -104,12 +104,12 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
-  addUserOrganization(userId: string, organization: IOrganization): Observable<IOrganization> {
+  addUserOrganization(userId: string, organization: IOrganization): Observable<string> {
     const httpOptions = {
       responseType: 'text' as 'json',
     }
     return this.httpClient
-      .post<IOrganization>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
+      .post<string>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

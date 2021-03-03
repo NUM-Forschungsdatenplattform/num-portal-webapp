@@ -30,7 +30,7 @@
     "AQLS_EDITOR": "Abfragen-Editor",
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
-    "ALL_USERS": "Alle Benutzer",
+    "ALL_USERS": "Genehmigte Benutzer",
     "ORGANIZATION_MANAGEMENT": "Organisationsverwaltung",
     "ORGANIZATION_EDITOR": "Organisationseditor",
     "ALL_ORGANIZATIONS": "Alle Organisationen",
@@ -103,18 +103,12 @@
   "MAIN_GROUP": "Hauptgruppe",
   "SUB_GROUP": "Untergruppe",
   "LOGICAL_OPERATOR": "Logischer Operator",
-  "EDIT_USER_DIALOG_HEADER": "Benutzer bearbeiten",
-  "ASSIGN_ROLES": "Benutzerrolle(n) zuordnen",
-  "ASSIGN_ORGANIZATION": "Benutzer einer Organisation zuordnen",
-  "EDIT_USER_TEXT": "Der Benutzer wird über die Bestätigung per E-Mail informiert.",
-  "SELECT_ORGANIZATION": "Organisation auswählen",
   "COMMENTS": "Kommentare",
   "WRITE_COMMENT": "Kommentar schreiben",
   "LEAVE_COMMENT": "Hinterlassen Sie hier einen Kommentar, um Ihre Gedanken mitzuteilen",
   "SHOW_OLDER_POSTS": "Ältere Beiträge anzeigen",
   "SHOW_LESS": "Weniger anzeigen",
   "DATE": "Datum",
-  "REGISTER_DATE": "Datum der Registrierung",
   "PLEASE_CHOOSE": "Bitte wählen Sie",
   "RESEARCHERS": {
     "SELECT_RESEARCHERS": "Ausgewählte Forscher",
@@ -222,7 +216,9 @@
     "LAST_NAME": "Nachname",
     "ORGANIZATION": "Organisation",
     "ROLES": "Rollen",
-    "NAME": "Name"
+    "NAME": "Name",
+    "EMAIL": "E-Mail Adresse",
+    "REGISTER_DATE": "Registriert am"
   },
   "ROLE": {
     "RESEARCHER": "Wissenschaftler",
@@ -233,8 +229,6 @@
     "CONTENT_ADMIN": "Content Admin"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
-  "MANAGE_NEW_USERS": "Neue Benutzer verwalten",
-  "MANAGE_ALL_USERS": "Alle Benutzer verwalten",
   "SEARCH_USERNAME": "Benutzernamen suchen",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Möchten Sie die Genehmigungsanfrage zurückziehen?",
@@ -262,6 +256,21 @@
     "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
     "EXPORT_CSV": "CSV Exportieren"
+  },
+  "USER_MANAGEMENT": {
+    "NEW_USERS_HEADER": "Alle neuen Benutzer",
+    "NEW_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie die neu angemeldeten Nutzer, denen noch keine Rolle zugewiesen wurde.\n\nBitte überprüfen Sie die Nutzer uns weisen ihnen eine Rolle zu, damit sie an der CODEX Forschungsdatenplattform teilhaben können.",
+    "ALL_USERS_HEADER": "Alle genehmigten Benutzer",
+    "ALL_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie alle aktiven Nutzer der CODEX Forschungsdatenplattform. Bei Bedarf können Sie den Nutzern andere Rollen zuweisen oder sie deaktivieren.",
+    "EDIT_USER_DIALOG_HEADER": "Benutzer bearbeiten",
+    "EDIT_USER_DESCRIPTION": "Der Benutzer wird über die Bestätigung per E-Mail informiert.",
+    "ASSIGN_ROLES": "Benutzerrolle(n) zuordnen",
+    "ASSIGN_ORGANIZATION": "Benutzer einer Organisation zuordnen",
+    "SELECT_ORGANIZATION": "Eine Organisation auswählen ...",
+    "APPROVE_USER_SUCCESS": "{{firstName}} {{lastName}} wurde erfolgreich bearbeitet und in die Liste der genehmigten Benutzer übertragen.",
+    "EDIT_USER_ERROR": "Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} wurde erfolgreich aktualisiert.",
+    "REMOVE_ROLES_WARNING": "Bitte beachten Sie: Wenn Sie alle Rollen abwählen, ist es dem Benutzer nicht möglich, das Portal in vollem Umfang zu nutzen."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organisationsübersicht",
