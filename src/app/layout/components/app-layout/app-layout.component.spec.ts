@@ -17,6 +17,7 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
 import { HttpClient } from '@angular/common/http'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -67,6 +68,7 @@ describe('AppLayoutComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
+        FlexLayoutModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
