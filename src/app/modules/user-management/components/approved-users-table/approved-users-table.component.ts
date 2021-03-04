@@ -58,7 +58,7 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
 
   handleSelectClick(user: IUser): void {
     const dialogContentPayload: { user: IUser; isApproval: boolean } = {
-      user: user,
+      user,
       isApproval: false,
     }
     const dialogConfig: DialogConfig = {

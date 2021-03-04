@@ -45,7 +45,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
 
   handleSelectClick(user: IUser): void {
     const dialogContentPayload: { user: IUser; isApproval: boolean } = {
-      user: user,
+      user,
       isApproval: true,
     }
     const dialogConfig: DialogConfig = {
