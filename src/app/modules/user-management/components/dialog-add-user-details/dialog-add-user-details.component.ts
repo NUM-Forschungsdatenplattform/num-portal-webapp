@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { forkJoin } from 'rxjs'
+import { cloneDeep } from 'lodash-es'
+import { forkJoin, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -33,16 +34,25 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput
+
+    if (this.dialogInput.organization) {
+      this.organization = cloneDeep(this.dialogInput.organization)
+    }
+
     this.organizationService.getAll().subscribe()
+  }
+
+  hasOrganizationChanged(): boolean {
+    return this.dialogInput.organization?.id !== this.organization.id
   }
 
   handleDialogConfirm(): void {
     const approveUser = this.adminService.approveUser(this.dialogInput.id)
     const addRoles = this.adminService.addUserRoles(this.userDetails.id, this.roles)
-    const addOrganization = this.adminService.addUserOrganization(
-      this.userDetails.id,
-      this.organization
-    )
+    const addOrganization = this.hasOrganizationChanged()
+      ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
+      : of(null)
+
     forkJoin([approveUser, addRoles, addOrganization]).subscribe(
       (success) => {
         const messageConfig: IToastMessageConfig = {

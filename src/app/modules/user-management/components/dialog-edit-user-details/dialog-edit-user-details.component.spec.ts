@@ -16,7 +16,7 @@ import { IOrganization } from 'src/app/shared/models/organization/organization.i
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockRoles, mockUser } from 'src/mocks/data-mocks/admin.mock'
-import { mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import { mockOrganization2, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
@@ -137,17 +137,15 @@ describe('DialogEditUserDetailsComponent', () => {
     })
   })
 
-  describe('When an organization is assigned and the dialog is confirmed', () => {
+  describe('When the organization was changed and the dialog is confirmed', () => {
     beforeEach(() => {
+      component.organization = mockOrganization2
       component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
     it('should call addUserOrganization with userId', () => {
-      expect(adminService.addUserOrganization).toHaveBeenCalledWith(
-        mockUser.id,
-        mockUser.organization
-      )
+      expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization2)
     })
     it('should call refreshFilterResult', () => {
       expect(adminService.refreshFilterResult).toHaveBeenCalled()

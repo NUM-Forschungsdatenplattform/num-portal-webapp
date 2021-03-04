@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
+import { cloneDeep } from 'lodash-es'
 import { Subscription } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
@@ -16,6 +17,7 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   constructor(private organizationService: OrganizationService) {}
 
   organizations: IOrganization[]
+  organizationId: IOrganization['id']
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -23,6 +25,7 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
         this.handleData(organizations)
       )
     )
+    this.organizationId = cloneDeep(this.selectedOrganization.id)
   }
 
   ngOnDestroy(): void {
@@ -34,6 +37,10 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   }
 
   handleSelectClick(): void {
-    this.selectedOrganizationChange.emit(this.selectedOrganization)
+    const newOrganization = this.organizations.filter(
+      (organization) => organization.id === this.organizationId
+    )[0]
+
+    this.selectedOrganizationChange.emit(newOrganization)
   }
 }
