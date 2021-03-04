@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { forkJoin } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
-import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -25,8 +24,11 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
+  EXPORT_CSV_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
+import { StudyService } from 'src/app/core/services/study/study.service'
+import { HttpResponse } from '@angular/common/http'
 
 @Component({
   selector: 'num-data-explorer',
@@ -45,6 +47,8 @@ export class DataExplorerComponent implements OnInit {
   isCohortsFetched: boolean
   isCompositionsFetched: boolean
   isDataSetLoading: boolean
+
+  isExportCsvLoading: boolean
 
   isTemplatesDisabled = true
   isResearchersDisabled = true
@@ -71,7 +75,7 @@ export class DataExplorerComponent implements OnInit {
     private route: ActivatedRoute,
     private cohortService: CohortService,
     private adminService: AdminService,
-    private aqlService: AqlService,
+    private studyService: StudyService,
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService
@@ -199,7 +203,7 @@ export class DataExplorerComponent implements OnInit {
   getDataSet(): void {
     this.isDataSetLoading = true
 
-    this.aqlService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
+    this.studyService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
       (resultSet) => {
         this.resultSet = resultSet
         this.isDataSetLoading = false
@@ -208,6 +212,36 @@ export class DataExplorerComponent implements OnInit {
         this.isDataSetLoading = false
         this.resultSet = undefined
         this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+      }
+    )
+  }
+
+  exportCsv(): void {
+    if (!this.compiledQuery) return
+
+    this.isExportCsvLoading = true
+
+    this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
+      (response) => {
+        const filename = `csv_export_${this.study.id}.csv`
+        const downloadLink = document.createElement('a')
+        downloadLink.setAttribute(
+          'href',
+          'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+        )
+        downloadLink.setAttribute('download', filename)
+        downloadLink.style.display = 'none'
+        document.body.appendChild(downloadLink)
+
+        this.isExportCsvLoading = false
+
+        downloadLink.click()
+        downloadLink.remove()
+      },
+      () => {
+        this.isExportCsvLoading = false
+
+        this.toastMessageService.openToast(EXPORT_CSV_ERROR)
       }
     )
   }

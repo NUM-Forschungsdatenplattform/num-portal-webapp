@@ -23,6 +23,8 @@
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
+      [determineHitsContent]="determineHitsContent"
+      (determineHitsClicked)="determineHits()"
       data-test="study-editor__connector__group"
     ></num-study-editor-connector>
 

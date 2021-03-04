@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -17,6 +17,7 @@ import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.int
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 describe('PhenotypeEditorComponent', () => {
   let component: PhenotypeEditorComponent
@@ -34,6 +35,7 @@ describe('PhenotypeEditorComponent', () => {
 
   const phenotypeService = ({
     create: jest.fn(),
+    getSize: jest.fn(),
   } as unknown) as PhenotypeService
 
   const mockToast = ({
@@ -48,6 +50,9 @@ describe('PhenotypeEditorComponent', () => {
   @Component({ selector: 'num-phenotype-editor-connector', template: '' })
   class StubEditorConnectorComponent {
     @Input() phenotypeQuery: any
+    @Input() isDetermineDisabled: boolean
+    @Input() determineHitsContent: IDetermineHits
+    @Output() determineHitsClicked = new EventEmitter()
   }
 
   beforeEach(async () => {
@@ -160,6 +165,81 @@ describe('PhenotypeEditorComponent', () => {
           type: ToastMessageType.Error,
           message: 'PHENOTYPE.SAVE_NO_AQL_ERROR_MESSAGE',
         })
+      })
+    })
+  })
+
+  describe('On getSize of the Phenotypes to determine hits', () => {
+    beforeEach(() => {
+      const mockObservable = of(2)
+      jest.spyOn(phenotypeService, 'getSize').mockReturnValue(mockObservable)
+      jest.spyOn(component, 'updateDetermineHits')
+
+      component.determineHitsContent.defaultMessage = 'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS'
+      component.resolvedData = {
+        error: null,
+        phenotype: new PhenotypeUiModel(mockPhenotype1),
+      }
+      component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
+        return ({
+          description: '',
+          id: 1,
+          name: 'test',
+          query: 'hello',
+        } as unknown) as IPhenotypeApi
+      })
+
+      jest.clearAllMocks()
+    })
+
+    it('should call PhenotypeSerivce.getSize, if there is a query', async () => {
+      await component.determineHits().then(() => {
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual('')
+        expect(component.determineHitsContent.count).toBeGreaterThan(0)
+      })
+    })
+
+    it('should NOT call PhenotypeSerivce.getSize, if there is no query, and set default message', async () => {
+      component.resolvedData.phenotype.convertToApiInterface = jest.fn().mockImplementation(() => {
+        return ({
+          description: '',
+          id: 1,
+          name: 'test',
+          query: undefined,
+        } as unknown) as IPhenotypeApi
+      })
+
+      await component.determineHits().then(() => {
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(0)
+        expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual(
+          'PHENOTYPE.HITS.MESSAGE_SET_ALL_PARAMETERS'
+        )
+        expect(component.determineHitsContent.count).toEqual(null)
+      })
+    })
+
+    it('should fail to call the PhenotypeSerivce.getSize method and show Too few hits error', async () => {
+      jest.spyOn(phenotypeService, 'getSize').mockReturnValue(throwError({ status: 451 }))
+
+      await component.determineHits().then(() => {
+        expect(phenotypeService.getSize).toHaveBeenCalledTimes(1)
+        expect(component.determineHitsContent.message).toEqual(
+          'PHENOTYPE.HITS.MESSAGE_ERROR_FEW_HITS'
+        )
+        expect(component.determineHitsContent.count).toEqual(null)
+      })
+    })
+
+    it('should fail to call the PhenotypeSerivce.getSize method and show general error', async () => {
+      jest.spyOn(phenotypeService, 'getSize').mockImplementationOnce(() => throwError('Error'))
+
+      await component.determineHits().then(() => {
+        expect(component.determineHitsContent.message).toEqual(
+          'PHENOTYPE.HITS.MESSAGE_ERROR_MESSAGE'
+        )
+        expect(component.determineHitsContent.count).toEqual(null)
       })
     })
   })

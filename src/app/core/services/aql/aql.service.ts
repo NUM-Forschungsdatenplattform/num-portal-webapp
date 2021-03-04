@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, delay, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
@@ -11,7 +11,6 @@ import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
-import { mockResultSetFlat, mockResultSetJson } from 'src/mocks/data-mocks/result-set-mock'
 
 @Injectable({
   providedIn: 'root',
@@ -96,6 +95,9 @@ export class AqlService {
       return this.getAll().pipe(
         map((aqlArray) => {
           return this.filterItems(aqlArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
@@ -107,11 +109,11 @@ export class AqlService {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allAqls.filter(
         (aql) =>
-          aql.name.toUpperCase().includes(textFilter) ||
-          aql.owner.lastName.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
-          aql.owner.lastName.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
+          aql.name?.toUpperCase().includes(textFilter) ||
+          aql.owner.lastName?.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName?.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName?.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
+          aql.owner.lastName?.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
       )
     }
 
@@ -120,7 +122,7 @@ export class AqlService {
         if (filterItem.id === AqlFilterChipId.MyAql) {
           result = result.filter((aql) => aql.owner.id === this.user.id)
         } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
-          result = result.filter((aql) => aql.owner.organization.id === this.user.organization.id)
+          result = result.filter((aql) => aql.owner.organization?.id === this.user.organization?.id)
         }
       }
     })
@@ -148,12 +150,6 @@ export class AqlService {
     return this.httpClient
       .delete<any>(`${this.baseUrl}/${aqlId}`)
       .pipe(catchError(this.handleError))
-  }
-
-  // TO DO: Replace by new Endpoint
-  executeAdHocAql(aql: string, studyId: number): Observable<IAqlExecutionResponse> {
-    // return of(mockResultSetFlat).pipe(delay(1000))
-    return of(mockResultSetJson).pipe(delay(1000))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

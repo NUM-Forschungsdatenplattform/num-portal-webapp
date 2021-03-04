@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError, forkJoin } from 'rxjs'
 import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IOrganization } from 'src/app/shared/models/user/organization.interface'
+import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -125,6 +125,9 @@ export class AdminService {
       return this.getApprovedUsers().pipe(
         map((userArray) => {
           return this.filterItems(userArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
@@ -137,10 +140,10 @@ export class AdminService {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allApprovedUsers.filter(
         (user) =>
-          user.lastName.toUpperCase().includes(textFilter) ||
-          user.firstName.toUpperCase().includes(textFilter) ||
-          user.firstName.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
-          user.lastName.concat(' ', user.firstName).toUpperCase().includes(textFilter)
+          user.lastName?.toUpperCase().includes(textFilter) ||
+          user.firstName?.toUpperCase().includes(textFilter) ||
+          user.firstName?.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
+          user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter)
       )
     }
 

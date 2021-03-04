@@ -24,3 +24,15 @@ export const mockUserProfile2: IUserProfile = {
   approved: true,
   organization: mockOrganization2,
 }
+
+export const mockUserProfile3: IUserProfile = {
+  id: '3',
+  username: 'username-2',
+  firstName: 'user2-firstname',
+  lastName: 'user2-lastname',
+  email: 'mockUser2@email.com',
+  createdTimestamp: 1603140166809,
+  roles: ['SUPER_ADMIN'],
+  approved: true,
+  organization: mockOrganization2,
+}

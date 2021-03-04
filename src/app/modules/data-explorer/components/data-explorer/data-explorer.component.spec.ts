@@ -19,7 +19,6 @@ import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.in
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
-import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -30,6 +29,7 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
+  EXPORT_CSV_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
@@ -37,6 +37,7 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { StudyService } from 'src/app/core/services/study/study.service'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -62,9 +63,10 @@ describe('DataExplorerComponent', () => {
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
 
-  const aqlService = ({
+  const studyService = ({
     executeAdHocAql: jest.fn(),
-  } as unknown) as AqlService
+    exportCsv: jest.fn(),
+  } as unknown) as StudyService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
 
@@ -163,8 +165,8 @@ describe('DataExplorerComponent', () => {
           useValue: adminService,
         },
         {
-          provide: AqlService,
-          useValue: aqlService,
+          provide: StudyService,
+          useValue: studyService,
         },
         {
           provide: DialogService,
@@ -411,7 +413,7 @@ describe('DataExplorerComponent', () => {
     }
 
     beforeEach(() => {
-      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
       component.compiledQuery = buildResponse
     })
 
@@ -425,7 +427,7 @@ describe('DataExplorerComponent', () => {
 
   describe('When the resultSet cannot be fetched', () => {
     beforeEach(() => {
-      jest.spyOn(aqlService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
       component.compiledQuery = buildResponse
     })
@@ -436,6 +438,50 @@ describe('DataExplorerComponent', () => {
       expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
       expect(component.isDataSetLoading).toEqual(false)
       expect(component.resultSet).toBeUndefined()
+    })
+  })
+
+  describe('When the ExportCsv is Clicked', () => {
+    beforeEach(() => {
+      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of('some text'))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should call the studyService.exportCsv', () => {
+      component.exportCsv()
+
+      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
+      expect(component.isExportCsvLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      const filename = `csv_export_${component.study.id}.csv`
+      const mockHtmlElement = document.createElement('a')
+
+      mockHtmlElement.setAttribute = jest.fn()
+      mockHtmlElement.click = jest.fn()
+      mockHtmlElement.remove = jest.fn()
+
+      Object.defineProperty(document, 'createElement', {
+        value: () => mockHtmlElement,
+      })
+
+      component.exportCsv()
+
+      expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
+      expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
+      expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
+    })
+
+    it('should show toast in case of error', () => {
+      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+
+      component.exportCsv()
+      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
+      expect(component.isExportCsvLoading).toEqual(false)
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(EXPORT_CSV_ERROR)
     })
   })
 })

@@ -1,7 +1,7 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header data-test="studies-editor__researchers__select-researchers-button">
     <h3 class="accordion">
-      <fa-icon icon="['far', 'check-circle']" *ngIf="dataSource.data.length"></fa-icon>
+      <fa-icon [icon]="['far', 'check-circle']" *ngIf="dataSource.data.length"></fa-icon>
 
       {{ 'RESEARCHERS.SELECT_RESEARCHERS' | translate }}*
     </h3>

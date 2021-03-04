@@ -25,7 +25,7 @@ export class ResultTableComponent implements OnInit {
   }
 
   displayedColumns: string[] = []
-  resultSetColumns: IAqlExecutionColumn[] = []
+  displayedColumnNames: string[] = []
   dataSource = new MatTableDataSource()
 
   @Input() resultSet: IAqlExecutionResponse
@@ -49,9 +49,13 @@ export class ResultTableComponent implements OnInit {
       path: ' ',
       name: '#',
     }
+    const columnNamePattern = new RegExp('([^/]+$)')
+    const resultSetColumns: IAqlExecutionColumn[] = [firstColumn, ...this.resultSet.columns]
 
-    this.resultSetColumns = [firstColumn, ...this.resultSet.columns]
-    this.displayedColumns = this.resultSetColumns.map((column) => column.path)
+    this.displayedColumns = resultSetColumns.map((column) => column.path)
+    this.displayedColumnNames = resultSetColumns.map(
+      (column) => column.name.match(columnNamePattern)[0]
+    )
     this.dataSource.data = this.resultSet.rows.map((row, index) => [index + 1, ...row])
   }
 }

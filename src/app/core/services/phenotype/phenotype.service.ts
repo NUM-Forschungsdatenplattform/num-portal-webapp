@@ -85,6 +85,9 @@ export class PhenotypeService {
       return this.getAll().pipe(
         map((phenotypeArray) => {
           return this.filterItems(phenotypeArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
@@ -106,6 +109,12 @@ export class PhenotypeService {
   create(phenotype: IPhenotypeApi): Observable<IPhenotypeApi> {
     return this.httpClient
       .post<IPhenotypeApi>(this.baseUrl, phenotype)
+      .pipe(catchError(this.handleError))
+  }
+
+  getSize(phenotype: IPhenotypeApi): Observable<number> {
+    return this.httpClient
+      .post<number>(`${this.baseUrl}/size`, phenotype)
       .pipe(catchError(this.handleError))
   }
 

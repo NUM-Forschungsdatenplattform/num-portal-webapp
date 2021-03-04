@@ -43,7 +43,7 @@ describe('ResultTableComponent', () => {
       q: 'some query',
       columns: [
         {
-          name: 'col1',
+          name: 'some/path/to/col1',
           path: 'path to col1',
         },
         {
@@ -76,7 +76,7 @@ describe('ResultTableComponent', () => {
       expect(component.displayedColumns).toEqual([' ', 'path to col1', 'path to col2'])
     })
     it('should set resultSetcolumns equal to resultSet.columns (+ first column for row-index)', () => {
-      expect(component.resultSetColumns).toEqual([firstColumn, ...mockResultSet.columns])
+      expect(component.displayedColumnNames).toEqual(['#', 'col1', 'col2'])
     })
   })
 
@@ -85,7 +85,7 @@ describe('ResultTableComponent', () => {
       q: 'some query',
       columns: [
         {
-          name: 'col1',
+          name: 'some/path/to/col1',
           path: 'path to col1',
         },
         {
@@ -107,7 +107,7 @@ describe('ResultTableComponent', () => {
       expect(component.displayedColumns).toHaveLength(0)
     })
     it('should not set resultSetcolumns', () => {
-      expect(component.resultSetColumns).toHaveLength(0)
+      expect(component.displayedColumnNames).toHaveLength(0)
     })
   })
 })

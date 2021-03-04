@@ -1,4 +1,4 @@
-$margins: 10, 20, 40, 60;
+$margins: 0, 10, 20, 40, 60;
 
 @each $margin in $margins {
   .num-margin-b-#{$margin} {

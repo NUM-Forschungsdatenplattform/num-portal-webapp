@@ -184,7 +184,7 @@ export const mockResultSetFlat: IAqlExecutionResponse = {
 
 export const mockResultSetJson: IAqlExecutionResponse = {
   q:
-    'SELECT c0 as openEHR_EHR_COMPOSITION_event_summary_v0,  c1 as openEHR_EHR_COMPOSITION_report_result_v1 FROM  EHR e  contains (COMPOSITION c0[openEHR-EHR-COMPOSITION.event_summary.v0]  and COMPOSITION c1[openEHR-EHR-COMPOSITION.report-result.v1])',
+    'SELECT c0,  c1 FROM  EHR e  contains (COMPOSITION c0[openEHR-EHR-COMPOSITION.event_summary.v0]  and COMPOSITION c1[openEHR-EHR-COMPOSITION.report-result.v1])',
   columns: [
     {
       path: 'c0',

@@ -31,6 +31,9 @@
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Alle Benutzer",
+    "ORGANIZATION_MANAGEMENT": "Organisationsverwaltung",
+    "ORGANIZATION_EDITOR": "Organisationseditor",
+    "ALL_ORGANIZATIONS": "Alle Organisationen",
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
@@ -70,7 +73,12 @@
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden."
+    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    }
   },
   "CONTENT_EDITOR": {
     "EDIT_INFO_CARDS_HEADER": "Info-Karten bearbeiten",
@@ -80,6 +88,7 @@
   },
   "CONFIGURE": "Konfigurieren",
   "SUMMARY": "Zusammenfassung",
+  "HITS": "Treffer",
   "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
   "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_STUDIES": "Verfügbare Studien",
@@ -135,14 +144,17 @@
     "PUBLIC_CHECKBOX": "AQL-Abfrage zur öffentlichen Verwendung markieren",
     "ETHICAL_APPROVAL_CHECKBOX": "Ja, ethische Genehmigung liegt vor*",
     "NAME": "Name",
-    "ORGANIZATION": "Organisation",
     "FILTER": "Filter",
     "ACTION": "Aktion",
     "CREATION_DATE": "Erstellungsdatum",
     "USAGE": "Nutzung",
     "YES": "Ja",
     "NO": "Nein",
-    "VALUE": "Wert"
+    "VALUE": "Wert",
+    "ORGANIZATION_NAME": "Organisationsname",
+    "ORGANIZATION_NAME_PLACEHOLDER": "Name der Organisation eingeben",
+    "ADD_ORGANIZATION_DOMAIN": "Mail-Domäne hinzufügen (domain part)",
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B domain.de or sub.domain.de"
   },
   "BUTTON": {
     "SAVE": "Speichern",
@@ -159,6 +171,7 @@
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
     "ADD_TEMPLATE": "Vorlage hinzufügen",
+    "ADD": "Hinzufügen",
     "DELETE_GROUP": "Gruppe löschen",
     "DELETE_COMPOSITION": "Composition löschen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
@@ -183,7 +196,10 @@
     "STUDY_APPROVAL_DENY": "Studie ablehnen",
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
-    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen"
+    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
+    "CREATE_ORGANIZATION": "Organisation erstellen",
+    "UPDATE_NAME": "Name aktualisieren",
+    "DETERMINE": "Ermitteln"
   },
   "STUDY": {
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
@@ -203,6 +219,11 @@
       "CHANGE_REQUEST": "Die Studie muss überarbeitet werden.",
       "DENY": "Die Studie wird abgelehnt und damit abgeschlossen.",
       "HINT_TO_COMMENT": "Insbesondere wenn Sie Änderungen wünschen oder die Studie ablehnen, sollten Sie den Grund als Kommentar festhalten."
+    },
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Bitte stellen Sie zunächst alle Parameter ein.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
     },
     "CATEGORIES": {
       "PEDIATRICS": "Pädiatrie",
@@ -274,7 +295,29 @@
     "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
     "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
-    "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut."
+    "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
+    "EXPORT_CSV": "CSV Exportieren",
+    "EXPORT_CSV_ERROR": "Fehler beim Versuch, die CSV zu exportieren, bitte versuchen Sie es später noch einmal."
+  },
+  "ORGANIZATION_MANAGEMENT": {
+    "OVERVIEW_HEADER": "Organisationsübersicht",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle Organisationen im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Organisation wählen Sie diese aus der Liste aus.",
+    "CREATE_HEADER": "Organisation erstellen",
+    "CREATE_DESCRIPTION": "Zum Erstellen einer Organisation müssen Sie zunächst hier den Namen der Organisation eingeben.\n\nNach dem erfolgreichen Anlegen der Organisation können Sie diese in einem weiteren Schritt bearbeiten, um beispielsweise die Mail-Domänen zuzuweisen.\n\n*Pflichtfeld",
+    "CREATE_DESCRIPTION_BUTTON": "Zum Anlegen einer neuen Organisation klicken Sie bitte auf den folgenden Button.",
+    "EDIT_HEADER": "Organisation bearbeiten",
+    "EDIT_DESCRIPTION": "Auf dieser Seite können Sie der Organisation Mail-Domänen zuweisen. Dadurch können neue Nutzer an Hand ihrer E-Mail-Adresse automatisch der Organisation zugewiesen werden.\n\nAußerdem können Sie be Bedarf den Namen der Organisation ändern. Das sollten Sie aber nur machen, wenn es zwingend notwendig ist.\n\n*Pflichtfeld",
+    "MAIL_DOMAIN_EMPTY": "Bitte geben Sie oben eine Mail-Domain ein",
+    "CREATION_SUCCESS": "{{name}} wurde erfolgreich erstellt.",
+    "CREATION_ERROR": "Die Organisation kann nicht erstellt werden. Bitte versuchen Sie es erneut.",
+    "UPDATING_SUCCESS": "Die Organisation wurde erfolgreich aktualisiert.",
+    "UPDATING_ERROR": "Der Organisationsname konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
+    "ADDING_DOMAIN_SUCCESS": "Die Mail-Domäne wurde erfolgreich zur Organisationsliste hinzugefügt.",
+    "ADDING_DOMAIN_ERROR_GENERIC": "Die Mail-Domäne konnte nicht hinzugefügt werden. Bitte versuchen Sie es erneut.",
+    "ADDING_DOMAIN_ERROR_TAKEN": "Die Mail-Domäne ist bereits in Verwendung. Bitte geben Sie eine andere Mail Domain an.",
+    "DELETING_DOMAIN_SUCCESS": "Die Mail-Domäne wurde erfolgreich aus der Organisationsliste gelöscht.",
+    "DELETING_DOMAIN_ERROR": "Die Mail-Domäne konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "MAIL_DOMAIN": "Mail-Domänen"
   },
   "DATE_TIME": {
     "DATE": "Datum",

@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/study/cohort-group-api.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +35,9 @@ export class CohortService {
       .pipe(catchError(this.handleError))
   }
 
-  getCohortSize(id: number): Observable<number> {
+  getSize(cohortGroup: ICohortGroupApi): Observable<number> {
     return this.httpClient
-      .post<number>(`${this.baseUrl}/${id}/size`, {})
+      .post<number>(`${this.baseUrl}/size`, cohortGroup)
       .pipe(catchError(this.handleError))
   }
 

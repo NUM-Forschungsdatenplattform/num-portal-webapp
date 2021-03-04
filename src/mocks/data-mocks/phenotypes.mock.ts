@@ -6,7 +6,7 @@ import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.int
  * id = 1
  */
 export const mockPhenotype1: IPhenotypeApi = {
-  name: 'Blood pressure',
+  name: 'Blood pressure1',
   description: 'Blood pressure is relevant for this and that',
   id: 1,
   query: {
@@ -80,7 +80,7 @@ export const mockPhenotype1: IPhenotypeApi = {
 export const mockPhenotype2: IPhenotypeApi = {
   description: 'Blood pressure is relevant for this and that',
   id: 2,
-  name: 'Blood pressure',
+  name: 'Blood pressure2',
   query: {
     type: ConnectorNodeType.Group,
     operator: LogicalOperator.Not,

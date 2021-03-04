@@ -15,7 +15,7 @@
           *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
           (click)="handleSelectClick($event, element)"
           [attr.aria-label]="'BUTTON.SELECT' | translate"
-          [attr.data-test]="'generic-filter-table__row-' + i + '__select-button'"
+          data-test="generic-filter-table__row__select-button"
         >
           <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -25,7 +25,7 @@
             mat-icon-button
             (click)="handleDeselectClick($event, element)"
             [attr.aria-label]="'BUTTON.DESELECT' | translate"
-            [attr.data-test]="'generic-filter-table__row-' + i + '__deselect-button'"
+            data-test="generic-filter-table__row__deselect-button"
           >
             <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
           </button>
