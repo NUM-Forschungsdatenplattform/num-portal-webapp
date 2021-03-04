@@ -259,7 +259,7 @@
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "Alle neuen Benutzer",
-    "NEW_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie die neu angemeldeten Nutzer, denen noch keine Rolle zugewiesen wurde.\n\nBitte überprüfen Sie die Nutzer uns weisen ihnen eine Rolle zu, damit sie an der CODEX Forschungsdatenplattform teilhaben können.",
+    "NEW_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie die neu angemeldeten Nutzer, denen noch keine Rolle zugewiesen wurde.\n\nBitte überprüfen Sie die Nutzer und weisen ihnen eine Rolle zu, damit sie an der CODEX Forschungsdatenplattform teilhaben können.",
     "ALL_USERS_HEADER": "Alle genehmigten Benutzer",
     "ALL_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie alle aktiven Nutzer der CODEX Forschungsdatenplattform. Bei Bedarf können Sie den Nutzern andere Rollen zuweisen oder sie deaktivieren.",
     "EDIT_USER_DIALOG_HEADER": "Benutzer bearbeiten",

@@ -74,7 +74,7 @@ describe('ApprovedUsersTableComponent', () => {
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
       dialogContentComponent: DialogEditUserDetailsComponent,
-      dialogContentPayload: mockUser,
+      dialogContentPayload: { user: mockUser, isApproval: false },
     }
     beforeEach(() => {
       fixture.detectChanges()

@@ -15,7 +15,7 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
-import { mockRoles, mockUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization2, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
@@ -30,10 +30,11 @@ describe('DialogEditUserDetailsComponent', () => {
   const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = ({
+    approveUser: jest.fn().mockImplementation(() => of('Success')),
     addUserRoles: (userId: string, roles: string[]) => of(),
     addUserOrganization: (userId: string, organization: string) => of(),
-    getUserRoles: (userId: string) => of(mockRoles),
     refreshFilterResult: () => [],
+    getUnapprovedUsers: () => of(),
   } as unknown) as AdminService
 
   const organizationService = ({
@@ -100,13 +101,15 @@ describe('DialogEditUserDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogEditUserDetailsComponent)
     component = fixture.componentInstance
-    component.dialogInput = mockUser
+    component.dialogInput = { user: mockUser, isApproval: false }
     userProfileSubject$.next(mockUserProfile1)
     fixture.detectChanges()
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(adminService, 'addUserRoles')
     jest.spyOn(adminService, 'addUserOrganization')
+    jest.spyOn(adminService, 'approveUser')
     jest.spyOn(adminService, 'refreshFilterResult')
+    jest.spyOn(adminService, 'getUnapprovedUsers')
   })
 
   it('should create', () => {
@@ -149,6 +152,21 @@ describe('DialogEditUserDetailsComponent', () => {
     })
     it('should call refreshFilterResult', () => {
       expect(adminService.refreshFilterResult).toHaveBeenCalled()
+    })
+  })
+
+  describe('When the user is approved and the dialog is confirmed', () => {
+    beforeEach(() => {
+      component.isApproval = true
+      component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should call approveUser methods', () => {
+      expect(adminService.approveUser).toHaveBeenCalledWith(mockUser.id)
+    })
+    it('should call getUnapprovedUsers method', () => {
+      expect(adminService.getUnapprovedUsers).toHaveBeenCalled()
     })
   })
 

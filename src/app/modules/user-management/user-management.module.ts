@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { UnapprovedUsersTableComponent } from './components/unapproved-users-table/unapproved-users-table.component'
-import { DialogAddUserDetailsComponent } from './components/dialog-add-user-details/dialog-add-user-details.component'
 import { AddUserRolesComponent } from './components/add-user-roles/add-user-roles.component'
 import { AddUserOrganizationComponent } from './components/add-user-organization/add-user-organization.component'
 import { ApprovedUsersComponent } from './components/approved-users/approved-users.component'
@@ -17,7 +16,6 @@ import { UserManagementRoutingModule } from './user-management-routing.module'
   declarations: [
     UnapprovedUsersComponent,
     UnapprovedUsersTableComponent,
-    DialogAddUserDetailsComponent,
     AddUserRolesComponent,
     AddUserOrganizationComponent,
     ApprovedUsersComponent,

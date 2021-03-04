@@ -1,3 +1,5 @@
+<p *ngIf="isApproval">{{ 'USER_MANAGEMENT.EDIT_USER_DESCRIPTION' | translate }}</p>
+
 <table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
   <tbody>
     <tr>
@@ -27,7 +29,7 @@
   ></num-add-user-roles>
 </mat-card>
 
-<div *ngIf="!roles.length">
+<div *ngIf="!isApproval && !roles.length">
   <fa-icon icon="exclamation-triangle"></fa-icon>
   {{ 'USER_MANAGEMENT.REMOVE_ROLES_WARNING' | translate }}
 </div>

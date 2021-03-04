@@ -9,10 +9,10 @@ import { mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
-import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
+import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 
 describe('UnapprovedUsersTableComponent', () => {
   let component: UnapprovedUsersTableComponent
@@ -73,8 +73,8 @@ describe('UnapprovedUsersTableComponent', () => {
   describe('When an icon in a row is clicked', () => {
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
-      dialogContentComponent: DialogAddUserDetailsComponent,
-      dialogContentPayload: mockUser,
+      dialogContentComponent: DialogEditUserDetailsComponent,
+      dialogContentPayload: { user: mockUser, isApproval: true },
     }
     beforeEach(() => {
       fixture.detectChanges()

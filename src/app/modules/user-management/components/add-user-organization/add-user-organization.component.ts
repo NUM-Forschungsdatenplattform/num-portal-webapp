@@ -37,9 +37,9 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   }
 
   handleSelectClick(): void {
-    const newOrganization = this.organizations.filter(
+    const newOrganization = this.organizations.find(
       (organization) => organization.id === this.organizationId
-    )[0]
+    )
 
     this.selectedOrganizationChange.emit(newOrganization)
   }
