@@ -38,6 +38,9 @@ export class DialogAddUserDetailsComponent implements OnInit, IGenericDialog<IUs
     if (this.dialogInput.organization) {
       this.organization = cloneDeep(this.dialogInput.organization)
     }
+    if (this.dialogInput.roles) {
+      this.roles = cloneDeep(this.dialogInput.roles)
+    }
 
     this.organizationService.getAll().subscribe()
   }

@@ -63,7 +63,7 @@ export class AdminService {
   }
 
   getUnapprovedUsers(): Observable<IUser[]> {
-    return this.getUsers(false).pipe(
+    return this.getUsers(false, true).pipe(
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
