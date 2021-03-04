@@ -16,7 +16,9 @@
   class="header-image"
   [ngClass.xs]="{ 'header-image--small': true }"
   *ngIf="currentMainNavItem?.routeTo === 'home'"
-></section>
+>
+  <num-logo [shouldAnimate]="isFirstHomeVisit"></num-logo>
+</section>
 
 <section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
