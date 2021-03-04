@@ -202,7 +202,11 @@ describe('StudyService', () => {
       const id = 1
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(studyCommentMock1))
       service.exportCsv(id, query).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/${id}/export`, { query })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `${baseUrl}/${id}/export`,
+        { query },
+        { responseType: 'text' as 'json' }
+      )
     })
   })
 })

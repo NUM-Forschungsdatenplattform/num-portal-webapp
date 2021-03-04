@@ -29,6 +29,7 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
+  EXPORT_CSV_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
@@ -442,7 +443,7 @@ describe('DataExplorerComponent', () => {
 
   describe('When the ExportCsv is Clicked', () => {
     beforeEach(() => {
-      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of({}))
+      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of('some text'))
       component.compiledQuery = buildResponse
     })
 
@@ -450,6 +451,26 @@ describe('DataExplorerComponent', () => {
       component.exportCsv()
 
       expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
+      expect(component.isExportCsvLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      const filename = `csv_export_${component.study.id}.csv`
+      const mockHtmlElement = document.createElement('a')
+
+      mockHtmlElement.setAttribute = jest.fn()
+      mockHtmlElement.click = jest.fn()
+      mockHtmlElement.remove = jest.fn()
+
+      Object.defineProperty(document, 'createElement', {
+        value: () => mockHtmlElement,
+      })
+
+      component.exportCsv()
+
+      expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
+      expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
+      expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
     })
 
     it('should show toast in case of error', () => {
@@ -458,7 +479,9 @@ describe('DataExplorerComponent', () => {
 
       component.exportCsv()
       expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(toastMessageService.openToast).toHaveBeenCalledWith(RESULT_SET_LOADING_ERROR)
+      expect(component.isExportCsvLoading).toEqual(false)
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(EXPORT_CSV_ERROR)
     })
   })
 })
