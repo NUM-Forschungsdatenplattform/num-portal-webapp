@@ -24,6 +24,7 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
+  EXPORT_CSV_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { StudyService } from 'src/app/core/services/study/study.service'
@@ -46,6 +47,8 @@ export class DataExplorerComponent implements OnInit {
   isCohortsFetched: boolean
   isCompositionsFetched: boolean
   isDataSetLoading: boolean
+
+  isExportCsvLoading: boolean
 
   isTemplatesDisabled = true
   isResearchersDisabled = true
@@ -216,21 +219,29 @@ export class DataExplorerComponent implements OnInit {
   exportCsv(): void {
     if (!this.compiledQuery) return
 
+    this.isExportCsvLoading = true
+
     this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
       (response) => {
-        const filename = 'csv_export_' + this.study.id
+        const filename = `csv_export_${this.study.id}.csv`
         const downloadLink = document.createElement('a')
         downloadLink.setAttribute(
           'href',
-          'data:text/plain;charset=utf-8,' + encodeURIComponent(response.body)
+          'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
         )
         downloadLink.setAttribute('download', filename)
         downloadLink.style.display = 'none'
         document.body.appendChild(downloadLink)
+
+        this.isExportCsvLoading = false
+
         downloadLink.click()
+        downloadLink.remove()
       },
       () => {
-        this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+        this.isExportCsvLoading = false
+
+        this.toastMessageService.openToast(EXPORT_CSV_ERROR)
       }
     )
   }
