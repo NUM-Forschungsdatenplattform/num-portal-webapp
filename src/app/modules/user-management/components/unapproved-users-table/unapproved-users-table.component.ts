@@ -8,7 +8,7 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
+import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 
 @Component({
   selector: 'num-unapproved-users-table',
@@ -33,6 +33,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
@@ -44,13 +45,16 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
   }
 
   handleSelectClick(user: IUser): void {
-    const dialogContentPayload: IUser = user
+    const dialogContentPayload: { user: IUser; isApproval: boolean } = {
+      user,
+      isApproval: true,
+    }
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
-      dialogContentComponent: DialogAddUserDetailsComponent,
+      dialogContentComponent: DialogEditUserDetailsComponent,
       dialogContentPayload,
     }
 
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
+    this.dialogService.openDialog(dialogConfig)
   }
 }

@@ -44,7 +44,7 @@ describe('AdminService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getUnapprovedUsers().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=false`
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       service.unapprovedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
@@ -59,7 +59,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=false`
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       expect(service.handleError).toHaveBeenCalled()
     })

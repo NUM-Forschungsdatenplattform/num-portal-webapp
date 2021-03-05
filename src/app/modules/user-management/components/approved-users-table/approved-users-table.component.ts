@@ -46,6 +46,7 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
@@ -57,7 +58,10 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
   }
 
   handleSelectClick(user: IUser): void {
-    const dialogContentPayload: IUser = user
+    const dialogContentPayload: { user: IUser; isApproval: boolean } = {
+      user,
+      isApproval: false,
+    }
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
       dialogContentComponent: DialogEditUserDetailsComponent,

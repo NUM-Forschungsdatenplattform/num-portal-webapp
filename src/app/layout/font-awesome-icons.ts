@@ -29,6 +29,7 @@ import {
   faBuilding,
   faUserEdit,
   faFileDownload,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye } from '@fortawesome/free-regular-svg-icons'
@@ -67,4 +68,5 @@ export const FONT_AWESOME_ICONS = [
   faUserEdit,
   faNewspaper,
   faFileDownload,
+  faExclamationTriangle,
 ]

@@ -3,7 +3,7 @@
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
   <table mat-table [dataSource]="dataSource" matSort aria-labelledby="unapproved-users-header">
     <ng-container matColumnDef="icon">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-header>
         {{ 'FORM.ACTION' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
@@ -33,13 +33,15 @@
     </ng-container>
 
     <ng-container matColumnDef="email">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'USER.EMAIL' | translate }}
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.email }}</td>
     </ng-container>
 
     <ng-container matColumnDef="createdTimestamp">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'REGISTER_DATE' | translate }}
+        {{ 'USER.REGISTER_DATE' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">{{ element.createdTimestamp | localizedDate }}</td>
     </ng-container>

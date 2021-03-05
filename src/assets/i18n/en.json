@@ -30,7 +30,7 @@
     "AQLS_EDITOR": "AQL Editor",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
-    "ALL_USERS": "All Users",
+    "ALL_USERS": "Approved Users",
     "ORGANIZATION_MANAGEMENT": "Organization Management",
     "ORGANIZATION_EDITOR": "Organization Editor",
     "ALL_ORGANIZATIONS": "All Organizations",
@@ -103,18 +103,12 @@
   "MAIN_GROUP": "Maingroup",
   "SUB_GROUP": "Subgroup",
   "LOGICAL_OPERATOR": "Logical operator",
-  "EDIT_USER_DIALOG_HEADER": "Edit User",
-  "ASSIGN_ROLES": "Assign user role(s)",
-  "ASSIGN_ORGANIZATION": "Assign user to an organization",
-  "EDIT_USER_TEXT": "The user will be informed about the approval by e-mail.",
-  "SELECT_ORGANIZATION": "Select Organization",
   "COMMENTS": "Comments",
   "WRITE_COMMENT": "Write comment",
   "LEAVE_COMMENT": "Leave a comment here to share your thoughts",
   "SHOW_OLDER_POSTS": "Show older posts",
   "SHOW_LESS": "Show less",
   "DATE": "Date",
-  "REGISTER_DATE": "Register Date",
   "PLEASE_CHOOSE": "Please choose",
   "RESEARCHERS": {
     "SELECT_RESEARCHERS": "Select Researchers",
@@ -222,7 +216,9 @@
     "LAST_NAME": "Last name",
     "ORGANIZATION": "Organization",
     "ROLES": "Roles",
-    "NAME": "Name"
+    "NAME": "Name",
+    "EMAIL": "E-mail address",
+    "REGISTER_DATE": "Register date"
   },
   "ROLE": {
     "RESEARCHER": "Researcher",
@@ -233,8 +229,6 @@
     "CONTENT_ADMIN": "Content Admin"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
-  "MANAGE_NEW_USERS": "Manage New Users",
-  "MANAGE_ALL_USERS": "Manage All Users",
   "SEARCH_USERNAME": "Search user name",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Do you want to withdraw the approval request?",
@@ -263,6 +257,21 @@
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT_CSV": "Export CSV",
     "EXPORT_CSV_ERROR": "Error while trying to Export the CSV, please try again later."
+  },
+  "USER_MANAGEMENT": {
+    "NEW_USERS_HEADER": "All New Users",
+    "NEW_USERS_DESCRIPTION": "The following list shows the new registered users who have not yet been assigned to a role.\n\nPlease review the users and assign them to a role so that they can participate in the CODEX research data platform.",
+    "ALL_USERS_HEADER": "All Approved Users",
+    "ALL_USERS_DESCRIPTION": "In the following list you can see all active users of the CODEX research data platform. If required, you can assign other roles to the users or deactivate them.",
+    "EDIT_USER_DIALOG_HEADER": "Edit User",
+    "EDIT_USER_DESCRIPTION": "The user will be informed about the approval by e-mail.",
+    "ASSIGN_ROLES": "Assign user role(s)",
+    "ASSIGN_ORGANIZATION": "Assign user to an organization",
+    "SELECT_ORGANIZATION": "Please select an organization ...",
+    "APPROVE_USER_SUCCESS": "{{firstName}} {{lastName}} has been successfully edited and transferred to the list of approved users.",
+    "EDIT_USER_ERROR": "The changes could not be saved. Please try again.",
+    "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} was updated successfully.",
+    "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",
