@@ -12,6 +12,7 @@ import { mainNavItems } from '../../../core/constants/navigation'
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
+  isFirstHomeVisit = true
   mainNavItems = mainNavItems
   currentNavId: string
   currentMainNavItem: INavItem
@@ -46,5 +47,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const navItem = this.mainNavItems.find((item) => item.routeTo === this.currentNavId)
     this.currentMainNavItem = navItem
     this.currentTabNav = navItem?.tabNav
+
+    if (this.isFirstHomeVisit && this.currentNavId === 'home') {
+      setTimeout(() => {
+        this.isFirstHomeVisit = false
+      }, 0)
+    }
   }
 }

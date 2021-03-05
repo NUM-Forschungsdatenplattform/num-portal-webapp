@@ -11,6 +11,7 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
 import { LanguageComponent } from '../language/language.component'
 import { HeaderComponent } from './header.component'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { LogoComponent } from 'src/app/shared/components/logo/logo.component'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -24,6 +25,12 @@ describe('HeaderComponent', () => {
   const firstNavItem: INavItem = {
     routeTo: 'first',
     translationKey: 'first',
+    icon: 'test',
+  }
+
+  const homeNavItem: INavItem = {
+    routeTo: 'home',
+    translationKey: 'home',
     icon: 'test',
   }
 
@@ -49,11 +56,17 @@ describe('HeaderComponent', () => {
     ],
   }
 
-  const mainNavItems = [firstNavItem, secondNavItem, thirdNavItem]
+  const mainNavItems = [firstNavItem, secondNavItem, thirdNavItem, homeNavItem]
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent, LanguageComponent, StubComponent, ButtonComponent],
+      declarations: [
+        HeaderComponent,
+        LanguageComponent,
+        StubComponent,
+        ButtonComponent,
+        LogoComponent,
+      ],
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,
@@ -105,6 +118,25 @@ describe('HeaderComponent', () => {
       expect(component.currentNavId).toEqual('second')
       expect(component.currentMainNavItem).toBe(secondNavItem)
       expect(component.currentTabNav).toBeFalsy()
+    })
+  })
+
+  describe('On ActivationEnd to the home route', () => {
+    const routeSnapshot = ({
+      data: {
+        navId: 'home',
+      },
+    } as unknown) as ActivatedRouteSnapshot
+    const routerEvent = new ActivationEnd(routeSnapshot)
+
+    it('should set the the flag that home was now visited', (done) => {
+      expect(component.isFirstHomeVisit).toBeTruthy()
+      routerEventsSubject.next(routerEvent)
+      fixture.detectChanges()
+      setTimeout(() => {
+        expect(component.isFirstHomeVisit).toBeFalsy()
+        done()
+      }, 1)
     })
   })
 
