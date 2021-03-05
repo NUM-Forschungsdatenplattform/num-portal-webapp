@@ -46,6 +46,7 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {

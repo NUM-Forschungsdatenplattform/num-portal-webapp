@@ -49,14 +49,16 @@ export class DialogEditUserDetailsComponent
   }
 
   hasOrganizationChanged(): boolean {
-    return this.userDetails.organization?.id !== this.organization.id
+    return this.userDetails.organization?.id != this.organization.id
   }
 
   handleDialogConfirm(): void {
     const approveUser = this.isApproval
       ? this.adminService.approveUser(this.userDetails.id)
       : of(null)
+
     const addRoles = this.adminService.addUserRoles(this.userDetails.id, this.roles)
+
     const addOrganization = this.hasOrganizationChanged()
       ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
       : of(null)
