@@ -55,6 +55,6 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
       dialogContentPayload,
     }
 
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
+    this.dialogService.openDialog(dialogConfig)
   }
 }

@@ -24,7 +24,7 @@ export class DialogEditUserDetailsComponent
   isApproval: boolean
   roles: string[] = []
   organization: IOrganization = {
-    id: null,
+    id: undefined,
   }
   availableRoles = AvailableRoles
 
@@ -49,22 +49,22 @@ export class DialogEditUserDetailsComponent
   }
 
   hasOrganizationChanged(): boolean {
-    return this.userDetails.organization?.id != this.organization.id
+    return this.userDetails.organization?.id !== this.organization.id
   }
 
   handleDialogConfirm(): void {
-    const approveUser = this.isApproval
+    const approveUserTask$ = this.isApproval
       ? this.adminService.approveUser(this.userDetails.id)
       : of(null)
 
-    const addRoles = this.adminService.addUserRoles(this.userDetails.id, this.roles)
+    const addRolesTask$ = this.adminService.addUserRoles(this.userDetails.id, this.roles)
 
-    const addOrganization = this.hasOrganizationChanged()
+    const addOrganizationTask$ = this.hasOrganizationChanged()
       ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
       : of(null)
 
-    forkJoin([approveUser, addRoles, addOrganization]).subscribe(
-      (success) => {
+    forkJoin([approveUserTask$, addRolesTask$, addOrganizationTask$]).subscribe(
+      () => {
         const messageConfig: IToastMessageConfig = {
           ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
           messageParameters: {
@@ -74,7 +74,7 @@ export class DialogEditUserDetailsComponent
         }
         this.toastMessageService.openToast(messageConfig)
       },
-      (error) => {
+      () => {
         this.toastMessageService.openToast(EDIT_USER_ERROR)
       }
     )
