@@ -3,3 +3,55 @@
 <p class="num-margin-b-40">
   {{ 'CONTENT_EDITOR.EDIT_INFO_CARDS_DESCRIPTION' | translate }}
 </p>
+
+<num-button
+  class="num-margin-b-40"
+  type="primary"
+  icon="plus"
+  data-test="content-editor__welcome__add-button"
+  (singleClick)="addItem()"
+  [isDisabled]="isLoading || dashboardCards.value.length >= 8"
+  >{{ 'BUTTON.ADD_INFO_CARD' | translate }}</num-button
+>
+
+<section
+  role="list"
+  class="num-margin-b-60"
+  [formGroup]="cardForm"
+  fxLayout="column"
+  fxLayoutGap="40px"
+  cdkDropList
+  (cdkDropListDropped)="drop($event)"
+>
+  <num-welcome-page-item
+    *ngFor="let form of dashboardCards.controls; let i = index"
+    data-test="content-editor__welcome__item"
+    [index]="i"
+    [isLast]="i === dashboardCards.controls.length - 1"
+    [form]="form"
+    [isLoading]="isLoading"
+    [displayLang]="displayLang"
+    (moveUp)="moveItem(i, i - 1)"
+    (moveDown)="moveItem(i, i + 1)"
+    (delete)="deleteItem(i)"
+  ></num-welcome-page-item>
+</section>
+
+<mat-divider class="num-d-w--1 num-margin-b-20"></mat-divider>
+
+<section fxLayout="row" fxLayoutAlign="space-between" class="num-margin-b-40">
+  <num-button
+    [isDisabled]="isLoading"
+    type="secondary"
+    data-test="content-editor__welcome__discard-button"
+    (singleClick)="discard()"
+    >{{ 'BUTTON.DISCARD' | translate }}</num-button
+  >
+  <num-button
+    [isDisabled]="cardForm.invalid || isLoading"
+    type="primary"
+    data-test="content-editor__welcome__save-button"
+    (singleClick)="save()"
+    >{{ 'BUTTON.PUBLISH' | translate }}</num-button
+  >
+</section>

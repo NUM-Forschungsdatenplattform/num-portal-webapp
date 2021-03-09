@@ -1,0 +1,133 @@
+<section role="presentation" fxLayout="column">
+  <form [formGroup]="form" fxLayout="column" fxLayoutGap="40px" class="num-margin-b-40">
+    <section role="group" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="20px">
+      <mat-form-field appearance="outline" fxFlex.gt-xs="50%">
+        <mat-label>{{ 'CONTENT_EDITOR.CARD_TITLE_ENGLISH' | translate }}* </mat-label>
+        <input
+          #titleEnglish
+          matInput
+          type="text"
+          maxlength="65"
+          [placeholder]="'CONTENT_EDITOR.CARD_TITLE_ENGLISH_PLACEHOLDER' | translate"
+          formControlName="titleEnglish"
+          data-test="edit-card__title-english-input"
+        />
+        <mat-hint
+          >{{ titleEnglish.value?.length || 0 }}/65 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex.gt-xs="50%">
+        <mat-label>{{ 'CONTENT_EDITOR.CARD_TITLE_GERMAN' | translate }}* </mat-label>
+        <input
+          #titleGerman
+          matInput
+          type="text"
+          maxlength="65"
+          [placeholder]="'CONTENT_EDITOR.CARD_TITLE_GERMAN_PLACEHOLDER' | translate"
+          formControlName="titleGerman"
+          data-test="edit-card__title-german-input"
+        />
+        <mat-hint
+          >{{ titleGerman.value?.length || 0 }}/65 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+        >
+      </mat-form-field>
+    </section>
+
+    <section role="group" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="20px">
+      <mat-form-field appearance="outline" color="accent" fxFlex.gt-xs="50%">
+        <mat-label id="label-purpose">{{
+          'CONTENT_EDITOR.CARD_BODY_TEXT_ENGLISH' | translate
+        }}</mat-label>
+        <textarea
+          #bodyTextEnglish
+          formControlName="bodyTextEnglish"
+          matInput
+          style="resize: none"
+          rows="5"
+          maxlength="130"
+          data-test="edit-card__body-text-english-input"
+          [placeholder]="'CONTENT_EDITOR.CARD_BODY_TEXT_ENGLISH_PLACEHOLDER' | translate"
+        ></textarea>
+        <mat-hint
+          >{{ bodyTextEnglish.value?.length || 0 }}/130
+          {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent" fxFlex.gt-xs="50%">
+        <mat-label id="label-purpose">{{
+          'CONTENT_EDITOR.CARD_BODY_TEXT_GERMAN' | translate
+        }}</mat-label>
+        <textarea
+          #bodyTextGerman
+          formControlName="bodyTextGerman"
+          matInput
+          style="resize: none"
+          rows="5"
+          maxlength="130"
+          data-test="edit-card__body-text-german-input"
+          [placeholder]="'CONTENT_EDITOR.CARD_BODY_TEXT_GERMAN_PLACEHOLDER' | translate"
+        ></textarea>
+        <mat-hint
+          >{{ bodyTextGerman.value?.length || 0 }}/130 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+        >
+      </mat-form-field>
+    </section>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'CONTENT_EDITOR.CARD_URL' | translate }}: </mat-label>
+      <input
+        matInput
+        type="text"
+        [placeholder]="'CONTENT_EDITOR.URL_PLACEHOLDER' | translate"
+        formControlName="url"
+        data-test="edit-card__url-input"
+      />
+    </mat-form-field>
+
+    <section fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="20px">
+      <mat-form-field appearance="outline" color="accent" fxFlex.gt-xs="50%">
+        <mat-label>{{ 'CONTENT_EDITOR.CARD_IMAGE' | translate }}*</mat-label>
+        <mat-select #imageId formControlName="imageId" data-test="edit-card__image-id__selector">
+          <mat-option
+            *ngFor="let image of images | keyvalue"
+            [value]="image.key"
+            [attr.data-test]="'edit-card__image-id__' + image.key"
+          >
+            {{ 'CONTENT_EDITOR.IMAGES.' + image.key | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="image-preview">
+        <div>{{ 'CONTENT_EDITOR.CARD_IMAGE_PREVIEW' | translate }}</div>
+        <img
+          *ngIf="images[imageId.value]"
+          [src]="'assets/cards/' + images[imageId.value]"
+          [alt]="'CONTENT_EDITOR.IMAGE_PREVIEW' | translate"
+        />
+      </div>
+    </section>
+  </form>
+
+  <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+
+  <div class="num-margin-b-20" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      type="secondary"
+      (singleClick)="handleDialogCancel()"
+      data-test="edit-card__cancel-button"
+      >{{ 'BUTTON.CANCEL' | translate }}</num-button
+    >
+
+    <num-button
+      id="approval-button"
+      type="primary"
+      (singleClick)="handleDialogConfirm()"
+      [isDisabled]="form.invalid"
+      data-test="edit-card__save-button"
+      >{{ 'BUTTON.SAVE' | translate }}</num-button
+    >
+  </div>
+</section>
