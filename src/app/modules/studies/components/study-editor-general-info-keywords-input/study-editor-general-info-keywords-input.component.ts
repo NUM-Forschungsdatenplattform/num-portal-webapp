@@ -12,19 +12,18 @@ export class StudyEditorGeneralInfoKeywordsInputComponent implements OnInit {
   constructor() {}
 
   @Input() form: FormGroup
-  separatorKeysCodes: number[] = [ENTER, COMMA]
+  separatorKeyCodes: number[] = [ENTER, COMMA]
 
   get keywords(): string[] {
-    return this.form.get('keywords')?.value || []
+    return this.form?.get('keywords')?.value || []
   }
   set keywords(value: string[]) {
-    this.form.get('keywords').setValue(value)
+    this.form?.get('keywords')?.setValue(value)
   }
 
   ngOnInit(): void {}
 
   addKeyword(event: MatChipInputEvent): void {
-    const input = event.input
     const value = event.value?.trim()
     const keywords = this.keywords
 
@@ -33,12 +32,14 @@ export class StudyEditorGeneralInfoKeywordsInputComponent implements OnInit {
       this.keywords = keywords.slice()
     }
 
-    if (input) input.value = ''
+    if (event.input) {
+      event.input.value = ''
+    }
   }
 
-  removeKeyword(keyword: string): void {
-    const index = this.keywords.indexOf(keyword)
-
-    if (index >= 0) this.keywords.splice(index, 1)
+  removeKeyword(i: number): void {
+    if (i >= 0) {
+      this.keywords.splice(i, 1)
+    }
   }
 }

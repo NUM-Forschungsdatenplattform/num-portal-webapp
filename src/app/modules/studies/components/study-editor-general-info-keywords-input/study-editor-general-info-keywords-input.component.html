@@ -6,8 +6,8 @@
     data-test="study-editor__general-info__keywords-chip-list"
   >
     <mat-chip
-      *ngFor="let keyword of keywords"
-      (removed)="removeKeyword(keyword)"
+      *ngFor="let keyword of keywords; let i = index"
+      (removed)="removeKeyword(i)"
       class="chip-primary"
       data-test="study-editor__general-info__keywords-chip-item"
     >
@@ -22,7 +22,7 @@
     <input
       placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
       [matChipInputFor]="keywordsChipList"
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
       matChipInputAddOnBlur
       (matChipInputTokenEnd)="addKeyword($event)"
       autocomplete="off"

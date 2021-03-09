@@ -6,11 +6,11 @@
     data-test="study-editor__general-info__categories-chip-list"
   >
     <mat-chip
-      *ngFor="let category of categories"
-      (removed)="removeCategory(category)"
+      *ngFor="let category of categories; let i = index"
+      (removed)="removeCategory(i)"
       [value]="category"
       class="chip-primary"
-      [attr.data-test]="'study-editor__general-info__categories-chip_' + category"
+      data-test="study-editor__general-info__category-chip"
     >
       <span>{{ 'STUDY.CATEGORIES.' + category | translate }}</span>
       <fa-icon
@@ -40,11 +40,17 @@
   >
     <mat-option
       *ngFor="let category of filteredCategories | async"
-      [disabled]="category === 'NO_RESULTS'"
       [value]="category"
-      [attr.data-test]="'study-editor__general-info__categories-option_' + category"
+      data-test="study-editor__general-info__category-option"
     >
       {{ 'STUDY.CATEGORIES.' + category | translate }}
+    </mat-option>
+    <mat-option
+      *ngIf="isNoResults"
+      disabled
+      data-test="study-editor__general-info__category-option__no-results"
+    >
+      {{ 'STUDY.CATEGORIES_NO_RESULTS' | translate }}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

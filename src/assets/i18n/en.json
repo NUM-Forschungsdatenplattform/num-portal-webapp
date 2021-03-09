@@ -248,9 +248,9 @@
       "LONGITUDINAL_STUDY": "Longitudinal study",
       "PROSPECTIVE_STUDY": "Prospective study",
       "RETROSPECTIVE_STUDY": "Retrospective study",
-      "REGISTRY": "Registry",
-      "NO_RESULTS": "No Results"
-    }
+      "REGISTRY": "Registry"
+    },
+    "CATEGORIES_NO_RESULTS":  "No Results"
   },
   "USER": {
     "FIRST_NAME": "First name",

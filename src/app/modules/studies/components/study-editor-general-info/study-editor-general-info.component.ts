@@ -17,17 +17,19 @@ export class StudyEditorGeneralInfoComponent implements OnInit, OnDestroy {
   @Input() isDisabled: boolean
   @Input() generalInfoData: IDefinitionList[]
 
-  subscription: Subscription
+  private subscriptions = new Subscription()
 
   ngOnInit(): void {
     this.dateAdapter.setLocale(this.translate.currentLang)
 
-    this.subscription = this.translate.onLangChange.subscribe((lang) => {
-      this.dateAdapter.setLocale(lang.lang)
-    })
+    this.subscriptions.add(
+      this.translate.onLangChange.subscribe((lang) => {
+        this.dateAdapter.setLocale(lang.lang)
+      })
+    )
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.subscriptions.unsubscribe()
   }
 }

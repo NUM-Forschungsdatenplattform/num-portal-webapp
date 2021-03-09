@@ -145,7 +145,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   generateForm(): void {
     this.studyForm = new FormGroup({
-      title: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
+      name: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(this.study?.description, [
         Validators.required,
         Validators.minLength(3),
@@ -158,11 +158,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
       secondHypotheses: new FormControl(this.study?.secondHypotheses),
       keywords: new FormControl(this.study?.keywords),
       categories: new FormControl(this.study?.categories),
-      startDate: new FormControl(this.study?.startDate || new Date(), [Validators.required]),
-      endDate: new FormControl(
-        this.study?.endDate || new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-        [Validators.required]
-      ),
+      startDate: new FormControl(this.study?.startDate, [Validators.required]),
+      endDate: new FormControl(this.study?.endDate, [Validators.required]),
       financed: new FormControl(this.study?.financed),
     })
 
@@ -178,13 +175,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   getStudyForApi(): { study: IStudyApi; cohort: ICohortApi } {
     const id = this.study.id === 0 ? null : this.study.id
     const formValues = this.studyForm.value
-    const { study, cohortGroup } = this.study.convertToApiInterface(
-      id,
-      formValues.title,
-      formValues.description,
-      formValues.firstHypotheses,
-      formValues.secondHypotheses
-    )
+
+    const { study, cohortGroup } = this.study.convertToApiInterface(id, formValues)
     const cohort: ICohortApi = {
       cohortGroup,
       id: study.cohortId || null,
@@ -197,12 +189,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = [
-      { title: 'FORM.TITLE', description: this.study?.name },
-      { title: 'FORM.DESCRIPTION', description: this.study?.description },
-      { title: 'FORM.FIRST_HYPOTHESES', description: this.study?.firstHypotheses },
-      { title: 'FORM.SECOND_HYPOTHESES', description: this.study?.secondHypotheses },
-    ]
+    this.generalInfoData = this.study.getStudyPreviewGeneralInfo()
   }
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {

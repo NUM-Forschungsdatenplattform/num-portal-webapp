@@ -28,7 +28,6 @@ import {
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { StudyService } from 'src/app/core/services/study/study.service'
-import { HttpResponse } from '@angular/common/http'
 
 @Component({
   selector: 'num-data-explorer',
@@ -157,12 +156,7 @@ export class DataExplorerComponent implements OnInit {
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = [
-      { title: 'FORM.TITLE', description: this.study?.name },
-      { title: 'FORM.DESCRIPTION', description: this.study?.description },
-      { title: 'FORM.FIRST_HYPOTHESES', description: this.study?.firstHypotheses },
-      { title: 'FORM.SECOND_HYPOTHESES', description: this.study?.secondHypotheses },
-    ]
+    this.generalInfoData = this.study.getStudyPreviewGeneralInfo()
   }
 
   openBuilderDialog(): void {

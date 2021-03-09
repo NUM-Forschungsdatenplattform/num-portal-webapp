@@ -1,5 +1,8 @@
+import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
-import { StudyCategories } from 'src/app/modules/studies/components/study-editor-general-info-categories-input/study-categories.enum'
+import { StudyCategory } from 'src/app/modules/studies/models/study-category.enum'
+import { IDefinitionList } from '../definition-list.interface'
+import { DefinitionType } from '../definition-type.enum'
 import { LogicalOperator } from '../logical-operator.enum'
 import { IStudyUser } from '../user/study-user.interface'
 import { IUser } from '../user/user.interface'
@@ -19,12 +22,12 @@ export class StudyUiModel {
   firstHypotheses?: string
   secondHypotheses?: string
   keywords?: string[]
-  categories?: StudyCategories[]
-  startDate?: string // Date
-  endDate?: string // Date
+  categories?: StudyCategory[]
+  startDate?: Date
+  endDate?: Date
   financed?: boolean
   id: number | null
-  modifiedDate?: string // Date
+  modifiedDate?: Date
   name?: string
   researchers: IUser[]
   researchersApi: IStudyUser[]
@@ -32,19 +35,21 @@ export class StudyUiModel {
   templates: IStudyTemplateInfoApi[]
 
   constructor(apiStudy?: IStudyApi, private phenotypeService?: PhenotypeService) {
+    this.id = apiStudy?.id || null
     this.description = apiStudy?.description || undefined
     this.goal = apiStudy?.goal || undefined
     this.firstHypotheses = apiStudy?.firstHypotheses || undefined
     this.secondHypotheses = apiStudy?.secondHypotheses || undefined
     this.keywords = apiStudy?.keywords || []
     this.categories = apiStudy?.categories || []
-    this.startDate = apiStudy?.startDate || new Date()
-    this.endDate = apiStudy?.endDate || new Date()
+    this.startDate = apiStudy?.startDate ? new Date(apiStudy.startDate) : new Date()
+    this.endDate = apiStudy?.endDate
+      ? new Date(apiStudy.endDate)
+      : new Date(new Date().setFullYear(new Date().getFullYear() + 1))
     this.financed = apiStudy?.financed || false
 
-    this.id = apiStudy?.id || null
     this.coordinator = apiStudy?.coordinator || undefined
-    this.modifiedDate = apiStudy?.modifiedDate || undefined
+    this.modifiedDate = apiStudy?.modifiedDate ? new Date(apiStudy?.modifiedDate) : undefined
     this.name = apiStudy?.name || undefined
     this.status = apiStudy?.status || StudyStatus.Draft
     this.cohortId = apiStudy?.cohortId || null
@@ -70,19 +75,21 @@ export class StudyUiModel {
 
   public convertToApiInterface(
     id?: number,
-    name?: string,
-    description?: string,
-    firstHypotheses?: string,
-    secondHypotheses?: string,
-    cohortId?: number
+    formValues?: StudyUiModel
   ): { study: IStudyApi; cohortGroup: ICohortGroupApi } {
     const study: IStudyApi = {
-      description: description || this.description,
       id: id || this.id,
-      name: name || this.name,
-      firstHypotheses: firstHypotheses || this.firstHypotheses,
-      secondHypotheses: secondHypotheses || this.secondHypotheses,
-      cohortId: cohortId || this.cohortId,
+      name: formValues?.name || this.name,
+      description: formValues?.description || this.description,
+      goal: formValues?.goal || this.goal,
+      firstHypotheses: formValues?.firstHypotheses || this.firstHypotheses,
+      secondHypotheses: formValues?.secondHypotheses || this.secondHypotheses,
+      keywords: formValues?.keywords || this.keywords,
+      categories: formValues?.categories || this.categories,
+      startDate: DateHelperService.getDateString(formValues.startDate || this.startDate),
+      endDate: DateHelperService.getDateString(formValues?.endDate || this.endDate),
+      financed: formValues?.financed,
+      cohortId: formValues?.cohortId || this.cohortId,
       researchers: this.getResearchersForApi(),
       status: this.status,
       templates: this.templates,
@@ -91,6 +98,33 @@ export class StudyUiModel {
     const cohortGroup = this.cohortGroup.convertToApi()
 
     return { study, cohortGroup }
+  }
+
+  public getStudyPreviewGeneralInfo(): IDefinitionList[] {
+    return [
+      { title: 'FORM.TITLE', description: this.name },
+      { title: 'FORM.DESCRIPTION', description: this.description },
+      { title: 'FORM.GOAL', description: this.goal },
+      { title: 'FORM.FIRST_HYPOTHESES', description: this.firstHypotheses },
+      { title: 'FORM.SECOND_HYPOTHESES', description: this.secondHypotheses },
+      { title: 'FORM.KEYWORDS', description: this.keywords, type: DefinitionType.Array },
+      { title: 'FORM.CATEGORY', description: this.categories, type: DefinitionType.Array },
+      {
+        title: 'FORM.START_DATE',
+        description: this.startDate || undefined,
+        type: DefinitionType.Date,
+      },
+      {
+        title: 'FORM.END_DATE',
+        description: this.endDate || undefined,
+        type: DefinitionType.Date,
+      },
+      {
+        title: 'FORM.FINANCED_BY_PRIVATE',
+        description: this.financed,
+        type: DefinitionType.Boolean,
+      },
+    ]
   }
 
   private getResearchersForApi(): IStudyUser[] {

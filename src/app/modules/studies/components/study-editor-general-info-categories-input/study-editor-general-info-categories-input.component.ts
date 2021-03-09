@@ -8,7 +8,7 @@ import {
 import { TranslateService } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { StudyCategories } from './study-categories.enum'
+import { StudyCategory } from '../../models/study-category.enum'
 
 @Component({
   selector: 'num-study-editor-general-info-categories-input',
@@ -19,25 +19,25 @@ export class StudyEditorGeneralInfoCategoriesInputComponent implements OnInit {
   constructor(private translate: TranslateService) {}
 
   @Input() form: FormGroup
-
-  get categories(): StudyCategories[] {
-    return this.form.get('categories')?.value || []
-  }
-  set categories(value: StudyCategories[]) {
-    this.form.get('categories').setValue(value)
-  }
-
-  allCategories = Object.keys(StudyCategories) as StudyCategories[]
-  filteredCategories: Observable<StudyCategories[]>
-  categoryCtrl = new FormControl()
-
   @ViewChild('categoryAutocomplete') categoryAutocomplete: MatAutocomplete
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>
+
+  get categories(): StudyCategory[] {
+    return this.form?.get('categories')?.value || []
+  }
+  set categories(value: StudyCategory[]) {
+    this.form?.get('categories')?.setValue(value)
+  }
+
+  allCategories = Object.values(StudyCategory) as StudyCategory[]
+  filteredCategories: Observable<StudyCategory[]>
+  categoryCtrl = new FormControl()
+  isNoResults: boolean
 
   ngOnInit(): void {
     this.filteredCategories = this.categoryCtrl.valueChanges.pipe(
       map((filterText: string | null) =>
-        filterText ? this._filterCategories(filterText) : this._filterCategories()
+        filterText ? this.filterCategories(filterText) : this.filterCategories()
       )
     )
   }
@@ -56,10 +56,11 @@ export class StudyEditorGeneralInfoCategoriesInputComponent implements OnInit {
     })
   }
 
-  removeCategory(category: StudyCategories): void {
-    const index = this.categories.indexOf(category)
+  removeCategory(i: number): void {
+    if (i >= 0) {
+      this.categories.splice(i, 1)
+    }
 
-    if (index >= 0) this.categories.splice(index, 1)
     this.categoryCtrl.setValue(null)
   }
 
@@ -69,28 +70,28 @@ export class StudyEditorGeneralInfoCategoriesInputComponent implements OnInit {
     }
   }
 
-  private _filterCategories(filterText?: string): StudyCategories[] {
-    const allCategoriesWithoutSelected = this.allCategories
-      .filter((c) => !this.categories.includes(c) && c !== StudyCategories.NO_RESULTS)
-      .slice()
+  filterCategories(filterText?: string): StudyCategory[] {
+    const allCategoriesWithoutSelected = this.allCategories.filter(
+      (c) => !this.categories.includes(c)
+    )
 
-    let filteredCategories: StudyCategories[] = []
+    let filteredCategories: StudyCategory[] = []
 
     if (filterText) {
       filterText = filterText.toLowerCase().trim()
 
-      filteredCategories = allCategoriesWithoutSelected.filter(
-        (category) =>
-          this.translate
-            .instant('STUDY.CATEGORIES.' + category)
-            .toLowerCase()
-            .indexOf(filterText) !== -1
+      filteredCategories = allCategoriesWithoutSelected.filter((category) =>
+        this.translate
+          .instant('STUDY.CATEGORIES.' + category)
+          .toLowerCase()
+          .includes(filterText)
       )
     } else {
       filteredCategories = allCategoriesWithoutSelected
     }
 
-    if (filteredCategories.length !== 0) return filteredCategories
-    else return [StudyCategories.NO_RESULTS]
+    this.isNoResults = filteredCategories.length === 0
+
+    return filteredCategories
   }
 }

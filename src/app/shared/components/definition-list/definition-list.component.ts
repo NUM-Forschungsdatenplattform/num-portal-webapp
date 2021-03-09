@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { IDefinitionList } from '../../models/definition-list.interface'
+import { DefinitionType } from '../../models/definition-type.enum'
 
 @Component({
   selector: 'num-definition-list',
@@ -8,6 +9,7 @@ import { IDefinitionList } from '../../models/definition-list.interface'
 })
 export class DefinitionListComponent implements OnInit {
   @Input() dataSource: IDefinitionList[]
+  definitionType = DefinitionType
 
   constructor() {}
 
