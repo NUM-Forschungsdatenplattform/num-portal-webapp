@@ -81,11 +81,19 @@
     }
   },
   "CONTENT_EDITOR": {
+    "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
+    "SAVE_NAVIGATION_ERROR": "The navigation items could not be published. Please check your entries and try again.",
     "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
     "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info cards on the Welcome page. They can contain information and a link to an external page.",
     "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
-    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform."
+    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform.",
+    "URL_PLACEHOLDER": "E.g. https://www.domain.com",
+    "URL_TEXT_PLACEHOLDER": "E.g. Uni Example City",
+    "URL_TEXT_LABEL": "Link text"
   },
+  "INVALID_URL": "The URL is not valid. Please adjust to the example:",
+  "PROVIDE_URL": "Please enter a URL",
+  "PROVIDE_URL_TEXT": "Please enter a link text",
   "CONFIGURE": "Configure",
   "SUMMARY": "Summary",
   "HITS": "Hits",
@@ -150,7 +158,9 @@
   "BUTTON": {
     "SAVE": "Save",
     "CANCEL": "Cancel",
+    "DISCARD": "Discard changes",
     "BACK": "Back",
+    "CLEAR_ENTRY": "Clear entry",
     "REQUEST_APPROVAL": "Request approval",
     "APPLY_SELECTION": "Apply Selection",
     "DELETE_FROM_LIST": "Delete from list",
@@ -178,6 +188,7 @@
     "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Publish",
+    "PUBLISH_LINKS": "Publish links",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
     "SEND_COMMENT": "Send comment",
     "CLOSE_STUDY": "Close study",

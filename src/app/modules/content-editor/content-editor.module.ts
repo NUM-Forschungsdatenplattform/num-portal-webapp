@@ -5,9 +5,14 @@ import { WelcomePageEditorComponent } from './components/welcome-page-editor/wel
 import { NavigationEditorComponent } from './components/navigation-editor/navigation-editor.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
+import { NavigationEditorItemComponent } from './components/navigation-editor-item/navigation-editor-item.component'
 
 @NgModule({
-  declarations: [WelcomePageEditorComponent, NavigationEditorComponent],
+  declarations: [
+    WelcomePageEditorComponent,
+    NavigationEditorComponent,
+    NavigationEditorItemComponent,
+  ],
   imports: [CommonModule, ContentEditorRoutingModule, SharedModule, LayoutModule],
 })
 export class ContentEditorModule {}

@@ -1,0 +1,7 @@
+@mixin mat-hint_themed($theme) {
+  $additional: map-get($theme, additional);
+
+  .mat-hint {
+    color: mat-color($additional, dark-grey);
+  }
+}

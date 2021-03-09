@@ -1,0 +1,22 @@
+:host {
+  .item-box {
+    border-left-width: 8px;
+    border-left-style: solid;
+    border-left-color: var(--num-color--success);
+
+    &--error {
+      border-left-color: var(--num-color--warn);
+    }
+    &--empty {
+      border-left-color: var(--num-color--light-grey);
+    }
+  }
+
+  .bottom-row {
+    height: 36px;
+
+    mat-spinner {
+      margin-right: 10px;
+    }
+  }
+}
