@@ -13,6 +13,9 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { mockUserProfile1, mockUserProfile3 } from 'src/mocks/data-mocks/user-profile.mock'
 
 describe('UnapprovedUsersTableComponent', () => {
   let component: UnapprovedUsersTableComponent
@@ -33,6 +36,11 @@ describe('UnapprovedUsersTableComponent', () => {
     }),
   } as unknown) as DialogService
 
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const profileService = {
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as ProfileService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UnapprovedUsersTableComponent, LocalizedDatePipe],
@@ -48,6 +56,10 @@ describe('UnapprovedUsersTableComponent', () => {
           useValue: adminService,
         },
         { provide: DialogService, useValue: mockDialogService },
+        {
+          provide: ProfileService,
+          useValue: profileService,
+        },
       ],
     }).compileComponents()
   })
@@ -62,11 +74,26 @@ describe('UnapprovedUsersTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  describe('When unapproved users are received by the component', () => {
-    it('should set them into the datasource.data', () => {
+  describe('When unapproved users are received by the component and the user has role SuperAdmin', () => {
+    beforeEach(() => {
       unapprovedUsersSubject$.next(mockUsers)
+      userProfileSubject$.next(mockUserProfile3)
       fixture.detectChanges()
+    })
+    it('should set them into the datasource.data', () => {
       expect(component.dataSource.data).toBe(mockUsers)
+    })
+  })
+
+  describe('When approved users are received by the component and the user does not have role SuperAdmin', () => {
+    beforeEach(() => {
+      unapprovedUsersSubject$.next(mockUsers)
+      userProfileSubject$.next(mockUserProfile1)
+      fixture.detectChanges()
+    })
+
+    it('should set them into the datasource.data', () => {
+      expect(component.dataSource.data).toHaveLength(0)
     })
   })
 
@@ -77,6 +104,7 @@ describe('UnapprovedUsersTableComponent', () => {
       dialogContentPayload: { user: mockUser, isApproval: true },
     }
     beforeEach(() => {
+      userProfileSubject$.next(mockUserProfile3)
       fixture.detectChanges()
     })
     it('should call the dialog service with the dialogConfig to open the edit dialog', () => {

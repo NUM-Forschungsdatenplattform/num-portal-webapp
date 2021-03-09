@@ -10,6 +10,9 @@ import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { filter, map, take } from 'rxjs/operators'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -21,7 +24,11 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
 
   availableRoles = Object.values(AvailableRoles)
 
-  constructor(private adminService: AdminService, private dialogService: DialogService) {}
+  constructor(
+    private adminService: AdminService,
+    private dialogService: DialogService,
+    private profileService: ProfileService
+  ) {}
 
   displayedColumns: string[] = [
     'icon',
@@ -54,7 +61,21 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
   }
 
   handleData(users: IUser[]): void {
-    this.dataSource.data = users
+    this.profileService.userProfileObservable$
+      .pipe(
+        filter((profile) => profile.id !== undefined),
+        take(1),
+        map((userProfile: IUserProfile) => {
+          if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
+            this.dataSource.data = users.filter(
+              (user) => user.organization?.id === userProfile.organization.id
+            )
+          } else {
+            this.dataSource.data = users
+          }
+        })
+      )
+      .subscribe()
   }
 
   handleSelectClick(user: IUser): void {
