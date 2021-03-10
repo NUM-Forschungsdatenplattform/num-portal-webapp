@@ -61,6 +61,8 @@
     "CONNECT_AQL": "AQL Abfragen zusammenstellen",
     "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden.",
+    "DELETE_AQL_SUCCESS_MESSAGE": "Die AQL Abfrage wurde erfolgreich gelöscht.",
+    "DELETE_AQL_ERROR_MESSAGE": "Die AQL Abfrage konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "COMPILE_ERROR_MESSAGE": "Die AQL-Abfrage konnte nicht kompiliert werden. Bitte überprüfen Sie die Konfiguration der Abfrage und versuchen Sie es erneut.",
     "GET_COMPOSITION_ERROR": "Das Template kann nicht geladen werden. Bitte schließen Sie das Fenster und versuchen Sie es erneut.",
     "COLUMNS": "Spalten",
@@ -244,7 +246,9 @@
       "RETROSPECTIVE_STUDY": "Retrospektive Studie",
       "REGISTRY": "Register"
     },
-    "CATEGORIES_NO_RESULTS": "Keine Ergebnisse"
+    "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
+    "SAVE_SUCCESS_MESSAGE": "Die Studie wurde erfolgreich gespeichert.",
+    "SAVE_ERROR_MESSAGE": "Die Studie konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
   },
   "USER": {
     "FIRST_NAME": "Vorname",

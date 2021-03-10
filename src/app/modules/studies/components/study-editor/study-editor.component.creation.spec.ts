@@ -145,7 +145,7 @@ describe('StudyEditorComponent On Creation', () => {
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
       providers: [
         {

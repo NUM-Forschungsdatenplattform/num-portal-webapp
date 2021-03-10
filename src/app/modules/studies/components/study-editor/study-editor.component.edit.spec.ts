@@ -6,12 +6,13 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of, Subject } from 'rxjs'
+import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { StudyService } from 'src/app/core/services/study/study.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
@@ -19,6 +20,7 @@ import { IDefinitionList } from 'src/app/shared/models/definition-list.interface
 import { PossibleStudyEditorMode } from 'src/app/shared/models/study/possible-study-editor-mode.enum'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
@@ -79,6 +81,10 @@ describe('StudyEditorComponent', () => {
     },
     queryParams: queryParamsSubject$.asObservable(),
   } as unknown) as ActivatedRoute
+
+  const mockToast = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -165,7 +171,7 @@ describe('StudyEditorComponent', () => {
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
       providers: [
         {
@@ -187,6 +193,10 @@ describe('StudyEditorComponent', () => {
         {
           provide: DialogService,
           useValue: mockDialogService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
         },
       ],
     }).compileComponents()
@@ -315,8 +325,35 @@ describe('StudyEditorComponent', () => {
     it('should update the study if its an existing study', () => {
       expect(studyService.update).toHaveBeenCalledTimes(1)
     })
+
     it('should update the cohort if its an existing cohort', () => {
       expect(cohortService.update).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('When study is Saved', () => {
+    it('should navigate to studies and show success message on Success', async (done) => {
+      component.save().then(() => {
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'STUDY.SAVE_SUCCESS_MESSAGE',
+        })
+
+        done()
+      })
+    })
+
+    it('should NOT navigate and show Error message on Failure to Save', async (done) => {
+      jest.spyOn(studyService, 'update').mockImplementationOnce(() => throwError({}))
+
+      component.save().then(() => {
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'STUDY.SAVE_ERROR_MESSAGE',
+        })
+
+        done()
+      })
     })
   })
 
