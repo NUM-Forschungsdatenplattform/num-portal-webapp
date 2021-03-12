@@ -59,13 +59,17 @@ describe('ContentService', () => {
 
   describe('When the navigationLinks are supposed to be updated', () => {
     it('should call the api - with success and set the links to the subject and service', async () => {
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockNavigationLinks))
       jest.spyOn((service as any).navigationLinksSubject$, 'next')
       await service.updateNavigationLinks(mockNavigationLinks).toPromise()
 
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/navigation',
-        mockNavigationLinks
+        mockNavigationLinks,
+        httpOptions
       )
       expect((service as any).navigationLinks).toEqual(mockNavigationLinks)
       expect((service as any).navigationLinksSubject$.next).toHaveBeenCalledWith(
@@ -74,6 +78,9 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
       await service
@@ -83,7 +90,8 @@ describe('ContentService', () => {
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/navigation',
-        mockNavigationLinks
+        mockNavigationLinks,
+        httpOptions
       )
       expect(service.handleError).toHaveBeenCalled()
     })

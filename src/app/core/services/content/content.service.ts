@@ -35,8 +35,11 @@ export class ContentService {
   }
 
   updateNavigationLinks(navigationLinks: INavigationLink[]): Observable<INavigationLink[]> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
     return this.httpClient
-      .post<INavigationLink[]>(`${this.baseUrl}/navigation`, navigationLinks)
+      .post<INavigationLink[]>(`${this.baseUrl}/navigation`, navigationLinks, httpOptions)
       .pipe(
         tap((links) => {
           this.navigationLinks = links
