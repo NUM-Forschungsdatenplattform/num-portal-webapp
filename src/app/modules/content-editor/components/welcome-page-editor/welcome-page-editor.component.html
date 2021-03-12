@@ -5,7 +5,7 @@
 </p>
 
 <num-button
-  class="num-margin-b-40"
+  class="num-margin-b-40 add-button"
   type="primary"
   icon="plus"
   data-test="content-editor__welcome__add-button"
@@ -24,6 +24,7 @@
   (cdkDropListDropped)="drop($event)"
 >
   <num-welcome-page-item
+    class="num-welcome-page-item"
     *ngFor="let form of dashboardCards.controls; let i = index"
     data-test="content-editor__welcome__item"
     [index]="i"
