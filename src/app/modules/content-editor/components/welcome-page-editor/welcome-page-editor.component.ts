@@ -92,8 +92,8 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
         card?.de.title,
         [Validators.required, Validators.minLength(3), Validators.maxLength(65)],
       ],
-      bodyTextEnglish: [card?.en.text, [Validators.maxLength(150)]],
-      bodyTextGerman: [card?.de.text, [Validators.maxLength(150)]],
+      bodyTextEnglish: [card?.en.text, [Validators.maxLength(130)]],
+      bodyTextGerman: [card?.de.text, [Validators.maxLength(130)]],
       url: [card?.url, [Validators.pattern(urlRegex)]],
       imageId: [card?.imageId || DEFAULT_DASHBOARD_CARD_IMAGE, [Validators.required]],
     })
@@ -137,10 +137,10 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     }, [] as IDashboardCard[])
   }
 
-  handleSaveSuccess(confirmResult: IDashboardCard[]): void {
+  handleSaveSuccess(dashboardCards: IDashboardCard[]): void {
     this.isLoading = false
-    this.cards = confirmResult
-    this.generateForm(confirmResult)
+    this.cards = dashboardCards
+    this.generateForm(dashboardCards)
     this.toastMessageService.openToast(SAVE_SUCCESS_CONFIG)
   }
 
@@ -153,7 +153,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     this.isLoading = true
     const dashboardCards = this.getCardsForApi()
     this.contentService.updateCards(dashboardCards).subscribe(
-      (confirmResult) => this.handleSaveSuccess(confirmResult),
+      () => this.handleSaveSuccess(dashboardCards),
       () => this.handleSaveError()
     )
   }

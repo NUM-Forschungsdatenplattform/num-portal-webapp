@@ -115,19 +115,26 @@ describe('ContentService', () => {
 
   describe('When the cards are supposed to be updated', () => {
     it('should call the api - with success and set the cards to the subject and service', async () => {
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockDashboardCards))
       jest.spyOn((service as any).cardsSubject$, 'next')
       await service.updateCards(mockDashboardCards).toPromise()
 
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/cards',
-        mockDashboardCards
+        mockDashboardCards,
+        httpOptions
       )
       expect((service as any).cards).toEqual(mockDashboardCards)
       expect((service as any).cardsSubject$.next).toHaveBeenCalledWith(mockDashboardCards)
     })
 
     it('should call the api - with error', async () => {
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
       await service
@@ -137,7 +144,8 @@ describe('ContentService', () => {
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/cards',
-        mockDashboardCards
+        mockDashboardCards,
+        httpOptions
       )
       expect(service.handleError).toHaveBeenCalled()
     })

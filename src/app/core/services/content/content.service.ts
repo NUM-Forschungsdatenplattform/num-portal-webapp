@@ -57,13 +57,18 @@ export class ContentService {
   }
 
   updateCards(dashboardCards: IDashboardCard[]): Observable<IDashboardCard[]> {
-    return this.httpClient.post<IDashboardCard[]>(`${this.baseUrl}/cards`, dashboardCards).pipe(
-      tap((cards) => {
-        this.cards = cards
-        this.cardsSubject$.next(cards)
-      }),
-      catchError(this.handleError)
-    )
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+    return this.httpClient
+      .post<IDashboardCard[]>(`${this.baseUrl}/cards`, dashboardCards, httpOptions)
+      .pipe(
+        tap((cards) => {
+          this.cards = cards
+          this.cardsSubject$.next(cards)
+        }),
+        catchError(this.handleError)
+      )
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

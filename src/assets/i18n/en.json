@@ -83,8 +83,8 @@
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
     "SAVE_NAVIGATION_ERROR": "The navigation items could not be published. Please check your entries and try again.",
-    "EDIT_INFO_CARDS_HEADER": "Edit Info Cards",
-    "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info cards on the Welcome page. They can contain information and a link to an external page.",
+    "EDIT_INFO_CARDS_HEADER": "Edit Info Tiles",
+    "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info tiles on the welcome page, which can contain information and a link to an external page.",
     "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
     "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform.",
     "URL_PLACEHOLDER": "E.g. https://www.domain.com",
@@ -102,7 +102,7 @@
     "CARD_BODY_TEXT_ENGLISH_PLACEHOLDER": "Enter the English text",
     "CARD_BODY_TEXT_GERMAN": "Text german",
     "CARD_BODY_TEXT_GERMAN_PLACEHOLDER": "Enter the German text",
-    "CARD_URL": "Link card to",
+    "CARD_URL": "Link tile to",
     "CARD_IMAGE": "Select image",
     "CARD_IMAGE_PREVIEW": "Preview",
     "IMAGES": {
@@ -209,7 +209,7 @@
     "PREVIEW": "Preview",
     "EDIT": "Edit",
     "DELETE": "Delete",
-    "DELETE_INFO_CARD": "Delete card",
+    "DELETE_INFO_CARD": "Delete tile",
     "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Publish",
