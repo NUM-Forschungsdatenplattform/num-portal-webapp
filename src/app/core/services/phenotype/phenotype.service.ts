@@ -54,24 +54,9 @@ export class PhenotypeService {
   }
 
   get(id: number): Observable<IPhenotypeApi> {
-    let result: IPhenotypeApi
-    if (this.phenotypes.length) {
-      result = this.phenotypes.find((phenotype) => phenotype.id === id)
-    }
-
-    if (!result) {
-      return this.getAll().pipe(
-        map((phenotypesArray) => {
-          const searchResult = phenotypesArray.find((phenotype) => phenotype.id === id)
-          if (searchResult) {
-            return searchResult
-          }
-          throw new Error('Not Found')
-        })
-      )
-    }
-
-    return of(result)
+    return this.httpClient
+      .get<IPhenotypeApi>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError))
   }
 
   setFilter(filterSet: IPhenotypeFilter): void {
