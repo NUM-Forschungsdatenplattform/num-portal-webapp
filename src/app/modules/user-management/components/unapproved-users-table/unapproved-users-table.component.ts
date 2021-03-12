@@ -8,7 +8,11 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog-add-user-details.component'
+import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { filter, map, take } from 'rxjs/operators'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-unapproved-users-table',
@@ -17,7 +21,11 @@ import { DialogAddUserDetailsComponent } from '../dialog-add-user-details/dialog
 })
 export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private adminService: AdminService, private dialogService: DialogService) {}
+  constructor(
+    private adminService: AdminService,
+    private dialogService: DialogService,
+    private profileService: ProfileService
+  ) {}
 
   displayedColumns: string[] = ['icon', 'firstName', 'lastName', 'email', 'createdTimestamp']
   dataSource = new MatTableDataSource()
@@ -33,6 +41,7 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
@@ -40,17 +49,34 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
   }
 
   handleData(users: IUser[]): void {
-    this.dataSource.data = users
+    this.profileService.userProfileObservable$
+      .pipe(
+        filter((profile) => profile.id !== undefined),
+        take(1),
+        map((userProfile: IUserProfile) => {
+          if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
+            this.dataSource.data = users.filter(
+              (user) => user.organization?.id === userProfile.organization.id
+            )
+          } else {
+            this.dataSource.data = users
+          }
+        })
+      )
+      .subscribe()
   }
 
   handleSelectClick(user: IUser): void {
-    const dialogContentPayload: IUser = user
+    const dialogContentPayload: { user: IUser; isApproval: boolean } = {
+      user,
+      isApproval: true,
+    }
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
-      dialogContentComponent: DialogAddUserDetailsComponent,
+      dialogContentComponent: DialogEditUserDetailsComponent,
       dialogContentPayload,
     }
 
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
+    this.dialogService.openDialog(dialogConfig)
   }
 }

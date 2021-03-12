@@ -11,7 +11,7 @@ import { DialogAddResearchersComponent } from './dialog-add-researchers.componen
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
+import { mockUserResearcher, mockUsers2 } from 'src/mocks/data-mocks/admin.mock'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
@@ -75,10 +75,10 @@ describe('DialogAddResearchersComponent', () => {
   })
 
   describe('When approved users are received by the component', () => {
-    it('should set them into the datasource.data', () => {
-      filteredApprovedUsersSubject$.next(mockUsers)
+    it('should set the researchers into the datasource.data', () => {
+      filteredApprovedUsersSubject$.next(mockUsers2)
       fixture.detectChanges()
-      expect(component.dataSource.data).toBe(mockUsers)
+      expect(component.dataSource.data).toStrictEqual([mockUserResearcher])
     })
   })
 })

@@ -4,7 +4,8 @@
 
   .mat-chip.mat-standard-chip {
     font-size: 14px;
-    &.mat-chip-selected.mat-primary {
+    &.mat-chip-selected.mat-primary,
+    &.chip-primary {
       background: mat-color($primary, 500);
       color: mat-contrast($primary, 500);
 

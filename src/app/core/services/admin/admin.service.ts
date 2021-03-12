@@ -63,7 +63,7 @@ export class AdminService {
   }
 
   getUnapprovedUsers(): Observable<IUser[]> {
-    return this.getUsers(false).pipe(
+    return this.getUsers(false, true).pipe(
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
@@ -104,12 +104,12 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
-  addUserOrganization(userId: string, organization: IOrganization): Observable<IOrganization> {
+  addUserOrganization(userId: string, organization: IOrganization): Observable<string> {
     const httpOptions = {
       responseType: 'text' as 'json',
     }
     return this.httpClient
-      .post<IOrganization>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
+      .post<string>(`${this.baseUrl}/user/${userId}/organization`, organization, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

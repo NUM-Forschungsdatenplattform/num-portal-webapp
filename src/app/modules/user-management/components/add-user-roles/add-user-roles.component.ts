@@ -50,7 +50,7 @@ export class AddUserRolesComponent implements OnInit, OnDestroy {
         (role) => role !== AvailableRoles.SuperAdmin && role !== AvailableRoles.ContentAdmin
       )
     } else {
-      this.dataSource.data = Object.values(AvailableRoles)
+      this.dataSource.data = availableRoles
     }
     this.selectedRoles.forEach((role) => (this.lookupSelectedRole[role] = true))
   }

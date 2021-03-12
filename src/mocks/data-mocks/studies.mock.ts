@@ -1,3 +1,4 @@
+import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
 
@@ -5,6 +6,7 @@ export const mockStudy1: IStudyApi = {
   id: 1,
   name: 'Test Title',
   description: 'Test Description',
+  goal: 'Test Goal',
   templates: [],
   cohortId: 1,
   coordinator: {
@@ -15,8 +17,8 @@ export const mockStudy1: IStudyApi = {
   researchers: [],
   firstHypotheses: 'Test Hypothesis',
   status: StudyStatus.Draft,
-  createDate: new Date(),
-  modifiedDate: new Date(),
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
 export const mockStudy2: IStudyApi = {
@@ -40,8 +42,8 @@ export const mockStudy2: IStudyApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: StudyStatus.Pending,
-  createDate: new Date(),
-  modifiedDate: new Date(),
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
 export const mockStudy3: IStudyApi = {
@@ -68,8 +70,8 @@ export const mockStudy3: IStudyApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: StudyStatus.Published,
-  createDate: new Date(),
-  modifiedDate: new Date(),
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
 export const mockStudies = [mockStudy1, mockStudy2]

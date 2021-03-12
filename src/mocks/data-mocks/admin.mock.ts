@@ -16,6 +16,36 @@ export const mockUser: IUser = {
   createdTimestamp: 1603140166809,
 }
 
+export const mockUserSuperAdmin: IUser = {
+  approved: false,
+  email: 'mockUser1@gmail.com',
+  organization: {
+    id: 123,
+    name: 'abc',
+  },
+  firstName: 'Max',
+  id: '123-456',
+  lastName: 'Mustermann',
+  roles: ['SUPER_ADMIN'],
+  username: 'mock-user-1',
+  createdTimestamp: 1603140166809,
+}
+
+export const mockUserResearcher: IUser = {
+  approved: false,
+  email: 'mockUser1@gmail.com',
+  organization: {
+    id: 123,
+    name: 'abc',
+  },
+  firstName: 'Max',
+  id: '123-456',
+  lastName: 'Mustermann',
+  roles: ['RESEARCHER', 'STUDY_APPROVER'],
+  username: 'mock-user-1',
+  createdTimestamp: 1603140166809,
+}
+
 export const mockUsers: IUser[] = [
   {
     approved: false,
@@ -46,6 +76,8 @@ export const mockUsers: IUser[] = [
     createdTimestamp: 1603140166809,
   },
 ]
+
+export const mockUsers2: IUser[] = [mockUserSuperAdmin, mockUserResearcher]
 
 export const mockRoles: IRole[] = [
   {

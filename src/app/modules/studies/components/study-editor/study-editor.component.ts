@@ -19,6 +19,8 @@ import { catchError, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-study-editor',
@@ -63,7 +65,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     private studyService: StudyService,
     private cohortService: CohortService,
     private adminService: AdminService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private toast: ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -145,16 +148,22 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
 
   generateForm(): void {
     this.studyForm = new FormGroup({
-      title: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
+      name: new FormControl(this.study?.name, [Validators.required, Validators.minLength(3)]),
       description: new FormControl(this.study?.description, [
         Validators.required,
         Validators.minLength(3),
       ]),
+      goal: new FormControl(this.study?.goal, [Validators.required, Validators.minLength(3)]),
       firstHypotheses: new FormControl(this.study?.firstHypotheses, [
         Validators.required,
         Validators.minLength(3),
       ]),
       secondHypotheses: new FormControl(this.study?.secondHypotheses),
+      keywords: new FormControl(this.study?.keywords),
+      categories: new FormControl(this.study?.categories),
+      startDate: new FormControl(this.study?.startDate, [Validators.required]),
+      endDate: new FormControl(this.study?.endDate, [Validators.required]),
+      financed: new FormControl(this.study?.financed),
     })
 
     this.commentForm = new FormGroup({
@@ -169,13 +178,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   getStudyForApi(): { study: IStudyApi; cohort: ICohortApi } {
     const id = this.study.id === 0 ? null : this.study.id
     const formValues = this.studyForm.value
-    const { study, cohortGroup } = this.study.convertToApiInterface(
-      id,
-      formValues.title,
-      formValues.description,
-      formValues.firstHypotheses,
-      formValues.secondHypotheses
-    )
+
+    const { study, cohortGroup } = this.study.convertToApiInterface(id, formValues)
     const cohort: ICohortApi = {
       cohortGroup,
       id: study.cohortId || null,
@@ -188,12 +192,7 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = [
-      { title: 'FORM.TITLE', description: this.study?.name },
-      { title: 'FORM.DESCRIPTION', description: this.study?.description },
-      { title: 'FORM.FIRST_HYPOTHESES', description: this.study?.firstHypotheses },
-      { title: 'FORM.SECOND_HYPOTHESES', description: this.study?.secondHypotheses },
-    ]
+    this.generalInfoData = this.study.getStudyPreviewGeneralInfo()
   }
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
@@ -222,15 +221,24 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     try {
       const studyResult = await this.saveStudy(study)
       this.study.id = studyResult.id
+
       if (cohort.cohortGroup) {
         cohort.studyId = studyResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.study.cohortId = cohortResult.id
       }
-      // TODO: Display message to user
+
+      this.router.navigate(['studies'])
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'STUDY.SAVE_SUCCESS_MESSAGE',
+      })
     } catch (error) {
-      console.log(error)
-      // TODO: Display message to user
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'STUDY.SAVE_ERROR_MESSAGE',
+      })
     }
   }
 

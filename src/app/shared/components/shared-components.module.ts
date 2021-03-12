@@ -14,6 +14,7 @@ import { DefinitionListComponent } from './definition-list/definition-list.compo
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { TimeInputComponent } from './time-input/time-input.component'
 import { EditorDetermineHitsComponent } from './editor-determine-hits/editor-determine-hits.component'
+import { LogoComponent } from './logo/logo.component'
 
 const SHARED_DECLARATIONS = [
   SearchComponent,
@@ -24,6 +25,7 @@ const SHARED_DECLARATIONS = [
   TimeInputComponent,
   DialogConfirmationComponent,
   EditorDetermineHitsComponent,
+  LogoComponent,
 ]
 
 @NgModule({

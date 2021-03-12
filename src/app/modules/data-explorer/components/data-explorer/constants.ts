@@ -14,6 +14,11 @@ export const RESULT_SET_LOADING_ERROR: IToastMessageConfig = {
   type: ToastMessageType.Error,
 }
 
+export const EXPORT_CSV_ERROR: IToastMessageConfig = {
+  message: 'DATA_EXPLORER.EXPORT_CSV_ERROR',
+  type: ToastMessageType.Error,
+}
+
 export const BUILDER_DIALOG_CONFIG: DialogConfig = {
   title: 'DATA_EXPLORER.AQL_BUILDER_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',
