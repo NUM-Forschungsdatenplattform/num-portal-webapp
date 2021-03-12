@@ -1,9 +1,49 @@
-<h2>dashboard works! {{ config.env.name }}</h2>
 <div>
-  {{ 'DASHBOARD.WELCOME' | translate }}
+  <section class="section">
+    <div fxLayout="row" class="header">
+      <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
+    </div>
+    <div fxLayout="row wrap" class="introduction">
+      <div fxFlex fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
+        <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
+        <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
+        <a href="#participants">
+          <fa-icon icon="arrow-down" class="icon"></fa-icon>
+          {{ 'DASHBOARD.INTRODUCTION.PARTICIPANTS' | translate }}
+        </a>
+      </div>
+      <div fxLayout="column" fxFlex.gt-sm="20%" fxFlex.sm="100%" fxFlex.lt-sm="33%" class="sidebar">
+        <div class="header">
+          <p>{{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}</p>
+        </div>
+        <div fxFlex fxLayout="row wrap">
+          <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
+            <img
+              [attr.src]="participantLogosBaseUrl + logo"
+              class="partner-logo"
+              alt="partner-logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section fxLayout="column" class="section">
+    <div fxLayout="row" class="header" id="participants">
+      <fa-icon icon="arrow-down" class="icon"></fa-icon>
+      <h3 class="title">{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}</h3>
+    </div>
+    <div fxFlex fxLayout="row wrap" class="participant">
+      <div
+        fxFlex.gt-sm="25%"
+        fxFlex.sm="33%"
+        fxFlex.xs="50%"
+        class="logo"
+        *ngFor="let logo of participantLogos"
+      >
+        <img class="partner-logo" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+      </div>
+    </div>
+  </section>
 </div>
-
-<div>{{ authTest }}</div>
-
-<pre *numUserHasRole="[AvailableRoles.OrganizationAdmin]">Organizsation Admin Content</pre>
-<pre *numUserHasRole="[AvailableRoles.Researcher]">Researcher Content</pre>

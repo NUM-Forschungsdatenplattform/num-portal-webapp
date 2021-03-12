@@ -1,3 +1,66 @@
-.test {
-  color: var(--num-color--accent);
+:host {
+  width: 100%;
+}
+
+.section {
+  margin: 20px 0 70px 0;
+}
+
+.header {
+  .title {
+    border-bottom: none;
+    margin-bottom: 0 !important;
+  }
+
+  .icon {
+    margin: 3px 10px 0 0;
+  }
+}
+
+.introduction {
+  .content {
+    margin: 0 20px 0 0;
+  }
+  .sidebar {
+    .header {
+      text-align: center;
+      font-weight: 500;
+    }
+    .partner-logo {
+      width: 100%;
+    }
+  }
+}
+
+.participant {
+  .partner-logo {
+    width: 92%;
+    margin-top: 3%;
+  }
+}
+
+/* Medium only */
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .introduction {
+    .sidebar {
+      margin: auto;
+      padding-top: 40px;
+      .header {
+        text-align: left;
+      }
+      .partner-logo {
+        width: 92%;
+      }
+    }
+  }
+}
+
+/* up and Small */
+@media only screen and (max-width: 600px) {
+  .introduction {
+    .sidebar {
+      padding-top: 40px;
+      margin: auto;
+    }
+  }
 }

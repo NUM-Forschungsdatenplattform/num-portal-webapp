@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/core/auth/auth.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { AppConfigService } from '../../../../config/app-config.service'
+import { INITIATIVE_CLINICS_LOGO, LOGO_ADDRESS, PARTICIPANT_CLINICS_LOGO } from './constants'
 
 @Component({
   selector: 'num-dashboard',
@@ -17,6 +18,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private appConfig: AppConfigService, private authService: AuthService) {}
 
   config = this.appConfig.config
+  participantLogosBaseUrl = LOGO_ADDRESS
+  participantLogos = PARTICIPANT_CLINICS_LOGO
+  initiativeLogos = INITIATIVE_CLINICS_LOGO
   authTest: string
 
   ngOnInit(): void {
