@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   initiativeLogos = INITIATIVE_CLINICS_LOGO
   authTest: string
 
+  @ViewChild('participantsAnchor') participantsAnchor: ElementRef
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
@@ -43,5 +45,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else {
       this.authTest = 'Not logged in'
     }
+  }
+
+  scrollToParticipants(): void {
+    const targetElement = this.participantsAnchor.nativeElement
+    targetElement.scrollIntoView({ behavior: 'smooth' })
   }
 }
