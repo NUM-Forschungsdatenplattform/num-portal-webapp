@@ -6,12 +6,16 @@ import { NavigationEditorComponent } from './components/navigation-editor/naviga
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { NavigationEditorItemComponent } from './components/navigation-editor-item/navigation-editor-item.component'
+import { WelcomePageItemComponent } from './components/welcome-page-item/welcome-page-item.component'
+import { DialogEditWelcomeCardComponent } from './components/dialog-edit-welcome-card/dialog-edit-welcome-card.component'
 
 @NgModule({
   declarations: [
     WelcomePageEditorComponent,
     NavigationEditorComponent,
     NavigationEditorItemComponent,
+    WelcomePageItemComponent,
+    DialogEditWelcomeCardComponent,
   ],
   imports: [CommonModule, ContentEditorRoutingModule, SharedModule, LayoutModule],
 })

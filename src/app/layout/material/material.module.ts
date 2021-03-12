@@ -28,6 +28,7 @@ import { MatNativeDateModule } from '@angular/material/core'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 const MATERIAL_MODULES = [
   MatSidenavModule,
@@ -59,6 +60,7 @@ const MATERIAL_MODULES = [
   MatNativeDateModule,
   MatTooltipModule,
   MatProgressSpinnerModule,
+  DragDropModule,
 ]
 
 @NgModule({

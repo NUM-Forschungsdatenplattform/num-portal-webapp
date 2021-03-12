@@ -1,3 +1,12 @@
 :host {
   width: 100%;
 }
+
+.cdk-drop-list-dragging .num-welcome-page-item {
+  opacity: 0.7;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.add-button {
+  display: inline-block;
+}
