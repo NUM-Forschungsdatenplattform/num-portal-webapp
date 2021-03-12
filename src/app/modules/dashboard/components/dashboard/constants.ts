@@ -1,6 +1,6 @@
-export const LOGO_ADDRESS = 'assets/partner-logo/'
-export const INITIATIVE_CLINICS_LOGO = ['logo-aachen.jpg', 'logo-augsburg.jpg', 'logo-berlin.jpg']
-export const PARTICIPANT_CLINICS_LOGO = [
+export const LOGOS_BASE_URL = 'assets/partner-logo/'
+export const INITIATIVE_CLINICS_LOGOS = ['logo-aachen.jpg', 'logo-augsburg.jpg', 'logo-berlin.jpg']
+export const PARTICIPANT_CLINICS_LOGOS = [
   'logo-aachen.jpg',
   'logo-augsburg.jpg',
   'logo-berlin.jpg',

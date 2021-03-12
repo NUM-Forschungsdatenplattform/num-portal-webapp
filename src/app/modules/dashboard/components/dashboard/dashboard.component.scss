@@ -6,11 +6,15 @@
   margin: 20px 0 70px 0;
 }
 
-.header {
+.main-header {
   .title {
-    border-bottom: none;
+    border-bottom-color: #eb586a;
     margin-bottom: 0 !important;
   }
+}
+
+.header {
+  margin-bottom: 0 !important;
 
   .icon {
     margin: 3px 10px 0 0;
@@ -18,8 +22,12 @@
 }
 
 .introduction {
+  margin-top: 20px;
   .content {
     margin: 0 20px 0 0;
+  }
+  .content a:hover {
+    cursor: pointer;
   }
   .sidebar {
     .header {

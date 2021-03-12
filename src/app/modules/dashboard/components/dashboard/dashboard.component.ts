@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/core/auth/auth.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { AppConfigService } from '../../../../config/app-config.service'
-import { INITIATIVE_CLINICS_LOGO, LOGO_ADDRESS, PARTICIPANT_CLINICS_LOGO } from './constants'
+import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } from './constants'
 
 @Component({
   selector: 'num-dashboard',
@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private appConfig: AppConfigService, private authService: AuthService) {}
 
   config = this.appConfig.config
-  participantLogosBaseUrl = LOGO_ADDRESS
-  participantLogos = PARTICIPANT_CLINICS_LOGO
-  initiativeLogos = INITIATIVE_CLINICS_LOGO
+  participantLogosBaseUrl = LOGOS_BASE_URL
+  participantLogos = PARTICIPANT_CLINICS_LOGOS
+  initiativeLogos = INITIATIVE_CLINICS_LOGOS
   authTest: string
 
   @ViewChild('participantsAnchor') participantsAnchor: ElementRef

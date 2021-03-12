@@ -32,7 +32,6 @@ import {
   faCaretSquareUp,
   faArrowsAlt,
   faExclamationTriangle,
-  faVirus,
   faArrowDown,
   faHospital,
 } from '@fortawesome/free-solid-svg-icons'
@@ -76,7 +75,6 @@ export const FONT_AWESOME_ICONS = [
   faCaretSquareUp,
   faArrowsAlt,
   faExclamationTriangle,
-  faVirus,
   faArrowDown,
   faHospital,
 ]
