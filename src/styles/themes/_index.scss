@@ -7,7 +7,7 @@
 
 $num-portal-webapp-primary: mat-palette($num-primary-palette);
 $num-portal-webapp-accent: mat-palette($num-accent-palette);
-$num-portal-webapp-additional: mat-palette($num-additional-palette, warning);
+$num-portal-webapp-additional: mat-palette($num-additional-palette, error);
 
 $mat-light-theme-foreground: mat-light-theme-foreground(
   $num-portal-webapp-primary,

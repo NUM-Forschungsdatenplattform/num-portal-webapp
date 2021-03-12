@@ -1,5 +1,4 @@
 import {
-  faTh,
   faMicroscope,
   faBars,
   faGlobeEurope,
@@ -26,16 +25,18 @@ import {
   faAlignLeft,
   faPlay,
   faPen,
+  faExclamationCircle,
   faBuilding,
   faUserEdit,
   faFileDownload,
+  faCaretSquareUp,
+  faArrowsAlt,
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye } from '@fortawesome/free-regular-svg-icons'
 
 export const FONT_AWESOME_ICONS = [
-  faTh,
   faMicroscope,
   faBars,
   faGlobeEurope,
@@ -67,6 +68,9 @@ export const FONT_AWESOME_ICONS = [
   faBuilding,
   faUserEdit,
   faNewspaper,
+  faExclamationCircle,
   faFileDownload,
+  faCaretSquareUp,
+  faArrowsAlt,
   faExclamationTriangle,
 ]
