@@ -16,6 +16,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
 import { cloneDeep } from 'lodash-es'
 import { MatPaginator } from '@angular/material/paginator'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -63,7 +64,7 @@ export class DialogAddResearchersComponent
   }
 
   handleUsersData(users: IUser[]): void {
-    this.dataSource.data = users
+    this.dataSource.data = users.filter((user) => user?.roles.includes(AvailableRoles.Researcher))
   }
 
   handleDilaogInput(): void {
