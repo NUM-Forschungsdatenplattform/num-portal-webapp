@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { AppConfigService } from '../../../../config/app-config.service'
+import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } from './constants'
 
 @Component({
   selector: 'num-dashboard',
@@ -17,7 +18,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private appConfig: AppConfigService, private authService: AuthService) {}
 
   config = this.appConfig.config
+  participantLogosBaseUrl = LOGOS_BASE_URL
+  participantLogos = PARTICIPANT_CLINICS_LOGOS
+  initiativeLogos = INITIATIVE_CLINICS_LOGOS
   authTest: string
+
+  @ViewChild('participantsAnchor') participantsAnchor: ElementRef
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -39,5 +45,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } else {
       this.authTest = 'Not logged in'
     }
+  }
+
+  scrollToParticipants(): void {
+    const targetElement = this.participantsAnchor.nativeElement
+    targetElement.scrollIntoView({ behavior: 'smooth' })
   }
 }

@@ -8,6 +8,7 @@ import { IAppConfig } from 'src/app/config/app-config.model'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Subject } from 'rxjs'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -35,7 +36,12 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [TranslateModule.forRoot(), HttpClientTestingModule, DirectivesModule],
+      imports: [
+        TranslateModule.forRoot(),
+        HttpClientTestingModule,
+        DirectivesModule,
+        FontAwesomeTestingModule,
+      ],
       providers: [
         {
           provide: OAuthService,
