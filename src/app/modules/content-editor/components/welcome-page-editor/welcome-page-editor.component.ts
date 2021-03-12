@@ -28,7 +28,8 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   ) {}
 
   isLoading = true
-  displayLang: 'en' | 'de'
+
+  displayLang: string
 
   cards: IDashboardCard[]
 
