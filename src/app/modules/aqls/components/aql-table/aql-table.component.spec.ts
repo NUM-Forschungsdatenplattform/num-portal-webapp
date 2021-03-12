@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
+import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -20,6 +20,8 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -41,6 +43,10 @@ describe('AqlTableComponent', () => {
   const profileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as ProfileService
+
+  const mockToast = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({ selector: 'num-definition-list', template: '' })
   class DefinitionListStubComponent {
@@ -80,6 +86,10 @@ describe('AqlTableComponent', () => {
           provide: ProfileService,
           useValue: profileService,
         },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
+        },
       ],
     }).compileComponents()
   })
@@ -91,6 +101,7 @@ describe('AqlTableComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(aqlService, 'setFilter')
+    jest.spyOn(mockToast, 'openToast').mockImplementation()
   })
 
   it('should create', () => {
@@ -133,6 +144,27 @@ describe('AqlTableComponent', () => {
       const aqlId = 1
       component.delete(aqlId).then(() => {
         expect(aqlService.delete).toHaveBeenCalledTimes(1)
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'AQL.DELETE_AQL_SUCCESS_MESSAGE',
+        })
+        done()
+      })
+    })
+  })
+
+  describe('On fail to delete the AQL', () => {
+    beforeEach(() => {
+      jest.spyOn(aqlService, 'delete').mockImplementation(() => throwError({}))
+    })
+
+    it('should show Error toast', async (done) => {
+      const aqlId = 1
+      component.delete(aqlId).then(() => {
+        expect(mockToast.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'AQL.DELETE_AQL_ERROR_MESSAGE',
+        })
         done()
       })
     })

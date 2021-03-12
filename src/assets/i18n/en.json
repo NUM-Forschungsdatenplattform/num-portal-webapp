@@ -61,6 +61,8 @@
     "CONNECT_AQL": "Assemble AQL Queries",
     "SAVE_SUCCESS_MESSAGE": "Your AQL Query was created successfully.",
     "SAVE_ERROR_MESSAGE": "Failed to create your AQL Query.",
+    "DELETE_AQL_SUCCESS_MESSAGE": "The AQL query was successfully deleted.",
+    "DELETE_AQL_ERROR_MESSAGE": "The AQL query could not be deleted. Please try again.",
     "COMPILE_ERROR_MESSAGE": "The AQL query could not be complied. Please check the query configuration and try again.",
     "GET_COMPOSITION_ERROR": "The template cannot be loaded. Please close the window and try again.",
     "COLUMNS": "Columns",
@@ -244,7 +246,9 @@
       "RETROSPECTIVE_STUDY": "Retrospective study",
       "REGISTRY": "Registry"
     },
-    "CATEGORIES_NO_RESULTS":  "No Results"
+    "CATEGORIES_NO_RESULTS": "No Results",
+    "SAVE_SUCCESS_MESSAGE": "The study has been saved successfully.",
+    "SAVE_ERROR_MESSAGE": "The study could not be saved. Please try again."
   },
   "USER": {
     "FIRST_NAME": "First name",

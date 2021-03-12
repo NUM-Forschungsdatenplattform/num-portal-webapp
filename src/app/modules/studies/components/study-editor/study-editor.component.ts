@@ -19,6 +19,8 @@ import { catchError, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_STUDY_DIALOG_CONFIG } from './constants'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-study-editor',
@@ -63,7 +65,8 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     private studyService: StudyService,
     private cohortService: CohortService,
     private adminService: AdminService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private toast: ToastMessageService
   ) {}
 
   ngOnInit(): void {
@@ -218,15 +221,24 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
     try {
       const studyResult = await this.saveStudy(study)
       this.study.id = studyResult.id
+
       if (cohort.cohortGroup) {
         cohort.studyId = studyResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.study.cohortId = cohortResult.id
       }
-      // TODO: Display message to user
+
+      this.router.navigate(['studies'])
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'STUDY.SAVE_SUCCESS_MESSAGE',
+      })
     } catch (error) {
-      console.log(error)
-      // TODO: Display message to user
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'STUDY.SAVE_ERROR_MESSAGE',
+      })
     }
   }
 
