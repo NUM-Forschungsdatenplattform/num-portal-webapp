@@ -22,6 +22,9 @@
 
 <section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
+    [ngClass]="{
+      'titlebar num-margin-b-60': currentMainNavItem?.routeTo !== 'home'
+    }"
     role="presentation"
     fxLayout="column"
     fxLayoutAlign="center start"

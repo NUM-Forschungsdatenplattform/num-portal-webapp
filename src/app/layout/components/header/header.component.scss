@@ -3,6 +3,10 @@
   font-size: 14px;
 }
 
+.titlebar {
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
 .mat-tab-label-active {
   color: black;
   opacity: 1;

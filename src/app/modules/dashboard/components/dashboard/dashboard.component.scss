@@ -23,6 +23,10 @@
 
 .introduction {
   margin-top: 20px;
+
+  &__participating-clinics-link {
+    text-decoration: underline;
+  }
   .content {
     margin: 0 20px 0 0;
   }
@@ -51,6 +55,14 @@
   .content {
     width: 100%;
     padding: 5%;
+  }
+
+  &:nth-child(odd) {
+    margin-right: 2%;
+  }
+
+  &.no-margin-r {
+    margin-right: 0;
   }
 }
 
