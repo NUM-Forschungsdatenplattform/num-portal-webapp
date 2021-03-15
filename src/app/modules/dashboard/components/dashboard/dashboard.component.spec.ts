@@ -7,8 +7,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { mockDashboardCards } from '../../../../../mocks/data-mocks/dashboard-cards.mock'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -33,6 +36,11 @@ describe('DashboardComponent', () => {
     loadUserProfile: () => Promise.resolve(),
   } as unknown) as OAuthService
 
+  const mockContentService = ({
+    getCards: jest.fn(),
+    updateCards: jest.fn(),
+  } as unknown) as ContentService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
@@ -40,6 +48,7 @@ describe('DashboardComponent', () => {
         TranslateModule.forRoot(),
         HttpClientTestingModule,
         DirectivesModule,
+        FlexLayoutModule,
         FontAwesomeTestingModule,
       ],
       providers: [
@@ -51,13 +60,17 @@ describe('DashboardComponent', () => {
           provide: AuthService,
           useValue: authService,
         },
+        {
+          provide: ContentService,
+          useValue: mockContentService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
     appConfig = TestBed.inject(AppConfigService)
-
+    jest.spyOn(mockContentService, 'getCards').mockImplementation(() => of(mockDashboardCards))
     fixture = TestBed.createComponent(DashboardComponent)
     component = fixture.componentInstance
     component.config = config
@@ -66,5 +79,9 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should set the cards from the api to the component', () => {
+    expect(component.cards).toEqual(mockDashboardCards)
   })
 })
