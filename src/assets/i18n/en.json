@@ -7,10 +7,8 @@
       "PARTICIPANTS": "Participating clinics",
       "INITIATIVE": "An initiative of"
     },
-    "PORTAL_KPI": {
-      "MICROSCOPE": "studies published in CODEX",
-      "DNA": "AQL queries available in CODEX",
-      "HOSPITAL": "36 participating university hospitals throughout Germany"
+    "INFO_CARD": {
+      "HEADER": "Info Board"
     },
     "PARTICIPATING": {
       "HEADER": "Participating clinics"

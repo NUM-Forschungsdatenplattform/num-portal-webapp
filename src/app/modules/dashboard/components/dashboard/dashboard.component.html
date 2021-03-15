@@ -30,8 +30,36 @@
   </section>
 
   <section fxLayout="column" class="section">
+    <div class="header">
+      <h3>
+        <fa-icon icon="arrow-down" class="icon"> </fa-icon
+        >{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}
+      </h3>
+    </div>
+    <div fxFlex fxLayout="row wrap" fxLayoutGap="2%">
+      <div
+        fxFlex.gt-sm="48%"
+        fxFlex.sm="48%"
+        fxFlex.xs="100%"
+        class="info_board"
+        *ngFor="let logo of initiativeLogos"
+      >
+        <img class="content-image" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+        <div class="content">
+          <h4>What is Lorem Ipsum?</h4>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+            has been the industry's standard dummy text ever since the 1500s, when an unknown
+            printer took a galley of type and scrambled it to make a type specimen book.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section fxLayout="column" class="section">
     <div class="header" #participantsAnchor>
-      <h3 class="title">
+      <h3>
         <fa-icon icon="arrow-down" class="icon"> </fa-icon
         >{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}
       </h3>

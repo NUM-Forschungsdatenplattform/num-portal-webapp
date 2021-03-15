@@ -40,6 +40,20 @@
   }
 }
 
+.info_board {
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 24%), 0 0 2px 0 rgb(0 0 0 / 12%);
+  margin-bottom: 2%;
+
+  .content-image {
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    padding: 5%;
+  }
+}
+
 .participant {
   .partner-logo {
     width: 92%;

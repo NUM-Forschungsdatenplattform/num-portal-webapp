@@ -7,10 +7,8 @@
       "PARTICIPANTS": "Teilnehmende Kliniken",
       "INITIATIVE": "Eine Initiative von"
     },
-    "PORTAL_KPI": {
-      "MICROSCOPE": "Studien in CODEX veröffentlicht",
-      "DNA": "AQL-Abfragen in CODEX verfügbar",
-      "HOSPITAL": "36 teilnehmende Universitätskliniken in ganz Deutschland"
+    "INFO_CARD": {
+      "HEADER": "Info Board"
     },
     "PARTICIPATING": {
       "HEADER": "Teilnehmende Kliniken"
