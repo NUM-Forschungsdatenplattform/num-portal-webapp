@@ -32,7 +32,7 @@
   </div>
 </section>
 
-<section fxLayout="column" class="section">
+<section fxLayout="column" class="section" *ngIf="isLoggedIn">
   <div class="header">
     <h3>{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}</h3>
   </div>
@@ -41,17 +41,22 @@
       fxFlex.gt-sm="49%"
       fxFlex.sm="49%"
       fxFlex.xs="100%"
-      class="info_board"
+      class="info-board"
       [ngClass.xs]="{ 'no-margin-r': true }"
-      *ngFor="let logo of initiativeLogos"
+      *ngFor="let card of cards"
+      (click)="openCardUrl(card.url)"
     >
-      <img class="content-image" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+      <img
+        class="content-image"
+        [attr.src]="'assets/cards/' + card.imageId?.toLowerCase() + '.jpg'"
+        alt="card-icon"
+      />
+
+      <fa-icon class="info-board--icon" icon="external-link-alt"></fa-icon>
       <div class="content">
-        <h4>What is Lorem Ipsum?</h4>
+        <h4>{{ card[displayLang]?.title }}</h4>
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-          been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-          a galley of type and scrambled it to make a type specimen book.
+          {{ card[displayLang]?.text }}
         </p>
       </div>
     </div>

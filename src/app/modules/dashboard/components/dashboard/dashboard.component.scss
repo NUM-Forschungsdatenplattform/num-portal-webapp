@@ -44,7 +44,9 @@
   }
 }
 
-.info_board {
+.info-board {
+  position: relative;
+  cursor: pointer;
   box-shadow: 0 2px 2px 0 rgb(0 0 0 / 24%), 0 0 2px 0 rgb(0 0 0 / 12%);
   margin-bottom: 2%;
 
@@ -63,6 +65,15 @@
 
   &.no-margin-r {
     margin-right: 0;
+  }
+
+  &--icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 18px;
   }
 }
 
