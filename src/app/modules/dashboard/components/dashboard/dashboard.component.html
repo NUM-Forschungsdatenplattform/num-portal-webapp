@@ -1,51 +1,81 @@
-<div>
-  <section class="section">
-    <div class="main-header">
-      <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
-    </div>
-    <div fxLayout="row wrap" class="introduction">
-      <div fxFlex fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
-        <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
-        <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
-        <a (click)="scrollToParticipants()" data-test="dashboard__participating-clinics-button">
-          <fa-icon icon="arrow-down" class="icon"></fa-icon>
-          {{ 'DASHBOARD.INTRODUCTION.PARTICIPANTS' | translate }}
-        </a>
-      </div>
-      <div fxLayout="column" fxFlex.gt-sm="20%" fxFlex.sm="100%" fxFlex.lt-sm="33%" class="sidebar">
-        <div class="header">
-          <p>{{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}</p>
-        </div>
-        <div fxFlex fxLayout="row wrap">
-          <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
-            <img
-              [attr.src]="participantLogosBaseUrl + logo"
-              class="partner-logo"
-              alt="partner-logo"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section fxLayout="column" class="section">
-    <div class="header" #participantsAnchor>
-      <h3 class="title">
-        <fa-icon icon="arrow-down" class="icon"> </fa-icon
-        >{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}
-      </h3>
-    </div>
-    <div fxFlex fxLayout="row wrap" class="participant">
-      <div
-        fxFlex.gt-sm="25%"
-        fxFlex.sm="33%"
-        fxFlex.xs="50%"
-        class="logo"
-        *ngFor="let logo of participantLogos"
+<section class="section">
+  <div class="main-header">
+    <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
+  </div>
+  <div fxLayout="row wrap" class="introduction">
+    <div fxFlex fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
+      <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
+      <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
+      <a
+        (click)="scrollToParticipants()"
+        class="introduction__participating-clinics-link"
+        data-test="dashboard__participating-clinics-button"
       >
-        <img class="partner-logo" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+        <fa-icon icon="arrow-down" class="icon"></fa-icon>
+        {{ 'DASHBOARD.INTRODUCTION.PARTICIPANTS' | translate }}
+      </a>
+    </div>
+    <div fxLayout="column" fxFlex.gt-sm="20%" fxFlex.sm="100%" fxFlex.lt-sm="33%" class="sidebar">
+      <div class="header">
+        <p>{{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}</p>
+      </div>
+      <div fxFlex fxLayout="row wrap">
+        <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
+          <img
+            [attr.src]="participantLogosBaseUrl + logo"
+            class="partner-logo"
+            alt="partner-logo"
+          />
+        </div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
+<section fxLayout="column" class="section" *ngIf="isLoggedIn">
+  <div class="header">
+    <h3>{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}</h3>
+  </div>
+  <div fxFlex fxLayout="row wrap">
+    <div
+      fxFlex.gt-sm="49%"
+      fxFlex.sm="49%"
+      fxFlex.xs="100%"
+      class="info-board"
+      [ngClass.xs]="{ 'no-margin-r': true }"
+      *ngFor="let card of cards"
+      (click)="openCardUrl(card.url)"
+    >
+      <img
+        class="content-image"
+        [attr.src]="'assets/cards/' + card.imageId?.toLowerCase() + '.jpg'"
+        alt="card-icon"
+      />
+
+      <fa-icon class="info-board--icon" icon="external-link-alt"></fa-icon>
+      <div class="content">
+        <h4>{{ card[displayLang]?.title }}</h4>
+        <p>
+          {{ card[displayLang]?.text }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section fxLayout="column" class="section">
+  <div class="header" #participantsAnchor>
+    <h3>{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}</h3>
+  </div>
+  <div fxFlex fxLayout="row wrap" class="participant">
+    <div
+      fxFlex.gt-sm="25%"
+      fxFlex.sm="33%"
+      fxFlex.xs="50%"
+      class="logo"
+      *ngFor="let logo of participantLogos"
+    >
+      <img class="partner-logo" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+    </div>
+  </div>
+</section>

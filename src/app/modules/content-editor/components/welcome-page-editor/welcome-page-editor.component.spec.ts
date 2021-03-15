@@ -170,7 +170,7 @@ describe('WelcomePageEditorComponent', () => {
     expect(component.dashboardCards.value[0].titleGerman).toEqual(mockDashboardCards[1].de.title)
   })
 
-  describe('When the result is suposed to be saved', () => {
+  describe('When the result is supposed to be saved', () => {
     it('should call the service with the api model', () => {
       jest.spyOn(mockContentService, 'updateCards').mockImplementation(() => of(mockDashboardCards))
       component.save()
