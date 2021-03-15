@@ -1,12 +1,23 @@
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
+import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
+import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/study/cohort-group-api.interface'
 
 import { CohortService } from './cohort.service'
 
 describe('CohortService', () => {
   let service: CohortService
+
+  const mockCohortGroup: ICohortGroupApi = {
+    id: null,
+    operator: LogicalOperator.And,
+    type: ConnectorNodeType.Group,
+    children: [new PhenotypeUiModel()],
+  }
 
   const mockCohort: ICohortApi = {
     id: null,
@@ -46,10 +57,10 @@ describe('CohortService', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(cohortSize))
       const request = {
         url: `${appConfig.config.api.baseUrl}/cohort/size`,
-        body: mockCohort,
+        body: mockCohortGroup,
       }
 
-      const result = await service.getSize(mockCohort).toPromise()
+      const result = await service.getSize(mockCohortGroup).toPromise()
 
       expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
       expect(result).toEqual(cohortSize)
@@ -58,7 +69,7 @@ describe('CohortService', () => {
     it('should call the api and handle erros', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
 
-      service.getSize(mockCohort).subscribe()
+      service.getSize(mockCohortGroup).subscribe()
 
       expect(service.handleError).toHaveBeenCalled()
     })

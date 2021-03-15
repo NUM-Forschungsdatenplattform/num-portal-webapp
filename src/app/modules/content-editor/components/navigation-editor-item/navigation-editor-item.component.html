@@ -1,0 +1,68 @@
+<h3 data-test="content-editor__navigation__item__title">Item {{ index }}</h3>
+
+<mat-card
+  class="mat-elevation-z4 item-box"
+  [ngClass]="{
+    'item-box--error': form.invalid,
+    'item-box--empty': form.get('url').value === '' && form.get('title').value === ''
+  }"
+>
+  <form [formGroup]="form" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex.gt-sm="250px">
+      <mat-label id="title-label">{{ 'CONTENT_EDITOR.URL_TEXT_LABEL' | translate }}</mat-label>
+      <input
+        #titleInput
+        aria-labelledby="title-label"
+        type="text"
+        matInput
+        formControlName="title"
+        data-test="content-editor__navigation__item__title-input"
+        maxlength="20"
+        [errorStateMatcher]="titleErrorStateMatcher"
+        [placeholder]="'CONTENT_EDITOR.URL_TEXT_PLACEHOLDER' | translate"
+      />
+      <mat-hint *ngIf="!form.errors?.titleRequired"
+        >{{ titleInput.value?.length || 0 }}/20 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+      >
+      <mat-hint *ngIf="form.errors?.titleRequired">
+        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+        {{ 'PROVIDE_URL_TEXT' | translate }}</mat-hint
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" fxFlex.gt-sm="100%">
+      <mat-label id="url-label">URL</mat-label>
+      <input
+        aria-labelledby="url-label"
+        type="url"
+        matInput
+        formControlName="url"
+        [placeholder]="'CONTENT_EDITOR.URL_PLACEHOLDER' | translate"
+        [errorStateMatcher]="urlErrorStateMatcher"
+        data-test="content-editor__navigation__item__url-input"
+      />
+
+      <mat-hint *ngIf="form.get('url').invalid">
+        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+        {{ 'INVALID_URL' | translate }} https://domainname.de</mat-hint
+      >
+
+      <mat-hint *ngIf="form.errors?.urlRequired">
+        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+        {{ 'PROVIDE_URL' | translate }}</mat-hint
+      >
+    </mat-form-field>
+  </form>
+
+  <section class="bottom-row" fxLayout="row" fxLayoutAlign="end center">
+    <num-button
+      type="basic"
+      *ngIf="!isLoading"
+      (singleClick)="clearInput()"
+      data-test="content-editor__navigation__item__clear-button"
+      >{{ 'BUTTON.CLEAR_ENTRY' | translate }}</num-button
+    >
+
+    <mat-spinner *ngIf="isLoading" color="accent" [diameter]="24"></mat-spinner>
+  </section>
+</mat-card>

@@ -18,9 +18,24 @@ describe('StudyEditorGeneralInfoComponent', () => {
     @Input() dataSource: IDefinitionList[]
   }
 
+  @Component({ selector: 'num-study-editor-general-info-keywords-input', template: '' })
+  class StudyEditorGeneralInfoKeywordsInputComponent {
+    @Input() form: FormGroup
+  }
+
+  @Component({ selector: 'num-study-editor-general-info-categories-input', template: '' })
+  class StudyEditorGeneralInfoCategoriesInputComponent {
+    @Input() form: FormGroup
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StudyEditorGeneralInfoComponent, DefinitionListStubComponent],
+      declarations: [
+        StudyEditorGeneralInfoComponent,
+        DefinitionListStubComponent,
+        StudyEditorGeneralInfoKeywordsInputComponent,
+        StudyEditorGeneralInfoCategoriesInputComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
@@ -36,10 +51,16 @@ describe('StudyEditorGeneralInfoComponent', () => {
     component = fixture.componentInstance
     component.isDisabled = false
     component.form = new FormGroup({
-      title: new FormControl(),
+      name: new FormControl(),
       description: new FormControl(),
+      goal: new FormControl(),
       firstHypotheses: new FormControl(),
       secondHypotheses: new FormControl(),
+      keywords: new FormControl(),
+      categories: new FormControl(),
+      startDate: new FormControl(),
+      endDate: new FormControl(),
+      financed: new FormControl(),
     })
     fixture.detectChanges()
   })

@@ -10,6 +10,8 @@ import { StudyEditorResearchersComponent } from './components/study-editor-resea
 import { AddTemplateSelectedTableComponent } from './components/add-template-selected-table/add-template-selected-table.component'
 import { StudyEditorConnectorGroupComponent } from './components/study-editor-connector-group/study-editor-connector-group.component'
 import { StudyEditorConnectorPhenotypeComponent } from './components/study-editor-connector-phenotype/study-editor-connector-phenotype.component'
+import { StudyEditorGeneralInfoKeywordsInputComponent } from './components/study-editor-general-info-keywords-input/study-editor-general-info-keywords-input.component'
+import { StudyEditorGeneralInfoCategoriesInputComponent } from './components/study-editor-general-info-categories-input/study-editor-general-info-categories-input.component'
 
 const SHARED_DECLARATIONS = [
   StudyEditorGeneralInfoComponent,
@@ -19,6 +21,8 @@ const SHARED_DECLARATIONS = [
   AddTemplateSelectedTableComponent,
   StudyEditorConnectorGroupComponent,
   StudyEditorConnectorPhenotypeComponent,
+  StudyEditorGeneralInfoKeywordsInputComponent,
+  StudyEditorGeneralInfoCategoriesInputComponent,
 ]
 
 @NgModule({

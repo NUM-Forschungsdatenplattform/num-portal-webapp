@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { of, throwError, timer } from 'rxjs'
+import { skipUntil } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockRoles, mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
+import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AdminService } from './admin.service'
 
 describe('AdminService', () => {
@@ -42,7 +44,7 @@ describe('AdminService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getUnapprovedUsers().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=false`
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       service.unapprovedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
@@ -57,7 +59,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=false`
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -271,6 +273,36 @@ describe('AdminService', () => {
         expect(filterResult[0].id).toEqual('456-789')
         done()
       }, throttleTime * 3)
+    })
+  })
+
+  describe('When the filter logic fails to retrieve data', () => {
+    it('should result in an empty array', (done) => {
+      const anyService = service as any
+
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+
+      service.filteredApprovedUsersObservable$
+        .pipe(skipUntil(timer(anyService.throttleTime / 2)))
+        .subscribe((result) => {
+          expect(result).toEqual([])
+          done()
+        })
+
+      setTimeout(() => {
+        service.refreshFilterResult()
+      }, anyService.throttleTime + 1)
+    })
+  })
+
+  describe('When a batch of users are requested by their ids', () => {
+    it('should call the api for each id and return the set', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUserProfile1))
+      const result = await service.getUsersByIds(['1', '2', '3']).toPromise()
+      expect(result.length).toEqual(3)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/1`)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/2`)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/3`)
     })
   })
 })

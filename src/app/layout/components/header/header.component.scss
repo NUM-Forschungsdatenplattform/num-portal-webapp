@@ -11,3 +11,19 @@
   color: black;
   opacity: 1;
 }
+
+.header-image {
+  background-image: url('../../../../assets/welcome-header.jpg');
+  height: 33vh;
+  max-height: 390px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 0 0 60px 0;
+
+  &--small {
+    height: 25vh;
+    max-height: 220px;
+    margin: 0 0 20px 0;
+  }
+}

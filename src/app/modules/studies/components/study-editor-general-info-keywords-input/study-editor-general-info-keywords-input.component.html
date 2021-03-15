@@ -1,0 +1,32 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
+  <mat-chip-list
+    #keywordsChipList
+    aria-label="Keywords selection"
+    data-test="study-editor__general-info__keywords-chip-list"
+  >
+    <mat-chip
+      *ngFor="let keyword of keywords; let i = index"
+      (removed)="removeKeyword(i)"
+      class="chip-primary"
+      data-test="study-editor__general-info__keywords-chip-item"
+    >
+      <span>{{ keyword }}</span>
+      <fa-icon
+        icon="times-circle"
+        class="chip__remove-icon"
+        data-test="study-editor__general-info__keywords-remove-keyword-button"
+        matChipRemove
+      ></fa-icon>
+    </mat-chip>
+    <input
+      placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
+      [matChipInputFor]="keywordsChipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+      matChipInputAddOnBlur
+      (matChipInputTokenEnd)="addKeyword($event)"
+      autocomplete="off"
+      data-test="study-editor__general-info__keywords-input"
+    />
+  </mat-chip-list>
+</mat-form-field>

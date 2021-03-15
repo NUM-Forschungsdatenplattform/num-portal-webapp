@@ -37,12 +37,12 @@ describe('AddUserRolesComponent', () => {
       fixture = TestBed.createComponent(AddUserRolesComponent)
       component = fixture.componentInstance
       component.selectedRoles = []
-      userProfileSubject$.next(mockUserProfile1)
 
       jest.spyOn(component.selectedRolesChange, 'emit')
       component.handleSelectClick(mockRole)
 
       fixture.detectChanges()
+      userProfileSubject$.next(mockUserProfile1)
     })
 
     it('should emit the selectedRoles array', () => {
@@ -58,13 +58,13 @@ describe('AddUserRolesComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(AddUserRolesComponent)
       component = fixture.componentInstance
-      userProfileSubject$.next(mockUserProfile1)
 
       jest.spyOn(component.selectedRolesChange, 'emit')
       component.selectedRoles = [mockRole]
       component.handleDeselectClick(mockRole)
 
       fixture.detectChanges()
+      userProfileSubject$.next(mockUserProfile1)
     })
 
     it('should emit the selectedRoles array', () => {
@@ -81,9 +81,9 @@ describe('AddUserRolesComponent', () => {
       fixture = TestBed.createComponent(AddUserRolesComponent)
       component = fixture.componentInstance
       component.selectedRoles = []
-      userProfileSubject$.next(mockUserProfile1)
 
       fixture.detectChanges()
+      userProfileSubject$.next(mockUserProfile1)
     })
 
     it('should not include the roles SuperAdmin and Content Admin as dataSource.data', () => {
@@ -97,9 +97,9 @@ describe('AddUserRolesComponent', () => {
       fixture = TestBed.createComponent(AddUserRolesComponent)
       component = fixture.componentInstance
       component.selectedRoles = []
-      userProfileSubject$.next(mockUserProfile3)
 
       fixture.detectChanges()
+      userProfileSubject$.next(mockUserProfile3)
     })
     it('should include the roles SuperAdmin and Content Admin in dataSource.data', () => {
       userProfileSubject$.next(mockUserProfile3)

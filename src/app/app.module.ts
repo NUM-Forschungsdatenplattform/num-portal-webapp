@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { APP_INITIALIZER } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -10,16 +10,12 @@ import { LayoutModule } from './layout/layout.module'
 import { AppConfigService } from './config/app-config.service'
 import { OAuthInitService } from './core/auth/oauth-init.service'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
-import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { OAuthInterceptor } from './core/interceptors/oauth.interceptor'
 import { AuthService } from './core/auth/auth.service'
 import { DateAdapter } from '@angular/material/core'
 import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
-
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http)
-}
+import { WebpackTranslateLoader } from './webpack-translate-loader'
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,8 +30,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       defaultLanguage: 'de',
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        useClass: WebpackTranslateLoader,
       },
     }),
   ],

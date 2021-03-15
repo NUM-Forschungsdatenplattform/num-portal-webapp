@@ -3,7 +3,7 @@ import INavItem from '../../layout/models/nav-item.interface'
 export const mainNavItems: INavItem[] = [
   {
     routeTo: 'home',
-    icon: 'th',
+    icon: 'num-welcome',
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {

@@ -36,7 +36,9 @@
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
     <num-button
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading"
+      [isDisabled]="
+        !isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportCsvLoading
+      "
       type="primary"
       icon="play"
       (singleClick)="getDataSet()"
@@ -69,8 +71,34 @@
     [resultSet]="resultSet"
     [isDataSetLoading]="isDataSetLoading"
     [configuration]="configuration"
+    class="num-margin-b-20"
     data-test="data-explorer__table"
   ></num-result-table>
+
+  <div
+    *ngIf="resultSet && resultSet.rows.length"
+    fxFlex
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start center"
+  >
+    <num-button
+      type="secondary"
+      icon="file-download"
+      (singleClick)="exportCsv()"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportCsvLoading"
+      data-test="data-explorer__export-csv-button"
+    >
+      {{ 'DATA_EXPLORER.EXPORT_CSV' | translate }}
+    </num-button>
+
+    <mat-spinner
+      *ngIf="isExportCsvLoading"
+      color="accent"
+      [diameter]="20"
+      class="export-csv_spinner"
+    ></mat-spinner>
+  </div>
 
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">

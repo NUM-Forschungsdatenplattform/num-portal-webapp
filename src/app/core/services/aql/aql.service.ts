@@ -95,6 +95,9 @@ export class AqlService {
       return this.getAll().pipe(
         map((aqlArray) => {
           return this.filterItems(aqlArray, filterSet)
+        }),
+        catchError(() => {
+          return of([])
         })
       )
     }
@@ -106,11 +109,11 @@ export class AqlService {
       const textFilter = filterSet.searchText.toUpperCase()
       result = allAqls.filter(
         (aql) =>
-          aql.name.toUpperCase().includes(textFilter) ||
-          aql.owner.lastName.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
-          aql.owner.lastName.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
+          aql.name?.toUpperCase().includes(textFilter) ||
+          aql.owner.lastName?.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName?.toUpperCase().includes(textFilter) ||
+          aql.owner.firstName?.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
+          aql.owner.lastName?.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
       )
     }
 
@@ -119,7 +122,7 @@ export class AqlService {
         if (filterItem.id === AqlFilterChipId.MyAql) {
           result = result.filter((aql) => aql.owner.id === this.user.id)
         } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
-          result = result.filter((aql) => aql.owner.organization.id === this.user.organization.id)
+          result = result.filter((aql) => aql.owner.organization?.id === this.user.organization?.id)
         }
       }
     })

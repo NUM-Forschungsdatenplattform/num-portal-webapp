@@ -1,6 +1,33 @@
 <dl>
   <ng-container *ngFor="let dataRow of dataSource; let rowIndex = index">
     <dt class="mat-body-strong">{{ dataRow.title | translate }}</dt>
-    <dd>{{ dataRow.description }}</dd>
+    <dd>
+      <ng-container *ngIf="!dataRow.type || dataRow?.type === definitionType.String">{{
+        dataRow.description || '-'
+      }}</ng-container>
+
+      <ng-container *ngIf="dataRow?.type === definitionType.Array">
+        <ng-container *ngIf="dataRow?.description?.length === 0"> - </ng-container>
+
+        <ng-container *ngIf="dataRow?.description?.length !== 0">
+          <span class="num-display-chip" *ngFor="let chip of dataRow.description">{{
+            dataRow.title !== 'FORM.CATEGORY' ? chip : ('STUDY.CATEGORIES.' + chip | translate)
+          }}</span>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="dataRow?.type === definitionType.Date">{{
+        dataRow.description | date: 'dd.MM.yyyy' || '-'
+      }}</ng-container>
+
+      <ng-container *ngIf="dataRow?.type === definitionType.Boolean">
+        <fa-icon
+          [icon]="dataRow.description ? 'check' : 'times'"
+          size="lg"
+          fixedWidth="true"
+          [attr.aria-label]="dataRow.description"
+        ></fa-icon>
+      </ng-container>
+    </dd>
   </ng-container>
 </dl>

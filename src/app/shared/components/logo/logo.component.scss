@@ -1,0 +1,66 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 32%;
+    min-width: 18vh;
+  }
+
+  path {
+    fill-rule: nonzero;
+    stroke: transparent;
+    stroke-width: 1;
+
+    .should-animate & {
+      stroke: grey;
+    }
+  }
+}
+
+.dark {
+  fill: rgba($color: #330f17, $alpha: 0.6);
+
+  .should-animate & {
+    fill: transparent;
+    animation: fillDark 4s forwards;
+  }
+}
+
+.light {
+  fill: rgba($color: #eb586a, $alpha: 0.6);
+
+  .should-animate & {
+    fill: transparent;
+    animation: fillLight 4s forwards;
+  }
+}
+
+@keyframes fillDark {
+  70% {
+    stroke: white;
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke: transparent;
+    stroke-dashoffset: 0;
+    fill: rgba($color: #330f17, $alpha: 0.6);
+  }
+}
+
+@keyframes fillLight {
+  70% {
+    stroke: white;
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke: transparent;
+    stroke-dashoffset: 0;
+    fill: rgba($color: #eb586a, $alpha: 0.6);
+  }
+}

@@ -4,7 +4,11 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { AddUserOrganizationComponent } from './add-user-organization.component'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
-import { mockOrganization1, mockOrganization2 } from 'src/mocks/data-mocks/organizations.mock'
+import {
+  mockOrganization1,
+  mockOrganization2,
+  mockOrganizations,
+} from 'src/mocks/data-mocks/organizations.mock'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { Subject } from 'rxjs'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -57,7 +61,8 @@ describe('AddUserOrganizationComponent', () => {
   describe('When an organization is selected', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedOrganizationChange, 'emit')
-      component.selectedOrganization = mockOrganization2
+      organizationsSubject$.next(mockOrganizations)
+      component.organizationId = 2
       component.handleSelectClick()
     })
 

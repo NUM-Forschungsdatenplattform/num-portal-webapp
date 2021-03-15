@@ -91,6 +91,12 @@ export class StudyService {
       .pipe(catchError(this.handleError))
   }
 
+  exportCsv(id: number, query: string): Observable<string> {
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/${id}/export`, { query }, { responseType: 'text' as 'json' })
+      .pipe(catchError(this.handleError))
+  }
+
   /**
    * Returns the published studies where the current user is assigned to as researcher
    */

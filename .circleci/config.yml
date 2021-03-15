@@ -2,6 +2,17 @@ version: 2.1
 
 workflows:
   version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 21 * * *"
+          filters:
+            branches:
+              only:
+                - nightly-builds
+    jobs:
+      - test:
+          context: org-global
   build_and_test:
     jobs:
       - test:
@@ -82,6 +93,7 @@ jobs:
           command: |
             if [ $CIRCLE_BRANCH = "master" ]; then
               TAG=$(node -p "require('./package.json').version")
+              git push -u origin master:nightly-builds # Make sure that the nightly build branch is up-to-date with master
             elif [ $CIRCLE_BRANCH = "develop" ]; then
               TAG=$CIRCLE_BRANCH
             else

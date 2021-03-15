@@ -15,6 +15,8 @@ import { AqlMenuKeys, MENU_ITEM_CLONE, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from '
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-aql-table',
@@ -28,7 +30,8 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     private aqlService: AqlService,
     private profileService: ProfileService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private toast: ToastMessageService
   ) {
     this.aqlService.filterConfigObservable$
       .pipe(take(1))
@@ -101,13 +104,19 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     })
   }
 
-  async delete(id): Promise<void> {
+  async delete(id: number): Promise<void> {
     try {
       await this.aqlService.delete(id).toPromise()
-      // TODO: Display message to user
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL.DELETE_AQL_SUCCESS_MESSAGE',
+      })
     } catch (error) {
-      console.log(error)
-      // TODO: Display message to user
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL.DELETE_AQL_ERROR_MESSAGE',
+      })
     }
   }
 }
