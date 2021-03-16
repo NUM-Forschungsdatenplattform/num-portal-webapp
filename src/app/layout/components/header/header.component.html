@@ -22,7 +22,9 @@
 
 <section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
-    class="titlebar num-margin-b-60"
+    [ngClass]="{
+      'titlebar num-margin-b-60': currentMainNavItem?.routeTo !== 'home'
+    }"
     role="presentation"
     fxLayout="column"
     fxLayoutAlign="center start"
@@ -36,8 +38,8 @@
         [icon]="currentMainNavItem.icon"
         size="sm"
         [fixedWidth]="true"
-      ></fa-icon>
-      {{ currentMainNavItem.translationKey | translate }}
+      ></fa-icon
+      >{{ currentMainNavItem.translationKey | translate }}
     </h1>
 
     <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">

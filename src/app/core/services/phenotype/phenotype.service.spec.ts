@@ -55,27 +55,24 @@ describe('PhenotypeService', () => {
   })
 
   describe('When a call to get method comes in', () => {
-    it('should return with a single phenotype found on the backend', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotypes))
-      const result = await service.get(1).toPromise()
-      expect(result.id).toEqual(1)
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotype1))
+      service.get(1).subscribe((result) => {
+        expect(result).toEqual(mockPhenotype1)
+      })
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/phenotype/${1}`)
     })
 
-    it('should return with a single phenotype found in memory', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockPhenotypes))
-      const preFillMemory = await service.getAll().toPromise()
-      const result = await service.get(1).toPromise()
-      expect(result.id).toEqual(1)
-    })
-
-    it('should return with an not found error when not found', async () => {
-      const result = await service
-        .get(123)
+    it('should call the api - with error', () => {
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
+      service
+        .get(1)
         .toPromise()
-        .catch((error) => {
-          expect(error).toBeTruthy()
-          expect(error).toEqual(new Error('Not Found'))
-        })
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/phenotype/${1}`)
+      expect(service.handleError).toHaveBeenCalled()
     })
   })
 

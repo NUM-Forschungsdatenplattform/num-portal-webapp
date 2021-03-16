@@ -1,3 +1,111 @@
-.test {
-  color: var(--num-color--accent);
+:host {
+  width: 100%;
+}
+
+.section {
+  margin: 20px 0 70px 0;
+}
+
+.main-header {
+  .title {
+    border-bottom-color: #eb586a;
+    margin-bottom: 0 !important;
+  }
+}
+
+.header {
+  margin-bottom: 0 !important;
+
+  .icon {
+    margin: 3px 10px 0 0;
+  }
+}
+
+.introduction {
+  margin-top: 20px;
+
+  &__participating-clinics-link {
+    text-decoration: underline;
+  }
+  .content {
+    margin: 0 20px 0 0;
+  }
+  .content a:hover {
+    cursor: pointer;
+  }
+  .sidebar {
+    .header {
+      text-align: center;
+      font-weight: 500;
+    }
+    .partner-logo {
+      width: 100%;
+    }
+  }
+}
+
+.info-board {
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 24%), 0 0 2px 0 rgb(0 0 0 / 12%);
+  margin-bottom: 2%;
+
+  .content-image {
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    padding: 5%;
+  }
+
+  &:nth-child(odd) {
+    margin-right: 2%;
+  }
+
+  &.no-margin-r {
+    margin-right: 0;
+  }
+
+  &--icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    opacity: 0.6;
+    font-size: 18px;
+  }
+}
+
+.participant {
+  .partner-logo {
+    width: 92%;
+    margin-top: 3%;
+  }
+}
+
+/* Medium only */
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .introduction {
+    .sidebar {
+      margin: auto;
+      padding-top: 40px;
+      .header {
+        text-align: left;
+      }
+      .partner-logo {
+        width: 92%;
+      }
+    }
+  }
+}
+
+/* up and Small */
+@media only screen and (max-width: 600px) {
+  .introduction {
+    .sidebar {
+      padding-top: 40px;
+      margin: auto;
+    }
+  }
 }
