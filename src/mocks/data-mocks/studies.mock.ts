@@ -1,6 +1,7 @@
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
 import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
+import { mockUser, mockUserSuperAdmin } from './admin.mock'
 
 export const mockStudy1: IStudyApi = {
   id: 1,
@@ -9,11 +10,7 @@ export const mockStudy1: IStudyApi = {
   goal: 'Test Goal',
   templates: [],
   cohortId: 1,
-  coordinator: {
-    userId: '1',
-    organizationId: 1,
-    approved: true,
-  },
+  coordinator: mockUserSuperAdmin,
   researchers: [],
   firstHypotheses: 'Test Hypothesis',
   status: StudyStatus.Draft,
@@ -27,11 +24,7 @@ export const mockStudy2: IStudyApi = {
   description: 'Test Description 2',
   templates: [],
   cohortId: 2,
-  coordinator: {
-    userId: '1',
-    organizationId: 1,
-    approved: true,
-  },
+  coordinator: mockUser,
   researchers: [
     {
       userId: 'abc-1',
@@ -52,11 +45,7 @@ export const mockStudy3: IStudyApi = {
   description: 'Test Description 3',
   templates: [],
   cohortId: 3,
-  coordinator: {
-    userId: '1',
-    organizationId: 1,
-    approved: true,
-  },
+  coordinator: mockUserSuperAdmin,
   researchers: [
     {
       userId: 'abc-1',
