@@ -5,8 +5,10 @@ import { ConnectorGroupUiModel } from '../connector-group-ui.model'
 import { ICohortGroupApi } from './cohort-group-api.interface'
 import { ICohortApi } from './cohort-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { Subject } from 'rxjs'
 
 export class CohortGroupUiModel extends ConnectorGroupUiModel {
+  changeDetectionTrigger$ = new Subject()
   type: ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
@@ -35,10 +37,12 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
       const firstChild = child.children[0]
 
       if (firstChild.type === ConnectorNodeType.Phenotype) {
-        let model = new PhenotypeUiModel()
+        const model = new PhenotypeUiModel()
         model.isLoadingComplete = model.areParameterConfigured = false
         this.phenotypeService.get(firstChild.phenotypeId).subscribe((phenotype) => {
-          model = new PhenotypeUiModel(phenotype, true, firstChild.parameters)
+          model.init(phenotype, true, firstChild.parameters)
+          model.isLoadingComplete = true
+          this.changeDetectionTrigger$.next()
         })
         return model
       }
@@ -48,10 +52,12 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
     }
 
     if (child.type === ConnectorNodeType.Phenotype) {
-      let model = new PhenotypeUiModel()
+      const model = new PhenotypeUiModel()
       model.isLoadingComplete = model.areParameterConfigured = false
       this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
-        model = new PhenotypeUiModel(phenotype, false, child.parameters)
+        model.init(phenotype, false, child.parameters)
+        model.isLoadingComplete = true
+        this.changeDetectionTrigger$.next()
       })
       return model
     }

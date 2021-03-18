@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -20,17 +21,20 @@ import { DialogEditPhenotypeComponent } from '../dialog-edit-phenotype/dialog-ed
 import { EDIT_DIALOG_CONFIG } from './constants'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogAddPhenotypesComponent } from '../dialog-add-phenotypes/dialog-add-phenotypes.component'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-study-editor-connector-group',
   templateUrl: './study-editor-connector-group.component.html',
   styleUrls: ['./study-editor-connector-group.component.scss'],
 })
-export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
+export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges, OnDestroy {
   readonly connectorNodeType = ConnectorNodeType
   readonly connectorGroupType = ConnectorGroupType
   readonly logicalOperator = LogicalOperator
   readonly logicalOperatorArray = [LogicalOperator.And, LogicalOperator.Or]
+
+  subscriptions = new Subscription()
 
   @Input() cohortGroup: CohortGroupUiModel
   @Output() chortGroupChanges = new EventEmitter<CohortGroupUiModel>()
@@ -54,6 +58,12 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
     this.groupType = !this.cohortGroup.indexInGroup
       ? ConnectorGroupType.Main
       : ConnectorGroupType.Sub
+
+    this.subscriptions.add(
+      this.cohortGroup.changeDetectionTrigger$.subscribe(() => {
+        this.changeDetectorRef.markForCheck()
+      })
+    )
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -66,6 +76,10 @@ export class StudyEditorConnectorGroupComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   enumerateGroups(): void {
