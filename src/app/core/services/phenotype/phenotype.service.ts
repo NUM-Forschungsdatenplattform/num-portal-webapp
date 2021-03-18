@@ -90,11 +90,11 @@ export class PhenotypeService {
           phenotype.owner?.lastName?.toLowerCase().includes(textFilter) ||
           phenotype.owner?.firstName?.toLowerCase().includes(textFilter) ||
           phenotype.owner?.firstName
-            ?.concat(phenotype.owner?.lastName)
+            ?.concat(' ', phenotype.owner?.lastName)
             .toLowerCase()
             .includes(textFilter) ||
           phenotype.owner?.lastName
-            ?.concat(phenotype.owner?.firstName)
+            ?.concat(' ', phenotype.owner?.firstName)
             .toLowerCase()
             .includes(textFilter)
       )

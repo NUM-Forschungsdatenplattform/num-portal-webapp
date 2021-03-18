@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core'
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
 import { take } from 'rxjs/operators'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -16,13 +24,9 @@ import { MatPaginator } from '@angular/material/paginator'
   templateUrl: './dialog-add-aqls.component.html',
   styleUrls: ['./dialog-add-aqls.component.scss'],
 })
-export class DialogAddAqlsComponent implements OnInit, AfterViewInit, IGenericDialog<AqlUiModel[]> {
-  private subscriptions = new Subscription()
-
-  @ViewChild(MatPaginator) paginator: MatPaginator
-
+export class DialogAddAqlsComponent
+  implements OnInit, AfterViewInit, OnDestroy, IGenericDialog<AqlUiModel[]> {
   dialogInput: AqlUiModel[] = []
-  @Output() closeDialog = new EventEmitter()
 
   dataSource = new MatTableDataSource<IAqlApi>()
 
@@ -35,52 +39,60 @@ export class DialogAddAqlsComponent implements OnInit, AfterViewInit, IGenericDi
 
   preview: IDefinitionList[] = []
 
-  constructor(private aqlService: AqlService) {}
+  @Output() closeDialog = new EventEmitter()
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  private subscriptions = new Subscription()
+
+  constructor(private aqlService: AqlService) {
+    this.aqlService.filterConfigObservable$
+      .pipe(take(1))
+      .subscribe((config) => (this.filterConfig = config))
+  }
 
   ngOnInit(): void {
-    this.setLastFilter()
-    this.handleDilaogInput()
+    this.subscriptions.add(this.aqlService.getAll().subscribe())
 
-    this.aqlService.getAll().subscribe()
     this.subscriptions.add(
       this.aqlService.filteredAqlsObservable$.subscribe((aqls) => {
         this.handleFilteredData(aqls)
       })
     )
+
+    this.handleDilaogInput()
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
   }
 
-  setLastFilter(): void {
-    this.aqlService.filterConfigObservable$
-      .pipe(take(1))
-      .subscribe((config) => (this.filterConfig = config))
-  }
-
   handleFilteredData(aqls: IAqlApi[]): void {
-    if (aqls.length) {
-      this.generatePreviewData(aqls[0])
-    }
+    this.generatePreviewData(aqls && aqls.length > 0 ? aqls[0] : null)
     this.dataSource.data = aqls
   }
 
   generatePreviewData(aql: IAqlApi): void {
-    this.idOfHighlightedRow = aql.id
-    this.preview = [
-      { title: 'FORM.AUTHOR', description: aql.owner?.firstName + ' ' + aql.owner?.lastName },
-      { title: 'FORM.PURPOSE', description: aql.purpose },
-      { title: 'FORM.USE', description: aql.use },
-    ]
+    this.idOfHighlightedRow = aql?.id || null
+    this.preview = aql
+      ? [
+          {
+            title: 'FORM.AUTHOR',
+            description: aql.owner?.lastName
+              ? aql.owner?.firstName + ' ' + aql.owner?.lastName
+              : '-',
+          },
+          { title: 'FORM.PURPOSE', description: aql.purpose },
+          { title: 'FORM.USE', description: aql.use },
+        ]
+      : []
   }
 
   handleDilaogInput(): void {
     this.selectedAqls = cloneDeep(this.dialogInput)
   }
 
-  handlePreviewClick(row: IAqlApi): void {
-    this.generatePreviewData(row)
+  handlePreviewClick(aqlRow: IAqlApi): void {
+    this.generatePreviewData(aqlRow)
   }
 
   handleSearchChange(): void {
@@ -103,5 +115,9 @@ export class DialogAddAqlsComponent implements OnInit, AfterViewInit, IGenericDi
 
   handleDialogCancel(): void {
     this.closeDialog.emit()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }

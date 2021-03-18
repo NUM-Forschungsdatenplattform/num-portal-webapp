@@ -114,8 +114,11 @@ export class AqlService {
           aql.name?.toLowerCase().includes(textFilter) ||
           aql.owner?.lastName?.toLowerCase().includes(textFilter) ||
           aql.owner?.firstName?.toLowerCase().includes(textFilter) ||
-          aql.owner?.firstName?.concat(aql.owner?.lastName).toLowerCase().includes(textFilter) ||
-          aql.owner?.lastName?.concat(aql.owner?.firstName).toLowerCase().includes(textFilter)
+          aql.owner?.firstName
+            ?.concat(' ', aql.owner?.lastName)
+            .toLowerCase()
+            .includes(textFilter) ||
+          aql.owner?.lastName?.concat(' ', aql.owner?.firstName).toLowerCase().includes(textFilter)
       )
     }
 

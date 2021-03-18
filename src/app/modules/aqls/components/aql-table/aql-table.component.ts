@@ -24,8 +24,24 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
   styleUrls: ['./aql-table.component.scss'],
 })
 export class AqlTableComponent implements AfterViewInit, OnDestroy {
-  private subscriptions = new Subscription()
   user: IUserProfile
+  displayedColumns: string[] = [
+    'menu',
+    'name',
+    'author',
+    'creationDate',
+    'isPublic',
+    'organisation',
+  ]
+  dataSource = new MatTableDataSource()
+  menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
+  filterConfig: IAqlFilter
+  selectedItem = 'AQL.ALL_AQLS'
+  private subscriptions = new Subscription()
+
+  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   constructor(
     private aqlService: AqlService,
     private profileService: ProfileService,
@@ -40,29 +56,10 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.add(
       this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
     )
+
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
     )
-  }
-
-  displayedColumns: string[] = [
-    'menu',
-    'name',
-    'author',
-    'creationDate',
-    'isPublic',
-    'organisation',
-  ]
-  dataSource = new MatTableDataSource()
-  menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
-  filterConfig: IAqlFilter
-  selectedItem = 'AQL.ALL_AQLS'
-
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
   }
 
   ngAfterViewInit(): void {
@@ -118,5 +115,9 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
         message: 'AQL.DELETE_AQL_ERROR_MESSAGE',
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }

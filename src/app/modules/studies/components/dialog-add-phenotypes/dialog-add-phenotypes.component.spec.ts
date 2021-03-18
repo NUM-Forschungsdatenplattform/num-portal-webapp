@@ -6,21 +6,24 @@ import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
-import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
-import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
-import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
-import { AddPhenotypesFilterTableComponent } from '../add-phenotypes-filter-table/add-phenotypes-filter-table.component'
-import { AddPhenotypesPreviewComponent } from '../add-phenotypes-preview/add-phenotypes-preview.component'
+
 import { DialogAddPhenotypesComponent } from './dialog-add-phenotypes.component'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { MatTableDataSource } from '@angular/material/table'
+import { IUser } from '../../../../shared/models/user/user.interface'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 
 describe('DialogAddPhenotypesComponent', () => {
   let component: DialogAddPhenotypesComponent
   let fixture: ComponentFixture<DialogAddPhenotypesComponent>
-
   const filteredPhenotypesSubject$ = new Subject<IPhenotypeApi[]>()
-  const filterConfigSubject$ = new BehaviorSubject<IPhenotypeFilter>({ searchText: '' })
+  const filterConfigSubject$ = new BehaviorSubject<IPhenotypeFilter>({
+    searchText: '',
+  })
   const phenotypeService = {
     filteredPhenotypesObservable$: filteredPhenotypesSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
@@ -28,13 +31,32 @@ describe('DialogAddPhenotypesComponent', () => {
     setFilter: (_: any) => {},
   } as PhenotypeService
 
+  const selectedItemsChangeEmitter = new EventEmitter<IUser[]>()
+
+  @Component({ selector: 'num-filter-table', template: '' })
+  class FilterTableStubComponent {
+    @Input() dataSource: MatTableDataSource<IUser>
+    @Input() identifierName: string
+    @Input() columnKeys: string[]
+    @Input() columnPaths: string[][]
+    @Input() selectedItems: IUser[]
+    @Output() selectedItemsChange = selectedItemsChangeEmitter
+    @Input() idOfHighlightedRow: string | number
+  }
+
+  @Component({ selector: 'num-definition-list', template: '' })
+  class DefinitionListStubComponent {
+    @Input() dataSource: IDefinitionList[]
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         DialogAddPhenotypesComponent,
+        FilterChipsComponent,
         SearchComponent,
-        AddPhenotypesFilterTableComponent,
-        AddPhenotypesPreviewComponent,
+        FilterTableStubComponent,
+        DefinitionListStubComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -67,12 +89,6 @@ describe('DialogAddPhenotypesComponent', () => {
   it('should set the filter in the phenotypeService on searchChange', () => {
     component.handleSearchChange()
     expect(phenotypeService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
-  it('should set the phenotypePreview on preview click', () => {
-    const phenotypeUi = new PhenotypeUiModel(mockPhenotype1)
-    component.handlePreviewClick(phenotypeUi)
-    expect(component.phenotypePreview).toEqual(phenotypeUi)
   })
 
   it('should emit the close event with current phenotypes on confirmation', () => {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
@@ -8,14 +8,13 @@ import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.int
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 import { take } from 'rxjs/operators'
-import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-phenotype-table',
   templateUrl: './phenotype-table.component.html',
   styleUrls: ['./phenotype-table.component.scss'],
 })
-export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
   filterConfig: IPhenotypeFilter
   displayedColumns: string[] = ['id', 'name', 'author', 'description']
   dataSource = new MatTableDataSource()
@@ -31,14 +30,6 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.subscriptions.add(
       this.phenotypeService.filteredPhenotypesObservable$.subscribe((phenotypes) =>
-        this.handleData(phenotypes)
-      )
-    )
-  }
-
-  ngOnInit(): void {
-    this.subscriptions.add(
-      this.phenotypeService.phenotypesObservable$.subscribe((phenotypes) =>
         this.handleData(phenotypes)
       )
     )
