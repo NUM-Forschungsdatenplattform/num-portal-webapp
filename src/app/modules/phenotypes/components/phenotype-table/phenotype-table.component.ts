@@ -6,6 +6,9 @@ import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
+import { take } from 'rxjs/operators'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-phenotype-table',
@@ -13,14 +16,25 @@ import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.serv
   styleUrls: ['./phenotype-table.component.scss'],
 })
 export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy {
-  private subscriptions = new Subscription()
-  constructor(private phenotypeService: PhenotypeService, private router: Router) {}
-
-  displayedColumns: string[] = ['id', 'name', 'description']
+  filterConfig: IPhenotypeFilter
+  displayedColumns: string[] = ['id', 'name', 'author', 'description']
   dataSource = new MatTableDataSource()
+  private subscriptions = new Subscription()
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
+
+  constructor(private phenotypeService: PhenotypeService, private router: Router) {
+    this.phenotypeService.filterConfigObservable$
+      .pipe(take(1))
+      .subscribe((config) => (this.filterConfig = config))
+
+    this.subscriptions.add(
+      this.phenotypeService.filteredPhenotypesObservable$.subscribe((phenotypes) =>
+        this.handleData(phenotypes)
+      )
+    )
+  }
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -34,15 +48,19 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
     this.dataSource.paginator = this.paginator
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
-  }
-
   handleData(phenotypes: IPhenotypeApi[]): void {
     this.dataSource.data = phenotypes
   }
 
   handleRowClick(phenotype: IPhenotypeApi): void {
     this.router.navigate(['phenotypes', phenotype.id, 'editor'])
+  }
+
+  handleSearchChange(): void {
+    this.phenotypeService.setFilter(this.filterConfig)
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }

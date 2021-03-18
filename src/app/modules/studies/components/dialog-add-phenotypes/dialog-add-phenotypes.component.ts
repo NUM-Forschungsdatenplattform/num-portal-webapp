@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
+import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
@@ -10,12 +11,14 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
   templateUrl: './dialog-add-phenotypes.component.html',
   styleUrls: ['./dialog-add-phenotypes.component.scss'],
 })
-export class DialogAddPhenotypesComponent implements OnInit, IGenericDialog<PhenotypeUiModel[]> {
+export class DialogAddPhenotypesComponent
+  implements OnInit, OnDestroy, IGenericDialog<PhenotypeUiModel[]> {
   @Output() closeDialog = new EventEmitter()
 
   filterConfig: IPhenotypeFilter
   dialogInput: PhenotypeUiModel[] = []
   phenotypePreview: PhenotypeUiModel
+  private subscriptions = new Subscription()
 
   constructor(private phenotypeService: PhenotypeService) {
     this.phenotypeService.filterConfigObservable$
@@ -24,7 +27,7 @@ export class DialogAddPhenotypesComponent implements OnInit, IGenericDialog<Phen
   }
 
   ngOnInit(): void {
-    this.phenotypeService.getAll().subscribe()
+    this.subscriptions.add(this.phenotypeService.getAll().subscribe())
   }
 
   handlePreviewClick(phenotype: PhenotypeUiModel): void {
@@ -41,5 +44,9 @@ export class DialogAddPhenotypesComponent implements OnInit, IGenericDialog<Phen
 
   handleDialogCancel(): void {
     this.closeDialog.emit()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }
