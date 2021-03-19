@@ -69,5 +69,10 @@
     ></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[10, 20, 40]" showFirstLastButtons></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 40]"
+    showFirstLastButtons
+    [pageSize]="pageSize"
+    (page)="pageSize = $event.pageSize"
+  ></mat-paginator>
 </div>

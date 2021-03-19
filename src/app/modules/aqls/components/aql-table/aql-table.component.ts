@@ -42,6 +42,14 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   constructor(
     private aqlService: AqlService,
     private profileService: ProfileService,
@@ -64,6 +72,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   handleFilterChange(): void {

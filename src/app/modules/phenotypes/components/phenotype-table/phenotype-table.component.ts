@@ -16,12 +16,20 @@ import { take } from 'rxjs/operators'
 })
 export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
   filterConfig: IPhenotypeFilter
-  displayedColumns: string[] = ['id', 'name', 'author', 'description']
+  displayedColumns: string[] = ['name', 'author', 'organisation']
   dataSource = new MatTableDataSource()
   private subscriptions = new Subscription()
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
+
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
 
   constructor(private phenotypeService: PhenotypeService, private router: Router) {
     this.phenotypeService.filterConfigObservable$
@@ -37,6 +45,7 @@ export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   handleData(phenotypes: IPhenotypeApi[]): void {

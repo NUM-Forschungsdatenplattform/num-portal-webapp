@@ -42,6 +42,14 @@ export class ResultTableComponent implements OnInit {
     return this.isLoading
   }
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   ngOnInit(): void {}
 
   handleData(): void {

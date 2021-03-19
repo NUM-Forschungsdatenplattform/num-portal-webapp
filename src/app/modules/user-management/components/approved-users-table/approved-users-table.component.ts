@@ -43,6 +43,14 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.adminService.filteredApprovedUsersObservable$.subscribe((users) =>
