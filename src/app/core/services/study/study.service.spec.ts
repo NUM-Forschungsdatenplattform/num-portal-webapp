@@ -6,12 +6,13 @@ import {
   mockStudies,
   mockStudies1,
   mockStudy1,
+  mockStudy2,
   mockStudy3,
 } from 'src/mocks/data-mocks/studies.mock'
 import { studyCommentMock1, studyCommentMocks } from 'src/mocks/data-mocks/study-comments.mock'
 import { cloneDeep } from 'lodash-es'
 import { StudyService } from './study.service'
-import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../profile/profile.service'
 
 describe('StudyService', () => {
@@ -186,13 +187,13 @@ describe('StudyService', () => {
   describe('When the getMyPublishedStudies method is called', () => {
     it('should call the myPublishedStudiesSubject$.next with studies the user is assigned to as a researcher and which are in published state', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of([mockStudies1]))
-      userProfileSubject$.next(mockOAuthUser)
+      userProfileSubject$.next(mockUser)
 
       service.getMyPublishedStudies().subscribe()
 
       service.myPublishedStudiesObservable$
         .toPromise()
-        .then((result) => expect(result).toEqual([mockStudy3]))
+        .then((result) => expect(result).toEqual([mockStudy2, mockStudy3]))
     })
   })
 

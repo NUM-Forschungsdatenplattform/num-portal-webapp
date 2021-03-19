@@ -30,6 +30,11 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   isLoadingComplete = true
 
   constructor(phenotypeApi?: IPhenotypeApi, isNegated?: boolean, parameters?: IDictionary<string>) {
+    this.query = new PhenotypeGroupUiModel()
+    this.init(phenotypeApi, isNegated, parameters)
+  }
+
+  init(phenotypeApi?: IPhenotypeApi, isNegated?: boolean, parameters?: IDictionary<string>): void {
     this.type = ConnectorNodeType.Phenotype
     this.id = phenotypeApi?.id || 0
     this.name = phenotypeApi?.name || undefined
@@ -77,6 +82,8 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
       this.parameter.filter((param) => param.value === undefined || param.value === null).length
     ) {
       this.areParameterConfigured = false
+    } else {
+      this.areParameterConfigured = true
     }
   }
 

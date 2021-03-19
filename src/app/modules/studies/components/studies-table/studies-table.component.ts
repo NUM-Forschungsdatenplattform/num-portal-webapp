@@ -39,6 +39,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   menuItems: IItemVisibility[] = []
   roles: string[] = []
+  userId: string
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -75,6 +76,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   handleUserInfo(userInfo: IAuthUserInfo): void {
     this.roles = userInfo.groups
+    this.userId = userInfo.sub
     this.generateMenuForRole()
   }
 
