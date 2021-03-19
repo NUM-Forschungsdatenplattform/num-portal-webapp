@@ -30,6 +30,7 @@ export const MENU_ITEM_EDIT: IItemVisibility = {
   id: StudyMenuKeys.Edit,
   translationKey: 'BUTTON.EDIT',
   disabledUnless: [StudyStatus.Draft, StudyStatus.ChangeRequest],
+  disableUnlessOwned: true,
   hiddenWhen: [StudyStatus.Denied, StudyStatus.Approved, StudyStatus.Published, StudyStatus.Closed],
 }
 
@@ -37,6 +38,7 @@ export const MENU_ITEM_EDIT_RESEARCHERS: IItemVisibility = {
   id: StudyMenuKeys.Edit_researchers,
   translationKey: 'BUTTON.EDIT_RESEARCHERS',
   disabledUnless: [StudyStatus.Approved, StudyStatus.Published],
+  disableUnlessOwned: true,
   hiddenWhen: [
     StudyStatus.Draft,
     StudyStatus.ChangeRequest,
@@ -48,18 +50,21 @@ export const MENU_ITEM_EDIT_RESEARCHERS: IItemVisibility = {
 export const MENU_ITEM_WITHDRAW_APPROVAL: IItemVisibility = {
   translationKey: 'BUTTON.WITHDRAW_APPROVAL',
   id: StudyMenuKeys.Withdraw_approval,
+  disableUnlessOwned: true,
   disabledUnless: [StudyStatus.Pending],
 }
 
 export const MENU_ITEM_PUBLISH: IItemVisibility = {
   translationKey: 'BUTTON.PUBLISH',
   id: StudyMenuKeys.Publish,
+  disableUnlessOwned: true,
   disabledUnless: [StudyStatus.Approved],
 }
 
 export const MENU_ITEM_CLOSE_STUDY: IItemVisibility = {
   translationKey: 'BUTTON.CLOSE_STUDY',
   id: StudyMenuKeys.Close,
+  disableUnlessOwned: true,
   disabledUnless: [StudyStatus.Approved, StudyStatus.Published],
 }
 
