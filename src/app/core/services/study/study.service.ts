@@ -98,7 +98,7 @@ export class StudyService {
   }
 
   /**
-   * Returns the published studies where the current user is assigned to as researcher
+   * Returns the published studies where the current user is coordinator of or is assigned to as researcher
    */
   getMyPublishedStudies(): Observable<IStudyApi[]> {
     let myStudies: IStudyApi[] = []
@@ -121,11 +121,13 @@ export class StudyService {
   private filterItems(allStudies: IStudyApi[], status: StudyStatus, userId: string): IStudyApi[] {
     let result: IStudyApi[] = []
 
-    result = allStudies.filter(
-      (study) =>
-        study.status === status &&
-        study.researchers.find((researcher) => researcher.userId === userId)
-    )
+    result = allStudies
+      .filter((study) => study.status === status)
+      .filter(
+        (study) =>
+          study.researchers.find((researcher) => researcher.userId === userId) ||
+          study.coordinator.id === userId
+      )
     return result
   }
 
