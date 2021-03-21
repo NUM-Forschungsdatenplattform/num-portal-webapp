@@ -3,7 +3,7 @@ import { MaterialModule } from '../../material/material.module'
 import { AppLayoutComponent } from './app-layout.component'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
-import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout'
+import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
@@ -11,25 +11,33 @@ import { SideMenuComponent } from '../side-menu/side-menu.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
 import { Component } from '@angular/core'
-import { of } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
 import { HttpClient } from '@angular/common/http'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import { AuthService } from '../../../core/auth/auth.service'
+import { ContentService } from '../../../core/services/content/content.service'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
   let fixture: ComponentFixture<AppLayoutComponent>
 
-  const authService = {
+  const oauthService = {
     logOut: () => {},
     loadUserProfile: () => Promise.resolve({}),
     hasValidIdToken: () => true,
     hasValidAccessToken: () => true,
+    initCodeFlow: () => {},
     events: of(),
   } as OAuthService
+
+  const userInfoSubject$ = new Subject<any>()
+  const authService = {
+    userInfoObservable$: userInfoSubject$.asObservable(),
+  } as AuthService
 
   const httpClient = ({
     get: () => of(),
@@ -39,6 +47,10 @@ describe('AppLayoutComponent', () => {
   const profileService = ({
     get: () => jest.fn(),
   } as unknown) as ProfileService
+
+  const mockContentService = ({
+    getNavigationLinks: jest.fn(),
+  } as unknown) as ContentService
 
   let listenerCallback: (event: any) => any
   const mediaQueryList = ({
@@ -78,6 +90,10 @@ describe('AppLayoutComponent', () => {
       providers: [
         {
           provide: OAuthService,
+          useValue: oauthService,
+        },
+        {
+          provide: AuthService,
           useValue: authService,
         },
         {
@@ -91,6 +107,10 @@ describe('AppLayoutComponent', () => {
         {
           provide: MediaMatcher,
           useValue: mediaMatcher,
+        },
+        {
+          provide: ContentService,
+          useValue: mockContentService,
         },
       ],
     }).compileComponents()
@@ -154,7 +174,10 @@ describe('AppLayoutComponent', () => {
     it('should not call drawer toggle function on toggleMenu function', () => {
       jest.spyOn(component.drawer, 'toggle')
       component.toggleMenu()
-      expect(component.drawer.toggle).not.toHaveBeenCalled()
+      const isLoggedIn = authService.isLoggedIn
+      if (isLoggedIn) {
+        expect(component.drawer.toggle).not.toHaveBeenCalled()
+      }
     })
   })
 })

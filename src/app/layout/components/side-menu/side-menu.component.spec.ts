@@ -8,7 +8,9 @@ import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
+import { ContentService } from '../../../core/services/content/content.service'
+import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -23,6 +25,10 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const mockContentService = ({
+    getNavigationLinks: jest.fn(),
+  } as unknown) as ContentService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -50,17 +56,26 @@ describe('SideMenuComponent', () => {
           provide: AuthService,
           useValue: authService,
         },
+        {
+          provide: ContentService,
+          useValue: mockContentService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SideMenuComponent)
+    jest
+      .spyOn(mockContentService, 'getNavigationLinks')
+      .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout')
     jest.spyOn(authService, 'login')
+    delete window.open
+    window.open = jest.fn()
   })
 
   it('should create', () => {
@@ -79,8 +94,13 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
+    const isLoggedIn = authService.isLoggedIn
     button.click()
-    expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+    if (isLoggedIn) {
+      expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+    } else {
+      expect(window.open).toBeCalled()
+    }
   })
 
   it('Calls logout function when logout button is clicked', () => {

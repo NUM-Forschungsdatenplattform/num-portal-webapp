@@ -8,7 +8,8 @@ import {
 } from '../../../core/constants/navigation'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Subscription } from 'rxjs'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { ContentService } from '../../../core/services/content/content.service'
+import { INavigationLink } from '../../../shared/models/content/navigation-link.interface'
 
 @Component({
   selector: 'num-side-menu',
@@ -20,18 +21,17 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   routes = routes
   mainNavItems = mainNavItems
   secondaryNavItems: INavItem[]
-  secondaryNavItemsLoggedIn = secondaryNavItemsLoggedIn
-  secondaryNavItemsLoggedOut = secondaryNavItemsLoggedOut
+  navigationLinks: INavigationLink[]
 
   isLoggedIn = false
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private contentService: ContentService) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+      this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
     mainNavItems.forEach((item) => {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
@@ -43,10 +43,24 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  handleUserInfo(userInfo: IAuthUserInfo): void {
-    this.authService.isLoggedIn
-      ? (this.secondaryNavItems = secondaryNavItemsLoggedIn)
-      : (this.secondaryNavItems = secondaryNavItemsLoggedOut)
+  fetchNavigationLinks(): void {
+    this.contentService.getNavigationLinks().subscribe(
+      (data) => {
+        this.navigationLinks = data
+      },
+      () => {
+        // Handle error
+      }
+    )
+  }
+
+  handleUserInfo(): void {
+    if (this.authService.isLoggedIn) {
+      this.secondaryNavItems = secondaryNavItemsLoggedIn
+    } else {
+      this.secondaryNavItems = secondaryNavItemsLoggedOut
+      this.fetchNavigationLinks()
+    }
   }
 
   menuItemClicked($event: Event, item: INavItem): void {
@@ -58,5 +72,9 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
+  }
+
+  navigationLinkItemClicked(item: INavigationLink): void {
+    window.open(item.url)
   }
 }
