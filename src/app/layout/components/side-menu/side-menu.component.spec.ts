@@ -11,6 +11,7 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
+import { Component, Input } from '@angular/core'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -74,12 +75,16 @@ describe('SideMenuComponent', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout')
     jest.spyOn(authService, 'login')
-    delete window.open
     window.open = jest.fn()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should fetch the navigation links and set them from api', () => {
+    component.fetchNavigationLinks()
+    expect(component.navigationLinks).toEqual(mockNavigationLinks)
   })
 
   it('Calls emit on toggleSideMenu when menu item is clicked', () => {
@@ -94,13 +99,8 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
-    const isLoggedIn = authService.isLoggedIn
     button.click()
-    if (isLoggedIn) {
-      expect(component.toggleSideMenu.emit).toHaveBeenCalled()
-    } else {
-      expect(window.open).toBeCalled()
-    }
+    expect(component.toggleSideMenu.emit).toHaveBeenCalled()
   })
 
   it('Calls logout function when logout button is clicked', () => {

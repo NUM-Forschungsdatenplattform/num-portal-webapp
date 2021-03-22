@@ -18,17 +18,19 @@
     </a>
   </ng-template>
 
-  <ng-template ngFor let-item [ngForOf]="navigationLinks">
+  <div *ngIf="isLoggedIn">
+    <mat-divider class="divider"></mat-divider>
     <a
-      mat-list-item
       class="num-mat-list-item"
+      mat-list-item
+      *ngFor="let item of navigationLinks"
       (click)="navigationLinkItemClicked(item)"
-      [attr.data-test]="'side-menu__main-nav__' + item.title"
+      [attr.data-test]="'side-menu__nav-links__' + item.title"
     >
       <fa-icon size="lg" [fixedWidth]="true" icon="external-link-alt"></fa-icon>
       <div>{{ item.title }}</div>
     </a>
-  </ng-template>
+  </div>
 
   <span fxFlex></span>
   <mat-divider class="num-d-c--a num-d-w--2"></mat-divider>

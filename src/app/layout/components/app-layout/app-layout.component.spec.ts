@@ -174,10 +174,7 @@ describe('AppLayoutComponent', () => {
     it('should not call drawer toggle function on toggleMenu function', () => {
       jest.spyOn(component.drawer, 'toggle')
       component.toggleMenu()
-      const isLoggedIn = authService.isLoggedIn
-      if (isLoggedIn) {
-        expect(component.drawer.toggle).not.toHaveBeenCalled()
-      }
+      expect(component.drawer.toggle).not.toHaveBeenCalled()
     })
   })
 })

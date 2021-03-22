@@ -30,6 +30,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private contentService: ContentService) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
@@ -44,27 +45,24 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   }
 
   fetchNavigationLinks(): void {
-    this.contentService.getNavigationLinks().subscribe(
-      (data) => {
-        this.navigationLinks = data
-      },
-      () => {
-        // Handle error
-      }
-    )
+    this.contentService.getNavigationLinks().subscribe((data) => {
+      this.navigationLinks = data
+    })
   }
 
   handleUserInfo(): void {
-    if (this.authService.isLoggedIn) {
+    if (this.isLoggedIn) {
       this.secondaryNavItems = secondaryNavItemsLoggedIn
-    } else {
-      this.secondaryNavItems = secondaryNavItemsLoggedOut
       this.fetchNavigationLinks()
+    } else {
+      this.navigationLinks = []
+      this.secondaryNavItems = secondaryNavItemsLoggedOut
     }
   }
 
   menuItemClicked($event: Event, item: INavItem): void {
     if (item.routeTo === '#logout') {
+      this.navigationLinks = []
       this.authService.logout()
     } else if (item.routeTo === '#login') {
       this.authService.login()

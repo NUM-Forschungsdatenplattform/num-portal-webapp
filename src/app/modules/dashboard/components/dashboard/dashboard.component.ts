@@ -48,14 +48,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   fetchContentCards(): void {
-    this.contentService.getCards().subscribe(
-      (data) => {
-        this.cards = data
-      },
-      () => {
-        // Handle error
-      }
-    )
+    this.contentService.getCards().subscribe((data) => {
+      this.cards = data
+    })
   }
 
   openCardUrl(cardUrl: string): void {
