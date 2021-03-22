@@ -42,6 +42,7 @@ export class DialogAddResearchersComponent
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   ngOnInit(): void {
+    this.adminService.subscribeFilterConfig()
     this.setLastFilter()
     this.handleDilaogInput()
 

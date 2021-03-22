@@ -11,14 +11,17 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 export class ApprovedUsersComponent implements OnInit {
   filterConfig: IUserFilter
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService) {}
+
+  ngOnInit(): void {
+    this.adminService.subscribeFilterConfig()
+    this.setLastFilter()
+  }
+
+  setLastFilter(): void {
     this.adminService.filterConfigObservable$
       .pipe(take(1))
       .subscribe((config) => (this.filterConfig = config))
-  }
-
-  ngOnInit(): void {
-    this.adminService.getApprovedUsers().subscribe()
   }
 
   handleSearchChange(): void {

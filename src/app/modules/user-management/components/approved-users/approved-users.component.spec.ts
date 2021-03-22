@@ -28,6 +28,7 @@ describe('ApprovedUsersComponent', () => {
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getApprovedUsers: () => of(),
     setFilter: (_: any) => {},
+    subscribeFilterConfig: () => {},
   } as AdminService
 
   @Component({ selector: 'num-approved-users-table', template: '' })
@@ -58,14 +59,11 @@ describe('ApprovedUsersComponent', () => {
     fixture.detectChanges()
     jest.spyOn(adminService, 'setFilter')
     jest.spyOn(adminService, 'getApprovedUsers')
+    jest.spyOn(adminService, 'subscribeFilterConfig')
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  it('should call getApprovedUsers', () => {
-    expect(adminService.getApprovedUsers).toHaveBeenCalled()
   })
 
   it('should set the filter in the adminService on searchChange', () => {

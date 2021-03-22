@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of, throwError, forkJoin } from 'rxjs'
-import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { BehaviorSubject, Observable, throwError, forkJoin } from 'rxjs'
+import { catchError, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IRole } from 'src/app/shared/models/user/role.interface'
@@ -37,18 +37,17 @@ export class AdminService {
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin`
-
-    this.filterConfigObservable$
-      .pipe(
-        throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item))
-      )
-      .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
   }
 
-  private getUsers(approved: boolean, withRoles: boolean = false): Observable<IUser[]> {
+  private getUsers(
+    approved: boolean,
+    withRoles: boolean = false,
+    search: string = ''
+  ): Observable<IUser[]> {
     return this.httpClient
-      .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}&withRoles=${withRoles}`)
+      .get<IUser[]>(
+        `${this.baseUrl}/user?approved=${approved}&withRoles=${withRoles}&search=${search}`
+      )
       .pipe(catchError(this.handleError))
   }
 
@@ -113,45 +112,25 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
+  subscribeFilterConfig(): void {
+    this.filterConfigObservable$
+      .pipe(
+        throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
+        switchMap((item) => this.getFilterResult$(item))
+      )
+      .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
+  }
+
   setFilter(filterSet: IUserFilter): void {
     this.filterConfigSubject$.next(filterSet)
     this.filterSet = filterSet
   }
 
   private getFilterResult$(filterSet: IUserFilter): Observable<IUser[]> {
-    if (this.approvedUsers.length) {
-      return of(this.filterItems(this.approvedUsers, filterSet))
-    } else {
-      return this.getApprovedUsers().pipe(
-        map((userArray) => {
-          return this.filterItems(userArray, filterSet)
-        }),
-        catchError(() => {
-          return of([])
-        })
-      )
-    }
-  }
-
-  filterItems(allApprovedUsers: IUser[], filterSet: IUserFilter): IUser[] {
-    let result: IUser[] = allApprovedUsers
-
-    if (filterSet.searchText && filterSet.searchText.length) {
-      const textFilter = filterSet.searchText.toUpperCase()
-      result = allApprovedUsers.filter(
-        (user) =>
-          user.lastName?.toUpperCase().includes(textFilter) ||
-          user.firstName?.toUpperCase().includes(textFilter) ||
-          user.firstName?.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
-          user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter)
-      )
-    }
-
-    return result
+    return this.getUsers(true, true, filterSet.searchText)
   }
 
   refreshFilterResult(): void {
-    this.approvedUsers = []
     this.filterConfigSubject$.next(this.filterSet)
   }
 

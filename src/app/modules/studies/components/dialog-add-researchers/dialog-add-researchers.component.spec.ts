@@ -40,8 +40,8 @@ describe('DialogAddResearchersComponent', () => {
   const adminService = {
     filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
-
     getApprovedUsers: () => of(),
+    subscribeFilterConfig: () => {},
   } as AdminService
 
   beforeEach(async () => {
@@ -68,6 +68,7 @@ describe('DialogAddResearchersComponent', () => {
     fixture = TestBed.createComponent(DialogAddResearchersComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(adminService, 'subscribeFilterConfig')
   })
 
   it('should create', () => {
