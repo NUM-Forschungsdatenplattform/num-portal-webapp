@@ -300,7 +300,8 @@
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "SAVE_SUCCESS_MESSAGE": "Die Studie wurde erfolgreich gespeichert.",
-    "SAVE_ERROR_MESSAGE": "Die Studie konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+    "SAVE_ERROR_MESSAGE": "Die Studie konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
+    "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte."
   },
   "USER": {
     "FIRST_NAME": "Vorname",
