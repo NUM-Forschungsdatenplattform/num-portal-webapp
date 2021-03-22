@@ -27,7 +27,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor(private authService: AuthService, private contentService: ContentService) {}
+  constructor(private authService: AuthService, public contentService: ContentService) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn
