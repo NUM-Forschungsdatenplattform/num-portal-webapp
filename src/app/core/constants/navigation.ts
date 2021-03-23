@@ -131,11 +131,6 @@ export const mainNavItems: INavItem[] = [
 export const secondaryNavItemsLoggedIn: INavItem[] = [
   {
     routeTo: '#',
-    icon: 'bell',
-    translationKey: 'NAVIGATION.NOTIFICATIONS',
-  },
-  {
-    routeTo: '#',
     icon: 'cog',
     translationKey: 'NAVIGATION.PROFILE',
   },
