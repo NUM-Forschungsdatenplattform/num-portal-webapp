@@ -42,8 +42,8 @@ export class ContentService {
       .post<INavigationLink[]>(`${this.baseUrl}/navigation`, navigationLinks, httpOptions)
       .pipe(
         tap((links) => {
-          this.navigationLinks = links
-          this.navigationLinksSubject$.next(links)
+          this.navigationLinks = navigationLinks
+          this.navigationLinksSubject$.next(navigationLinks)
         }),
         catchError(this.handleError)
       )

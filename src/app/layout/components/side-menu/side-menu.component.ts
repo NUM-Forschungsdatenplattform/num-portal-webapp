@@ -30,6 +30,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, public contentService: ContentService) {}
 
   ngOnInit(): void {
+    this.fetchNavigationLinks()
     this.isLoggedIn = this.authService.isLoggedIn
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
@@ -51,11 +52,12 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   }
 
   handleUserInfo(): void {
-    if (this.isLoggedIn) {
+    if (this.authService.isLoggedIn) {
+      this.isLoggedIn = true
       this.secondaryNavItems = secondaryNavItemsLoggedIn
       this.fetchNavigationLinks()
     } else {
-      this.navigationLinks = []
+      this.isLoggedIn = false
       this.secondaryNavItems = secondaryNavItemsLoggedOut
     }
   }
@@ -70,9 +72,5 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
-  }
-
-  navigationLinkItemClicked(item: INavigationLink): void {
-    window.open(item.url)
   }
 }
