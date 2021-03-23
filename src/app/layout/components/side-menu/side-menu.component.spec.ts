@@ -79,11 +79,6 @@ describe('SideMenuComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should fetch the navigation links and set them from api', () => {
-    component.fetchNavigationLinks()
-    expect(component.navigationLinks).toEqual(mockNavigationLinks)
-  })
-
   it('Calls emit on toggleSideMenu when menu item is clicked', () => {
     component.mainNavItems = [
       {
