@@ -20,6 +20,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
+import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -121,6 +122,9 @@ describe('AppLayoutComponent', () => {
       const mediaQueryListFake = mediaQueryList as any
       mediaQueryListFake.matches = true
       fixture = TestBed.createComponent(AppLayoutComponent)
+      jest
+        .spyOn(mockContentService, 'getNavigationLinks')
+        .mockImplementation(() => of(mockNavigationLinks))
       component = fixture.componentInstance
       fixture.detectChanges()
     })
