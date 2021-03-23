@@ -33,6 +33,14 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.adminService.unapprovedUsersObservable$.subscribe((users) => this.handleData(users))

@@ -82,9 +82,21 @@ export class PhenotypeService {
     let result: IPhenotypeApi[] = allPhenotypes
 
     if (filterSet.searchText && filterSet.searchText.length) {
-      const textFilter = filterSet.searchText.toUpperCase()
-      result = allPhenotypes.filter((phenotype) =>
-        phenotype.name.toUpperCase().includes(textFilter)
+      const textFilter = filterSet.searchText.toLowerCase().trim()
+
+      result = allPhenotypes.filter(
+        (phenotype) =>
+          phenotype.name.toLowerCase().includes(textFilter) ||
+          phenotype.owner?.lastName?.toLowerCase().includes(textFilter) ||
+          phenotype.owner?.firstName?.toLowerCase().includes(textFilter) ||
+          phenotype.owner?.firstName
+            ?.concat(' ', phenotype.owner?.lastName)
+            .toLowerCase()
+            .includes(textFilter) ||
+          phenotype.owner?.lastName
+            ?.concat(' ', phenotype.owner?.firstName)
+            .toLowerCase()
+            .includes(textFilter)
       )
     }
 

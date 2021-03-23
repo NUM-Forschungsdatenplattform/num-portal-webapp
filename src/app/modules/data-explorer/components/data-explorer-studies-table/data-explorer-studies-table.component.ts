@@ -28,6 +28,14 @@ export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit,
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.studyService.myPublishedStudiesObservable$.subscribe((studies) => {
@@ -38,6 +46,7 @@ export class DataExplorerStudiesTableComponent implements OnInit, AfterViewInit,
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {

@@ -16,6 +16,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { IUser } from '../../../../shared/models/user/user.interface'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { mockAql1, mockAql3, mockAql4, mockAqls } from 'src/mocks/data-mocks/aqls.mock'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
 describe('DialogAddAqlsComponent', () => {
   let component: DialogAddAqlsComponent
@@ -78,6 +80,7 @@ describe('DialogAddAqlsComponent', () => {
     fixture.detectChanges()
     jest.spyOn(aqlService, 'setFilter')
     jest.spyOn(component.closeDialog, 'emit')
+    jest.spyOn(component, 'generatePreviewData')
   })
 
   it('should create', () => {
@@ -95,12 +98,51 @@ describe('DialogAddAqlsComponent', () => {
   })
 
   it('should emit the close event with current aqls on confirmation', () => {
+    component.selectedAqls = [new AqlUiModel(mockAql3), mockAql4]
     component.handleDialogConfirm()
-    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
+
+    expect(component.selectedAqls).toEqual([new AqlUiModel(mockAql3), new AqlUiModel(mockAql4)])
+    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.selectedAqls)
   })
 
   it('should emit the close event on dialog cancel', () => {
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should call generatePreviewData on Row click', () => {
+    component.handlePreviewClick(mockAql1)
+    expect(component.generatePreviewData).toHaveBeenCalledWith(mockAql1)
+  })
+
+  describe('set data', () => {
+    it('should set data with array of AQLs', () => {
+      component.handleFilteredData(mockAqls)
+
+      expect(component.generatePreviewData).toHaveBeenCalledWith(mockAql1)
+      expect(component.idOfHighlightedRow).toEqual(mockAql1.id)
+      expect(component.preview).toEqual([
+        {
+          title: 'FORM.AUTHOR',
+          description: mockAql1.owner?.lastName
+            ? mockAql1.owner?.firstName + ' ' + mockAql1.owner?.lastName
+            : '-',
+        },
+        { title: 'FORM.PURPOSE', description: mockAql1.purpose },
+        { title: 'FORM.USE', description: mockAql1.use },
+      ])
+
+      expect(component.dataSource.data).toEqual(mockAqls)
+    })
+
+    it('should set data with an empty array, if no AQLs', () => {
+      component.handleFilteredData([])
+
+      expect(component.generatePreviewData).toHaveBeenCalledWith(null)
+      expect(component.idOfHighlightedRow).toEqual(null)
+      expect(component.preview).toEqual([])
+
+      expect(component.dataSource.data).toEqual([])
+    })
   })
 })

@@ -34,7 +34,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService
   ) {}
 
-  displayedColumns: string[] = ['menu', 'id', 'name', 'status']
+  displayedColumns: string[] = ['menu', 'name', 'author', 'organisation', 'status']
   dataSource = new MatTableDataSource()
 
   menuItems: IItemVisibility[] = []
@@ -43,6 +43,14 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
+
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -55,6 +63,7 @@ export class StudiesTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {

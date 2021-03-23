@@ -22,6 +22,14 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy, AfterView
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.organizationService.organizationsObservable$.subscribe((organizations) =>

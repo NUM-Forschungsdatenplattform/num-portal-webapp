@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 
 describe('PhenotypeEditorComponent', () => {
   let component: PhenotypeEditorComponent
@@ -117,6 +118,7 @@ describe('PhenotypeEditorComponent', () => {
           id: 1,
           name: 'test',
           query: 'hello',
+          owner: mockUser,
         } as unknown) as IPhenotypeApi
       })
 
@@ -137,6 +139,7 @@ describe('PhenotypeEditorComponent', () => {
           id: 1,
           name: 'test',
           query: 'hello',
+          owner: mockUser,
         } as unknown) as IPhenotypeApi
       })
 
@@ -157,6 +160,7 @@ describe('PhenotypeEditorComponent', () => {
           id: 1,
           name: 'test',
           query: undefined,
+          owner: mockUser,
         } as unknown) as IPhenotypeApi
       })
 
@@ -186,6 +190,7 @@ describe('PhenotypeEditorComponent', () => {
           id: 1,
           name: 'test',
           query: 'hello',
+          owner: mockUser,
         } as unknown) as IPhenotypeApi
       })
 
@@ -207,6 +212,7 @@ describe('PhenotypeEditorComponent', () => {
           id: 1,
           name: 'test',
           query: undefined,
+          owner: mockUser,
         } as unknown) as IPhenotypeApi
       })
 

@@ -105,24 +105,31 @@ export class AqlService {
 
   filterItems(allAqls: IAqlApi[], filterSet: IAqlFilter): IAqlApi[] {
     let result: IAqlApi[] = allAqls
+
     if (filterSet.searchText && filterSet.searchText.length) {
-      const textFilter = filterSet.searchText.toUpperCase()
+      const textFilter = filterSet.searchText.toLowerCase().trim()
+
       result = allAqls.filter(
         (aql) =>
-          aql.name?.toUpperCase().includes(textFilter) ||
-          aql.owner.lastName?.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName?.toUpperCase().includes(textFilter) ||
-          aql.owner.firstName?.concat(' ', aql.owner.lastName).toUpperCase().includes(textFilter) ||
-          aql.owner.lastName?.concat(' ', aql.owner.firstName).toUpperCase().includes(textFilter)
+          aql.name?.toLowerCase().includes(textFilter) ||
+          aql.owner?.lastName?.toLowerCase().includes(textFilter) ||
+          aql.owner?.firstName?.toLowerCase().includes(textFilter) ||
+          aql.owner?.firstName
+            ?.concat(' ', aql.owner?.lastName)
+            .toLowerCase()
+            .includes(textFilter) ||
+          aql.owner?.lastName?.concat(' ', aql.owner?.firstName).toLowerCase().includes(textFilter)
       )
     }
 
     filterSet.filterItem.forEach((filterItem) => {
       if (filterItem.isSelected) {
         if (filterItem.id === AqlFilterChipId.MyAql) {
-          result = result.filter((aql) => aql.owner.id === this.user.id)
+          result = result.filter((aql) => aql.owner?.id === this.user.id)
         } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
-          result = result.filter((aql) => aql.owner.organization?.id === this.user.organization?.id)
+          result = result.filter(
+            (aql) => aql.owner?.organization?.id === this.user.organization?.id
+          )
         }
       }
     })

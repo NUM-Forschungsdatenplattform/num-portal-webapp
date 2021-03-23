@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
@@ -6,25 +6,38 @@ import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
+import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
+import { take } from 'rxjs/operators'
 
 @Component({
   selector: 'num-phenotype-table',
   templateUrl: './phenotype-table.component.html',
   styleUrls: ['./phenotype-table.component.scss'],
 })
-export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy {
-  private subscriptions = new Subscription()
-  constructor(private phenotypeService: PhenotypeService, private router: Router) {}
-
-  displayedColumns: string[] = ['id', 'name', 'description']
+export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
+  filterConfig: IPhenotypeFilter
+  displayedColumns: string[] = ['name', 'author', 'organisation']
   dataSource = new MatTableDataSource()
+  private subscriptions = new Subscription()
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
-  ngOnInit(): void {
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
+  constructor(private phenotypeService: PhenotypeService, private router: Router) {
+    this.phenotypeService.filterConfigObservable$
+      .pipe(take(1))
+      .subscribe((config) => (this.filterConfig = config))
+
     this.subscriptions.add(
-      this.phenotypeService.phenotypesObservable$.subscribe((phenotypes) =>
+      this.phenotypeService.filteredPhenotypesObservable$.subscribe((phenotypes) =>
         this.handleData(phenotypes)
       )
     )
@@ -32,10 +45,7 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
+    this.dataSource.sort = this.sort
   }
 
   handleData(phenotypes: IPhenotypeApi[]): void {
@@ -44,5 +54,13 @@ export class PhenotypeTableComponent implements OnInit, AfterViewInit, OnDestroy
 
   handleRowClick(phenotype: IPhenotypeApi): void {
     this.router.navigate(['phenotypes', phenotype.id, 'editor'])
+  }
+
+  handleSearchChange(): void {
+    this.phenotypeService.setFilter(this.filterConfig)
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }

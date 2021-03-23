@@ -7,6 +7,7 @@ import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
 import { ICohortGroupApi } from '../study/cohort-group-api.interface'
 import { IDictionary } from '../dictionary.interface'
+import { IUser } from '../user/user.interface'
 
 export class PhenotypeUiModel implements ConnectorMainNodeUi {
   id: number
@@ -15,6 +16,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   query: PhenotypeGroupUiModel
   indexInGroup: number | null
   type: ConnectorNodeType.Phenotype
+  owner: IUser
 
   /** **used in the cohort definition** for flagging if this is negated */
   isNegated: boolean
@@ -39,6 +41,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     this.description = phenotypeApi?.description || undefined
     this.isNegated = isNegated || false
     this.query = new PhenotypeGroupUiModel()
+    this.owner = phenotypeApi?.owner || null
     if (phenotypeApi) {
       this.convertQueryToUi(phenotypeApi.query)
       this.handleParameters(phenotypeApi.query, parameters)

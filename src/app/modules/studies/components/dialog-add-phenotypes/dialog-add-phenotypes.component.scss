@@ -1,3 +1,14 @@
-.phenotype-selection {
-  margin: 0 0 24px 0;
+.filter-selection {
+  height: 400px;
+  margin-top: 5px;
+}
+
+mat-card {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.mat-paginator {
+  display: flex;
+  justify-content: flex-start;
 }
