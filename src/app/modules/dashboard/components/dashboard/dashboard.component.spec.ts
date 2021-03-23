@@ -38,7 +38,6 @@ describe('DashboardComponent', () => {
 
   const mockContentService = ({
     getCards: jest.fn(),
-    updateCards: jest.fn(),
   } as unknown) as ContentService
 
   beforeEach(async () => {

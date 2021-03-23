@@ -18,6 +18,22 @@
     </a>
   </ng-template>
 
+  <ng-template [ngIf]="isLoggedIn">
+    <mat-divider class="num-d-c--g num-d-w--1"></mat-divider>
+    <ng-template ngFor let-link [ngForOf]="contentService.navigationLinksObservable$ | async">
+      <a
+        class="num-mat-list-item"
+        mat-list-item
+        [href]="link.url"
+        target="_blank"
+        [attr.data-test]="'side-menu__nav-links__' + link.title"
+      >
+        <fa-icon size="lg" [fixedWidth]="true" icon="external-link-alt"></fa-icon>
+        <div>{{ link.title }}</div>
+      </a>
+    </ng-template>
+  </ng-template>
+
   <span fxFlex></span>
   <mat-divider class="num-d-c--a num-d-w--2"></mat-divider>
 
