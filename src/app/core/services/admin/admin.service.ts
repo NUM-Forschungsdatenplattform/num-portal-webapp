@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError, forkJoin } from 'rxjs'
-import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { catchError, map, skip, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IRole } from 'src/app/shared/models/user/role.interface'
@@ -40,6 +40,7 @@ export class AdminService {
 
     this.filterConfigObservable$
       .pipe(
+        skip(1),
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
         switchMap((item) => this.getFilterResult$(item))
       )
@@ -143,7 +144,8 @@ export class AdminService {
           user.lastName?.toUpperCase().includes(textFilter) ||
           user.firstName?.toUpperCase().includes(textFilter) ||
           user.firstName?.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
-          user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter)
+          user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter) ||
+          user.email.toUpperCase().includes(textFilter)
       )
     }
 

@@ -232,7 +232,7 @@ describe('AdminService', () => {
   describe('When multiple filter are passed in', () => {
     beforeEach(() => {
       jest.restoreAllMocks()
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of([]))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       throttleTime = (service as any).throttleTime
     })
 
@@ -250,25 +250,25 @@ describe('AdminService', () => {
       /* First filter call after throttle time */
       setTimeout(() => {
         service.setFilter(filterConfig)
-        expect(callHelper).toBeCalledTimes(3)
+        expect(callHelper).toBeCalledTimes(2)
       }, throttleTime + 1)
 
       setTimeout(() => {
         /* Second filter call but within throttle time */
         service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(3)
+        expect(callHelper).toHaveBeenCalledTimes(2)
       }, throttleTime + 1)
 
       setTimeout(() => {
         /* Third filter call but within throttle time */
         service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(3)
+        expect(callHelper).toHaveBeenCalledTimes(2)
       }, throttleTime + 10)
 
       setTimeout(() => {
         /* Fourth filter call, meanwhile the third filter was pushed */
         service.setFilter(filterConfigLast)
-        expect(callHelper).toHaveBeenCalledTimes(5)
+        expect(callHelper).toHaveBeenCalledTimes(4)
         expect(filterResult.length).toEqual(1)
         expect(filterResult[0].id).toEqual('456-789')
         done()
