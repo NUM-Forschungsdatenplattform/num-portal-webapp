@@ -16,6 +16,13 @@ import { MatTableDataSource } from '@angular/material/table'
 import { IUser } from '../../../../shared/models/user/user.interface'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
+import {
+  mockPhenotype1,
+  mockPhenotype2,
+  mockPhenotype4,
+  mockPhenotypes,
+} from 'src/mocks/data-mocks/phenotypes.mock'
+import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 
 describe('DialogAddPhenotypesComponent', () => {
   let component: DialogAddPhenotypesComponent
@@ -80,6 +87,7 @@ describe('DialogAddPhenotypesComponent', () => {
     fixture.detectChanges()
     jest.spyOn(phenotypeService, 'setFilter')
     jest.spyOn(component.closeDialog, 'emit')
+    jest.spyOn(component, 'generatePreviewData')
   })
 
   it('should create', () => {
@@ -92,12 +100,56 @@ describe('DialogAddPhenotypesComponent', () => {
   })
 
   it('should emit the close event with current phenotypes on confirmation', () => {
+    component.selectedPhenotypes = [new PhenotypeUiModel(mockPhenotype2), mockPhenotype4]
     component.handleDialogConfirm()
-    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.dialogInput)
+
+    expect(JSON.stringify(component.selectedPhenotypes)).toEqual(
+      JSON.stringify([new PhenotypeUiModel(mockPhenotype2), new PhenotypeUiModel(mockPhenotype4)])
+    )
+    expect(component.closeDialog.emit).toHaveBeenCalledWith(component.selectedPhenotypes)
   })
 
   it('should emit the close event on dialog cancel', () => {
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should call generatePreviewData on Row click', () => {
+    component.handlePreviewClick(mockPhenotype1)
+    expect(component.generatePreviewData).toHaveBeenCalledWith(mockPhenotype1)
+  })
+
+  describe('set data', () => {
+    it('should set data with array of AQLs', () => {
+      component.handleFilteredData(mockPhenotypes)
+
+      expect(component.generatePreviewData).toHaveBeenCalledWith(mockPhenotype1)
+      expect(component.idOfHighlightedRow).toEqual(mockPhenotype1.id)
+      expect(component.preview).toEqual([
+        {
+          title: 'FORM.TITLE',
+          description: mockPhenotype1.name,
+        },
+        {
+          title: 'FORM.AUTHOR',
+          description: mockPhenotype1.owner?.lastName
+            ? mockPhenotype1.owner?.firstName + ' ' + mockPhenotype1.owner?.lastName
+            : '-',
+        },
+        { title: 'FORM.DESCRIPTION', description: mockPhenotype1.description },
+      ])
+
+      expect(component.dataSource.data).toEqual(mockPhenotypes)
+    })
+
+    it('should set data with an empty array, if no AQLs', () => {
+      component.handleFilteredData([])
+
+      expect(component.generatePreviewData).toHaveBeenCalledWith(null)
+      expect(component.idOfHighlightedRow).toEqual(null)
+      expect(component.preview).toEqual([])
+
+      expect(component.dataSource.data).toEqual([])
+    })
   })
 })

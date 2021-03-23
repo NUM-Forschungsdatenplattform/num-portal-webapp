@@ -93,7 +93,7 @@ export class DialogAddPhenotypesComponent
     this.selectedPhenotypes = cloneDeep(this.dialogInput)
   }
 
-  handlePreviewClick(phenotypeRow: PhenotypeUiModel): void {
+  handlePreviewClick(phenotypeRow: IPhenotypeApi): void {
     this.generatePreviewData(phenotypeRow)
   }
 
