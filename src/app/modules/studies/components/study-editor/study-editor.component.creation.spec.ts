@@ -25,6 +25,8 @@ import { StudyEditorComponent } from './study-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { RouterTestingModule } from '@angular/router/testing'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 describe('StudyEditorComponent On Creation', () => {
   let component: StudyEditorComponent
@@ -60,6 +62,10 @@ describe('StudyEditorComponent On Creation', () => {
   const adminService = ({
     getUsersById: jest.fn(),
   } as unknown) as AdminService
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({ selector: 'num-study-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
@@ -164,11 +170,16 @@ describe('StudyEditorComponent On Creation', () => {
           provide: AdminService,
           useValue: adminService,
         },
+        {
+          provide: ToastMessageService,
+          useValue: mockToastMessageService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
     router = TestBed.inject(Router)
     fixture = TestBed.createComponent(StudyEditorComponent)
     component = fixture.componentInstance
@@ -216,10 +227,22 @@ describe('StudyEditorComponent On Creation', () => {
       }
       component.resolvedData.study.id = undefined
     })
-    it('should set the study status to pending and call the save method', async () => {
+    it('should set the study status to pending and call the save method if a phenotype is provided', async () => {
+      component.resolvedData.study.cohortGroup.children.push(new PhenotypeUiModel())
       await component.sendForApproval()
       expect(component.study.status).toEqual(StudyStatus.Pending)
       expect(component.save).toHaveBeenCalledTimes(1)
+    })
+
+    it('should show the error message if no phenotype is provided', async () => {
+      const toastConfig = {
+        type: ToastMessageType.Error,
+        message: 'STUDY.NO_PHENOTYPE_ERROR_MESSAGE',
+      }
+      await component.sendForApproval()
+      expect(component.study.status).not.toEqual(StudyStatus.Pending)
+      expect(component.save).not.toHaveBeenCalledTimes(1)
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(toastConfig)
     })
   })
 

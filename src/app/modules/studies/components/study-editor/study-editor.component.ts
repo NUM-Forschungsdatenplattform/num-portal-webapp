@@ -243,8 +243,16 @@ export class StudyEditorComponent implements OnInit, OnDestroy {
   }
 
   sendForApproval(): void {
-    this.study.status = StudyStatus.Pending
-    this.save()
+    const { cohort } = this.getStudyForApi()
+    if (cohort.cohortGroup) {
+      this.study.status = StudyStatus.Pending
+      this.save()
+    } else {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'STUDY.NO_PHENOTYPE_ERROR_MESSAGE',
+      })
+    }
   }
 
   saveResearchers(): void {

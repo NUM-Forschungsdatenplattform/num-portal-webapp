@@ -299,7 +299,8 @@
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "SAVE_SUCCESS_MESSAGE": "The study has been saved successfully.",
-    "SAVE_ERROR_MESSAGE": "The study could not be saved. Please try again."
+    "SAVE_ERROR_MESSAGE": "The study could not be saved. Please try again.",
+    "NO_PHENOTYPE_ERROR_MESSAGE": "The approval request could not be sent. Please provide at least one Phenotype in the cohort section."
   },
   "USER": {
     "FIRST_NAME": "First name",
