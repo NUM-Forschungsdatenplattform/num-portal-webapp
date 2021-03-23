@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -11,7 +10,6 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
-import { Component, Input } from '@angular/core'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -75,7 +73,6 @@ describe('SideMenuComponent', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout')
     jest.spyOn(authService, 'login')
-    window.open = jest.fn()
   })
 
   it('should create', () => {
