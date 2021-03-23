@@ -9,7 +9,6 @@ import {
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Subscription } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
-import { INavigationLink } from '../../../shared/models/content/navigation-link.interface'
 
 @Component({
   selector: 'num-side-menu',
@@ -44,6 +43,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   handleUserInfo(): void {
     if (this.authService.isLoggedIn) {
+      this.contentService.getNavigationLinks().subscribe()
       this.isLoggedIn = true
       this.secondaryNavItems = secondaryNavItemsLoggedIn
     } else {
