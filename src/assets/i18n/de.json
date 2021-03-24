@@ -1,5 +1,6 @@
 {
   "DASHBOARD": {
+    "LATEST_PROJECTS": "Neuste Projekte",
     "INTRODUCTION": {
       "HEADER": "Die COVID-19-Datenaustauschplattform",
       "P1": "Die CODEX Forschungsdatenplattform ist eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu Covid-19. Sie verbindet Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertungen strukturierter Daten mit hoher Qualität.",
@@ -12,6 +13,11 @@
     },
     "PARTICIPATING": {
       "HEADER": "Teilnehmende Kliniken"
+    },
+    "METRICS": {
+      "PROJECTS": "{{count}} Projekte in CODEX veröffentlicht",
+      "AQLS": "{{count}} AQL-Abfragen in CODEX verfügbar",
+      "ORGANIZATIONS": "{{count}} teilnehmende Universitätskliniken"
     }
   },
   "LANGUAGE": {
@@ -49,7 +55,6 @@
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
-    "NOTIFICATIONS": "Benachrichtigungen",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden"
@@ -178,6 +183,7 @@
     "FINANCED": "Finanzierung",
     "FINANCED_BY_PRIVATE": "Finanziert durch privaten Geldgeber (ganz oder teilweise)",
     "AUTHOR": "Autor",
+    "STATUS": "Status",
     "CHARACTERS": "Zeichen",
     "PURPOSE": "Zweck",
     "USE": "Verwendung",
@@ -300,7 +306,8 @@
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "SAVE_SUCCESS_MESSAGE": "Die Studie wurde erfolgreich gespeichert.",
-    "SAVE_ERROR_MESSAGE": "Die Studie konnte nicht erstellt werden. Bitte versuchen Sie es erneut."
+    "SAVE_ERROR_MESSAGE": "Die Studie konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
+    "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte."
   },
   "USER": {
     "FIRST_NAME": "Vorname",

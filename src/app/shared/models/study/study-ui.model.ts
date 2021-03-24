@@ -16,7 +16,7 @@ export class StudyUiModel {
   cohortId: number | null
   cohortGroup: CohortGroupUiModel
   /** The coordinator of the study. Is automatically asigned based on the auth-token */
-  coordinator?: IStudyUser
+  coordinator?: IUser
   description?: string
   goal?: string
   firstHypotheses?: string

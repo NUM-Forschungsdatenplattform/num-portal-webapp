@@ -2,6 +2,14 @@ table {
   width: 100%;
 }
 
+td {
+  word-break: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .aql-table {
   margin: 0 0 60px 0;
 }

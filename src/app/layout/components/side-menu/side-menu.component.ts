@@ -8,7 +8,7 @@ import {
 } from '../../../core/constants/navigation'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Subscription } from 'rxjs'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { ContentService } from '../../../core/services/content/content.service'
 
 @Component({
   selector: 'num-side-menu',
@@ -20,18 +20,16 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   routes = routes
   mainNavItems = mainNavItems
   secondaryNavItems: INavItem[]
-  secondaryNavItemsLoggedIn = secondaryNavItemsLoggedIn
-  secondaryNavItemsLoggedOut = secondaryNavItemsLoggedOut
 
   isLoggedIn = false
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, public contentService: ContentService) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+      this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
     mainNavItems.forEach((item) => {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
@@ -43,10 +41,15 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  handleUserInfo(userInfo: IAuthUserInfo): void {
-    this.authService.isLoggedIn
-      ? (this.secondaryNavItems = secondaryNavItemsLoggedIn)
-      : (this.secondaryNavItems = secondaryNavItemsLoggedOut)
+  handleUserInfo(): void {
+    if (this.authService.isLoggedIn) {
+      this.contentService.getNavigationLinks().subscribe()
+      this.isLoggedIn = true
+      this.secondaryNavItems = secondaryNavItemsLoggedIn
+    } else {
+      this.isLoggedIn = false
+      this.secondaryNavItems = secondaryNavItemsLoggedOut
+    }
   }
 
   menuItemClicked($event: Event, item: INavItem): void {

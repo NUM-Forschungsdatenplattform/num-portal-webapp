@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -8,7 +7,9 @@ import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
+import { ContentService } from '../../../core/services/content/content.service'
+import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -23,6 +24,10 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const mockContentService = ({
+    getNavigationLinks: jest.fn(),
+  } as unknown) as ContentService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -50,12 +55,19 @@ describe('SideMenuComponent', () => {
           provide: AuthService,
           useValue: authService,
         },
+        {
+          provide: ContentService,
+          useValue: mockContentService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SideMenuComponent)
+    jest
+      .spyOn(mockContentService, 'getNavigationLinks')
+      .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')

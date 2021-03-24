@@ -8,8 +8,6 @@ import { StudyEditorComponent } from './components/study-editor/study-editor.com
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { DialogEditPhenotypeComponent } from './components/dialog-edit-phenotype/dialog-edit-phenotype.component'
 import { DialogAddPhenotypesComponent } from './components/dialog-add-phenotypes/dialog-add-phenotypes.component'
-import { AddPhenotypesFilterTableComponent } from './components/add-phenotypes-filter-table/add-phenotypes-filter-table.component'
-import { AddPhenotypesPreviewComponent } from './components/add-phenotypes-preview/add-phenotypes-preview.component'
 import { AddTemplatesFilterTableComponent } from './components/add-templates-filter-table/add-templates-filter-table.component'
 import { DialogAddTemplateComponent } from './components/dialog-add-template/dialog-add-template.component'
 import { StudiesTableComponent } from './components/studies-table/studies-table.component'
@@ -28,8 +26,6 @@ import { DialogConfirmStudyApprovalComponent } from './components/dialog-confirm
     DialogEditPhenotypeComponent,
     DialogAddPhenotypesComponent,
     DialogAddTemplateComponent,
-    AddPhenotypesFilterTableComponent,
-    AddPhenotypesPreviewComponent,
     AddTemplatesFilterTableComponent,
     StudiesTableComponent,
     DialogAddResearchersComponent,

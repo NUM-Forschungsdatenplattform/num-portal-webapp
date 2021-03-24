@@ -1,3 +1,11 @@
 table {
   width: 100%;
 }
+
+td {
+  word-break: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}

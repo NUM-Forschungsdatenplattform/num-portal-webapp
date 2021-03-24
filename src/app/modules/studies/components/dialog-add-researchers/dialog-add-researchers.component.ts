@@ -64,7 +64,7 @@ export class DialogAddResearchersComponent
   }
 
   handleUsersData(users: IUser[]): void {
-    this.dataSource.data = users.filter((user) => user?.roles.includes(AvailableRoles.Researcher))
+    this.dataSource.data = users.filter((user) => user.roles?.includes(AvailableRoles.Researcher))
   }
 
   handleDilaogInput(): void {

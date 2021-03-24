@@ -50,6 +50,8 @@
       <mat-paginator
         [pageSizeOptions]="[10, 20, 40]"
         showFirstLastButtons
+        [pageSize]="pageSize"
+        (page)="pageSize = $event.pageSize"
         data-test="result-table__paginator-buttons"
       ></mat-paginator>
     </div>

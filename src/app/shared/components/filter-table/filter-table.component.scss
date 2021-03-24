@@ -2,6 +2,14 @@ table {
   width: 100%;
 }
 
+td {
+  word-break: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .right-align {
   text-align: right;
 }

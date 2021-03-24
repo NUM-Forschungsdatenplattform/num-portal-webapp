@@ -1,0 +1,32 @@
+<div
+  *ngIf="contentService.metricsObservable$ | async as metrics"
+  class="metrics num-margin-b-60"
+  fxLayout="column"
+  fxLayoutGap="24px"
+  fxLayoutGap.gt-xs="6px"
+  fxLayout.gt-xs="row"
+  fxLayoutAlign="space-between"
+>
+  <div class="metric" fxFlex.gt-xs="30%">
+    <fa-icon class="metric__icon num-fc--a" icon="microscope" [fixedWidth]="true"></fa-icon>
+    <div class="metric__text" data-test="metrics__projects">
+      {{ 'DASHBOARD.METRICS.PROJECTS' | translate: { count: metrics.projects } }}
+    </div>
+  </div>
+  <div class="metric" fxFlex.gt-xs="30%">
+    <fa-icon class="metric__icon num-fc--a" icon="dna" [fixedWidth]="true"></fa-icon>
+    <div class="metric__text" data-test="metrics__aqls">
+      {{ 'DASHBOARD.METRICS.AQLS' | translate: { count: metrics.aqls } }}
+    </div>
+  </div>
+  <div class="metric" fxFlex.gt-xs="30%">
+    <fa-icon
+      class="metric__icon num-fc--a"
+      [icon]="['far', 'hospital']"
+      [fixedWidth]="true"
+    ></fa-icon>
+    <div class="metric__text" data-test="metrics__organizations">
+      {{ 'DASHBOARD.METRICS.ORGANIZATIONS' | translate: { count: metrics.organizations } }}
+    </div>
+  </div>
+</div>

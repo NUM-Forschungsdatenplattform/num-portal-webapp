@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
+import { mockDashboardMetrics } from 'src/mocks/data-mocks/dashboard-metrics.mock'
+import { mockDashboardProjects } from 'src/mocks/data-mocks/dashboard-projects.mock'
 import { mockNavigationLinks } from 'src/mocks/data-mocks/navigation-links.mock'
 
 import { ContentService } from './content.service'
@@ -155,6 +157,54 @@ describe('ContentService', () => {
         mockDashboardCards,
         httpOptions
       )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getMetrics comes in', () => {
+    it('should call the api - with success and set the metrics to the subject and service', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDashboardMetrics))
+      jest.spyOn((service as any).metricsSubject$, 'next')
+      await service.getMetrics().toPromise()
+
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/metrics')
+      expect((service as any).metrics).toEqual(mockDashboardMetrics)
+      expect((service as any).metricsSubject$.next).toHaveBeenCalledWith(mockDashboardMetrics)
+    })
+
+    it('should call the api - with error', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      await service
+        .getMetrics()
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/metrics')
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getLatestProjects comes in', () => {
+    it('should call the api - with success and set the projects to the subject and service', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDashboardProjects))
+      jest.spyOn((service as any).projectsSubject$, 'next')
+      await service.getLatestProjects().toPromise()
+
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/latest-projects')
+      expect((service as any).projects).toEqual(mockDashboardProjects)
+      expect((service as any).projectsSubject$.next).toHaveBeenCalledWith(mockDashboardProjects)
+    })
+
+    it('should call the api - with error', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      await service
+        .getLatestProjects()
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/latest-projects')
       expect(service.handleError).toHaveBeenCalled()
     })
   })

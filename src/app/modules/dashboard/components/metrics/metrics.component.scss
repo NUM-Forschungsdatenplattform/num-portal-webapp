@@ -1,0 +1,15 @@
+.metrics {
+  width: 100%;
+}
+
+.metric {
+  text-align: center;
+
+  &__icon {
+    font-size: 48px;
+  }
+
+  &__text {
+    margin: 16px 0 0 0;
+  }
+}

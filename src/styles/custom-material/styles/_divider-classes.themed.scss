@@ -2,6 +2,7 @@
   $accent: map-get($theme, accent);
   $primary: map-get($theme, primary);
   $warn: map-get($theme, warn);
+  $additional: map-get($theme, additional);
 
   /* Hint:
     class="num-d-w--1 num-d-c--a" || class="num-divider-width--1 num-divider-color--a"
@@ -35,6 +36,10 @@
       &--warn,
       &--w {
         border-color: mat-color($warn);
+      }
+      &--grey,
+      &--g {
+        border-color: mat-color($additional, light-grey);
       }
     }
   }

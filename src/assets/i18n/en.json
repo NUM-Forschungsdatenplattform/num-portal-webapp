@@ -1,5 +1,6 @@
 {
   "DASHBOARD": {
+    "LATEST_PROJECTS": "Latest projects",
     "INTRODUCTION": {
       "HEADER": "The COVID-19 Data Exchange Platform",
       "P1": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data.",
@@ -12,6 +13,11 @@
     },
     "PARTICIPATING": {
       "HEADER": "Participating clinics"
+    },
+    "METRICS": {
+      "PROJECTS": "{{count}} Projects published in CODEX",
+      "AQLS": "{{count}} AQL queries available in CODEX",
+      "ORGANIZATIONS": "{{count}} participating university hospitals"
     }
   },
   "LANGUAGE": {
@@ -49,7 +55,6 @@
     "CONTENT_EDITOR": "Content Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
-    "NOTIFICATIONS": "Notifications",
     "PROFILE": "Profile",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in"
@@ -177,6 +182,7 @@
     "FINANCED": "Financing",
     "FINANCED_BY_PRIVATE": "Financed by private financier (in full or part)",
     "AUTHOR": "Author",
+    "STATUS": "Status",
     "CHARACTERS": "Characters",
     "PURPOSE": "Purpose",
     "USE": "Use",
@@ -299,7 +305,8 @@
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "SAVE_SUCCESS_MESSAGE": "The study has been saved successfully.",
-    "SAVE_ERROR_MESSAGE": "The study could not be saved. Please try again."
+    "SAVE_ERROR_MESSAGE": "The study could not be saved. Please try again.",
+    "NO_PHENOTYPE_ERROR_MESSAGE": "The approval request could not be sent. Please provide at least one Phenotype in the cohort section."
   },
   "USER": {
     "FIRST_NAME": "First name",
