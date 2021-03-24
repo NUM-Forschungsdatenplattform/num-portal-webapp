@@ -29,7 +29,6 @@ describe('FooterComponent', () => {
     appConfig.config = ({} as unknown) as IAppConfig
     appConfig.config.legal = {
       copyrightOwner: 'Test',
-      version: '1.0.0',
     }
     fixture = TestBed.createComponent(FooterComponent)
     component = fixture.componentInstance
