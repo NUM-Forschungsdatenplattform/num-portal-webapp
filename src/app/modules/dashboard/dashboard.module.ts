@@ -6,9 +6,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { ExtendedModule } from '@angular/flex-layout'
 import { LayoutModule } from '../../layout/layout.module'
+import { MetricsComponent } from './components/metrics/metrics.component'
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, MetricsComponent],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, ExtendedModule, LayoutModule],
 })
 export class DashboardModule {}

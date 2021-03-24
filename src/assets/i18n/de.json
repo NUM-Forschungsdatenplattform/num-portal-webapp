@@ -12,6 +12,11 @@
     },
     "PARTICIPATING": {
       "HEADER": "Teilnehmende Kliniken"
+    },
+    "METRICS": {
+      "PROJECTS": "{{count}} Projekte in CODEX veröffentlicht",
+      "AQLS": "{{count}} AQL-Abfragen in CODEX verfügbar",
+      "ORGANIZATIONS": "{{count}} teilnehmende Universitätskliniken"
     }
   },
   "LANGUAGE": {
