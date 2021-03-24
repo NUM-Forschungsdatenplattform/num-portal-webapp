@@ -1,0 +1,13 @@
+table {
+  width: 100%;
+
+  td {
+    &:not(.no-word-break) {
+      word-break: break-word;
+    }
+
+    &.mat-cell:not(:first-of-type):not(:last-of-type) {
+      padding: 10px;
+    }
+  }
+}

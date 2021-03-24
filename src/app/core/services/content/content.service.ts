@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
 import { IDashboardMetrics } from 'src/app/shared/models/content/dashboard-metrics.interface'
+import { IDashboardProject } from 'src/app/shared/models/content/dashboard-project.interface'
 import { INavigationLink } from 'src/app/shared/models/content/navigation-link.interface'
 
 @Injectable({
@@ -24,6 +25,10 @@ export class ContentService {
   private metrics: IDashboardMetrics = undefined
   private metricsSubject$ = new BehaviorSubject(this.metrics)
   public metricsObservable$ = this.metricsSubject$.asObservable()
+
+  private projects: IDashboardProject[] = undefined
+  private projectsSubject$ = new BehaviorSubject(this.projects)
+  public projectsObservable$ = this.projectsSubject$.asObservable()
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/content`
@@ -84,6 +89,16 @@ export class ContentService {
       tap((metrics) => {
         this.metrics = metrics
         this.metricsSubject$.next(metrics)
+      }),
+      catchError(this.handleError)
+    )
+  }
+
+  getLatestProjects(): Observable<IDashboardProject[]> {
+    return this.httpClient.get<IDashboardProject[]>(`${this.baseUrl}/latest-projects`).pipe(
+      tap((projects) => {
+        this.projects = projects
+        this.projectsSubject$.next(projects)
       }),
       catchError(this.handleError)
     )
