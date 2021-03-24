@@ -1,5 +1,6 @@
 {
   "DASHBOARD": {
+    "LATEST_PROJECTS": "Neuste Projekte",
     "INTRODUCTION": {
       "HEADER": "Die COVID-19-Datenaustauschplattform",
       "P1": "Die CODEX Forschungsdatenplattform ist eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu Covid-19. Sie verbindet Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertungen strukturierter Daten mit hoher Qualität.",
