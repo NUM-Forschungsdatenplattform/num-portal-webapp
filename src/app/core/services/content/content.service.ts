@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
+import { IDashboardMetrics } from 'src/app/shared/models/content/dashboard-metrics.interface'
 import { INavigationLink } from 'src/app/shared/models/content/navigation-link.interface'
 
 @Injectable({
@@ -19,6 +20,10 @@ export class ContentService {
   private cards: IDashboardCard[] = []
   private cardsSubject$ = new BehaviorSubject(this.cards)
   public cardsObservable$ = this.cardsSubject$.asObservable()
+
+  private metrics: IDashboardMetrics = undefined
+  private metricsSubject$ = new BehaviorSubject(this.metrics)
+  public metricsObservable$ = this.metricsSubject$.asObservable()
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/content`
@@ -72,6 +77,16 @@ export class ContentService {
         }),
         catchError(this.handleError)
       )
+  }
+
+  getMetrics(): Observable<IDashboardMetrics> {
+    return this.httpClient.get<IDashboardMetrics>(`${this.baseUrl}/metrics`).pipe(
+      tap((metrics) => {
+        this.metrics = metrics
+        this.metricsSubject$.next(metrics)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

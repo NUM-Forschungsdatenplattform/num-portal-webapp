@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { AppConfigService } from 'src/app/config/app-config.service'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
@@ -12,12 +11,13 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ContentService } from '../../../../core/services/content/content.service'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { mockDashboardCards } from '../../../../../mocks/data-mocks/dashboard-cards.mock'
+import { Component } from '@angular/core'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
   let fixture: ComponentFixture<DashboardComponent>
-
-  let appConfig: AppConfigService
+  @Component({ selector: 'num-metrics', template: '' })
+  class MetricsStubComponent {}
 
   const userInfoSubject$ = new Subject<any>()
 
@@ -43,7 +43,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
+      declarations: [DashboardComponent, MetricsStubComponent],
       imports: [
         TranslateModule.forRoot(),
         HttpClientTestingModule,
@@ -69,7 +69,6 @@ describe('DashboardComponent', () => {
   })
 
   beforeEach(() => {
-    appConfig = TestBed.inject(AppConfigService)
     jest.spyOn(mockContentService, 'getCards').mockImplementation(() => of(mockDashboardCards))
     fixture = TestBed.createComponent(DashboardComponent)
     component = fixture.componentInstance
