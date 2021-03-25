@@ -91,9 +91,13 @@ export class StudyService {
       .pipe(catchError(this.handleError))
   }
 
-  exportCsv(id: number, query: string): Observable<string> {
+  exportFile(id: number, query: string, format: string): Observable<string> {
     return this.httpClient
-      .post<string>(`${this.baseUrl}/${id}/export`, { query }, { responseType: 'text' as 'json' })
+      .post<string>(
+        `${this.baseUrl}/${id}/export?format=${format}`,
+        { query },
+        { responseType: 'text' as 'json' }
+      )
       .pipe(catchError(this.handleError))
   }
 

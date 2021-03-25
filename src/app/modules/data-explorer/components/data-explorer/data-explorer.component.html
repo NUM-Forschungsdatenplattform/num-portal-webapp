@@ -36,9 +36,7 @@
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
     <num-button
-      [isDisabled]="
-        !isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportCsvLoading
-      "
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportLoading"
       type="primary"
       icon="play"
       (singleClick)="getDataSet()"
@@ -85,15 +83,25 @@
     <num-button
       type="secondary"
       icon="file-download"
-      (singleClick)="exportCsv()"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportCsvLoading"
+      (singleClick)="exportFile('csv')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
       data-test="data-explorer__export-csv-button"
     >
-      {{ 'DATA_EXPLORER.EXPORT_CSV' | translate }}
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
+    </num-button>
+
+    <num-button
+      type="secondary"
+      icon="file-download"
+      (singleClick)="exportFile('json')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      data-test="data-explorer__export-json-button"
+    >
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
     </num-button>
 
     <mat-spinner
-      *ngIf="isExportCsvLoading"
+      *ngIf="isExportLoading"
       color="accent"
       [diameter]="20"
       class="export-csv_spinner"

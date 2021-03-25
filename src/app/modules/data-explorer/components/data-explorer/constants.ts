@@ -14,8 +14,8 @@ export const RESULT_SET_LOADING_ERROR: IToastMessageConfig = {
   type: ToastMessageType.Error,
 }
 
-export const EXPORT_CSV_ERROR: IToastMessageConfig = {
-  message: 'DATA_EXPLORER.EXPORT_CSV_ERROR',
+export const EXPORT_ERROR: IToastMessageConfig = {
+  message: 'DATA_EXPLORER.EXPORT_ERROR',
   type: ToastMessageType.Error,
 }
 

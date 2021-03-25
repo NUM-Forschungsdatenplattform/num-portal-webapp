@@ -29,7 +29,7 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
-  EXPORT_CSV_ERROR,
+  EXPORT_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
@@ -38,6 +38,7 @@ import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { StudyService } from 'src/app/core/services/study/study.service'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -65,7 +66,7 @@ describe('DataExplorerComponent', () => {
 
   const studyService = ({
     executeAdHocAql: jest.fn(),
-    exportCsv: jest.fn(),
+    exportFile: jest.fn(),
   } as unknown) as StudyService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
@@ -441,17 +442,17 @@ describe('DataExplorerComponent', () => {
     })
   })
 
-  describe('When the ExportCsv is Clicked', () => {
+  describe('When the Export CSV Button is clicked', () => {
     beforeEach(() => {
-      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of('some text'))
+      jest.spyOn(studyService, 'exportFile').mockImplementation(() => of('some text'))
       component.compiledQuery = buildResponse
     })
 
-    it('should call the studyService.exportCsv', () => {
-      component.exportCsv()
+    it('should call the studyService.exportFile', () => {
+      component.exportFile('csv')
 
-      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isExportCsvLoading).toEqual(false)
+      expect(studyService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
     })
 
     it('should trigger the download', () => {
@@ -466,7 +467,7 @@ describe('DataExplorerComponent', () => {
         value: () => mockHtmlElement,
       })
 
-      component.exportCsv()
+      component.exportFile('csv')
 
       expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
       expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
@@ -474,14 +475,72 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should show toast in case of error', () => {
-      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => throwError('error'))
+      jest.spyOn(studyService, 'exportFile').mockImplementation(() => throwError('error'))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
-      component.exportCsv()
-      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isExportCsvLoading).toEqual(false)
+      component.exportFile('csv')
+      expect(studyService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
 
-      expect(toastMessageService.openToast).toHaveBeenCalledWith(EXPORT_CSV_ERROR)
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'CSV',
+        },
+      }
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    })
+  })
+
+  describe('When the Export JSON Button is clicked', () => {
+    beforeEach(() => {
+      jest.spyOn(studyService, 'exportFile').mockImplementation(() => of('some text'))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should call the studyService.exportFile', () => {
+      component.exportFile('json')
+
+      expect(studyService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      const filename = `json_export_${component.study.id}.json`
+      const mockHtmlElement = document.createElement('a')
+
+      mockHtmlElement.setAttribute = jest.fn()
+      mockHtmlElement.click = jest.fn()
+      mockHtmlElement.remove = jest.fn()
+
+      Object.defineProperty(document, 'createElement', {
+        value: () => mockHtmlElement,
+      })
+
+      component.exportFile('json')
+
+      expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
+      expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
+      expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
+    })
+
+    it('should show toast in case of error', () => {
+      jest.spyOn(studyService, 'exportFile').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+
+      component.exportFile('json')
+      expect(studyService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'JSON',
+        },
+      }
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
     })
   })
 })
