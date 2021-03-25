@@ -353,8 +353,8 @@
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",
     "AQL_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
-    "EXPORT_CSV": "CSV Exportieren",
-    "EXPORT_CSV_ERROR": "Fehler beim Versuch, die CSV zu exportieren, bitte versuchen Sie es später noch einmal."
+    "EXPORT": "{{format}} Exportieren",
+    "EXPORT_ERROR": "Fehler beim Versuch die {{format}} Datei zu exportieren, bitte versuchen Sie es später noch einmal."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "Alle neuen Benutzer",

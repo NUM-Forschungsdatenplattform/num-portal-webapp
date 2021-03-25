@@ -24,10 +24,11 @@ import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
-  EXPORT_CSV_ERROR,
+  EXPORT_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { StudyService } from 'src/app/core/services/study/study.service'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 
 @Component({
   selector: 'num-data-explorer',
@@ -47,7 +48,7 @@ export class DataExplorerComponent implements OnInit {
   isCompositionsFetched: boolean
   isDataSetLoading: boolean
 
-  isExportCsvLoading: boolean
+  isExportLoading: boolean
 
   isTemplatesDisabled = true
   isResearchersDisabled = true
@@ -210,32 +211,44 @@ export class DataExplorerComponent implements OnInit {
     )
   }
 
-  exportCsv(): void {
+  exportFile(format: 'csv' | 'json'): void {
     if (!this.compiledQuery) return
 
-    this.isExportCsvLoading = true
+    this.isExportLoading = true
 
-    this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
+    this.studyService.exportFile(this.study.id, this.compiledQuery.q, format).subscribe(
       (response) => {
-        const filename = `csv_export_${this.study.id}.csv`
+        const filename =
+          format === 'csv' ? `csv_export_${this.study.id}.csv` : `json_export_${this.study.id}.json`
+
         const downloadLink = document.createElement('a')
         downloadLink.setAttribute(
           'href',
-          'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+          format === 'csv'
+            ? 'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+            : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
         )
+
         downloadLink.setAttribute('download', filename)
         downloadLink.style.display = 'none'
         document.body.appendChild(downloadLink)
 
-        this.isExportCsvLoading = false
+        this.isExportLoading = false
 
         downloadLink.click()
         downloadLink.remove()
       },
       () => {
-        this.isExportCsvLoading = false
+        this.isExportLoading = false
 
-        this.toastMessageService.openToast(EXPORT_CSV_ERROR)
+        const messageConfig: IToastMessageConfig = {
+          ...EXPORT_ERROR,
+          messageParameters: {
+            format: format.toUpperCase(),
+          },
+        }
+
+        this.toastMessageService.openToast(messageConfig)
       }
     )
   }
