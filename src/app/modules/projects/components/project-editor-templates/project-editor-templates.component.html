@@ -1,0 +1,37 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header data-test="studies-editor__templates__select-ehr-template-button">
+    <mat-panel-title>
+      <h3 id="select-header" class="accordion">
+        <fa-icon [icon]="['far', 'check-circle']" *ngIf="templatesValue.length"></fa-icon>
+        {{ 'SELECT_EHR_TEMPLATE' | translate }}*
+      </h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="select-header"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <div>
+      {{ 'PROJECT.EHR_TEMPLATE_CONTENT' | translate }}
+    </div>
+
+    <num-add-template-selected-table
+      [(selectedTemplates)]="templates"
+      [isDisabled]="isDisabled"
+      data-test="study-editor__templates__add-template-table"
+    ></num-add-template-selected-table>
+
+    <num-button
+      type="primary"
+      icon="plus"
+      [isDisabled]="isDisabled"
+      (singleClick)="addTemplate()"
+      data-test="study-editor__templates__add-template-button"
+      >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
+    >
+  </section>
+</mat-expansion-panel>

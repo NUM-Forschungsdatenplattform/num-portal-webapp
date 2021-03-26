@@ -164,7 +164,7 @@ describe('DialogAqlBuilderComponent', () => {
     const templates = ['temp1', 'temp2']
     beforeEach(() => {
       component.dialogInput = {
-        mode: AqlBuilderDialogMode.DataExplorer,
+        mode: AqlBuilderDialogMode.DataRetrieval,
         model: new AqbUiModel(),
         selectedTemplateIds: templates,
         allowedTemplates: templates,

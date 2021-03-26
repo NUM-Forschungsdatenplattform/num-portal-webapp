@@ -1,0 +1,142 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header data-test="studies-editor__general-info__general-info-button">
+    <h3 class="accordion">
+      <fa-icon [icon]="['far', 'check-circle']" *ngIf="form.valid"></fa-icon
+      >{{ 'FORM.GENERAL_INFO' | translate }}*
+    </h3>
+  </mat-expansion-panel-header>
+
+  <section
+    role="region"
+    aria-labelledby="general-info-label"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+  >
+    <num-definition-list [dataSource]="generalInfoData" *ngIf="isDisabled"></num-definition-list>
+
+    <form fxLayout="column" [formGroup]="form" *ngIf="!isDisabled">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label id="title-label">{{ 'PROJECT.TITLE' | translate }}*</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          aria-labelledby="title-label"
+          data-test="study-editor__general-info__title-input"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}*</mat-label>
+        <textarea
+          formControlName="description"
+          #textarea
+          matInput
+          style="resize: none"
+          aria-labelledby="desc-label"
+          rows="10"
+          data-test="study-editor__general-info__description-input"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label id="goal-label">{{ 'PROJECT.GOAL' | translate }}*</mat-label>
+
+        <textarea
+          formControlName="goal"
+          #textarea
+          matInput
+          style="resize: none"
+          aria-labelledby="goal-label"
+          rows="10"
+          data-test="study-editor__general-info__goal-input"
+        ></textarea>
+      </mat-form-field>
+
+      <section role="presentation" fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+          <mat-label id="label-firstHypotheses"
+            >{{ 'PROJECT.FIRST_HYPOTHESES' | translate }}*</mat-label
+          >
+          <textarea
+            formControlName="firstHypotheses"
+            #textarea
+            matInput
+            style="resize: none"
+            aria-labelledby="label-firstHypotheses"
+            rows="10"
+            data-test="study-editor__general-info__first-hypotheses-input"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+          <mat-label id="label-secondHypotheses">{{
+            'PROJECT.SECOND_HYPOTHESES' | translate
+          }}</mat-label>
+          <textarea
+            formControlName="secondHypotheses"
+            #textarea
+            matInput
+            style="resize: none"
+            aria-labelledby="label-secondHypotheses"
+            rows="10"
+            data-test="study-editor__general-info__second-hypotheses-input"
+          ></textarea>
+        </mat-form-field>
+      </section>
+
+      <num-study-editor-general-info-keywords-input
+        [form]="form"
+      ></num-study-editor-general-info-keywords-input>
+
+      <num-study-editor-general-info-categories-input
+        [form]="form"
+      ></num-study-editor-general-info-categories-input>
+
+      <section role="presentation" fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'FORM.START_DATE' | translate }}*</mat-label>
+          <input
+            formControlName="startDate"
+            matInput
+            [matDatepicker]="startDate"
+            (focus)="startDate.open()"
+            data-test="study-editor__general-info__start-date-input"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="startDate"
+            data-test="study-editor__general-info__start-date-toggle"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'FORM.END_DATE' | translate }}*</mat-label>
+          <input
+            formControlName="endDate"
+            matInput
+            [matDatepicker]="endDate"
+            (focus)="endDate.open()"
+            data-test="study-editor__general-info__end-date-input"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="endDate"
+            data-test="study-editor__general-info__end-date-toggle"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </section>
+
+      <section role="presentation" class="num-margin-b-10">
+        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}*</p>
+        <mat-slide-toggle
+          formControlName="financed"
+          data-test="study-editor__general-info__financed-toggle"
+          >{{ 'FORM.FINANCED_BY_PRIVATE' | translate }}</mat-slide-toggle
+        >
+      </section>
+    </form>
+  </section>
+</mat-expansion-panel>

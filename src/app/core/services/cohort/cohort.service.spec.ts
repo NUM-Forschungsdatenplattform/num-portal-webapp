@@ -4,8 +4,8 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
-import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
-import { ICohortGroupApi } from 'src/app/shared/models/study/cohort-group-api.interface'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
 import { CohortService } from './cohort.service'
 
@@ -22,7 +22,7 @@ describe('CohortService', () => {
   const mockCohort: ICohortApi = {
     id: null,
     name: 'Test Name',
-    studyId: 1,
+    projectId: 1,
     description: 'Test Description',
     cohortGroup: undefined,
   }

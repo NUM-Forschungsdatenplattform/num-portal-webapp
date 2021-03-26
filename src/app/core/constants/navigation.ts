@@ -7,36 +7,36 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {
-    routeTo: 'studies',
+    routeTo: 'projects',
     icon: 'microscope',
-    translationKey: 'NAVIGATION.STUDIES',
+    translationKey: 'NAVIGATION.PROJECTS',
     tabNav: [
       {
-        routeTo: 'studies',
+        routeTo: 'projects',
         id: 'overview',
-        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+        translationKey: 'NAVIGATION.PROJECTS_OVERVIEW',
       },
       {
-        routeTo: 'studies/new/editor',
+        routeTo: 'projects/new/editor',
         id: 'editor',
-        translationKey: 'NAVIGATION.STUDIES_EDITOR',
+        translationKey: 'NAVIGATION.PROJECTS_EDITOR',
       },
     ],
   },
   {
     routeTo: 'data-explorer',
     icon: 'table',
-    translationKey: 'NAVIGATION.DATA_EXPLORER',
+    translationKey: 'NAVIGATION.DATA_RETRIEVAL',
     tabNav: [
       {
-        routeTo: 'data-explorer/studies',
+        routeTo: 'data-explorer/projects',
         id: 'overview',
-        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+        translationKey: 'NAVIGATION.PROJECTS_OVERVIEW',
       },
       {
         routeTo: 'data-explorer',
         id: 'data-explorer',
-        translationKey: 'NAVIGATION.DATA_EXPLORER',
+        translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         disabled: true,
       },
     ],

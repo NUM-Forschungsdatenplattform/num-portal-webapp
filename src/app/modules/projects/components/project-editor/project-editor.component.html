@@ -1,0 +1,69 @@
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'NAVIGATION.DEFINE_PROJECT' | translate }}</h2>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P1' | translate }}</p>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P2' | translate }}</p>
+  <p class="num-margin-b-40">{{ 'PROJECT.MANDATORY' | translate }}</p>
+
+  <mat-accordion [multi]="true" fxFlex="100%">
+    <num-study-editor-general-info
+      [form]="projectForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+      data-test="study-editor__general-info"
+    ></num-study-editor-general-info>
+
+    <num-study-editor-templates
+      [(templates)]="project.templates"
+      [isDisabled]="isTemplatesDisabled"
+      data-test="study-editor__templates"
+    ></num-study-editor-templates>
+
+    <num-study-editor-connector
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
+      [determineHitsContent]="determineHitsContent"
+      (determineHitsClicked)="determineHits()"
+      data-test="study-editor__connector__group"
+    ></num-study-editor-connector>
+
+    <num-study-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="project.researchers"
+      [isDisabled]="isResearchersDisabled"
+      data-test="study-editor__researchers"
+    ></num-study-editor-researchers>
+  </mat-accordion>
+
+  <num-study-editor-comments
+    *ngIf="project.id !== null && project.id !== undefined"
+    [isLoadingComplete]="isCommentsFetched"
+    [comments]="projectComments"
+    [form]="commentForm"
+    (postComment)="postComment()"
+    data-test="study-editor__comments"
+  ></num-study-editor-comments>
+
+  <num-study-editor-approval
+    *ngIf="mode === possibleModes.REVIEW"
+    [form]="approverForm"
+    data-test="study-editor__approval"
+  ></num-study-editor-approval>
+
+  <num-study-editor-buttons
+    [editorMode]="mode"
+    [projectStatus]="project.status"
+    [isFormValid]="projectForm.valid"
+    [approverForm]="approverForm"
+    [isResearchersDefined]="project.researchers.length"
+    [isTemplatesDefined]="project.templates.length"
+    [isCohortDefined]="project.cohortGroup.children.length"
+    (saveAll)="save()"
+    (saveResearchers)="saveResearchers()"
+    (saveAsApprovalRequest)="sendForApproval()"
+    (saveAsApprovalReply)="saveAsApprovalReply()"
+    (startEdit)="startEdit()"
+    (cancel)="cancel()"
+    data-test="study-editor__buttons"
+  ></num-study-editor-buttons>
+</section>

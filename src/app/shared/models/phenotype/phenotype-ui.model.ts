@@ -5,7 +5,7 @@ import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
-import { ICohortGroupApi } from '../study/cohort-group-api.interface'
+import { ICohortGroupApi } from '../project/cohort-group-api.interface'
 import { IDictionary } from '../dictionary.interface'
 import { IUser } from '../user/user.interface'
 
