@@ -183,17 +183,20 @@ describe('ProjectsTableComponent', () => {
     ]
 
     test.each(testCases)(
-      'should open the correct decision dialog and update the study on confirmation',
+      'should open the correct decision dialog and update the project on confirmation',
       (testcase) => {
-        const studyId = 1
-        component.handleMenuClick(testcase.key, studyId)
+        const projectId = 1
+        component.handleMenuClick(testcase.key, projectId)
         expect(mockDialogService.openDialog).toHaveBeenCalledWith(testcase.dialog)
         afterClosedSubject$.next(testcase.decision)
         if (testcase.decision === true) {
-          expect(projectService.updateStatusById).toHaveBeenCalledWith(studyId, testcase.newStatus)
+          expect(projectService.updateStatusById).toHaveBeenCalledWith(
+            projectId,
+            testcase.newStatus
+          )
         } else {
           expect(projectService.updateStatusById).not.toHaveBeenCalledWith(
-            studyId,
+            projectId,
             testcase.newStatus
           )
         }

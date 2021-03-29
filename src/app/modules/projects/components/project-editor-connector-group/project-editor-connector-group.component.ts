@@ -24,7 +24,7 @@ import { DialogAddPhenotypesComponent } from '../dialog-add-phenotypes/dialog-ad
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'num-study-editor-connector-group',
+  selector: 'num-project-editor-connector-group',
   templateUrl: './project-editor-connector-group.component.html',
   styleUrls: ['./project-editor-connector-group.component.scss'],
 })

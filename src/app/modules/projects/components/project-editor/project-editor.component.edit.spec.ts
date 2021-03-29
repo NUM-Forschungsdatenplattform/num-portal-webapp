@@ -89,14 +89,14 @@ describe('ProjectEditorComponent', () => {
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
 
-  @Component({ selector: 'num-study-editor-general-info', template: '' })
+  @Component({ selector: 'num-project-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
   }
 
-  @Component({ selector: 'num-study-editor-connector', template: '' })
+  @Component({ selector: 'num-project-editor-connector', template: '' })
   class StubProjectEditorConnector {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
@@ -104,21 +104,21 @@ describe('ProjectEditorComponent', () => {
     @Input() determineHitsContent: IDetermineHits
     @Output() determineHitsClicked = new EventEmitter()
   }
-  @Component({ selector: 'num-study-editor-researchers', template: '' })
+  @Component({ selector: 'num-project-editor-researchers', template: '' })
   class ProjectEditorResearchers {
     @Input() researchers: any[]
     @Input() isDisabled: boolean
     @Input() isLoadingComplete: boolean
   }
 
-  @Component({ selector: 'num-study-editor-templates', template: '' })
+  @Component({ selector: 'num-project-editor-templates', template: '' })
   class ProjectEditorTemplatesStubComponent {
     @Input() templates: any
     @Input() isDisabled: boolean
   }
 
   const postCommentEmitter = new EventEmitter()
-  @Component({ selector: 'num-study-editor-comments', template: '' })
+  @Component({ selector: 'num-project-editor-comments', template: '' })
   class ProjectEditorCommentsStubComponent {
     @Input() isLoadingComplete: any
     @Input() comments: any[]
@@ -126,7 +126,7 @@ describe('ProjectEditorComponent', () => {
     @Output() postComment = postCommentEmitter
   }
 
-  @Component({ selector: 'num-study-editor-approval', template: '' })
+  @Component({ selector: 'num-project-editor-approval', template: '' })
   class ProjectEditorApprovalStubComponent {
     @Input() form: any
   }
@@ -137,7 +137,7 @@ describe('ProjectEditorComponent', () => {
   const saveAsApprovalReplyEmitter = new EventEmitter()
   const startEditEmitter = new EventEmitter()
   const cancelEmitter = new EventEmitter()
-  @Component({ selector: 'num-study-editor-buttons', template: '' })
+  @Component({ selector: 'num-project-editor-buttons', template: '' })
   class ProjectEditorButtonsStubComponent {
     @Input() editorMode: any
     @Input() projectStatus: any

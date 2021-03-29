@@ -18,8 +18,8 @@ export enum ProjectCategory {
   CriticalCareMedicine = 'CRITICAL_CARE_MEDICINE',
   QualityManagementMii = 'QUALITY_MANAGEMENT_MII',
   QualityManagementRoutineCare = 'QUALITY_MANAGEMENT_ROUTINE_CARE',
-  LongitudinalStudy = 'LONGITUDINAL_PROJECT',
-  ProspectiveStudy = 'PROSPECTIVE_PROJECT',
-  RetrospectiveStudy = 'RETROSPECTIVE_PROJECT',
+  LongitudinalProject = 'LONGITUDINAL_PROJECT',
+  ProspectiveProject = 'PROSPECTIVE_PROJECT',
+  RetrospectiveProject = 'RETROSPECTIVE_PROJECT',
   Registry = 'REGISTRY',
 }

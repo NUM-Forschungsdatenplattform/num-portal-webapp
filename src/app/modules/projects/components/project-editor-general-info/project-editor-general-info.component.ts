@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 
 @Component({
-  selector: 'num-study-editor-general-info',
+  selector: 'num-project-editor-general-info',
   templateUrl: './project-editor-general-info.component.html',
   styleUrls: ['./project-editor-general-info.component.scss'],
 })

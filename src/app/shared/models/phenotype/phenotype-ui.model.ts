@@ -99,10 +99,10 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   }
 
   public convertToApi(): ICohortGroupApi {
-    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForStudyApi()
+    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForProjectApi()
   }
 
-  private getPhenotypeForStudyApi(): ICohortGroupApi {
+  private getPhenotypeForProjectApi(): ICohortGroupApi {
     return {
       type: ConnectorNodeType.Phenotype,
       phenotypeId: this.id,
@@ -117,7 +117,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     return {
       type: ConnectorNodeType.Group,
       operator: LogicalOperator.Not,
-      children: [this.getPhenotypeForStudyApi()],
+      children: [this.getPhenotypeForProjectApi()],
     }
   }
 }

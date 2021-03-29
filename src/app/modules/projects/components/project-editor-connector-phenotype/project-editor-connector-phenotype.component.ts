@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 
 @Component({
-  selector: 'num-study-editor-connector-phenotype',
+  selector: 'num-project-editor-connector-phenotype',
   templateUrl: './project-editor-connector-phenotype.component.html',
   styleUrls: ['./project-editor-connector-phenotype.component.scss'],
 })

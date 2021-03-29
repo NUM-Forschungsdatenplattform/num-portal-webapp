@@ -9,7 +9,7 @@ import { ProjectCategory } from '../../models/project-category.enum'
 
 import { ProjectEditorGeneralInfoCategoriesInputComponent } from './project-editor-general-info-categories-input.component'
 
-describe('StudyEditorGeneralInfoCategoriesInputComponent', () => {
+describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
   let component: ProjectEditorGeneralInfoCategoriesInputComponent
   let fixture: ComponentFixture<ProjectEditorGeneralInfoCategoriesInputComponent>
 

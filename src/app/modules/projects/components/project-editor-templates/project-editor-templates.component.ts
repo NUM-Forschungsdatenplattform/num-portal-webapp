@@ -6,7 +6,7 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
 import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-template.component'
 
 @Component({
-  selector: 'num-study-editor-templates',
+  selector: 'num-project-editor-templates',
   templateUrl: './project-editor-templates.component.html',
   styleUrls: ['./project-editor-templates.component.scss'],
 })

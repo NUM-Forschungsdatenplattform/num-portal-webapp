@@ -1,23 +1,28 @@
-<h3 id="studies-header">{{ 'AVAILABLE_PROJECTS' | translate }}</h3>
+<h3 id="projects-header">{{ 'AVAILABLE_PROJECTS' | translate }}</h3>
 
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
   <table
-    aria-labelledby="studies-header"
+    aria-labelledby="projects-header"
     mat-table
     [dataSource]="dataSource"
     matSort
     fixedLayout
-    data-test="studies__table"
+    data-test="projects__table"
   >
     <mat-menu #menu="matMenu">
-      <ng-template matMenuContent let-studyStatus="studyStatus" let-id="id" let-ownerId="ownerId">
+      <ng-template
+        matMenuContent
+        let-projectStatus="projectStatus"
+        let-id="id"
+        let-ownerId="ownerId"
+      >
         <button
           class="num-mat-list-item"
-          *ngFor="let menuItem of menuItems | itemVisibility: studyStatus:ownerId:userId"
+          *ngFor="let menuItem of menuItems | itemVisibility: projectStatus:ownerId:userId"
           [disabled]="menuItem.isDisabled"
           mat-menu-item
           (click)="handleMenuClick(menuItem.id, id)"
-          [attr.data-test]="'studies__table__action-item__' + menuItem.id + '-button'"
+          [attr.data-test]="'projects__table__action-item__' + menuItem.id + '-button'"
         >
           {{ menuItem.translationKey | translate }}
         </button>
@@ -34,11 +39,11 @@
           mat-icon-button
           [matMenuTriggerFor]="menu"
           [matMenuTriggerData]="{
-            studyStatus: element.status,
+            projectStatus: element.status,
             id: element.id,
             ownerId: element.coordinator.id
           }"
-          data-test="studies__table__action-menu-button"
+          data-test="projects__table__action-menu-button"
         >
           <fa-icon icon="ellipsis-v"></fa-icon>
         </button>
@@ -88,6 +93,6 @@
     showFirstLastButtons
     [pageSize]="pageSize"
     (page)="pageSize = $event.pageSize"
-    data-test="studies__table__paginator"
+    data-test="projects__table__paginator"
   ></mat-paginator>
 </div>

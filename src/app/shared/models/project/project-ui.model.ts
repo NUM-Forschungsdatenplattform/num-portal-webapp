@@ -15,7 +15,7 @@ import { IProjectTemplateInfoApi } from './project-template-info-api.interface'
 export class ProjectUiModel {
   cohortId: number | null
   cohortGroup: CohortGroupUiModel
-  /** The coordinator of the study. Is automatically asigned based on the auth-token */
+  /** The coordinator of the project. Is automatically asigned based on the auth-token */
   coordinator?: IUser
   description?: string
   goal?: string
@@ -34,28 +34,28 @@ export class ProjectUiModel {
   status: ProjectStatus
   templates: IProjectTemplateInfoApi[]
 
-  constructor(apiStudy?: IProjectApi, private phenotypeService?: PhenotypeService) {
-    this.id = apiStudy?.id || null
-    this.description = apiStudy?.description || undefined
-    this.goal = apiStudy?.goal || undefined
-    this.firstHypotheses = apiStudy?.firstHypotheses || undefined
-    this.secondHypotheses = apiStudy?.secondHypotheses || undefined
-    this.keywords = apiStudy?.keywords || []
-    this.categories = apiStudy?.categories || []
-    this.startDate = apiStudy?.startDate ? new Date(apiStudy.startDate) : new Date()
-    this.endDate = apiStudy?.endDate
-      ? new Date(apiStudy.endDate)
+  constructor(projectApi?: IProjectApi, private phenotypeService?: PhenotypeService) {
+    this.id = projectApi?.id || null
+    this.description = projectApi?.description || undefined
+    this.goal = projectApi?.goal || undefined
+    this.firstHypotheses = projectApi?.firstHypotheses || undefined
+    this.secondHypotheses = projectApi?.secondHypotheses || undefined
+    this.keywords = projectApi?.keywords || []
+    this.categories = projectApi?.categories || []
+    this.startDate = projectApi?.startDate ? new Date(projectApi.startDate) : new Date()
+    this.endDate = projectApi?.endDate
+      ? new Date(projectApi.endDate)
       : new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-    this.financed = apiStudy?.financed || false
+    this.financed = projectApi?.financed || false
 
-    this.coordinator = apiStudy?.coordinator || undefined
-    this.modifiedDate = apiStudy?.modifiedDate ? new Date(apiStudy?.modifiedDate) : undefined
-    this.name = apiStudy?.name || undefined
-    this.status = apiStudy?.status || ProjectStatus.Draft
-    this.cohortId = apiStudy?.cohortId || null
+    this.coordinator = projectApi?.coordinator || undefined
+    this.modifiedDate = projectApi?.modifiedDate ? new Date(projectApi?.modifiedDate) : undefined
+    this.name = projectApi?.name || undefined
+    this.status = projectApi?.status || ProjectStatus.Draft
+    this.cohortId = projectApi?.cohortId || null
     this.researchers = []
-    this.researchersApi = apiStudy?.researchers || []
-    this.templates = apiStudy?.templates || []
+    this.researchersApi = projectApi?.researchers || []
+    this.templates = projectApi?.templates || []
     this.cohortGroup = new CohortGroupUiModel()
   }
 
@@ -77,7 +77,7 @@ export class ProjectUiModel {
     id?: number,
     formValues?: ProjectUiModel
   ): { project: IProjectApi; cohortGroup: ICohortGroupApi } {
-    const study: IProjectApi = {
+    const projectApi: IProjectApi = {
       id: id || this.id,
       name: formValues?.name || this.name,
       description: formValues?.description || this.description,
@@ -97,7 +97,7 @@ export class ProjectUiModel {
 
     const cohortGroup = this.cohortGroup.convertToApi()
 
-    return { project: study, cohortGroup }
+    return { project: projectApi, cohortGroup }
   }
 
   public getProjectPreviewGeneralInfo(): IDefinitionList[] {

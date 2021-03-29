@@ -1,5 +1,5 @@
 <mat-expansion-panel [expanded]="true">
-  <mat-expansion-panel-header data-test="studies-editor__general-info__general-info-button">
+  <mat-expansion-panel-header data-test="projects-editor__general-info__general-info-button">
     <h3 class="accordion">
       <fa-icon [icon]="['far', 'check-circle']" *ngIf="form.valid"></fa-icon
       >{{ 'FORM.GENERAL_INFO' | translate }}*
@@ -22,7 +22,7 @@
           formControlName="name"
           matInput
           aria-labelledby="title-label"
-          data-test="study-editor__general-info__title-input"
+          data-test="project-editor__general-info__title-input"
         />
       </mat-form-field>
 
@@ -35,7 +35,7 @@
           style="resize: none"
           aria-labelledby="desc-label"
           rows="10"
-          data-test="study-editor__general-info__description-input"
+          data-test="project-editor__general-info__description-input"
         ></textarea>
       </mat-form-field>
 
@@ -49,7 +49,7 @@
           style="resize: none"
           aria-labelledby="goal-label"
           rows="10"
-          data-test="study-editor__general-info__goal-input"
+          data-test="project-editor__general-info__goal-input"
         ></textarea>
       </mat-form-field>
 
@@ -65,7 +65,7 @@
             style="resize: none"
             aria-labelledby="label-firstHypotheses"
             rows="10"
-            data-test="study-editor__general-info__first-hypotheses-input"
+            data-test="project-editor__general-info__first-hypotheses-input"
           ></textarea>
         </mat-form-field>
 
@@ -80,18 +80,18 @@
             style="resize: none"
             aria-labelledby="label-secondHypotheses"
             rows="10"
-            data-test="study-editor__general-info__second-hypotheses-input"
+            data-test="project-editor__general-info__second-hypotheses-input"
           ></textarea>
         </mat-form-field>
       </section>
 
-      <num-study-editor-general-info-keywords-input
+      <num-project-editor-general-info-keywords-input
         [form]="form"
-      ></num-study-editor-general-info-keywords-input>
+      ></num-project-editor-general-info-keywords-input>
 
-      <num-study-editor-general-info-categories-input
+      <num-project-editor-general-info-categories-input
         [form]="form"
-      ></num-study-editor-general-info-categories-input>
+      ></num-project-editor-general-info-categories-input>
 
       <section role="presentation" fxLayout="row" fxLayoutGap="20px">
         <mat-form-field appearance="outline">
@@ -101,12 +101,12 @@
             matInput
             [matDatepicker]="startDate"
             (focus)="startDate.open()"
-            data-test="study-editor__general-info__start-date-input"
+            data-test="project-editor__general-info__start-date-input"
           />
           <mat-datepicker-toggle
             matSuffix
             [for]="startDate"
-            data-test="study-editor__general-info__start-date-toggle"
+            data-test="project-editor__general-info__start-date-toggle"
           ></mat-datepicker-toggle>
           <mat-datepicker #startDate></mat-datepicker>
         </mat-form-field>
@@ -118,12 +118,12 @@
             matInput
             [matDatepicker]="endDate"
             (focus)="endDate.open()"
-            data-test="study-editor__general-info__end-date-input"
+            data-test="project-editor__general-info__end-date-input"
           />
           <mat-datepicker-toggle
             matSuffix
             [for]="endDate"
-            data-test="study-editor__general-info__end-date-toggle"
+            data-test="project-editor__general-info__end-date-toggle"
           ></mat-datepicker-toggle>
           <mat-datepicker #endDate></mat-datepicker>
         </mat-form-field>
@@ -133,7 +133,7 @@
         <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}*</p>
         <mat-slide-toggle
           formControlName="financed"
-          data-test="study-editor__general-info__financed-toggle"
+          data-test="project-editor__general-info__financed-toggle"
           >{{ 'FORM.FINANCED_BY_PRIVATE' | translate }}</mat-slide-toggle
         >
       </section>

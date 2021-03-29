@@ -7,7 +7,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
 
 import { ProjectEditorApprovalComponent } from './project-editor-approval.component'
 
-describe('StudyEditorApprovalComponent', () => {
+describe('ProjectEditorApprovalComponent', () => {
   let component: ProjectEditorApprovalComponent
   let fixture: ComponentFixture<ProjectEditorApprovalComponent>
 

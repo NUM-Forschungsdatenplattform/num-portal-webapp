@@ -19,7 +19,7 @@ describe('AddTemplateSelectedTableComponent', () => {
     name: 'Template test',
   }
 
-  const studyTemplate: IProjectTemplateInfoApi = {
+  const projectTemplate: IProjectTemplateInfoApi = {
     templateId: templateRow.templateId,
     name: templateRow.name,
   }
@@ -44,11 +44,11 @@ describe('AddTemplateSelectedTableComponent', () => {
 
   describe('When the selected templates passed in are changed', () => {
     it('should set up the dataSource', () => {
-      component.selectedTemplates = [studyTemplate]
+      component.selectedTemplates = [projectTemplate]
       const change = new SimpleChange([], component.selectedTemplates, false)
       component.ngOnChanges({ selectedTemplates: change })
       fixture.detectChanges()
-      expect(component.dataSource.data).toEqual([studyTemplate])
+      expect(component.dataSource.data).toEqual([projectTemplate])
     })
   })
 })

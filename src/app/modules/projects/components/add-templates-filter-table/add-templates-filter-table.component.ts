@@ -73,11 +73,11 @@ export class AddTemplatesFilterTableComponent
 
   handleSelectClick(row: ITemplateMetaDataApi): void {
     this.lookupSelectedTemplates[row.templateId] = true
-    const studyTemplate: IProjectTemplateInfoApi = {
+    const projectTemplate: IProjectTemplateInfoApi = {
       templateId: row.templateId,
       name: row.name,
     }
-    this.selectedTemplatesChange.emit([...this.selectedTemplates, studyTemplate])
+    this.selectedTemplatesChange.emit([...this.selectedTemplates, projectTemplate])
   }
 
   handleDeselectClick(row: ITemplateMetaDataApi): void {

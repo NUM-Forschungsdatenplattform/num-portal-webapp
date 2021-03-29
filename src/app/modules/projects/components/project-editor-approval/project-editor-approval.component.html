@@ -1,7 +1,7 @@
-<h3>{{ 'STUDY.APPROVAL_INFORMATION' | translate }}</h3>
+<h3>{{ 'PROJECT.APPROVAL_INFORMATION' | translate }}</h3>
 
 <mat-card class="mat-elevation-z4">
-  <p id="approval-info">{{ 'STUDY.APPROVAL_HINT' | translate }}</p>
+  <p id="approval-info">{{ 'PROJECT.APPROVAL_HINT' | translate }}</p>
   <h4>{{ 'PLEASE_CHOOSE' | translate }}...*</h4>
   <form [formGroup]="form">
     <mat-radio-group
@@ -9,14 +9,14 @@
       fxLayout="column"
       fxLayoutGap="10px"
       formControlName="decision"
-      data-test="study-editor__approval__radio-group"
+      data-test="project-editor__approval__radio-group"
     >
       <mat-radio-button
         *ngFor="let approvalOption of approvalOptions"
         [value]="approvalOption"
-        [attr.data-test]="'study-editor__approval__' + approvalOption + '-radio-option'"
+        [attr.data-test]="'project-editor__approval__' + approvalOption + '-radio-option'"
       >
-        {{ 'STUDY.REVIEW.' + approvalOption | translate }}</mat-radio-button
+        {{ 'PROJECT.REVIEW.' + approvalOption | translate }}</mat-radio-button
       >
     </mat-radio-group>
   </form>

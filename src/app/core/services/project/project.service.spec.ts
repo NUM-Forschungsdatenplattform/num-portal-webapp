@@ -58,8 +58,8 @@ describe('ProjectService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProjects))
       service.getAll().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
-      service.projectsObservable$.subscribe((studies) => {
-        expect(studies).toEqual(mockProjects)
+      service.projectsObservable$.subscribe((projects) => {
+        expect(projects).toEqual(mockProjects)
       })
     })
     it(`should call the api - with error`, () => {
@@ -187,8 +187,8 @@ describe('ProjectService', () => {
     })
   })
 
-  describe('When the getMyPublishedStudies method is called', () => {
-    it('should call the myPublishedStudiesSubject$.next with studies the user is assigned to as a researcher and which are in published state', () => {
+  describe('When the getMyPublishedProjects method is called', () => {
+    it('should call the myPublishedProjectsSubject$.next with projects the user is assigned to as a researcher and which are in published state', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of([mockProjects1]))
       userProfileSubject$.next(mockUser)
 

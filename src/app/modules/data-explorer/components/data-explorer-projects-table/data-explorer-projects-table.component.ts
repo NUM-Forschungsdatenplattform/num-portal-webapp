@@ -8,7 +8,7 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 
 @Component({
-  selector: 'num-data-explorer-studies-table',
+  selector: 'num-data-explorer-projects-table',
   templateUrl: './data-explorer-projects-table.component.html',
   styleUrls: ['./data-explorer-projects-table.component.scss'],
 })
@@ -53,8 +53,8 @@ export class DataExplorerProjectsTableComponent implements OnInit, AfterViewInit
     this.subscriptions.unsubscribe()
   }
 
-  handleData(studies: IProjectApi[]): void {
-    this.dataSource.data = studies
+  handleData(projects: IProjectApi[]): void {
+    this.dataSource.data = projects
   }
 
   handleSelectClick(id: number): void {

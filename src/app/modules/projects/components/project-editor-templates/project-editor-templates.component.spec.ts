@@ -15,7 +15,7 @@ import { ITemplateMetaDataApi } from '../../../../shared/models/template/templat
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ADD_DIALOG_CONFIG } from './constants'
 
-describe('StudyEditorTemplatesComponent', () => {
+describe('ProjectEditorTemplatesComponent', () => {
   let component: ProjectEditorTemplatesComponent
   let fixture: ComponentFixture<ProjectEditorTemplatesComponent>
 
@@ -34,12 +34,12 @@ describe('StudyEditorTemplatesComponent', () => {
     name: 'Template test',
   }
 
-  const studyTemplate: IProjectTemplateInfoApi = {
+  const projectTemplate: IProjectTemplateInfoApi = {
     templateId: templateRow.templateId,
     name: templateRow.name,
   }
 
-  const studyTemplateArr: IProjectTemplateInfoApi[] = [studyTemplate]
+  const projectTemplateArr: IProjectTemplateInfoApi[] = [projectTemplate]
 
   const afterClosedSubject$ = new Subject()
   const mockDialogService = ({
@@ -81,7 +81,7 @@ describe('StudyEditorTemplatesComponent', () => {
   })
 
   describe('When template are supposed to be added to the list', () => {
-    const dialogContentPayload: IProjectTemplateInfoApi[] = studyTemplateArr
+    const dialogContentPayload: IProjectTemplateInfoApi[] = projectTemplateArr
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
       dialogContentComponent: DialogAddTemplateComponent,
@@ -89,7 +89,7 @@ describe('StudyEditorTemplatesComponent', () => {
     }
 
     it('should open the dialog with the list of existing templates', () => {
-      component.templates = studyTemplateArr
+      component.templates = projectTemplateArr
       component.isDisabled = false
       fixture.detectChanges()
       component.addTemplate()

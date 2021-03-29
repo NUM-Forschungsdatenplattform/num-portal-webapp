@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators'
 import { ProjectCategory } from '../../models/project-category.enum'
 
 @Component({
-  selector: 'num-study-editor-general-info-categories-input',
+  selector: 'num-project-editor-general-info-categories-input',
   templateUrl: './project-editor-general-info-categories-input.component.html',
   styleUrls: ['./project-editor-general-info-categories-input.component.scss'],
 })
@@ -82,7 +82,7 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
 
       filteredCategories = allCategoriesWithoutSelected.filter((category) =>
         this.translate
-          .instant('STUDY.CATEGORIES.' + category)
+          .instant('PROJECT.CATEGORIES.' + category)
           .toLowerCase()
           .includes(filterText)
       )

@@ -10,7 +10,7 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 @Component({
-  selector: 'num-study-editor-connector',
+  selector: 'num-project-editor-connector',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './project-editor-connector.component.html',
   styleUrls: ['./project-editor-connector.component.scss'],

@@ -8,25 +8,25 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { ProjectsComponent } from './projects.component'
 
-describe('StudiesComponent', () => {
+describe('ProjectsComponent', () => {
   let component: ProjectsComponent
   let fixture: ComponentFixture<ProjectsComponent>
 
-  @Component({ selector: 'num-studies-table', template: '' })
-  class StudiesTableStubComponent {}
+  @Component({ selector: 'num-projects-table', template: '' })
+  class ProjectsTableStubComponent {}
 
-  const studyService = ({
+  const projectService = ({
     getAll: () => of(),
   } as unknown) as ProjectService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsComponent, StudiesTableStubComponent],
+      declarations: [ProjectsComponent, ProjectsTableStubComponent],
       imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: ProjectService,
-          useValue: studyService,
+          useValue: projectService,
         },
       ],
     }).compileComponents()

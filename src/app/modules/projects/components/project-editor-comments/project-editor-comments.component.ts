@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 
 @Component({
-  selector: 'num-study-editor-comments',
+  selector: 'num-project-editor-comments',
   templateUrl: './project-editor-comments.component.html',
   styleUrls: ['./project-editor-comments.component.scss'],
 })

@@ -5,7 +5,7 @@ import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum
 import { ApprovalOption } from '../../models/approval-option.enum'
 
 @Component({
-  selector: 'num-study-editor-buttons',
+  selector: 'num-project-editor-buttons',
   templateUrl: './project-editor-buttons.component.html',
   styleUrls: ['./project-editor-buttons.component.scss'],
 })

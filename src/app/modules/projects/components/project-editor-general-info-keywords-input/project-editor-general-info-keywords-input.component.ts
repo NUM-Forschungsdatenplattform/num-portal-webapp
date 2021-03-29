@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips'
 
 @Component({
-  selector: 'num-study-editor-general-info-keywords-input',
+  selector: 'num-project-editor-general-info-keywords-input',
   templateUrl: './project-editor-general-info-keywords-input.component.html',
   styleUrls: ['./project-editor-general-info-keywords-input.component.scss'],
 })

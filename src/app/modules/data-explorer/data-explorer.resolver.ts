@@ -18,7 +18,7 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
   userInfo: IAuthUserInfo
 
   constructor(
-    private studyService: ProjectService,
+    private projectService: ProjectService,
     private phenotypeService: PhenotypeService,
     private router: Router,
     private authService: AuthService
@@ -30,30 +30,30 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
     const id = route.paramMap.get('id')
 
     if (isNaN(+id)) {
-      this.router.navigate(['data-explorer/studies'])
+      this.router.navigate(['data-explorer/projects'])
       return of()
     }
 
-    return this.studyService.get(+id).pipe(
-      map((study) => {
-        if (this.isAllowed(study)) {
-          const uiModel = new ProjectUiModel(study, this.phenotypeService)
+    return this.projectService.get(+id).pipe(
+      map((project) => {
+        if (this.isAllowed(project)) {
+          const uiModel = new ProjectUiModel(project, this.phenotypeService)
           return { project: uiModel, error: null }
         } else {
-          this.router.navigate(['data-explorer/studies'])
+          this.router.navigate(['data-explorer/projects'])
           return undefined
         }
       }),
       catchError((error) => {
-        this.router.navigate(['data-explorer/studies'])
+        this.router.navigate(['data-explorer/projects'])
         return of(error)
       })
     )
   }
 
-  isAllowed(study: IProjectApi): boolean {
-    if (study.status === ProjectStatus.Published) {
-      if (study.researchers.find((researcher) => this.userInfo.sub === researcher.userId)) {
+  isAllowed(project: IProjectApi): boolean {
+    if (project.status === ProjectStatus.Published) {
+      if (project.researchers.find((researcher) => this.userInfo.sub === researcher.userId)) {
         return true
       }
     }

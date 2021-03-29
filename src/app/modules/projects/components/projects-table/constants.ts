@@ -32,5 +32,5 @@ export const PUBLISH_PROJECT_DIALOG_CONFIG: DialogConfig = {
   hasCloseIcon: false,
 
   dialogContentComponent: DialogConfirmProjectComponent,
-  dialogContentPayload: 'CONFIRM_DIALOG.PUBLISH_STUDY_CONTENT',
+  dialogContentPayload: 'CONFIRM_DIALOG.PUBLISH_PROJECT_CONTENT',
 }

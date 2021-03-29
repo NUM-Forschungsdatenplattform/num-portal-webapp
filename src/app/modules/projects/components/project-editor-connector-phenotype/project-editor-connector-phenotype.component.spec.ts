@@ -5,7 +5,7 @@ import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.m
 import { mockPhenotype1 } from 'src/mocks/data-mocks/phenotypes.mock'
 import { ProjectEditorConnectorPhenotypeComponent } from './project-editor-connector-phenotype.component'
 
-describe('StudyEditorConnectorPhenotypeComponent', () => {
+describe('ProjectEditorConnectorPhenotypeComponent', () => {
   let component: ProjectEditorConnectorPhenotypeComponent
   let fixture: ComponentFixture<ProjectEditorConnectorPhenotypeComponent>
 

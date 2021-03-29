@@ -11,7 +11,7 @@ import { projectCommentMocks } from 'src/mocks/data-mocks/project-comments.mock'
 
 import { ProjectEditorCommentsComponent } from './project-editor-comments.component'
 
-describe('StudyEditorCommentsComponent', () => {
+describe('ProjectEditorCommentsComponent', () => {
   let component: ProjectEditorCommentsComponent
   let fixture: ComponentFixture<ProjectEditorCommentsComponent>
   const form = new FormGroup({

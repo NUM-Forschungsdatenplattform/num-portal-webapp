@@ -11,7 +11,7 @@ describe('DataExplorerProjectsComponent', () => {
   let component: DataExplorerProjectsComponent
   let fixture: ComponentFixture<DataExplorerProjectsComponent>
 
-  @Component({ selector: 'num-data-explorer-studies-table', template: '' })
+  @Component({ selector: 'num-data-explorer-projects-table', template: '' })
   class DataExplorerProjectsTableStubComponent {}
 
   const projectService = ({

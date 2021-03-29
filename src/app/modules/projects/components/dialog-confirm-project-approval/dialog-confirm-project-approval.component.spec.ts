@@ -8,7 +8,7 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 
 import { DialogConfirmProjectApprovalComponent } from './dialog-confirm-project-approval.component'
 
-describe('DialogConfirmStudyApprovalComponent', () => {
+describe('DialogConfirmProjectApprovalComponent', () => {
   let component: DialogConfirmProjectApprovalComponent
   let fixture: ComponentFixture<DialogConfirmProjectApprovalComponent>
 

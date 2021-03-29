@@ -21,7 +21,7 @@ import {
 import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } from './menu-items'
 
 @Component({
-  selector: 'num-studies-table',
+  selector: 'num-projects-table',
   templateUrl: './projects-table.component.html',
   styleUrls: ['./projects-table.component.scss'],
 })

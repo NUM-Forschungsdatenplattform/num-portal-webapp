@@ -9,7 +9,7 @@ import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info
 import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 
-describe('StudyEditorGeneralInfoComponent', () => {
+describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
   let fixture: ComponentFixture<ProjectEditorGeneralInfoComponent>
 
@@ -18,13 +18,13 @@ describe('StudyEditorGeneralInfoComponent', () => {
     @Input() dataSource: IDefinitionList[]
   }
 
-  @Component({ selector: 'num-study-editor-general-info-keywords-input', template: '' })
-  class StudyEditorGeneralInfoKeywordsInputComponent {
+  @Component({ selector: 'num-project-editor-general-info-keywords-input', template: '' })
+  class ProjectEditorGeneralInfoKeywordsInputComponent {
     @Input() form: FormGroup
   }
 
-  @Component({ selector: 'num-study-editor-general-info-categories-input', template: '' })
-  class StudyEditorGeneralInfoCategoriesInputComponent {
+  @Component({ selector: 'num-project-editor-general-info-categories-input', template: '' })
+  class ProjectEditorGeneralInfoCategoriesInputComponent {
     @Input() form: FormGroup
   }
 
@@ -33,8 +33,8 @@ describe('StudyEditorGeneralInfoComponent', () => {
       declarations: [
         ProjectEditorGeneralInfoComponent,
         DefinitionListStubComponent,
-        StudyEditorGeneralInfoKeywordsInputComponent,
-        StudyEditorGeneralInfoCategoriesInputComponent,
+        ProjectEditorGeneralInfoKeywordsInputComponent,
+        ProjectEditorGeneralInfoCategoriesInputComponent,
       ],
       imports: [
         BrowserAnimationsModule,

@@ -8,11 +8,11 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectEditorConnectorComponent } from './project-editor-connector.component'
 
-describe('StudyEditorConnectorComponent', () => {
+describe('ProjectEditorConnectorComponent', () => {
   let component: ProjectEditorConnectorComponent
   let fixture: ComponentFixture<ProjectEditorConnectorComponent>
 
-  @Component({ selector: 'num-study-editor-connector-group', template: '' })
+  @Component({ selector: 'num-project-editor-connector-group', template: '' })
   class GroupStubComponent {
     @Input() cohortGroup: any
     @Input() parentGroupIndex: any

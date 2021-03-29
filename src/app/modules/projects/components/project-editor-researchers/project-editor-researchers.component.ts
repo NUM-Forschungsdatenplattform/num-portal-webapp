@@ -7,7 +7,7 @@ import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-
 import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
-  selector: 'num-study-editor-researchers',
+  selector: 'num-project-editor-researchers',
   templateUrl: './project-editor-researchers.component.html',
   styleUrls: ['./projet-editor-researchers.component.scss'],
 })

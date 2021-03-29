@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core'
 
 import { DialogConfirmProjectComponent } from './dialog-confirm-project.component'
 
-describe('DialogConfirmStudyComponent', () => {
+describe('DialogConfirmProjectComponent', () => {
   let component: DialogConfirmProjectComponent
   let fixture: ComponentFixture<DialogConfirmProjectComponent>
 

@@ -1,5 +1,5 @@
 <mat-expansion-panel>
-  <mat-expansion-panel-header data-test="studies-editor__connector__define-cohort-button">
+  <mat-expansion-panel-header data-test="projects-editor__connector__define-cohort-button">
     <mat-panel-title>
       <h3 class="accordion">
         <fa-icon
@@ -25,15 +25,15 @@
   >
     <div>{{ 'DEFINE_COHORT_CONTENT' | translate }}</div>
 
-    <num-study-editor-connector-group
+    <num-project-editor-connector-group
       role="list"
       class="num-margin-b-20"
       [cohortGroup]="cohortNode"
       [parentGroupIndex]="null"
       [isDisabled]="isDisabled"
       fxFlex="100%"
-      data-test="study-editor__connector__group"
-    ></num-study-editor-connector-group>
+      data-test="project-editor__connector__group"
+    ></num-project-editor-connector-group>
 
     <num-editor-determine-hits
       [isButtonDisabled]="!(cohortNode.children.length && cohortNode.areParameterConfigured)"

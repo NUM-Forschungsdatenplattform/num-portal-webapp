@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ProjectEditorResearchersComponent } from './project-editor-researchers.component'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 
-describe('StudyEditorResearchersComponent', () => {
+describe('ProjectEditorResearchersComponent', () => {
   let component: ProjectEditorResearchersComponent
   let fixture: ComponentFixture<ProjectEditorResearchersComponent>
 

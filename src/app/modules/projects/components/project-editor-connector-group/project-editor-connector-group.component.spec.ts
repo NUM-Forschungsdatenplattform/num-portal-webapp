@@ -24,7 +24,7 @@ import { DialogEditPhenotypeComponent } from '../dialog-edit-phenotype/dialog-ed
 import { ADD_DIALOG_CONFIG, EDIT_DIALOG_CONFIG } from './constants'
 import { ProjectEditorConnectorGroupComponent } from './project-editor-connector-group.component'
 
-describe('StudyEditorConnectorGroupComponent', () => {
+describe('ProjectEditorConnectorGroupComponent', () => {
   let component: ProjectEditorConnectorGroupComponent
   let fixture: ComponentFixture<ProjectEditorConnectorGroupComponent>
 
@@ -42,7 +42,7 @@ describe('StudyEditorConnectorGroupComponent', () => {
   // const openDialogMock = mockDialogService.openDialog as jest.Mock<any, any>
   // const openDialogMockCalls = openDialogMock.mock.calls
 
-  @Component({ selector: 'num-study-editor-connector-phenotype', template: '' })
+  @Component({ selector: 'num-project-editor-connector-phenotype', template: '' })
   class PhenotypeStubComponent {
     @Input() phenotype: any
     @Input() isDisabled: boolean

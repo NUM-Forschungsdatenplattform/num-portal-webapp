@@ -28,7 +28,7 @@ describe('AddTemplatesFilterTableComponent', () => {
     name: 'Template test',
   }
 
-  const studyTemplate: IProjectTemplateInfoApi = {
+  const projectTemplate: IProjectTemplateInfoApi = {
     templateId: templateRow.templateId,
     name: templateRow.name,
   }
@@ -66,7 +66,7 @@ describe('AddTemplatesFilterTableComponent', () => {
 
   describe('When the selected templates passed in are changed', () => {
     it('should set up the selected templates lookup', () => {
-      component.selectedTemplates = [studyTemplate]
+      component.selectedTemplates = [projectTemplate]
       const change = new SimpleChange([], component.selectedTemplates, false)
       component.ngOnChanges({ selectedTemplates: change })
       fixture.detectChanges()

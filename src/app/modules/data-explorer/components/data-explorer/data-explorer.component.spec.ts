@@ -101,26 +101,26 @@ describe('DataExplorerComponent', () => {
     },
   } as unknown) as ActivatedRoute
 
-  @Component({ selector: 'num-study-editor-general-info', template: '' })
+  @Component({ selector: 'num-project-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
   }
-  @Component({ selector: 'num-study-editor-connector', template: '' })
+  @Component({ selector: 'num-project-editor-connector', template: '' })
   class StubProjectEditorConnector {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
     @Input() isDisabled: boolean
   }
-  @Component({ selector: 'num-study-editor-researchers', template: '' })
+  @Component({ selector: 'num-project-editor-researchers', template: '' })
   class ProjectEditorResearchers {
     @Input() researchers: any[]
     @Input() isDisabled: boolean
     @Input() isLoadingComplete: boolean
   }
 
-  @Component({ selector: 'num-study-editor-templates', template: '' })
+  @Component({ selector: 'num-project-editor-templates', template: '' })
   class ProjectEditorTemplatesStubComponent {
     @Input() templates: any
     @Input() isDisabled: boolean

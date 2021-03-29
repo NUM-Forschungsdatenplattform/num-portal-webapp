@@ -8,7 +8,7 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ProjectEditorGeneralInfoKeywordsInputComponent } from './project-editor-general-info-keywords-input.component'
 import { MatChipInputEvent } from '@angular/material/chips'
 
-describe('StudyEditorGeneralInfoKeywordsInputComponent', () => {
+describe('ProjectEditorGeneralInfoKeywordsInputComponent', () => {
   let component: ProjectEditorGeneralInfoKeywordsInputComponent
   let fixture: ComponentFixture<ProjectEditorGeneralInfoKeywordsInputComponent>
 

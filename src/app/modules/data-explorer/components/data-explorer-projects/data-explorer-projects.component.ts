@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 
 @Component({
-  selector: 'num-data-explorer-studies',
+  selector: 'num-data-explorer-projects',
   templateUrl: './data-explorer-projects.component.html',
   styleUrls: ['./data-explorer-projects.component.scss'],
 })
 export class DataExplorerProjectsComponent implements OnInit {
-  constructor(private studyService: ProjectService) {}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.studyService.getMyPublishedProjects().subscribe()
+    this.projectService.getMyPublishedProjects().subscribe()
   }
 }

@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
 @Component({
-  selector: 'num-dialog-confirm-study-approval',
+  selector: 'num-dialog-confirm-project-approval',
   templateUrl: './dialog-confirm-project-approval.component.html',
   styleUrls: ['./dialog-confirm-project-approval.component.scss'],
 })

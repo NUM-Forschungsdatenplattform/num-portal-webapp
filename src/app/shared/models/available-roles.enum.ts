@@ -1,3 +1,4 @@
+// TODO we need to change the role from 'study' to 'project'
 export enum AvailableRoles {
   Researcher = 'RESEARCHER',
   ProjectCoordinator = 'STUDY_COORDINATOR',
