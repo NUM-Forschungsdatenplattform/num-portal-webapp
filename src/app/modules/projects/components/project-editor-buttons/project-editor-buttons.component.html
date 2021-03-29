@@ -1,0 +1,110 @@
+<section role="region" fxLayout="column">
+  <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+  <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="cancel.emit()"
+      data-test="project-editor__buttons__back-button"
+      >{{
+        (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
+      }}</num-button
+    >
+
+    <div
+      role="presentation"
+      fxLayout="row"
+      fxLayoutAlign="space-between"
+      fxLayoutGap="8px"
+      [ngSwitch]="editorMode"
+    >
+      <ng-container
+        *ngSwitchCase="possibleModes.PREVIEW"
+        [ngTemplateOutlet]="previewButtonRow"
+      ></ng-container>
+
+      <ng-container
+        *ngSwitchCase="possibleModes.REVIEW"
+        [ngTemplateOutlet]="reviewButtonRow"
+      ></ng-container>
+
+      <ng-container
+        *ngSwitchCase="possibleModes.EDIT"
+        [ngTemplateOutlet]="editButtonRow"
+      ></ng-container>
+    </div>
+  </div>
+</section>
+
+<ng-template #editButtonRow>
+  <num-button
+    id="primary-save"
+    type="primary"
+    *ngIf="
+      projectStatus === possibleStatus.Approved || projectStatus === possibleStatus.Published;
+      else fullEdit
+    "
+    (singleClick)="saveResearchers.emit()"
+    [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
+    data-test="project-editor__buttons__primary-save-button"
+    >{{ 'BUTTON.SAVE' | translate }}</num-button
+  >
+  <ng-template #fullEdit>
+    <num-button
+      id="secondary-save"
+      type="secondary"
+      [isDisabled]="
+        !isFormValid ||
+        (projectStatus !== possibleStatus.Draft && projectStatus !== possibleStatus.ChangeRequest)
+      "
+      (singleClick)="saveAll.emit()"
+      data-test="project-editor__buttons__secondary-save-button"
+      >{{ 'BUTTON.SAVE' | translate }}</num-button
+    >
+    <num-button
+      id="primary-approval"
+      type="primary"
+      (singleClick)="saveAsApprovalRequest.emit()"
+      [isDisabled]="
+        !isFormValid ||
+        !isResearchersDefined ||
+        !isTemplatesDefined ||
+        !isCohortDefined ||
+        (projectStatus !== possibleStatus.Draft && projectStatus !== possibleStatus.ChangeRequest)
+      "
+      data-test="project-editor__buttons__request-approval-button"
+      >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
+    >
+  </ng-template>
+</ng-template>
+
+<ng-template #reviewButtonRow>
+  <num-button
+    id="primary-reply"
+    type="primary"
+    (singleClick)="saveAsApprovalReply.emit()"
+    [isDisabled]="approverForm.invalid || projectStatus !== possibleStatus.Reviewing"
+    data-test="project-editor__buttons__approval-reply-button"
+    >{{ 'BUTTON.PROJECT_APPROVAL_' + approvalDecision | translate }}</num-button
+  >
+</ng-template>
+
+<ng-template #previewButtonRow>
+  <num-button
+    id="primary-start-edit"
+    type="primary"
+    (singleClick)="startEdit.emit()"
+    [isDisabled]="
+      !(
+        projectStatus === possibleStatus.Draft ||
+        projectStatus === possibleStatus.ChangeRequest ||
+        projectStatus === possibleStatus.Approved
+      )
+    "
+    data-test="project-editor__buttons__start-edit-button"
+    >{{
+      (projectStatus === possibleStatus.Approved ? 'BUTTON.EDIT_RESEARCHERS' : 'BUTTON.EDIT')
+        | translate
+    }}</num-button
+  >
+</ng-template>

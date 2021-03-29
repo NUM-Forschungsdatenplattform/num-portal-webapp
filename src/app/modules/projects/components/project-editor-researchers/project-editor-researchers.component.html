@@ -1,0 +1,73 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header data-test="projects-editor__researchers__select-researchers-button">
+    <h3 class="accordion">
+      <fa-icon [icon]="['far', 'check-circle']" *ngIf="dataSource.data.length"></fa-icon>
+
+      {{ 'RESEARCHERS.SELECT_RESEARCHERS' | translate }}*
+    </h3>
+  </mat-expansion-panel-header>
+
+  <ng-template #spinner>
+    <mat-progress-bar [color]="'accent'" mode="indeterminate"></mat-progress-bar>
+  </ng-template>
+
+  <section
+    role="region"
+    aria-labelledby="select-description"
+    fxLayout="column"
+    fxFlex="100%"
+    fxLayoutGap="20px"
+    *ngIf="isLoadingComplete; else spinner"
+  >
+    <div id="select-description">{{ 'RESEARCHERS.SELECT_RESEARCHERS_CONTENT' | translate }}</div>
+
+    <div class="researchers-container">
+      <div class="no-results" *ngIf="!dataSource.data?.length; else researchersList">
+        {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
+      </div>
+      <ng-template #researchersList>
+        <table mat-table [dataSource]="dataSource" aria-labelledby="select-description">
+          <ng-container matColumnDef="user">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Researcher</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.firstName }} {{ element.lastName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="icon">
+            <th scope="col" mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                class="researchers-list_item-delete"
+                [disabled]="isDisabled"
+                (click)="deleteResearcher(element.id)"
+                data-test="project-editor__researchers__delete-researcher-button"
+              >
+                <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
+          <tr
+            class="num-mat-table-row"
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+          ></tr>
+        </table>
+      </ng-template>
+    </div>
+
+    <num-button
+      type="primary"
+      icon="plus"
+      [isDisabled]="isDisabled"
+      (singleClick)="addResearchers()"
+      data-test="project-editor__researchers__add-researchers-button"
+    >
+      {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
+    </num-button>
+  </section>
+</mat-expansion-panel>

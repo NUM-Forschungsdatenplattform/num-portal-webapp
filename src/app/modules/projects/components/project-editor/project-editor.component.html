@@ -1,0 +1,69 @@
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'NAVIGATION.DEFINE_PROJECT' | translate }}</h2>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P1' | translate }}</p>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P2' | translate }}</p>
+  <p class="num-margin-b-40">{{ 'PROJECT.MANDATORY' | translate }}</p>
+
+  <mat-accordion [multi]="true" fxFlex="100%">
+    <num-project-editor-general-info
+      [form]="projectForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+      data-test="project-editor__general-info"
+    ></num-project-editor-general-info>
+
+    <num-project-editor-templates
+      [(templates)]="project.templates"
+      [isDisabled]="isTemplatesDisabled"
+      data-test="project-editor__templates"
+    ></num-project-editor-templates>
+
+    <num-project-editor-connector
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
+      [determineHitsContent]="determineHitsContent"
+      (determineHitsClicked)="determineHits()"
+      data-test="project-editor__connector__group"
+    ></num-project-editor-connector>
+
+    <num-project-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="project.researchers"
+      [isDisabled]="isResearchersDisabled"
+      data-test="project-editor__researchers"
+    ></num-project-editor-researchers>
+  </mat-accordion>
+
+  <num-project-editor-comments
+    *ngIf="project.id !== null && project.id !== undefined"
+    [isLoadingComplete]="isCommentsFetched"
+    [comments]="projectComments"
+    [form]="commentForm"
+    (postComment)="postComment()"
+    data-test="project-editor__comments"
+  ></num-project-editor-comments>
+
+  <num-project-editor-approval
+    *ngIf="mode === possibleModes.REVIEW"
+    [form]="approverForm"
+    data-test="project-editor__approval"
+  ></num-project-editor-approval>
+
+  <num-project-editor-buttons
+    [editorMode]="mode"
+    [projectStatus]="project.status"
+    [isFormValid]="projectForm.valid"
+    [approverForm]="approverForm"
+    [isResearchersDefined]="project.researchers.length"
+    [isTemplatesDefined]="project.templates.length"
+    [isCohortDefined]="project.cohortGroup.children.length"
+    (saveAll)="save()"
+    (saveResearchers)="saveResearchers()"
+    (saveAsApprovalRequest)="sendForApproval()"
+    (saveAsApprovalReply)="saveAsApprovalReply()"
+    (startEdit)="startEdit()"
+    (cancel)="cancel()"
+    data-test="project-editor__buttons"
+  ></num-project-editor-buttons>
+</section>

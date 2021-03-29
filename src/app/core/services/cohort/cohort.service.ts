@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { ICohortApi } from 'src/app/shared/models/study/cohort-api.interface'
-import { ICohortGroupApi } from 'src/app/shared/models/study/cohort-group-api.interface'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
 @Injectable({
   providedIn: 'root',

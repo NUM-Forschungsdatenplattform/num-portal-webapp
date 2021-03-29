@@ -5,7 +5,7 @@ import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
-import { ICohortGroupApi } from '../study/cohort-group-api.interface'
+import { ICohortGroupApi } from '../project/cohort-group-api.interface'
 import { IDictionary } from '../dictionary.interface'
 import { IUser } from '../user/user.interface'
 
@@ -99,10 +99,10 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   }
 
   public convertToApi(): ICohortGroupApi {
-    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForStudyApi()
+    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForProjectApi()
   }
 
-  private getPhenotypeForStudyApi(): ICohortGroupApi {
+  private getPhenotypeForProjectApi(): ICohortGroupApi {
     return {
       type: ConnectorNodeType.Phenotype,
       phenotypeId: this.id,
@@ -117,7 +117,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     return {
       type: ConnectorNodeType.Group,
       operator: LogicalOperator.Not,
-      children: [this.getPhenotypeForStudyApi()],
+      children: [this.getPhenotypeForProjectApi()],
     }
   }
 }

@@ -4,21 +4,21 @@ import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
-import { StudyService } from 'src/app/core/services/study/study.service'
-import { IStudyApi } from 'src/app/shared/models/study/study-api.interface'
-import { StudyStatus } from 'src/app/shared/models/study/study-status.enum'
-import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
-import { IStudyResolved } from '../studies/models/study-resolved.interface'
+import { IProjectResolved } from '../projects/models/project-resolved.interface'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataExplorerResolver implements Resolve<IStudyResolved> {
+export class DataExplorerResolver implements Resolve<IProjectResolved> {
   userInfo: IAuthUserInfo
 
   constructor(
-    private studyService: StudyService,
+    private projectService: ProjectService,
     private phenotypeService: PhenotypeService,
     private router: Router,
     private authService: AuthService
@@ -26,34 +26,34 @@ export class DataExplorerResolver implements Resolve<IStudyResolved> {
     this.authService.userInfoObservable$.subscribe((userInfo) => (this.userInfo = userInfo))
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IStudyResolved> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProjectResolved> {
     const id = route.paramMap.get('id')
 
     if (isNaN(+id)) {
-      this.router.navigate(['data-explorer/studies'])
+      this.router.navigate(['data-explorer/projects'])
       return of()
     }
 
-    return this.studyService.get(+id).pipe(
-      map((study) => {
-        if (this.isAllowed(study)) {
-          const uiModel = new StudyUiModel(study, this.phenotypeService)
-          return { study: uiModel, error: null }
+    return this.projectService.get(+id).pipe(
+      map((project) => {
+        if (this.isAllowed(project)) {
+          const uiModel = new ProjectUiModel(project, this.phenotypeService)
+          return { project: uiModel, error: null }
         } else {
-          this.router.navigate(['data-explorer/studies'])
+          this.router.navigate(['data-explorer/projects'])
           return undefined
         }
       }),
       catchError((error) => {
-        this.router.navigate(['data-explorer/studies'])
+        this.router.navigate(['data-explorer/projects'])
         return of(error)
       })
     )
   }
 
-  isAllowed(study: IStudyApi): boolean {
-    if (study.status === StudyStatus.Published) {
-      if (study.researchers.find((researcher) => this.userInfo.sub === researcher.userId)) {
+  isAllowed(project: IProjectApi): boolean {
+    if (project.status === ProjectStatus.Published) {
+      if (project.researchers.find((researcher) => this.userInfo.sub === researcher.userId)) {
         return true
       }
     }

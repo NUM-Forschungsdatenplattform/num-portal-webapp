@@ -4,16 +4,16 @@ import { DataExplorerComponent } from './components/data-explorer/data-explorer.
 import { DataExplorerRoutingModule } from './data-explorer-routing.module'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
-import { DataExplorerStudiesComponent } from './components/data-explorer-studies/data-explorer-studies.component'
-import { DataExplorerStudiesTableComponent } from './components/data-explorer-studies-table/data-explorer-studies-table.component'
-import { SharedStudiesModule } from '../studies/shared-studies.module'
+import { DataExplorerProjectsComponent } from './components/data-explorer-projects/data-explorer-projects.component'
+import { DataExplorerProjectsTableComponent } from './components/data-explorer-projects-table/data-explorer-projects-table.component'
+import { SharedProjectsModule } from '../projects/shared-projects.module'
 import { ResultTableComponent } from './components/result-table/result-table.component'
 
 @NgModule({
   declarations: [
     DataExplorerComponent,
-    DataExplorerStudiesComponent,
-    DataExplorerStudiesTableComponent,
+    DataExplorerProjectsComponent,
+    DataExplorerProjectsTableComponent,
     ResultTableComponent,
   ],
   imports: [
@@ -21,7 +21,7 @@ import { ResultTableComponent } from './components/result-table/result-table.com
     DataExplorerRoutingModule,
     SharedModule,
     LayoutModule,
-    SharedStudiesModule,
+    SharedProjectsModule,
   ],
 })
 export class DataExplorerModule {}

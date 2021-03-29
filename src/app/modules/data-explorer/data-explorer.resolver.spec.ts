@@ -7,18 +7,18 @@ import {
 import { of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
-import { StudyService } from 'src/app/core/services/study/study.service'
+import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
-import { mockStudy2, mockStudy3 } from 'src/mocks/data-mocks/studies.mock'
+import { mockProject2, mockProject3 } from 'src/mocks/data-mocks/project.mock'
 import { DataExplorerResolver } from './data-explorer.resolver'
 
 describe('Data Explorer Resolver', () => {
   let resolver: DataExplorerResolver
   const state = {} as RouterStateSnapshot
 
-  const studyService = ({
+  const projectService = ({
     get: jest.fn(),
-  } as unknown) as StudyService
+  } as unknown) as ProjectService
 
   const phenotypeService = ({
     get: jest.fn(),
@@ -34,7 +34,7 @@ describe('Data Explorer Resolver', () => {
   } as AuthService
 
   beforeEach(() => {
-    resolver = new DataExplorerResolver(studyService, phenotypeService, router, authService)
+    resolver = new DataExplorerResolver(projectService, phenotypeService, router, authService)
   })
 
   it('should be created', () => {
@@ -48,11 +48,11 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
-    it('should return the correct study if the id is found, the study is published and the user is assigned as a reseracher', async () => {
-      studyService.get = jest.fn().mockImplementation(() => of(mockStudy3))
+    it('should return the correct project if the id is found, the project is published and the user is assigned as a reseracher', async () => {
+      projectService.get = jest.fn().mockImplementation(() => of(mockProject3))
       const mockUser = { sub: 'abc-1' }
       userInfoSubject$.next(mockUser)
 
@@ -61,11 +61,11 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result.study.id).toEqual(3)
+      expect(result.project.id).toEqual(3)
     })
 
-    it('should provide an error message and navigate back to overview if the id is found and the study is not published', async () => {
-      studyService.get = jest.fn().mockImplementation(() => of(mockStudy2))
+    it('should provide an error message and navigate back to overview if the id is found and the project is not published', async () => {
+      projectService.get = jest.fn().mockImplementation(() => of(mockProject2))
       const mockUser = { sub: 'abc-1' }
       userInfoSubject$.next(mockUser)
 
@@ -74,11 +74,11 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
     it('should provide an error message and navigate back to overview if the id is found and the user is not assigned as a reseracher', async () => {
-      studyService.get = jest.fn().mockImplementation(() => of(mockStudy3))
+      projectService.get = jest.fn().mockImplementation(() => of(mockProject3))
       const mockUser = { sub: 'abc-15' }
       userInfoSubject$.next(mockUser)
 
@@ -87,18 +87,18 @@ describe('Data Explorer Resolver', () => {
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
     it('should return an error message and navigate back to overview if the id is not found', async () => {
-      studyService.get = jest.fn().mockImplementation(() => throwError('Error'))
+      projectService.get = jest.fn().mockImplementation(() => throwError('Error'))
       const paramMap = convertToParamMap({ id: 123 })
       const activatedRoute = ({
         paramMap,
       } as unknown) as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result).toBe('Error')
-      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
   })
 })

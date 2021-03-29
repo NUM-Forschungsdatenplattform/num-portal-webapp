@@ -11,7 +11,7 @@
 
         <ng-container *ngIf="dataRow?.description?.length !== 0">
           <span class="num-display-chip" *ngFor="let chip of dataRow.description">{{
-            dataRow.title !== 'FORM.CATEGORY' ? chip : ('STUDY.CATEGORIES.' + chip | translate)
+            dataRow.title !== 'FORM.CATEGORY' ? chip : ('PROJECT.CATEGORIES.' + chip | translate)
           }}</span>
         </ng-container>
       </ng-container>

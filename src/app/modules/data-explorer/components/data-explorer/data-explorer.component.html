@@ -1,37 +1,34 @@
 <section role="region" fxLayout="column" fxFlex="100%">
-  <h2>{{ 'DATA_EXPLORER.EXPLORE_STUDY' | translate }}</h2>
-  <p class="num-margin-b-40">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
-    imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
-  </p>
+  <h2>{{ 'DATA_EXPLORER.EXPLORE_PROJECT' | translate }}</h2>
+  <p class="num-margin-b-40">{{ 'DATA_EXPLORER.EXPLORE_PROJECT_CONTENT' | translate }}</p>
 
   <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
-    <num-study-editor-general-info
-      [form]="studyForm"
+    <num-project-editor-general-info
+      [form]="projectForm"
       [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
-      data-test="study-editor__general-info"
-    ></num-study-editor-general-info>
+      data-test="project-editor__general-info"
+    ></num-project-editor-general-info>
 
-    <num-study-editor-templates
-      [(templates)]="study.templates"
+    <num-project-editor-templates
+      [(templates)]="project.templates"
       [isDisabled]="isTemplatesDisabled"
-      data-test="study-editor__templates"
-    ></num-study-editor-templates>
+      data-test="project-editor__templates"
+    ></num-project-editor-templates>
 
-    <num-study-editor-connector
+    <num-project-editor-connector
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
-      data-test="study-editor__connector"
-    ></num-study-editor-connector>
+      data-test="project-editor__connector"
+    ></num-project-editor-connector>
 
-    <num-study-editor-researchers
+    <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
-      [(researchers)]="study.researchers"
+      [(researchers)]="project.researchers"
       [isDisabled]="isResearchersDisabled"
-      data-test="study-editor__researchers"
-    ></num-study-editor-researchers>
+      data-test="project-editor__researchers"
+    ></num-project-editor-researchers>
   </mat-accordion>
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">

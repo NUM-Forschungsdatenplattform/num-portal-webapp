@@ -15,15 +15,15 @@ export const routes: Routes = [
       ).then((m) => m.DashboardModule),
   },
   {
-    path: 'studies',
+    path: 'projects',
     canLoad: [RoleGuard],
     data: {
-      navId: 'studies',
-      roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
+      navId: 'projects',
+      roles: [AvailableRoles.ProjectCoordinator, AvailableRoles.ProjectApprover],
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Studies.Module" */ './modules/studies/studies.module').then(
-        (m) => m.StudiesModule
+      import(/* webpackChunkName: "Projects.Module" */ './modules/projects/projects.module').then(
+        (m) => m.ProjectsModule
       ),
   },
   {
@@ -43,7 +43,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.ProjectCoordinator],
     },
     loadChildren: () =>
       import(
@@ -55,7 +55,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Researcher, AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.Researcher, AvailableRoles.ProjectCoordinator],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
