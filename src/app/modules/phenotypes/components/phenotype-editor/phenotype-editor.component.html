@@ -13,7 +13,7 @@
   <num-phenotype-editor-connector
     class="num-margin-b-60"
     [phenotypeQuery]="resolvedData.phenotype?.query"
-    [isDetermineDisabled]="!resolvedData.phenotype?.query.children.length"
+    [isDetermineDisabled]="!resolvedData.phenotype?.query?.children?.length"
     [determineHitsContent]="determineHitsContent"
     (determineHitsClicked)="determineHits()"
   ></num-phenotype-editor-connector>
@@ -30,7 +30,7 @@
       <num-button
         type="primary"
         (singleClick)="saveForm()"
-        [isDisabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query.children.length)"
+        [isDisabled]="!(phenotypeForm.valid && resolvedData.phenotype?.query?.children?.length)"
         data-test="phenotype-editor__save-button"
       >
         {{ 'BUTTON.CREATE_PHENOTYPE' | translate }}
