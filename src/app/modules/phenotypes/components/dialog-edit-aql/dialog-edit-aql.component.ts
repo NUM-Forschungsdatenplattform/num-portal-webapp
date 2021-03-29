@@ -25,7 +25,7 @@ export class DialogEditAqlComponent implements OnInit, IGenericDialog<AqlUiModel
     this.aql = cloneDeep(this.dialogInput)
     this.queryHighlighted = this.highlightQueryString(this.aql.query)
 
-    if (this.aql.parameter.length) {
+    if (this.aql?.parameter?.length) {
       this.generateParameterForm()
     }
   }
@@ -55,11 +55,16 @@ export class DialogEditAqlComponent implements OnInit, IGenericDialog<AqlUiModel
   }
 
   handleDialogConfirm(): void {
-    if (this.aql.parameter.length) {
+    if (this.aql?.parameter?.length) {
       const values = this.formParameters.value as { parameter: any }[]
       this.aql.areParameterConfigured = true
       values.forEach((value, index) => {
-        if (value.parameter !== null && value.parameter !== undefined && value.parameter.length) {
+        if (
+          value &&
+          value.parameter !== null &&
+          value.parameter !== undefined &&
+          value.parameter.length
+        ) {
           this.aql.parameter[index].value = value.parameter
         } else {
           this.aql.parameter[index].value = undefined

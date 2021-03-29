@@ -28,7 +28,7 @@
 
 <div class="query" [innerHtml]="queryHighlighted"></div>
 
-<form [formGroup]="parameterForm" *ngIf="aql.parameter.length">
+<form [formGroup]="parameterForm" *ngIf="aql?.parameter?.length">
   <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
     <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
       <mat-form-field appearance="outline">
