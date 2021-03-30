@@ -18,7 +18,7 @@
   <div class="main-header">
     <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
   </div>
-  <div fxLayout="row wrap" class="introduction">
+  <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
     <div fxFlex fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
       <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
       <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
@@ -32,15 +32,15 @@
       </a>
     </div>
     <div fxLayout="column" fxFlex.gt-sm="20%" fxFlex.sm="100%" fxFlex.lt-sm="33%" class="sidebar">
-      <div class="header">
-        <p>{{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}</p>
+      <div class="mat-display-3 num-margin-b-0">
+        {{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}
       </div>
-      <div fxFlex fxLayout="row wrap">
+      <div fxFlex fxLayout="row wrap" class="num-margin-b-10">
         <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
           <img
             [attr.src]="participantLogosBaseUrl + logo"
-            class="partner-logo"
-            alt="partner-logo"
+            class="initiative-logo"
+            alt="Initiative logo"
           />
         </div>
       </div>
