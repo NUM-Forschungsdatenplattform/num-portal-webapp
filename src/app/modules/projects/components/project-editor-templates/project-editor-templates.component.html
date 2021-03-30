@@ -15,7 +15,7 @@
 -->
 
 <mat-expansion-panel>
-  <mat-expansion-panel-header data-test="projects-editor__templates__select-ehr-template-button">
+  <mat-expansion-panel-header data-test="studies-editor__templates__select-ehr-template-button">
     <mat-panel-title>
       <h3 id="select-header" class="accordion">
         <fa-icon [icon]="['far', 'check-circle']" *ngIf="templatesValue.length"></fa-icon>
@@ -38,7 +38,7 @@
     <num-add-template-selected-table
       [(selectedTemplates)]="templates"
       [isDisabled]="isDisabled"
-      data-test="project-editor__templates__add-template-table"
+      data-test="study-editor__templates__add-template-table"
     ></num-add-template-selected-table>
 
     <num-button
@@ -46,7 +46,7 @@
       icon="plus"
       [isDisabled]="isDisabled"
       (singleClick)="addTemplate()"
-      data-test="project-editor__templates__add-template-button"
+      data-test="study-editor__templates__add-template-button"
       >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
     >
   </section>

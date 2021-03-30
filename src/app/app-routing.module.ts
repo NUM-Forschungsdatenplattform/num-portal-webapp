@@ -35,7 +35,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'projects',
-      roles: [AvailableRoles.ProjectCoordinator, AvailableRoles.ProjectApprover],
+      roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Projects.Module" */ './modules/projects/projects.module').then(
@@ -59,7 +59,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [AvailableRoles.ProjectCoordinator],
+      roles: [AvailableRoles.StudyCoordinator],
     },
     loadChildren: () =>
       import(
@@ -71,7 +71,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Researcher, AvailableRoles.ProjectCoordinator],
+      roles: [AvailableRoles.Researcher, AvailableRoles.StudyCoordinator],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(

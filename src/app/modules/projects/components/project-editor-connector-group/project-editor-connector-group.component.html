@@ -29,12 +29,12 @@
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="cohortGroup.logicalOperator"
       [disabled]="cohortGroup.children.length <= 1 || isDisabled"
-      data-test="project-editor__connector__group__logical-operator__selector"
+      data-test="study-editor__connector__group__logical-operator__selector"
     >
       <mat-option
         *ngFor="let operator of logicalOperatorArray"
         [value]="operator"
-        [attr.data-test]="'project-editor__connector__group__logical-operator__' + operator"
+        [attr.data-test]="'study-editor__connector__group__logical-operator__' + operator"
       >
         {{ operator }}
       </mat-option>
@@ -47,7 +47,7 @@
     labelPosition="before"
     [(ngModel)]="cohortGroup.isNegated"
     [disabled]="isDisabled"
-    data-test="project-editor__connector__group__negation-toggle"
+    data-test="study-editor__connector__group__negation-toggle"
     >Negation</mat-slide-toggle
   >
 </section>
@@ -63,7 +63,7 @@
     [isDisabled]="isDisabled"
     (delete)="deleteChild($event)"
     fxFlex="100%"
-    data-test="project-editor__connector__group"
+    data-test="study-editor__connector__group"
   ></num-project-editor-connector-group>
 
   <num-project-editor-connector-phenotype
@@ -80,7 +80,7 @@
     role="listitem"
     fxLayout="row"
     fxLayoutAlign="space-between center"
-    data-test="project-editor__connector__phenotype"
+    data-test="study-editor__connector__phenotype"
   ></num-project-editor-connector-phenotype>
 </section>
 
@@ -90,7 +90,7 @@
     type="primary"
     icon="plus"
     (singleClick)="addPhenotype()"
-    data-test="project-editor__connector__group__add-phenotype-button"
+    data-test="study-editor__connector__group__add-phenotype-button"
     >{{ 'BUTTON.ADD_PHENOTYPE' | translate }}</num-button
   >
   <num-button
@@ -98,7 +98,7 @@
     type="secondary"
     icon="plus"
     (singleClick)="addGroup()"
-    data-test="project-editor__connector__group__add-group-button"
+    data-test="study-editor__connector__group__add-group-button"
     >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
   >
 
@@ -109,7 +109,7 @@
     *ngIf="groupType === connectorGroupType.Sub"
     type="basic"
     (singleClick)="deleteSelf()"
-    data-test="project-editor__connector__group__delete-group-button"
+    data-test="study-editor__connector__group__delete-group-button"
     >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
   >
 </section>
