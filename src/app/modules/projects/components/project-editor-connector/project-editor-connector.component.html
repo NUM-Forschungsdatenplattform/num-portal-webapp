@@ -51,7 +51,9 @@
       data-test="project-editor__connector__group"
     ></num-project-editor-connector-group>
 
+    <!-- NUM-1450: Determine Hits in Data Explorer is not shown for Release 1.0 -->
     <num-editor-determine-hits
+      [hidden]="!determineHitsContent"
       [isButtonDisabled]="!(cohortNode.children.length && cohortNode.areParameterConfigured)"
       [content]="determineHitsContent"
       (clicked)="determineHitsClicked.emit()"

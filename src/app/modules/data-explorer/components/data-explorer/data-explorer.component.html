@@ -56,7 +56,9 @@
       [attr.data-test]="'data-explorer__get-data-button'"
       >{{ 'BUTTON.GET_DATA' | translate }}</num-button
     >
+    <!-- NUM-1450: Custom configuration is not shown for Release 1.0 -->
     <num-button
+      [hidden]="true"
       [isDisabled]="!isCompositionsFetched || isDataSetLoading"
       type="secondary"
       icon="pen"
