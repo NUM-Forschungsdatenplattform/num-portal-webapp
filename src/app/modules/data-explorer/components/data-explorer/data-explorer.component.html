@@ -23,27 +23,27 @@
       [form]="projectForm"
       [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
-      data-test="project-editor__general-info"
+      data-test="study-editor__general-info"
     ></num-project-editor-general-info>
 
     <num-project-editor-templates
       [(templates)]="project.templates"
       [isDisabled]="isTemplatesDisabled"
-      data-test="project-editor__templates"
+      data-test="study-editor__templates"
     ></num-project-editor-templates>
 
     <num-project-editor-connector
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
-      data-test="project-editor__connector"
+      data-test="study-editor__connector"
     ></num-project-editor-connector>
 
     <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="project.researchers"
       [isDisabled]="isResearchersDisabled"
-      data-test="project-editor__researchers"
+      data-test="study-editor__researchers"
     ></num-project-editor-researchers>
   </mat-accordion>
 

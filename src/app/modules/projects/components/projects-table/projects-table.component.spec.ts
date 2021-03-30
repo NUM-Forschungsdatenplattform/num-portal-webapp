@@ -114,7 +114,7 @@ describe('ProjectsTableComponent', () => {
   })
 
   describe('When the userInfo gets updated', () => {
-    const roles = [AvailableRoles.ProjectCoordinator]
+    const roles = [AvailableRoles.StudyCoordinator]
     const userInfo: IAuthUserInfo = {
       sub: '',
       groups: roles,
@@ -130,7 +130,7 @@ describe('ProjectsTableComponent', () => {
     })
 
     it('should generate the menu based on the role for the project approver', () => {
-      userInfo.groups = [AvailableRoles.ProjectApprover]
+      userInfo.groups = [AvailableRoles.StudyApprover]
       userInfoSubject$.next(userInfo)
       expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...APPROVER_MENU])
     })

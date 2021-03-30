@@ -21,7 +21,7 @@
       id="back-button"
       type="secondary"
       (singleClick)="cancel.emit()"
-      data-test="project-editor__buttons__back-button"
+      data-test="study-editor__buttons__back-button"
       >{{
         (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
       }}</num-button
@@ -62,7 +62,7 @@
     "
     (singleClick)="saveResearchers.emit()"
     [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
-    data-test="project-editor__buttons__primary-save-button"
+    data-test="study-editor__buttons__primary-save-button"
     >{{ 'BUTTON.SAVE' | translate }}</num-button
   >
   <ng-template #fullEdit>
@@ -74,7 +74,7 @@
         (projectStatus !== possibleStatus.Draft && projectStatus !== possibleStatus.ChangeRequest)
       "
       (singleClick)="saveAll.emit()"
-      data-test="project-editor__buttons__secondary-save-button"
+      data-test="study-editor__buttons__secondary-save-button"
       >{{ 'BUTTON.SAVE' | translate }}</num-button
     >
     <num-button
@@ -88,7 +88,7 @@
         !isCohortDefined ||
         (projectStatus !== possibleStatus.Draft && projectStatus !== possibleStatus.ChangeRequest)
       "
-      data-test="project-editor__buttons__request-approval-button"
+      data-test="study-editor__buttons__request-approval-button"
       >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
     >
   </ng-template>
@@ -100,7 +100,7 @@
     type="primary"
     (singleClick)="saveAsApprovalReply.emit()"
     [isDisabled]="approverForm.invalid || projectStatus !== possibleStatus.Reviewing"
-    data-test="project-editor__buttons__approval-reply-button"
+    data-test="study-editor__buttons__approval-reply-button"
     >{{ 'BUTTON.PROJECT_APPROVAL_' + approvalDecision | translate }}</num-button
   >
 </ng-template>
@@ -117,7 +117,7 @@
         projectStatus === possibleStatus.Approved
       )
     "
-    data-test="project-editor__buttons__start-edit-button"
+    data-test="study-editor__buttons__start-edit-button"
     >{{
       (projectStatus === possibleStatus.Approved ? 'BUTTON.EDIT_RESEARCHERS' : 'BUTTON.EDIT')
         | translate

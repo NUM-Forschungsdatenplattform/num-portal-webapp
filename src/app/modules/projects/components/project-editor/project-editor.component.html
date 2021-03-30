@@ -25,13 +25,13 @@
       [form]="projectForm"
       [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
-      data-test="project-editor__general-info"
+      data-test="study-editor__general-info"
     ></num-project-editor-general-info>
 
     <num-project-editor-templates
       [(templates)]="project.templates"
       [isDisabled]="isTemplatesDisabled"
-      data-test="project-editor__templates"
+      data-test="study-editor__templates"
     ></num-project-editor-templates>
 
     <num-project-editor-connector
@@ -40,14 +40,14 @@
       [isDisabled]="isConnectorDisabled"
       [determineHitsContent]="determineHitsContent"
       (determineHitsClicked)="determineHits()"
-      data-test="project-editor__connector__group"
+      data-test="study-editor__connector__group"
     ></num-project-editor-connector>
 
     <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="project.researchers"
       [isDisabled]="isResearchersDisabled"
-      data-test="project-editor__researchers"
+      data-test="study-editor__researchers"
     ></num-project-editor-researchers>
   </mat-accordion>
 
@@ -57,13 +57,13 @@
     [comments]="projectComments"
     [form]="commentForm"
     (postComment)="postComment()"
-    data-test="project-editor__comments"
+    data-test="study-editor__comments"
   ></num-project-editor-comments>
 
   <num-project-editor-approval
     *ngIf="mode === possibleModes.REVIEW"
     [form]="approverForm"
-    data-test="project-editor__approval"
+    data-test="study-editor__approval"
   ></num-project-editor-approval>
 
   <num-project-editor-buttons
@@ -80,6 +80,6 @@
     (saveAsApprovalReply)="saveAsApprovalReply()"
     (startEdit)="startEdit()"
     (cancel)="cancel()"
-    data-test="project-editor__buttons"
+    data-test="study-editor__buttons"
   ></num-project-editor-buttons>
 </section>

@@ -19,19 +19,19 @@
   <mat-chip-list
     #keywordsChipList
     aria-label="Keywords selection"
-    data-test="project-editor__general-info__keywords-chip-list"
+    data-test="study-editor__general-info__keywords-chip-list"
   >
     <mat-chip
       *ngFor="let keyword of keywords; let i = index"
       (removed)="removeKeyword(i)"
       class="chip-primary"
-      data-test="project-editor__general-info__keywords-chip-item"
+      data-test="study-editor__general-info__keywords-chip-item"
     >
       <span>{{ keyword }}</span>
       <fa-icon
         icon="times-circle"
         class="chip__remove-icon"
-        data-test="project-editor__general-info__keywords-remove-keyword-button"
+        data-test="study-editor__general-info__keywords-remove-keyword-button"
         matChipRemove
       ></fa-icon>
     </mat-chip>
@@ -42,7 +42,7 @@
       matChipInputAddOnBlur
       (matChipInputTokenEnd)="addKeyword($event)"
       autocomplete="off"
-      data-test="project-editor__general-info__keywords-input"
+      data-test="study-editor__general-info__keywords-input"
     />
   </mat-chip-list>
 </mat-form-field>

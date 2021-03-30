@@ -1,6 +1,7 @@
 {
+  "TEST_ENVIRONMENT": "Testumgebung",
   "DASHBOARD": {
-    "LATEST_PROJECTS": "Neuste Projekte",
+    "LATEST_PROJECTS": "Neueste Projekte",
     "INTRODUCTION": {
       "HEADER": "Die COVID-19-Datenaustauschplattform",
       "P1": "Die CODEX Forschungsdatenplattform ist eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu Covid-19. Sie verbindet Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertungen strukturierter Daten mit hoher Qualität.",
@@ -50,7 +51,7 @@
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Genehmigte Benutzer",
     "ORGANIZATION_MANAGEMENT": "Organisationsverwaltung",
-    "ORGANIZATION_EDITOR": "Organisationseditor",
+    "ORGANIZATION_EDITOR": "Organisations-Editor",
     "ALL_ORGANIZATIONS": "Alle Organisationen",
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
@@ -70,6 +71,9 @@
     "ORGANISATION_AQLS": "Meine Organisation",
     "ALL_AQLS": "Alle",
     "CREATE_AQL": "AQL Abfrage erstellen",
+    "CREATE_AQL_CONTENT": "Auf dieser Seite können Sie eine AQL Abfrage erstellen. Zum Erstellen der Abfrage steht Ihnen ein AQL Builder zur Verfügung.\n\n*Pflichtfeld",
+    "GENERAL_INFO_CONTENT": "Bitte geben Sie einen aussagekräftigen Titel sowie den Zweck und die Verwendung der AQL Abfrage ein.",
+    "BUILD_QUERY_CONTENT": "Erstellen Sie eine Abfrage im AQL Builder. Danach können Sie die Abfrage im untenstehenden Editor bearbeiten.",
     "SEARCH_AQLS": "AQL suchen",
     "SELECT_AT_LEAST_ONE": "Bitte wählen sie eine oder mehrere Abfragen aus",
     "CONFIGURE_AQL_DIALOG_HEADER": "AQL Abfrage konfigurieren",
@@ -91,7 +95,7 @@
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
     "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "PHENOTYPES_EDITOR_CONTENT": "Auf dieser Seite können Sie einen neuen Phänotypen definieren. Phänotypen bilden die Grundlage für die Kohorten-Definition in einem Projekt.",
-    "PHENOTYPES_EDITOR_MANDATORY": "*Pflichtangabe",
+    "PHENOTYPES_EDITOR_MANDATORY": "*Pflichtfeld",
     "PHENOTYPES_OVERVIEW_CONTENT": "Erstellen Sie neue Phänotypen, die als Grundlage für die Kohorten-Definition in einem Projekt genutzt werden können.",
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
@@ -176,9 +180,6 @@
     "GENERAL_INFO": "Allgemeine Angaben",
     "TITLE": "Titel",
     "DESCRIPTION": "Beschreibung",
-    "GOAL": "Ziel",
-    "FIRST_HYPOTHESES": "Primäre Hypothese",
-    "SECOND_HYPOTHESES": "Sekundäre Hypothese",
     "KEYWORDS": "Schlagwörter",
     "ENTER_KEYWORD": "Schlagwort eingeben",
     "CATEGORY": "Kategorie",
@@ -318,8 +319,12 @@
     "SAVE_ERROR_MESSAGE": "Die Projekt konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte.",
     "TITLE": "Projekttitel",
-    "DESCRIPTION": "Bitte verfassen Sie eine Projektbeschreibung",
-    "GOAL": "Bitte geben Sie das Ziel des Projekts"
+    "GOAL": "Ziel",
+    "FIRST_HYPOTHESES": "Primäre Hypothese",
+    "SECOND_HYPOTHESES": "Sekundäre Hypothese",
+    "TITLE_PLACEHOLDER": "Bitte geben Sie einen aussagekräftigen Projekttitel ein",
+    "DESCRIPTION_PLACEHOLDER": "Bitte verfassen Sie eine Projektbeschreibung",
+    "GOAL_PLACEHOLDER": "Bitte geben Sie das Ziel des Projekts ein"
   },
   "USER": {
     "FIRST_NAME": "Vorname",
@@ -331,12 +336,12 @@
     "REGISTER_DATE": "Registriert am"
   },
   "ROLE": {
-    "RESEARCHER": "Wissenschaftler",
-    "ORGANIZATION_ADMIN": "Organisations-Administrator",
-    "PROJECT_COORDINATOR": "Projektkoordinator",
-    "SUPER_ADMIN": "Administrator",
-    "PROJECT_APPROVER": "Projektprüfer",
-    "CONTENT_ADMIN": "Content Admin"
+    "RESEARCHER": "Forscher",
+    "ORGANIZATION_ADMIN": "Organisations-Admin",
+    "STUDY_COORDINATOR": "Projektleiter",
+    "SUPER_ADMIN": "Super-Admin",
+    "STUDY_APPROVER": "Projektprüfer",
+    "CONTENT_ADMIN": "Content-Admin"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",
@@ -353,7 +358,7 @@
     "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekt abrufen können."
   },
   "DATA_EXPLORER": {
-    "DATA_RETRIEVAL_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",
+    "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",
     "EXPLORE_PROJECT": "Projektdaten abrufen",
     "EXPLORE_PROJECT_CONTENT": "Sie haben auf dieser Seite die Möglichkeit, die Forschungsdaten abzurufen, die im Rahmen des Projekts definiert sind.\n\nSie können entweder direkt den Datenabruf starten oder optional die im Projekt definierte Datenabfrage noch zusätzlich einschränken.",
     "RESULT_SET": "Ergebnissatz",
@@ -361,7 +366,7 @@
     "LOADING_RESULT_SET": "Die Ergebnisse werden gerade geladen. Bitte warten Sie einen Moment.",
     "EMPTY_RESULT_SET": "Die Konfiguration hat keine Ergebnisse geliefert. Bitte ändern Sie die Konfiguration und versuchen Sie es erneut.",
     "CONFIGURATION": "Konfiguration",
-    "DEFAULT": "Standart",
+    "DEFAULT": "Standard",
     "CUSTOM": "Benutzerdefiniert",
     "CONFIGURATION_LOADING": "Die Abfragekonfiguration wird gerade geladen. Bitte warten Sie einen Moment.",
     "CONFIGURATION_ERROR": "Die Abfrage konnte nicht kompiliert werden. Bitte passen Sie die Konfiguration an und versuchen es erneut",

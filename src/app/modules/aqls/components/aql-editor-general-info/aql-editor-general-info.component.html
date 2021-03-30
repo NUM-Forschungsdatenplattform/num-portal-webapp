@@ -21,14 +21,12 @@
   fxFlex="100%"
   fxLayoutGap="20px"
 >
-  <h3>{{ 'FORM.GENERAL_INFO' | translate }}</h3>
+  <h3>{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
 
   <mat-card>
     <mat-card-content fxLayout="column" fxFlex="100%">
       <p id="general-info-label">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-        Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus.
+        {{ 'AQL.GENERAL_INFO_CONTENT' | translate }}
       </p>
 
       <form fxLayout="column" [formGroup]="form">
