@@ -2,10 +2,10 @@
   <mat-toolbar-row>
     <div>© {{ config.legal.copyrightOwner }}</div>
     <span fxFlex></span>
-    <a mat-button href="#">{{ 'LEGAL.DISCLOSURE' | translate }}</a>
+    <a mat-button [routerLink]="['imprint']">{{ 'LEGAL.DISCLOSURE' | translate }}</a>
     <mat-divider [vertical]="true"></mat-divider>
-    <a mat-button href="#">{{ 'LEGAL.DATAPROTECTION' | translate }}</a>
+    <a mat-button [routerLink]="['imprint']">{{ 'LEGAL.DATAPROTECTION' | translate }}</a>
     <mat-divider [vertical]="true"></mat-divider>
-    <a mat-button href="#">{{ 'LEGAL.CONTACT' | translate }}</a>
+    <a mat-button [routerLink]="['imprint']">{{ 'LEGAL.CONTACT' | translate }}</a>
   </mat-toolbar-row>
 </mat-toolbar>

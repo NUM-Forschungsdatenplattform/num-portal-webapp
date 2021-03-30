@@ -114,6 +114,13 @@ export const routes: Routes = [
         /* webpackChunkName: "ContentEditor.Module" */ './modules/content-editor/content-editor.module'
       ).then((m) => m.ContentEditorModule),
   },
+  {
+    path: 'imprint',
+    loadChildren: () =>
+      import(/* webpackChunkName: "Imprint.Module" */ './modules/imprint/imprint.module').then(
+        (m) => m.ImprintModule
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ]
