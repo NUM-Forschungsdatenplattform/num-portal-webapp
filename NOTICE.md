@@ -22,3 +22,7 @@ This License does not grant permission to use the trade names, trademarks, servi
 names of the Licensor, except as required for reasonable and customary use in describing the origin
 of the Work and reproducing the content of the NOTICE file.
 
+## Third-Party content
+
+This software might use external code provided by other licenses than the License. They will be 
+listed here.
