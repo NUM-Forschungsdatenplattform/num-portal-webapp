@@ -56,6 +56,19 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" color="accent">
+        <mat-label id="simple-desc-label">{{ 'FORM.SIMPLE_DESCRIPTION' | translate }}*</mat-label>
+        <textarea
+          formControlName="simpleDescription"
+          #textarea
+          matInput
+          style="resize: none"
+          aria-labelledby="simple-desc-label"
+          rows="10"
+          data-test="project-editor__general-info__simple-description-input"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
         <mat-label id="goal-label">{{ 'PROJECT.GOAL' | translate }}*</mat-label>
 
         <textarea
@@ -146,11 +159,20 @@
       </section>
 
       <section role="presentation" class="num-margin-b-10">
-        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}*</p>
+        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}</p>
         <mat-slide-toggle
           formControlName="financed"
           data-test="project-editor__general-info__financed-toggle"
           >{{ 'FORM.FINANCED_BY_PRIVATE' | translate }}</mat-slide-toggle
+        >
+      </section>
+
+      <section role="presentation" class="num-margin-b-10">
+        <p class="mat-display-4 num-margin-b-10">{{ 'FORM.OUTSIDE_EU' | translate }}</p>
+        <mat-slide-toggle
+          formControlName="usedOutsideEu"
+          data-test="project-editor__general-info__used-outside-eu-toggle"
+          >{{ 'FORM.USED_OUTSIDE_EU' | translate }}</mat-slide-toggle
         >
       </section>
     </form>

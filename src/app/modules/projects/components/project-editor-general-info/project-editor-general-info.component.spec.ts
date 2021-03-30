@@ -69,6 +69,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
     component.form = new FormGroup({
       name: new FormControl(),
       description: new FormControl(),
+      simpleDescription: new FormControl(),
       goal: new FormControl(),
       firstHypotheses: new FormControl(),
       secondHypotheses: new FormControl(),
@@ -77,6 +78,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
       startDate: new FormControl(),
       endDate: new FormControl(),
       financed: new FormControl(),
+      usedOutsideEu: new FormControl(),
     })
     fixture.detectChanges()
   })
