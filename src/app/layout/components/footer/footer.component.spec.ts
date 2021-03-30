@@ -16,6 +16,8 @@
 
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { IAppConfig } from 'src/app/config/app-config.model'
@@ -28,6 +30,8 @@ describe('FooterComponent', () => {
   let component: FooterComponent
   let fixture: ComponentFixture<FooterComponent>
   let appConfig: AppConfigService
+  let router: Router
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FooterComponent],
@@ -36,11 +40,13 @@ describe('FooterComponent', () => {
         MaterialModule,
         TranslateModule.forRoot(),
         HttpClientTestingModule,
+        RouterTestingModule.withRoutes([]),
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    router = TestBed.inject(Router)
     appConfig = TestBed.inject(AppConfigService)
     appConfig.config = ({} as unknown) as IAppConfig
     appConfig.config.legal = {
