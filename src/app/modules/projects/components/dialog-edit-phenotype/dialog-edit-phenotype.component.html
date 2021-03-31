@@ -16,7 +16,7 @@
 
 <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
   <h2 class="mat-display-2">
-    <span class="not-icon num-fc--a" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype.name }}
+    <span class="not-icon num-fc--a" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype?.name }}
   </h2>
   <mat-slide-toggle
     labelPosition="before"
@@ -30,14 +30,11 @@
   <tbody>
     <tr>
       <th scope="row">{{ 'FORM.AUTHOR' | translate }}:</th>
-      <td>Lars Schäfer</td>
+      <td>{{ phenotype?.owner?.firstName }} {{ phenotype?.owner?.lastName || '-' }}</td>
     </tr>
     <tr>
       <th scope="row">{{ 'FORM.DESCRIPTION' | translate }}:</th>
-      <td>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
-        imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
-      </td>
+      <td>{{ phenotype?.description }}</td>
     </tr>
   </tbody>
 </table>

@@ -25,5 +25,5 @@ export interface IAqlApi {
   publicAql: boolean
   createDate?: string
   modifiedDate?: string
-  owner?: IUser
+  owner?: IUser | null
 }
