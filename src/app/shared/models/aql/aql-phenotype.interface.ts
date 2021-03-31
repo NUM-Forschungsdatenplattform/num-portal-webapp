@@ -20,6 +20,6 @@ export interface IAqlPhenotypeApi {
   id: number
   name: string
   query: string
-  purpose: string
+  purpose?: string
   owner?: IUser | null
 }
