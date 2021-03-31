@@ -1,0 +1,60 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
+  <h2 class="mat-display-2">
+    <span class="not-icon num-fc--a" *ngIf="phenotype.isNegated">&not;</span>{{ phenotype?.name }}
+  </h2>
+  <mat-slide-toggle
+    labelPosition="before"
+    [(ngModel)]="phenotype.isNegated"
+    data-test="dialog-edit-phenotype__negation-toggle"
+    >Negation</mat-slide-toggle
+  >
+</section>
+
+<table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
+  <tbody>
+    <tr>
+      <th scope="row">{{ 'FORM.AUTHOR' | translate }}:</th>
+      <td>{{ phenotype?.owner?.firstName }} {{ phenotype?.owner?.lastName || '-' }}</td>
+    </tr>
+    <tr>
+      <th scope="row">{{ 'FORM.DESCRIPTION' | translate }}:</th>
+      <td>{{ phenotype?.description }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="parameterForm" *ngIf="phenotype.parameter.length">
+  <div formArrayName="parameters" fxFlex="100%" fxLayout="row wrap" fxLayoutGap="40px">
+    <div [formGroupName]="i" *ngFor="let param of formParameters.controls; let i = index">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ phenotype.parameter[i].name }}: </mat-label>
+        <input
+          matInput
+          id="{{ 'param' + i }}"
+          type="text"
+          placeholder="Parameter"
+          formControlName="parameter"
+          [attr.data-test]="'dialog-edit-phenotype__parameter-input__param' + i"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<mat-divider class="num-d-w--1"></mat-divider>

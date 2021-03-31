@@ -1,0 +1,83 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<h3>{{ 'COMMENTS' | translate }}</h3>
+<mat-card class="mat-elevation-z4">
+  <div fxLayout="row" fxLayoutAlign="flex-end">
+    <a
+      role="button"
+      tabindex="0"
+      class="older-comments-toggle"
+      id="older-comments-toggle"
+      *ngIf="comments.length > 2"
+      (click)="toggleCommentLimit()"
+      data-test="study-editor__comments__older-comments-button"
+    >
+      {{ (commentLimit ? 'SHOW_OLDER_POSTS' : 'SHOW_LESS') | translate }}
+    </a>
+  </div>
+
+  <section role="region" class="comments" fxLayoutGap="20px" fxLayout="column">
+    <section
+      role="region"
+      *ngFor="
+        let comment of commentLimit
+          ? (comments | slice: comments.length - 2:comments.length)
+          : comments
+      "
+      class="comment"
+    >
+      <p>{{ comment.text }}</p>
+      <div fxLayout="row" fxLayoutGap="20px" class="comment-info">
+        <span>
+          <fa-icon icon="clock"></fa-icon>
+          {{ comment.createDate | localizedDate: 'medium' }}
+        </span>
+        <span>
+          <fa-icon icon="user"></fa-icon>
+          {{ comment.author.firstName }} {{ comment.author.lastName }}
+        </span>
+      </div>
+    </section>
+  </section>
+
+  <h5 class="new-comment-headline">{{ 'WRITE_COMMENT' | translate }}</h5>
+
+  <form [formGroup]="form" fxLayout="column">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label id="desc-label">{{ 'LEAVE_COMMENT' | translate }}</mat-label>
+      <textarea
+        formControlName="text"
+        #textarea
+        matInput
+        style="resize: none"
+        aria-labelledby="desc-label"
+        rows="6"
+        data-test="study-editor__comments__leave-comment-input"
+      ></textarea>
+    </mat-form-field>
+  </form>
+
+  <section role="presentation" fxLayout="row" fxLayoutAlign="flex-end">
+    <num-button
+      (singleClick)="postComment.emit()"
+      [isDisabled]="form.invalid"
+      type="primary"
+      data-test="study-editor__comments__send-comment-button"
+      >{{ 'BUTTON.SEND_COMMENT' | translate }}</num-button
+    >
+  </section>
+</mat-card>

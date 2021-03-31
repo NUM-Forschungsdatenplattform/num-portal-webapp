@@ -1,51 +1,64 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
 <section role="region" fxLayout="column" fxFlex="100%">
-  <h2>{{ 'DATA_EXPLORER.EXPLORE_STUDY' | translate }}</h2>
-  <p class="num-margin-b-40">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
-    imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
-  </p>
+  <h2>{{ 'DATA_EXPLORER.EXPLORE_PROJECT' | translate }}</h2>
+  <p class="num-margin-b-40">{{ 'DATA_EXPLORER.EXPLORE_PROJECT_CONTENT' | translate }}</p>
 
   <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
-    <num-study-editor-general-info
-      [form]="studyForm"
+    <num-project-editor-general-info
+      [form]="projectForm"
       [isDisabled]="isGeneralInfoDisabled"
       [generalInfoData]="generalInfoData"
       data-test="study-editor__general-info"
-    ></num-study-editor-general-info>
+    ></num-project-editor-general-info>
 
-    <num-study-editor-templates
-      [(templates)]="study.templates"
+    <num-project-editor-templates
+      [(templates)]="project.templates"
       [isDisabled]="isTemplatesDisabled"
       data-test="study-editor__templates"
-    ></num-study-editor-templates>
+    ></num-project-editor-templates>
 
-    <num-study-editor-connector
+    <num-project-editor-connector
       [cohortNode]="cohortGroup"
       [isLoadingComplete]="isCohortsFetched"
       [isDisabled]="isConnectorDisabled"
       data-test="study-editor__connector"
-    ></num-study-editor-connector>
+    ></num-project-editor-connector>
 
-    <num-study-editor-researchers
+    <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
-      [(researchers)]="study.researchers"
+      [(researchers)]="project.researchers"
       [isDisabled]="isResearchersDisabled"
       data-test="study-editor__researchers"
-    ></num-study-editor-researchers>
+    ></num-project-editor-researchers>
   </mat-accordion>
 
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
     <num-button
-      [isDisabled]="
-        !isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportCsvLoading
-      "
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportLoading"
       type="primary"
       icon="play"
       (singleClick)="getDataSet()"
       [attr.data-test]="'data-explorer__get-data-button'"
       >{{ 'BUTTON.GET_DATA' | translate }}</num-button
     >
+    <!-- NUM-1450: Custom configuration is not shown for Release 1.0 -->
     <num-button
+      [hidden]="true"
       [isDisabled]="!isCompositionsFetched || isDataSetLoading"
       type="secondary"
       icon="pen"
@@ -85,15 +98,25 @@
     <num-button
       type="secondary"
       icon="file-download"
-      (singleClick)="exportCsv()"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportCsvLoading"
+      (singleClick)="exportFile('csv')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
       data-test="data-explorer__export-csv-button"
     >
-      {{ 'DATA_EXPLORER.EXPORT_CSV' | translate }}
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
+    </num-button>
+
+    <num-button
+      type="secondary"
+      icon="file-download"
+      (singleClick)="exportFile('json')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      data-test="data-explorer__export-json-button"
+    >
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
     </num-button>
 
     <mat-spinner
-      *ngIf="isExportCsvLoading"
+      *ngIf="isExportLoading"
       color="accent"
       [diameter]="20"
       class="export-csv_spinner"

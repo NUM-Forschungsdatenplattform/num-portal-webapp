@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -10,12 +26,12 @@ import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
-import { mockStudy1 } from 'src/mocks/data-mocks/studies.mock'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { RouterTestingModule } from '@angular/router/testing'
 import { DataExplorerComponent } from './data-explorer.component'
-import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.interface'
+import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
@@ -29,7 +45,7 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
-  EXPORT_CSV_ERROR,
+  EXPORT_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
@@ -37,7 +53,8 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
-import { StudyService } from 'src/app/core/services/study/study.service'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -63,10 +80,10 @@ describe('DataExplorerComponent', () => {
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
 
-  const studyService = ({
+  const projectService = ({
     executeAdHocAql: jest.fn(),
-    exportCsv: jest.fn(),
-  } as unknown) as StudyService
+    exportFile: jest.fn(),
+  } as unknown) as ProjectService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
 
@@ -87,8 +104,8 @@ describe('DataExplorerComponent', () => {
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
 
-  const resolvedData: IStudyResolved = {
-    study: new StudyUiModel(mockStudy1, phenotypeService),
+  const resolvedData: IProjectResolved = {
+    project: new ProjectUiModel(mockProject1, phenotypeService),
     error: null,
   }
 
@@ -100,27 +117,27 @@ describe('DataExplorerComponent', () => {
     },
   } as unknown) as ActivatedRoute
 
-  @Component({ selector: 'num-study-editor-general-info', template: '' })
+  @Component({ selector: 'num-project-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
   }
-  @Component({ selector: 'num-study-editor-connector', template: '' })
-  class StubStudyEditorConnector {
+  @Component({ selector: 'num-project-editor-connector', template: '' })
+  class StubProjectEditorConnector {
     @Input() cohortNode: any
     @Input() isLoadingComplete: boolean
     @Input() isDisabled: boolean
   }
-  @Component({ selector: 'num-study-editor-researchers', template: '' })
-  class StudyEditorResearchers {
+  @Component({ selector: 'num-project-editor-researchers', template: '' })
+  class ProjectEditorResearchers {
     @Input() researchers: any[]
     @Input() isDisabled: boolean
     @Input() isLoadingComplete: boolean
   }
 
-  @Component({ selector: 'num-study-editor-templates', template: '' })
-  class StudyEditorTemplatesStubComponent {
+  @Component({ selector: 'num-project-editor-templates', template: '' })
+  class ProjectEditorTemplatesStubComponent {
     @Input() templates: any
     @Input() isDisabled: boolean
   }
@@ -137,10 +154,10 @@ describe('DataExplorerComponent', () => {
       declarations: [
         DataExplorerComponent,
         StubGeneralInfoComponent,
-        StubStudyEditorConnector,
-        StudyEditorResearchers,
+        StubProjectEditorConnector,
+        ProjectEditorResearchers,
         ButtonComponent,
-        StudyEditorTemplatesStubComponent,
+        ProjectEditorTemplatesStubComponent,
         ResultTableStubComponent,
       ],
       imports: [
@@ -165,8 +182,8 @@ describe('DataExplorerComponent', () => {
           useValue: adminService,
         },
         {
-          provide: StudyService,
-          useValue: studyService,
+          provide: ProjectService,
+          useValue: projectService,
         },
         {
           provide: DialogService,
@@ -196,20 +213,20 @@ describe('DataExplorerComponent', () => {
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
     test.each([null, undefined])('should flag the cohorts as fetched', (cohortId) => {
-      const cohortIdBackup = resolvedData.study.cohortId
-      resolvedData.study.cohortId = cohortId
+      const cohortIdBackup = resolvedData.project.cohortId
+      resolvedData.project.cohortId = cohortId
       fixture = TestBed.createComponent(DataExplorerComponent)
       component = fixture.componentInstance
       fixture.detectChanges()
 
       expect(component.isCohortsFetched).toBeTruthy()
-      resolvedData.study.cohortId = cohortIdBackup
+      resolvedData.project.cohortId = cohortIdBackup
     })
   })
 
   describe('When the components gets initialized and the researchers are not specified', () => {
     it('should flag the researchers as fetched', () => {
-      resolvedData.study.researchersApi = []
+      resolvedData.project.researchersApi = []
       fixture = TestBed.createComponent(DataExplorerComponent)
       component = fixture.componentInstance
       fixture.detectChanges()
@@ -224,8 +241,8 @@ describe('DataExplorerComponent', () => {
       component = fixture.componentInstance
 
       fixture.detectChanges()
-      component.resolvedData.study = new StudyUiModel(mockStudy1, phenotypeService)
-      expect(cohortService.get).toHaveBeenLastCalledWith(mockStudy1.cohortId)
+      component.resolvedData.project = new ProjectUiModel(mockProject1, phenotypeService)
+      expect(cohortService.get).toHaveBeenLastCalledWith(mockProject1.cohortId)
 
       fixture.whenStable().then(() => {
         expect(component.isCohortsFetched).toBeTruthy()
@@ -237,7 +254,7 @@ describe('DataExplorerComponent', () => {
   describe('When the components gets initialized and the researchers are specified', () => {
     it('should call the adminService to get the researchers and flag the researchers as fetched', async (done) => {
       const users = [{ userId: 'abc-1' }, { userId: 'abc-2' }]
-      resolvedData.study.researchersApi = users
+      resolvedData.project.researchersApi = users
       fixture = TestBed.createComponent(DataExplorerComponent)
       component = fixture.componentInstance
       fixture.detectChanges()
@@ -260,7 +277,7 @@ describe('DataExplorerComponent', () => {
 
       jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
 
-      resolvedData.study.templates = [
+      resolvedData.project.templates = [
         {
           templateId: 'mockSimpleContainment',
           name: 'test',
@@ -272,7 +289,7 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should set the selected and allowed templates to the component', () => {
-      const templateIds = resolvedData.study.templates.map(
+      const templateIds = resolvedData.project.templates.map(
         (resolvedTemplate) => resolvedTemplate.templateId
       )
       expect(component.selectedTemplateIds).toEqual(templateIds)
@@ -286,7 +303,7 @@ describe('DataExplorerComponent', () => {
 
     it('should fetch the containments of the templates and flag the compositions as fetched', () => {
       expect(aqlEditorService.getContainment).toHaveBeenCalledWith(
-        resolvedData.study.templates[0].templateId
+        resolvedData.project.templates[0].templateId
       )
       expect(component.isCompositionsFetched).toEqual(true)
     })
@@ -302,7 +319,7 @@ describe('DataExplorerComponent', () => {
       jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
-      resolvedData.study.templates = [
+      resolvedData.project.templates = [
         {
           templateId: 'mockSimpleContainment',
           name: 'test',
@@ -333,10 +350,10 @@ describe('DataExplorerComponent', () => {
       expect(backButton.textContent).toEqual('BUTTON.BACK')
     })
 
-    it('should navigate back to the dashboard studies overview', () => {
-      resolvedData.study.id = 1
+    it('should navigate back to the dashboard projects overview', () => {
+      resolvedData.project.id = 1
       backButton.querySelector('button').click()
-      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/studies'])
+      expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
   })
 
@@ -351,7 +368,7 @@ describe('DataExplorerComponent', () => {
 
     it('should open the dialog with the config including the content payload', () => {
       const dialogContentPayload: IAqlBuilderDialogInput = {
-        mode: AqlBuilderDialogMode.DataExplorer,
+        mode: AqlBuilderDialogMode.DataRetrieval,
         model: component.aqbModel,
         selectedTemplateIds: component.selectedTemplateIds,
         allowedTemplates: component.allowedTemplateIds,
@@ -413,7 +430,7 @@ describe('DataExplorerComponent', () => {
     }
 
     beforeEach(() => {
-      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
       component.compiledQuery = buildResponse
     })
 
@@ -427,7 +444,7 @@ describe('DataExplorerComponent', () => {
 
   describe('When the resultSet cannot be fetched', () => {
     beforeEach(() => {
-      jest.spyOn(studyService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
       component.compiledQuery = buildResponse
     })
@@ -441,21 +458,21 @@ describe('DataExplorerComponent', () => {
     })
   })
 
-  describe('When the ExportCsv is Clicked', () => {
+  describe('When the Export CSV Button is clicked', () => {
     beforeEach(() => {
-      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => of('some text'))
+      jest.spyOn(projectService, 'exportFile').mockImplementation(() => of('some text'))
       component.compiledQuery = buildResponse
     })
 
-    it('should call the studyService.exportCsv', () => {
-      component.exportCsv()
+    it('should call the projectService.exportFile', () => {
+      component.exportFile('csv')
 
-      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isExportCsvLoading).toEqual(false)
+      expect(projectService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
     })
 
     it('should trigger the download', () => {
-      const filename = `csv_export_${component.study.id}.csv`
+      const filename = `csv_export_${component.project.id}.csv`
       const mockHtmlElement = document.createElement('a')
 
       mockHtmlElement.setAttribute = jest.fn()
@@ -466,7 +483,7 @@ describe('DataExplorerComponent', () => {
         value: () => mockHtmlElement,
       })
 
-      component.exportCsv()
+      component.exportFile('csv')
 
       expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
       expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
@@ -474,14 +491,72 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should show toast in case of error', () => {
-      jest.spyOn(studyService, 'exportCsv').mockImplementation(() => throwError('error'))
+      jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
-      component.exportCsv()
-      expect(studyService.exportCsv).toHaveBeenCalledTimes(1)
-      expect(component.isExportCsvLoading).toEqual(false)
+      component.exportFile('csv')
+      expect(projectService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
 
-      expect(toastMessageService.openToast).toHaveBeenCalledWith(EXPORT_CSV_ERROR)
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'CSV',
+        },
+      }
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    })
+  })
+
+  describe('When the Export JSON Button is clicked', () => {
+    beforeEach(() => {
+      jest.spyOn(projectService, 'exportFile').mockImplementation(() => of('some text'))
+      component.compiledQuery = buildResponse
+    })
+
+    it('should call the ProjectService.exportFile', () => {
+      component.exportFile('json')
+
+      expect(projectService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      const filename = `json_export_${component.project.id}.json`
+      const mockHtmlElement = document.createElement('a')
+
+      mockHtmlElement.setAttribute = jest.fn()
+      mockHtmlElement.click = jest.fn()
+      mockHtmlElement.remove = jest.fn()
+
+      Object.defineProperty(document, 'createElement', {
+        value: () => mockHtmlElement,
+      })
+
+      component.exportFile('json')
+
+      expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
+      expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
+      expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
+    })
+
+    it('should show toast in case of error', () => {
+      jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+
+      component.exportFile('json')
+      expect(projectService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'JSON',
+        },
+      }
+
+      expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
     })
   })
 })

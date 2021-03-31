@@ -1,0 +1,48 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<mat-form-field appearance="outline">
+  <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
+  <mat-chip-list
+    #keywordsChipList
+    aria-label="Keywords selection"
+    data-test="study-editor__general-info__keywords-chip-list"
+  >
+    <mat-chip
+      *ngFor="let keyword of keywords; let i = index"
+      (removed)="removeKeyword(i)"
+      class="chip-primary"
+      data-test="study-editor__general-info__keywords-chip-item"
+    >
+      <span>{{ keyword }}</span>
+      <fa-icon
+        icon="times-circle"
+        class="chip__remove-icon"
+        data-test="study-editor__general-info__keywords-remove-keyword-button"
+        matChipRemove
+      ></fa-icon>
+    </mat-chip>
+    <input
+      placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
+      [matChipInputFor]="keywordsChipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+      matChipInputAddOnBlur
+      (matChipInputTokenEnd)="addKeyword($event)"
+      autocomplete="off"
+      data-test="study-editor__general-info__keywords-input"
+    />
+  </mat-chip-list>
+</mat-form-field>

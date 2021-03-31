@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
@@ -7,36 +23,36 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {
-    routeTo: 'studies',
+    routeTo: 'projects',
     icon: 'microscope',
-    translationKey: 'NAVIGATION.STUDIES',
+    translationKey: 'NAVIGATION.PROJECTS',
     tabNav: [
       {
-        routeTo: 'studies',
+        routeTo: 'projects',
         id: 'overview',
-        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+        translationKey: 'NAVIGATION.PROJECTS_OVERVIEW',
       },
       {
-        routeTo: 'studies/new/editor',
+        routeTo: 'projects/new/editor',
         id: 'editor',
-        translationKey: 'NAVIGATION.STUDIES_EDITOR',
+        translationKey: 'NAVIGATION.PROJECTS_EDITOR',
       },
     ],
   },
   {
     routeTo: 'data-explorer',
     icon: 'table',
-    translationKey: 'NAVIGATION.DATA_EXPLORER',
+    translationKey: 'NAVIGATION.DATA_RETRIEVAL',
     tabNav: [
       {
-        routeTo: 'data-explorer/studies',
+        routeTo: 'data-explorer/projects',
         id: 'overview',
-        translationKey: 'NAVIGATION.STUDIES_OVERVIEW',
+        translationKey: 'NAVIGATION.PROJECTS_OVERVIEW',
       },
       {
         routeTo: 'data-explorer',
         id: 'data-explorer',
-        translationKey: 'NAVIGATION.DATA_EXPLORER',
+        translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         disabled: true,
       },
     ],
@@ -129,11 +145,12 @@ export const mainNavItems: INavItem[] = [
 ]
 
 export const secondaryNavItemsLoggedIn: INavItem[] = [
-  {
-    routeTo: '#',
-    icon: 'cog',
-    translationKey: 'NAVIGATION.PROFILE',
-  },
+  // Not shown in release 1.0
+  // {
+  //   routeTo: '#',
+  //   icon: 'cog',
+  //   translationKey: 'NAVIGATION.PROFILE',
+  // },
   {
     routeTo: '#logout',
     icon: 'sign-out-alt',

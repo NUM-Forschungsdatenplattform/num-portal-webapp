@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { LogicalOperator } from '../logical-operator.enum'
 import { PhenotypeGroupUiModel } from './phenotype-group-ui.model'
@@ -5,7 +21,7 @@ import { IPhenotypeQueryApi } from './phenotype-query-api.interface'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
-import { ICohortGroupApi } from '../study/cohort-group-api.interface'
+import { ICohortGroupApi } from '../project/cohort-group-api.interface'
 import { IDictionary } from '../dictionary.interface'
 import { IUser } from '../user/user.interface'
 
@@ -99,10 +115,10 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
   }
 
   public convertToApi(): ICohortGroupApi {
-    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForStudyApi()
+    return this.isNegated ? this.convertToNegatedApiGroup() : this.getPhenotypeForProjectApi()
   }
 
-  private getPhenotypeForStudyApi(): ICohortGroupApi {
+  private getPhenotypeForProjectApi(): ICohortGroupApi {
     return {
       type: ConnectorNodeType.Phenotype,
       phenotypeId: this.id,
@@ -117,7 +133,7 @@ export class PhenotypeUiModel implements ConnectorMainNodeUi {
     return {
       type: ConnectorNodeType.Group,
       operator: LogicalOperator.Not,
-      children: [this.getPhenotypeForStudyApi()],
+      children: [this.getPhenotypeForProjectApi()],
     }
   }
 }

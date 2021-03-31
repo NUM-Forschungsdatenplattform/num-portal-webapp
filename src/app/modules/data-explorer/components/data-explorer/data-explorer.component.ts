@@ -1,3 +1,19 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { Component, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
@@ -10,7 +26,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IAqbSelectClick } from 'src/app/modules/aqls/models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
-import { IStudyResolved } from 'src/app/modules/studies/models/study-resolved.interface'
+import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
@@ -19,15 +35,16 @@ import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-b
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
-import { CohortGroupUiModel } from 'src/app/shared/models/study/cohort-group-ui.model'
-import { StudyUiModel } from 'src/app/shared/models/study/study-ui.model'
+import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import {
   BUILDER_DIALOG_CONFIG,
   COMPOSITION_LOADING_ERROR,
-  EXPORT_CSV_ERROR,
+  EXPORT_ERROR,
   RESULT_SET_LOADING_ERROR,
 } from './constants'
-import { StudyService } from 'src/app/core/services/study/study.service'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 
 @Component({
   selector: 'num-data-explorer',
@@ -35,7 +52,7 @@ import { StudyService } from 'src/app/core/services/study/study.service'
   styleUrls: ['./data-explorer.component.scss'],
 })
 export class DataExplorerComponent implements OnInit {
-  resolvedData: IStudyResolved
+  resolvedData: IProjectResolved
 
   aqbModel = new AqbUiModel()
   compiledQuery: IArchetypeQueryBuilderResponse
@@ -47,7 +64,7 @@ export class DataExplorerComponent implements OnInit {
   isCompositionsFetched: boolean
   isDataSetLoading: boolean
 
-  isExportCsvLoading: boolean
+  isExportLoading: boolean
 
   isTemplatesDisabled = true
   isResearchersDisabled = true
@@ -56,15 +73,15 @@ export class DataExplorerComponent implements OnInit {
 
   generalInfoData: IDefinitionList[]
 
-  get study(): StudyUiModel {
-    return this.resolvedData.study
+  get project(): ProjectUiModel {
+    return this.resolvedData.project
   }
 
   get cohortGroup(): CohortGroupUiModel {
-    return this.study.cohortGroup
+    return this.project.cohortGroup
   }
 
-  studyForm: FormGroup = new FormGroup({})
+  projectForm: FormGroup = new FormGroup({})
 
   resultSet: IAqlExecutionResponse
   configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
@@ -74,7 +91,7 @@ export class DataExplorerComponent implements OnInit {
     private route: ActivatedRoute,
     private cohortService: CohortService,
     private adminService: AdminService,
-    private studyService: StudyService,
+    private projectService: ProjectService,
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService
@@ -90,7 +107,7 @@ export class DataExplorerComponent implements OnInit {
   }
 
   prefillAqlBuilder(): void {
-    this.resolvedData.study.templates.forEach((template) => {
+    this.resolvedData.project.templates.forEach((template) => {
       this.allowedTemplateIds.push(template.templateId)
       this.selectedTemplateIds.push(template.templateId)
     })
@@ -133,36 +150,36 @@ export class DataExplorerComponent implements OnInit {
   }
 
   fetchCohort(): void {
-    if (this.study.cohortId === null || this.study.cohortId === undefined) {
+    if (this.project.cohortId === null || this.project.cohortId === undefined) {
       this.isCohortsFetched = true
     } else {
-      this.cohortService.get(this.study.cohortId).subscribe((cohortApi) => {
-        this.study.addCohortGroup(cohortApi?.cohortGroup)
+      this.cohortService.get(this.project.cohortId).subscribe((cohortApi) => {
+        this.project.addCohortGroup(cohortApi?.cohortGroup)
         this.isCohortsFetched = true
       })
     }
   }
 
   fetchResearcher(): void {
-    const userIds = this.study.researchersApi.map((researcher) => researcher.userId)
+    const userIds = this.project.researchersApi.map((researcher) => researcher.userId)
     if (!userIds.length) {
       this.isResearchersFetched = true
     } else {
       this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
-        this.study.researchers = researchers
+        this.project.researchers = researchers
         this.isResearchersFetched = true
       })
     }
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = this.study.getStudyPreviewGeneralInfo()
+    this.generalInfoData = this.project.getProjectPreviewGeneralInfo()
   }
 
   openBuilderDialog(): void {
     const dialogContentPayload: IAqlBuilderDialogInput = {
       model: this.aqbModel,
-      mode: AqlBuilderDialogMode.DataExplorer,
+      mode: AqlBuilderDialogMode.DataRetrieval,
       selectedTemplateIds: this.selectedTemplateIds,
       allowedTemplates: this.allowedTemplateIds,
     }
@@ -191,13 +208,13 @@ export class DataExplorerComponent implements OnInit {
   }
 
   cancel(): void {
-    this.router.navigate(['data-explorer/studies'])
+    this.router.navigate(['data-explorer/projects'])
   }
 
   getDataSet(): void {
     this.isDataSetLoading = true
 
-    this.studyService.executeAdHocAql(this.compiledQuery.q, this.study.id).subscribe(
+    this.projectService.executeAdHocAql(this.compiledQuery.q, this.project.id).subscribe(
       (resultSet) => {
         this.resultSet = resultSet
         this.isDataSetLoading = false
@@ -210,32 +227,46 @@ export class DataExplorerComponent implements OnInit {
     )
   }
 
-  exportCsv(): void {
+  exportFile(format: 'csv' | 'json'): void {
     if (!this.compiledQuery) return
 
-    this.isExportCsvLoading = true
+    this.isExportLoading = true
 
-    this.studyService.exportCsv(this.study.id, this.compiledQuery.q).subscribe(
+    this.projectService.exportFile(this.project.id, this.compiledQuery.q, format).subscribe(
       (response) => {
-        const filename = `csv_export_${this.study.id}.csv`
+        const filename =
+          format === 'csv'
+            ? `csv_export_${this.project.id}.csv`
+            : `json_export_${this.project.id}.json`
+
         const downloadLink = document.createElement('a')
         downloadLink.setAttribute(
           'href',
-          'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+          format === 'csv'
+            ? 'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+            : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
         )
+
         downloadLink.setAttribute('download', filename)
         downloadLink.style.display = 'none'
         document.body.appendChild(downloadLink)
 
-        this.isExportCsvLoading = false
+        this.isExportLoading = false
 
         downloadLink.click()
         downloadLink.remove()
       },
       () => {
-        this.isExportCsvLoading = false
+        this.isExportLoading = false
 
-        this.toastMessageService.openToast(EXPORT_CSV_ERROR)
+        const messageConfig: IToastMessageConfig = {
+          ...EXPORT_ERROR,
+          messageParameters: {
+            format: format.toUpperCase(),
+          },
+        }
+
+        this.toastMessageService.openToast(messageConfig)
       }
     )
   }

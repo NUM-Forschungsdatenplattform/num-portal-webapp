@@ -1,0 +1,47 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section fxLayout="column">
+  <p>{{ 'CONFIRM_DIALOG.APPROVE_PROJECT_CONTENT' | translate }}</p>
+
+  <form [formGroup]="form" class="num-margin-b-40">
+    <mat-checkbox
+      id="isChecked"
+      color="accent"
+      formControlName="check"
+      data-test="dialog-confirm-study__approval__ethical-approval-checkbox"
+      >{{ 'FORM.ETHICAL_APPROVAL_CHECKBOX' | translate }}</mat-checkbox
+    >
+  </form>
+
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      type="secondary"
+      (singleClick)="handleDialogCancel()"
+      data-test="dialog-confirm-study__approval__cancel-button"
+      >{{ 'BUTTON.CANCEL' | translate }}</num-button
+    >
+
+    <num-button
+      id="approval-button"
+      type="primary"
+      (singleClick)="handleDialogConfirm()"
+      [isDisabled]="form.invalid"
+      data-test="dialog-confirm-study__approval__approval-button"
+      >{{ 'BUTTON.PROJECT_APPROVAL_APPROVE' | translate }}</num-button
+    >
+  </div>
+</section>

@@ -1,0 +1,85 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'NAVIGATION.DEFINE_PROJECT' | translate }}</h2>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P1' | translate }}</p>
+  <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P2' | translate }}</p>
+  <p class="num-margin-b-40">{{ 'PROJECT.MANDATORY' | translate }}</p>
+
+  <mat-accordion [multi]="true" fxFlex="100%">
+    <num-project-editor-general-info
+      [form]="projectForm"
+      [isDisabled]="isGeneralInfoDisabled"
+      [generalInfoData]="generalInfoData"
+      data-test="study-editor__general-info"
+    ></num-project-editor-general-info>
+
+    <num-project-editor-templates
+      [(templates)]="project.templates"
+      [isDisabled]="isTemplatesDisabled"
+      data-test="study-editor__templates"
+    ></num-project-editor-templates>
+
+    <num-project-editor-connector
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+      [isDisabled]="isConnectorDisabled"
+      [determineHitsContent]="determineHitsContent"
+      (determineHitsClicked)="determineHits()"
+      data-test="study-editor__connector__group"
+    ></num-project-editor-connector>
+
+    <num-project-editor-researchers
+      [isLoadingComplete]="isResearchersFetched"
+      [(researchers)]="project.researchers"
+      [isDisabled]="isResearchersDisabled"
+      data-test="study-editor__researchers"
+    ></num-project-editor-researchers>
+  </mat-accordion>
+
+  <num-project-editor-comments
+    *ngIf="project.id !== null && project.id !== undefined"
+    [isLoadingComplete]="isCommentsFetched"
+    [comments]="projectComments"
+    [form]="commentForm"
+    (postComment)="postComment()"
+    data-test="study-editor__comments"
+  ></num-project-editor-comments>
+
+  <num-project-editor-approval
+    *ngIf="mode === possibleModes.REVIEW"
+    [form]="approverForm"
+    data-test="study-editor__approval"
+  ></num-project-editor-approval>
+
+  <num-project-editor-buttons
+    [editorMode]="mode"
+    [projectStatus]="project.status"
+    [isFormValid]="projectForm.valid"
+    [approverForm]="approverForm"
+    [isResearchersDefined]="project.researchers.length"
+    [isTemplatesDefined]="project.templates.length"
+    [isCohortDefined]="project.cohortGroup.children.length"
+    (saveAll)="save()"
+    (saveResearchers)="saveResearchers()"
+    (saveAsApprovalRequest)="sendForApproval()"
+    (saveAsApprovalReply)="saveAsApprovalReply()"
+    (startEdit)="startEdit()"
+    (cancel)="cancel()"
+    data-test="study-editor__buttons"
+  ></num-project-editor-buttons>
+</section>

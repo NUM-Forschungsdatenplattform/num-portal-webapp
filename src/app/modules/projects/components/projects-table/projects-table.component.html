@@ -1,0 +1,114 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<h3 id="projects-header">{{ 'AVAILABLE_PROJECTS' | translate }}</h3>
+
+<div role="presentation" class="mat-elevation-z1 num-margin-b-60">
+  <table
+    aria-labelledby="projects-header"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    fixedLayout
+    data-test="studies__table"
+  >
+    <mat-menu #menu="matMenu">
+      <ng-template
+        matMenuContent
+        let-projectStatus="projectStatus"
+        let-id="id"
+        let-ownerId="ownerId"
+      >
+        <button
+          class="num-mat-list-item"
+          *ngFor="let menuItem of menuItems | itemVisibility: projectStatus:ownerId:userId"
+          [disabled]="menuItem.isDisabled"
+          mat-menu-item
+          (click)="handleMenuClick(menuItem.id, id)"
+          [attr.data-test]="'studies__table__action-item__' + menuItem.id + '-button'"
+        >
+          {{ menuItem.translationKey | translate }}
+        </button>
+      </ng-template>
+    </mat-menu>
+
+    <ng-container matColumnDef="menu">
+      <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm">
+        {{ 'FORM.ACTION' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          *ngIf="element.status"
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          [matMenuTriggerData]="{
+            projectStatus: element.status,
+            id: element.id,
+            ownerId: element.coordinator.id
+          }"
+          data-test="studies__table__action-menu-button"
+        >
+          <fa-icon icon="ellipsis-v"></fa-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'FORM.NAME' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'FORM.AUTHOR' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element?.coordinator?.firstName }} {{ element?.coordinator?.lastName || '-' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="organisation">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'USER.ORGANIZATION' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element?.coordinator?.organization?.name || '-' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'FORM.STATUS' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ (element.status ? 'PROJECT.STATUS.' + element.status : undefined) | translate }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    [pageSize]="pageSize"
+    (page)="pageSize = $event.pageSize"
+    data-test="studies__table__paginator"
+  ></mat-paginator>
+</div>

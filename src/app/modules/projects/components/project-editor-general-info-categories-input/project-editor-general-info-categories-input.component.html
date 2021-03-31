@@ -1,0 +1,72 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<mat-form-field appearance="outline">
+  <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
+  <mat-chip-list
+    #categoryChipList
+    aria-label="Category selection"
+    data-test="study-editor__general-info__categories-chip-list"
+  >
+    <mat-chip
+      *ngFor="let category of categories; let i = index"
+      (removed)="removeCategory(i)"
+      [value]="category"
+      class="chip-primary"
+      data-test="study-editor__general-info__category-chip"
+    >
+      <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
+      <fa-icon
+        icon="times-circle"
+        class="chip__remove-icon"
+        data-test="study-editor__general-info__categories-remove-category-button"
+        matChipRemove
+      ></fa-icon>
+    </mat-chip>
+    <input
+      #categoryInput
+      placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
+      [formControl]="categoryCtrl"
+      [matAutocomplete]="categoryAutocomplete"
+      #trigger="matAutocompleteTrigger"
+      [matChipInputFor]="categoryChipList"
+      matChipInputAddOnBlur
+      (focus)="openCategoryAutocomplete()"
+      data-test="project-editor__general-info__categories-input"
+    />
+  </mat-chip-list>
+  <mat-autocomplete
+    #categoryAutocomplete="matAutocomplete"
+    (optionSelected)="addCategory($event, trigger)"
+    autoActiveFirstOption
+    data-test="study-editor__general-info__categories-autocomplete"
+  >
+    <mat-option
+      *ngFor="let category of filteredCategories | async"
+      [value]="category"
+      data-test="study-editor__general-info__category-option"
+    >
+      {{ 'PROJECT.CATEGORIES.' + category | translate }}
+    </mat-option>
+    <mat-option
+      *ngIf="isNoResults"
+      disabled
+      data-test="study-editor__general-info__category-option__no-results"
+    >
+      {{ 'PROJECT.CATEGORIES_NO_RESULTS' | translate }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
