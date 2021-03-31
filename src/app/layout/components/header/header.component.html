@@ -50,6 +50,7 @@
         [fixedWidth]="true"
       ></fa-icon
       >{{ currentMainNavItem.translationKey | translate }}
+      {{ currentMainNavItem.routeTo === 'home' ? ' - ' + ('TEST_ENVIRONMENT' | translate) : '' }}
     </h1>
 
     <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">

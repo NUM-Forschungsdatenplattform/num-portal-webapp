@@ -26,6 +26,7 @@ export interface IProjectApi {
   createDate?: string
   goal?: string
   description?: string
+  simpleDescription?: string
   firstHypotheses?: string
   secondHypotheses?: string
   keywords?: string[]
@@ -33,6 +34,7 @@ export interface IProjectApi {
   startDate?: string
   endDate?: string
   financed?: boolean
+  usedOutsideEu?: boolean
   id?: number | null
   modifiedDate?: string
   name?: string

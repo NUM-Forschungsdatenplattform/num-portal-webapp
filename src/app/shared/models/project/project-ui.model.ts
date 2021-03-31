@@ -34,6 +34,7 @@ export class ProjectUiModel {
   /** The coordinator of the project. Is automatically asigned based on the auth-token */
   coordinator?: IUser
   description?: string
+  simpleDescription?: string
   goal?: string
   firstHypotheses?: string
   secondHypotheses?: string
@@ -42,6 +43,7 @@ export class ProjectUiModel {
   startDate?: Date
   endDate?: Date
   financed?: boolean
+  usedOutsideEu?: boolean
   id: number | null
   modifiedDate?: Date
   name?: string
@@ -53,6 +55,7 @@ export class ProjectUiModel {
   constructor(projectApi?: IProjectApi, private phenotypeService?: PhenotypeService) {
     this.id = projectApi?.id || null
     this.description = projectApi?.description || undefined
+    this.simpleDescription = projectApi?.simpleDescription || undefined
     this.goal = projectApi?.goal || undefined
     this.firstHypotheses = projectApi?.firstHypotheses || undefined
     this.secondHypotheses = projectApi?.secondHypotheses || undefined
@@ -63,6 +66,7 @@ export class ProjectUiModel {
       ? new Date(projectApi.endDate)
       : new Date(new Date().setFullYear(new Date().getFullYear() + 1))
     this.financed = projectApi?.financed || false
+    this.usedOutsideEu = projectApi?.usedOutsideEu || false
 
     this.coordinator = projectApi?.coordinator || undefined
     this.modifiedDate = projectApi?.modifiedDate ? new Date(projectApi?.modifiedDate) : undefined
@@ -97,6 +101,7 @@ export class ProjectUiModel {
       id: id || this.id,
       name: formValues?.name || this.name,
       description: formValues?.description || this.description,
+      simpleDescription: formValues?.simpleDescription || this.simpleDescription,
       goal: formValues?.goal || this.goal,
       firstHypotheses: formValues?.firstHypotheses || this.firstHypotheses,
       secondHypotheses: formValues?.secondHypotheses || this.secondHypotheses,
@@ -105,6 +110,7 @@ export class ProjectUiModel {
       startDate: DateHelperService.getDateString(formValues.startDate || this.startDate),
       endDate: DateHelperService.getDateString(formValues?.endDate || this.endDate),
       financed: formValues?.financed,
+      usedOutsideEu: formValues?.usedOutsideEu,
       cohortId: formValues?.cohortId || this.cohortId,
       researchers: this.getResearchersForApi(),
       status: this.status,
@@ -120,6 +126,7 @@ export class ProjectUiModel {
     return [
       { title: 'PROJECT.TITLE', description: this.name },
       { title: 'FORM.DESCRIPTION', description: this.description },
+      { title: 'FORM.SIMPLE_DESCRIPTION', description: this.simpleDescription },
       { title: 'PROJECT.GOAL', description: this.goal },
       { title: 'PROJECT.FIRST_HYPOTHESES', description: this.firstHypotheses },
       { title: 'PROJECT.SECOND_HYPOTHESES', description: this.secondHypotheses },
@@ -138,6 +145,11 @@ export class ProjectUiModel {
       {
         title: 'FORM.FINANCED_BY_PRIVATE',
         description: this.financed,
+        type: DefinitionType.Boolean,
+      },
+      {
+        title: 'FORM.USED_OUTSIDE_EU',
+        description: this.usedOutsideEu,
         type: DefinitionType.Boolean,
       },
     ]

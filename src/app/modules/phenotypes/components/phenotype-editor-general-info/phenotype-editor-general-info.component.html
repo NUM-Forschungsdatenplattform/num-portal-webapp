@@ -21,13 +21,13 @@
   fxFlex="100%"
   fxLayoutGap="20px"
 >
-  <h3>{{ 'FORM.GENERAL_INFO' | translate }}</h3>
+  <h3>{{ 'FORM.GENERAL_INFO' | translate }}*</h3>
 
   <mat-card>
     <mat-card-content fxLayout="column" fxFlex="100%">
       <form fxLayout="column" [formGroup]="form">
         <mat-form-field appearance="outline" color="accent">
-          <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}</mat-label>
+          <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}*</mat-label>
           <input
             formControlName="title"
             matInput
@@ -38,7 +38,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" color="accent">
-          <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}</mat-label>
+          <mat-label id="desc-label">{{ 'FORM.DESCRIPTION' | translate }}*</mat-label>
           <textarea
             formControlName="description"
             #textarea

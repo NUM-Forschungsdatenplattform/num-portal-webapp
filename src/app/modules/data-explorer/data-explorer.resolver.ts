@@ -69,7 +69,10 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
 
   isAllowed(project: IProjectApi): boolean {
     if (project.status === ProjectStatus.Published) {
-      if (project.researchers.find((researcher) => this.userInfo.sub === researcher.userId)) {
+      if (
+        project.researchers.find((researcher) => this.userInfo.sub === researcher.userId) ||
+        project.coordinator?.id === this.userInfo.sub
+      ) {
         return true
       }
     }

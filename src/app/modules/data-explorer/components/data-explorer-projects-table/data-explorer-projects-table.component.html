@@ -16,8 +16,6 @@
 
 <h3 id="projects-header">{{ 'AVAILABLE_PROJECTS' | translate }}</h3>
 
-<p class="num-margin-b-40">{{ 'DATA_EXPLORER.DATA_RETRIEVAL_OVERVIEW_CONTENT' | translate }}</p>
-
 <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
   <table aria-labelledby="projects-header" mat-table [dataSource]="dataSource" fixedLayout matSort>
     <ng-container matColumnDef="icon">
@@ -30,7 +28,7 @@
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
           (click)="handleSelectClick(element.id)"
-          data-test="data-explorer-projects__table__select-button"
+          data-test="data-explorer-studies__table__select-button"
         >
           <fa-icon icon="external-link-alt" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
@@ -48,7 +46,6 @@
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'FORM.AUTHOR' | translate }}
       </th>
-      <!-- TO DO: currently not implemented in the backend - check if this is correct -->
       <td mat-cell *matCellDef="let element">
         {{ element.coordinator?.firstName }} {{ element.coordinator?.lastName }}
       </td>
@@ -58,7 +55,6 @@
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'USER.ORGANIZATION' | translate }}
       </th>
-      <!-- TO DO: currently not implemented in the backend - check if this is correct -->
       <td mat-cell *matCellDef="let element">{{ element.coordinator?.organization?.name }}</td>
     </ng-container>
 
@@ -80,6 +76,6 @@
     showFirstLastButtons
     [pageSize]="pageSize"
     (page)="pageSize = $event.pageSize"
-    data-test="data-explorer-projects__table__paginator-buttons"
+    data-test="data-explorer-studies__table__paginator-buttons"
   ></mat-paginator>
 </div>

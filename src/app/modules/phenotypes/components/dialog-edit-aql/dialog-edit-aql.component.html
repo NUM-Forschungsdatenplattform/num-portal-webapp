@@ -16,7 +16,7 @@
 
 <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
   <h2 class="mat-display-2">
-    <span class="not-icon num-fc--a" *ngIf="aql.isNegated">&not;</span>{{ aql.name }}
+    <span class="not-icon num-fc--a" *ngIf="aql.isNegated">&not;</span>{{ aql?.name }}
   </h2>
   <mat-slide-toggle
     labelPosition="before"
@@ -30,14 +30,11 @@
   <tbody>
     <tr>
       <th scope="row">{{ 'FORM.AUTHOR' | translate }}:</th>
-      <td>Lars Schäfer</td>
+      <td>{{ aql?.owner?.firstName }} {{ aql?.owner?.lastName || '-' }}</td>
     </tr>
     <tr>
-      <th scope="row">{{ 'FORM.DESCRIPTION' | translate }}:</th>
-      <td>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget
-        imperdiet neque. In volutpat ante semper diam molestie, et aliquam.
-      </td>
+      <th scope="row">{{ 'FORM.PURPOSE' | translate }}:</th>
+      <td>{{ aql?.purpose }}</td>
     </tr>
   </tbody>
 </table>

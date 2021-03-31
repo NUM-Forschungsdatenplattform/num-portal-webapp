@@ -1,6 +1,7 @@
 {
+  "TEST_ENVIRONMENT": "Test environment",
   "DASHBOARD": {
-    "LATEST_PROJECTS": "Latest projects",
+    "LATEST_PROJECTS": "Latest Projects",
     "INTRODUCTION": {
       "HEADER": "The COVID-19 Data Exchange Platform",
       "P1": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data.",
@@ -12,7 +13,7 @@
       "HEADER": "Info Board"
     },
     "PARTICIPATING": {
-      "HEADER": "Participating clinics"
+      "HEADER": "Participating Clinics"
     },
     "METRICS": {
       "PROJECTS": "{{count}} Projects published in CODEX",
@@ -38,14 +39,14 @@
     "PROJECTS": "Projects",
     "PROJECTS_OVERVIEW": "Project Overview",
     "PROJECTS_EDITOR": "Project Editor",
-    "DEFINE_PROJECT": "Define project",
-    "DATA_RETRIEVAL": "Data retrieval",
+    "DEFINE_PROJECT": "Define Project",
+    "DATA_RETRIEVAL": "Data Retrieval",
     "PHENOTYPES": "Phenotypes",
     "PHENOTYPES_OVERVIEW": "Phenotypes Overview",
     "PHENOTYPES_EDITOR": "Phenotype Editor",
-    "AQLS": "AQL queries",
-    "AQLS_OVERVIEW": "AQL queries overview",
-    "AQLS_EDITOR": "AQL query editor",
+    "AQLS": "AQL Queries",
+    "AQLS_OVERVIEW": "AQL Queries Overview",
+    "AQLS_EDITOR": "AQL Query Editor",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -70,12 +71,15 @@
     "ORGANISATION_AQLS": "My organisation",
     "ALL_AQLS": "All",
     "CREATE_AQL": "Create AQL Query",
+    "CREATE_AQL_CONTENT": "On this page you can create an AQL query. To create the query an AQL Builder is available.\n\n*Mandatory field",
+    "GENERAL_INFO_CONTENT": "Please enter a descriptive title and the purpose and use of the AQL query.",
+    "BUILD_QUERY_CONTENT": "Create the query in the AQL Builder. Afterwards you can edit the query in the editor below.",
     "SEARCH_AQLS": "AQL search",
     "SELECT_AT_LEAST_ONE": "Please select one or more Queries",
     "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
-    "AQL_BUILDER_DIALOG_HEADER": "AQL query Builder",
-    "AVAILABLE_AQLS": "Available AQL queries",
-    "CONNECT_AQL": "Assemble AQL queries",
+    "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
+    "AVAILABLE_AQLS": "Available AQL Queries",
+    "CONNECT_AQL": "Assemble AQL Queries",
     "SAVE_SUCCESS_MESSAGE": "Your AQL Query was created successfully.",
     "SAVE_ERROR_MESSAGE": "Failed to create your AQL Query.",
     "DELETE_AQL_SUCCESS_MESSAGE": "The AQL query was successfully deleted.",
@@ -144,7 +148,7 @@
   "HITS": "Hits",
   "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
   "AVAILABLE_PHENOTYPES": "Available Phenotypes",
-  "AVAILABLE_PROJECTS": "Available projects",
+  "AVAILABLE_PROJECTS": "Available Projects",
   "BUILD_QUERY": "Build the Query",
   "DEFINE_COHORT": "Define Cohort",
   "DEFINE_COHORT_CONTENT": "Use the cohort definition to determine which group of people the project should be limited to. The cohort cannot be changed later by the researcher during the data retrieval process. ",
@@ -175,6 +179,7 @@
     "GENERAL_INFO": "General Information",
     "TITLE": "Title",
     "DESCRIPTION": "Description",
+    "SIMPLE_DESCRIPTION": "Simple Description",
     "KEYWORDS": "Keywords",
     "ENTER_KEYWORD": "Enter keyword",
     "CATEGORY": "Category",
@@ -183,6 +188,8 @@
     "END_DATE": "End date",
     "FINANCED": "Financing",
     "FINANCED_BY_PRIVATE": "Financed by private financier (in full or part)",
+    "OUTSIDE_EU": "Outside EU",
+    "USED_OUTSIDE_EU": "Used outside EU",
     "AUTHOR": "Author",
     "STATUS": "Status",
     "CHARACTERS": "Characters",
@@ -316,7 +323,10 @@
     "TITLE": "Project title",
     "GOAL": "Goal",
     "FIRST_HYPOTHESES": "Primary Hypothesis",
-    "SECOND_HYPOTHESES": "Secondary Hypothesis"
+    "SECOND_HYPOTHESES": "Secondary Hypothesis",
+    "TITLE_PLACEHOLDER": "Please enter a meaningful project title",
+    "DESCRIPTION_PLACEHOLDER": "Please write a project description",
+    "GOAL_PLACEHOLDER": "Please specify the goal of the project"
   },
   "USER": {
     "FIRST_NAME": "First name",
@@ -329,11 +339,11 @@
   },
   "ROLE": {
     "RESEARCHER": "Researcher",
-    "ORGANIZATION_ADMIN": "Organization Administrator",
-    "PROJECT_COORDINATOR": "Project Coordinator",
-    "SUPER_ADMIN": "Admin",
-    "PROJECT_APPROVER": "Project Approver",
-    "CONTENT_ADMIN": "Content Admin"
+    "ORGANIZATION_ADMIN": "Organization admin",
+    "STUDY_COORDINATOR": "Project lead",
+    "SUPER_ADMIN": "Super admin",
+    "STUDY_APPROVER": "Project approver",
+    "CONTENT_ADMIN": "Content admin"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",
@@ -350,7 +360,7 @@
     "APPROVE_PROJECT_CONTENT": "After you approve the project, the project lead can start the project so that the researchers can retrieve the project data."
   },
   "DATA_EXPLORER": {
-    "DATA_RETRIEVAL_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",
+    "PROJECTS_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",
     "EXPLORE_PROJECT": "Retrieve project data",
     "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.\n\nYou can either start the data retrieval directly or optionally restrict the data retrieval defined in the project even further.",
     "RESULT_SET": "Result Set",
@@ -400,7 +410,7 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "The mail domain is already in use. Please enter another mail domain.",
     "DELETING_DOMAIN_SUCCESS": "The mail domain was successfully deleted from the organization list.",
     "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
-    "MAIL_DOMAIN": "Mail-Domänen"
+    "MAIL_DOMAIN": "Mail domain(s)"
   },
   "DATE_TIME": {
     "DATE": "Date",

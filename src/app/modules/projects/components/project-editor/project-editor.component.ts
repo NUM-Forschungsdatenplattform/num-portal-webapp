@@ -169,6 +169,10 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.minLength(3),
       ]),
+      simpleDescription: new FormControl(this.project?.simpleDescription, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       goal: new FormControl(this.project?.goal, [Validators.required, Validators.minLength(3)]),
       firstHypotheses: new FormControl(this.project?.firstHypotheses, [
         Validators.required,
@@ -180,6 +184,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       startDate: new FormControl(this.project?.startDate, [Validators.required]),
       endDate: new FormControl(this.project?.endDate, [Validators.required]),
       financed: new FormControl(this.project?.financed),
+      usedOutsideEu: new FormControl(this.project?.usedOutsideEu),
     })
 
     this.commentForm = new FormGroup({

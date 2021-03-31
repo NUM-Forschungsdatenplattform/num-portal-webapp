@@ -15,7 +15,7 @@
 -->
 
 <mat-expansion-panel>
-  <mat-expansion-panel-header data-test="projects-editor__connector__define-cohort-button">
+  <mat-expansion-panel-header data-test="study-editor__connector__define-cohort-button">
     <mat-panel-title>
       <h3 class="accordion">
         <fa-icon
@@ -48,10 +48,12 @@
       [parentGroupIndex]="null"
       [isDisabled]="isDisabled"
       fxFlex="100%"
-      data-test="project-editor__connector__group"
+      data-test="study-editor__connector__group"
     ></num-project-editor-connector-group>
 
+    <!-- NUM-1450: Determine Hits in Data Explorer is not shown for Release 1.0 -->
     <num-editor-determine-hits
+      [hidden]="!determineHitsContent"
       [isButtonDisabled]="!(cohortNode.children.length && cohortNode.areParameterConfigured)"
       [content]="determineHitsContent"
       (clicked)="determineHitsClicked.emit()"
