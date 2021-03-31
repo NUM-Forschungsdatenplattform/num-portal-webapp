@@ -26,3 +26,43 @@ of the Work and reproducing the content of the NOTICE file.
 
 This software might use external code provided by other licenses than the License. They will be 
 listed here.
+
+This software uses images and logos. The following logos are NOT INCLUDED in license of the repository.
+  # Partner Logos
+    - assets/partner-logo/logo-medizin.svg
+    - assets/partner-logo/logo-aachen.jpg
+    - assets/partner-logo/logo-augsburg.jpg
+    - assets/partner-logo/logo-berlin.jpg
+    - assets/partner-logo/logo-bielefeld.jpg
+    - assets/partner-logo/logo-bochum.jpg
+    - assets/partner-logo/logo-bonn.jpg
+    - assets/partner-logo/logo-dresden.jpg
+    - assets/partner-logo/logo-duesseldorf.jpg
+    - assets/partner-logo/logo-erlangen.jpg
+    - assets/partner-logo/logo-essen.jpg
+    - assets/partner-logo/logo-frankfurt.jpg
+    - assets/partner-logo/logo-freiburg.jpg
+    - assets/partner-logo/logo-giessen-marburg.jpg
+    - assets/partner-logo/logo-goettingen.jpg
+    - assets/partner-logo/logo-greifswald.jpg
+    - assets/partner-logo/logo-halle_saale.jpg
+    - assets/partner-logo/logo-hamburg.jpg
+    - assets/partner-logo/logo-hannover.jpg
+    - assets/partner-logo/logo-heidelberg.jpg
+    - assets/partner-logo/logo-jena.jpg
+    - assets/partner-logo/logo-koeln.jpg
+    - assets/partner-logo/logo-leipzig.jpg
+    - assets/partner-logo/logo-magdeburg.jpg
+    - assets/partner-logo/logo-mainz.jpg
+    - assets/partner-logo/logo-mannheim.jpg
+    - assets/partner-logo/logo-muenchen-lmu.jpg
+    - assets/partner-logo/logo-muenchen-tum_mri.jpg
+    - assets/partner-logo/logo-muenster.jpg
+    - assets/partner-logo/logo-oldenburg.jpg
+    - assets/partner-logo/logo-regensburg.jpg
+    - assets/partner-logo/logo-rostock.jpg
+    - assets/partner-logo/logo-saarland.jpg
+    - assets/partner-logo/logo-schleswig-holstein.jpg
+    - assets/partner-logo/logo-tuebingen.jpg
+    - assets/partner-logo/logo-ulm.jpg
+    - assets/partner-logo/logo-wuerzburg.jpg
