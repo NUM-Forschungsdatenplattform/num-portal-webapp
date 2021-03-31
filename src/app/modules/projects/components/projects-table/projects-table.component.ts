@@ -98,11 +98,11 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   generateMenuForRole(): void {
     let menu = [MENU_ITEM_PREVIEW]
-    if (this.roles?.includes(AvailableRoles.ProjectCoordinator)) {
+    if (this.roles?.includes(AvailableRoles.StudyCoordinator)) {
       menu = [...menu, ...COORDINATOR_MENU]
     }
 
-    if (this.roles?.includes(AvailableRoles.ProjectApprover)) {
+    if (this.roles?.includes(AvailableRoles.StudyApprover)) {
       menu = [...menu, ...APPROVER_MENU]
     }
 
