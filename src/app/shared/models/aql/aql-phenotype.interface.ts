@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
+import { IUser } from '../user/user.interface'
+
 export interface IAqlPhenotypeApi {
   id: number
   name: string
   query: string
+  purpose: string
+  owner?: IUser | null
 }

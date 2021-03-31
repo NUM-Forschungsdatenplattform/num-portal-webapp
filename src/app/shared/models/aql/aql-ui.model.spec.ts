@@ -60,6 +60,8 @@ describe('AqlUiModel', () => {
         name: testCase.aql.name,
         id: testCase.aql.id,
         query: testCase.aql.query,
+        purpose: testCase.aql.purpose,
+        owner: testCase.aql.owner,
       }
 
       const expectedAqlQuery: IPhenotypeQueryApi = {
