@@ -131,6 +131,12 @@ export class PhenotypeService {
       .pipe(catchError(this.handleError))
   }
 
+  delete(phenotypeId: number): Observable<any> {
+    return this.httpClient
+      .delete<any>(`${this.baseUrl}/${phenotypeId}`)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

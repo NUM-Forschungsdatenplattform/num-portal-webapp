@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from './available-roles.enum'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 
-export interface IItemVisibility {
-  id: string
-  disabledUnless: string[]
-  disableUnlessOwned?: boolean
-  forceEnableByRole?: AvailableRoles[]
-  isDisabled?: boolean
-  hiddenWhen?: string[]
-  translationKey?: string
+export enum PhenotypeMenuKeys {
+  Clone = 'CLONE',
+  Delete = 'DELETE',
+}
+
+export const MENU_ITEM_CLONE: IItemVisibility = {
+  id: PhenotypeMenuKeys.Clone,
+  translationKey: 'BUTTON.CLONE',
+  disabledUnless: [],
+}
+
+export const MENU_ITEM_DELETE: IItemVisibility = {
+  id: PhenotypeMenuKeys.Delete,
+  translationKey: 'BUTTON.DELETE',
+  disabledUnless: [],
+  disableUnlessOwned: true,
+  forceEnableByRole: [AvailableRoles.SuperAdmin],
 }

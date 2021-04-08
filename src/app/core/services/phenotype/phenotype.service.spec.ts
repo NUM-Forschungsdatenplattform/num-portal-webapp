@@ -31,6 +31,7 @@ describe('PhenotypeService', () => {
   const httpClient = ({
     get: jest.fn(),
     post: jest.fn(),
+    delete: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -199,6 +200,24 @@ describe('PhenotypeService', () => {
         expect(filterResult[0].id).toEqual(1)
         done()
       }, throttleTime * 3)
+    })
+  })
+
+  describe('When a call to delete method comes in', () => {
+    it('should call to the api with the phenotype id to delete it', () => {
+      const phenotypeId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(phenotypeId))
+      service.delete(phenotypeId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${phenotypeId}`)
+    })
+
+    it('should call handleError on api error', () => {
+      const phenotypeId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.delete(phenotypeId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${phenotypeId}`)
+      expect(service.handleError).toHaveBeenCalled()
     })
   })
 })

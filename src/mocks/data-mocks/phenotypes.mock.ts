@@ -26,6 +26,7 @@ export const mockPhenotype1: IPhenotypeApi = {
   name: 'Blood pressure1',
   description: 'Blood pressure is relevant for this and that',
   id: 1,
+  owner: mockUser,
   query: {
     type: ConnectorNodeType.Group,
     operator: LogicalOperator.And,
@@ -108,6 +109,7 @@ export const mockPhenotype2: IPhenotypeApi = {
   description: 'Blood pressure is relevant for this and that',
   id: 2,
   name: 'Blood pressure2',
+  owner: mockUser,
   query: {
     type: ConnectorNodeType.Group,
     operator: LogicalOperator.Not,
@@ -202,6 +204,7 @@ export const mockPhenotype3: IPhenotypeApi = {
   name: 'Blood pressure',
   description: 'Blood pressure is relevant for this and that',
   id: 3,
+  owner: mockUser,
   query: {
     type: ConnectorNodeType.Group,
     operator: LogicalOperator.And,
@@ -280,6 +283,7 @@ export const mockPhenotype4: IPhenotypeApi = {
   name: 'Blood pressure',
   description: 'Blood pressure is relevant for this and that',
   id: 4,
+  owner: mockUser,
   query: {
     type: ConnectorNodeType.Group,
     operator: LogicalOperator.And,
