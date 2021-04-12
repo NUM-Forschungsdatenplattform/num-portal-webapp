@@ -100,6 +100,8 @@
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
+    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich gelöscht.",
+    "DELETE_PHENOTYPE_ERROR_MESSAGE": "Der Phänotyp konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
@@ -355,8 +357,10 @@
     "FINISH_PROJECT_CONTENT": "Wenn Sie das Projekt beenden, stehen die Daten für Forschungszwecke nicht länger zur Verfügung.\n\nDas Projekt kann anschließend auch nicht erneut gestartet werden.",
     "PUBLISH_PROJECT_TITLE": "Wollen Sie das Projekt jetzt starten?",
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
-    "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
-    "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
+    "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen? ",
+    "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
     "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekt abrufen können."
   },

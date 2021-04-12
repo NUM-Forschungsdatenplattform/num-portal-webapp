@@ -100,6 +100,8 @@
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
+    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "The phenotype has been deleted successfully.",
+    "DELETE_PHENOTYPE_ERROR_MESSAGE": "The phenotype could not be deleted. Please try again.",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
@@ -354,8 +356,10 @@
     "FINISH_PROJECT_CONTENT": "If you end the project, the data is no longer available for research purposes.\n\nThe project can also not be restarted afterwards.",
     "PUBLISH_PROJECT_TITLE": "Do you want to start the project now?",
     "PUBLISH_PROJECT_CONTENT": "After you have started the project, you can only edit the list of researchers or end the project.\n\nAll selected researchers can start retrieving data of the project after the project start.",
-    "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
-    "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_AQL_TITLE": "Do you really want to delete the query?",
+    "DELETE_AQL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_PHENOTYPE_TITLE": "Do you really want to delete the phenotype? ",
+    "DELETE_PHENOTYPE_CONTENT": "The deletion of the phenotype cannot be undone.",
     "APPROVE_PROJECT_TITLE": "Do you want to approve the project now?",
     "APPROVE_PROJECT_CONTENT": "After you approve the project, the project lead can start the project so that the researchers can retrieve the project data."
   },

@@ -28,7 +28,10 @@ describe('PhenotypeUiModel', () => {
       (phenotype) => {
         const model = new PhenotypeUiModel(phenotype)
         const apiModel = model.convertToApiInterface()
-        expect(apiModel).toEqual(phenotype)
+        expect(apiModel.id).toEqual(phenotype.id)
+        expect(apiModel.name).toEqual(phenotype.name)
+        expect(apiModel.description).toEqual(phenotype.description)
+        expect(apiModel.query).toEqual(phenotype.query)
       }
     )
   })

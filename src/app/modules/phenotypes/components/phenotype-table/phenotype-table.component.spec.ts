@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of, Subject } from 'rxjs'
+import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -33,6 +33,13 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ReactiveFormsModule } from '@angular/forms'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { PhenotypeMenuKeys } from './menu-item'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 
 describe('PhenotypeTableComponent', () => {
   let component: PhenotypeTableComponent
@@ -45,11 +52,30 @@ describe('PhenotypeTableComponent', () => {
   const phenotypesSubject$ = new Subject<IPhenotypeApi[]>()
   const phenotypeService = ({
     phenotypesObservable$: phenotypesSubject$.asObservable(),
+    delete: jest.fn(),
     getAll: () => of(),
     setFilter: (_: any) => {},
     filteredPhenotypesObservable$: filteredPhenotypesSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
   } as unknown) as PhenotypeService
+
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const profileService = {
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as ProfileService
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
+
+  const afterClosedSubject$ = new Subject()
+  const mockDialogService = ({
+    openDialog: jest.fn().mockImplementation((_: any) => {
+      return {
+        afterClosed: () => afterClosedSubject$.asObservable(),
+      }
+    }),
+  } as unknown) as DialogService
 
   @Component({ selector: 'num-definition-list', template: '' })
   class DefinitionListStubComponent {
@@ -73,11 +99,24 @@ describe('PhenotypeTableComponent', () => {
           provide: PhenotypeService,
           useValue: phenotypeService,
         },
+        {
+          provide: ProfileService,
+          useValue: profileService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToastMessageService,
+        },
+        {
+          provide: DialogService,
+          useValue: mockDialogService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    jest.clearAllMocks()
     router = TestBed.inject(Router)
     fixture = TestBed.createComponent(PhenotypeTableComponent)
     component = fixture.componentInstance
@@ -102,11 +141,85 @@ describe('PhenotypeTableComponent', () => {
     })
   })
 
-  describe('When phenotype row is clicked', () => {
-    it('should call the router to navigate to the editor with the id of the phenotype selected', () => {
+  describe('When a phenotype is supposed to be cloned', () => {
+    beforeEach(() => {
       jest.spyOn(router, 'navigate').mockImplementation()
-      component.handleRowClick(mockPhenotype1)
-      expect(router.navigate).toHaveBeenCalledWith(['phenotypes', mockPhenotype1.id, 'editor'])
+    })
+
+    it('should call the phenotype editor with the id of the phenotype', () => {
+      const phenotypeId = 1
+      const menuKey = PhenotypeMenuKeys.Clone
+      component.handleMenuClick(menuKey, phenotypeId)
+
+      expect(router.navigate).toHaveBeenCalledWith(['phenotypes', phenotypeId, 'editor'])
+    })
+  })
+
+  describe('When a phenotype is supposed to be cloned', () => {
+    beforeEach(() => {
+      jest.spyOn(router, 'navigate').mockImplementation()
+    })
+
+    it('should call the phenotype editor with the id of the phenotype', () => {
+      const phenotypeId = 1
+      const menuKey = PhenotypeMenuKeys.Clone
+      component.handleMenuClick(menuKey, phenotypeId)
+
+      expect(router.navigate).toHaveBeenCalledWith(['phenotypes', phenotypeId, 'editor'])
+    })
+  })
+
+  describe('When a phenotype is supposed to be deleted', () => {
+    beforeEach(() => {
+      const mockPhenotypeObservable = of(mockPhenotype1)
+      jest.spyOn(phenotypeService, 'delete').mockImplementation(() => mockPhenotypeObservable)
+    })
+
+    it('should open the confirmation dialog', () => {
+      const phenotypeId = 1
+      const menuKey = PhenotypeMenuKeys.Delete
+      component.handleMenuClick(menuKey, phenotypeId)
+
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(DELETE_APPROVAL_DIALOG_CONFIG)
+      afterClosedSubject$.next(true)
+
+      expect(phenotypeService.delete).toHaveBeenCalledWith(phenotypeId)
+    })
+  })
+
+  describe('On the attempt to delete the phenotype', () => {
+    beforeEach(() => {
+      const mockPhenotypeObservable = of(mockPhenotype1)
+      jest.spyOn(phenotypeService, 'delete').mockImplementation(() => mockPhenotypeObservable)
+    })
+
+    it('should call the delete method of the phenotype service', async (done) => {
+      const phenotypeId = 1
+      component.delete(phenotypeId).then(() => {
+        expect(phenotypeService.delete).toHaveBeenCalledTimes(1)
+        expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Success,
+          message: 'PHENOTYPE.DELETE_PHENOTYPE_SUCCESS_MESSAGE',
+        })
+        done()
+      })
+    })
+  })
+
+  describe('On fail to delete the phenotype', () => {
+    beforeEach(() => {
+      jest.spyOn(phenotypeService, 'delete').mockImplementation(() => throwError({}))
+    })
+
+    it('should show Error toast', async (done) => {
+      const phenotypeId = 1
+      component.delete(phenotypeId).then(() => {
+        expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
+          type: ToastMessageType.Error,
+          message: 'PHENOTYPE.DELETE_PHENOTYPE_ERROR_MESSAGE',
+        })
+        done()
+      })
     })
   })
 })
