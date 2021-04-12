@@ -105,7 +105,9 @@ export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
     dialogRef.afterClosed().subscribe((confirmResult) => {
       if (confirmResult === true) {
         this.delete(id).then(() => {
-          this.phenotypeService.getAll().subscribe((phenotypes) => this.handleData(phenotypes))
+          this.subscriptions.add(
+            this.phenotypeService.getAll().subscribe((phenotypes) => this.handleData(phenotypes))
+          )
         })
       }
     })

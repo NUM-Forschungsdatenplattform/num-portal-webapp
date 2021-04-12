@@ -21,15 +21,27 @@ import { IUserProfile } from '../models/user/user-profile.interface'
 @Pipe({
   name: 'phenotypeMenu',
 })
+/**
+ * This pipe generates the action menu items for the rows in the phenotype table
+ * disabling specific elements based on the ItemVisibility interface
+ */
 export class PhenotypeMenuPipe<T extends IItemVisibility> implements PipeTransform {
   private isOwner: boolean
   private user: IUserProfile
 
+  /**
+   * Checks each menu item if it should be disabled or not based on role or ownership
+   * @param acc result
+   * @param item item
+   * @returns the items after checking each for the need to disable
+   */
   private checkDisabled = (acc: T[], item: T) => {
+    /** Checks if the disabling based on the ownership should be overwritten by a given role */
     const enabledByRole = item.forceEnableByRole
       ? item.forceEnableByRole.some((role) => this.user.roles?.includes(role))
       : false
 
+    /** Checks if the item should be disabled based on the ownership */
     const disabledByOwnership = item.disableUnlessOwned ? !this.isOwner : false
 
     item.isDisabled = enabledByRole ? false : disabledByOwnership
