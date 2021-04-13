@@ -65,7 +65,7 @@
           <button
             mat-icon-button
             [matMenuTriggerFor]="menu"
-            [matMenuTriggerData]="{ aqlOwner: element.owner.id, id: element.id, user: user }"
+            [matMenuTriggerData]="{ aqlOwner: element.owner?.id, id: element.id, user: user }"
             data-test="aqls__table__row__menu-button"
           >
             <fa-icon icon="ellipsis-v"></fa-icon>
