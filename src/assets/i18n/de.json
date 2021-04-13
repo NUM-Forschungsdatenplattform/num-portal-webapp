@@ -268,6 +268,8 @@
     "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
   },
   "PROJECT": {
+    "ARCHIVED": "Archivierte Projekte",
+    "NOT_ARCHIVED": "Aktive Projekte",
     "DEFINE_PROJECT_CONTENT_P1": "Auf dieser Seite können Sie Ihr Projekt definieren. Hierzu sind verschiedene Angaben notwendig. Sie müssen alle mit einem Sternchen gekennzeichneten Felder ausfüllen, bevor Sie das Projekt zur Genehmigung absenden können.",
     "DEFINE_PROJECT_CONTENT_P2": "Zusätzlich haben Sie die Möglichkeit, Kommentare zu verfassen und zu lesen. Diese dienen dem Informationsaustausch zwischen Ihnen und den Projektprüfer.",
     "MANDATORY": "*Pflichtfeld",

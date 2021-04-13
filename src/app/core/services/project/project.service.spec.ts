@@ -15,7 +15,7 @@
  */
 
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError } from 'rxjs'
+import { of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import {
@@ -24,6 +24,7 @@ import {
   mockProject1,
   mockProject2,
   mockProject3,
+  mockProject4,
 } from 'src/mocks/data-mocks/project.mock'
 import {
   projectCommentMock1,
@@ -33,11 +34,21 @@ import { cloneDeep } from 'lodash-es'
 import { ProjectService } from './project.service'
 import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../profile/profile.service'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
+import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { skipUntil } from 'rxjs/operators'
+import { projectFilterTestcases } from './project-filter-testcases'
 
 describe('ProjectService', () => {
   let service: ProjectService
   const baseUrl = 'localhost/api/study'
   let mockProject1Local
+  let throttleTime: number
+
+  const filterConfig: IProjectFilter = {
+    filterItem: [],
+    searchText: 'test',
+  }
 
   const httpClient = ({
     get: jest.fn(),
@@ -60,10 +71,10 @@ describe('ProjectService', () => {
   } as unknown) as ProfileService
 
   beforeEach(() => {
+    jest.clearAllMocks()
+    jest.spyOn(httpClient, 'get').mockImplementation(() => of())
     service = new ProjectService(httpClient, appConfig, userProfileService)
     mockProject1Local = cloneDeep(mockProject1)
-    jest.restoreAllMocks()
-    jest.clearAllMocks()
   })
 
   it('should be created', () => {
@@ -249,6 +260,20 @@ describe('ProjectService', () => {
     })
   })
 
+  describe('When a call to getAllWithCache comes in', () => {
+    it('should respond with the cached projects if they are existing', (done) => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProjects1))
+      jest.clearAllMocks()
+      const anyService = service as any
+      anyService.projects = mockProjects
+      service.getAllWithCache().subscribe((projects) => {
+        expect(projects).toEqual(mockProjects)
+        expect(httpClient.get).not.toHaveBeenCalled()
+        done()
+      })
+    })
+  })
+
   describe('When a Export is triggerd', () => {
     it('should post the query', () => {
       const query = 'query'
@@ -261,6 +286,84 @@ describe('ProjectService', () => {
         { query },
         { responseType: 'text' as 'json' }
       )
+    })
+  })
+
+  describe('When multiple filter are passed in', () => {
+    beforeEach(() => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of([...mockProjects, mockProject4]))
+      jest.clearAllMocks()
+      throttleTime = (service as any).throttleTime
+    })
+
+    it('should debounce the filtering', async (done) => {
+      const filterConfigLast: IProjectFilter = {
+        filterItem: [],
+        searchText: 'filterText',
+      }
+      let filterResult: IProjectApi[]
+      const callHelper = jest.fn((result) => (filterResult = result))
+      service.filteredProjectsObservable$.subscribe(callHelper)
+
+      /* Service Init */
+      expect(callHelper).toHaveBeenCalledTimes(1)
+
+      /* First filter call after throttle time */
+      setTimeout(() => {
+        service.setFilter(filterConfig)
+        expect(callHelper).toHaveBeenCalledTimes(2)
+      }, throttleTime + 1)
+
+      setTimeout(() => {
+        /* Second filter call but within throttle time */
+        service.setFilter(filterConfig)
+        expect(callHelper).toHaveBeenCalledTimes(2)
+      }, throttleTime + 1)
+
+      setTimeout(() => {
+        /* Third filter call but within throttle time */
+        service.setFilter(filterConfig)
+        expect(callHelper).toHaveBeenCalledTimes(2)
+      }, throttleTime + 10)
+
+      setTimeout(() => {
+        /* Fourth filter call, meanwhile the third filter was pushed */
+        service.setFilter(filterConfigLast)
+        expect(callHelper).toHaveBeenCalledTimes(4)
+        expect(filterResult.length).toEqual(1)
+        expect(filterResult[0].id).toEqual(4)
+        done()
+      }, throttleTime * 3)
+    })
+  })
+
+  describe('When the filter logic fails to retrieve data', () => {
+    it('should result in an empty array', (done) => {
+      const anyService = service as any
+
+      anyService.projects = []
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+
+      service.filteredProjectsObservable$
+        .pipe(skipUntil(timer(anyService.throttleTime / 2)))
+        .subscribe((result) => {
+          expect(result).toEqual([])
+          done()
+        })
+
+      setTimeout(() => {
+        service.setFilter(filterConfig)
+      }, anyService.throttleTime + 1)
+    })
+  })
+
+  describe('When passing in filters', () => {
+    test.each(projectFilterTestcases)('It should filter as expected', (testcase) => {
+      const result = service.filterItems(
+        [...mockProjects, mockProject4] as IProjectApi[],
+        testcase.filter
+      )
+      expect(result.length).toEqual(testcase.resultLength)
     })
   })
 })

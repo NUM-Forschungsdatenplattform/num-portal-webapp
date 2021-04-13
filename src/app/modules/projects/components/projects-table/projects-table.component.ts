@@ -20,7 +20,7 @@ import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
 import { of, Subscription } from 'rxjs'
-import { catchError, tap } from 'rxjs/operators'
+import { catchError, take, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
@@ -29,6 +29,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import {
@@ -61,6 +62,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
   dataSource = new MatTableDataSource()
 
   menuItems: IItemVisibility[] = []
+  filterConfig: IProjectFilter
   roles: string[] = []
   user: IUserProfile
 
@@ -77,7 +79,15 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.projectService.projectsObservable$.subscribe((projects) => this.handleData(projects))
+      this.projectService.filterConfigObservable$
+        .pipe(take(1))
+        .subscribe((config) => (this.filterConfig = config))
+    )
+
+    this.subscriptions.add(
+      this.projectService.filteredProjectsObservable$.subscribe((projects) =>
+        this.handleData(projects)
+      )
     )
 
     this.subscriptions.add(
@@ -102,6 +112,10 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.roles = user.roles
     this.user = user
     this.generateMenuForRole()
+  }
+
+  handleFilterChange(): void {
+    this.projectService.setFilter(this.filterConfig)
   }
 
   generateMenuForRole(): void {
