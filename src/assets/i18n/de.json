@@ -214,6 +214,7 @@
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B domain.de or sub.domain.de"
   },
   "BUTTON": {
+    "ARCHIVE": "Archivieren",
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
     "DISCARD": "Änderungen verwerfen",
@@ -274,6 +275,7 @@
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
     "APPROVAL_HINT": "Bitte teilen Sie dem Projektleiter mit, ob Sie sein Projekt genehmigen oder ablehnen. Sollten Sie das Projekt ablehnen, müssen Sie einen Grund dafür in den Kommentaren angeben. Wenn Sie Änderungen am Projekt for Notwendig erachten, benennen Sie diese bitte auch in den Kommentaren.",
     "STATUS": {
+      "ARCHIVED": "Archiviert",
       "APPROVED": "Genehmigt",
       "CHANGE_REQUEST": "Änderung notwendig",
       "CLOSED": "Beendet",
@@ -320,6 +322,8 @@
       "REGISTRY": "Register"
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
+    "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",
+    "CHANGE_STATUS_ERROR": "Der Projektstatus konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
     "SAVE_SUCCESS_MESSAGE": "Die Projekt wurde erfolgreich gespeichert.",
     "SAVE_ERROR_MESSAGE": "Die Projekt konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte.",
@@ -359,10 +363,14 @@
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
     "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
-    "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen? ",
+    "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen?",
     "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
-    "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekt abrufen können."
+    "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekts abrufen können.",
+    "ARCHIVE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich archivieren?",
+    "ARCHIVE_PROJECT_CONTENT": "Die Archivierung des Projekts kann nicht rückgängig gemacht werden.",
+    "DELETE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich löschen?",
+    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",

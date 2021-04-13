@@ -21,18 +21,22 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
-import { AuthService } from 'src/app/core/auth/auth.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import {
+  ARCHIVE_PROJECT_DIALOG_CONFIG,
+  CHANGE_STATUS_SUCCESS,
   CLOSE_PROJECT_DIALOG_CONFIG,
+  DELETE_PROJECT_DIALOG_CONFIG,
   PUBLISH_PROJECT_DIALOG_CONFIG,
   WITHDRAW_APPROVAL_DIALOG_CONFIG,
 } from './constants'
@@ -52,10 +56,10 @@ describe('ProjectsTableComponent', () => {
     updateStatusById: jest.fn(),
   } as unknown) as ProjectService
 
-  const userInfoSubject$ = new Subject<IAuthUserInfo>()
-  const authService = {
-    userInfoObservable$: userInfoSubject$.asObservable(),
-  } as AuthService
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const profileService = {
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as ProfileService
 
   const afterClosedSubject$ = new Subject()
   const mockDialogService = ({
@@ -65,6 +69,10 @@ describe('ProjectsTableComponent', () => {
       }
     }),
   } as unknown) as DialogService
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -83,12 +91,16 @@ describe('ProjectsTableComponent', () => {
           useValue: projectService,
         },
         {
-          provide: AuthService,
-          useValue: authService,
+          provide: ProfileService,
+          useValue: profileService,
         },
         {
           provide: DialogService,
           useValue: mockDialogService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToastMessageService,
         },
       ],
     }).compileComponents()
@@ -115,29 +127,29 @@ describe('ProjectsTableComponent', () => {
 
   describe('When the userInfo gets updated', () => {
     const roles = [AvailableRoles.StudyCoordinator]
-    const userInfo: IAuthUserInfo = {
-      sub: '',
-      groups: roles,
-    }
+    const userInfo = {
+      id: '',
+      roles,
+    } as IUserProfile
     it('should set the roles to the component', () => {
-      userInfoSubject$.next(userInfo)
+      userProfileSubject$.next(userInfo)
       expect(component.roles).toEqual(roles)
     })
 
     it('should generate the menu based on the role for the project coordinator', () => {
-      userInfoSubject$.next(userInfo)
+      userProfileSubject$.next(userInfo)
       expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...COORDINATOR_MENU])
     })
 
     it('should generate the menu based on the role for the project approver', () => {
-      userInfo.groups = [AvailableRoles.StudyApprover]
-      userInfoSubject$.next(userInfo)
+      userInfo.roles = [AvailableRoles.StudyApprover]
+      userProfileSubject$.next(userInfo)
       expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...APPROVER_MENU])
     })
 
     it('should display the preview option to other roles', () => {
-      userInfo.groups = [AvailableRoles.Researcher]
-      userInfoSubject$.next(userInfo)
+      userInfo.roles = [AvailableRoles.Researcher]
+      userProfileSubject$.next(userInfo)
       expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW])
     })
   })
@@ -145,7 +157,8 @@ describe('ProjectsTableComponent', () => {
   describe('When a menu Item is clicked', () => {
     beforeEach(() => {
       jest.spyOn(router, 'navigate').mockImplementation()
-      jest.spyOn(projectService, 'updateStatusById').mockImplementation()
+      jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of({}))
+      jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
     })
 
     test.each([ProjectMenuKeys.Edit, ProjectMenuKeys.Preview, ProjectMenuKeys.Review])(
@@ -196,10 +209,22 @@ describe('ProjectsTableComponent', () => {
         newStatus: ProjectStatus.Published,
         decision: true,
       },
+      {
+        key: ProjectMenuKeys.Archive,
+        dialog: ARCHIVE_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Archived,
+        decision: true,
+      },
+      {
+        key: ProjectMenuKeys.Delete,
+        dialog: DELETE_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.ToBeDeleted,
+        decision: true,
+      },
     ]
 
     test.each(testCases)(
-      'should open the correct decision dialog and update the project on confirmation',
+      'should open the correct decision dialog and update the project on confirmation with success',
       (testcase) => {
         const projectId = 1
         component.handleMenuClick(testcase.key, projectId)

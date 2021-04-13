@@ -80,14 +80,24 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
+  delete(projectId: number): Observable<any> {
+    return this.httpClient
+      .delete<any>(`${this.baseUrl}/${projectId}`)
+      .pipe(catchError(this.handleError))
+  }
+
   updateStatusById(id: number, newStatus: ProjectStatus): Observable<IProjectApi> {
     return this.get(id).pipe(
       switchMap((project) => {
         if (project.status === newStatus) {
           return of(project)
         } else if (!!isStatusSwitchable[project.status][newStatus]) {
-          project.status = newStatus
-          return this.update(project, project.id)
+          if (newStatus === ProjectStatus.ToBeDeleted) {
+            return this.delete(project.id)
+          } else {
+            project.status = newStatus
+            return this.update(project, project.id)
+          }
         }
 
         return throwError('STATUS_NOT_SWITCHABLE')

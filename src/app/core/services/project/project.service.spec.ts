@@ -43,6 +43,7 @@ describe('ProjectService', () => {
     get: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
+    delete: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -154,6 +155,25 @@ describe('ProjectService', () => {
     })
   })
 
+  describe('When a call to delete method comes in', () => {
+    it(`should call the api - with success`, () => {
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(mockProject1Local))
+      service.delete(1).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+    })
+    it(`should call the api - with error`, () => {
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'delete').mockImplementationOnce(() => throwError('Error'))
+      service
+        .delete(1)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
   describe('When a comment is supposed to be created on a project', () => {
     it('should post the comment to the api', () => {
       const text = 'TEST'
@@ -182,6 +202,19 @@ describe('ProjectService', () => {
       service.updateStatusById(1, ProjectStatus.Pending).subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
       expect(httpClient.put).toHaveBeenCalledTimes(1)
+      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
+    })
+  })
+
+  describe('When the status of a project is supposed to be changed to "toBeDeleted"', () => {
+    it('should first fetch the project from the api to verify the status and then delete the project and fetch all again', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
+      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject1Local))
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(mockProject1Local))
+      service.updateStatusById(1, ProjectStatus.ToBeDeleted).subscribe()
+      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/1`)
+      expect(httpClient.put).not.toHaveBeenCalledTimes(1)
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
     })
   })

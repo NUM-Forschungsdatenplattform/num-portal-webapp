@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 
@@ -25,6 +26,8 @@ export enum ProjectMenuKeys {
   Publish = 'PUBLISH',
   Close = 'CLOSE',
   Review = 'REVIEW',
+  Archive = 'ARCHIVE',
+  Delete = 'DELETE',
 }
 
 export const MENU_ITEM_PREVIEW: IItemVisibility = {
@@ -95,6 +98,31 @@ export const MENU_ITEM_REVIEW_PROJECT: IItemVisibility = {
   disabledUnless: [ProjectStatus.Pending, ProjectStatus.Reviewing],
 }
 
+export const MENU_ITEM_ARCHIVE_PROJECT: IItemVisibility = {
+  id: ProjectMenuKeys.Archive,
+  translationKey: 'BUTTON.ARCHIVE',
+  disabledUnless: [ProjectStatus.Closed, ProjectStatus.Denied],
+  disableUnlessOwned: true,
+  forceEnableByRole: [AvailableRoles.SuperAdmin],
+  hiddenWhen: [
+    ProjectStatus.Reviewing,
+    ProjectStatus.Approved,
+    ProjectStatus.Pending,
+    ProjectStatus.Draft,
+    ProjectStatus.ChangeRequest,
+    ProjectStatus.Published,
+  ],
+}
+
+export const MENU_ITEM_DELETE_PROJECT: IItemVisibility = {
+  id: ProjectMenuKeys.Delete,
+  translationKey: 'BUTTON.DELETE',
+  disabledUnless: [ProjectStatus.Draft, ProjectStatus.ChangeRequest],
+  disableUnlessOwned: true,
+  forceEnableByRole: [AvailableRoles.SuperAdmin],
+  hiddenWhen: [ProjectStatus.Denied, ProjectStatus.Closed, ProjectStatus.Archived],
+}
+
 /**
  * Possibile menu items for the project approver exclusivly (preview not included)
  */
@@ -109,4 +137,6 @@ export const COORDINATOR_MENU: IItemVisibility[] = [
   MENU_ITEM_PUBLISH,
   MENU_ITEM_WITHDRAW_APPROVAL,
   MENU_ITEM_FINISH_PROJECT,
+  MENU_ITEM_ARCHIVE_PROJECT,
+  MENU_ITEM_DELETE_PROJECT,
 ]
