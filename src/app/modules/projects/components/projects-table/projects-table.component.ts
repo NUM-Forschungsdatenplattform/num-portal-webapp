@@ -19,18 +19,24 @@ import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
-import { Subscription } from 'rxjs'
-import { AuthService } from 'src/app/core/auth/auth.service'
+import { of, Subscription } from 'rxjs'
+import { catchError, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import {
+  ARCHIVE_PROJECT_DIALOG_CONFIG,
+  CHANGE_STATUS_ERROR,
+  CHANGE_STATUS_SUCCESS,
   CLOSE_PROJECT_DIALOG_CONFIG,
+  DELETE_PROJECT_DIALOG_CONFIG,
   PUBLISH_PROJECT_DIALOG_CONFIG,
   WITHDRAW_APPROVAL_DIALOG_CONFIG,
 } from './constants'
@@ -47,7 +53,8 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     private router: Router,
     private projectService: ProjectService,
     private dialogService: DialogService,
-    private authService: AuthService
+    private profileService: ProfileService,
+    private toastMessageService: ToastMessageService
   ) {}
 
   displayedColumns: string[] = ['menu', 'name', 'author', 'organisation', 'status']
@@ -55,7 +62,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   menuItems: IItemVisibility[] = []
   roles: string[] = []
-  userId: string
+  user: IUserProfile
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -72,8 +79,9 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.subscriptions.add(
       this.projectService.projectsObservable$.subscribe((projects) => this.handleData(projects))
     )
+
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
     )
   }
 
@@ -90,9 +98,9 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.dataSource.data = projects
   }
 
-  handleUserInfo(userInfo: IAuthUserInfo): void {
-    this.roles = userInfo.groups
-    this.userId = userInfo.sub
+  handleUserInfo(user: IUserProfile): void {
+    this.roles = user.roles
+    this.user = user
     this.generateMenuForRole()
   }
 
@@ -135,6 +143,14 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
       case ProjectMenuKeys.Publish:
         this.handleWithDialog(PUBLISH_PROJECT_DIALOG_CONFIG, ProjectStatus.Published, id)
         break
+
+      case ProjectMenuKeys.Archive:
+        this.handleWithDialog(ARCHIVE_PROJECT_DIALOG_CONFIG, ProjectStatus.Archived, id)
+        break
+
+      case ProjectMenuKeys.Delete:
+        this.handleWithDialog(DELETE_PROJECT_DIALOG_CONFIG, ProjectStatus.ToBeDeleted, id)
+        break
     }
   }
 
@@ -142,7 +158,18 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
     dialogRef.afterClosed().subscribe((confirmResult) => {
       if (confirmResult === true) {
-        this.projectService.updateStatusById(id, newStatus).subscribe()
+        this.projectService
+          .updateStatusById(id, newStatus)
+          .pipe(
+            tap(() => {
+              this.toastMessageService.openToast(CHANGE_STATUS_SUCCESS)
+            }),
+            catchError((error) => {
+              this.toastMessageService.openToast(CHANGE_STATUS_ERROR)
+              return of(error)
+            })
+          )
+          .subscribe()
       }
     })
   }
