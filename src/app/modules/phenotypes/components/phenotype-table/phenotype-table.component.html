@@ -59,7 +59,7 @@
           <button
             mat-icon-button
             [matMenuTriggerFor]="menu"
-            [matMenuTriggerData]="{ phenotypeOwner: element.owner.id, id: element.id, user: user }"
+            [matMenuTriggerData]="{ phenotypeOwner: element.owner?.id, id: element.id, user: user }"
             data-test="phenotypes__table__row__menu-button"
           >
             <fa-icon icon="ellipsis-v"></fa-icon>
