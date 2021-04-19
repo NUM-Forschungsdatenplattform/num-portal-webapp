@@ -47,6 +47,6 @@ export const projectFilterTestcases: { filter: IProjectFilter; resultLength: num
       ],
       searchText: '',
     },
-    resultLength: 3,
+    resultLength: 2,
   },
 ]

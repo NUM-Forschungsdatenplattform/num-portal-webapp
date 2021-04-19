@@ -78,6 +78,9 @@ export class ProjectService {
       tap((projects) => {
         this.projects = projects
         this.projectSubject$.next(projects)
+        if (this.projects.length) {
+          this.setFilter(this.filterSet)
+        }
       }),
       catchError(this.handleError)
     )
@@ -102,9 +105,12 @@ export class ProjectService {
   }
 
   delete(projectId: number): Observable<any> {
-    return this.httpClient
-      .delete<any>(`${this.baseUrl}/${projectId}`)
-      .pipe(catchError(this.handleError))
+    return this.httpClient.delete<any>(`${this.baseUrl}/${projectId}`).pipe(
+      tap(() => {
+        this.getAll().subscribe()
+      }),
+      catchError(this.handleError)
+    )
   }
 
   updateStatusById(id: number, newStatus: ProjectStatus): Observable<IProjectApi> {
@@ -225,6 +231,8 @@ export class ProjectService {
       if (filterItem.isSelected) {
         if (filterItem.id === ProjectFilterChipId.Archived) {
           result = result.filter((project) => project.status === ProjectStatus.Archived)
+        } else if (filterItem.id === ProjectFilterChipId.NotArchived) {
+          result = result.filter((project) => project.status !== ProjectStatus.Archived)
         }
       }
     })
