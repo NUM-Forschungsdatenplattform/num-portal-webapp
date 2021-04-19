@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { BehaviorSubject, of, Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
@@ -48,12 +51,25 @@ describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
   let fixture: ComponentFixture<ProjectsTableComponent>
   let router: Router
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
 
   const projectsSubject$ = new Subject<IProjectApi[]>()
+  const filterConfigSubject$ = new BehaviorSubject<IProjectFilter>({
+    searchText: '',
+    filterItem: [],
+  })
+
   const projectService = ({
-    projectsObservable$: projectsSubject$.asObservable(),
+    filteredProjectsObservable$: projectsSubject$.asObservable(),
+    filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
     updateStatusById: jest.fn(),
+    setFilter: jest.fn(),
   } as unknown) as ProjectService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
@@ -76,7 +92,7 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent],
+      declarations: [ProjectsTableComponent, StubFilterChipsComponent],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
@@ -107,6 +123,7 @@ describe('ProjectsTableComponent', () => {
   })
 
   beforeEach(() => {
+    jest.spyOn(projectService, 'setFilter')
     jest.clearAllMocks()
     router = TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectsTableComponent)
@@ -116,6 +133,11 @@ describe('ProjectsTableComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should set the filter in the aqlService on filterChange', () => {
+    component.handleFilterChange()
+    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 
   describe('When new projects are received on the observable', () => {

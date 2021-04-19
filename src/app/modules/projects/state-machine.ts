@@ -50,5 +50,6 @@ export const isStatusSwitchable = {
     [ProjectStatus.Approved]: true,
     [ProjectStatus.ChangeRequest]: true,
     [ProjectStatus.Denied]: true,
+    [ProjectStatus.Draft]: true,
   },
 }
