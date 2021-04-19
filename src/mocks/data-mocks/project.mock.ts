@@ -103,6 +103,30 @@ export const mockProject4: IProjectApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
+export const mockProject5: IProjectApi = {
+  id: 5,
+  name: 'filterText',
+  description: 'Test Description 5',
+  templates: [],
+  cohortId: 5,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+    {
+      userId: 'abc-2',
+    },
+    {
+      userId: '123-456',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis',
+  status: ProjectStatus.Closed,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
 export const mockProjects = [mockProject1, mockProject2]
 
 export const mockProjects1 = [mockProject1, mockProject2, mockProject3]

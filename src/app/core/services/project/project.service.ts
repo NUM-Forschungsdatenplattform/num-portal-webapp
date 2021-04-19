@@ -113,17 +113,29 @@ export class ProjectService {
     )
   }
 
+  archive(projectId: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/${projectId}/archive`, {}).pipe(
+      tap(() => {
+        this.getAll().subscribe()
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   updateStatusById(id: number, newStatus: ProjectStatus): Observable<IProjectApi> {
     return this.get(id).pipe(
       switchMap((project) => {
         if (project.status === newStatus) {
           return of(project)
         } else if (!!isStatusSwitchable[project.status][newStatus]) {
-          if (newStatus === ProjectStatus.ToBeDeleted) {
-            return this.delete(project.id)
-          } else {
-            project.status = newStatus
-            return this.update(project, project.id)
+          switch (newStatus) {
+            case ProjectStatus.ToBeDeleted:
+              return this.delete(project.id)
+            case ProjectStatus.Archived:
+              return this.archive(project.id)
+            default:
+              project.status = newStatus
+              return this.update(project, project.id)
           }
         }
 

@@ -25,6 +25,7 @@ import {
   mockProject2,
   mockProject3,
   mockProject4,
+  mockProject5,
 } from 'src/mocks/data-mocks/project.mock'
 import {
   projectCommentMock1,
@@ -225,6 +226,19 @@ describe('ProjectService', () => {
       service.updateStatusById(1, ProjectStatus.ToBeDeleted).subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
       expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/1`)
+      expect(httpClient.put).not.toHaveBeenCalledTimes(1)
+      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
+    })
+  })
+
+  describe('When the status of a project is supposed to be changed to "archived"', () => {
+    it('should first fetch the project from the api to verify the status and then archive the project and fetch all again', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject5))
+      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject5))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockProject5))
+      service.updateStatusById(5, ProjectStatus.Archived).subscribe()
+      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/5`)
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/5/archive`, {})
       expect(httpClient.put).not.toHaveBeenCalledTimes(1)
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
     })
