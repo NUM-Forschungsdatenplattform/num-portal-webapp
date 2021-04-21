@@ -30,6 +30,7 @@ describe('AqlBuilderSelectItemComponent', () => {
   let component: AqlBuilderSelectItemComponent
   let fixture: ComponentFixture<AqlBuilderSelectItemComponent>
 
+  const templateId = 'General Information'
   const compositionId = 'openEHR-EHR-COMPOSITION.report.v1'
   const compositionReferenceId = 1
   const archetypeId = 'openEHR-EHR-OBSERVATION.symptom_sign_screening.v0'
@@ -44,7 +45,9 @@ describe('AqlBuilderSelectItemComponent', () => {
   const item = new AqbSelectItemUiModel(
     containmentTreeNode,
     compositionReferenceId,
-    archetypeReferenceId
+    archetypeReferenceId,
+    false,
+    templateId
   )
 
   beforeEach(async () => {

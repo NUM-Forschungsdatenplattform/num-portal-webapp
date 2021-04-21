@@ -260,6 +260,7 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
+    "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",

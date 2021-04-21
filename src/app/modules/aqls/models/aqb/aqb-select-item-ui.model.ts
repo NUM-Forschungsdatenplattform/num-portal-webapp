@@ -29,11 +29,15 @@ export class AqbSelectItemUiModel {
   humanReadablePath: string
   compositionReferenceId: number
   archetypeReferenceId: number
+  isComposition: boolean
+  templateId: string
 
   constructor(
     item: IContainmentTreeNode,
     compositionReferenceId: number,
-    archetypeReferenceId: number
+    archetypeReferenceId: number,
+    isComposition: boolean,
+    templateId: string
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = ''
@@ -42,6 +46,8 @@ export class AqbSelectItemUiModel {
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
     this.archetypeReferenceId = archetypeReferenceId
+    this.isComposition = isComposition
+    this.templateId = templateId
   }
 
   convertToApi(): IAqbSelectFieldNode {
