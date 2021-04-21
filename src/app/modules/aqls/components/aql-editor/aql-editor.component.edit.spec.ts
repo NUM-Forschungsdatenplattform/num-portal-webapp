@@ -26,12 +26,10 @@ import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
-
 import { AqlEditorComponent } from './aql-editor.component'
-import { of, Subject, throwError } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
-import { mockAqlExecution1 } from 'src/mocks/data-mocks/aql-execution.mock'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 describe('AqlEditorComponent', () => {
@@ -182,33 +180,6 @@ describe('AqlEditorComponent', () => {
         expect(aqlService.update).not.toHaveBeenCalled()
         done()
       })
-    })
-  })
-
-  describe('On the attempt to execute the AQL', () => {
-    beforeEach(() => {
-      component.aql.id = 1
-    })
-
-    it('should call the AQL execute method and set the result', async () => {
-      const mockAqlObservable = of(mockAqlExecution1)
-      jest.spyOn(aqlService, 'execute').mockImplementation(() => mockAqlObservable)
-      component.execute().then(() => {
-        expect(aqlService.execute).toHaveBeenCalledWith(1)
-        expect(component.executionResult).toEqual(mockAqlExecution1)
-        expect(component.isExecutionLoading).toBeFalsy()
-      })
-      expect(component.isExecutionLoading).toBeTruthy()
-    })
-
-    it('should set the error if the execution fails', () => {
-      jest.spyOn(aqlService, 'execute').mockImplementation(() => throwError('Error'))
-      component.execute().catch(() => {
-        expect(aqlService.execute).toHaveBeenCalledWith(1)
-        expect(component.executionResult).toEqual(null)
-        expect(component.isExecutionLoading).toBeFalsy()
-      })
-      expect(component.isExecutionLoading).toBeTruthy()
     })
   })
 })

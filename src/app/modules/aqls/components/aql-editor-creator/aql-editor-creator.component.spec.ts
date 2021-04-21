@@ -20,10 +20,12 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
@@ -54,6 +56,14 @@ describe('AqlEditorCeatorComponent', () => {
     },
   }
 
+  const validationResponse: IAqlValidationResponse = {
+    valid: false,
+    error: 'test',
+    message: 'error message here',
+    startColumn: 123,
+    startLine: 321,
+  }
+
   Object.defineProperty(window, 'monaco', {
     value: monacoMock,
   })
@@ -65,6 +75,13 @@ describe('AqlEditorCeatorComponent', () => {
     @Input() formatObservable$: any
     @Input() validationObservable$: any
     @Output() editorInit = editorInitEmitter
+  }
+
+  @Component({ selector: 'num-editor-determine-hits', template: '' })
+  class EditorDetermineHitsStubComponent {
+    @Input() isButtonDisabled: boolean
+    @Input() content: IDetermineHits
+    @Output() clicked = new EventEmitter()
   }
 
   let dialogCallParameter: DialogConfig
@@ -90,23 +107,34 @@ describe('AqlEditorCeatorComponent', () => {
     validateAql: jest.fn(),
   } as unknown) as AqlEditorService
 
+  const mockAqlService = ({
+    getSize: jest.fn(),
+  } as unknown) as AqlService
+
   const mockToastMessageService = ({
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlEditorCreatorComponent, CodeEditorStubComponent, ButtonComponent],
+      declarations: [
+        AqlEditorCreatorComponent,
+        CodeEditorStubComponent,
+        ButtonComponent,
+        EditorDetermineHitsStubComponent,
+      ],
       imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         { provide: AqlEditorService, useValue: mockAqlEditorService },
+        { provide: AqlService, useValue: mockAqlService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    jest.clearAllMocks()
     fixture = TestBed.createComponent(AqlEditorCreatorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -175,23 +203,15 @@ describe('AqlEditorCeatorComponent', () => {
 
   describe('When a query is set', () => {
     const testcases = [
-      { q: 'This is below 25 characters', result: false },
+      { q: 'below 15 chars', result: false },
       {
-        q: 'This is above 25 characters but is just not including the important words',
+        q: 'This is above 15 characters but is just not including the important words',
         result: false,
       },
-      { q: 'This is above 25 characters but just includes the word select', result: false },
+      { q: 'This is above 15 characters but just includes the word select', result: false },
+      { q: 'This is above 15 characters but just includes the word from', result: false },
       {
-        q: 'This is above 25 characters but just includes the words select, from',
-        result: false,
-      },
-      {
-        q: 'This is above 25 characters but just includes the words select, from, contains',
-        result: false,
-      },
-      {
-        q:
-          'This is above 25 characters and it includes the words select, from, contains, composition',
+        q: 'This is above 15 characters and includes the words select, from',
         result: true,
       },
     ]
@@ -227,19 +247,12 @@ describe('AqlEditorCeatorComponent', () => {
 
     it('it should not display a message to the user that the query is valid and return true', async () => {
       const result = await component.validate(false)
-      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_SUCCESS_CONFIG)
+      expect(mockToastMessageService.openToast).not.toHaveBeenCalledWith(VALIDATION_SUCCESS_CONFIG)
       expect(result).toBeTruthy()
     })
   })
 
   describe('When the query is supposed to be validated and is not valid', () => {
-    const validationResponse: IAqlValidationResponse = {
-      valid: false,
-      error: 'test',
-      message: 'error message here',
-      startColumn: 123,
-      startLine: 321,
-    }
     beforeEach(() => {
       jest
         .spyOn(mockAqlEditorService, 'validateAql')
@@ -273,6 +286,81 @@ describe('AqlEditorCeatorComponent', () => {
       const result = await component.validate()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_ERROR_CONFIG)
       expect(result).toBeFalsy()
+    })
+  })
+
+  describe('When the hits for the aql in the ehr are supposed to be fetched', () => {
+    it('should call the aql service to get the size and set the count', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => of(123))
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.count).toEqual(123)
+    })
+
+    it('should display the too few hits error when it occurs', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 451 }))
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.message).toEqual('AQL.HITS.MESSAGE_ERROR_FEW_HITS')
+      expect(component.determineHitsContent.count).toEqual(null)
+    })
+
+    it('should display the validation error when it occurs', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
+        throwError({
+          status: 400,
+          error: {
+            errors: [JSON.stringify(validationResponse)],
+          },
+        })
+      )
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.message).toEqual('AQL.VALIDATION_ERROR')
+      expect(component.determineHitsContent.count).toEqual(null)
+    })
+
+    it('should display the generic error when a 400 is not caused by validation', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
+        throwError({
+          status: 400,
+          error: {
+            errors: [JSON.stringify({ valid: true })],
+          },
+        })
+      )
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.message).toEqual('AQL.HITS.MESSAGE_ERROR_MESSAGE')
+      expect(component.determineHitsContent.count).toEqual(null)
+    })
+
+    it('should display the generic error when a 400 is not caused by validation', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 400 }))
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.message).toEqual('AQL.HITS.MESSAGE_ERROR_MESSAGE')
+      expect(component.determineHitsContent.count).toEqual(null)
+    })
+
+    it('should display the generic error when a unkown error occurs', async () => {
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 500 }))
+      component.aqlQuery = 'test'
+      await component.determineHits()
+      expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHitsContent.message).toEqual('AQL.HITS.MESSAGE_ERROR_MESSAGE')
+      expect(component.determineHitsContent.count).toEqual(null)
+    })
+
+    it('should display the message that the aql must be set', async () => {
+      await component.determineHits()
+      expect(component.determineHitsContent.message).toEqual('AQL.HITS.MESSAGE_SET_ALL_PARAMETERS')
+      expect(component.determineHitsContent.count).toEqual(null)
     })
   })
 })
