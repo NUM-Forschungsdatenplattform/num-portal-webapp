@@ -16,7 +16,7 @@
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
 import { of, Subscription } from 'rxjs'
@@ -66,7 +66,31 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
   roles: string[] = []
   user: IUserProfile
 
-  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatSort, { static: false }) set sorting(sort: MatSort) {
+    this.dataSource.sortingDataAccessor = (item: IProjectApi, property) => {
+      switch (property) {
+        case 'name': {
+          return item.name
+        }
+        case 'author': {
+          const fullName = `${item.coordinator?.firstName || ''} ${
+            item.coordinator?.lastName || ''
+          }`
+          return fullName.length > 0 ? fullName : ''
+        }
+        case 'organisation': {
+          return `${item.coordinator?.organization?.name || ''}'`
+        }
+        case 'status': {
+          return item.status.toString()
+        }
+        default: {
+          return item.id
+        }
+      }
+    }
+    this.dataSource.sort = sort
+  }
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   get pageSize(): number {
@@ -97,7 +121,6 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
@@ -116,6 +139,13 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   handleFilterChange(): void {
     this.projectService.setFilter(this.filterConfig)
+  }
+
+  handleSortChange(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.sort.active = 'id'
+      this.dataSource.sort.direction = 'desc'
+    }
   }
 
   generateMenuForRole(): void {
