@@ -43,7 +43,14 @@ export class AqbUiModel {
     const archetypeReferenceId = this.setReference(archetypeId)
 
     if (this.selectDestination === AqbSelectDestination.Select) {
-      this.pushToSelectClause(clickEvent, compositionReferenceId, archetypeReferenceId)
+      const isComposition = clickEvent.compositionId === clickEvent.item.archetypeId
+      this.pushToSelectClause(
+        clickEvent,
+        compositionReferenceId,
+        archetypeReferenceId,
+        isComposition,
+        clickEvent.templateId
+      )
     } else {
       this.pushToWhereClause(clickEvent, compositionReferenceId, archetypeReferenceId)
     }
@@ -60,12 +67,16 @@ export class AqbUiModel {
   pushToSelectClause(
     clickEvent: IAqbSelectClick,
     compositionReferenceId: number,
-    archetypeReferenceId: number
+    archetypeReferenceId: number,
+    isComposition: boolean,
+    templateId: string
   ): void {
     const aqbSelect = new AqbSelectItemUiModel(
       clickEvent.item,
       compositionReferenceId,
-      archetypeReferenceId
+      archetypeReferenceId,
+      isComposition,
+      templateId
     )
     this.select.push(aqbSelect)
   }

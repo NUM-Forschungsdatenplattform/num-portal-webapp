@@ -259,6 +259,7 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
+    "RESET_CUSTOMIZATION": "Reset configuration",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",

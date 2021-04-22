@@ -55,6 +55,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { AqbSelectDestination } from 'src/app/modules/aqls/models/aqb/aqb-select-destination.enum'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -311,6 +312,10 @@ describe('DataExplorerComponent', () => {
     it('should prefill the select clause of the aqb model', () => {
       expect(component.aqbModel.select.length).toEqual(1)
     })
+
+    it('should store the default aqb model for the purpose of reset', () => {
+      expect(component.aqbModel).toEqual(component.initialAqbModel)
+    })
   })
 
   describe('When the component gets initialized and the templates are specified but can not be compiled or fetched', () => {
@@ -557,6 +562,25 @@ describe('DataExplorerComponent', () => {
       }
 
       expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    })
+  })
+
+  describe('On the attempt to reset the custom configuration', () => {
+    beforeEach(() => {
+      component.aqbModel = new AqbUiModel()
+      component.configuration = DataExplorerConfigurations.Custom
+      component.resetAqbModel()
+    })
+    it('should set the aqbModel to the default', () => {
+      expect(component.aqbModel).toEqual(component.initialAqbModel)
+    })
+
+    it('should fetch the DataSet', () => {
+      expect(projectService.executeAdHocAql).toHaveBeenCalledTimes(1)
+    })
+
+    it('should reset the configuration flag to default', () => {
+      expect(component.configuration).toEqual(DataExplorerConfigurations.Default)
     })
   })
 })

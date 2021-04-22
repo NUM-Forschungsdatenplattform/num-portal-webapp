@@ -28,6 +28,7 @@ import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-bu
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { COMPILE_ERROR_CONFIG } from './constants'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 
 @Component({
   selector: 'num-dialog-aql-builder',
@@ -71,6 +72,10 @@ export class DialogAqlBuilderComponent
     }
 
     this.compositions = Array.from(this.aqbModel.contains.compositions.values())
+
+    if (this.dialogInput.mode === AqlBuilderDialogMode.DataRetrieval) {
+      this.aqbModel.selectDestination = AqbSelectDestination.Where
+    }
   }
 
   ngOnDestroy(): void {
@@ -81,9 +86,26 @@ export class DialogAqlBuilderComponent
     this.templates = templates
   }
 
+  isAllowedSelection(clickEvent: IAqbSelectClick): boolean {
+    if (
+      this.dialogInput.mode !== AqlBuilderDialogMode.DataRetrieval ||
+      this.aqbModel.selectDestination !== AqbSelectDestination.Select
+    ) {
+      return true
+    }
+
+    if (!clickEvent.item.rmType && clickEvent.item.archetypeId === clickEvent.compositionId) {
+      return true
+    }
+
+    return false
+  }
+
   handleItemSelect(clickEvent: IAqbSelectClick): void {
-    this.aqbModel.handleElementSelect(clickEvent)
-    this.compositions = Array.from(this.aqbModel.contains.compositions.values())
+    if (this.isAllowedSelection(clickEvent)) {
+      this.aqbModel.handleElementSelect(clickEvent)
+      this.compositions = Array.from(this.aqbModel.contains.compositions.values())
+    }
   }
 
   async handleDialogConfirm(): Promise<void> {

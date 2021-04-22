@@ -45,6 +45,7 @@ import {
 } from './constants'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { cloneDeep } from 'lodash-es'
 
 @Component({
   selector: 'num-data-explorer',
@@ -54,6 +55,7 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 export class DataExplorerComponent implements OnInit {
   resolvedData: IProjectResolved
 
+  initialAqbModel = new AqbUiModel()
   aqbModel = new AqbUiModel()
   compiledQuery: IArchetypeQueryBuilderResponse
   selectedTemplateIds: string[] = []
@@ -134,6 +136,7 @@ export class DataExplorerComponent implements OnInit {
             this.aqbModel.handleElementSelect(composition)
           )
           const apiModel = this.aqbModel.convertToApi()
+          this.initialAqbModel = cloneDeep(this.aqbModel)
           return this.aqlEditorService.buildAql(apiModel)
         })
       )
@@ -205,6 +208,13 @@ export class DataExplorerComponent implements OnInit {
 
     this.getDataSet()
     this.configuration = DataExplorerConfigurations.Custom
+  }
+
+  resetAqbModel(): void {
+    this.aqbModel = cloneDeep(this.initialAqbModel)
+    this.selectedTemplateIds = cloneDeep(this.allowedTemplateIds)
+    this.configuration = DataExplorerConfigurations.Default
+    this.getDataSet()
   }
 
   cancel(): void {

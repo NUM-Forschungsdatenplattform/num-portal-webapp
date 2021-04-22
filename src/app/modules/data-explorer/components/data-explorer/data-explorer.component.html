@@ -47,7 +47,7 @@
     ></num-project-editor-researchers>
   </mat-accordion>
 
-  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+  <section role="presentation" fxLayout="row wrap" fxLayoutAlign="space-between">
     <num-button
       [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportLoading"
       type="primary"
@@ -56,16 +56,25 @@
       [attr.data-test]="'data-explorer__get-data-button'"
       >{{ 'BUTTON.GET_DATA' | translate }}</num-button
     >
-    <!-- NUM-1450: Custom configuration is not shown for Release 1.0 -->
-    <num-button
-      [hidden]="true"
-      [isDisabled]="!isCompositionsFetched || isDataSetLoading"
-      type="secondary"
-      icon="pen"
-      (singleClick)="openBuilderDialog()"
-      [attr.data-test]="'data-explorer__customize-configuration-button'"
-      >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
-    >
+
+    <div fxLayoutGap="20px">
+      <num-button
+        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+        type="secondary"
+        icon="undo"
+        (singleClick)="resetAqbModel()"
+        [attr.data-test]="'data-explorer__reset-customization-button'"
+        >{{ 'BUTTON.RESET_CUSTOMIZATION' | translate }}</num-button
+      >
+      <num-button
+        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+        type="secondary"
+        icon="pen"
+        (singleClick)="openBuilderDialog()"
+        [attr.data-test]="'data-explorer__customize-configuration-button'"
+        >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+      >
+    </div>
   </section>
 
   <section
