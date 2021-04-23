@@ -477,7 +477,7 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should trigger the download', () => {
-      const filename = `csv_export_${component.project.id}.csv`
+      const filename = `csv_export_${component.project.id}.zip`
       const mockHtmlElement = document.createElement('a')
 
       mockHtmlElement.setAttribute = jest.fn()

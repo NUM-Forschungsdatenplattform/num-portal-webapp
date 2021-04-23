@@ -246,14 +246,14 @@ export class DataExplorerComponent implements OnInit {
       (response) => {
         const filename =
           format === 'csv'
-            ? `csv_export_${this.project.id}.csv`
+            ? `csv_export_${this.project.id}.zip`
             : `json_export_${this.project.id}.json`
 
         const downloadLink = document.createElement('a')
         downloadLink.setAttribute(
           'href',
           format === 'csv'
-            ? 'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
+            ? 'data:application/zip;charset=utf-8,' + encodeURIComponent(response)
             : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
         )
 
