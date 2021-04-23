@@ -45,7 +45,8 @@ export class ResultTableComponent implements OnInit {
   dataSource = new MatTableDataSource()
 
   @Input() resultSet: IAqlExecutionResponse
-  @Input() configuration: DataExplorerConfigurations
+  @Input() index: number
+  @Input() totalTables: number
 
   private isLoading: boolean
   @Input() set isDataSetLoading(isLoading: boolean) {
@@ -53,17 +54,6 @@ export class ResultTableComponent implements OnInit {
     if (!this.isLoading && this.resultSet?.rows.length) {
       this.handleData()
     }
-  }
-  get isDataSetLoading(): boolean {
-    return this.isLoading
-  }
-
-  get pageSize(): number {
-    return +localStorage.getItem('pageSize') || 5
-  }
-
-  set pageSize(pageSize) {
-    localStorage.setItem('pageSize', pageSize.toString())
   }
 
   ngOnInit(): void {}

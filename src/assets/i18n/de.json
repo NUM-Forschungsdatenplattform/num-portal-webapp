@@ -143,6 +143,7 @@
       "NOTIFICATION": "Benachrichtigung"
     }
   },
+  "TABLE": "Tabelle",
   "INVALID_URL": "Die URL ist nicht valide. Bitte an das Beispiel anpassen:",
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
   "PROVIDE_URL_TEXT": "Bitte geben Sie einen Link-Text ein",
