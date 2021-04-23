@@ -142,6 +142,7 @@
       "NOTIFICATION": "Notification"
     }
   },
+  "TABLE": "Table",
   "INVALID_URL": "The URL is not valid. Please adjust to the example:",
   "PROVIDE_URL": "Please enter a URL",
   "PROVIDE_URL_TEXT": "Please enter a link text",

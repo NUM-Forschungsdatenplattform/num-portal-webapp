@@ -85,7 +85,7 @@ export class DataExplorerComponent implements OnInit {
 
   projectForm: FormGroup = new FormGroup({})
 
-  resultSet: IAqlExecutionResponse
+  resultSet: IAqlExecutionResponse[]
   configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
 
   constructor(

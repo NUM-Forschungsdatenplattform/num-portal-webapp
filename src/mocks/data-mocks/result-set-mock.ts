@@ -1780,3 +1780,5 @@ export const mockResultSetJson: IAqlExecutionResponse = {
     ],
   ],
 }
+
+export const mockResultFlatList = [mockResultSetFlat, mockResultSetFlat]

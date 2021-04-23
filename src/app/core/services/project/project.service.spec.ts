@@ -39,6 +39,7 @@ import { IProjectFilter } from 'src/app/shared/models/project/project-filter.int
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
+import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
 
 describe('ProjectService', () => {
   let service: ProjectService
@@ -182,6 +183,31 @@ describe('ProjectService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to execute method comes in', () => {
+    it(`should call the api - with success`, () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of([mockResultSetFlat]))
+      service.executeAdHocAql('query', 1).subscribe((result) => {
+        expect(result).toEqual([mockResultSetFlat])
+      })
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study/${1}/execute`, {
+        query: 'query',
+      })
+    })
+    it(`should call the api - with error`, () => {
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
+      service
+        .executeAdHocAql('query', 1)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study/${1}/execute`, {
+        query: 'query',
+      })
       expect(service.handleError).toHaveBeenCalled()
     })
   })

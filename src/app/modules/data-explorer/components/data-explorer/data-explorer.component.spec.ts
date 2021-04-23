@@ -55,7 +55,6 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
-import { AqbSelectDestination } from 'src/app/modules/aqls/models/aqb/aqb-select-destination.enum'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -147,7 +146,8 @@ describe('DataExplorerComponent', () => {
   class ResultTableStubComponent {
     @Input() resultSet: IAqlExecutionResponse
     @Input() isDataSetLoading: boolean
-    @Input() configuration: DataExplorerConfigurations
+    @Input() index: number
+    @Input() totalTables: number
   }
 
   beforeEach(async () => {
@@ -435,7 +435,7 @@ describe('DataExplorerComponent', () => {
     }
 
     beforeEach(() => {
-      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => of([mockResultSet]))
       component.compiledQuery = buildResponse
     })
 
@@ -443,7 +443,7 @@ describe('DataExplorerComponent', () => {
       component.getDataSet()
 
       expect(component.isDataSetLoading).toEqual(false)
-      expect(component.resultSet).toEqual(mockResultSet)
+      expect(component.resultSet).toEqual([mockResultSet])
     })
   })
 
