@@ -21,6 +21,7 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
+import { maxBy, minBy } from 'lodash'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
@@ -34,10 +35,9 @@ import { IProjectFilter } from 'src/app/shared/models/project/project-filter.int
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
+import { mockProject1, mockProjectsForSort } from 'src/mocks/data-mocks/project.mock'
 import {
   ARCHIVE_PROJECT_DIALOG_CONFIG,
-  CHANGE_STATUS_SUCCESS,
   CLOSE_PROJECT_DIALOG_CONFIG,
   DELETE_PROJECT_DIALOG_CONFIG,
   PUBLISH_PROJECT_DIALOG_CONFIG,
@@ -265,5 +265,83 @@ describe('ProjectsTableComponent', () => {
         }
       }
     )
+  })
+
+  describe('When sorting the list', () => {
+    beforeEach(() => {
+      component.paginator.pageSize = 20
+      projectsSubject$.next(mockProjectsForSort)
+      fixture.detectChanges()
+    })
+    it('should sort by id descending as default', () => {
+      const projectWithLatestId = maxBy(mockProjectsForSort, 'id')
+      const projectWithOldestId = minBy(mockProjectsForSort, 'id')
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      expect(tableRows[0].innerHTML.trim()).toEqual(projectWithLatestId.name)
+      expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(projectWithOldestId.name)
+    })
+
+    it('should sort by id as second in same order as first field', () => {
+      component.sort.sort({ id: 'status', disableClear: false, start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-status"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' PROJECT.STATUS.PENDING ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(tableRows[firstIdx].innerHTML)
+    })
+
+    it('should be case insensitive', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'desc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' TEST PROJECT ')
+      expect(tableRows[firstIdx + 1].innerHTML.toLocaleLowerCase()).toEqual(
+        tableRows[firstIdx].innerHTML.toLocaleLowerCase()
+      )
+    })
+
+    it('should sort umlaut characters', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test project ä ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test project ö ')
+      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' Test project ü ')
+    })
+
+    it('should sort umlaut characters to corresponding vowel', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test a ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test ä ')
+    })
+
+    it('should sort in order empty -> numeric -> alphabetic -> special', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === '  ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' % ')
+      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' 1 ')
+      expect(tableRows[firstIdx + 3].innerHTML).toEqual(' a ')
+    })
   })
 })

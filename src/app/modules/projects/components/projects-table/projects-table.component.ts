@@ -16,9 +16,11 @@
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort, Sort } from '@angular/material/sort'
+import { MatSort, Sort, SortDirection } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
+import { TranslateService } from '@ngx-translate/core'
+import { orderBy } from 'lodash-es'
 import { of, Subscription } from 'rxjs'
 import { catchError, take, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -31,6 +33,7 @@ import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
+import { ProjectTableColumns } from 'src/app/shared/models/project/project-table.interface'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import {
   ARCHIVE_PROJECT_DIALOG_CONFIG,
@@ -55,42 +58,19 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     private projectService: ProjectService,
     private dialogService: DialogService,
     private profileService: ProfileService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private translateService: TranslateService
   ) {}
 
-  displayedColumns: string[] = ['menu', 'name', 'author', 'organisation', 'status']
-  dataSource = new MatTableDataSource()
+  displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organisation', 'status']
+  dataSource = new MatTableDataSource<IProjectApi>()
 
   menuItems: IItemVisibility[] = []
   filterConfig: IProjectFilter
   roles: string[] = []
   user: IUserProfile
 
-  @ViewChild(MatSort, { static: false }) set sorting(sort: MatSort) {
-    this.dataSource.sortingDataAccessor = (item: IProjectApi, property) => {
-      switch (property) {
-        case 'name': {
-          return item.name
-        }
-        case 'author': {
-          const fullName = `${item.coordinator?.firstName || ''} ${
-            item.coordinator?.lastName || ''
-          }`
-          return fullName.length > 0 ? fullName : ''
-        }
-        case 'organisation': {
-          return `${item.coordinator?.organization?.name || ''}'`
-        }
-        case 'status': {
-          return item.status.toString()
-        }
-        default: {
-          return item.id
-        }
-      }
-    }
-    this.dataSource.sort = sort
-  }
+  @ViewChild(MatSort, { static: false }) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   get pageSize(): number {
@@ -121,6 +101,10 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+
+    this.dataSource.sortData = (data, matSort) => this.sortData(data, matSort)
+
+    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
@@ -216,5 +200,63 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
           .subscribe()
       }
     })
+  }
+
+  compareStringValues(a: string, b: string, idA: number, idB: number, isAsc: boolean): number {
+    let compareResult = a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
+    if (compareResult === 0) {
+      compareResult = idA - idB
+    }
+    return compareResult * (isAsc ? 1 : -1)
+  }
+
+  sortData(data: IProjectApi[], sort: MatSort): IProjectApi[] {
+    const isAsc = sort.direction === 'asc'
+    const newData = [...data]
+
+    switch (sort.active as ProjectTableColumns) {
+      case 'author': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            `${a.coordinator?.firstName || ''} ${a.coordinator?.lastName || ''}`,
+            `${b.coordinator?.firstName} ${b.coordinator?.lastName}`,
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      case 'name': {
+        return newData.sort((a, b) => this.compareStringValues(a.name, b.name, a.id, b.id, isAsc))
+      }
+      case 'organisation': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            `${a.coordinator?.organization?.name || ''}`,
+            `${b.coordinator?.organization?.name || ''}`,
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      case 'status': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            this.translateService.instant(`PROJECT.STATUS.${a.status}`),
+            this.translateService.instant(`PROJECT.STATUS.${b.status}`),
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      default: {
+        return newData.sort((a, b) => {
+          const compareResult = a.id - b.id
+          return isAsc ? compareResult : compareResult * -1
+        })
+      }
+    }
   }
 }
