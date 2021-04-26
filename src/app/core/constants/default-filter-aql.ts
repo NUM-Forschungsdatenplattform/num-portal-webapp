@@ -22,17 +22,17 @@ export const DEFAULT_AQL_FILTER: IAqlFilter = {
   filterItem: [
     {
       id: AqlFilterChipId.AllAql,
-      title: 'AQL.ALL_AQLS',
+      title: 'FILTER_CHIP.ALL',
       isSelected: true,
     },
     {
       id: AqlFilterChipId.MyAql,
-      title: 'AQL.MY_AQLS',
+      title: 'FILTER_CHIP.MY',
       isSelected: false,
     },
     {
-      id: AqlFilterChipId.OrganisationAql,
-      title: 'AQL.ORGANISATION_AQLS',
+      id: AqlFilterChipId.OrganizationAql,
+      title: 'FILTER_CHIP.ORGANIZATION',
       isSelected: false,
     },
   ],

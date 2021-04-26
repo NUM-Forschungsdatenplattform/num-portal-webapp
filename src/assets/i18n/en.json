@@ -65,11 +65,13 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
+  "FILTER_CHIP": {
+    "MY": "My AQLs",
+    "ORGANIZATION": "My organization",
+    "ALL": "All"
+  },
   "AQL": {
     "AS": "as",
-    "MY_AQLS": "My AQLs",
-    "ORGANISATION_AQLS": "My organisation",
-    "ALL_AQLS": "All",
     "CREATE_AQL": "Create AQL Query",
     "CREATE_AQL_CONTENT": "On this page you can create an AQL query. To create the query an AQL Builder is available.\n\n*Mandatory field",
     "GENERAL_INFO_CONTENT": "Please enter a descriptive title and the purpose and use of the AQL query.",

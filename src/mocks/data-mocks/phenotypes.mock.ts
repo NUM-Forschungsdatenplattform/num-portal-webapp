@@ -356,3 +356,65 @@ export const mockPhenotype4: IPhenotypeApi = {
 }
 
 export const mockPhenotypes: IPhenotypeApi[] = [mockPhenotype1, mockPhenotype2]
+
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>
+}
+export const mockPhenotypesToFilter: DeepPartial<IPhenotypeApi>[] = [
+  {
+    id: 1,
+    name: 'itemName1',
+    owner: {
+      id: '1',
+      firstName: '',
+      lastName: '',
+      organization: {
+        id: 1,
+      },
+    },
+  },
+  {
+    id: 2,
+    name: 'itemName2',
+    owner: {
+      id: '1',
+      firstName: 'firstname2',
+      lastName: null,
+      organization: {
+        id: null,
+      },
+    },
+  },
+  {
+    id: 3,
+    name: 'itemName3',
+    owner: {
+      id: '1',
+      firstName: null,
+      lastName: null,
+      organization: null,
+    },
+  },
+  {
+    id: 4,
+    name: null,
+    owner: {
+      id: '2',
+      firstName: 'firstName4',
+      lastName: 'lastName4',
+      organization: {
+        id: 2,
+      },
+    },
+  },
+  {
+    id: 44,
+    name: null,
+    owner: {
+      id: '22',
+      firstName: 'firstName4',
+      lastName: 'lastName4',
+      organization: null,
+    },
+  },
+]

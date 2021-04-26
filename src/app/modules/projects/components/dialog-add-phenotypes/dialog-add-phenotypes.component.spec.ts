@@ -46,6 +46,7 @@ describe('DialogAddPhenotypesComponent', () => {
   const filteredPhenotypesSubject$ = new Subject<IPhenotypeApi[]>()
   const filterConfigSubject$ = new BehaviorSubject<IPhenotypeFilter>({
     searchText: '',
+    filterItem: [],
   })
   const phenotypeService = {
     filteredPhenotypesObservable$: filteredPhenotypesSubject$.asObservable(),
@@ -112,6 +113,11 @@ describe('DialogAddPhenotypesComponent', () => {
 
   it('should set the filter in the phenotypeService on searchChange', () => {
     component.handleSearchChange()
+    expect(phenotypeService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the phenotypeService on filterChange', () => {
+    component.handleFilterChange()
     expect(phenotypeService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 
