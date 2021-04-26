@@ -21,13 +21,23 @@ export const DEFAULT_PROJECT_FILTER: IProjectFilter = {
   searchText: '',
   filterItem: [
     {
-      id: ProjectFilterChipId.NotArchived,
-      title: 'PROJECT.NOT_ARCHIVED',
+      id: ProjectFilterChipId.AllProjects,
+      title: 'FILTER_CHIP.ALL',
       isSelected: true,
     },
     {
+      id: ProjectFilterChipId.MyProjects,
+      title: 'FILTER_CHIP.MY',
+      isSelected: false,
+    },
+    {
+      id: ProjectFilterChipId.OrganizationProjects,
+      title: 'FILTER_CHIP.ORGANIZATION',
+      isSelected: false,
+    },
+    {
       id: ProjectFilterChipId.Archived,
-      title: 'PROJECT.ARCHIVED',
+      title: 'FILTER_CHIP.ARCHIVED',
       isSelected: false,
     },
   ],

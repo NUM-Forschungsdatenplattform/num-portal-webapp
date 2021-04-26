@@ -26,9 +26,30 @@ export const projectFilterTestcases: { filter: IProjectFilter; resultLength: num
           isSelected: true,
           title: '',
         },
+      ],
+      searchText: '',
+    },
+    resultLength: 1,
+  },
+  {
+    filter: {
+      filterItem: [
         {
-          id: ProjectFilterChipId.NotArchived,
-          isSelected: false,
+          id: ProjectFilterChipId.AllProjects,
+          isSelected: true,
+          title: '',
+        },
+      ],
+      searchText: '',
+    },
+    resultLength: 2,
+  },
+  {
+    filter: {
+      filterItem: [
+        {
+          id: ProjectFilterChipId.MyProjects,
+          isSelected: true,
           title: '',
         },
       ],
@@ -40,13 +61,13 @@ export const projectFilterTestcases: { filter: IProjectFilter; resultLength: num
     filter: {
       filterItem: [
         {
-          id: ProjectFilterChipId.NotArchived,
+          id: ProjectFilterChipId.OrganizationProjects,
           isSelected: true,
           title: '',
         },
       ],
       searchText: '',
     },
-    resultLength: 2,
+    resultLength: 0,
   },
 ]

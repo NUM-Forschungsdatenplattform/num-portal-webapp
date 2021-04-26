@@ -16,6 +16,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -28,6 +29,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
@@ -92,10 +94,11 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent, StubFilterChipsComponent],
+      declarations: [ProjectsTableComponent, StubFilterChipsComponent, SearchComponent],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         PipesModule,
@@ -135,7 +138,12 @@ describe('ProjectsTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should set the filter in the aqlService on filterChange', () => {
+  it('should set the filter in the projectService on searchChange', () => {
+    component.handleSearchChange()
+    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the projectService on filterChange', () => {
     component.handleFilterChange()
     expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
