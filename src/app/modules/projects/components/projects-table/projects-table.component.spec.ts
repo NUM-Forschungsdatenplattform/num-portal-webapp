@@ -331,7 +331,7 @@ describe('ProjectsTableComponent', () => {
       expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test ä ')
     })
 
-    it('should sort in order empty -> numeric -> alphabetic -> special', () => {
+    it('should sort in order empty -> special -> numeric -> alphabetic', () => {
       component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
       fixture.detectChanges()
       const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
@@ -342,6 +342,50 @@ describe('ProjectsTableComponent', () => {
       expect(tableRows[firstIdx + 1].innerHTML).toEqual(' % ')
       expect(tableRows[firstIdx + 2].innerHTML).toEqual(' 1 ')
       expect(tableRows[firstIdx + 3].innerHTML).toEqual(' a ')
+    })
+
+    it('should sort by organization ascending', () => {
+      component.sort.sort({ disableClear: false, id: 'organization', start: 'asc' })
+      fixture.detectChanges()
+      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-organization"]`
+      ) as NodeList
+      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
+      expect(tableRows[idx - 1].innerHTML).toEqual(' abc ')
+    })
+
+    it('should sort by organization descending', () => {
+      component.sort.sort({ disableClear: false, id: 'organization', start: 'desc' })
+      fixture.detectChanges()
+      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-organization"]`
+      ) as NodeList
+      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
+      expect(tableRows[idx + 1].innerHTML).toEqual(' abc ')
+    })
+
+    it('should sort by author ascending', () => {
+      component.sort.sort({ disableClear: false, id: 'author', start: 'asc' })
+      fixture.detectChanges()
+      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-author"]`
+      ) as NodeList
+      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
+      expect(tableRows[idx + 1].innerHTML).toEqual(' Max Mustermann ')
+    })
+
+    it('should sort by author descending', () => {
+      component.sort.sort({ disableClear: false, id: 'author', start: 'desc' })
+      fixture.detectChanges()
+      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-author"]`
+      ) as NodeList
+      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
+      expect(tableRows[idx - 1].innerHTML).toEqual(' Max Mustermann ')
     })
   })
 })

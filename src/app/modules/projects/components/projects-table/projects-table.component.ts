@@ -16,11 +16,10 @@
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort, Sort, SortDirection } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
-import { orderBy } from 'lodash-es'
 import { of, Subscription } from 'rxjs'
 import { catchError, take, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -62,7 +61,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     private translateService: TranslateService
   ) {}
 
-  displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organisation', 'status']
+  displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
   dataSource = new MatTableDataSource<IProjectApi>()
 
   menuItems: IItemVisibility[] = []
@@ -229,7 +228,7 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
       case 'name': {
         return newData.sort((a, b) => this.compareStringValues(a.name, b.name, a.id, b.id, isAsc))
       }
-      case 'organisation': {
+      case 'organization': {
         return newData.sort((a, b) =>
           this.compareStringValues(
             `${a.coordinator?.organization?.name || ''}`,

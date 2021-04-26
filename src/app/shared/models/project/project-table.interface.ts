@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export type ProjectTableColumns = 'menu' | 'name' | 'author' | 'organisation' | 'status' | 'id'
+export type ProjectTableColumns = 'menu' | 'name' | 'author' | 'organization' | 'status' | 'id'

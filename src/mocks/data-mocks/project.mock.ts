@@ -17,7 +17,12 @@
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
-import { mockUser, mockUserResearcher, mockUserSuperAdmin } from './admin.mock'
+import {
+  mockUser,
+  mockUserResearcher,
+  mockUserStudyCoordinator,
+  mockUserSuperAdmin,
+} from './admin.mock'
 
 export const mockProject1: IProjectApi = {
   id: 1,
@@ -403,7 +408,7 @@ export const mockProject21: IProjectApi = {
   description: 'Test project for testing special characters sorting',
   templates: [],
   cohortId: 21,
-  coordinator: mockUserSuperAdmin,
+  coordinator: mockUserStudyCoordinator,
   researchers: [
     {
       userId: 'abc-1',
