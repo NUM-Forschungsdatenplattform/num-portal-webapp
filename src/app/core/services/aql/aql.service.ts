@@ -142,7 +142,7 @@ export class AqlService {
       if (filterItem.isSelected) {
         if (filterItem.id === AqlFilterChipId.MyAql) {
           result = result.filter((aql) => aql.owner?.id === this.user.id)
-        } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
+        } else if (filterItem.id === AqlFilterChipId.OrganizationAql) {
           result = result.filter(
             (aql) => aql.owner?.organization?.id === this.user.organization?.id
           )

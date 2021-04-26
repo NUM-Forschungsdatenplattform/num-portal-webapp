@@ -133,6 +133,10 @@ export class PhenotypeTableComponent implements AfterViewInit, OnDestroy {
     this.phenotypeService.setFilter(this.filterConfig)
   }
 
+  handleFilterChange(): void {
+    this.phenotypeService.setFilter(this.filterConfig)
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }

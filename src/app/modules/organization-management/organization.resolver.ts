@@ -39,7 +39,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
     return userProfile.roles.includes(AvailableRoles.SuperAdmin)
   }
 
-  private isOwnOrganisation(userProfile: IUserProfile, id: number): boolean {
+  private isOwnOrganization(userProfile: IUserProfile, id: number): boolean {
     return id === userProfile.organization.id
   }
 
@@ -53,7 +53,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
       filter((profile) => profile.id !== undefined),
       take(1),
       map((userProfile: IUserProfile) => {
-        if (!this.isSuperAdmin(userProfile) && !this.isOwnOrganisation(userProfile, +requestedId)) {
+        if (!this.isSuperAdmin(userProfile) && !this.isOwnOrganization(userProfile, +requestedId)) {
           this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
           throwError(new Error('Forbidden to modify as organization admin'))
         } else {

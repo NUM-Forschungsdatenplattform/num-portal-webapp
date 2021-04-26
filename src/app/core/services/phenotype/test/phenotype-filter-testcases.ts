@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { AqlFilterChipId } from 'src/app/shared/models/aql/aql-filter-chip.enum'
-import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
+import { PhenotypeFilterChipId } from 'src/app/shared/models/phenotype/phenotype-filter-chip.enum'
+import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 
-export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] = [
+export const phenotypeFilterTestcases: { filter: IPhenotypeFilter; resultLength: number }[] = [
   {
     filter: {
       filterItem: [],
@@ -28,7 +28,7 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
   {
     filter: {
       filterItem: [],
-      searchText: 'aqlName1',
+      searchText: 'itemName1',
     },
     resultLength: 1,
   },
@@ -43,7 +43,7 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
     filter: {
       filterItem: [
         {
-          id: AqlFilterChipId.MyAql,
+          id: PhenotypeFilterChipId.MyPhenotype,
           isSelected: true,
           title: '',
         },
@@ -56,7 +56,7 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
     filter: {
       filterItem: [
         {
-          id: AqlFilterChipId.OrganizationAql,
+          id: PhenotypeFilterChipId.OrganizationPhenotype,
           isSelected: true,
           title: '',
         },

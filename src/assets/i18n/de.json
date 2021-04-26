@@ -65,11 +65,13 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
+  "FILTER_CHIP": {
+    "MY": "Meine",
+    "ORGANIZATION": "Meine Organisation",
+    "ALL": "Alle"
+  },
   "AQL": {
     "AS": "als",
-    "MY_AQLS": "Meine",
-    "ORGANISATION_AQLS": "Meine Organisation",
-    "ALL_AQLS": "Alle",
     "CREATE_AQL": "AQL Abfrage erstellen",
     "CREATE_AQL_CONTENT": "Auf dieser Seite können Sie eine AQL Abfrage erstellen. Zum Erstellen der Abfrage steht Ihnen ein AQL Builder zur Verfügung.\n\n*Pflichtfeld",
     "GENERAL_INFO_CONTENT": "Bitte geben Sie einen aussagekräftigen Titel sowie den Zweck und die Verwendung der AQL Abfrage ein.",
