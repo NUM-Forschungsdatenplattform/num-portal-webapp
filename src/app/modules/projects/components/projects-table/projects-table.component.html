@@ -31,6 +31,9 @@
       mat-table
       [dataSource]="dataSource"
       matSort
+      matSortActive="id"
+      matSortDirection="desc"
+      (matSortChange)="handleSortChange($event)"
       fixedLayout
       data-test="projects__table"
     >
@@ -75,27 +78,45 @@
         </td>
       </ng-container>
 
+      <!-- ID column is only for default sorting and will not be displayed -->
+      <ng-container matColumnDef="id">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element" data-test="projects-table__table-data__project-id">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.NAME' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element" data-test="projects-table__table-data__project-name">
+          {{ element.name }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="author">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.AUTHOR' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-author"
+        >
           {{ element?.coordinator?.firstName }} {{ element?.coordinator?.lastName || '-' }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="organisation">
+      <ng-container matColumnDef="organization">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'USER.ORGANIZATION' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-organization"
+        >
           {{ element?.coordinator?.organization?.name || '-' }}
         </td>
       </ng-container>
@@ -104,7 +125,11 @@
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.STATUS' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-status"
+        >
           {{ (element.status ? 'PROJECT.STATUS.' + element.status : undefined) | translate }}
         </td>
       </ng-container>
