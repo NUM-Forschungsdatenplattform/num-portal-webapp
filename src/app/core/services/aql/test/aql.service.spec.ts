@@ -258,18 +258,20 @@ describe('AqlService', () => {
 
   describe('When a call to execute method comes in', () => {
     it('should call the API with post and the id in the url', () => {
-      const aqlId = 1
       jest.spyOn(httpClient, 'post').mockImplementation(() => of({}))
-      service.execute(aqlId).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/${aqlId}/execute`, {})
+      service.getSize('query').subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, {
+        query: 'query',
+      })
     })
 
     it('should call handleError on api error', () => {
-      const aqlId = 1
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
-      service.execute(aqlId).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/${aqlId}/execute`, {})
+      service.getSize('query').subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, {
+        query: 'query',
+      })
       expect(service.handleError).toHaveBeenCalled()
     })
   })
