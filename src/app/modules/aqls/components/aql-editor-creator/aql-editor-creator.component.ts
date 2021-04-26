@@ -17,9 +17,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { NumAqlFormattingProvider } from 'src/app/modules/code-editor/num-aql-formatting-provider'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
@@ -41,6 +43,7 @@ export class AqlEditorCeatorComponent implements OnInit {
   constructor(
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
+    private aqlService: AqlService,
     private toastMessageService: ToastMessageService
   ) {}
   formatter = new NumAqlFormattingProvider()
@@ -51,6 +54,10 @@ export class AqlEditorCeatorComponent implements OnInit {
   validationObservable$ = this.validationSubject$.asObservable()
 
   isValidForExecution: boolean
+  isExecutionLoading: boolean
+  determineHitsContent: IDetermineHits = {
+    defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
+  }
 
   aqlQueryValue: string
   @Output() aqlQueryChange = new EventEmitter<string>()
@@ -63,10 +70,8 @@ export class AqlEditorCeatorComponent implements OnInit {
     this.aqlQueryChange.emit(aqlQuery)
     this.isValidForExecution = this.validateExecution(aqlQuery)
     this.validationSubject$.next(null)
+    this.updateDetermineHits(null, '')
   }
-
-  @Input()
-  isExecutionReady: boolean
 
   @Output() execute = new EventEmitter()
 
@@ -84,21 +89,26 @@ export class AqlEditorCeatorComponent implements OnInit {
     this.formatSubject$.next()
   }
 
+  setError(validationResult: IAqlValidationResponse): void {
+    const editorMarker: monaco.editor.IMarkerData = {
+      message: validationResult.message,
+      severity: monaco.MarkerSeverity.Error,
+      startColumn: +validationResult.startColumn,
+      startLineNumber: +validationResult.startLine,
+      endColumn: 1000,
+      endLineNumber: +validationResult.startLine,
+    }
+
+    this.validationSubject$.next([editorMarker])
+    this.toastMessageService.openToast(VALIDATION_ERROR_CONFIG)
+  }
+
   async validate(showSuccess?: boolean): Promise<boolean> {
     let validationResult: IAqlValidationResponse
     try {
       validationResult = await this.aqlEditorService.validateAql(this.aqlQuery).toPromise()
       if (!validationResult.valid) {
-        const editorMarker: monaco.editor.IMarkerData = {
-          message: validationResult.message,
-          severity: monaco.MarkerSeverity.Error,
-          startColumn: +validationResult.startColumn,
-          startLineNumber: +validationResult.startLine,
-          endColumn: 1000,
-          endLineNumber: +validationResult.startLine,
-        }
-        this.validationSubject$.next([editorMarker])
-        this.toastMessageService.openToast(VALIDATION_ERROR_CONFIG)
+        this.setError(validationResult)
         return false
       } else {
         if (showSuccess) {
@@ -116,11 +126,7 @@ export class AqlEditorCeatorComponent implements OnInit {
   validateExecution(query: string): boolean {
     const queryToCheck = query.toUpperCase()
     return (
-      queryToCheck.length > 25 &&
-      queryToCheck.includes('SELECT') &&
-      queryToCheck.includes('FROM') &&
-      queryToCheck.includes('CONTAINS') &&
-      queryToCheck.includes('COMPOSITION')
+      queryToCheck.length > 15 && queryToCheck.includes('SELECT') && queryToCheck.includes('FROM')
     )
   }
 
@@ -149,5 +155,50 @@ export class AqlEditorCeatorComponent implements OnInit {
     this.aqbModel = confirmResult.model
     this.selectedTemplateIds = confirmResult.selectedTemplateIds
     this.aqlQuery = confirmResult.result.q
+  }
+
+  updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
+    this.determineHitsContent = {
+      defaultMessage: this.determineHitsContent.defaultMessage,
+      message,
+      count,
+      isLoading,
+    }
+  }
+
+  async determineHits(): Promise<void> {
+    if (this.aqlQuery && this.aqlQuery.length) {
+      this.updateDetermineHits(null, '', true)
+
+      try {
+        await this.aqlService
+          .getSize(this.aqlQuery)
+          .toPromise()
+          .then((result) => {
+            this.updateDetermineHits(result, '')
+          })
+      } catch (error) {
+        if (error.status === 451) {
+          // *** Error 451 means too few hits ***
+          this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_FEW_HITS')
+        } else if (error.status === 400) {
+          try {
+            const firstError = JSON.parse(error.error?.errors[0])
+            if (firstError.valid === false) {
+              this.updateDetermineHits(null, 'AQL.VALIDATION_ERROR')
+              this.setError(firstError as IAqlValidationResponse)
+            } else {
+              this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+            }
+          } catch (_) {
+            this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+          }
+        } else {
+          this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+        }
+      }
+    } else {
+      this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS')
+    }
   }
 }

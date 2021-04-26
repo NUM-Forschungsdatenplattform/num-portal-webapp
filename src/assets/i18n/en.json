@@ -89,7 +89,12 @@
     "COLUMNS": "Columns",
     "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
     "VALIDATION_ERROR": "The syntax of the AQL Query is not valid",
-    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid"
+    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first define the AQL Query to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Search Phenotype",
