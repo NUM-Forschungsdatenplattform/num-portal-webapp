@@ -33,6 +33,7 @@ import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 
 @Component({
   selector: 'num-aql-table',
@@ -41,13 +42,13 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlTableComponent implements AfterViewInit, OnDestroy {
   user: IUserProfile
-  displayedColumns: string[] = [
+  displayedColumns: AqlTableColumns[] = [
     'menu',
     'name',
     'author',
     'creationDate',
     'isPublic',
-    'organisation',
+    'organization',
   ]
   dataSource = new MatTableDataSource()
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
@@ -55,7 +56,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
   selectedItem = 'AQL.ALL_AQLS'
   private subscriptions = new Subscription()
 
-  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatSort, { static: false }) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   get pageSize(): number {
@@ -87,6 +88,8 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    this.dataSource.sortData = (data: IAqlApi[], sort: MatSort) => this.sortAqls(data, sort)
+
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
   }
@@ -144,5 +147,66 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  compareStringValues(a: string, b: string, idA: number, idB: number, isAsc: boolean): number {
+    let compareResult = a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
+    if (compareResult === 0) {
+      compareResult = idA - idB
+    }
+    return compareResult * (isAsc ? 1 : -1)
+  }
+
+  sortAqls(data: IAqlApi[], sort: MatSort): IAqlApi[] {
+    const isAsc = sort.direction === 'asc'
+    const newData = [...data]
+
+    switch (sort.active as AqlTableColumns) {
+      case 'author': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            `${a.owner?.firstName || ''} ${a.owner?.lastName || ''}`,
+            `${b.owner?.firstName || ''} ${b.owner?.lastName || ''}`,
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      case 'creationDate': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
+        )
+      }
+      case 'isPublic': {
+        return newData.sort((a, b) => {
+          let result = a === b ? 0 : a ? -1 : 1
+          if (result === 0) {
+            result = a.id - b.id
+          }
+          return isAsc ? result : -1 * result
+        })
+      }
+      case 'name': {
+        return newData.sort((a, b) => this.compareStringValues(a.name, b.name, a.id, b.id, isAsc))
+      }
+      case 'organization': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            a.owner?.organization?.name || '',
+            b.owner?.organization?.name || '',
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      default: {
+        return newData.sort((a, b) => {
+          const compareResult = a.id - b.id
+          return isAsc ? compareResult : compareResult * -1
+        })
+      }
+    }
   }
 }

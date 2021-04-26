@@ -39,6 +39,8 @@
       mat-table
       [dataSource]="dataSource"
       matSort
+      matSortActive="id"
+      matSortDirection="desc"
       fixedLayout
       data-test="aqls__table"
     >
@@ -73,41 +75,54 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="id">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-id">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.NAME' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-name">
+          {{ element.name }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="author">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.AUTHOR' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-owner">
           {{ element.owner.firstName }} {{ element.owner.lastName }}
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="organisation">
+      <ng-container matColumnDef="organization">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'USER.ORGANIZATION' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.owner.organization?.name }}</td>
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-organization">
+          {{ element.owner.organization?.name }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="creationDate">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.CREATION_DATE' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">{{ element.createDate | localizedDate }}</td>
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-creation-date">
+          {{ element.createDate | localizedDate }}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="isPublic">
         <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm">
           {{ 'FORM.USAGE' | translate }}
         </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let element" data-test="aql-table__table-data__aql-is-public">
           <fa-icon [icon]="element.publicAql ? ['far', 'eye'] : 'user-lock'"></fa-icon>
         </td>
       </ng-container>
