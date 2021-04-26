@@ -120,6 +120,10 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.generateMenuForRole()
   }
 
+  handleSearchChange(): void {
+    this.projectService.setFilter(this.filterConfig)
+  }
+
   handleFilterChange(): void {
     this.projectService.setFilter(this.filterConfig)
   }

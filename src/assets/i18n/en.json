@@ -68,7 +68,8 @@
   "FILTER_CHIP": {
     "MY": "My AQLs",
     "ORGANIZATION": "My organization",
-    "ALL": "All"
+    "ALL": "All",
+    "ARCHIVED": "Archived"
   },
   "AQL": {
     "AS": "as",
@@ -276,8 +277,7 @@
     "DRAG_TO_MOVE": "Drag to move"
   },
   "PROJECT": {
-    "ARCHIVED": "Archived Projects",
-    "NOT_ARCHIVED": "Active Projects",
+    "SEARCH_PROJECTS": "Search Project",
     "DEFINE_PROJECT_CONTENT_P1": "On this page you can define your project. Various information is required for this purpose. You must fill in all fields marked with an asterisk before you can send the project for approval.",
     "DEFINE_PROJECT_CONTENT_P2": "Additionally, you have the possibility to write and read comments. These are used to exchange information between you and the project approver.",
     "MANDATORY": "*Mandatory field",

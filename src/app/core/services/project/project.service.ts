@@ -241,10 +241,28 @@ export class ProjectService {
 
     filterSet.filterItem.forEach((filterItem) => {
       if (filterItem.isSelected) {
-        if (filterItem.id === ProjectFilterChipId.Archived) {
-          result = result.filter((project) => project.status === ProjectStatus.Archived)
-        } else if (filterItem.id === ProjectFilterChipId.NotArchived) {
-          result = result.filter((project) => project.status !== ProjectStatus.Archived)
+        switch (filterItem.id) {
+          case ProjectFilterChipId.MyProjects:
+            result = result.filter(
+              (project) =>
+                project.coordinator?.id === this.user.id &&
+                project.status !== ProjectStatus.Archived
+            )
+            break
+          case ProjectFilterChipId.OrganizationProjects:
+            result = result.filter(
+              (project) =>
+                project.coordinator?.organization?.id === this.user.organization?.id &&
+                project.status !== ProjectStatus.Archived
+            )
+            break
+          case ProjectFilterChipId.Archived:
+            result = result.filter((project) => project.status === ProjectStatus.Archived)
+            break
+
+          default:
+            result = result.filter((project) => project.status !== ProjectStatus.Archived)
+            break
         }
       }
     })

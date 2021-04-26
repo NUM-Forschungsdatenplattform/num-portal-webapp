@@ -399,6 +399,9 @@ describe('ProjectService', () => {
 
   describe('When passing in filters', () => {
     test.each(projectFilterTestcases)('It should filter as expected', (testcase) => {
+      const anyService = service as any
+      anyService.user = { id: '123', organization: { id: 1 } }
+
       const result = service.filterItems(
         [...mockProjects, mockProject4] as IProjectApi[],
         testcase.filter
