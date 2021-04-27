@@ -204,7 +204,7 @@ describe('AqlTableComponent', () => {
       fixture.detectChanges()
     })
 
-    it.only('should sort by id descending as default', (done) => {
+    it('should sort by id descending as default', (done) => {
       const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
       const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
       const tableRows = Array.from(
