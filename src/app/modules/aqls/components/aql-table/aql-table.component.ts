@@ -21,7 +21,7 @@ import { take } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
@@ -50,7 +50,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     'isPublic',
     'organization',
   ]
-  dataSource = new MatTableDataSource()
+  dataSource = new MatTableDataSource<IAqlApi>()
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
@@ -88,9 +88,10 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sortData = (data: IAqlApi[], sort: MatSort) => this.sortAqls(data, sort)
-
     this.dataSource.paginator = this.paginator
+
+    this.dataSource.sortData = (data, matSort) => this.sortAqls(data, matSort)
+
     this.dataSource.sort = this.sort
   }
 
@@ -100,6 +101,13 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
 
   handleSearchChange(): void {
     this.aqlService.setFilter(this.filterConfig)
+  }
+
+  handleSortChange(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.sort.active = 'id'
+      this.dataSource.sort.direction = 'desc'
+    }
   }
 
   handleData(aqls: IAqlApi[]): void {

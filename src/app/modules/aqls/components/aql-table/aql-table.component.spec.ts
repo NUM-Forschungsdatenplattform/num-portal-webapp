@@ -35,9 +35,10 @@ import { ProfileService } from '../../../../core/services/profile/profile.servic
 import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
-import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
+import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.mock'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { maxBy, minBy } from 'lodash-es'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -183,6 +184,40 @@ describe('AqlTableComponent', () => {
         })
         done()
       })
+    })
+  })
+
+  describe('When sorting AQL table', () => {
+    beforeEach(() => {
+      component.paginator.pageSize = 20
+      filteredAqlsSubject$.next(mockAqlsToSort)
+      fixture.detectChanges()
+    })
+
+    it('should sort by id descending as default', (done) => {
+      const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
+      const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
+
+      /*fixture.whenStable().then(() => {
+        const rows = Array.from(fixture.debugElement.nativeElement as HTMLDivElement).querySelector(
+          '[data-test="aqls__table__data__name"]'
+        ) as HTMLTableCellElement[]
+        expect(rows).toHaveLength(mockAqlsToSort.length)
+        expect(rows[0].innerHTML.trim()).toEqual(aqlWithLatestId.name)
+        expect(rows[tableRows.length - 1].innerHTML.trim()).toEqual(aqlWithOldestId.name)
+        done()
+      })*/
+
+      const tableRows = Array.from(
+        (fixture.debugElement.nativeElement as HTMLDivElement).querySelectorAll(
+          '[data-test="aqls__table__data__name"]'
+        )
+      ) as HTMLTableCellElement[]
+
+      expect(tableRows).toHaveLength(mockAqlsToSort.length)
+      expect(tableRows[0].innerHTML.trim()).toEqual(aqlWithLatestId.name)
+      expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(aqlWithOldestId.name)
+      done()
     })
   })
 })
