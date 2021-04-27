@@ -571,8 +571,13 @@ describe('DataExplorerComponent', () => {
       component.configuration = DataExplorerConfigurations.Custom
       component.resetAqbModel()
     })
+
     it('should set the aqbModel to the default', () => {
       expect(component.aqbModel).toEqual(component.initialAqbModel)
+    })
+
+    it('should let the aql-editor-service compile the query', () => {
+      expect(aqlEditorService.buildAql).toHaveBeenCalledTimes(1)
     })
 
     it('should fetch the DataSet', () => {
