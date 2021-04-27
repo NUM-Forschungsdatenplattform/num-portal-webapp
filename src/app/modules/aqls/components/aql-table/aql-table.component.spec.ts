@@ -39,6 +39,7 @@ import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { maxBy, minBy } from 'lodash-es'
+import { Pipe, PipeTransform } from '@angular/core'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -77,6 +78,14 @@ describe('AqlTableComponent', () => {
     @Output() selectionChange = new EventEmitter()
   }
 
+  @Pipe({ name: 'localizedDate' })
+  class MockPipe implements PipeTransform {
+    transform(value: number): number {
+      // Do stuff here, if you want
+      return value
+    }
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -84,6 +93,7 @@ describe('AqlTableComponent', () => {
         SearchComponent,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
+        MockPipe,
       ],
       imports: [
         MaterialModule,
@@ -194,20 +204,9 @@ describe('AqlTableComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should sort by id descending as default', (done) => {
+    it.only('should sort by id descending as default', (done) => {
       const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
       const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
-
-      /*fixture.whenStable().then(() => {
-        const rows = Array.from(fixture.debugElement.nativeElement as HTMLDivElement).querySelector(
-          '[data-test="aqls__table__data__name"]'
-        ) as HTMLTableCellElement[]
-        expect(rows).toHaveLength(mockAqlsToSort.length)
-        expect(rows[0].innerHTML.trim()).toEqual(aqlWithLatestId.name)
-        expect(rows[tableRows.length - 1].innerHTML.trim()).toEqual(aqlWithOldestId.name)
-        done()
-      })*/
-
       const tableRows = Array.from(
         (fixture.debugElement.nativeElement as HTMLDivElement).querySelectorAll(
           '[data-test="aqls__table__data__name"]'

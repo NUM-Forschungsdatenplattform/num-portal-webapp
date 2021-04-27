@@ -34,6 +34,7 @@ import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
+import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 
 @Component({
   selector: 'num-aql-table',
@@ -156,15 +157,6 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }
-
-  compareStringValues(a: string, b: string, idA: number, idB: number, isAsc: boolean): number {
-    let compareResult = a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
-    if (compareResult === 0) {
-      compareResult = idA - idB
-    }
-    return compareResult * (isAsc ? 1 : -1)
-  }
-
   sortAqls(data: IAqlApi[], sort: MatSort): IAqlApi[] {
     const isAsc = sort.direction === 'asc'
     const newData = [...data]
@@ -172,7 +164,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     switch (sort.active as AqlTableColumns) {
       case 'author': {
         return newData.sort((a, b) =>
-          this.compareStringValues(
+          compareLocaleStringValues(
             `${a.owner?.firstName || ''} ${a.owner?.lastName || ''}`,
             `${b.owner?.firstName || ''} ${b.owner?.lastName || ''}`,
             a.id,
@@ -183,7 +175,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
       }
       case 'creationDate': {
         return newData.sort((a, b) =>
-          this.compareStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
+          compareLocaleStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
         )
       }
       case 'isPublic': {
@@ -196,11 +188,11 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
         })
       }
       case 'name': {
-        return newData.sort((a, b) => this.compareStringValues(a.name, b.name, a.id, b.id, isAsc))
+        return newData.sort((a, b) => compareLocaleStringValues(a.name, b.name, a.id, b.id, isAsc))
       }
       case 'organization': {
         return newData.sort((a, b) =>
-          this.compareStringValues(
+          compareLocaleStringValues(
             a.owner?.organization?.name || '',
             b.owner?.organization?.name || '',
             a.id,
