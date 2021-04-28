@@ -27,7 +27,7 @@ export const DEFAULT_PROJECT_FILTER: IProjectFilter = {
     },
     {
       id: ProjectFilterChipId.MyProjects,
-      title: 'FILTER_CHIP.MY',
+      title: 'FILTER_CHIP.MY_PROJECTS',
       isSelected: false,
     },
     {
