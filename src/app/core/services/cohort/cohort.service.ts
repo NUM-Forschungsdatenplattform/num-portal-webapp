@@ -51,9 +51,9 @@ export class CohortService {
       .pipe(catchError(this.handleError))
   }
 
-  getSize(cohortGroup: ICohortGroupApi): Observable<number> {
+  getSize(cohortGroup: ICohortGroupApi, allowUsageOutsideEu = true): Observable<number> {
     return this.httpClient
-      .post<number>(`${this.baseUrl}/size`, cohortGroup)
+      .post<number>(`${this.baseUrl}/size?allowUsageOutsideEu=${allowUsageOutsideEu}`, cohortGroup)
       .pipe(catchError(this.handleError))
   }
 

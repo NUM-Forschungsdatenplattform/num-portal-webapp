@@ -66,7 +66,9 @@
     "CONTACT": "Kontakt"
   },
   "FILTER_CHIP": {
-    "MY": "Meine",
+    "MY_AQLS": "Meine",
+    "MY_PHENOTYPES": "Meine",
+    "MY_PROJECTS": "Meine",
     "ORGANIZATION": "Meine Organisation",
     "ALL": "Alle",
     "ARCHIVED": "Archiviert"
