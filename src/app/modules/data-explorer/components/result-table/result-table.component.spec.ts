@@ -57,6 +57,7 @@ describe('ResultTableComponent', () => {
   describe('When a non-empty resultSet arrives', () => {
     const mockResultSet: IAqlExecutionResponse = {
       q: 'some query',
+      name: 'Table name',
       columns: [
         {
           name: 'some/path/to/col1',
@@ -99,6 +100,7 @@ describe('ResultTableComponent', () => {
   describe('When an empty resultSet arrives', () => {
     const mockResultSet: IAqlExecutionResponse = {
       q: 'some query',
+      name: 'Table name',
       columns: [
         {
           name: 'some/path/to/col1',
