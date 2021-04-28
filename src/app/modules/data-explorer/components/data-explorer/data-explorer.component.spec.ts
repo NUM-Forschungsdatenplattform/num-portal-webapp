@@ -418,6 +418,7 @@ describe('DataExplorerComponent', () => {
   describe('When the resultSet is fetched', () => {
     const mockResultSet: IAqlExecutionResponse = {
       q: 'some query',
+      name: 'Table name',
       columns: [
         {
           name: 'col1',
