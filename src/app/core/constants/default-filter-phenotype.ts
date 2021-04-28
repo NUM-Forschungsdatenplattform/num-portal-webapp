@@ -27,7 +27,7 @@ export const DEFAULT_PHENOTYPE_FILTER: IPhenotypeFilter = {
     },
     {
       id: PhenotypeFilterChipId.MyPhenotype,
-      title: 'FILTER_CHIP.MY',
+      title: 'FILTER_CHIP.MY_PHENOTYPES',
       isSelected: false,
     },
     {
