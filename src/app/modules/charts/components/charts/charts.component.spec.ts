@@ -7,7 +7,7 @@ import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ChartsComponent } from './charts.component'
 
-let translations: any = { CARDS_TITLE: 'This is a test' }
+const translations: any = { CARDS_TITLE: 'This is a test' }
 
 class FakeLoader implements TranslateLoader {
   getTranslation(lang: string): Observable<any> {

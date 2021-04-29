@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -10,11 +10,13 @@ import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss'],
 })
-export class ChartsComponent implements OnInit {
+export class ChartsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
 
   selectedClinic: string
   clinics: string[]
+  chartSofaScore: IBarChart
+  chartSofaScoreAvg: IBarChart
 
   constructor(private translateService: TranslateService, private aqlService: AqlService) {}
 
@@ -33,9 +35,6 @@ export class ChartsComponent implements OnInit {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }
-
-  chartSofaScore: IBarChart
-  chartSofaScoreAvg: IBarChart
 
   getClinics(): void {
     this.aqlService.getClinics().subscribe((clinics) => {
