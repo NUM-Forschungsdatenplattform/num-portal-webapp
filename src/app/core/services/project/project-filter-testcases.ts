@@ -14,28 +14,20 @@
  * limitations under the License.
  */
 
-import { AqlFilterChipId } from 'src/app/shared/models/aql/aql-filter-chip.enum'
-import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
+import { ProjectFilterChipId } from 'src/app/shared/models/project/project-filter-chip.enum'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 
-export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] = [
+export const projectFilterTestcases: { filter: IProjectFilter; resultLength: number }[] = [
   {
     filter: {
-      filterItem: [],
-      searchText: 'test',
-    },
-    resultLength: 0,
-  },
-  {
-    filter: {
-      filterItem: [],
-      searchText: 'aqlName1',
-    },
-    resultLength: 1,
-  },
-  {
-    filter: {
-      filterItem: [],
-      searchText: 'firstname2',
+      filterItem: [
+        {
+          id: ProjectFilterChipId.Archived,
+          isSelected: true,
+          title: '',
+        },
+      ],
+      searchText: '',
     },
     resultLength: 1,
   },
@@ -43,25 +35,38 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
     filter: {
       filterItem: [
         {
-          id: AqlFilterChipId.MyAql,
+          id: ProjectFilterChipId.AllProjects,
           isSelected: true,
           title: '',
         },
       ],
-      searchText: 'firstname4 lastName4',
+      searchText: '',
     },
-    resultLength: 0,
+    resultLength: 2,
   },
   {
     filter: {
       filterItem: [
         {
-          id: AqlFilterChipId.OrganizationAql,
+          id: ProjectFilterChipId.MyProjects,
           isSelected: true,
           title: '',
         },
       ],
-      searchText: 'firstname4 lastName4',
+      searchText: '',
+    },
+    resultLength: 1,
+  },
+  {
+    filter: {
+      filterItem: [
+        {
+          id: ProjectFilterChipId.OrganizationProjects,
+          isSelected: true,
+          title: '',
+        },
+      ],
+      searchText: '',
     },
     resultLength: 0,
   },

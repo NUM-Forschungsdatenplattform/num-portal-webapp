@@ -23,6 +23,9 @@ import { IPhenotypeApi } from '../../../shared/models/phenotype/phenotype-api.in
 import { environment } from '../../../../environments/environment'
 import { DEFAULT_PHENOTYPE_FILTER } from '../../constants/default-filter-phenotype'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
+import { PhenotypeFilterChipId } from 'src/app/shared/models/phenotype/phenotype-filter-chip.enum'
+import { ProfileService } from '../profile/profile.service'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +33,7 @@ import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filt
 export class PhenotypeService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
+  user: IUserProfile
 
   private baseUrl: string
 
@@ -45,8 +49,14 @@ export class PhenotypeService {
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private profileService: ProfileService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/phenotype`
+
+    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
       .pipe(
@@ -102,7 +112,7 @@ export class PhenotypeService {
 
       result = allPhenotypes.filter(
         (phenotype) =>
-          phenotype.name.toLowerCase().includes(textFilter) ||
+          phenotype.name?.toLowerCase().includes(textFilter) ||
           phenotype.owner?.lastName?.toLowerCase().includes(textFilter) ||
           phenotype.owner?.firstName?.toLowerCase().includes(textFilter) ||
           phenotype.owner?.firstName
@@ -116,6 +126,18 @@ export class PhenotypeService {
       )
     }
 
+    filterSet.filterItem.forEach((filterItem) => {
+      if (filterItem.isSelected) {
+        if (filterItem.id === PhenotypeFilterChipId.MyPhenotype) {
+          result = result.filter((phenotype) => phenotype.owner?.id === this.user.id)
+        } else if (filterItem.id === PhenotypeFilterChipId.OrganizationPhenotype) {
+          result = result.filter(
+            (phenotype) => phenotype.owner?.organization?.id === this.user.organization?.id
+          )
+        }
+      }
+    })
+
     return result
   }
 
@@ -128,6 +150,12 @@ export class PhenotypeService {
   getSize(phenotype: IPhenotypeApi): Observable<number> {
     return this.httpClient
       .post<number>(`${this.baseUrl}/size`, phenotype)
+      .pipe(catchError(this.handleError))
+  }
+
+  delete(phenotypeId: number): Observable<any> {
+    return this.httpClient
+      .delete<any>(`${this.baseUrl}/${phenotypeId}`)
       .pipe(catchError(this.handleError))
   }
 

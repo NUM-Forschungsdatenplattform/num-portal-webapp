@@ -62,6 +62,21 @@ export const mockUserResearcher: IUser = {
   createdTimestamp: 1603140166809,
 }
 
+export const mockUserStudyCoordinator: IUser = {
+  approved: true,
+  email: 'mockUserStudyCoordinator@gmail.com',
+  organization: {
+    id: 321,
+    name: 'cba',
+  },
+  firstName: 'Marianne',
+  id: '789',
+  lastName: 'Musterfrau',
+  roles: ['STUDY_COORDINATOR'],
+  username: 'mock-study-coordinator',
+  createdTimestamp: 1603140166809,
+}
+
 export const mockUsers: IUser[] = [
   {
     approved: false,

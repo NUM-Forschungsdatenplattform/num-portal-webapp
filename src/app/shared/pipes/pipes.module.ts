@@ -20,19 +20,21 @@ import { ArchetypePipe } from './archetype.pipe'
 import { GroupIndexPipe } from './group-index.pipe'
 import { NestedAccessPipe } from './nested-access.pipe'
 import { IsSelectedPipe } from './is-selected.pipe'
-import { ItemVisibilityPipe } from './item-visibility.pipe'
+import { ProjectMenuPipe } from './project-menu.pipe'
 import { LocalizedDatePipe } from './localized-date.pipe'
-import { AqlItemVisibilityPipe } from './aql-item-visibility.pipe'
+import { AqlMenuPipe } from './aql-menu.pipe'
 import { AvailableRolesPipe } from './available-roles.pipe'
+import { PhenotypeMenuPipe } from './phenotype-menu.pipe'
 
 const SHARED_DECLARATIONS = [
   GroupIndexPipe,
   ArchetypePipe,
   NestedAccessPipe,
   IsSelectedPipe,
-  ItemVisibilityPipe,
+  ProjectMenuPipe,
+  PhenotypeMenuPipe,
+  AqlMenuPipe,
   LocalizedDatePipe,
-  AqlItemVisibilityPipe,
   AvailableRolesPipe,
 ]
 

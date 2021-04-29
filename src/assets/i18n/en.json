@@ -65,11 +65,16 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
+  "FILTER_CHIP": {
+    "MY_AQLS": "My AQLs",
+    "MY_PHENOTYPES": "My phenotypes",
+    "MY_PROJECTS": "My projects",
+    "ORGANIZATION": "My organization",
+    "ALL": "All",
+    "ARCHIVED": "Archived"
+  },
   "AQL": {
     "AS": "as",
-    "MY_AQLS": "My AQLs",
-    "ORGANISATION_AQLS": "My organisation",
-    "ALL_AQLS": "All",
     "CREATE_AQL": "Create AQL Query",
     "CREATE_AQL_CONTENT": "On this page you can create an AQL query. To create the query an AQL Builder is available.\n\n*Mandatory field",
     "GENERAL_INFO_CONTENT": "Please enter a descriptive title and the purpose and use of the AQL query.",
@@ -89,7 +94,12 @@
     "COLUMNS": "Columns",
     "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
     "VALIDATION_ERROR": "The syntax of the AQL Query is not valid",
-    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid"
+    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first define the AQL Query to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Search Phenotype",
@@ -100,6 +110,8 @@
     "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
     "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
+    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "The phenotype has been deleted successfully.",
+    "DELETE_PHENOTYPE_ERROR_MESSAGE": "The phenotype could not be deleted. Please try again.",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
@@ -140,6 +152,7 @@
       "NOTIFICATION": "Notification"
     }
   },
+  "TABLE": "Table",
   "INVALID_URL": "The URL is not valid. Please adjust to the example:",
   "PROVIDE_URL": "Please enter a URL",
   "PROVIDE_URL_TEXT": "Please enter a link text",
@@ -211,6 +224,7 @@
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g domain.de or sub.domain.de"
   },
   "BUTTON": {
+    "ARCHIVE": "Archive",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DISCARD": "Discard changes",
@@ -256,6 +270,7 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
+    "RESET_CUSTOMIZATION": "Reset configuration",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
@@ -264,6 +279,7 @@
     "DRAG_TO_MOVE": "Drag to move"
   },
   "PROJECT": {
+    "SEARCH_PROJECTS": "Search Project",
     "DEFINE_PROJECT_CONTENT_P1": "On this page you can define your project. Various information is required for this purpose. You must fill in all fields marked with an asterisk before you can send the project for approval.",
     "DEFINE_PROJECT_CONTENT_P2": "Additionally, you have the possibility to write and read comments. These are used to exchange information between you and the project approver.",
     "MANDATORY": "*Mandatory field",
@@ -271,6 +287,7 @@
     "APPROVAL_INFORMATION": "Information about the approval",
     "APPROVAL_HINT": "Please tell the project lead if you approve or disapprove their project. If you reject the project, you must provide a reason in the comments. If you consider changes to the project necessary, please specify them in the comments as well.",
     "STATUS": {
+      "ARCHIVED": "Archived",
       "APPROVED": "Approved",
       "CHANGE_REQUEST": "Change request",
       "CLOSED": "Finished",
@@ -317,6 +334,8 @@
       "REGISTRY": "Registry"
     },
     "CATEGORIES_NO_RESULTS": "No Results",
+    "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",
+    "CHANGE_STATUS_ERROR": "The status of the project could not be updated. Please try again.",
     "SAVE_SUCCESS_MESSAGE": "The project has been saved successfully.",
     "SAVE_ERROR_MESSAGE": "The project could not be saved. Please try again.",
     "NO_PHENOTYPE_ERROR_MESSAGE": "The approval request could not be sent. Please provide at least one Phenotype in the cohort section.",
@@ -354,10 +373,16 @@
     "FINISH_PROJECT_CONTENT": "If you end the project, the data is no longer available for research purposes.\n\nThe project can also not be restarted afterwards.",
     "PUBLISH_PROJECT_TITLE": "Do you want to start the project now?",
     "PUBLISH_PROJECT_CONTENT": "After you have started the project, you can only edit the list of researchers or end the project.\n\nAll selected researchers can start retrieving data of the project after the project start.",
-    "DELETE_APPROVAL_TITLE": "Do you really want to delete the query?",
-    "DELETE_APPROVAL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_AQL_TITLE": "Do you really want to delete the query?",
+    "DELETE_AQL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_PHENOTYPE_TITLE": "Do you really want to delete the phenotype?",
+    "DELETE_PHENOTYPE_CONTENT": "The deletion of the phenotype cannot be undone.",
     "APPROVE_PROJECT_TITLE": "Do you want to approve the project now?",
-    "APPROVE_PROJECT_CONTENT": "After you approve the project, the project lead can start the project so that the researchers can retrieve the project data."
+    "APPROVE_PROJECT_CONTENT": "After you approve the project, the project lead can start the project so that the researchers can retrieve the project data.",
+    "ARCHIVE_PROJECT_TITLE": "Do you really want to archive the project?",
+    "ARCHIVE_PROJECT_CONTENT": "The archiving of the project cannot be undone.",
+    "DELETE_PROJECT_TITLE": "Do you really want to delete the project?",
+    "DELETE_PROJECT_CONTENT": "The deletion of the project cannot be undone."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",

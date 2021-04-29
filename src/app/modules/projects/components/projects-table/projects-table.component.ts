@@ -16,21 +16,30 @@
 
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Params, Router } from '@angular/router'
-import { Subscription } from 'rxjs'
-import { AuthService } from 'src/app/core/auth/auth.service'
+import { TranslateService } from '@ngx-translate/core'
+import { of, Subscription } from 'rxjs'
+import { catchError, take, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { ProjectTableColumns } from 'src/app/shared/models/project/project-table.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import {
+  ARCHIVE_PROJECT_DIALOG_CONFIG,
+  CHANGE_STATUS_ERROR,
+  CHANGE_STATUS_SUCCESS,
   CLOSE_PROJECT_DIALOG_CONFIG,
+  DELETE_PROJECT_DIALOG_CONFIG,
   PUBLISH_PROJECT_DIALOG_CONFIG,
   WITHDRAW_APPROVAL_DIALOG_CONFIG,
 } from './constants'
@@ -47,17 +56,20 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     private router: Router,
     private projectService: ProjectService,
     private dialogService: DialogService,
-    private authService: AuthService
+    private profileService: ProfileService,
+    private toastMessageService: ToastMessageService,
+    private translateService: TranslateService
   ) {}
 
-  displayedColumns: string[] = ['menu', 'name', 'author', 'organisation', 'status']
-  dataSource = new MatTableDataSource()
+  displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
+  dataSource = new MatTableDataSource<IProjectApi>()
 
   menuItems: IItemVisibility[] = []
+  filterConfig: IProjectFilter
   roles: string[] = []
-  userId: string
+  user: IUserProfile
 
-  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatSort, { static: false }) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
 
   get pageSize(): number {
@@ -70,15 +82,27 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.projectService.projectsObservable$.subscribe((projects) => this.handleData(projects))
+      this.projectService.filterConfigObservable$
+        .pipe(take(1))
+        .subscribe((config) => (this.filterConfig = config))
     )
+
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+      this.projectService.filteredProjectsObservable$.subscribe((projects) =>
+        this.handleData(projects)
+      )
+    )
+
+    this.subscriptions.add(
+      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
     )
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+
+    this.dataSource.sortData = (data, matSort) => this.sortData(data, matSort)
+
     this.dataSource.sort = this.sort
   }
 
@@ -90,10 +114,25 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.dataSource.data = projects
   }
 
-  handleUserInfo(userInfo: IAuthUserInfo): void {
-    this.roles = userInfo.groups
-    this.userId = userInfo.sub
+  handleUserInfo(user: IUserProfile): void {
+    this.roles = user.roles
+    this.user = user
     this.generateMenuForRole()
+  }
+
+  handleSearchChange(): void {
+    this.projectService.setFilter(this.filterConfig)
+  }
+
+  handleFilterChange(): void {
+    this.projectService.setFilter(this.filterConfig)
+  }
+
+  handleSortChange(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.sort.active = 'id'
+      this.dataSource.sort.direction = 'desc'
+    }
   }
 
   generateMenuForRole(): void {
@@ -135,6 +174,14 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
       case ProjectMenuKeys.Publish:
         this.handleWithDialog(PUBLISH_PROJECT_DIALOG_CONFIG, ProjectStatus.Published, id)
         break
+
+      case ProjectMenuKeys.Archive:
+        this.handleWithDialog(ARCHIVE_PROJECT_DIALOG_CONFIG, ProjectStatus.Archived, id)
+        break
+
+      case ProjectMenuKeys.Delete:
+        this.handleWithDialog(DELETE_PROJECT_DIALOG_CONFIG, ProjectStatus.ToBeDeleted, id)
+        break
     }
   }
 
@@ -142,8 +189,77 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
     dialogRef.afterClosed().subscribe((confirmResult) => {
       if (confirmResult === true) {
-        this.projectService.updateStatusById(id, newStatus).subscribe()
+        this.projectService
+          .updateStatusById(id, newStatus)
+          .pipe(
+            tap(() => {
+              this.toastMessageService.openToast(CHANGE_STATUS_SUCCESS)
+            }),
+            catchError((error) => {
+              this.toastMessageService.openToast(CHANGE_STATUS_ERROR)
+              return of(error)
+            })
+          )
+          .subscribe()
       }
     })
+  }
+
+  compareStringValues(a: string, b: string, idA: number, idB: number, isAsc: boolean): number {
+    let compareResult = a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
+    if (compareResult === 0) {
+      compareResult = idA - idB
+    }
+    return compareResult * (isAsc ? 1 : -1)
+  }
+
+  sortData(data: IProjectApi[], sort: MatSort): IProjectApi[] {
+    const isAsc = sort.direction === 'asc'
+    const newData = [...data]
+
+    switch (sort.active as ProjectTableColumns) {
+      case 'author': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            `${a.coordinator?.firstName || ''} ${a.coordinator?.lastName || ''}`,
+            `${b.coordinator?.firstName} ${b.coordinator?.lastName}`,
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      case 'name': {
+        return newData.sort((a, b) => this.compareStringValues(a.name, b.name, a.id, b.id, isAsc))
+      }
+      case 'organization': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            `${a.coordinator?.organization?.name || ''}`,
+            `${b.coordinator?.organization?.name || ''}`,
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      case 'status': {
+        return newData.sort((a, b) =>
+          this.compareStringValues(
+            this.translateService.instant(`PROJECT.STATUS.${a.status}`),
+            this.translateService.instant(`PROJECT.STATUS.${b.status}`),
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
+      default: {
+        return newData.sort((a, b) => {
+          const compareResult = a.id - b.id
+          return isAsc ? compareResult : compareResult * -1
+        })
+      }
+    }
   }
 }

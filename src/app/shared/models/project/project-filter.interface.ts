@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { IFilterItem } from '../filter-chip.interface'
-import { PhenotypeFilterChipId } from './phenotype-filter-chip.enum'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
+import { ProjectFilterChipId } from './project-filter-chip.enum'
 
-export interface IPhenotypeFilter {
+export interface IProjectFilter {
   searchText: string
-  filterItem: IFilterItem<PhenotypeFilterChipId>[]
+  filterItem: IFilterItem<ProjectFilterChipId>[]
 }

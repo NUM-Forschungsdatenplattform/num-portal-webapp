@@ -17,6 +17,7 @@
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 
 export const mockResultSetFlat: IAqlExecutionResponse = {
+  name: 'Table name',
   q:
     'Select c0/category/value, c0/category/defining_code/code_string, c0/category/defining_code/terminology_id/value, c0/territory/code_string, c0/territory/terminology_id/value, c0/name/value, c0/uid/value, c0/context/start_time/value, c0/language/code_string, c0/language/terminology_id/value from EHR e contains COMPOSITION c0[openEHR-EHR-COMPOSITION.report.v1]',
   columns: [
@@ -199,6 +200,7 @@ export const mockResultSetFlat: IAqlExecutionResponse = {
 }
 
 export const mockResultSetJson: IAqlExecutionResponse = {
+  name: 'Table name',
   q:
     'SELECT c0,  c1 FROM  EHR e  contains (COMPOSITION c0[openEHR-EHR-COMPOSITION.event_summary.v0]  and COMPOSITION c1[openEHR-EHR-COMPOSITION.report-result.v1])',
   columns: [
@@ -1780,3 +1782,5 @@ export const mockResultSetJson: IAqlExecutionResponse = {
     ],
   ],
 }
+
+export const mockResultFlatList = [mockResultSetFlat, mockResultSetFlat]

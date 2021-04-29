@@ -16,6 +16,6 @@
 
 export enum AqlFilterChipId {
   MyAql = 'AQL.MY_AQL',
-  OrganisationAql = 'AQL.ORGANISATION_AQLS',
+  OrganizationAql = 'AQL.ORGANIZATION_AQLS',
   AllAql = 'AQL.ALL_AQLS',
 }

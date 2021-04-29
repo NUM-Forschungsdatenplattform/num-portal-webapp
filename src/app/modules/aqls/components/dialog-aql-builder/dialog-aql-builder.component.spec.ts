@@ -138,6 +138,52 @@ describe('DialogAqlBuilderComponent', () => {
       expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(selectClickElement)
     })
 
+    it('should call the aqb Model to handle the clickEvent of the template tree', () => {
+      component.dialogInput.mode = AqlBuilderDialogMode.DataRetrieval
+      jest.spyOn(component.aqbModel, 'handleElementSelect')
+      const selectedItem: IContainmentTreeNode = {
+        name: 'test_field1::value',
+        aqlPath: 'test/path1',
+        humanReadablePath: 'test/path1/human',
+        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
+        displayName: 'Test Field1 | value',
+        archetypeId: 'comp1',
+      }
+
+      const selectClickElement: IAqbSelectClick = {
+        item: selectedItem,
+        compositionId: 'comp1',
+        templateId: 'temp1',
+      }
+
+      selectClickEmitter.emit(selectClickElement)
+      fixture.detectChanges()
+      expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(selectClickElement)
+    })
+
+    it('should not call the aqb Model to handle the clickEvent of the template tree if in data retrival mode', () => {
+      component.dialogInput.mode = AqlBuilderDialogMode.DataRetrieval
+      jest.spyOn(component.aqbModel, 'handleElementSelect')
+      const selectedItem: IContainmentTreeNode = {
+        name: 'test_field1::value',
+        rmType: ReferenceModelType.String,
+        aqlPath: 'test/path1',
+        humanReadablePath: 'test/path1/human',
+        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
+        displayName: 'Test Field1 | value',
+      }
+
+      const selectClickElement: IAqbSelectClick = {
+        item: selectedItem,
+        compositionId: 'comp1',
+        templateId: 'temp1',
+      }
+
+      selectClickEmitter.emit(selectClickElement)
+      fixture.detectChanges()
+      expect(component.aqbModel.handleElementSelect).not.toHaveBeenCalledWith(selectClickElement)
+    })
+
     it('should set the templates to the component once they are received', () => {
       templatesSubject$.next(mockAqbTemplates)
       const mockTemplateIds = mockAqbTemplates.map((template) => template.templateId)

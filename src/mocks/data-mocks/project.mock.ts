@@ -17,7 +17,12 @@
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
-import { mockUser, mockUserSuperAdmin } from './admin.mock'
+import {
+  mockUser,
+  mockUserResearcher,
+  mockUserStudyCoordinator,
+  mockUserSuperAdmin,
+} from './admin.mock'
 
 export const mockProject1: IProjectApi = {
   id: 1,
@@ -79,6 +84,361 @@ export const mockProject3: IProjectApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
+export const mockProject4: IProjectApi = {
+  id: 4,
+  name: 'filterText',
+  description: 'Test Description 4',
+  templates: [],
+  cohortId: 4,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+    {
+      userId: 'abc-2',
+    },
+    {
+      userId: '123-456',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis',
+  status: ProjectStatus.Archived,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject5: IProjectApi = {
+  id: 5,
+  name: 'filterText',
+  description: 'Test Description 5',
+  templates: [],
+  cohortId: 5,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+    {
+      userId: 'abc-2',
+    },
+    {
+      userId: '123-456',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis',
+  status: ProjectStatus.Closed,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject6: IProjectApi = {
+  id: 6,
+  name: 'Test project 6',
+  description: 'Test Description 6',
+  templates: [],
+  cohortId: 6,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 6',
+  status: ProjectStatus.Pending,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject7: IProjectApi = {
+  id: 7,
+  name: 'Test project 7',
+  description: 'Test Description 7',
+  templates: [],
+  cohortId: 6,
+  coordinator: mockUserResearcher,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 7',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject8: IProjectApi = {
+  id: 8,
+  name: 'Test project 8',
+  description: 'Test Description 8',
+  templates: [],
+  cohortId: 6,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 8',
+  status: ProjectStatus.Pending,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject9: IProjectApi = {
+  id: 9,
+  name: 'test project',
+  description: 'Test Project with lowercase for case insensitive check',
+  templates: [],
+  cohortId: 9,
+  coordinator: mockUserResearcher,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 9',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject10: IProjectApi = {
+  id: 10,
+  name: 'Test project ö',
+  description: 'Test Project with umlaut ö',
+  templates: [],
+  cohortId: 10,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 6',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject11: IProjectApi = {
+  id: 11,
+  name: 'Test project ä',
+  description: 'Test project with umlaut ä',
+  templates: [],
+  cohortId: 11,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 11',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject12: IProjectApi = {
+  id: 12,
+  name: 'Test project ü',
+  description: 'Test Description 12',
+  templates: [],
+  cohortId: 12,
+  coordinator: mockUserResearcher,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 12',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject13: IProjectApi = {
+  id: 13,
+  name: 'Test project 13',
+  description: 'Test Project with null on coordinator',
+  templates: [],
+  cohortId: 13,
+  coordinator: mockUserResearcher,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 13',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject14: IProjectApi = {
+  id: 14,
+  name: 'TEST PROJECT',
+  description: 'Test Project with uppercase name to check case insensitivity',
+  templates: [],
+  cohortId: 14,
+  coordinator: mockUserResearcher,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 14',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject15: IProjectApi = {
+  id: 15,
+  name: 'Test ä',
+  description: 'Test project for testing umlaut sorting',
+  templates: [],
+  cohortId: 15,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 15',
+  status: ProjectStatus.Approved,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject16: IProjectApi = {
+  id: 16,
+  name: 'Test o',
+  description: 'Test project for testing umlaut sorting',
+  templates: [],
+  cohortId: 16,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 16',
+  status: ProjectStatus.ChangeRequest,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject17: IProjectApi = {
+  id: 17,
+  name: 'Test a',
+  description: 'Test project for testing umlaut sorting',
+  templates: [],
+  cohortId: 17,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 17',
+  status: ProjectStatus.Reviewing,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject18: IProjectApi = {
+  id: 18,
+  name: '',
+  description: 'Test project for testing empty string',
+  templates: [],
+  cohortId: 18,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 18',
+  status: ProjectStatus.Denied,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject19: IProjectApi = {
+  id: 19,
+  name: 'a',
+  description: 'Test project for testing alphabetic sorting',
+  templates: [],
+  cohortId: 19,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 19',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject20: IProjectApi = {
+  id: 20,
+  name: '1',
+  description: 'Test project for testing numeric sorting',
+  templates: [],
+  cohortId: 20,
+  coordinator: mockUserSuperAdmin,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 20',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
+export const mockProject21: IProjectApi = {
+  id: 21,
+  name: '%',
+  description: 'Test project for testing special characters sorting',
+  templates: [],
+  cohortId: 21,
+  coordinator: mockUserStudyCoordinator,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 21',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+}
+
 export const mockProjects = [mockProject1, mockProject2]
 
 export const mockProjects1 = [mockProject1, mockProject2, mockProject3]
+
+export const mockProjectsForSort = [
+  mockProject6,
+  mockProject7,
+  mockProject8,
+  mockProject9,
+  mockProject10,
+  mockProject11,
+  mockProject12,
+  mockProject13,
+  mockProject14,
+  mockProject15,
+  mockProject16,
+  mockProject17,
+  mockProject18,
+  mockProject19,
+  mockProject20,
+  mockProject21,
+]

@@ -17,35 +17,21 @@
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 
-export enum AqlOwner {
-  MyAql = 'MY_AQL',
-  OtherAql = 'OTHER_AQLS',
-}
-
-export enum AqlMenuKeys {
-  Edit = 'EDIT',
+export enum PhenotypeMenuKeys {
   Clone = 'CLONE',
   Delete = 'DELETE',
 }
 
-export const MENU_ITEM_EDIT: IItemVisibility = {
-  id: AqlMenuKeys.Edit,
-  translationKey: 'BUTTON.EDIT',
-  disabledUnless: [],
-  hiddenWhen: [AqlOwner.OtherAql],
-}
-
 export const MENU_ITEM_CLONE: IItemVisibility = {
-  id: AqlMenuKeys.Clone,
+  id: PhenotypeMenuKeys.Clone,
   translationKey: 'BUTTON.CLONE',
   disabledUnless: [],
-  hiddenWhen: [AqlOwner.MyAql],
 }
 
 export const MENU_ITEM_DELETE: IItemVisibility = {
-  id: AqlMenuKeys.Delete,
+  id: PhenotypeMenuKeys.Delete,
   translationKey: 'BUTTON.DELETE',
+  disabledUnless: [],
+  disableUnlessOwned: true,
   forceEnableByRole: [AvailableRoles.SuperAdmin],
-  disabledUnless: [AqlOwner.OtherAql],
-  hiddenWhen: [],
 }

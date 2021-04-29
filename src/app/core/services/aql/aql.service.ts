@@ -26,7 +26,6 @@ import { environment } from '../../../../environments/environment'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
-import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -142,7 +141,7 @@ export class AqlService {
       if (filterItem.isSelected) {
         if (filterItem.id === AqlFilterChipId.MyAql) {
           result = result.filter((aql) => aql.owner?.id === this.user.id)
-        } else if (filterItem.id === AqlFilterChipId.OrganisationAql) {
+        } else if (filterItem.id === AqlFilterChipId.OrganizationAql) {
           result = result.filter(
             (aql) => aql.owner?.organization?.id === this.user.organization?.id
           )
@@ -163,9 +162,9 @@ export class AqlService {
       .pipe(catchError(this.handleError))
   }
 
-  execute(id: number): Observable<IAqlExecutionResponse> {
+  getSize(query: string): Observable<number> {
     return this.httpClient
-      .post<IAqlExecutionResponse>(`${this.baseUrl}/${id}/execute`, {})
+      .post<number>(`${this.baseUrl}/size`, { query })
       .pipe(catchError(this.handleError))
   }
 

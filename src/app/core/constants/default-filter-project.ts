@@ -14,25 +14,30 @@
  * limitations under the License.
  */
 
-import { AqlFilterChipId } from 'src/app/shared/models/aql/aql-filter-chip.enum'
-import { IAqlFilter } from '../../shared/models/aql/aql-filter.interface'
+import { ProjectFilterChipId } from 'src/app/shared/models/project/project-filter-chip.enum'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 
-export const DEFAULT_AQL_FILTER: IAqlFilter = {
+export const DEFAULT_PROJECT_FILTER: IProjectFilter = {
   searchText: '',
   filterItem: [
     {
-      id: AqlFilterChipId.AllAql,
+      id: ProjectFilterChipId.AllProjects,
       title: 'FILTER_CHIP.ALL',
       isSelected: true,
     },
     {
-      id: AqlFilterChipId.MyAql,
-      title: 'FILTER_CHIP.MY_AQLS',
+      id: ProjectFilterChipId.MyProjects,
+      title: 'FILTER_CHIP.MY_PROJECTS',
       isSelected: false,
     },
     {
-      id: AqlFilterChipId.OrganizationAql,
+      id: ProjectFilterChipId.OrganizationProjects,
       title: 'FILTER_CHIP.ORGANIZATION',
+      isSelected: false,
+    },
+    {
+      id: ProjectFilterChipId.Archived,
+      title: 'FILTER_CHIP.ARCHIVED',
       isSelected: false,
     },
   ],

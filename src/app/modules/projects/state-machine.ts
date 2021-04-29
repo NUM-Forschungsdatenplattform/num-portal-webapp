@@ -27,11 +27,17 @@ export const isStatusSwitchable = {
   [ProjectStatus.ChangeRequest]: {
     [ProjectStatus.Draft]: true,
     [ProjectStatus.Pending]: true,
+    [ProjectStatus.ToBeDeleted]: true,
   },
-  [ProjectStatus.Closed]: {},
-  [ProjectStatus.Denied]: {},
+  [ProjectStatus.Closed]: {
+    [ProjectStatus.Archived]: true,
+  },
+  [ProjectStatus.Denied]: {
+    [ProjectStatus.Archived]: true,
+  },
   [ProjectStatus.Draft]: {
     [ProjectStatus.Pending]: true,
+    [ProjectStatus.ToBeDeleted]: true,
   },
   [ProjectStatus.Pending]: {
     [ProjectStatus.Reviewing]: true,
@@ -44,5 +50,6 @@ export const isStatusSwitchable = {
     [ProjectStatus.Approved]: true,
     [ProjectStatus.ChangeRequest]: true,
     [ProjectStatus.Denied]: true,
+    [ProjectStatus.Draft]: true,
   },
 }

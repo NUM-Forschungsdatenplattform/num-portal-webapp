@@ -18,6 +18,12 @@
 
 <section fxLayout="column" role="presentation">
   <section fxLayout="row">
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
     <num-search
       fxFlexOffset="auto"
       fxFlex="25%"
@@ -36,6 +42,37 @@
       fixedLayout
       data-test="phenotypes__table"
     >
+      <mat-menu #menu="matMenu">
+        <ng-template matMenuContent let-phenotypeOwner="phenotypeOwner" let-id="id" let-user="user">
+          <button
+            class="num-mat-list-item"
+            mat-menu-item
+            *ngFor="let menuItem of menuItems | phenotypeMenu: phenotypeOwner:user"
+            (click)="handleMenuClick(menuItem.id, id)"
+            [disabled]="menuItem.isDisabled"
+            [attr.data-test]="'phenotypes__table__menu-item__' + menuItem.translationKey"
+          >
+            {{ menuItem.translationKey | translate }}
+          </button>
+        </ng-template>
+      </mat-menu>
+
+      <ng-container matColumnDef="menu">
+        <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm">
+          {{ 'FORM.ACTION' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element; let i = index">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            [matMenuTriggerData]="{ phenotypeOwner: element.owner?.id, id: element.id, user: user }"
+            data-test="phenotypes__table__row__menu-button"
+          >
+            <fa-icon icon="ellipsis-v"></fa-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="name">
         <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
           {{ 'FORM.NAME' | translate }}
@@ -61,7 +98,6 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr
-        (click)="handleRowClick(row)"
         mat-row
         *matRowDef="let row; columns: displayedColumns; let i = index"
         [attr.data-test]="'phenotypes__table__row-' + i"

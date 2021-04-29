@@ -65,11 +65,16 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
+  "FILTER_CHIP": {
+    "MY_AQLS": "Meine",
+    "MY_PHENOTYPES": "Meine",
+    "MY_PROJECTS": "Meine",
+    "ORGANIZATION": "Meine Organisation",
+    "ALL": "Alle",
+    "ARCHIVED": "Archiviert"
+  },
   "AQL": {
     "AS": "als",
-    "MY_AQLS": "Meine",
-    "ORGANISATION_AQLS": "Meine Organisation",
-    "ALL_AQLS": "Alle",
     "CREATE_AQL": "AQL Abfrage erstellen",
     "CREATE_AQL_CONTENT": "Auf dieser Seite können Sie eine AQL Abfrage erstellen. Zum Erstellen der Abfrage steht Ihnen ein AQL Builder zur Verfügung.\n\n*Pflichtfeld",
     "GENERAL_INFO_CONTENT": "Bitte geben Sie einen aussagekräftigen Titel sowie den Zweck und die Verwendung der AQL Abfrage ein.",
@@ -89,7 +94,12 @@
     "COLUMNS": "Spalten",
     "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt.",
     "VALIDATION_ERROR": "Die Syntax der AQL Abfrage ist nicht valide",
-    "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide"
+    "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst die AQL Abfrage definieren, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    }
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
@@ -100,6 +110,8 @@
     "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
+    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich gelöscht.",
+    "DELETE_PHENOTYPE_ERROR_MESSAGE": "Der Phänotyp konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
@@ -141,6 +153,7 @@
       "NOTIFICATION": "Benachrichtigung"
     }
   },
+  "TABLE": "Tabelle",
   "INVALID_URL": "Die URL ist nicht valide. Bitte an das Beispiel anpassen:",
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
   "PROVIDE_URL_TEXT": "Bitte geben Sie einen Link-Text ein",
@@ -212,6 +225,7 @@
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B domain.de or sub.domain.de"
   },
   "BUTTON": {
+    "ARCHIVE": "Archivieren",
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
     "DISCARD": "Änderungen verwerfen",
@@ -257,6 +271,7 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
+    "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
@@ -265,6 +280,7 @@
     "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
   },
   "PROJECT": {
+    "SEARCH_PROJECTS": "Projekt suchen",
     "DEFINE_PROJECT_CONTENT_P1": "Auf dieser Seite können Sie Ihr Projekt definieren. Hierzu sind verschiedene Angaben notwendig. Sie müssen alle mit einem Sternchen gekennzeichneten Felder ausfüllen, bevor Sie das Projekt zur Genehmigung absenden können.",
     "DEFINE_PROJECT_CONTENT_P2": "Zusätzlich haben Sie die Möglichkeit, Kommentare zu verfassen und zu lesen. Diese dienen dem Informationsaustausch zwischen Ihnen und den Projektprüfer.",
     "MANDATORY": "*Pflichtfeld",
@@ -272,6 +288,7 @@
     "APPROVAL_INFORMATION": "Informationen zur Genehmigung",
     "APPROVAL_HINT": "Bitte teilen Sie dem Projektleiter mit, ob Sie sein Projekt genehmigen oder ablehnen. Sollten Sie das Projekt ablehnen, müssen Sie einen Grund dafür in den Kommentaren angeben. Wenn Sie Änderungen am Projekt for Notwendig erachten, benennen Sie diese bitte auch in den Kommentaren.",
     "STATUS": {
+      "ARCHIVED": "Archiviert",
       "APPROVED": "Genehmigt",
       "CHANGE_REQUEST": "Änderung notwendig",
       "CLOSED": "Beendet",
@@ -318,6 +335,8 @@
       "REGISTRY": "Register"
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
+    "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",
+    "CHANGE_STATUS_ERROR": "Der Projektstatus konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
     "SAVE_SUCCESS_MESSAGE": "Die Projekt wurde erfolgreich gespeichert.",
     "SAVE_ERROR_MESSAGE": "Die Projekt konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
     "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte.",
@@ -355,10 +374,16 @@
     "FINISH_PROJECT_CONTENT": "Wenn Sie das Projekt beenden, stehen die Daten für Forschungszwecke nicht länger zur Verfügung.\n\nDas Projekt kann anschließend auch nicht erneut gestartet werden.",
     "PUBLISH_PROJECT_TITLE": "Wollen Sie das Projekt jetzt starten?",
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
-    "DELETE_APPROVAL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
-    "DELETE_APPROVAL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
+    "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen?",
+    "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
-    "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekt abrufen können."
+    "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekts abrufen können.",
+    "ARCHIVE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich archivieren?",
+    "ARCHIVE_PROJECT_CONTENT": "Die Archivierung des Projekts kann nicht rückgängig gemacht werden.",
+    "DELETE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich löschen?",
+    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",

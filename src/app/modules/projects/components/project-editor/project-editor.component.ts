@@ -327,10 +327,11 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
     if (cohort && cohort.cohortGroup) {
       this.updateDetermineHits(null, '', true)
+      const usedOutsideEu = this.projectForm.get('usedOutsideEu').value
 
       try {
         await this.cohortService
-          .getSize(cohort.cohortGroup)
+          .getSize(cohort.cohortGroup, usedOutsideEu)
           .toPromise()
           .then((result) => {
             this.updateDetermineHits(result, '')

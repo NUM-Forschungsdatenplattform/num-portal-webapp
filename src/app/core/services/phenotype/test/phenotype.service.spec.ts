@@ -15,13 +15,20 @@
  */
 
 import { HttpClient } from '@angular/common/http'
-import { of, throwError, timer } from 'rxjs'
+import { of, Subject, throwError, timer } from 'rxjs'
 import { skipUntil } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IPhenotypeApi } from 'src/app/shared/models/phenotype/phenotype-api.interface'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
-import { mockPhenotype1, mockPhenotypes } from 'src/mocks/data-mocks/phenotypes.mock'
-import { PhenotypeService } from './phenotype.service'
+import {
+  mockPhenotype1,
+  mockPhenotypes,
+  mockPhenotypesToFilter,
+} from 'src/mocks/data-mocks/phenotypes.mock'
+import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
+import { ProfileService } from '../../profile/profile.service'
+import { PhenotypeService } from '../phenotype.service'
+import { phenotypeFilterTestcases } from './phenotype-filter-testcases'
 
 describe('PhenotypeService', () => {
   let service: PhenotypeService
@@ -31,6 +38,7 @@ describe('PhenotypeService', () => {
   const httpClient = ({
     get: jest.fn(),
     post: jest.fn(),
+    delete: jest.fn(),
   } as unknown) as HttpClient
 
   const appConfig = {
@@ -41,15 +49,25 @@ describe('PhenotypeService', () => {
     },
   } as AppConfigService
 
+  const userProfileSubject$ = new Subject<any>()
+  const userProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
+
   beforeEach(() => {
     jest.clearAllMocks()
     jest.spyOn(httpClient, 'get').mockImplementation(() => of())
     jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockPhenotypes))
-    service = new PhenotypeService(httpClient, appConfig)
+    service = new PhenotypeService(httpClient, appConfig, userProfileService)
   })
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  it('should set the user to the service', () => {
+    userProfileSubject$.next(mockUserProfile1)
+    expect(service.user).toEqual(mockUserProfile1)
   })
 
   describe('When a call to getAll method comes in', () => {
@@ -146,6 +164,7 @@ describe('PhenotypeService', () => {
 
       setTimeout(() => {
         service.setFilter({
+          filterItem: [],
           searchText: 'test',
         })
       }, anyService.throttleTime + 1)
@@ -161,9 +180,11 @@ describe('PhenotypeService', () => {
 
     it('should debounce the filtering', async (done) => {
       const filterConfig: IPhenotypeFilter = {
+        filterItem: [],
         searchText: 'test1',
       }
       const filterConfigLast: IPhenotypeFilter = {
+        filterItem: [],
         searchText: 'Blood pressure1',
       }
       let filterResult: IPhenotypeApi[]
@@ -199,6 +220,34 @@ describe('PhenotypeService', () => {
         expect(filterResult[0].id).toEqual(1)
         done()
       }, throttleTime * 3)
+    })
+  })
+
+  describe('When passing in filters', () => {
+    test.each(phenotypeFilterTestcases)('It should filter as expected', (testcase) => {
+      const anyService = service as any
+      anyService.user = { id: '1', organization: { id: 1 } }
+
+      const result = service.filterItems(mockPhenotypesToFilter as IPhenotypeApi[], testcase.filter)
+      expect(result.length).toEqual(testcase.resultLength)
+    })
+  })
+
+  describe('When a call to delete method comes in', () => {
+    it('should call to the api with the phenotype id to delete it', () => {
+      const phenotypeId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(phenotypeId))
+      service.delete(phenotypeId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${phenotypeId}`)
+    })
+
+    it('should call handleError on api error', () => {
+      const phenotypeId = 1
+      jest.spyOn(httpClient, 'delete').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service.delete(phenotypeId).subscribe()
+      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${phenotypeId}`)
+      expect(service.handleError).toHaveBeenCalled()
     })
   })
 })

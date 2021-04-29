@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-import { IFilterItem } from '../filter-chip.interface'
-import { PhenotypeFilterChipId } from './phenotype-filter-chip.enum'
-
-export interface IPhenotypeFilter {
-  searchText: string
-  filterItem: IFilterItem<PhenotypeFilterChipId>[]
+export enum PhenotypeFilterChipId {
+  MyPhenotype = 'PHENOTYPE.MY_PHENOTYPE',
+  OrganizationPhenotype = 'PHENOTYPE.ORGANIZATION_PHENOTYPES',
+  AllPhenotype = 'PHENOTYPE.ALL_PHENOTYPES',
 }
