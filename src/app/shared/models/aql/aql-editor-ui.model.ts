@@ -39,7 +39,7 @@ export class AqlEditorUiModel {
     this.modifiedDate = aql?.modifiedDate || undefined
     this.organizationId = aql?.owner.organization?.id || undefined
     this.owner = aql?.owner || undefined
-    this.publicAql = aql?.publicAql || true
+    this.publicAql = aql ? aql.publicAql : true
   }
 
   public convertToApi(name: string, purpose: string, use: string, publicAql: boolean): IAqlApi {
