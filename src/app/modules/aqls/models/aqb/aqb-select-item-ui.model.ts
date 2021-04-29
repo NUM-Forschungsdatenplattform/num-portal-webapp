@@ -55,7 +55,7 @@ export class AqbSelectItemUiModel {
       _type: AqbNodeType.SelectField,
       aqlPath: this.aqlPath,
       containmentId: this.archetypeReferenceId,
-      name: this.givenName.length ? this.givenName : this.name,
+      name: this.givenName.length ? this.givenName : '',
     }
   }
 }
