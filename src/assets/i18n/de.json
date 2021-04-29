@@ -56,6 +56,7 @@
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
+    "CHARTS": "Diagramme",
     "PROFILE": "Profil",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden"
@@ -424,6 +425,19 @@
     "DELETING_DOMAIN_SUCCESS": "Die Mail-Domäne wurde erfolgreich aus der Organisationsliste gelöscht.",
     "DELETING_DOMAIN_ERROR": "Die Mail-Domäne konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "MAIL_DOMAIN": "Mail-Domänen"
+  },
+  "CHARTS": {
+    "SOFA_SCORE": {
+      "TITLE": "Anzahl Patienten pro SOFA-Score (gruppiert)",
+      "XLABEL": "SOFA-Score",
+      "YLABEL": "Anzahl Patienten",
+      "DROPDOWN": "Bitte Klinik auswählen..."
+    },
+    "SOFA_SCORE_AVG": {
+      "TITLE": "Durchschnittlicher SOFA-Score pro Klinik",
+      "XLABEL": "Klinik",
+      "YLABEL": "Durchschnittlicher SOFA-Score"
+    }
   },
   "DATE_TIME": {
     "DATE": "Datum",

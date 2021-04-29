@@ -1,0 +1,46 @@
+<h2>SOFA-Score</h2>
+<p class="num-margin-b-40"></p>
+
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="1%"
+  fxLayoutAlign="center"
+>
+  <div fxFlex="50%">
+    <mat-card>
+      <div class="num-margin-b-60">
+        <strong>{{ 'CHARTS.SOFA_SCORE_AVG.TITLE' | translate }}</strong>
+      </div>
+
+      <num-bar-chart [chartData]="chartSofaScoreAvg"> </num-bar-chart>
+    </mat-card>
+  </div>
+  <div fxFlex="50%">
+    <mat-card
+      ><div>
+        <strong>{{ 'CHARTS.SOFA_SCORE.TITLE' | translate }}</strong>
+      </div>
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>{{ 'CHARTS.SOFA_SCORE.DROPDOWN' | translate }}</mat-label>
+        <mat-select
+          (selectionChange)="handleSelectClick()"
+          [(value)]="selectedClinic"
+          data-test="charts__clinic__selector"
+        >
+          <mat-option
+            *ngFor="let clinic of clinics"
+            [value]="clinic"
+            [attr.data-test]="'charts__select-clinic__' + clinic"
+          >
+            {{ clinic }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <num-bar-chart [chartData]="chartSofaScore"> </num-bar-chart>
+    </mat-card>
+  </div>
+</div>
