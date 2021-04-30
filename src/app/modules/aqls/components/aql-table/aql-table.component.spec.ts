@@ -40,6 +40,11 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { maxBy, minBy } from 'lodash-es'
 import { Pipe, PipeTransform } from '@angular/core'
+import { MatSortHeaderHarness } from '@angular/material/sort/testing'
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { MatTableHarness } from '@angular/material/table/testing'
+import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -198,25 +203,88 @@ describe('AqlTableComponent', () => {
   })
 
   describe('When sorting AQL table', () => {
+    let de: HTMLDivElement
+    let loader: HarnessLoader
     beforeEach(() => {
+      loader = TestbedHarnessEnvironment.loader(fixture)
       component.paginator.pageSize = 20
       filteredAqlsSubject$.next(mockAqlsToSort)
       fixture.detectChanges()
+      de = fixture.debugElement.nativeElement
     })
 
     it('should sort by id descending as default', (done) => {
       const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
       const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
       const tableRows = Array.from(
-        (fixture.debugElement.nativeElement as HTMLDivElement).querySelectorAll(
-          '[data-test="aqls__table__data__name"]'
-        )
-      ) as HTMLTableCellElement[]
+        de.querySelectorAll<HTMLDivElement>('[data-test="aqls__table__data__name"]')
+      )
 
       expect(tableRows).toHaveLength(mockAqlsToSort.length)
       expect(tableRows[0].innerHTML.trim()).toEqual(aqlWithLatestId.name)
       expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(aqlWithOldestId.name)
       done()
+    })
+
+    it('should be able to sort by name', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.name.text[0]).toEqual('%')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('ü')
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.name.text[0]).toEqual('ü')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('%')
+    })
+
+    it('should be able to sort by author', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.author.text[0]).toEqual('Marianne Musterfrau')
+      expect(rows.author.text[rows.author.text.length - 1]).toEqual(
+        'user1-firstname user1-lastname'
+      )
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.author.text[0]).toEqual('user1-firstname user1-lastname')
+      expect(rows.author.text[rows.author.text.length - 1]).toEqual('Marianne Musterfrau')
+    })
+
+    it('should be able to sort by creationDate', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-creationDate' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.creationDate.text[0]).toEqual('2020-01-01')
+      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual(
+        DateHelperService.getDateString(new Date())
+      )
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.creationDate.text[0]).toEqual(DateHelperService.getDateString(new Date()))
+      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual('2020-01-01')
     })
   })
 })

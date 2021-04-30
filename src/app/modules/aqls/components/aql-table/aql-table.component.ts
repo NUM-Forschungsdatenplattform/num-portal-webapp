@@ -108,6 +108,9 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     if (!sort.active || sort.direction === '') {
       this.dataSource.sort.active = 'id'
       this.dataSource.sort.direction = 'desc'
+    } else {
+      this.dataSource.sort.active = sort.active
+      this.dataSource.sort.direction = sort.direction
     }
   }
 

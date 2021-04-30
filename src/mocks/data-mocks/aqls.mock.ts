@@ -109,8 +109,8 @@ export const mockAql8: IAqlApi = {
   query: 'query8',
   purpose: 'Test sorting of AQLs',
   use: '',
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: '2020-01-01',
+  modifiedDate: '2020-01-01',
   owner: mockUser,
   publicAql: false,
 }
