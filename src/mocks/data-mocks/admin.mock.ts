@@ -129,3 +129,5 @@ export const mockOAuthUser = {
   sub: '123-456',
   typ: 'ID',
 }
+
+export const mockUsersToFilter: IUser[] = [mockUserResearcher, mockUserStudyCoordinator]

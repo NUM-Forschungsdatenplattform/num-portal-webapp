@@ -21,12 +21,13 @@ import { BehaviorSubject, of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { ApprovedUsersComponent } from './approved-users.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 
 describe('ApprovedUsersComponent', () => {
   let component: ApprovedUsersComponent
@@ -36,6 +37,7 @@ describe('ApprovedUsersComponent', () => {
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()
   const filterConfigSubject$ = new BehaviorSubject<IUserFilter>({
     searchText: '',
+    filterItem: [],
   })
 
   const adminService = {
@@ -49,9 +51,21 @@ describe('ApprovedUsersComponent', () => {
   @Component({ selector: 'num-approved-users-table', template: '' })
   class ApprovedUserTableStubComponent {}
 
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ApprovedUsersComponent, ApprovedUserTableStubComponent, SearchComponent],
+      declarations: [
+        ApprovedUsersComponent,
+        ApprovedUserTableStubComponent,
+        SearchComponent,
+        StubFilterChipsComponent,
+      ],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
@@ -86,6 +100,11 @@ describe('ApprovedUsersComponent', () => {
 
   it('should set the filter in the adminService on searchChange', () => {
     component.handleSearchChange()
+    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the adminService on filterChange', () => {
+    component.handleFilterChange()
     expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 })

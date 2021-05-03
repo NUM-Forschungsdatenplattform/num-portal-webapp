@@ -87,6 +87,10 @@ export class DialogAddResearchersComponent
     this.selectedResearchers = cloneDeep(this.dialogInput)
   }
 
+  handleFilterChange(): void {
+    this.adminService.setFilter(this.filterConfig)
+  }
+
   handleSearchChange(): void {
     this.adminService.setFilter(this.filterConfig)
   }
