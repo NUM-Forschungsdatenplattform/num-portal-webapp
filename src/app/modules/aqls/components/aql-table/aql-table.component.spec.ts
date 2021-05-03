@@ -203,27 +203,23 @@ describe('AqlTableComponent', () => {
   })
 
   describe('When sorting AQL table', () => {
-    let de: HTMLDivElement
     let loader: HarnessLoader
     beforeEach(() => {
       loader = TestbedHarnessEnvironment.loader(fixture)
       component.paginator.pageSize = 20
       filteredAqlsSubject$.next(mockAqlsToSort)
       fixture.detectChanges()
-      de = fixture.debugElement.nativeElement
     })
 
-    it('should sort by id descending as default', (done) => {
+    it('should sort by id descending as default', async () => {
       const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
       const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
-      const tableRows = Array.from(
-        de.querySelectorAll<HTMLDivElement>('[data-test="aqls__table__data__name"]')
-      )
+      const table = await loader.getHarness(MatTableHarness)
+      const rows = await table.getCellTextByColumnName()
 
-      expect(tableRows).toHaveLength(mockAqlsToSort.length)
-      expect(tableRows[0].innerHTML.trim()).toEqual(aqlWithLatestId.name)
-      expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(aqlWithOldestId.name)
-      done()
+      expect(rows.name.text).toHaveLength(mockAqlsToSort.length)
+      expect(rows.name.text[0]).toEqual(aqlWithLatestId.name)
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual(aqlWithOldestId.name)
     })
 
     it('should be able to sort by name', async () => {
@@ -235,14 +231,14 @@ describe('AqlTableComponent', () => {
       await sortHeaderButton.click()
       let rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.name.text[0]).toEqual('%')
+      expect(rows.name.text[0]).toEqual('')
       expect(rows.name.text[rows.name.text.length - 1]).toEqual('ü')
       // Sort descending
       await sortHeaderButton.click()
       rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
       expect(rows.name.text[0]).toEqual('ü')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('%')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('')
     })
 
     it('should be able to sort by author', async () => {
@@ -285,6 +281,84 @@ describe('AqlTableComponent', () => {
       expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
       expect(rows.creationDate.text[0]).toEqual(DateHelperService.getDateString(new Date()))
       expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual('2020-01-01')
+    })
+
+    it('should be able to sort by organization', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-organization' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.organization.text[0]).toEqual('abc')
+      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('name1')
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.organization.text[0]).toEqual('name1')
+      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('abc')
+    })
+
+    it('should sort by id in same order for equal elements', async () => {
+      // Show ID column
+      component.displayedColumns.push('id')
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(rows.author.text).toHaveLength(mockAqlsToSort.length)
+      let firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
+      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
+      let firstId = parseInt(rows.id.text[firstIdx], 10)
+      let secondId = parseInt(rows.id.text[firstIdx + 1], 10)
+      expect(firstId).toBeLessThan(secondId)
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
+      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
+      firstId = parseInt(rows.id.text[firstIdx], 10)
+      secondId = parseInt(rows.id.text[firstIdx + 1], 10)
+      expect(firstId).toBeGreaterThan(secondId)
+    })
+
+    it('should sort string values in order empty -> special characters -> numbers -> alphabetical', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      const rows = await table.getCellTextByColumnName()
+      const firstIdx = rows.name.text.findIndex((txt) => '' === txt)
+      expect(rows.name.text[firstIdx + 1]).toEqual('%')
+      expect(rows.name.text[firstIdx + 2]).toEqual('1')
+      expect(rows.name.text[firstIdx + 3]).toEqual('a')
+    })
+
+    it('should sort by id descending again if sort has been unchecked again', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      // Ascending
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(await sortHeaderButton.isActive()).toBe(true)
+      // Descending
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(await sortHeaderButton.isActive()).toBe(true)
+      // No sorting
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.isActive()).toBe(false)
+      expect(component.dataSource.sort.active).toEqual('id')
+      expect(component.dataSource.sort.direction).toEqual('desc')
     })
   })
 })

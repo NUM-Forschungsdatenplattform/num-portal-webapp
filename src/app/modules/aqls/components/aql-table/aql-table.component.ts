@@ -181,15 +181,6 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
           compareLocaleStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
         )
       }
-      case 'isPublic': {
-        return newData.sort((a, b) => {
-          let result = a === b ? 0 : a ? -1 : 1
-          if (result === 0) {
-            result = a.id - b.id
-          }
-          return isAsc ? result : -1 * result
-        })
-      }
       case 'name': {
         return newData.sort((a, b) => compareLocaleStringValues(a.name, b.name, a.id, b.id, isAsc))
       }

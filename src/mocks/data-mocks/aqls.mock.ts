@@ -139,7 +139,40 @@ export const mockAql10: IAqlApi = {
   publicAql: true,
 }
 
-export const mockAqlsToSort = [mockAql5, mockAql6, mockAql7, mockAql8, mockAql9, mockAql10]
+export const mockAql11: IAqlApi = {
+  id: 11,
+  name: '',
+  query: 'query11',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserProfile1,
+  publicAql: true,
+}
+
+export const mockAql12: IAqlApi = {
+  id: 12,
+  name: '1',
+  query: 'query12',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserProfile1,
+  publicAql: true,
+}
+
+export const mockAqlsToSort = [
+  mockAql5,
+  mockAql6,
+  mockAql7,
+  mockAql8,
+  mockAql9,
+  mockAql10,
+  mockAql11,
+  mockAql12,
+]
 
 export const mockAqls: IAqlApi[] = [mockAql1, mockAql2]
 
