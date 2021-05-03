@@ -21,10 +21,13 @@ import { catchError, map, skip, switchMap, tap, throttleTime } from 'rxjs/operat
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IRole } from 'src/app/shared/models/user/role.interface'
+import { UserFilterChipId } from 'src/app/shared/models/user/user-filter-chip.enum'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { environment } from 'src/environments/environment'
 import { DEFAULT_USER_FILTER } from '../../constants/default-filter-user'
+import { ProfileService } from '../profile/profile.service'
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +37,7 @@ export class AdminService {
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
 
   private baseUrl: string
+  user: IUserProfile
 
   private unapprovedUsers: IUser[] = []
   private unapprovedUsersSubject$ = new BehaviorSubject(this.unapprovedUsers)
@@ -51,8 +55,14 @@ export class AdminService {
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService,
+    private profileService: ProfileService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin`
+
+    this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
       .pipe(
@@ -164,6 +174,14 @@ export class AdminService {
           user.email.toUpperCase().includes(textFilter)
       )
     }
+
+    filterSet.filterItem.forEach((filterItem) => {
+      if (filterItem.isSelected) {
+        if (filterItem.id === UserFilterChipId.OrganizationUser) {
+          result = result.filter((user) => user.organization?.id === this.user.organization?.id)
+        }
+      }
+    })
 
     return result
   }
