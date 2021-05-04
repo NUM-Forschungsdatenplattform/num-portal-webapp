@@ -84,9 +84,8 @@ describe('AqlTableComponent', () => {
   }
 
   @Pipe({ name: 'localizedDate' })
-  class MockPipe implements PipeTransform {
+  class MockLocalizedDatePipe implements PipeTransform {
     transform(value: number): number {
-      // Do stuff here, if you want
       return value
     }
   }
@@ -98,7 +97,7 @@ describe('AqlTableComponent', () => {
         SearchComponent,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
-        MockPipe,
+        MockLocalizedDatePipe,
       ],
       imports: [
         MaterialModule,

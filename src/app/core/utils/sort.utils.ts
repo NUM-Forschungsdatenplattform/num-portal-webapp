@@ -23,23 +23,23 @@
  *
  * @param a - First string value
  * @param b - Second string value
- * @param idA - ID of element a
- * @param idB - ID of element b
+ * @param aId - ID of element a
+ * @param bId - ID of element b
  * @param isAsc - Sort in ascending order
  * @returns Number value that can be used as input for Array.sort
  */
 export const compareLocaleStringValues = (
   a: string,
   b: string,
-  idA: number,
-  idB: number,
+  aId: number,
+  bId: number,
   isAsc: boolean
 ): number => {
   const valA = !!a ? a : ''
   const valB = !!b ? b : ''
   let compareResult = valA.toLocaleLowerCase().localeCompare(valB.toLocaleLowerCase())
   if (compareResult === 0) {
-    compareResult = idA - idB
+    compareResult = aId - bId
   }
   return compareResult * (isAsc ? 1 : -1)
 }
@@ -53,7 +53,9 @@ export const compareLocaleStringValues = (
  * @param isAsc - Ascending order desired?
  * @returns - '-1' when aId is before bId, '0' when equal, '1' when aId is after bId
  */
-export const compareIds = (aId = -1, bId = -1, isAsc: boolean): number => {
-  const compareResult = aId - bId
+export const compareIds = (aId: string | number, bId: string | number, isAsc: boolean): number => {
+  const a = typeof aId === 'number' ? aId : !isNaN(parseInt(aId, 10)) ? parseInt(aId, 10) : -1
+  const b = typeof bId === 'number' ? bId : !isNaN(parseInt(bId, 10)) ? parseInt(bId, 10) : -1
+  const compareResult = a - b
   return isAsc || compareResult === 0 ? compareResult : -1 * compareResult
 }
