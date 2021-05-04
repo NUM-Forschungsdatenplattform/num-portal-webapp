@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { compareIds, compareLocaleStringValues } from './sort.utils'
+import { v4 as uuidV4, NIL as NIL_UUID } from 'uuid'
+import { compareIds, compareLocaleStringValues, compareTimestamps } from './sort.utils'
 
 describe('Sort utils', () => {
   describe('Locale string comparer', () => {
@@ -74,9 +75,36 @@ describe('Sort utils', () => {
       expect(compareIds('2', 1, true)).toBeGreaterThan(0)
     })
 
-    it('should handle NaN strings as -1', () => {
-      expect(compareIds('noId', 2, true)).toBeLessThan(0)
-      expect(compareIds(1, 'NaN', true)).toBeGreaterThan(0)
+    it('should handle uuid strings', () => {
+      expect(compareIds(uuidV4(), NIL_UUID, true)).toBeGreaterThan(0)
+      expect(compareIds(NIL_UUID, uuidV4(), true)).toBeLessThan(0)
+    })
+  })
+
+  describe('Timestamp comparer', () => {
+    it('should sort timestamps as expected by Array.sort', () => {
+      const timestampA = new Date('2021-01-01T12:00:00.000+01:00').getTime()
+      const timestampB = Date.now()
+      expect(compareTimestamps(timestampA, timestampB, 1, 2, true)).toBeLessThan(0)
+      expect(compareTimestamps(timestampA, timestampB, 1, 2, false)).toBeGreaterThan(0)
+    })
+
+    it('should sort equal timestamps by id', () => {
+      const timestamp = new Date('2021-02-01T12:00:00.000+01:00').getTime()
+      expect(compareTimestamps(timestamp, timestamp, 1, 2, true)).toBeLessThan(0)
+      expect(compareTimestamps(timestamp, timestamp, 1, 2, false)).toBeGreaterThan(0)
+    })
+
+    it('should accept strings and number values as IDs', () => {
+      const timestamp = Date.now()
+      expect(compareTimestamps(timestamp, timestamp, '1', 2, true)).toBeLessThan(0)
+      expect(compareTimestamps(timestamp, timestamp, 2, '1', false)).toBeLessThan(0)
+    })
+
+    it('should handle uuid strings', () => {
+      const timestamp = Date.now()
+      expect(compareTimestamps(timestamp, timestamp, uuidV4(), NIL_UUID, true)).toBeGreaterThan(0)
+      expect(compareTimestamps(timestamp, timestamp, NIL_UUID, uuidV4(), true)).toBeLessThan(0)
     })
   })
 })
