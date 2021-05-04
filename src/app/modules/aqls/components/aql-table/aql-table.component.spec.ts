@@ -35,9 +35,16 @@ import { ProfileService } from '../../../../core/services/profile/profile.servic
 import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
-import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
+import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.mock'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { maxBy, minBy } from 'lodash-es'
+import { Pipe, PipeTransform } from '@angular/core'
+import { MatSortHeaderHarness } from '@angular/material/sort/testing'
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { MatTableHarness } from '@angular/material/table/testing'
+import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -76,6 +83,13 @@ describe('AqlTableComponent', () => {
     @Output() selectionChange = new EventEmitter()
   }
 
+  @Pipe({ name: 'localizedDate' })
+  class MockLocalizedDatePipe implements PipeTransform {
+    transform(value: number): number {
+      return value
+    }
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -83,6 +97,7 @@ describe('AqlTableComponent', () => {
         SearchComponent,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
+        MockLocalizedDatePipe,
       ],
       imports: [
         MaterialModule,
@@ -183,6 +198,166 @@ describe('AqlTableComponent', () => {
         })
         done()
       })
+    })
+  })
+
+  describe('When sorting AQL table', () => {
+    let loader: HarnessLoader
+    beforeEach(() => {
+      loader = TestbedHarnessEnvironment.loader(fixture)
+      component.paginator.pageSize = 20
+      filteredAqlsSubject$.next(mockAqlsToSort)
+      fixture.detectChanges()
+    })
+
+    it('should sort by id descending as default', async () => {
+      const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
+      const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
+      const table = await loader.getHarness(MatTableHarness)
+      const rows = await table.getCellTextByColumnName()
+
+      expect(rows.name.text).toHaveLength(mockAqlsToSort.length)
+      expect(rows.name.text[0]).toEqual(aqlWithLatestId.name)
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual(aqlWithOldestId.name)
+    })
+
+    it('should be able to sort by name', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.name.text[0]).toEqual('')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('ü')
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.name.text[0]).toEqual('ü')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('')
+    })
+
+    it('should be able to sort by author', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.author.text[0]).toEqual('Marianne Musterfrau')
+      expect(rows.author.text[rows.author.text.length - 1]).toEqual(
+        'user1-firstname user1-lastname'
+      )
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.author.text[0]).toEqual('user1-firstname user1-lastname')
+      expect(rows.author.text[rows.author.text.length - 1]).toEqual('Marianne Musterfrau')
+    })
+
+    it('should be able to sort by creationDate', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-creationDate' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.creationDate.text[0]).toEqual('2020-01-01')
+      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual(
+        DateHelperService.getDateString(new Date())
+      )
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.creationDate.text[0]).toEqual(DateHelperService.getDateString(new Date()))
+      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual('2020-01-01')
+    })
+
+    it('should be able to sort by organization', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-organization' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.organization.text[0]).toEqual('abc')
+      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('name1')
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.organization.text[0]).toEqual('name1')
+      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('abc')
+    })
+
+    it('should sort by id in same order for equal elements', async () => {
+      // Show ID column
+      component.displayedColumns.push('id')
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(rows.author.text).toHaveLength(mockAqlsToSort.length)
+      let firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
+      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
+      let firstId = parseInt(rows.id.text[firstIdx], 10)
+      let secondId = parseInt(rows.id.text[firstIdx + 1], 10)
+      expect(firstId).toBeLessThan(secondId)
+      // Sort descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
+      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
+      firstId = parseInt(rows.id.text[firstIdx], 10)
+      secondId = parseInt(rows.id.text[firstIdx + 1], 10)
+      expect(firstId).toBeGreaterThan(secondId)
+    })
+
+    it('should sort string values in order empty -> special characters -> numbers -> alphabetical', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Sort ascending
+      await sortHeaderButton.click()
+      const rows = await table.getCellTextByColumnName()
+      const firstIdx = rows.name.text.findIndex((txt) => '' === txt)
+      expect(rows.name.text[firstIdx + 1]).toEqual('%')
+      expect(rows.name.text[firstIdx + 2]).toEqual('1')
+      expect(rows.name.text[firstIdx + 3]).toEqual('a')
+    })
+
+    it('should sort by id descending again if sort has been unchecked again', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
+      )
+      // Ascending
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(await sortHeaderButton.isActive()).toBe(true)
+      // Descending
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(await sortHeaderButton.isActive()).toBe(true)
+      // No sorting
+      await sortHeaderButton.click()
+      expect(await sortHeaderButton.isActive()).toBe(false)
+      expect(component.dataSource.sort.active).toEqual('id')
+      expect(component.dataSource.sort.direction).toEqual('desc')
     })
   })
 })
