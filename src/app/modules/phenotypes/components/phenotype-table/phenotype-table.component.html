@@ -18,6 +18,12 @@
 
 <section fxLayout="column" role="presentation">
   <section fxLayout="row">
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
     <num-search
       fxFlexOffset="auto"
       fxFlex="25%"

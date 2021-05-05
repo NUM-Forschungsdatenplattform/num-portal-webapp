@@ -14,11 +14,26 @@
  limitations under the License.
 -->
 
-<num-search
-  label="RESEARCHERS.SEARCH_RESEARCHERS"
-  [(searchText)]="filterConfig.searchText"
-  (searchTextChange)="handleSearchChange()"
-></num-search>
+<section
+  role="presentation"
+  fxLayout="column-reverse"
+  fxLayout.gt-sm="row"
+  fxLayoutGap.gt-sm="20px"
+>
+  <num-filter-chips
+    fxFlex.gt-sm="50%"
+    [filterChips]="filterConfig.filterItem"
+    [multiSelect]="false"
+    (selectionChange)="handleFilterChange()"
+  ></num-filter-chips>
+
+  <num-search
+    fxFlex.gt-sm="50%"
+    label="RESEARCHERS.SEARCH_RESEARCHERS"
+    [(searchText)]="filterConfig.searchText"
+    (searchTextChange)="handleSearchChange()"
+  ></num-search>
+</section>
 
 <h2 class="mat-display-2">
   {{ 'RESEARCHERS.PLEASE_SELECT_AT_LEAST_1_PERSON' | translate }}

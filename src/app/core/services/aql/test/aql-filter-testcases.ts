@@ -56,7 +56,7 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
     filter: {
       filterItem: [
         {
-          id: AqlFilterChipId.OrganisationAql,
+          id: AqlFilterChipId.OrganizationAql,
           isSelected: true,
           title: '',
         },

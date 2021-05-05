@@ -14,27 +14,32 @@
  * limitations under the License.
  */
 
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { maxBy, minBy } from 'lodash'
+import { BehaviorSubject, of, Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
+import { mockProject1, mockProjectsForSort } from 'src/mocks/data-mocks/project.mock'
 import {
   ARCHIVE_PROJECT_DIALOG_CONFIG,
-  CHANGE_STATUS_SUCCESS,
   CLOSE_PROJECT_DIALOG_CONFIG,
   DELETE_PROJECT_DIALOG_CONFIG,
   PUBLISH_PROJECT_DIALOG_CONFIG,
@@ -48,12 +53,25 @@ describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
   let fixture: ComponentFixture<ProjectsTableComponent>
   let router: Router
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
 
   const projectsSubject$ = new Subject<IProjectApi[]>()
+  const filterConfigSubject$ = new BehaviorSubject<IProjectFilter>({
+    searchText: '',
+    filterItem: [],
+  })
+
   const projectService = ({
-    projectsObservable$: projectsSubject$.asObservable(),
+    filteredProjectsObservable$: projectsSubject$.asObservable(),
+    filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
     updateStatusById: jest.fn(),
+    setFilter: jest.fn(),
   } as unknown) as ProjectService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
@@ -76,10 +94,11 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent],
+      declarations: [ProjectsTableComponent, StubFilterChipsComponent, SearchComponent],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         PipesModule,
@@ -107,6 +126,7 @@ describe('ProjectsTableComponent', () => {
   })
 
   beforeEach(() => {
+    jest.spyOn(projectService, 'setFilter')
     jest.clearAllMocks()
     router = TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectsTableComponent)
@@ -116,6 +136,16 @@ describe('ProjectsTableComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should set the filter in the projectService on searchChange', () => {
+    component.handleSearchChange()
+    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the projectService on filterChange', () => {
+    component.handleFilterChange()
+    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 
   describe('When new projects are received on the observable', () => {
@@ -243,5 +273,127 @@ describe('ProjectsTableComponent', () => {
         }
       }
     )
+  })
+
+  describe('When sorting the list', () => {
+    beforeEach(() => {
+      component.paginator.pageSize = 20
+      projectsSubject$.next(mockProjectsForSort)
+      fixture.detectChanges()
+    })
+    it('should sort by id descending as default', () => {
+      const projectWithLatestId = maxBy(mockProjectsForSort, 'id')
+      const projectWithOldestId = minBy(mockProjectsForSort, 'id')
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      expect(tableRows[0].innerHTML.trim()).toEqual(projectWithLatestId.name)
+      expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(projectWithOldestId.name)
+    })
+
+    it('should sort by id as second in same order as first field', () => {
+      component.sort.sort({ id: 'status', disableClear: false, start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-status"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' PROJECT.STATUS.PENDING ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(tableRows[firstIdx].innerHTML)
+    })
+
+    it('should be case insensitive', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'desc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' TEST PROJECT ')
+      expect(tableRows[firstIdx + 1].innerHTML.toLocaleLowerCase()).toEqual(
+        tableRows[firstIdx].innerHTML.toLocaleLowerCase()
+      )
+    })
+
+    it('should sort umlaut characters', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test project ä ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test project ö ')
+      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' Test project ü ')
+    })
+
+    it('should sort umlaut characters to corresponding vowel', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test a ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test ä ')
+    })
+
+    it('should sort in order empty -> special -> numeric -> alphabetic', () => {
+      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
+      fixture.detectChanges()
+      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-name"]`
+      ) as NodeList
+      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
+      const firstIdx = tableRows.findIndex((r) => r.innerHTML === '  ')
+      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' % ')
+      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' 1 ')
+      expect(tableRows[firstIdx + 3].innerHTML).toEqual(' a ')
+    })
+
+    it('should sort by organization ascending', () => {
+      component.sort.sort({ disableClear: false, id: 'organization', start: 'asc' })
+      fixture.detectChanges()
+      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-organization"]`
+      ) as NodeList
+      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
+      expect(tableRows[idx - 1].innerHTML).toEqual(' abc ')
+    })
+
+    it('should sort by organization descending', () => {
+      component.sort.sort({ disableClear: false, id: 'organization', start: 'desc' })
+      fixture.detectChanges()
+      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-organization"]`
+      ) as NodeList
+      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
+      expect(tableRows[idx + 1].innerHTML).toEqual(' abc ')
+    })
+
+    it('should sort by author ascending', () => {
+      component.sort.sort({ disableClear: false, id: 'author', start: 'asc' })
+      fixture.detectChanges()
+      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-author"]`
+      ) as NodeList
+      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
+      expect(tableRows[idx + 1].innerHTML).toEqual(' Max Mustermann ')
+    })
+
+    it('should sort by author descending', () => {
+      component.sort.sort({ disableClear: false, id: 'author', start: 'desc' })
+      fixture.detectChanges()
+      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
+        `[data-test="projects-table__table-data__project-author"]`
+      ) as NodeList
+      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
+      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
+      expect(tableRows[idx - 1].innerHTML).toEqual(' Max Mustermann ')
+    })
   })
 })

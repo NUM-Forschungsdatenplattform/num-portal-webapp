@@ -69,18 +69,21 @@ describe('CohortService', () => {
   describe('When executing a cohort definition', () => {
     const cohortSize = 321
 
-    it('should call the api with the cohort id provided and return the response', async () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => of(cohortSize))
-      const request = {
-        url: `${appConfig.config.api.baseUrl}/cohort/size`,
-        body: mockCohortGroup,
+    test.each([true, false])(
+      'should call the api with the cohort id provided and return the response',
+      async (allowUsageOutsideEu) => {
+        jest.spyOn(httpClient, 'post').mockImplementation(() => of(cohortSize))
+        const request = {
+          url: `${appConfig.config.api.baseUrl}/cohort/size?allowUsageOutsideEu=${allowUsageOutsideEu}`,
+          body: mockCohortGroup,
+        }
+
+        const result = await service.getSize(mockCohortGroup, allowUsageOutsideEu).toPromise()
+
+        expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
+        expect(result).toEqual(cohortSize)
       }
-
-      const result = await service.getSize(mockCohortGroup).toPromise()
-
-      expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
-      expect(result).toEqual(cohortSize)
-    })
+    )
 
     it('should call the api and handle erros', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))

@@ -117,6 +117,10 @@ export class DialogAddPhenotypesComponent
     this.phenotypeService.setFilter(this.filterConfig)
   }
 
+  handleFilterChange(): void {
+    this.phenotypeService.setFilter(this.filterConfig)
+  }
+
   handleDialogConfirm(): void {
     this.selectedPhenotypes = this.selectedPhenotypes.map((phenotype) => {
       if (phenotype instanceof PhenotypeUiModel) {

@@ -16,99 +16,142 @@
 
 <h3 id="projects-header">{{ 'AVAILABLE_PROJECTS' | translate }}</h3>
 
-<div role="presentation" class="mat-elevation-z1 num-margin-b-60">
-  <table
-    aria-labelledby="projects-header"
-    mat-table
-    [dataSource]="dataSource"
-    matSort
-    fixedLayout
-    data-test="studies__table"
-  >
-    <mat-menu #menu="matMenu">
-      <ng-template
-        matMenuContent
-        let-projectStatus="projectStatus"
-        let-id="id"
-        let-ownerId="ownerId"
-      >
-        <button
-          class="num-mat-list-item"
-          *ngFor="let menuItem of menuItems | projectMenu: projectStatus:ownerId:user"
-          [disabled]="menuItem.isDisabled"
-          mat-menu-item
-          (click)="handleMenuClick(menuItem.id, id)"
-          [attr.data-test]="'studies__table__action-item__' + menuItem.id + '-button'"
+<section fxLayout="column" class="projects-table" role="presentation">
+  <section fxLayout="row">
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
+    <num-search
+      fxFlexOffset="auto"
+      fxFlex="25%"
+      label="PROJECT.SEARCH_PROJECTS"
+      [(searchText)]="filterConfig.searchText"
+      (searchTextChange)="handleSearchChange()"
+    ></num-search>
+  </section>
+
+  <div role="presentation" class="mat-elevation-z1 num-margin-b-60">
+    <table
+      aria-labelledby="projects-header"
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      matSortActive="id"
+      matSortDirection="desc"
+      (matSortChange)="handleSortChange($event)"
+      fixedLayout
+      data-test="projects__table"
+    >
+      <mat-menu #menu="matMenu">
+        <ng-template
+          matMenuContent
+          let-projectStatus="projectStatus"
+          let-id="id"
+          let-ownerId="ownerId"
         >
-          {{ menuItem.translationKey | translate }}
-        </button>
-      </ng-template>
-    </mat-menu>
+          <button
+            class="num-mat-list-item"
+            *ngFor="let menuItem of menuItems | projectMenu: projectStatus:ownerId:user"
+            [disabled]="menuItem.isDisabled"
+            mat-menu-item
+            (click)="handleMenuClick(menuItem.id, id)"
+            [attr.data-test]="'projects__table__action-item__' + menuItem.id + '-button'"
+          >
+            {{ menuItem.translationKey | translate }}
+          </button>
+        </ng-template>
+      </mat-menu>
 
-    <ng-container matColumnDef="menu">
-      <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm">
-        {{ 'FORM.ACTION' | translate }}
-      </th>
-      <td mat-cell *matCellDef="let element">
-        <button
-          *ngIf="element.status"
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          [matMenuTriggerData]="{
-            projectStatus: element.status,
-            id: element.id,
-            ownerId: element.coordinator.id
-          }"
-          data-test="studies__table__action-menu-button"
+      <ng-container matColumnDef="menu">
+        <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm">
+          {{ 'FORM.ACTION' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            *ngIf="element.status"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            [matMenuTriggerData]="{
+              projectStatus: element.status,
+              id: element.id,
+              ownerId: element.coordinator.id
+            }"
+            data-test="projects__table__action-menu-button"
+          >
+            <fa-icon icon="ellipsis-v"></fa-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- ID column is only for default sorting and will not be displayed -->
+      <ng-container matColumnDef="id">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element" data-test="projects-table__table-data__project-id">
+          {{ element.id }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'FORM.NAME' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let element" data-test="projects-table__table-data__project-name">
+          {{ element.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'FORM.AUTHOR' | translate }}
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-author"
         >
-          <fa-icon icon="ellipsis-v"></fa-icon>
-        </button>
-      </td>
-    </ng-container>
+          {{ element?.coordinator?.firstName }} {{ element?.coordinator?.lastName || '-' }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'FORM.NAME' | translate }}
-      </th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
+      <ng-container matColumnDef="organization">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'USER.ORGANIZATION' | translate }}
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-organization"
+        >
+          {{ element?.coordinator?.organization?.name || '-' }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="author">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'FORM.AUTHOR' | translate }}
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ element?.coordinator?.firstName }} {{ element?.coordinator?.lastName || '-' }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="status">
+        <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'FORM.STATUS' | translate }}
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          data-test="projects-table__table-data__project-status"
+        >
+          {{ (element.status ? 'PROJECT.STATUS.' + element.status : undefined) | translate }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="organisation">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'USER.ORGANIZATION' | translate }}
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ element?.coordinator?.organization?.name || '-' }}
-      </td>
-    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
 
-    <ng-container matColumnDef="status">
-      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
-        {{ 'FORM.STATUS' | translate }}
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ (element.status ? 'PROJECT.STATUS.' + element.status : undefined) | translate }}
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
-    showFirstLastButtons
-    [pageSize]="pageSize"
-    (page)="pageSize = $event.pageSize"
-    data-test="studies__table__paginator"
-  ></mat-paginator>
-</div>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      [pageSize]="pageSize"
+      (page)="pageSize = $event.pageSize"
+      data-test="projects__table__paginator"
+    ></mat-paginator>
+  </div>
+</section>

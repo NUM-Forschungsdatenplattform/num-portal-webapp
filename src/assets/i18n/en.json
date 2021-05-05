@@ -66,11 +66,16 @@
     "DATAPROTECTION": "Data Protection",
     "CONTACT": "Contact"
   },
+  "FILTER_CHIP": {
+    "MY_AQLS": "My AQLs",
+    "MY_PHENOTYPES": "My phenotypes",
+    "MY_PROJECTS": "My projects",
+    "ORGANIZATION": "My organization",
+    "ALL": "All",
+    "ARCHIVED": "Archived"
+  },
   "AQL": {
     "AS": "as",
-    "MY_AQLS": "My AQLs",
-    "ORGANISATION_AQLS": "My organisation",
-    "ALL_AQLS": "All",
     "CREATE_AQL": "Create AQL Query",
     "CREATE_AQL_CONTENT": "On this page you can create an AQL query. To create the query an AQL Builder is available.\n\n*Mandatory field",
     "GENERAL_INFO_CONTENT": "Please enter a descriptive title and the purpose and use of the AQL query.",
@@ -90,7 +95,12 @@
     "COLUMNS": "Columns",
     "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
     "VALIDATION_ERROR": "The syntax of the AQL Query is not valid",
-    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid"
+    "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first define the AQL Query to get a valid result.",
+      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+    }
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Search Phenotype",
@@ -143,6 +153,7 @@
       "NOTIFICATION": "Notification"
     }
   },
+  "TABLE": "Table",
   "INVALID_URL": "The URL is not valid. Please adjust to the example:",
   "PROVIDE_URL": "Please enter a URL",
   "PROVIDE_URL_TEXT": "Please enter a link text",
@@ -260,6 +271,7 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
+    "RESET_CUSTOMIZATION": "Reset configuration",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
@@ -268,6 +280,7 @@
     "DRAG_TO_MOVE": "Drag to move"
   },
   "PROJECT": {
+    "SEARCH_PROJECTS": "Search Project",
     "DEFINE_PROJECT_CONTENT_P1": "On this page you can define your project. Various information is required for this purpose. You must fill in all fields marked with an asterisk before you can send the project for approval.",
     "DEFINE_PROJECT_CONTENT_P2": "Additionally, you have the possibility to write and read comments. These are used to exchange information between you and the project approver.",
     "MANDATORY": "*Mandatory field",

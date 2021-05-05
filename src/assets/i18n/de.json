@@ -66,11 +66,16 @@
     "DATAPROTECTION": "Datenschutz",
     "CONTACT": "Kontakt"
   },
+  "FILTER_CHIP": {
+    "MY_AQLS": "Meine",
+    "MY_PHENOTYPES": "Meine",
+    "MY_PROJECTS": "Meine",
+    "ORGANIZATION": "Meine Organisation",
+    "ALL": "Alle",
+    "ARCHIVED": "Archiviert"
+  },
   "AQL": {
     "AS": "als",
-    "MY_AQLS": "Meine",
-    "ORGANISATION_AQLS": "Meine Organisation",
-    "ALL_AQLS": "Alle",
     "CREATE_AQL": "AQL Abfrage erstellen",
     "CREATE_AQL_CONTENT": "Auf dieser Seite können Sie eine AQL Abfrage erstellen. Zum Erstellen der Abfrage steht Ihnen ein AQL Builder zur Verfügung.\n\n*Pflichtfeld",
     "GENERAL_INFO_CONTENT": "Bitte geben Sie einen aussagekräftigen Titel sowie den Zweck und die Verwendung der AQL Abfrage ein.",
@@ -90,7 +95,12 @@
     "COLUMNS": "Spalten",
     "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt.",
     "VALIDATION_ERROR": "Die Syntax der AQL Abfrage ist nicht valide",
-    "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide"
+    "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide",
+    "HITS": {
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst die AQL Abfrage definieren, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+    }
   },
   "PHENOTYPE": {
     "SEARCH_PHENOTYPES": "Phänotypen suchen",
@@ -144,6 +154,7 @@
       "NOTIFICATION": "Benachrichtigung"
     }
   },
+  "TABLE": "Tabelle",
   "INVALID_URL": "Die URL ist nicht valide. Bitte an das Beispiel anpassen:",
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
   "PROVIDE_URL_TEXT": "Bitte geben Sie einen Link-Text ein",
@@ -261,6 +272,7 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
+    "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
@@ -269,6 +281,7 @@
     "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
   },
   "PROJECT": {
+    "SEARCH_PROJECTS": "Projekt suchen",
     "DEFINE_PROJECT_CONTENT_P1": "Auf dieser Seite können Sie Ihr Projekt definieren. Hierzu sind verschiedene Angaben notwendig. Sie müssen alle mit einem Sternchen gekennzeichneten Felder ausfüllen, bevor Sie das Projekt zur Genehmigung absenden können.",
     "DEFINE_PROJECT_CONTENT_P2": "Zusätzlich haben Sie die Möglichkeit, Kommentare zu verfassen und zu lesen. Diese dienen dem Informationsaustausch zwischen Ihnen und den Projektprüfer.",
     "MANDATORY": "*Pflichtfeld",

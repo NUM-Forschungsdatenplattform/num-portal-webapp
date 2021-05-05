@@ -32,6 +32,7 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 
 describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
@@ -50,19 +51,32 @@ describe('DialogAddResearchersComponent', () => {
     @Input() idOfHighlightedRow: string | number
   }
 
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
+
   const filteredApprovedUsersSubject$ = new Subject<IUser[]>()
-  const filterConfigSubject$ = new BehaviorSubject<IUserFilter>({ searchText: '' })
+  const filterConfigSubject$ = new BehaviorSubject<IUserFilter>({ searchText: '', filterItem: [] })
 
   const adminService = {
     filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
+    setFilter: (_: any) => {},
 
     getApprovedUsers: () => of(),
   } as AdminService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddResearchersComponent, SearchComponent, FilterTableStubComponent],
+      declarations: [
+        DialogAddResearchersComponent,
+        SearchComponent,
+        FilterTableStubComponent,
+        StubFilterChipsComponent,
+      ],
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,
@@ -84,6 +98,7 @@ describe('DialogAddResearchersComponent', () => {
     fixture = TestBed.createComponent(DialogAddResearchersComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
+    jest.spyOn(adminService, 'setFilter')
   })
 
   it('should create', () => {
@@ -96,5 +111,15 @@ describe('DialogAddResearchersComponent', () => {
       fixture.detectChanges()
       expect(component.dataSource.data).toStrictEqual([mockUserResearcher])
     })
+  })
+
+  it('should set the filter in the admin service on filterChange', () => {
+    component.handleFilterChange()
+    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the admin service on searchChange', () => {
+    component.handleSearchChange()
+    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 })

@@ -49,15 +49,7 @@
         ></num-code-editor>
       </div>
 
-      <div class="button-row" fxLayout="row" fxLayoutGap="20px">
-        <num-button
-          type="primary"
-          (singleClick)="execute.emit()"
-          [isDisabled]="!isValidForExecution || !isExecutionReady"
-          data-test="aql-editor__aql-creator__execute-button"
-          >{{ 'BUTTON.EXECUTE' | translate }}</num-button
-        >
-
+      <div class="button-row num-margin-b-20" fxLayout="row" fxLayoutGap="20px">
         <num-button
           type="primary"
           icon="align-left"
@@ -74,6 +66,12 @@
           >{{ 'BUTTON.VALIDATE_QUERY' | translate }}</num-button
         >
       </div>
+
+      <num-editor-determine-hits
+        [isButtonDisabled]="!isValidForExecution || isExecutionLoading"
+        [content]="determineHitsContent"
+        (clicked)="determineHits()"
+      ></num-editor-determine-hits>
     </mat-card-content>
   </mat-card>
 </section>

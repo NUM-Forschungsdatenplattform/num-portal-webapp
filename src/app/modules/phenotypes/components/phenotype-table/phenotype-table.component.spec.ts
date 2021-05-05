@@ -28,7 +28,7 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
@@ -40,6 +40,7 @@ import { PhenotypeMenuKeys } from './menu-item'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
+import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 
 describe('PhenotypeTableComponent', () => {
   let component: PhenotypeTableComponent
@@ -47,7 +48,10 @@ describe('PhenotypeTableComponent', () => {
   let router: Router
 
   const filteredPhenotypesSubject$ = new Subject<IPhenotypeApi[]>()
-  const filterConfigSubject$ = new BehaviorSubject<IPhenotypeFilter>({ searchText: '' })
+  const filterConfigSubject$ = new BehaviorSubject<IPhenotypeFilter>({
+    searchText: '',
+    filterItem: [],
+  })
 
   const phenotypesSubject$ = new Subject<IPhenotypeApi[]>()
   const phenotypeService = ({
@@ -77,14 +81,16 @@ describe('PhenotypeTableComponent', () => {
     }),
   } as unknown) as DialogService
 
-  @Component({ selector: 'num-definition-list', template: '' })
-  class DefinitionListStubComponent {
-    @Input() dataSource: IDefinitionList[]
+  @Component({ selector: 'num-filter-chips', template: '' })
+  class StubFilterChipsComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhenotypeTableComponent, SearchComponent, DefinitionListStubComponent],
+      declarations: [PhenotypeTableComponent, SearchComponent, StubFilterChipsComponent],
       imports: [
         MaterialModule,
         ReactiveFormsModule,
@@ -130,6 +136,11 @@ describe('PhenotypeTableComponent', () => {
 
   it('should set the filter in the phenotypeService on searchChange', () => {
     component.handleSearchChange()
+    expect(phenotypeService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+  })
+
+  it('should set the filter in the phenotypeService on filterChange', () => {
+    component.handleFilterChange()
     expect(phenotypeService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 

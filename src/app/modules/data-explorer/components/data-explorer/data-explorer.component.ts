@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { forkJoin } from 'rxjs'
+import { forkJoin, Subscription } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
@@ -45,15 +45,19 @@ import {
 } from './constants'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { cloneDeep } from 'lodash-es'
 
 @Component({
   selector: 'num-data-explorer',
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
 })
-export class DataExplorerComponent implements OnInit {
+export class DataExplorerComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
+
   resolvedData: IProjectResolved
 
+  initialAqbModel = new AqbUiModel()
   aqbModel = new AqbUiModel()
   compiledQuery: IArchetypeQueryBuilderResponse
   selectedTemplateIds: string[] = []
@@ -83,7 +87,7 @@ export class DataExplorerComponent implements OnInit {
 
   projectForm: FormGroup = new FormGroup({})
 
-  resultSet: IAqlExecutionResponse
+  resultSet: IAqlExecutionResponse[]
   configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default
 
   constructor(
@@ -104,6 +108,10 @@ export class DataExplorerComponent implements OnInit {
     this.fetchResearcher()
     this.getGeneralInfoListData()
     this.prefillAqlBuilder()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   prefillAqlBuilder(): void {
@@ -127,36 +135,41 @@ export class DataExplorerComponent implements OnInit {
       )
     )
 
-    forkJoin(selectedCompositions$)
-      .pipe(
-        mergeMap((selectedCompositions) => {
-          selectedCompositions.forEach((composition) =>
-            this.aqbModel.handleElementSelect(composition)
-          )
-          const apiModel = this.aqbModel.convertToApi()
-          return this.aqlEditorService.buildAql(apiModel)
-        })
-      )
-      .subscribe(
-        (compiledQuery) => {
-          this.compiledQuery = compiledQuery
-          this.isCompositionsFetched = true
-        },
-        () => {
-          this.isCompositionsFetched = true
-          this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-        }
-      )
+    this.subscriptions.add(
+      forkJoin(selectedCompositions$)
+        .pipe(
+          mergeMap((selectedCompositions) => {
+            selectedCompositions.forEach((composition) =>
+              this.aqbModel.handleElementSelect(composition)
+            )
+            const apiModel = this.aqbModel.convertToApi()
+            this.initialAqbModel = cloneDeep(this.aqbModel)
+            return this.aqlEditorService.buildAql(apiModel)
+          })
+        )
+        .subscribe(
+          (compiledQuery) => {
+            this.compiledQuery = compiledQuery
+            this.isCompositionsFetched = true
+          },
+          () => {
+            this.isCompositionsFetched = true
+            this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
+          }
+        )
+    )
   }
 
   fetchCohort(): void {
     if (this.project.cohortId === null || this.project.cohortId === undefined) {
       this.isCohortsFetched = true
     } else {
-      this.cohortService.get(this.project.cohortId).subscribe((cohortApi) => {
-        this.project.addCohortGroup(cohortApi?.cohortGroup)
-        this.isCohortsFetched = true
-      })
+      this.subscriptions.add(
+        this.cohortService.get(this.project.cohortId).subscribe((cohortApi) => {
+          this.project.addCohortGroup(cohortApi?.cohortGroup)
+          this.isCohortsFetched = true
+        })
+      )
     }
   }
 
@@ -165,10 +178,12 @@ export class DataExplorerComponent implements OnInit {
     if (!userIds.length) {
       this.isResearchersFetched = true
     } else {
-      this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
-        this.project.researchers = researchers
-        this.isResearchersFetched = true
-      })
+      this.subscriptions.add(
+        this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
+          this.project.researchers = researchers
+          this.isResearchersFetched = true
+        })
+      )
     }
   }
 
@@ -191,11 +206,13 @@ export class DataExplorerComponent implements OnInit {
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
-    dialogRef.afterClosed().subscribe((confirmResult: IAqlBuilderDialogOutput | undefined) => {
-      if (confirmResult) {
-        this.handleDialogConfirm(confirmResult)
-      }
-    })
+    this.subscriptions.add(
+      dialogRef.afterClosed().subscribe((confirmResult: IAqlBuilderDialogOutput | undefined) => {
+        if (confirmResult) {
+          this.handleDialogConfirm(confirmResult)
+        }
+      })
+    )
   }
 
   handleDialogConfirm(confirmResult: IAqlBuilderDialogOutput): void {
@@ -207,6 +224,27 @@ export class DataExplorerComponent implements OnInit {
     this.configuration = DataExplorerConfigurations.Custom
   }
 
+  resetAqbModel(): void {
+    this.isDataSetLoading = true
+    this.aqbModel = cloneDeep(this.initialAqbModel)
+    this.selectedTemplateIds = cloneDeep(this.allowedTemplateIds)
+    this.configuration = DataExplorerConfigurations.Default
+    const apiModel = this.aqbModel.convertToApi()
+
+    this.subscriptions.add(
+      this.aqlEditorService.buildAql(apiModel).subscribe(
+        (compiledQuery) => {
+          this.compiledQuery = compiledQuery
+          this.getDataSet()
+        },
+        (_) => {
+          this.isDataSetLoading = false
+          this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
+        }
+      )
+    )
+  }
+
   cancel(): void {
     this.router.navigate(['data-explorer/projects'])
   }
@@ -214,16 +252,18 @@ export class DataExplorerComponent implements OnInit {
   getDataSet(): void {
     this.isDataSetLoading = true
 
-    this.projectService.executeAdHocAql(this.compiledQuery.q, this.project.id).subscribe(
-      (resultSet) => {
-        this.resultSet = resultSet
-        this.isDataSetLoading = false
-      },
-      (err) => {
-        this.isDataSetLoading = false
-        this.resultSet = undefined
-        this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-      }
+    this.subscriptions.add(
+      this.projectService.executeAdHocAql(this.compiledQuery.q, this.project.id).subscribe(
+        (resultSet) => {
+          this.resultSet = resultSet
+          this.isDataSetLoading = false
+        },
+        (err) => {
+          this.isDataSetLoading = false
+          this.resultSet = undefined
+          this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+        }
+      )
     )
   }
 
@@ -232,42 +272,44 @@ export class DataExplorerComponent implements OnInit {
 
     this.isExportLoading = true
 
-    this.projectService.exportFile(this.project.id, this.compiledQuery.q, format).subscribe(
-      (response) => {
-        const filename =
-          format === 'csv'
-            ? `csv_export_${this.project.id}.csv`
-            : `json_export_${this.project.id}.json`
+    this.subscriptions.add(
+      this.projectService.exportFile(this.project.id, this.compiledQuery.q, format).subscribe(
+        (response) => {
+          const filename =
+            format === 'csv'
+              ? `csv_export_${this.project.id}.zip`
+              : `json_export_${this.project.id}.json`
 
-        const downloadLink = document.createElement('a')
-        downloadLink.setAttribute(
-          'href',
-          format === 'csv'
-            ? 'data:text/plain;charset=utf-8,' + encodeURIComponent(response)
-            : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
-        )
+          const downloadLink = document.createElement('a')
+          downloadLink.setAttribute(
+            'href',
+            format === 'csv'
+              ? 'data:application/zip;charset=utf-8,' + encodeURIComponent(response)
+              : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
+          )
 
-        downloadLink.setAttribute('download', filename)
-        downloadLink.style.display = 'none'
-        document.body.appendChild(downloadLink)
+          downloadLink.setAttribute('download', filename)
+          downloadLink.style.display = 'none'
+          document.body.appendChild(downloadLink)
 
-        this.isExportLoading = false
+          this.isExportLoading = false
 
-        downloadLink.click()
-        downloadLink.remove()
-      },
-      () => {
-        this.isExportLoading = false
+          downloadLink.click()
+          downloadLink.remove()
+        },
+        () => {
+          this.isExportLoading = false
 
-        const messageConfig: IToastMessageConfig = {
-          ...EXPORT_ERROR,
-          messageParameters: {
-            format: format.toUpperCase(),
-          },
+          const messageConfig: IToastMessageConfig = {
+            ...EXPORT_ERROR,
+            messageParameters: {
+              format: format.toUpperCase(),
+            },
+          }
+
+          this.toastMessageService.openToast(messageConfig)
         }
-
-        this.toastMessageService.openToast(messageConfig)
-      }
+      )
     )
   }
 }

@@ -49,6 +49,7 @@ import {
   faArrowDown,
   faExternalLinkSquareAlt,
   faChartPie,
+  faUndo,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye, faHospital } from '@fortawesome/free-regular-svg-icons'
@@ -92,4 +93,5 @@ export const FONT_AWESOME_ICONS = [
   faHospital,
   faExternalLinkSquareAlt,
   faChartPie,
+  faUndo,
 ]

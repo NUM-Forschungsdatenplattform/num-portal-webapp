@@ -146,7 +146,8 @@ describe('DataExplorerComponent', () => {
   class ResultTableStubComponent {
     @Input() resultSet: IAqlExecutionResponse
     @Input() isDataSetLoading: boolean
-    @Input() configuration: DataExplorerConfigurations
+    @Input() index: number
+    @Input() totalTables: number
   }
 
   beforeEach(async () => {
@@ -311,6 +312,10 @@ describe('DataExplorerComponent', () => {
     it('should prefill the select clause of the aqb model', () => {
       expect(component.aqbModel.select.length).toEqual(1)
     })
+
+    it('should store the default aqb model for the purpose of reset', () => {
+      expect(component.aqbModel).toEqual(component.initialAqbModel)
+    })
   })
 
   describe('When the component gets initialized and the templates are specified but can not be compiled or fetched', () => {
@@ -413,6 +418,7 @@ describe('DataExplorerComponent', () => {
   describe('When the resultSet is fetched', () => {
     const mockResultSet: IAqlExecutionResponse = {
       q: 'some query',
+      name: 'Table name',
       columns: [
         {
           name: 'col1',
@@ -430,7 +436,7 @@ describe('DataExplorerComponent', () => {
     }
 
     beforeEach(() => {
-      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => of(mockResultSet))
+      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => of([mockResultSet]))
       component.compiledQuery = buildResponse
     })
 
@@ -438,7 +444,7 @@ describe('DataExplorerComponent', () => {
       component.getDataSet()
 
       expect(component.isDataSetLoading).toEqual(false)
-      expect(component.resultSet).toEqual(mockResultSet)
+      expect(component.resultSet).toEqual([mockResultSet])
     })
   })
 
@@ -472,7 +478,7 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should trigger the download', () => {
-      const filename = `csv_export_${component.project.id}.csv`
+      const filename = `csv_export_${component.project.id}.zip`
       const mockHtmlElement = document.createElement('a')
 
       mockHtmlElement.setAttribute = jest.fn()
@@ -557,6 +563,30 @@ describe('DataExplorerComponent', () => {
       }
 
       expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    })
+  })
+
+  describe('On the attempt to reset the custom configuration', () => {
+    beforeEach(() => {
+      component.aqbModel = new AqbUiModel()
+      component.configuration = DataExplorerConfigurations.Custom
+      component.resetAqbModel()
+    })
+
+    it('should set the aqbModel to the default', () => {
+      expect(component.aqbModel).toEqual(component.initialAqbModel)
+    })
+
+    it('should let the aql-editor-service compile the query', () => {
+      expect(aqlEditorService.buildAql).toHaveBeenCalledTimes(1)
+    })
+
+    it('should fetch the DataSet', () => {
+      expect(projectService.executeAdHocAql).toHaveBeenCalledTimes(1)
+    })
+
+    it('should reset the configuration flag to default', () => {
+      expect(component.configuration).toEqual(DataExplorerConfigurations.Default)
     })
   })
 })

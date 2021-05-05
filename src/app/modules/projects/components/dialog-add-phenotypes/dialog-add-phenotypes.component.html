@@ -29,6 +29,12 @@
         (searchTextChange)="handleSearchChange()"
       ></num-search>
 
+      <num-filter-chips
+        [filterChips]="filterConfig.filterItem"
+        [multiSelect]="false"
+        (selectionChange)="handleFilterChange()"
+      ></num-filter-chips>
+
       <num-filter-table
         [dataSource]="dataSource"
         [columnKeys]="columnKeys"

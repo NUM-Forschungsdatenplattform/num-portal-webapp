@@ -14,8 +14,26 @@
  * limitations under the License.
  */
 
+import { PhenotypeFilterChipId } from 'src/app/shared/models/phenotype/phenotype-filter-chip.enum'
 import { IPhenotypeFilter } from 'src/app/shared/models/phenotype/phenotype-filter.interface'
 
 export const DEFAULT_PHENOTYPE_FILTER: IPhenotypeFilter = {
   searchText: '',
+  filterItem: [
+    {
+      id: PhenotypeFilterChipId.AllPhenotype,
+      title: 'FILTER_CHIP.ALL',
+      isSelected: true,
+    },
+    {
+      id: PhenotypeFilterChipId.MyPhenotype,
+      title: 'FILTER_CHIP.MY_PHENOTYPES',
+      isSelected: false,
+    },
+    {
+      id: PhenotypeFilterChipId.OrganizationPhenotype,
+      title: 'FILTER_CHIP.ORGANIZATION',
+      isSelected: false,
+    },
+  ],
 }

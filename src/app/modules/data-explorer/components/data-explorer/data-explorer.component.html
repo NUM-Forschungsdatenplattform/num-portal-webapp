@@ -47,7 +47,12 @@
     ></num-project-editor-researchers>
   </mat-accordion>
 
-  <section role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+  <section
+    role="presentation"
+    fxLayout="row wrap"
+    fxLayoutAlign="space-between"
+    class="num-margin-b-40"
+  >
     <num-button
       [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportLoading"
       type="primary"
@@ -56,16 +61,25 @@
       [attr.data-test]="'data-explorer__get-data-button'"
       >{{ 'BUTTON.GET_DATA' | translate }}</num-button
     >
-    <!-- NUM-1450: Custom configuration is not shown for Release 1.0 -->
-    <num-button
-      [hidden]="true"
-      [isDisabled]="!isCompositionsFetched || isDataSetLoading"
-      type="secondary"
-      icon="pen"
-      (singleClick)="openBuilderDialog()"
-      [attr.data-test]="'data-explorer__customize-configuration-button'"
-      >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
-    >
+
+    <div fxLayoutGap="20px">
+      <num-button
+        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+        type="secondary"
+        icon="undo"
+        (singleClick)="resetAqbModel()"
+        [attr.data-test]="'data-explorer__reset-customization-button'"
+        >{{ 'BUTTON.RESET_CUSTOMIZATION' | translate }}</num-button
+      >
+      <num-button
+        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+        type="secondary"
+        icon="pen"
+        (singleClick)="openBuilderDialog()"
+        [attr.data-test]="'data-explorer__customize-configuration-button'"
+        >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+      >
+    </div>
   </section>
 
   <section
@@ -80,20 +94,19 @@
     <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
   </section>
 
-  <num-result-table
-    [resultSet]="resultSet"
-    [isDataSetLoading]="isDataSetLoading"
-    [configuration]="configuration"
-    class="num-margin-b-20"
-    data-test="data-explorer__table"
-  ></num-result-table>
+  <h3 id="result-set-header">{{ 'DATA_EXPLORER.RESULT_SET' | translate }}</h3>
+  <span class="num-margin-b-20"
+    >{{ 'DATA_EXPLORER.CONFIGURATION' | translate }}:
+    {{ 'DATA_EXPLORER.' + configuration | translate }}</span
+  >
 
   <div
-    *ngIf="resultSet && resultSet.rows.length"
+    *ngIf="resultSet && resultSet.length && !isDataSetLoading"
     fxFlex
     fxLayout="row"
     fxLayoutGap="10px"
     fxLayoutAlign="start center"
+    class="num-margin-b-40"
   >
     <num-button
       type="secondary"
@@ -122,6 +135,36 @@
       class="export-csv_spinner"
     ></mat-spinner>
   </div>
+
+  <ng-container *ngIf="!resultSet && !isDataSetLoading">
+    <mat-card class="mat-elevation-z1">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <span>{{ 'DATA_EXPLORER.NO_RESULTS_YET' | translate }}</span>
+        {{ resultSet }}
+      </div>
+    </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="!isDataSetLoading; else loading">
+    <num-result-table
+      *ngFor="let template of resultSet; let i = index"
+      [resultSet]="template"
+      [isDataSetLoading]="isDataSetLoading"
+      [index]="i"
+      [totalTables]="resultSet.length"
+      class="num-margin-b-20"
+      data-test="data-explorer__table"
+    ></num-result-table>
+  </ng-container>
+
+  <ng-template #loading>
+    <mat-card class="mat-elevation-z1">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+        <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
+      </div>
+    </mat-card>
+  </ng-template>
 
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">

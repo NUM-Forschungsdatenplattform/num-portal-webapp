@@ -40,6 +40,10 @@ export class ApprovedUsersComponent implements OnInit {
     })
   }
 
+  handleFilterChange(): void {
+    this.adminService.setFilter(this.filterConfig)
+  }
+
   handleSearchChange(): void {
     this.adminService.setFilter(this.filterConfig)
   }
