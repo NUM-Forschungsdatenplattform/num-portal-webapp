@@ -78,11 +78,7 @@ describe('ChartsComponent', () => {
     component = fixture.componentInstance
 
     fixture.detectChanges()
-    // jest.spyOn(contentService, 'getClinics').mockImplementation(() => of(mockClinics))
-    // jest
-    //   .spyOn(contentService, 'getSofaScoreDistribution')
-    //   .mockImplementation(() => of(mockSofaDist))
-    // jest.spyOn(contentService, 'getSofaScoreAverage').mockImplementation(() => of(mockSofaAvg))
+
     jest.spyOn(contentService, 'getClinics').mockImplementation(() => of(mockClinics))
     jest.spyOn(contentService, 'getSofaScoreDistribution').mockImplementation(() => of())
     jest.spyOn(contentService, 'getSofaScoreAverage').mockImplementation(() => of())
