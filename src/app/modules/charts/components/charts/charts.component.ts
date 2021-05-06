@@ -28,6 +28,7 @@ import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
 })
 export class ChartsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
+  sofaScoreDistributionSubscription = new Subscription()
 
   selectedClinic: string
   clinics: string[]
@@ -50,51 +51,60 @@ export class ChartsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+    this.sofaScoreDistributionSubscription.unsubscribe()
   }
 
   getClinics(): void {
-    this.contentService.getClinics().subscribe((clinics) => {
-      this.clinics = clinics
-      this.selectedClinic = clinics[Math.floor(Math.random() * clinics.length)]
-      this.getSofaScoreDistribution()
-    })
+    this.subscriptions.add(
+      this.contentService.getClinics().subscribe((clinics) => {
+        this.clinics = clinics
+        this.selectedClinic = clinics[Math.floor(Math.random() * clinics.length)]
+        this.getSofaScoreDistribution()
+      })
+    )
   }
 
   getSofaScoreDistribution(): void {
-    this.contentService.getSofaScoreDistribution(this.selectedClinic).subscribe(
-      (chartData) => {
-        this.chartSofaScore = {
-          ...CHART_SOFA_SCORE,
-          data: Object.values(chartData),
-          labels: Object.keys(chartData),
+    this.sofaScoreDistributionSubscription.unsubscribe()
+
+    this.sofaScoreDistributionSubscription.add(
+      this.contentService.getSofaScoreDistribution(this.selectedClinic).subscribe(
+        (chartData) => {
+          this.chartSofaScore = {
+            ...CHART_SOFA_SCORE,
+            data: Object.values(chartData),
+            labels: Object.keys(chartData),
+          }
+        },
+        (error) => {
+          this.chartSofaScore = {
+            ...CHART_SOFA_SCORE,
+            data: [],
+            labels: [],
+          }
         }
-      },
-      (error) => {
-        this.chartSofaScore = {
-          ...CHART_SOFA_SCORE,
-          data: [],
-          labels: [],
-        }
-      }
+      )
     )
   }
 
   getSofaScoreAverage(): void {
-    this.contentService.getSofaScoreAverage().subscribe(
-      (chartData) => {
-        this.chartSofaScoreAvg = {
-          ...CHART_SOFA_SCORE_AVG,
-          data: Object.values(chartData),
-          labels: Object.keys(chartData),
+    this.subscriptions.add(
+      this.contentService.getSofaScoreAverage().subscribe(
+        (chartData) => {
+          this.chartSofaScoreAvg = {
+            ...CHART_SOFA_SCORE_AVG,
+            data: Object.values(chartData),
+            labels: Object.keys(chartData),
+          }
+        },
+        (error) => {
+          this.chartSofaScoreAvg = {
+            ...CHART_SOFA_SCORE_AVG,
+            data: [],
+            labels: [],
+          }
         }
-      },
-      (error) => {
-        this.chartSofaScoreAvg = {
-          ...CHART_SOFA_SCORE_AVG,
-          data: [],
-          labels: [],
-        }
-      }
+      )
     )
   }
 
