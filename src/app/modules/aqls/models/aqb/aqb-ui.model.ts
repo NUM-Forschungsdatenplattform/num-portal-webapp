@@ -86,16 +86,12 @@ export class AqbUiModel {
     compositionReferenceId: number,
     archetypeReferenceId: number
   ): void {
-    if (clickEvent.item.rmType) {
-      const aqbWhere = new AqbWhereItemUiModel(
-        clickEvent.item,
-        compositionReferenceId,
-        archetypeReferenceId
-      )
-      this.where.children.push(aqbWhere)
-    } else {
-      console.log('Not possible')
-    }
+    const aqbWhere = new AqbWhereItemUiModel(
+      clickEvent.item,
+      compositionReferenceId,
+      archetypeReferenceId
+    )
+    this.where.children.push(aqbWhere)
   }
 
   private setReference(archetypeId: string): number {

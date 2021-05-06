@@ -35,6 +35,7 @@ import { IContainmentTreeNode } from '../../models/containment-tree-node.interfa
 import { COMPILE_ERROR_CONFIG } from './constants'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
+import { selectClickTestCases } from './tests/select-click-testcases'
 
 describe('DialogAqlBuilderComponent', () => {
   let component: DialogAqlBuilderComponent
@@ -44,6 +45,8 @@ describe('DialogAqlBuilderComponent', () => {
   @Component({ selector: 'num-aql-builder-templates', template: '' })
   class TemplatesStubComponent {
     @Input() templates: any
+    @Input() mode: any
+    @Input() selectDestination: any
 
     @Input() selectedTemplates: any
     @Output() selectedItem = selectClickEmitter
@@ -116,73 +119,26 @@ describe('DialogAqlBuilderComponent', () => {
       expect(aqlEditorService.getTemplates).toHaveBeenCalled()
     })
 
-    it('should call the aqb Model to handle the clickEvent of the template tree', () => {
-      jest.spyOn(component.aqbModel, 'handleElementSelect')
-      const selectedItem: IContainmentTreeNode = {
-        name: 'test_field1::value',
-        rmType: ReferenceModelType.String,
-        aqlPath: 'test/path1',
-        humanReadablePath: 'test/path1/human',
-        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
-        displayName: 'Test Field1 | value',
+    test.each(selectClickTestCases)(
+      'should call or not call the aqb Model to handle the clickEvent',
+      (testcase) => {
+        jest.spyOn(component.aqbModel, 'handleElementSelect')
+
+        component.dialogInput.mode = testcase.mode
+        component.aqbModel.selectDestination = testcase.selectDestination
+
+        selectClickEmitter.emit(testcase.clickEvent)
+        fixture.detectChanges()
+
+        if (testcase.result) {
+          expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(testcase.clickEvent)
+        } else {
+          expect(component.aqbModel.handleElementSelect).not.toHaveBeenCalledWith(
+            testcase.clickEvent
+          )
+        }
       }
-
-      const selectClickElement: IAqbSelectClick = {
-        item: selectedItem,
-        compositionId: 'comp1',
-        templateId: 'temp1',
-      }
-
-      selectClickEmitter.emit(selectClickElement)
-      fixture.detectChanges()
-      expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(selectClickElement)
-    })
-
-    it('should call the aqb Model to handle the clickEvent of the template tree', () => {
-      component.dialogInput.mode = AqlBuilderDialogMode.DataRetrieval
-      jest.spyOn(component.aqbModel, 'handleElementSelect')
-      const selectedItem: IContainmentTreeNode = {
-        name: 'test_field1::value',
-        aqlPath: 'test/path1',
-        humanReadablePath: 'test/path1/human',
-        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
-        displayName: 'Test Field1 | value',
-        archetypeId: 'comp1',
-      }
-
-      const selectClickElement: IAqbSelectClick = {
-        item: selectedItem,
-        compositionId: 'comp1',
-        templateId: 'temp1',
-      }
-
-      selectClickEmitter.emit(selectClickElement)
-      fixture.detectChanges()
-      expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(selectClickElement)
-    })
-
-    it('should not call the aqb Model to handle the clickEvent of the template tree if in data retrival mode', () => {
-      component.dialogInput.mode = AqlBuilderDialogMode.DataRetrieval
-      jest.spyOn(component.aqbModel, 'handleElementSelect')
-      const selectedItem: IContainmentTreeNode = {
-        name: 'test_field1::value',
-        rmType: ReferenceModelType.String,
-        aqlPath: 'test/path1',
-        humanReadablePath: 'test/path1/human',
-        parentArchetypeId: 'openEHR-EHR-OBSERVATION.test.v1',
-        displayName: 'Test Field1 | value',
-      }
-
-      const selectClickElement: IAqbSelectClick = {
-        item: selectedItem,
-        compositionId: 'comp1',
-        templateId: 'temp1',
-      }
-
-      selectClickEmitter.emit(selectClickElement)
-      fixture.detectChanges()
-      expect(component.aqbModel.handleElementSelect).not.toHaveBeenCalledWith(selectClickElement)
-    })
+    )
 
     it('should set the templates to the component once they are received', () => {
       templatesSubject$.next(mockAqbTemplates)
