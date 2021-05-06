@@ -48,6 +48,7 @@ import {
   faExclamationTriangle,
   faArrowDown,
   faExternalLinkSquareAlt,
+  faChartPie,
   faUndo,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -91,5 +92,6 @@ export const FONT_AWESOME_ICONS = [
   faArrowDown,
   faHospital,
   faExternalLinkSquareAlt,
+  faChartPie,
   faUndo,
 ]

@@ -115,6 +115,18 @@ export const routes: Routes = [
       ).then((m) => m.ContentEditorModule),
   },
   {
+    path: 'charts',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'charts',
+      roles: [AvailableRoles.SuperAdmin, AvailableRoles.OrganizationAdmin],
+    },
+    loadChildren: () =>
+      import(/* webpackChunkName: "Charts.Module" */ './modules/charts/charts.module').then(
+        (m) => m.ChartsModule
+      ),
+  },
+  {
     path: 'imprint',
     loadChildren: () =>
       import(/* webpackChunkName: "Imprint.Module" */ './modules/imprint/imprint.module').then(

@@ -49,3 +49,9 @@ Object.defineProperty(document.body.style, 'transform', {
     }
   },
 })
+
+Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+  value: () => {
+    return null
+  },
+})
