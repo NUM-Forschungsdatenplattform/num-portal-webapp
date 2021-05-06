@@ -36,6 +36,8 @@
   <num-aql-builder-template-tree
     *ngFor="let templateId of selectedTemplates.value"
     [templateId]="templateId"
+    [selectDestination]="selectDestination"
+    [mode]="mode"
     (selectedItem)="selectedItem.emit($event)"
   ></num-aql-builder-template-tree>
 </mat-accordion>

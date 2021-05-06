@@ -44,4 +44,11 @@ mat-panel-title {
 
 .mat-tree-node {
   user-select: none;
+
+  &__display-name {
+    &--disabled {
+      cursor: not-allowed;
+      color: var(--num-color--light-grey);
+    }
+  }
 }

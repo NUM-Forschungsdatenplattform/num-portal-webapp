@@ -19,6 +19,8 @@
     fxFlex="400px"
     [templates]="templates"
     [selectedTemplates]="selectedTemplates"
+    [mode]="dialogInput.mode"
+    [selectDestination]="aqbModel.selectDestination"
     (selectedItem)="handleItemSelect($event)"
   ></num-aql-builder-templates>
 
