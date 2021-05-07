@@ -17,23 +17,28 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
-import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
+import { compareIds, compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { OrganizationTableColumn } from '../../models/organization-table-column.interface'
 
 @Component({
   selector: 'num-organizations-table',
   templateUrl: './organizations-table.component.html',
   styleUrls: ['./organizations-table.component.scss'],
 })
-export class OrganizationsTableComponent implements OnInit, OnDestroy, AfterViewInit {
+export class OrganizationsTableComponent
+  extends SortableTable<IOrganization>
+  implements OnInit, OnDestroy, AfterViewInit {
   private subscriptions = new Subscription()
-  constructor(private organizationService: OrganizationService, private router: Router) {}
+  constructor(private organizationService: OrganizationService, private router: Router) {
+    super()
+  }
 
-  displayedColumns: string[] = ['icon', 'name', 'mailDomains']
-  dataSource = new MatTableDataSource()
+  displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -55,6 +60,7 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit(): void {
+    this.dataSource.sortData = (data, sort) => this.sortOrganizations(data, sort)
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
   }
@@ -69,5 +75,21 @@ export class OrganizationsTableComponent implements OnInit, OnDestroy, AfterView
 
   handleSelectClick(organization: IOrganization): void {
     this.router.navigate(['organizations', organization.id, 'editor'])
+  }
+
+  sortOrganizations(data: IOrganization[], sort: MatSort): IOrganization[] {
+    const isAsc = sort.direction === 'asc'
+    const newData = [...data]
+
+    switch (sort.active as OrganizationTableColumn) {
+      case 'name': {
+        return newData.sort((a, b) =>
+          compareLocaleStringValues(a.name || '', b.name || '', a.id, b.id, isAsc)
+        )
+      }
+      default: {
+        return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
+      }
+    }
   }
 }

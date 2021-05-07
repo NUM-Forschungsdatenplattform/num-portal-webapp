@@ -34,6 +34,7 @@ import { IProjectApi } from 'src/app/shared/models/project/project-api.interface
 import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectTableColumns } from 'src/app/shared/models/project/project-table.interface'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import {
   ARCHIVE_PROJECT_DIALOG_CONFIG,
@@ -51,7 +52,9 @@ import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } f
   templateUrl: './projects-table.component.html',
   styleUrls: ['./projects-table.component.scss'],
 })
-export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ProjectsTableComponent
+  extends SortableTable<IProjectApi>
+  implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(
     private router: Router,
@@ -60,10 +63,11 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
     private profileService: ProfileService,
     private toastMessageService: ToastMessageService,
     private translateService: TranslateService
-  ) {}
+  ) {
+    super()
+  }
 
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
-  dataSource = new MatTableDataSource<IProjectApi>()
 
   menuItems: IItemVisibility[] = []
   filterConfig: IProjectFilter
@@ -127,13 +131,6 @@ export class ProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   handleFilterChange(): void {
     this.projectService.setFilter(this.filterConfig)
-  }
-
-  handleSortChange(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.dataSource.sort.active = 'id'
-      this.dataSource.sort.direction = 'desc'
-    }
   }
 
   generateMenuForRole(): void {

@@ -35,19 +35,24 @@ import {
   compareLocaleStringValues,
   compareTimestamps,
 } from 'src/app/core/utils/sort.utils'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
   selector: 'num-unapproved-users-table',
   templateUrl: './unapproved-users-table.component.html',
   styleUrls: ['./unapproved-users-table.component.scss'],
 })
-export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class UnapprovedUsersTableComponent
+  extends SortableTable<IUser>
+  implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(
     private adminService: AdminService,
     private dialogService: DialogService,
     private profileService: ProfileService
-  ) {}
+  ) {
+    super()
+  }
 
   displayedColumns: UnapprovedUsersTableColumn[] = [
     'icon',
@@ -56,7 +61,6 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
     'email',
     'createdTimestamp',
   ]
-  dataSource = new MatTableDataSource<IUser>()
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -115,16 +119,6 @@ export class UnapprovedUsersTableComponent implements OnInit, AfterViewInit, OnD
     }
 
     this.dialogService.openDialog(dialogConfig)
-  }
-
-  handleSortChange(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.dataSource.sort.active = 'id'
-      this.dataSource.sort.direction = 'desc'
-    } else {
-      this.dataSource.sort.active = sort.active
-      this.dataSource.sort.direction = sort.direction
-    }
   }
 
   sortUsers(users: IUser[], sort: MatSort): IUser[] {
