@@ -65,10 +65,13 @@ export class ChartsComponent implements OnInit, OnDestroy {
   }
 
   getSofaScoreDistribution(): void {
-    this.sofaScoreDistributionSubscription.unsubscribe()
+    if (this.sofaScoreDistributionSubscription) {
+      this.sofaScoreDistributionSubscription.unsubscribe()
+    }
 
-    this.sofaScoreDistributionSubscription.add(
-      this.contentService.getSofaScoreDistribution(this.selectedClinic).subscribe(
+    this.sofaScoreDistributionSubscription = this.contentService
+      .getSofaScoreDistribution(this.selectedClinic)
+      .subscribe(
         (chartData) => {
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
@@ -84,7 +87,6 @@ export class ChartsComponent implements OnInit, OnDestroy {
           }
         }
       )
-    )
   }
 
   getSofaScoreAverage(): void {
