@@ -48,8 +48,10 @@ export class AqlBuilderTemplatesComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {}
 
   ngAfterViewChecked(): void {
-    setTimeout(() => {
-      this.isViewRendered = true
-    }, 0)
+    if (!this.isViewRendered) {
+      setTimeout(() => {
+        this.isViewRendered = true
+      }, 0)
+    }
   }
 }
