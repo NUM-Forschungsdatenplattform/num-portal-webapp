@@ -16,7 +16,7 @@
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ISofaScoreDistribution } from 'src/app/shared/models/charts/sofa-score-distribution.interface'
@@ -122,47 +122,9 @@ export class ContentService {
   }
 
   getClinics(): Observable<string[]> {
-    // return this.httpClient
-    //   .get<string[]>(`${this.baseUrl}/graph/clinic`)
-    //   .pipe(catchError(this.handleError))
-
-    const mockData = [
-      'Klinik1',
-      'Klinik2',
-      'Klinik3',
-      'Klinik4',
-      'Klinik5',
-      'Klinik6',
-      'Klinik7',
-      'Klinik8',
-      'Klinik9',
-      'Klinik10',
-      'Klinik11',
-      'Klinik12',
-      'Klinik13',
-      'Klinik14',
-      'Klinik15',
-      'Klinik16',
-      'Klinik17',
-      'Klinik18',
-      'Klinik19',
-      'Klinik20',
-      'Klinik21',
-      'Klinik22',
-      'Klinik23',
-      'Klinik24',
-      'Klinik25',
-      'Klinik26',
-      'Klinik27',
-      'Klinik28',
-      'Klinik29',
-      'Klinik30',
-      'Klinik31',
-      'Klinik32',
-      'Klinik33',
-      'Klinik34',
-    ]
-    return of(mockData)
+    return this.httpClient
+      .get<string[]>(`${this.baseUrl}/graph/clinic`)
+      .pipe(catchError(this.handleError))
   }
 
   getSofaScoreDistribution(clinic: string): Observable<ISofaScoreDistribution> {
