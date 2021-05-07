@@ -33,6 +33,7 @@ import {
   compareIds,
   compareLocaleStringValues,
   compareTimestamps,
+  sortUsers
 } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
@@ -87,7 +88,7 @@ export class UnapprovedUsersTableComponent
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sortData = (data, sort) => this.sortUsers(data, sort)
+    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
   }
@@ -118,6 +119,16 @@ export class UnapprovedUsersTableComponent
     }
 
     this.dialogService.openDialog(dialogConfig)
+  }
+
+  handleSortChange(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.sort.active = 'id'
+      this.dataSource.sort.direction = 'desc'
+    } else {
+      this.dataSource.sort.active = sort.active
+      this.dataSource.sort.direction = sort.direction
+    }
   }
 
   sortUsers(users: IUser[], sort: MatSort): IUser[] {
