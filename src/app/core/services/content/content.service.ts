@@ -123,95 +123,19 @@ export class ContentService {
   }
 
   getClinics(): Observable<string[]> {
-    // return this.httpClient
-    //   .get<string[]>(`${this.baseUrl}/graph/clinic`)
-    //   .pipe(catchError(this.handleError))
-    const mockData = [
-      'Klinik1',
-      'Klinik2',
-      'Klinik3',
-      'Klinik4',
-      'Klinik5',
-      'Klinik6',
-      'Klinik7',
-      'Klinik8',
-      'Klinik9',
-      'Klinik10',
-      'Klinik11',
-      'Klinik12',
-      'Klinik13',
-      'Klinik14',
-      'Klinik15',
-      'Klinik16',
-      'Klinik17',
-      'Klinik18',
-      'Klinik19',
-      'Klinik20',
-      'Klinik21',
-      'Klinik22',
-      'Klinik23',
-      'Klinik24',
-      'Klinik25',
-      'Klinik26',
-      'Klinik27',
-      'Klinik28',
-      'Klinik29',
-      'Klinik30',
-      'Klinik31',
-      'Klinik32',
-      'Klinik33',
-      'Klinik34',
-    ]
-    return of(mockData)
+    return this.httpClient
+      .get<string[]>(`${this.baseUrl}/graph/clinic`)
+      .pipe(catchError(this.handleError))
   }
   getSofaScoreDistribution(clinic: string): Observable<ISofaScoreDistribution> {
-    // return this.httpClient
-    //   .get<ISofaScoreDistribution>(`${this.baseUrl}/graph/clinic/${clinic}/sofaDistribution`)
-    //   .pipe(catchError(this.handleError))
-    const mockData = { '0-4': 3, '5-9': 1, '10-14': 6, '15-19': 2, '20-24': 2 }
-    return of(mockData)
+    return this.httpClient
+      .get<ISofaScoreDistribution>(`${this.baseUrl}/graph/clinic/${clinic}/sofaDistribution`)
+      .pipe(catchError(this.handleError))
   }
   getSofaScoreAverage(): Observable<ISofaScoreAverage> {
-    // return this.httpClient
-    //   .get<any>(`${this.baseUrl}/graph/clinic/sofaAverage`)
-    //   .pipe(catchError(this.handleError))
-    const mockData = {
-      Klinik1: 10,
-      Klinik2: 11,
-      Klinik3: 12,
-      Klinik4: 1,
-      Klinik5: 6,
-      Klinik6: 12,
-      Klinik7: 23,
-      Klinik8: 12,
-      Klinik9: 12,
-      Klinik10: 12,
-      Klinik11: 12,
-      Klinik12: 12,
-      Klinik13: 12,
-      Klinik14: 12,
-      Klinik15: 12,
-      Klinik16: 12,
-      Klinik17: 12,
-      Klinik18: 12,
-      Klinik19: 12,
-      Klinik20: 12,
-      Klinik21: 12,
-      Klinik22: 12,
-      Klinik23: 12,
-      Klinik24: 12,
-      Klinik25: 12,
-      Klinik26: 12,
-      Klinik27: 12,
-      Klinik28: 12,
-      Klinik29: 12,
-      Klinik30: 12,
-      Klinik31: 12,
-      Klinik32: 12,
-      Klinik33: 12,
-      Klinik34: 12,
-    }
-    return of(mockData)
+    return this.httpClient
+      .get<any>(`${this.baseUrl}/graph/clinic/sofaAverage`)
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
