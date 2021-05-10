@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+import { MatSort } from '@angular/material/sort'
+import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
+import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
+import { IUser } from 'src/app/shared/models/user/user.interface'
+
 /**
  * Tries to parse an ID string into a number value if string contains only number values or -1 if
  * the string could not be parsed.
@@ -117,4 +122,50 @@ export const compareTimestamps = (
     compareResult = compareIdsWithoutDirection(aId, bId)
   }
   return isAsc ? compareResult : -1 * compareResult
+}
+
+/**
+ * Sorts all user lists by the given sort directive. Can be used for all user lists.
+ *
+ * @param data - User array
+ * @param sort - Sort info from sortHeader
+ */
+export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
+  const isAsc = sort.direction === 'asc'
+  const newData = [...data]
+
+  switch (sort.active as ApprovedUsersTableColumn | UnapprovedUsersTableColumn) {
+    case 'createdTimestamp': {
+      return newData.sort((a, b) =>
+        compareTimestamps(a.createdTimestamp, b.createdTimestamp, a.id, b.id, isAsc)
+      )
+    }
+    case 'email': {
+      return newData.sort((a, b) => compareLocaleStringValues(a.email, b.email, a.id, b.id, isAsc))
+    }
+    case 'firstName': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(a.firstName, b.firstName, a.id, b.id, isAsc)
+      )
+    }
+    case 'lastName': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(a.lastName, b.lastName, a.id, b.id, isAsc)
+      )
+    }
+    case 'organization': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(
+          a.organization?.name || '',
+          b.organization?.name || '',
+          a.id,
+          b.id,
+          isAsc
+        )
+      )
+    }
+    default: {
+      return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
+    }
+  }
 }

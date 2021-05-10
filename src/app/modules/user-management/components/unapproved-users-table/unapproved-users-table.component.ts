@@ -29,11 +29,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { filter, withLatestFrom } from 'rxjs/operators'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
-import {
-  compareIds,
-  compareLocaleStringValues,
-  compareTimestamps,
-} from 'src/app/core/utils/sort.utils'
+import { sortUsers } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
@@ -87,7 +83,7 @@ export class UnapprovedUsersTableComponent
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sortData = (data, sort) => this.sortUsers(data, sort)
+    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
   }
@@ -118,36 +114,5 @@ export class UnapprovedUsersTableComponent
     }
 
     this.dialogService.openDialog(dialogConfig)
-  }
-
-  sortUsers(users: IUser[], sort: MatSort): IUser[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...users]
-
-    switch (sort.active as UnapprovedUsersTableColumn) {
-      case 'createdTimestamp': {
-        return newData.sort((a, b) =>
-          compareTimestamps(a.createdTimestamp, b.createdTimestamp, a.id, b.id, isAsc)
-        )
-      }
-      case 'email': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.email, b.email, a.id, b.id, isAsc)
-        )
-      }
-      case 'firstName': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.firstName, b.firstName, a.id, b.id, isAsc)
-        )
-      }
-      case 'lastName': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.lastName, b.lastName, a.id, b.id, isAsc)
-        )
-      }
-      default: {
-        return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
-      }
-    }
   }
 }

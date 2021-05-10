@@ -16,7 +16,7 @@
 
 import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockOrganization1, mockOrganization2 } from './organizations.mock'
+import { mockOrganization1, mockOrganization2, mockOrganization3 } from './organizations.mock'
 
 export const mockUser: IUser = {
   approved: false,
@@ -111,7 +111,7 @@ export const mockUserProfile6: IUser = {
   createdTimestamp: new Date('2021-01-01T00:00:00.000+01:00').getTime(),
   roles: ['SUPER_ADMIN'],
   approved: true,
-  organization: mockOrganization2,
+  organization: mockOrganization1,
 }
 
 export const mockUserProfile7: IUser = {
@@ -123,7 +123,7 @@ export const mockUserProfile7: IUser = {
   createdTimestamp: new Date('2021-02-01T00:00:00.000+01:00').getTime(),
   roles: ['SUPER_ADMIN'],
   approved: false,
-  organization: mockOrganization2,
+  organization: mockOrganization3,
 }
 
 export const mockUserProfile8: IUser = {

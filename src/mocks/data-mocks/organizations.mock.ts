@@ -28,6 +28,12 @@ export const mockOrganization2: IOrganization = {
   mailDomains: ['domain.com'],
 }
 
+export const mockOrganization3: IOrganization = {
+  id: 3,
+  name: 'name3',
+  mailDomains: ['domain3.com'],
+}
+
 export const mockOrganization4: IOrganization = {
   id: 4,
   name: 'A',
