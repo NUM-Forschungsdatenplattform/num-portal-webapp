@@ -231,7 +231,7 @@ describe('ContentService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockClinics))
       service.getClinics().subscribe()
 
-      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graphs/clinics')
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic')
     })
 
     it('should call the api - with error', async () => {
@@ -242,7 +242,7 @@ describe('ContentService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graphs/clinics')
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic')
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -254,7 +254,7 @@ describe('ContentService', () => {
       service.getSofaScoreDistribution('clinic1')
 
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graphs/clinic/clinic1/distribution'
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
       )
     })
 
@@ -267,7 +267,7 @@ describe('ContentService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graphs/clinic/clinic1/distribution'
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -279,9 +279,7 @@ describe('ContentService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockSofaAvg))
       service.getSofaScoreAverage().subscribe()
 
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graphs/clinics/sofaAverage'
-      )
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic/sofaAverage')
     })
 
     it('should call the api - with error', async () => {
@@ -292,9 +290,7 @@ describe('ContentService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graphs/clinics/sofaAverage'
-      )
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic/sofaAverage')
       expect(service.handleError).toHaveBeenCalled()
     })
   })

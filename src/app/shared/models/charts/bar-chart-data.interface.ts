@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-import { IBarChartData } from './bar-chart-data.interface'
-
-export interface IBarChart {
-  data: IBarChartData[]
-  yLabel: string
-  xLabel: string
-  color: string
+export interface IBarChartData {
+  name: string
+  value: number
 }

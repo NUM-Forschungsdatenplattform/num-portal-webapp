@@ -14,15 +14,17 @@
  limitations under the License.
 -->
 
-<div style="display: block">
-  <canvas
-    baseChart
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [legend]="barChartLegend"
-    [chartType]="barChartType"
-    data-test="charts__chart__canvas"
-  >
-  </canvas>
-</div>
+<ngx-charts-bar-vertical
+  [scheme]="colorScheme"
+  [results]="results"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [roundEdges]="roundEdges"
+>
+</ngx-charts-bar-vertical>

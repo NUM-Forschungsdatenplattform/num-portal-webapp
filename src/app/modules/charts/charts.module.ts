@@ -17,14 +17,14 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { ChartsComponent } from './components/charts/charts.component'
-import { ChartsModule as Ng2ChartsModule } from 'ng2-charts'
 import { ChartsRoutingModule } from './charts-routing.module'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { BarChartComponent } from './components/bar-chart/bar-chart.component'
+import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 @NgModule({
   declarations: [ChartsComponent, BarChartComponent],
-  imports: [CommonModule, ChartsRoutingModule, Ng2ChartsModule, SharedModule, LayoutModule],
+  imports: [CommonModule, ChartsRoutingModule, NgxChartsModule, SharedModule, LayoutModule],
 })
 export class ChartsModule {}

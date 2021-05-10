@@ -65,43 +65,49 @@ export class ChartsComponent implements OnInit, OnDestroy {
   }
 
   getSofaScoreDistribution(): void {
-    this.sofaScoreDistributionSubscription.unsubscribe()
+    if (this.sofaScoreDistributionSubscription) {
+      this.sofaScoreDistributionSubscription.unsubscribe()
+    }
 
-    this.sofaScoreDistributionSubscription.add(
-      this.contentService.getSofaScoreDistribution(this.selectedClinic).subscribe(
+    this.sofaScoreDistributionSubscription = this.contentService
+      .getSofaScoreDistribution(this.selectedClinic)
+      .subscribe(
         (chartData) => {
+          const result = Object.entries(chartData).map((entry) => {
+            return { name: entry[0], value: entry[1] }
+          })
+
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
-            data: Object.values(chartData),
-            labels: Object.keys(chartData),
+            data: result,
           }
         },
         (error) => {
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
             data: [],
-            labels: [],
           }
         }
       )
-    )
   }
 
   getSofaScoreAverage(): void {
     this.subscriptions.add(
       this.contentService.getSofaScoreAverage().subscribe(
         (chartData) => {
+          const result = Object.entries(chartData).map((entry) => {
+            return { name: entry[0], value: entry[1] }
+          })
+
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
-            data: Object.values(chartData),
-            labels: Object.keys(chartData),
+            data: result,
           }
         },
         (error) => {
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
             data: [],
-            labels: [],
           }
         }
       )

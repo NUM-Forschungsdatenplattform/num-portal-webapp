@@ -19,6 +19,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { ISofaScoreAverage } from 'src/app/shared/models/charts/sofa-score-average.interface'
 import { ISofaScoreDistribution } from 'src/app/shared/models/charts/sofa-score-distribution.interface'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
 import { IDashboardMetrics } from 'src/app/shared/models/content/dashboard-metrics.interface'
@@ -123,18 +124,17 @@ export class ContentService {
 
   getClinics(): Observable<string[]> {
     return this.httpClient
-      .get<string[]>(`${this.baseUrl}/graphs/clinics`)
+      .get<string[]>(`${this.baseUrl}/graph/clinic`)
       .pipe(catchError(this.handleError))
   }
-
   getSofaScoreDistribution(clinic: string): Observable<ISofaScoreDistribution> {
     return this.httpClient
-      .get<ISofaScoreDistribution>(`${this.baseUrl}/graphs/clinic/${clinic}/distribution`)
+      .get<ISofaScoreDistribution>(`${this.baseUrl}/graph/clinic/${clinic}/sofaDistribution`)
       .pipe(catchError(this.handleError))
   }
-  getSofaScoreAverage(): Observable<any> {
+  getSofaScoreAverage(): Observable<ISofaScoreAverage> {
     return this.httpClient
-      .get<any>(`${this.baseUrl}/graphs/clinics/sofaAverage`)
+      .get<any>(`${this.baseUrl}/graph/clinic/sofaAverage`)
       .pipe(catchError(this.handleError))
   }
 
