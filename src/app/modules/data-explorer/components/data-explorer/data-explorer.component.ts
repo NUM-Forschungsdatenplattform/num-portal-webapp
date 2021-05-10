@@ -284,7 +284,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
           downloadLink.setAttribute(
             'href',
             format === 'csv'
-              ? 'data:application/zip;charset=utf-8,' + encodeURIComponent(response)
+              ? URL.createObjectURL(new Blob([response], { type: 'application/zip' }))
               : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
           )
 

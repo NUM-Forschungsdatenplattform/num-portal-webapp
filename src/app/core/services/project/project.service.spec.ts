@@ -324,7 +324,7 @@ describe('ProjectService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `${baseUrl}/${id}/export?format=csv`,
         { query },
-        { responseType: 'text' as 'json' }
+        { responseType: 'blob' as 'json' }
       )
     })
   })
