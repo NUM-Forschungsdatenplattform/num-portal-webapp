@@ -1,7 +1,4 @@
-.chart-wrapper {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 20px;
+:host {
+  display: flex;
+  flex: 1 1 auto;
 }
