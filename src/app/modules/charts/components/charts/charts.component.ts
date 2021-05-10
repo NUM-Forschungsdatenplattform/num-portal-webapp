@@ -73,17 +73,19 @@ export class ChartsComponent implements OnInit, OnDestroy {
       .getSofaScoreDistribution(this.selectedClinic)
       .subscribe(
         (chartData) => {
+          const result = Object.entries(chartData).map((entry) => {
+            return { name: entry[0], value: entry[1] }
+          })
+
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
-            data: Object.values(chartData),
-            labels: Object.keys(chartData),
+            data: result,
           }
         },
         (error) => {
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
             data: [],
-            labels: [],
           }
         }
       )
@@ -93,17 +95,19 @@ export class ChartsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.contentService.getSofaScoreAverage().subscribe(
         (chartData) => {
+          const result = Object.entries(chartData).map((entry) => {
+            return { name: entry[0], value: entry[1] }
+          })
+
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
-            data: Object.values(chartData),
-            labels: Object.keys(chartData),
+            data: result,
           }
         },
         (error) => {
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
             data: [],
-            labels: [],
           }
         }
       )

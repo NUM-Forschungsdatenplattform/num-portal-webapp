@@ -16,8 +16,6 @@
 
 import { Component, Input, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js'
-import { Label } from 'ng2-charts'
 import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
 
 @Component({
@@ -39,53 +37,27 @@ export class BarChartComponent implements OnInit {
 
   constructor(private translateService: TranslateService) {}
 
-  barChartOptions: ChartOptions = {}
-  barChartData: ChartDataSets[] = [
-    {
-      data: [],
-    },
-  ]
-  barChartLabels: Label[] = []
-  barChartType: ChartType = 'bar'
-  barChartLegend = false
-  barChartColors: any
+  showXAxis = true
+  showYAxis = true
+  gradient = false
+  showLegend = false
+  showXAxisLabel = true
+  xAxisLabel: string
+  showYAxisLabel = true
+  yAxisLabel: string
+  roundEdges = false
+  colorScheme = {
+    domain: [],
+  }
+
+  results: any[] = []
 
   ngOnInit(): void {}
 
   handleData(): void {
-    this.barChartData = [
-      {
-        data: this.chart.data,
-        label: this.translateService.instant(this.chart.yLabel),
-        backgroundColor: this.chart.color,
-        hoverBackgroundColor: this.chart.color + '80',
-      },
-    ]
-    this.barChartLabels = this.chart.labels
-
-    this.barChartOptions = {
-      responsive: true,
-      scales: {
-        xAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: this.translateService.instant(this.chart.xLabel),
-            },
-          },
-        ],
-        yAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: this.translateService.instant(this.chart.yLabel),
-            },
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
-    }
+    this.xAxisLabel = this.translateService.instant(this.chart.xLabel)
+    this.yAxisLabel = this.translateService.instant(this.chart.yLabel)
+    this.colorScheme.domain = [this.chart.color]
+    this.results = this.chart.data
   }
 }

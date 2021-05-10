@@ -16,9 +16,10 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BarChartComponent } from './bar-chart.component'
-import { ChartsModule } from 'ng2-charts'
 import { TranslateModule } from '@ngx-translate/core'
 import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
+import { NgxChartsModule } from '@swimlane/ngx-charts'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 describe('BarChartComponent', () => {
   let component: BarChartComponent
@@ -27,7 +28,7 @@ describe('BarChartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BarChartComponent],
-      imports: [ChartsModule, TranslateModule.forRoot()],
+      imports: [NgxChartsModule, TranslateModule.forRoot(), BrowserAnimationsModule],
     }).compileComponents()
   })
 
@@ -43,8 +44,20 @@ describe('BarChartComponent', () => {
 
   describe('When new chart data arrives', () => {
     const mockBarChart: IBarChart = {
-      data: [1, 2, 3],
-      labels: ['test1', 'test2', 'test3'],
+      data: [
+        {
+          name: 'test1',
+          value: 1,
+        },
+        {
+          name: 'test2',
+          value: 2,
+        },
+        {
+          name: 'test3',
+          value: 3,
+        },
+      ],
       yLabel: 'yLabelTest',
       xLabel: 'xLabelTest',
       color: 'red',
@@ -54,9 +67,9 @@ describe('BarChartComponent', () => {
     })
 
     it('should set barChartData', () => {
-      expect(component.barChartData[0].data).toEqual(mockBarChart.data)
-      expect(component.barChartData[0].label).toEqual(mockBarChart.yLabel)
-      expect(component.barChartData[0].backgroundColor).toEqual(mockBarChart.color)
+      expect(component.results).toEqual(mockBarChart.data)
+      expect(component.yAxisLabel).toEqual(mockBarChart.yLabel)
+      expect(component.colorScheme.domain[0]).toEqual(mockBarChart.color)
     })
   })
 
@@ -67,7 +80,7 @@ describe('BarChartComponent', () => {
     })
 
     it('should set barChartData', () => {
-      expect(component.barChartData[0].data).toHaveLength(0)
+      expect(component.results).toHaveLength(0)
     })
   })
 })
