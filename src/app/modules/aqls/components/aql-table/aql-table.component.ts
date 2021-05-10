@@ -18,10 +18,9 @@ import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
-import { MatTableDataSource } from '@angular/material/table'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
-import { MatSort, Sort } from '@angular/material/sort'
+import { MatSort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
@@ -35,13 +34,14 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
   selector: 'num-aql-table',
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent implements AfterViewInit, OnDestroy {
+export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterViewInit, OnDestroy {
   user: IUserProfile
   displayedColumns: AqlTableColumns[] = [
     'menu',
@@ -51,7 +51,6 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     'isPublic',
     'organization',
   ]
-  dataSource = new MatTableDataSource<IAqlApi>()
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
@@ -75,6 +74,7 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
     private router: Router,
     private toast: ToastMessageService
   ) {
+    super()
     this.aqlService.filterConfigObservable$
       .pipe(take(1))
       .subscribe((config) => (this.filterConfig = config))
@@ -102,16 +102,6 @@ export class AqlTableComponent implements AfterViewInit, OnDestroy {
 
   handleSearchChange(): void {
     this.aqlService.setFilter(this.filterConfig)
-  }
-
-  handleSortChange(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.dataSource.sort.active = 'id'
-      this.dataSource.sort.direction = 'desc'
-    } else {
-      this.dataSource.sort.active = sort.active
-      this.dataSource.sort.direction = sort.direction
-    }
   }
 
   handleData(aqls: IAqlApi[]): void {
