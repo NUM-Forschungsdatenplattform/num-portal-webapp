@@ -28,4 +28,56 @@ export const mockOrganization2: IOrganization = {
   mailDomains: ['domain.com'],
 }
 
+export const mockOrganization4: IOrganization = {
+  id: 4,
+  name: 'A',
+  mailDomains: ['domain4.com'],
+}
+
+export const mockOrganization5: IOrganization = {
+  id: 5,
+  name: 'ö',
+  mailDomains: ['domain5.com'],
+}
+
+export const mockOrganization6: IOrganization = {
+  id: 6,
+  name: '$',
+  mailDomains: ['domain6.com'],
+}
+
+export const mockOrganization7: IOrganization = {
+  id: 7,
+  name: 'O',
+  mailDomains: ['domain7.com'],
+}
+
+export const mockOrganization8: IOrganization = {
+  id: 8,
+  name: '',
+  mailDomains: ['domain8.com'],
+}
+
+export const mockOrganization9: IOrganization = {
+  id: 9,
+  name: '1',
+  mailDomains: ['domain9.com'],
+}
+
+export const mockOrganization10: IOrganization = {
+  id: 10,
+  name: 'A',
+  mailDomains: ['domain10.com'],
+}
+
 export const mockOrganizations: IOrganization[] = [mockOrganization1, mockOrganization2]
+
+export const mockOrganizationsForSort: IOrganization[] = [
+  mockOrganization4,
+  mockOrganization5,
+  mockOrganization6,
+  mockOrganization7,
+  mockOrganization8,
+  mockOrganization9,
+  mockOrganization10,
+]
