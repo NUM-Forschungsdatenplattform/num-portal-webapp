@@ -17,8 +17,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
-import { MatTableDataSource } from '@angular/material/table'
-import { MatSort, Sort } from '@angular/material/sort'
+import { MatSort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
@@ -31,13 +30,16 @@ import { filter, withLatestFrom } from 'rxjs/operators'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { sortUsers } from 'src/app/core/utils/sort.utils'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
   selector: 'num-approved-users-table',
   templateUrl: './approved-users-table.component.html',
   styleUrls: ['./approved-users-table.component.scss'],
 })
-export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ApprovedUsersTableComponent
+  extends SortableTable<IUser>
+  implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
 
   availableRoles = Object.values(AvailableRoles)
@@ -46,7 +48,9 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
     private adminService: AdminService,
     private dialogService: DialogService,
     private profileService: ProfileService
-  ) {}
+  ) {
+    super()
+  }
 
   displayedColumns: ApprovedUsersTableColumn[] = [
     'icon',
@@ -56,7 +60,6 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
     'roles',
     'createdTimestamp',
   ]
-  dataSource = new MatTableDataSource<IUser>()
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -113,15 +116,5 @@ export class ApprovedUsersTableComponent implements OnInit, AfterViewInit, OnDes
     }
 
     this.dialogService.openDialog(dialogConfig)
-  }
-
-  handleSortChange(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.dataSource.sort.active = 'id'
-      this.dataSource.sort.direction = 'desc'
-    } else {
-      this.dataSource.sort.active = sort.active
-      this.dataSource.sort.direction = sort.direction
-    }
   }
 }
