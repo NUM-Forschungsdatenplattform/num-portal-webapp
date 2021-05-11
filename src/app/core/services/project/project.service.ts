@@ -164,7 +164,7 @@ export class ProjectService {
       .post<string>(
         `${this.baseUrl}/${id}/export?format=${format}`,
         { query },
-        { responseType: 'text' as 'json' }
+        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
       )
       .pipe(catchError(this.handleError))
   }
