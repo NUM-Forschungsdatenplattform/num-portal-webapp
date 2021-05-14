@@ -25,7 +25,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
+import { sortProjects } from 'src/app/core/utils/sort.utils'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
@@ -105,7 +105,7 @@ export class ProjectsTableComponent
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
 
-    this.dataSource.sortData = (data, matSort) => this.sortData(data, matSort)
+    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort, this.translateService)
 
     this.dataSource.sort = this.sort
   }
@@ -200,55 +200,5 @@ export class ProjectsTableComponent
           .subscribe()
       }
     })
-  }
-
-  sortData(data: IProjectApi[], sort: MatSort): IProjectApi[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...data]
-
-    switch (sort.active as ProjectTableColumns) {
-      case 'author': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            `${a.coordinator?.firstName || ''} ${a.coordinator?.lastName || ''}`,
-            `${b.coordinator?.firstName} ${b.coordinator?.lastName}`,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'name': {
-        return newData.sort((a, b) => compareLocaleStringValues(a.name, b.name, a.id, b.id, isAsc))
-      }
-      case 'organization': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            `${a.coordinator?.organization?.name || ''}`,
-            `${b.coordinator?.organization?.name || ''}`,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'status': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            this.translateService.instant(`PROJECT.STATUS.${a.status}`),
-            this.translateService.instant(`PROJECT.STATUS.${b.status}`),
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      default: {
-        return newData.sort((a, b) => {
-          const compareResult = a.id - b.id
-          return isAsc ? compareResult : compareResult * -1
-        })
-      }
-    }
   }
 }
