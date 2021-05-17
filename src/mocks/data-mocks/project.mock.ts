@@ -146,7 +146,7 @@ export const mockProject6: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 6',
   status: ProjectStatus.Pending,
-  createDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(new Date(2000, 2, 1)),
   modifiedDate: DateHelperService.getDateString(new Date()),
 }
 
@@ -390,7 +390,7 @@ export const mockProject20: IProjectApi = {
   description: 'Test project for testing numeric sorting',
   templates: [],
   cohortId: 20,
-  coordinator: mockUserSuperAdmin,
+  coordinator: undefined,
   researchers: [
     {
       userId: 'abc-1',
@@ -416,7 +416,7 @@ export const mockProject21: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 21',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(new Date(2036, 3, 6)),
   modifiedDate: DateHelperService.getDateString(new Date()),
 }
 

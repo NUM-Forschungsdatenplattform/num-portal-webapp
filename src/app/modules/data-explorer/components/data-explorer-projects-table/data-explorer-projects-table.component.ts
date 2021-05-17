@@ -21,22 +21,29 @@ import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { sortProjects } from 'src/app/core/utils/sort.utils'
+import { DataExplorerProjectTableColumns } from 'src/app/shared/models/project/data-explorer-project-table.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
   selector: 'num-data-explorer-projects-table',
   templateUrl: './data-explorer-projects-table.component.html',
   styleUrls: ['./data-explorer-projects-table.component.scss'],
 })
-export class DataExplorerProjectsTableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DataExplorerProjectsTableComponent
+  extends SortableTable<IProjectApi>
+  implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(private projectService: ProjectService, private router: Router) {
+    super()
+  }
 
-  displayedColumns: string[] = [
+  displayedColumns: DataExplorerProjectTableColumns[] = [
     'icon',
-    'title',
-    'coordinatorName',
-    'coordinatorOrganization',
+    'name',
+    'author',
+    'organization',
     'createDate',
   ]
   dataSource = new MatTableDataSource()
@@ -62,6 +69,7 @@ export class DataExplorerProjectsTableComponent implements OnInit, AfterViewInit
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
+    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort)
     this.dataSource.sort = this.sort
   }
 

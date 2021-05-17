@@ -15,6 +15,10 @@
  */
 
 import { MatSort } from '@angular/material/sort'
+import { TranslateService } from '@ngx-translate/core'
+import { DataExplorerProjectTableColumns } from 'src/app/shared/models/project/data-explorer-project-table.interface'
+import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { ProjectTableColumns } from 'src/app/shared/models/project/project-table.interface'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -166,6 +170,79 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
     }
     default: {
       return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
+    }
+  }
+}
+
+/**
+ * Sorts all project related lists by the given sort directive. Can be used for all project lists.
+ * TranslationService is optional
+ *
+ * @param data - Project array
+ * @param sort - Sort info from sortHeader
+ * @param translateService - To translate certain values
+ */
+export const sortProjects = (
+  data: IProjectApi[],
+  sort: MatSort,
+  translateService?: TranslateService
+): IProjectApi[] => {
+  const isAsc = sort.direction === 'asc'
+  const newData = [...data]
+
+  switch (sort.active as ProjectTableColumns | DataExplorerProjectTableColumns) {
+    case 'author': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(
+          `${a.coordinator?.firstName || ''} ${a.coordinator?.lastName || ''}`,
+          `${b.coordinator?.firstName || ''} ${b.coordinator?.lastName || ''}`,
+          a.id,
+          b.id,
+          isAsc
+        )
+      )
+    }
+    case 'name': {
+      return newData.sort((a, b) => compareLocaleStringValues(a.name, b.name, a.id, b.id, isAsc))
+    }
+    case 'organization': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(
+          `${a.coordinator?.organization?.name || ''}`,
+          `${b.coordinator?.organization?.name || ''}`,
+          a.id,
+          b.id,
+          isAsc
+        )
+      )
+    }
+    case 'status': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(
+          translateService?.instant(`PROJECT.STATUS.${a.status}`) || a.status,
+          translateService?.instant(`PROJECT.STATUS.${b.status}`) || b.status,
+          a.id,
+          b.id,
+          isAsc
+        )
+      )
+    }
+    case 'createDate': {
+      return newData.sort((a, b) =>
+        compareLocaleStringValues(
+          `${a.createDate || ''}`,
+          `${b.createDate || ''}`,
+          a.id,
+          b.id,
+          isAsc
+        )
+      )
+    }
+    default: {
+      return newData.sort((a, b) => {
+        const compareResult = a.id - b.id
+        return isAsc ? compareResult : compareResult * -1
+      })
     }
   }
 }
