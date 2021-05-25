@@ -26,6 +26,7 @@ describe('AqbUiModel', () => {
     item: {
       archetypeId: 'testArchetypeId1',
       displayName: 'test1',
+      name: 'test1',
     },
   }
 
@@ -34,7 +35,18 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId2',
     item: {
       displayName: 'test2',
+      name: 'test2',
       parentArchetypeId: 'testArchetypeId2',
+    },
+  }
+
+  const clickEvent3: IAqbSelectClick = {
+    compositionId: 'testCompId3',
+    templateId: 'testTemplId3',
+    item: {
+      displayName: 'test3',
+      name: 'test3',
+      parentArchetypeId: 'testCompId3',
     },
   }
 
@@ -89,7 +101,7 @@ describe('AqbUiModel', () => {
       // Prefill
       model.handleElementSelect(clickEvent1)
       model.handleElementSelect(clickEvent2)
-      model.handleDeletionByComposition(['testCompId1'])
+      model.handleDeletionByCompositionReferenceIds([1])
     })
     it('should delete the composition in the contains', () => {
       expect(model.contains.deleteCompositions).toHaveBeenLastCalledWith([1])
@@ -107,12 +119,29 @@ describe('AqbUiModel', () => {
       // Prefill
       model.handleElementSelect(clickEvent1)
       model.handleElementSelect(clickEvent2)
-      model.handleDeletionByArchetype(['testArchetypeId1', 'notExistingOne'])
+      model.handleDeletionByArchetypeReferenceIds([2, /* not existing -> */ 123456789])
     })
 
     it('should remove the items in the select clause corresponding to the archetypeReferenceId', () => {
       expect(model.select.length).toEqual(1)
       expect(model.select[0].compositionReferenceId).toEqual(3)
+    })
+  })
+
+  describe('When the model gets converted to the api model', () => {
+    beforeEach(() => {
+      jest.spyOn(model.contains, 'deleteCompositions')
+      // Prefill
+      model.handleElementSelect(clickEvent3)
+      model.handleElementSelect(clickEvent3)
+      model.handleElementSelect(clickEvent3)
+    })
+
+    it('should convert with unique aliases', () => {
+      const convertedModel = model.convertToApi()
+      expect(convertedModel.select.statement[0].name).toEqual('test3')
+      expect(convertedModel.select.statement[1].name).toEqual('test3_2')
+      expect(convertedModel.select.statement[2].name).toEqual('test3_3')
     })
   })
 })

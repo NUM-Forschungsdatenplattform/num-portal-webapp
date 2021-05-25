@@ -19,7 +19,6 @@ import { IAqbSelectFieldNode } from 'src/app/shared/models/archetype-query-build
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IContainmentTreeNode } from '../containment-tree-node.interface'
-import { IdHelperService } from 'src/app/core/helper/id-helper.service'
 
 export class AqbSelectItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
@@ -56,7 +55,11 @@ export class AqbSelectItemUiModel {
       _type: AqbNodeType.SelectField,
       aqlPath: this.aqlPath,
       containmentId: this.archetypeReferenceId,
-      name: this.givenName.length ? this.givenName : 'alias_' + IdHelperService.getSimpleId(),
+      name: this.givenName.length
+        ? this.givenName
+        : this.isComposition
+        ? this.templateId
+        : this.name,
     }
   }
 }

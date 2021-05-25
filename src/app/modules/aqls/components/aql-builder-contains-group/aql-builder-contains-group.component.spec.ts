@@ -122,30 +122,31 @@ describe('AqlBuilderContainsGroupComponent', () => {
     it('should emit the composition id if its a composition', () => {
       const compId = 'testCompositionId'
       const templId = 'testTemplateId'
-      component.group = new AqbContainsCompositionUiModel(templId, compId, 1)
-      jest.spyOn(component.deleteComposition, 'emit')
+      const compReferenceId = 1
+      component.group = new AqbContainsCompositionUiModel(templId, compId, compReferenceId)
+      jest.spyOn(component.deleteCompositionByReferenceId, 'emit')
       component.deleteSelf()
-      expect(component.deleteComposition.emit).toHaveBeenCalledWith(compId)
+      expect(component.deleteCompositionByReferenceId.emit).toHaveBeenCalledWith(compReferenceId)
     })
   })
 
   describe('When a child item is supposed to be deleted from the group', () => {
     beforeEach(() => {
-      jest.spyOn(component.deleteArchetypes, 'emit')
+      jest.spyOn(component.deleteArchetypesByReferenceIds, 'emit')
       component.group = new AqbContainsGroupUiModel()
       const child1 = new AqbContainsItemUiModel('testComp1', 1, 'testArchetypeId1', 2)
       const child2 = new AqbContainsItemUiModel('testComp2', 3, 'testArchetypeId2', 4)
       component.group.children = [child1, child2]
 
-      component.deleteChildItem(1, 'testArchetypeId1')
+      component.deleteChildItem(1, 4)
     })
 
     it('should delete the item from the group based on its index', () => {
       expect(component.group.children.length).toEqual(1)
     })
 
-    it('should emit the archetypeId to the parent', () => {
-      expect(component.deleteArchetypes.emit).toHaveBeenCalledWith(['testArchetypeId1'])
+    it('should emit the archetypeReferenceId to the parent', () => {
+      expect(component.deleteArchetypesByReferenceIds.emit).toHaveBeenCalledWith([4])
     })
   })
 })

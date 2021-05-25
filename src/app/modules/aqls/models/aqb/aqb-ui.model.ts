@@ -16,6 +16,8 @@
 
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IAqbSelectClause } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-clause.interface'
+import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
+import { IContainmentTreeNode } from '../containment-tree-node.interface'
 import { AqbContainsUiModel } from './aqb-contains-ui.model'
 import { IAqbSelectClick } from './aqb-select-click.interface'
 import { AqbSelectDestination } from './aqb-select-destination.enum'
@@ -32,15 +34,28 @@ export class AqbUiModel {
   ehr: any
   select: AqbSelectItemUiModel[] = []
   contains = new AqbContainsUiModel()
-  where = new AqbWhereGroupUiModel()
+  /** First group for template restriction, second for user-generated conditions */
+  where = new AqbWhereGroupUiModel(true)
   orderBy: any
 
   constructor() {}
 
   handleElementSelect(clickEvent: IAqbSelectClick): void {
     const archetypeId = clickEvent.item.archetypeId || clickEvent.item.parentArchetypeId
-    const compositionReferenceId = this.setReference(clickEvent.compositionId)
-    const archetypeReferenceId = this.setReference(archetypeId)
+    const compositionReferenceKey = clickEvent.templateId + '--' + clickEvent.compositionId
+    const archetypeReferenceKey = clickEvent.templateId + '--' + archetypeId
+    const isExistingComposition = !!this.references.get(compositionReferenceKey)
+
+    const compositionReferenceId = this.setReference(compositionReferenceKey)
+    const archetypeReferenceId = this.setReference(archetypeReferenceKey)
+
+    if (!isExistingComposition) {
+      this.addTemplateRestriction(
+        compositionReferenceId,
+        clickEvent.compositionId,
+        clickEvent.templateId
+      )
+    }
 
     if (this.selectDestination === AqbSelectDestination.Select) {
       const isComposition = clickEvent.compositionId === clickEvent.item.archetypeId
@@ -52,7 +67,13 @@ export class AqbUiModel {
         clickEvent.templateId
       )
     } else {
-      this.pushToWhereClause(clickEvent, compositionReferenceId, archetypeReferenceId)
+      const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
+      this.pushToWhereClause(
+        userGeneratedWhereClause,
+        clickEvent,
+        compositionReferenceId,
+        archetypeReferenceId
+      )
     }
 
     this.contains.setContains(
@@ -64,7 +85,32 @@ export class AqbUiModel {
     )
   }
 
-  pushToSelectClause(
+  private addTemplateRestriction(
+    compositionReferenceId: number,
+    compositionId: string,
+    templateId: string
+  ): void {
+    const templateRestrictionItem: IContainmentTreeNode = {
+      displayName: 'Template ID',
+      name: 'Template ID',
+      aqlPath: '/archetype_details/template_id/value',
+      archetypeId: compositionId,
+      rmType: ReferenceModelType.String,
+    }
+
+    const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
+    const aqbWhere = new AqbWhereItemUiModel(
+      templateRestrictionItem,
+      compositionReferenceId,
+      compositionReferenceId
+    )
+
+    aqbWhere.value = templateId
+
+    templateRestrictionWhereClause.children.push(aqbWhere)
+  }
+
+  private pushToSelectClause(
     clickEvent: IAqbSelectClick,
     compositionReferenceId: number,
     archetypeReferenceId: number,
@@ -81,7 +127,8 @@ export class AqbUiModel {
     this.select.push(aqbSelect)
   }
 
-  pushToWhereClause(
+  private pushToWhereClause(
+    whereGroup: AqbWhereGroupUiModel,
     clickEvent: IAqbSelectClick,
     compositionReferenceId: number,
     archetypeReferenceId: number
@@ -91,7 +138,8 @@ export class AqbUiModel {
       compositionReferenceId,
       archetypeReferenceId
     )
-    this.where.children.push(aqbWhere)
+
+    whereGroup.children.push(aqbWhere)
   }
 
   private setReference(archetypeId: string): number {
@@ -105,28 +153,39 @@ export class AqbUiModel {
     return this.referenceCounter
   }
 
-  handleDeletionByComposition(compositionIds: string[]): void {
-    const referenceIds: number[] = []
-    compositionIds.forEach((compositionId) => {
-      referenceIds.push(this.references.get(compositionId))
-      this.deleteReference(compositionId)
-    })
+  handleDeletionByCompositionReferenceIds(compositionReferenceIds: number[]): void {
+    this.deleteReferencesByIds(compositionReferenceIds)
 
-    this.select = this.select.filter((item) => !referenceIds.includes(item.compositionReferenceId))
-    this.where.handleDeletionByComposition(referenceIds)
+    this.select = this.select.filter(
+      (item) => !compositionReferenceIds.includes(item.compositionReferenceId)
+    )
 
-    this.contains.deleteCompositions(referenceIds)
+    const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
+    const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
+
+    templateRestrictionWhereClause?.handleDeletionByComposition(compositionReferenceIds)
+    userGeneratedWhereClause?.handleDeletionByComposition(compositionReferenceIds)
+
+    this.contains.deleteCompositions(compositionReferenceIds)
   }
 
-  handleDeletionByArchetype(archetypeIds: string[]): void {
-    const referenceIds: number[] = []
-    archetypeIds.forEach((archetypeId) => {
-      referenceIds.push(this.references.get(archetypeId))
-      this.deleteReference(archetypeId)
-    })
+  handleDeletionByArchetypeReferenceIds(archetypeReferenceIds: number[]): void {
+    this.deleteReferencesByIds(archetypeReferenceIds)
 
-    this.select = this.select.filter((item) => !referenceIds.includes(item.archetypeReferenceId))
-    this.where.handleDeletionByArchetype(referenceIds)
+    this.select = this.select.filter(
+      (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId)
+    )
+
+    const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
+    userGeneratedWhereClause?.handleDeletionByArchetype(archetypeReferenceIds)
+  }
+
+  private deleteReferencesByIds(archetypeReferenceIds: number[]): void {
+    this.references.forEach((mappedReferenceId, archetype) => {
+      if (archetypeReferenceIds.includes(mappedReferenceId)) {
+        this.deleteReference(archetype)
+      }
+    })
   }
 
   private deleteReference(archetypeId: string): void {
@@ -134,8 +193,20 @@ export class AqbUiModel {
   }
 
   convertToApi(): IArchetypeQueryBuilder {
+    const uniqueSelectAliasCounter = new Map<string, number>()
     const select: IAqbSelectClause = {
-      statement: this.select.map((selectItem) => selectItem.convertToApi()),
+      statement: this.select.map((selectItem) => {
+        const convertedSelectItem = selectItem.convertToApi()
+        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.name)
+
+        if (aliasCount++) {
+          uniqueSelectAliasCounter.set(convertedSelectItem.name, aliasCount)
+          convertedSelectItem.name = `${convertedSelectItem.name}_${aliasCount}`
+        } else {
+          uniqueSelectAliasCounter.set(convertedSelectItem.name, 1)
+        }
+        return convertedSelectItem
+      }),
     }
 
     const contains = this.contains.convertToApi()
