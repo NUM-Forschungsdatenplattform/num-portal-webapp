@@ -63,10 +63,12 @@ describe('AqlBuilderContainsItemComponent', () => {
   })
 
   describe('When the item is supposed to be deleted', () => {
-    it('should emit its archetypeId to its parent', () => {
-      jest.spyOn(component.deleteItem, 'emit')
+    it('should emit its archetypeReferenceId to its parent', () => {
+      jest.spyOn(component.deleteItemByArchetypeReferenceId, 'emit')
       component.deleteSelf()
-      expect(component.deleteItem.emit).toHaveBeenCalledWith(archetypeId)
+      expect(component.deleteItemByArchetypeReferenceId.emit).toHaveBeenCalledWith(
+        archetypeReferenceId
+      )
     })
   })
 })

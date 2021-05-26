@@ -49,8 +49,8 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
   @Input() index: number
 
   @Output() delete = new EventEmitter<number>()
-  @Output() deleteArchetypes = new EventEmitter<string[]>()
-  @Output() deleteComposition = new EventEmitter<string>()
+  @Output() deleteArchetypesByReferenceIds = new EventEmitter<number[]>()
+  @Output() deleteCompositionByReferenceId = new EventEmitter<number>()
 
   enumerateGroupsDebounced = debounce(() => this.enumerateGroups(), 100, {
     leading: true,
@@ -99,19 +99,19 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
 
   deleteChildGroup(index: number): void {
     const deletedGroup = this.group.children.splice(index, 1)[0] as AqbContainsGroupUiModel
-    const archetypeIds = deletedGroup.collectArchetypeReferences([])
-    this.deleteArchetypes.emit(archetypeIds)
+    const archetypeReferenceIds = deletedGroup.collectArchetypeReferenceIds([])
+    this.deleteArchetypesByReferenceIds.emit(archetypeReferenceIds)
     this.enumerateGroupsDebounced()
   }
 
-  deleteChildItem(index: number, archetypeId: string): void {
+  deleteChildItem(index: number, archetypeReferenceId: number): void {
     this.group.children.splice(index, 1)
-    this.deleteArchetypes.emit([archetypeId])
+    this.deleteArchetypesByReferenceIds.emit([archetypeReferenceId])
   }
 
   deleteSelf(): void {
     if (this.group instanceof AqbContainsCompositionUiModel) {
-      this.deleteComposition.emit(this.group.compositionId)
+      this.deleteCompositionByReferenceId.emit(this.group.compositionReferenceId)
     } else {
       this.delete.emit(this.index)
     }
