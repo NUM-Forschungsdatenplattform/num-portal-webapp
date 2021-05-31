@@ -32,16 +32,18 @@ describe('AqlBuilderContainsComponent', () => {
     @Input() group: any
     @Input() parentGroupIndex: any
     @Input() index: any
-    @Output() deleteArchetypes = deleteArchetypeEmitter
-    @Output() deleteComposition = deleteCompositionEmitter
+    @Output() deleteArchetypesByReferenceIds = deleteArchetypeEmitter
+    @Output() deleteCompositionByReferenceId = deleteCompositionEmitter
   }
 
   const mockComposition1 = {
     compositionId: 'test1',
+    compositionReferenceId: 1,
   } as AqbContainsCompositionUiModel
 
   const mockComposition2 = {
     compositionId: 'test2',
+    compositionReferenceId: 2,
   } as AqbContainsCompositionUiModel
 
   const mockCompositions = [mockComposition1, mockComposition2]
@@ -66,11 +68,11 @@ describe('AqlBuilderContainsComponent', () => {
 
   describe('When a composition is supposed to be deleted on behalf of the child group', () => {
     beforeEach(() => {
-      jest.spyOn(component.aqbModel, 'handleDeletionByComposition').mockImplementation()
-      deleteCompositionEmitter.emit('test1')
+      jest.spyOn(component.aqbModel, 'handleDeletionByCompositionReferenceIds').mockImplementation()
+      deleteCompositionEmitter.emit(1)
     })
     it('should call the aqbModel to handle the deletion by composition', () => {
-      expect(component.aqbModel.handleDeletionByComposition).toHaveBeenCalledWith(['test1'])
+      expect(component.aqbModel.handleDeletionByCompositionReferenceIds).toHaveBeenCalledWith([1])
     })
 
     it('should filter the compositions to keep the other compositions and delete the desired composition', () => {
@@ -81,11 +83,13 @@ describe('AqlBuilderContainsComponent', () => {
 
   describe('When an archetype root element is supposed to be deleted on behalf of the item', () => {
     beforeEach(() => {
-      jest.spyOn(component.aqbModel, 'handleDeletionByArchetype').mockImplementation()
+      jest.spyOn(component.aqbModel, 'handleDeletionByArchetypeReferenceIds').mockImplementation()
       deleteArchetypeEmitter.emit(['test1'])
     })
     it('should call the aqbModel to handle the deletion by archetype', () => {
-      expect(component.aqbModel.handleDeletionByArchetype).toHaveBeenCalledWith(['test1'])
+      expect(component.aqbModel.handleDeletionByArchetypeReferenceIds).toHaveBeenCalledWith([
+        'test1',
+      ])
     })
   })
 })

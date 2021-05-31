@@ -18,13 +18,23 @@
   <h1>Icons</h1>
   <div class="icon-list" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="flex-start">
     <section
-      *ngFor="let icon of icons"
+      *ngFor="let icon of solidIcons"
       fxFlex="0 1 calc(33.3% - 32px)"
       fxFlex.lt-md="0 1 calc(50% - 32px)"
       fxFlex.lt-sm="100%"
     >
-      <span class="mat-body-strong">{{ icon }}</span>
+      <span class="mat-body-strong">{{ 'Solid: ' + icon }}</span>
       <fa-icon class="num-fc--a" [icon]="icon" size="lg" [fixedWidth]="true"></fa-icon>
+    </section>
+
+    <section
+      *ngFor="let icon of regularIcons"
+      fxFlex="0 1 calc(33.3% - 32px)"
+      fxFlex.lt-md="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%"
+    >
+      <span class="mat-body-strong">{{ 'Regular: ' + icon }}</span>
+      <fa-icon class="num-fc--a" [icon]="['far', icon]" size="lg" [fixedWidth]="true"></fa-icon>
     </section>
   </div>
 </main>

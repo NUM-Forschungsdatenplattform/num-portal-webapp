@@ -30,7 +30,14 @@ export class AqbWhereGroupUiModel {
   children: PossibleChildren[] = []
   indexInGroup: number | null = null
 
-  constructor() {}
+  constructor(baseGroup = false) {
+    if (baseGroup) {
+      const templateRestrictionGroup = new AqbWhereGroupUiModel()
+      templateRestrictionGroup.logicalOperator = LogicalOperator.Or
+      this.children.push(templateRestrictionGroup)
+      this.children.push(new AqbWhereGroupUiModel())
+    }
+  }
 
   private getOperatorNode(values: PossibleWheres[]): IAqbLogicalOperatorNode<PossibleWheres> {
     return {
@@ -42,11 +49,11 @@ export class AqbWhereGroupUiModel {
 
   private convertToBinaryTree(
     children: PossibleWheres[]
-  ): { result: IAqbLogicalOperatorNode<PossibleWheres>; rr: any } {
+  ): { result: IAqbLogicalOperatorNode<PossibleWheres>; _: any } {
     const initialAndResultingValue = this.getOperatorNode([])
 
     const inputLength = children.length
-    const rr = children.reduce((acc: IAqbLogicalOperatorNode<PossibleWheres>, current, index) => {
+    const _ = children.reduce((acc: IAqbLogicalOperatorNode<PossibleWheres>, current, index) => {
       if (acc.values.length >= 1 && index !== inputLength - 1) {
         const node = this.getOperatorNode([current])
         acc.values.push(node)
@@ -59,7 +66,7 @@ export class AqbWhereGroupUiModel {
 
     return {
       result: initialAndResultingValue,
-      rr,
+      _,
     }
   }
 

@@ -30,11 +30,11 @@
 
 <div class="num-aqb-box" fxLayout="column" fxLayoutGap="20px">
   <num-aql-builder-where-group
-    *ngIf="aqbModel.where.children.length"
+    *ngIf="$any(aqbModel.where.children[1])?.children.length"
     role="list"
     class="group"
     [dialogMode]="dialogMode"
-    [group]="aqbModel.where"
+    [group]="aqbModel.where.children[1]"
     [parentGroupIndex]="null"
     data-test="aqb__where__group"
   ></num-aql-builder-where-group>
