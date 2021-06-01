@@ -363,7 +363,8 @@
     "STUDY_COORDINATOR": "Project lead",
     "SUPER_ADMIN": "Super admin",
     "STUDY_APPROVER": "Project approver",
-    "CONTENT_ADMIN": "Content admin"
+    "CONTENT_ADMIN": "Content admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",

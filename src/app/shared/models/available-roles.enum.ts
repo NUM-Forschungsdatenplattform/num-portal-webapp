@@ -22,4 +22,5 @@ export enum AvailableRoles {
   OrganizationAdmin = 'ORGANIZATION_ADMIN',
   SuperAdmin = 'SUPER_ADMIN',
   StudyApprover = 'STUDY_APPROVER',
+  Manager = 'MANAGER',
 }

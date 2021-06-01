@@ -364,7 +364,8 @@
     "STUDY_COORDINATOR": "Projektleiter",
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
-    "CONTENT_ADMIN": "Content-Admin"
+    "CONTENT_ADMIN": "Content-Admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",
