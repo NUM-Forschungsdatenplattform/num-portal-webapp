@@ -47,6 +47,7 @@
     "AQLS": "AQL Queries",
     "AQLS_OVERVIEW": "AQL Queries Overview",
     "AQLS_EDITOR": "AQL Query Editor",
+    "AQLS_CATEGORIES_OVERVIEW": "AQL Categories",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -456,5 +457,8 @@
     "HOUR_SHORT": "Hr.",
     "MINUTE_SHORT": "Min.",
     "SECOND_SHORT": "Sec."
+  },
+  "AQL_CATEGORIES": {
+    "TABLE_TITLE": "Available AQL Categories"
   }
 }

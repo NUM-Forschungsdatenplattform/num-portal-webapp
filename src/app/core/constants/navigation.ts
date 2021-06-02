@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
@@ -88,6 +89,12 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'aqls/new/editor',
         id: 'editor',
         translationKey: 'NAVIGATION.AQLS_EDITOR',
+      },
+      {
+        routeTo: 'aqls/categories',
+        id: 'aql-categories',
+        translationKey: 'NAVIGATION.AQLS_CATEGORIES_OVERVIEW',
+        roles: [AvailableRoles.StudyCoordinator],
       },
     ],
   },

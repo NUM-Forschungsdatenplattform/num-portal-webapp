@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
-
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
+/**
+ * AQL category data model from backend API
+ */
+export interface IAqlCategoryApi {
+  /**
+   * Backend id for this category
+   */
+  id: number
+  /**
+   * Name strings for the category for each language. Must at least provide the name in German
+   * ('de') and English ('en') language. Additional languages can be addded dynamically later.
+   */
+  name: {
+    de: string
+    en: string
+    [langKey: string]: string
+  }
 }
