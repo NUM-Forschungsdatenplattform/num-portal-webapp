@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 ### Added
 
+- Role "Manager" that takes over responsibilities from role "Project Lead" for managing AQLs and Phenotypes ([#224])
+
+---
+
+## [Released]
+
+## [1.2.0] - 2021-06-01
+
+### Added
+
 - Unapproved / Approved Users table: Filter by organizations or all users ([#208])
 - Data Explorer: All unselectable Composition parts are shown faded out in customize AQL view ([#213])
 - CHANGELOG.md ([#223])
@@ -37,10 +47,6 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 ### Security
 
 - Fix NPM security audit issues ([#209])
-
----
-
-## [Released]
 
 ## [1.1.0] - 2021-04-29
 
@@ -203,8 +209,9 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [Semantic Versioning]: https://semver.org/
 
 <!-- Versions -->
-[Unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0...HEAD
 [Released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34..v1.1.0
 [1.0.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/2dc040e5eb792bfffb5959172fe8b40b2ee2f739..8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34
 [0.5.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/94ba3f799407ffb395d80969d2ab6a7cc40cd05f..2dc040e5eb792bfffb5959172fe8b40b2ee2f739
@@ -436,3 +443,4 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [#221]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/221
 [#222]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/222
 [#223]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/223
+[#224]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/224
