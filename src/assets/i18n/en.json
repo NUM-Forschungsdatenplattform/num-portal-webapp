@@ -461,10 +461,16 @@
     "SECOND_SHORT": "Sec."
   },
   "AQL_CATEGORIES": {
+    "CREATE_SUCCESS_MESSAGE": "AQL Category created successfully.",
+    "CREATE_ERROR_MESSAGE": "AQL Category could not be created. Please try again.",
     "DE_NAME": "German name",
+    "DEFINE_CATEGORY": "Define category details",
     "DELETE_ERROR_MESSAGE": "The AQL category could not be deleted. Please try again.",
     "DELETE_SUCCESS_MESSAGE": "The AQL category was successfully deleted.",
+    "EDIT_DIALOG_TITLE": "Edit category",
     "EN_NAME": "English name",
-    "TABLE_TITLE": "Available AQL Categories"
+    "TABLE_TITLE": "Available AQL Categories",
+    "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
+    "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."
   }
 }

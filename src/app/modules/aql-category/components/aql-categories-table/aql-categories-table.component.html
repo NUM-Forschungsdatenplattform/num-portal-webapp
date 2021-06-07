@@ -34,12 +34,12 @@
     >
       <!-- Menu -->
       <mat-menu #menu="matMenu">
-        <ng-template matMenuContent let-id="id">
+        <ng-template matMenuContent let-data="data">
           <button
             class="num-mat-list-item"
             mat-menu-item
             *ngFor="let menuItem of menuItems"
-            (click)="handleMenuClick(menuItem.id, id)"
+            (click)="handleMenuClick(menuItem.id, data)"
             [disabled]="menuItem.isDisabled"
             [attr.data-test]="'aqls__table__menu-item__' + menuItem.translationKey"
           >
@@ -57,7 +57,7 @@
           <button
             mat-icon-button
             [matMenuTriggerFor]="menu"
-            [matMenuTriggerData]="{ aqlOwner: element.owner?.id, id: element.id, user: user }"
+            [matMenuTriggerData]="{ data: element }"
             data-test="aqls__table__row__menu-button"
           >
             <fa-icon icon="ellipsis-v"></fa-icon>

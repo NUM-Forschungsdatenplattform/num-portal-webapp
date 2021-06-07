@@ -98,7 +98,7 @@ export class AqlCategoryService {
    * @param update - New data to update AQL category with
    * @param id - Id of the AQL category to update
    */
-  update(update: IAqlCategoryApi, id: number): Observable<IAqlCategoryApi> {
+  update(update: Omit<IAqlCategoryApi, 'id'>, id: number): Observable<IAqlCategoryApi> {
     const listIdx = this.aqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
     return this.httpClient.put<IAqlCategoryApi>(`${this.baseUrl}/${id}`, update).pipe(
       tap((updated) => {

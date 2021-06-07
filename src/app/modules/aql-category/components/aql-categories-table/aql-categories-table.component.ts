@@ -24,8 +24,7 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { AqlCategoryMenuKeys, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from './menu-item'
-import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
-import { Router } from '@angular/router'
+import { DELETE_APPROVAL_DIALOG_CONFIG, EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -58,7 +57,6 @@ export class AqlCategoriesTableComponent
   constructor(
     private aqlCategoryService: AqlCategoryService,
     private dialogService: DialogService,
-    private router: Router,
     private toast: ToastMessageService
   ) {
     super()
@@ -84,14 +82,13 @@ export class AqlCategoriesTableComponent
     this.subscriptions.unsubscribe()
   }
 
-  handleMenuClick(key: string, id: number): void {
+  handleMenuClick(key: string, aqlCategory: IAqlCategoryApi): void {
     switch (key) {
       case AqlCategoryMenuKeys.Edit:
-        // TODO: Open dialog
-        // this.router.navigate(['aqls', id, 'editor'])
+        this.openEditDialog(aqlCategory)
         break
       case AqlCategoryMenuKeys.Delete:
-        this.handleWithDialog(DELETE_APPROVAL_DIALOG_CONFIG, id)
+        this.handleWithDialog(DELETE_APPROVAL_DIALOG_CONFIG, aqlCategory.id)
         break
     }
   }
@@ -132,7 +129,54 @@ export class AqlCategoriesTableComponent
     }
   }
 
-  private async delete(id: number): Promise<void> {
+  private openEditDialog(categoryData?: IAqlCategoryApi): void {
+    const dialogData = !!categoryData ? categoryData : {}
+    const dialogRef = this.dialogService.openDialog({
+      ...EDIT_AQL_CATEGORY_DIALOG_CONFIG,
+      dialogContentPayload: dialogData,
+    })
+    dialogRef.afterClosed().subscribe((result: Omit<IAqlCategoryApi, 'id'>) => {
+      if (!!categoryData) {
+        this.update(result, categoryData.id)
+      } else {
+        this.create(result)
+      }
+    })
+  }
+
+  async create(data: Omit<IAqlCategoryApi, 'id'>): Promise<void> {
+    try {
+      await this.aqlCategoryService.save(data).toPromise()
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL_CATEGORIES.CREATE_SUCCESS_MESSAGE',
+      })
+    } catch (error) {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL_CATEGORIES.CREATE_ERROR_MESSAGE',
+      })
+    }
+  }
+
+  async update(data: Omit<IAqlCategoryApi, 'id'>, id: number): Promise<void> {
+    try {
+      await this.aqlCategoryService.update(data, id).toPromise()
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
+      })
+    } catch (error) {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL_CATEGORIES.UPDATE_ERROR_MESSAGE',
+      })
+    }
+  }
+
+  async delete(id: number): Promise<void> {
     try {
       await this.aqlCategoryService.delete(id).toPromise()
 
