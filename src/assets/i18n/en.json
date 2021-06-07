@@ -260,6 +260,7 @@
     "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Start project",
+    "PUBLISH_CONTENT": "Publish content",
     "PUBLISH_LINKS": "Publish links",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
     "SEND_COMMENT": "Send comment",
