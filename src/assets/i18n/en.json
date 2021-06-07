@@ -377,6 +377,8 @@
     "PUBLISH_PROJECT_CONTENT": "After you have started the project, you can only edit the list of researchers or end the project.\n\nAll selected researchers can start retrieving data of the project after the project start.",
     "DELETE_AQL_TITLE": "Do you really want to delete the query?",
     "DELETE_AQL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_AQL_CATEGORY_TITLE": "Do you really want to delete the query category?",
+    "DELETE_AQL_CATEGORY_CONTENT": "The deletion of the query category cannot be undone.",
     "DELETE_PHENOTYPE_TITLE": "Do you really want to delete the phenotype?",
     "DELETE_PHENOTYPE_CONTENT": "The deletion of the phenotype cannot be undone.",
     "APPROVE_PROJECT_TITLE": "Do you want to approve the project now?",
@@ -459,6 +461,10 @@
     "SECOND_SHORT": "Sec."
   },
   "AQL_CATEGORIES": {
+    "DE_NAME": "German name",
+    "DELETE_ERROR_MESSAGE": "The AQL category could not be deleted. Please try again.",
+    "DELETE_SUCCESS_MESSAGE": "The AQL category was successfully deleted.",
+    "EN_NAME": "English name",
     "TABLE_TITLE": "Available AQL Categories"
   }
 }

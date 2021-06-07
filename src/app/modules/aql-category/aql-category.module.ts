@@ -21,9 +21,10 @@ import { LayoutModule } from 'src/app/layout/layout.module'
 import { AqlCategoriesTableComponent } from './components/aql-categories-table/aql-categories-table.component'
 import { AQLCategoryRoutingModule } from './aql-category-routing.module'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { DialogEditCategoryDetailsComponent } from './components/dialog-edit-category-details/dialog-edit-category-details.component'
 
 @NgModule({
-  declarations: [AqlCategoriesTableComponent],
+  declarations: [AqlCategoriesTableComponent, DialogEditCategoryDetailsComponent],
   imports: [CommonModule, SharedModule, LayoutModule, AQLCategoryRoutingModule, MatPaginatorModule],
 })
 export class AqlCategoryModule {}

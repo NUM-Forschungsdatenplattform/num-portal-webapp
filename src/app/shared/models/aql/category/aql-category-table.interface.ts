@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export type AqlCategoryTableColumn = 'id' | 'name'
+export type AqlCategoryTableColumn = 'id' | 'nameDe' | 'nameEn' | 'menu'

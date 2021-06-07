@@ -28,6 +28,7 @@ import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 import { maxBy, minBy } from 'lodash-es'
 import { MatTableHarness } from '@angular/material/table/testing'
 import { MatSortHeaderHarness } from '@angular/material/sort/testing'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('AqlCategoriesTableComponent', () => {
   let component: AqlCategoriesTableComponent
@@ -43,7 +44,12 @@ describe('AqlCategoriesTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AqlCategoriesTableComponent],
-      imports: [BrowserAnimationsModule, MaterialModule, TranslateModule.forRoot()],
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        RouterTestingModule,
+      ],
       providers: [
         {
           provide: AqlCategoryService,
@@ -80,28 +86,28 @@ describe('AqlCategoriesTableComponent', () => {
       const table = await loader.getHarness(MatTableHarness)
       const rows = await table.getCellTextByColumnName()
 
-      expect(rows.name.text).toHaveLength(mockAqlCategories.length)
-      expect(rows.name.text[0]).toEqual(maxIdCategory.name.en)
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual(minIdCategory.name.en)
+      expect(rows.nameEn.text).toHaveLength(mockAqlCategories.length)
+      expect(rows.nameEn.text[0]).toEqual(maxIdCategory.name.en)
+      expect(rows.nameEn.text[rows.nameEn.text.length - 1]).toEqual(minIdCategory.name.en)
     })
 
     it('should be able to sort by name', async () => {
       const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+        MatSortHeaderHarness.with({ selector: '.mat-column-nameDe' })
       )
       const table = await loader.getHarness(MatTableHarness)
       // Sort ascending
       await sortHeaderButton.click()
       let rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.name.text[0]).toEqual('Demographic')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('Social')
+      expect(rows.nameDe.text[0]).toEqual('Demografisch')
+      expect(rows.nameDe.text[rows.nameDe.text.length - 1]).toEqual('Sozial')
       // Sort descending
       await sortHeaderButton.click()
       rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.name.text[0]).toEqual('Social')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('Demographic')
+      expect(rows.nameDe.text[0]).toEqual('Sozial')
+      expect(rows.nameDe.text[rows.nameDe.text.length - 1]).toEqual('Demografisch')
     })
   })
 })

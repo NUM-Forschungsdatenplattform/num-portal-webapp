@@ -378,6 +378,8 @@
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
     "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_AQL_CATEGORY_TITLE": "Wollen Sie die Abfragenkategorie wirklich löschen?",
+    "DELETE_AQL_CATEGORY_CONTENT": "Das Löschen der Abfragenkategorie kann nicht rückgängig gemacht werden.",
     "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen?",
     "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
@@ -460,6 +462,10 @@
     "SECOND_SHORT": "Sek."
   },
   "AQL_CATEGORIES": {
+    "DE_NAME": "Deutsche Bezeichnung",
+    "DELETE_ERROR_MESSAGE": "Die AQL Kategorie konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "DELETE_SUCCESS_MESSAGE": "Die AQL Kategorie wurde erfolgreich gelöscht.",
+    "EN_NAME": "Englische Bezeichnung",
     "TABLE_TITLE": "Verfügbare AQL Kategorien"
   }
 }

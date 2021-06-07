@@ -22,7 +22,14 @@ import { compareIds, compareLocaleStringValues } from 'src/app/core/utils/sort.u
 import { AqlCategoryTableColumn } from 'src/app/shared/models/aql/category/aql-category-table.interface'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
-import { TranslateService } from '@ngx-translate/core'
+import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
+import { AqlCategoryMenuKeys, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from './menu-item'
+import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
+import { Router } from '@angular/router'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-aql-categories-table',
@@ -32,7 +39,8 @@ import { TranslateService } from '@ngx-translate/core'
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
   implements AfterViewInit, OnDestroy, OnInit {
-  displayedColumns: AqlCategoryTableColumn[] = ['name']
+  displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
+  menuItems: IItemVisibility[] = [MENU_ITEM_EDIT, MENU_ITEM_DELETE]
 
   private subscriptions = new Subscription()
 
@@ -49,7 +57,9 @@ export class AqlCategoriesTableComponent
 
   constructor(
     private aqlCategoryService: AqlCategoryService,
-    private translateService: TranslateService
+    private dialogService: DialogService,
+    private router: Router,
+    private toast: ToastMessageService
   ) {
     super()
 
@@ -74,9 +84,27 @@ export class AqlCategoriesTableComponent
     this.subscriptions.unsubscribe()
   }
 
-  nameAccessorFn(aqlCategory: IAqlCategoryApi): string {
-    const localeKey = this.translateService.currentLang || 'en'
-    return aqlCategory.name[localeKey]
+  handleMenuClick(key: string, id: number): void {
+    switch (key) {
+      case AqlCategoryMenuKeys.Edit:
+        // TODO: Open dialog
+        // this.router.navigate(['aqls', id, 'editor'])
+        break
+      case AqlCategoryMenuKeys.Delete:
+        this.handleWithDialog(DELETE_APPROVAL_DIALOG_CONFIG, id)
+        break
+    }
+  }
+
+  private handleWithDialog(dialogConfig: DialogConfig, id: number): void {
+    const dialogRef = this.dialogService.openDialog(dialogConfig)
+    dialogRef.afterClosed().subscribe((confirmResult) => {
+      if (confirmResult === true) {
+        this.delete(id).then(() => {
+          this.aqlCategoryService.getAll().subscribe((aqls) => this.handleData(aqls))
+        })
+      }
+    })
   }
 
   private handleData(aqlCategories: IAqlCategoryApi[]): void {
@@ -88,20 +116,35 @@ export class AqlCategoriesTableComponent
     const newData = [...data]
 
     switch (sort.active as AqlCategoryTableColumn) {
-      case 'name': {
+      case 'nameDe': {
         return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            this.nameAccessorFn(a),
-            this.nameAccessorFn(b),
-            a.id,
-            b.id,
-            isAsc
-          )
+          compareLocaleStringValues(a.name.de, b.name.de, a.id, b.id, isAsc)
+        )
+      }
+      case 'nameEn': {
+        return newData.sort((a, b) =>
+          compareLocaleStringValues(a.name.en, b.name.en, a.id, b.id, isAsc)
         )
       }
       default: {
         return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
       }
+    }
+  }
+
+  private async delete(id: number): Promise<void> {
+    try {
+      await this.aqlCategoryService.delete(id).toPromise()
+
+      this.toast.openToast({
+        type: ToastMessageType.Success,
+        message: 'AQL_CATEGORIES.DELETE_SUCCESS_MESSAGE',
+      })
+    } catch (error) {
+      this.toast.openToast({
+        type: ToastMessageType.Error,
+        message: 'AQL_CATEGORIES.DELETE_ERROR_MESSAGE',
+      })
     }
   }
 }
