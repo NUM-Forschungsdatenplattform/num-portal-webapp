@@ -59,7 +59,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'phenotypes',
-      roles: [AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(
@@ -71,7 +71,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Researcher, AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.Researcher, AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(

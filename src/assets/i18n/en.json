@@ -261,6 +261,7 @@
     "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Start project",
+    "PUBLISH_CONTENT": "Publish content",
     "PUBLISH_LINKS": "Publish links",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
     "SEND_COMMENT": "Send comment",
@@ -365,7 +366,8 @@
     "STUDY_COORDINATOR": "Project lead",
     "SUPER_ADMIN": "Super admin",
     "STUDY_APPROVER": "Project approver",
-    "CONTENT_ADMIN": "Content admin"
+    "CONTENT_ADMIN": "Content admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",

@@ -167,7 +167,7 @@
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
   "BUILD_QUERY": "Abfrage erstellen",
   "DEFINE_COHORT": "Kohorte definieren",
-  "DEFINE_COHORT_CONTENT": "Bestimmen Sie mit der Definition der Kohorte auf welche Personengruppe(n) das Projekt begrenzt werden soll. Die Kohorte kann von den Forscher im Rahmen des Datenabrufs später nicht geänderte werden. ",
+  "DEFINE_COHORT_CONTENT": "Bestimmen Sie mit der Definition der Kohorte auf welche Personengruppe(n) das Projekt begrenzt werden soll. Die Kohorte kann von den Forscher im Rahmen des Datenabrufs später nicht geändert werden. ",
   "AVAILABLE_EHR_TEMPLATES": "Verfügbare klinische Modelle",
   "SELECT_EHR_TEMPLATE": "Klinische Modelle auswählen",
   "SELECTED_EHR_TEMPLATES": "Ausgewählte klinische Modelle",
@@ -262,6 +262,7 @@
     "CLONE": "Klonen",
     "EDIT_RESEARCHERS": "Forscher bearbeiten",
     "PUBLISH": "Projekt starten",
+    "PUBLISH_CONTENT": "Inhalt veröffentlichen",
     "PUBLISH_LINKS": "Links veröffentlichen",
     "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
     "SEND_COMMENT": "Kommentar senden",
@@ -366,7 +367,8 @@
     "STUDY_COORDINATOR": "Projektleiter",
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
-    "CONTENT_ADMIN": "Content-Admin"
+    "CONTENT_ADMIN": "Content-Admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",
