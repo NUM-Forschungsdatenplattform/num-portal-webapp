@@ -36,8 +36,7 @@ const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       tabNavId: 'aql-categories',
-      // TODO: Set to Manager after merge NUM-1601
-      roles: [AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       /* webpackChunkName: "AQLCategory.Module" */ import(
