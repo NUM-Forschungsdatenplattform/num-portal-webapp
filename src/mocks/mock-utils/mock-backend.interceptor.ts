@@ -38,7 +38,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
     // Intercept get for AQL category by id
     if (request.method === 'GET' && /aql\/category\/\d$/.test(request.url)) {
-      const id = +request.url.substr(request.url.lastIndexOf('/'))
+      const id = +request.url.substr(request.url.lastIndexOf('/') + 1)
       const result = this.mockAqlCategories.find((aqlCategory) => id === aqlCategory.id)
       if (result) {
         return of(new HttpResponse({ status: 200, body: result }))
@@ -59,7 +59,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
     // Intercept put for update AQL category
     if (request.method === 'PUT' && /aql\/category\/\d$/.test(request.url)) {
-      const id = +request.url.substr(request.url.lastIndexOf('/'))
+      const id = +request.url.substr(request.url.lastIndexOf('/') + 1)
       const resultIdx = this.mockAqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
       if (resultIdx >= 0) {
         this.mockAqlCategories[resultIdx] = {
@@ -74,7 +74,7 @@ export class MockBackendInterceptor implements HttpInterceptor {
 
     // Intercept delete AQL category
     if (request.method === 'DELETE' && /aql\/category\/\d$/.test(request.url)) {
-      const id = +request.url.substr(request.url.lastIndexOf('/'))
+      const id = +request.url.substr(request.url.lastIndexOf('/') + 1)
       const resultIdx = this.mockAqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
       if (resultIdx >= 0) {
         this.mockAqlCategories.splice(resultIdx, 1)

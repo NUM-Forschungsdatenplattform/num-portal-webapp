@@ -278,7 +278,8 @@
     "DETERMINE": "Determine",
     "MOVE_UP": "Move up",
     "MOVE_DOWN": "Move down",
-    "DRAG_TO_MOVE": "Drag to move"
+    "DRAG_TO_MOVE": "Drag to move",
+    "CREATE_AQL_CATEGORY": "Create Category"
   },
   "PROJECT": {
     "SEARCH_PROJECTS": "Search Project",
@@ -461,6 +462,8 @@
     "SECOND_SHORT": "Sec."
   },
   "AQL_CATEGORIES": {
+    "CREATE_DESCRIPTION_BUTTON": "To create a new AQL categbory please click the following button.",
+    "CREATE_HEADER": "Create AQL Category",
     "CREATE_SUCCESS_MESSAGE": "AQL Category created successfully.",
     "CREATE_ERROR_MESSAGE": "AQL Category could not be created. Please try again.",
     "DE_NAME": "German name",
@@ -469,6 +472,7 @@
     "DELETE_SUCCESS_MESSAGE": "The AQL category was successfully deleted.",
     "EDIT_DIALOG_TITLE": "Edit category",
     "EN_NAME": "English name",
+    "OVERVIEW_DESCRIPTION": "In the following list you can see all the AQL categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
     "TABLE_TITLE": "Available AQL Categories",
     "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
     "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."

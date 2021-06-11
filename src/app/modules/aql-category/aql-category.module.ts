@@ -22,9 +22,14 @@ import { AqlCategoriesTableComponent } from './components/aql-categories-table/a
 import { AQLCategoryRoutingModule } from './aql-category-routing.module'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { DialogEditCategoryDetailsComponent } from './components/dialog-edit-category-details/dialog-edit-category-details.component'
+import { AqlCategoriesManagementComponent } from './components/aql-categories-management/aql-categories-management.component'
 
 @NgModule({
-  declarations: [AqlCategoriesTableComponent, DialogEditCategoryDetailsComponent],
+  declarations: [
+    AqlCategoriesTableComponent,
+    DialogEditCategoryDetailsComponent,
+    AqlCategoriesManagementComponent,
+  ],
   imports: [CommonModule, SharedModule, LayoutModule, AQLCategoryRoutingModule, MatPaginatorModule],
 })
 export class AqlCategoryModule {}

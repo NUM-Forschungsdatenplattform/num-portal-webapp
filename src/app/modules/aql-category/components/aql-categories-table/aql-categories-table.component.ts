@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { Subscription } from 'rxjs'
@@ -24,7 +24,7 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { AqlCategoryMenuKeys, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from './menu-item'
-import { DELETE_APPROVAL_DIALOG_CONFIG, EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
+import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -37,7 +37,8 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
-  implements AfterViewInit, OnDestroy, OnInit {
+  implements AfterViewInit, OnDestroy {
+  @Output() openEditDialog = new EventEmitter<Omit<IAqlCategoryApi, 'id'>>()
   displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
   menuItems: IItemVisibility[] = [MENU_ITEM_EDIT, MENU_ITEM_DELETE]
 
@@ -68,10 +69,6 @@ export class AqlCategoriesTableComponent
     )
   }
 
-  ngOnInit(): void {
-    this.aqlCategoryService.getAll().subscribe()
-  }
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator
     this.dataSource.sortData = (data, sort) => this.sortAqlCategories(data, sort)
@@ -85,7 +82,7 @@ export class AqlCategoriesTableComponent
   handleMenuClick(key: string, aqlCategory: IAqlCategoryApi): void {
     switch (key) {
       case AqlCategoryMenuKeys.Edit:
-        this.openEditDialog(aqlCategory)
+        this.openEditDialog.emit(aqlCategory)
         break
       case AqlCategoryMenuKeys.Delete:
         this.handleWithDialog(DELETE_APPROVAL_DIALOG_CONFIG, aqlCategory.id)
@@ -126,53 +123,6 @@ export class AqlCategoriesTableComponent
       default: {
         return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
       }
-    }
-  }
-
-  private openEditDialog(categoryData?: IAqlCategoryApi): void {
-    const dialogData = !!categoryData ? categoryData : {}
-    const dialogRef = this.dialogService.openDialog({
-      ...EDIT_AQL_CATEGORY_DIALOG_CONFIG,
-      dialogContentPayload: dialogData,
-    })
-    dialogRef.afterClosed().subscribe((result: Omit<IAqlCategoryApi, 'id'>) => {
-      if (!!categoryData) {
-        this.update(result, categoryData.id)
-      } else {
-        this.create(result)
-      }
-    })
-  }
-
-  async create(data: Omit<IAqlCategoryApi, 'id'>): Promise<void> {
-    try {
-      await this.aqlCategoryService.save(data).toPromise()
-
-      this.toast.openToast({
-        type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.CREATE_SUCCESS_MESSAGE',
-      })
-    } catch (error) {
-      this.toast.openToast({
-        type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.CREATE_ERROR_MESSAGE',
-      })
-    }
-  }
-
-  async update(data: Omit<IAqlCategoryApi, 'id'>, id: number): Promise<void> {
-    try {
-      await this.aqlCategoryService.update(data, id).toPromise()
-
-      this.toast.openToast({
-        type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
-      })
-    } catch (error) {
-      this.toast.openToast({
-        type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.UPDATE_ERROR_MESSAGE',
-      })
     }
   }
 

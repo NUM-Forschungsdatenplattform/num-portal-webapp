@@ -279,7 +279,8 @@
     "DETERMINE": "Ermitteln",
     "MOVE_UP": "Nach oben verschieben",
     "MOVE_DOWN": "Nach unten verschieben",
-    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
+    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen",
+    "CREATE_AQL_CATEGORY": "Kategorie erstellen"
   },
   "PROJECT": {
     "SEARCH_PROJECTS": "Projekt suchen",
@@ -462,6 +463,8 @@
     "SECOND_SHORT": "Sek."
   },
   "AQL_CATEGORIES": {
+    "CREATE_HEADER": "AQL Kategorie anlegen",
+    "CREATE_DESCRIPTION_BUTTON": "Zum Anlegen einer neuen AQL Kategorie klicken Sie bitte auf den nachfolgenden Button.",
     "CREATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich gespeichert..",
     "CREATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
     "DE_NAME": "Deutsche Bezeichnung",
@@ -470,6 +473,7 @@
     "DELETE_SUCCESS_MESSAGE": "Die AQL Kategorie wurde erfolgreich gelöscht.",
     "EDIT_DIALOG_TITLE": "Kategorie bearbeiten",
     "EN_NAME": "Englische Bezeichnung",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle AQL Kategorien im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Kategorie wählen Sie diese aus der Liste aus.",
     "TABLE_TITLE": "Verfügbare AQL Kategorien",
     "UPDATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich editiert.",
     "UPDATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht editiert werden. Bitte versuchen Sie es erneut."

@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NgModule } from '@angular/core'
-import { Route, RouterModule } from '@angular/router'
-import { AqlCategoriesManagementComponent } from './components/aql-categories-management/aql-categories-management.component'
 
-const routes: Route[] = [
-  {
-    path: '',
-    component: AqlCategoriesManagementComponent,
-  },
-]
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+import { DialogEditCategoryDetailsComponent } from '../dialog-edit-category-details/dialog-edit-category-details.component'
 
-@NgModule({
-  exports: [RouterModule],
-  imports: [RouterModule.forChild(routes)],
-})
-export class AQLCategoryRoutingModule {}
+export const EDIT_AQL_CATEGORY_DIALOG_CONFIG: DialogConfig = {
+  title: 'AQL_CATEGORIES.EDIT_DIALOG_TITLE',
+  confirmButtonText: 'BUTTON.SAVE',
+  cancelButtonText: 'BUTTON.CANCEL',
+  dialogSize: DialogSize.Medium,
+  hasCloseIcon: true,
+  dialogContentComponent: DialogEditCategoryDetailsComponent,
+}
