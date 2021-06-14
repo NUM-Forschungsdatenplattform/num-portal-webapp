@@ -20,11 +20,23 @@
   {{ 'USER_MANAGEMENT.ALL_USERS_DESCRIPTION' | translate }}
 </p>
 
-<num-search
-  label="SEARCH_USERNAME"
-  [(searchText)]="filterConfig.searchText"
-  (searchTextChange)="handleSearchChange()"
-></num-search>
+<h3 id="approved-users-header">{{ 'NAVIGATION.ALL_USERS' | translate }}</h3>
+
+<section fxLayout="row">
+  <num-filter-chips
+    [filterChips]="filterConfig.filterItem"
+    [multiSelect]="false"
+    (selectionChange)="handleFilterChange()"
+  ></num-filter-chips>
+
+  <num-search
+    fxFlexOffset="auto"
+    fxFlex="25%"
+    label="SEARCH_USERNAME"
+    [(searchText)]="filterConfig.searchText"
+    (searchTextChange)="handleSearchChange()"
+  ></num-search>
+</section>
 
 <num-approved-users-table
   data-test="user-management__approved-users__table"

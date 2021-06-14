@@ -48,12 +48,13 @@ import {
   faExclamationTriangle,
   faArrowDown,
   faExternalLinkSquareAlt,
+  faChartPie,
   faUndo,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye, faHospital } from '@fortawesome/free-regular-svg-icons'
 
-export const FONT_AWESOME_ICONS = [
+export const FONT_AWESOME_SOLID_ICONS = [
   faMicroscope,
   faBars,
   faGlobeEurope,
@@ -67,7 +68,6 @@ export const FONT_AWESOME_ICONS = [
   faTimesCircle,
   faTimes,
   faCheck,
-  faCheckCircle,
   faTrash,
   faAngleRight,
   faEllipsisV,
@@ -75,21 +75,23 @@ export const FONT_AWESOME_ICONS = [
   faUser,
   faTable,
   faExternalLinkAlt,
-  faEye,
   faUserLock,
   faAlignLeft,
   faPlay,
   faPen,
+  faExclamationCircle,
   faBuilding,
   faUserEdit,
-  faNewspaper,
-  faExclamationCircle,
   faFileDownload,
   faCaretSquareUp,
   faArrowsAlt,
   faExclamationTriangle,
   faArrowDown,
-  faHospital,
   faExternalLinkSquareAlt,
+  faChartPie,
   faUndo,
 ]
+
+export const FONT_AWESOME_REGULAR_ICONS = [faNewspaper, faCheckCircle, faEye, faHospital]
+
+export const FONT_AWESOME_ICONS = [...FONT_AWESOME_SOLID_ICONS, ...FONT_AWESOME_REGULAR_ICONS]

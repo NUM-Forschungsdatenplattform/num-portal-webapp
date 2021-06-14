@@ -29,11 +29,11 @@ export class AqlBuilderContainsItemComponent implements OnInit {
   item: AqbContainsItemUiModel
 
   @Output()
-  deleteItem = new EventEmitter<string>()
+  deleteItemByArchetypeReferenceId = new EventEmitter<number>()
 
   ngOnInit(): void {}
 
   deleteSelf(): void {
-    this.deleteItem.emit(this.item.archetypeId)
+    this.deleteItemByArchetypeReferenceId.emit(this.item.archetypeReferenceId)
   }
 }

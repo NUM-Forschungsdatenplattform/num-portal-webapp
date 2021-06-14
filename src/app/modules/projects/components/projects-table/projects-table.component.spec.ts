@@ -383,6 +383,7 @@ describe('ProjectsTableComponent', () => {
       const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
       const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
       expect(tableRows[idx + 1].innerHTML).toEqual(' Max Mustermann ')
+      expect(tableRows[idx - 1].innerHTML).toEqual('  - ')
     })
 
     it('should sort by author descending', () => {
@@ -394,6 +395,7 @@ describe('ProjectsTableComponent', () => {
       const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
       const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
       expect(tableRows[idx - 1].innerHTML).toEqual(' Max Mustermann ')
+      expect(tableRows[idx + 1].innerHTML).toEqual('  - ')
     })
   })
 })

@@ -18,9 +18,11 @@ import { NestedTreeControl } from '@angular/cdk/tree'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { MatTreeNestedDataSource } from '@angular/material/tree'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
+import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
@@ -30,9 +32,17 @@ import { IContainmentTreeNode } from '../../models/containment-tree-node.interfa
 })
 export class AqlBuilderTemplateTreeComponent implements OnInit {
   constructor(private aqlEditorService: AqlEditorService) {}
+  Mode = AqlBuilderDialogMode
+  Destination = AqbSelectDestination
 
   @Input()
   templateId: string
+
+  @Input()
+  mode: AqlBuilderDialogMode
+
+  @Input()
+  selectDestination: AqbSelectDestination
 
   @Output()
   selectedItem = new EventEmitter<IAqbSelectClick>()

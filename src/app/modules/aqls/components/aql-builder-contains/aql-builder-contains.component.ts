@@ -34,14 +34,14 @@ export class AqlBuilderContainsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  deleteComposition(compositionId: string): void {
-    this.aqbModel.handleDeletionByComposition([compositionId])
+  deleteCompositionByReferenceId(compositionReferenceId: number): void {
+    this.aqbModel.handleDeletionByCompositionReferenceIds([compositionReferenceId])
     this.compositions = this.compositions.filter(
-      (composition) => composition.compositionId !== compositionId
+      (composition) => composition.compositionReferenceId !== compositionReferenceId
     )
   }
 
-  deleteArchetypes(archetypeIds: string[]): void {
-    this.aqbModel.handleDeletionByArchetype(archetypeIds)
+  deleteArchetypesByReferenceIds(archetypeReferenceIds: number[]): void {
+    this.aqbModel.handleDeletionByArchetypeReferenceIds(archetypeReferenceIds)
   }
 }

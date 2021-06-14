@@ -16,6 +16,7 @@
 
 import { IRole } from 'src/app/shared/models/user/role.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
+import { mockOrganization1, mockOrganization2, mockOrganization3 } from './organizations.mock'
 
 export const mockUser: IUser = {
   approved: false,
@@ -77,6 +78,74 @@ export const mockUserStudyCoordinator: IUser = {
   createdTimestamp: 1603140166809,
 }
 
+export const mockUserProfile4: IUser = {
+  id: '4',
+  username: 'username-4',
+  firstName: 'ö',
+  lastName: '%',
+  email: 'mockUser3@email.com',
+  createdTimestamp: new Date('2021-01-01T00:00:00.000+01:00').getTime(),
+  roles: ['SUPER_ADMIN'],
+  approved: true,
+  organization: mockOrganization2,
+}
+
+export const mockUserProfile5: IUser = {
+  id: '5',
+  username: 'username-5',
+  firstName: '',
+  lastName: 'Ü',
+  email: 'mockUser5@email.com',
+  createdTimestamp: new Date('2020-01-01T00:00:00.000+01:00').getTime(),
+  roles: ['SUPER_ADMIN'],
+  approved: true,
+  organization: mockOrganization2,
+}
+
+export const mockUserProfile6: IUser = {
+  id: '6',
+  username: 'username-6',
+  firstName: 'A',
+  lastName: '',
+  email: 'mockUser5@email.com',
+  createdTimestamp: new Date('2021-01-01T00:00:00.000+01:00').getTime(),
+  roles: ['SUPER_ADMIN'],
+  approved: true,
+  organization: mockOrganization1,
+}
+
+export const mockUserProfile7: IUser = {
+  id: '7',
+  username: 'username-7',
+  firstName: 'Ö',
+  lastName: 'Ü',
+  email: 'mockUser7@email.com',
+  createdTimestamp: new Date('2021-02-01T00:00:00.000+01:00').getTime(),
+  roles: ['SUPER_ADMIN'],
+  approved: false,
+  organization: mockOrganization3,
+}
+
+export const mockUserProfile8: IUser = {
+  id: '8',
+  username: 'username-8',
+  firstName: '/',
+  lastName: 'a',
+  email: 'mockUser7@email.com',
+  createdTimestamp: new Date('2021-01-12T00:00:00.000+01:00').getTime(),
+  roles: ['SUPER_ADMIN'],
+  approved: false,
+  organization: mockOrganization2,
+}
+
+export const mockUsersForSort = [
+  mockUserProfile4,
+  mockUserProfile5,
+  mockUserProfile6,
+  mockUserProfile7,
+  mockUserProfile8,
+]
+
 export const mockUsers: IUser[] = [
   {
     approved: false,
@@ -129,3 +198,5 @@ export const mockOAuthUser = {
   sub: '123-456',
   typ: 'ID',
 }
+
+export const mockUsersToFilter: IUser[] = [mockUserResearcher, mockUserStudyCoordinator]

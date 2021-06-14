@@ -25,7 +25,16 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import {
+  mockOrganization1,
+  mockOrganizations,
+  mockOrganizationsForSort,
+} from 'src/mocks/data-mocks/organizations.mock'
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { MatSortHeaderHarness } from '@angular/material/sort/testing'
+import { MatTableHarness } from '@angular/material/table/testing'
+import { maxBy, minBy } from 'lodash-es'
 
 import { OrganizationsTableComponent } from './organizations-table.component'
 
@@ -85,6 +94,74 @@ describe('OrganizationsTableComponent', () => {
     it('should navigate to the organization-editor', () => {
       component.handleSelectClick(mockOrganization1)
       expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
+    })
+  })
+
+  describe('When sorting table', () => {
+    let loader: HarnessLoader
+    let table: MatTableHarness
+
+    beforeEach(async () => {
+      loader = TestbedHarnessEnvironment.loader(fixture)
+      // component.pageSize = 40
+      organizationsSubject$.next(mockOrganizationsForSort)
+      table = await loader.getHarness(MatTableHarness)
+    })
+    it('should sort by id descending as default', async () => {
+      component.displayedColumns.push('id')
+      const orgMinId = minBy(mockOrganizationsForSort, 'id')
+      const orgMaxId = maxBy(mockOrganizationsForSort, 'id')
+      const rows = await table.getCellTextByColumnName()
+      expect(rows.id.text).toHaveLength(mockOrganizationsForSort.length)
+      expect(rows.id.text[0]).toEqual(orgMaxId.id.toString())
+      expect(rows.id.text[rows.id.text.length - 1]).toEqual(orgMinId.id.toString())
+    })
+
+    it('should be able to sort by name', async () => {
+      const sortHeader = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      await sortHeader.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeader.getSortDirection()).toEqual('asc')
+      expect(rows.name.text[0]).toEqual('')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('ö')
+      await sortHeader.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeader.getSortDirection()).toEqual('desc')
+      expect(rows.name.text[0]).toEqual('ö')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('')
+    })
+
+    it('should sort by order empty -> special charactes -> numbers -> alphabetical', async () => {
+      const sortHeader = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      await sortHeader.click()
+      const rows = await table.getCellTextByColumnName()
+      expect(rows.name.text[0]).toEqual('')
+      expect(rows.name.text[1]).toEqual('$')
+      expect(rows.name.text[2]).toEqual('1')
+      expect(rows.name.text[3]).toEqual('A')
+    })
+
+    it('should sort equal entries by id in same direction as selected', async () => {
+      component.displayedColumns.push('id')
+      const sortHeader = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
+      )
+      await sortHeader.click()
+      let rows = await table.getCellTextByColumnName()
+      let firstIdx = rows.name.text.findIndex((txt) => 'A' === txt)
+      expect(parseInt(rows.id.text[firstIdx], 10)).toBeLessThan(
+        parseInt(rows.id.text[firstIdx + 1], 10)
+      )
+      await sortHeader.click()
+      rows = await table.getCellTextByColumnName()
+      firstIdx = rows.name.text.findIndex((txt) => 'A' === txt)
+      expect(parseInt(rows.id.text[firstIdx], 10)).toBeGreaterThan(
+        parseInt(rows.id.text[firstIdx + 1], 10)
+      )
     })
   })
 })

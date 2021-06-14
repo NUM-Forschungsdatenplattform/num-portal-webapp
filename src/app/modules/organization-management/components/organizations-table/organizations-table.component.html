@@ -21,6 +21,9 @@
     mat-table
     [dataSource]="dataSource"
     matSort
+    matSortActive="id"
+    matSortDirection="desc"
+    (matSortChange)="handleSortChange($event)"
     fixedLayout
     aria-labelledby="all-organizations-header"
     data-test="all-organizations__table"
@@ -40,6 +43,11 @@
           <fa-icon icon="pen" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
       </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
     </ng-container>
 
     <ng-container matColumnDef="name">

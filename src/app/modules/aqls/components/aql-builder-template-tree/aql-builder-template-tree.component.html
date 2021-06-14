@@ -54,7 +54,14 @@
           "
         >
           <button mat-icon-button disabled></button>
-          {{ node.displayName }}
+          <span
+            class="mat-tree-node__display-name"
+            [ngClass]="{
+              'mat-tree-node__display-name--disabled':
+                mode === Mode.DataRetrieval && selectDestination === Destination.Select
+            }"
+            >{{ node.displayName }}</span
+          >
         </li>
       </ul>
     </mat-tree-node>
@@ -73,7 +80,17 @@
                 [rotate]="nestedTreeControl.isExpanded(node) ? 90 : 0"
               ></fa-icon>
             </button>
-            {{ node.displayName }}
+            <span
+              class="mat-tree-node__display-name"
+              [ngClass]="{
+                'mat-tree-node__display-name--disabled':
+                  selectDestination === Destination.Where ||
+                  (mode === Mode.DataRetrieval &&
+                    selectDestination === Destination.Select &&
+                    node.archetypeId !== compositionId)
+              }"
+              >{{ node.displayName }}</span
+            >
           </div>
           <ul [class.num-tree-invisible]="!nestedTreeControl.isExpanded(node)">
             <ng-container matTreeNodeOutlet></ng-container>

@@ -16,7 +16,9 @@
 
 import { AfterViewChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
+import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
+import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
 
 @Component({
   selector: 'num-aql-builder-templates',
@@ -32,6 +34,12 @@ export class AqlBuilderTemplatesComponent implements OnInit, AfterViewChecked {
   @Input()
   selectedTemplates: FormControl
 
+  @Input()
+  mode: AqlBuilderDialogMode
+
+  @Input()
+  selectDestination: AqbSelectDestination
+
   @Output()
   selectedItem = new EventEmitter<IAqbSelectClick>()
 
@@ -40,8 +48,10 @@ export class AqlBuilderTemplatesComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {}
 
   ngAfterViewChecked(): void {
-    setTimeout(() => {
-      this.isViewRendered = true
-    }, 0)
+    if (!this.isViewRendered) {
+      setTimeout(() => {
+        this.isViewRendered = true
+      }, 0)
+    }
   }
 }

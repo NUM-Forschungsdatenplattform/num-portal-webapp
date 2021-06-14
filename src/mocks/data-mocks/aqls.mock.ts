@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { mockUser } from './admin.mock'
+import { mockUser, mockUserStudyCoordinator } from './admin.mock'
+import { mockUserProfile1 } from './user-profile.mock'
 
 export const mockAql1: IAqlApi = {
   id: 1,
@@ -64,6 +66,113 @@ export const mockAql4: IAqlApi = {
   owner: mockUser,
   publicAql: true,
 }
+
+export const mockAql5: IAqlApi = {
+  id: 5,
+  name: 'b',
+  query: 'query5',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUser,
+  publicAql: true,
+}
+
+export const mockAql6: IAqlApi = {
+  id: 6,
+  name: 'a',
+  query: 'query6',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserStudyCoordinator,
+  publicAql: false,
+}
+
+export const mockAql7: IAqlApi = {
+  id: 7,
+  name: 'A',
+  query: 'query7',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserStudyCoordinator,
+  publicAql: true,
+}
+
+export const mockAql8: IAqlApi = {
+  id: 8,
+  name: 'ü',
+  query: 'query8',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: '2020-01-01',
+  modifiedDate: '2020-01-01',
+  owner: mockUser,
+  publicAql: false,
+}
+
+export const mockAql9: IAqlApi = {
+  id: 9,
+  name: '%',
+  query: 'query9',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUser,
+  publicAql: true,
+}
+
+export const mockAql10: IAqlApi = {
+  id: 10,
+  name: 'ö',
+  query: 'query10',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserProfile1,
+  publicAql: true,
+}
+
+export const mockAql11: IAqlApi = {
+  id: 11,
+  name: '',
+  query: 'query11',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserProfile1,
+  publicAql: true,
+}
+
+export const mockAql12: IAqlApi = {
+  id: 12,
+  name: '1',
+  query: 'query12',
+  purpose: 'Test sorting of AQLs',
+  use: '',
+  createDate: DateHelperService.getDateString(new Date()),
+  modifiedDate: DateHelperService.getDateString(new Date()),
+  owner: mockUserProfile1,
+  publicAql: true,
+}
+
+export const mockAqlsToSort = [
+  mockAql5,
+  mockAql6,
+  mockAql7,
+  mockAql8,
+  mockAql9,
+  mockAql10,
+  mockAql11,
+  mockAql12,
+]
 
 export const mockAqls: IAqlApi[] = [mockAql1, mockAql2]
 

@@ -224,4 +224,74 @@ describe('ContentService', () => {
       expect(service.handleError).toHaveBeenCalled()
     })
   })
+
+  describe('When a call to getClinics comes in', () => {
+    const mockClinics = ['clinic1', 'clinic2', 'clinic3']
+    it('should call the api - with success', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockClinics))
+      service.getClinics().subscribe()
+
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic')
+    })
+
+    it('should call the api - with error', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      await service
+        .getClinics()
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic')
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getSofaScoreDistribution comes in', () => {
+    const mockDistribution = { '0-4': 3, '5-9': 1, '10-14': 6, '15-19': 2, '20-24': 0 }
+    it('should call the api - with success', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDistribution))
+      service.getSofaScoreDistribution('clinic1')
+
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
+      )
+    })
+
+    it('should call the api - with error', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      await service
+        .getSofaScoreDistribution('clinic1')
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When a call to getSofaScoreAverage comes in', () => {
+    const mockSofaAvg = { clinic1: 5.0, clinic2: 6.0, clinic3: 2.3567 }
+    it('should call the api - with success', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockSofaAvg))
+      service.getSofaScoreAverage().subscribe()
+
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic/sofaAverage')
+    })
+
+    it('should call the api - with error', async () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      await service
+        .getSofaScoreAverage()
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic/sofaAverage')
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
 })

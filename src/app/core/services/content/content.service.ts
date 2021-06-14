@@ -19,6 +19,8 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { ISofaScoreAverage } from 'src/app/shared/models/charts/sofa-score-average.interface'
+import { ISofaScoreDistribution } from 'src/app/shared/models/charts/sofa-score-distribution.interface'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
 import { IDashboardMetrics } from 'src/app/shared/models/content/dashboard-metrics.interface'
 import { IDashboardProject } from 'src/app/shared/models/content/dashboard-project.interface'
@@ -118,6 +120,22 @@ export class ContentService {
       }),
       catchError(this.handleError)
     )
+  }
+
+  getClinics(): Observable<string[]> {
+    return this.httpClient
+      .get<string[]>(`${this.baseUrl}/graph/clinic`)
+      .pipe(catchError(this.handleError))
+  }
+  getSofaScoreDistribution(clinic: string): Observable<ISofaScoreDistribution> {
+    return this.httpClient
+      .get<ISofaScoreDistribution>(`${this.baseUrl}/graph/clinic/${clinic}/sofaDistribution`)
+      .pipe(catchError(this.handleError))
+  }
+  getSofaScoreAverage(): Observable<ISofaScoreAverage> {
+    return this.httpClient
+      .get<any>(`${this.baseUrl}/graph/clinic/sofaAverage`)
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

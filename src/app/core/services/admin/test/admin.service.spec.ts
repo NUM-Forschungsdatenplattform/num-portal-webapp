@@ -15,15 +15,17 @@
  */
 
 import { HttpClient } from '@angular/common/http'
-import { of, throwError, timer } from 'rxjs'
+import { of, Subject, throwError, timer } from 'rxjs'
 import { skipUntil } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockRoles, mockUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
+import { mockRoles, mockUser, mockUsers, mockUsersToFilter } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
-import { AdminService } from './admin.service'
+import { ProfileService } from '../../profile/profile.service'
+import { AdminService } from '../admin.service'
+import { adminFilterTestcases } from './admin-filter-testcases'
 
 describe('AdminService', () => {
   let service: AdminService
@@ -31,7 +33,13 @@ describe('AdminService', () => {
 
   const filterConfig: IUserFilter = {
     searchText: 'test',
+    filterItem: [],
   }
+
+  const userProfileSubject$ = new Subject<any>()
+  const userProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
 
   const httpClient = ({
     get: jest.fn().mockImplementation(() => of(mockUsers)),
@@ -48,7 +56,7 @@ describe('AdminService', () => {
 
   beforeEach(() => {
     jest.restoreAllMocks()
-    service = new AdminService(httpClient, appConfig)
+    service = new AdminService(httpClient, appConfig, userProfileService)
   })
 
   it('should be created', () => {
@@ -255,6 +263,7 @@ describe('AdminService', () => {
     it('should debounce the filtering', async (done) => {
       const filterConfigLast: IUserFilter = {
         searchText: 'Musterfrau',
+        filterItem: [],
       }
       let filterResult: IUser[]
       const callHelper = jest.fn((result) => (filterResult = result))
@@ -308,6 +317,16 @@ describe('AdminService', () => {
       setTimeout(() => {
         service.refreshFilterResult()
       }, anyService.throttleTime + 1)
+    })
+  })
+
+  describe('When passing in filters', () => {
+    test.each(adminFilterTestcases)('It should filter as expected', (testcase) => {
+      const anyService = service as any
+      anyService.user = { id: '1', organization: { id: 1 } }
+
+      const result = service.filterItems(mockUsersToFilter as IUser[], testcase.filter)
+      expect(result.length).toEqual(testcase.resultLength)
     })
   })
 

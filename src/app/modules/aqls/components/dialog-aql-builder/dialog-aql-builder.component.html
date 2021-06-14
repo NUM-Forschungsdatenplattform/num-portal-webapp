@@ -19,10 +19,12 @@
     fxFlex="400px"
     [templates]="templates"
     [selectedTemplates]="selectedTemplates"
+    [mode]="dialogInput.mode"
+    [selectDestination]="aqbModel.selectDestination"
     (selectedItem)="handleItemSelect($event)"
   ></num-aql-builder-templates>
 
-  <section role="region" fxFlex="auto" fxLayoutGap="32px">
+  <section role="region" fxFlex="auto" fxLayout="column" fxLayoutGap="24px">
     <num-aql-builder-select
       [aqbModel]="aqbModel"
       [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Select }"

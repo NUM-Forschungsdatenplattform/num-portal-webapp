@@ -471,6 +471,11 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should call the projectService.exportFile', () => {
+      const mockCreateUrl = jest.fn().mockReturnValue('url')
+      Object.defineProperty(URL, 'createObjectURL', {
+        value: () => mockCreateUrl,
+      })
+
       component.exportFile('csv')
 
       expect(projectService.exportFile).toHaveBeenCalledTimes(1)
@@ -485,8 +490,14 @@ describe('DataExplorerComponent', () => {
       mockHtmlElement.click = jest.fn()
       mockHtmlElement.remove = jest.fn()
 
+      const mockCreateUrl = jest.fn().mockReturnValue('url')
+
       Object.defineProperty(document, 'createElement', {
         value: () => mockHtmlElement,
+      })
+
+      Object.defineProperty(URL, 'createObjectURL', {
+        value: () => mockCreateUrl,
       })
 
       component.exportFile('csv')

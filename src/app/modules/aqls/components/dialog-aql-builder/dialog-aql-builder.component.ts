@@ -86,19 +86,35 @@ export class DialogAqlBuilderComponent
     this.templates = templates
   }
 
-  isAllowedSelection(clickEvent: IAqbSelectClick): boolean {
-    if (
-      this.dialogInput.mode !== AqlBuilderDialogMode.DataRetrieval ||
-      this.aqbModel.selectDestination !== AqbSelectDestination.Select
-    ) {
-      return true
-    }
-
-    if (!clickEvent.item.rmType && clickEvent.item.archetypeId === clickEvent.compositionId) {
-      return true
+  isAllowedSelectionInRetrieval(clickEvent: IAqbSelectClick): boolean {
+    if (this.aqbModel.selectDestination === AqbSelectDestination.Select) {
+      if (clickEvent.item.archetypeId === clickEvent.compositionId) {
+        return true
+      }
+    } else {
+      if (clickEvent.item.rmType) {
+        return true
+      }
     }
 
     return false
+  }
+  isAllowedSelectionInEditor(clickEvent: IAqbSelectClick): boolean {
+    if (this.aqbModel.selectDestination === AqbSelectDestination.Select) {
+      return true
+    } else {
+      if (clickEvent.item.rmType) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  isAllowedSelection(clickEvent: IAqbSelectClick): boolean {
+    return this.dialogInput.mode === AqlBuilderDialogMode.DataRetrieval
+      ? this.isAllowedSelectionInRetrieval(clickEvent)
+      : this.isAllowedSelectionInEditor(clickEvent)
   }
 
   handleItemSelect(clickEvent: IAqbSelectClick): void {
