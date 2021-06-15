@@ -16,7 +16,6 @@
 // Third Party dependencies
 
 import { AsyncFactoryFn, ComponentHarness, TestElement } from '@angular/cdk/testing'
-import { MatMenuItemHarness } from '@angular/material/menu/testing'
 import { MatTableHarness, MatTableHarnessColumnsText } from '@angular/material/table/testing'
 
 export class AqlCategoriesTableHarness extends ComponentHarness {

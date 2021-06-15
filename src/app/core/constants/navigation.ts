@@ -94,7 +94,7 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'aqls/categories',
         id: 'aql-categories',
         translationKey: 'NAVIGATION.AQLS_CATEGORIES_OVERVIEW',
-        roles: [AvailableRoles.StudyCoordinator],
+        roles: [AvailableRoles.Manager],
       },
     ],
   },
