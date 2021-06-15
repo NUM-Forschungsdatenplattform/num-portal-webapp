@@ -35,6 +35,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-table',
@@ -50,10 +51,13 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     'creationDate',
     'isPublic',
     'organization',
+    'category',
   ]
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
+  // TODO: Change to IAqlCategoryApi after merge other feature branch for NUM-1600
+  aqlCategories: { id: number; name: { de: string; en: string } }[] = []
   private subscriptions = new Subscription()
 
   @ViewChild(MatSort, { static: false }) sort: MatSort
@@ -72,7 +76,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     private profileService: ProfileService,
     private dialogService: DialogService,
     private router: Router,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
+    private translateService: TranslateService
   ) {
     super()
     this.aqlService.filterConfigObservable$
@@ -185,12 +190,42 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
           )
         )
       }
+      case 'category': {
+        return newData.sort((a, b) =>
+          compareLocaleStringValues(
+            this.getCategoryName(a.category_id),
+            this.getCategoryName(b.category_id),
+            a.id,
+            b.id,
+            isAsc
+          )
+        )
+      }
       default: {
         return newData.sort((a, b) => {
           const compareResult = a.id - b.id
           return isAsc ? compareResult : compareResult * -1
         })
       }
+    }
+  }
+
+  getAqlCategoryCell(categoryId: number | null): string {
+    if (!categoryId) {
+      const name = this.getCategoryName(categoryId)
+      if (name !== '') {
+        return name
+      }
+    }
+    return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
+  }
+
+  private getCategoryName(categoryId: number): string {
+    const targetCategory = this.aqlCategories.find((aqlCategory) => categoryId === aqlCategory.id)
+    if (!!targetCategory) {
+      return targetCategory.name[this.translateService.currentLang || 'en']
+    } else {
+      return ''
     }
   }
 }

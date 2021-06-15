@@ -70,6 +70,7 @@ export class AqlEditorComponent implements OnInit {
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
       use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
       isPublic: new FormControl(this.aql?.publicAql),
+      categoryId: new FormControl(this.aql?.categoryId),
     })
   }
 
@@ -80,7 +81,8 @@ export class AqlEditorComponent implements OnInit {
       formValues.title,
       formValues.purpose,
       formValues.use,
-      formValues.isPublic
+      formValues.isPublic,
+      formValues.categoryId
     )
   }
 

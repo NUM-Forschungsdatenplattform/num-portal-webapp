@@ -458,5 +458,8 @@
     "HOUR_SHORT": "Hr.",
     "MINUTE_SHORT": "Min.",
     "SECOND_SHORT": "Sec."
+  },
+  "AQL_CATEGORIES": {
+    "UNCATEGORIZED": "Uncategorized"
   }
 }

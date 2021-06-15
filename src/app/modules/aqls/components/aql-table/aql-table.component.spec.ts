@@ -359,5 +359,24 @@ describe('AqlTableComponent', () => {
       expect(component.dataSource.sort.active).toEqual('id')
       expect(component.dataSource.sort.direction).toEqual('desc')
     })
+
+    it('should be able to sort by category', async () => {
+      const sortHeaderButton = await loader.getHarness(
+        MatSortHeaderHarness.with({ selector: '.mat-column-category' })
+      )
+      const table = await loader.getHarness(MatTableHarness)
+      // Ascending
+      await sortHeaderButton.click()
+      let rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
+      expect(rows.category.text[0]).toEqual('Demographic')
+      expect(rows.category.text[rows.category.text.length - 1]).toEqual('Social')
+      // Descending
+      await sortHeaderButton.click()
+      rows = await table.getCellTextByColumnName()
+      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
+      expect(rows.category.text[0]).toEqual('Social')
+      expect(rows.category.text[rows.category.text.length - 1]).toEqual('Demographic')
+    })
   })
 })
