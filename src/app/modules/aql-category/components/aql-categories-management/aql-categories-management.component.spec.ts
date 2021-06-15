@@ -39,6 +39,7 @@ import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { mockManagerUserProfile } from 'src/mocks/data-mocks/user-profile.mock'
 import { AuthService } from 'src/app/core/auth/auth.service'
+import { SharedModule } from 'src/app/shared/shared.module'
 
 describe('AqlCategoriesManagementComponent', () => {
   let component: AqlCategoriesManagementComponent
@@ -88,6 +89,7 @@ describe('AqlCategoriesManagementComponent', () => {
         DirectivesModule,
         FontAwesomeTestingModule,
         MaterialModule,
+        SharedModule,
         TranslateModule.forRoot(),
       ],
       providers: [
