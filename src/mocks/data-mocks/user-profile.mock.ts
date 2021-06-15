@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IUserProfile } from '../../app/shared/models/user/user-profile.interface'
 import { mockOrganization1, mockOrganization2 } from './organizations.mock'
 
@@ -51,4 +52,16 @@ export const mockUserProfile3: IUserProfile = {
   roles: ['SUPER_ADMIN'],
   approved: true,
   organization: mockOrganization2,
+}
+
+export const mockManagerUserProfile: IUserProfile = {
+  id: '4',
+  username: 'manager-user',
+  firstName: 'manager-firstname',
+  lastName: 'manager-lastname',
+  email: 'manager@email.com',
+  createdTimestamp: new Date('2021-06-15T12:00:00.000+02:00').valueOf(),
+  roles: [AvailableRoles.Manager],
+  approved: true,
+  organization: mockOrganization1,
 }

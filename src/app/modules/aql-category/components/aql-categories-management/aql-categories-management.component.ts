@@ -59,12 +59,12 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
       ...EDIT_AQL_CATEGORY_DIALOG_CONFIG,
       dialogContentPayload: { aqlCategory: dialogData },
     })
-    dialogRef.afterClosed().subscribe((result?: Omit<IAqlCategoryApi, 'id'>) => {
+    dialogRef.afterClosed().subscribe(async (result?: Omit<IAqlCategoryApi, 'id'>) => {
       if (!!result) {
         if (!!categoryData) {
-          this.update(result, categoryData.id)
+          await this.update(result, categoryData.id)
         } else {
-          this.create(result)
+          await this.create(result)
         }
       }
     })

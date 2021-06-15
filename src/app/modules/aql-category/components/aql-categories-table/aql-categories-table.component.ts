@@ -24,7 +24,7 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { AqlCategoryMenuKeys, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from './menu-item'
-import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
+import { DELETE_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -85,18 +85,16 @@ export class AqlCategoriesTableComponent
         this.openEditDialog.emit(aqlCategory)
         break
       case AqlCategoryMenuKeys.Delete:
-        this.handleWithDialog(DELETE_APPROVAL_DIALOG_CONFIG, aqlCategory.id)
+        this.handleWithDialog(DELETE_AQL_CATEGORY_DIALOG_CONFIG, aqlCategory.id)
         break
     }
   }
 
   private handleWithDialog(dialogConfig: DialogConfig, id: number): void {
     const dialogRef = this.dialogService.openDialog(dialogConfig)
-    dialogRef.afterClosed().subscribe((confirmResult) => {
+    dialogRef.afterClosed().subscribe(async (confirmResult) => {
       if (confirmResult === true) {
-        this.delete(id).then(() => {
-          this.aqlCategoryService.getAll().subscribe((aqls) => this.handleData(aqls))
-        })
+        await this.delete(id)
       }
     })
   }

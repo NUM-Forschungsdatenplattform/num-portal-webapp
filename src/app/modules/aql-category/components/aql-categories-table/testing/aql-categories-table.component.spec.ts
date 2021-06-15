@@ -20,11 +20,15 @@ import { of, Subject, throwError } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { AqlCategoriesTableComponent } from './aql-categories-table.component'
+import { AqlCategoriesTableComponent } from '../aql-categories-table.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
-import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
+import {
+  mockAqlCategories,
+  mockAqlCategory1,
+  mockAqlCategory2,
+} from 'src/mocks/data-mocks/aql-categories.mock'
 import { maxBy, minBy } from 'lodash-es'
 import { MatTableHarness } from '@angular/material/table/testing'
 import { MatSortHeaderHarness } from '@angular/material/sort/testing'
@@ -32,6 +36,11 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { AqlCategoriesTableHarness } from './aql-categories-table.harness'
+import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
+import { DELETE_AQL_CATEGORY_DIALOG_CONFIG } from '../constants'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { AqlCategoryMenuKeys } from '../menu-item'
 
 describe('AqlCategoriesTableComponent', () => {
   let component: AqlCategoriesTableComponent
@@ -39,15 +48,25 @@ describe('AqlCategoriesTableComponent', () => {
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
 
-  const aqlCategoryService = ({
+  const mockAqlCategoryService = ({
     delete: jest.fn(),
     getAll: () => of(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
+    update: jest.fn(),
   } as unknown) as AqlCategoryService
 
   const mockToast = ({
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
+
+  const afterClosedSubject$ = new Subject()
+  const mockDialogService = ({
+    openDialog: jest.fn().mockImplementation((_: any) => {
+      return {
+        afterClosed: () => afterClosedSubject$.asObservable(),
+      }
+    }),
+  } as unknown) as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -62,11 +81,15 @@ describe('AqlCategoriesTableComponent', () => {
       providers: [
         {
           provide: AqlCategoryService,
-          useValue: aqlCategoryService,
+          useValue: mockAqlCategoryService,
         },
         {
           provide: ToastMessageService,
           useValue: mockToast,
+        },
+        {
+          provide: DialogService,
+          useValue: mockDialogService,
         },
       ],
     }).compileComponents()
@@ -84,27 +107,48 @@ describe('AqlCategoriesTableComponent', () => {
   })
 
   describe('On the attempt to delete the AQL', () => {
-    let loader: HarnessLoader
-    beforeEach(() => {
+    const dialogConfig: DialogConfig = {
+      ...DELETE_AQL_CATEGORY_DIALOG_CONFIG,
+    }
+
+    beforeEach(async () => {
       const mockAqlCategoriesObservable = of(mockAqlCategories)
-      jest.spyOn(aqlCategoryService, 'delete').mockImplementation(() => mockAqlCategoriesObservable)
-      loader = TestbedHarnessEnvironment.loader(fixture)
+      jest
+        .spyOn(mockAqlCategoryService, 'delete')
+        .mockImplementation(() => mockAqlCategoriesObservable)
     })
 
     it('should call the AQL delete method', async () => {
       const aqlCategoryId = 1
       await component.delete(aqlCategoryId)
-      expect(aqlCategoryService.delete).toHaveBeenCalledTimes(1)
+      expect(mockAqlCategoryService.delete).toHaveBeenCalledTimes(1)
       expect(mockToast.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Success,
         message: 'AQL_CATEGORIES.DELETE_SUCCESS_MESSAGE',
       })
     })
+
+    it('should open the confirm dialog', () => {
+      component.handleMenuClick(AqlCategoryMenuKeys.Delete, mockAqlCategory1)
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
+    })
+
+    it('should do nothing if user click cancel in dialog', () => {
+      component.handleMenuClick(AqlCategoryMenuKeys.Delete, mockAqlCategory1)
+      afterClosedSubject$.next(false)
+      expect(mockAqlCategoryService.delete).not.toBeCalled()
+    })
+
+    it('should call delete of category service on user confirmation', () => {
+      component.handleMenuClick(AqlCategoryMenuKeys.Delete, mockAqlCategory2)
+      afterClosedSubject$.next(true)
+      expect(mockAqlCategoryService.delete).toHaveBeenCalledWith(mockAqlCategory2.id)
+    })
   })
 
   describe('On fail to delete the AQL', () => {
     beforeEach(() => {
-      jest.spyOn(aqlCategoryService, 'delete').mockImplementation(() => throwError({}))
+      jest.spyOn(mockAqlCategoryService, 'delete').mockImplementation(() => throwError({}))
     })
 
     it('should show Error toast', async () => {
@@ -114,6 +158,17 @@ describe('AqlCategoriesTableComponent', () => {
         type: ToastMessageType.Error,
         message: 'AQL_CATEGORIES.DELETE_ERROR_MESSAGE',
       })
+    })
+  })
+
+  describe('On attempt to update an AQL category', () => {
+    beforeEach(() => {
+      jest.spyOn(component.openEditDialog, 'emit')
+    })
+
+    it('should open the dialog to edit the category', () => {
+      component.handleMenuClick(AqlCategoryMenuKeys.Edit, mockAqlCategory2)
+      expect(component.openEditDialog.emit).toHaveBeenCalledWith(mockAqlCategory2)
     })
   })
 
@@ -130,12 +185,13 @@ describe('AqlCategoriesTableComponent', () => {
     it('should sort by id descending as default', async () => {
       const maxIdCategory = maxBy(mockAqlCategories, 'id')
       const minIdCategory = minBy(mockAqlCategories, 'id')
-      const table = await loader.getHarness(MatTableHarness)
-      const rows = await table.getCellTextByColumnName()
-
-      expect(rows.nameEn.text).toHaveLength(mockAqlCategories.length)
-      expect(rows.nameEn.text[0]).toEqual(maxIdCategory.name.en)
-      expect(rows.nameEn.text[rows.nameEn.text.length - 1]).toEqual(minIdCategory.name.en)
+      const aqlTableHarness = await loader.getHarness(AqlCategoriesTableHarness)
+      const firstRowText = await aqlTableHarness.getFirstRowTextForColumn('nameEn')
+      const lastRowText = await aqlTableHarness.getLastRowTextForColumn('nameEn')
+      const allRows = await aqlTableHarness.getAllTableRows()
+      expect(firstRowText).toBe(maxIdCategory.name.en)
+      expect(lastRowText).toBe(minIdCategory.name.en)
+      expect(allRows.menu.text).toHaveLength(mockAqlCategories.length)
     })
 
     it('should be able to sort by name', async () => {

@@ -37,7 +37,7 @@
             *ngFor="let menuItem of menuItems"
             (click)="handleMenuClick(menuItem.id, data)"
             [disabled]="menuItem.isDisabled"
-            [attr.data-test]="'aqls__table__menu-item__' + menuItem.translationKey"
+            [attr.data-test]="'aql_categories__table__menu-item__' + menuItem.translationKey"
           >
             {{ menuItem.translationKey | translate }}
           </button>
@@ -54,7 +54,7 @@
             mat-icon-button
             [matMenuTriggerFor]="menu"
             [matMenuTriggerData]="{ data: element }"
-            data-test="aqls__table__row__menu-button"
+            [attr.data-test]="'aql_categories__table__row__menu-button-' + element.id"
           >
             <fa-icon icon="ellipsis-v"></fa-icon>
           </button>
@@ -99,7 +99,7 @@
       showFirstLastButtons
       [pageSize]="pageSize"
       (page)="pageSize = $event.pageSize"
-      data-test="aqls_category__table__paginator"
+      data-test="aql_categories__table__paginator"
     >
     </mat-paginator>
   </div>

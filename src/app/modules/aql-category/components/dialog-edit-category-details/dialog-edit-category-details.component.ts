@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 // Third-Party
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 // Data models
@@ -27,21 +27,21 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   styleUrls: ['./dialog-edit-category-details.component.scss'],
 })
 export class DialogEditCategoryDetailsComponent
-  implements IGenericDialog<{ aqlCategory: Omit<IAqlCategoryApi, 'id'> }>, OnInit {
+  implements IGenericDialog<{ aqlCategory?: Omit<IAqlCategoryApi, 'id'> }>, OnInit {
   @Output() closeDialog = new EventEmitter<void | Omit<IAqlCategoryApi, 'id'>>()
 
   categoryForm: FormGroup
-  dialogInput: { aqlCategory: Omit<IAqlCategoryApi, 'id'> }
+  dialogInput: { aqlCategory?: Omit<IAqlCategoryApi, 'id'> }
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.categoryForm = this.formBuilder.group({
       nameDe: [
-        this.dialogInput.aqlCategory?.name?.de || '',
+        this.dialogInput?.aqlCategory?.name?.de || '',
         [Validators.required, Validators.minLength(2)],
       ],
       nameEn: [
-        this.dialogInput.aqlCategory?.name?.en || '',
+        this.dialogInput?.aqlCategory?.name?.en || '',
         [Validators.required, Validators.minLength(2)],
       ],
     })
