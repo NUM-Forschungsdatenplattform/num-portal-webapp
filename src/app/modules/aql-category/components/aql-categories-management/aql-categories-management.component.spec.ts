@@ -139,6 +139,7 @@ describe('AqlCategoriesManagementComponent', () => {
     })
     it('should call the getAll method', () => {
       component.ngOnInit()
+      fixture.detectChanges()
       expect(mockAqlCategoryService.getAll).toHaveBeenCalled()
     })
   })
