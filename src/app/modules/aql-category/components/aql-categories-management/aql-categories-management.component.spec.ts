@@ -16,12 +16,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { of, Subject, throwError } from 'rxjs'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { AqlCategoriesManagementComponent } from './aql-categories-management.component'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import {
   mockAqlCategories,
@@ -34,12 +32,13 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { mockManagerUserProfile } from 'src/mocks/data-mocks/user-profile.mock'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { SharedModule } from 'src/app/shared/shared.module'
+import { LayoutModule } from 'src/app/layout/layout.module'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 describe('AqlCategoriesManagementComponent', () => {
   let component: AqlCategoriesManagementComponent
@@ -86,9 +85,8 @@ describe('AqlCategoriesManagementComponent', () => {
       declarations: [AqlCategoriesManagementComponent, AqlCategoriesTableComponent],
       imports: [
         BrowserAnimationsModule,
-        DirectivesModule,
-        FontAwesomeTestingModule,
-        MaterialModule,
+        FontAwesomeModule,
+        LayoutModule,
         SharedModule,
         TranslateModule.forRoot(),
       ],
