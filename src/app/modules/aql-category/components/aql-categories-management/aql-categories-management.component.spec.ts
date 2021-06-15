@@ -138,8 +138,9 @@ describe('AqlCategoriesManagementComponent', () => {
         .mockImplementation(() => mockAqlCategoriesObservable)
     })
     it('should call the getAll method', () => {
-      component.ngOnInit()
-      fixture.detectChanges()
+      const extraFixture = TestBed.createComponent(AqlCategoriesManagementComponent)
+      userProfileSubject$.next(mockManagerUserProfile)
+      extraFixture.detectChanges()
       expect(mockAqlCategoryService.getAll).toHaveBeenCalled()
     })
   })
