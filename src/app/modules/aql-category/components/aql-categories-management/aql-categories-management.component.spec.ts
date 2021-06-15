@@ -48,7 +48,7 @@ describe('AqlCategoriesManagementComponent', () => {
 
   const mockAqlCategoryService = ({
     delete: jest.fn(),
-    getAll: () => of(),
+    getAll: jest.fn(() => of()),
     update: jest.fn(),
     save: jest.fn(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
@@ -132,15 +132,11 @@ describe('AqlCategoriesManagementComponent', () => {
 
   describe('When the components gets initialized', () => {
     beforeEach(() => {
-      const mockAqlCategoriesObservable = of(mockAqlCategories)
-      jest
-        .spyOn(mockAqlCategoryService, 'getAll')
-        .mockImplementation(() => mockAqlCategoriesObservable)
+      jest.spyOn(mockAqlCategoryService, 'getAll').mockImplementation(() => of(mockAqlCategories))
     })
-    it('should call the getAll method', () => {
-      const extraFixture = TestBed.createComponent(AqlCategoriesManagementComponent)
-      userProfileSubject$.next(mockManagerUserProfile)
-      extraFixture.detectChanges()
+    it('should call the getAll method', async () => {
+      fixture.detectChanges()
+      await fixture.whenStable()
       expect(mockAqlCategoryService.getAll).toHaveBeenCalled()
     })
   })
