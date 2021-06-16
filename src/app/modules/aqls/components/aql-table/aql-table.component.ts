@@ -57,7 +57,43 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
   // TODO: Change to IAqlCategoryApi after merge other feature branch for NUM-1600
-  aqlCategories: { id: number; name: { de: string; en: string } }[] = []
+  aqlCategories: { id: number; name: { de: string; en: string } }[] = [
+    {
+      id: 1,
+      name: {
+        de: 'Demografisch',
+        en: 'Demographic',
+      },
+    },
+    {
+      id: 3,
+      name: {
+        de: 'Metabolisches Syndrom',
+        en: 'Metabolic syndrom',
+      },
+    },
+    {
+      id: 4,
+      name: {
+        de: 'COVID-19 Symptome',
+        en: 'COVID-19 Symptoms',
+      },
+    },
+    {
+      id: 2,
+      name: {
+        de: 'Soziologisch',
+        en: 'Sociologic',
+      },
+    },
+    {
+      id: 5,
+      name: {
+        de: 'Reiseverhalten',
+        en: 'Travel behaviour',
+      },
+    },
+  ]
   private subscriptions = new Subscription()
 
   @ViewChild(MatSort, { static: false }) sort: MatSort
@@ -193,8 +229,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
       case 'category': {
         return newData.sort((a, b) =>
           compareLocaleStringValues(
-            this.getCategoryName(a.category_id),
-            this.getCategoryName(b.category_id),
+            this.getCategoryName(a.categoryId),
+            this.getCategoryName(b.categoryId),
             a.id,
             b.id,
             isAsc
@@ -211,7 +247,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   }
 
   getAqlCategoryCell(categoryId: number | null): string {
-    if (!categoryId) {
+    if (!!categoryId) {
       const name = this.getCategoryName(categoryId)
       if (name !== '') {
         return name
@@ -225,7 +261,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     if (!!targetCategory) {
       return targetCategory.name[this.translateService.currentLang || 'en']
     } else {
-      return ''
+      return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
     }
   }
 }

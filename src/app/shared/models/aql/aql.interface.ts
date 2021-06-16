@@ -26,5 +26,5 @@ export interface IAqlApi {
   createDate?: string
   modifiedDate?: string
   owner?: IUser | null
-  category_id: number | null
+  categoryId: number | null
 }

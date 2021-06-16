@@ -41,7 +41,7 @@ export class AqlEditorUiModel {
     this.organizationId = aql?.owner.organization?.id || undefined
     this.owner = aql?.owner || undefined
     this.publicAql = aql ? aql.publicAql : true
-    this.categoryId = aql ? aql.category_id : null
+    this.categoryId = aql ? aql.categoryId : null
   }
 
   public convertToApi(
@@ -58,7 +58,7 @@ export class AqlEditorUiModel {
       purpose,
       use,
       publicAql,
-      category_id: categoryId,
+      categoryId,
     }
   }
 }

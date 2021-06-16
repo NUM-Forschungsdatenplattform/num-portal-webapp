@@ -48,6 +48,7 @@ describe('AqlEditorGeneralInfoComponent', () => {
       purpose: new FormControl(),
       use: new FormControl(),
       isPublic: new FormControl(),
+      category: new FormControl(),
     })
     fixture.detectChanges()
   })

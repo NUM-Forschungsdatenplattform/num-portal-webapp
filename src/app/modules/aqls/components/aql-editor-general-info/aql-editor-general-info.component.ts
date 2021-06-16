@@ -16,6 +16,7 @@
 
 import { Component, Input, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-editor-general-info',
@@ -23,8 +24,31 @@ import { FormGroup } from '@angular/forms'
   styleUrls: ['./aql-editor-general-info.component.scss'],
 })
 export class AqlEditorGeneralInfoComponent implements OnInit {
+  // TODO: Replace with IAqlCategoryApi
+  @Input() availableCategories: { id: number; name: { de: string; en: string } }[]
   @Input() form: FormGroup
-  constructor() {}
+  constructor(private translateService: TranslateService) {}
 
   ngOnInit(): void {}
+
+  categoryValueAccessor(category: { id: number; name: { de: string; en: string } } | null): string {
+    if (!category) {
+      return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
+    } else {
+      return category.name[this.translateService.currentLang || 'en']
+    }
+  }
+
+  compareValue(
+    option: { id: number; name: { de: string; en: string } } | null,
+    value: { id: number; name: { de: string; en: string } } | null
+  ): boolean {
+    if (!option && !value) {
+      return true
+    } else if (!!option && !!value) {
+      return option.id === value.id
+    } else {
+      return false
+    }
+  }
 }

@@ -29,6 +29,7 @@ export const mockAql1: IAqlApi = {
   modifiedDate: '',
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql2: IAqlApi = {
@@ -41,6 +42,7 @@ export const mockAql2: IAqlApi = {
   modifiedDate: '',
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql3: IAqlApi = {
@@ -53,6 +55,7 @@ export const mockAql3: IAqlApi = {
   modifiedDate: '',
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql4: IAqlApi = {
@@ -65,6 +68,7 @@ export const mockAql4: IAqlApi = {
   modifiedDate: '',
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql5: IAqlApi = {
@@ -77,6 +81,7 @@ export const mockAql5: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql6: IAqlApi = {
@@ -89,6 +94,7 @@ export const mockAql6: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserStudyCoordinator,
   publicAql: false,
+  categoryId: null,
 }
 
 export const mockAql7: IAqlApi = {
@@ -101,6 +107,7 @@ export const mockAql7: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserStudyCoordinator,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql8: IAqlApi = {
@@ -113,6 +120,7 @@ export const mockAql8: IAqlApi = {
   modifiedDate: '2020-01-01',
   owner: mockUser,
   publicAql: false,
+  categoryId: null,
 }
 
 export const mockAql9: IAqlApi = {
@@ -125,6 +133,7 @@ export const mockAql9: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUser,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql10: IAqlApi = {
@@ -137,6 +146,7 @@ export const mockAql10: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql11: IAqlApi = {
@@ -149,6 +159,7 @@ export const mockAql11: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAql12: IAqlApi = {
@@ -161,6 +172,7 @@ export const mockAql12: IAqlApi = {
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
   publicAql: true,
+  categoryId: null,
 }
 
 export const mockAqlsToSort = [

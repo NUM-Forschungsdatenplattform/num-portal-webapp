@@ -69,6 +69,15 @@
           </mat-form-field>
         </section>
 
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label id="label-category">{{ 'FORM.CATEGORY' | translate }}</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
+              categoryValueAccessor(category)
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-checkbox
           id="isPublic"
           color="accent"

@@ -22,10 +22,12 @@ import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
-import { take } from 'rxjs/operators'
+import { take, tap } from 'rxjs/operators'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
+import { TranslateService } from '@ngx-translate/core'
+import { combineLatest } from 'rxjs'
 
 @Component({
   selector: 'num-aql-editor',
@@ -39,6 +41,45 @@ export class AqlEditorComponent implements OnInit {
   }
 
   aqlForm: FormGroup
+  // TODO fetch from backend
+  availableCategories: { id: number | string; name: { de: string; en: string } }[] = [
+    {
+      id: 1,
+      name: {
+        de: 'Demografisch',
+        en: 'Demographic',
+      },
+    },
+    {
+      id: 3,
+      name: {
+        de: 'Metabolisches Syndrom',
+        en: 'Metabolic syndrom',
+      },
+    },
+    {
+      id: 4,
+      name: {
+        de: 'COVID-19 Symptome',
+        en: 'COVID-19 Symptoms',
+      },
+    },
+    {
+      id: 2,
+      name: {
+        de: 'Soziologisch',
+        en: 'Sociologic',
+      },
+    },
+    {
+      id: 5,
+      name: {
+        de: 'Reiseverhalten',
+        en: 'Travel behaviour',
+      },
+    },
+  ]
+
   isEditMode: boolean
   isCurrentUserOwner: boolean
 
@@ -47,7 +88,8 @@ export class AqlEditorComponent implements OnInit {
     private router: Router,
     private aqlService: AqlService,
     private authService: AuthService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
+    private translateService: TranslateService
   ) {}
 
   @ViewChild('aqlCreator') aqlCreator: AqlEditorCeatorComponent
@@ -62,6 +104,13 @@ export class AqlEditorComponent implements OnInit {
     this.authService.userInfoObservable$
       .pipe(take(1))
       .subscribe((user) => (this.isCurrentUserOwner = this.aql?.owner?.id === user?.sub))
+
+    // This code has to be there unless we fetch the AQL categories from backend to prevent
+    // the ExpressionChangedAfterItHasBeenCheckedError
+    this.availableCategories.push({
+      id: '',
+      name: { de: 'Ohne Kategorie', en: 'Uncategorized' },
+    })
   }
 
   generateForm(): void {
@@ -70,7 +119,7 @@ export class AqlEditorComponent implements OnInit {
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
       use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
       isPublic: new FormControl(this.aql?.publicAql),
-      categoryId: new FormControl(this.aql?.categoryId),
+      category: new FormControl(this.aql?.categoryId || ''),
     })
   }
 
@@ -82,7 +131,7 @@ export class AqlEditorComponent implements OnInit {
       formValues.purpose,
       formValues.use,
       formValues.isPublic,
-      formValues.categoryId
+      formValues.category
     )
   }
 
