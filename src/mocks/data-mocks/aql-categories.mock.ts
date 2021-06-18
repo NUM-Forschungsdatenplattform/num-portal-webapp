@@ -13,15 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { IAqlCategoryApi } from '../../app/shared/models/aql/category/aql-category.interface'
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
-
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
+export const mockAqlCategory1: IAqlCategoryApi = {
+  id: 1,
+  name: {
+    de: 'Demografisch',
+    en: 'Demographic',
+  },
 }
+
+export const mockAqlCategory2: IAqlCategoryApi = {
+  id: 2,
+  name: {
+    de: 'Medizinisch',
+    en: 'Medical',
+  },
+}
+
+export const mockAqlCategory3: IAqlCategoryApi = {
+  id: 3,
+  name: {
+    de: 'Sozial',
+    en: 'Social',
+  },
+}
+
+export const mockAqlCategories = [mockAqlCategory1, mockAqlCategory2, mockAqlCategory3]

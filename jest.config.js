@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-const { pathsToModuleNameMapper } = require("ts-jest/utils");
-const { compilerOptions } = require("./tsconfig");
+const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { compilerOptions } = require('./tsconfig')
 
 module.exports = {
-  preset: "jest-preset-angular",
-  roots: ["<rootDir>/src/"],
-  testMatch: ["**/+(*.)+(spec).+(ts)"],
-  setupFilesAfterEnv: ["<rootDir>/src/test.ts"],
+  preset: 'jest-preset-angular',
+  roots: ['<rootDir>/src/'],
+  testMatch: ['**/+(*.)+(spec).+(ts)'],
+  setupFilesAfterEnv: ['<rootDir>/src/test.ts'],
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/app/**/*.ts',
@@ -30,25 +30,18 @@ module.exports = {
     '!<rootDir>/src/app/**/font-awesome-icons.ts',
     '!<rootDir>/src/playground/**',
     '!<rootDir>/src/main.playground.ts',
-    '!<rootDir>/src/test.ts'
+    '!<rootDir>/src/test.ts',
+    '!<rootDir>/src/**/*.harness.ts',
   ],
-  coverageReporters: [
-    "html",
-    "text-summary",
-    "json",
-    "lcov",
-    "text",
-    "clover",
-    "cobertura"
-  ],
-  reporters: ["default", "jest-junit"],
+  coverageReporters: ['html', 'text-summary', 'json', 'lcov', 'text', 'clover', 'cobertura'],
+  reporters: ['default', 'jest-junit'],
 
-  coverageDirectory: "<rootDir>/coverage",
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
-    prefix: "<rootDir>/",
-  }),
+  coverageDirectory: '<rootDir>/coverage',
   moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
+      prefix: '<rootDir>/',
+    }),
     '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
-    '^lodash-es$': '<rootDir>/node_modules/lodash/index.js'
+    '^lodash-es$': '<rootDir>/node_modules/lodash/index.js',
   },
-};
+}

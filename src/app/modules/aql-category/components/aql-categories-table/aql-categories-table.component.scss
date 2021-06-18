@@ -14,14 +14,18 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+table {
+  width: 100%;
+}
 
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
+td {
+  word-break: break-word;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.aql-categories-table {
+  margin: 0 0 60px 0;
 }

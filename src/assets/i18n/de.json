@@ -47,6 +47,7 @@
     "AQLS": "AQL Abfragen",
     "AQLS_OVERVIEW": "AQL Abfragen-Übersicht",
     "AQLS_EDITOR": "AQL Abfragen-Editor",
+    "AQLS_CATEGORIES_OVERVIEW": "AQL Kategorien",
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Genehmigte Benutzer",
@@ -279,7 +280,8 @@
     "DETERMINE": "Ermitteln",
     "MOVE_UP": "Nach oben verschieben",
     "MOVE_DOWN": "Nach unten verschieben",
-    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
+    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen",
+    "CREATE_AQL_CATEGORY": "Kategorie erstellen"
   },
   "PROJECT": {
     "SEARCH_PROJECTS": "Projekt suchen",
@@ -379,6 +381,8 @@
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
     "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
+    "DELETE_AQL_CATEGORY_TITLE": "Wollen Sie die Abfragenkategorie wirklich löschen?",
+    "DELETE_AQL_CATEGORY_CONTENT": "Das Löschen der Abfragenkategorie kann nicht rückgängig gemacht werden.",
     "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen?",
     "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
@@ -459,5 +463,21 @@
     "HOUR_SHORT": "Std.",
     "MINUTE_SHORT": "Min.",
     "SECOND_SHORT": "Sek."
+  },
+  "AQL_CATEGORIES": {
+    "CREATE_HEADER": "AQL Kategorie anlegen",
+    "CREATE_DESCRIPTION_BUTTON": "Zum Anlegen einer neuen AQL Kategorie klicken Sie bitte auf den nachfolgenden Button.",
+    "CREATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich gespeichert..",
+    "CREATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "DE_NAME": "Deutsche Bezeichnung",
+    "DEFINE_CATEGORY": "Beschreibung der Kategorie eingeben",
+    "DELETE_ERROR_MESSAGE": "Die AQL Kategorie konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "DELETE_SUCCESS_MESSAGE": "Die AQL Kategorie wurde erfolgreich gelöscht.",
+    "EDIT_DIALOG_TITLE": "Kategorie bearbeiten",
+    "EN_NAME": "Englische Bezeichnung",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle AQL Kategorien im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Kategorie wählen Sie diese aus der Liste aus.",
+    "TABLE_TITLE": "Verfügbare AQL Kategorien",
+    "UPDATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich editiert.",
+    "UPDATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht editiert werden. Bitte versuchen Sie es erneut."
   }
 }

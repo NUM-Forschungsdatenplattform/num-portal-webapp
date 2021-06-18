@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+import { DialogEditCategoryDetailsComponent } from '../dialog-edit-category-details/dialog-edit-category-details.component'
 
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
+export const EDIT_AQL_CATEGORY_DIALOG_CONFIG: DialogConfig = {
+  title: 'AQL_CATEGORIES.EDIT_DIALOG_TITLE',
+  confirmButtonText: 'BUTTON.SAVE',
+  cancelButtonText: 'BUTTON.CANCEL',
+  dialogSize: DialogSize.Medium,
+  hasCloseIcon: true,
+  dialogContentComponent: DialogEditCategoryDetailsComponent,
 }

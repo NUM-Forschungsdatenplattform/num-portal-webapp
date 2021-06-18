@@ -14,14 +14,23 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
+export enum AqlCategoryMenuKeys {
+  Edit = 'EDIT',
+  Delete = 'DELETE',
+}
+
+export const MENU_ITEM_EDIT: IItemVisibility = {
+  id: AqlCategoryMenuKeys.Edit,
+  translationKey: 'BUTTON.EDIT',
+  disabledUnless: [],
+  hiddenWhen: [],
+}
+
+export const MENU_ITEM_DELETE: IItemVisibility = {
+  id: AqlCategoryMenuKeys.Delete,
+  translationKey: 'BUTTON.DELETE',
+  disabledUnless: [],
+  hiddenWhen: [],
 }
