@@ -15,6 +15,7 @@
  */
 
 import { Component, OnInit } from '@angular/core'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 
 @Component({
@@ -23,9 +24,10 @@ import { AqlService } from 'src/app/core/services/aql/aql.service'
   styleUrls: ['./aqls.component.scss'],
 })
 export class AqlsComponent implements OnInit {
-  constructor(private aqlService: AqlService) {}
+  constructor(private aqlCategoryService: AqlCategoryService, private aqlService: AqlService) {}
 
   ngOnInit(): void {
     this.aqlService.getAll().subscribe()
+    this.aqlCategoryService.getAll().subscribe()
   }
 }

@@ -44,6 +44,9 @@ import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { MatTableHarness } from '@angular/material/table/testing'
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -60,6 +63,12 @@ describe('AqlTableComponent', () => {
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
   } as unknown) as AqlService
+
+  const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
+  const mockAqlCategoryService = {
+    aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
+    getAll: () => of(),
+  }
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {
@@ -108,6 +117,10 @@ describe('AqlTableComponent', () => {
         PipesModule,
       ],
       providers: [
+        {
+          provide: AqlCategoryService,
+          useValue: mockAqlCategoryService,
+        },
         {
           provide: AqlService,
           useValue: aqlService,
@@ -206,6 +219,7 @@ describe('AqlTableComponent', () => {
       loader = TestbedHarnessEnvironment.loader(fixture)
       component.paginator.pageSize = 20
       filteredAqlsSubject$.next(mockAqlsToSort)
+      aqlCategoriesSubject$.next(mockAqlCategories)
       fixture.detectChanges()
     })
 

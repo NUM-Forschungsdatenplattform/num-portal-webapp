@@ -36,6 +36,8 @@ import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { TranslateService } from '@ngx-translate/core'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 
 @Component({
   selector: 'num-aql-table',
@@ -57,43 +59,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
   // TODO: Change to IAqlCategoryApi after merge other feature branch for NUM-1600
-  aqlCategories: { id: number; name: { de: string; en: string } }[] = [
-    {
-      id: 1,
-      name: {
-        de: 'Demografisch',
-        en: 'Demographic',
-      },
-    },
-    {
-      id: 3,
-      name: {
-        de: 'Metabolisches Syndrom',
-        en: 'Metabolic syndrom',
-      },
-    },
-    {
-      id: 4,
-      name: {
-        de: 'COVID-19 Symptome',
-        en: 'COVID-19 Symptoms',
-      },
-    },
-    {
-      id: 2,
-      name: {
-        de: 'Soziologisch',
-        en: 'Sociologic',
-      },
-    },
-    {
-      id: 5,
-      name: {
-        de: 'Reiseverhalten',
-        en: 'Travel behaviour',
-      },
-    },
-  ]
+  aqlCategories: IAqlCategoryApi[] = []
   private subscriptions = new Subscription()
 
   @ViewChild(MatSort, { static: false }) sort: MatSort
@@ -108,6 +74,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   }
 
   constructor(
+    private aqlCategoryService: AqlCategoryService,
     private aqlService: AqlService,
     private profileService: ProfileService,
     private dialogService: DialogService,
@@ -126,6 +93,12 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
 
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
+    )
+
+    this.subscriptions.add(
+      this.aqlCategoryService.aqlCategoriesObservable$.subscribe(
+        (aqlCategories) => (this.aqlCategories = aqlCategories)
+      )
     )
   }
 
