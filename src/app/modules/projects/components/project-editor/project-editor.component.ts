@@ -205,7 +205,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       cohortGroup,
       id: project.cohortId || null,
       name: project.name,
-      studyId: project.id, // Should change to projectId once the BE is refactored
+      projectId: project.id,
       description: project.description,
     }
 
@@ -244,7 +244,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       this.project.id = projectResult.id
 
       if (cohort.cohortGroup) {
-        cohort.studyId = projectResult.id
+        cohort.projectId = projectResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.project.cohortId = cohortResult.id
       }

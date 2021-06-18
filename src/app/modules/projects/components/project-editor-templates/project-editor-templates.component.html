@@ -38,7 +38,7 @@
     <num-add-template-selected-table
       [(selectedTemplates)]="templates"
       [isDisabled]="isDisabled"
-      data-test="study-editor__templates__add-template-table"
+      data-test="project-editor__templates__add-template-table"
     ></num-add-template-selected-table>
 
     <num-button
@@ -46,7 +46,7 @@
       icon="plus"
       [isDisabled]="isDisabled"
       (singleClick)="addTemplate()"
-      data-test="study-editor__templates__add-template-button"
+      data-test="project-editor__templates__add-template-button"
       >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
     >
   </section>

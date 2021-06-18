@@ -21,5 +21,5 @@ export interface ICohortApi {
   description?: string
   id: number | null
   name: string
-  studyId: number // Should change to projectId once the BE is refactored
+  projectId: number
 }

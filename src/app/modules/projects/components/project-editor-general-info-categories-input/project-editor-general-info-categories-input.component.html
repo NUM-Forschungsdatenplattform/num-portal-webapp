@@ -19,20 +19,20 @@
   <mat-chip-list
     #categoryChipList
     aria-label="Category selection"
-    data-test="study-editor__general-info__categories-chip-list"
+    data-test="project-editor__general-info__categories-chip-list"
   >
     <mat-chip
       *ngFor="let category of categories; let i = index"
       (removed)="removeCategory(i)"
       [value]="category"
       class="chip-primary"
-      data-test="study-editor__general-info__category-chip"
+      data-test="project-editor__general-info__category-chip"
     >
       <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
       <fa-icon
         icon="times-circle"
         class="chip__remove-icon"
-        data-test="study-editor__general-info__categories-remove-category-button"
+        data-test="project-editor__general-info__categories-remove-category-button"
         matChipRemove
       ></fa-icon>
     </mat-chip>
@@ -52,19 +52,19 @@
     #categoryAutocomplete="matAutocomplete"
     (optionSelected)="addCategory($event, trigger)"
     autoActiveFirstOption
-    data-test="study-editor__general-info__categories-autocomplete"
+    data-test="project-editor__general-info__categories-autocomplete"
   >
     <mat-option
       *ngFor="let category of filteredCategories | async"
       [value]="category"
-      data-test="study-editor__general-info__category-option"
+      data-test="project-editor__general-info__category-option"
     >
       {{ 'PROJECT.CATEGORIES.' + category | translate }}
     </mat-option>
     <mat-option
       *ngIf="isNoResults"
       disabled
-      data-test="study-editor__general-info__category-option__no-results"
+      data-test="project-editor__general-info__category-option__no-results"
     >
       {{ 'PROJECT.CATEGORIES_NO_RESULTS' | translate }}
     </mat-option>
