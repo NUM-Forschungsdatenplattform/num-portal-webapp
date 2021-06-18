@@ -22,7 +22,7 @@ export const mockCohort1: ICohortApi = {
   id: 1,
   name: 'Cohort 1',
   description: 'Test',
-  studyId: 1, // Should change to projectId once the BE is refactored
+  projectId: 1,
   cohortGroup: {
     id: 2,
     operator: LogicalOperator.And,

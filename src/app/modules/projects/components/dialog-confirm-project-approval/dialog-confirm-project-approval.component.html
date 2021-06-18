@@ -22,7 +22,7 @@
       id="isChecked"
       color="accent"
       formControlName="check"
-      data-test="dialog-confirm-study__approval__ethical-approval-checkbox"
+      data-test="dialog-confirm-project__approval__ethical-approval-checkbox"
       >{{ 'FORM.ETHICAL_APPROVAL_CHECKBOX' | translate }}</mat-checkbox
     >
   </form>
@@ -31,7 +31,7 @@
     <num-button
       type="secondary"
       (singleClick)="handleDialogCancel()"
-      data-test="dialog-confirm-study__approval__cancel-button"
+      data-test="dialog-confirm-project__approval__cancel-button"
       >{{ 'BUTTON.CANCEL' | translate }}</num-button
     >
 
@@ -40,7 +40,7 @@
       type="primary"
       (singleClick)="handleDialogConfirm()"
       [isDisabled]="form.invalid"
-      data-test="dialog-confirm-study__approval__approval-button"
+      data-test="dialog-confirm-project__approval__approval-button"
       >{{ 'BUTTON.PROJECT_APPROVAL_APPROVE' | translate }}</num-button
     >
   </div>

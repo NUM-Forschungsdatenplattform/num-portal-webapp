@@ -59,7 +59,7 @@
                 class="researchers-list_item-delete"
                 [disabled]="isDisabled"
                 (click)="deleteResearcher(element.id)"
-                data-test="study-editor__researchers__delete-researcher-button"
+                data-test="project-editor__researchers__delete-researcher-button"
               >
                 <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
               </button>
@@ -81,7 +81,7 @@
       icon="plus"
       [isDisabled]="isDisabled"
       (singleClick)="addResearchers()"
-      data-test="study-editor__researchers__add-researchers-button"
+      data-test="project-editor__researchers__add-researchers-button"
     >
       {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
     </num-button>
