@@ -22,12 +22,7 @@
   (openEditDialog)="handleOpenEditDialog($event)"
 ></num-aql-categories-table>
 
-<section
-  *numUserHasRole="[availableRoles.Manager]"
-  role="region"
-  fxLayout="column"
-  class="num-margin-b-40"
->
+<section role="region" fxLayout="column" class="num-margin-b-40">
   <h3>{{ 'AQL_CATEGORIES.CREATE_HEADER' | translate }}</h3>
   <p class="num-margin-b-20">
     {{ 'AQL_CATEGORIES.CREATE_DESCRIPTION_BUTTON' | translate }}
@@ -35,7 +30,7 @@
   <num-button
     type="primary"
     icon="plus"
-    (singleClick)="handleAddButtonClick()"
+    (singleClick)="handleOpenEditDialog()"
     [attr.data-test]="'aql-category-management__create-aql-category-button'"
     >{{ 'BUTTON.CREATE_AQL_CATEGORY' | translate }}</num-button
   >

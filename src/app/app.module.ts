@@ -32,7 +32,6 @@ import { DateAdapter } from '@angular/material/core'
 import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
 import { WebpackTranslateLoader } from './webpack-translate-loader'
-import { MockBackendInterceptor } from 'src/mocks/mock-utils/mock-backend.interceptor'
 
 @NgModule({
   declarations: [AppComponent],
@@ -73,11 +72,6 @@ import { MockBackendInterceptor } from 'src/mocks/mock-utils/mock-backend.interc
     {
       provide: HTTP_INTERCEPTORS,
       useClass: OAuthInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MockBackendInterceptor,
       multi: true,
     },
     { provide: DateAdapter, useClass: CustomDatePickerAdapter },

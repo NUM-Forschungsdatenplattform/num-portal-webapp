@@ -20,7 +20,6 @@ import { SharedModule } from 'src/app/shared/shared.module'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { AqlCategoriesTableComponent } from './components/aql-categories-table/aql-categories-table.component'
 import { AQLCategoryRoutingModule } from './aql-category-routing.module'
-import { MatPaginatorModule } from '@angular/material/paginator'
 import { DialogEditCategoryDetailsComponent } from './components/dialog-edit-category-details/dialog-edit-category-details.component'
 import { AqlCategoriesManagementComponent } from './components/aql-categories-management/aql-categories-management.component'
 
@@ -30,6 +29,6 @@ import { AqlCategoriesManagementComponent } from './components/aql-categories-ma
     DialogEditCategoryDetailsComponent,
     AqlCategoriesManagementComponent,
   ],
-  imports: [CommonModule, SharedModule, LayoutModule, AQLCategoryRoutingModule, MatPaginatorModule],
+  imports: [CommonModule, SharedModule, LayoutModule, AQLCategoryRoutingModule],
 })
 export class AqlCategoryModule {}

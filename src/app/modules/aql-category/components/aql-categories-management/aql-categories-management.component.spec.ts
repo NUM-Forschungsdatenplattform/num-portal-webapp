@@ -221,12 +221,12 @@ describe('AqlCategoriesManagementComponent', () => {
     })
 
     it('should open the dialog on button click from user', () => {
-      component.handleAddButtonClick()
+      component.handleOpenEditDialog()
       expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
     })
 
     it('should call save method of aql category service on submit', () => {
-      component.handleAddButtonClick()
+      component.handleOpenEditDialog()
       afterClosedSubject$.next(newCategoryData)
       expect(mockAqlCategoryService.save).toHaveBeenCalledWith(newCategoryData)
     })
@@ -240,7 +240,7 @@ describe('AqlCategoriesManagementComponent', () => {
     })
 
     it('should not to anything if the user cancels the dialog', () => {
-      component.handleAddButtonClick()
+      component.handleOpenEditDialog()
       afterClosedSubject$.next()
       expect(mockAqlCategoryService.save).not.toHaveBeenCalled()
       expect(mockAqlCategoryService.update).not.toHaveBeenCalled()

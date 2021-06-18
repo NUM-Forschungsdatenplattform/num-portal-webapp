@@ -23,12 +23,11 @@ export interface IAqlCategoryApi {
    */
   id: number
   /**
-   * Name strings for the category for each language. Must at least provide the name in German
-   * ('de') and English ('en') language. Additional languages can be addded dynamically later.
+   * Name strings for the category for each language. Must provide the name in German
+   * ('de') and English ('en') language.
    */
   name: {
     de: string
     en: string
-    [langKey: string]: string
   }
 }

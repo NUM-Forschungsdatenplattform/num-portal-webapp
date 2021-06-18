@@ -70,10 +70,6 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
     })
   }
 
-  handleAddButtonClick(): void {
-    this.handleOpenEditDialog()
-  }
-
   async create(data: Omit<IAqlCategoryApi, 'id'>): Promise<void> {
     try {
       await this.aqlCategoryService.save(data).toPromise()

@@ -32,7 +32,6 @@ export const MENU_ITEM_EDIT: IItemVisibility = {
 export const MENU_ITEM_DELETE: IItemVisibility = {
   id: AqlCategoryMenuKeys.Delete,
   translationKey: 'BUTTON.DELETE',
-  forceEnableByRole: [AvailableRoles.SuperAdmin],
   disabledUnless: [],
   hiddenWhen: [],
 }
