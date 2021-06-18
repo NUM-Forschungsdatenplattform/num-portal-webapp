@@ -43,7 +43,7 @@ import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
 
 describe('ProjectService', () => {
   let service: ProjectService
-  const baseUrl = 'localhost/api/study'
+  const baseUrl = 'localhost/api/project'
   let mockProject1Local
   let throttleTime: number
 
@@ -100,7 +100,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/study`)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/project`)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -111,7 +111,7 @@ describe('ProjectService', () => {
       service.get(1).subscribe((result) => {
         expect(result).toEqual(mockProject1Local)
       })
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/project/${1}`)
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
@@ -121,7 +121,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/project/${1}`)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -132,7 +132,7 @@ describe('ProjectService', () => {
       service.create(mockProject1Local).subscribe((result) => {
         expect(result).toEqual(mockProject1Local)
       })
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study`, mockProject1Local)
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project`, mockProject1Local)
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
@@ -142,7 +142,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study`, mockProject1Local)
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project`, mockProject1Local)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -153,7 +153,7 @@ describe('ProjectService', () => {
       service.update(mockProject1Local, 1).subscribe((result) => {
         expect(result).toEqual(mockProject1Local)
       })
-      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/study/${1}`, mockProject1Local)
+      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${1}`, mockProject1Local)
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
@@ -163,7 +163,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/study/${1}`, mockProject1Local)
+      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${1}`, mockProject1Local)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -172,7 +172,7 @@ describe('ProjectService', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'delete').mockImplementation(() => of(mockProject1Local))
       service.delete(1).subscribe()
-      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/project/${1}`)
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
@@ -182,7 +182,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/study/${1}`)
+      expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/project/${1}`)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -193,7 +193,7 @@ describe('ProjectService', () => {
       service.executeAdHocAql('query', 1).subscribe((result) => {
         expect(result).toEqual([mockResultSetFlat])
       })
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study/${1}/execute`, {
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
         query: 'query',
       })
     })
@@ -205,7 +205,7 @@ describe('ProjectService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/study/${1}/execute`, {
+      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
         query: 'query',
       })
       expect(service.handleError).toHaveBeenCalled()

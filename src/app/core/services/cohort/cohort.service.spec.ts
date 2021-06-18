@@ -38,7 +38,7 @@ describe('CohortService', () => {
   const mockCohort: ICohortApi = {
     id: null,
     name: 'Test Name',
-    studyId: 1, // Should change to projectId once the BE is refactored
+    projectId: 1,
     description: 'Test Description',
     cohortGroup: undefined,
   }

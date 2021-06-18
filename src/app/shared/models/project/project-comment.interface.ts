@@ -20,6 +20,6 @@ export interface IProjectComment {
   author: IUser
   createDate: string
   id: number
-  studyId: number
+  projectId: number
   text: string
 }
