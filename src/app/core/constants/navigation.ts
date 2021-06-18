@@ -89,6 +89,11 @@ export const mainNavItems: INavItem[] = [
         id: 'editor',
         translationKey: 'NAVIGATION.AQLS_EDITOR',
       },
+      {
+        routeTo: 'aqls/categories',
+        id: 'aql-categories',
+        translationKey: 'NAVIGATION.AQLS_CATEGORIES_OVERVIEW',
+      },
     ],
   },
   {

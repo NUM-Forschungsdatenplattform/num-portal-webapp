@@ -13,15 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { NgModule } from '@angular/core'
+import { Route, RouterModule } from '@angular/router'
+import { AqlCategoriesManagementComponent } from './components/aql-categories-management/aql-categories-management.component'
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+const routes: Route[] = [
+  {
+    path: '',
+    component: AqlCategoriesManagementComponent,
+  },
+]
 
-export default interface INavItem {
-  routeTo: string
-  icon?: string | string[]
-  translationKey: string
-  tabNav?: INavItem[]
-  id?: string
-  roles?: AvailableRoles[]
-  disabled?: boolean
-}
+@NgModule({
+  exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+})
+export class AQLCategoryRoutingModule {}

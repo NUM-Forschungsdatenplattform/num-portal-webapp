@@ -47,6 +47,7 @@
     "AQLS": "AQL Queries",
     "AQLS_OVERVIEW": "AQL Queries Overview",
     "AQLS_EDITOR": "AQL Query Editor",
+    "AQLS_CATEGORIES_OVERVIEW": "AQL Categories",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -278,7 +279,8 @@
     "DETERMINE": "Determine",
     "MOVE_UP": "Move up",
     "MOVE_DOWN": "Move down",
-    "DRAG_TO_MOVE": "Drag to move"
+    "DRAG_TO_MOVE": "Drag to move",
+    "CREATE_AQL_CATEGORY": "Create Category"
   },
   "PROJECT": {
     "SEARCH_PROJECTS": "Search Project",
@@ -378,6 +380,8 @@
     "PUBLISH_PROJECT_CONTENT": "After you have started the project, you can only edit the list of researchers or end the project.\n\nAll selected researchers can start retrieving data of the project after the project start.",
     "DELETE_AQL_TITLE": "Do you really want to delete the query?",
     "DELETE_AQL_CONTENT": "The deletion of the query cannot be undone.",
+    "DELETE_AQL_CATEGORY_TITLE": "Do you really want to delete the query category?",
+    "DELETE_AQL_CATEGORY_CONTENT": "The deletion of the query category cannot be undone.",
     "DELETE_PHENOTYPE_TITLE": "Do you really want to delete the phenotype?",
     "DELETE_PHENOTYPE_CONTENT": "The deletion of the phenotype cannot be undone.",
     "APPROVE_PROJECT_TITLE": "Do you want to approve the project now?",
@@ -460,6 +464,20 @@
     "SECOND_SHORT": "Sec."
   },
   "AQL_CATEGORIES": {
-    "UNCATEGORIZED": "Uncategorized"
+    "CREATE_DESCRIPTION_BUTTON": "To create a new AQL categbory please click the following button.",
+    "CREATE_HEADER": "Create AQL Category",
+    "CREATE_SUCCESS_MESSAGE": "AQL Category created successfully.",
+    "CREATE_ERROR_MESSAGE": "AQL Category could not be created. Please try again.",
+    "DE_NAME": "German name",
+    "DEFINE_CATEGORY": "Define category details",
+    "DELETE_ERROR_MESSAGE": "The AQL category could not be deleted. Please try again.",
+    "DELETE_SUCCESS_MESSAGE": "The AQL category was successfully deleted.",
+    "EDIT_DIALOG_TITLE": "Edit category",
+    "EN_NAME": "English name",
+    "OVERVIEW_DESCRIPTION": "In the following list you can see all the AQL categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
+    "TABLE_TITLE": "Available AQL Categories",
+    "UNCATEGORIZED": "Uncategorized",
+    "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
+    "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."
   }
 }
