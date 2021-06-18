@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [

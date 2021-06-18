@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 
 export enum AqlCategoryMenuKeys {
