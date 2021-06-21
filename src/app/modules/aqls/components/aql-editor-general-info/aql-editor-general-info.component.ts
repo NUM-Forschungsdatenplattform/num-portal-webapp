@@ -35,14 +35,4 @@ export class AqlEditorGeneralInfoComponent implements OnInit {
     const category = this.availableCategories.find((cat) => categoryId === cat.id)
     return category.name[this.translateService.currentLang || 'en']
   }
-
-  compareValue(value: number | null, option: IAqlCategoryApi | null): boolean {
-    if (!value && !option) {
-      return true
-    } else if ((!value && !!option) || (!!value && !option)) {
-      return false
-    } else {
-      return value === option.id
-    }
-  }
 }

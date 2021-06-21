@@ -71,7 +71,7 @@
 
         <mat-form-field appearance="outline" color="accent">
           <mat-label id="label-category" translate="FORM.CATEGORY"></mat-label>
-          <mat-select formControlName="category" [compareWith]="compareValue">
+          <mat-select class="aql-category-select" formControlName="category">
             <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
               getCategoryName(category.id)
             }}</mat-option>
