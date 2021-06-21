@@ -70,11 +70,12 @@
         </section>
 
         <mat-form-field appearance="outline" color="accent">
-          <mat-label id="label-category">{{ 'FORM.CATEGORY' | translate }}</mat-label>
-          <mat-select formControlName="category">
+          <mat-label id="label-category" translate="FORM.CATEGORY"></mat-label>
+          <mat-select formControlName="category" [compareWith]="compareValue">
             <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
-              categoryValueAccessor(category)
+              getCategoryName(category.id)
             }}</mat-option>
+            <mat-option>{{ 'AQL_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
           </mat-select>
         </mat-form-field>
 

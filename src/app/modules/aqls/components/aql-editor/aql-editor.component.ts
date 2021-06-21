@@ -15,81 +15,47 @@
  */
 
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
-import { take, tap } from 'rxjs/operators'
+import { take } from 'rxjs/operators'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
-import { TranslateService } from '@ngx-translate/core'
-import { combineLatest } from 'rxjs'
+import { Subscription } from 'rxjs'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 
 @Component({
   selector: 'num-aql-editor',
   templateUrl: './aql-editor.component.html',
   styleUrls: ['./aql-editor.component.scss'],
 })
-export class AqlEditorComponent implements OnInit {
+export class AqlEditorComponent implements OnDestroy, OnInit {
   resolvedData: IAqlResolved
   get aql(): AqlEditorUiModel {
     return this.resolvedData.aql
   }
 
   aqlForm: FormGroup
-  // TODO fetch from backend
-  availableCategories: { id: number | string; name: { de: string; en: string } }[] = [
-    {
-      id: 1,
-      name: {
-        de: 'Demografisch',
-        en: 'Demographic',
-      },
-    },
-    {
-      id: 3,
-      name: {
-        de: 'Metabolisches Syndrom',
-        en: 'Metabolic syndrom',
-      },
-    },
-    {
-      id: 4,
-      name: {
-        de: 'COVID-19 Symptome',
-        en: 'COVID-19 Symptoms',
-      },
-    },
-    {
-      id: 2,
-      name: {
-        de: 'Soziologisch',
-        en: 'Sociologic',
-      },
-    },
-    {
-      id: 5,
-      name: {
-        de: 'Reiseverhalten',
-        en: 'Travel behaviour',
-      },
-    },
-  ]
+  availableCategories: IAqlCategoryApi[]
 
   isEditMode: boolean
   isCurrentUserOwner: boolean
 
+  private subscriptions = new Subscription()
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private aqlCategoryService: AqlCategoryService,
     private aqlService: AqlService,
     private authService: AuthService,
-    private toast: ToastMessageService,
-    private translateService: TranslateService
+    private toast: ToastMessageService
   ) {}
 
   @ViewChild('aqlCreator') aqlCreator: AqlEditorCeatorComponent
@@ -105,12 +71,15 @@ export class AqlEditorComponent implements OnInit {
       .pipe(take(1))
       .subscribe((user) => (this.isCurrentUserOwner = this.aql?.owner?.id === user?.sub))
 
-    // This code has to be there unless we fetch the AQL categories from backend to prevent
-    // the ExpressionChangedAfterItHasBeenCheckedError
-    this.availableCategories.push({
-      id: '',
-      name: { de: 'Ohne Kategorie', en: 'Uncategorized' },
-    })
+    this.subscriptions.add(
+      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) => {
+        this.availableCategories = aqlCategories
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   generateForm(): void {

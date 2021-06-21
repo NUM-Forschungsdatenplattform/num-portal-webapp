@@ -31,6 +31,8 @@ import { of, Subject } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -58,9 +60,16 @@ describe('AqlEditorComponent', () => {
     execute: jest.fn(),
   } as unknown) as AqlService
 
+  const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
+  const mockAqlCategoryService = ({
+    getAll: jest.fn(() => of()),
+    aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
+  } as unknown) as AqlCategoryService
+
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
+    @Input() availableCategories: any
   }
 
   const executeEmitter = new EventEmitter()
@@ -95,6 +104,10 @@ describe('AqlEditorComponent', () => {
         {
           provide: AqlService,
           useValue: aqlService,
+        },
+        {
+          provide: AqlCategoryService,
+          useValue: mockAqlCategoryService,
         },
         {
           provide: AuthService,
