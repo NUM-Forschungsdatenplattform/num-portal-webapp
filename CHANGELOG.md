@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Role "Manager" that takes over responsibilities from role "Project Lead" for managing AQLs and Phenotypes ([#224])
 - AQL Category management page to create, update or delete categories for AQL queries ([#227])
 - Renaming of all occurrences of the term "study" to "project" in all cases except for roles ([#228])
+- AQL Category column in AQL queries overview ([#229])
+- AQL Category select in AQL editor dialog ([#229])
 
 ---
 
@@ -450,3 +452,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#224]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/224
 [#227]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/227
 [#228]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/228
+[#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229

@@ -58,7 +58,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
-  // TODO: Change to IAqlCategoryApi after merge other feature branch for NUM-1600
   aqlCategories: IAqlCategoryApi[] = []
   private subscriptions = new Subscription()
 
