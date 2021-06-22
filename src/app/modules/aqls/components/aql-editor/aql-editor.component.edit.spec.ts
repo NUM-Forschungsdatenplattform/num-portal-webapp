@@ -33,6 +33,7 @@ import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interfa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -135,6 +136,10 @@ describe('AqlEditorComponent', () => {
   })
 
   describe('When in EditMode', () => {
+    beforeEach(() => {
+      aqlCategoriesSubject$.next(mockAqlCategories)
+    })
+
     const userInfo: IAuthUserInfo = {
       sub: '',
     }
@@ -154,6 +159,11 @@ describe('AqlEditorComponent', () => {
       const nativeElement = fixture.debugElement.nativeElement
       const element = nativeElement.querySelector('.editmode-on')
       expect(element).toBeTruthy()
+    })
+
+    it('should load available categories on init', () => {
+      fixture.detectChanges()
+      expect(component.availableCategories).toHaveLength(mockAqlCategories.length)
     })
   })
 

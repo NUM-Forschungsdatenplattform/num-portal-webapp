@@ -35,6 +35,7 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -141,6 +142,10 @@ describe('AqlEditorComponent', () => {
   })
 
   describe('When in Create mode', () => {
+    beforeEach(() => {
+      aqlCategoriesSubject$.next(mockAqlCategories)
+    })
+
     it('should set isEditMode to false', () => {
       expect(component.isEditMode).toBeFalsy()
     })
@@ -153,6 +158,11 @@ describe('AqlEditorComponent', () => {
       const nativeElement = fixture.debugElement.nativeElement
       const element = nativeElement.querySelector('.editmode-on')
       expect(element).toBeFalsy()
+    })
+
+    it('should load available categories on init', () => {
+      fixture.detectChanges()
+      expect(component.availableCategories).toHaveLength(mockAqlCategories.length)
     })
   })
 
