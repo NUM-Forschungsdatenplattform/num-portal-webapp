@@ -73,7 +73,7 @@
           <mat-label id="label-category" translate="FORM.CATEGORY"></mat-label>
           <mat-select class="aql-category-select" formControlName="category">
             <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
-              getCategoryName(category.id)
+              category.name[lang]
             }}</mat-option>
             <mat-option>{{ 'AQL_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
           </mat-select>

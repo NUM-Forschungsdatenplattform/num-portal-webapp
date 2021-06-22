@@ -55,6 +55,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     'organization',
     'category',
   ]
+  lang = 'en'
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
@@ -99,6 +100,14 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
         (aqlCategories) => (this.aqlCategories = aqlCategories)
       )
     )
+
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.lang = event.lang
+      })
+    )
+
+    this.lang = this.translateService.currentLang
   }
 
   ngAfterViewInit(): void {
@@ -231,7 +240,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   private getCategoryName(categoryId: number): string {
     const targetCategory = this.aqlCategories.find((aqlCategory) => categoryId === aqlCategory.id)
     if (!!targetCategory) {
-      return targetCategory.name[this.translateService.currentLang || 'en']
+      return targetCategory.name[this.lang]
     } else {
       return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
     }

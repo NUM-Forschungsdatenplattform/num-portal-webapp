@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
+import { Subscription } from 'rxjs'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 
 @Component({
@@ -24,15 +25,27 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
   templateUrl: './aql-editor-general-info.component.html',
   styleUrls: ['./aql-editor-general-info.component.scss'],
 })
-export class AqlEditorGeneralInfoComponent implements OnInit {
+export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
   @Input() availableCategories: IAqlCategoryApi[]
   @Input() form: FormGroup
+
+  lang = 'en'
+
+  private subscriptions = new Subscription()
+
   constructor(private translateService: TranslateService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.lang = event.lang
+      })
+    )
 
-  getCategoryName(categoryId: number): string {
-    const category = this.availableCategories.find((cat) => categoryId === cat.id)
-    return category.name[this.translateService.currentLang || 'en']
+    this.lang = this.translateService.currentLang
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 }
