@@ -133,7 +133,11 @@
           {{ 'FORM.CATEGORY' | translate }}
         </th>
         <td mat-cell *matCellDef="let element" data-test="aqls__table__data__category">
-          {{ getAqlCategoryCell(element.categoryId) }}
+          {{
+            element.categoryId != null && !!aqlCategories[element.categoryId]
+              ? aqlCategories[element.categoryId][lang]
+              : uncategorizedString
+          }}
         </td>
       </ng-container>
 

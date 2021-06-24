@@ -38,6 +38,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { TranslateService } from '@ngx-translate/core'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-category-id-name-map.interface'
 
 @Component({
   selector: 'num-aql-table',
@@ -59,7 +60,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
   selectedItem = 'AQL.ALL_AQLS'
-  aqlCategories: IAqlCategoryApi[] = []
+  aqlCategories: IAqlCategoryIdNameMap = {}
+  uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
   @ViewChild(MatSort, { static: false }) sort: MatSort
@@ -96,18 +98,21 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     )
 
     this.subscriptions.add(
-      this.aqlCategoryService.aqlCategoriesObservable$.subscribe(
-        (aqlCategories) => (this.aqlCategories = aqlCategories)
-      )
+      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) => {
+        this.handleCategories(aqlCategories)
+      })
     )
 
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang
+        this.lang = event.lang || 'en'
+        this.uncategorizedString = event.translations.AQL_CATEGORIES.UNCATEGORIZED
       })
     )
 
-    this.lang = this.translateService.currentLang
+    this.lang = this.translateService.currentLang || 'en'
+    this.uncategorizedString = this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
+    this.aqlCategoryService.getAll().subscribe()
   }
 
   ngAfterViewInit(): void {
@@ -128,6 +133,12 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
 
   handleData(aqls: IAqlApi[]): void {
     this.dataSource.data = aqls
+  }
+
+  private handleCategories(aqlCategories: IAqlCategoryApi[]): void {
+    aqlCategories.forEach((category) => {
+      this.aqlCategories[category.id] = { de: category.name.de, en: category.name.en }
+    })
   }
 
   handleMenuClick(key: string, id: number): void {
@@ -210,8 +221,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
       case 'category': {
         return newData.sort((a, b) =>
           compareLocaleStringValues(
-            this.getCategoryName(a.categoryId),
-            this.getCategoryName(b.categoryId),
+            !!a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
+            !!b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
             a.id,
             b.id,
             isAsc
@@ -224,25 +235,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
           return isAsc ? compareResult : compareResult * -1
         })
       }
-    }
-  }
-
-  getAqlCategoryCell(categoryId: number | null): string {
-    if (!!categoryId) {
-      const name = this.getCategoryName(categoryId)
-      if (name !== '') {
-        return name
-      }
-    }
-    return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
-  }
-
-  private getCategoryName(categoryId: number): string {
-    const targetCategory = this.aqlCategories.find((aqlCategory) => categoryId === aqlCategory.id)
-    if (!!targetCategory) {
-      return targetCategory.name[this.lang]
-    } else {
-      return this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
     }
   }
 }
