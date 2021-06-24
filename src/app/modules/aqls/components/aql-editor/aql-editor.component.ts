@@ -76,6 +76,8 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
         this.availableCategories = aqlCategories
       })
     )
+
+    this.aqlCategoryService.getAll().subscribe()
   }
 
   ngOnDestroy(): void {
