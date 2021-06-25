@@ -136,9 +136,13 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   }
 
   private handleCategories(aqlCategories: IAqlCategoryApi[]): void {
-    aqlCategories.forEach((category) => {
-      this.aqlCategories[category.id] = { de: category.name.de, en: category.name.en }
-    })
+    this.aqlCategories = aqlCategories.reduce((acc, category) => {
+      acc[category.id] = {
+        de: category.name.de,
+        en: category.name.en,
+      }
+      return acc
+    }, {})
   }
 
   handleMenuClick(key: string, id: number): void {

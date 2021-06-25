@@ -15,7 +15,7 @@
  */
 
 export interface IAqlCategoryIdNameMap {
-  [id: string]: {
+  [id: number]: {
     de: string
     en: string
   }
