@@ -14,6 +14,10 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - AQL Category column in AQL queries overview ([#229])
 - AQL Category select in AQL editor dialog ([#229])
 
+### Changes
+
+- Add role restriction to tab navigation generation ([#230])
+
 ---
 
 ## [Released]
@@ -453,3 +457,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#227]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/227
 [#228]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/228
 [#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229
+[#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
