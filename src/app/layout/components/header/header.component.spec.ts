@@ -28,6 +28,13 @@ import { LanguageComponent } from '../language/language.component'
 import { HeaderComponent } from './header.component'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { LogoComponent } from 'src/app/shared/components/logo/logo.component'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { AuthService } from 'src/app/core/auth/auth.service'
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { MatTabLinkHarness } from '@angular/material/tabs/testing'
+import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -72,7 +79,38 @@ describe('HeaderComponent', () => {
     ],
   }
 
-  const mainNavItems = [firstNavItem, secondNavItem, thirdNavItem, homeNavItem]
+  const navItemsWithRestrictedTabs: INavItem = {
+    routeTo: 'parent',
+    translationKey: 'parent',
+    icon: 'test',
+    tabNav: [
+      {
+        routeTo: 'visibleToAll',
+        translationKey: 'visibleToAll',
+      },
+      {
+        routeTo: 'restrictedToManager',
+        translationKey: 'restrictedToManager',
+        roles: [AvailableRoles.Manager],
+      },
+    ],
+  }
+
+  const mainNavItems = [
+    firstNavItem,
+    secondNavItem,
+    thirdNavItem,
+    homeNavItem,
+    navItemsWithRestrictedTabs,
+  ]
+
+  const mockUserInfoSubject = new Subject<IAuthUserInfo>()
+  const mockAuthService = ({
+    get isLoggedIn(): boolean {
+      return true
+    },
+    userInfoObservable$: mockUserInfoSubject.asObservable(),
+  } as unknown) as AuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -82,6 +120,7 @@ describe('HeaderComponent', () => {
         StubComponent,
         ButtonComponent,
         LogoComponent,
+        UserHasRoleDirective,
       ],
       imports: [
         FontAwesomeTestingModule,
@@ -100,6 +139,12 @@ describe('HeaderComponent', () => {
             ],
           },
         ]),
+      ],
+      providers: [
+        {
+          provide: AuthService,
+          useValue: mockAuthService,
+        },
       ],
     }).compileComponents()
   })
@@ -224,6 +269,41 @@ describe('HeaderComponent', () => {
       fixture.detectChanges()
 
       expect(component.setHeader).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('Role restrictions for tabs', () => {
+    let harnessLoader: HarnessLoader
+    const routeSnapshot = ({
+      data: {
+        navId: 'parent',
+      },
+    } as unknown) as ActivatedRouteSnapshot
+    const routerEvent = new ActivationEnd(routeSnapshot)
+
+    const mockManagerInfo: IAuthUserInfo = {
+      sub: 'test-sub-1',
+      groups: [AvailableRoles.Manager],
+    }
+    const mockResearcherInfo: IAuthUserInfo = {
+      sub: 'test-sub-2',
+      groups: [AvailableRoles.Researcher],
+    }
+    beforeEach(() => {
+      routerEventsSubject.next(routerEvent)
+      harnessLoader = TestbedHarnessEnvironment.loader(fixture)
+      fixture.detectChanges()
+    })
+    it('should show all tabs to user with required roles', async () => {
+      mockUserInfoSubject.next(mockManagerInfo)
+      const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
+      expect(tabLinks).toHaveLength(navItemsWithRestrictedTabs.tabNav.length)
+    })
+
+    it('should restrict tabs be only visible to allowed roles', async () => {
+      mockUserInfoSubject.next(mockResearcherInfo)
+      const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
+      expect(tabLinks).toHaveLength(navItemsWithRestrictedTabs.tabNav.length - 1)
     })
   })
 })
