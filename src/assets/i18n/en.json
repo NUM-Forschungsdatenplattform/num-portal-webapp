@@ -476,6 +476,7 @@
     "EN_NAME": "English name",
     "OVERVIEW_DESCRIPTION": "In the following list you can see all the AQL categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
     "TABLE_TITLE": "Available AQL Categories",
+    "UNCATEGORIZED": "Uncategorized",
     "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
     "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."
   }

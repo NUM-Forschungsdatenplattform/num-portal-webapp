@@ -19,14 +19,12 @@ import { of, Subject } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { AqlTableComponent } from '../aql-table/aql-table.component'
 
 import { AqlsComponent } from './aqls.component'
 import { TranslateModule } from '@ngx-translate/core'
-import { SearchComponent } from '../../../../shared/components/search/search.component'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { ReactiveFormsModule } from '@angular/forms'
 import { Component } from '@angular/core'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 
 describe('AqlsComponent', () => {
   let component: AqlsComponent
@@ -37,6 +35,12 @@ describe('AqlsComponent', () => {
     aqlsObservable$: aqlsSubject$.asObservable(),
     getAll: () => of(),
   } as AqlService
+
+  const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
+  const mockAqlCategoryService = {
+    aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
+    getAll: () => of(),
+  }
 
   @Component({ selector: 'num-aql-table', template: '' })
   class AqlTableStubComponent {}
@@ -49,6 +53,10 @@ describe('AqlsComponent', () => {
         {
           provide: AqlService,
           useValue: aqlService,
+        },
+        {
+          provide: AqlCategoryService,
+          useValue: mockAqlCategoryService,
         },
       ],
     }).compileComponents()

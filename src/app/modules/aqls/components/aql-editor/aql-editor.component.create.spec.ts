@@ -26,7 +26,6 @@ import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
 import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
-
 import { AqlEditorComponent } from './aql-editor.component'
 import { of, Subject, throwError } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
@@ -34,6 +33,9 @@ import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interfa
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -60,6 +62,12 @@ describe('AqlEditorComponent', () => {
     update: jest.fn(),
   } as unknown) as AqlService
 
+  const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
+  const mockAqlCategoryService = ({
+    getAll: jest.fn(() => of()),
+    aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
+  } as unknown) as AqlCategoryService
+
   const mockToast = ({
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
@@ -67,6 +75,7 @@ describe('AqlEditorComponent', () => {
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() form: any
+    @Input() availableCategories: any
   }
 
   const executeEmitter = new EventEmitter()
@@ -103,6 +112,10 @@ describe('AqlEditorComponent', () => {
           useValue: aqlService,
         },
         {
+          provide: AqlCategoryService,
+          useValue: mockAqlCategoryService,
+        },
+        {
           provide: AuthService,
           useValue: authService,
         },
@@ -129,6 +142,10 @@ describe('AqlEditorComponent', () => {
   })
 
   describe('When in Create mode', () => {
+    beforeEach(() => {
+      aqlCategoriesSubject$.next(mockAqlCategories)
+    })
+
     it('should set isEditMode to false', () => {
       expect(component.isEditMode).toBeFalsy()
     })
@@ -141,6 +158,11 @@ describe('AqlEditorComponent', () => {
       const nativeElement = fixture.debugElement.nativeElement
       const element = nativeElement.querySelector('.editmode-on')
       expect(element).toBeFalsy()
+    })
+
+    it('should load available categories on init', () => {
+      fixture.detectChanges()
+      expect(component.availableCategories).toHaveLength(mockAqlCategories.length)
     })
   })
 
