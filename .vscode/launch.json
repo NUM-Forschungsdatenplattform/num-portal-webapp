@@ -5,6 +5,26 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "name": "Open in Chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "userDataDir": "${workspaceFolder}/.chrome",
+      "sourceMaps": true,
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start Dev Server",
+      "postDebugTask": "Stop Dev Server"
+    },
+    {
+      "type": "firefox",
+      "name": "Open in Firefox",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "Start Dev Server",
+      "postDebugTask": "Stop Dev Server"
+    },
+    {
       "name": "Jest All",
       "type": "node",
       "request": "launch",
