@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -21,12 +23,14 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
+import { MatButtonHarness } from '@angular/material/button/testing'
 
 import { ProjectEditorButtonsComponent } from './project-editor-buttons.component'
 
 describe('ProjectEditorButtonsComponent', () => {
   let component: ProjectEditorButtonsComponent
   let fixture: ComponentFixture<ProjectEditorButtonsComponent>
+  let loader: HarnessLoader
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -38,6 +42,7 @@ describe('ProjectEditorButtonsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectEditorButtonsComponent)
     component = fixture.componentInstance
+    loader = TestbedHarnessEnvironment.loader(fixture)
     fixture.detectChanges()
 
     jest.spyOn(component.saveAll, 'emit')
@@ -126,6 +131,57 @@ describe('ProjectEditorButtonsComponent', () => {
         nativeButton.click()
         expect(component.startEdit.emit).toHaveBeenCalledTimes(1)
       }
+    })
+  })
+
+  describe('Save button', () => {
+    let saveButton: MatButtonHarness
+
+    beforeEach(async () => {
+      component.editorMode = PossibleProjectEditorMode.EDIT
+      saveButton = await loader.getHarness(MatButtonHarness.with({ text: 'BUTTON.SAVE' }))
+    })
+
+    it('should be disabled initially', async () => {
+      expect(await saveButton.isDisabled()).toBe(true)
+    })
+
+    it('should be enabled if partial data has been entered', async () => {
+      component.projectStatus = ProjectStatus.Draft
+      component.isCohortDefined = true
+      component.isFormValid = true
+      expect(await saveButton.isDisabled()).toBe(false)
+    })
+  })
+
+  describe('Request approval button', () => {
+    let requestApprovalButton: MatButtonHarness
+
+    beforeEach(async () => {
+      component.editorMode = PossibleProjectEditorMode.EDIT
+      requestApprovalButton = await loader.getHarness(
+        MatButtonHarness.with({ text: 'BUTTON.REQUEST_APPROVAL' })
+      )
+    })
+
+    it('should be disabled initially', async () => {
+      expect(await requestApprovalButton.isDisabled()).toBe(true)
+    })
+
+    it('should be disabled if partial data has been entered', async () => {
+      component.projectStatus = ProjectStatus.Draft
+      component.isCohortDefined = true
+      component.isFormValid = true
+      expect(await requestApprovalButton.isDisabled()).toBe(true)
+    })
+
+    it('should be enabled if all data has been entered', async () => {
+      component.projectStatus = ProjectStatus.Draft
+      component.isCohortDefined = true
+      component.isFormValid = true
+      component.isResearchersDefined = true
+      component.isTemplatesDefined = true
+      expect(await requestApprovalButton.isDisabled()).toBe(false)
     })
   })
 })
