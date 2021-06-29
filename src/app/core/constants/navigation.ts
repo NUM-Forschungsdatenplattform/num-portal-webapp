@@ -24,6 +24,23 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {
+    routeTo: 'search',
+    icon: 'search',
+    translationKey: 'NAVIGATION.SEARCH',
+    tabNav: [
+      {
+        routeTo: 'search/patient-filter',
+        id: 'patient',
+        translationKey: 'NAVIGATION.PATIENT_FILTER',
+      },
+      {
+        routeTo: 'search/data-filter',
+        id: 'data',
+        translationKey: 'NAVIGATION.DATA_FILTER',
+      },
+    ],
+  },
+  {
     routeTo: 'projects',
     icon: 'microscope',
     translationKey: 'NAVIGATION.PROJECTS',

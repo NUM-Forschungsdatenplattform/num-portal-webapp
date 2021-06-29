@@ -36,6 +36,8 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Welcome to CODEX",
+    "DATA_FILTER": "Data filter",
+    "PATIENT_FILTER": "Patients Filter",
     "PROJECTS": "Projects",
     "PROJECTS_OVERVIEW": "Project Overview",
     "PROJECTS_EDITOR": "Project Editor",
@@ -59,6 +61,7 @@
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "CHARTS": "Charts",
     "PROFILE": "Profile",
+    "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in"
   },
@@ -479,5 +482,11 @@
     "UNCATEGORIZED": "Uncategorized",
     "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
     "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."
+  },
+  "SEARCH": {
+    "DATA_FILTER_HEADING": "Selection of clinical models",
+    "DATA_FILTER_DESCRIPTION": "The clinical models are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
+    "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
+    "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
   }
 }

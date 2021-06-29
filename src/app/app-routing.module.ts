@@ -31,6 +31,15 @@ export const routes: Routes = [
       ).then((m) => m.DashboardModule),
   },
   {
+    path: 'search',
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'search',
+      roles: [AvailableRoles.StudyCoordinator],
+    },
+    loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
+  },
+  {
     path: 'projects',
     canLoad: [RoleGuard],
     data: {
