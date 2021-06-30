@@ -18,7 +18,7 @@ import { AqbComparisonOperator } from 'src/app/shared/models/archetype-query-bui
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { IComparisonOperatorOption } from './aqb-comparison-operator-options.interface'
 
-export const COMPARISION_OPERATOR_OPTIONS: IDictionary<IComparisonOperatorOption> = {
+export const COMPARISION_OPERATOR_OPTIONS: IDictionary<string, IComparisonOperatorOption> = {
   [AqbComparisonOperator.Eq]: {
     value: AqbComparisonOperator.Eq,
     sign: '=',

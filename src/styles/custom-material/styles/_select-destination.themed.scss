@@ -1,0 +1,72 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@mixin select-destination_themed($theme) {
+  $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
+
+  $width: 20px;
+  $height: 40px;
+
+  .num-select-flag {
+    width: $width;
+    height: $height;
+    background: mat-color($additional, light-grey);
+    float: left;
+    margin-left: -$width;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+    text-align: center;
+    line-height: $height;
+    font-size: 14px;
+
+    &:focus {
+      outline: solid 2px mat-color($accent, 500);
+    }
+
+    &--active,
+    &:active {
+      outline: none !important;
+      background: mat-color($accent, 500);
+    }
+  }
+
+  .num-select-box {
+    outline-offset: -1px;
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: mat-color($additional, light-grey);
+    padding: 20px;
+    width: 100%;
+    min-height: 200px;
+
+    &.cohort-group {
+      min-height: 100px;
+      padding: 0 20px 20px 20px;
+    }
+
+    &.contains {
+      outline-color: mat-color($additional, mid-grey);
+    }
+
+    &--active {
+      outline-color: mat-color($accent, 500);
+      outline-width: 2px;
+      outline-offset: -2px;
+    }
+  }
+}

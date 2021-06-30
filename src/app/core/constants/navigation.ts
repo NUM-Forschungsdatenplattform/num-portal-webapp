@@ -59,23 +59,6 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
-    routeTo: 'phenotypes',
-    icon: 'cubes',
-    translationKey: 'NAVIGATION.PHENOTYPES',
-    tabNav: [
-      {
-        routeTo: 'phenotypes',
-        id: 'overview',
-        translationKey: 'NAVIGATION.PHENOTYPES_OVERVIEW',
-      },
-      {
-        routeTo: 'phenotypes/new/editor',
-        id: 'editor',
-        translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
-      },
-    ],
-  },
-  {
     routeTo: 'aqls',
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',

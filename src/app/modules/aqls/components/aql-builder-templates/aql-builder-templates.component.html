@@ -32,7 +32,11 @@
   </mat-select>
 </mat-form-field>
 
-<mat-accordion [@.disabled]="!isViewRendered" [multi]="false">
+<mat-accordion
+  class="num-accordion num-accordion-small"
+  [@.disabled]="!isViewRendered"
+  [multi]="false"
+>
   <num-aql-builder-template-tree
     *ngFor="let templateId of selectedTemplates.value"
     [templateId]="templateId"

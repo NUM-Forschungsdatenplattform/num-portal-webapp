@@ -18,7 +18,6 @@ import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router'
 import { Observable, of } from 'rxjs'
 import { map, catchError, switchMap } from 'rxjs/operators'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
@@ -30,11 +29,7 @@ import { IProjectResolved } from './models/project-resolved.interface'
   providedIn: 'root',
 })
 export class ProjectResolver implements Resolve<IProjectResolved> {
-  constructor(
-    private projectService: ProjectService,
-    private phenotypeService: PhenotypeService,
-    private router: Router
-  ) {}
+  constructor(private projectService: ProjectService, private router: Router) {}
 
   shouldChangeStatusToReview(mode: string, project: IProjectApi): boolean {
     return (
@@ -65,7 +60,7 @@ export class ProjectResolver implements Resolve<IProjectResolved> {
         }
       }),
       map((project) => {
-        const uiModel = new ProjectUiModel(project, this.phenotypeService)
+        const uiModel = new ProjectUiModel(project)
         return { project: uiModel, error: null }
       }),
       catchError((error) => {

@@ -26,12 +26,10 @@ import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
@@ -49,6 +47,7 @@ import { IProjectResolved } from '../../models/project-resolved.interface'
 import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
 
 import { ProjectEditorComponent } from './project-editor.component'
+import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
@@ -73,10 +72,6 @@ describe('ProjectEditorComponent', () => {
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
 
-  const phenotypeService = ({
-    get: jest.fn().mockImplementation(() => of()),
-  } as unknown) as PhenotypeService
-
   const afterClosedSubject$ = new Subject()
   const mockDialogService = ({
     openDialog: jest.fn().mockImplementation((_: any) => {
@@ -87,7 +82,7 @@ describe('ProjectEditorComponent', () => {
   } as unknown) as DialogService
 
   const resolvedData: IProjectResolved = {
-    project: new ProjectUiModel(mockProject1, phenotypeService),
+    project: new ProjectUiModel(mockProject1),
     error: null,
   }
 
@@ -112,14 +107,12 @@ describe('ProjectEditorComponent', () => {
     @Input() generalInfoData: IDefinitionList[]
   }
 
-  @Component({ selector: 'num-project-editor-connector', template: '' })
-  class StubProjectEditorConnector {
-    @Input() cohortNode: any
+  @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
+  class StubProjectEditorCohortBuilderComponent {
+    @Input() cohortNode: CohortGroupUiModel
     @Input() isLoadingComplete: boolean
-    @Input() isDisabled: boolean
-    @Input() determineHitsContent: IDetermineHits
-    @Output() determineHitsClicked = new EventEmitter()
   }
+
   @Component({ selector: 'num-project-editor-researchers', template: '' })
   class ProjectEditorResearchers {
     @Input() researchers: any[]
@@ -176,7 +169,7 @@ describe('ProjectEditorComponent', () => {
       declarations: [
         ProjectEditorComponent,
         StubGeneralInfoComponent,
-        StubProjectEditorConnector,
+        StubProjectEditorCohortBuilderComponent,
         ProjectEditorResearchers,
         ButtonComponent,
         ProjectEditorTemplatesStubComponent,
@@ -264,7 +257,7 @@ describe('ProjectEditorComponent', () => {
       component = fixture.componentInstance
 
       fixture.detectChanges()
-      component.resolvedData.project = new ProjectUiModel(mockProject1, phenotypeService)
+      component.resolvedData.project = new ProjectUiModel(mockProject1)
       expect(cohortService.get).toHaveBeenLastCalledWith(mockProject1.cohortId)
 
       fixture.whenStable().then(() => {

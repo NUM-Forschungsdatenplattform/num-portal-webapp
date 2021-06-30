@@ -271,7 +271,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     } else {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_PHENOTYPE_ERROR_MESSAGE',
+        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
       })
     }
   }

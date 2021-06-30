@@ -19,7 +19,6 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@a
 import { Observable, of } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
@@ -35,7 +34,6 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
 
   constructor(
     private projectService: ProjectService,
-    private phenotypeService: PhenotypeService,
     private router: Router,
     private authService: AuthService
   ) {
@@ -53,7 +51,7 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
     return this.projectService.get(+id).pipe(
       map((project) => {
         if (this.isAllowed(project)) {
-          const uiModel = new ProjectUiModel(project, this.phenotypeService)
+          const uiModel = new ProjectUiModel(project)
           return { project: uiModel, error: null }
         } else {
           this.router.navigate(['data-explorer/projects'])

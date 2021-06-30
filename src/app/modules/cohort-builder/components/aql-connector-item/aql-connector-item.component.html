@@ -1,0 +1,66 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section role="region" fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start start">
+  <div>{{ aql.name }}</div>
+
+  <div fxLayout="column" fxLayoutGap="8px">
+    <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px">
+      <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
+        <mat-label id="label">Operator</mat-label>
+        <mat-select
+          [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+          [(value)]="parameter.operator"
+          data-test="cohort-builder__item__logical-operator__selector"
+        >
+          <mat-option
+            *ngFor="let operator of AqlParameterOperator"
+            [value]="operator"
+            [attr.data-test]="'cohort-builder__item__logical-operator__' + operator"
+          >
+            {{ operator }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="input num-tiny-input value-input"
+      >
+        <mat-label id="value-label">{{ parameter.name }}</mat-label>
+        <input
+          aria-labelledby="value-label"
+          matInput
+          type="text"
+          data-test="cohort-builder__item__value-input"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</section>
+
+<section class="right-panel" fxLayoutAlign="end center">
+  <button
+    color="primary"
+    mat-icon-button
+    (click)="deleteSelf()"
+    [attr.aria-label]="'BUTTON.DELETE' | translate"
+    data-test="cohort-builder__item__delete-button"
+  >
+    <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+  </button>
+</section>

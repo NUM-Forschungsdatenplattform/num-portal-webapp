@@ -29,20 +29,19 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { IProjectResolved } from '../../models/project-resolved.interface'
-
 import { ProjectEditorComponent } from './project-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { RouterTestingModule } from '@angular/router/testing'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -89,14 +88,12 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
   }
-  @Component({ selector: 'num-project-editor-connector', template: '' })
-  class StubProjectEditorConnector {
-    @Input() cohortNode: any
+  @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
+  class StubProjectEditorCohortBuilderComponent {
+    @Input() cohortNode: CohortGroupUiModel
     @Input() isLoadingComplete: boolean
-    @Input() isDisabled: boolean
-    @Input() determineHitsContent: IDetermineHits
-    @Output() determineHitsClicked = new EventEmitter()
   }
+
   @Component({ selector: 'num-project-editor-researchers', template: '' })
   class ProjectEditorResearchers {
     @Input() researchers: any[]
@@ -153,7 +150,7 @@ describe('ProjectEditorComponent On Creation', () => {
       declarations: [
         ProjectEditorComponent,
         StubGeneralInfoComponent,
-        StubProjectEditorConnector,
+        StubProjectEditorCohortBuilderComponent,
         ProjectEditorResearchers,
         ButtonComponent,
         ProjectEditorTemplatesStubComponent,
@@ -243,17 +240,18 @@ describe('ProjectEditorComponent On Creation', () => {
       }
       component.resolvedData.project.id = undefined
     })
-    it('should set the project status to pending and call the save method if a phenotype is provided', async () => {
-      component.resolvedData.project.cohortGroup.children.push(new PhenotypeUiModel())
+    it('should set the project status to pending and call the save method if a AQL is provided', async () => {
+      const aql = new AqlUiModel(mockAql3)
+      component.resolvedData.project.cohortGroup.children.push(aql)
       await component.sendForApproval()
       expect(component.project.status).toEqual(ProjectStatus.Pending)
       expect(component.save).toHaveBeenCalledTimes(1)
     })
 
-    it('should show the error message if no phenotype is provided', async () => {
+    it('should show the error message if no aql is provided', async () => {
       const toastConfig = {
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_PHENOTYPE_ERROR_MESSAGE',
+        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
       }
       await component.sendForApproval()
       expect(component.project.status).not.toEqual(ProjectStatus.Pending)
@@ -276,7 +274,7 @@ describe('ProjectEditorComponent On Creation', () => {
       const cohortGroup = new CohortGroupUiModel()
       cohortGroup.logicalOperator = LogicalOperator.And
       cohortGroup.type = ConnectorNodeType.Group
-      cohortGroup.children = [new PhenotypeUiModel()]
+      cohortGroup.children = [new AqlUiModel(mockAql1)]
       component.resolvedData.project.cohortGroup = cohortGroup
 
       component.resolvedData.project.id = undefined

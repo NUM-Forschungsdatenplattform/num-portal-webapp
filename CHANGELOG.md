@@ -17,6 +17,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 ### Changes
 
 - Add role restriction to tab navigation generation ([#230])
+- Refactoring of the Cohort-Builder ([#233])
+- Removale of phenotype-concept ([#233])
 
 ---
 
@@ -458,3 +460,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#228]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/228
 [#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229
 [#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
+[#233]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/233
