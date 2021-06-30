@@ -14,36 +14,26 @@
  * limitations under the License.
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { By } from '@angular/platform-browser'
-import { TranslateModule } from '@ngx-translate/core'
-import { PatientCountInfoComponent } from './patient-count-info.component'
 
-describe('PatientCountInfoComponent', () => {
-  let component: PatientCountInfoComponent
-  let fixture: ComponentFixture<PatientCountInfoComponent>
+import { CohortAgeGraphComponent } from './cohort-age-graph.component'
+
+describe('CohortAgeGraphComponent', () => {
+  let component: CohortAgeGraphComponent
+  let fixture: ComponentFixture<CohortAgeGraphComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PatientCountInfoComponent],
-      imports: [TranslateModule.forRoot()],
+      declarations: [CohortAgeGraphComponent],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatientCountInfoComponent)
+    fixture = TestBed.createComponent(CohortAgeGraphComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  it('should render the text for the current dataset size', () => {
-    component.datasetCount = 1234
-    const paragraphElement = fixture.debugElement.query(By.css('.patient-info-text'))
-    expect((paragraphElement.nativeElement as HTMLParagraphElement).innerHTML.trim()).toEqual(
-      'SEARCH.PATIENT_COUNT_INFO'
-    )
   })
 })

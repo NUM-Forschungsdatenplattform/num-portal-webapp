@@ -20,13 +20,11 @@ import { PatientFilterComponent } from './components/patient-filter/patient-filt
 
 const routes: Routes = [
   {
-    path: 'patient-filter',
+    path: '',
     component: PatientFilterComponent,
     data: { tabNavId: 'patient-filter' },
   },
   { path: 'data-filter', component: DataFilterComponent, data: { tabNavId: 'data-filter' } },
-
-  { path: '', redirectTo: 'search/patient-filter', pathMatch: 'full' },
 ]
 
 @NgModule({

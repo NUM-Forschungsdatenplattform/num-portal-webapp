@@ -29,13 +29,13 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.SEARCH',
     tabNav: [
       {
-        routeTo: 'search/patient-filter',
-        id: 'patient',
+        routeTo: 'search',
+        id: 'patient-filter',
         translationKey: 'NAVIGATION.PATIENT_FILTER',
       },
       {
         routeTo: 'search/data-filter',
-        id: 'data',
+        id: 'data-filter',
         translationKey: 'NAVIGATION.DATA_FILTER',
       },
     ],

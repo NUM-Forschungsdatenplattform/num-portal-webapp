@@ -13,45 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
-import { PatientFilterComponent } from './patient-filter.component'
+import { SharedModule } from 'src/app/shared/shared.module'
 
-describe('PatientFilterComponent', () => {
-  let component: PatientFilterComponent
-  let fixture: ComponentFixture<PatientFilterComponent>
+import { CohortGraphsComponent } from './cohort-graphs.component'
 
-  const mockDataSetSubject = new Subject<number>()
+describe('CohortGraphsComponent', () => {
+  let component: CohortGraphsComponent
+  let fixture: ComponentFixture<CohortGraphsComponent>
+
+  const mockCohortSizeSubject$ = new Subject<number>()
   const mockPatientFilterService = ({
-    getAllDatasetCount: () => of(),
-    totalDatasetCountObservable: mockDataSetSubject.asObservable(),
+    cohortSizeObservable$: mockCohortSizeSubject$.asObservable(),
+    getCohortSize: jest.fn(),
   } as unknown) as PatientFilterService
 
   @Component({
-    selector: 'num-patient-count-info',
+    selector: 'num-cohort-age-graph',
     template: '<div></div>',
   })
-  class MockPatientCountInfoComponent {
-    @Input() datasetCount: number
-  }
+  class MockCohortAgeGraphComponent {}
 
   @Component({
-    selector: 'num-cohort-graphs',
+    selector: 'num-cohort-institution-graph',
     template: '<div></div>',
   })
-  class MockCohortGraphsComponent {}
+  class MockCohortInstitutionGraphComponent {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        PatientFilterComponent,
-        MockCohortGraphsComponent,
-        MockPatientCountInfoComponent,
+        CohortGraphsComponent,
+        MockCohortAgeGraphComponent,
+        MockCohortInstitutionGraphComponent,
       ],
-      imports: [TranslateModule.forRoot()],
+      imports: [SharedModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: PatientFilterService,
@@ -62,18 +62,12 @@ describe('PatientFilterComponent', () => {
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatientFilterComponent)
+    fixture = TestBed.createComponent(CohortGraphsComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  it('should call getAllDatasets on first load', () => {
-    jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
-    component.ngOnInit()
-    expect(mockPatientFilterService.getAllDatasetCount).toBeCalledTimes(1)
   })
 })

@@ -21,9 +21,19 @@ import { PatientFilterComponent } from './components/patient-filter/patient-filt
 import { DataFilterComponent } from './components/data-filter/data-filter.component'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { PatientCountInfoComponent } from './components/patient-count-info/patient-count-info.component'
+import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.component'
+import { CohortAgeGraphComponent } from './components/cohort-age-graph/cohort-age-graph.component'
+import { CohortInstitutionGraphComponent } from './components/cohort-institution-graph/cohort-institution-graph.component'
 
 @NgModule({
-  declarations: [PatientFilterComponent, DataFilterComponent, PatientCountInfoComponent],
+  declarations: [
+    PatientFilterComponent,
+    DataFilterComponent,
+    PatientCountInfoComponent,
+    CohortGraphsComponent,
+    CohortAgeGraphComponent,
+    CohortInstitutionGraphComponent,
+  ],
   imports: [CommonModule, LayoutModule, SearchRoutingModule, SharedModule],
 })
 export class SearchModule {}
