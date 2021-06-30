@@ -32,6 +32,7 @@ describe('PatientFilterComponent', () => {
 
   @Component({
     selector: 'num-patient-count-info',
+    template: '<div></div>',
   })
   class MockPatientCountInfoComponent {
     @Input() datasetCount: number
