@@ -25,10 +25,7 @@
   ></num-aql-builder-templates>
 
   <section role="region" fxFlex="auto" fxLayout="column" fxLayoutGap="24px">
-    <num-aql-builder-select
-      [aqbModel]="aqbModel"
-      [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Select }"
-    ></num-aql-builder-select>
+    <num-aql-builder-select [aqbModel]="aqbModel"></num-aql-builder-select>
     <num-aql-builder-contains
       [aqbModel]="aqbModel"
       [compositions]="compositions"
@@ -36,7 +33,6 @@
     <num-aql-builder-where
       [aqbModel]="aqbModel"
       [dialogMode]="dialogInput.mode"
-      [ngClass]="{ active: aqbModel.selectDestination === AqbSelectDestination.Where }"
     ></num-aql-builder-where>
   </section>
 </section>

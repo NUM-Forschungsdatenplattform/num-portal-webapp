@@ -32,7 +32,6 @@ import { IDefinitionList } from '../../../../shared/models/definition-list.inter
 import { RouterTestingModule } from '@angular/router/testing'
 import { DataExplorerComponent } from './data-explorer.component'
 import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
@@ -72,10 +71,6 @@ describe('DataExplorerComponent', () => {
     get: jest.fn(),
   } as unknown) as CohortService
 
-  const phenotypeService = ({
-    get: jest.fn().mockImplementation(() => of()),
-  } as unknown) as PhenotypeService
-
   const adminService = ({
     getUsersByIds: jest.fn(),
   } as unknown) as AdminService
@@ -105,7 +100,7 @@ describe('DataExplorerComponent', () => {
   } as unknown) as ToastMessageService
 
   const resolvedData: IProjectResolved = {
-    project: new ProjectUiModel(mockProject1, phenotypeService),
+    project: new ProjectUiModel(mockProject1),
     error: null,
   }
 
@@ -242,7 +237,7 @@ describe('DataExplorerComponent', () => {
       component = fixture.componentInstance
 
       fixture.detectChanges()
-      component.resolvedData.project = new ProjectUiModel(mockProject1, phenotypeService)
+      component.resolvedData.project = new ProjectUiModel(mockProject1)
       expect(cohortService.get).toHaveBeenLastCalledWith(mockProject1.cohortId)
 
       fixture.whenStable().then(() => {

@@ -38,7 +38,7 @@ export class AqlEditorService {
   private templatesSubject$ = new BehaviorSubject(this.templates)
   public templatesObservable$ = this.templatesSubject$.asObservable()
 
-  private containmentCache: IDictionary<IContainmentNode> = {}
+  private containmentCache: IDictionary<string, IContainmentNode> = {}
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aqleditor/v1`

@@ -20,7 +20,11 @@
   <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P2' | translate }}</p>
   <p class="num-margin-b-40">{{ 'PROJECT.MANDATORY' | translate }}</p>
 
-  <mat-accordion [multi]="true" fxFlex="100%">
+  <mat-accordion class="num-accordion num-accordion-big" [multi]="true" fxFlex="100%">
+    <num-project-editor-cohort-builder
+      [cohortNode]="cohortGroup"
+      [isLoadingComplete]="isCohortsFetched"
+    ></num-project-editor-cohort-builder>
     <num-project-editor-general-info
       [form]="projectForm"
       [isDisabled]="isGeneralInfoDisabled"
@@ -33,15 +37,6 @@
       [isDisabled]="isTemplatesDisabled"
       data-test="project-editor__templates"
     ></num-project-editor-templates>
-
-    <num-project-editor-connector
-      [cohortNode]="cohortGroup"
-      [isLoadingComplete]="isCohortsFetched"
-      [isDisabled]="isConnectorDisabled"
-      [determineHitsContent]="determineHitsContent"
-      (determineHitsClicked)="determineHits()"
-      data-test="project-editor__connector__group"
-    ></num-project-editor-connector>
 
     <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"

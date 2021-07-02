@@ -22,7 +22,6 @@ import {
 } from '@angular/router'
 import { of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { mockProject2, mockProject3 } from 'src/mocks/data-mocks/project.mock'
@@ -36,10 +35,6 @@ describe('Data Explorer Resolver', () => {
     get: jest.fn(),
   } as unknown) as ProjectService
 
-  const phenotypeService = ({
-    get: jest.fn(),
-  } as unknown) as PhenotypeService
-
   const router = ({
     navigate: jest.fn(),
   } as unknown) as Router
@@ -50,7 +45,7 @@ describe('Data Explorer Resolver', () => {
   } as AuthService
 
   beforeEach(() => {
-    resolver = new DataExplorerResolver(projectService, phenotypeService, router, authService)
+    resolver = new DataExplorerResolver(projectService, router, authService)
   })
 
   it('should be created', () => {

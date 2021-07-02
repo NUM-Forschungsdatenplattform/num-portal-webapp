@@ -17,6 +17,7 @@
 /**
  * Helper interface for dictionary-like types
  */
-export interface IDictionary<T> {
-  [Key: string]: T
+
+export type IDictionary<K extends string | number, V> = {
+  [Key in K]: V
 }

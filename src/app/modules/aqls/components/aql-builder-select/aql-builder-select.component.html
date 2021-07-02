@@ -17,6 +17,9 @@
 <h2 id="section-heading" class="mat-display-2 pointer" (click)="setDestination()">Select</h2>
 <div
   class="num-select-flag pointer"
+  [ngClass]="{
+    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Select
+  }"
   role="button"
   tabindex="0"
   aria-labelledby="section-heading"
@@ -27,7 +30,13 @@
 >
   <fa-icon icon="check"></fa-icon>
 </div>
-<div class="num-aqb-box" fxLayout="column">
+<div
+  class="num-select-box"
+  fxLayout="column"
+  [ngClass]="{
+    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Select
+  }"
+>
   <num-aql-builder-select-item
     class="aqb-item mat-elevation-z2"
     [ngClass]="{

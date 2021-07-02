@@ -22,8 +22,6 @@ import { ProjectsComponent } from './components/projects/projects.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { ProjectEditorComponent } from './components/project-editor/project-editor.component'
 import { LayoutModule } from 'src/app/layout/layout.module'
-import { DialogEditPhenotypeComponent } from './components/dialog-edit-phenotype/dialog-edit-phenotype.component'
-import { DialogAddPhenotypesComponent } from './components/dialog-add-phenotypes/dialog-add-phenotypes.component'
 import { AddTemplatesFilterTableComponent } from './components/add-templates-filter-table/add-templates-filter-table.component'
 import { DialogAddTemplateComponent } from './components/dialog-add-template/dialog-add-template.component'
 import { ProjectsTableComponent } from './components/projects-table/projects-table.component'
@@ -34,13 +32,13 @@ import { ProjectEditorCommentsComponent } from './components/project-editor-comm
 import { ProjectEditorApprovalComponent } from './components/project-editor-approval/project-editor-approval.component'
 import { SharedProjectsModule } from './shared-projects.module'
 import { DialogConfirmProjectApprovalComponent } from './components/dialog-confirm-project-approval/dialog-confirm-project-approval.component'
+import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
+import { ProjectEditorCohortBuilderComponent } from './components/project-editor-cohort-builder/project-editor-cohort-builder.component'
 
 @NgModule({
   declarations: [
     ProjectsComponent,
     ProjectEditorComponent,
-    DialogEditPhenotypeComponent,
-    DialogAddPhenotypesComponent,
     DialogAddTemplateComponent,
     AddTemplatesFilterTableComponent,
     ProjectsTableComponent,
@@ -50,7 +48,15 @@ import { DialogConfirmProjectApprovalComponent } from './components/dialog-confi
     ProjectEditorCommentsComponent,
     ProjectEditorApprovalComponent,
     DialogConfirmProjectApprovalComponent,
+    ProjectEditorCohortBuilderComponent,
   ],
-  imports: [CommonModule, ProjectsRoutingModule, SharedModule, LayoutModule, SharedProjectsModule],
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    SharedModule,
+    LayoutModule,
+    SharedProjectsModule,
+    CohortBuilderModule,
+  ],
 })
 export class ProjectsModule {}

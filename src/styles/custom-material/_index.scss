@@ -32,7 +32,7 @@
 @import './styles/mat-expansion-panel.themed';
 @import './styles/general_select.themed';
 @import './styles/code-editor.themed';
-@import './styles/aqb-select-destination.themed';
+@import './styles/select-destination.themed';
 @import './styles/mat-toast.themed';
 @import './styles/mat-tooltip.themed';
 @import './styles/table-responsive.themed';
@@ -53,7 +53,7 @@
   @include mat-expansion-panel_themed($theme);
   @include general_select_themed($theme);
   @include code-editor_themed($theme);
-  @include aqb-select-destination_themed($theme);
+  @include select-destination_themed($theme);
   @include mat-toast_themed($theme);
   @include mat-tooltip_themed($theme);
   @include table_responsive_themed($theme);
