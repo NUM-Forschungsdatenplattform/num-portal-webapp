@@ -64,18 +64,6 @@ export const routes: Routes = [
       ).then((m) => m.DataExplorerModule),
   },
   {
-    path: 'phenotypes',
-    canLoad: [RoleGuard],
-    data: {
-      navId: 'phenotypes',
-      roles: [AvailableRoles.Manager],
-    },
-    loadChildren: () =>
-      import(
-        /* webpackChunkName: "Phenotypes.Module" */ './modules/phenotypes/phenotypes.module'
-      ).then((m) => m.PhenotypesModule),
-  },
-  {
     path: 'aqls',
     canLoad: [RoleGuard],
     data: {

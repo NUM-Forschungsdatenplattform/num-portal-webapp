@@ -1,0 +1,20 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header data-test="project-editor__connector__define-cohort-button">
+    <mat-panel-title>
+      <h3 class="accordion">
+        <fa-icon
+          [icon]="['far', 'check-circle']"
+          *ngIf="cohortNode.children.length && cohortNode.areParameterConfigured"
+        ></fa-icon
+        >{{ 'PROJECT.DEFINE_COHORT' | translate }}*
+      </h3>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <num-cohort-builder
+    [cohortNode]="cohortNode"
+    [isLoadingComplete]="isLoadingComplete"
+    [raised]="false"
+    data-test="project-editor__cohort-builder"
+  ></num-cohort-builder>
+</mat-expansion-panel>

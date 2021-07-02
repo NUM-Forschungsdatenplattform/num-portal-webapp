@@ -25,6 +25,7 @@ import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
   styleUrls: ['./aql-builder-where.component.scss'],
 })
 export class AqlBuilderWhereComponent implements OnInit {
+  AqbSelectDestination = AqbSelectDestination
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode
   constructor() {}
 

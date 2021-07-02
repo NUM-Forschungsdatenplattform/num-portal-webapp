@@ -37,7 +37,6 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 })
 export class DialogAqlBuilderComponent
   implements OnInit, OnDestroy, IGenericDialog<IAqlBuilderDialogInput> {
-  AqbSelectDestination = AqbSelectDestination
   constructor(
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService

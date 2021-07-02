@@ -32,13 +32,6 @@
       data-test="project-editor__templates"
     ></num-project-editor-templates>
 
-    <num-project-editor-connector
-      [cohortNode]="cohortGroup"
-      [isLoadingComplete]="isCohortsFetched"
-      [isDisabled]="isConnectorDisabled"
-      data-test="project-editor__connector"
-    ></num-project-editor-connector>
-
     <num-project-editor-researchers
       [isLoadingComplete]="isResearchersFetched"
       [(researchers)]="project.researchers"

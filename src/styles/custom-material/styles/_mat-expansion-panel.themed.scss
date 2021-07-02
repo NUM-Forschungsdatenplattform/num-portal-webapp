@@ -16,6 +16,193 @@
 
 @mixin mat-expansion-panel_themed($theme) {
   $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
+
+  // .num-accordion {
+  //   &-big {
+  //     background-color: transparent;
+
+  //     .mat-expansion-panel {
+  //       background-color: transparent;
+  //       box-shadow: none;
+
+  //       &.mat-expanded {
+  //         overflow: visible;
+  //       }
+  //     }
+
+  //     .mat-expansion-panel-header {
+  //       background-color: transparent;
+  //       border-bottom-width: 2px;
+  //       border-bottom-style: solid;
+  //       border-bottom-color: mat-color($additional, light-grey);
+  //       border-radius: 0;
+  //       margin: 0 0 8px 0;
+
+  //       &[aria-expanded='true'] {
+  //         margin: 0 0 20px 0;
+  //         border-bottom-color: mat-color($accent);
+  //       }
+  //     }
+
+  //     .mat-expansion-panel-content {
+  //       transition: margin 225ms cubic-bezier(0.4, 0, 0.2, 1),
+  //         box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  //       box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%),
+  //         0px 1px 5px 0px rgb(0 0 0 / 12%);
+  //       background-color: mat-color($additional, white);
+
+  //       [aria-expanded='true'] & {
+  //         margin: 0 0 32px 0;
+  //       }
+  //     }
+
+  //     .mat-expansion-panel-body {
+  //       padding: 32px 24px;
+  //     }
+  //   }
+
+  //   &-small {
+  //     .mat-expansion-panel {
+  //       margin: 0;
+  //     }
+
+  //     .mat-expansion-panel-header {
+  //       padding: 0 16px;
+  //       background-color: transparent;
+  //       border-bottom-width: 1px;
+  //       border-bottom-style: solid;
+  //       border-bottom-color: mat-color($additional, light-grey);
+  //       border-bottom-left-radius: 0;
+  //       border-bottom-right-radius: 0;
+  //       font-size: 16px !important;
+  //       font-weight: 500 !important;
+
+  //       &[aria-expanded='true'] {
+  //         margin: 0;
+  //         border-bottom-color: mat-color($accent);
+  //       }
+  //     }
+
+  //     .mat-expansion-panel-content {
+  //       background-color: mat-color($additional, page-background);
+  //     }
+
+  //     .mat-expansion-panel-body {
+  //       padding: 0;
+  //     }
+  //   }
+  // }
+
+  // .mat-expansion-indicator::after {
+  //   color: mat-color($accent);
+  //   padding: 5px !important;
+  //   margin-top: -10px;
+  //   border-width: 0 3.5px 3.5px 0 !important;
+  // }
+
+  .num-accordion {
+    &-big {
+      background-color: transparent;
+    }
+
+    &-small {
+      background-color: inherit;
+    }
+  }
+
+  .mat-expansion-panel {
+    border-radius: 0 !important;
+    .num-accordion-big & {
+      background-color: transparent;
+      box-shadow: none;
+
+      &.mat-expanded {
+        overflow: visible;
+      }
+    }
+
+    .num-accordion-small & {
+      margin: 0;
+      background-color: inherit;
+      box-shadow: none;
+
+      &.mat-expanded {
+        overflow: hidden;
+      }
+    }
+  }
+
+  .mat-expansion-panel-header {
+    background-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-color: mat-color($additional, light-grey);
+    border-radius: 0 !important;
+
+    .num-accordion-big & {
+      border-bottom-width: 2px;
+      margin: 0 0 8px 0;
+
+      &[aria-expanded='true'] {
+        margin: 0 0 20px 0;
+        border-bottom-color: mat-color($accent);
+      }
+    }
+
+    .num-accordion-small & {
+      border-bottom-width: 1px;
+      margin: 0;
+
+      padding: 0 16px;
+      font-size: 16px !important;
+      font-weight: 500 !important;
+
+      &[aria-expanded='true'] {
+        margin: 0;
+        border-bottom-color: mat-color($accent);
+      }
+
+      &:hover {
+        background: mat-color($accent, 100) !important;
+      }
+      &:focus {
+        background: mat-color($accent, 200) !important;
+      }
+    }
+  }
+
+  .mat-expansion-panel-content {
+    .num-accordion-big & {
+      transition: margin 225ms cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%),
+        0px 1px 5px 0px rgb(0 0 0 / 12%);
+      background-color: mat-color($additional, white);
+
+      [aria-expanded='true'] & {
+        margin: 0 0 32px 0;
+      }
+    }
+
+    .num-accordion-small & {
+      box-shadow: none;
+      background-color: mat-color($additional, page-background);
+
+      [aria-expanded='true'] & {
+        margin: 0;
+      }
+    }
+  }
+
+  .mat-expansion-panel-body {
+    .num-accordion-big & {
+      padding: 32px 24px;
+    }
+
+    .num-accordion-small & {
+      padding: 0;
+    }
+  }
 
   .mat-expansion-indicator::after {
     color: mat-color($accent);

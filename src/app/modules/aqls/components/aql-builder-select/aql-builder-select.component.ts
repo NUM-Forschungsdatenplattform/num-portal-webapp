@@ -25,6 +25,7 @@ import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
   styleUrls: ['./aql-builder-select.component.scss'],
 })
 export class AqlBuilderSelectComponent implements OnInit {
+  AqbSelectDestination = AqbSelectDestination
   constructor() {}
 
   @Input()

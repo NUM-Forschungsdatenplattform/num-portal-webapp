@@ -21,7 +21,6 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { of, throwError } from 'rxjs'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
@@ -36,16 +35,12 @@ describe('Project Resolver', () => {
     get: jest.fn(),
   } as unknown) as ProjectService
 
-  const phenotypeService = ({
-    get: jest.fn(),
-  } as unknown) as PhenotypeService
-
   const mockRouter = ({
     navigate: jest.fn(),
   } as unknown) as Router
 
   beforeEach(() => {
-    resolver = new ProjectResolver(projectService, phenotypeService, mockRouter)
+    resolver = new ProjectResolver(projectService, mockRouter)
   })
 
   it('should be created', () => {

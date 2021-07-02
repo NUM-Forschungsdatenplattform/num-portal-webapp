@@ -18,7 +18,6 @@ import {
   faMicroscope,
   faBars,
   faGlobeEurope,
-  faCubes,
   faCog,
   faSignOutAlt,
   faSignInAlt,
@@ -50,6 +49,7 @@ import {
   faExternalLinkSquareAlt,
   faChartPie,
   faUndo,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye, faHospital } from '@fortawesome/free-regular-svg-icons'
@@ -58,7 +58,6 @@ export const FONT_AWESOME_SOLID_ICONS = [
   faMicroscope,
   faBars,
   faGlobeEurope,
-  faCubes,
   faCog,
   faSignOutAlt,
   faSignInAlt,
@@ -90,6 +89,7 @@ export const FONT_AWESOME_SOLID_ICONS = [
   faExternalLinkSquareAlt,
   faChartPie,
   faUndo,
+  faInfoCircle,
 ]
 
 export const FONT_AWESOME_REGULAR_ICONS = [faNewspaper, faCheckCircle, faEye, faHospital]

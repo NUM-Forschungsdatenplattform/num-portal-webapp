@@ -21,11 +21,12 @@ import { PlaygroundModule } from 'angular-playground'
 import { LayoutModule } from './app/layout/layout.module'
 import { SharedModule } from './app/shared/shared.module'
 import { RouterTestingModule } from '@angular/router/testing'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 PlaygroundModule.configure({
   selector: 'num-root',
   overlay: false,
-  modules: [LayoutModule, SharedModule, RouterTestingModule],
+  modules: [LayoutModule, SharedModule, RouterTestingModule, BrowserAnimationsModule],
 })
 
 @Component({
@@ -35,7 +36,14 @@ PlaygroundModule.configure({
 export class AppComponent {}
 
 @NgModule({
-  imports: [BrowserModule, PlaygroundModule, LayoutModule, SharedModule, RouterTestingModule],
+  imports: [
+    BrowserModule,
+    PlaygroundModule,
+    LayoutModule,
+    SharedModule,
+    RouterTestingModule,
+    BrowserAnimationsModule,
+  ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
 })

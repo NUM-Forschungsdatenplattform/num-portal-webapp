@@ -1,0 +1,127 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<div
+  class="num-select-flag pointer"
+  role="button"
+  tabindex="0"
+  aria-labelledby="section-heading"
+  (keydown.enter)="setDestination()"
+  (keydown.space)="setDestination()"
+  (click)="setDestination()"
+  [ngClass]="{ 'num-select-flag--active': isActive }"
+  data-test="cohort-builder__group__set-destination-button"
+>
+  <fa-icon icon="check"></fa-icon>
+</div>
+<div
+  class="num-select-box cohort-group"
+  fxLayout="column"
+  [ngClass]="{ 'num-select-box--active': isActive }"
+>
+  <section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <span class="mat-body-strong"
+      ><span class="not-icon" *ngIf="cohortGroup.isNegated">&not;</span>
+      {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
+    >
+
+    <mat-form-field
+      appearance="standard"
+      class="num-operator-select"
+      [style.visibility]="cohortGroup.children.length <= 1 ? 'hidden' : 'visible'"
+    >
+      <mat-select
+        [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+        [(value)]="cohortGroup.logicalOperator"
+        [disabled]="cohortGroup.children.length <= 1 || isDisabled"
+        data-test="cohort-builder__group__logical-operator__selector"
+      >
+        <mat-option
+          *ngFor="let operator of logicalOperatorArray"
+          [value]="operator"
+          [attr.data-test]="'cohort-builder__group__logical-operator__' + operator"
+        >
+          {{ operator }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <span fxFlex></span>
+
+    <mat-slide-toggle
+      labelPosition="before"
+      [(ngModel)]="cohortGroup.isNegated"
+      [disabled]="isDisabled"
+      data-test="cohort-builder__group__negation-toggle"
+      >Negation</mat-slide-toggle
+    >
+  </section>
+
+  <section role="listitem" *ngFor="let child of cohortGroup.children; let i = index">
+    <num-aql-connector-group
+      role="list"
+      class="group"
+      *ngIf="child.type === connectorNodeType.Group"
+      [cohortGroup]="child"
+      [parentGroupIndex]="groupIndex"
+      [index]="i"
+      [isDisabled]="isDisabled"
+      [ngClass]="{
+        'group--last': i === cohortGroup.children.length - 1
+      }"
+      (delete)="deleteChild($event)"
+      data-test="cohort-builder__group"
+    ></num-aql-connector-group>
+
+    <num-aql-connector-item
+      class="aql mat-elevation-z2"
+      [ngClass]="{
+        'aql--last': i === cohortGroup.children.length - 1,
+        configured: $any(child).areParameterConfigured
+      }"
+      *ngIf="child.type === connectorNodeType.Aql"
+      [aql]="child"
+      [isDisabled]="isDisabled"
+      (deleteItem)="deleteChild(i)"
+      role="listitem"
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+      data-test="cohort-builder__aql"
+    ></num-aql-connector-item>
+  </section>
+
+  <section role="presentation" class="button-row" fxLayoutGap="20px" fxLayout="row wrap">
+    <num-button
+      [isDisabled]="isDisabled"
+      type="secondary"
+      icon="plus"
+      (singleClick)="addGroup()"
+      data-test="cohort-builder__group__add-group-button"
+      >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
+    >
+
+    <span fxFlex></span>
+
+    <num-button
+      [isDisabled]="isDisabled"
+      *ngIf="groupType === connectorGroupType.Sub"
+      type="basic"
+      (singleClick)="deleteSelf()"
+      data-test="cohort-builder__group__delete-group-button"
+      >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
+    >
+  </section>
+</div>

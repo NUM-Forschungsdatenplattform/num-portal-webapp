@@ -24,7 +24,6 @@ import { ProjectMenuPipe } from './project-menu.pipe'
 import { LocalizedDatePipe } from './localized-date.pipe'
 import { AqlMenuPipe } from './aql-menu.pipe'
 import { AvailableRolesPipe } from './available-roles.pipe'
-import { PhenotypeMenuPipe } from './phenotype-menu.pipe'
 
 const SHARED_DECLARATIONS = [
   GroupIndexPipe,
@@ -32,7 +31,6 @@ const SHARED_DECLARATIONS = [
   NestedAccessPipe,
   IsSelectedPipe,
   ProjectMenuPipe,
-  PhenotypeMenuPipe,
   AqlMenuPipe,
   LocalizedDatePipe,
   AvailableRolesPipe,

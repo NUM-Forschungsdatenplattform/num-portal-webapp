@@ -37,7 +37,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+)$/
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master)$/
       - build_and_deploy:
           requires:
             - test
@@ -85,11 +85,16 @@ jobs:
           command: |
             git config user.email "50235421+ehrbase-tech-user@users.noreply.github.com"
             git config user.name "ci-bot"
-            VERSION_NUMBER="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')"
-            echo "Updating the application version from the branch to ${VERSION_NUMBER}"
-            npm version $VERSION_NUMBER
-            git push --set-upstream origin $CIRCLE_BRANCH
-            git push origin --tags
+            VERSION_NUMBER="$(echo $CIRCLE_BRANCH | awk -F'/v' '{print $2;}')"
+            CURRENT_TAG=$(node -e "console.log(require('./package.json').version)")
+            if [ $VERSION_NUMBER != $CURRENT_TAG ]; then
+              echo "Updating the application version from the branch to ${VERSION_NUMBER}"
+              npm version $VERSION_NUMBER
+              git push --set-upstream origin $CIRCLE_BRANCH
+            elif [ $CIRCLE_BRANCH = "master" ]; then
+              git tag -a $VERSION_NUMBER -m "num-portal-webapp release version ${VERSION_NUMBER}"
+              git push origin --tags
+            fi
 
   build_and_deploy:
     docker:
