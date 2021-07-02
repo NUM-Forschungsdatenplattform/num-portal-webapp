@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core'
-import { Observable } from 'rxjs'
-import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 @Component({
   selector: 'num-cohort-graphs',
@@ -23,8 +22,9 @@ import { PatientFilterService } from 'src/app/core/services/patient-filter/patie
   styleUrls: ['./cohort-graphs.component.scss'],
 })
 export class CohortGraphsComponent implements OnInit {
-  cohortSize: Observable<number>
-  constructor(private patientFilterService: PatientFilterService) {}
+  @Input() determineHits: IDetermineHits
+  @Output() determine = new EventEmitter<void>()
+  constructor() {}
 
   ngOnInit(): void {}
 }

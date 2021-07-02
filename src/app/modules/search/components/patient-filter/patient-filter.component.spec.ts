@@ -17,7 +17,11 @@ import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
+import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { PatientFilterComponent } from './patient-filter.component'
 
 describe('PatientFilterComponent', () => {
@@ -29,6 +33,8 @@ describe('PatientFilterComponent', () => {
     getAllDatasetCount: () => of(),
     totalDatasetCountObservable: mockDataSetSubject.asObservable(),
   } as unknown) as PatientFilterService
+
+  const mockCohortService = ({ getSize: () => of() } as unknown) as CohortService
 
   @Component({
     selector: 'num-patient-count-info',
@@ -54,6 +60,10 @@ describe('PatientFilterComponent', () => {
       imports: [TranslateModule.forRoot()],
       providers: [
         {
+          provide: CohortService,
+          useValue: mockCohortService,
+        },
+        {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
         },
@@ -75,5 +85,19 @@ describe('PatientFilterComponent', () => {
     jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
     component.ngOnInit()
     expect(mockPatientFilterService.getAllDatasetCount).toBeCalledTimes(1)
+  })
+
+  describe('When determine hits has been clicked', () => {
+    beforeEach(() => {
+      component.project = new ProjectUiModel()
+      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
+      fixture.detectChanges()
+    })
+
+    it('calls the api - with success', async () => {
+      await component.determineCohortSize()
+      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHits.count).toEqual(123)
+    })
   })
 })

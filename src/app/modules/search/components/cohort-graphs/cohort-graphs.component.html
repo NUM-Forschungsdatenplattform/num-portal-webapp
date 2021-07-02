@@ -13,12 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<div
-  class="mat-paper mat-elevation-z1 search-cohort-graphs-root"
-  id="search-cohort-graphs"
-  fxLayout="column"
->
-  <num-editor-determine-hits></num-editor-determine-hits>
+<div class="raised search-cohort-graphs-root" id="search-cohort-graphs" fxLayout="column">
+  <num-editor-determine-hits
+    [content]="determineHits"
+    (clicked)="determine.emit()"
+  ></num-editor-determine-hits>
 
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
     <num-cohort-age-graph fxFlex="calc(50% - 32px) 0 1"></num-cohort-age-graph>

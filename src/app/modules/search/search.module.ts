@@ -24,6 +24,7 @@ import { PatientCountInfoComponent } from './components/patient-count-info/patie
 import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.component'
 import { CohortAgeGraphComponent } from './components/cohort-age-graph/cohort-age-graph.component'
 import { CohortInstitutionGraphComponent } from './components/cohort-institution-graph/cohort-institution-graph.component'
+import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,6 @@ import { CohortInstitutionGraphComponent } from './components/cohort-institution
     CohortAgeGraphComponent,
     CohortInstitutionGraphComponent,
   ],
-  imports: [CommonModule, LayoutModule, SearchRoutingModule, SharedModule],
+  imports: [CohortBuilderModule, CommonModule, LayoutModule, SearchRoutingModule, SharedModule],
 })
 export class SearchModule {}

@@ -18,6 +18,17 @@
   {{ 'SEARCH.PATIENT_FILTER_DESCRIPTION' | translate }}
 </p>
 
-<num-patient-count-info [datasetCount]="datasetCount$ | async"></num-patient-count-info>
+<num-patient-count-info [patientCount]="patientCount$ | async"></num-patient-count-info>
 
-<num-cohort-graphs></num-cohort-graphs>
+<num-cohort-builder
+  [cohortNode]="cohortNode"
+  [raised]="true"
+  [isLoadingComplete]="true"
+></num-cohort-builder>
+
+<div class="num-margin-b-10"></div>
+
+<num-cohort-graphs
+  [determineHits]="determineHits"
+  (determine)="determineCohortSize()"
+></num-cohort-graphs>
