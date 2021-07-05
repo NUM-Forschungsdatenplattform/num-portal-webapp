@@ -15,10 +15,11 @@
  */
 import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
@@ -39,7 +40,10 @@ describe('PatientFilterComponent', () => {
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
 
-  const mockCohortService = ({ getSize: () => of() } as unknown) as CohortService
+  const mockCohortService = ({
+    getSize: () => of(),
+    handleError: (error) => throwError(error),
+  } as unknown) as CohortService
   @Component({
     selector: 'num-cohort-builder',
     template: '<div></div>',
@@ -112,14 +116,37 @@ describe('PatientFilterComponent', () => {
   describe('When determine hits has been clicked', () => {
     beforeEach(() => {
       component.project = new ProjectUiModel()
-      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
       fixture.detectChanges()
     })
 
+    it('should set loading status if no cohortNode has been provided', async () => {
+      component.project = undefined
+      await component.determineCohortSize()
+      expect(component.determineHits.isLoading).toBe(true)
+    })
+
     it('calls the api - with success', async () => {
+      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
       await component.determineCohortSize()
       expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
       expect(component.determineHits.count).toEqual(123)
     })
+  })
+
+  it('should show an error for to few hits', async () => {
+    jest
+      .spyOn(mockCohortService, 'getSize')
+      .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+
+    await component.determineCohortSize()
+    expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
+  })
+
+  it('should show a general error message for unknown errors', async () => {
+    jest
+      .spyOn(mockCohortService, 'getSize')
+      .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+    await component.determineCohortSize()
+    expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
   })
 })
