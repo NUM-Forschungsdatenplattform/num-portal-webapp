@@ -125,10 +125,9 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.isLoading).toBe(true)
     })
 
-    it('calls the api - with success', async () => {
+    it('gets the cohort size from service', async () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
       await component.determineCohortSize()
-      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
       expect(component.determineHits.count).toEqual(123)
     })
   })
