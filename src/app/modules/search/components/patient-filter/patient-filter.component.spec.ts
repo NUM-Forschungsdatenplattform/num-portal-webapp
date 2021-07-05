@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -22,11 +24,14 @@ import { PatientFilterService } from 'src/app/core/services/patient-filter/patie
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
+import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
 
 describe('PatientFilterComponent', () => {
   let component: PatientFilterComponent
   let fixture: ComponentFixture<PatientFilterComponent>
+  let loader: HarnessLoader
 
   const mockDataSetSubject$ = new Subject<number>()
   const mockPatientFilterService = ({
@@ -35,15 +40,6 @@ describe('PatientFilterComponent', () => {
   } as unknown) as PatientFilterService
 
   const mockCohortService = ({ getSize: () => of() } as unknown) as CohortService
-
-  @Component({
-    selector: 'num-patient-count-info',
-    template: '<div></div>',
-  })
-  class PatientCountInfoComponentStub {
-    @Input() patientCount: number
-  }
-
   @Component({
     selector: 'num-cohort-builder',
     template: '<div></div>',
@@ -68,7 +64,7 @@ describe('PatientFilterComponent', () => {
       declarations: [
         CohortBuilderComponentStub,
         CohortGraphsComponentStub,
-        PatientCountInfoComponentStub,
+        PatientCountInfoComponent,
         PatientFilterComponent,
       ],
       imports: [TranslateModule.forRoot()],
@@ -88,6 +84,7 @@ describe('PatientFilterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PatientFilterComponent)
     component = fixture.componentInstance
+    loader = TestbedHarnessEnvironment.loader(fixture)
     fixture.detectChanges()
   })
 
@@ -95,10 +92,21 @@ describe('PatientFilterComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should call getAllDatasets on first load', () => {
-    jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
-    component.ngOnInit()
-    expect(mockPatientFilterService.getAllDatasetCount).toBeCalledTimes(1)
+  describe('Patient data set count', () => {
+    let patientCountInfo: PatientCountInfoHarness
+    beforeEach(async () => {
+      patientCountInfo = await loader.getHarness(PatientCountInfoHarness)
+    })
+
+    it('should call getAllDatasets on first load', async () => {
+      jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
+      component.ngOnInit()
+      expect(mockPatientFilterService.getAllDatasetCount).toBeCalledTimes(1)
+    })
+
+    it('should provide the dataset count to patient info component', async () => {
+      expect(await patientCountInfo.getCountText()).toEqual('SEARCH.PATIENT_COUNT_INFO')
+    })
   })
 
   describe('When determine hits has been clicked', () => {
