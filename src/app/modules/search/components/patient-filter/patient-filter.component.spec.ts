@@ -120,7 +120,7 @@ describe('PatientFilterComponent', () => {
     })
 
     it('should set loading status if no cohortNode has been provided', async () => {
-      component.project = undefined
+      component.project.cohortGroup = undefined
       await component.determineCohortSize()
       expect(component.determineHits.isLoading).toBe(true)
     })
