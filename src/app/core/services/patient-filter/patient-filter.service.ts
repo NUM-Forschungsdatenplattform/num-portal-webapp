@@ -29,10 +29,6 @@ export class PatientFilterService {
   private totalDatasetCountSubject$ = new BehaviorSubject(this.totalDatasetCount)
   totalDatasetCountObservable$ = this.totalDatasetCountSubject$.asObservable()
 
-  private cohortSize = 0
-  private cohortSizeSubject$ = new BehaviorSubject(this.cohortSize)
-  cohortSizeObservable$ = this.cohortSizeSubject$.asObservable()
-
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql`
   }
@@ -46,21 +42,6 @@ export class PatientFilterService {
         tap((size) => {
           this.totalDatasetCount = size
           this.totalDatasetCountSubject$.next(size)
-        }),
-        catchError(this.handleError)
-      )
-  }
-
-  getCohortSize(): Observable<number> {
-    return this.httpClient
-      .post<number>(`${this.baseUrl}/size`, {
-        query:
-          'SELECT c/composition_uid/value as compositionId from COMPOSITION c WHERE EXISTS c/composition_uid/value',
-      })
-      .pipe(
-        tap((size) => {
-          this.cohortSize = size
-          this.cohortSizeSubject$.next(size)
         }),
         catchError(this.handleError)
       )

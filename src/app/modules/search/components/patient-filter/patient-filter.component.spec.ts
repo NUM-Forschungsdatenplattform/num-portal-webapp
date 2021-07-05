@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { PatientFilterComponent } from './patient-filter.component'
 
 describe('PatientFilterComponent', () => {
   let component: PatientFilterComponent
   let fixture: ComponentFixture<PatientFilterComponent>
 
-  const mockDataSetSubject = new Subject<number>()
+  const mockDataSetSubject$ = new Subject<number>()
   const mockPatientFilterService = ({
     getAllDatasetCount: () => of(),
-    totalDatasetCountObservable: mockDataSetSubject.asObservable(),
+    totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
 
   const mockCohortService = ({ getSize: () => of() } as unknown) as CohortService
@@ -40,22 +40,36 @@ describe('PatientFilterComponent', () => {
     selector: 'num-patient-count-info',
     template: '<div></div>',
   })
-  class MockPatientCountInfoComponent {
-    @Input() datasetCount: number
+  class PatientCountInfoComponentStub {
+    @Input() patientCount: number
+  }
+
+  @Component({
+    selector: 'num-cohort-builder',
+    template: '<div></div>',
+  })
+  class CohortBuilderComponentStub {
+    @Input() cohortNode: CohortGroupUiModel
+    @Input() isLoadingComplete: boolean
+    @Input() raised: boolean
   }
 
   @Component({
     selector: 'num-cohort-graphs',
     template: '<div></div>',
   })
-  class MockCohortGraphsComponent {}
+  class CohortGraphsComponentStub {
+    @Input() determineHits: IDetermineHits
+    @Output() determine = new EventEmitter<void>()
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
+        CohortBuilderComponentStub,
+        CohortGraphsComponentStub,
+        PatientCountInfoComponentStub,
         PatientFilterComponent,
-        MockCohortGraphsComponent,
-        MockPatientCountInfoComponent,
       ],
       imports: [TranslateModule.forRoot()],
       providers: [

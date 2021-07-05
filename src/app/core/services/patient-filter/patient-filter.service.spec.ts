@@ -25,10 +25,6 @@ describe('PatientFilterService', () => {
   const patientQueryBody = {
     query: 'SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value',
   }
-  const cohortQueryBody = {
-    query:
-      'SELECT c/composition_uid/value as compositionId from COMPOSITION c WHERE EXISTS c/composition_uid/value',
-  }
 
   const httpClient = ({
     get: jest.fn(),
@@ -74,29 +70,6 @@ describe('PatientFilterService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, patientQueryBody)
-      expect(service.handleError).toHaveBeenCalled()
-    })
-  })
-
-  describe('When a call to getCohortSize method comes in', () => {
-    it('should call the api - with success', (done) => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => of(900))
-      service.getCohortSize().subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, cohortQueryBody)
-      service.cohortSizeObservable$.subscribe((cohortSize) => {
-        expect(cohortSize).toEqual(900)
-        done()
-      })
-    })
-    it(`should call the api - with error`, () => {
-      jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getCohortSize()
-        .toPromise()
-        .then((_) => {})
-        .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, cohortQueryBody)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
