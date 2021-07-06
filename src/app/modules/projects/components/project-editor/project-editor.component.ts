@@ -58,7 +58,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   isTemplatesDisabled: boolean
   isResearchersDisabled: boolean
   isGeneralInfoDisabled: boolean
-  isConnectorDisabled: boolean
+  isCohortBuilderDisabled: boolean
 
   projectComments: IProjectComment[] = []
 
@@ -373,12 +373,12 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     )
 
     if (inEditByStatus && !inPreview && !inReview) {
-      this.isConnectorDisabled = false
+      this.isCohortBuilderDisabled = false
       this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false
       this.isResearchersDisabled = false
     } else {
-      this.isConnectorDisabled = true
+      this.isCohortBuilderDisabled = true
       this.isGeneralInfoDisabled = true
       this.isTemplatesDisabled = true
       this.isResearchersDisabled = true

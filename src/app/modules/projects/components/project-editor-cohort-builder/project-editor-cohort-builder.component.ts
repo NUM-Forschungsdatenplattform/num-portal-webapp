@@ -9,6 +9,8 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 export class ProjectEditorCohortBuilderComponent implements OnInit {
   @Input() cohortNode: CohortGroupUiModel
   @Input() isLoadingComplete: boolean
+  @Input() isDisabled: boolean
+
   constructor() {}
 
   ngOnInit(): void {}

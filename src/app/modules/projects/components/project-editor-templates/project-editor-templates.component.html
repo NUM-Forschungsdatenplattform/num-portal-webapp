@@ -17,9 +17,9 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header data-test="studies-editor__templates__select-ehr-template-button">
     <mat-panel-title>
-      <h3 id="select-header" class="accordion">
+      <h3 id="select-header" class="accordion" fxLayoutGap="8px">
         <fa-icon [icon]="['far', 'check-circle']" *ngIf="templatesValue.length"></fa-icon>
-        {{ 'SELECT_EHR_TEMPLATE' | translate }}*
+        <span>{{ 'SELECT_EHR_TEMPLATE' | translate }}*</span>
       </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>

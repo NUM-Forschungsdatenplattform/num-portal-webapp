@@ -24,7 +24,7 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { mockCoronaAnamnese } from 'src/mocks/data-mocks/aqb/corona-anamnese.mock'
 import { mockSimpleContainment } from 'src/mocks/data-mocks/aqb/simple-containment.mock'
-import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
+import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 import { AqlBuilderTemplateTreeComponent } from './aql-builder-template-tree.component'

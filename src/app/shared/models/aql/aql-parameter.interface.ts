@@ -15,6 +15,7 @@
  */
 
 import { AqlParameterOperator } from './aql-parameter-operator.type'
+import { AqlParameterValueType } from './aql-parameter-value-type.enum'
 
 export interface IAqlParameter {
   name: string
@@ -23,4 +24,5 @@ export interface IAqlParameter {
   path: string
   archetypeId: string
   options?: any[]
+  valueType?: AqlParameterValueType
 }

@@ -43,6 +43,10 @@
       outline: none !important;
       background: mat-color($accent, 500);
     }
+
+    &--disabled {
+      display: none;
+    }
   }
 
   .num-select-box {

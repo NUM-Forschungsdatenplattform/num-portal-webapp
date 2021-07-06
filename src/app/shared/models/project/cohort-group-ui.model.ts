@@ -51,7 +51,7 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel<ICohortGroupApi> {
       const firstChild = child.children[0]
 
       if (firstChild.type === ConnectorNodeType.Aql) {
-        return new AqlUiModel(firstChild.query, true)
+        return new AqlUiModel(firstChild.query, true, firstChild.parameters)
       }
 
       const negatedGroup = new CohortGroupUiModel()
@@ -60,7 +60,7 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel<ICohortGroupApi> {
     }
 
     if (child.type === ConnectorNodeType.Aql) {
-      return new AqlUiModel(child.query, false)
+      return new AqlUiModel(child.query, false, child.parameters)
     }
 
     const newGroup = new CohortGroupUiModel()

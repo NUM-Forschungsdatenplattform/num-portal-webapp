@@ -13,12 +13,14 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Renaming of all occurrences of the term "study" to "project" in all cases except for roles ([#228])
 - AQL Category column in AQL queries overview ([#229])
 - AQL Category select in AQL editor dialog ([#229])
+- Cohort-Builder disabled state ([#234])
 
 ### Changes
 
 - Add role restriction to tab navigation generation ([#230])
 - Refactoring of the Cohort-Builder ([#233])
 - Removale of phenotype-concept ([#233])
+- Refactoring of aql-parameter inputs ([#234])
 
 ---
 
@@ -461,3 +463,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229
 [#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
 [#233]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/233
+[#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234

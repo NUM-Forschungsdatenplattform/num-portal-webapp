@@ -18,12 +18,13 @@
   <div>{{ aql.name }}</div>
 
   <div fxLayout="column" fxLayoutGap="8px">
-    <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px">
+    <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px" fxLayout="row">
       <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
         <mat-label id="label">Operator</mat-label>
         <mat-select
           [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
           [(value)]="parameter.operator"
+          [disabled]="isDisabled"
           data-test="cohort-builder__item__logical-operator__selector"
         >
           <mat-option
@@ -36,24 +37,16 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field
-        floatLabel="always"
-        appearance="outline"
-        class="input num-tiny-input value-input"
-      >
-        <mat-label id="value-label">{{ parameter.name }}</mat-label>
-        <input
-          aria-labelledby="value-label"
-          matInput
-          type="text"
-          data-test="cohort-builder__item__value-input"
-        />
-      </mat-form-field>
+      <num-aql-parameter-inputs
+        [item]="parameter"
+        (valueChange)="checkParameterStatus()"
+        [disabled]="isDisabled"
+      ></num-aql-parameter-inputs>
     </div>
   </div>
 </section>
 
-<section class="right-panel" fxLayoutAlign="end center">
+<section class="right-panel" fxLayoutAlign="end center" *ngIf="!isDisabled">
   <button
     color="primary"
     mat-icon-button

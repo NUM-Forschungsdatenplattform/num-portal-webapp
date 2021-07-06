@@ -19,6 +19,7 @@ import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { mockUser, mockUserStudyCoordinator } from './admin.mock'
 import { mockUserProfile1 } from './user-profile.mock'
 import { mockAqlCategory1, mockAqlCategory2, mockAqlCategory3 } from './aql-categories.mock'
+import { IAqlCohortApi } from 'src/app/shared/models/aql/aql-cohort.interface'
 
 const queryWithTwoParameter =
   "SELECT c0 as Height, c1 as Weight FROM EHR e contains (COMPOSITION c0[openEHR-EHR-COMPOSITION.registereintrag.v1] contains OBSERVATION o2[openEHR-EHR-OBSERVATION.height.v2] or COMPOSITION c1[openEHR-EHR-COMPOSITION.registereintrag.v1] contains OBSERVATION o3[openEHR-EHR-OBSERVATION.body_weight.v2]) WHERE ((c0/archetype_details/template_id/value = 'Körpergröße' or c1/archetype_details/template_id/value = 'Körpergewicht') and (o2/data[at0001]/events[at0002]/data[at0003]/items[at0004]/value/magnitude < $bodyHeight and o3/data[at0002]/events[at0003]/data[at0001]/items[at0004]/value/magnitude > $bodyWeight))"
@@ -177,6 +178,12 @@ export const mockAql12: IAqlApi = {
   owner: mockUserProfile1,
   publicAql: true,
   categoryId: mockAqlCategory1.id,
+}
+
+export const mockAqlCohort: IAqlCohortApi = {
+  id: 13,
+  name: 'name3 with param',
+  query: queryWithTwoParameter,
 }
 
 export const mockAqlsToSort = [

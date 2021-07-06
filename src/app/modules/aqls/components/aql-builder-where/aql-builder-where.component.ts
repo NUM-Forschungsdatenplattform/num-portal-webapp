@@ -16,8 +16,8 @@
 
 import { Component, Input, OnInit } from '@angular/core'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 @Component({
   selector: 'num-aql-builder-where',
