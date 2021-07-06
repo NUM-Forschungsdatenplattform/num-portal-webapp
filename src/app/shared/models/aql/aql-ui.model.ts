@@ -18,12 +18,12 @@ import { LogicalOperator } from '../logical-operator.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { PARAMETER_REGEX } from '../../../core/constants/constants'
 import { ConnectorMainNodeUi } from '../connector-main-node-ui.interface'
-import { IAqlCohortApi } from './aql-cohort.interface'
 import { IUser } from '../user/user.interface'
 import { ICohortGroupApi } from '../project/cohort-group-api.interface'
 import { IAqlParameter } from './aql-parameter.interface'
 import { IDictionary } from '../dictionary.interface'
 import { AqlParameterOperator } from './aql-parameter-operator.type'
+import { IAqlApi } from './aql.interface'
 
 export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   private readonly OPERATOR_SUFFIX = '__OPERATOR'
@@ -42,12 +42,17 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   use: string
   owner?: IUser | null
 
-  constructor(aql: IAqlCohortApi, isNegated: boolean = false) {
+  constructor(
+    aql: Partial<IAqlApi>,
+    isNegated: boolean = false,
+    parameters?: IDictionary<string, string>
+  ) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
     this.name = aql.name
     this.query = aql.query
     this.isNegated = isNegated
+
     this.purpose = aql.purpose
     this.use = aql.use
     this.owner = aql.owner
@@ -55,6 +60,10 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     this.collectParameters()
     if (this.parameters.length) {
       this.areParameterConfigured = false
+    }
+
+    if (parameters) {
+      this.handleParameters(parameters)
     }
   }
 
@@ -94,6 +103,24 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     })
   }
 
+  private handleParameters(savedParameters?: IDictionary<string, string>): void {
+    this.parameters.forEach((parameter) => {
+      parameter.value = savedParameters[parameter.name] || parameter.value
+    })
+
+    if (
+      this.parameters.filter((param) => param.value === undefined || param.value === null).length
+    ) {
+      this.areParameterConfigured = false
+    } else {
+      this.areParameterConfigured = true
+    }
+  }
+
+  public checkParameterStatus(): void {
+    this.areParameterConfigured = !this.parameters.some((parameter) => !!!parameter.value?.length)
+  }
+
   public convertToApi(): ICohortGroupApi {
     return this.isNegated ? this.convertToNegatedApiGroup() : this.getAqlForApi()
   }
@@ -108,9 +135,6 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
         query: this.parameters.length
           ? this.insertOperatorForApi(this.queryWithOperatorPlaceholder)
           : this.query,
-        purpose: this.purpose,
-        use: this.use,
-        owner: this.owner,
       },
     }
   }

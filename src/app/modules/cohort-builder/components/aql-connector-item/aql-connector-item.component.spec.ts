@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -34,9 +35,17 @@ describe('AqlConnectorItemComponent', () => {
     getValues: jest.fn(),
   } as unknown) as AqlParameterService
 
+  const valueChangeEmitter = new EventEmitter()
+  @Component({ selector: 'num-aql-parameter-inputs', template: '' })
+  class AqlParameterInputsComponent {
+    @Input() item: any
+    @Input() disabled: boolean
+    @Output() valueChange = valueChangeEmitter
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlConnectorItemComponent],
+      declarations: [AqlConnectorItemComponent, AqlParameterInputsComponent],
       imports: [
         MaterialModule,
         TranslateModule.forRoot(),

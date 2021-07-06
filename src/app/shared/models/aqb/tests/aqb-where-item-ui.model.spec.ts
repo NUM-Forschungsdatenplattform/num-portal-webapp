@@ -15,13 +15,13 @@
  */
 
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
-import { IContainmentTreeNode } from '../../containment-tree-node.interface'
+import { IContainmentTreeNode } from '../../../../modules/aqls/models/containment-tree-node.interface'
 import {
   COMPARISON_OPERATOR_OPTIONS_EQUALS,
   COMPARISON_OPERATOR_OPTIONS_INEQUALS,
 } from '../aqb-comparison-operator-options'
 import { AqbWhereItemUiModel } from '../aqb-where-item-ui.model'
-import { AqbValueType } from '../aqb-where-value-type.enum'
+import { AqlParameterValueType } from '../../aql/aql-parameter-value-type.enum'
 
 describe('AqbWhereItemUiModel', () => {
   describe('on init it should configure the correct input and options', () => {
@@ -45,7 +45,7 @@ describe('AqbWhereItemUiModel', () => {
       ]
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.Double)
+      expect(model.valueType).toEqual(AqlParameterValueType.Double)
       expect(model.value).toEqual(1.1)
     })
 
@@ -58,7 +58,7 @@ describe('AqbWhereItemUiModel', () => {
       ]
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.Date)
+      expect(model.valueType).toEqual(AqlParameterValueType.Date)
       expect(model.value).toBeInstanceOf(Date)
     })
 
@@ -71,7 +71,7 @@ describe('AqbWhereItemUiModel', () => {
       ]
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.DateTime)
+      expect(model.valueType).toEqual(AqlParameterValueType.DateTime)
       expect(model.value).toBeInstanceOf(Date)
     })
 
@@ -84,7 +84,7 @@ describe('AqbWhereItemUiModel', () => {
       ]
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.Time)
+      expect(model.valueType).toEqual(AqlParameterValueType.Time)
       expect(model.value).toBeInstanceOf(Date)
     })
 
@@ -94,7 +94,7 @@ describe('AqbWhereItemUiModel', () => {
       const options = COMPARISON_OPERATOR_OPTIONS_EQUALS
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.String)
+      expect(model.valueType).toEqual(AqlParameterValueType.String)
       expect(model.value).toEqual('')
     })
 
@@ -109,7 +109,7 @@ describe('AqbWhereItemUiModel', () => {
         ]
         jest.setTimeout(2)
         expect(model.comparisonOperatorOptions).toEqual(options)
-        expect(model.valueType).toEqual(AqbValueType.Number)
+        expect(model.valueType).toEqual(AqlParameterValueType.Number)
         expect(model.value).toEqual(0)
       }
     )
@@ -120,7 +120,7 @@ describe('AqbWhereItemUiModel', () => {
       const options = COMPARISON_OPERATOR_OPTIONS_EQUALS
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
-      expect(model.valueType).toEqual(AqbValueType.Boolean)
+      expect(model.valueType).toEqual(AqlParameterValueType.Boolean)
       expect(model.value).toEqual(true)
     })
   })

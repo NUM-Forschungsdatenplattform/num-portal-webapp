@@ -24,9 +24,9 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
 import { GroupIndexPipe } from 'src/app/shared/pipes/group-index.pipe'
-import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
-import { AqbContainsGroupUiModel } from '../../models/aqb/aqb-contains-group-ui.model'
-import { AqbContainsItemUiModel } from '../../models/aqb/aqb-contains-item-ui.model'
+import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
+import { AqbContainsGroupUiModel } from '../../../../shared/models/aqb/aqb-contains-group-ui.model'
+import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contains-item-ui.model'
 
 import { AqlBuilderContainsGroupComponent } from './aql-builder-contains-group.component'
 

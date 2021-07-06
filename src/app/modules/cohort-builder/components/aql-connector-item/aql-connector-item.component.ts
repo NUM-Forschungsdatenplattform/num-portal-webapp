@@ -17,6 +17,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
+import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 
 @Component({
@@ -41,11 +42,17 @@ export class AqlConnectorItemComponent implements OnInit {
         .subscribe((response) => {
           console.log(`Options for Parameter ${parameter.name}: `, response.options)
           parameter.options = response.options
+          // TODO: Take actual type
+          parameter.valueType = AqlParameterValueType.String
         })
     })
   }
 
   deleteSelf(): void {
     this.deleteItem.emit()
+  }
+
+  checkParameterStatus(): void {
+    this.aql.checkParameterStatus()
   }
 }

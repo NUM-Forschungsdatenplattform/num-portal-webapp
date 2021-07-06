@@ -20,37 +20,57 @@ import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enu
 import { AqlUiModel } from './aql-ui.model'
 import { IAqlCohortApi } from './aql-cohort.interface'
 import { ICohortGroupApi } from '../project/cohort-group-api.interface'
-import { IAqlParameter } from './aql-parameter.interface'
 import { IDictionary } from '../dictionary.interface'
 import { AqlParameterOperator } from './aql-parameter-operator.type'
 
 describe('AqlUiModel', () => {
   const testCase1 = {
     aql: mockAql1,
+    parameters: undefined,
     negated: undefined,
     expectNegated: false,
-    expectLength: 0,
-    expectConfigured: true,
+    expectParameterLength: 0,
+    expectParameterConfigured: true,
   }
   const testCase2 = {
     aql: mockAql3,
+    parameters: {
+      $bodyHeight: 'testHeight',
+    },
     negated: true,
     expectNegated: true,
-    expectLength: 2,
-    expectConfigured: false,
+    expectParameterLength: 2,
+    expectParameterConfigured: false,
+  }
+  const testCase3 = {
+    aql: mockAql3,
+    parameters: {
+      $bodyHeight: 'testHeight',
+      $bodyWeight: 'testWeight',
+    },
+    negated: true,
+    expectNegated: true,
+    expectParameterLength: 2,
+    expectParameterConfigured: true,
   }
 
   describe('When the model gets constructed', () => {
-    test.each([testCase1, testCase2])('should set the correct properties', (testCase) => {
-      const model = new AqlUiModel(testCase.aql, testCase.negated)
+    test.each([testCase1, testCase2, testCase3])(
+      'should set the correct properties',
+      (testCase) => {
+        const model = new AqlUiModel(testCase.aql, testCase.negated, testCase.parameters)
 
-      expect(model.id).toEqual(testCase.aql.id)
-      expect(model.name).toEqual(testCase.aql.name)
-      expect(model.query).toEqual(testCase.aql.query)
-      expect(model.isNegated).toEqual(testCase.expectNegated)
-      expect(model.parameters.length).toEqual(testCase.expectLength)
-      expect(model.areParameterConfigured).toEqual(testCase.expectConfigured)
-    })
+        expect(model.id).toEqual(testCase.aql.id)
+        expect(model.name).toEqual(testCase.aql.name)
+        expect(model.query).toEqual(testCase.aql.query)
+        expect(model.isNegated).toEqual(testCase.expectNegated)
+        expect(model.parameters.length).toEqual(testCase.expectParameterLength)
+        expect(model.areParameterConfigured).toEqual(testCase.expectParameterConfigured)
+        if (model.parameters.length) {
+          expect(model.parameters[0].value).toEqual(testCase.parameters[model.parameters[0].name])
+        }
+      }
+    )
   })
 
   describe('When the model is supposed to be converted to the Api Interface', () => {
@@ -77,9 +97,6 @@ describe('AqlUiModel', () => {
         name: testCase.aql.name,
         id: testCase.aql.id,
         query: testCase.aql.query,
-        purpose: testCase.aql.purpose,
-        use: testCase.aql.use,
-        owner: testCase.aql.owner,
       }
 
       const expectedAqlQuery: ICohortGroupApi = {

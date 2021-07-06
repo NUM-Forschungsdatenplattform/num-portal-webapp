@@ -22,7 +22,7 @@
   (keydown.enter)="setDestination()"
   (keydown.space)="setDestination()"
   (click)="setDestination()"
-  [ngClass]="{ 'num-select-flag--active': isActive }"
+  [ngClass]="{ 'num-select-flag--active': isActive, 'num-select-flag--disabled': isDisabled }"
   data-test="cohort-builder__group__set-destination-button"
 >
   <fa-icon icon="check"></fa-icon>
@@ -103,7 +103,13 @@
     ></num-aql-connector-item>
   </section>
 
-  <section role="presentation" class="button-row" fxLayoutGap="20px" fxLayout="row wrap">
+  <section
+    role="presentation"
+    class="button-row"
+    fxLayoutGap="20px"
+    fxLayout="row wrap"
+    *ngIf="!isDisabled"
+  >
     <num-button
       [isDisabled]="isDisabled"
       type="secondary"

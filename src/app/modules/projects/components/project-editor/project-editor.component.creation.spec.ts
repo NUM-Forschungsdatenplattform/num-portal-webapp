@@ -91,6 +91,7 @@ describe('ProjectEditorComponent On Creation', () => {
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
   class StubProjectEditorCohortBuilderComponent {
     @Input() cohortNode: CohortGroupUiModel
+    @Input() isDisabled: boolean
     @Input() isLoadingComplete: boolean
   }
 

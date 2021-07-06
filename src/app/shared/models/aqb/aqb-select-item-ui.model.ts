@@ -18,7 +18,7 @@ import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/build
 import { IAqbSelectFieldNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-field-node.interface'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
+import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
 
 export class AqbSelectItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item

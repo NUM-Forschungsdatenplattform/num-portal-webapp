@@ -33,7 +33,7 @@ import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-bu
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 import { AqlEditorCeatorComponent as AqlEditorCreatorComponent } from './aql-editor-creator.component'
 import {
   BUILDER_DIALOG_CONFIG,

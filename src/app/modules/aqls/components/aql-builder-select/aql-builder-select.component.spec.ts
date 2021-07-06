@@ -20,9 +20,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
-import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
+import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderSelectComponent } from './aql-builder-select.component'
 

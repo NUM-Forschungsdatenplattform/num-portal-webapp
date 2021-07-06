@@ -23,7 +23,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { AqbWhereGroupUiModel } from '../../models/aqb/aqb-where-group-ui.model'
+import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-group-ui.model'
 
 import { AqlBuilderWhereGroupComponent } from './aql-builder-where-group.component'
 

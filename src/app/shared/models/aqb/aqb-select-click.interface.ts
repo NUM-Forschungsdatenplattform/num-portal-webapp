@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-export enum AqbValueType {
-  Double = 'DOUBLE',
-  Number = 'NUMBER',
-  Date = 'DATE',
-  DateTime = 'DATE_TIME',
-  Time = 'TIME',
-  String = 'STRING',
-  Boolean = 'BOOLEAN',
+import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
+
+export interface IAqbSelectClick {
+  item: IContainmentTreeNode
+  compositionId: string
+  templateId: string
 }
