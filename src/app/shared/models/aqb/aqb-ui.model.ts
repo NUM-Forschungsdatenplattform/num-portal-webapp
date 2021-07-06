@@ -17,7 +17,7 @@
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IAqbSelectClause } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-clause.interface'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
+import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
 import { AqbContainsUiModel } from './aqb-contains-ui.model'
 import { IAqbSelectClick } from './aqb-select-click.interface'
 import { AqbSelectDestination } from './aqb-select-destination.enum'

@@ -49,7 +49,7 @@ import {
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
+import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ProjectService } from 'src/app/core/services/project/project.service'

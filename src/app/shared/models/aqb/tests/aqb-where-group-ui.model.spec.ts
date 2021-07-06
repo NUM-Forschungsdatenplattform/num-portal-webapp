@@ -15,7 +15,7 @@
  */
 
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
-import { IContainmentTreeNode } from '../../containment-tree-node.interface'
+import { IContainmentTreeNode } from '../../../../modules/aqls/models/containment-tree-node.interface'
 import { AqbWhereGroupUiModel } from '../aqb-where-group-ui.model'
 import { AqbWhereItemUiModel } from '../aqb-where-item-ui.model'
 import { json1, json2, json3 } from './groupConvertResult'

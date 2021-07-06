@@ -22,13 +22,13 @@ import { IAqbSelectFieldNode } from 'src/app/shared/models/archetype-query-build
 import { IAqbSimpleValueNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-simple-value-node.interface'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
+import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
 import {
   COMPARISON_OPERATOR_OPTIONS_EQUALS,
   COMPARISON_OPERATOR_OPTIONS_INEQUALS,
 } from './aqb-comparison-operator-options'
 import { IComparisonOperatorOption } from './aqb-comparison-operator-options.interface'
-import { AqbValueType } from './aqb-where-value-type.enum'
+import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
 
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
@@ -47,7 +47,7 @@ export class AqbWhereItemUiModel {
   comparisonOperatorOptions: IComparisonOperatorOption[]
 
   value: string | number | Date | boolean
-  valueType: AqbValueType
+  valueType: AqlParameterValueType
 
   isParameterType: boolean
   parameterTypeOptions = [
@@ -102,34 +102,34 @@ export class AqbWhereItemUiModel {
     switch (this.rmType) {
       case ReferenceModelType.Boolean:
       case ReferenceModelType.Dv_boolean:
-        this.valueType = AqbValueType.Boolean
+        this.valueType = AqlParameterValueType.Boolean
         this.value = true
         break
       case ReferenceModelType.Double:
-        this.valueType = AqbValueType.Double
+        this.valueType = AqlParameterValueType.Double
         this.value = 1.1
         break
       case ReferenceModelType.Integer:
       case ReferenceModelType.Integer64:
       case ReferenceModelType.Long:
-        this.valueType = AqbValueType.Number
+        this.valueType = AqlParameterValueType.Number
         this.value = 0
         break
       case ReferenceModelType.Dv_date:
-        this.valueType = AqbValueType.Date
+        this.valueType = AqlParameterValueType.Date
         this.value = new Date()
         break
       case ReferenceModelType.Dv_date_time:
-        this.valueType = AqbValueType.DateTime
+        this.valueType = AqlParameterValueType.DateTime
         this.value = new Date()
         break
       case ReferenceModelType.Dv_time:
-        this.valueType = AqbValueType.Time
+        this.valueType = AqlParameterValueType.Time
         this.value = new Date()
         break
 
       default:
-        this.valueType = AqbValueType.String
+        this.valueType = AqlParameterValueType.String
         this.value = ''
         break
     }
@@ -159,24 +159,24 @@ export class AqbWhereItemUiModel {
     let value
 
     switch (this.valueType) {
-      case AqbValueType.Date:
+      case AqlParameterValueType.Date:
         value = DateHelperService.getDateString(this.value as Date)
         break
-      case AqbValueType.Time:
+      case AqlParameterValueType.Time:
         value = DateHelperService.getTimeString(this.value as Date)
         break
-      case AqbValueType.DateTime:
+      case AqlParameterValueType.DateTime:
         value = DateHelperService.getIsoString(this.value as Date)
         break
-      case AqbValueType.Number:
+      case AqlParameterValueType.Number:
         value = parseInt(this.value as string, 10)
         value = isNaN(value) ? 0 : value
         break
-      case AqbValueType.Double:
+      case AqlParameterValueType.Double:
         value = parseFloat(this.value.toString().replace(',', '.'))
         value = isNaN(value) ? 0 : value
         break
-      case AqbValueType.Boolean:
+      case AqlParameterValueType.Boolean:
         value = this.value && this.value !== 'false'
         break
 

@@ -26,6 +26,7 @@ export class CohortBuilderComponent implements OnInit {
   @Input() cohortNode: CohortGroupUiModel
   @Input() isLoadingComplete: boolean
   @Input() raised: boolean
+  @Input() isDisabled: boolean
 
   constructor() {}
 

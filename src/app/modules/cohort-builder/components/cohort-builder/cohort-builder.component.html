@@ -22,7 +22,11 @@
   fxLayoutAlign="space-between start"
   [fxLayoutGap]="raised ? '8px' : '32px'"
 >
-  <num-aql-selection fxFlex="270px" [ngClass]="{ raised: raised }"></num-aql-selection>
+  <num-aql-selection
+    fxFlex="270px"
+    [ngClass]="{ raised: raised }"
+    *ngIf="!isDisabled"
+  ></num-aql-selection>
   <num-aql-connector-group
     class="connector-group"
     [ngClass]="{ raised: raised }"
@@ -31,5 +35,6 @@
     [cohortGroup]="cohortNode"
     [parentGroupIndex]="null"
     [index]="0"
+    [isDisabled]="isDisabled"
   ></num-aql-connector-group>
 </section>

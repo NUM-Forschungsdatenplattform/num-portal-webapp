@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-import { IContainmentTreeNode } from '../containment-tree-node.interface'
-
-export interface IAqbSelectClick {
-  item: IContainmentTreeNode
-  compositionId: string
-  templateId: string
+export enum AqlParameterValueType {
+  Double = 'DOUBLE',
+  Number = 'NUMBER',
+  Date = 'DATE',
+  DateTime = 'DATE_TIME',
+  Time = 'TIME',
+  String = 'STRING',
+  Boolean = 'BOOLEAN',
+  Options = 'OPTIONS',
 }

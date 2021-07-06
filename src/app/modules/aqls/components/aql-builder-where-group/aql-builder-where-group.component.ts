@@ -20,7 +20,7 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { AqbWhereGroupUiModel } from '../../models/aqb/aqb-where-group-ui.model'
+import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-group-ui.model'
 
 @Component({
   selector: 'num-aql-builder-where-group',

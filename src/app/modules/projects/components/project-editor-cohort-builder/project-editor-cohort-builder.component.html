@@ -1,12 +1,12 @@
 <mat-expansion-panel [expanded]="true">
   <mat-expansion-panel-header data-test="project-editor__connector__define-cohort-button">
     <mat-panel-title>
-      <h3 class="accordion">
+      <h3 class="accordion" fxLayoutGap="8px">
         <fa-icon
           [icon]="['far', 'check-circle']"
           *ngIf="cohortNode.children.length && cohortNode.areParameterConfigured"
         ></fa-icon
-        >{{ 'PROJECT.DEFINE_COHORT' | translate }}*
+        ><span>{{ 'PROJECT.DEFINE_COHORT' | translate }}*</span>
       </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
@@ -15,6 +15,7 @@
     [cohortNode]="cohortNode"
     [isLoadingComplete]="isLoadingComplete"
     [raised]="false"
+    [isDisabled]="isDisabled"
     data-test="project-editor__cohort-builder"
   ></num-cohort-builder>
 </mat-expansion-panel>

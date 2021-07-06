@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { AqbContainsItemUiModel } from '../../models/aqb/aqb-contains-item-ui.model'
+import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contains-item-ui.model'
 
 @Component({
   selector: 'num-aql-builder-contains-item',

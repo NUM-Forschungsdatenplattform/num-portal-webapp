@@ -20,7 +20,6 @@ import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
-import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
 
 @Component({
   selector: 'num-result-table',
