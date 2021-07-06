@@ -40,16 +40,16 @@ describe('PatientFilterComponent', () => {
 
   const mockDataSetSubject$ = new Subject<number>()
   const mockPatientFilterService = ({
-    getAllDatasetCount: () => of(),
+    getAllDatasetCount: jest.fn(),
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
 
   const mockProjectService = ({
-    getProjectPreview: () => of(),
+    getProjectPreview: jest.fn(),
   } as unknown) as ProjectService
 
   const mockCohortService = ({
-    getSize: () => of(),
+    getSize: jest.fn(),
     handleError: (error) => throwError(error),
   } as unknown) as CohortService
   @Component({
@@ -100,6 +100,8 @@ describe('PatientFilterComponent', () => {
   })
 
   beforeEach(() => {
+    jest.spyOn(mockPatientFilterService, 'getAllDatasetCount').mockImplementation(() => of(123))
+    jest.clearAllMocks()
     fixture = TestBed.createComponent(PatientFilterComponent)
     component = fixture.componentInstance
     loader = TestbedHarnessEnvironment.loader(fixture)
@@ -117,8 +119,6 @@ describe('PatientFilterComponent', () => {
     })
 
     it('should call getAllDatasets on first load', () => {
-      jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
-      component.ngOnInit()
       expect(mockPatientFilterService.getAllDatasetCount).toHaveBeenCalledTimes(1)
     })
 
