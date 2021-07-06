@@ -17,7 +17,10 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
@@ -27,6 +30,8 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   styleUrls: ['./patient-filter.component.scss'],
 })
 export class PatientFilterComponent implements OnInit {
+  ageGraphData: IDictionary<number, number> = {}
+  institutionGraphData: IDictionary<string, number> = {}
   determineHits: IDetermineHits = {
     defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
     count: null,
@@ -40,7 +45,8 @@ export class PatientFilterComponent implements OnInit {
 
   constructor(
     private cohortService: CohortService,
-    private patientFilterService: PatientFilterService
+    private patientFilterService: PatientFilterService,
+    private projectService: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +70,11 @@ export class PatientFilterComponent implements OnInit {
     } else {
       try {
         const cohortGroupApi = this.cohortNode.convertToApi()
-        const result = await this.cohortService.getSize(cohortGroupApi).toPromise()
+
+        const [result] = await Promise.all([
+          this.cohortService.getSize(cohortGroupApi).toPromise(),
+          this.getGraphsData(),
+        ])
         this.updateDetermineHits(result, '', false)
       } catch (error) {
         if (error.status === 451) {
@@ -74,6 +84,41 @@ export class PatientFilterComponent implements OnInit {
           this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
         }
       }
+    }
+  }
+
+  async getGraphsData(): Promise<void> {
+    if (!!this.cohortNode) {
+      try {
+        const cohort: ICohortApi = {
+          cohortGroup: this.cohortNode.convertToApi(),
+          id: null,
+          name: 'Preview Cohort',
+          projectId: this.project.id,
+        }
+        if (!!cohort.cohortGroup && !!cohort.cohortGroup.query) {
+          const result = await this.projectService
+            .getProjectPreview(cohort.cohortGroup.query.query, cohort, [])
+            .toPromise()
+
+          this.ageGraphData = this.generateAgeGraphData(result)
+          this.institutionGraphData = this.generateInstitutionGraphData(result)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  private generateAgeGraphData(rawData: string): IDictionary<number, number> {
+    return {
+      35: 100,
+    }
+  }
+
+  private generateInstitutionGraphData(rawData: string): IDictionary<string, number> {
+    return {
+      charite: 200,
     }
   }
 }

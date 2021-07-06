@@ -29,6 +29,8 @@
 <div class="num-margin-b-10"></div>
 
 <num-cohort-graphs
+  [ageGraphData]="ageGraphData"
+  [institutionGraphData]="institutionGraphData"
   [determineHits]="determineHits"
   (determine)="determineCohortSize()"
 ></num-cohort-graphs>

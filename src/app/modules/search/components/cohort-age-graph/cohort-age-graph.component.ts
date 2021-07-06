@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 
 @Component({
   selector: 'num-cohort-age-graph',
@@ -21,6 +22,7 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./cohort-age-graph.component.scss'],
 })
 export class CohortAgeGraphComponent implements OnInit {
+  @Input() data: IDictionary<number, number>
   constructor() {}
 
   ngOnInit(): void {}

@@ -15,6 +15,7 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 
 @Component({
   selector: 'num-cohort-graphs',
@@ -22,7 +23,9 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
   styleUrls: ['./cohort-graphs.component.scss'],
 })
 export class CohortGraphsComponent implements OnInit {
+  @Input() ageGraphData: IDictionary<number, number>
   @Input() determineHits: IDetermineHits
+  @Input() institutionGraphData: IDictionary<string, number>
   @Output() determine = new EventEmitter<void>()
   constructor() {}
 

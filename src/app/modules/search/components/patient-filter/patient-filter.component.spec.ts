@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { LayoutModule } from '@angular/cdk/layout'
 import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { HttpErrorResponse } from '@angular/common/http'
@@ -22,9 +23,12 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { SharedModule } from 'src/app/shared/shared.module'
 import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
 import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
@@ -39,6 +43,10 @@ describe('PatientFilterComponent', () => {
     getAllDatasetCount: () => of(),
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
+
+  const mockProjectService = ({
+    getProjectPreview: () => of(),
+  } as unknown) as ProjectService
 
   const mockCohortService = ({
     getSize: () => of(),
@@ -59,7 +67,9 @@ describe('PatientFilterComponent', () => {
     template: '<div></div>',
   })
   class CohortGraphsComponentStub {
+    @Input() ageGraphData: IDictionary<number, number>
     @Input() determineHits: IDetermineHits
+    @Input() institutionGraphData: IDictionary<string, number>
     @Output() determine = new EventEmitter<void>()
   }
 
@@ -71,7 +81,7 @@ describe('PatientFilterComponent', () => {
         PatientCountInfoComponent,
         PatientFilterComponent,
       ],
-      imports: [TranslateModule.forRoot()],
+      imports: [LayoutModule, SharedModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: CohortService,
@@ -80,6 +90,10 @@ describe('PatientFilterComponent', () => {
         {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
+        },
+        {
+          provide: ProjectService,
+          useValue: mockProjectService,
         },
       ],
     }).compileComponents()
@@ -102,10 +116,10 @@ describe('PatientFilterComponent', () => {
       patientCountInfo = await loader.getHarness(PatientCountInfoHarness)
     })
 
-    it('should call getAllDatasets on first load', async () => {
+    it('should call getAllDatasets on first load', () => {
       jest.spyOn(mockPatientFilterService, 'getAllDatasetCount')
       component.ngOnInit()
-      expect(mockPatientFilterService.getAllDatasetCount).toBeCalledTimes(1)
+      expect(mockPatientFilterService.getAllDatasetCount).toHaveBeenCalledTimes(1)
     })
 
     it('should provide the dataset count to patient info component', async () => {
@@ -128,6 +142,7 @@ describe('PatientFilterComponent', () => {
     it('gets the cohort size from service', async () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
       await component.determineCohortSize()
+      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
       expect(component.determineHits.count).toEqual(123)
     })
   })

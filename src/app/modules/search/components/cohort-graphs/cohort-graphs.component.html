@@ -20,7 +20,13 @@
   ></num-editor-determine-hits>
 
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-    <num-cohort-age-graph fxFlex="calc(50% - 32px) 0 1"></num-cohort-age-graph>
-    <num-cohort-institution-graph fxFlex="calc(50% - 32px) 0 1"></num-cohort-institution-graph>
+    <num-cohort-age-graph
+      [data]="ageGraphData"
+      fxFlex="calc(50% - 32px) 0 1"
+    ></num-cohort-age-graph>
+    <num-cohort-institution-graph
+      [data]="institutionGraphData"
+      fxFlex="calc(50% - 32px) 0 1"
+    ></num-cohort-institution-graph>
   </div>
 </div>
