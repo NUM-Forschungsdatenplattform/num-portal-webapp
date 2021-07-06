@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { SharedModule } from 'src/app/shared/shared.module'
 
 import { CohortGraphsComponent } from './cohort-graphs.component'
@@ -28,20 +29,24 @@ describe('CohortGraphsComponent', () => {
     selector: 'num-cohort-age-graph',
     template: '<div></div>',
   })
-  class MockCohortAgeGraphComponent {}
+  class CohortAgeGraphComponentStub {
+    @Input() data: IDictionary<number, number>
+  }
 
   @Component({
     selector: 'num-cohort-institution-graph',
     template: '<div></div>',
   })
-  class MockCohortInstitutionGraphComponent {}
+  class CohortInstitutionGraphComponentStub {
+    @Input() data: IDictionary<string, number>
+  }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         CohortGraphsComponent,
-        MockCohortAgeGraphComponent,
-        MockCohortInstitutionGraphComponent,
+        CohortAgeGraphComponentStub,
+        CohortInstitutionGraphComponentStub,
       ],
       imports: [SharedModule, TranslateModule.forRoot()],
     }).compileComponents()
