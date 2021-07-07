@@ -100,31 +100,20 @@ describe('ProjectEditorComponent', () => {
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
 
-  @Component({ selector: 'num-project-editor-general-info', template: '' })
-  class StubGeneralInfoComponent {
-    @Input() form: any
-    @Input() isDisabled: boolean
+  @Component({ selector: 'num-project-editor-accordion', template: '' })
+  class StubProjectEditorAccordionComponent {
+    @Input() isResearchersFetched: boolean
+    @Input() isCohortsFetched: boolean
+
+    @Input() isTemplatesDisabled: boolean
+    @Input() isResearchersDisabled: boolean
+    @Input() isGeneralInfoDisabled: boolean
+    @Input() isCohortBuilderDisabled: boolean
+
+    @Input() project: ProjectUiModel
+    @Input() projectForm: FormGroup
+    @Input() cohortGroup: CohortGroupUiModel
     @Input() generalInfoData: IDefinitionList[]
-  }
-
-  @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
-  class StubProjectEditorCohortBuilderComponent {
-    @Input() cohortNode: CohortGroupUiModel
-    @Input() isDisabled: boolean
-    @Input() isLoadingComplete: boolean
-  }
-
-  @Component({ selector: 'num-project-editor-researchers', template: '' })
-  class ProjectEditorResearchers {
-    @Input() researchers: any[]
-    @Input() isDisabled: boolean
-    @Input() isLoadingComplete: boolean
-  }
-
-  @Component({ selector: 'num-project-editor-templates', template: '' })
-  class ProjectEditorTemplatesStubComponent {
-    @Input() templates: any
-    @Input() isDisabled: boolean
   }
 
   const postCommentEmitter = new EventEmitter()
@@ -169,11 +158,8 @@ describe('ProjectEditorComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ProjectEditorComponent,
-        StubGeneralInfoComponent,
-        StubProjectEditorCohortBuilderComponent,
-        ProjectEditorResearchers,
+        StubProjectEditorAccordionComponent,
         ButtonComponent,
-        ProjectEditorTemplatesStubComponent,
         ProjectEditorButtonsStubComponent,
         ProjectEditorCommentsStubComponent,
         ProjectEditorApprovalStubComponent,

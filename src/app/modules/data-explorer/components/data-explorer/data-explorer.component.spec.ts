@@ -16,7 +16,7 @@
 
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -113,30 +113,20 @@ describe('DataExplorerComponent', () => {
     },
   } as unknown) as ActivatedRoute
 
-  @Component({ selector: 'num-project-editor-general-info', template: '' })
-  class StubGeneralInfoComponent {
-    @Input() form: any
-    @Input() isDisabled: boolean
+  @Component({ selector: 'num-project-editor-accordion', template: '' })
+  class StubProjectEditorAccordionComponent {
+    @Input() isResearchersFetched: boolean
+    @Input() isCohortsFetched: boolean
+
+    @Input() isTemplatesDisabled: boolean
+    @Input() isResearchersDisabled: boolean
+    @Input() isGeneralInfoDisabled: boolean
+    @Input() isCohortBuilderDisabled: boolean
+
+    @Input() project: ProjectUiModel
+    @Input() projectForm: FormGroup
+    @Input() cohortGroup: CohortGroupUiModel
     @Input() generalInfoData: IDefinitionList[]
-  }
-  @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
-  class StubProjectEditorCohortBuilderComponent {
-    @Input() cohortNode: CohortGroupUiModel
-    @Input() isDisabled: boolean
-    @Input() isLoadingComplete: boolean
-  }
-
-  @Component({ selector: 'num-project-editor-researchers', template: '' })
-  class ProjectEditorResearchers {
-    @Input() researchers: any[]
-    @Input() isDisabled: boolean
-    @Input() isLoadingComplete: boolean
-  }
-
-  @Component({ selector: 'num-project-editor-templates', template: '' })
-  class ProjectEditorTemplatesStubComponent {
-    @Input() templates: any
-    @Input() isDisabled: boolean
   }
 
   @Component({ selector: 'num-result-table', template: '' })
@@ -151,11 +141,8 @@ describe('DataExplorerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         DataExplorerComponent,
-        StubGeneralInfoComponent,
-        StubProjectEditorCohortBuilderComponent,
-        ProjectEditorResearchers,
+        StubProjectEditorAccordionComponent,
         ButtonComponent,
-        ProjectEditorTemplatesStubComponent,
         ResultTableStubComponent,
       ],
       imports: [

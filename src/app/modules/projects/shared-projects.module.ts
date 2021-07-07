@@ -26,8 +26,10 @@ import { ProjectEditorGeneralInfoKeywordsInputComponent } from './components/pro
 import { ProjectEditorGeneralInfoCategoriesInputComponent } from './components/project-editor-general-info-categories-input/project-editor-general-info-categories-input.component'
 import { ProjectEditorCohortBuilderComponent } from './components/project-editor-cohort-builder/project-editor-cohort-builder.component'
 import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
+import { ProjectEditorAccordionComponent } from './components/project-editor-accordion/project-editor-accordion.component'
 
 const SHARED_DECLARATIONS = [
+  ProjectEditorAccordionComponent,
   ProjectEditorCohortBuilderComponent,
   ProjectEditorGeneralInfoComponent,
   ProjectEditorTemplatesComponent,
