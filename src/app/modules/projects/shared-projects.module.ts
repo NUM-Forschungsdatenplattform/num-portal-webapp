@@ -24,8 +24,11 @@ import { ProjectEditorResearchersComponent } from './components/project-editor-r
 import { AddTemplateSelectedTableComponent } from './components/add-template-selected-table/add-template-selected-table.component'
 import { ProjectEditorGeneralInfoKeywordsInputComponent } from './components/project-editor-general-info-keywords-input/project-editor-general-info-keywords-input.component'
 import { ProjectEditorGeneralInfoCategoriesInputComponent } from './components/project-editor-general-info-categories-input/project-editor-general-info-categories-input.component'
+import { ProjectEditorCohortBuilderComponent } from './components/project-editor-cohort-builder/project-editor-cohort-builder.component'
+import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
 
 const SHARED_DECLARATIONS = [
+  ProjectEditorCohortBuilderComponent,
   ProjectEditorGeneralInfoComponent,
   ProjectEditorTemplatesComponent,
   ProjectEditorResearchersComponent,
@@ -36,7 +39,7 @@ const SHARED_DECLARATIONS = [
 
 @NgModule({
   declarations: [...SHARED_DECLARATIONS],
-  imports: [CommonModule, SharedModule, LayoutModule],
+  imports: [CommonModule, SharedModule, LayoutModule, CohortBuilderModule],
   exports: [...SHARED_DECLARATIONS],
 })
 export class SharedProjectsModule {}

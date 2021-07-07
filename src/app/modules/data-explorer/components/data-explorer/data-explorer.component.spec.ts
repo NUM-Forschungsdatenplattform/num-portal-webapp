@@ -54,6 +54,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -118,12 +119,13 @@ describe('DataExplorerComponent', () => {
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
   }
-  @Component({ selector: 'num-project-editor-connector', template: '' })
-  class StubProjectEditorConnector {
-    @Input() cohortNode: any
-    @Input() isLoadingComplete: boolean
+  @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
+  class StubProjectEditorCohortBuilderComponent {
+    @Input() cohortNode: CohortGroupUiModel
     @Input() isDisabled: boolean
+    @Input() isLoadingComplete: boolean
   }
+
   @Component({ selector: 'num-project-editor-researchers', template: '' })
   class ProjectEditorResearchers {
     @Input() researchers: any[]
@@ -150,7 +152,7 @@ describe('DataExplorerComponent', () => {
       declarations: [
         DataExplorerComponent,
         StubGeneralInfoComponent,
-        StubProjectEditorConnector,
+        StubProjectEditorCohortBuilderComponent,
         ProjectEditorResearchers,
         ButtonComponent,
         ProjectEditorTemplatesStubComponent,

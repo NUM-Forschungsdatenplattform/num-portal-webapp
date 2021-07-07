@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - AQL Category column in AQL queries overview ([#229])
 - AQL Category select in AQL editor dialog ([#229])
 - Cohort-Builder disabled state ([#234])
+- Cohort-Builder and accordion style to data-explorer ([#235])
 
 ### Changes
 
@@ -464,3 +465,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
 [#233]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/233
 [#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234
+[#235]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/235
