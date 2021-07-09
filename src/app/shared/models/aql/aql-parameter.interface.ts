@@ -19,6 +19,7 @@ import { AqlParameterValueType } from './aql-parameter-value-type.enum'
 
 export interface IAqlParameter {
   name: string
+  nameWithDollar: string
   value: string
   operator: AqlParameterOperator
   path: string

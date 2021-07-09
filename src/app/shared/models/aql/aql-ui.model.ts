@@ -70,7 +70,8 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   private collectParameters(): void {
     this.parameters = (this.query.match(PARAMETER_REGEX) || []).map((name) => {
       return {
-        name,
+        name: name.split('$')[1] || name,
+        nameWithDollar: name,
         value: undefined,
         archetypeId: undefined,
         operator: undefined,
@@ -79,7 +80,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     })
 
     this.parameters.forEach((parameter) => {
-      const parameterPathRegex = new RegExp(`\\S+\\s+\\S+\\s+\\${parameter.name}`, 'gmi')
+      const parameterPathRegex = new RegExp(`\\S+\\s+\\S+\\s+\\${parameter.nameWithDollar}`, 'gmi')
       const fullParameterPath = this.query.match(parameterPathRegex)[0]
       const fullParameterPathSplitted = fullParameterPath.split(' ')
       const archetypeReferenceId = fullParameterPathSplitted[0].match(/\w+/)[0]
@@ -93,8 +94,8 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
       parameter.archetypeId = this.query.match(archetypeIdRegex)[0]
 
       const pathWithInjectedPlaceholder = fullParameterPath
-        .replace(parameter.name, parameter.name + this.NAME_SUFFIX)
-        .replace(parameter.operator, parameter.name + this.OPERATOR_SUFFIX)
+        .replace(parameter.nameWithDollar, parameter.nameWithDollar + this.NAME_SUFFIX)
+        .replace(parameter.operator, parameter.nameWithDollar + this.OPERATOR_SUFFIX)
 
       this.queryWithOperatorPlaceholder = (this.queryWithOperatorPlaceholder
         ? this.queryWithOperatorPlaceholder
@@ -158,8 +159,8 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     let resultString = queryString
     this.parameters.forEach((parameter) => {
       resultString = resultString
-        .replace(parameter.name + this.NAME_SUFFIX, parameter.name)
-        .replace(parameter.name + this.OPERATOR_SUFFIX, parameter.operator)
+        .replace(parameter.nameWithDollar + this.NAME_SUFFIX, parameter.nameWithDollar)
+        .replace(parameter.nameWithDollar + this.OPERATOR_SUFFIX, parameter.operator)
     })
     return resultString
   }
