@@ -17,10 +17,10 @@ import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
-import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
@@ -37,7 +37,8 @@ export class PatientFilterComponent implements OnInit {
     count: null,
   }
   patientCount$: Observable<number>
-  project = new ProjectUiModel()
+  previewData$: Observable<string>
+  project: ProjectUiModel
 
   get cohortNode(): CohortGroupUiModel {
     return this.project.cohortGroup
@@ -45,12 +46,13 @@ export class PatientFilterComponent implements OnInit {
 
   constructor(
     private cohortService: CohortService,
-    private patientFilterService: PatientFilterService,
-    private projectService: ProjectService
+    private patientFilterService: PatientFilterService
   ) {}
 
   ngOnInit(): void {
+    this.project = new ProjectUiModel()
     this.patientCount$ = this.patientFilterService.totalDatasetCountObservable$
+    this.previewData$ = this.patientFilterService.previewDataObservable$
 
     this.patientFilterService.getAllDatasetCount().subscribe()
   }
@@ -66,15 +68,15 @@ export class PatientFilterComponent implements OnInit {
 
   async determineCohortSize(): Promise<void> {
     if (!this.cohortNode) {
-      this.updateDetermineHits(null, '', true)
+      this.updateDetermineHits(null, '', false)
     } else {
       try {
-        const cohortGroupApi = this.cohortNode.convertToApi()
+        await this.getPreviewData()
 
-        const [result] = await Promise.all([
-          this.cohortService.getSize(cohortGroupApi).toPromise(),
-          this.getGraphsData(),
-        ])
+        const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
+
+        const result = await this.cohortService.getSize(cohortGroupApi).toPromise()
+
         this.updateDetermineHits(result, '', false)
       } catch (error) {
         if (error.status === 451) {
@@ -87,38 +89,18 @@ export class PatientFilterComponent implements OnInit {
     }
   }
 
-  async getGraphsData(): Promise<void> {
-    if (!!this.cohortNode) {
-      try {
-        const cohort: ICohortApi = {
-          cohortGroup: this.cohortNode.convertToApi(),
-          id: null,
-          name: 'Preview Cohort',
-          projectId: this.project.id,
-        }
-        if (!!cohort.cohortGroup && !!cohort.cohortGroup.query) {
-          const result = await this.projectService
-            .getProjectPreview(cohort.cohortGroup.query.query, cohort, [])
-            .toPromise()
+  async getPreviewData(): Promise<void> {
+    try {
+      const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
 
-          this.ageGraphData = this.generateAgeGraphData(result)
-          this.institutionGraphData = this.generateInstitutionGraphData(result)
-        }
-      } catch (error) {
-        console.log(error)
+      const cohort: ICohortApi = {
+        cohortGroup: cohortGroupApi,
+        id: null,
+        name: 'Preview Cohort',
+        projectId: this.project.id,
       }
-    }
-  }
 
-  private generateAgeGraphData(rawData: string): IDictionary<number, number> {
-    return {
-      35: 100,
-    }
-  }
-
-  private generateInstitutionGraphData(rawData: string): IDictionary<string, number> {
-    return {
-      charite: 200,
-    }
+      await this.patientFilterService.getPreviewData(cohortGroupApi, cohort, []).toPromise()
+    } catch (error) {}
   }
 }

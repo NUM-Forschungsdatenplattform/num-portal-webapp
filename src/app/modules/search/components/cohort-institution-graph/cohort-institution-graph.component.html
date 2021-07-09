@@ -13,4 +13,17 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<p>cohort-institution-graph works!</p>
+<h3>{{ 'CHARTS.COHORT_INSTITUTION.TITLE' | translate }}</h3>
+
+<div class="num-margin-b-20"></div>
+
+<ngx-charts-bar-vertical
+  [results]="chartData.data"
+  [xAxis]="showXAxis"
+  [showXAxisLabel]="showXAxisLabel"
+  [xAxisLabel]="chartData.xLabel | translate"
+  [yAxis]="showYAxis"
+  [showYAxisLabel]="showYAxisLabel"
+  [yAxisLabel]="chartData.yLabel | translate"
+  [view]="view"
+></ngx-charts-bar-vertical>

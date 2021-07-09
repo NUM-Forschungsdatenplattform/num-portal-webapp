@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 import { Component, Input, OnInit } from '@angular/core'
+import { map } from 'lodash-es'
+import { IBarChartData } from 'src/app/shared/models/charts/bar-chart-data.interface'
+import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
+import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
 
 @Component({
   selector: 'num-cohort-age-graph',
@@ -22,8 +26,37 @@ import { IDictionary } from 'src/app/shared/models/dictionary.interface'
   styleUrls: ['./cohort-age-graph.component.scss'],
 })
 export class CohortAgeGraphComponent implements OnInit {
-  @Input() data: IDictionary<number, number>
+  @Input() set data(data: IDictionary<number, number>) {
+    if (data) {
+      this.handleData(data)
+    } else {
+      this.handleData(mockAgeGraphData)
+    }
+  }
+
+  chartData: IBarChart
+
+  showXAxis = true
+  showXAxisLabel = true
+  showYAxis = true
+  showYAxisLabel = true
+  view = [500, 500]
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  private handleData(data: IDictionary<number, number>): void {
+    this.chartData = {
+      color: '#333333',
+      data: map(
+        data,
+        (value, key): IBarChartData => {
+          return { name: key, value }
+        }
+      ),
+      xLabel: 'CHARTS.COHORT_AGE.XLABEL',
+      yLabel: 'CHARTS.COHORT_AGE.YLABEL',
+    }
+  }
 }

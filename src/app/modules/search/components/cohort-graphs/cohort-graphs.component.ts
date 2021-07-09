@@ -23,10 +23,10 @@ import { IDictionary } from 'src/app/shared/models/dictionary.interface'
   styleUrls: ['./cohort-graphs.component.scss'],
 })
 export class CohortGraphsComponent implements OnInit {
-  @Input() ageGraphData: IDictionary<number, number>
   @Input() determineHits: IDetermineHits
-  @Input() institutionGraphData: IDictionary<string, number>
+  @Input() previewData: string
   @Output() determine = new EventEmitter<void>()
+
   constructor() {}
 
   ngOnInit(): void {}

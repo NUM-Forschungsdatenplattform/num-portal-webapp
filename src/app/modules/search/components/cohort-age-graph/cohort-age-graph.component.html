@@ -13,4 +13,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<p>cohort-age-graph works!</p>
+<h3>{{ 'CHARTS.COHORT_AGE.TITLE' | translate }}</h3>
+<ngx-charts-bar-vertical
+  [results]="chartData.data"
+  [xAxis]="showXAxis"
+  [showXAxisLabel]="showXAxisLabel"
+  [xAxisLabel]="chartData.xLabel | translate"
+  [yAxis]="showYAxis"
+  [showYAxisLabel]="showYAxisLabel"
+  [yAxisLabel]="chartData.yLabel | translate"
+  [view]="view"
+></ngx-charts-bar-vertical>

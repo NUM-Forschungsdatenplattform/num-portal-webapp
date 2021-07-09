@@ -276,15 +276,6 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
-  getProjectPreview(query: string, cohort: ICohortApi, templates: string[]): Observable<string> {
-    return this.httpClient
-      .post<string>(`${this.baseUrl}/manager/execute`, {
-        query,
-        cohort,
-        templates,
-      })
-      .pipe(catchError(this.handleError))
-  }
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

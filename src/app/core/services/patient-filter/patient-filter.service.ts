@@ -18,6 +18,8 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
+import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +30,10 @@ export class PatientFilterService {
   private totalDatasetCount = 0
   private totalDatasetCountSubject$ = new BehaviorSubject(this.totalDatasetCount)
   totalDatasetCountObservable$ = this.totalDatasetCountSubject$.asObservable()
+
+  private previewData = ''
+  private previewDataSubject$ = new BehaviorSubject(this.previewData)
+  previewDataObservable$ = this.previewDataSubject$.asObservable()
 
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql`
@@ -45,6 +51,33 @@ export class PatientFilterService {
         }),
         catchError(this.handleError)
       )
+  }
+
+  getPreviewData(
+    cohortGroup: ICohortGroupApi,
+    cohort: ICohortApi,
+    templates: string[]
+  ): Observable<string> {
+    return this.httpClient
+      .post<string>(`${this.appConfigService.config.api.baseUrl}/project/manager/execute`, {
+        query: this.generateAqlQuery(cohortGroup),
+        cohort,
+        templates,
+      })
+      .pipe(
+        tap((data) => {
+          this.previewData = data
+          this.previewDataSubject$.next(data)
+        }),
+        catchError(this.handleError)
+      )
+  }
+
+  private generateAqlQuery(cohortGroup: ICohortGroupApi): string {
+    const query = cohortGroup.children.map((child) => {
+      return child.query.query
+    })
+    return query.join(cohortGroup.operator)
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

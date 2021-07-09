@@ -415,6 +415,17 @@
     "MAIL_DOMAIN": "Mail domain(s)"
   },
   "CHARTS": {
+    "COHORT_AGE": {
+      "TITLE": "Number of datasets per age group",
+      "XLABEL": "Age group",
+      "YLABEL": "Number datasets"
+    },
+    "COHORT_INSTITUTION": {
+      "TITLE": "Number of datasets per institution",
+      "XLABEL": "Institution",
+      "YLABEL": "Number datasets",
+      "DROPDOWN": "Please select institution..."
+    },
     "SOFA_SCORE": {
       "TITLE": "Number of Patients per SOFA-Score (grouped)",
       "XLABEL": "SOFA-Score",

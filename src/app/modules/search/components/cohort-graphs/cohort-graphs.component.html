@@ -19,13 +19,12 @@
     (clicked)="determine.emit()"
   ></num-editor-determine-hits>
 
+  <div class="num-margin-b-20"></div>
+
   <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-    <num-cohort-age-graph
-      [data]="ageGraphData"
-      fxFlex="calc(50% - 32px) 0 1"
-    ></num-cohort-age-graph>
+    <num-cohort-age-graph [data]="previewData" fxFlex="calc(50% - 32px) 0 1"></num-cohort-age-graph>
     <num-cohort-institution-graph
-      [data]="institutionGraphData"
+      [data]="previewData"
       fxFlex="calc(50% - 32px) 0 1"
     ></num-cohort-institution-graph>
   </div>

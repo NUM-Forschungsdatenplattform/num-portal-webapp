@@ -25,6 +25,7 @@ import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.
 import { CohortAgeGraphComponent } from './components/cohort-age-graph/cohort-age-graph.component'
 import { CohortInstitutionGraphComponent } from './components/cohort-institution-graph/cohort-institution-graph.component'
 import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
+import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,13 @@ import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
     CohortAgeGraphComponent,
     CohortInstitutionGraphComponent,
   ],
-  imports: [CohortBuilderModule, CommonModule, LayoutModule, SearchRoutingModule, SharedModule],
+  imports: [
+    CohortBuilderModule,
+    CommonModule,
+    LayoutModule,
+    NgxChartsModule,
+    SearchRoutingModule,
+    SharedModule,
+  ],
 })
 export class SearchModule {}

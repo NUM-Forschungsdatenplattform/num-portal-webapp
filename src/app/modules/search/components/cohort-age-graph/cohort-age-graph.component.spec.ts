@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { TranslateModule } from '@ngx-translate/core'
+import { NgxChartsModule } from '@swimlane/ngx-charts'
+import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { CohortAgeGraphComponent } from './cohort-age-graph.component'
 
 describe('CohortAgeGraphComponent', () => {
@@ -24,12 +27,14 @@ describe('CohortAgeGraphComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CohortAgeGraphComponent],
+      imports: [NoopAnimationsModule, NgxChartsModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CohortAgeGraphComponent)
     component = fixture.componentInstance
+    component.data = mockAgeGraphData
     fixture.detectChanges()
   })
 
