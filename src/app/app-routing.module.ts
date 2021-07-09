@@ -35,7 +35,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'search',
-      roles: [AvailableRoles.StudyCoordinator],
+      roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
     },
     loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
   },
