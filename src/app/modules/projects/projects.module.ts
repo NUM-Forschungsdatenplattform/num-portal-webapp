@@ -32,8 +32,6 @@ import { ProjectEditorCommentsComponent } from './components/project-editor-comm
 import { ProjectEditorApprovalComponent } from './components/project-editor-approval/project-editor-approval.component'
 import { SharedProjectsModule } from './shared-projects.module'
 import { DialogConfirmProjectApprovalComponent } from './components/dialog-confirm-project-approval/dialog-confirm-project-approval.component'
-import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
-import { ProjectEditorCohortBuilderComponent } from './components/project-editor-cohort-builder/project-editor-cohort-builder.component'
 
 @NgModule({
   declarations: [
@@ -48,15 +46,7 @@ import { ProjectEditorCohortBuilderComponent } from './components/project-editor
     ProjectEditorCommentsComponent,
     ProjectEditorApprovalComponent,
     DialogConfirmProjectApprovalComponent,
-    ProjectEditorCohortBuilderComponent,
   ],
-  imports: [
-    CommonModule,
-    ProjectsRoutingModule,
-    SharedModule,
-    LayoutModule,
-    SharedProjectsModule,
-    CohortBuilderModule,
-  ],
+  imports: [CommonModule, ProjectsRoutingModule, SharedModule, LayoutModule, SharedProjectsModule],
 })
 export class ProjectsModule {}

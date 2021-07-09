@@ -1,0 +1,27 @@
+<mat-accordion class="num-accordion num-accordion-big" [multi]="true" fxFlex="100%">
+  <num-project-editor-cohort-builder
+    [cohortNode]="cohortGroup"
+    [isLoadingComplete]="isCohortsFetched"
+    [isDisabled]="isCohortBuilderDisabled"
+  ></num-project-editor-cohort-builder>
+
+  <num-project-editor-general-info
+    [form]="projectForm"
+    [isDisabled]="isGeneralInfoDisabled"
+    [generalInfoData]="generalInfoData"
+    data-test="project-editor__general-info"
+  ></num-project-editor-general-info>
+
+  <num-project-editor-templates
+    [(templates)]="project.templates"
+    [isDisabled]="isTemplatesDisabled"
+    data-test="project-editor__templates"
+  ></num-project-editor-templates>
+
+  <num-project-editor-researchers
+    [isLoadingComplete]="isResearchersFetched"
+    [(researchers)]="project.researchers"
+    [isDisabled]="isResearchersDisabled"
+    data-test="project-editor__researchers"
+  ></num-project-editor-researchers>
+</mat-accordion>

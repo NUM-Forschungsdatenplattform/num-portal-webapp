@@ -18,27 +18,19 @@
   <h2>{{ 'DATA_EXPLORER.EXPLORE_PROJECT' | translate }}</h2>
   <p class="num-margin-b-40">{{ 'DATA_EXPLORER.EXPLORE_PROJECT_CONTENT' | translate }}</p>
 
-  <mat-accordion [multi]="true" fxFlex="100%" class="num-margin-b-40">
-    <num-project-editor-general-info
-      [form]="projectForm"
-      [isDisabled]="isGeneralInfoDisabled"
-      [generalInfoData]="generalInfoData"
-      data-test="project-editor__general-info"
-    ></num-project-editor-general-info>
-
-    <num-project-editor-templates
-      [(templates)]="project.templates"
-      [isDisabled]="isTemplatesDisabled"
-      data-test="project-editor__templates"
-    ></num-project-editor-templates>
-
-    <num-project-editor-researchers
-      [isLoadingComplete]="isResearchersFetched"
-      [(researchers)]="project.researchers"
-      [isDisabled]="isResearchersDisabled"
-      data-test="project-editor__researchers"
-    ></num-project-editor-researchers>
-  </mat-accordion>
+  <num-project-editor-accordion
+    class="num-margin-b-40"
+    [isResearchersFetched]="isResearchersFetched"
+    [isCohortsFetched]="isCohortsFetched"
+    [isTemplatesDisabled]="isTemplatesDisabled"
+    [isResearchersDisabled]="isResearchersDisabled"
+    [isGeneralInfoDisabled]="isGeneralInfoDisabled"
+    [isCohortBuilderDisabled]="isCohortBuilderDisabled"
+    [project]="project"
+    [projectForm]="projectForm"
+    [cohortGroup]="cohortGroup"
+    [generalInfoData]="generalInfoData"
+  ></num-project-editor-accordion>
 
   <section
     role="presentation"
