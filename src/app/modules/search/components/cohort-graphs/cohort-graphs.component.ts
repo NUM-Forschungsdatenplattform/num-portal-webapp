@@ -15,7 +15,6 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
-import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 
 @Component({
   selector: 'num-cohort-graphs',
