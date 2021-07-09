@@ -30,20 +30,20 @@ describe('CohortGroupUiModel', () => {
     firstGroup.isNegated = true
     firstGroup.children.push(
       new AqlUiModel(mockAqlCohort, false, {
-        $bodyHeight: 'testHeight',
-        $bodyWeight: 'testWeight',
+        bodyHeight: 'testHeight',
+        bodyWeight: 'testWeight',
       })
     )
 
     secondGroup.children.push(
       new AqlUiModel(mockAqlCohort, false, {
-        $bodyHeight: 'testHeight',
-        $bodyWeight: 'testWeight',
+        bodyHeight: 'testHeight',
+        bodyWeight: 'testWeight',
       })
     )
     secondGroup.children.push(
       new AqlUiModel(mockAqlCohort, false, {
-        $bodyHeight: 'testHeight',
+        bodyHeight: 'testHeight',
       })
     )
 

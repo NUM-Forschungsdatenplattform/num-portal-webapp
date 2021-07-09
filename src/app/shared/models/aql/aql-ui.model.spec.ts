@@ -35,7 +35,7 @@ describe('AqlUiModel', () => {
   const testCase2 = {
     aql: mockAql3,
     parameters: {
-      $bodyHeight: 'testHeight',
+      bodyHeight: 'testHeight',
     },
     negated: true,
     expectNegated: true,
@@ -45,8 +45,8 @@ describe('AqlUiModel', () => {
   const testCase3 = {
     aql: mockAql3,
     parameters: {
-      $bodyHeight: 'testHeight',
-      $bodyWeight: 'testWeight',
+      bodyHeight: 'testHeight',
+      bodyWeight: 'testWeight',
     },
     negated: true,
     expectNegated: true,
