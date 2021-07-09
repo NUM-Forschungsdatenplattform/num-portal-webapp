@@ -179,7 +179,7 @@ describe('PatientFilterComponent', () => {
 
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
-      const cohort: ICohortApi = {
+      const testCohort: ICohortApi = {
         cohortGroup: cohortGroupApi,
         id: null,
         name: 'Preview Cohort',
@@ -187,7 +187,7 @@ describe('PatientFilterComponent', () => {
       }
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(
         cohortGroupApi,
-        cohort,
+        testCohort,
         []
       )
     })
