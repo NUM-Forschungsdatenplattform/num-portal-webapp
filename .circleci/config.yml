@@ -58,19 +58,19 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-#      - run:
-#          name: Run Linter
-#          command: npm run lint
-#      - run:
-#          name: Run unit tests
-#          command: npm run test-ci
-#          enviroment:
-#            NODE_OPTIONS: --max_old_space_size=4096
-#      - store_test_results:
-#          path: ./reports/junit/
-#      - run:
-#          name: Run CVE scan by npm audit
-#          command: npm audit --audit-level=critical
+      - run:
+          name: Run Linter
+          command: npm run lint
+      - run:
+          name: Run unit tests
+          command: npm run test-ci
+          enviroment:
+            NODE_OPTIONS: --max_old_space_size=4096
+      - store_test_results:
+          path: ./reports/junit/
+      - run:
+          name: Run CVE scan by npm audit
+          command: npm audit --audit-level=critical
       - run:
           name: Run CVE scan by OWASP Dependency Check
           command: |
