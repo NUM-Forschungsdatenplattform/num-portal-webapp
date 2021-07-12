@@ -41,7 +41,7 @@ describe('PatientCountInfoComponent', () => {
 
   it('should render the text for the current dataset size', () => {
     component.patientCount = 1234
-    const paragraphElement = fixture.debugElement.query(By.css('.patient-info-text'))
+    const paragraphElement = fixture.debugElement.query(By.css('p'))
     expect((paragraphElement.nativeElement as HTMLParagraphElement).innerHTML.trim()).toEqual(
       'SEARCH.PATIENT_COUNT_INFO'
     )
