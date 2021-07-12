@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import { Component, Input, OnInit } from '@angular/core'
-import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 @Component({
   selector: 'num-patient-count-info',
