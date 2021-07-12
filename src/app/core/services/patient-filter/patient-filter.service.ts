@@ -36,12 +36,12 @@ export class PatientFilterService {
   previewDataObservable$ = this.previewDataSubject$.asObservable()
 
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
-    this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql`
+    this.baseUrl = `${this.appConfigService.config.api.baseUrl}`
   }
 
   getAllDatasetCount(): Observable<number> {
     return this.httpClient
-      .post<number>(`${this.baseUrl}/size`, {
+      .post<number>(`${this.baseUrl}/aql/size`, {
         query: 'SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value',
       })
       .pipe(
@@ -59,7 +59,7 @@ export class PatientFilterService {
     templates: string[]
   ): Observable<string> {
     return this.httpClient
-      .post<string>(`${this.appConfigService.config.api.baseUrl}/project/manager/execute`, {
+      .post<string>(`${this.baseUrl}/project/manager/execute`, {
         query: this.generateAqlQuery(cohortGroup),
         cohort,
         templates,
@@ -73,6 +73,7 @@ export class PatientFilterService {
       )
   }
 
+  // TODO: Clearify if the generation of result data can be done by backend instead
   private generateAqlQuery(cohortGroup: ICohortGroupApi): string {
     const query = cohortGroup.children.map((child) => {
       return child.query.query

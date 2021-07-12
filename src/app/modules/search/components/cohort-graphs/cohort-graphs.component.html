@@ -21,11 +21,16 @@
 
   <div class="num-margin-b-20"></div>
 
-  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="32px">
-    <num-cohort-age-graph [data]="previewData" fxFlex="calc(50% - 32px) 0 1"></num-cohort-age-graph>
+  <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px">
+    <num-cohort-age-graph
+      [data]="previewData"
+      fxFlex="50%"
+      fxFlex.lt-lg="100%"
+    ></num-cohort-age-graph>
     <num-cohort-institution-graph
       [data]="previewData"
-      fxFlex="calc(50% - 32px) 0 1"
+      fxFlex="50%"
+      fxFlex.lt-lg="100%"
     ></num-cohort-institution-graph>
   </div>
 </div>
