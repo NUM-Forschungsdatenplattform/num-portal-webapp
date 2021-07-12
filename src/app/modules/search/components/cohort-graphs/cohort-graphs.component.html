@@ -23,12 +23,12 @@
 
   <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px">
     <num-cohort-age-graph
-      [data]="previewData"
+      [data]="previewData.ages"
       fxFlex="50%"
       fxFlex.lt-lg="100%"
     ></num-cohort-age-graph>
     <num-cohort-institution-graph
-      [data]="previewData"
+      [data]="previewData.hospitals"
       fxFlex="50%"
       fxFlex.lt-lg="100%"
     ></num-cohort-institution-graph>

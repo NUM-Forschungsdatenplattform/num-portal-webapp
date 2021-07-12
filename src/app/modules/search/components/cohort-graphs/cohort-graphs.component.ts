@@ -15,6 +15,7 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 
 @Component({
   selector: 'num-cohort-graphs',
@@ -23,7 +24,7 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 })
 export class CohortGraphsComponent implements OnInit {
   @Input() determineHits: IDetermineHits
-  @Input() previewData: string
+  @Input() previewData: ICohortPreviewApi
   @Output() determine = new EventEmitter<void>()
 
   constructor() {}

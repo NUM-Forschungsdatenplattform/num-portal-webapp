@@ -18,8 +18,8 @@ import { Observable } from 'rxjs'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
-import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
@@ -30,14 +30,12 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   styleUrls: ['./patient-filter.component.scss'],
 })
 export class PatientFilterComponent implements OnInit {
-  ageGraphData: IDictionary<number, number> = {}
-  institutionGraphData: IDictionary<string, number> = {}
   determineHits: IDetermineHits = {
     defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
     count: null,
   }
   patientCount$: Observable<number>
-  previewData$: Observable<string>
+  previewData$: Observable<ICohortPreviewApi>
   project: ProjectUiModel
 
   get cohortNode(): CohortGroupUiModel {
@@ -92,15 +90,7 @@ export class PatientFilterComponent implements OnInit {
   async getPreviewData(): Promise<void> {
     try {
       const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
-
-      const cohort: ICohortApi = {
-        cohortGroup: cohortGroupApi,
-        id: null,
-        name: 'Preview Cohort',
-        projectId: this.project.id,
-      }
-
-      await this.patientFilterService.getPreviewData(cohortGroupApi, cohort, []).toPromise()
+      await this.patientFilterService.getPreviewData(cohortGroupApi).toPromise()
     } catch (error) {}
   }
 }

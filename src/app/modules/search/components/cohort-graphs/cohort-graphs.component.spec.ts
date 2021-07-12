@@ -18,6 +18,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { SharedModule } from 'src/app/shared/shared.module'
+import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 
 import { CohortGraphsComponent } from './cohort-graphs.component'
 
@@ -55,6 +56,7 @@ describe('CohortGraphsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CohortGraphsComponent)
     component = fixture.componentInstance
+    component.previewData = mockCohortPreviewData
     fixture.detectChanges()
   })
 

@@ -25,7 +25,6 @@ import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
-import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { SharedModule } from 'src/app/shared/shared.module'
@@ -147,7 +146,9 @@ describe('PatientFilterComponent', () => {
 
     it('gets the cohort size from service', async () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
-      jest.spyOn(mockPatientFilterService, 'getPreviewData').mockImplementation(() => of('result'))
+      jest
+        .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
       await component.determineCohortSize()
       expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
       expect(component.determineHits.count).toEqual(123)
@@ -157,7 +158,9 @@ describe('PatientFilterComponent', () => {
       jest
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
-      jest.spyOn(mockPatientFilterService, 'getPreviewData').mockImplementation(() => of('result'))
+      jest
+        .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
 
       await component.determineCohortSize()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
@@ -175,21 +178,11 @@ describe('PatientFilterComponent', () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(1234))
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of('preview data'))
+        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
 
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
-      const testCohort: ICohortApi = {
-        cohortGroup: cohortGroupApi,
-        id: null,
-        name: 'Preview Cohort',
-        projectId: component.project.id,
-      }
-      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(
-        cohortGroupApi,
-        testCohort,
-        []
-      )
+      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(cohortGroupApi)
     })
   })
 })

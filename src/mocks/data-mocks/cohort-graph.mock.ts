@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 
 export const mockInstitutionGraphData: IDictionary<string, number> = {
@@ -23,12 +24,18 @@ export const mockInstitutionGraphData: IDictionary<string, number> = {
   'Test clinic 4': 742,
 }
 
-export const mockAgeGraphData: IDictionary<number, number> = {
-  20: 361,
-  30: 471,
-  40: 841,
-  50: 162,
-  60: 462,
-  70: 127,
-  80: 12,
+export const mockAgeGraphData: IDictionary<string, number> = {
+  '20-30': 361,
+  '30-40': 471,
+  '40-50': 841,
+  '50-60': 162,
+  '60-70': 462,
+  '70-80': 127,
+  '80-90': 12,
+}
+
+export const mockCohortPreviewData: ICohortPreviewApi = {
+  ages: mockAgeGraphData,
+  count: 123,
+  hospitals: mockInstitutionGraphData,
 }

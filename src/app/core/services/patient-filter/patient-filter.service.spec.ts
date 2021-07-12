@@ -18,8 +18,7 @@ import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
-import { mockAql1, mockAqlCohort } from 'src/mocks/data-mocks/aqls.mock'
-import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
 
 import { PatientFilterService } from './patient-filter.service'
 
@@ -90,12 +89,12 @@ describe('PatientFilterService', () => {
     }
     it('should call the api - with success', (done) => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of('result'))
-      service.getPreviewData(cohortGroup, mockCohort1, []).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
-        query: 'quer1',
-        cohort: mockCohort1,
-        templates: [],
-      })
+      service.getPreviewData(cohortGroup, false).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        'localhost/api/cohort/size/distribution?allowUsageOutsideEu=false',
+
+        cohortGroup
+      )
       service.previewDataObservable$.subscribe((data) => {
         expect(data).toEqual('result')
         done()
@@ -106,15 +105,14 @@ describe('PatientFilterService', () => {
       jest.spyOn(service, 'handleError')
       jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
       service
-        .getPreviewData(cohortGroup, mockCohort1, [])
+        .getPreviewData(cohortGroup)
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
-        query: 'quer1',
-        cohort: mockCohort1,
-        templates: [],
-      })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        'localhost/api/cohort/size/distribution?allowUsageOutsideEu=true',
+        cohortGroup
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })

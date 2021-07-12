@@ -18,7 +18,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
+import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
 @Injectable({
@@ -31,7 +31,11 @@ export class PatientFilterService {
   private totalDatasetCountSubject$ = new BehaviorSubject(this.totalDatasetCount)
   totalDatasetCountObservable$ = this.totalDatasetCountSubject$.asObservable()
 
-  private previewData = ''
+  private previewData: ICohortPreviewApi = {
+    ages: {},
+    count: 0,
+    hospitals: {},
+  }
   private previewDataSubject$ = new BehaviorSubject(this.previewData)
   previewDataObservable$ = this.previewDataSubject$.asObservable()
 
@@ -55,30 +59,20 @@ export class PatientFilterService {
 
   getPreviewData(
     cohortGroup: ICohortGroupApi,
-    cohort: ICohortApi,
-    templates: string[]
-  ): Observable<string> {
+    allowUsageOutsideEu = true
+  ): Observable<ICohortPreviewApi> {
     return this.httpClient
-      .post<string>(`${this.baseUrl}/project/manager/execute`, {
-        query: this.generateAqlQuery(cohortGroup),
-        cohort,
-        templates,
-      })
+      .post<ICohortPreviewApi>(
+        `${this.baseUrl}/cohort/size/distribution?allowUsageOutsideEu=${allowUsageOutsideEu}`,
+        cohortGroup
+      )
       .pipe(
-        tap((data) => {
-          this.previewData = data
-          this.previewDataSubject$.next(data)
+        tap((res) => {
+          this.previewData = res
+          this.previewDataSubject$.next(res)
         }),
         catchError(this.handleError)
       )
-  }
-
-  // TODO: Clearify if the generation of result data can be done by backend instead
-  private generateAqlQuery(cohortGroup: ICohortGroupApi): string {
-    const query = cohortGroup.children.map((child) => {
-      return child.query.query
-    })
-    return query.join(cohortGroup.operator)
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
