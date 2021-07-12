@@ -15,11 +15,9 @@
  */
 import { Component, OnInit } from '@angular/core'
 import { Observable } from 'rxjs'
-import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
-import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
@@ -42,10 +40,7 @@ export class PatientFilterComponent implements OnInit {
     return this.project.cohortGroup
   }
 
-  constructor(
-    private cohortService: CohortService,
-    private patientFilterService: PatientFilterService
-  ) {}
+  constructor(private patientFilterService: PatientFilterService) {}
 
   ngOnInit(): void {
     this.project = new ProjectUiModel()
@@ -64,18 +59,16 @@ export class PatientFilterComponent implements OnInit {
     }
   }
 
-  async determineCohortSize(): Promise<void> {
+  async getPreviewData(): Promise<void> {
     if (!this.cohortNode) {
       this.updateDetermineHits(null, '', false)
     } else {
       try {
-        await this.getPreviewData()
-
         const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
-
-        const result = await this.cohortService.getSize(cohortGroupApi).toPromise()
-
-        this.updateDetermineHits(result, '', false)
+        const previewData = await this.patientFilterService
+          .getPreviewData(cohortGroupApi)
+          .toPromise()
+        this.updateDetermineHits(previewData.count, '', false)
       } catch (error) {
         if (error.status === 451) {
           // *** Error 451 means too few hits ***
@@ -85,12 +78,5 @@ export class PatientFilterComponent implements OnInit {
         }
       }
     }
-  }
-
-  async getPreviewData(): Promise<void> {
-    try {
-      const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
-      await this.patientFilterService.getPreviewData(cohortGroupApi).toPromise()
-    } catch (error) {}
   }
 }

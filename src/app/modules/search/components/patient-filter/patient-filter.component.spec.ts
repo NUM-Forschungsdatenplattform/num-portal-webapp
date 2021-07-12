@@ -21,7 +21,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
-import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
@@ -29,6 +28,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { mockAqlCohort } from 'src/mocks/data-mocks/aqls.mock'
+import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
 import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
@@ -47,10 +47,6 @@ describe('PatientFilterComponent', () => {
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
 
-  const mockCohortService = ({
-    getSize: jest.fn(),
-    handleError: jest.fn(),
-  } as unknown) as CohortService
   @Component({
     selector: 'num-cohort-builder',
     template: '<div></div>',
@@ -81,10 +77,6 @@ describe('PatientFilterComponent', () => {
       ],
       imports: [LayoutModule, SharedModule, TranslateModule.forRoot()],
       providers: [
-        {
-          provide: CohortService,
-          useValue: mockCohortService,
-        },
         {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
@@ -140,45 +132,40 @@ describe('PatientFilterComponent', () => {
 
     it('should set loading status if no cohortNode has been provided', async () => {
       component.project.cohortGroup = undefined
-      await component.determineCohortSize()
+      await component.getPreviewData()
       expect(component.determineHits.isLoading).toBe(false)
     })
 
     it('gets the cohort size from service', async () => {
-      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(123))
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
-      await component.determineCohortSize()
-      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
-      expect(component.determineHits.count).toEqual(123)
+        .mockImplementation(() => of(mockCohortPreviewData))
+      await component.getPreviewData()
+      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledTimes(1)
+      expect(component.determineHits.count).toEqual(mockCohortPreviewData.count)
     })
 
     it('should show an error for to few hits', async () => {
       jest
-        .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
-      jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
-      await component.determineCohortSize()
+      await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
     })
 
     it('should show a general error message for unknown errors', async () => {
       jest
-        .spyOn(mockCohortService, 'getSize')
+        .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
-      await component.determineCohortSize()
+      await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
     })
 
     it('should call the service to get preview data from api', async () => {
-      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(1234))
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of({ ages: {}, count: 200, hospitals: {} }))
+        .mockImplementation(() => of(mockCohortPreviewData))
 
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
