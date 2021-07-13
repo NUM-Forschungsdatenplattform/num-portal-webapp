@@ -36,6 +36,8 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Willkommen bei CODEX",
+    "DATA_FILTER": "Datenfilter",
+    "PATIENT_FILTER": "Patientenfilter",
     "PROJECTS": "Projekte",
     "PROJECTS_OVERVIEW": "Projektübersicht",
     "PROJECTS_EDITOR": "Projekt-Editor",
@@ -56,6 +58,7 @@
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "CHARTS": "Diagramme",
     "PROFILE": "Profil",
+    "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden"
   },
@@ -413,6 +416,17 @@
     "MAIL_DOMAIN": "Mail-Domänen"
   },
   "CHARTS": {
+    "COHORT_AGE": {
+      "TITLE": "Anzahl Datensätze pro Altersgruppe",
+      "XLABEL": "Altersgruppe",
+      "YLABEL": "Anzahl Datensätze"
+    },
+    "COHORT_INSTITUTION": {
+      "TITLE": "Anzahl Datensätze pro Einrichtung",
+      "XLABEL": "Klinik",
+      "YLABEL": "Anzahl Datensätze",
+      "DROPDOWN": "Bitte Klinik auswählen..."
+    },
     "SOFA_SCORE": {
       "TITLE": "Anzahl Patienten pro SOFA-Score (gruppiert)",
       "XLABEL": "SOFA-Score",
@@ -447,5 +461,11 @@
     "UNCATEGORIZED": "Ohne Kategorie",
     "UPDATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich editiert.",
     "UPDATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht editiert werden. Bitte versuchen Sie es erneut."
+  },
+  "SEARCH": {
+    "DATA_FILTER_HEADING": "Auswahl der klinischen Modelle",
+    "DATA_FILTER_DESCRIPTION": "Die klinischen Modelle basieren auf dem Datensatz GECCO 83. Wählen Sie die gewünschten Elemente aus dem Datensatz aus, die als Grundlage für Ihr Projekt dienen sollen.",
+    "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
+    "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
   }
 }

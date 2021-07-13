@@ -17,7 +17,6 @@
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
