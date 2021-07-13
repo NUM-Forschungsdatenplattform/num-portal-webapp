@@ -19,6 +19,7 @@ import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-par
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 
 @Component({
   selector: 'num-aql-connector-item',
@@ -40,12 +41,53 @@ export class AqlConnectorItemComponent implements OnInit {
       this.aqlParameterService
         .getValues(parameter.path, parameter.archetypeId)
         .subscribe((response) => {
-          console.log(`Options for Parameter ${parameter.name}: `, response.options)
           parameter.options = response.options
-          // TODO: Take actual type
-          parameter.valueType = AqlParameterValueType.String
+          const optionKeys = Object.keys(parameter.options)
+          if (optionKeys.length) {
+            parameter.valueType = AqlParameterValueType.Options
+          } else {
+            parameter.valueType = this.getValueTypeForParameter(response.type)
+          }
+
+          if (
+            parameter.valueType === AqlParameterValueType.Boolean &&
+            (parameter.value === null || parameter.value === undefined)
+          ) {
+            parameter.value = true
+          } else if (
+            parameter.valueType === AqlParameterValueType.Options &&
+            (parameter.value === null || parameter.value === undefined)
+          ) {
+            parameter.value = optionKeys[0]
+          }
+
+          this.checkParameterStatus()
         })
     })
+  }
+
+  getValueTypeForParameter(rmType: ReferenceModelType): AqlParameterValueType {
+    switch (rmType) {
+      case ReferenceModelType.Boolean:
+      case ReferenceModelType.Dv_boolean:
+        return AqlParameterValueType.Boolean
+      case ReferenceModelType.Double:
+      case ReferenceModelType.Dv_quantity:
+        return AqlParameterValueType.Double
+      case ReferenceModelType.Integer:
+      case ReferenceModelType.Integer64:
+      case ReferenceModelType.Long:
+        return AqlParameterValueType.Number
+      case ReferenceModelType.Dv_date:
+        return AqlParameterValueType.Date
+      case ReferenceModelType.Dv_date_time:
+        return AqlParameterValueType.DateTime
+      case ReferenceModelType.Dv_time:
+        return AqlParameterValueType.Time
+
+      default:
+        return AqlParameterValueType.String
+    }
   }
 
   deleteSelf(): void {

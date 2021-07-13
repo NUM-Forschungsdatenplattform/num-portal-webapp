@@ -15,7 +15,9 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - AQL Category select in AQL editor dialog ([#229])
 - Cohort-Builder disabled state ([#234])
 - Cohort-Builder and accordion style to data-explorer ([#235])
+- Cohort-Builder handling of parameters ([#239])
 - Search-Page to filter patients for possible projects ([#238])
+- Imprint page provides public keys as link for data transfer ([#240])
 
 ### Changes
 
@@ -468,3 +470,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234
 [#235]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/235
 [#238]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/238
+[#239]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/239
+[#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240

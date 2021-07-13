@@ -29,9 +29,8 @@ import {
 } from './aqb-comparison-operator-options'
 import { IComparisonOperatorOption } from './aqb-comparison-operator-options.interface'
 import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
-
-import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
+import { convertParameterInputToType } from 'src/app/core/utils/value-converter.utils'
 
 export class AqbWhereItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
@@ -79,6 +78,7 @@ export class AqbWhereItemUiModel {
 
   configureOptions(): void {
     switch (this.rmType) {
+      case ReferenceModelType.Dv_quantity:
       case ReferenceModelType.Double:
       case ReferenceModelType.Integer:
       case ReferenceModelType.Integer64:
@@ -106,6 +106,7 @@ export class AqbWhereItemUiModel {
         this.value = true
         break
       case ReferenceModelType.Double:
+      case ReferenceModelType.Dv_quantity:
         this.valueType = AqlParameterValueType.Double
         this.value = 1.1
         break
@@ -156,34 +157,7 @@ export class AqbWhereItemUiModel {
       }
     }
 
-    let value
-
-    switch (this.valueType) {
-      case AqlParameterValueType.Date:
-        value = DateHelperService.getDateString(this.value as Date)
-        break
-      case AqlParameterValueType.Time:
-        value = DateHelperService.getTimeString(this.value as Date)
-        break
-      case AqlParameterValueType.DateTime:
-        value = DateHelperService.getIsoString(this.value as Date)
-        break
-      case AqlParameterValueType.Number:
-        value = parseInt(this.value as string, 10)
-        value = isNaN(value) ? 0 : value
-        break
-      case AqlParameterValueType.Double:
-        value = parseFloat(this.value.toString().replace(',', '.'))
-        value = isNaN(value) ? 0 : value
-        break
-      case AqlParameterValueType.Boolean:
-        value = this.value && this.value !== 'false'
-        break
-
-      default:
-        value = this.value || ' '
-        break
-    }
+    const value = convertParameterInputToType(this.valueType, this.value)
 
     return { _type: AqbNodeType.SimpleValue, value } as IAqbSimpleValueNode
   }
