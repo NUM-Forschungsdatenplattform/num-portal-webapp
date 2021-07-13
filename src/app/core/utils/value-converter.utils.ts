@@ -38,7 +38,7 @@ export const convertParameterInputToType = (
       outputValue = isNaN(outputValue) ? (defaultToUndefined ? undefined : 0) : outputValue
       break
     case AqlParameterValueType.Double:
-      outputValue = parseFloat(inputValue.toString().replace(',', '.'))
+      outputValue = parseFloat(inputValue?.toString().replace(',', '.'))
       outputValue = isNaN(outputValue) ? (defaultToUndefined ? undefined : 0) : outputValue
       break
     case AqlParameterValueType.Boolean:

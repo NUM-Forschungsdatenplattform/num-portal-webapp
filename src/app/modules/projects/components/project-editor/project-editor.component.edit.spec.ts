@@ -48,6 +48,7 @@ import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
 
 import { ProjectEditorComponent } from './project-editor.component'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
@@ -114,6 +115,9 @@ describe('ProjectEditorComponent', () => {
     @Input() projectForm: FormGroup
     @Input() cohortGroup: CohortGroupUiModel
     @Input() generalInfoData: IDefinitionList[]
+
+    @Input() determineHitsContent: IDetermineHits
+    @Output() determineHitsClicked = new EventEmitter()
   }
 
   const postCommentEmitter = new EventEmitter()

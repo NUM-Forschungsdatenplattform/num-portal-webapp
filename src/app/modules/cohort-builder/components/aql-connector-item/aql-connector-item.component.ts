@@ -62,6 +62,7 @@ export class AqlConnectorItemComponent implements OnInit {
           }
 
           this.checkParameterStatus()
+          parameter.isMetaFetched = true
         })
     })
   }
@@ -95,6 +96,8 @@ export class AqlConnectorItemComponent implements OnInit {
   }
 
   checkParameterStatus(): void {
-    this.aql.checkParameterStatus()
+    setTimeout(() => {
+      this.aql.checkParameterStatus()
+    }, 0)
   }
 }

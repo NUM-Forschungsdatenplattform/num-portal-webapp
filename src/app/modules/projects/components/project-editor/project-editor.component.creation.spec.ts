@@ -42,6 +42,7 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
+import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -96,6 +97,9 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() projectForm: FormGroup
     @Input() cohortGroup: CohortGroupUiModel
     @Input() generalInfoData: IDefinitionList[]
+
+    @Input() determineHitsContent: IDetermineHits
+    @Output() determineHitsClicked = new EventEmitter()
   }
 
   const postCommentEmitter = new EventEmitter()
