@@ -417,13 +417,13 @@
   "CHARTS": {
     "COHORT_AGE": {
       "TITLE": "Number of datasets per age group",
-      "XLABEL": "Age group",
-      "YLABEL": "Number datasets"
+      "XLABEL": "Years",
+      "YLABEL": "k"
     },
     "COHORT_INSTITUTION": {
       "TITLE": "Number of datasets per institution",
-      "XLABEL": "Institution",
-      "YLABEL": "Number datasets",
+      "XLABEL": "Clinic",
+      "YLABEL": "k",
       "DROPDOWN": "Please select institution..."
     },
     "SOFA_SCORE": {

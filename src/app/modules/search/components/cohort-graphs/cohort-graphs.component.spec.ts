@@ -32,6 +32,8 @@ describe('CohortGraphsComponent', () => {
   })
   class CohortAgeGraphComponentStub {
     @Input() data: IDictionary<number, number>
+    @Input() xAxisName: string
+    @Input() yAxisName: string
   }
 
   @Component({

@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { SimpleChange } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { NgxChartsModule } from '@swimlane/ngx-charts'
+import { BarSeriesOption, XAXisComponentOption } from 'echarts'
+import { NgxEchartsModule } from 'ngx-echarts'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { CohortAgeGraphComponent } from './cohort-age-graph.component'
 
@@ -27,7 +30,13 @@ describe('CohortAgeGraphComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CohortAgeGraphComponent],
-      imports: [NoopAnimationsModule, NgxChartsModule, TranslateModule.forRoot()],
+      imports: [
+        NoopAnimationsModule,
+        NgxEchartsModule.forRoot({
+          echarts: () => import('echarts'),
+        }),
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents()
   })
 
@@ -35,10 +44,42 @@ describe('CohortAgeGraphComponent', () => {
     fixture = TestBed.createComponent(CohortAgeGraphComponent)
     component = fixture.componentInstance
     component.data = mockAgeGraphData
+    component.xAxisName = 'X-Axis'
+    component.yAxisName = 'Y-Axis'
     fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should update the axis labels if translation changes', () => {
+    component.ngOnChanges({ xAxisName: new SimpleChange('X-Axis', 'X-Achse', false) })
+    expect((component.updateOptions.xAxis as XAXisComponentOption).name).toEqual('X-Achse')
+    component.ngOnChanges({ yAxisName: new SimpleChange('Y-Axis', 'Y-Achse', false) })
+    expect((component.updateOptions.yAxis as XAXisComponentOption).name).toEqual('Y-Achse')
+  })
+
+  it('should update the data for the graph on change', () => {
+    const newGraphData: IDictionary<string, number> = {
+      '0-9': 3,
+      '10-19': 15,
+      '20-29': 56,
+      '30-39': 62,
+    }
+    component.ngOnChanges({ data: new SimpleChange(mockAgeGraphData, newGraphData, false) })
+    expect((component.updateOptions.series[0] as BarSeriesOption).data).toEqual([3, 15, 56, 62])
+  })
+
+  it('should not change graph data on unknown changes', () => {
+    const beforeUpdate = { ...component.updateOptions }
+    component.ngOnChanges({ test: new SimpleChange('test 1', 'test 2', true) })
+    expect(component.updateOptions).toEqual(beforeUpdate)
+  })
+
+  it('should not change graph data on emtpy data set', () => {
+    const beforeUpdate = { ...component.updateOptions }
+    component.data = {}
+    expect(component.updateOptions).toEqual(beforeUpdate)
   })
 })

@@ -13,50 +13,110 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input, OnInit } from '@angular/core'
-import { map } from 'lodash-es'
-import { IBarChartData } from 'src/app/shared/models/charts/bar-chart-data.interface'
-import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { EChartsOption } from 'echarts'
+import { isEmpty, map } from 'lodash-es'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
-import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
 
 @Component({
   selector: 'num-cohort-age-graph',
   templateUrl: './cohort-age-graph.component.html',
   styleUrls: ['./cohort-age-graph.component.scss'],
 })
-export class CohortAgeGraphComponent implements OnInit {
+export class CohortAgeGraphComponent implements OnInit, OnChanges {
   @Input() set data(data: IDictionary<number, number>) {
-    if (data) {
+    if (!isEmpty(data)) {
       this.handleData(data)
-    } else {
-      this.handleData(mockAgeGraphData)
     }
   }
 
-  chartData: IBarChart
+  @Input() xAxisName: string
+  @Input() yAxisName: string
 
-  showXAxis = true
-  showXAxisLabel = true
-  showYAxis = true
-  showYAxisLabel = true
-  view = [500, 500]
+  chartOptions: EChartsOption
+  updateOptions: EChartsOption
+
+  initOptions = {
+    remderer: 'svg',
+    width: 500,
+    height: 400,
+  }
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.chartOptions = {
+      color: '#5F0D22',
+      series: [
+        {
+          type: 'bar',
+          data: map(this.data, (value) => value),
+        },
+      ],
+      tooltip: {
+        show: true,
+      },
+      xAxis: {
+        axisTick: {
+          show: false,
+        },
+        data: map(this.data, (_, key) => key),
+        name: this.xAxisName,
+        nameLocation: 'start',
+        type: 'category',
+      },
+      yAxis: {
+        axisTick: {
+          length: 10,
+        },
+        name: this.yAxisName,
+        nameLocation: 'end',
+        type: 'value',
+      },
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      !!changes.data &&
+      !isEmpty(changes.data.currentValue) &&
+      (changes.data.isFirstChange() || changes.data.previousValue !== changes.data.currentValue)
+    ) {
+      this.handleData(changes.data.currentValue)
+    } else if (changes.xAxisName || changes.yAxisName) {
+      let updateOptions: EChartsOption = {}
+      if (changes.xAxisName) {
+        updateOptions = {
+          ...updateOptions,
+          xAxis: {
+            name: changes.xAxisName.currentValue,
+          },
+        }
+      }
+
+      if (changes.yAxisName) {
+        updateOptions = {
+          ...updateOptions,
+          yAxis: {
+            name: changes.yAxisName.currentValue,
+          },
+        }
+      }
+
+      this.updateOptions = updateOptions
+    }
+  }
 
   private handleData(data: IDictionary<number, number>): void {
-    this.chartData = {
-      color: '#333333',
-      data: map(
-        data,
-        (value, key): IBarChartData => {
-          return { name: key, value }
-        }
-      ),
-      xLabel: 'CHARTS.COHORT_AGE.XLABEL',
-      yLabel: 'CHARTS.COHORT_AGE.YLABEL',
+    this.updateOptions = {
+      xAxis: {
+        data: map(data, (_, key) => key),
+      },
+      series: [
+        {
+          data: map(data, (d) => d),
+        },
+      ],
     }
   }
 }

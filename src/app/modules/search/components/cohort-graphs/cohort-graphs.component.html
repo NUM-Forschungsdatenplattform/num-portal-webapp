@@ -21,9 +21,11 @@
 
   <div class="num-margin-b-20"></div>
 
-  <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px">
+  <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px" *ngIf="previewData.count > 0">
     <num-cohort-age-graph
       [data]="previewData.ages"
+      [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
+      [yAxisName]="'CHARTS.COHORT_AGE.YLABEL' | translate"
       fxFlex="50%"
       fxFlex.lt-lg="100%"
     ></num-cohort-age-graph>
