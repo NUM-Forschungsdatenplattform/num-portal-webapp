@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
+import { IDictionary } from '../dictionary.interface'
 import { AqlParameterOperator } from './aql-parameter-operator.type'
 import { AqlParameterValueType } from './aql-parameter-value-type.enum'
 
 export interface IAqlParameter {
   name: string
   nameWithDollar: string
-  value: string
+  value: string | number | boolean | Date
   operator: AqlParameterOperator
   path: string
   archetypeId: string
-  options?: any[]
+  options?: IDictionary<any, any>
   valueType?: AqlParameterValueType
 }

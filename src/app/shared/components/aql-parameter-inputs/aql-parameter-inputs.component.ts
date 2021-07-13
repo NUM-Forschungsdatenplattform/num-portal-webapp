@@ -3,7 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Subscription } from 'rxjs'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
+import { IDictionary } from '../../models/dictionary.interface'
 
+interface IItem {
+  value: any
+  valueType: AqlParameterValueType
+  name: string
+  options?: IDictionary<any, any>
+}
 @Component({
   selector: 'num-aql-parameter-inputs',
   templateUrl: './aql-parameter-inputs.component.html',
@@ -13,12 +20,12 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   AqlParameterValueType = AqlParameterValueType
 
-  private localItem: { value: any; valueType: AqlParameterValueType; name: string } = null
+  private localItem: IItem = null
   @Input()
-  get item(): { value: any; valueType: AqlParameterValueType; name: string } {
+  get item(): IItem {
     return this.localItem
   }
-  set item(newValue: { value: any; valueType: AqlParameterValueType; name: string }) {
+  set item(newValue: IItem) {
     const isInitial = this.localItem === null
     if (isInitial || this.localItem.value !== newValue.value) {
       this.localItem = newValue
@@ -28,6 +35,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     }
   }
   @Input() disabled: boolean
+  @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
   constructor() {}

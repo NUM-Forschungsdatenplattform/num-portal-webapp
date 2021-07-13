@@ -24,6 +24,7 @@ import { IAqlParameter } from './aql-parameter.interface'
 import { IDictionary } from '../dictionary.interface'
 import { AqlParameterOperator } from './aql-parameter-operator.type'
 import { IAqlApi } from './aql.interface'
+import { convertParameterInputToType } from 'src/app/core/utils/value-converter.utils'
 
 export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   private readonly OPERATOR_SUFFIX = '__OPERATOR'
@@ -45,7 +46,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   constructor(
     aql: Partial<IAqlApi>,
     isNegated: boolean = false,
-    parameters?: IDictionary<string, string>
+    parameters?: IDictionary<string, string | number | boolean>
   ) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
@@ -104,9 +105,9 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     })
   }
 
-  private handleParameters(savedParameters?: IDictionary<string, string>): void {
+  private handleParameters(savedParameters?: IDictionary<string, string | number | boolean>): void {
     this.parameters.forEach((parameter) => {
-      parameter.value = savedParameters[parameter.name] || parameter.value
+      parameter.value = savedParameters[parameter.name]
     })
 
     if (
@@ -119,7 +120,10 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   }
 
   public checkParameterStatus(): void {
-    this.areParameterConfigured = !this.parameters.some((parameter) => !!!parameter.value?.length)
+    this.areParameterConfigured = !this.parameters.some(
+      (parameter) =>
+        parameter.value === null || parameter.value === undefined || parameter.value === ''
+    )
   }
 
   public convertToApi(): ICohortGroupApi {
@@ -150,7 +154,11 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
 
   private convertParametersToApi(): IDictionary<string, string> {
     return this.parameters.reduce((dictionary, parameter) => {
-      dictionary[parameter.name] = parameter.value
+      dictionary[parameter.name] = convertParameterInputToType(
+        parameter.valueType,
+        parameter.value,
+        true
+      )
       return dictionary
     }, {})
   }

@@ -22,10 +22,21 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
+import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
+import { IAqlParameterValuesApi } from 'src/app/shared/models/aql/aql-parameter-values.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 
 import { AqlConnectorItemComponent } from './aql-connector-item.component'
+
+interface ITestCaseForThis {
+  parameterValueResponse: Partial<IAqlParameterValuesApi>
+  parameters?: IDictionary<string, string | number | boolean>
+  expectedType: AqlParameterValueType
+  expectedValue: any
+}
 
 describe('AqlConnectorItemComponent', () => {
   let component: AqlConnectorItemComponent
@@ -57,18 +68,86 @@ describe('AqlConnectorItemComponent', () => {
   })
 
   beforeEach(() => {
+    jest.clearAllMocks()
     fixture = TestBed.createComponent(AqlConnectorItemComponent)
     component = fixture.componentInstance
-    component.aql = new AqlUiModel(mockAql3)
-    jest.spyOn(mockAqlParameterService, 'getValues').mockImplementation(() => of())
-    fixture.detectChanges()
   })
 
-  it('should create', () => {
-    expect(component).toBeTruthy()
+  describe('When the item gets initialized with parameters', () => {
+    const testcases: ITestCaseForThis[] = [
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Boolean,
+          options: {},
+        },
+        expectedType: AqlParameterValueType.Boolean,
+        expectedValue: true,
+      },
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Double,
+          options: {},
+        },
+        expectedType: AqlParameterValueType.Double,
+        expectedValue: undefined,
+      },
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Long,
+          options: {},
+        },
+        expectedType: AqlParameterValueType.Number,
+        expectedValue: undefined,
+      },
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Dv_date,
+          options: {},
+        },
+        expectedType: AqlParameterValueType.Date,
+        expectedValue: undefined,
+      },
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Dv_coded_text,
+          options: {
+            test: 'test',
+            test2: 'test2',
+          },
+        },
+        expectedType: AqlParameterValueType.Options,
+        expectedValue: 'test',
+      },
+      {
+        parameterValueResponse: {
+          type: ReferenceModelType.Dv_coded_text,
+          options: {},
+        },
+        expectedType: AqlParameterValueType.String,
+        expectedValue: undefined,
+      },
+    ]
+    test.each(testcases)('should configure the parameters', (testcase) => {
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(testcase.parameterValueResponse as IAqlParameterValuesApi))
+      component.aql = new AqlUiModel(mockAql3, false, testcase.parameters)
+
+      fixture.detectChanges()
+      expect(component.aql.parameters[0].valueType).toEqual(testcase.expectedType)
+      const optionKeys = Object.keys(testcase.parameterValueResponse.options)
+      if (optionKeys.length) {
+        expect(component.aql.parameters[0].value).toEqual(optionKeys[0])
+      }
+    })
   })
 
   describe('When the item is supposed to be deleted', () => {
+    beforeEach(() => {
+      component.aql = new AqlUiModel(mockAql3)
+      jest.spyOn(mockAqlParameterService, 'getValues').mockImplementation(() => of())
+      fixture.detectChanges()
+    })
     it('should emit the delete wish to the parent', () => {
       jest.spyOn(component.deleteItem, 'emit')
       component.deleteSelf()

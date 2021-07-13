@@ -54,7 +54,11 @@
     </mat-form-field>
   </ng-container>
 
-  <num-aql-parameter-inputs *ngIf="!item.isParameterType" [item]="item"></num-aql-parameter-inputs>
+  <num-aql-parameter-inputs
+    *ngIf="!item.isParameterType"
+    [item]="item"
+    mode="aqb"
+  ></num-aql-parameter-inputs>
 </section>
 
 <section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
