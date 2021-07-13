@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Cohort-Builder disabled state ([#234])
 - Cohort-Builder and accordion style to data-explorer ([#235])
 - Search-Page to filter patients for possible projects ([#238])
+- Imprint page provides public keys as link for data transfer ([#240])
 
 ### Changes
 
@@ -468,3 +469,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234
 [#235]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/235
 [#238]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/238
+[#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240
