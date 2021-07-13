@@ -466,5 +466,15 @@
     "DATA_FILTER_DESCRIPTION": "The clinical models are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
     "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
+  },
+  "IMPRINT": {
+    "PUBLIC_KEY_LINKS": {
+      "INTRO": "These are links to the publics keys for prod, respective pre-prod, which you can use for safe data transfer.",
+      "HEADER": "Public Keys",
+      "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
+      "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
+      "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
+      "LINK_PROD_DESCRIPTION": "Public Key for Prod"
+    }
   }
 }
