@@ -96,6 +96,7 @@ export class AqlConnectorItemComponent implements OnInit {
   }
 
   checkParameterStatus(): void {
+    // Timeout is here to get into the next rendering cycle and not to confuse the change detection
     setTimeout(() => {
       this.aql.checkParameterStatus()
     }, 0)
