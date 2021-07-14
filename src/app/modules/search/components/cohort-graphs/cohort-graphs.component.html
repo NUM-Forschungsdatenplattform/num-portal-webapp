@@ -15,11 +15,12 @@
 -->
 <div class="raised search-cohort-graphs-root" id="search-cohort-graphs" fxLayout="column">
   <num-editor-determine-hits
+    class="num-margin-b-10"
     [content]="determineHits"
     (clicked)="determine.emit()"
   ></num-editor-determine-hits>
 
-  <div class="num-margin-b-20"></div>
+  <mat-divider class="num-divider-color--grey num-divider-width--1 num-margin-b-20"></mat-divider>
 
   <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px" *ngIf="previewData.count > 0">
     <num-cohort-age-graph

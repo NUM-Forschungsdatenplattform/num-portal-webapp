@@ -66,7 +66,7 @@ export class PatientFilterComponent implements OnInit {
       try {
         const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
         const previewData = await this.patientFilterService
-          .getPreviewData(cohortGroupApi)
+          .getPreviewData(cohortGroupApi, false)
           .toPromise()
         this.updateDetermineHits(previewData.count, '', false)
       } catch (error) {
