@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Cohort-Builder handling of parameters ([#239])
 - Search-Page to filter patients for possible projects ([#238])
 - Imprint page provides public keys as link for data transfer ([#240])
+- Adds determin hits to projects cohort builder ([#241])
 
 ### Changes
 
@@ -472,3 +473,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#238]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/238
 [#239]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/239
 [#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240
+[#241]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/241
