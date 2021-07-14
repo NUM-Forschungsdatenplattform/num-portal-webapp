@@ -13,7 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<div class="raised search-cohort-graphs-root" id="search-cohort-graphs" fxLayout="column">
+<div
+  class="raised search-cohort-graphs-root num-margin-b-40"
+  id="search-cohort-graphs"
+  fxLayout="column"
+>
   <num-editor-determine-hits
     class="num-margin-b-10"
     [content]="determineHits"
@@ -23,17 +27,23 @@
   <mat-divider class="num-divider-color--grey num-divider-width--1 num-margin-b-20"></mat-divider>
 
   <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px" *ngIf="previewData.count > 0">
-    <num-cohort-age-graph
+    <num-vertical-bar-chart
+      color="#5F0D22"
       [data]="previewData.ages"
-      [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
-      [yAxisName]="'CHARTS.COHORT_AGE.YLABEL' | translate"
       fxFlex="50%"
       fxFlex.lt-lg="100%"
-    ></num-cohort-age-graph>
-    <num-cohort-institution-graph
+      [graphName]="'CHARTS.COHORT_AGE.TITLE' | translate"
+      [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
+      [yAxisName]="'CHARTS.COHORT_AGE.YLABEL' | translate"
+    ></num-vertical-bar-chart>
+    <num-vertical-bar-chart
+      color="#EB586A"
       [data]="previewData.hospitals"
       fxFlex="50%"
       fxFlex.lt-lg="100%"
-    ></num-cohort-institution-graph>
+      [graphName]="'CHARTS.COHORT_HOSPITALS.TITLE' | translate"
+      [xAxisName]="'CHARTS.COHORT_HOSPITALS.XLABEL' | translate"
+      [yAxisName]="'CHARTS.COHORT_HOSPITALS.YLABEL' | translate"
+    ></num-vertical-bar-chart>
   </div>
 </div>

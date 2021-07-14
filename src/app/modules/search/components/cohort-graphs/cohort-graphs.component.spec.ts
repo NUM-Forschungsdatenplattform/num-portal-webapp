@@ -28,30 +28,20 @@ describe('CohortGraphsComponent', () => {
   let fixture: ComponentFixture<CohortGraphsComponent>
 
   @Component({
-    selector: 'num-cohort-age-graph',
+    selector: 'num-vertical-bar-chart',
     template: '<div></div>',
   })
-  class CohortAgeGraphComponentStub {
+  class VerticalBarChartComponentStub {
+    @Input() color: string
     @Input() data: IDictionary<number, number>
+    @Input() graphName: string
     @Input() xAxisName: string
     @Input() yAxisName: string
   }
 
-  @Component({
-    selector: 'num-cohort-institution-graph',
-    template: '<div></div>',
-  })
-  class CohortInstitutionGraphComponentStub {
-    @Input() data: IDictionary<string, number>
-  }
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        CohortGraphsComponent,
-        CohortAgeGraphComponentStub,
-        CohortInstitutionGraphComponentStub,
-      ],
+      declarations: [CohortGraphsComponent, VerticalBarChartComponentStub],
       imports: [MatDividerModule, SharedModule, TranslateModule.forRoot()],
     }).compileComponents()
   })

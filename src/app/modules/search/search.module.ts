@@ -22,26 +22,22 @@ import { DataFilterComponent } from './components/data-filter/data-filter.compon
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { PatientCountInfoComponent } from './components/patient-count-info/patient-count-info.component'
 import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.component'
-import { CohortAgeGraphComponent } from './components/cohort-age-graph/cohort-age-graph.component'
-import { CohortInstitutionGraphComponent } from './components/cohort-institution-graph/cohort-institution-graph.component'
 import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
 import { NgxEchartsModule } from 'ngx-echarts'
-import { NgxChartsModule } from '@swimlane/ngx-charts'
+import { VerticalBarChartComponent } from './components/vertical-bar-chart/vertical-bar-chart.component'
 
 @NgModule({
   declarations: [
-    PatientFilterComponent,
+    CohortGraphsComponent,
     DataFilterComponent,
     PatientCountInfoComponent,
-    CohortGraphsComponent,
-    CohortAgeGraphComponent,
-    CohortInstitutionGraphComponent,
+    PatientFilterComponent,
+    VerticalBarChartComponent,
   ],
   imports: [
     CohortBuilderModule,
     CommonModule,
     LayoutModule,
-    NgxChartsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),

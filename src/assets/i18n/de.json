@@ -421,7 +421,7 @@
       "XLABEL": "Jahre",
       "YLABEL": "Tsd."
     },
-    "COHORT_INSTITUTION": {
+    "COHORT_HOSPITALS": {
       "TITLE": "Anzahl Datensätze pro Einrichtung",
       "XLABEL": "Klinik",
       "YLABEL": "Tsd.",
