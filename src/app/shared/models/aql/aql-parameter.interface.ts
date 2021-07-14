@@ -27,4 +27,5 @@ export interface IAqlParameter {
   archetypeId: string
   options?: IDictionary<any, any>
   valueType?: AqlParameterValueType
+  isMetaFetched?: boolean
 }

@@ -19,7 +19,11 @@
 
   <div fxLayout="column" fxLayoutGap="8px">
     <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px" fxLayout="row">
-      <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
+      <mat-form-field
+        appearance="outline"
+        class="input num-tiny-input operator-select"
+        *ngIf="parameter.isMetaFetched"
+      >
         <mat-label id="label">Operator</mat-label>
         <mat-select
           [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
@@ -38,6 +42,7 @@
       </mat-form-field>
 
       <num-aql-parameter-inputs
+        *ngIf="parameter.isMetaFetched"
         [item]="parameter"
         mode="cohortBuilder"
         (valueChange)="checkParameterStatus()"
