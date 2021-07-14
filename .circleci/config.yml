@@ -51,9 +51,12 @@ workflows:
 jobs:
   security_scan:
     docker:
-      - image: cimg/openjdk:16.0.0
+      - image: cimg/openjdk:16.0.0-node
     steps:
       - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
       - run:
           name: Run CVE scan by OWASP Dependency Check
           command: |
