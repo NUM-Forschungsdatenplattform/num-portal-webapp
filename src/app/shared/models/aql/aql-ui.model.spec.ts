@@ -53,9 +53,20 @@ describe('AqlUiModel', () => {
     expectParameterLength: 2,
     expectParameterConfigured: true,
   }
+  const testCase4 = {
+    aql: mockAql3,
+    parameters: {
+      bodyHeight: 'testHeight',
+      bodyWeight: null,
+    },
+    negated: true,
+    expectNegated: true,
+    expectParameterLength: 2,
+    expectParameterConfigured: true,
+  }
 
   describe('When the model gets constructed', () => {
-    test.each([testCase1, testCase2, testCase3])(
+    test.each([testCase1, testCase2, testCase3, testCase4])(
       'should set the correct properties',
       (testCase) => {
         const model = new AqlUiModel(testCase.aql, testCase.negated, testCase.parameters)
