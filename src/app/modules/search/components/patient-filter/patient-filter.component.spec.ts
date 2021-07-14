@@ -169,7 +169,7 @@ describe('PatientFilterComponent', () => {
 
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
-      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(cohortGroupApi)
+      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(cohortGroupApi, false)
     })
   })
 })

@@ -418,13 +418,13 @@
   "CHARTS": {
     "COHORT_AGE": {
       "TITLE": "Anzahl Datensätze pro Altersgruppe",
-      "XLABEL": "Altersgruppe",
-      "YLABEL": "Anzahl Datensätze"
+      "XLABEL": "Jahre",
+      "YLABEL": "Tsd."
     },
     "COHORT_INSTITUTION": {
       "TITLE": "Anzahl Datensätze pro Einrichtung",
       "XLABEL": "Klinik",
-      "YLABEL": "Anzahl Datensätze",
+      "YLABEL": "Tsd.",
       "DROPDOWN": "Bitte Klinik auswählen..."
     },
     "SOFA_SCORE": {

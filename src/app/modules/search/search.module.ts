@@ -25,6 +25,7 @@ import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.
 import { CohortAgeGraphComponent } from './components/cohort-age-graph/cohort-age-graph.component'
 import { CohortInstitutionGraphComponent } from './components/cohort-institution-graph/cohort-institution-graph.component'
 import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
+import { NgxEchartsModule } from 'ngx-echarts'
 import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 @NgModule({
@@ -41,6 +42,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts'
     CommonModule,
     LayoutModule,
     NgxChartsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
     SearchRoutingModule,
     SharedModule,
   ],
