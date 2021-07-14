@@ -15,6 +15,7 @@
  */
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { MatDividerModule } from '@angular/material/divider'
 import { TranslateModule } from '@ngx-translate/core'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { SharedModule } from 'src/app/shared/shared.module'
@@ -51,7 +52,7 @@ describe('CohortGraphsComponent', () => {
         CohortAgeGraphComponentStub,
         CohortInstitutionGraphComponentStub,
       ],
-      imports: [SharedModule, TranslateModule.forRoot()],
+      imports: [MatDividerModule, SharedModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 
