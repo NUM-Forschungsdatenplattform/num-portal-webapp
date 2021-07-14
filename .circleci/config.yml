@@ -33,10 +33,10 @@ workflows:
       - test:
           context: org-global
       - security_scan
-        filters:
-          branches:
-            only:
-              - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master)$/
+          filters:
+            branches:
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master)$/
       - tag_version:
           requires:
             - test
