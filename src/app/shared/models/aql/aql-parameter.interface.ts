@@ -28,4 +28,5 @@ export interface IAqlParameter {
   options?: IDictionary<any, any>
   valueType?: AqlParameterValueType
   isMetaFetched?: boolean
+  isDisabled: boolean
 }

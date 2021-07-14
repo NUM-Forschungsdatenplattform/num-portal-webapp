@@ -77,6 +77,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
         archetypeId: undefined,
         operator: undefined,
         path: undefined,
+        isDisabled: false,
       }
     })
 
@@ -107,12 +108,14 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
 
   private handleParameters(savedParameters?: IDictionary<string, string | number | boolean>): void {
     this.parameters.forEach((parameter) => {
-      parameter.value = savedParameters[parameter.name]
+      const savedParameter = savedParameters[parameter.name]
+      parameter.value = savedParameter
+      if (savedParameter === null) {
+        parameter.isDisabled = true
+      }
     })
 
-    if (
-      this.parameters.filter((param) => param.value === undefined || param.value === null).length
-    ) {
+    if (this.parameters.filter((param) => param.value === undefined).length) {
       this.areParameterConfigured = false
     } else {
       this.areParameterConfigured = true
@@ -122,7 +125,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   public checkParameterStatus(): void {
     this.areParameterConfigured = !this.parameters.some(
       (parameter) =>
-        parameter.value === null || parameter.value === undefined || parameter.value === ''
+        !parameter.isDisabled && (parameter.value === undefined || parameter.value === '')
     )
   }
 
@@ -154,11 +157,9 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
 
   private convertParametersToApi(): IDictionary<string, string> {
     return this.parameters.reduce((dictionary, parameter) => {
-      dictionary[parameter.name] = convertParameterInputToType(
-        parameter.valueType,
-        parameter.value,
-        true
-      )
+      dictionary[parameter.name] = parameter.isDisabled
+        ? null
+        : convertParameterInputToType(parameter.valueType, parameter.value, true)
       return dictionary
     }, {})
   }

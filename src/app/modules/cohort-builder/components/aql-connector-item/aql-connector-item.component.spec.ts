@@ -16,6 +16,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -58,6 +59,7 @@ describe('AqlConnectorItemComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AqlConnectorItemComponent, AqlParameterInputsComponent],
       imports: [
+        FormsModule,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

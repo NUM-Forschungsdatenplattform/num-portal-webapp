@@ -28,7 +28,7 @@
         <mat-select
           [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
           [(value)]="parameter.operator"
-          [disabled]="isDisabled"
+          [disabled]="isDisabled || parameter.isDisabled"
           data-test="cohort-builder__item__logical-operator__selector"
         >
           <mat-option
@@ -46,8 +46,16 @@
         [item]="parameter"
         mode="cohortBuilder"
         (valueChange)="checkParameterStatus()"
-        [disabled]="isDisabled"
+        [disabled]="isDisabled || parameter.isDisabled"
       ></num-aql-parameter-inputs>
+
+      <mat-checkbox
+        *ngIf="parameter.isMetaFetched"
+        color="accent"
+        [ngModel]="!parameter.isDisabled"
+        (ngModelChange)="parameter.isDisabled = !parameter.isDisabled"
+        data-test="cohort-builder__item__isDisabled-checkbox"
+      ></mat-checkbox>
     </div>
   </div>
 </section>

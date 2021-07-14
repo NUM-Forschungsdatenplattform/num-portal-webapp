@@ -20,6 +20,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Search-Page shows age distribution graph of defined cohort ([#242])
 - Imprint page provides public keys as link for data transfer ([#240])
 - Adds determin hits to projects cohort builder ([#241])
+- Adds ability to set parameters in cohort builder to null ([#243])
 
 ### Changes
 
@@ -476,3 +477,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240
 [#241]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/241
 [#242]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/242
+[#243]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/243

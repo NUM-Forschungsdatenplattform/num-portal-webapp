@@ -34,7 +34,19 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       }
     }
   }
-  @Input() disabled: boolean
+  private localDisabled: boolean
+  @Input()
+  get disabled(): boolean {
+    return this.localDisabled
+  }
+  set disabled(state: boolean) {
+    this.localDisabled = state
+    if (state === true) {
+      this.valueForm?.get('value').disable()
+    } else {
+      this.valueForm?.get('value').enable()
+    }
+  }
   @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
