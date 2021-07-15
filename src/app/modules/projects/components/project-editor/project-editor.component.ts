@@ -237,13 +237,13 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.router.navigate(['projects', this.project.id, 'editor'], { queryParams })
   }
 
-  async save(): Promise<void> {
+  async save(withCohort = true): Promise<void> {
     const { project, cohort } = this.getProjectForApi()
     try {
       const projectResult = await this.saveProject(project)
       this.project.id = projectResult.id
 
-      if (cohort.cohortGroup) {
+      if (withCohort && cohort.cohortGroup) {
         cohort.projectId = projectResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.project.cohortId = cohortResult.id
@@ -277,7 +277,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   saveResearchers(): void {
-    this.save()
+    this.save(false)
   }
 
   saveAsApprovalReply(): void {
