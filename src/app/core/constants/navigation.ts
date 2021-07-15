@@ -32,11 +32,13 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'search',
         id: 'patient-filter',
         translationKey: 'NAVIGATION.PATIENT_FILTER',
+        disabled: true,
       },
       {
         routeTo: 'search/data-filter',
         id: 'data-filter',
         translationKey: 'NAVIGATION.DATA_FILTER',
+        disabled: true,
       },
     ],
   },

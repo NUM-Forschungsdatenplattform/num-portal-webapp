@@ -13,11 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { Injectable } from '@angular/core'
+import { CanDeactivate } from '@angular/router'
+import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataFilterService {
-  constructor() {}
+export class CanDeactivateSearchGuard implements CanDeactivate<any> {
+  constructor(private patientFilterService: PatientFilterService) {}
+
+  canDeactivate(_: any): boolean {
+    this.patientFilterService.resetCurrentProject()
+    return true
+  }
 }

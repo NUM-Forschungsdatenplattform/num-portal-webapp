@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 import { Component, OnInit } from '@angular/core'
-import { DataFilterService } from 'src/app/core/services/data-filter/data-filter.service'
+import { ActivatedRoute, Router } from '@angular/router'
+import { CohortService } from 'src/app/core/services/cohort/cohort.service'
+import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-data-filter',
@@ -22,7 +27,55 @@ import { DataFilterService } from 'src/app/core/services/data-filter/data-filter
   styleUrls: ['./data-filter.component.scss'],
 })
 export class DataFilterComponent implements OnInit {
-  constructor(private dataFilterService: DataFilterService) {}
+  availableRoles = AvailableRoles
+  currentProject: ProjectUiModel
+  totalCohortSize: number
+  hitCounter: IDictionary<string, number> = {}
+  isHitCounterLoading: boolean
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private patientFilterService: PatientFilterService,
+    private cohortService: CohortService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentProject = this.route.snapshot.data.resolvedData
+    const { cohortGroup } = this.currentProject.convertToApiInterface()
+    this.cohortService.getSize(cohortGroup, false).subscribe((size) => {
+      this.totalCohortSize = size
+    })
+  }
+
+  goToPatientFilter(): void {
+    this.patientFilterService.setCurrentProject(this.currentProject)
+    this.router.navigate(['search'], {})
+  }
+
+  gotToDataRetrival(): void {
+    this.patientFilterService.setCurrentProject(this.currentProject)
+    this.router.navigate(['search/data-retrieval'], {})
+  }
+
+  gotToProject(): void {
+    this.router.navigate(['projects/new/editor'], {
+      state: { project: this.currentProject.convertToApiInterface() },
+    })
+  }
+
+  determineHits(): void {
+    this.isHitCounterLoading = true
+    this.hitCounter = {}
+    const { cohortGroup } = this.currentProject.convertToApiInterface()
+    const templateIds = this.currentProject.templates.map((template) => template.templateId)
+    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe(
+      (result) => {
+        this.isHitCounterLoading = false
+        this.hitCounter = result
+      },
+      (_) => {
+        this.isHitCounterLoading = false
+      }
+    )
+  }
 }

@@ -137,4 +137,17 @@ describe('CohortService', () => {
       expect(service.handleError).toHaveBeenCalledTimes(1)
     })
   })
+
+  describe('When a cohort is supposed to be executed within the context of templates', () => {
+    it('should call the api with the cohortGroup and the templateIds', () => {
+      const templateIds = ['template1', 'template2']
+      const request = {
+        url: `${appConfig.config.api.baseUrl}/cohort/size/template`,
+        body: { cohortDto: { cohortGroup: mockCohortGroup }, templateIds },
+      }
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of())
+      service.getSizeForTemplates(mockCohortGroup, templateIds).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
+    })
+  })
 })

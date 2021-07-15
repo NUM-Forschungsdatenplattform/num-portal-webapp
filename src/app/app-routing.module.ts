@@ -17,6 +17,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { RoleGuard } from './core/auth/guards/role.guard'
+import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
 import { AvailableRoles } from './shared/models/available-roles.enum'
 
 export const routes: Routes = [
@@ -33,6 +34,7 @@ export const routes: Routes = [
   {
     path: 'search',
     canLoad: [RoleGuard],
+    canDeactivate: [CanDeactivateSearchGuard],
     data: {
       navId: 'search',
       roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],

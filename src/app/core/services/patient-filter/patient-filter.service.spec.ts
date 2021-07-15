@@ -18,6 +18,7 @@ import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
 
 import { PatientFilterService } from './patient-filter.service'
@@ -114,6 +115,31 @@ describe('PatientFilterService', () => {
         cohortGroup
       )
       expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
+  describe('When the current project is supposed to be provided', () => {
+    it('should provide the current project if its there', (done) => {
+      const project = new ProjectUiModel()
+      project.id = 123
+      service.setCurrentProject(project)
+      service.getCurrentProject().subscribe((providedProject) => {
+        expect(providedProject.id).toEqual(project.id)
+        done()
+      })
+    })
+
+    it('should throw if there is no current project', (done) => {
+      const project = new ProjectUiModel()
+      service.setCurrentProject(project)
+      service.resetCurrentProject()
+      service.getCurrentProject().subscribe(
+        (_) => {},
+        (error) => {
+          expect(error).toBeDefined()
+          done()
+        }
+      )
     })
   })
 })

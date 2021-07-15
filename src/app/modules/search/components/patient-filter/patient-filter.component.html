@@ -29,7 +29,20 @@
 <div class="num-margin-b-10"></div>
 
 <num-cohort-graphs
+  class="num-margin-b-40"
   [previewData]="previewData$ | async"
   [determineHits]="determineHits"
   (determine)="getPreviewData()"
 ></num-cohort-graphs>
+
+<mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
+<div class="num-margin-b-40" role="presentation" fxLayout="row" fxLayoutAlign="end">
+  <num-button
+    id="next-step-button"
+    type="primary"
+    (singleClick)="goToDataFilter()"
+    [isDisabled]="!project.cohortGroup.children.length"
+    data-test="patient-filter__next-step-button"
+    >{{ 'BUTTON.NEXT_STEP' | translate }}</num-button
+  >
+</div>

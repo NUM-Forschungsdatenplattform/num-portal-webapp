@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Imprint page provides public keys as link for data transfer ([#240])
 - Adds determin hits to projects cohort builder ([#241])
 - Adds ability to set parameters in cohort builder to null ([#243])
+- Adds the data-filter ([#246])
 
 ### Changes
 
@@ -481,4 +482,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#242]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/242
 [#243]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/243
 [#245]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/245
+[#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
 [#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247

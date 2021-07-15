@@ -19,6 +19,7 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@a
 import { Observable, of } from 'rxjs'
 import { map, catchError, switchMap } from 'rxjs/operators'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
@@ -43,7 +44,17 @@ export class ProjectResolver implements Resolve<IProjectResolved> {
     const mode = route.queryParamMap.get('mode')?.toUpperCase()
 
     if (id === 'new') {
-      return of({ project: new ProjectUiModel(), error: null })
+      const projectPassedInRoute = this.router.getCurrentNavigation().extras.state?.project as {
+        project: IProjectApi
+        cohortGroup: ICohortGroupApi
+      }
+      if (projectPassedInRoute) {
+        const project = new ProjectUiModel(projectPassedInRoute.project)
+        project.addCohortGroup(projectPassedInRoute.cohortGroup)
+        return of({ project, error: null })
+      } else {
+        return of({ project: new ProjectUiModel(), error: null })
+      }
     }
 
     if (isNaN(+id)) {

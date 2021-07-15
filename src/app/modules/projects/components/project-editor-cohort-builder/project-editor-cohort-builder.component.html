@@ -28,6 +28,7 @@
   </mat-expansion-panel-header>
 
   <num-editor-determine-hits
+    *ngIf="!isDisabled"
     class="num-margin-b-20"
     [content]="determineHitsContent"
     (clicked)="determineHitsClicked.emit()"
