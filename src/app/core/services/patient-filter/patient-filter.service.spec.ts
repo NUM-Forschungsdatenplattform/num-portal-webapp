@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
@@ -116,6 +117,11 @@ describe('PatientFilterService', () => {
       )
       expect(service.handleError).toHaveBeenCalled()
     })
+  })
+
+  describe('When a call to getProjectData comes in', () => {
+    const query = 'SELECT test FROM test'
+    it('should call the backend')
   })
 
   describe('When the current project is supposed to be provided', () => {

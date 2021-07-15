@@ -45,6 +45,7 @@ export const mainNavItems: INavItem[] = [
         id: 'data-explorer',
         translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         roles: [AvailableRoles.Manager],
+        disabled: true,
       },
     ],
   },

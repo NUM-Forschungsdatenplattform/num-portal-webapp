@@ -16,13 +16,14 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { forkJoin, Subscription } from 'rxjs'
-import { catchError, map, mergeMap } from 'rxjs/operators'
+import { map, mergeMap } from 'rxjs/operators'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IAqbSelectClick } from 'src/app/shared/models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { COMPOSITION_LOADING_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
 
@@ -37,8 +38,10 @@ export class ManagerDataExplorerComponent implements OnInit {
   aqbModel = new AqbUiModel()
   currentProject: ProjectUiModel
   isDataSetLoading = false
-  project: ProjectUiModel
+  isExportLoading = false
+  isAqlPrepared = false
   resultSet: IAqlExecutionResponse[]
+  compiledQuery: IArchetypeQueryBuilderResponse
 
   constructor(
     private aqlEditorService: AqlEditorService,
@@ -50,6 +53,7 @@ export class ManagerDataExplorerComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentProject = this.route.snapshot.data.resolvedData
+    this.prepareAql()
   }
 
   goBack(): void {
@@ -58,7 +62,33 @@ export class ManagerDataExplorerComponent implements OnInit {
   }
 
   getData(): void {
-    this.isDataSetLoading = true
+    if (!!this.compiledQuery) {
+      this.isDataSetLoading = true
+      this.patientFilterService
+        .getProjectData(
+          this.compiledQuery.q,
+          {
+            id: null,
+            cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
+            name: 'Preview Cohort',
+            projectId: null,
+            description: '',
+          },
+          this.currentProject.templates.map((template) => template.templateId)
+        )
+        .subscribe(
+          (result) => {
+            this.resultSet = result
+            this.isDataSetLoading = false
+          },
+          () => {
+            this.isDataSetLoading = false
+            this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+          }
+        )
+    }
+  }
+  private prepareAql(): void {
     if (!!this.currentProject) {
       const selectedCompositions$ = this.currentProject.templates.map((template) =>
         this.aqlEditorService.getContainment(template.templateId).pipe(
@@ -88,7 +118,8 @@ export class ManagerDataExplorerComponent implements OnInit {
           )
           .subscribe(
             (compiledQuery) => {
-              this.fetchData(compiledQuery.q)
+              this.compiledQuery = compiledQuery
+              this.isAqlPrepared = true
             },
             () => {
               this.isDataSetLoading = false
@@ -97,30 +128,5 @@ export class ManagerDataExplorerComponent implements OnInit {
           )
       )
     }
-  }
-
-  private fetchData(query: string): void {
-    this.patientFilterService
-      .getProjectData(
-        query,
-        {
-          id: null,
-          cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
-          name: 'Preview Cohort',
-          projectId: null,
-          description: '',
-        },
-        this.currentProject.templates.map((template) => template.templateId)
-      )
-      .subscribe(
-        (result) => {
-          this.resultSet = result
-          this.isDataSetLoading = false
-        },
-        () => {
-          this.isDataSetLoading = false
-          this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-        }
-      )
   }
 }
