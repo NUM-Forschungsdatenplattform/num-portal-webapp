@@ -19,16 +19,21 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { mockAqlCohort } from 'src/mocks/data-mocks/aqls.mock'
 import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
+import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
 import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
@@ -43,9 +48,19 @@ describe('PatientFilterComponent', () => {
   const mockPatientFilterService = ({
     getAllDatasetCount: jest.fn(),
     getPreviewData: jest.fn(),
+    getCurrentProject: jest.fn(),
+    setCurrentProject: jest.fn(),
     previewDataObservable$: mockPreviewDataSubject$.asObservable(),
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
   } as unknown) as PatientFilterService
+
+  const mockRouter = ({
+    navigate: jest.fn(),
+  } as unknown) as Router
+
+  const mockToastMessageService = ({
+    openToast: jest.fn(),
+  } as unknown) as ToastMessageService
 
   @Component({
     selector: 'num-cohort-builder',
@@ -75,11 +90,19 @@ describe('PatientFilterComponent', () => {
         PatientCountInfoComponent,
         PatientFilterComponent,
       ],
-      imports: [LayoutModule, SharedModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, LayoutModule, SharedModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToastMessageService,
+        },
+        {
+          provide: Router,
+          useValue: mockRouter,
         },
       ],
     }).compileComponents()
@@ -87,6 +110,9 @@ describe('PatientFilterComponent', () => {
 
   beforeEach(() => {
     jest.spyOn(mockPatientFilterService, 'getAllDatasetCount').mockImplementation(() => of(123))
+    jest
+      .spyOn(mockPatientFilterService, 'getCurrentProject')
+      .mockImplementation(() => of(new ProjectUiModel()))
     jest.clearAllMocks()
     fixture = TestBed.createComponent(PatientFilterComponent)
     component = fixture.componentInstance
@@ -170,6 +196,32 @@ describe('PatientFilterComponent', () => {
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(cohortGroupApi, false)
+    })
+  })
+
+  describe('When the user wants to navigate to the data filter page and the cohort is defined', () => {
+    beforeEach(() => {
+      component.project.addCohortGroup(mockCohort1.cohortGroup)
+      component.goToDataFilter()
+    })
+    it('should set the current project', () => {
+      expect(mockPatientFilterService.setCurrentProject).toHaveBeenCalledWith(component.project)
+    })
+
+    it('should navigate to the patient data retrieval page', () => {
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['search/data-filter'], {})
+    })
+  })
+
+  describe('When the user wants to navigate to the data filter page and the cohort is not defined', () => {
+    beforeEach(() => {
+      component.goToDataFilter()
+    })
+    it('should show the error message', () => {
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Error,
+        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+      })
     })
   })
 })

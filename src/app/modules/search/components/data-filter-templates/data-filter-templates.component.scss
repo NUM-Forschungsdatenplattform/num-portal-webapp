@@ -13,19 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { TestBed } from '@angular/core/testing'
 
-import { DataFilterService } from './data-filter.service'
+.determine-hits-count {
+  border: 1px solid var(--num-color--primary);
+  width: 90px;
+  height: 36px;
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
 
-describe('DataFilterService', () => {
-  let service: DataFilterService
+.template {
+  border-bottom: 1px solid var(--num-color--light-grey);
+  padding: 5px;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({})
-    service = TestBed.inject(DataFilterService)
-  })
+  &:last-of-type {
+    margin: 0 0 16px 0;
+  }
+}
 
-  it('should be created', () => {
-    expect(service).toBeTruthy()
-  })
-})
+.templates-container-empty {
+  padding: 50px;
+}
+
+.empty-state {
+  text-align: center;
+}

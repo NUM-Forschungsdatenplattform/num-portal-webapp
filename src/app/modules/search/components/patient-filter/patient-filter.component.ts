@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-patient-filter',
@@ -40,14 +43,29 @@ export class PatientFilterComponent implements OnInit {
     return this.project.cohortGroup
   }
 
-  constructor(private patientFilterService: PatientFilterService) {}
+  constructor(
+    private patientFilterService: PatientFilterService,
+    private router: Router,
+    private toastMessageService: ToastMessageService
+  ) {}
 
   ngOnInit(): void {
-    this.project = new ProjectUiModel()
+    this.setCurrentProject()
     this.patientCount$ = this.patientFilterService.totalDatasetCountObservable$
     this.previewData$ = this.patientFilterService.previewDataObservable$
 
     this.patientFilterService.getAllDatasetCount().subscribe()
+  }
+
+  setCurrentProject(): void {
+    this.patientFilterService.getCurrentProject().subscribe(
+      (project) => {
+        this.project = project
+      },
+      (_) => {
+        this.project = new ProjectUiModel()
+      }
+    )
   }
 
   private updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
@@ -78,6 +96,19 @@ export class PatientFilterComponent implements OnInit {
           this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
         }
       }
+    }
+  }
+
+  goToDataFilter(): void {
+    const { cohortGroup } = this.project.convertToApiInterface()
+    if (cohortGroup) {
+      this.patientFilterService.setCurrentProject(this.project)
+      this.router.navigate(['search/data-filter'], {})
+    } else {
+      this.toastMessageService.openToast({
+        type: ToastMessageType.Error,
+        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+      })
     }
   }
 }

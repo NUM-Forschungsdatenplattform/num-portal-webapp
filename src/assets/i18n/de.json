@@ -243,16 +243,21 @@
     "PROJECT_APPROVAL_DENY": "Projekt ablehnen",
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
+    "APPLY_CONFIGURATION": "Konfiguration übernehmen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
     "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
+    "DETERMINE_HITS": "Treffer Ermitteln",
     "MOVE_UP": "Nach oben verschieben",
     "MOVE_DOWN": "Nach unten verschieben",
     "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen",
     "CREATE_AQL_CATEGORY": "Kategorie erstellen",
-    "MORE_INFO": "Mehr Informationen"
+    "MORE_INFO": "Mehr Informationen",
+    "NEXT_STEP": "Nächster Schritt",
+    "PREVIOUS_STEP": "Schritt zurück",
+    "START_DATA_RETRIEVAL": "Datenabruf starten"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",
@@ -465,6 +470,9 @@
   "SEARCH": {
     "DATA_FILTER_HEADING": "Auswahl der klinischen Modelle",
     "DATA_FILTER_DESCRIPTION": "Die klinischen Modelle basieren auf dem Datensatz GECCO 83. Wählen Sie die gewünschten Elemente aus dem Datensatz aus, die als Grundlage für Ihr Projekt dienen sollen.",
+    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "Sie haben die Möglichkeit, mit der die Konfiguration der Patienten- und Datenfilter direkt einen Projektantrag zu stellen. Dazu werden die definierte Kohorte und die ausgewählten klinischen Modelle in ein neues Projekt übertragen.",
+    "DATA_FILTER_SELECT_TEMPLATES": "Bitte wählen Sie ein oder mehrere klinischen Modelle aus",
+    "DATA_FILTER_COHORT_SIZE": "Größe der definierten Kohorte: {{amount}}",
     "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
     "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
   },

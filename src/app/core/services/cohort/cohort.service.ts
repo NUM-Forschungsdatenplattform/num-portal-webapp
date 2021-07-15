@@ -19,6 +19,7 @@ import { Injectable } from '@angular/core'
 import { Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
@@ -54,6 +55,18 @@ export class CohortService {
   getSize(cohortGroup: ICohortGroupApi, allowUsageOutsideEu = true): Observable<number> {
     return this.httpClient
       .post<number>(`${this.baseUrl}/size?allowUsageOutsideEu=${allowUsageOutsideEu}`, cohortGroup)
+      .pipe(catchError(this.handleError))
+  }
+
+  getSizeForTemplates(
+    cohortGroup: ICohortGroupApi,
+    templateIds: string[]
+  ): Observable<IDictionary<string, number>> {
+    return this.httpClient
+      .post<IDictionary<string, number>>(`${this.baseUrl}/size/template`, {
+        cohortDto: { cohortGroup },
+        templateIds,
+      })
       .pipe(catchError(this.handleError))
   }
 

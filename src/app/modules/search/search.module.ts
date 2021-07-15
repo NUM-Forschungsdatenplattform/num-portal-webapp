@@ -25,6 +25,7 @@ import { CohortGraphsComponent } from './components/cohort-graphs/cohort-graphs.
 import { CohortBuilderModule } from '../cohort-builder/cohort-builder.module'
 import { NgxEchartsModule } from 'ngx-echarts'
 import { VerticalBarChartComponent } from './components/vertical-bar-chart/vertical-bar-chart.component'
+import { DataFilterTemplatesComponent } from './components/data-filter-templates/data-filter-templates.component'
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { VerticalBarChartComponent } from './components/vertical-bar-chart/verti
     DataFilterComponent,
     PatientCountInfoComponent,
     PatientFilterComponent,
+    DataFilterTemplatesComponent,
     VerticalBarChartComponent,
   ],
   imports: [

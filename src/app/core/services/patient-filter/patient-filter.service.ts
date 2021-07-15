@@ -15,11 +15,13 @@
  */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, Observable, throwError } from 'rxjs'
+import { cloneDeep } from 'lodash-es'
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +40,8 @@ export class PatientFilterService {
   }
   private previewDataSubject$ = new BehaviorSubject(this.previewData)
   previewDataObservable$ = this.previewDataSubject$.asObservable()
+
+  private currentProject: ProjectUiModel
 
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}`
@@ -73,6 +77,22 @@ export class PatientFilterService {
         }),
         catchError(this.handleError)
       )
+  }
+
+  getCurrentProject(): Observable<ProjectUiModel> {
+    if (this.currentProject) {
+      return of(this.currentProject)
+    } else {
+      return throwError('NO_CURRENT_PROJECT')
+    }
+  }
+
+  setCurrentProject(project: ProjectUiModel): void {
+    this.currentProject = cloneDeep(project)
+  }
+
+  resetCurrentProject(): void {
+    this.currentProject = null
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

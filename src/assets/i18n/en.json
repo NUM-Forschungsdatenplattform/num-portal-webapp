@@ -242,16 +242,21 @@
     "PROJECT_APPROVAL_DENY": "Deny PROJECT",
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
+    "APPLY_CONFIGURATION": "Apply configuration",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
     "RESET_CUSTOMIZATION": "Reset configuration",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
+    "DETERMINE_HITS": "Determine Hits",
     "MOVE_UP": "Move up",
     "MOVE_DOWN": "Move down",
     "DRAG_TO_MOVE": "Drag to move",
     "CREATE_AQL_CATEGORY": "Create Category",
-    "MORE_INFO": "More Info"
+    "MORE_INFO": "More Info",
+    "NEXT_STEP": "Next Step",
+    "PREVIOUS_STEP": "Previous Step",
+    "START_DATA_RETRIEVAL": "Data Retrieval"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",
@@ -464,6 +469,9 @@
   "SEARCH": {
     "DATA_FILTER_HEADING": "Selection of clinical models",
     "DATA_FILTER_DESCRIPTION": "The clinical models are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
+    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "You have the possibility to request a project with the configured patient and data filter. If you do so, the defined cohort and clinical models are transferred to a new project.",
+    "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more clinical models",
+    "DATA_FILTER_COHORT_SIZE": "Size of the specified cohort: {{amount}}",
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
     "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
   },

@@ -106,7 +106,7 @@ export class ProjectUiModel {
       secondHypotheses: formValues?.secondHypotheses || this.secondHypotheses,
       keywords: formValues?.keywords || this.keywords,
       categories: formValues?.categories || this.categories,
-      startDate: DateHelperService.getDateString(formValues.startDate || this.startDate),
+      startDate: DateHelperService.getDateString(formValues?.startDate || this.startDate),
       endDate: DateHelperService.getDateString(formValues?.endDate || this.endDate),
       financed: formValues?.financed,
       usedOutsideEu: formValues?.usedOutsideEu,
