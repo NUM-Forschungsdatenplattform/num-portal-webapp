@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
@@ -21,6 +21,8 @@ import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
+import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { mockResultFlatList } from 'src/mocks/data-mocks/result-set-mock'
 
 import { PatientFilterService } from './patient-filter.service'
 
@@ -121,7 +123,35 @@ describe('PatientFilterService', () => {
 
   describe('When a call to getProjectData comes in', () => {
     const query = 'SELECT test FROM test'
-    it('should call the backend')
+    const templates = ['Test 1', 'Test 2']
+
+    it('should call the backend - with success', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockResultFlatList))
+      service.getProjectData(query, mockCohort1, templates).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+        query,
+        cohort: mockCohort1,
+        templates,
+      })
+    })
+
+    it('should call the backend - with error', () => {
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 400 })))
+      jest.spyOn(service, 'handleError')
+      service
+        .getProjectData(query, mockCohort1, templates)
+        .toPromise()
+        .then(() => {})
+        .catch(() => {})
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+        query,
+        cohort: mockCohort1,
+        templates,
+      })
+      expect(service.handleError).toHaveBeenCalled()
+    })
   })
 
   describe('When the current project is supposed to be provided', () => {

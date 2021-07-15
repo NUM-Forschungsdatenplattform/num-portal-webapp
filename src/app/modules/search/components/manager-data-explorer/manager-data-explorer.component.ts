@@ -25,7 +25,7 @@ import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { COMPOSITION_LOADING_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
+import { AQL_LOADING_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
 
 @Component({
   selector: 'num-manager-data-explorer',
@@ -123,7 +123,7 @@ export class ManagerDataExplorerComponent implements OnInit {
             },
             () => {
               this.isDataSetLoading = false
-              this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
+              this.toastMessageService.openToast(AQL_LOADING_ERROR)
             }
           )
       )

@@ -17,7 +17,7 @@
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
-export const COMPOSITION_LOADING_ERROR: IToastMessageConfig = {
+export const AQL_LOADING_ERROR: IToastMessageConfig = {
   message: 'DATA_EXPLORER.CONFIGURATION_ERROR',
   type: ToastMessageType.Error,
 }

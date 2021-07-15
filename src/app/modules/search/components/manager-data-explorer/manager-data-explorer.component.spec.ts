@@ -142,13 +142,11 @@ describe('ManagerDataRetrievComponent', () => {
     jest.clearAllMocks()
     fixture = TestBed.createComponent(ManagerDataExplorerComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
     jest
       .spyOn(mockAqlEditorService, 'getContainment')
       .mockImplementation(() => of(mockSimpleContainment))
 
     jest.spyOn(mockAqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
-    fixture.detectChanges()
   })
 
   it('should create', () => {
@@ -157,6 +155,7 @@ describe('ManagerDataRetrievComponent', () => {
 
   describe('When the user navigates back', () => {
     beforeEach(() => {
+      fixture.detectChanges()
       component.goBack()
     })
 
@@ -171,13 +170,13 @@ describe('ManagerDataRetrievComponent', () => {
 
   describe('When the user clicks the button to fetch the data', () => {
     beforeEach(() => {
+      fixture.detectChanges()
       jest
         .spyOn(mockPatientFilterService, 'getProjectData')
         .mockImplementation(() => of(mockResultFlatList))
     })
 
     it('should call the service to get the project data', async () => {
-      await fixture.whenStable()
       component.getData()
       expect(mockPatientFilterService.getProjectData).toHaveBeenCalled()
     })
@@ -197,14 +196,11 @@ describe('ManagerDataRetrievComponent', () => {
     beforeEach(() => {
       jest
         .spyOn(mockAqlEditorService, 'getContainment')
-        .mockImplementation(() => of(mockSimpleContainment))
-
-      jest
-        .spyOn(mockAqlEditorService, 'buildAql')
         .mockImplementation(() => throwError('Error building AQL'))
+      fixture.detectChanges()
     })
 
-    it.only('should show a message to the user', () => {
+    it('should show a message to the user', () => {
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
         message: 'DATA_EXPLORER.CONFIGURATION_ERROR',
         type: ToastMessageType.Error,
@@ -218,6 +214,7 @@ describe('ManagerDataRetrievComponent', () => {
 
   describe('When there is an error during data retrieval', () => {
     beforeEach(() => {
+      fixture.detectChanges()
       jest
         .spyOn(mockPatientFilterService, 'getProjectData')
         .mockImplementation(() => throwError('Error fetching data'))
@@ -239,6 +236,7 @@ describe('ManagerDataRetrievComponent', () => {
 
   describe('On init', () => {
     it('should prepare the AQL query', () => {
+      fixture.detectChanges()
       expect(mockAqlEditorService.buildAql).toHaveBeenCalled()
       expect(component.isAqlPrepared).toBe(true)
     })
