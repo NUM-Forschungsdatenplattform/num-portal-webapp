@@ -21,9 +21,7 @@ import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-bu
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 import { mockComplexContains } from 'src/mocks/data-mocks/aqb/complex-contains.mock'
-import { mockComplexeWhere } from 'src/mocks/data-mocks/aqb/complex-where.mock'
 import { mockCoronaAnamnese } from 'src/mocks/data-mocks/aqb/corona-anamnese.mock'
-import { mockOrderBy } from 'src/mocks/data-mocks/aqb/order-by.mock'
 import { AqlEditorService } from './aql-editor.service'
 
 describe('AqlEditorService', () => {

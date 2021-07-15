@@ -19,7 +19,9 @@ import { cloneDeep } from 'lodash-es'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
+import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
@@ -40,6 +42,10 @@ export class PatientFilterService {
   }
   private previewDataSubject$ = new BehaviorSubject(this.previewData)
   previewDataObservable$ = this.previewDataSubject$.asObservable()
+
+  private projectData: IAqlExecutionResponse[] = []
+  private projectDataSubject$ = new BehaviorSubject(this.projectData)
+  projectDataObservable$ = this.previewDataSubject$.asObservable()
 
   private currentProject: ProjectUiModel
 
@@ -74,6 +80,26 @@ export class PatientFilterService {
         tap((res) => {
           this.previewData = res
           this.previewDataSubject$.next(res)
+        }),
+        catchError(this.handleError)
+      )
+  }
+
+  getProjectData(
+    query: string,
+    cohort: ICohortApi,
+    templateIds: string[]
+  ): Observable<IAqlExecutionResponse[]> {
+    return this.httpClient
+      .post<IAqlExecutionResponse[]>(`${this.baseUrl}/project/manager/execute`, {
+        query,
+        cohort,
+        templates: templateIds,
+      })
+      .pipe(
+        tap((res) => {
+          this.projectData = res
+          this.projectDataSubject$.next(res)
         }),
         catchError(this.handleError)
       )

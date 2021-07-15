@@ -155,7 +155,7 @@ describe('DataFilterComponent', () => {
     })
 
     it('should navigate to the patient data retrieval page', () => {
-      expect(mockRouter.navigate).toHaveBeenCalledWith(['search/data-retrieval'], {})
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['search/data-explorer'], {})
     })
   })
 
