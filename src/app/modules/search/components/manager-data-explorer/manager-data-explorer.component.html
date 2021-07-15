@@ -27,7 +27,7 @@
   >
 
   <div
-    *ngIf="resultSet && resultSet.length && !isDataSetLoading"
+    *ngIf="false && resultSet && resultSet.length && !isDataSetLoading"
     fxFlex
     fxLayout="row"
     fxLayoutGap="10px"
@@ -35,7 +35,6 @@
     class="num-margin-b-40"
   >
     <num-button
-      hidden="true"
       type="secondary"
       icon="file-download"
       (singleClick)="exportFile('csv')"
@@ -46,7 +45,6 @@
     </num-button>
 
     <num-button
-      hidden="true"
       type="secondary"
       icon="file-download"
       (singleClick)="exportFile('json')"

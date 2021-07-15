@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Adds determin hits to projects cohort builder ([#241])
 - Adds ability to set parameters in cohort builder to null ([#243])
 - Adds the data-filter ([#246])
+- Adds the manager-data-explorer ([#248])
 
 ### Changes
 
@@ -484,3 +485,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#245]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/245
 [#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
 [#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
+[#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248
