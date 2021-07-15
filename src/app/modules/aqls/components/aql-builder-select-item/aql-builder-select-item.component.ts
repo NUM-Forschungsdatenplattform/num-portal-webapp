@@ -17,7 +17,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
-import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
+import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
 
 @Component({
   selector: 'num-aql-builder-select-item',

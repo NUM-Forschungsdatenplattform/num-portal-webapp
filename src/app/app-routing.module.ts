@@ -17,6 +17,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { RoleGuard } from './core/auth/guards/role.guard'
+import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
 import { AvailableRoles } from './shared/models/available-roles.enum'
 
 export const routes: Routes = [
@@ -29,6 +30,16 @@ export const routes: Routes = [
       import(
         /* webpackChunkName: "Dashboard.Module" */ './modules/dashboard/dashboard.module'
       ).then((m) => m.DashboardModule),
+  },
+  {
+    path: 'search',
+    canLoad: [RoleGuard],
+    canDeactivate: [CanDeactivateSearchGuard],
+    data: {
+      navId: 'search',
+      roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
+    },
+    loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
   },
   {
     path: 'projects',
@@ -53,18 +64,6 @@ export const routes: Routes = [
       import(
         /* webpackChunkName: "DataExplorer.Module" */ './modules/data-explorer/data-explorer.module'
       ).then((m) => m.DataExplorerModule),
-  },
-  {
-    path: 'phenotypes',
-    canLoad: [RoleGuard],
-    data: {
-      navId: 'phenotypes',
-      roles: [AvailableRoles.Manager],
-    },
-    loadChildren: () =>
-      import(
-        /* webpackChunkName: "Phenotypes.Module" */ './modules/phenotypes/phenotypes.module'
-      ).then((m) => m.PhenotypesModule),
   },
   {
     path: 'aqls',

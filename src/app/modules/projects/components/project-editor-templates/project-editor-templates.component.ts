@@ -19,7 +19,6 @@ import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.int
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-template-info-api.interface'
-import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-template.component'
 
 @Component({
   selector: 'num-project-editor-templates',
@@ -47,7 +46,6 @@ export class ProjectEditorTemplatesComponent implements OnInit {
     const dialogContentPayload = this.templates
     const dialogConfig: DialogConfig = {
       ...ADD_DIALOG_CONFIG,
-      dialogContentComponent: DialogAddTemplateComponent,
       dialogContentPayload,
     }
 

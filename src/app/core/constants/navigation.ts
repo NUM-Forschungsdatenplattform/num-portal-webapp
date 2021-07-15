@@ -24,6 +24,32 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {
+    routeTo: 'search',
+    icon: 'search',
+    translationKey: 'NAVIGATION.SEARCH',
+    tabNav: [
+      {
+        routeTo: 'search',
+        id: 'patient-filter',
+        translationKey: 'NAVIGATION.PATIENT_FILTER',
+        disabled: true,
+      },
+      {
+        routeTo: 'search/data-filter',
+        id: 'data-filter',
+        translationKey: 'NAVIGATION.DATA_FILTER',
+        disabled: true,
+      },
+      {
+        routeTo: 'search/data-explorer',
+        id: 'data-explorer',
+        translationKey: 'NAVIGATION.DATA_RETRIEVAL',
+        roles: [AvailableRoles.Manager],
+        disabled: true,
+      },
+    ],
+  },
+  {
     routeTo: 'projects',
     icon: 'microscope',
     translationKey: 'NAVIGATION.PROJECTS',
@@ -55,23 +81,6 @@ export const mainNavItems: INavItem[] = [
         id: 'data-explorer',
         translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         disabled: true,
-      },
-    ],
-  },
-  {
-    routeTo: 'phenotypes',
-    icon: 'cubes',
-    translationKey: 'NAVIGATION.PHENOTYPES',
-    tabNav: [
-      {
-        routeTo: 'phenotypes',
-        id: 'overview',
-        translationKey: 'NAVIGATION.PHENOTYPES_OVERVIEW',
-      },
-      {
-        routeTo: 'phenotypes/new/editor',
-        id: 'editor',
-        translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
       },
     ],
   },

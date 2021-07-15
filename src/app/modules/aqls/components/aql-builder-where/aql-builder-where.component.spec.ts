@@ -19,7 +19,7 @@ import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderWhereComponent } from './aql-builder-where.component'
 

@@ -19,11 +19,11 @@ import { LogicalOperator } from './logical-operator.enum'
 import { IConnectorGroupApi } from './connectorGroupApi.interface'
 import { ConnectorMainNodeUi } from './connector-main-node-ui.interface'
 
-export abstract class ConnectorGroupUiModel {
+export abstract class ConnectorGroupUiModel<T extends IConnectorGroupApi<T>> {
   abstract type: ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
-  children: (ConnectorGroupUiModel | ConnectorMainNodeUi)[]
+  children: (ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>)[]
   indexInGroup: number | null = null
   constructor() {
     this.logicalOperator = LogicalOperator.And
@@ -31,11 +31,13 @@ export abstract class ConnectorGroupUiModel {
     this.children = []
   }
 
-  abstract mapChildrenToUi: (
-    child: ConnectorGroupUiModel | ConnectorMainNodeUi
-  ) => ConnectorGroupUiModel | ConnectorMainNodeUi
+  // <IConnectorGroupApi<any>>
 
-  public convertToUi(apiGroup: IConnectorGroupApi, isNegated: boolean = false): void {
+  abstract mapChildrenToUi: (
+    child: IConnectorGroupApi<T>
+  ) => ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
+
+  public convertToUi(apiGroup: IConnectorGroupApi<T>, isNegated: boolean = false): void {
     this.isNegated = isNegated
     this.logicalOperator =
       apiGroup.operator === LogicalOperator.And ? LogicalOperator.And : LogicalOperator.Or
@@ -45,7 +47,7 @@ export abstract class ConnectorGroupUiModel {
     }
   }
 
-  public convertToApi(): IConnectorGroupApi | null {
+  public convertToApi(): IConnectorGroupApi<T> | null {
     const convertedGroup = this.isNegated
       ? this.convertGroupToNegatedApiGroup()
       : this.convertGroupToApiGroup()
@@ -53,7 +55,7 @@ export abstract class ConnectorGroupUiModel {
     return convertedGroup
   }
 
-  private convertGroupToApiGroup(): IConnectorGroupApi | null {
+  private convertGroupToApiGroup(): IConnectorGroupApi<T> | null {
     const mappedChildren = this.children
       .map(this.mapChildrentoApi)
       .filter((child) => child !== null)
@@ -65,10 +67,10 @@ export abstract class ConnectorGroupUiModel {
       type: this.type,
       operator: this.logicalOperator,
       children: mappedChildren,
-    }
+    } as T
   }
 
-  private convertGroupToNegatedApiGroup(): IConnectorGroupApi | null {
+  private convertGroupToNegatedApiGroup(): IConnectorGroupApi<T> | null {
     const mappedChildren = this.children
       .map(this.mapChildrentoApi)
       .filter((child) => child !== null)
@@ -84,14 +86,14 @@ export abstract class ConnectorGroupUiModel {
           type: this.type,
           operator: this.logicalOperator,
           children: mappedChildren,
-        },
+        } as T,
       ],
     }
   }
 
   private mapChildrentoApi = (
-    child: ConnectorGroupUiModel | ConnectorMainNodeUi
-  ): IConnectorGroupApi | null => {
+    child: ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
+  ): IConnectorGroupApi<T> | null => {
     return child.convertToApi()
   }
 }

@@ -54,79 +54,11 @@
     </mat-form-field>
   </ng-container>
 
-  <ng-container *ngIf="!item.isParameterType" [formGroup]="valueForm">
-    <mat-form-field
-      *ngIf="
-        item.valueType === AqbValueType.Double ||
-        item.valueType === AqbValueType.Number ||
-        item.valueType === AqbValueType.String
-      "
-      floatLabel="always"
-      appearance="outline"
-      class="input num-tiny-input value-input"
-    >
-      <mat-label id="value-label">{{ 'FORM.VALUE' | translate }}</mat-label>
-      <input
-        aria-labelledby="value-label"
-        formControlName="value"
-        [attr.inputmode]="item.valueType === AqbValueType.String ? 'latin' : 'numeric'"
-        matInput
-        type="text"
-        data-test="aqb__where__item__value-input"
-      />
-    </mat-form-field>
-
-    <mat-form-field
-      appearance="outline"
-      class="input num-tiny-input boolean-select"
-      *ngIf="item.valueType === AqbValueType.Boolean"
-    >
-      <mat-label id="boolean-label">{{ 'FORM.VALUE' | translate }}</mat-label>
-      <mat-select
-        aria-labelledby="boolean-label"
-        [(value)]="item.value"
-        data-test="aqb__where__item__boolean-value__selector"
-      >
-        <mat-option
-          *ngFor="let value of [true, false]"
-          [value]="value"
-          [attr.data-test]="'aqb__where__item__boolean-value__' + value"
-        >
-          {{ value }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field
-      appearance="outline"
-      class="input num-tiny-input datepicker"
-      *ngIf="item.valueType === AqbValueType.Date || item.valueType === AqbValueType.DateTime"
-    >
-      <mat-label id="datepicker-label">{{ 'DATE_TIME.DATE' | translate }}</mat-label>
-      <input
-        aria-labelledby="datepicker-label"
-        matInput
-        [matDatepicker]="picker"
-        [value]="item.value"
-        (dateChange)="datePickerChange($event)"
-        data-test="aqb__where__item__datepicker-input"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="picker"
-        data-test="aqb__where__item__datepicker-toggle"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <num-time-input
-      appearance="outline"
-      [(date)]="item.value"
-      class="input num-tiny-input"
-      *ngIf="item.valueType === AqbValueType.Time || item.valueType === AqbValueType.DateTime"
-      data-test="aqb__where__item__time-value-input"
-    ></num-time-input>
-  </ng-container>
+  <num-aql-parameter-inputs
+    *ngIf="!item.isParameterType"
+    [item]="item"
+    mode="aqb"
+  ></num-aql-parameter-inputs>
 </section>
 
 <section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">

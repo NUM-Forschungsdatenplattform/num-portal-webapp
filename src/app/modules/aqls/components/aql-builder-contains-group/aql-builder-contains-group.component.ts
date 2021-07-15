@@ -25,10 +25,10 @@ import {
 } from '@angular/core'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { AqbContainsGroupUiModel } from '../../models/aqb/aqb-contains-group-ui.model'
+import { AqbContainsGroupUiModel } from '../../../../shared/models/aqb/aqb-contains-group-ui.model'
 import { debounce } from 'lodash-es'
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
-import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
+import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
 
 @Component({
   selector: 'num-aql-builder-contains-group',

@@ -22,8 +22,6 @@ import { ProjectsComponent } from './components/projects/projects.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { ProjectEditorComponent } from './components/project-editor/project-editor.component'
 import { LayoutModule } from 'src/app/layout/layout.module'
-import { DialogEditPhenotypeComponent } from './components/dialog-edit-phenotype/dialog-edit-phenotype.component'
-import { DialogAddPhenotypesComponent } from './components/dialog-add-phenotypes/dialog-add-phenotypes.component'
 import { AddTemplatesFilterTableComponent } from './components/add-templates-filter-table/add-templates-filter-table.component'
 import { DialogAddTemplateComponent } from './components/dialog-add-template/dialog-add-template.component'
 import { ProjectsTableComponent } from './components/projects-table/projects-table.component'
@@ -39,8 +37,6 @@ import { DialogConfirmProjectApprovalComponent } from './components/dialog-confi
   declarations: [
     ProjectsComponent,
     ProjectEditorComponent,
-    DialogEditPhenotypeComponent,
-    DialogAddPhenotypesComponent,
     DialogAddTemplateComponent,
     AddTemplatesFilterTableComponent,
     ProjectsTableComponent,

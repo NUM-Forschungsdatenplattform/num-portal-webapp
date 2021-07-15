@@ -20,7 +20,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
-import { AqbContainsItemUiModel } from '../../models/aqb/aqb-contains-item-ui.model'
+import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contains-item-ui.model'
 
 import { AqlBuilderContainsItemComponent } from './aql-builder-contains-item.component'
 

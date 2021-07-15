@@ -15,28 +15,26 @@
  */
 
 import { LogicalOperator } from '../logical-operator.enum'
-import { PhenotypeUiModel } from '../phenotype/phenotype-ui.model'
 import { ConnectorNodeType } from '../connector-node-type.enum'
 import { ConnectorGroupUiModel } from '../connector-group-ui.model'
+import { AqlUiModel } from '../aql/aql-ui.model'
 import { ICohortGroupApi } from './cohort-group-api.interface'
-import { ICohortApi } from './cohort-api.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
-import { Subject } from 'rxjs'
 
-export class CohortGroupUiModel extends ConnectorGroupUiModel {
-  changeDetectionTrigger$ = new Subject()
+export class CohortGroupUiModel extends ConnectorGroupUiModel<ICohortGroupApi> {
   type: ConnectorNodeType.Group
   logicalOperator: LogicalOperator.And | LogicalOperator.Or
   isNegated: boolean
-  children: (CohortGroupUiModel | PhenotypeUiModel)[]
+  children: (CohortGroupUiModel | AqlUiModel)[]
   indexInGroup: number | null = null
+  addedByClick: boolean
 
-  constructor(cohortApi?: ICohortApi, private phenotypeService?: PhenotypeService) {
+  constructor(addedByClick = false) {
     super()
     this.type = ConnectorNodeType.Group
     this.logicalOperator = LogicalOperator.And
     this.isNegated = false
     this.children = []
+    this.addedByClick = addedByClick
   }
 
   /**
@@ -48,36 +46,24 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel {
     })
   }
 
-  mapChildrenToUi = (child: ICohortGroupApi): CohortGroupUiModel | PhenotypeUiModel => {
+  mapChildrenToUi = (child: ICohortGroupApi): CohortGroupUiModel | AqlUiModel => {
     if (child.type === ConnectorNodeType.Group && child.operator === LogicalOperator.Not) {
       const firstChild = child.children[0]
 
-      if (firstChild.type === ConnectorNodeType.Phenotype) {
-        const model = new PhenotypeUiModel()
-        model.isLoadingComplete = model.areParameterConfigured = false
-        this.phenotypeService.get(firstChild.phenotypeId).subscribe((phenotype) => {
-          model.init(phenotype, true, firstChild.parameters)
-          model.isLoadingComplete = true
-          this.changeDetectionTrigger$.next()
-        })
-        return model
+      if (firstChild.type === ConnectorNodeType.Aql) {
+        return new AqlUiModel(firstChild.query, true, firstChild.parameters)
       }
-      const negatedGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
+
+      const negatedGroup = new CohortGroupUiModel()
       negatedGroup.convertToUi(firstChild, true)
       return negatedGroup
     }
 
-    if (child.type === ConnectorNodeType.Phenotype) {
-      const model = new PhenotypeUiModel()
-      model.isLoadingComplete = model.areParameterConfigured = false
-      this.phenotypeService.get(child.phenotypeId).subscribe((phenotype) => {
-        model.init(phenotype, false, child.parameters)
-        model.isLoadingComplete = true
-        this.changeDetectionTrigger$.next()
-      })
-      return model
+    if (child.type === ConnectorNodeType.Aql) {
+      return new AqlUiModel(child.query, false, child.parameters)
     }
-    const newGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
+
+    const newGroup = new CohortGroupUiModel()
     newGroup.convertToUi(child, false)
     return newGroup
   }

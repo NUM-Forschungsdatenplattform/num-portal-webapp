@@ -20,36 +20,20 @@
   <p>{{ 'PROJECT.DEFINE_PROJECT_CONTENT_P2' | translate }}</p>
   <p class="num-margin-b-40">{{ 'PROJECT.MANDATORY' | translate }}</p>
 
-  <mat-accordion [multi]="true" fxFlex="100%">
-    <num-project-editor-general-info
-      [form]="projectForm"
-      [isDisabled]="isGeneralInfoDisabled"
-      [generalInfoData]="generalInfoData"
-      data-test="project-editor__general-info"
-    ></num-project-editor-general-info>
-
-    <num-project-editor-templates
-      [(templates)]="project.templates"
-      [isDisabled]="isTemplatesDisabled"
-      data-test="project-editor__templates"
-    ></num-project-editor-templates>
-
-    <num-project-editor-connector
-      [cohortNode]="cohortGroup"
-      [isLoadingComplete]="isCohortsFetched"
-      [isDisabled]="isConnectorDisabled"
-      [determineHitsContent]="determineHitsContent"
-      (determineHitsClicked)="determineHits()"
-      data-test="project-editor__connector__group"
-    ></num-project-editor-connector>
-
-    <num-project-editor-researchers
-      [isLoadingComplete]="isResearchersFetched"
-      [(researchers)]="project.researchers"
-      [isDisabled]="isResearchersDisabled"
-      data-test="project-editor__researchers"
-    ></num-project-editor-researchers>
-  </mat-accordion>
+  <num-project-editor-accordion
+    [isResearchersFetched]="isResearchersFetched"
+    [isCohortsFetched]="isCohortsFetched"
+    [isTemplatesDisabled]="isTemplatesDisabled"
+    [isResearchersDisabled]="isResearchersDisabled"
+    [isGeneralInfoDisabled]="isGeneralInfoDisabled"
+    [isCohortBuilderDisabled]="isCohortBuilderDisabled"
+    [project]="project"
+    [projectForm]="projectForm"
+    [cohortGroup]="cohortGroup"
+    [generalInfoData]="generalInfoData"
+    [determineHitsContent]="determineHitsContent"
+    (determineHitsClicked)="determineHits()"
+  ></num-project-editor-accordion>
 
   <num-project-editor-comments
     *ngIf="project.id !== null && project.id !== undefined"

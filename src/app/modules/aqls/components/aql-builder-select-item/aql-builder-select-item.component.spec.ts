@@ -21,7 +21,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
-import { AqbSelectItemUiModel } from '../../models/aqb/aqb-select-item-ui.model'
+import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 import { AqlBuilderSelectItemComponent } from './aql-builder-select-item.component'

@@ -58,7 +58,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   isTemplatesDisabled: boolean
   isResearchersDisabled: boolean
   isGeneralInfoDisabled: boolean
-  isConnectorDisabled: boolean
+  isCohortBuilderDisabled: boolean
 
   projectComments: IProjectComment[] = []
 
@@ -237,13 +237,13 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.router.navigate(['projects', this.project.id, 'editor'], { queryParams })
   }
 
-  async save(): Promise<void> {
+  async save(withCohort = true): Promise<void> {
     const { project, cohort } = this.getProjectForApi()
     try {
       const projectResult = await this.saveProject(project)
       this.project.id = projectResult.id
 
-      if (cohort.cohortGroup) {
+      if (withCohort && cohort.cohortGroup) {
         cohort.projectId = projectResult.id
         const cohortResult = await this.saveCohort(cohort)
         this.project.cohortId = cohortResult.id
@@ -271,13 +271,13 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     } else {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_PHENOTYPE_ERROR_MESSAGE',
+        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
       })
     }
   }
 
   saveResearchers(): void {
-    this.save()
+    this.save(false)
   }
 
   saveAsApprovalReply(): void {
@@ -373,12 +373,12 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     )
 
     if (inEditByStatus && !inPreview && !inReview) {
-      this.isConnectorDisabled = false
+      this.isCohortBuilderDisabled = false
       this.isGeneralInfoDisabled = false
       this.isTemplatesDisabled = false
       this.isResearchersDisabled = false
     } else {
-      this.isConnectorDisabled = true
+      this.isCohortBuilderDisabled = true
       this.isGeneralInfoDisabled = true
       this.isTemplatesDisabled = true
       this.isResearchersDisabled = true

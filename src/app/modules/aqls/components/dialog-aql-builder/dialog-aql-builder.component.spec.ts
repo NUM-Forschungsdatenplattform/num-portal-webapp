@@ -29,8 +29,8 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
-import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 import { COMPILE_ERROR_CONFIG } from './constants'
 

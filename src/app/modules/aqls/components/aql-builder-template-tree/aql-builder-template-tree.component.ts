@@ -21,8 +21,8 @@ import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.se
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
-import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
+import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({

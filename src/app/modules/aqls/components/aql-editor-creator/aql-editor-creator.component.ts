@@ -27,7 +27,7 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-builder/aql-validation-response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 import {
   BUILDER_DIALOG_CONFIG,
   VALIDATION_ERROR_CONFIG,

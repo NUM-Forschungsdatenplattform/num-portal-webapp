@@ -19,11 +19,11 @@ import { FormControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
-import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
-import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
+import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 import { cloneDeep } from 'lodash-es'
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -37,7 +37,6 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
 })
 export class DialogAqlBuilderComponent
   implements OnInit, OnDestroy, IGenericDialog<IAqlBuilderDialogInput> {
-  AqbSelectDestination = AqbSelectDestination
   constructor(
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService

@@ -16,8 +16,8 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderContainsComponent } from './aql-builder-contains.component'
 

@@ -17,8 +17,8 @@
 import { ConnectorNodeType } from './connector-node-type.enum'
 import { LogicalOperator } from './logical-operator.enum'
 
-export interface IConnectorGroupApi {
+export interface IConnectorGroupApi<T extends IConnectorGroupApi<T>> {
   operator?: LogicalOperator
-  children?: any[]
+  children?: T[]
   type: ConnectorNodeType
 }

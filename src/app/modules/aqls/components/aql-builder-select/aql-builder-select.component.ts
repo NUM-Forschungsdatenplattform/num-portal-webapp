@@ -16,8 +16,8 @@
 
 import { Component, Input, OnInit } from '@angular/core'
 
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 @Component({
   selector: 'num-aql-builder-select',
@@ -25,6 +25,7 @@ import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
   styleUrls: ['./aql-builder-select.component.scss'],
 })
 export class AqlBuilderSelectComponent implements OnInit {
+  AqbSelectDestination = AqbSelectDestination
   constructor() {}
 
   @Input()

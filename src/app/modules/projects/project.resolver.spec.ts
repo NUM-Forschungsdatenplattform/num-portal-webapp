@@ -17,11 +17,11 @@
 import {
   ActivatedRouteSnapshot,
   convertToParamMap,
+  Navigation,
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
 import { of, throwError } from 'rxjs'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
@@ -36,16 +36,13 @@ describe('Project Resolver', () => {
     get: jest.fn(),
   } as unknown) as ProjectService
 
-  const phenotypeService = ({
-    get: jest.fn(),
-  } as unknown) as PhenotypeService
-
   const mockRouter = ({
     navigate: jest.fn(),
+    getCurrentNavigation: jest.fn(),
   } as unknown) as Router
 
   beforeEach(() => {
-    resolver = new ProjectResolver(projectService, phenotypeService, mockRouter)
+    resolver = new ProjectResolver(projectService, mockRouter)
   })
 
   it('should be created', () => {
@@ -53,7 +50,10 @@ describe('Project Resolver', () => {
   })
 
   describe('When the resolve method is called', () => {
-    it('should should return with an empty ProjectUiModel if the id was new', async () => {
+    it('should should return with an empty ProjectUiModel if the id was new and no project is in the route', async () => {
+      jest.spyOn(mockRouter, 'getCurrentNavigation').mockImplementation(() => {
+        return { extras: {} } as Navigation
+      })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
       const paramMap = convertToParamMap({ id: 'new' })
       const activatedRoute = ({
@@ -65,6 +65,27 @@ describe('Project Resolver', () => {
       expect(result.error).toBeNull()
       expect(result.project).toBeInstanceOf(ProjectUiModel)
       expect(result.project.id).toEqual(null)
+    })
+
+    it('should should return with the ProjectUiModel of the route if the id was new and its present', async () => {
+      const projectUi = new ProjectUiModel()
+      projectUi.templates = [{ templateId: 'template1', name: 'templateName1' }]
+      const project = projectUi.convertToApiInterface()
+      jest.spyOn(mockRouter, 'getCurrentNavigation').mockImplementation(() => {
+        return ({ extras: { state: { project } } } as unknown) as Navigation
+      })
+      const queryParamMap = convertToParamMap({ mode: 'edit' })
+      const paramMap = convertToParamMap({ id: 'new' })
+      const activatedRoute = ({
+        paramMap,
+        queryParamMap,
+      } as unknown) as ActivatedRouteSnapshot
+      const result = await resolver.resolve(activatedRoute, state).toPromise()
+
+      expect(result.error).toBeNull()
+      expect(result.project).toBeInstanceOf(ProjectUiModel)
+      expect(result.project.id).toEqual(null)
+      expect(result.project.templates).toEqual(projectUi.templates)
     })
 
     it('should provide an error message when the id was not "new" and not a number', async () => {

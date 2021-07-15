@@ -13,10 +13,25 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Renaming of all occurrences of the term "study" to "project" in all cases except for roles ([#228])
 - AQL Category column in AQL queries overview ([#229])
 - AQL Category select in AQL editor dialog ([#229])
+- Cohort-Builder disabled state ([#234])
+- Cohort-Builder and accordion style to data-explorer ([#235])
+- Cohort-Builder handling of parameters ([#239])
+- Search-Page to filter patients for possible projects ([#238])
+- Search-Page shows age distribution graph of defined cohort ([#242])
+- Search-Page shows clinic distribution graph of defined cohort ([#245])
+- Imprint page provides public keys as link for data transfer ([#240])
+- Adds determin hits to projects cohort builder ([#241])
+- Adds ability to set parameters in cohort builder to null ([#243])
+- Adds the data-filter ([#246])
+- Adds the manager-data-explorer ([#248])
 
 ### Changes
 
 - Add role restriction to tab navigation generation ([#230])
+- Refactoring of the Cohort-Builder ([#233])
+- Removale of phenotype-concept ([#233])
+- Refactoring of aql-parameter inputs ([#234])
+- Editing researchers in the project editor no longer saves the cohort ([#247])
 
 ---
 
@@ -458,3 +473,16 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#228]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/228
 [#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229
 [#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
+[#233]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/233
+[#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234
+[#235]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/235
+[#238]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/238
+[#239]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/239
+[#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240
+[#241]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/241
+[#242]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/242
+[#243]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/243
+[#245]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/245
+[#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
+[#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
+[#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248

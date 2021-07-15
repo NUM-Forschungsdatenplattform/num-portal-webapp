@@ -1,0 +1,57 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<mat-accordion class="num-accordion num-accordion-small">
+  <mat-expansion-panel *ngFor="let aqlGroup of groupedAqls | async | keyvalue">
+    <mat-expansion-panel-header
+      *ngIf="aqlCategories[aqlGroup.key]"
+      [attr.data-test]="'cohort-builder__aql-selection__category--' + aqlGroup.key"
+      >{{
+        aqlCategories[aqlGroup.key] ? aqlCategories[aqlGroup.key][currentLang] : ''
+      }}</mat-expansion-panel-header
+    >
+    <div
+      class="aql"
+      *ngFor="let aql of aqlGroup.value"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div class="aql__meta">
+        <div class="aql__meta__name" data-test="cohort-builder__aql-selection__aql-name">
+          {{ aql.name }}
+        </div>
+        <button
+          color="primary"
+          [attr.aria-label]="'BUTTON.MORE_INFO' | translate"
+          mat-icon-button
+          (click)="openAqlInfoDialog(aql)"
+          data-test="cohort-builder__aql-selection__more-info-button"
+        >
+          <fa-icon icon="info-circle" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </div>
+      <button
+        color="accent"
+        [attr.aria-label]="'BUTTON.ADD' | translate"
+        mat-icon-button
+        (click)="emitAqlEvent(aql)"
+        data-test="cohort-builder__aql-selection__add-aql-button"
+      >
+        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
