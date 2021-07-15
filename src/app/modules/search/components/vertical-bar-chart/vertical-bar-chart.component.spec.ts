@@ -21,31 +21,33 @@ import { BarSeriesOption, XAXisComponentOption } from 'echarts'
 import { NgxEchartsModule } from 'ngx-echarts'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
-import { CohortAgeGraphComponent } from './cohort-age-graph.component'
+import { VerticalBarChartComponent } from './vertical-bar-chart.component'
 
-describe('CohortAgeGraphComponent', () => {
-  let component: CohortAgeGraphComponent
-  let fixture: ComponentFixture<CohortAgeGraphComponent>
+describe('VerticalBarChartComponent', () => {
+  let component: VerticalBarChartComponent
+  let fixture: ComponentFixture<VerticalBarChartComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CohortAgeGraphComponent],
+      declarations: [VerticalBarChartComponent],
       imports: [
-        NoopAnimationsModule,
         NgxEchartsModule.forRoot({
           echarts: () => import('echarts'),
         }),
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CohortAgeGraphComponent)
+    fixture = TestBed.createComponent(VerticalBarChartComponent)
     component = fixture.componentInstance
     component.data = mockAgeGraphData
     component.xAxisName = 'X-Axis'
     component.yAxisName = 'Y-Axis'
+    component.graphName = 'Test-Graph'
+    component.color = '#333333'
     fixture.detectChanges()
   })
 

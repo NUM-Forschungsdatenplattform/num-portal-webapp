@@ -13,16 +13,15 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <div fxLayout="column" fxLayoutAlign="center center">
   <div
     echarts
     [options]="chartOptions"
     [merge]="updateOptions"
     [initOpts]="initOptions"
-    class="cohort-age-graph"
+    class="cohort-preview-graph"
   ></div>
   <p class="mat-body-strong">
-    {{ 'CHARTS.COHORT_AGE.TITLE' | translate }}
+    {{ graphName }}
   </p>
 </div>

@@ -61,14 +61,15 @@ export class PatientFilterComponent implements OnInit {
 
   async getPreviewData(): Promise<void> {
     if (!this.cohortNode) {
-      this.updateDetermineHits(null, '', false)
+      this.updateDetermineHits(null, '')
     } else {
       try {
+        this.updateDetermineHits(null, '', true)
         const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
         const previewData = await this.patientFilterService
           .getPreviewData(cohortGroupApi, false)
           .toPromise()
-        this.updateDetermineHits(previewData.count, '', false)
+        this.updateDetermineHits(previewData.count, '')
       } catch (error) {
         if (error.status === 451) {
           // *** Error 451 means too few hits ***

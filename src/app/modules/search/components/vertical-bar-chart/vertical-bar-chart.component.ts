@@ -15,21 +15,22 @@
  */
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { EChartsOption } from 'echarts'
-import { isEmpty, map } from 'lodash-es'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
+import { isEmpty, map } from 'lodash-es'
 
 @Component({
-  selector: 'num-cohort-age-graph',
-  templateUrl: './cohort-age-graph.component.html',
-  styleUrls: ['./cohort-age-graph.component.scss'],
+  selector: 'num-vertical-bar-chart',
+  templateUrl: './vertical-bar-chart.component.html',
+  styleUrls: ['./vertical-bar-chart.component.scss'],
 })
-export class CohortAgeGraphComponent implements OnInit, OnChanges {
-  @Input() set data(data: IDictionary<number, number>) {
+export class VerticalBarChartComponent implements OnChanges, OnInit {
+  @Input() color: string
+  @Input() set data(data: IDictionary<string, number>) {
     if (!isEmpty(data)) {
       this.handleData(data)
     }
   }
-
+  @Input() graphName: string
   @Input() xAxisName: string
   @Input() yAxisName: string
 
@@ -38,7 +39,7 @@ export class CohortAgeGraphComponent implements OnInit, OnChanges {
 
   initOptions = {
     remderer: 'svg',
-    width: 500,
+    width: 400,
     height: 400,
   }
 
@@ -46,11 +47,10 @@ export class CohortAgeGraphComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.chartOptions = {
-      color: '#5F0D22',
+      color: this.color,
       series: [
         {
           type: 'bar',
-          data: map(this.data, (value) => value),
         },
       ],
       tooltip: {
@@ -60,7 +60,7 @@ export class CohortAgeGraphComponent implements OnInit, OnChanges {
         axisTick: {
           show: false,
         },
-        data: map(this.data, (_, key) => key),
+
         name: this.xAxisName,
         nameLocation: 'start',
         type: 'category',

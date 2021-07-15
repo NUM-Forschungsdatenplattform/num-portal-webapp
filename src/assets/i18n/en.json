@@ -420,7 +420,7 @@
       "XLABEL": "Years",
       "YLABEL": "k"
     },
-    "COHORT_INSTITUTION": {
+    "COHORT_HOSPITALS": {
       "TITLE": "Number of datasets per institution",
       "XLABEL": "Clinic",
       "YLABEL": "k",
