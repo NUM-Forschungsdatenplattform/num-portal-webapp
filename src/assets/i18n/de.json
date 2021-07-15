@@ -468,6 +468,8 @@
     "UPDATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht editiert werden. Bitte versuchen Sie es erneut."
   },
   "SEARCH": {
+    "DATA_EXPLORER_HEADING": "Projektdaten abrufen",
+    "DATA_EXPLORER_DESCRIPTION": "Rufen Sie auf dieser Seite die Projektdaten ab, die im Rahmen Ihrer vorherigen Auswahl im Patienten- und Datenfilter verfügbar sind.",
     "DATA_FILTER_HEADING": "Auswahl der klinischen Modelle",
     "DATA_FILTER_DESCRIPTION": "Die klinischen Modelle basieren auf dem Datensatz GECCO 83. Wählen Sie die gewünschten Elemente aus dem Datensatz aus, die als Grundlage für Ihr Projekt dienen sollen.",
     "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "Sie haben die Möglichkeit, mit der die Konfiguration der Patienten- und Datenfilter direkt einen Projektantrag zu stellen. Dazu werden die definierte Kohorte und die ausgewählten klinischen Modelle in ein neues Projekt übertragen.",

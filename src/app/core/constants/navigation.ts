@@ -40,6 +40,12 @@ export const mainNavItems: INavItem[] = [
         translationKey: 'NAVIGATION.DATA_FILTER',
         disabled: true,
       },
+      {
+        routeTo: 'search/data-explorer',
+        id: 'data-explorer',
+        translationKey: 'NAVIGATION.DATA_RETRIEVAL',
+        roles: [AvailableRoles.Manager],
+      },
     ],
   },
   {

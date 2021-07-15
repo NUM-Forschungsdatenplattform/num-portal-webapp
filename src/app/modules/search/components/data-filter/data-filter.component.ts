@@ -54,7 +54,7 @@ export class DataFilterComponent implements OnInit {
 
   gotToDataRetrival(): void {
     this.patientFilterService.setCurrentProject(this.currentProject)
-    this.router.navigate(['search/data-retrieval'], {})
+    this.router.navigate(['search/data-explorer'], {})
   }
 
   gotToProject(): void {
