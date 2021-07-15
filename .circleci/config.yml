@@ -27,10 +27,16 @@ workflows:
     jobs:
       - test:
           context: org-global
+      - security_scan
   build_and_test:
     jobs:
       - test:
           context: org-global
+      - security_scan:
+          filters:
+            branches:
+              only:
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master)$/
       - tag_version:
           requires:
             - test
@@ -46,9 +52,24 @@ workflows:
               only:
                 - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master|develop)$/
 
-
-
 jobs:
+  security_scan:
+    docker:
+      - image: cimg/openjdk:16.0.0-node
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run:
+          name: Run CVE scan by OWASP Dependency Check
+          command: |
+            wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v6.2.2/dependency-check-6.2.2-release.zip
+            mv dependency-check-6.2.2-release.zip ~
+            unzip ~/dependency-check-6.2.2-release.zip -d ~
+            ~/dependency-check/bin/dependency-check.sh -s ~/project --project num-portal-webapp -o ~/project -f HTML -f XML
+      - store_artifacts:
+          path: ~/project/dependency-check-report.html
   test:
     docker:
       # - image: circleci/node:14.9.0-buster
@@ -71,17 +92,7 @@ jobs:
       - run:
           name: Run CVE scan by npm audit
           command: npm audit --audit-level=critical
-      - run:
-          name: Run CVE scan by OWASP Dependency Check
-          command: |
-            sudo apt-get update && sudo apt-get install -y default-jdk
-            wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v6.2.2/dependency-check-6.2.2-release.zip
-            mv dependency-check-6.2.2-release.zip ~
-            unzip ~/dependency-check-6.2.2-release.zip -d ~
-            ~/dependency-check/bin/dependency-check.sh -s ~/project --project num-portal-webapp -o ~/project -f HTML -f XML
       - sonarcloud/scan
-      - store_artifacts:
-          path: ~/project/dependency-check-report.html
   tag_version:
     docker:
       - image: cimg/node:14.9.0
