@@ -39,7 +39,7 @@
       icon="file-download"
       (singleClick)="exportFile('csv')"
       [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
-      data-test="data-explorer__export-csv-button"
+      data-test="manager-data-explorer__export-csv-button"
     >
       {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
     </num-button>
@@ -49,7 +49,7 @@
       icon="file-download"
       (singleClick)="exportFile('json')"
       [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
-      data-test="data-explorer__export-json-button"
+      data-test="manager-data-explorer__export-json-button"
     >
       {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
     </num-button>
@@ -70,7 +70,7 @@
       [index]="i"
       [totalTables]="resultSet.length"
       class="num-margin-b-20"
-      data-test="data-explorer__table"
+      data-test="manager-data-explorer__table"
     ></num-result-table>
   </ng-container>
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { forkJoin, Subscription } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
@@ -32,7 +32,7 @@ import { AQL_LOADING_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
   templateUrl: './manager-data-explorer.component.html',
   styleUrls: ['./manager-data-explorer.component.scss'],
 })
-export class ManagerDataExplorerComponent implements OnInit {
+export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
   private subscriptions = new Subscription()
 
   aqbModel = new AqbUiModel()
@@ -56,6 +56,10 @@ export class ManagerDataExplorerComponent implements OnInit {
     this.prepareAql()
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
   goBack(): void {
     this.patientFilterService.setCurrentProject(this.currentProject)
     this.router.navigate(['search', 'data-filter'])
@@ -64,28 +68,30 @@ export class ManagerDataExplorerComponent implements OnInit {
   getData(): void {
     if (!!this.compiledQuery) {
       this.isDataSetLoading = true
-      this.patientFilterService
-        .getProjectData(
-          this.compiledQuery.q,
-          {
-            id: null,
-            cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
-            name: 'Preview Cohort',
-            projectId: null,
-            description: '',
-          },
-          this.currentProject.templates.map((template) => template.templateId)
-        )
-        .subscribe(
-          (result) => {
-            this.resultSet = result
-            this.isDataSetLoading = false
-          },
-          () => {
-            this.isDataSetLoading = false
-            this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+      this.subscriptions.add(
+        this.patientFilterService
+          .getProjectData(
+            this.compiledQuery.q,
+            {
+              id: null,
+              cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
+              name: 'Preview Cohort',
+              projectId: null,
+              description: '',
+            },
+            this.currentProject.templates.map((template) => template.templateId)
+          )
+          .subscribe(
+            (result) => {
+              this.resultSet = result
+              this.isDataSetLoading = false
+            },
+            () => {
+              this.isDataSetLoading = false
+              this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+            }
+          )
+      )
     }
   }
   private prepareAql(): void {
