@@ -144,6 +144,7 @@
   "HITS": "Treffer",
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
   "BUILD_QUERY": "Abfrage erstellen",
+  "AVAILABLE_EHR_TEMPLATES": "Verfügbare klinische Modelle",
   "SELECT_EHR_TEMPLATE": "Klinische Modelle auswählen",
   "SELECTED_EHR_TEMPLATES": "Ausgewählte klinische Modelle",
   "NO_SELECTED_EHR_TEMPLATE": "Noch keine Vorlage ausgewählt",
@@ -476,7 +477,7 @@
     "DATA_FILTER_SELECT_TEMPLATES": "Bitte wählen Sie ein oder mehrere klinischen Modelle aus",
     "DATA_FILTER_COHORT_SIZE": "Größe der definierten Kohorte: {{amount}}",
     "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
-    "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
+    "PATIENT_FILTER_DESCRIPTION": "Wählen Sie eine oder mehrere AQL Abfragen aus der Liste aus um die Grundlage der neuen Kohorte zu definieren."
   },
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
