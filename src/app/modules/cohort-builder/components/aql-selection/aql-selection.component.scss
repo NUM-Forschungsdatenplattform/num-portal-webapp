@@ -22,5 +22,11 @@
   &__meta {
     display: flex;
     align-items: center;
+    max-width: 84%;
+
+    &__name {
+      max-width: 84%;
+      word-wrap: break-word;
+    }
   }
 }
