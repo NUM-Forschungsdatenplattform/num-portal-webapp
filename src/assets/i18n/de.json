@@ -144,6 +144,7 @@
   "HITS": "Treffer",
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
   "BUILD_QUERY": "Abfrage erstellen",
+  "AVAILABLE_EHR_TEMPLATES": "Verfügbare klinische Modelle",
   "SELECT_EHR_TEMPLATE": "Klinische Modelle auswählen",
   "SELECTED_EHR_TEMPLATES": "Ausgewählte klinische Modelle",
   "NO_SELECTED_EHR_TEMPLATE": "Noch keine Vorlage ausgewählt",
