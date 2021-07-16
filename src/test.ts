@@ -55,3 +55,9 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
     return null
   },
 })
+
+Object.defineProperty(URL, 'createObjectURL', {
+  value: () => {
+    return 'https://test-link.com'
+  },
+})

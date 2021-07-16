@@ -32,6 +32,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Removale of phenotype-concept ([#233])
 - Refactoring of aql-parameter inputs ([#234])
 - Editing researchers in the project editor no longer saves the cohort ([#247])
+- Separated download file utils ([#251])
 
 ---
 
@@ -486,3 +487,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
 [#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
 [#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248
+[#251]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/251
