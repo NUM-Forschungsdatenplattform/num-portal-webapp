@@ -143,6 +143,7 @@
   "HITS": "Hits",
   "AVAILABLE_PROJECTS": "Available Projects",
   "BUILD_QUERY": "Build the Query",
+  "AVAILABLE_EHR_TEMPLATES": "Available Clinical Models",
   "SELECT_EHR_TEMPLATE": "Select Clinical Models",
   "SELECTED_EHR_TEMPLATES": "Selected Clinical Models",
   "NO_SELECTED_EHR_TEMPLATE": "No Clinical Models selected yet",
