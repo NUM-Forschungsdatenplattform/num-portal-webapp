@@ -23,14 +23,12 @@ import { LayoutModule } from 'src/app/layout/layout.module'
 import { DataExplorerProjectsComponent } from './components/data-explorer-projects/data-explorer-projects.component'
 import { DataExplorerProjectsTableComponent } from './components/data-explorer-projects-table/data-explorer-projects-table.component'
 import { SharedProjectsModule } from '../projects/shared-projects.module'
-import { ResultTableComponent } from './components/result-table/result-table.component'
 
 @NgModule({
   declarations: [
     DataExplorerComponent,
     DataExplorerProjectsComponent,
     DataExplorerProjectsTableComponent,
-    ResultTableComponent,
   ],
   imports: [
     CommonModule,

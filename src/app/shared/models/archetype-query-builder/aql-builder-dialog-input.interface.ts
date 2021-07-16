@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
+import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { AqlBuilderDialogMode } from './aql-builder-dialog-mode.enum'
 
 export interface IAqlBuilderDialogInput {

@@ -16,7 +16,7 @@
 
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -32,7 +32,6 @@ import { IDefinitionList } from '../../../../shared/models/definition-list.inter
 import { RouterTestingModule } from '@angular/router/testing'
 import { DataExplorerComponent } from './data-explorer.component'
 import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
@@ -50,11 +49,12 @@ import {
 } from './constants'
 import { IAqlBuilderDialogInput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
+import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -71,10 +71,6 @@ describe('DataExplorerComponent', () => {
     update: jest.fn(),
     get: jest.fn(),
   } as unknown) as CohortService
-
-  const phenotypeService = ({
-    get: jest.fn().mockImplementation(() => of()),
-  } as unknown) as PhenotypeService
 
   const adminService = ({
     getUsersByIds: jest.fn(),
@@ -105,7 +101,7 @@ describe('DataExplorerComponent', () => {
   } as unknown) as ToastMessageService
 
   const resolvedData: IProjectResolved = {
-    project: new ProjectUiModel(mockProject1, phenotypeService),
+    project: new ProjectUiModel(mockProject1),
     error: null,
   }
 
@@ -117,29 +113,20 @@ describe('DataExplorerComponent', () => {
     },
   } as unknown) as ActivatedRoute
 
-  @Component({ selector: 'num-project-editor-general-info', template: '' })
-  class StubGeneralInfoComponent {
-    @Input() form: any
-    @Input() isDisabled: boolean
-    @Input() generalInfoData: IDefinitionList[]
-  }
-  @Component({ selector: 'num-project-editor-connector', template: '' })
-  class StubProjectEditorConnector {
-    @Input() cohortNode: any
-    @Input() isLoadingComplete: boolean
-    @Input() isDisabled: boolean
-  }
-  @Component({ selector: 'num-project-editor-researchers', template: '' })
-  class ProjectEditorResearchers {
-    @Input() researchers: any[]
-    @Input() isDisabled: boolean
-    @Input() isLoadingComplete: boolean
-  }
+  @Component({ selector: 'num-project-editor-accordion', template: '' })
+  class StubProjectEditorAccordionComponent {
+    @Input() isResearchersFetched: boolean
+    @Input() isCohortsFetched: boolean
 
-  @Component({ selector: 'num-project-editor-templates', template: '' })
-  class ProjectEditorTemplatesStubComponent {
-    @Input() templates: any
-    @Input() isDisabled: boolean
+    @Input() isTemplatesDisabled: boolean
+    @Input() isResearchersDisabled: boolean
+    @Input() isGeneralInfoDisabled: boolean
+    @Input() isCohortBuilderDisabled: boolean
+
+    @Input() project: ProjectUiModel
+    @Input() projectForm: FormGroup
+    @Input() cohortGroup: CohortGroupUiModel
+    @Input() generalInfoData: IDefinitionList[]
   }
 
   @Component({ selector: 'num-result-table', template: '' })
@@ -154,11 +141,8 @@ describe('DataExplorerComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         DataExplorerComponent,
-        StubGeneralInfoComponent,
-        StubProjectEditorConnector,
-        ProjectEditorResearchers,
+        StubProjectEditorAccordionComponent,
         ButtonComponent,
-        ProjectEditorTemplatesStubComponent,
         ResultTableStubComponent,
       ],
       imports: [
@@ -242,7 +226,7 @@ describe('DataExplorerComponent', () => {
       component = fixture.componentInstance
 
       fixture.detectChanges()
-      component.resolvedData.project = new ProjectUiModel(mockProject1, phenotypeService)
+      component.resolvedData.project = new ProjectUiModel(mockProject1)
       expect(cohortService.get).toHaveBeenLastCalledWith(mockProject1.cohortId)
 
       fixture.whenStable().then(() => {

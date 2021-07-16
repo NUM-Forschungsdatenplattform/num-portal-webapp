@@ -1,0 +1,97 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<section role="region" fxLayout="column" fxFlex="100%">
+  <h2>{{ 'SEARCH.DATA_EXPLORER_HEADING' | translate }}</h2>
+
+  <p class="mat-body num-margin-b-40">{{ 'SEARCH.DATA_EXPLORER_DESCRIPTION' | translate }}</p>
+
+  <num-button
+    icon="play"
+    class="num-margin-b-60"
+    (singleClick)="getData()"
+    [isDisabled]="!isAqlPrepared"
+    >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+  >
+
+  <div
+    *ngIf="false && resultSet && resultSet.length && !isDataSetLoading"
+    fxFlex
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="start center"
+    class="num-margin-b-40"
+  >
+    <num-button
+      type="secondary"
+      icon="file-download"
+      (singleClick)="exportFile('csv')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      data-test="manager-data-explorer__export-csv-button"
+    >
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
+    </num-button>
+
+    <num-button
+      type="secondary"
+      icon="file-download"
+      (singleClick)="exportFile('json')"
+      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      data-test="manager-data-explorer__export-json-button"
+    >
+      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
+    </num-button>
+
+    <mat-spinner
+      *ngIf="isExportLoading"
+      color="accent"
+      [diameter]="20"
+      class="export-csv_spinner"
+    ></mat-spinner>
+  </div>
+
+  <ng-container *ngIf="!isDataSetLoading; else loading">
+    <num-result-table
+      *ngFor="let template of resultSet; let i = index"
+      [resultSet]="template"
+      [isDataSetLoading]="isDataSetLoading"
+      [index]="i"
+      [totalTables]="resultSet.length"
+      class="num-margin-b-20"
+      data-test="manager-data-explorer__table"
+    ></num-result-table>
+  </ng-container>
+
+  <ng-template #loading>
+    <mat-card class="mat-elevation-z1">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+        <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
+      </div>
+    </mat-card>
+  </ng-template>
+
+  <mat-divider class="num-d-w--1 num-d-c--g num-margin-b-40"></mat-divider>
+
+  <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">
+    <num-button
+      id="back-button"
+      type="secondary"
+      (singleClick)="goBack()"
+      [attr.data-test]="'manager-data-explorer__back-button'"
+      >{{ 'BUTTON.BACK' | translate }}</num-button
+    >
+  </div>
+</section>

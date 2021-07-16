@@ -15,7 +15,7 @@
  */
 
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -26,25 +26,33 @@ import { take } from 'rxjs/operators'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
+import { Subscription } from 'rxjs'
+import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
+import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 
 @Component({
   selector: 'num-aql-editor',
   templateUrl: './aql-editor.component.html',
   styleUrls: ['./aql-editor.component.scss'],
 })
-export class AqlEditorComponent implements OnInit {
+export class AqlEditorComponent implements OnDestroy, OnInit {
   resolvedData: IAqlResolved
   get aql(): AqlEditorUiModel {
     return this.resolvedData.aql
   }
 
   aqlForm: FormGroup
+  availableCategories: IAqlCategoryApi[]
+
   isEditMode: boolean
   isCurrentUserOwner: boolean
+
+  private subscriptions = new Subscription()
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private aqlCategoryService: AqlCategoryService,
     private aqlService: AqlService,
     private authService: AuthService,
     private toast: ToastMessageService
@@ -62,6 +70,18 @@ export class AqlEditorComponent implements OnInit {
     this.authService.userInfoObservable$
       .pipe(take(1))
       .subscribe((user) => (this.isCurrentUserOwner = this.aql?.owner?.id === user?.sub))
+
+    this.subscriptions.add(
+      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) => {
+        this.availableCategories = aqlCategories
+      })
+    )
+
+    this.aqlCategoryService.getAll().subscribe()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   generateForm(): void {
@@ -70,6 +90,7 @@ export class AqlEditorComponent implements OnInit {
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
       use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
       isPublic: new FormControl(this.aql?.publicAql),
+      category: new FormControl(this.aql?.categoryId || ''),
     })
   }
 
@@ -80,7 +101,8 @@ export class AqlEditorComponent implements OnInit {
       formValues.title,
       formValues.purpose,
       formValues.use,
-      formValues.isPublic
+      formValues.isPublic,
+      formValues.category
     )
   }
 

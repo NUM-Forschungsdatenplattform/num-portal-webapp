@@ -19,7 +19,6 @@ import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
-import { PhenotypeUiModel } from 'src/app/shared/models/phenotype/phenotype-ui.model'
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 
@@ -32,13 +31,13 @@ describe('CohortService', () => {
     id: null,
     operator: LogicalOperator.And,
     type: ConnectorNodeType.Group,
-    children: [new PhenotypeUiModel()],
+    children: [],
   }
 
   const mockCohort: ICohortApi = {
     id: null,
     name: 'Test Name',
-    studyId: 1, // Should change to projectId once the BE is refactored
+    projectId: 1,
     description: 'Test Description',
     cohortGroup: undefined,
   }
@@ -136,6 +135,19 @@ describe('CohortService', () => {
       service.update(mockCohort, id).subscribe()
       expect(httpClient.put).toHaveBeenCalledWith(request.url, request.body)
       expect(service.handleError).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('When a cohort is supposed to be executed within the context of templates', () => {
+    it('should call the api with the cohortGroup and the templateIds', () => {
+      const templateIds = ['template1', 'template2']
+      const request = {
+        url: `${appConfig.config.api.baseUrl}/cohort/size/template`,
+        body: { cohortDto: { cohortGroup: mockCohortGroup }, templateIds },
+      }
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of())
+      service.getSizeForTemplates(mockCohortGroup, templateIds).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
     })
   })
 })

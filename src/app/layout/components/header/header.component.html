@@ -54,20 +54,22 @@
     </h1>
 
     <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">
-      <a
-        class="no-focus"
-        mat-tab-link
-        *ngFor="let tab of currentTabNav"
-        [routerLink]="tab.routeTo"
-        routerLinkActive
-        #rla="routerLinkActive"
-        [routerLinkActiveOptions]="{ exact: true }"
-        [active]="tab.id === currentTabNavSelected"
-        [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
-        [attr.data-test]="'header__tab-nav__' + tab.translationKey"
-      >
-        {{ tab.translationKey | translate }}
-      </a>
+      <ng-container *ngFor="let tab of currentTabNav">
+        <a
+          class="no-focus"
+          mat-tab-link
+          [routerLink]="tab.routeTo"
+          routerLinkActive
+          #rla="routerLinkActive"
+          [routerLinkActiveOptions]="{ exact: true }"
+          [active]="tab.id === currentTabNavSelected"
+          [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
+          [attr.data-test]="'header__tab-nav__' + tab.translationKey"
+          *numUserHasRole="tab.roles"
+        >
+          {{ tab.translationKey | translate }}
+        </a>
+      </ng-container>
     </nav>
   </div>
 </section>

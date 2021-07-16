@@ -28,6 +28,7 @@ export class AqlEditorUiModel {
   organizationId: number
   owner: IUser
   publicAql: boolean
+  categoryId: number | null
 
   constructor(aql?: IAqlApi) {
     this.id = aql?.id || null
@@ -40,9 +41,16 @@ export class AqlEditorUiModel {
     this.organizationId = aql?.owner.organization?.id || undefined
     this.owner = aql?.owner || undefined
     this.publicAql = aql ? aql.publicAql : true
+    this.categoryId = aql ? aql.categoryId : null
   }
 
-  public convertToApi(name: string, purpose: string, use: string, publicAql: boolean): IAqlApi {
+  public convertToApi(
+    name: string,
+    purpose: string,
+    use: string,
+    publicAql: boolean,
+    categoryId: number | null
+  ): IAqlApi {
     return {
       id: this.id,
       name,
@@ -50,6 +58,7 @@ export class AqlEditorUiModel {
       purpose,
       use,
       publicAql,
+      categoryId,
     }
   }
 }

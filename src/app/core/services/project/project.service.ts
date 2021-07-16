@@ -61,8 +61,7 @@ export class ProjectService {
     appConfig: AppConfigService,
     private profileService: ProfileService
   ) {
-    // TODO we need to change the api from 'study' to 'project'
-    this.baseUrl = `${appConfig.config.api.baseUrl}/study`
+    this.baseUrl = `${appConfig.config.api.baseUrl}/project`
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$

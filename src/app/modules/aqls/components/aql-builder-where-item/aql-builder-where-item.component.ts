@@ -16,11 +16,10 @@
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { Subscription } from 'rxjs'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { AqbWhereItemUiModel } from '../../models/aqb/aqb-where-item-ui.model'
-import { AqbValueType } from '../../models/aqb/aqb-where-value-type.enum'
+import { AqbWhereItemUiModel } from '../../../../shared/models/aqb/aqb-where-item-ui.model'
+import { AqlParameterValueType } from '../../../../shared/models/aql/aql-parameter-value-type.enum'
 
 @Component({
   selector: 'num-aql-builder-where-item',
@@ -30,7 +29,7 @@ import { AqbValueType } from '../../models/aqb/aqb-where-value-type.enum'
 export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode
   private subscriptions = new Subscription()
-  AqbValueType = AqbValueType
+  AqlParameterValueType = AqlParameterValueType
   constructor() {}
 
   @Input()
@@ -42,21 +41,12 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
   @Output()
   deleteItem = new EventEmitter<string>()
 
-  valueForm: FormGroup
   parameterForm: FormGroup
 
   ngOnInit(): void {
-    this.valueForm = new FormGroup({
-      value: new FormControl(this.item.value, [Validators.required]),
-    })
-
     this.parameterForm = new FormGroup({
       value: new FormControl(this.item.parameterName, [Validators.required]),
     })
-
-    this.subscriptions.add(
-      this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
-    )
 
     this.subscriptions.add(
       this.parameterForm
@@ -67,27 +57,6 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
-  }
-
-  handleInputChange(value): void {
-    let newValue
-    if (value === null || value === undefined || !value.length || value === '-') {
-      newValue = value
-    } else if (this.item.valueType === AqbValueType.Number) {
-      newValue = (parseInt(value?.toString(), 10) || 0).toString()
-    } else if (this.item.valueType === AqbValueType.Double) {
-      const numberPattern = new RegExp('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$')
-      const isValid = numberPattern.test(value.replace(',', '.'))
-      newValue = isValid ? value : this.item.value
-    } else {
-      newValue = value
-    }
-
-    if (newValue !== value) {
-      this.patchValue(newValue)
-    } else {
-      this.item.value = newValue
-    }
   }
 
   handleParameterChange(value: string): void {
@@ -103,12 +72,6 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  patchValue(value): void {
-    this.valueForm.patchValue({
-      value,
-    })
-  }
-
   patchParameter(value): void {
     this.parameterForm.patchValue({
       value,
@@ -117,18 +80,5 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
 
   deleteSelf(): void {
     this.deleteItem.emit()
-  }
-
-  datePickerChange($event: MatDatepickerInputEvent<Date, any>): void {
-    const currentDate = this.item.value as Date
-    const hours = currentDate.getHours()
-    const minutes = currentDate.getMinutes()
-    const seconds = currentDate.getSeconds()
-    let newDate = $event.value
-    if (newDate === null) {
-      newDate = new Date()
-    }
-    newDate.setHours(hours, minutes, seconds, 0)
-    this.item.value = newDate
   }
 }

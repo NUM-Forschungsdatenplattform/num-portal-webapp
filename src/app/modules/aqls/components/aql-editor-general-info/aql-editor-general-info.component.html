@@ -69,6 +69,16 @@
           </mat-form-field>
         </section>
 
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label id="label-category" translate="FORM.CATEGORY"></mat-label>
+          <mat-select class="aql-category-select" formControlName="category">
+            <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
+              category.name[lang]
+            }}</mat-option>
+            <mat-option>{{ 'AQL_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <mat-checkbox
           id="isPublic"
           color="accent"

@@ -22,3 +22,4 @@ export type AqlTableColumns =
   | 'creationDate'
   | 'isPublic'
   | 'organization'
+  | 'category'

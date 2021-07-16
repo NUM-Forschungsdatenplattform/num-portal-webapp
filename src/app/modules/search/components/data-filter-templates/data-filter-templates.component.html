@@ -1,0 +1,97 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<div class="mat-body-strong num-margin-b-10" *ngIf="totalCohortSize">
+  {{ 'SEARCH.DATA_FILTER_COHORT_SIZE' | translate: { amount: totalCohortSize } }}
+</div>
+<mat-card
+  class="num-margin-b-40"
+  [ngClass]="{ 'templates-container-empty': !project.templates.length }"
+>
+  <ng-template #empty_state
+    ><p class="empty-state">
+      {{ 'SEARCH.DATA_FILTER_SELECT_TEMPLATES' | translate }}
+    </p></ng-template
+  >
+  <section role="list" *ngIf="project.templates.length; else empty_state">
+    <div
+      class="template"
+      role="listitem"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap="16px"
+      *ngFor="let template of project.templates; let index"
+    >
+      <div>{{ template.name }}</div>
+      <section
+        role="presentation"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxLayoutGap="8px"
+      >
+        <div class="determine-hits-title">
+          {{ 'HITS' | translate }}
+        </div>
+
+        <div class="determine-hits-count">
+          <ng-template #hits_loading>
+            <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+          </ng-template>
+
+          <span *ngIf="!isHitCounterLoading; else hits_loading">
+            {{
+              hitCounter[template.templateId] !== undefined ? hitCounter[template.templateId] : ''
+            }}</span
+          >
+        </div>
+
+        <button
+          color="accent"
+          mat-icon-button
+          (click)="deleteTemplate(index)"
+          [attr.aria-label]="'BUTTON.DELETE' | translate"
+          data-test="data-filter__templates__delete-template-button"
+        >
+          <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      </section>
+    </div>
+  </section>
+
+  <div
+    role="presentation"
+    fxLayout="row"
+    [fxLayoutAlign]="project.templates.length ? 'space-between' : 'center'"
+  >
+    <num-button
+      id="select-templates-button"
+      type="primary"
+      icon="plus"
+      (singleClick)="addTemplate()"
+      data-test="data-filter__templates__select-templates-button"
+      >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
+    >
+
+    <num-button
+      *ngIf="project.templates.length"
+      id="determine-hits-button"
+      type="secondary"
+      (singleClick)="determineHits.emit()"
+      data-test="data-filter__templates__determine-hits-button"
+      >{{ 'BUTTON.DETERMINE_HITS' | translate }}</num-button
+    >
+  </div>
+</mat-card>

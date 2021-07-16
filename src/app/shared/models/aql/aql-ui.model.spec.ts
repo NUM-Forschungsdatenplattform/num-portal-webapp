@@ -16,63 +16,110 @@
 
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { LogicalOperator } from '../logical-operator.enum'
-import { IPhenotypeQueryApi } from '../phenotype/phenotype-query-api.interface'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { AqlUiModel } from './aql-ui.model'
-import { IAqlPhenotypeApi } from './aql-phenotype.interface'
+import { IAqlCohortApi } from './aql-cohort.interface'
+import { ICohortGroupApi } from '../project/cohort-group-api.interface'
+import { IDictionary } from '../dictionary.interface'
+import { AqlParameterOperator } from './aql-parameter-operator.type'
 
 describe('AqlUiModel', () => {
   const testCase1 = {
     aql: mockAql1,
+    parameters: undefined,
     negated: undefined,
     expectNegated: false,
-    expectLength: 0,
-    expectConfigured: true,
+    expectParameterLength: 0,
+    expectParameterConfigured: true,
   }
   const testCase2 = {
     aql: mockAql3,
+    parameters: {
+      bodyHeight: 'testHeight',
+    },
     negated: true,
     expectNegated: true,
-    expectLength: 2,
-    expectConfigured: false,
+    expectParameterLength: 2,
+    expectParameterConfigured: false,
+  }
+  const testCase3 = {
+    aql: mockAql3,
+    parameters: {
+      bodyHeight: 'testHeight',
+      bodyWeight: 'testWeight',
+    },
+    negated: true,
+    expectNegated: true,
+    expectParameterLength: 2,
+    expectParameterConfigured: true,
+  }
+  const testCase4 = {
+    aql: mockAql3,
+    parameters: {
+      bodyHeight: 'testHeight',
+      bodyWeight: null,
+    },
+    negated: true,
+    expectNegated: true,
+    expectParameterLength: 2,
+    expectParameterConfigured: true,
   }
 
   describe('When the model gets constructed', () => {
-    test.each([testCase1, testCase2])('should set the correct properties', (testCase) => {
-      const model = new AqlUiModel(testCase.aql, testCase.negated)
+    test.each([testCase1, testCase2, testCase3, testCase4])(
+      'should set the correct properties',
+      (testCase) => {
+        const model = new AqlUiModel(testCase.aql, testCase.negated, testCase.parameters)
 
-      expect(model.id).toEqual(testCase.aql.id)
-      expect(model.name).toEqual(testCase.aql.name)
-      expect(model.query).toEqual(testCase.aql.query)
-      expect(model.isNegated).toEqual(testCase.expectNegated)
-      expect(model.parameter.length).toEqual(testCase.expectLength)
-      expect(model.areParameterConfigured).toEqual(testCase.expectConfigured)
-    })
+        expect(model.id).toEqual(testCase.aql.id)
+        expect(model.name).toEqual(testCase.aql.name)
+        expect(model.query).toEqual(testCase.aql.query)
+        expect(model.isNegated).toEqual(testCase.expectNegated)
+        expect(model.parameters.length).toEqual(testCase.expectParameterLength)
+        expect(model.areParameterConfigured).toEqual(testCase.expectParameterConfigured)
+        if (model.parameters.length) {
+          expect(model.parameters[0].value).toEqual(testCase.parameters[model.parameters[0].name])
+        }
+      }
+    )
   })
 
   describe('When the model is supposed to be converted to the Api Interface', () => {
     test.each([testCase1, testCase2])('should convert to the correct api interface', (testCase) => {
       const model = new AqlUiModel(testCase.aql, testCase.negated)
+      const firstParameter = model.parameters[0]?.name
+      const secondParameter = model.parameters[1]?.name
+      const secondParameterValue = 'test'
+
+      if (secondParameter) {
+        model.parameters[1].value = secondParameterValue
+      }
 
       const convertedModel = model.convertToApi()
 
-      const expectedAql: IAqlPhenotypeApi = {
+      const parameters: IDictionary<string, string> = {}
+
+      if (model.parameters.length) {
+        parameters[firstParameter] = undefined
+        parameters[secondParameter] = secondParameterValue
+      }
+
+      const expectedAql: IAqlCohortApi = {
         name: testCase.aql.name,
         id: testCase.aql.id,
         query: testCase.aql.query,
-        purpose: testCase.aql.purpose,
-        owner: testCase.aql.owner,
       }
 
-      const expectedAqlQuery: IPhenotypeQueryApi = {
+      const expectedAqlQuery: ICohortGroupApi = {
         type: ConnectorNodeType.Aql,
-        aql: expectedAql,
+        query: expectedAql,
+        parameters,
       }
 
       if (testCase.expectNegated === false) {
         expect(convertedModel).toEqual(expectedAqlQuery)
       } else {
-        const expectedResult: IPhenotypeQueryApi = {
+        const expectedResult: ICohortGroupApi = {
           type: ConnectorNodeType.Group,
           operator: LogicalOperator.Not,
           children: [expectedAqlQuery],
@@ -81,17 +128,18 @@ describe('AqlUiModel', () => {
       }
     })
 
-    it('should replace parameter variables with parameter values', () => {
+    it('should replace the parameter operator in the query', () => {
       const model = new AqlUiModel(mockAql3)
-      model.parameter.forEach((param, index) => {
-        param.value = 'test' + index
+      model.parameters.forEach((param) => {
+        param.operator = AqlParameterOperator['!=']
       })
 
       const apiAql = model.convertToApi()
-      const modelOfConversion = new AqlUiModel(apiAql.aql)
+      const modelOfConversion = new AqlUiModel(apiAql.query)
 
-      expect(apiAql.aql.query).not.toContain('$')
-      expect(modelOfConversion.parameter.length).toEqual(0)
+      expect(apiAql.query.query).not.toContain('<')
+      expect(apiAql.query.query).not.toContain('>')
+      expect(modelOfConversion.parameters.length).toEqual(2)
     })
   })
 })

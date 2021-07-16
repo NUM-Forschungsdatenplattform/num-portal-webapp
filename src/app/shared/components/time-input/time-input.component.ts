@@ -52,6 +52,7 @@ export class TimeInputComponent implements OnInit, OnDestroy {
   ]
 
   @Input() appearance = 'outline'
+  @Input() disabled: boolean
 
   currentDate: Date
   @Output() dateChange = new EventEmitter()
@@ -86,6 +87,10 @@ export class TimeInputComponent implements OnInit, OnDestroy {
   })
 
   ngOnInit(): void {
+    if (this.disabled) {
+      this.form.disable()
+    }
+
     this.subscriptions.add(
       this.form.valueChanges
         .pipe(debounceTime(this.debounceTime))

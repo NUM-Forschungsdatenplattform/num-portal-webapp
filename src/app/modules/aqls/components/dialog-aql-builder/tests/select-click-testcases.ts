@@ -1,7 +1,7 @@
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
-import { IAqbSelectClick } from '../../../models/aqb/aqb-select-click.interface'
-import { AqbSelectDestination } from '../../../models/aqb/aqb-select-destination.enum'
+import { IAqbSelectClick } from '../../../../../shared/models/aqb/aqb-select-click.interface'
+import { AqbSelectDestination } from '../../../../../shared/models/aqb/aqb-select-destination.enum'
 import { IContainmentTreeNode } from '../../../models/containment-tree-node.interface'
 
 export interface ISelectClickTest {

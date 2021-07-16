@@ -24,8 +24,8 @@ import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.se
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { IAqbSelectClick } from 'src/app/modules/aqls/models/aqb/aqb-select-click.interface'
-import { AqbUiModel } from 'src/app/modules/aqls/models/aqb/aqb-ui.model'
+import { IAqbSelectClick } from 'src/app/shared/models/aqb/aqb-select-click.interface'
+import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { DataExplorerConfigurations } from 'src/app/shared/models/data-explorer-configurations.enum'
@@ -46,6 +46,7 @@ import {
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { cloneDeep } from 'lodash-es'
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
 
 @Component({
   selector: 'num-data-explorer',
@@ -73,7 +74,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   isTemplatesDisabled = true
   isResearchersDisabled = true
   isGeneralInfoDisabled = true
-  isConnectorDisabled = true
+  isCohortBuilderDisabled = true
 
   generalInfoData: IDefinitionList[]
 
@@ -275,27 +276,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.projectService.exportFile(this.project.id, this.compiledQuery.q, format).subscribe(
         (response) => {
-          const filename =
-            format === 'csv'
-              ? `csv_export_${this.project.id}.zip`
-              : `json_export_${this.project.id}.json`
-
-          const downloadLink = document.createElement('a')
-          downloadLink.setAttribute(
-            'href',
-            format === 'csv'
-              ? URL.createObjectURL(new Blob([response], { type: 'application/zip' }))
-              : 'data:text/json;charset=utf-8,' + encodeURIComponent(response)
-          )
-
-          downloadLink.setAttribute('download', filename)
-          downloadLink.style.display = 'none'
-          document.body.appendChild(downloadLink)
-
+          downloadFile(this.project.id, format, response)
           this.isExportLoading = false
-
-          downloadLink.click()
-          downloadLink.remove()
         },
         () => {
           this.isExportLoading = false

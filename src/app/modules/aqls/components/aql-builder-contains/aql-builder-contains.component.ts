@@ -15,8 +15,8 @@
  */
 
 import { Component, Input, OnInit } from '@angular/core'
-import { AqbContainsCompositionUiModel } from '../../models/aqb/aqb-contains-composition-ui.model'
-import { AqbUiModel } from '../../models/aqb/aqb-ui.model'
+import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 @Component({
   selector: 'num-aql-builder-contains',

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -23,7 +23,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { AqbWhereItemUiModel } from '../../models/aqb/aqb-where-item-ui.model'
+import { AqbWhereItemUiModel } from '../../../../shared/models/aqb/aqb-where-item-ui.model'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 import { AqlBuilderWhereItemComponent } from './aql-builder-where-item.component'
@@ -32,9 +32,12 @@ describe('AqlBuilderWhereItemComponent', () => {
   let component: AqlBuilderWhereItemComponent
   let fixture: ComponentFixture<AqlBuilderWhereItemComponent>
 
-  @Component({ selector: 'num-time-input', template: '' })
-  class TimeInputStubComponent {
-    @Input() date: any
+  const valueChangeEmitter = new EventEmitter()
+  @Component({ selector: 'num-aql-parameter-inputs', template: '' })
+  class AqlParameterInputsComponent {
+    @Input() item: any
+    @Input() disabled: boolean
+    @Output() valueChange = valueChangeEmitter
   }
 
   const compositionId = 'openEHR-EHR-COMPOSITION.report.v1'
@@ -51,7 +54,7 @@ describe('AqlBuilderWhereItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereItemComponent, TimeInputStubComponent],
+      declarations: [AqlBuilderWhereItemComponent, AqlParameterInputsComponent],
       imports: [
         MaterialModule,
         BrowserAnimationsModule,

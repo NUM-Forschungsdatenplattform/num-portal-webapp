@@ -36,17 +36,17 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Willkommen bei CODEX",
+    "DATA_FILTER": "Datenfilter",
+    "PATIENT_FILTER": "Patientenfilter",
     "PROJECTS": "Projekte",
     "PROJECTS_OVERVIEW": "Projektübersicht",
     "PROJECTS_EDITOR": "Projekt-Editor",
     "DEFINE_PROJECT": "Projekt definieren",
     "DATA_RETRIEVAL": "Datenabruf",
-    "PHENOTYPES": "Phänotypen",
-    "PHENOTYPES_OVERVIEW": "Phänotypen-Übersicht",
-    "PHENOTYPES_EDITOR": "Phänotypen-Editor",
     "AQLS": "AQL Abfragen",
     "AQLS_OVERVIEW": "AQL Abfragen-Übersicht",
     "AQLS_EDITOR": "AQL Abfragen-Editor",
+    "AQLS_CATEGORIES_OVERVIEW": "AQL Kategorien",
     "USER_MANAGEMENT": "Benutzerverwaltung",
     "NEW_USERS": "Neue Benutzer",
     "ALL_USERS": "Genehmigte Benutzer",
@@ -58,6 +58,7 @@
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "CHARTS": "Diagramme",
     "PROFILE": "Profil",
+    "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden"
   },
@@ -68,13 +69,13 @@
   },
   "FILTER_CHIP": {
     "MY_AQLS": "Meine",
-    "MY_PHENOTYPES": "Meine",
     "MY_PROJECTS": "Meine",
     "ORGANIZATION": "Meine Organisation",
     "ALL": "Alle",
     "ARCHIVED": "Archiviert"
   },
   "AQL": {
+    "INFO_DIALOG_TITLE": "Informationen zum AQL Query",
     "AS": "als",
     "CREATE_AQL": "AQL Abfrage erstellen",
     "CREATE_AQL_CONTENT": "Auf dieser Seite können Sie eine AQL Abfrage erstellen. Zum Erstellen der Abfrage steht Ihnen ein AQL Builder zur Verfügung.\n\n*Pflichtfeld",
@@ -82,10 +83,8 @@
     "BUILD_QUERY_CONTENT": "Erstellen Sie eine Abfrage im AQL Builder. Danach können Sie die Abfrage im untenstehenden Editor bearbeiten.",
     "SEARCH_AQLS": "AQL suchen",
     "SELECT_AT_LEAST_ONE": "Bitte wählen sie eine oder mehrere Abfragen aus",
-    "CONFIGURE_AQL_DIALOG_HEADER": "AQL Abfrage konfigurieren",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Abfragen erstellen",
     "AVAILABLE_AQLS": "Verfügbare AQL Abfragen",
-    "CONNECT_AQL": "AQL Abfragen zusammenstellen",
     "SAVE_SUCCESS_MESSAGE": "Ihre AQL-Abfrage wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Ihre AQL-Abfrage konnte nicht erstellt werden.",
     "DELETE_AQL_SUCCESS_MESSAGE": "Die AQL Abfrage wurde erfolgreich gelöscht.",
@@ -98,23 +97,6 @@
     "VALIDATION_SUCCESS": "Die Syntax der AQL Abfrage ist valide",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst die AQL Abfrage definieren, um ein valides Ergebnis zu erhalten.",
-      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
-      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
-    }
-  },
-  "PHENOTYPE": {
-    "SEARCH_PHENOTYPES": "Phänotypen suchen",
-    "CREATE_PHENOTYPE": "Phänotyp erstellen",
-    "PHENOTYPES_EDITOR_CONTENT": "Auf dieser Seite können Sie einen neuen Phänotypen definieren. Phänotypen bilden die Grundlage für die Kohorten-Definition in einem Projekt.",
-    "PHENOTYPES_EDITOR_MANDATORY": "*Pflichtfeld",
-    "PHENOTYPES_OVERVIEW_CONTENT": "Erstellen Sie neue Phänotypen, die als Grundlage für die Kohorten-Definition in einem Projekt genutzt werden können.",
-    "SAVE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich erstellt.",
-    "SAVE_ERROR_MESSAGE": "Der Phänotyp konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Bitte mindestens eine AQL Abfrage verwenden.",
-    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "Der Phänotyp wurde erfolgreich gelöscht.",
-    "DELETE_PHENOTYPE_ERROR_MESSAGE": "Der Phänotyp konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
-    "HITS": {
-      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst alle Parameter in den AQL Abfragen ausfüllen, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
       "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
     }
@@ -159,14 +141,9 @@
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
   "PROVIDE_URL_TEXT": "Bitte geben Sie einen Link-Text ein",
   "CONFIGURE": "Konfigurieren",
-  "SUMMARY": "Zusammenfassung",
   "HITS": "Treffer",
-  "EDIT_PHENOTYPE_PARAMETER": "Details des Phänotyps",
-  "AVAILABLE_PHENOTYPES": "Verfügbare Phänotypen",
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
   "BUILD_QUERY": "Abfrage erstellen",
-  "DEFINE_COHORT": "Kohorte definieren",
-  "DEFINE_COHORT_CONTENT": "Bestimmen Sie mit der Definition der Kohorte auf welche Personengruppe(n) das Projekt begrenzt werden soll. Die Kohorte kann von den Forscher im Rahmen des Datenabrufs später nicht geänderte werden. ",
   "AVAILABLE_EHR_TEMPLATES": "Verfügbare klinische Modelle",
   "SELECT_EHR_TEMPLATE": "Klinische Modelle auswählen",
   "SELECTED_EHR_TEMPLATES": "Ausgewählte klinische Modelle",
@@ -234,12 +211,8 @@
     "CLEAR_ENTRY": "Eingabe löschen",
     "REQUEST_APPROVAL": "Genehmigung anfragen",
     "APPLY_SELECTION": "Auswahl Übernehmen",
-    "DELETE_FROM_LIST": "Aus Liste löschen",
-    "CONFIRM_CHANGES": "Änderungen übernehmen",
-    "ADD_QUERY": "Abfrage hinzufügen",
     "FORMAT_QUERY": "Abfrage formatieren",
     "VALIDATE_QUERY": "Überprüfen",
-    "ADD_PHENOTYPE": "Phänotyp hinzufügen",
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
     "ADD_TEMPLATE": "Vorlage hinzufügen",
@@ -247,7 +220,6 @@
     "ADD_INFO_CARD": "Info-Kachel erstellen",
     "DELETE_GROUP": "Gruppe löschen",
     "DELETE_COMPOSITION": "Composition löschen",
-    "CREATE_PHENOTYPE": "Phänotyp erstellen",
     "SAVE_QUERY": "AQL Abfrage speichern",
     "SAVE_AS_CLONE": "Als Klon speichern",
     "SELECT": "Auswählen",
@@ -261,6 +233,7 @@
     "CLONE": "Klonen",
     "EDIT_RESEARCHERS": "Forscher bearbeiten",
     "PUBLISH": "Projekt starten",
+    "PUBLISH_CONTENT": "Inhalt veröffentlichen",
     "PUBLISH_LINKS": "Links veröffentlichen",
     "WITHDRAW_APPROVAL": "Anfrage zurückziehen",
     "SEND_COMMENT": "Kommentar senden",
@@ -271,16 +244,24 @@
     "PROJECT_APPROVAL_DENY": "Projekt ablehnen",
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
+    "APPLY_CONFIGURATION": "Konfiguration übernehmen",
     "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
     "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
+    "DETERMINE_HITS": "Treffer Ermitteln",
     "MOVE_UP": "Nach oben verschieben",
     "MOVE_DOWN": "Nach unten verschieben",
-    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen"
+    "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen",
+    "CREATE_AQL_CATEGORY": "Kategorie erstellen",
+    "MORE_INFO": "Mehr Informationen",
+    "NEXT_STEP": "Nächster Schritt",
+    "PREVIOUS_STEP": "Schritt zurück",
+    "START_DATA_RETRIEVAL": "Datenabruf starten"
   },
   "PROJECT": {
+    "DEFINE_COHORT": "Kohorte definieren",
     "SEARCH_PROJECTS": "Projekt suchen",
     "DEFINE_PROJECT_CONTENT_P1": "Auf dieser Seite können Sie Ihr Projekt definieren. Hierzu sind verschiedene Angaben notwendig. Sie müssen alle mit einem Sternchen gekennzeichneten Felder ausfüllen, bevor Sie das Projekt zur Genehmigung absenden können.",
     "DEFINE_PROJECT_CONTENT_P2": "Zusätzlich haben Sie die Möglichkeit, Kommentare zu verfassen und zu lesen. Diese dienen dem Informationsaustausch zwischen Ihnen und den Projektprüfer.",
@@ -340,7 +321,7 @@
     "CHANGE_STATUS_ERROR": "Der Projektstatus konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
     "SAVE_SUCCESS_MESSAGE": "Die Projekt wurde erfolgreich gespeichert.",
     "SAVE_ERROR_MESSAGE": "Die Projekt konnte nicht erstellt werden. Bitte versuchen Sie es erneut.",
-    "NO_PHENOTYPE_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen Phänotypen in der Kohorte.",
+    "NO_AQL_ERROR_MESSAGE": "Die Anfrage konnte nicht gestellt werden. Bitte verwenden Sie mindestens einen AQL Query in der Kohorte.",
     "TITLE": "Projekttitel",
     "GOAL": "Ziel",
     "FIRST_HYPOTHESES": "Primäre Hypothese",
@@ -364,7 +345,8 @@
     "STUDY_COORDINATOR": "Projektleiter",
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
-    "CONTENT_ADMIN": "Content-Admin"
+    "CONTENT_ADMIN": "Content-Admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",
@@ -377,8 +359,8 @@
     "PUBLISH_PROJECT_CONTENT": "Nachdem Sie das Projekt gestartet haben, können Sie nur noch die Liste der Forscher bearbeiten oder das Projekt beenden.\n\nAlle ausgewählten Forscher können nach dem Projektstart mit dem Datenabruf des Projekts beginnen.",
     "DELETE_AQL_TITLE": "Wollen Sie die Abfrage wirklich löschen?",
     "DELETE_AQL_CONTENT": "Das Löschen der Abfrage kann nicht rückgängig gemacht werden.",
-    "DELETE_PHENOTYPE_TITLE": "Wollen Sie den Phänotyp wirklich löschen?",
-    "DELETE_PHENOTYPE_CONTENT": "Die Löschung des Phänotyps kann nicht rückgängig gemacht werden.",
+    "DELETE_AQL_CATEGORY_TITLE": "Wollen Sie die Abfragenkategorie wirklich löschen?",
+    "DELETE_AQL_CATEGORY_CONTENT": "Das Löschen der Abfragenkategorie kann nicht rückgängig gemacht werden.",
     "APPROVE_PROJECT_TITLE": "Wollen Sie das Projekt jetzt genehmigen?",
     "APPROVE_PROJECT_CONTENT": "Nachdem Sie das Projekt genehmigt haben, kann der Projektleiter das Projekt starten, damit die Forscher die Daten des Projekts abrufen können.",
     "ARCHIVE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich archivieren?",
@@ -440,6 +422,17 @@
     "MAIL_DOMAIN": "Mail-Domänen"
   },
   "CHARTS": {
+    "COHORT_AGE": {
+      "TITLE": "Anzahl Datensätze pro Altersgruppe",
+      "XLABEL": "Jahre",
+      "YLABEL": "Tsd."
+    },
+    "COHORT_HOSPITALS": {
+      "TITLE": "Anzahl Datensätze pro Einrichtung",
+      "XLABEL": "Klinik",
+      "YLABEL": "Tsd.",
+      "DROPDOWN": "Bitte Klinik auswählen..."
+    },
     "SOFA_SCORE": {
       "TITLE": "Anzahl Patienten pro SOFA-Score (gruppiert)",
       "XLABEL": "SOFA-Score",
@@ -457,5 +450,43 @@
     "HOUR_SHORT": "Std.",
     "MINUTE_SHORT": "Min.",
     "SECOND_SHORT": "Sek."
+  },
+  "AQL_CATEGORIES": {
+    "CREATE_HEADER": "AQL Kategorie anlegen",
+    "CREATE_DESCRIPTION_BUTTON": "Zum Anlegen einer neuen AQL Kategorie klicken Sie bitte auf den nachfolgenden Button.",
+    "CREATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich gespeichert..",
+    "CREATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "DE_NAME": "Deutsche Bezeichnung",
+    "DEFINE_CATEGORY": "Beschreibung der Kategorie eingeben",
+    "DELETE_ERROR_MESSAGE": "Die AQL Kategorie konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "DELETE_SUCCESS_MESSAGE": "Die AQL Kategorie wurde erfolgreich gelöscht.",
+    "EDIT_DIALOG_TITLE": "Kategorie bearbeiten",
+    "EN_NAME": "Englische Bezeichnung",
+    "OVERVIEW_DESCRIPTION": "In der folgenden Liste sehen Sie alle AQL Kategorien im Portal, für deren Bearbeitung Sie berechtigt sind. Zum Bearbeiten einer Kategorie wählen Sie diese aus der Liste aus.",
+    "TABLE_TITLE": "Verfügbare AQL Kategorien",
+    "UNCATEGORIZED": "Ohne Kategorie",
+    "UPDATE_SUCCESS_MESSAGE": "AQL Kategorie erfolgreich editiert.",
+    "UPDATE_ERROR_MESSAGE": "AQL Kategorie konnte nicht editiert werden. Bitte versuchen Sie es erneut."
+  },
+  "SEARCH": {
+    "DATA_EXPLORER_HEADING": "Projektdaten abrufen",
+    "DATA_EXPLORER_DESCRIPTION": "Rufen Sie auf dieser Seite die Projektdaten ab, die im Rahmen Ihrer vorherigen Auswahl im Patienten- und Datenfilter verfügbar sind.",
+    "DATA_FILTER_HEADING": "Auswahl der klinischen Modelle",
+    "DATA_FILTER_DESCRIPTION": "Die klinischen Modelle basieren auf dem Datensatz GECCO 83. Wählen Sie die gewünschten Elemente aus dem Datensatz aus, die als Grundlage für Ihr Projekt dienen sollen.",
+    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "Sie haben die Möglichkeit, mit der die Konfiguration der Patienten- und Datenfilter direkt einen Projektantrag zu stellen. Dazu werden die definierte Kohorte und die ausgewählten klinischen Modelle in ein neues Projekt übertragen.",
+    "DATA_FILTER_SELECT_TEMPLATES": "Bitte wählen Sie ein oder mehrere klinischen Modelle aus",
+    "DATA_FILTER_COHORT_SIZE": "Größe der definierten Kohorte: {{amount}}",
+    "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
+    "PATIENT_FILTER_DESCRIPTION": "Wählen Sie eine oder mehrere AQL Abfragen aus der Liste aus um die Grundlage der neuen Kohorte zu definieren."
+  },
+  "IMPRINT": {
+    "PUBLIC_KEY_LINKS": {
+      "INTRO": "Hier finden Sie die Links zu den jeweiligen Öffentlichen Schlüsseln für die sichere Übertragung der Daten an Prod, bzw. Pre-Prod.",
+      "HEADER": "Öffentliche Schlüssel",
+      "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
+      "LINK_PRE_PROD_DESCRIPTION": "Öffentlicher Schlüssel für Pre-Prod",
+      "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
+      "LINK_PROD_DESCRIPTION": "Öffentlicher Schlüssel für Prod"
+    }
   }
 }

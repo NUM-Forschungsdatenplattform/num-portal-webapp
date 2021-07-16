@@ -1,0 +1,49 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<div
+  class="raised search-cohort-graphs-root num-margin-b-40"
+  id="search-cohort-graphs"
+  fxLayout="column"
+>
+  <num-editor-determine-hits
+    class="num-margin-b-10"
+    [content]="determineHits"
+    (clicked)="determine.emit()"
+  ></num-editor-determine-hits>
+
+  <mat-divider class="num-divider-color--grey num-divider-width--1 num-margin-b-20"></mat-divider>
+
+  <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px" *ngIf="previewData.count > 0">
+    <num-vertical-bar-chart
+      color="#5F0D22"
+      [data]="previewData.ages"
+      fxFlex="50%"
+      fxFlex.lt-lg="100%"
+      [graphName]="'CHARTS.COHORT_AGE.TITLE' | translate"
+      [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
+      [yAxisName]="'CHARTS.COHORT_AGE.YLABEL' | translate"
+    ></num-vertical-bar-chart>
+    <num-vertical-bar-chart
+      color="#EB586A"
+      [data]="previewData.hospitals"
+      fxFlex="50%"
+      fxFlex.lt-lg="100%"
+      [graphName]="'CHARTS.COHORT_HOSPITALS.TITLE' | translate"
+      [xAxisName]="'CHARTS.COHORT_HOSPITALS.XLABEL' | translate"
+      [yAxisName]="'CHARTS.COHORT_HOSPITALS.YLABEL' | translate"
+    ></num-vertical-bar-chart>
+  </div>
+</div>

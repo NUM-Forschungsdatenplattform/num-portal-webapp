@@ -15,7 +15,6 @@
  */
 
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
-import { PhenotypeService } from 'src/app/core/services/phenotype/phenotype.service'
 import { ProjectCategory } from 'src/app/modules/projects/models/project-category.enum'
 import { IDefinitionList } from '../definition-list.interface'
 import { DefinitionType } from '../definition-type.enum'
@@ -52,7 +51,7 @@ export class ProjectUiModel {
   status: ProjectStatus
   templates: IProjectTemplateInfoApi[]
 
-  constructor(projectApi?: IProjectApi, private phenotypeService?: PhenotypeService) {
+  constructor(projectApi?: IProjectApi) {
     this.id = projectApi?.id || null
     this.description = projectApi?.description || undefined
     this.simpleDescription = projectApi?.simpleDescription || undefined
@@ -80,7 +79,7 @@ export class ProjectUiModel {
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {
-    this.cohortGroup = new CohortGroupUiModel(undefined, this.phenotypeService)
+    this.cohortGroup = new CohortGroupUiModel()
     if (!cohortGroup) {
       return
     }
@@ -107,7 +106,7 @@ export class ProjectUiModel {
       secondHypotheses: formValues?.secondHypotheses || this.secondHypotheses,
       keywords: formValues?.keywords || this.keywords,
       categories: formValues?.categories || this.categories,
-      startDate: DateHelperService.getDateString(formValues.startDate || this.startDate),
+      startDate: DateHelperService.getDateString(formValues?.startDate || this.startDate),
       endDate: DateHelperService.getDateString(formValues?.endDate || this.endDate),
       financed: formValues?.financed,
       usedOutsideEu: formValues?.usedOutsideEu,

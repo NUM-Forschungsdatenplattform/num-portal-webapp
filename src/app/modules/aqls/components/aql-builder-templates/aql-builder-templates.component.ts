@@ -17,8 +17,8 @@
 import { AfterViewChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { IAqbSelectClick } from '../../models/aqb/aqb-select-click.interface'
-import { AqbSelectDestination } from '../../models/aqb/aqb-select-destination.enum'
+import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 
 @Component({
   selector: 'num-aql-builder-templates',

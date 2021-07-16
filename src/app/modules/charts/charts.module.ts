@@ -25,6 +25,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 @NgModule({
   declarations: [ChartsComponent, BarChartComponent],
+  exports: [ChartsComponent, BarChartComponent],
   imports: [CommonModule, ChartsRoutingModule, NgxChartsModule, SharedModule, LayoutModule],
 })
 export class ChartsModule {}

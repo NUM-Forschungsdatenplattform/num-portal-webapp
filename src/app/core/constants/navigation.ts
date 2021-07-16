@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import INavItem from '../../layout/models/nav-item.interface'
 
 export const mainNavItems: INavItem[] = [
@@ -21,6 +22,32 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'home',
     icon: 'num-welcome',
     translationKey: 'NAVIGATION.DASHBOARD',
+  },
+  {
+    routeTo: 'search',
+    icon: 'search',
+    translationKey: 'NAVIGATION.SEARCH',
+    tabNav: [
+      {
+        routeTo: 'search',
+        id: 'patient-filter',
+        translationKey: 'NAVIGATION.PATIENT_FILTER',
+        disabled: true,
+      },
+      {
+        routeTo: 'search/data-filter',
+        id: 'data-filter',
+        translationKey: 'NAVIGATION.DATA_FILTER',
+        disabled: true,
+      },
+      {
+        routeTo: 'search/data-explorer',
+        id: 'data-explorer',
+        translationKey: 'NAVIGATION.DATA_RETRIEVAL',
+        roles: [AvailableRoles.Manager],
+        disabled: true,
+      },
+    ],
   },
   {
     routeTo: 'projects',
@@ -58,23 +85,6 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
-    routeTo: 'phenotypes',
-    icon: 'cubes',
-    translationKey: 'NAVIGATION.PHENOTYPES',
-    tabNav: [
-      {
-        routeTo: 'phenotypes',
-        id: 'overview',
-        translationKey: 'NAVIGATION.PHENOTYPES_OVERVIEW',
-      },
-      {
-        routeTo: 'phenotypes/new/editor',
-        id: 'editor',
-        translationKey: 'NAVIGATION.PHENOTYPES_EDITOR',
-      },
-    ],
-  },
-  {
     routeTo: 'aqls',
     icon: 'dna',
     translationKey: 'NAVIGATION.AQLS',
@@ -88,6 +98,12 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'aqls/new/editor',
         id: 'editor',
         translationKey: 'NAVIGATION.AQLS_EDITOR',
+      },
+      {
+        routeTo: 'aqls/categories',
+        id: 'aql-categories',
+        translationKey: 'NAVIGATION.AQLS_CATEGORIES_OVERVIEW',
+        roles: [AvailableRoles.Manager],
       },
     ],
   },

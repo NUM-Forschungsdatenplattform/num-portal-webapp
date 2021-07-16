@@ -36,17 +36,17 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Welcome to CODEX",
+    "DATA_FILTER": "Data filter",
+    "PATIENT_FILTER": "Patients Filter",
     "PROJECTS": "Projects",
     "PROJECTS_OVERVIEW": "Project Overview",
     "PROJECTS_EDITOR": "Project Editor",
     "DEFINE_PROJECT": "Define Project",
     "DATA_RETRIEVAL": "Data Retrieval",
-    "PHENOTYPES": "Phenotypes",
-    "PHENOTYPES_OVERVIEW": "Phenotypes Overview",
-    "PHENOTYPES_EDITOR": "Phenotype Editor",
     "AQLS": "AQL Queries",
     "AQLS_OVERVIEW": "AQL Queries Overview",
     "AQLS_EDITOR": "AQL Query Editor",
+    "AQLS_CATEGORIES_OVERVIEW": "AQL Categories",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -58,6 +58,7 @@
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "CHARTS": "Charts",
     "PROFILE": "Profile",
+    "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in"
   },
@@ -68,13 +69,13 @@
   },
   "FILTER_CHIP": {
     "MY_AQLS": "My AQLs",
-    "MY_PHENOTYPES": "My phenotypes",
     "MY_PROJECTS": "My projects",
     "ORGANIZATION": "My organization",
     "ALL": "All",
     "ARCHIVED": "Archived"
   },
   "AQL": {
+    "INFO_DIALOG_TITLE": "Information about the AQL Query",
     "AS": "as",
     "CREATE_AQL": "Create AQL Query",
     "CREATE_AQL_CONTENT": "On this page you can create an AQL query. To create the query an AQL Builder is available.\n\n*Mandatory field",
@@ -82,10 +83,8 @@
     "BUILD_QUERY_CONTENT": "Create the query in the AQL Builder. Afterwards you can edit the query in the editor below.",
     "SEARCH_AQLS": "AQL search",
     "SELECT_AT_LEAST_ONE": "Please select one or more Queries",
-    "CONFIGURE_AQL_DIALOG_HEADER": "Configure AQL Query",
     "AQL_BUILDER_DIALOG_HEADER": "AQL Query Builder",
     "AVAILABLE_AQLS": "Available AQL Queries",
-    "CONNECT_AQL": "Assemble AQL Queries",
     "SAVE_SUCCESS_MESSAGE": "Your AQL Query was created successfully.",
     "SAVE_ERROR_MESSAGE": "Failed to create your AQL Query.",
     "DELETE_AQL_SUCCESS_MESSAGE": "The AQL query was successfully deleted.",
@@ -98,23 +97,6 @@
     "VALIDATION_SUCCESS": "The syntax of the AQL Query is valid",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "You should first define the AQL Query to get a valid result.",
-      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
-      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
-    }
-  },
-  "PHENOTYPE": {
-    "SEARCH_PHENOTYPES": "Search Phenotype",
-    "CREATE_PHENOTYPE": "Create Phenotype",
-    "PHENOTYPES_EDITOR_CONTENT": "On this page you can define a new phenotype. Phenotypes are the basis for the cohort definition in a project.",
-    "PHENOTYPES_EDITOR_MANDATORY": "*Mandatory  field",
-    "PHENOTYPES_OVERVIEW_CONTENT": "Create new phenotypes that can be used as the basis for cohort definition in a project.",
-    "SAVE_SUCCESS_MESSAGE": "The phenotype was created successfully.",
-    "SAVE_ERROR_MESSAGE": "The phenotype could not be created. Please try again.",
-    "SAVE_NO_AQL_ERROR_MESSAGE": "Please provide at least one AQL Query.",
-    "DELETE_PHENOTYPE_SUCCESS_MESSAGE": "The phenotype has been deleted successfully.",
-    "DELETE_PHENOTYPE_ERROR_MESSAGE": "The phenotype could not be deleted. Please try again.",
-    "HITS": {
-      "MESSAGE_SET_ALL_PARAMETERS": "You should first fill in all parameters in the AQL queries to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
       "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
     }
@@ -158,14 +140,9 @@
   "PROVIDE_URL": "Please enter a URL",
   "PROVIDE_URL_TEXT": "Please enter a link text",
   "CONFIGURE": "Configure",
-  "SUMMARY": "Summary",
   "HITS": "Hits",
-  "EDIT_PHENOTYPE_PARAMETER": "Details of the Phenotype",
-  "AVAILABLE_PHENOTYPES": "Available Phenotypes",
   "AVAILABLE_PROJECTS": "Available Projects",
   "BUILD_QUERY": "Build the Query",
-  "DEFINE_COHORT": "Define Cohort",
-  "DEFINE_COHORT_CONTENT": "Use the cohort definition to determine which group of people the project should be limited to. The cohort cannot be changed later by the researcher during the data retrieval process. ",
   "AVAILABLE_EHR_TEMPLATES": "Available Clinical Models",
   "SELECT_EHR_TEMPLATE": "Select Clinical Models",
   "SELECTED_EHR_TEMPLATES": "Selected Clinical Models",
@@ -233,12 +210,8 @@
     "CLEAR_ENTRY": "Clear entry",
     "REQUEST_APPROVAL": "Request approval",
     "APPLY_SELECTION": "Apply Selection",
-    "DELETE_FROM_LIST": "Delete from list",
-    "CONFIRM_CHANGES": "Confirm changes",
-    "ADD_QUERY": "Add query",
     "FORMAT_QUERY": "Format query",
     "VALIDATE_QUERY": "Validate",
-    "ADD_PHENOTYPE": "Add phenotype",
     "ADD_TEMPLATE": "Add Template",
     "ADD_RESEARCHERS": "Add researchers",
     "ADD_GROUP": "Add group",
@@ -246,7 +219,6 @@
     "ADD_INFO_CARD": "Create info tile",
     "DELETE_GROUP": "Delete group",
     "DELETE_COMPOSITION": "Delete composition",
-    "CREATE_PHENOTYPE": "Create Phenotype",
     "SAVE_QUERY": "Save AQL Query",
     "SAVE_AS_CLONE": "Save as clone",
     "SELECT": "Select",
@@ -260,6 +232,7 @@
     "CLONE": "Clone",
     "EDIT_RESEARCHERS": "Edit researchers",
     "PUBLISH": "Start project",
+    "PUBLISH_CONTENT": "Publish content",
     "PUBLISH_LINKS": "Publish links",
     "WITHDRAW_APPROVAL": "Withdraw approval request",
     "SEND_COMMENT": "Send comment",
@@ -270,16 +243,24 @@
     "PROJECT_APPROVAL_DENY": "Deny PROJECT",
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
+    "APPLY_CONFIGURATION": "Apply configuration",
     "CUSTOMIZE_CONFIGURATION": "Customize configuration",
     "RESET_CUSTOMIZATION": "Reset configuration",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
+    "DETERMINE_HITS": "Determine Hits",
     "MOVE_UP": "Move up",
     "MOVE_DOWN": "Move down",
-    "DRAG_TO_MOVE": "Drag to move"
+    "DRAG_TO_MOVE": "Drag to move",
+    "CREATE_AQL_CATEGORY": "Create Category",
+    "MORE_INFO": "More Info",
+    "NEXT_STEP": "Next Step",
+    "PREVIOUS_STEP": "Previous Step",
+    "START_DATA_RETRIEVAL": "Data Retrieval"
   },
   "PROJECT": {
+    "DEFINE_COHORT": "Define Cohort",
     "SEARCH_PROJECTS": "Search Project",
     "DEFINE_PROJECT_CONTENT_P1": "On this page you can define your project. Various information is required for this purpose. You must fill in all fields marked with an asterisk before you can send the project for approval.",
     "DEFINE_PROJECT_CONTENT_P2": "Additionally, you have the possibility to write and read comments. These are used to exchange information between you and the project approver.",
@@ -339,7 +320,7 @@
     "CHANGE_STATUS_ERROR": "The status of the project could not be updated. Please try again.",
     "SAVE_SUCCESS_MESSAGE": "The project has been saved successfully.",
     "SAVE_ERROR_MESSAGE": "The project could not be saved. Please try again.",
-    "NO_PHENOTYPE_ERROR_MESSAGE": "The approval request could not be sent. Please provide at least one Phenotype in the cohort section.",
+    "NO_AQL_ERROR_MESSAGE": "The approval request could not be sent. Please provide at least one AQL Query in the cohort section.",
     "TITLE": "Project title",
     "GOAL": "Goal",
     "FIRST_HYPOTHESES": "Primary Hypothesis",
@@ -363,7 +344,8 @@
     "STUDY_COORDINATOR": "Project lead",
     "SUPER_ADMIN": "Super admin",
     "STUDY_APPROVER": "Project approver",
-    "CONTENT_ADMIN": "Content admin"
+    "CONTENT_ADMIN": "Content admin",
+    "MANAGER": "Manager"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",
@@ -376,8 +358,8 @@
     "PUBLISH_PROJECT_CONTENT": "After you have started the project, you can only edit the list of researchers or end the project.\n\nAll selected researchers can start retrieving data of the project after the project start.",
     "DELETE_AQL_TITLE": "Do you really want to delete the query?",
     "DELETE_AQL_CONTENT": "The deletion of the query cannot be undone.",
-    "DELETE_PHENOTYPE_TITLE": "Do you really want to delete the phenotype?",
-    "DELETE_PHENOTYPE_CONTENT": "The deletion of the phenotype cannot be undone.",
+    "DELETE_AQL_CATEGORY_TITLE": "Do you really want to delete the query category?",
+    "DELETE_AQL_CATEGORY_CONTENT": "The deletion of the query category cannot be undone.",
     "APPROVE_PROJECT_TITLE": "Do you want to approve the project now?",
     "APPROVE_PROJECT_CONTENT": "After you approve the project, the project lead can start the project so that the researchers can retrieve the project data.",
     "ARCHIVE_PROJECT_TITLE": "Do you really want to archive the project?",
@@ -439,6 +421,17 @@
     "MAIL_DOMAIN": "Mail domain(s)"
   },
   "CHARTS": {
+    "COHORT_AGE": {
+      "TITLE": "Number of datasets per age group",
+      "XLABEL": "Years",
+      "YLABEL": "k"
+    },
+    "COHORT_HOSPITALS": {
+      "TITLE": "Number of datasets per institution",
+      "XLABEL": "Clinic",
+      "YLABEL": "k",
+      "DROPDOWN": "Please select institution..."
+    },
     "SOFA_SCORE": {
       "TITLE": "Number of Patients per SOFA-Score (grouped)",
       "XLABEL": "SOFA-Score",
@@ -456,5 +449,43 @@
     "HOUR_SHORT": "Hr.",
     "MINUTE_SHORT": "Min.",
     "SECOND_SHORT": "Sec."
+  },
+  "AQL_CATEGORIES": {
+    "CREATE_DESCRIPTION_BUTTON": "To create a new AQL categbory please click the following button.",
+    "CREATE_HEADER": "Create AQL Category",
+    "CREATE_SUCCESS_MESSAGE": "AQL Category created successfully.",
+    "CREATE_ERROR_MESSAGE": "AQL Category could not be created. Please try again.",
+    "DE_NAME": "German name",
+    "DEFINE_CATEGORY": "Define category details",
+    "DELETE_ERROR_MESSAGE": "The AQL category could not be deleted. Please try again.",
+    "DELETE_SUCCESS_MESSAGE": "The AQL category was successfully deleted.",
+    "EDIT_DIALOG_TITLE": "Edit category",
+    "EN_NAME": "English name",
+    "OVERVIEW_DESCRIPTION": "In the following list you can see all the AQL categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
+    "TABLE_TITLE": "Available AQL Categories",
+    "UNCATEGORIZED": "Uncategorized",
+    "UPDATE_SUCCESS_MESSAGE": "AQL Category updated successfully.",
+    "UPDATE_ERROR_MESSAGE": "AQL Category could not be updated. Please try again."
+  },
+  "SEARCH": {
+    "DATA_EXPLORER_HEADING": "Fetch project data",
+    "DATA_EXPLORER_DESCRIPTION": "Fetch the project data you defined in the patient filter and data pages before using this page.",
+    "DATA_FILTER_HEADING": "Selection of clinical models",
+    "DATA_FILTER_DESCRIPTION": "The clinical models are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
+    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "You have the possibility to request a project with the configured patient and data filter. If you do so, the defined cohort and clinical models are transferred to a new project.",
+    "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more clinical models",
+    "DATA_FILTER_COHORT_SIZE": "Size of the specified cohort: {{amount}}",
+    "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
+    "PATIENT_FILTER_DESCRIPTION": "Add one or more AQL queries from the list to define the foundation of the new cohort."
+  },
+  "IMPRINT": {
+    "PUBLIC_KEY_LINKS": {
+      "INTRO": "These are links to the publics keys for prod, respective pre-prod, which you can use for safe data transfer.",
+      "HEADER": "Public Keys",
+      "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
+      "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
+      "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
+      "LINK_PROD_DESCRIPTION": "Public Key for Prod"
+    }
   }
 }

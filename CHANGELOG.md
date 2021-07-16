@@ -1,9 +1,43 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog][Keep a Changelog] and this project adheres to [Semantic Versioning][Semantic Versioning].
+The format is based on [Keep a Changelog][keep a changelog] and this project adheres to [Semantic Versioning][semantic versioning].
 
 ## [Unreleased]
+
+### Added
+
+- Role "Manager" that takes over responsibilities from role "Project Lead" for managing AQLs and Phenotypes ([#224])
+- AQL Category management page to create, update or delete categories for AQL queries ([#227])
+- Renaming of all occurrences of the term "study" to "project" in all cases except for roles ([#228])
+- AQL Category column in AQL queries overview ([#229])
+- AQL Category select in AQL editor dialog ([#229])
+- Cohort-Builder disabled state ([#234])
+- Cohort-Builder and accordion style to data-explorer ([#235])
+- Cohort-Builder handling of parameters ([#239])
+- Search-Page to filter patients for possible projects ([#238])
+- Search-Page shows age distribution graph of defined cohort ([#242])
+- Search-Page shows clinic distribution graph of defined cohort ([#245])
+- Imprint page provides public keys as link for data transfer ([#240])
+- Adds determin hits to projects cohort builder ([#241])
+- Adds ability to set parameters in cohort builder to null ([#243])
+- Adds the data-filter ([#246])
+- Adds the manager-data-explorer ([#248])
+
+### Changes
+
+- Add role restriction to tab navigation generation ([#230])
+- Refactoring of the Cohort-Builder ([#233])
+- Removale of phenotype-concept ([#233])
+- Refactoring of aql-parameter inputs ([#234])
+- Editing researchers in the project editor no longer saves the cohort ([#247])
+
+---
+
+## [Released]
+
+## [1.2.0] - 2021-06-01
 
 ### Added
 
@@ -38,16 +72,12 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 - Fix NPM security audit issues ([#209])
 
----
-
-## [Released]
-
 ## [1.1.0] - 2021-04-29
 
 ### Added
 
 - Phenotype Overview table: Delete phenotypes ([#183])
-- Phenotype overview table: Filter by users' organization, users' own or all ([#195]) 
+- Phenotype overview table: Filter by users' organization, users' own or all ([#195])
 - AQL overview table: Delete not owned AQLs as super admin ([#185])
 - Project overview table: Delete and archive projects ([#186])
 - Project overview table: Filter for archived project ([#188])
@@ -72,7 +102,7 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 ### Security
 
-- Links with target _blank: Add rel=noopener to all links ([#184])
+- Links with target \_blank: Add rel=noopener to all links ([#184])
 
 ## [1.0.0] - 2021-03-31
 
@@ -155,13 +185,11 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 - Dependency Update lodash-es from 4.17.20 to 4.17.21 ([#136])
 - Dependency Update rxjs from 6.6.3 to 6.6.6 ([#136])
 
-
 ## [0.2.0] - 2021-03-01
 
 ### Added
 
 - Organzation manager - Create and edit Organizations with Organizations Editor ([#125])
-
 
 ## [0.1.0] - 2021-02-25
 
@@ -191,20 +219,23 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 - Toast messages for user feedback ([#96])
 - Content Editor - Edit menu items ([#115], [#119])
 - Organization manager - Organizations table ([#117], [#122])
+
 ### Security
 
 - Angular v11.1.1 ([#95])
 
-
 ---
 
 <!-- Links -->
-[Keep a Changelog]: https://keepachangelog.com/
-[Semantic Versioning]: https://semver.org/
+
+[keep a changelog]: https://keepachangelog.com/
+[semantic versioning]: https://semver.org/
 
 <!-- Versions -->
-[Unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0...HEAD
-[Released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+
+[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0...HEAD
+[released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34..v1.1.0
 [1.0.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/2dc040e5eb792bfffb5959172fe8b40b2ee2f739..8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34
 [0.5.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/94ba3f799407ffb395d80969d2ab6a7cc40cd05f..2dc040e5eb792bfffb5959172fe8b40b2ee2f739
@@ -214,6 +245,7 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [0.1.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/137548301f9143282686503e915163dfffe03090..e6babad91dbeb562803ad3a1ec6afa1726e0c09a
 
 <!-- PRs  -->
+
 [#1]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/1
 [#2]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/2
 [#3]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/3
@@ -436,3 +468,21 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [#221]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/221
 [#222]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/222
 [#223]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/223
+[#224]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/224
+[#227]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/227
+[#228]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/228
+[#229]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/229
+[#230]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/230
+[#233]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/233
+[#234]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/234
+[#235]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/235
+[#238]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/238
+[#239]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/239
+[#240]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/240
+[#241]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/241
+[#242]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/242
+[#243]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/243
+[#245]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/245
+[#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
+[#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
+[#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248
