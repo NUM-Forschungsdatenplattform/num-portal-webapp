@@ -476,7 +476,7 @@
     "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more clinical models",
     "DATA_FILTER_COHORT_SIZE": "Size of the specified cohort: {{amount}}",
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
-    "PATIENT_FILTER_DESCRIPTION": "Lorem ipsum dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin, erat a elementum rutrum, neque sem pretium metus, quis mollis nisl nunc et massa. Vestibulum sed."
+    "PATIENT_FILTER_DESCRIPTION": "Add one or more AQL queries from the list to define the foundation of the new cohort."
   },
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
