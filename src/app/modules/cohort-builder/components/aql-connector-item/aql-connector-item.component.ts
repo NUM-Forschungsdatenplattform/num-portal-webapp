@@ -49,16 +49,20 @@ export class AqlConnectorItemComponent implements OnInit {
             parameter.valueType = this.getValueTypeForParameter(response.type)
           }
 
-          if (
-            parameter.valueType === AqlParameterValueType.Boolean &&
-            (parameter.value === null || parameter.value === undefined)
-          ) {
-            parameter.value = true
-          } else if (
-            parameter.valueType === AqlParameterValueType.Options &&
-            (parameter.value === null || parameter.value === undefined)
-          ) {
-            parameter.value = optionKeys[0]
+          if (parameter.value === null || parameter.value === undefined) {
+            switch (parameter.valueType) {
+              case AqlParameterValueType.Boolean:
+                parameter.value = true
+                break
+              case AqlParameterValueType.Options:
+                parameter.value = optionKeys[0]
+                break
+              case AqlParameterValueType.Date:
+              case AqlParameterValueType.DateTime:
+              case AqlParameterValueType.Time:
+                parameter.value = new Date()
+                break
+            }
           }
 
           this.checkParameterStatus()
