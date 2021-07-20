@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Fixed
+
+- Project Editor: Keep save buttons enabled after save failed ([#256])
+
+
+---
+
+## [Released]
+
+## [1.3.0] - 2021-07-16
+
 ### Added
 
 - Role "Manager" that takes over responsibilities from role "Project Lead" for managing AQLs and Phenotypes ([#224])
@@ -33,10 +44,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Refactoring of aql-parameter inputs ([#234])
 - Editing researchers in the project editor no longer saves the cohort ([#247])
 - Separated download file utils ([#251])
-
----
-
-## [Released]
 
 ## [1.2.0] - 2021-06-01
 
@@ -234,8 +241,9 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 <!-- Versions -->
 
-[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0...HEAD
+[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.3.0...HEAD
 [released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.3.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34..v1.1.0
 [1.0.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/2dc040e5eb792bfffb5959172fe8b40b2ee2f739..8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34
@@ -488,3 +496,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
 [#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248
 [#251]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/251
+[#256]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/256
