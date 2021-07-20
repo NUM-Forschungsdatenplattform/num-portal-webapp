@@ -71,6 +71,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     return this.project.cohortGroup
   }
 
+  savedProjectStatus: ProjectStatus
+
   commentForm: FormGroup
   projectForm: FormGroup
   approverForm: FormGroup
@@ -87,6 +89,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resolvedData = this.route.snapshot.data.resolvedData
+    this.savedProjectStatus = this.resolvedData.project.status
     this.subscriptions.add(
       this.route.queryParams.subscribe((params) => this.handleQueryParams(params))
     )
@@ -241,6 +244,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     const { project, cohort } = this.getProjectForApi()
     try {
       const projectResult = await this.saveProject(project)
+      this.savedProjectStatus = projectResult.status
       this.project.id = projectResult.id
 
       if (withCohort && cohort.cohortGroup) {
@@ -256,6 +260,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         message: 'PROJECT.SAVE_SUCCESS_MESSAGE',
       })
     } catch (error) {
+      this.project.status = this.savedProjectStatus
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'PROJECT.SAVE_ERROR_MESSAGE',
@@ -263,11 +268,11 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendForApproval(): void {
+  async sendForApproval(): Promise<void> {
     const { cohort } = this.getProjectForApi()
     if (cohort.cohortGroup) {
       this.project.status = ProjectStatus.Pending
-      this.save()
+      await this.save()
     } else {
       this.toast.openToast({
         type: ToastMessageType.Error,

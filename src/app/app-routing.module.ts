@@ -39,7 +39,10 @@ export const routes: Routes = [
       navId: 'search',
       roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
     },
-    loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
+    loadChildren: () =>
+      import(/* webpackChunkName: "Search.Module" */ './modules/search/search.module').then(
+        (m) => m.SearchModule
+      ),
   },
   {
     path: 'projects',
