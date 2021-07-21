@@ -43,11 +43,11 @@ export class DialogAqlInfoComponent implements OnInit, IGenericDialog<AqlUiModel
     let resultString = aqlQuery
     this.aql.parameters.forEach((param) => {
       resultString = resultString.replace(
-        param.name + this.NAME_SUFFIX,
-        `<span class="mark--name">${param.name}</span>`
+        '$' + param.name + this.NAME_SUFFIX,
+        `<span class="mark--name">$${param.name}</span>`
       )
       resultString = resultString.replace(
-        param.name + this.OPERATOR_SUFFIX,
+        '$' + param.name + this.OPERATOR_SUFFIX,
         `<span class="mark--operator">${param.operator}</span>`
       )
     })
