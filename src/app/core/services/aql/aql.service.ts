@@ -17,7 +17,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { catchError, map, shareReplay, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
@@ -34,6 +34,7 @@ export class AqlService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
+  private getAllObservable$: Observable<IAqlApi[]>
   user: IUserProfile
 
   private aqls: IAqlApi[] = []
@@ -66,16 +67,20 @@ export class AqlService {
   }
 
   getAll(): Observable<IAqlApi[]> {
-    return this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
-      tap((aqls) => {
-        this.aqls = aqls
-        this.aqlsSubject$.next(aqls)
-        if (this.aqls.length) {
-          this.setFilter(this.filterSet)
-        }
-      }),
-      catchError(this.handleError)
-    )
+    if (!this.getAllObservable$) {
+      this.getAllObservable$ = this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
+        tap((aqls) => {
+          this.aqls = aqls
+          this.aqlsSubject$.next(aqls)
+          if (this.aqls.length) {
+            this.setFilter(this.filterSet)
+          }
+        }),
+        shareReplay(),
+        catchError(this.handleError)
+      )
+    }
+    return this.getAllObservable$
   }
 
   get(id: number): Observable<IAqlApi> {
