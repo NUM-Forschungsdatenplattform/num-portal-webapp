@@ -33,7 +33,7 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
       fxLayoutGap="16px"
-      *ngFor="let template of project.templates; let index"
+      *ngFor="let template of project.templates; let i = index"
     >
       <div>{{ template.name }}</div>
       <section
@@ -65,7 +65,7 @@
         <button
           color="accent"
           mat-icon-button
-          (click)="deleteTemplate(index)"
+          (click)="deleteTemplate(i)"
           [attr.aria-label]="'BUTTON.DELETE' | translate"
           data-test="data-filter__templates__delete-template-button"
         >
