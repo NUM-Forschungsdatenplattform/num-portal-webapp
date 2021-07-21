@@ -53,7 +53,11 @@
 
           <span *ngIf="!isHitCounterLoading; else hits_loading">
             {{
-              hitCounter[template.templateId] !== undefined ? hitCounter[template.templateId] : ''
+              hitCounter[template.templateId] !== undefined
+                ? hitCounter[template.templateId] !== -1
+                  ? hitCounter[template.templateId]
+                  : 'Invalid'
+                : ''
             }}</span
           >
         </div>
