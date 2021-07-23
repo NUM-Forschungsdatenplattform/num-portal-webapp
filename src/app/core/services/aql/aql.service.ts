@@ -34,7 +34,8 @@ export class AqlService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
-  private getAllObservable$: Observable<IAqlApi[]>
+  getAllObservable$: Observable<IAqlApi[]>
+  cacheTime = 3000
   user: IUserProfile
 
   private aqls: IAqlApi[] = []
@@ -76,8 +77,8 @@ export class AqlService {
             this.setFilter(this.filterSet)
           }
         }),
-        shareReplay(),
-        catchError(this.handleError)
+        catchError(this.handleError),
+        shareReplay(1, this.cacheTime)
       )
     }
     return this.getAllObservable$

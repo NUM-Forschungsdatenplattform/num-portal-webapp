@@ -77,16 +77,18 @@ describe('AqlService', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
+      service.cacheTime = 0
+      service.getAllObservable$ = undefined
     })
 
-    it('should call the api - with error', () => {
-      service
-        .getAll()
-        .toPromise()
-        .then((_) => {})
-        .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
-      expect(service.handleError).toHaveBeenCalled()
+    it('should call the api - with error', async () => {
+      try {
+        await service.getAll().toPromise()
+      } catch (err) {
+      } finally {
+        expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
+        expect(service.handleError).toHaveBeenCalled()
+      }
     })
   })
 
@@ -98,11 +100,19 @@ describe('AqlService', () => {
       service.getAll().subscribe()
       expect(httpClient.get).toHaveBeenCalled()
     })
+
+    it('should cache get all requests', async () => {
+      await service.getAll().toPromise()
+      await service.getAll().toPromise()
+      expect(httpClient.get).toHaveBeenCalledTimes(1)
+    })
   })
 
   describe('When a call to get method comes in', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
+      service.cacheTime = 0
+      service.getAllObservable$ = undefined
     })
     it('should return with a single aql found on the backend', async () => {
       const result = await service.get(1).toPromise()
@@ -131,6 +141,8 @@ describe('AqlService', () => {
       jest.clearAllMocks()
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
       throttleTime = (service as any).throttleTime
+      service.cacheTime = 0
+      service.getAllObservable$ = undefined
     })
 
     it('should debounce the filtering', async (done) => {
@@ -175,6 +187,11 @@ describe('AqlService', () => {
   })
 
   describe('When the filter logic fails to retrieve data', () => {
+    beforeEach(() => {
+      service.cacheTime = 0
+      service.getAllObservable$ = undefined
+    })
+
     it('should result in an empty array', (done) => {
       const anyService = service as any
 
