@@ -189,7 +189,7 @@ describe('AqlTableComponent', () => {
         expect(aqlService.delete).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Success,
-          message: 'AQL.DELETE_AQL_SUCCESS_MESSAGE',
+          message: 'QUERIES.DELETE_QUERY_SUCCESS_MESSAGE',
         })
         done()
       })
@@ -206,7 +206,7 @@ describe('AqlTableComponent', () => {
       component.delete(aqlId).then(() => {
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Error,
-          message: 'AQL.DELETE_AQL_ERROR_MESSAGE',
+          message: 'QUERIES.DELETE_QUERY_ERROR_MESSAGE',
         })
         done()
       })

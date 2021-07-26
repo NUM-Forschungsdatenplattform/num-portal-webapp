@@ -32,7 +32,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class PatientFilterComponent implements OnInit {
   determineHits: IDetermineHits = {
-    defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
+    defaultMessage: 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS',
     count: null,
   }
   patientCount$: Observable<number>
@@ -109,7 +109,7 @@ export class PatientFilterComponent implements OnInit {
     } else {
       this.toastMessageService.openToast({
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+        message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       })
     }
   }

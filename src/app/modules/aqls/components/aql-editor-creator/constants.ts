@@ -22,7 +22,7 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 export const BUILDER_DIALOG_CONFIG: DialogConfig = {
-  title: 'AQL.AQL_BUILDER_DIALOG_HEADER',
+  title: 'QUERIES.QUERY_BUILDER_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',
   cancelButtonText: 'BUTTON.CANCEL',
   dialogSize: DialogSize.Large,
@@ -33,11 +33,11 @@ export const BUILDER_DIALOG_CONFIG: DialogConfig = {
 }
 
 export const VALIDATION_ERROR_CONFIG: IToastMessageConfig = {
-  message: 'AQL.VALIDATION_ERROR',
+  message: 'QUERIES.VALIDATION_ERROR',
   type: ToastMessageType.Error,
 }
 
 export const VALIDATION_SUCCESS_CONFIG: IToastMessageConfig = {
-  message: 'AQL.VALIDATION_SUCCESS',
+  message: 'QUERIES.VALIDATION_SUCCESS',
   type: ToastMessageType.Success,
 }

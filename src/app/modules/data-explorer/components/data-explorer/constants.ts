@@ -36,7 +36,7 @@ export const EXPORT_ERROR: IToastMessageConfig = {
 }
 
 export const BUILDER_DIALOG_CONFIG: DialogConfig = {
-  title: 'DATA_EXPLORER.AQL_BUILDER_DIALOG_HEADER',
+  title: 'DATA_EXPLORER.QUERY_BUILDER_DIALOG_HEADER',
   confirmButtonText: 'BUTTON.APPLY_SELECTION',
   cancelButtonText: 'BUTTON.CANCEL',
   dialogSize: DialogSize.Large,

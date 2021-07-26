@@ -76,12 +76,12 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.CREATE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.CREATE_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.CREATE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.CREATE_ERROR_MESSAGE',
       })
     }
   }
@@ -92,12 +92,12 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.UPDATE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.UPDATE_ERROR_MESSAGE',
       })
     }
   }

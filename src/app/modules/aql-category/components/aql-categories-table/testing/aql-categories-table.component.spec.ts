@@ -124,7 +124,7 @@ describe('AqlCategoriesTableComponent', () => {
       expect(mockAqlCategoryService.delete).toHaveBeenCalledTimes(1)
       expect(mockToast.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.DELETE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.DELETE_SUCCESS_MESSAGE',
       })
     })
 
@@ -156,7 +156,7 @@ describe('AqlCategoriesTableComponent', () => {
       await component.delete(aqlCategoryId)
       expect(mockToast.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.DELETE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.DELETE_ERROR_MESSAGE',
       })
     })
   })

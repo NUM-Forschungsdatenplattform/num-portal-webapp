@@ -56,7 +56,7 @@ export class AqlEditorCeatorComponent implements OnInit {
   isValidForExecution: boolean
   isExecutionLoading: boolean
   determineHitsContent: IDetermineHits = {
-    defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
+    defaultMessage: 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS',
   }
 
   aqlQueryValue: string
@@ -180,25 +180,25 @@ export class AqlEditorCeatorComponent implements OnInit {
       } catch (error) {
         if (error.status === 451) {
           // *** Error 451 means too few hits ***
-          this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_FEW_HITS')
+          this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_ERROR_FEW_HITS')
         } else if (error.status === 400) {
           try {
             const firstError = JSON.parse(error.error?.errors[0])
             if (firstError.valid === false) {
-              this.updateDetermineHits(null, 'AQL.VALIDATION_ERROR')
+              this.updateDetermineHits(null, 'QUERIES.VALIDATION_ERROR')
               this.setError(firstError as IAqlValidationResponse)
             } else {
-              this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+              this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_ERROR_MESSAGE')
             }
           } catch (_) {
-            this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+            this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_ERROR_MESSAGE')
           }
         } else {
-          this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_ERROR_MESSAGE')
+          this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_ERROR_MESSAGE')
         }
       }
     } else {
-      this.updateDetermineHits(null, 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS')
+      this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS')
     }
   }
 }
