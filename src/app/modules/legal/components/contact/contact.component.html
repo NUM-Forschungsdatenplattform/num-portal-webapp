@@ -13,19 +13,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+<h1>Kontakt</h1>
+<num-shared-contact></num-shared-contact>
 
-<h2>{{ 'NAVIGATION.PROJECTS_OVERVIEW' | translate }}</h2>
-
-<p class="num-margin-b-40"></p>
-
-<section
-  role="presentation"
-  class="num-margin-b-40"
-  *numUserHasRole="[availableRoles.StudyCoordinator]"
->
-  <num-button icon="plus" routerLink="./new/editor" id="project-create-button">{{
-    'BUTTON.PROJECT_CREATE' | translate
-  }}</num-button>
-</section>
-
-<num-projects-table></num-projects-table>
+<div class="num-margin-b-40"></div>
+<h2>Umgang mit Kontaktdaten</h2>
+<num-contact-handling></num-contact-handling>
+<div class="num-margin-b-40"></div>

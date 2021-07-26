@@ -52,6 +52,7 @@ describe('PatientFilterComponent', () => {
     setCurrentProject: jest.fn(),
     previewDataObservable$: mockPreviewDataSubject$.asObservable(),
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
+    resetPreviewData: jest.fn(),
   } as unknown) as PatientFilterService
 
   const mockRouter = ({
@@ -196,6 +197,16 @@ describe('PatientFilterComponent', () => {
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledWith(cohortGroupApi, false)
+    })
+
+    it('should reset the preview data on too few hits', async () => {
+      jest.spyOn(mockPatientFilterService, 'resetPreviewData')
+      jest
+        .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+
+      await component.getPreviewData()
+      expect(mockPatientFilterService.resetPreviewData).toHaveBeenCalledTimes(1)
     })
   })
 

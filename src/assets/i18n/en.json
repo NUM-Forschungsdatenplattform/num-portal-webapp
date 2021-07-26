@@ -65,7 +65,9 @@
   "LEGAL": {
     "DISCLOSURE": "Disclosure",
     "DATAPROTECTION": "Data Protection",
-    "CONTACT": "Contact"
+    "CONTACT": "Contact",
+    "COOKIE_WARNING_TITLE": "Essential Cookies",
+    "COOKIE_WARNING_CONTENT": "This website sets technically essential cookies (session cookies) at your computer which are required for the basic functionality of the website."
   },
   "FILTER_CHIP": {
     "MY_AQLS": "My AQLs",
@@ -206,6 +208,8 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DISCARD": "Discard changes",
+    "ACCEPT": "Accept",
+    "DECLINE": "Decline",
     "BACK": "Back",
     "CLEAR_ENTRY": "Clear entry",
     "REQUEST_APPROVAL": "Request approval",
@@ -257,7 +261,8 @@
     "MORE_INFO": "More Info",
     "NEXT_STEP": "Next Step",
     "PREVIOUS_STEP": "Previous Step",
-    "START_DATA_RETRIEVAL": "Data Retrieval"
+    "START_DATA_RETRIEVAL": "Data Retrieval",
+    "PROJECT_CREATE": "Create project"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",
@@ -422,14 +427,12 @@
   },
   "CHARTS": {
     "COHORT_AGE": {
-      "TITLE": "Number of datasets per age group",
-      "XLABEL": "Years",
-      "YLABEL": "k"
+      "TITLE": "Number of patients per age group",
+      "XLABEL": "Years"
     },
     "COHORT_HOSPITALS": {
-      "TITLE": "Number of datasets per institution",
+      "TITLE": "Number of patients per institution",
       "XLABEL": "Clinic",
-      "YLABEL": "k",
       "DROPDOWN": "Please select institution..."
     },
     "SOFA_SCORE": {
@@ -481,7 +484,6 @@
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
       "INTRO": "These are links to the publics keys for prod, respective pre-prod, which you can use for safe data transfer.",
-      "HEADER": "Public Keys",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",

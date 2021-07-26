@@ -52,6 +52,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     this.id = aql.id
     this.name = aql.name
     this.query = aql.query
+    this.queryWithOperatorPlaceholder = aql.query
     this.isNegated = isNegated
 
     this.purpose = aql.purpose

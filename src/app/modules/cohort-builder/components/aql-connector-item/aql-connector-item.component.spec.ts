@@ -107,7 +107,7 @@ describe('AqlConnectorItemComponent', () => {
           options: {},
         },
         expectedType: AqlParameterValueType.Date,
-        expectedValue: undefined,
+        expectedValue: 'A_NEW_DATE',
       },
       {
         parameterValueResponse: {

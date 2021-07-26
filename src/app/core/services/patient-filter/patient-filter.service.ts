@@ -121,6 +121,11 @@ export class PatientFilterService {
     this.currentProject = null
   }
 
+  resetPreviewData(): void {
+    this.previewData = { count: 0, hospitals: {}, ages: {} }
+    this.previewDataSubject$.next(this.previewData)
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

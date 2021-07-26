@@ -102,9 +102,10 @@ describe('AddUserRolesComponent', () => {
       userProfileSubject$.next(mockUserProfile1)
     })
 
-    it('should not include the roles SuperAdmin and Content Admin as dataSource.data', () => {
+    it('should not include the roles Manager, SuperAdmin and Content Admin as dataSource.data', () => {
       expect(component.dataSource.data).not.toContain('SUPER_ADMIN')
       expect(component.dataSource.data).not.toContain('CONTENT_ADMIN')
+      expect(component.dataSource.data).not.toContain('MANAGER')
     })
   })
 
@@ -117,10 +118,11 @@ describe('AddUserRolesComponent', () => {
       fixture.detectChanges()
       userProfileSubject$.next(mockUserProfile3)
     })
-    it('should include the roles SuperAdmin and Content Admin in dataSource.data', () => {
+    it('should include the roles Manager, SuperAdmin and Content Admin in dataSource.data', () => {
       userProfileSubject$.next(mockUserProfile3)
       expect(component.dataSource.data).toContain('SUPER_ADMIN')
       expect(component.dataSource.data).toContain('CONTENT_ADMIN')
+      expect(component.dataSource.data).toContain('MANAGER')
     })
   })
 })

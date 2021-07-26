@@ -65,7 +65,9 @@
   "LEGAL": {
     "DISCLOSURE": "Impressum",
     "DATAPROTECTION": "Datenschutz",
-    "CONTACT": "Kontakt"
+    "CONTACT": "Kontakt",
+    "COOKIE_WARNING_TITLE": "Notwendige Cookies",
+    "COOKIE_WARNING_CONTENT": "Diese Website setzt technisch notwendige Cookies (Sitzungs-Cookies) auf Ihrem Computer, die für grundlegende Funktionen der Website erforderlich sind."
   },
   "FILTER_CHIP": {
     "MY_AQLS": "Meine",
@@ -207,6 +209,8 @@
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
     "DISCARD": "Änderungen verwerfen",
+    "ACCEPT": "Akzeptieren",
+    "DECLINE": "Ablehnen",
     "BACK": "Zurück",
     "CLEAR_ENTRY": "Eingabe löschen",
     "REQUEST_APPROVAL": "Genehmigung anfragen",
@@ -258,7 +262,8 @@
     "MORE_INFO": "Mehr Informationen",
     "NEXT_STEP": "Nächster Schritt",
     "PREVIOUS_STEP": "Schritt zurück",
-    "START_DATA_RETRIEVAL": "Datenabruf starten"
+    "START_DATA_RETRIEVAL": "Datenabruf starten",
+    "PROJECT_CREATE": "Projekt erstellen"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",
@@ -423,14 +428,12 @@
   },
   "CHARTS": {
     "COHORT_AGE": {
-      "TITLE": "Anzahl Datensätze pro Altersgruppe",
-      "XLABEL": "Jahre",
-      "YLABEL": "Tsd."
+      "TITLE": "Anzahl Patienten pro Altersgruppe",
+      "XLABEL": "Jahre"
     },
     "COHORT_HOSPITALS": {
-      "TITLE": "Anzahl Datensätze pro Einrichtung",
+      "TITLE": "Anzahl Patienten pro Einrichtung",
       "XLABEL": "Klinik",
-      "YLABEL": "Tsd.",
       "DROPDOWN": "Bitte Klinik auswählen..."
     },
     "SOFA_SCORE": {
@@ -482,7 +485,6 @@
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
       "INTRO": "Hier finden Sie die Links zu den jeweiligen Öffentlichen Schlüsseln für die sichere Übertragung der Daten an Prod, bzw. Pre-Prod.",
-      "HEADER": "Öffentliche Schlüssel",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Öffentlicher Schlüssel für Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",

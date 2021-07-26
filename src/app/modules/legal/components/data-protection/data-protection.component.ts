@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { Component } from '@angular/core'
 
-import { ImprintRoutingModule } from './imprint-routing.module'
-import { ImprintComponent } from './components/imprint.component'
-import { SharedModule } from 'src/app/shared/shared.module'
-
-@NgModule({
-  declarations: [ImprintComponent],
-  imports: [CommonModule, ImprintRoutingModule, SharedModule],
+@Component({
+  selector: 'num-data-protection',
+  templateUrl: './data-protection.component.html',
 })
-export class ImprintModule {}
+export class DataProtectionComponent {
+  constructor() {}
+}

@@ -73,7 +73,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Researcher, AvailableRoles.Manager],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
@@ -129,10 +129,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'imprint',
+    path: 'legal',
     loadChildren: () =>
-      import(/* webpackChunkName: "Imprint.Module" */ './modules/imprint/imprint.module').then(
-        (m) => m.ImprintModule
+      import(/* webpackChunkName: "Legal.Module" */ './modules/legal/legal.module').then(
+        (m) => m.LegalModule
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

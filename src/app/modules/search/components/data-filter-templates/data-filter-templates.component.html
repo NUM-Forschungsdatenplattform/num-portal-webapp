@@ -33,7 +33,7 @@
       fxLayout="row"
       fxLayoutAlign="space-between center"
       fxLayoutGap="16px"
-      *ngFor="let template of project.templates; let index"
+      *ngFor="let template of project.templates; let i = index"
     >
       <div>{{ template.name }}</div>
       <section
@@ -53,7 +53,11 @@
 
           <span *ngIf="!isHitCounterLoading; else hits_loading">
             {{
-              hitCounter[template.templateId] !== undefined ? hitCounter[template.templateId] : ''
+              hitCounter[template.templateId] !== undefined
+                ? hitCounter[template.templateId] !== -1
+                  ? hitCounter[template.templateId]
+                  : 'Invalid'
+                : ''
             }}</span
           >
         </div>
@@ -61,7 +65,7 @@
         <button
           color="accent"
           mat-icon-button
-          (click)="deleteTemplate(index)"
+          (click)="deleteTemplate(i)"
           [attr.aria-label]="'BUTTON.DELETE' | translate"
           data-test="data-filter__templates__delete-template-button"
         >

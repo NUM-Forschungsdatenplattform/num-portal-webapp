@@ -26,6 +26,8 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { COOKIE_DIALOG_CONFIG } from './constants'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -52,6 +54,15 @@ describe('SideMenuComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
+  const afterClosedSubject$ = new Subject<boolean | undefined>()
+  const mockDialogService = ({
+    openDialog: jest.fn().mockImplementation((_: any) => {
+      return {
+        afterClosed: () => afterClosedSubject$.asObservable(),
+      }
+    }),
+  } as unknown) as DialogService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SideMenuComponent],
@@ -75,6 +86,10 @@ describe('SideMenuComponent', () => {
           provide: ContentService,
           useValue: mockContentService,
         },
+        {
+          provide: DialogService,
+          useValue: mockDialogService,
+        },
       ],
     }).compileComponents()
   })
@@ -89,6 +104,7 @@ describe('SideMenuComponent', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout')
     jest.spyOn(authService, 'login')
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -128,20 +144,35 @@ describe('SideMenuComponent', () => {
     expect(authService.logout).toHaveBeenCalled()
   })
 
-  it('Calls login function when login button is clicked', () => {
-    component.mainNavItems = null
-    component.secondaryNavItems = [
-      {
-        icon: 'test',
-        routeTo: '#login',
-        translationKey: 'test',
-      },
-    ]
-    fixture.detectChanges()
-    const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector('.mat-list-item')
-    button.click()
-    fixture.detectChanges()
-    expect(authService.login).toHaveBeenCalled()
+  describe('When the login button is clicked', () => {
+    let button: HTMLElement
+    beforeEach(() => {
+      component.mainNavItems = null
+      component.secondaryNavItems = [
+        {
+          icon: 'test',
+          routeTo: '#login',
+          translationKey: 'test',
+        },
+      ]
+      fixture.detectChanges()
+      const nativeElement = fixture.debugElement.nativeElement
+      button = nativeElement.querySelector('.mat-list-item')
+
+      button.click()
+      fixture.detectChanges()
+    })
+
+    it('should open the cookie dialog and call the login function on confirmation', () => {
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(COOKIE_DIALOG_CONFIG)
+      afterClosedSubject$.next(true)
+      expect(authService.login).toHaveBeenCalled()
+    })
+
+    it('should open the cookie dialog and not call the login function on discard', () => {
+      expect(mockDialogService.openDialog).toHaveBeenCalledWith(COOKIE_DIALOG_CONFIG)
+      afterClosedSubject$.next(false)
+      expect(authService.login).not.toHaveBeenCalled()
+    })
   })
 })
