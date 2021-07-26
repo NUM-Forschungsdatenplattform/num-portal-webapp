@@ -32,13 +32,12 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
   }
   @Input() graphName: string
   @Input() xAxisName: string
-  @Input() yAxisName: string
 
   chartOptions: EChartsOption
   updateOptions: EChartsOption
 
   initOptions = {
-    remderer: 'svg',
+    renderer: 'svg',
     width: 400,
     height: 400,
   }
@@ -48,29 +47,23 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     this.chartOptions = {
       color: this.color,
-      series: [
-        {
-          type: 'bar',
-        },
-      ],
       tooltip: {
         show: true,
       },
       xAxis: {
-        axisTick: {
-          show: false,
+        axisLabel: {
+          interval: 0,
+          rotate: 90,
         },
-
-        name: this.xAxisName,
-        nameLocation: 'start',
+        axisTick: {
+          alignWithLabel: true,
+        },
         type: 'category',
       },
       yAxis: {
         axisTick: {
           length: 10,
         },
-        name: this.yAxisName,
-        nameLocation: 'end',
         type: 'value',
       },
     }
@@ -93,16 +86,6 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
           },
         }
       }
-
-      if (changes.yAxisName) {
-        updateOptions = {
-          ...updateOptions,
-          yAxis: {
-            name: changes.yAxisName.currentValue,
-          },
-        }
-      }
-
       this.updateOptions = updateOptions
     }
   }
@@ -115,6 +98,12 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
       series: [
         {
           data: map(data, (d) => d),
+          roundCap: true,
+          type: 'bar',
+          label: {
+            width: 500,
+            overflow: 'break',
+          },
         },
       ],
     }
