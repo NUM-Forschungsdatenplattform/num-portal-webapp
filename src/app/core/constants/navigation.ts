@@ -63,6 +63,7 @@ export const mainNavItems: INavItem[] = [
         routeTo: 'projects/new/editor',
         id: 'editor',
         translationKey: 'NAVIGATION.PROJECTS_EDITOR',
+        disabled: true,
       },
     ],
   },

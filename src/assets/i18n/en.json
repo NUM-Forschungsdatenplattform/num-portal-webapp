@@ -257,7 +257,8 @@
     "MORE_INFO": "More Info",
     "NEXT_STEP": "Next Step",
     "PREVIOUS_STEP": "Previous Step",
-    "START_DATA_RETRIEVAL": "Data Retrieval"
+    "START_DATA_RETRIEVAL": "Data Retrieval",
+    "PROJECT_CREATE": "Create project"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",
