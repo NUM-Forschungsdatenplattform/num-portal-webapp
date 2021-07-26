@@ -65,7 +65,9 @@
   "LEGAL": {
     "DISCLOSURE": "Disclosure",
     "DATAPROTECTION": "Data Protection",
-    "CONTACT": "Contact"
+    "CONTACT": "Contact",
+    "COOKIE_WARNING_TITLE": "Essential Cookies",
+    "COOKIE_WARNING_CONTENT": "This website sets technically essential cookies (session cookies) at your computer which are required for the basic functionality of the website."
   },
   "FILTER_CHIP": {
     "MY_AQLS": "My AQLs",
@@ -206,6 +208,8 @@
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DISCARD": "Discard changes",
+    "ACCEPT": "Accept",
+    "DECLINE": "Decline",
     "BACK": "Back",
     "CLEAR_ENTRY": "Clear entry",
     "REQUEST_APPROVAL": "Request approval",

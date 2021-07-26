@@ -65,7 +65,9 @@
   "LEGAL": {
     "DISCLOSURE": "Impressum",
     "DATAPROTECTION": "Datenschutz",
-    "CONTACT": "Kontakt"
+    "CONTACT": "Kontakt",
+    "COOKIE_WARNING_TITLE": "Notwendige Cookies",
+    "COOKIE_WARNING_CONTENT": "Diese Website setzt technisch notwendige Cookies (Sitzungs-Cookies) auf Ihrem Computer, die für grundlegende Funktionen der Website erforderlich sind."
   },
   "FILTER_CHIP": {
     "MY_AQLS": "Meine",
@@ -207,6 +209,8 @@
     "SAVE": "Speichern",
     "CANCEL": "Abbrechen",
     "DISCARD": "Änderungen verwerfen",
+    "ACCEPT": "Akzeptieren",
+    "DECLINE": "Ablehnen",
     "BACK": "Zurück",
     "CLEAR_ENTRY": "Eingabe löschen",
     "REQUEST_APPROVAL": "Genehmigung anfragen",
