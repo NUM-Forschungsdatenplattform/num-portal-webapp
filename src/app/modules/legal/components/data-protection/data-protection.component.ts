@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'num-data-protection',
   templateUrl: './data-protection.component.html',
-  styleUrls: ['./data-protection.component.scss'],
 })
-export class DataProtectionComponent implements OnInit {
+export class DataProtectionComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

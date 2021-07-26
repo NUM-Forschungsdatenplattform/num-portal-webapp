@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'num-imprint',
   templateUrl: './imprint.component.html',
-  styleUrls: ['./imprint.component.scss'],
 })
-export class ImprintComponent implements OnInit {
+export class ImprintComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

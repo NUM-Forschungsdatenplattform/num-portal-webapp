@@ -21,9 +21,19 @@ import { ImprintComponent } from './components/imprint/imprint.component'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { ContactComponent } from './components/contact/contact.component'
 import { DataProtectionComponent } from './components/data-protection/data-protection.component'
+import { OperationAdministrationComponent } from './components/shared-parts/operation-administration/operation-administration.component'
+import { SharedContactComponent } from './components/shared-parts/shared-contact/shared-contact.component'
+import { ContactHandlingComponent } from './components/shared-parts/contact-handling/contact-handling.component'
 
 @NgModule({
-  declarations: [ImprintComponent, ContactComponent, DataProtectionComponent],
+  declarations: [
+    ImprintComponent,
+    ContactComponent,
+    DataProtectionComponent,
+    OperationAdministrationComponent,
+    SharedContactComponent,
+    ContactHandlingComponent,
+  ],
   imports: [CommonModule, LegalRoutingModule, SharedModule],
 })
 export class LegalModule {}
