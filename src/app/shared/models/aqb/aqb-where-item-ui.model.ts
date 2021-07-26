@@ -64,7 +64,7 @@ export class AqbWhereItemUiModel {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId
     this.rmType = item.rmType
-    this.aqlPath = item.aqlPath || ''
+    this.aqlPath = this.configurePath(item.aqlPath || '')
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
     this.archetypeReferenceId = archetypeReferenceId
@@ -74,6 +74,10 @@ export class AqbWhereItemUiModel {
     this.isParameterType = false
     this.configureOptions()
     this.configureInput()
+  }
+
+  private configurePath(aqlPath: string): string {
+    return aqlPath.endsWith('defining_code') ? aqlPath + '/code_string' : aqlPath
   }
 
   configureOptions(): void {
