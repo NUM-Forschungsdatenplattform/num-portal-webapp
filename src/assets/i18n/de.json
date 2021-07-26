@@ -262,7 +262,8 @@
     "MORE_INFO": "Mehr Informationen",
     "NEXT_STEP": "Nächster Schritt",
     "PREVIOUS_STEP": "Schritt zurück",
-    "START_DATA_RETRIEVAL": "Datenabruf starten"
+    "START_DATA_RETRIEVAL": "Datenabruf starten",
+    "PROJECT_CREATE": "Projekt erstellen"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",
