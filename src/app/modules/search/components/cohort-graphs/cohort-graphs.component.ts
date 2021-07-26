@@ -17,8 +17,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
-import { IDictionary } from 'src/app/shared/models/dictionary.interface'
-import { every } from 'lodash-es'
 
 @Component({
   selector: 'num-cohort-graphs',
@@ -35,8 +33,4 @@ export class CohortGraphsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  hasValues(data: IDictionary<string, number>): boolean {
-    return !every(data, (d) => d <= 0)
-  }
 }
