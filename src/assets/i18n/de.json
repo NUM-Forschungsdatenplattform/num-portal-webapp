@@ -482,7 +482,6 @@
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
       "INTRO": "Hier finden Sie die Links zu den jeweiligen Öffentlichen Schlüsseln für die sichere Übertragung der Daten an Prod, bzw. Pre-Prod.",
-      "HEADER": "Öffentliche Schlüssel",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Öffentlicher Schlüssel für Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",

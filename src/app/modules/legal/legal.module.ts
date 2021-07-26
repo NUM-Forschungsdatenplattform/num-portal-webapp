@@ -16,12 +16,14 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-import { ImprintRoutingModule } from './imprint-routing.module'
-import { ImprintComponent } from './components/imprint.component'
+import { LegalRoutingModule } from './legal-routing.module'
+import { ImprintComponent } from './components/imprint/imprint.component'
 import { SharedModule } from 'src/app/shared/shared.module'
+import { ContactComponent } from './components/contact/contact.component'
+import { DataProtectionComponent } from './components/data-protection/data-protection.component'
 
 @NgModule({
-  declarations: [ImprintComponent],
-  imports: [CommonModule, ImprintRoutingModule, SharedModule],
+  declarations: [ImprintComponent, ContactComponent, DataProtectionComponent],
+  imports: [CommonModule, LegalRoutingModule, SharedModule],
 })
-export class ImprintModule {}
+export class LegalModule {}

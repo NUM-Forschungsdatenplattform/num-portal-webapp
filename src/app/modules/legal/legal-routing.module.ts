@@ -15,12 +15,18 @@
  */
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { ImprintComponent } from './components/imprint.component'
+import { ContactComponent } from './components/contact/contact.component'
+import { DataProtectionComponent } from './components/data-protection/data-protection.component'
+import { ImprintComponent } from './components/imprint/imprint.component'
 
-const routes: Routes = [{ path: '', component: ImprintComponent }]
+const routes: Routes = [
+  { path: 'imprint', component: ImprintComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'data-protection', component: DataProtectionComponent },
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ImprintRoutingModule {}
+export class LegalRoutingModule {}
