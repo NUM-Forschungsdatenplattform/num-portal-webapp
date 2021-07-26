@@ -22,7 +22,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Router } from '@angular/router'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
+import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
@@ -30,10 +32,12 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { mockAqlCohort } from 'src/mocks/data-mocks/aqls.mock'
 import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { mockManagerUserProfile } from 'src/mocks/data-mocks/user-profile.mock'
 import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
 import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
@@ -62,6 +66,15 @@ describe('PatientFilterComponent', () => {
   const mockToastMessageService = ({
     openToast: jest.fn(),
   } as unknown) as ToastMessageService
+
+  const mockCohortService = ({
+    getSize: jest.fn(),
+  } as unknown) as CohortService
+
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const mockProfileService = ({
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown) as ProfileService
 
   @Component({
     selector: 'num-cohort-builder',
@@ -96,6 +109,14 @@ describe('PatientFilterComponent', () => {
         {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
+        },
+        {
+          provide: CohortService,
+          useValue: mockCohortService,
+        },
+        {
+          provide: ProfileService,
+          useValue: mockProfileService,
         },
         {
           provide: ToastMessageService,
