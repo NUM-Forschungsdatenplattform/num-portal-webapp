@@ -427,14 +427,12 @@
   },
   "CHARTS": {
     "COHORT_AGE": {
-      "TITLE": "Number of datasets per age group",
-      "XLABEL": "Years",
-      "YLABEL": "k"
+      "TITLE": "Number of patients per age group",
+      "XLABEL": "Years"
     },
     "COHORT_HOSPITALS": {
-      "TITLE": "Number of datasets per institution",
+      "TITLE": "Number of patients per institution",
       "XLABEL": "Clinic",
-      "YLABEL": "k",
       "DROPDOWN": "Please select institution..."
     },
     "SOFA_SCORE": {

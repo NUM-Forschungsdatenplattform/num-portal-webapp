@@ -95,6 +95,8 @@ export class PatientFilterComponent implements OnInit {
         } else {
           this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
         }
+        // Reset the preview data to hide graphs and reset hits counter
+        this.patientFilterService.resetPreviewData()
       }
     }
   }

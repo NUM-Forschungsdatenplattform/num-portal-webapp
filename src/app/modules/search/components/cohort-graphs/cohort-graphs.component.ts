@@ -15,6 +15,7 @@
  */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 
 @Component({
@@ -26,6 +27,8 @@ export class CohortGraphsComponent implements OnInit {
   @Input() determineHits: IDetermineHits
   @Input() previewData: ICohortPreviewApi
   @Output() determine = new EventEmitter<void>()
+
+  availableRoles = AvailableRoles
 
   constructor() {}
 

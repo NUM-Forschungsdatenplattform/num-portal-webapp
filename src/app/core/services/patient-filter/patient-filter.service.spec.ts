@@ -15,12 +15,14 @@
  */
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
+import { take } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
+import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockResultFlatList } from 'src/mocks/data-mocks/result-set-mock'
 
@@ -176,6 +178,30 @@ describe('PatientFilterService', () => {
           done()
         }
       )
+    })
+  })
+
+  describe('When call to resetPreviewData comes in', () => {
+    const cohortGroup: ICohortGroupApi = {
+      type: ConnectorNodeType.Group,
+      children: [
+        {
+          type: ConnectorNodeType.Aql,
+          query: mockAql1,
+        },
+      ],
+    }
+    beforeEach(async () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockCohortPreviewData))
+      await service.getPreviewData(cohortGroup, false).toPromise()
+    })
+
+    it('should clear the data for preview of a project', async () => {
+      const before = await service.previewDataObservable$.pipe(take(1)).toPromise()
+      expect(before).toEqual(mockCohortPreviewData)
+      service.resetPreviewData()
+      const after = await service.previewDataObservable$.pipe(take(1)).toPromise()
+      expect(after).toEqual({ ages: {}, count: 0, hospitals: {} })
     })
   })
 })

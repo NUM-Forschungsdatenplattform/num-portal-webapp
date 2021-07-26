@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-:host {
-  min-height: 400px;
+import { ComponentHarness } from '@angular/cdk/testing'
+
+export class VerticalBarChartHarness extends ComponentHarness {
+  static hostSelector = 'num-vertical-bar-chart'
 }
