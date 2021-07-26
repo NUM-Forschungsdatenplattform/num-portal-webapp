@@ -484,7 +484,6 @@
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
       "INTRO": "These are links to the publics keys for prod, respective pre-prod, which you can use for safe data transfer.",
-      "HEADER": "Public Keys",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
