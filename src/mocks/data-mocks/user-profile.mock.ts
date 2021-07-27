@@ -25,7 +25,7 @@ export const mockUserProfile1: IUserProfile = {
   lastName: 'user1-lastname',
   email: 'mockUser1@email.com',
   createdTimestamp: 1603140166809,
-  roles: ['role-1', 'role-2'],
+  roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.ContentAdmin],
   approved: true,
   organization: mockOrganization1,
 }
@@ -37,7 +37,7 @@ export const mockUserProfile2: IUserProfile = {
   lastName: 'user2-lastname',
   email: 'mockUser2@email.com',
   createdTimestamp: 1603140166809,
-  roles: ['role-2', 'role-3'],
+  roles: [AvailableRoles.ContentAdmin, AvailableRoles.OrganizationAdmin],
   approved: true,
   organization: mockOrganization2,
 }
@@ -49,7 +49,7 @@ export const mockUserProfile3: IUserProfile = {
   lastName: 'user2-lastname',
   email: 'mockUser2@email.com',
   createdTimestamp: 1603140166809,
-  roles: ['SUPER_ADMIN'],
+  roles: [AvailableRoles.SuperAdmin],
   approved: true,
   organization: mockOrganization2,
 }
@@ -62,6 +62,18 @@ export const mockManagerUserProfile: IUserProfile = {
   email: 'manager@email.com',
   createdTimestamp: new Date('2021-06-15T12:00:00.000+02:00').valueOf(),
   roles: [AvailableRoles.Manager],
+  approved: true,
+  organization: mockOrganization1,
+}
+
+export const mockProjectLeadProfile: IUserProfile = {
+  id: '5',
+  username: 'project-lead-user',
+  firstName: 'project-lead-firstname',
+  lastName: 'project-lead-lastname',
+  email: 'project-lead@email.com',
+  createdTimestamp: new Date('2021-07-27T08:08:43.000+02:00').valueOf(),
+  roles: [AvailableRoles.StudyCoordinator],
   approved: true,
   organization: mockOrganization1,
 }
