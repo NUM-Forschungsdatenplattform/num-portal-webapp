@@ -15,7 +15,6 @@
  */
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { result } from 'lodash'
 import { Observable, Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
