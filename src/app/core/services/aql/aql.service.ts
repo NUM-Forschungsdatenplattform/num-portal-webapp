@@ -25,7 +25,7 @@ import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { environment } from '../../../../environments/environment'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
-import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +36,7 @@ export class AqlService {
   private baseUrl: string
   getAllObservable$: Observable<IAqlApi[]>
   cacheTime = 3000
+  getAllTimeStamp = new Date()
   user: IUserProfile
 
   private aqls: IAqlApi[] = []
@@ -57,6 +58,10 @@ export class AqlService {
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
+    // Set initial cache timestamp to past to ensure the first call of getting AQLs will be always
+    // done
+    this.getAllTimeStamp.setMilliseconds(this.getAllTimeStamp.getMilliseconds() - this.cacheTime)
+
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
@@ -68,18 +73,20 @@ export class AqlService {
   }
 
   getAll(): Observable<IAqlApi[]> {
-    if (!this.getAllObservable$) {
+    if (!this.getAllObservable$ || this.getAllTimeStamp.valueOf() <= Date.now()) {
       this.getAllObservable$ = this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
         tap((aqls) => {
           this.aqls = aqls
           this.aqlsSubject$.next(aqls)
+
           if (this.aqls.length) {
             this.setFilter(this.filterSet)
           }
         }),
         catchError(this.handleError),
-        shareReplay(1, this.cacheTime)
+        shareReplay(1)
       )
+      this.setNewCacheTimestamp()
     }
     return this.getAllObservable$
   }
@@ -182,5 +189,11 @@ export class AqlService {
 
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
+  }
+
+  private setNewCacheTimestamp(): void {
+    const newTimeStamp = new Date()
+    newTimeStamp.setMilliseconds(newTimeStamp.getMilliseconds() + this.cacheTime)
+    this.getAllTimeStamp = newTimeStamp
   }
 }

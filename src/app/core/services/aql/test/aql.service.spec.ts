@@ -77,8 +77,10 @@ describe('AqlService', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
-      service.cacheTime = 0
       service.getAllObservable$ = undefined
+      const date = new Date()
+      date.setMinutes(date.getMinutes() - 1)
+      service.getAllTimeStamp = date
     })
 
     it('should call the api - with error', async () => {
@@ -120,13 +122,13 @@ describe('AqlService', () => {
     })
 
     it('should return with a single aql found in memory', async () => {
-      const preFillMemory = await service.getAll().toPromise()
+      await service.getAll().toPromise()
       const result = await service.get(1).toPromise()
       expect(result.id).toEqual(1)
     })
 
     it('should return with an not found error when not found', async () => {
-      const result = await service
+      await service
         .get(123)
         .toPromise()
         .catch((error) => {
