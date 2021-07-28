@@ -17,7 +17,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
-import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
+import { catchError, map, shareReplay, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
@@ -25,7 +25,7 @@ import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { environment } from '../../../../environments/environment'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
-import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,9 @@ export class AqlService {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 300
   private baseUrl: string
+  getAllObservable$: Observable<IAqlApi[]>
+  cacheTime = 3000
+  getAllTimeStamp = new Date()
   user: IUserProfile
 
   private aqls: IAqlApi[] = []
@@ -55,6 +58,10 @@ export class AqlService {
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
+    // Set initial cache timestamp to past to ensure the first call of getting AQLs will be always
+    // done
+    this.getAllTimeStamp.setMilliseconds(this.getAllTimeStamp.getMilliseconds() - this.cacheTime)
+
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
@@ -66,16 +73,22 @@ export class AqlService {
   }
 
   getAll(): Observable<IAqlApi[]> {
-    return this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
-      tap((aqls) => {
-        this.aqls = aqls
-        this.aqlsSubject$.next(aqls)
-        if (this.aqls.length) {
-          this.setFilter(this.filterSet)
-        }
-      }),
-      catchError(this.handleError)
-    )
+    if (!this.getAllObservable$ || this.getAllTimeStamp.valueOf() <= Date.now()) {
+      this.getAllObservable$ = this.httpClient.get<IAqlApi[]>(this.baseUrl).pipe(
+        tap((aqls) => {
+          this.aqls = aqls
+          this.aqlsSubject$.next(aqls)
+
+          if (this.aqls.length) {
+            this.setFilter(this.filterSet)
+          }
+        }),
+        catchError(this.handleError),
+        shareReplay(1)
+      )
+      this.setNewCacheTimestamp()
+    }
+    return this.getAllObservable$
   }
 
   get(id: number): Observable<IAqlApi> {
@@ -176,5 +189,11 @@ export class AqlService {
 
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
+  }
+
+  private setNewCacheTimestamp(): void {
+    const newTimeStamp = new Date()
+    newTimeStamp.setMilliseconds(newTimeStamp.getMilliseconds() + this.cacheTime)
+    this.getAllTimeStamp = newTimeStamp
   }
 }
