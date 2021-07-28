@@ -130,12 +130,12 @@ export class AqlCategoriesTableComponent
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.DELETE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.DELETE_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.DELETE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.DELETE_ERROR_MESSAGE',
       })
     }
   }

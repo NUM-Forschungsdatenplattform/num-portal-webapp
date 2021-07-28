@@ -52,8 +52,8 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initialCategories = {
       0: {
-        en: this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED'),
-        de: this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED'),
+        en: this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED'),
+        de: this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED'),
       },
     }
 
@@ -61,7 +61,7 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
       this.translateService.onLangChange.subscribe((event) => {
         this.currentLang = event.lang || 'en'
         this.aqlCategories[0][event.lang] = this.translateService.instant(
-          'AQL_CATEGORIES.UNCATEGORIZED'
+          'QUERY_CATEGORIES.UNCATEGORIZED'
         )
       })
     )

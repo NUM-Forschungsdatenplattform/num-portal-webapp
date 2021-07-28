@@ -26,7 +26,7 @@
   <mat-card>
     <mat-card-content fxLayout="column" fxFlex="100%">
       <p id="general-info-label">
-        {{ 'AQL.GENERAL_INFO_CONTENT' | translate }}
+        {{ 'QUERIES.GENERAL_INFO_CONTENT' | translate }}
       </p>
 
       <form fxLayout="column" [formGroup]="form">
@@ -75,7 +75,7 @@
             <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
               category.name[lang]
             }}</mat-option>
-            <mat-option>{{ 'AQL_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
+            <mat-option>{{ 'QUERY_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
           </mat-select>
         </mat-form-field>
 

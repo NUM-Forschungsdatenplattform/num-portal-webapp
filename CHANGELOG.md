@@ -6,6 +6,41 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+
+---
+
+## [Released]
+
+## [1.4.0] - 2021-07-27
+
+### Fixed
+
+- Project Editor: Keep save buttons enabled after save failed ([#256])
+- Cohort-Designer: Preview of AQLs in the Dialog ([#257])
+- Cohort-Designer: Parameters for types Date, DateTime and Time ([#258])
+- Simple Search: Displays ‘Invalid’ for broken templates (backend respond with -1)  ([#259])
+- Simple Search: Fix graph labels and copy issues ([265])
+- Simple Search: Separate role handling for managers and project lead for determine hits ([#270])
+- Restricts AQL Module to Manager only ([#260])
+- Data-Filter: Deleting of template deleted wrong template ([#261])
+- AQL Builder: Appends “code_string” in where clause to aql paths ending with “defining_code” ([#263])
+- Project Editor: Add create project button that is only visible to project leads ([#267])
+- AQL Service: Add caching to prevent multiple fetch requests on page load  ([#262])
+- User management: Manager role can only be assigned by super admin role ([#268])
+
+### Added
+
+- Cookie-Dialog before the login happens ([#264])
+- Separate pages for legal information ([#266])
+
+### Changed
+
+- Copy: Remove AQL from all user visible texts ([#269], [#273])
+- Copy: Approval dialog content changed to not use the term “ethical” ([#272])
+- Charts page: Only visible to manager users ([#271])
+
+## [1.3.0] - 2021-07-16
+
 ### Added
 
 - Role "Manager" that takes over responsibilities from role "Project Lead" for managing AQLs and Phenotypes ([#224])
@@ -32,10 +67,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Removale of phenotype-concept ([#233])
 - Refactoring of aql-parameter inputs ([#234])
 - Editing researchers in the project editor no longer saves the cohort ([#247])
-
----
-
-## [Released]
+- Separated download file utils ([#251])
 
 ## [1.2.0] - 2021-06-01
 
@@ -233,8 +265,10 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 <!-- Versions -->
 
-[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0...HEAD
+[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.4.0...HEAD
 [released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.4.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.3.0..v1.4.0
+[1.3.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
 [1.1.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34..v1.1.0
 [1.0.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/2dc040e5eb792bfffb5959172fe8b40b2ee2f739..8ad602c9bbe0e6c5b535ebdbd6cc86370e863f34
@@ -486,3 +520,22 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#246]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/246
 [#247]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/247
 [#248]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/248
+[#251]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/251
+[#256]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/256
+[#257]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/257
+[#258]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/258
+[#259]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/259
+[#260]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/260
+[#261]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/261
+[#262]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/262
+[#263]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/263
+[#264]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/264
+[#265]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/265
+[#266]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/266
+[#267]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/267
+[#268]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/268
+[#269]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/269
+[#270]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/270
+[#271]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/271
+[#272]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/272
+[#273]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/273

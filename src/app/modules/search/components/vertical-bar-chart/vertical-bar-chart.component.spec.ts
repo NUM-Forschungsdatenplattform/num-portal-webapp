@@ -45,7 +45,6 @@ describe('VerticalBarChartComponent', () => {
     component = fixture.componentInstance
     component.data = mockAgeGraphData
     component.xAxisName = 'X-Axis'
-    component.yAxisName = 'Y-Axis'
     component.graphName = 'Test-Graph'
     component.color = '#333333'
     fixture.detectChanges()
@@ -58,8 +57,6 @@ describe('VerticalBarChartComponent', () => {
   it('should update the axis labels if translation changes', () => {
     component.ngOnChanges({ xAxisName: new SimpleChange('X-Axis', 'X-Achse', false) })
     expect((component.updateOptions.xAxis as XAXisComponentOption).name).toEqual('X-Achse')
-    component.ngOnChanges({ yAxisName: new SimpleChange('Y-Axis', 'Y-Achse', false) })
-    expect((component.updateOptions.yAxis as XAXisComponentOption).name).toEqual('Y-Achse')
   })
 
   it('should update the data for the graph on change', () => {

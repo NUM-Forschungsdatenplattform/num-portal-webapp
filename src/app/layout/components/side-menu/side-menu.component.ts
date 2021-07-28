@@ -25,6 +25,8 @@ import {
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Subscription } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
+import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { COOKIE_DIALOG_CONFIG } from './constants'
 
 @Component({
   selector: 'num-side-menu',
@@ -41,7 +43,11 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   @Output() toggleSideMenu = new EventEmitter()
 
-  constructor(private authService: AuthService, public contentService: ContentService) {}
+  constructor(
+    private authService: AuthService,
+    public contentService: ContentService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -72,10 +78,19 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     if (item.routeTo === '#logout') {
       this.authService.logout()
     } else if (item.routeTo === '#login') {
-      this.authService.login()
+      this.handleLoginWithDialog()
     }
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
+  }
+
+  handleLoginWithDialog(): void {
+    const dialogRef = this.dialogService.openDialog(COOKIE_DIALOG_CONFIG)
+    dialogRef.afterClosed().subscribe((confirmResult: boolean | undefined) => {
+      if (confirmResult === true) {
+        this.authService.login()
+      }
+    })
   }
 }

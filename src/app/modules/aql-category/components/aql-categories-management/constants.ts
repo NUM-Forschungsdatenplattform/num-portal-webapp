@@ -19,7 +19,7 @@ import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
 import { DialogEditCategoryDetailsComponent } from '../dialog-edit-category-details/dialog-edit-category-details.component'
 
 export const EDIT_AQL_CATEGORY_DIALOG_CONFIG: DialogConfig = {
-  title: 'AQL_CATEGORIES.EDIT_DIALOG_TITLE',
+  title: 'QUERY_CATEGORIES.EDIT_DIALOG_TITLE',
   confirmButtonText: 'BUTTON.SAVE',
   cancelButtonText: 'BUTTON.CANCEL',
   dialogSize: DialogSize.Medium,

@@ -59,7 +59,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   lang = 'en'
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
   filterConfig: IAqlFilter
-  selectedItem = 'AQL.ALL_AQLS'
+  selectedItem = 'QUERIES.ALL_AQLS'
   aqlCategories: IAqlCategoryIdNameMap = {}
   uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
@@ -106,12 +106,12 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.lang = event.lang || 'en'
-        this.uncategorizedString = event.translations.AQL_CATEGORIES.UNCATEGORIZED
+        this.uncategorizedString = event.translations.QUERY_CATEGORIES.UNCATEGORIZED
       })
     )
 
     this.lang = this.translateService.currentLang || 'en'
-    this.uncategorizedString = this.translateService.instant('AQL_CATEGORIES.UNCATEGORIZED')
+    this.uncategorizedString = this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED')
     this.aqlCategoryService.getAll().subscribe()
   }
 
@@ -174,12 +174,12 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL.DELETE_AQL_SUCCESS_MESSAGE',
+        message: 'QUERIES.DELETE_QUERY_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL.DELETE_AQL_ERROR_MESSAGE',
+        message: 'QUERIES.DELETE_QUERY_ERROR_MESSAGE',
       })
     }
   }

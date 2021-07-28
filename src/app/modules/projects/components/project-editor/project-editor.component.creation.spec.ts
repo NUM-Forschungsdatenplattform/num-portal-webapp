@@ -43,6 +43,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { HttpErrorResponse } from '@angular/common/http'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -221,11 +222,13 @@ describe('ProjectEditorComponent On Creation', () => {
 
   describe('On the attempt to save the project for approval', () => {
     beforeEach(() => {
-      const mockProjectObservable = of(mockProject1)
+      const mockProjectObservable = of({ ...mockProject1, status: ProjectStatus.Pending })
       const mockCohortObservable = of(mockCohort1)
       jest.spyOn(projectService, 'create').mockImplementation(() => mockProjectObservable)
       jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
+      jest.spyOn(cohortService, 'update').mockImplementation(() => mockCohortObservable)
       jest.spyOn(component, 'save')
+
       component.resolvedData = {
         error: null,
         project: new ProjectUiModel(mockProject1),
@@ -243,7 +246,7 @@ describe('ProjectEditorComponent On Creation', () => {
     it('should show the error message if no aql is provided', async () => {
       const toastConfig = {
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+        message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       }
       await component.sendForApproval()
       expect(component.project.status).not.toEqual(ProjectStatus.Pending)
@@ -352,6 +355,41 @@ describe('ProjectEditorComponent On Creation', () => {
         expect(component.determineHitsContent.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
         expect(component.determineHitsContent.count).toEqual(null)
       })
+    })
+  })
+
+  describe('When the backend returns an error during project save', () => {
+    beforeEach(() => {
+      const mockCohortObservable = of(mockCohort1)
+      jest
+        .spyOn(projectService, 'create')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 400 })))
+      jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
+      component.resolvedData = {
+        error: null,
+        project: new ProjectUiModel(mockProject1),
+      }
+
+      const cohortGroup = new CohortGroupUiModel()
+      cohortGroup.logicalOperator = LogicalOperator.And
+      cohortGroup.type = ConnectorNodeType.Group
+      cohortGroup.children = [new AqlUiModel(mockAql1)]
+      component.resolvedData.project.cohortGroup = cohortGroup
+
+      component.resolvedData.project.id = undefined
+      component.resolvedData.project.cohortId = undefined
+    })
+
+    it('should reset the status of the project to draft after failed approval request', async () => {
+      expect(component.savedProjectStatus).toEqual(ProjectStatus.Draft)
+      await component.sendForApproval()
+      expect(component.project.status).toEqual(ProjectStatus.Draft)
+    })
+
+    it('should keep the draft status after save has hit an error', async () => {
+      expect(component.savedProjectStatus).toEqual(ProjectStatus.Draft)
+      await component.save()
+      expect(component.project.status).toEqual(ProjectStatus.Draft)
     })
   })
 })

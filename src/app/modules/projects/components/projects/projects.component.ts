@@ -16,6 +16,7 @@
 
 import { Component, OnInit } from '@angular/core'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-projects',
@@ -23,6 +24,7 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+  availableRoles = AvailableRoles
   constructor(private projectService: ProjectService) {}
   ngOnInit(): void {
     this.projectService.getAll().subscribe()

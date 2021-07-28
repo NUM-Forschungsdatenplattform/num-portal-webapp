@@ -39,7 +39,10 @@ export const routes: Routes = [
       navId: 'search',
       roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
     },
-    loadChildren: () => import('./modules/search/search.module').then((m) => m.SearchModule),
+    loadChildren: () =>
+      import(/* webpackChunkName: "Search.Module" */ './modules/search/search.module').then(
+        (m) => m.SearchModule
+      ),
   },
   {
     path: 'projects',
@@ -70,7 +73,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Researcher, AvailableRoles.Manager],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
@@ -118,7 +121,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'charts',
-      roles: [AvailableRoles.SuperAdmin, AvailableRoles.OrganizationAdmin],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Charts.Module" */ './modules/charts/charts.module').then(
@@ -126,10 +129,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'imprint',
+    path: 'legal',
     loadChildren: () =>
-      import(/* webpackChunkName: "Imprint.Module" */ './modules/imprint/imprint.module').then(
-        (m) => m.ImprintModule
+      import(/* webpackChunkName: "Legal.Module" */ './modules/legal/legal.module').then(
+        (m) => m.LegalModule
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { ImprintComponent } from './components/imprint.component'
+import { Component } from '@angular/core'
 
-const routes: Routes = [{ path: '', component: ImprintComponent }]
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+@Component({
+  selector: 'num-shared-contact',
+  templateUrl: './shared-contact.component.html',
 })
-export class ImprintRoutingModule {}
+export class SharedContactComponent {
+  constructor() {}
+}

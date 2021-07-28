@@ -63,7 +63,10 @@ export class AddUserRolesComponent implements OnInit, OnDestroy {
     const availableRoles = Object.values(AvailableRoles)
     if (!this.userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
       this.dataSource.data = availableRoles.filter(
-        (role) => role !== AvailableRoles.SuperAdmin && role !== AvailableRoles.ContentAdmin
+        (role) =>
+          role !== AvailableRoles.SuperAdmin &&
+          role !== AvailableRoles.ContentAdmin &&
+          role !== AvailableRoles.Manager
       )
     } else {
       this.dataSource.data = availableRoles

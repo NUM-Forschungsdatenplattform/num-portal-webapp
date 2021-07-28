@@ -27,7 +27,7 @@ export const DEFAULT_AQL_FILTER: IAqlFilter = {
     },
     {
       id: AqlFilterChipId.MyAql,
-      title: 'FILTER_CHIP.MY_AQLS',
+      title: 'FILTER_CHIP.MY_QUERIES',
       isSelected: false,
     },
     {
