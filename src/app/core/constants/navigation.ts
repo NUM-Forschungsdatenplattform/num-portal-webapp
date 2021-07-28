@@ -163,6 +163,7 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'charts',
     icon: 'chart-pie',
     translationKey: 'NAVIGATION.CHARTS',
+    roles: [AvailableRoles.Manager],
   },
 ]
 

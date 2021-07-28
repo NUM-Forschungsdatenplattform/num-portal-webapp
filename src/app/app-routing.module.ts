@@ -121,7 +121,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'charts',
-      roles: [AvailableRoles.SuperAdmin, AvailableRoles.OrganizationAdmin],
+      roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Charts.Module" */ './modules/charts/charts.module').then(

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { AvailableRoles } from '../available-roles.enum'
 import { IOrganization } from '../organization/organization.interface'
 
 export interface IUserProfile {
@@ -23,7 +24,7 @@ export interface IUserProfile {
   lastName: string
   email: string
   createdTimestamp: number
-  roles?: string[]
+  roles?: AvailableRoles[]
   approved: boolean
   organization: IOrganization
 }
