@@ -214,7 +214,7 @@
     "CLEAR_ENTRY": "Clear entry",
     "REQUEST_APPROVAL": "Request approval",
     "APPLY_SELECTION": "Apply Selection",
-    "FORMAT_QUERY": "Format criterium",
+    "FORMAT_QUERY": "Format query",
     "VALIDATE_QUERY": "Validate",
     "ADD_TEMPLATE": "Add Return Parameter",
     "ADD_RESEARCHERS": "Add researchers",
@@ -454,7 +454,7 @@
     "SECOND_SHORT": "Sec."
   },
   "QUERY_CATEGORIES": {
-    "CREATE_DESCRIPTION_BUTTON": "To create a new criterium categbory please click the following button.",
+    "CREATE_DESCRIPTION_BUTTON": "To create a new criterium category please click the following button.",
     "CREATE_HEADER": "Create criterium category",
     "CREATE_SUCCESS_MESSAGE": "Criteria category created successfully.",
     "CREATE_ERROR_MESSAGE": "Criteria category could not be created. Please try again.",
