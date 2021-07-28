@@ -341,7 +341,7 @@ describe('PatientFilterComponent', () => {
     it('should show the error message', () => {
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+        message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       })
     })
   })

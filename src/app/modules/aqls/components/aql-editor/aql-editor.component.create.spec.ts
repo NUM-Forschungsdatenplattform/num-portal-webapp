@@ -183,7 +183,7 @@ describe('AqlEditorComponent', () => {
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Success,
-          message: 'AQL.SAVE_SUCCESS_MESSAGE',
+          message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
         })
         expect(component.aqlCreator.validate).toHaveBeenCalled()
         done()
@@ -207,7 +207,7 @@ describe('AqlEditorComponent', () => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Error,
-          message: 'AQL.SAVE_ERROR_MESSAGE',
+          message: 'QUERIES.SAVE_ERROR_MESSAGE',
         })
       })
     })
@@ -225,7 +225,7 @@ describe('AqlEditorComponent', () => {
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Success,
-          message: 'AQL.SAVE_SUCCESS_MESSAGE',
+          message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
         })
       })
     })
@@ -235,7 +235,7 @@ describe('AqlEditorComponent', () => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Error,
-          message: 'AQL.SAVE_ERROR_MESSAGE',
+          message: 'QUERIES.SAVE_ERROR_MESSAGE',
         })
       })
     })

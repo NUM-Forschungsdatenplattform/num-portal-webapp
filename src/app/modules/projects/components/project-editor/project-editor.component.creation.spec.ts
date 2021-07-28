@@ -246,7 +246,7 @@ describe('ProjectEditorComponent On Creation', () => {
     it('should show the error message if no aql is provided', async () => {
       const toastConfig = {
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+        message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       }
       await component.sendForApproval()
       expect(component.project.status).not.toEqual(ProjectStatus.Pending)

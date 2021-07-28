@@ -88,22 +88,22 @@ export const mainNavItems: INavItem[] = [
   {
     routeTo: 'aqls',
     icon: 'dna',
-    translationKey: 'NAVIGATION.AQLS',
+    translationKey: 'NAVIGATION.QUERIES',
     tabNav: [
       {
         routeTo: 'aqls',
         id: 'overview',
-        translationKey: 'NAVIGATION.AQLS_OVERVIEW',
+        translationKey: 'NAVIGATION.QUERIES_OVERVIEW',
       },
       {
         routeTo: 'aqls/new/editor',
         id: 'editor',
-        translationKey: 'NAVIGATION.AQLS_EDITOR',
+        translationKey: 'NAVIGATION.QUERIES_EDITOR',
       },
       {
         routeTo: 'aqls/categories',
         id: 'aql-categories',
-        translationKey: 'NAVIGATION.AQLS_CATEGORIES_OVERVIEW',
+        translationKey: 'NAVIGATION.QUERIES_CATEGORIES_OVERVIEW',
         roles: [AvailableRoles.Manager],
       },
     ],

@@ -176,7 +176,7 @@ describe('AqlCategoriesManagementComponent', () => {
       await component.update(update, mockAqlCategory1.id)
       expect(mockToastService.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
       })
     })
 
@@ -197,7 +197,7 @@ describe('AqlCategoriesManagementComponent', () => {
       await component.update(mockAqlCategory1, 1)
       expect(mockToastService.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.UPDATE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.UPDATE_ERROR_MESSAGE',
       })
     })
   })
@@ -235,7 +235,7 @@ describe('AqlCategoriesManagementComponent', () => {
       await component.create(newCategoryData)
       expect(mockToastService.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Success,
-        message: 'AQL_CATEGORIES.CREATE_SUCCESS_MESSAGE',
+        message: 'QUERY_CATEGORIES.CREATE_SUCCESS_MESSAGE',
       })
     })
 
@@ -256,7 +256,7 @@ describe('AqlCategoriesManagementComponent', () => {
       await component.create({ name: { de: 'Test Kategorie', en: 'Test category' } })
       expect(mockToastService.openToast).toHaveBeenCalledWith({
         type: ToastMessageType.Error,
-        message: 'AQL_CATEGORIES.CREATE_ERROR_MESSAGE',
+        message: 'QUERY_CATEGORIES.CREATE_ERROR_MESSAGE',
       })
     })
   })

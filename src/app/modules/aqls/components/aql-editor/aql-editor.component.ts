@@ -118,12 +118,12 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL.SAVE_SUCCESS_MESSAGE',
+        message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL.SAVE_ERROR_MESSAGE',
+        message: 'QUERIES.SAVE_ERROR_MESSAGE',
       })
     }
   }
@@ -144,12 +144,12 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
 
       this.toast.openToast({
         type: ToastMessageType.Success,
-        message: 'AQL.SAVE_SUCCESS_MESSAGE',
+        message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
       })
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,
-        message: 'AQL.SAVE_ERROR_MESSAGE',
+        message: 'QUERIES.SAVE_ERROR_MESSAGE',
       })
     }
   }

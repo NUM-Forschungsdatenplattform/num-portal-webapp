@@ -39,7 +39,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   userRoles: AvailableRoles[]
   determineHits: IDetermineHits = {
-    defaultMessage: 'AQL.HITS.MESSAGE_SET_ALL_PARAMETERS',
+    defaultMessage: 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS',
     count: null,
   }
   patientCount$: Observable<number>
@@ -142,7 +142,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
     } else {
       this.toastMessageService.openToast({
         type: ToastMessageType.Error,
-        message: 'PROJECT.NO_AQL_ERROR_MESSAGE',
+        message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       })
     }
   }

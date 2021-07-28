@@ -15,15 +15,15 @@
 -->
 
 <div id="select-title" class="mat-body-strong">
-  {{ 'AQL_CATEGORIES.DEFINE_CATEGORY' | translate }}
+  {{ 'QUERY_CATEGORIES.DEFINE_CATEGORY' | translate }}
 </div>
 <form [formGroup]="categoryForm" (ngSubmit)="(handleDialogConfirm)">
   <mat-form-field appearance="fill">
-    <mat-label>{{ 'AQL_CATEGORIES.EN_NAME' | translate }}</mat-label>
+    <mat-label>{{ 'QUERY_CATEGORIES.EN_NAME' | translate }}</mat-label>
     <input matInput type="text" formControlName="nameEn" />
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>{{ 'AQL_CATEGORIES.DE_NAME' | translate }}</mat-label>
+    <mat-label>{{ 'QUERY_CATEGORIES.DE_NAME' | translate }}</mat-label>
     <input matInput type="text" formControlName="nameDe" />
   </mat-form-field>
 </form>
