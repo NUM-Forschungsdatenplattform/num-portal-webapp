@@ -22,7 +22,6 @@
     icon="play"
     class="num-margin-b-60"
     (singleClick)="getData()"
-    [isDisabled]="!isAqlPrepared"
     data-test="manager-data-explorer__retrieval-button"
     >{{ 'BUTTON.GET_DATA' | translate }}</num-button
   >
@@ -39,7 +38,7 @@
       type="secondary"
       icon="file-download"
       (singleClick)="exportFile('csv')"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      [isDisabled]="isExportLoading"
       data-test="manager-data-explorer__export-csv-button"
     >
       {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
@@ -49,7 +48,7 @@
       type="secondary"
       icon="file-download"
       (singleClick)="exportFile('json')"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+      [isDisabled]="isExportLoading"
       data-test="manager-data-explorer__export-json-button"
     >
       {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
