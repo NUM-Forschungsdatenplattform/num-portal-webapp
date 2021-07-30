@@ -38,8 +38,11 @@ describe('ManagerService', () => {
     it('should call the api with the projectId and pseudonym', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(resolvedValue))
       const result = await service.resolvePseudonym(projectId, pseudonym).toPromise()
-      expect(httpClient.get).toHaveBeenCalledWith(
-        `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`
+      expect(
+        httpClient.get
+      ).toHaveBeenCalledWith(
+        `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
+        { responseType: 'text' }
       )
       expect(result).toEqual(resolvedValue)
     })
@@ -50,8 +53,11 @@ describe('ManagerService', () => {
       try {
         await service.resolvePseudonym(projectId, pseudonym).toPromise()
       } catch (error) {
-        expect(httpClient.get).toHaveBeenCalledWith(
-          `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`
+        expect(
+          httpClient.get
+        ).toHaveBeenCalledWith(
+          `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
+          { responseType: 'text' }
         )
         expect(service.handleError).toHaveBeenCalled()
         done()
