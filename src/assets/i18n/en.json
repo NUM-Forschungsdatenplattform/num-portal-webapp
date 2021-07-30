@@ -56,7 +56,7 @@
     "CONTENT_EDITOR": "Content Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
-    "CHARTS": "Charts",
+    "MANAGER_TOOLS": "Manager Tools",
     "PROFILE": "Profile",
     "SEARCH": "Search",
     "SIGNOUT": "Sign out",
@@ -75,6 +75,12 @@
     "ORGANIZATION": "My organization",
     "ALL": "All",
     "ARCHIVED": "Archived"
+  },
+  "MANAGER_TOOLS": {
+    "RESOLVE_PSEUDONYM": "Resolve Pseudonym",
+    "PROVIDE_INFO_TO_RESOLVE": "Please provide the project-id and the pseudonym",
+    "RESOLVE_PSEUDONYM_ERROR": "No result for this combination found",
+    "COPY_CLIPBOARD_SUCCESS": "Copied patient-id to clipboard"
   },
   "QUERIES": {
     "INFO_DIALOG_TITLE": "Information about the Criteria",
@@ -201,7 +207,8 @@
     "ORGANIZATION_NAME": "Organization name",
     "ORGANIZATION_NAME_PLACEHOLDER": "Enter organization name",
     "ADD_ORGANIZATION_DOMAIN": "Add mail domain (domain part)",
-    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g domain.de or sub.domain.de"
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g domain.de or sub.domain.de",
+    "PSEUDONYM_PROJECT_ID": "Project-Id"
   },
   "BUTTON": {
     "ARCHIVE": "Archive",
@@ -262,7 +269,9 @@
     "NEXT_STEP": "Next Step",
     "PREVIOUS_STEP": "Previous Step",
     "START_DATA_RETRIEVAL": "Data Retrieval",
-    "PROJECT_CREATE": "Create project"
+    "PROJECT_CREATE": "Create project",
+    "RESOLVE": "Resolve",
+    "COPY_TO_CLIPBOARD": "Copy to clipboard"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",
