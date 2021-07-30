@@ -252,19 +252,22 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
 
   getDataSet(): void {
     this.isDataSetLoading = true
+    const defaultConfiguration = this.configuration === DataExplorerConfigurations.Default
 
     this.subscriptions.add(
-      this.projectService.executeAdHocAql(this.compiledQuery.q, this.project.id).subscribe(
-        (resultSet) => {
-          this.resultSet = resultSet
-          this.isDataSetLoading = false
-        },
-        (err) => {
-          this.isDataSetLoading = false
-          this.resultSet = undefined
-          this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-        }
-      )
+      this.projectService
+        .executeAdHocAql(this.compiledQuery.q, this.project.id, defaultConfiguration)
+        .subscribe(
+          (resultSet) => {
+            this.resultSet = resultSet
+            this.isDataSetLoading = false
+          },
+          (err) => {
+            this.isDataSetLoading = false
+            this.resultSet = undefined
+            this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+          }
+        )
     )
   }
 
