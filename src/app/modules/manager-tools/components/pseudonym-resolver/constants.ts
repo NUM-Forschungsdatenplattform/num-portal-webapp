@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-import { NgModule } from '@angular/core'
-import { Routes, RouterModule } from '@angular/router'
-import { ChartsComponent } from './components/charts/charts.component'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ChartsComponent,
-  },
-]
+export const RESOLVE_ERROR_CONFIG: IToastMessageConfig = {
+  message: 'MANAGER_TOOLS.RESOLVE_PSEUDONYM_ERROR',
+  type: ToastMessageType.Error,
+}
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class ChartsRoutingModule {}
+export const COPY_CLIPBOARD_SUCCESS_CONFIG: IToastMessageConfig = {
+  message: 'MANAGER_TOOLS.COPY_CLIPBOARD_SUCCESS',
+  type: ToastMessageType.Success,
+}

@@ -22,11 +22,11 @@ import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
 import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
 
 @Component({
-  selector: 'num-charts',
-  templateUrl: './charts.component.html',
-  styleUrls: ['./charts.component.scss'],
+  selector: 'num-manager-charts',
+  templateUrl: './manager-charts.component.html',
+  styleUrls: ['./manager-charts.component.scss'],
 })
-export class ChartsComponent implements OnInit, OnDestroy {
+export class ManagerChartsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
   sofaScoreDistributionSubscription = new Subscription()
 
