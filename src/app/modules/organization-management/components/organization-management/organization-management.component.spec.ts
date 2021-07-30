@@ -35,9 +35,9 @@ describe('OrganizationManagementComponent', () => {
   let fixture: ComponentFixture<OrganizationManagementComponent>
   let router: Router
 
-  const organizationService = ({
+  const organizationService = {
     getAll: jest.fn().mockImplementation(() => of()),
-  } as unknown) as OrganizationService
+  } as unknown as OrganizationService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {

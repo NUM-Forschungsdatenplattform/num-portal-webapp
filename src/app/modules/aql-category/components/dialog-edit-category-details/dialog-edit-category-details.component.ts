@@ -27,7 +27,8 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   styleUrls: ['./dialog-edit-category-details.component.scss'],
 })
 export class DialogEditCategoryDetailsComponent
-  implements IGenericDialog<{ aqlCategory?: Omit<IAqlCategoryApi, 'id'> }>, OnInit {
+  implements IGenericDialog<{ aqlCategory?: Omit<IAqlCategoryApi, 'id'> }>, OnInit
+{
   @Output() closeDialog = new EventEmitter<void | Omit<IAqlCategoryApi, 'id'>>()
 
   categoryForm: FormGroup

@@ -645,8 +645,7 @@ export const mockCoronaAnamnese: IContainmentNode = {
           ],
           fields: [
             {
-              name:
-                'Aufenthalt in den letzten 14 Tage in einem der Risikogebiete für Coronainfektion oder Kontakt zu Menschen, die dort waren::defining_code',
+              name: 'Aufenthalt in den letzten 14 Tage in einem der Risikogebiete für Coronainfektion oder Kontakt zu Menschen, die dort waren::defining_code',
               rmType: ReferenceModelType.Code_phrase,
               aqlPath:
                 '/data[at0001]/events[at0002]/data[at0003]/items[at0111]/value/defining_code',

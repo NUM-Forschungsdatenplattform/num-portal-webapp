@@ -81,7 +81,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts}": [
+    "src/**/*.ts": [
       "ng-lint-staged lint --fix --"
     ]
   }

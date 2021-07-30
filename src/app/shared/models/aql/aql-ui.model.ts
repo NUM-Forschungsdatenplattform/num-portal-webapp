@@ -100,9 +100,8 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
         .replace(parameter.nameWithDollar, parameter.nameWithDollar + this.NAME_SUFFIX)
         .replace(parameter.operator, parameter.nameWithDollar + this.OPERATOR_SUFFIX)
 
-      this.queryWithOperatorPlaceholder = (this.queryWithOperatorPlaceholder
-        ? this.queryWithOperatorPlaceholder
-        : this.query
+      this.queryWithOperatorPlaceholder = (
+        this.queryWithOperatorPlaceholder ? this.queryWithOperatorPlaceholder : this.query
       ).replace(fullParameterPath, pathWithInjectedPlaceholder)
     })
   }

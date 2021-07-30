@@ -52,7 +52,7 @@ describe('PatientFilterComponent', () => {
 
   const mockDataSetSubject$ = new Subject<number>()
   const mockPreviewDataSubject$ = new Subject<string>()
-  const mockPatientFilterService = ({
+  const mockPatientFilterService = {
     getAllDatasetCount: jest.fn(),
     getPreviewData: jest.fn(),
     getCurrentProject: jest.fn(),
@@ -60,24 +60,24 @@ describe('PatientFilterComponent', () => {
     previewDataObservable$: mockPreviewDataSubject$.asObservable(),
     totalDatasetCountObservable: mockDataSetSubject$.asObservable(),
     resetPreviewData: jest.fn(),
-  } as unknown) as PatientFilterService
+  } as unknown as PatientFilterService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
-  const mockCohortService = ({
+  const mockCohortService = {
     getSize: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
-  const mockProfileService = ({
+  const mockProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   @Component({
     selector: 'num-cohort-builder',

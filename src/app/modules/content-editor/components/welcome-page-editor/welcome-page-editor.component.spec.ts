@@ -60,23 +60,23 @@ describe('WelcomePageEditorComponent', () => {
     @Output() delete = deleteEmitter
   }
 
-  const mockContentService = ({
+  const mockContentService = {
     getCards: jest.fn(),
     updateCards: jest.fn(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const afterClosedSubject$ = new Subject()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -177,10 +177,10 @@ describe('WelcomePageEditorComponent', () => {
   })
 
   it('should move the element according to the drop event', () => {
-    const dropEvent = ({
+    const dropEvent = {
       previousIndex: 1,
       currentIndex: 0,
-    } as unknown) as CdkDragDrop<string[]>
+    } as unknown as CdkDragDrop<string[]>
 
     component.drop(dropEvent)
     expect(component.dashboardCards.value[0].titleGerman).toEqual(mockDashboardCards[1].de.title)

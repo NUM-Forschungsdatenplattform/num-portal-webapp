@@ -26,9 +26,9 @@ describe('LanguageComponent', () => {
   let fixture: ComponentFixture<LanguageComponent>
   let translate: TranslateService
 
-  const dateAdapterMock = ({
+  const dateAdapterMock = {
     setLocale: jest.fn(),
-  } as unknown) as DateAdapter<Date>
+  } as unknown as DateAdapter<Date>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

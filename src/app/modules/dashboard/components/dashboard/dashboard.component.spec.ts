@@ -46,17 +46,17 @@ describe('DashboardComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const config = ({
+  const config = {
     env: 'test',
-  } as unknown) as IAppConfig
+  } as unknown as IAppConfig
 
-  const oauthService = ({
+  const oauthService = {
     loadUserProfile: () => Promise.resolve(),
-  } as unknown) as OAuthService
+  } as unknown as OAuthService
 
-  const mockContentService = ({
+  const mockContentService = {
     getCards: jest.fn(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -33,21 +33,21 @@ describe('AqlSelectionComponent', () => {
   let component: AqlSelectionComponent
   let fixture: ComponentFixture<AqlSelectionComponent>
 
-  const mockCohortBuilderService = ({
+  const mockCohortBuilderService = {
     pushItemToTarget: jest.fn(),
-  } as unknown) as CohortBuilderService
+  } as unknown as CohortBuilderService
 
   const aqlsSubject = new Subject<IAqlApi[]>()
-  const mockAqlService = ({
+  const mockAqlService = {
     getAll: jest.fn(),
     aqlsObservable$: aqlsSubject.asObservable(),
-  } as unknown) as AqlService
+  } as unknown as AqlService
 
   const aqlsCategoriesSubject = new Subject<IAqlCategoryApi[]>()
-  const mockAqlCategoryService = ({
+  const mockAqlCategoryService = {
     getAll: jest.fn(),
     aqlCategoriesObservable$: aqlsCategoriesSubject.asObservable(),
-  } as unknown) as AqlCategoryService
+  } as unknown as AqlCategoryService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

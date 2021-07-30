@@ -37,7 +37,8 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
-  implements AfterViewInit, OnDestroy {
+  implements AfterViewInit, OnDestroy
+{
   @Output() openEditDialog = new EventEmitter<Omit<IAqlCategoryApi, 'id'>>()
   displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
   menuItems: IItemVisibility[] = [MENU_ITEM_EDIT, MENU_ITEM_DELETE]

@@ -20,9 +20,9 @@ import { CanDeactivateSearchGuard } from './can-deactivate-search.guard'
 describe('CanDeactivateSearchGuard', () => {
   let guard: CanDeactivateSearchGuard
 
-  const mockPatientFilterService = ({
+  const mockPatientFilterService = {
     resetCurrentProject: jest.fn(),
-  } as unknown) as PatientFilterService
+  } as unknown as PatientFilterService
 
   beforeEach(() => {
     jest.spyOn(mockPatientFilterService, 'resetCurrentProject')

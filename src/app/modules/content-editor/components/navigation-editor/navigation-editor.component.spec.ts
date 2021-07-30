@@ -41,16 +41,16 @@ describe('NavigationEditorComponent', () => {
     @Input() isLoading: any
   }
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const navigationLinkSubject = new Subject()
-  const mockContentService = ({
+  const mockContentService = {
     getNavigationLinks: jest.fn(),
     updateNavigationLinks: jest.fn(),
     navigationLinksObservable$: navigationLinkSubject.asObservable(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -43,9 +43,9 @@ describe('SideMenuComponent', () => {
     initCodeFlow: () => {},
   } as OAuthService
 
-  const mockContentService = ({
+  const mockContentService = {
     getNavigationLinks: jest.fn(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -55,13 +55,13 @@ describe('SideMenuComponent', () => {
   } as AuthService
 
   const afterClosedSubject$ = new Subject<boolean | undefined>()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

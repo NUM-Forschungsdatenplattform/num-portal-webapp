@@ -32,7 +32,8 @@ import { OrganizationTableColumn } from '../../models/organization-table-column.
 })
 export class OrganizationsTableComponent
   extends SortableTable<IOrganization>
-  implements OnInit, OnDestroy, AfterViewInit {
+  implements OnInit, OnDestroy, AfterViewInit
+{
   private subscriptions = new Subscription()
   constructor(private organizationService: OrganizationService, private router: Router) {
     super()

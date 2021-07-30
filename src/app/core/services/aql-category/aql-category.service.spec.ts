@@ -23,12 +23,12 @@ describe('AqlCategoryService', () => {
   let service: AqlCategoryService
   const baseUrl = 'localhost/api/aql/category'
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
     delete: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

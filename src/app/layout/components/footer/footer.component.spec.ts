@@ -48,7 +48,7 @@ describe('FooterComponent', () => {
   beforeEach(() => {
     router = TestBed.inject(Router)
     appConfig = TestBed.inject(AppConfigService)
-    appConfig.config = ({} as unknown) as IAppConfig
+    appConfig.config = {} as unknown as IAppConfig
     appConfig.config.legal = {
       copyrightOwner: 'Test',
     }

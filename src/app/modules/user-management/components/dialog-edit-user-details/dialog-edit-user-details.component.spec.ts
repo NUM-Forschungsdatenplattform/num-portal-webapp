@@ -45,24 +45,24 @@ describe('DialogEditUserDetailsComponent', () => {
 
   const organizationsSubject$ = new Subject<IOrganization>()
 
-  const adminService = ({
+  const adminService = {
     approveUser: jest.fn().mockImplementation(() => of('Success')),
     addUserRoles: (userId: string, roles: string[]) => of(),
     addUserOrganization: (userId: string, organization: string) => of(),
     refreshFilterResult: () => [],
     getUnapprovedUsers: () => of(),
-  } as unknown) as AdminService
+  } as unknown as AdminService
 
-  const organizationService = ({
+  const organizationService = {
     organizationsObservable$: organizationsSubject$.asObservable(),
     getAll: () => of(mockOrganizations),
     setFilter: () => {},
-  } as unknown) as OrganizationService
+  } as unknown as OrganizationService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
-  const profileService = ({
+  const profileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -72,9 +72,9 @@ describe('DialogEditUserDetailsComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

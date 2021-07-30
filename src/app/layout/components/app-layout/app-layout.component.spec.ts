@@ -56,31 +56,31 @@ describe('AppLayoutComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const httpClient = ({
+  const httpClient = {
     get: () => of(),
     post: () => of(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
-  const profileService = ({
+  const profileService = {
     get: () => jest.fn(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
-  const mockContentService = ({
+  const mockContentService = {
     getNavigationLinks: jest.fn(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   let listenerCallback: (event: any) => any
-  const mediaQueryList = ({
+  const mediaQueryList = {
     matches: true,
     addEventListener: jest.fn().mockImplementation((type: string, callback) => {
       listenerCallback = callback
     }),
     removeEventListener: jest.fn(),
-  } as unknown) as MediaQueryList
+  } as unknown as MediaQueryList
 
-  const mediaMatcher = ({
+  const mediaMatcher = {
     matchMedia: jest.fn().mockImplementation(() => mediaQueryList),
-  } as unknown) as MediaMatcher
+  } as unknown as MediaMatcher
 
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}

@@ -28,9 +28,9 @@ describe('TemplateService', () => {
   let throttleTime: number
   const baseUrl = 'localhost/api/template/metadata'
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

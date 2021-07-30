@@ -37,11 +37,11 @@ describe('ChartsComponent', () => {
   let translate: TranslateService
   let injector: Injector
 
-  const contentService = ({
+  const contentService = {
     getSofaScoreAverage: () => of(),
     getSofaScoreDistribution: () => of(),
     getClinics: () => of(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   const mockSofaAvg = { clinic1: 5.0, clinic2: 6.0, clinic3: 2.3567 }
   const mockSofaDist = { '0-4': 3, '5-9': 1, '10-14': 6, '15-19': 2, '20-24': 0 }

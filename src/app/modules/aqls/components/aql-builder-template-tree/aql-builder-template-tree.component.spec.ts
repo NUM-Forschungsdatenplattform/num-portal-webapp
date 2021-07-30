@@ -35,9 +35,9 @@ describe('AqlBuilderTemplateTreeComponent', () => {
 
   const templateId = 'testId'
 
-  const aqlEditorService = ({
+  const aqlEditorService = {
     getContainment: jest.fn(),
-  } as unknown) as AqlEditorService
+  } as unknown as AqlEditorService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

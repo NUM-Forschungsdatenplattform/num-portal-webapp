@@ -52,12 +52,12 @@ describe('ProjectService', () => {
     searchText: 'test',
   }
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
     delete: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {
@@ -68,9 +68,9 @@ describe('ProjectService', () => {
   } as AppConfigService
 
   const userProfileSubject$ = new Subject<any>()
-  const userProfileService = ({
+  const userProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   beforeEach(() => {
     jest.clearAllMocks()

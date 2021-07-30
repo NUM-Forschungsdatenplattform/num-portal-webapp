@@ -42,11 +42,11 @@ describe('CohortService', () => {
     cohortGroup: undefined,
   }
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {
