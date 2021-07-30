@@ -78,7 +78,7 @@
   },
   "MANAGER_TOOLS": {
     "RESOLVE_PSEUDONYM": "Pseudonym auflösen",
-    "PROVIDE_INFO_TO_RESOLVE": "Bitte geben sie die Projekt-Id und das Pseudonym ein",
+    "PROVIDE_INFO_TO_RESOLVE": "Bitte geben Sie die Projekt-Id und das Pseudonym ein",
     "RESOLVE_PSEUDONYM_ERROR": "Kein Ergebnis für diese Kombination gefunden",
     "COPY_CLIPBOARD_SUCCESS": "Patienten-Id wurde in die Zwischenablage kopiert"
   },
@@ -208,7 +208,7 @@
     "ORGANIZATION_NAME": "Organisationsname",
     "ORGANIZATION_NAME_PLACEHOLDER": "Name der Organisation eingeben",
     "ADD_ORGANIZATION_DOMAIN": "Mail-Domäne hinzufügen (domain part)",
-    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B domain.de or sub.domain.de",
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B. domain.de or sub.domain.de",
     "PSEUDONYM_PROJECT_ID": "Projekt-Id"
   },
   "BUTTON": {

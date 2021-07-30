@@ -207,8 +207,8 @@
     "ORGANIZATION_NAME": "Organization name",
     "ORGANIZATION_NAME_PLACEHOLDER": "Enter organization name",
     "ADD_ORGANIZATION_DOMAIN": "Add mail domain (domain part)",
-    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g domain.de or sub.domain.de",
-    "PSEUDONYM_PROJECT_ID": "Project-Id"
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g. domain.de or sub.domain.de",
+    "PSEUDONYM_PROJECT_ID": "Project-id"
   },
   "BUTTON": {
     "ARCHIVE": "Archive",

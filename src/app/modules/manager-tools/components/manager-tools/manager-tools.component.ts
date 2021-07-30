@@ -15,7 +15,6 @@
  */
 
 import { Component, OnInit } from '@angular/core'
-import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-manager-tools',
@@ -23,8 +22,6 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./manager-tools.component.scss'],
 })
 export class ManagerToolsComponent implements OnInit {
-  subscriptions = new Subscription()
-
   constructor() {}
 
   ngOnInit(): void {}

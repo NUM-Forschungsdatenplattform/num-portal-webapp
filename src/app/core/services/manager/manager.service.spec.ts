@@ -47,7 +47,7 @@ describe('ManagerService', () => {
       expect(result).toEqual(resolvedValue)
     })
 
-    it('should call the api and handle erros', async (done) => {
+    it('should call the api and handle errors', async (done) => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
 
       try {
