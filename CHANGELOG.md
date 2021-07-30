@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 - Resolving of pseudonyms to patient ids ([#276])
 - Simplification of Data-Retrieval for the manager ([#278])
+- Flag for default configuration to the data retrieval in the data-explorer ([#279])
 
 ---
 
@@ -545,3 +546,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#273]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/273
 [#276]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/276
 [#278]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/278
+[#279]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/279

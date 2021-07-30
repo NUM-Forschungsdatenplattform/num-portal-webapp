@@ -269,9 +269,16 @@ export class ProjectService {
     return result
   }
 
-  executeAdHocAql(query: string, projectId: number): Observable<IAqlExecutionResponse[]> {
+  executeAdHocAql(
+    query: string,
+    projectId: number,
+    defaultConfiguration: boolean
+  ): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
-      .post<IAqlExecutionResponse[]>(`${this.baseUrl}/${projectId}/execute`, { query })
+      .post<IAqlExecutionResponse[]>(
+        `${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`,
+        { query }
+      )
       .pipe(catchError(this.handleError))
   }
 
