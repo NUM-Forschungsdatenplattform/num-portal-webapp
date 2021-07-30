@@ -85,14 +85,9 @@ export class PatientFilterService {
       )
   }
 
-  getProjectData(
-    query: string,
-    cohort: ICohortApi,
-    templateIds: string[]
-  ): Observable<IAqlExecutionResponse[]> {
+  getProjectData(cohort: ICohortApi, templateIds: string[]): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
       .post<IAqlExecutionResponse[]>(`${this.baseUrl}/project/manager/execute`, {
-        query,
         cohort,
         templates: templateIds,
       })
