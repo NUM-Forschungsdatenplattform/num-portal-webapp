@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -22,14 +22,10 @@ import { Subscription } from 'rxjs'
   templateUrl: './manager-tools.component.html',
   styleUrls: ['./manager-tools.component.scss'],
 })
-export class ManagerToolsComponent implements OnInit, OnDestroy {
+export class ManagerToolsComponent implements OnInit {
   subscriptions = new Subscription()
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
-  }
 }
