@@ -1,0 +1,83 @@
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<h2>{{ 'MANAGER_TOOLS.RESOLVE_PSEUDONYM' | translate }}</h2>
+<mat-card fxLayout="column">
+  <p>{{ 'MANAGER_TOOLS.PROVIDE_INFO_TO_RESOLVE' | translate }}</p>
+  <form
+    [formGroup]="form"
+    (keyup.enter)="resolvePseudonym()"
+    fxLayoutGap.lt-sm="0"
+    fxLayoutGap="24px"
+    fxLayout="row"
+    fxLayout.lt-sm="column"
+  >
+    <mat-form-field appearance="outline" color="accent" fxFlex="100px">
+      <mat-label id="projectId-label">{{ 'FORM.PSEUDONYM_PROJECT_ID' | translate }}</mat-label>
+      <input
+        formControlName="projectId"
+        matInput
+        aria-labelledby="projectId-label"
+        data-test="manager-tools__resolve-pseudonym__projectid-input"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent" fxFlex="100%">
+      <mat-label id="pseudonym-label">Pseudonym</mat-label>
+      <input
+        formControlName="pseudonym"
+        matInput
+        aria-labelledby="pseudonym-label"
+        minlength="8"
+        data-test="manager-tools__resolve-pseudonym__pseudonym-input"
+      />
+    </mat-form-field>
+  </form>
+
+  <mat-spinner
+    class="num-margin-b-20"
+    color="accent"
+    [diameter]="20"
+    *ngIf="isLoading; else content"
+  ></mat-spinner>
+
+  <ng-template #content>
+    <span class="mat-body-strong" *ngIf="resolvedPseudonym">Patient</span>
+    <section role="row" class="resolved num-margin-b-20" *ngIf="resolvedPseudonym">
+      <span data-test="manager-tools__resolve-pseudonym__pseudonym-value">{{
+        resolvedPseudonym
+      }}</span>
+      <button
+        *ngIf="hasClipboardApi"
+        id="clipboard-button"
+        type="button"
+        [attr.aria-label]="'BUTTON.COPY_TO_CLIPBOARD' | translate"
+        mat-icon-button
+        (click)="copyToClipboard()"
+        data-test="manager-tools__resolve-pseudonym__clipboard-button"
+      >
+        <fa-icon icon="clipboard" size="lg" class="num-fc--a"></fa-icon>
+      </button>
+    </section>
+  </ng-template>
+
+  <num-button
+    [isDisabled]="isLoading || form.invalid"
+    type="primary"
+    (singleClick)="resolvePseudonym()"
+    data-test="manager-tools__resolve-pseudonym__resolve-button"
+    >{{ 'BUTTON.RESOLVE' | translate }}</num-button
+  >
+</mat-card>

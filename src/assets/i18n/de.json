@@ -56,7 +56,7 @@
     "CONTENT_EDITOR": "Inhalts-Editor",
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
-    "CHARTS": "Diagramme",
+    "MANAGER_TOOLS": "Manager Tools",
     "PROFILE": "Profil",
     "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
@@ -75,6 +75,12 @@
     "ORGANIZATION": "Meine Organisation",
     "ALL": "Alle",
     "ARCHIVED": "Archiviert"
+  },
+  "MANAGER_TOOLS": {
+    "RESOLVE_PSEUDONYM": "Pseudonym auflösen",
+    "PROVIDE_INFO_TO_RESOLVE": "Bitte geben Sie die Projekt-Id und das Pseudonym ein",
+    "RESOLVE_PSEUDONYM_ERROR": "Kein Ergebnis für diese Kombination gefunden",
+    "COPY_CLIPBOARD_SUCCESS": "Patienten-Id wurde in die Zwischenablage kopiert"
   },
   "QUERIES": {
     "INFO_DIALOG_TITLE": "Informationen zum Kriterium",
@@ -182,8 +188,8 @@
     "END_DATE": "Enddatum",
     "FINANCED": "Finanzierung",
     "FINANCED_BY_PRIVATE": "Finanziert durch privaten Geldgeber (ganz oder teilweise)",
-    "OUTSIDE_EU": "Außerhalb der EU",
-    "USED_OUTSIDE_EU": "Verwendung außerhalb der EU",
+    "OUTSIDE_EU": "Datenschutzniveau",
+    "USED_OUTSIDE_EU": "Weitergabe der Daten in Länder, bei denen die Europäische Kommission kein angemessenen Datenschutz festgestellt hat.",
     "AUTHOR": "Autor",
     "STATUS": "Status",
     "CHARACTERS": "Zeichen",
@@ -202,7 +208,8 @@
     "ORGANIZATION_NAME": "Organisationsname",
     "ORGANIZATION_NAME_PLACEHOLDER": "Name der Organisation eingeben",
     "ADD_ORGANIZATION_DOMAIN": "Mail-Domäne hinzufügen (domain part)",
-    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B domain.de or sub.domain.de"
+    "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B. domain.de or sub.domain.de",
+    "PSEUDONYM_PROJECT_ID": "Projekt-Id"
   },
   "BUTTON": {
     "ARCHIVE": "Archivieren",
@@ -263,7 +270,9 @@
     "NEXT_STEP": "Nächster Schritt",
     "PREVIOUS_STEP": "Schritt zurück",
     "START_DATA_RETRIEVAL": "Datenabruf starten",
-    "PROJECT_CREATE": "Projekt erstellen"
+    "PROJECT_CREATE": "Projekt erstellen",
+    "RESOLVE": "Auflösen",
+    "COPY_TO_CLIPBOARD": "In Zwischenablage kopieren"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",

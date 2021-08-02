@@ -190,24 +190,30 @@ describe('ProjectService', () => {
   describe('When a call to execute method comes in', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of([mockResultSetFlat]))
-      service.executeAdHocAql('query', 1).subscribe((result) => {
+      service.executeAdHocAql('query', 1, true).subscribe((result) => {
         expect(result).toEqual([mockResultSetFlat])
       })
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
-        query: 'query',
-      })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/project/${1}/execute?defaultConfiguration=true`,
+        {
+          query: 'query',
+        }
+      )
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
       jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
       service
-        .executeAdHocAql('query', 1)
+        .executeAdHocAql('query', 1, false)
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
-        query: 'query',
-      })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/project/${1}/execute?defaultConfiguration=false`,
+        {
+          query: 'query',
+        }
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })

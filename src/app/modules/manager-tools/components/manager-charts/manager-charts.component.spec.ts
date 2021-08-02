@@ -21,7 +21,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { Observable, of, throwError } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { ChartsComponent } from './charts.component'
+import { ManagerChartsComponent } from './manager-charts.component'
 
 const translations: any = { CARDS_TITLE: 'This is a test' }
 
@@ -31,9 +31,9 @@ class FakeLoader implements TranslateLoader {
   }
 }
 
-describe('ChartsComponent', () => {
-  let component: ChartsComponent
-  let fixture: ComponentFixture<ChartsComponent>
+describe('ManagerChartsComponent', () => {
+  let component: ManagerChartsComponent
+  let fixture: ComponentFixture<ManagerChartsComponent>
   let translate: TranslateService
   let injector: Injector
 
@@ -54,7 +54,7 @@ describe('ChartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ChartsComponent, BarChartStubComponent],
+      declarations: [ManagerChartsComponent, BarChartStubComponent],
       imports: [
         MaterialModule,
         TranslateModule.forRoot({
@@ -74,7 +74,7 @@ describe('ChartsComponent', () => {
   beforeEach(() => {
     injector = getTestBed()
     translate = injector.get(TranslateService)
-    fixture = TestBed.createComponent(ChartsComponent)
+    fixture = TestBed.createComponent(ManagerChartsComponent)
     component = fixture.componentInstance
 
     fixture.detectChanges()

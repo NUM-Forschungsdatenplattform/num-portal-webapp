@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-:host {
-  width: 100%;
-}
+import { Component, OnInit } from '@angular/core'
 
-mat-form-field {
-  width: 100%;
-}
+@Component({
+  selector: 'num-manager-tools',
+  templateUrl: './manager-tools.component.html',
+  styleUrls: ['./manager-tools.component.scss'],
+})
+export class ManagerToolsComponent implements OnInit {
+  constructor() {}
 
-mat-card {
-  height: 420px;
-  display: flex;
-  flex-direction: column;
+  ngOnInit(): void {}
 }

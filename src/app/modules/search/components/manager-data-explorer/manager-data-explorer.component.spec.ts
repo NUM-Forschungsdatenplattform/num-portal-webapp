@@ -21,16 +21,13 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
-import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
-import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
-import { mockSimpleContainment } from 'src/mocks/data-mocks/aqb/simple-containment.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { mockResultFlatList } from 'src/mocks/data-mocks/result-set-mock'
@@ -58,11 +55,6 @@ describe('ManagerDataRetrievComponent', () => {
     getProjectData: jest.fn(),
     setCurrentProject: jest.fn(),
   } as unknown as PatientFilterService
-
-  const mockAqlEditorService = {
-    buildAql: jest.fn(),
-    getContainment: jest.fn(),
-  } as unknown as AqlEditorService
 
   const mockToastMessageService = {
     openToast: jest.fn(),
@@ -106,10 +98,6 @@ describe('ManagerDataRetrievComponent', () => {
       ],
       providers: [
         {
-          provide: AqlEditorService,
-          useValue: mockAqlEditorService,
-        },
-        {
           provide: PatientFilterService,
           useValue: mockPatientFilterService,
         },
@@ -133,20 +121,10 @@ describe('ManagerDataRetrievComponent', () => {
     }).compileComponents()
   })
 
-  const buildResponse: IArchetypeQueryBuilderResponse = {
-    q: 'result string',
-    parameters: {},
-  }
-
   beforeEach(() => {
     jest.clearAllMocks()
     fixture = TestBed.createComponent(ManagerDataExplorerComponent)
     component = fixture.componentInstance
-    jest
-      .spyOn(mockAqlEditorService, 'getContainment')
-      .mockImplementation(() => of(mockSimpleContainment))
-
-    jest.spyOn(mockAqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
   })
 
   it('should create', () => {
@@ -182,36 +160,6 @@ describe('ManagerDataRetrievComponent', () => {
     })
   })
 
-  describe('When no compiled query is present', () => {
-    beforeEach(() => {
-      component.compiledQuery = undefined
-      component.getData()
-    })
-    it('should not call the data retrieval service', () => {
-      expect(mockPatientFilterService.getProjectData).not.toHaveBeenCalled()
-    })
-  })
-
-  describe('When there is an error building the AQL', () => {
-    beforeEach(() => {
-      jest
-        .spyOn(mockAqlEditorService, 'getContainment')
-        .mockImplementation(() => throwError('Error building AQL'))
-      fixture.detectChanges()
-    })
-
-    it('should show a message to the user', () => {
-      expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
-        message: 'DATA_EXPLORER.CONFIGURATION_ERROR',
-        type: ToastMessageType.Error,
-      })
-    })
-
-    it('should set the loading status back to false', () => {
-      expect(component.isDataSetLoading).toBe(false)
-    })
-  })
-
   describe('When there is an error during data retrieval', () => {
     beforeEach(() => {
       fixture.detectChanges()
@@ -231,14 +179,6 @@ describe('ManagerDataRetrievComponent', () => {
 
     it('should reset the loading status', () => {
       expect(component.isDataSetLoading).toBe(false)
-    })
-  })
-
-  describe('On init', () => {
-    it('should prepare the AQL query', () => {
-      fixture.detectChanges()
-      expect(mockAqlEditorService.buildAql).toHaveBeenCalled()
-      expect(component.isAqlPrepared).toBe(true)
     })
   })
 })

@@ -124,14 +124,12 @@ describe('PatientFilterService', () => {
   })
 
   describe('When a call to getProjectData comes in', () => {
-    const query = 'SELECT test FROM test'
     const templates = ['Test 1', 'Test 2']
 
     it('should call the backend - with success', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockResultFlatList))
-      service.getProjectData(query, mockCohort1, templates).subscribe()
+      service.getProjectData(mockCohort1, templates).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
-        query,
         cohort: mockCohort1,
         templates,
       })
@@ -143,12 +141,11 @@ describe('PatientFilterService', () => {
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 400 })))
       jest.spyOn(service, 'handleError')
       service
-        .getProjectData(query, mockCohort1, templates)
+        .getProjectData(mockCohort1, templates)
         .toPromise()
         .then(() => {})
         .catch(() => {})
       expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
-        query,
         cohort: mockCohort1,
         templates,
       })
