@@ -83,6 +83,7 @@
     "COPY_CLIPBOARD_SUCCESS": "Patienten-Id wurde in die Zwischenablage kopiert"
   },
   "QUERIES": {
+    "PARAMETER_ERROR": "Die Parameter dieses Kriteriums können nicht verwendet werden",
     "INFO_DIALOG_TITLE": "Informationen zum Kriterium",
     "AS": "als",
     "CREATE_QUERY": "Kriterium erstellen",

@@ -17,7 +17,14 @@
 <section role="region" fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start start">
   <div>{{ aql.name }}</div>
 
-  <div fxLayout="column" fxLayoutGap="8px">
+  <ng-template #parameterError>
+    <mat-hint class="parameter-error">
+      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+      {{ 'QUERIES.PARAMETER_ERROR' | translate }}</mat-hint
+    >
+  </ng-template>
+
+  <div fxLayout="column" fxLayoutGap="8px" *ngIf="!hasParameterError; else parameterError">
     <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px" fxLayout="row">
       <mat-form-field
         appearance="outline"

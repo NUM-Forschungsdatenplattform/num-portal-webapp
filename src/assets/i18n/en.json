@@ -83,6 +83,7 @@
     "COPY_CLIPBOARD_SUCCESS": "Copied patient-id to clipboard"
   },
   "QUERIES": {
+    "PARAMETER_ERROR": "The parameters of this criterium are not usable",
     "INFO_DIALOG_TITLE": "Information about the Criteria",
     "AS": "as",
     "CREATE_QUERY": "Create",
