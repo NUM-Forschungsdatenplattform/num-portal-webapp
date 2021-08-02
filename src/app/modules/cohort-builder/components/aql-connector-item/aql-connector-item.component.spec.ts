@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of } from 'rxjs'
+import { of, throwError } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
@@ -141,6 +141,14 @@ describe('AqlConnectorItemComponent', () => {
       if (optionKeys.length) {
         expect(component.aql.parameters[0].value).toEqual(optionKeys[0])
       }
+    })
+
+    it('should flag the item with a parameter error when one parameter could not be resolved', () => {
+      jest.spyOn(mockAqlParameterService, 'getValues').mockImplementation(() => throwError('Error'))
+      component.aql = new AqlUiModel(mockAql3, false, testcases[0].parameters)
+
+      fixture.detectChanges()
+      expect(component.hasParameterError).toBeTruthy()
     })
   })
 

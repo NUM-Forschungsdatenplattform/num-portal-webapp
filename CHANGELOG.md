@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Resolving of pseudonyms to patient ids ([#276])
 - Simplification of Data-Retrieval for the manager ([#278])
 - Flag for default configuration to the data retrieval in the data-explorer ([#279])
+- Error message in case a parameter can't be resolved in the cohort builder ([#282])
 
 ### Changed
 
@@ -554,3 +555,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#279]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/279
 [#280]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/280
 [#281]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/281
+[#282]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/282

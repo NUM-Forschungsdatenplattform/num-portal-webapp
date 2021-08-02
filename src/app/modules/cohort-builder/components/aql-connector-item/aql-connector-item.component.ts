@@ -34,41 +34,50 @@ export class AqlConnectorItemComponent implements OnInit {
   @Output()
   deleteItem = new EventEmitter()
 
+  hasParameterError: boolean
+
   constructor(private aqlParameterService: AqlParameterService) {}
 
   ngOnInit(): void {
-    this.aql.parameters.forEach((parameter) => {
-      this.aqlParameterService
-        .getValues(parameter.path, parameter.archetypeId)
-        .subscribe((response) => {
-          parameter.options = response.options
-          const optionKeys = Object.keys(parameter.options)
-          if (optionKeys.length) {
-            parameter.valueType = AqlParameterValueType.Options
-          } else {
-            parameter.valueType = this.getValueTypeForParameter(response.type)
-          }
-
-          if (parameter.value === null || parameter.value === undefined) {
-            switch (parameter.valueType) {
-              case AqlParameterValueType.Boolean:
-                parameter.value = true
-                break
-              case AqlParameterValueType.Options:
-                parameter.value = optionKeys[0]
-                break
-              case AqlParameterValueType.Date:
-              case AqlParameterValueType.DateTime:
-              case AqlParameterValueType.Time:
-                parameter.value = new Date()
-                break
+    if (this.aql.hasParameterError) {
+      this.hasParameterError = true
+    } else {
+      this.aql.parameters.forEach((parameter) => {
+        this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe(
+          (response) => {
+            parameter.options = response.options
+            const optionKeys = Object.keys(parameter.options)
+            if (optionKeys.length) {
+              parameter.valueType = AqlParameterValueType.Options
+            } else {
+              parameter.valueType = this.getValueTypeForParameter(response.type)
             }
-          }
 
-          this.checkParameterStatus()
-          parameter.isMetaFetched = true
-        })
-    })
+            if (parameter.value === null || parameter.value === undefined) {
+              switch (parameter.valueType) {
+                case AqlParameterValueType.Boolean:
+                  parameter.value = true
+                  break
+                case AqlParameterValueType.Options:
+                  parameter.value = optionKeys[0]
+                  break
+                case AqlParameterValueType.Date:
+                case AqlParameterValueType.DateTime:
+                case AqlParameterValueType.Time:
+                  parameter.value = new Date()
+                  break
+              }
+            }
+
+            this.checkParameterStatus()
+            parameter.isMetaFetched = true
+          },
+          (_) => {
+            this.hasParameterError = true
+          }
+        )
+      })
+    }
   }
 
   getValueTypeForParameter(rmType: ReferenceModelType): AqlParameterValueType {
