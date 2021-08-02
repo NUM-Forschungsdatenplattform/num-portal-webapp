@@ -221,8 +221,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.selectedTemplateIds = confirmResult.selectedTemplateIds
     this.compiledQuery = confirmResult.result
 
-    this.getDataSet()
     this.configuration = DataExplorerConfigurations.Custom
+    this.getDataSet()
   }
 
   resetAqbModel(): void {
