@@ -12,6 +12,10 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Simplification of Data-Retrieval for the manager ([#278])
 - Flag for default configuration to the data retrieval in the data-explorer ([#279])
 
+### Changed
+
+- Project Editor: Change label for data protection label ([#280])
+
 ---
 
 ## [Released]
@@ -547,3 +551,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#276]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/276
 [#278]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/278
 [#279]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/279
+[#280]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/280
