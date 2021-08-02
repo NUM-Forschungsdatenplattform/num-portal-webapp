@@ -71,9 +71,9 @@ describe('MonacoLoaderService', () => {
 
         jest.spyOn(document, 'createElement').mockImplementation((type: string) => {
           if (type === 'script') {
-            const mockScriptElement = ({
+            const mockScriptElement = {
               addEventListener: eventListenerMock,
-            } as unknown) as HTMLScriptElement
+            } as unknown as HTMLScriptElement
             return mockScriptElement
           }
         })

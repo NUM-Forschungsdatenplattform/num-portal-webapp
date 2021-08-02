@@ -39,7 +39,8 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
   styleUrls: ['./dialog-add-researchers.component.scss'],
 })
 export class DialogAddResearchersComponent
-  implements OnInit, OnDestroy, AfterViewInit, IGenericDialog<IUser[]> {
+  implements OnInit, OnDestroy, AfterViewInit, IGenericDialog<IUser[]>
+{
   private subscriptions = new Subscription()
 
   dialogInput: IUser[]

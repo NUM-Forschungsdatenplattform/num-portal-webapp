@@ -53,36 +53,36 @@ describe('ProjectEditorComponent On Creation', () => {
   const resolvedData: IProjectResolved = { project: new ProjectUiModel(), error: null }
 
   const queryParamsSubject$ = new BehaviorSubject<Params>({})
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
     queryParams: queryParamsSubject$.asObservable(),
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
-  const projectService = ({
+  const projectService = {
     create: jest.fn(),
     update: jest.fn(),
     getCommentsByProjectId: jest.fn(),
     updateStatusById: jest.fn(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
-  const cohortService = ({
+  const cohortService = {
     create: jest.fn(),
     update: jest.fn(),
     get: jest.fn(),
     getSize: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
-  const adminService = ({
+  const adminService = {
     getUsersById: jest.fn(),
-  } as unknown) as AdminService
+  } as unknown as AdminService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {

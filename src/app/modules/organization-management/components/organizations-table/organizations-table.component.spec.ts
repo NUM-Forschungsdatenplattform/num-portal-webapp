@@ -44,9 +44,9 @@ describe('OrganizationsTableComponent', () => {
   let router: Router
 
   const organizationsSubject$ = new Subject<IOrganization[]>()
-  const organizationService = ({
+  const organizationService = {
     organizationsObservable$: organizationsSubject$.asObservable(),
-  } as unknown) as OrganizationService
+  } as unknown as OrganizationService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

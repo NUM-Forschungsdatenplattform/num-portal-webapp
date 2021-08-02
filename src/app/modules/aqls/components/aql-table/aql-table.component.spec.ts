@@ -56,13 +56,13 @@ describe('AqlTableComponent', () => {
   const filteredAqlsSubject$ = new Subject<IAqlApi[]>()
   const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterItem: [] })
 
-  const aqlService = ({
+  const aqlService = {
     delete: jest.fn(),
     getAll: () => of(),
     setFilter: (_: any) => {},
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
-  } as unknown) as AqlService
+  } as unknown as AqlService
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
   const mockAqlCategoryService = {
@@ -75,9 +75,9 @@ describe('AqlTableComponent', () => {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as ProfileService
 
-  const mockToast = ({
+  const mockToast = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   @Component({ selector: 'num-definition-list', template: '' })
   class DefinitionListStubComponent {

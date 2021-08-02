@@ -56,18 +56,20 @@ import { WebpackTranslateLoader } from './webpack-translate-loader'
       provide: APP_INITIALIZER,
       multi: true,
       deps: [AppConfigService, OAuthInitService, AuthService],
-      useFactory: (
-        configService: AppConfigService,
-        oauthInitService: OAuthInitService,
-        authService: AuthService
-      ) => () =>
-        configService.loadConfig().then(() =>
-          oauthInitService.initOAuth().then(() => {
-            authService.fetchUserInfo().then(() => {
-              authService.initTokenHandling()
+      useFactory:
+        (
+          configService: AppConfigService,
+          oauthInitService: OAuthInitService,
+          authService: AuthService
+        ) =>
+        () =>
+          configService.loadConfig().then(() =>
+            oauthInitService.initOAuth().then(() => {
+              authService.fetchUserInfo().then(() => {
+                authService.initTokenHandling()
+              })
             })
-          })
-        ),
+          ),
     },
     {
       provide: HTTP_INTERCEPTORS,

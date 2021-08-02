@@ -50,15 +50,15 @@ describe('ManagerDataRetrievComponent', () => {
   }
 
   const mockResultSetSubject$ = new Subject()
-  const mockPatientFilterService = ({
+  const mockPatientFilterService = {
     projectDataObservable$: mockResultSetSubject$.asObservable(),
     getProjectData: jest.fn(),
     setCurrentProject: jest.fn(),
-  } as unknown) as PatientFilterService
+  } as unknown as PatientFilterService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -68,9 +68,9 @@ describe('ManagerDataRetrievComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   const resolvedData: ProjectUiModel = new ProjectUiModel(mockProject1)
   resolvedData.addCohortGroup(mockCohort1.cohortGroup)
@@ -79,13 +79,13 @@ describe('ManagerDataRetrievComponent', () => {
     { templateId: 'test2', name: 'testName2' },
     { templateId: 'test3', name: 'testName3' },
   ]
-  const mockActivatedRoute = ({
+  const mockActivatedRoute = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

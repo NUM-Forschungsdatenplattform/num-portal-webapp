@@ -66,52 +66,52 @@ describe('DataExplorerComponent', () => {
     parameters: {},
   }
 
-  const cohortService = ({
+  const cohortService = {
     create: jest.fn(),
     update: jest.fn(),
     get: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
-  const adminService = ({
+  const adminService = {
     getUsersByIds: jest.fn(),
-  } as unknown) as AdminService
+  } as unknown as AdminService
 
-  const projectService = ({
+  const projectService = {
     executeAdHocAql: jest.fn(),
     exportFile: jest.fn(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
 
-  const dialogService = ({
+  const dialogService = {
     openDialog: jest.fn().mockImplementation(() => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
-  const aqlEditorService = ({
+  const aqlEditorService = {
     getContainment: jest.fn(),
     buildAql: jest.fn(),
-  } as unknown) as AqlEditorService
+  } as unknown as AqlEditorService
 
-  const toastMessageService = ({
+  const toastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const resolvedData: IProjectResolved = {
     project: new ProjectUiModel(mockProject1),
     error: null,
   }
 
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {

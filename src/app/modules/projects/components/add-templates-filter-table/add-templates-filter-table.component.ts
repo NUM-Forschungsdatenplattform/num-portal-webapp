@@ -39,7 +39,8 @@ import { MatPaginator } from '@angular/material/paginator'
   styleUrls: ['./add-templates-filter-table.component.scss'],
 })
 export class AddTemplatesFilterTableComponent
-  implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+  implements OnInit, OnDestroy, OnChanges, AfterViewInit
+{
   private subscriptions = new Subscription()
   @ViewChild(MatPaginator) paginator: MatPaginator
   @Input() selectedTemplates: IProjectTemplateInfoApi[]

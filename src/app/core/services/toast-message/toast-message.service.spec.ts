@@ -39,17 +39,17 @@ describe('ToastService', () => {
   }
 
   const closeActionSubject$ = new Subject()
-  const mockSnackbar = ({
+  const mockSnackbar = {
     open: jest.fn().mockImplementation(() => {
       return {
         onAction: () => closeActionSubject$,
       }
     }),
-  } as unknown) as MatSnackBar
+  } as unknown as MatSnackBar
 
-  const mockTranslateService = ({
+  const mockTranslateService = {
     instant: jest.fn(),
-  } as unknown) as TranslateService
+  } as unknown as TranslateService
 
   beforeEach(() => {
     service = new ToastMessageService(mockSnackbar, mockTranslateService)

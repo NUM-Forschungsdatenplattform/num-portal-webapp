@@ -43,9 +43,9 @@ describe('AqlConnectorItemComponent', () => {
   let component: AqlConnectorItemComponent
   let fixture: ComponentFixture<AqlConnectorItemComponent>
 
-  const mockAqlParameterService = ({
+  const mockAqlParameterService = {
     getValues: jest.fn(),
-  } as unknown) as AqlParameterService
+  } as unknown as AqlParameterService
 
   const valueChangeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-parameter-inputs', template: '' })

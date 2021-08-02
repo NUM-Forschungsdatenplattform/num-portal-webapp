@@ -36,17 +36,17 @@ describe('ProjectsComponent', () => {
   @Component({ selector: 'num-projects-table', template: '' })
   class ProjectsTableStubComponent {}
 
-  const projectService = ({
+  const projectService = {
     getAll: () => of(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
   const userInfoSubject$ = new Subject<IAuthUserInfo>()
-  const authService = ({
+  const authService = {
     get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: userInfoSubject$.asObservable(),
-  } as unknown) as AuthService
+  } as unknown as AuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

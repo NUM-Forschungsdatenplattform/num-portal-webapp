@@ -48,25 +48,25 @@ describe('AqlCategoriesTableComponent', () => {
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
 
-  const mockAqlCategoryService = ({
+  const mockAqlCategoryService = {
     delete: jest.fn(),
     getAll: () => of(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
     update: jest.fn(),
-  } as unknown) as AqlCategoryService
+  } as unknown as AqlCategoryService
 
-  const mockToast = ({
+  const mockToast = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const afterClosedSubject$ = new Subject()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

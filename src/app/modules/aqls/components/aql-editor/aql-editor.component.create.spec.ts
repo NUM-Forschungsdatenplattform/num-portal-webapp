@@ -49,28 +49,28 @@ describe('AqlEditorComponent', () => {
   } as AuthService
 
   const resolvedData: IAqlResolved = { aql: new AqlEditorUiModel(), error: null }
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
-  const aqlService = ({
+  const aqlService = {
     save: jest.fn(),
     update: jest.fn(),
-  } as unknown) as AqlService
+  } as unknown as AqlService
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
-  const mockAqlCategoryService = ({
+  const mockAqlCategoryService = {
     getAll: jest.fn(() => of()),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
-  } as unknown) as AqlCategoryService
+  } as unknown as AqlCategoryService
 
-  const mockToast = ({
+  const mockToast = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   @Component({ selector: 'num-aql-editor-general-info', template: '' })
   class StubGeneralInfoComponent {

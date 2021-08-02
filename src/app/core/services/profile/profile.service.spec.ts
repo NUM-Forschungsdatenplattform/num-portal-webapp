@@ -23,9 +23,9 @@ import { AppConfigService } from '../../../config/app-config.service'
 describe('ProfileService', () => {
   let service: ProfileService
 
-  const httpClient = ({
+  const httpClient = {
     get: () => of(mockUserProfile1),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

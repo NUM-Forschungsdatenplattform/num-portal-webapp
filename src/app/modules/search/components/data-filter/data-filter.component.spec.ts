@@ -47,14 +47,14 @@ describe('DataFilterComponent', () => {
     @Output() determineHits = new EventEmitter()
   }
 
-  const mockPatientFilterService = ({
+  const mockPatientFilterService = {
     setCurrentProject: jest.fn(),
-  } as unknown) as PatientFilterService
+  } as unknown as PatientFilterService
 
-  const mockCohortService = ({
+  const mockCohortService = {
     getSize: jest.fn(),
     getSizeForTemplates: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -64,19 +64,19 @@ describe('DataFilterComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   const resolvedData: ProjectUiModel = new ProjectUiModel(mockProject1)
   resolvedData.addCohortGroup(mockCohort1.cohortGroup)
-  const mockActivatedRoute = ({
+  const mockActivatedRoute = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

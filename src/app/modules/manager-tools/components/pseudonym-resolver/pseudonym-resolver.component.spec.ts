@@ -31,13 +31,13 @@ describe('PseudonymResolverComponent', () => {
   let component: PseudonymResolverComponent
   let fixture: ComponentFixture<PseudonymResolverComponent>
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
-  const mockManagerService = ({
+  const mockManagerService = {
     resolvePseudonym: jest.fn(),
-  } as unknown) as ManagerService
+  } as unknown as ManagerService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

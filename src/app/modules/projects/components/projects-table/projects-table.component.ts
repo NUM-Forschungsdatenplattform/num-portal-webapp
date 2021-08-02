@@ -53,7 +53,8 @@ import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } f
 })
 export class ProjectsTableComponent
   extends SortableTable<IProjectApi>
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   private subscriptions = new Subscription()
   constructor(
     private router: Router,

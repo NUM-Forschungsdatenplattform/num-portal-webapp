@@ -28,10 +28,10 @@ describe('AqlEditorService', () => {
   let service: AqlEditorService
   const baseUrl = 'localhost/aqleditor/v1'
 
-  const httpClient = ({
+  const httpClient = {
     get: () => jest.fn(),
     post: () => jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

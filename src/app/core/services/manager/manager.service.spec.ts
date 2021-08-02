@@ -8,9 +8,9 @@ import { ManagerService } from './manager.service'
 describe('ManagerService', () => {
   let service: ManagerService
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {
@@ -38,9 +38,7 @@ describe('ManagerService', () => {
     it('should call the api with the projectId and pseudonym', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(resolvedValue))
       const result = await service.resolvePseudonym(projectId, pseudonym).toPromise()
-      expect(
-        httpClient.get
-      ).toHaveBeenCalledWith(
+      expect(httpClient.get).toHaveBeenCalledWith(
         `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
         { responseType: 'text' }
       )
@@ -53,9 +51,7 @@ describe('ManagerService', () => {
       try {
         await service.resolvePseudonym(projectId, pseudonym).toPromise()
       } catch (error) {
-        expect(
-          httpClient.get
-        ).toHaveBeenCalledWith(
+        expect(httpClient.get).toHaveBeenCalledWith(
           `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
           { responseType: 'text' }
         )

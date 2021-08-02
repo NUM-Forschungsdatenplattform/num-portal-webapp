@@ -31,13 +31,13 @@ describe('Data Explorer Resolver', () => {
   let resolver: DataExplorerResolver
   const state = {} as RouterStateSnapshot
 
-  const projectService = ({
+  const projectService = {
     get: jest.fn(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
-  const router = ({
+  const router = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   const userInfoSubject$ = new Subject<IAuthUserInfo>()
   const authService = {
@@ -55,9 +55,9 @@ describe('Data Explorer Resolver', () => {
   describe('When the resolve method is called', () => {
     it('should provide an error message and navigate back to overview when the id was not a number', async () => {
       const paramMap = convertToParamMap({ id: 'test' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
@@ -68,9 +68,9 @@ describe('Data Explorer Resolver', () => {
       userInfoSubject$.next(mockUser)
 
       const paramMap = convertToParamMap({ id: 3 })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.project.id).toEqual(3)
     })
@@ -81,9 +81,9 @@ describe('Data Explorer Resolver', () => {
       userInfoSubject$.next(mockUser)
 
       const paramMap = convertToParamMap({ id: 2 })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
@@ -94,9 +94,9 @@ describe('Data Explorer Resolver', () => {
       userInfoSubject$.next(mockUser)
 
       const paramMap = convertToParamMap({ id: 3 })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
@@ -104,9 +104,9 @@ describe('Data Explorer Resolver', () => {
     it('should return an error message and navigate back to overview if the id is not found', async () => {
       projectService.get = jest.fn().mockImplementation(() => throwError('Error'))
       const paramMap = convertToParamMap({ id: 123 })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result).toBe('Error')
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])

@@ -23,13 +23,13 @@ import { DataFilterResolver } from './data-filter.resolver'
 describe('AqlsResolver', () => {
   let resolver: DataFilterResolver
 
-  const patientFilterService = ({
+  const patientFilterService = {
     getCurrentProject: jest.fn(),
-  } as unknown) as PatientFilterService
+  } as unknown as PatientFilterService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   beforeEach(() => {
     jest.clearAllMocks()

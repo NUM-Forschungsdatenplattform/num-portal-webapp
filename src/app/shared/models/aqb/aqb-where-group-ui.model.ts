@@ -47,9 +47,10 @@ export class AqbWhereGroupUiModel {
     }
   }
 
-  private convertToBinaryTree(
-    children: PossibleWheres[]
-  ): { result: IAqbLogicalOperatorNode<PossibleWheres>; _: any } {
+  private convertToBinaryTree(children: PossibleWheres[]): {
+    result: IAqbLogicalOperatorNode<PossibleWheres>
+    _: any
+  } {
     const initialAndResultingValue = this.getOperatorNode([])
 
     const inputLength = children.length

@@ -48,9 +48,9 @@ describe('DataExplorerProjectsTableComponent', () => {
   }
 
   const myPublishedProjectsSubject$ = new Subject<IProjectApi[]>()
-  const projectService = ({
+  const projectService = {
     myPublishedProjectsObservable$: myPublishedProjectsSubject$.asObservable(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

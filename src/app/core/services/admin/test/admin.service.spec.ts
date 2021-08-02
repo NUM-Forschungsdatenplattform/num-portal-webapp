@@ -37,14 +37,14 @@ describe('AdminService', () => {
   }
 
   const userProfileSubject$ = new Subject<any>()
-  const userProfileService = ({
+  const userProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn().mockImplementation(() => of(mockUsers)),
     post: jest.fn().mockImplementation(() => of()),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

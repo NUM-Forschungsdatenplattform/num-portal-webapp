@@ -33,12 +33,12 @@ describe('AqlService', () => {
   const userProfileSubject$ = new Subject<any>()
 
   let throttleTime: number
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
     post: jest.fn(),
     delete: jest.fn(),
     put: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {
@@ -48,9 +48,9 @@ describe('AqlService', () => {
     },
   } as AppConfigService
 
-  const userProfileService = ({
+  const userProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   const filterConfig: IAqlFilter = {
     filterItem: [],

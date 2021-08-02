@@ -30,9 +30,9 @@ describe('DataExplorerProjectsComponent', () => {
   @Component({ selector: 'num-data-explorer-projects-table', template: '' })
   class DataExplorerProjectsTableStubComponent {}
 
-  const projectService = ({
+  const projectService = {
     getMyPublishedProjects: () => of(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

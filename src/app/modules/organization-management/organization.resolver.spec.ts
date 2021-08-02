@@ -31,13 +31,13 @@ import { OrganizationResolver } from './organization.resolver'
 describe('OrganizationResolver', () => {
   let resolver: OrganizationResolver
   const state = {} as RouterStateSnapshot
-  const organizationService = ({
+  const organizationService = {
     get: jest.fn(),
-  } as unknown) as OrganizationService
+  } as unknown as OrganizationService
 
-  const router = ({
+  const router = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {
@@ -56,9 +56,9 @@ describe('OrganizationResolver', () => {
     it('should return with an empty ui model if the id was new', async (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: 'new' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
@@ -78,9 +78,9 @@ describe('OrganizationResolver', () => {
 
       jest.spyOn(organizationService, 'get').mockImplementation(() => of(mockOrganization1))
 
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
@@ -100,9 +100,9 @@ describe('OrganizationResolver', () => {
 
       jest.spyOn(organizationService, 'get').mockImplementation(() => throwError('Error'))
 
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
@@ -121,9 +121,9 @@ describe('OrganizationResolver', () => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '2' })
 
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
@@ -145,9 +145,9 @@ describe('OrganizationResolver', () => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
@@ -167,9 +167,9 @@ describe('OrganizationResolver', () => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       resolver
         .resolve(activatedRoute, state)
         .toPromise()

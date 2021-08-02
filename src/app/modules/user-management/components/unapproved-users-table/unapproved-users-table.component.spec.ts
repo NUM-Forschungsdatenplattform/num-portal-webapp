@@ -50,13 +50,13 @@ describe('UnapprovedUsersTableComponent', () => {
   } as AdminService
 
   const afterClosedSubject$ = new Subject()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {

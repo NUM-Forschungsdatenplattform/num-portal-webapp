@@ -35,10 +35,10 @@ describe('ContentService', () => {
     },
   } as AppConfigService
 
-  const httpClient: HttpClient = ({
+  const httpClient: HttpClient = {
     get: jest.fn(),
     post: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   beforeEach(() => {
     jest.clearAllMocks()

@@ -86,34 +86,34 @@ describe('AqlEditorCeatorComponent', () => {
 
   let dialogCallParameter: DialogConfig
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((callParameter: any) => {
       dialogCallParameter = callParameter
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   const builderResponse: IArchetypeQueryBuilderResponse = {
     parameters: {},
     q: 'SELECT this',
   }
 
-  const mockAqlEditorService = ({
+  const mockAqlEditorService = {
     buildAql: jest
       .fn()
       .mockImplementation((aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
     validateAql: jest.fn(),
-  } as unknown) as AqlEditorService
+  } as unknown as AqlEditorService
 
-  const mockAqlService = ({
+  const mockAqlService = {
     getSize: jest.fn(),
-  } as unknown) as AqlService
+  } as unknown as AqlService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

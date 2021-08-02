@@ -66,13 +66,13 @@ describe('ProjectsTableComponent', () => {
     filterItem: [],
   })
 
-  const projectService = ({
+  const projectService = {
     filteredProjectsObservable$: projectsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
     updateStatusById: jest.fn(),
     setFilter: jest.fn(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {
@@ -80,17 +80,17 @@ describe('ProjectsTableComponent', () => {
   } as ProfileService
 
   const afterClosedSubject$ = new Subject()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

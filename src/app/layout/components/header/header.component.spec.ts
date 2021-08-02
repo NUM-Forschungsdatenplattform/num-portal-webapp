@@ -105,12 +105,12 @@ describe('HeaderComponent', () => {
   ]
 
   const mockUserInfoSubject = new Subject<IAuthUserInfo>()
-  const mockAuthService = ({
+  const mockAuthService = {
     get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: mockUserInfoSubject.asObservable(),
-  } as unknown) as AuthService
+  } as unknown as AuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -165,11 +165,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationEnd to a route without tab navigation', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'second',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     it('should set the mainNav header only', () => {
@@ -183,11 +183,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationEnd to the home route', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'home',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     it('should set the the flag that home was now visited', (done) => {
@@ -202,11 +202,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationEnd to a route with tab navigation', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'third',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     it('should set the mainNav header only', () => {
@@ -220,11 +220,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationEnd to a route without navId', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'nope',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     it('should set the mainNav to be undefined', () => {
@@ -238,11 +238,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationStart to a route', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'nope',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationStart(routeSnapshot)
 
     it('should do nothing', () => {
@@ -255,11 +255,11 @@ describe('HeaderComponent', () => {
   })
 
   describe('On ActivationEnd to the same route', () => {
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'sameRoute',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     it('should do nothing', () => {
@@ -274,11 +274,11 @@ describe('HeaderComponent', () => {
 
   describe('Role restrictions for tabs', () => {
     let harnessLoader: HarnessLoader
-    const routeSnapshot = ({
+    const routeSnapshot = {
       data: {
         navId: 'parent',
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
     const routerEvent = new ActivationEnd(routeSnapshot)
 
     const mockManagerInfo: IAuthUserInfo = {

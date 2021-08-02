@@ -33,7 +33,8 @@ import { APPROVE_USER_SUCCESS, EDIT_USER_ERROR, EDIT_USER_SUCCESS } from './cons
   styleUrls: ['./dialog-edit-user-details.component.scss'],
 })
 export class DialogEditUserDetailsComponent
-  implements OnInit, IGenericDialog<{ user: IUser; isApproval: boolean }> {
+  implements OnInit, IGenericDialog<{ user: IUser; isApproval: boolean }>
+{
   @Output() closeDialog = new EventEmitter()
   dialogInput: { user: IUser; isApproval: boolean }
   userDetails: IUser

@@ -48,13 +48,13 @@ describe('DataFilterTemplatesComponent', () => {
   const projectTemplateArr: IProjectTemplateInfoApi[] = [projectTemplate]
 
   const afterClosedSubject$ = new Subject<IProjectTemplateInfoApi[] | undefined>()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

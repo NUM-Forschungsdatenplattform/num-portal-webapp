@@ -33,7 +33,8 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 })
 export class DataExplorerProjectsTableComponent
   extends SortableTable<IProjectApi>
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   private subscriptions = new Subscription()
   constructor(private projectService: ProjectService, private router: Router) {
     super()
