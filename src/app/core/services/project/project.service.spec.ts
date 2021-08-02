@@ -326,9 +326,9 @@ describe('ProjectService', () => {
       const id = 1
       const format = 'csv'
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(projectCommentMock1))
-      service.exportFile(id, query, format).subscribe()
+      service.exportFile(id, query, format, true).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(
-        `${baseUrl}/${id}/export?format=csv`,
+        `${baseUrl}/${id}/export?format=csv&defaultConfiguration=true`,
         { query },
         { responseType: 'blob' as 'json' }
       )

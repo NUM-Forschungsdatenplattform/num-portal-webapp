@@ -158,10 +158,15 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
-  exportFile(id: number, query: string, format: string): Observable<string> {
+  exportFile(
+    id: number,
+    query: string,
+    format: string,
+    defaultConfiguration: boolean
+  ): Observable<string> {
     return this.httpClient
       .post<string>(
-        `${this.baseUrl}/${id}/export?format=${format}`,
+        `${this.baseUrl}/${id}/export?format=${format}&defaultConfiguration=${defaultConfiguration}`,
         { query },
         { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
       )
