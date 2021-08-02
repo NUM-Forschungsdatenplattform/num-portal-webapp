@@ -275,26 +275,29 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     if (!this.compiledQuery) return
 
     this.isExportLoading = true
+    const defaultConfiguration = this.configuration === DataExplorerConfigurations.Default
 
     this.subscriptions.add(
-      this.projectService.exportFile(this.project.id, this.compiledQuery.q, format).subscribe(
-        (response) => {
-          downloadFile(this.project.id, format, response)
-          this.isExportLoading = false
-        },
-        () => {
-          this.isExportLoading = false
+      this.projectService
+        .exportFile(this.project.id, this.compiledQuery.q, format, defaultConfiguration)
+        .subscribe(
+          (response) => {
+            downloadFile(this.project.id, format, response)
+            this.isExportLoading = false
+          },
+          () => {
+            this.isExportLoading = false
 
-          const messageConfig: IToastMessageConfig = {
-            ...EXPORT_ERROR,
-            messageParameters: {
-              format: format.toUpperCase(),
-            },
+            const messageConfig: IToastMessageConfig = {
+              ...EXPORT_ERROR,
+              messageParameters: {
+                format: format.toUpperCase(),
+              },
+            }
+
+            this.toastMessageService.openToast(messageConfig)
           }
-
-          this.toastMessageService.openToast(messageConfig)
-        }
-      )
+        )
     )
   }
 }
