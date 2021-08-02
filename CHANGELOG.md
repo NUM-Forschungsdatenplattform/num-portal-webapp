@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 ### Changed
 
 - Project Editor: Change label for data protection label ([#280])
+- Favicons and Apptitle ([#281])
 
 ---
 
@@ -552,3 +553,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#278]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/278
 [#279]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/279
 [#280]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/280
+[#281]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/281
