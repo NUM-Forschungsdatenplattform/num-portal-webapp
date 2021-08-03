@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Simplification of Data-Retrieval for the manager ([#278])
 - Flag for default configuration to the data retrieval in the data-explorer ([#279])
 - Error message in case a parameter can't be resolved in the cohort builder ([#282])
+- Export data as JSON or CSV as manager ([#285])
 
 ### Changed
 
@@ -556,3 +557,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#280]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/280
 [#281]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/281
 [#282]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/282
+[#283]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/283
+[#284]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/284
+[#285]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/285
