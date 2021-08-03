@@ -27,12 +27,20 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { mockResultFlatList } from 'src/mocks/data-mocks/result-set-mock'
+import { EXPORT_ERROR } from './constants'
 
 import { ManagerDataExplorerComponent } from './manager-data-explorer.component'
+
+jest.mock('src/app/core/utils/download-file.utils', () => ({
+  __esModule: true,
+  downloadFile: jest.fn().mockImplementation(() => ''),
+}))
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
 
 describe('ManagerDataRetrievComponent', () => {
   let component: ManagerDataExplorerComponent
@@ -53,6 +61,7 @@ describe('ManagerDataRetrievComponent', () => {
   const mockPatientFilterService = {
     projectDataObservable$: mockResultSetSubject$.asObservable(),
     getProjectData: jest.fn(),
+    exportFile: jest.fn(),
     setCurrentProject: jest.fn(),
   } as unknown as PatientFilterService
 
@@ -122,6 +131,7 @@ describe('ManagerDataRetrievComponent', () => {
   })
 
   beforeEach(() => {
+    jest.restoreAllMocks()
     jest.clearAllMocks()
     fixture = TestBed.createComponent(ManagerDataExplorerComponent)
     component = fixture.componentInstance
@@ -179,6 +189,98 @@ describe('ManagerDataRetrievComponent', () => {
 
     it('should reset the loading status', () => {
       expect(component.isDataSetLoading).toBe(false)
+    })
+  })
+
+  describe('When the Export CSV Button is clicked', () => {
+    beforeEach(() => {
+      jest
+        .spyOn(mockPatientFilterService, 'getProjectData')
+        .mockImplementation(() => of(mockResultFlatList))
+      fixture.detectChanges()
+      jest
+        .spyOn(mockPatientFilterService, 'exportFile')
+        .mockImplementation(() => of('File CSV export result'))
+    })
+
+    it('should call the patientFilterService.exportFile', () => {
+      const mockCreateUrl = jest.fn().mockReturnValue('url')
+      Object.defineProperty(URL, 'createObjectURL', {
+        value: () => mockCreateUrl,
+      })
+
+      component.exportFile('csv')
+
+      expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      component.exportFile('csv')
+
+      expect(downloadFile).toHaveBeenCalledWith('manager_preview', 'csv', 'File CSV export result')
+    })
+
+    it('should show toast in case of error', () => {
+      jest
+        .spyOn(mockPatientFilterService, 'exportFile')
+        .mockImplementation(() => throwError('error'))
+      jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
+
+      component.exportFile('csv')
+      expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'CSV',
+        },
+      }
+
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    })
+  })
+
+  describe('When the Export JSON Button is clicked', () => {
+    beforeEach(() => {
+      jest
+        .spyOn(mockPatientFilterService, 'getProjectData')
+        .mockImplementation(() => of(mockResultFlatList))
+      fixture.detectChanges()
+      jest.spyOn(mockPatientFilterService, 'exportFile').mockImplementation(() => of('some text'))
+    })
+
+    it('should call the ProjectService.exportFile', () => {
+      component.exportFile('json')
+
+      expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+    })
+
+    it('should trigger the download', () => {
+      component.exportFile('json')
+      expect(downloadFile).toHaveBeenCalledWith('manager_preview', 'json', 'some text')
+    })
+
+    it('should show toast in case of error', () => {
+      jest
+        .spyOn(mockPatientFilterService, 'exportFile')
+        .mockImplementation(() => throwError('error'))
+      jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
+
+      component.exportFile('json')
+      expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
+      expect(component.isExportLoading).toEqual(false)
+
+      const messageConfig: IToastMessageConfig = {
+        ...EXPORT_ERROR,
+        messageParameters: {
+          format: 'JSON',
+        },
+      }
+
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
     })
   })
 })
