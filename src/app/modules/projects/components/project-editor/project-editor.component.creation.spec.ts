@@ -53,36 +53,37 @@ describe('ProjectEditorComponent On Creation', () => {
   const resolvedData: IProjectResolved = { project: new ProjectUiModel(), error: null }
 
   const queryParamsSubject$ = new BehaviorSubject<Params>({})
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
     queryParams: queryParamsSubject$.asObservable(),
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
-  const projectService = ({
+  const projectService = {
     create: jest.fn(),
     update: jest.fn(),
     getCommentsByProjectId: jest.fn(),
     updateStatusById: jest.fn(),
-  } as unknown) as ProjectService
+    exportPrint: jest.fn(),
+  } as unknown as ProjectService
 
-  const cohortService = ({
+  const cohortService = {
     create: jest.fn(),
     update: jest.fn(),
     get: jest.fn(),
     getSize: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
-  const adminService = ({
+  const adminService = {
     getUsersById: jest.fn(),
-  } as unknown) as AdminService
+  } as unknown as AdminService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {
@@ -123,6 +124,7 @@ describe('ProjectEditorComponent On Creation', () => {
   const saveAsApprovalReplyEmitter = new EventEmitter()
   const startEditEmitter = new EventEmitter()
   const cancelEmitter = new EventEmitter()
+  const exportEmitter = new EventEmitter()
   @Component({ selector: 'num-project-editor-buttons', template: '' })
   class ProjectEditorButtonsStubComponent {
     @Input() editorMode: any
@@ -132,6 +134,8 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
     @Input() approverForm: any
+    @Input() isExportLoading: any
+    @Input() isSavedProject: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -139,6 +143,7 @@ describe('ProjectEditorComponent On Creation', () => {
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
     @Output() cancel = cancelEmitter
+    @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {

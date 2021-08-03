@@ -50,37 +50,44 @@ import { ProjectEditorComponent } from './project-editor.component'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
+jest.mock('src/app/core/utils/download-file.utils', () => ({
+  __esModule: true,
+  downloadFile: jest.fn().mockImplementation(() => ''),
+}))
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
+
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
   let fixture: ComponentFixture<ProjectEditorComponent>
   let router: Router
 
-  const projectService = ({
+  const projectService = {
     create: jest.fn(),
     update: jest.fn(),
     getCommentsByProjectId: jest.fn(),
     createCommentByProjectId: jest.fn(),
     updateStatusById: jest.fn(),
-  } as unknown) as ProjectService
+    exportPrint: jest.fn(),
+  } as unknown as ProjectService
 
-  const cohortService = ({
+  const cohortService = {
     create: jest.fn(),
     update: jest.fn(),
     get: jest.fn(),
-  } as unknown) as CohortService
+  } as unknown as CohortService
 
-  const adminService = ({
+  const adminService = {
     getUsersByIds: jest.fn(),
-  } as unknown) as AdminService
+  } as unknown as AdminService
 
   const afterClosedSubject$ = new Subject()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   const resolvedData: IProjectResolved = {
     project: new ProjectUiModel(mockProject1),
@@ -88,18 +95,18 @@ describe('ProjectEditorComponent', () => {
   }
 
   const queryParamsSubject$ = new BehaviorSubject<Params>({})
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
     queryParams: queryParamsSubject$.asObservable(),
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
-  const mockToast = ({
+  const mockToast = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {
@@ -140,6 +147,7 @@ describe('ProjectEditorComponent', () => {
   const saveAsApprovalReplyEmitter = new EventEmitter()
   const startEditEmitter = new EventEmitter()
   const cancelEmitter = new EventEmitter()
+  const exportEmitter = new EventEmitter()
   @Component({ selector: 'num-project-editor-buttons', template: '' })
   class ProjectEditorButtonsStubComponent {
     @Input() editorMode: any
@@ -149,6 +157,8 @@ describe('ProjectEditorComponent', () => {
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
     @Input() approverForm: any
+    @Input() isExportLoading: any
+    @Input() isSavedProject: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -156,6 +166,7 @@ describe('ProjectEditorComponent', () => {
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
     @Output() cancel = cancelEmitter
+    @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {
@@ -218,6 +229,7 @@ describe('ProjectEditorComponent', () => {
       .mockImplementation(() => of(projectCommentMocks))
     jest.spyOn(projectService, 'update').mockImplementation(() => of(mockProject1))
     jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of(mockProject1))
+    jest.spyOn(projectService, 'exportPrint').mockImplementation(() => of(''))
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
@@ -455,6 +467,36 @@ describe('ProjectEditorComponent', () => {
       afterClosedSubject$.next(false)
       expect(projectService.updateStatusById).not.toHaveBeenCalledWith(1, ProjectStatus.Approved)
       expect(router.navigate).not.toHaveBeenCalledWith(['/projects'])
+    })
+  })
+
+  describe('When the buttons component emits to export', () => {
+    it('should call the api to get the content', () => {
+      resolvedData.project.id = 1
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      const componentAny = fixture.componentInstance as any
+      componentAny.translateService.use('de')
+
+      fixture.detectChanges()
+      exportEmitter.emit()
+      expect(projectService.exportPrint).toHaveBeenCalledWith(
+        resolvedData.project.id,
+        componentAny.translateService.currentLang
+      )
+      expect(downloadFile).toHaveBeenCalledTimes(1)
+    })
+
+    it('should call the downloadFile util', () => {
+      const currentLang = 'de'
+      resolvedData.project.id = 1
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      const componentAny = fixture.componentInstance as any
+      componentAny.translateService.use(currentLang)
+      const projectId = resolvedData.project.id
+
+      fixture.detectChanges()
+      exportEmitter.emit()
+      expect(downloadFile).toHaveBeenCalledWith(`${projectId}_${currentLang}`, 'txt', '')
     })
   })
 })

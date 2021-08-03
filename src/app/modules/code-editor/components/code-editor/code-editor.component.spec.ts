@@ -51,9 +51,9 @@ describe('CodeEditorComponent', () => {
     create: jest.fn().mockImplementation(() => codeEditorMock),
   }
 
-  const formatterMock = ({
+  const formatterMock = {
     format: jest.fn(),
-  } as unknown) as NumAqlFormattingProvider
+  } as unknown as NumAqlFormattingProvider
 
   const monacoLanguageMock = {
     register: jest.fn(),
@@ -70,9 +70,9 @@ describe('CodeEditorComponent', () => {
     value: monacoMock,
   })
 
-  const monacoLoaderService = ({
+  const monacoLoaderService = {
     loadMonaco: jest.fn().mockResolvedValue(() => {}),
-  } as unknown) as MonacoLoaderService
+  } as unknown as MonacoLoaderService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

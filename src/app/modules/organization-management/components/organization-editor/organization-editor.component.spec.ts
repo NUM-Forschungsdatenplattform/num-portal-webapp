@@ -58,22 +58,22 @@ describe('OrganizationEditorComponent', () => {
     }),
     error: null,
   }
-  const route = ({
+  const route = {
     snapshot: {
       data: {
         resolvedData,
       },
     },
-  } as unknown) as ActivatedRoute
+  } as unknown as ActivatedRoute
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
-  const mockOrganizationService = ({
+  const mockOrganizationService = {
     create: jest.fn(),
     update: jest.fn(),
-  } as unknown) as OrganizationService
+  } as unknown as OrganizationService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -52,12 +52,12 @@ describe('ProjectService', () => {
     searchText: 'test',
   }
 
-  const httpClient = ({
+  const httpClient = {
     get: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
     delete: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {
@@ -68,9 +68,9 @@ describe('ProjectService', () => {
   } as AppConfigService
 
   const userProfileSubject$ = new Subject<any>()
-  const userProfileService = ({
+  const userProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -190,24 +190,30 @@ describe('ProjectService', () => {
   describe('When a call to execute method comes in', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of([mockResultSetFlat]))
-      service.executeAdHocAql('query', 1).subscribe((result) => {
+      service.executeAdHocAql('query', 1, true).subscribe((result) => {
         expect(result).toEqual([mockResultSetFlat])
       })
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
-        query: 'query',
-      })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/project/${1}/execute?defaultConfiguration=true`,
+        {
+          query: 'query',
+        }
+      )
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
       jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
       service
-        .executeAdHocAql('query', 1)
+        .executeAdHocAql('query', 1, false)
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project/${1}/execute`, {
-        query: 'query',
-      })
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/project/${1}/execute?defaultConfiguration=false`,
+        {
+          query: 'query',
+        }
+      )
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -320,9 +326,9 @@ describe('ProjectService', () => {
       const id = 1
       const format = 'csv'
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(projectCommentMock1))
-      service.exportFile(id, query, format).subscribe()
+      service.exportFile(id, query, format, true).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(
-        `${baseUrl}/${id}/export?format=csv`,
+        `${baseUrl}/${id}/export?format=csv&defaultConfiguration=true`,
         { query },
         { responseType: 'blob' as 'json' }
       )

@@ -23,11 +23,11 @@ import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organ
 describe('OrganizationService', () => {
   let service: OrganizationService
 
-  const httpClient = ({
+  const httpClient = {
     get: () => of(mockOrganizations),
     post: jest.fn(),
     put: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   const appConfig = {
     config: {

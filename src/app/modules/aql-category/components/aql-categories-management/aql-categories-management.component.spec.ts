@@ -46,18 +46,18 @@ describe('AqlCategoriesManagementComponent', () => {
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
 
-  const mockAqlCategoryService = ({
+  const mockAqlCategoryService = {
     delete: jest.fn(),
     getAll: jest.fn(() => of()),
     update: jest.fn(),
     save: jest.fn(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
-  } as unknown) as AqlCategoryService
+  } as unknown as AqlCategoryService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
-  const mockProfileService = ({
+  const mockProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   const userInfoSubject$ = new Subject<any>()
   const mockAuthService = {
@@ -67,18 +67,18 @@ describe('AqlCategoriesManagementComponent', () => {
     userInfoObservable$: userInfoSubject$.asObservable(),
   } as AuthService
 
-  const mockToastService = ({
+  const mockToastService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   const afterClosedSubject$ = new Subject<Omit<IAqlCategoryApi, 'id'> | void>()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

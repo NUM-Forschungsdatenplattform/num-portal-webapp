@@ -30,10 +30,10 @@ describe('ProjectsComponent', () => {
   let component: ProjectsComponent
   let fixture: ComponentFixture<ProjectsComponent>
 
-  const mockContentService = ({
+  const mockContentService = {
     getLatestProjects: jest.fn(),
     projectsObservable$: new BehaviorSubject(mockDashboardProjects),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

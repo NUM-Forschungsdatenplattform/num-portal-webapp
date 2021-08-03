@@ -160,9 +160,9 @@ export const mainNavItems: INavItem[] = [
     ],
   },
   {
-    routeTo: 'charts',
+    routeTo: 'manager-tools',
     icon: 'chart-pie',
-    translationKey: 'NAVIGATION.CHARTS',
+    translationKey: 'NAVIGATION.MANAGER_TOOLS',
     roles: [AvailableRoles.Manager],
   },
 ]

@@ -117,16 +117,16 @@ export const routes: Routes = [
       ).then((m) => m.ContentEditorModule),
   },
   {
-    path: 'charts',
+    path: 'manager-tools',
     canLoad: [RoleGuard],
     data: {
-      navId: 'charts',
+      navId: 'manager-tools',
       roles: [AvailableRoles.Manager],
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Charts.Module" */ './modules/charts/charts.module').then(
-        (m) => m.ChartsModule
-      ),
+      import(
+        /* webpackChunkName: "ManagerTools.Module" */ './modules/manager-tools/manager-tools.module'
+      ).then((m) => m.ManagerToolsModule),
   },
   {
     path: 'legal',

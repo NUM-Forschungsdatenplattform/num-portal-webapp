@@ -21,9 +21,9 @@ import { AppConfigService } from './app-config.service'
 describe('AppConfigService', () => {
   let appConfigService: AppConfigService
   const config = { config: 'test' }
-  const httpClient = ({
+  const httpClient = {
     get: () => of(config),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   beforeEach(() => {
     appConfigService = new AppConfigService(httpClient)

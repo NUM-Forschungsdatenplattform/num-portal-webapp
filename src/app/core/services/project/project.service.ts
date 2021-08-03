@@ -158,13 +158,26 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
-  exportFile(id: number, query: string, format: string): Observable<string> {
+  exportFile(
+    id: number,
+    query: string,
+    format: string,
+    defaultConfiguration: boolean
+  ): Observable<string> {
     return this.httpClient
       .post<string>(
-        `${this.baseUrl}/${id}/export?format=${format}`,
+        `${this.baseUrl}/${id}/export?format=${format}&defaultConfiguration=${defaultConfiguration}`,
         { query },
         { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
       )
+      .pipe(catchError(this.handleError))
+  }
+
+  exportPrint(id: number, locale: 'de' | 'en'): Observable<string> {
+    return this.httpClient
+      .get<string>(`${this.baseUrl}/${id}/document?locale=${locale}`, {
+        responseType: 'text' as 'json',
+      })
       .pipe(catchError(this.handleError))
   }
 
@@ -269,9 +282,16 @@ export class ProjectService {
     return result
   }
 
-  executeAdHocAql(query: string, projectId: number): Observable<IAqlExecutionResponse[]> {
+  executeAdHocAql(
+    query: string,
+    projectId: number,
+    defaultConfiguration: boolean
+  ): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
-      .post<IAqlExecutionResponse[]>(`${this.baseUrl}/${projectId}/execute`, { query })
+      .post<IAqlExecutionResponse[]>(
+        `${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`,
+        { query }
+      )
       .pipe(catchError(this.handleError))
   }
 

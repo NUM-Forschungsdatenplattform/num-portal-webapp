@@ -184,4 +184,35 @@ describe('ProjectEditorButtonsComponent', () => {
       expect(await requestApprovalButton.isDisabled()).toBe(false)
     })
   })
+
+  describe('Export button', () => {
+    let exportButton: MatButtonHarness
+
+    beforeEach(async () => {
+      component.editorMode = PossibleProjectEditorMode.EDIT
+      exportButton = await loader.getHarness(MatButtonHarness.with({ text: 'BUTTON.EXPORT' }))
+    })
+
+    it('should be disabled initially', async () => {
+      expect(await exportButton.isDisabled()).toBe(true)
+    })
+
+    it('should be disabled if export is loading', async () => {
+      component.isExportLoading = true
+      component.isSavedProject = true
+      expect(await exportButton.isDisabled()).toBe(true)
+    })
+
+    it('should be disabled if the project has no id', async () => {
+      component.isExportLoading = false
+      component.isSavedProject = false
+      expect(await exportButton.isDisabled()).toBe(true)
+    })
+
+    it('should be enabled if the export is not loading and the project has an id', async () => {
+      component.isExportLoading = false
+      component.isSavedProject = true
+      expect(await exportButton.isDisabled()).toBe(false)
+    })
+  })
 })

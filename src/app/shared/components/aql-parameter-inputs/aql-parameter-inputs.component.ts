@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IDictionary } from '../../models/dictionary.interface'
@@ -50,11 +52,23 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
-  constructor() {}
+  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
 
   valueForm: FormGroup
 
   ngOnInit(): void {
+    if (
+      this.item.valueType === AqlParameterValueType.Date ||
+      this.item.valueType === AqlParameterValueType.DateTime
+    ) {
+      this.dateAdapter.setLocale(this.translate.currentLang)
+
+      this.subscriptions.add(
+        this.translate.onLangChange.subscribe((lang) => {
+          this.dateAdapter.setLocale(lang.lang)
+        })
+      )
+    }
     this.valueForm = new FormGroup({
       value: new FormControl({ value: this.item?.value, disabled: this.disabled }, [
         Validators.required,

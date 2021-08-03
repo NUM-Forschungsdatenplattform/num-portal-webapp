@@ -25,17 +25,17 @@ describe('RoleGuard', () => {
 
   const userInfoSubject$ = new Subject<any>()
 
-  const authService = ({
+  const authService = {
     login: () => {},
     get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: userInfoSubject$.asObservable(),
-  } as unknown) as AuthService
+  } as unknown as AuthService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   beforeEach(() => {
     guard = new RoleGuard(authService, mockRouter)
@@ -50,11 +50,11 @@ describe('RoleGuard', () => {
   })
 
   describe('When the user is logged in and has required roles', () => {
-    const activatedRoute = ({
+    const activatedRoute = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
 
     const route = {
       data: {
@@ -88,11 +88,11 @@ describe('RoleGuard', () => {
   })
 
   describe('When the user is logged in but no userInfo is yet there', () => {
-    const activatedRoute = ({
+    const activatedRoute = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
 
     const route = {
       data: {
@@ -200,11 +200,11 @@ describe('RoleGuard', () => {
   })
 
   describe('When the user is logged in and has not the required roles', () => {
-    const activatedRoute = ({
+    const activatedRoute = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
 
     const route = {
       data: {
@@ -236,11 +236,11 @@ describe('RoleGuard', () => {
   })
 
   describe('When the user is logged in and has no roles specified', () => {
-    const activatedRoute = ({
+    const activatedRoute = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
 
     const route = {
       data: {
@@ -283,11 +283,11 @@ describe('RoleGuard', () => {
   })
 
   describe('When the user is not logged in', () => {
-    const activatedRoute = ({
+    const activatedRoute = {
       data: {
         roles: ['All', 'required', 'roles'],
       },
-    } as unknown) as ActivatedRouteSnapshot
+    } as unknown as ActivatedRouteSnapshot
 
     const route = {
       path: 'test/url',
@@ -319,7 +319,7 @@ describe('RoleGuard', () => {
 
   describe('When no roles are specified', () => {
     const path = 'test/url'
-    const activatedRoute = ({} as unknown) as ActivatedRouteSnapshot
+    const activatedRoute = {} as unknown as ActivatedRouteSnapshot
 
     const route = {
       path,

@@ -29,9 +29,9 @@ describe('AddUserRolesComponent', () => {
   let fixture: ComponentFixture<AddUserRolesComponent>
 
   const userProfileSubject$ = new Subject<IUserProfile>()
-  const profileService = ({
+  const profileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
   const mockRole = 'TEST'
 

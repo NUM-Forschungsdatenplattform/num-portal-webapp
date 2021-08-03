@@ -39,7 +39,8 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 })
 export class ApprovedUsersTableComponent
   extends SortableTable<IUser>
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy
+{
   private subscriptions = new Subscription()
 
   availableRoles = Object.values(AvailableRoles)

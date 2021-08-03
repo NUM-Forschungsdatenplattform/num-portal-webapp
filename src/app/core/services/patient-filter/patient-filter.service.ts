@@ -85,14 +85,9 @@ export class PatientFilterService {
       )
   }
 
-  getProjectData(
-    query: string,
-    cohort: ICohortApi,
-    templateIds: string[]
-  ): Observable<IAqlExecutionResponse[]> {
+  getProjectData(cohort: ICohortApi, templateIds: string[]): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
       .post<IAqlExecutionResponse[]>(`${this.baseUrl}/project/manager/execute`, {
-        query,
         cohort,
         templates: templateIds,
       })
@@ -103,6 +98,20 @@ export class PatientFilterService {
         }),
         catchError(this.handleError)
       )
+  }
+
+  exportFile(
+    cohort: ICohortApi,
+    templates: string[],
+    format: 'json' | 'csv' = 'csv'
+  ): Observable<string> {
+    return this.httpClient
+      .post<string>(
+        `${this.baseUrl}/project/manager/export?format=${format}`,
+        { cohort, templates },
+        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
+      )
+      .pipe(catchError(this.handleError))
   }
 
   getCurrentProject(): Observable<ProjectUiModel> {

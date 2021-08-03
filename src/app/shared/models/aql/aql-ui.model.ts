@@ -42,6 +42,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   purpose: string
   use: string
   owner?: IUser | null
+  hasParameterError: boolean
 
   constructor(
     aql: Partial<IAqlApi>,
@@ -83,27 +84,33 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
     })
 
     this.parameters.forEach((parameter) => {
-      const parameterPathRegex = new RegExp('\\S+\\s+\\S+\\s+\\' + parameter.nameWithDollar, 'gmi')
-      const fullParameterPath = this.query.match(parameterPathRegex)[0]
-      const fullParameterPathSplitted = fullParameterPath.split(' ')
-      const archetypeReferenceId = fullParameterPathSplitted[0].match(/\w+/)[0]
-      const archetypeIdRegex = new RegExp(archetypeReferenceId + '\\[(.+?)(?=s*])')
+      try {
+        const parameterPathRegex = new RegExp(
+          '\\S+\\s+\\S+\\s+\\' + parameter.nameWithDollar,
+          'gmi'
+        )
+        const fullParameterPath = this.query.match(parameterPathRegex)[0]
+        const fullParameterPathSplitted = fullParameterPath.split(' ')
+        const archetypeReferenceId = fullParameterPathSplitted[0].match(/\w+/)[0]
+        const archetypeIdRegex = new RegExp(archetypeReferenceId + '\\[(.+?)(?=s*])')
 
-      parameter.operator =
-        fullParameterPathSplitted[1] in AqlParameterOperator
-          ? (fullParameterPathSplitted[1] as AqlParameterOperator)
-          : AqlParameterOperator['!=']
-      parameter.path = fullParameterPathSplitted[0].split(archetypeReferenceId)[1]
-      parameter.archetypeId = this.query.match(archetypeIdRegex)[0].split('[')[1]
+        parameter.operator =
+          fullParameterPathSplitted[1] in AqlParameterOperator
+            ? (fullParameterPathSplitted[1] as AqlParameterOperator)
+            : AqlParameterOperator['!=']
+        parameter.path = '/' + fullParameterPathSplitted[0].split(archetypeReferenceId + '/')[1]
+        parameter.archetypeId = this.query.match(archetypeIdRegex)[0].split('[')[1]
 
-      const pathWithInjectedPlaceholder = fullParameterPath
-        .replace(parameter.nameWithDollar, parameter.nameWithDollar + this.NAME_SUFFIX)
-        .replace(parameter.operator, parameter.nameWithDollar + this.OPERATOR_SUFFIX)
+        const pathWithInjectedPlaceholder = fullParameterPath
+          .replace(parameter.nameWithDollar, parameter.nameWithDollar + this.NAME_SUFFIX)
+          .replace(parameter.operator, parameter.nameWithDollar + this.OPERATOR_SUFFIX)
 
-      this.queryWithOperatorPlaceholder = (this.queryWithOperatorPlaceholder
-        ? this.queryWithOperatorPlaceholder
-        : this.query
-      ).replace(fullParameterPath, pathWithInjectedPlaceholder)
+        this.queryWithOperatorPlaceholder = (
+          this.queryWithOperatorPlaceholder ? this.queryWithOperatorPlaceholder : this.query
+        ).replace(fullParameterPath, pathWithInjectedPlaceholder)
+      } catch (_) {
+        this.hasParameterError = true
+      }
     })
   }
 

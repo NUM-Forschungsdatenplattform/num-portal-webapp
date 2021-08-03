@@ -24,14 +24,14 @@ import { OAuthInitService } from './oauth-init.service'
 describe('OAuth Init Service', () => {
   let initService: OAuthInitService
 
-  const authService = ({
+  const authService = {
     configure: () => {},
     loadDiscoveryDocument: jest.fn().mockImplementation(),
     tryLoginCodeFlow: jest.fn().mockImplementation(),
     silentRefresh: jest.fn().mockImplementation(),
     setupAutomaticSilentRefresh: () => {},
     loadUserProfile: () => Promise.resolve(mockOAuthUser),
-  } as unknown) as OAuthService
+  } as unknown as OAuthService
 
   const appConfig = {
     config: {
@@ -46,10 +46,10 @@ describe('OAuth Init Service', () => {
     },
   } as AppConfigService
 
-  const httpClient = ({
+  const httpClient = {
     get: () => of(),
     post: () => of(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
   beforeEach(() => {
     jest.spyOn(authService, 'loadUserProfile')

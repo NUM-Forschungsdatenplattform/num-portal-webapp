@@ -15,17 +15,14 @@
  */
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { forkJoin, Subscription } from 'rxjs'
-import { map, mergeMap } from 'rxjs/operators'
-import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
+import { Subscription } from 'rxjs'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { IAqbSelectClick } from 'src/app/shared/models/aqb/aqb-select-click.interface'
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
-import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { AQL_LOADING_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
+import { EXPORT_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
 
 @Component({
   selector: 'num-manager-data-explorer',
@@ -39,12 +36,9 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
   currentProject: ProjectUiModel
   isDataSetLoading = false
   isExportLoading = false
-  isAqlPrepared = false
   resultSet: IAqlExecutionResponse[]
-  compiledQuery: IArchetypeQueryBuilderResponse
 
   constructor(
-    private aqlEditorService: AqlEditorService,
     private patientFilterService: PatientFilterService,
     private route: ActivatedRoute,
     private router: Router,
@@ -53,7 +47,6 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.currentProject = this.route.snapshot.data.resolvedData
-    this.prepareAql()
   }
 
   ngOnDestroy(): void {
@@ -66,73 +59,62 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
   }
 
   getData(): void {
-    if (!!this.compiledQuery) {
-      this.isDataSetLoading = true
-      this.subscriptions.add(
-        this.patientFilterService
-          .getProjectData(
-            this.compiledQuery.q,
-            {
-              id: null,
-              cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
-              name: 'Preview Cohort',
-              projectId: null,
-              description: '',
-            },
-            this.currentProject.templates.map((template) => template.templateId)
-          )
-          .subscribe(
-            (result) => {
-              this.resultSet = result
-              this.isDataSetLoading = false
-            },
-            () => {
-              this.isDataSetLoading = false
-              this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-            }
-          )
-      )
-    }
-  }
-  private prepareAql(): void {
-    if (!!this.currentProject) {
-      const selectedCompositions$ = this.currentProject.templates.map((template) =>
-        this.aqlEditorService.getContainment(template.templateId).pipe(
-          map((containment) => {
-            return {
-              compositionId: containment.archetypeId,
-              templateId: template.templateId,
-              item: {
-                archetypeId: containment.archetypeId,
-                displayName: containment.archetypeId,
-              },
-            } as IAqbSelectClick
-          })
+    this.isDataSetLoading = true
+    this.subscriptions.add(
+      this.patientFilterService
+        .getProjectData(
+          {
+            id: null,
+            cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
+            name: 'Preview Cohort',
+            projectId: null,
+            description: '',
+          },
+          this.currentProject.templates.map((template) => template.templateId)
         )
-      )
+        .subscribe(
+          (result) => {
+            this.resultSet = result
+            this.isDataSetLoading = false
+          },
+          () => {
+            this.isDataSetLoading = false
+            this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
+          }
+        )
+    )
+  }
 
-      this.subscriptions.add(
-        forkJoin(selectedCompositions$)
-          .pipe(
-            mergeMap((selectedCompositions) => {
-              selectedCompositions.forEach((composition) =>
-                this.aqbModel.handleElementSelect(composition)
-              )
-              const apiModel = this.aqbModel.convertToApi()
-              return this.aqlEditorService.buildAql(apiModel)
+  exportFile(format: 'csv' | 'json'): void {
+    this.isExportLoading = true
+    this.subscriptions.add(
+      this.patientFilterService
+        .exportFile(
+          {
+            id: null,
+            cohortGroup: this.currentProject.convertToApiInterface().cohortGroup,
+            name: 'Preview Cohort',
+            projectId: null,
+            description: '',
+          },
+          this.currentProject.templates.map((template) => template.templateId),
+          format
+        )
+        .subscribe(
+          (response) => {
+            downloadFile('manager_preview', format, response)
+            this.isExportLoading = false
+          },
+          (_) => {
+            this.isExportLoading = false
+            this.toastMessageService.openToast({
+              ...EXPORT_ERROR,
+              messageParameters: {
+                format: format.toUpperCase(),
+              },
             })
-          )
-          .subscribe(
-            (compiledQuery) => {
-              this.compiledQuery = compiledQuery
-              this.isAqlPrepared = true
-            },
-            () => {
-              this.isDataSetLoading = false
-              this.toastMessageService.openToast(AQL_LOADING_ERROR)
-            }
-          )
-      )
-    }
+          }
+        )
+    )
   }
 }

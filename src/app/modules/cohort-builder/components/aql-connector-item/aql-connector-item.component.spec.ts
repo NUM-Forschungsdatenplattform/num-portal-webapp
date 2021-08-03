@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { of } from 'rxjs'
+import { of, throwError } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
@@ -43,9 +43,9 @@ describe('AqlConnectorItemComponent', () => {
   let component: AqlConnectorItemComponent
   let fixture: ComponentFixture<AqlConnectorItemComponent>
 
-  const mockAqlParameterService = ({
+  const mockAqlParameterService = {
     getValues: jest.fn(),
-  } as unknown) as AqlParameterService
+  } as unknown as AqlParameterService
 
   const valueChangeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-parameter-inputs', template: '' })
@@ -141,6 +141,94 @@ describe('AqlConnectorItemComponent', () => {
       if (optionKeys.length) {
         expect(component.aql.parameters[0].value).toEqual(optionKeys[0])
       }
+    })
+
+    it('should flag the item with a parameter error when one parameter could not be resolved', () => {
+      jest.spyOn(mockAqlParameterService, 'getValues').mockImplementation(() => throwError('Error'))
+      component.aql = new AqlUiModel(mockAql3, false, testcases[0].parameters)
+
+      fixture.detectChanges()
+      expect(component.hasParameterError).toBeTruthy()
+    })
+  })
+
+  describe('When handling Date related types', () => {
+    it('should convert Date correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_date,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '2021-08-03T00:00:00+0200' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+      const expectedDate = new Date('2021-08-03T00:00:00+0200')
+      expect(component.aql.parameters[0].value).toEqual(expectedDate)
+    })
+
+    it('should convert DateTime correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_date_time,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '2021-08-03T10:15:21+0200' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+      const expectedDate = new Date('2021-08-03T10:15:21+0200')
+      expect(component.aql.parameters[0].value).toEqual(expectedDate)
+    })
+
+    it('should convert Time correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_time,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '10:15:21' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+
+      expect((component.aql.parameters[0].value as Date).getHours()).toEqual(10)
+      expect((component.aql.parameters[0].value as Date).getMinutes()).toEqual(15)
+      expect((component.aql.parameters[0].value as Date).getSeconds()).toEqual(21)
+    })
+
+    test.each([
+      ReferenceModelType.Dv_date,
+      ReferenceModelType.Dv_date_time,
+      ReferenceModelType.Dv_time,
+    ])('should fall back to current date if the conversion fails', (testcase) => {
+      const parameterValueResponse = {
+        type: testcase,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: 'abc' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+
+      expect(component.aql.parameters[0].value).toBeInstanceOf(Date)
     })
   })
 

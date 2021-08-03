@@ -43,11 +43,11 @@ describe('AqlConnectorGroupComponent', () => {
 
   const itemEventSubject = new Subject<AqlUiModel>()
   const targetResetSubject = new Subject<never>()
-  const mockCohortBuilderService = ({
+  const mockCohortBuilderService = {
     resetTargets: jest.fn(),
     itemEventObservable$: itemEventSubject.asObservable(),
     targetResetObservable$: targetResetSubject.asObservable(),
-  } as unknown) as CohortBuilderService
+  } as unknown as CohortBuilderService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

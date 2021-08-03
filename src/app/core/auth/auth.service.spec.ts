@@ -33,7 +33,7 @@ describe('Auth Service', () => {
 
   const eventSubject = new Subject()
 
-  const oauthService = ({
+  const oauthService = {
     logOut: () => {},
     initCodeFlow: () => {},
     state: undefined,
@@ -41,19 +41,19 @@ describe('Auth Service', () => {
     hasValidAccessToken: jest.fn().mockImplementation(() => true),
     events: eventSubject.asObservable(),
     loadUserProfile: jest.fn().mockImplementation(() => of(mockOAuthUser)),
-  } as unknown) as OAuthService
+  } as unknown as OAuthService
 
-  const httpClient = ({
+  const httpClient = {
     post: jest.fn(),
-  } as unknown) as HttpClient
+  } as unknown as HttpClient
 
-  const profileService = ({
+  const profileService = {
     get: jest.fn(),
-  } as unknown) as ProfileService
+  } as unknown as ProfileService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: () => jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   const appConfig = {
     config: {

@@ -68,15 +68,15 @@ describe('DialogAqlBuilderComponent', () => {
 
   const templatesSubject$ = new Subject<IEhrbaseTemplate[]>()
 
-  const aqlEditorService = ({
+  const aqlEditorService = {
     getTemplates: jest.fn(),
     templatesObservable$: templatesSubject$.asObservable(),
     buildAql: jest.fn(),
-  } as unknown) as AqlEditorService
+  } as unknown as AqlEditorService
 
-  const mockToastMessageService = ({
+  const mockToastMessageService = {
     openToast: jest.fn(),
-  } as unknown) as ToastMessageService
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -28,6 +28,7 @@ import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
+import { Component } from '@angular/core'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -43,33 +44,43 @@ describe('SideMenuComponent', () => {
     initCodeFlow: () => {},
   } as OAuthService
 
-  const mockContentService = ({
+  const mockContentService = {
     getNavigationLinks: jest.fn(),
-  } as unknown) as ContentService
+  } as unknown as ContentService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
-    logout: () => {},
-    login: () => {},
+    logout: jest.fn(),
+    login: jest.fn(),
     userInfoObservable$: userInfoSubject$.asObservable(),
-  } as AuthService
+  } as unknown as AuthService
 
   const afterClosedSubject$ = new Subject<boolean | undefined>()
-  const mockDialogService = ({
+  const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {
         afterClosed: () => afterClosedSubject$.asObservable(),
       }
     }),
-  } as unknown) as DialogService
+  } as unknown as DialogService
+
+  @Component({
+    selector: 'num-test-router-target',
+    template: '',
+  })
+  class TestRouterTargetComponentStub {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SideMenuComponent],
+      declarations: [SideMenuComponent, TestRouterTargetComponentStub],
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([
+          { path: '#login', component: TestRouterTargetComponentStub },
+          { path: '#logout', component: TestRouterTargetComponentStub },
+          { path: 'test', component: TestRouterTargetComponentStub },
+        ]),
         TranslateModule.forRoot(),
         DirectivesModule,
       ],
@@ -102,8 +113,8 @@ describe('SideMenuComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
-    jest.spyOn(authService, 'logout')
-    jest.spyOn(authService, 'login')
+    jest.spyOn(authService, 'logout').mockImplementation()
+    jest.spyOn(authService, 'login').mockImplementation()
     jest.clearAllMocks()
   })
 

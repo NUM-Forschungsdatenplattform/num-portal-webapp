@@ -32,14 +32,14 @@ describe('Project Resolver', () => {
   let resolver: ProjectResolver
   const state = {} as RouterStateSnapshot
 
-  const projectService = ({
+  const projectService = {
     get: jest.fn(),
-  } as unknown) as ProjectService
+  } as unknown as ProjectService
 
-  const mockRouter = ({
+  const mockRouter = {
     navigate: jest.fn(),
     getCurrentNavigation: jest.fn(),
-  } as unknown) as Router
+  } as unknown as Router
 
   beforeEach(() => {
     resolver = new ProjectResolver(projectService, mockRouter)
@@ -56,10 +56,10 @@ describe('Project Resolver', () => {
       })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
       const paramMap = convertToParamMap({ id: 'new' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
 
       expect(result.error).toBeNull()
@@ -72,14 +72,14 @@ describe('Project Resolver', () => {
       projectUi.templates = [{ templateId: 'template1', name: 'templateName1' }]
       const project = projectUi.convertToApiInterface()
       jest.spyOn(mockRouter, 'getCurrentNavigation').mockImplementation(() => {
-        return ({ extras: { state: { project } } } as unknown) as Navigation
+        return { extras: { state: { project } } } as unknown as Navigation
       })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
       const paramMap = convertToParamMap({ id: 'new' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
 
       expect(result.error).toBeNull()
@@ -91,10 +91,10 @@ describe('Project Resolver', () => {
     it('should provide an error message when the id was not "new" and not a number', async () => {
       const paramMap = convertToParamMap({ id: 'test' })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.error).toBeDefined()
       expect(result.project.id).toEqual(null)
@@ -104,10 +104,10 @@ describe('Project Resolver', () => {
       projectService.get = jest.fn().mockImplementation(() => of(mockProject1))
       const paramMap = convertToParamMap({ id: 1 })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       const result = await resolver.resolve(activatedRoute, state).toPromise()
       expect(result.project.id).toEqual(1)
     })
@@ -117,10 +117,10 @@ describe('Project Resolver', () => {
       projectService.get = jest.fn().mockImplementation(() => throwError('Error'))
       const paramMap = convertToParamMap({ id: 123 })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
       await resolver.resolve(activatedRoute, state).toPromise()
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/projects'])
     })
@@ -130,10 +130,10 @@ describe('Project Resolver', () => {
       projectService.updateStatusById = jest.fn().mockImplementation()
       const paramMap = convertToParamMap({ id: 1 })
       const queryParamMap = convertToParamMap({ mode: 'review' })
-      const activatedRoute = ({
+      const activatedRoute = {
         paramMap,
         queryParamMap,
-      } as unknown) as ActivatedRouteSnapshot
+      } as unknown as ActivatedRouteSnapshot
 
       await resolver.resolve(activatedRoute, state).toPromise()
       expect(projectService.updateStatusById).toHaveBeenCalledWith(1, ProjectStatus.Reviewing)

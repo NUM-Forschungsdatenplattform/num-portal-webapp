@@ -50,12 +50,12 @@ describe('Directive: UserHasRoleDirective', () => {
   }
 
   const mockUserInfoSubject = new Subject<IAuthUserInfo>()
-  const authService = ({
+  const authService = {
     get isLoggedIn(): boolean {
       return true
     },
     userInfoObservable$: mockUserInfoSubject.asObservable(),
-  } as unknown) as AuthService
+  } as unknown as AuthService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

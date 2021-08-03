@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Added
+
+- Resolving of pseudonyms to patient ids ([#276])
+- Simplification of Data-Retrieval for the manager ([#278])
+- Flag for default configuration to the data retrieval in the data-explorer ([#279])
+- Error message in case a parameter can't be resolved in the cohort builder ([#282])
+- Export data as JSON or CSV as manager ([#285])
+- Export project as txt in project editor ([#286])
+- Localized DatePicker in aql parameters ([#287])
+
+### Changed
+
+- Project Editor: Change label for data protection label ([#280])
+- Favicons and Apptitle ([#281])
 
 ---
 
@@ -18,14 +32,14 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Project Editor: Keep save buttons enabled after save failed ([#256])
 - Cohort-Designer: Preview of AQLs in the Dialog ([#257])
 - Cohort-Designer: Parameters for types Date, DateTime and Time ([#258])
-- Simple Search: Displays ‘Invalid’ for broken templates (backend respond with -1)  ([#259])
+- Simple Search: Displays ‘Invalid’ for broken templates (backend respond with -1) ([#259])
 - Simple Search: Fix graph labels and copy issues ([265])
 - Simple Search: Separate role handling for managers and project lead for determine hits ([#270])
 - Restricts AQL Module to Manager only ([#260])
 - Data-Filter: Deleting of template deleted wrong template ([#261])
 - AQL Builder: Appends “code_string” in where clause to aql paths ending with “defining_code” ([#263])
 - Project Editor: Add create project button that is only visible to project leads ([#267])
-- AQL Service: Add caching to prevent multiple fetch requests on page load  ([#262])
+- AQL Service: Add caching to prevent multiple fetch requests on page load ([#262])
 - User management: Manager role can only be assigned by super admin role ([#268])
 
 ### Added
@@ -539,3 +553,14 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#271]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/271
 [#272]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/272
 [#273]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/273
+[#276]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/276
+[#278]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/278
+[#279]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/279
+[#280]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/280
+[#281]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/281
+[#282]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/282
+[#283]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/283
+[#284]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/284
+[#285]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/285
+[#286]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/286
+[#287]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/287

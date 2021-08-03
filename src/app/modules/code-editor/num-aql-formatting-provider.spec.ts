@@ -17,9 +17,9 @@
 import { NumAqlFormattingProvider } from './num-aql-formatting-provider'
 
 describe('NumAqlFormattingProvider', () => {
-  const mockModel = ({
+  const mockModel = {
     getValue: jest.fn(),
-  } as unknown) as monaco.editor.ITextModel
+  } as unknown as monaco.editor.ITextModel
   const provider = new NumAqlFormattingProvider()
 
   const testcases = [
