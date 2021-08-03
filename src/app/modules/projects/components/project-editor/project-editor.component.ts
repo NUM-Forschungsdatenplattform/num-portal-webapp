@@ -37,6 +37,8 @@ import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-project-editor',
@@ -59,6 +61,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   isResearchersDisabled: boolean
   isGeneralInfoDisabled: boolean
   isCohortBuilderDisabled: boolean
+
+  isExportLoading: boolean
 
   projectComments: IProjectComment[] = []
 
@@ -84,7 +88,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private cohortService: CohortService,
     private adminService: AdminService,
     private dialogService: DialogService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -356,6 +361,23 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   cancel(): void {
     this.router.navigate(['projects'])
+  }
+
+  exportPrint(): void {
+    const currentLang = this.translateService.currentLang as 'de' | 'en'
+    this.isExportLoading = true
+
+    this.subscriptions.add(
+      this.projectService.exportPrint(this.project.id, currentLang).subscribe(
+        (response) => {
+          downloadFile(`${this.project.id}_${currentLang}`, 'txt', response)
+          this.isExportLoading = false
+        },
+        () => {
+          this.isExportLoading = false
+        }
+      )
+    )
   }
 
   postComment(): void {

@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Flag for default configuration to the data retrieval in the data-explorer ([#279])
 - Error message in case a parameter can't be resolved in the cohort builder ([#282])
 - Export data as JSON or CSV as manager ([#285])
+- Export project as txt in project editor ([#286])
+- Localized DatePicker in aql parameters ([#287])
 
 ### Changed
 
@@ -560,3 +562,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#283]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/283
 [#284]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/284
 [#285]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/285
+[#286]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/286
+[#287]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/287

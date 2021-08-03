@@ -67,6 +67,7 @@ describe('ProjectEditorComponent On Creation', () => {
     update: jest.fn(),
     getCommentsByProjectId: jest.fn(),
     updateStatusById: jest.fn(),
+    exportPrint: jest.fn(),
   } as unknown as ProjectService
 
   const cohortService = {
@@ -123,6 +124,7 @@ describe('ProjectEditorComponent On Creation', () => {
   const saveAsApprovalReplyEmitter = new EventEmitter()
   const startEditEmitter = new EventEmitter()
   const cancelEmitter = new EventEmitter()
+  const exportEmitter = new EventEmitter()
   @Component({ selector: 'num-project-editor-buttons', template: '' })
   class ProjectEditorButtonsStubComponent {
     @Input() editorMode: any
@@ -132,6 +134,8 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
     @Input() approverForm: any
+    @Input() isExportLoading: any
+    @Input() isSavedProject: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -139,6 +143,7 @@ describe('ProjectEditorComponent On Creation', () => {
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
     @Output() cancel = cancelEmitter
+    @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {

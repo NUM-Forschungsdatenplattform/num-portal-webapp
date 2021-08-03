@@ -52,7 +52,19 @@
   </div>
 </section>
 
+<ng-template #exportButton>
+  <num-button
+    id="export"
+    type="secondary"
+    (singleClick)="exportPrint.emit()"
+    [isDisabled]="!isSavedProject || isExportLoading"
+    data-test="project-editor__buttons__export-button"
+    >{{ 'BUTTON.EXPORT' | translate }}</num-button
+  >
+</ng-template>
+
 <ng-template #editButtonRow>
+  <ng-container [ngTemplateOutlet]="exportButton"></ng-container>
   <num-button
     id="primary-save"
     type="primary"
@@ -95,6 +107,7 @@
 </ng-template>
 
 <ng-template #reviewButtonRow>
+  <ng-container [ngTemplateOutlet]="exportButton"></ng-container>
   <num-button
     id="primary-reply"
     type="primary"
@@ -106,6 +119,7 @@
 </ng-template>
 
 <ng-template #previewButtonRow>
+  <ng-container [ngTemplateOutlet]="exportButton"></ng-container>
   <num-button
     id="primary-start-edit"
     type="primary"

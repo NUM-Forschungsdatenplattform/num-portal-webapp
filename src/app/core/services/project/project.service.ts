@@ -173,6 +173,14 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
+  exportPrint(id: number, locale: 'de' | 'en'): Observable<string> {
+    return this.httpClient
+      .get<string>(`${this.baseUrl}/${id}/document?locale=${locale}`, {
+        responseType: 'text' as 'json',
+      })
+      .pipe(catchError(this.handleError))
+  }
+
   getAllWithCache(): Observable<IProjectApi[]> {
     if (this.projects.length) {
       return of(this.projects)

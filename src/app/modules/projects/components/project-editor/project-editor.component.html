@@ -58,12 +58,15 @@
     [isResearchersDefined]="project.researchers.length"
     [isTemplatesDefined]="project.templates.length"
     [isCohortDefined]="project.cohortGroup.children.length"
+    [isExportLoading]="isExportLoading"
+    [isSavedProject]="project.id !== undefined && project.id !== null"
     (saveAll)="save()"
     (saveResearchers)="saveResearchers()"
     (saveAsApprovalRequest)="sendForApproval()"
     (saveAsApprovalReply)="saveAsApprovalReply()"
     (startEdit)="startEdit()"
     (cancel)="cancel()"
+    (exportPrint)="exportPrint()"
     data-test="project-editor__buttons"
   ></num-project-editor-buttons>
 </section>
