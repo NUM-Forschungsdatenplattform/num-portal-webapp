@@ -34,10 +34,15 @@ describe('AqlParameterInputsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AqlParameterInputsComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
   })
 
   it('should create', () => {
+    component.item = {
+      name: 'test',
+      valueType: AqlParameterValueType.DateTime,
+      value: new Date(2019, 11, 1, 12, 0, 0),
+    }
+    fixture.detectChanges()
     expect(component).toBeTruthy()
   })
 
