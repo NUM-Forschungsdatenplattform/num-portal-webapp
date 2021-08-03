@@ -14,18 +14,42 @@
  * limitations under the License.
  */
 
-export const downloadFile = (name: string | number, format: 'csv' | 'json', data: string): void => {
-  const filename = format === 'csv' ? `csv_export_${name}.zip` : `json_export_${name}.json`
+export const downloadFile = (
+  name: string | number,
+  format: 'csv' | 'json' | 'txt',
+  data: string
+): void => {
+  const filename =
+    format === 'csv' ? `csv_export_${name}.zip` : `${format}_export_${name}.${format}`
   const downloadLink = document.createElement('a')
-  downloadLink.setAttribute(
-    'href',
-    format === 'csv'
-      ? URL.createObjectURL(new Blob([data], { type: 'application/zip' }))
-      : 'data:text/json;charset=utf-8,' + encodeURIComponent(data)
-  )
+  setContent(downloadLink, format, data)
   downloadLink.setAttribute('download', filename)
   downloadLink.style.display = 'none'
   document.body.appendChild(downloadLink)
   downloadLink.click()
   downloadLink.remove()
+}
+
+const setContent = (
+  downloadLink: HTMLAnchorElement,
+  format: 'csv' | 'json' | 'txt',
+  data: string
+): void => {
+  switch (format) {
+    case 'csv':
+      downloadLink.setAttribute(
+        'href',
+        URL.createObjectURL(new Blob([data], { type: 'application/zip' }))
+      )
+      break
+    case 'json':
+      downloadLink.setAttribute(
+        'href',
+        `data:text/${format};charset=utf-8,${encodeURIComponent(data)}`
+      )
+      break
+    case 'txt':
+      downloadLink.setAttribute('href', `data:text/${format};charset=utf-8,${data}`)
+      break
+  }
 }

@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
@@ -50,6 +50,12 @@ import { ProjectEditorComponent } from './project-editor.component'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
+jest.mock('src/app/core/utils/download-file.utils', () => ({
+  __esModule: true,
+  downloadFile: jest.fn().mockImplementation(() => ''),
+}))
+import { downloadFile } from 'src/app/core/utils/download-file.utils'
+
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
   let fixture: ComponentFixture<ProjectEditorComponent>
@@ -61,6 +67,7 @@ describe('ProjectEditorComponent', () => {
     getCommentsByProjectId: jest.fn(),
     createCommentByProjectId: jest.fn(),
     updateStatusById: jest.fn(),
+    exportPrint: jest.fn(),
   } as unknown as ProjectService
 
   const cohortService = {
@@ -140,6 +147,7 @@ describe('ProjectEditorComponent', () => {
   const saveAsApprovalReplyEmitter = new EventEmitter()
   const startEditEmitter = new EventEmitter()
   const cancelEmitter = new EventEmitter()
+  const exportEmitter = new EventEmitter()
   @Component({ selector: 'num-project-editor-buttons', template: '' })
   class ProjectEditorButtonsStubComponent {
     @Input() editorMode: any
@@ -149,6 +157,8 @@ describe('ProjectEditorComponent', () => {
     @Input() isTemplatesDefined: any
     @Input() isCohortDefined: any
     @Input() approverForm: any
+    @Input() isExportLoading: any
+    @Input() isSavedProject: any
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -156,6 +166,7 @@ describe('ProjectEditorComponent', () => {
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
     @Output() cancel = cancelEmitter
+    @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {
@@ -218,6 +229,7 @@ describe('ProjectEditorComponent', () => {
       .mockImplementation(() => of(projectCommentMocks))
     jest.spyOn(projectService, 'update').mockImplementation(() => of(mockProject1))
     jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of(mockProject1))
+    jest.spyOn(projectService, 'exportPrint').mockImplementation(() => of(''))
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
@@ -455,6 +467,36 @@ describe('ProjectEditorComponent', () => {
       afterClosedSubject$.next(false)
       expect(projectService.updateStatusById).not.toHaveBeenCalledWith(1, ProjectStatus.Approved)
       expect(router.navigate).not.toHaveBeenCalledWith(['/projects'])
+    })
+  })
+
+  describe('When the buttons component emits to export', () => {
+    it('should call the api to get the content', () => {
+      resolvedData.project.id = 1
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      const componentAny = fixture.componentInstance as any
+      componentAny.translateService.use('de')
+
+      fixture.detectChanges()
+      exportEmitter.emit()
+      expect(projectService.exportPrint).toHaveBeenCalledWith(
+        resolvedData.project.id,
+        componentAny.translateService.currentLang
+      )
+      expect(downloadFile).toHaveBeenCalledTimes(1)
+    })
+
+    it('should call the downloadFile util', () => {
+      const currentLang = 'de'
+      resolvedData.project.id = 1
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      const componentAny = fixture.componentInstance as any
+      componentAny.translateService.use(currentLang)
+      const projectId = resolvedData.project.id
+
+      fixture.detectChanges()
+      exportEmitter.emit()
+      expect(downloadFile).toHaveBeenCalledWith(`${projectId}_${currentLang}`, 'txt', '')
     })
   })
 })

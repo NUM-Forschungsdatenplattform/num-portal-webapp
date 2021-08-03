@@ -37,6 +37,8 @@ export class ProjectEditorButtonsComponent implements OnInit {
   @Input() isTemplatesDefined: boolean
   @Input() isCohortDefined: boolean
   @Input() approverForm: FormGroup
+  @Input() isExportLoading: boolean
+  @Input() isSavedProject: boolean
 
   @Output() saveAll = new EventEmitter()
   @Output() saveResearchers = new EventEmitter()
@@ -44,6 +46,7 @@ export class ProjectEditorButtonsComponent implements OnInit {
   @Output() saveAsApprovalReply = new EventEmitter()
   @Output() startEdit = new EventEmitter()
   @Output() cancel = new EventEmitter()
+  @Output() exportPrint = new EventEmitter()
 
   ngOnInit(): void {}
 
