@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Fixed
+
+- Project editor: Hide edit button from approvers ([#291])
+
+---
+
+## [Released]
+
+## [1.5.0] - 2021-08-03
+
 ### Added
 
 - Resolving of pseudonyms to patient ids ([#276])
@@ -20,10 +30,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 - Project Editor: Change label for data protection label ([#280])
 - Favicons and Apptitle ([#281])
-
----
-
-## [Released]
 
 ## [1.4.0] - 2021-07-27
 
@@ -279,8 +285,9 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 <!-- Versions -->
 
-[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.5.0...HEAD
 [released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.5.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.4.0..v1.5.0
 [1.4.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.3.0..v1.4.0
 [1.3.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
@@ -564,3 +571,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#285]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/285
 [#286]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/286
 [#287]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/287
+[#291]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/291
