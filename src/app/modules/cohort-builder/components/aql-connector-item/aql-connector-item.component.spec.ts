@@ -152,6 +152,86 @@ describe('AqlConnectorItemComponent', () => {
     })
   })
 
+  describe('When handling Date related types', () => {
+    it('should convert Date correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_date,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '2021-08-03T00:00:00+0200' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+      const expectedDate = new Date('2021-08-03T00:00:00+0200')
+      expect(component.aql.parameters[0].value).toEqual(expectedDate)
+    })
+
+    it('should convert DateTime correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_date_time,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '2021-08-03T10:15:21+0200' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+      const expectedDate = new Date('2021-08-03T10:15:21+0200')
+      expect(component.aql.parameters[0].value).toEqual(expectedDate)
+    })
+
+    it('should convert Time correctly', () => {
+      const parameterValueResponse = {
+        type: ReferenceModelType.Dv_time,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: '10:15:21' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+
+      expect((component.aql.parameters[0].value as Date).getHours()).toEqual(10)
+      expect((component.aql.parameters[0].value as Date).getMinutes()).toEqual(15)
+      expect((component.aql.parameters[0].value as Date).getSeconds()).toEqual(21)
+    })
+
+    test.each([
+      ReferenceModelType.Dv_date,
+      ReferenceModelType.Dv_date_time,
+      ReferenceModelType.Dv_time,
+    ])('should fall back to current date if the conversion fails', (testcase) => {
+      const parameterValueResponse = {
+        type: testcase,
+        options: {},
+      }
+
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => of(parameterValueResponse as IAqlParameterValuesApi))
+
+      const parameters = { bodyHeight: 'abc' }
+      component.aql = new AqlUiModel(mockAql3, false, parameters)
+
+      fixture.detectChanges()
+
+      expect(component.aql.parameters[0].value).toBeInstanceOf(Date)
+    })
+  })
+
   describe('When the item is supposed to be deleted', () => {
     beforeEach(() => {
       component.aql = new AqlUiModel(mockAql3)

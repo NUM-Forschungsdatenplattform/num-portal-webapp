@@ -67,6 +67,13 @@ export class AqlConnectorItemComponent implements OnInit {
                   parameter.value = new Date()
                   break
               }
+            } else if (
+              parameter.valueType === AqlParameterValueType.Date ||
+              parameter.valueType === AqlParameterValueType.DateTime
+            ) {
+              parameter.value = this.convertDateStringToDate(parameter.value as string)
+            } else if (parameter.valueType === AqlParameterValueType.Time) {
+              parameter.value = this.convertTimeStringToDate(parameter.value as string)
             }
 
             this.checkParameterStatus()
@@ -77,6 +84,27 @@ export class AqlConnectorItemComponent implements OnInit {
           }
         )
       })
+    }
+  }
+
+  convertDateStringToDate(dateString: string): Date {
+    try {
+      const date = new Date(dateString)
+      return date instanceof Date && !isNaN(date as any) ? date : new Date()
+    } catch (error) {
+      return new Date()
+    }
+  }
+
+  convertTimeStringToDate(timeString: string): Date {
+    try {
+      const [hour, minute, second, ..._] = (timeString as string)
+        .split(':')
+        .map((part) => parseInt(part, 10))
+      const date = new Date(2012, 11, 21, hour, minute, second)
+      return date instanceof Date && !isNaN(date as any) ? date : new Date()
+    } catch (error) {
+      return new Date()
     }
   }
 

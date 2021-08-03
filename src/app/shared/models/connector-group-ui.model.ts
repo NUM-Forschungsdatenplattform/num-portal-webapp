@@ -31,8 +31,6 @@ export abstract class ConnectorGroupUiModel<T extends IConnectorGroupApi<T>> {
     this.children = []
   }
 
-  // <IConnectorGroupApi<any>>
-
   abstract mapChildrenToUi: (
     child: IConnectorGroupApi<T>
   ) => ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
