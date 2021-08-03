@@ -100,6 +100,20 @@ export class PatientFilterService {
       )
   }
 
+  exportFile(
+    cohort: ICohortApi,
+    templates: string[],
+    format: 'json' | 'csv' = 'csv'
+  ): Observable<string> {
+    return this.httpClient
+      .post<string>(
+        `${this.baseUrl}/project/manager/export?format=${format}`,
+        { cohort, templates },
+        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
+      )
+      .pipe(catchError(this.handleError))
+  }
+
   getCurrentProject(): Observable<ProjectUiModel> {
     if (this.currentProject) {
       return of(this.currentProject)

@@ -21,7 +21,7 @@ import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enu
 import { ICohortApi } from 'src/app/shared/models/project/cohort-api.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { mockAql1 } from 'src/mocks/data-mocks/aqls.mock'
+import { mockAql1, mockAql2 } from 'src/mocks/data-mocks/aqls.mock'
 import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
 import { mockResultFlatList } from 'src/mocks/data-mocks/result-set-mock'
@@ -30,7 +30,8 @@ import { PatientFilterService } from './patient-filter.service'
 
 describe('PatientFilterService', () => {
   let service: PatientFilterService
-  const baseUrl = 'localhost/api/aql'
+  const baseAqlUrl = 'localhost/api/aql'
+  const baseProjectUrl = 'localhost/api/project'
   const patientQueryBody = {
     query: 'SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value',
   }
@@ -64,7 +65,7 @@ describe('PatientFilterService', () => {
     it('should call the api - with success', (done) => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(200))
       service.getAllDatasetCount().subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, patientQueryBody)
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseAqlUrl}/size`, patientQueryBody)
       service.totalDatasetCountObservable$.subscribe((datasetsCount) => {
         expect(datasetsCount).toEqual(200)
         done()
@@ -78,7 +79,7 @@ describe('PatientFilterService', () => {
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, patientQueryBody)
+      expect(httpClient.post).toHaveBeenCalledWith(`${baseAqlUrl}/size`, patientQueryBody)
       expect(service.handleError).toHaveBeenCalled()
     })
   })
@@ -199,6 +200,69 @@ describe('PatientFilterService', () => {
       service.resetPreviewData()
       const after = await service.previewDataObservable$.pipe(take(1)).toPromise()
       expect(after).toEqual({ ages: {}, count: 0, hospitals: {} })
+    })
+  })
+
+  describe('When the export of data has been called', () => {
+    const cohort: ICohortApi = {
+      id: null,
+      cohortGroup: {
+        type: ConnectorNodeType.Group,
+        children: [
+          {
+            type: ConnectorNodeType.Aql,
+            query: mockAql2,
+          },
+        ],
+      },
+      name: 'Preview Cohort',
+      projectId: null,
+      description: '',
+    }
+    const templates = ['Test Template 1', 'Test Template 2']
+
+    it('should call the API to get a JSON download', async () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result JSON'))
+      await service.exportFile(cohort, templates, 'json').toPromise()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `${baseProjectUrl}/manager/export?format=json`,
+        { cohort, templates },
+        { responseType: 'text' }
+      )
+    })
+
+    it('should call the API to get a CSV download', async () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result CSV 1 Zip'))
+      await service.exportFile(cohort, templates, 'csv').toPromise()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `${baseProjectUrl}/manager/export?format=csv`,
+        { cohort, templates },
+        { responseType: 'blob' as 'json' }
+      )
+    })
+
+    it('should call the API to get a CSV download of the format is missing', async () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result CSV 2 Zip'))
+      await service.exportFile(cohort, templates).toPromise()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `${baseProjectUrl}/manager/export?format=csv`,
+        { cohort, templates },
+        { responseType: 'blob' as 'json' }
+      )
+    })
+
+    it('should handle an error from API', async () => {
+      jest.spyOn(service, 'handleError')
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 404 })))
+
+      try {
+        await service.exportFile(cohort, templates).toPromise()
+      } catch (err) {
+      } finally {
+        expect(service.handleError).toHaveBeenCalledTimes(1)
+      }
     })
   })
 })

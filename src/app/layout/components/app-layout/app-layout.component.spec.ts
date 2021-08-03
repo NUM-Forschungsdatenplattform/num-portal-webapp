@@ -26,7 +26,7 @@ import { HeaderComponent } from '../header/header.component'
 import { SideMenuComponent } from '../side-menu/side-menu.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { of, Subject } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
@@ -85,12 +85,20 @@ describe('AppLayoutComponent', () => {
   @Component({ selector: 'num-footer', template: '' })
   class FooterStubComponent {}
 
+  @Component({
+    selector: 'num-side-menu',
+    template: '',
+  })
+  class SideMenuComponentStub {
+    @Output() toggleMenu = new EventEmitter()
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppLayoutComponent,
         HeaderComponent,
-        SideMenuComponent,
+        SideMenuComponentStub,
         LanguageComponent,
         FooterStubComponent,
       ],
