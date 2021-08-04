@@ -54,6 +54,7 @@
 
 <ng-template #exportButton>
   <num-button
+    *ngIf="false"
     id="export"
     type="secondary"
     (singleClick)="exportPrint.emit()"
