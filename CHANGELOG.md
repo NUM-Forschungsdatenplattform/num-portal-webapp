@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 ### Fixed
 
 - Project editor: Hide edit button from approvers ([#291])
+- Dashboard: Fixes layout issues for safari on mac os catalina ([#292])
+- Footer: Fixes layout on smaller devices ([#293])
 
 ---
 
@@ -572,3 +574,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#286]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/286
 [#287]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/287
 [#291]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/291
+[#292]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/292
+[#293]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/293
