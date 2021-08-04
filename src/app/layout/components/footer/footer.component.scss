@@ -14,7 +14,18 @@
  * limitations under the License.
  */
 
-.mat-toolbar {
+.num-footer {
   font-size: 14px;
-  height: 64px;
+  min-height: 64px;
+  padding: 0 16px;
+  width: 100%;
+  overflow: hidden;
+
+  @media only screen and (max-width: 960px) {
+    padding: 8px 16px;
+  }
+
+  @media only screen and (max-width: 370px) {
+    font-size: 12px;
+  }
 }
