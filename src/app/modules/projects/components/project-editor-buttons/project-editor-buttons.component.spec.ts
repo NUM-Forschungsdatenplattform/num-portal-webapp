@@ -185,7 +185,7 @@ describe('ProjectEditorButtonsComponent', () => {
     })
   })
 
-  describe('Export button', () => {
+  describe.skip('Export button', () => {
     let exportButton: MatButtonHarness
 
     beforeEach(async () => {
