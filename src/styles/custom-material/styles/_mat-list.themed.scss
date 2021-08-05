@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-@mixin side-menu-component_themed($theme) {
+@mixin mat-list_themed($theme) {
   $accent: map-get($theme, accent);
+
+  num-side-menu {
+    .mat-list-base {
+      padding-top: 0 !important;
+    }
+  }
 
   .num-mat-list-item {
     font-size: 16px !important;
@@ -35,8 +41,13 @@
     &:hover {
       background: mat-color($accent, 100) !important;
     }
+
     &:focus {
       background: mat-color($accent, 200) !important;
+    }
+
+    &.navbar-logo {
+      height: auto !important;
     }
   }
 }

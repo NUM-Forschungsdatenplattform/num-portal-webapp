@@ -15,7 +15,13 @@
 -->
 
 <mat-nav-list fxLayout="column" fxFill fxFlex="280px">
-  <a class="navbar-item" routerLink="/home" data-test="side-menu__logo">
+  <a
+    mat-list-item
+    class="navbar-logo num-mat-list-item"
+    routerLink="/home"
+    data-test="side-menu__logo"
+    (click)="menuItemClicked($event)"
+  >
     <img width="80%" src="assets/logo.svg" alt="app-logo" />
   </a>
 

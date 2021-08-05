@@ -24,6 +24,7 @@
     [mode]="isSmallDevice ? 'over' : 'side'"
     [opened]="!isSmallDevice"
     [disableClose]="!isSmallDevice"
+    [autoFocus]="false"
   >
     <num-side-menu (toggleSideMenu)="toggleMenu()" fxFlex="100"></num-side-menu>
   </mat-sidenav>

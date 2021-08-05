@@ -23,7 +23,7 @@
 @import './styles/color-variables.themed';
 @import './styles/color-classes.themed';
 @import './styles/divider-classes.themed';
-@import './styles/side-menu.component.themed';
+@import './styles/mat-list.themed';
 @import './styles/general_table.themed';
 @import './styles/footer.themed';
 @import './styles/typography.themed';
@@ -42,7 +42,7 @@
   @include color-variables_themed($theme);
   @include color-classes_themed($theme);
   @include divider-classes_themed($theme);
-  @include side-menu-component_themed($theme);
+  @include mat-list_themed($theme);
   @include language-component_themed($theme);
   @include general_table_themed($theme);
   @include footer_themed($theme);
