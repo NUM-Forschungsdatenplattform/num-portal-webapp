@@ -30,7 +30,6 @@ import { DefinitionListComponent } from './definition-list/definition-list.compo
 import { DialogConfirmationComponent } from './dialog-confirmation/dialog-confirmation.component'
 import { TimeInputComponent } from './time-input/time-input.component'
 import { EditorDetermineHitsComponent } from './editor-determine-hits/editor-determine-hits.component'
-import { LogoComponent } from './logo/logo.component'
 import { AqlParameterInputsComponent } from './aql-parameter-inputs/aql-parameter-inputs.component'
 import { ResultTableComponent } from './result-table/result-table.component'
 
@@ -43,7 +42,6 @@ const SHARED_DECLARATIONS = [
   TimeInputComponent,
   DialogConfirmationComponent,
   EditorDetermineHitsComponent,
-  LogoComponent,
   AqlParameterInputsComponent,
   ResultTableComponent,
 ]
