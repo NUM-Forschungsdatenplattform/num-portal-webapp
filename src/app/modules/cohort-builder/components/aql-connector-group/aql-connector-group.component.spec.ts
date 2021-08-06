@@ -167,13 +167,40 @@ describe('AqlConnectorGroupComponent', () => {
       fixture.detectChanges()
     })
 
-    it('should emit its index to the parent group', () => {
-      component.deleteSelf()
-      expect(component.delete.emit).toHaveBeenCalledWith(123)
-    })
+    test.each([true, false])(
+      'should emit the active-status to the parent group',
+      (activeStatus) => {
+        component.isActive = activeStatus
+        component.deleteSelf()
+        expect(component.delete.emit).toHaveBeenCalledWith(component.isActive)
+      }
+    )
   })
 
   describe('When an item in the group gets deleted', () => {
+    beforeEach(() => {
+      component.cohortGroup = new CohortGroupUiModel()
+      component.isDisabled = false
+      component.cohortGroup.children = [
+        new AqlUiModel(mockAql1),
+        new CohortGroupUiModel(),
+        new AqlUiModel(mockAql2),
+        new CohortGroupUiModel(),
+      ]
+      fixture.detectChanges()
+    })
+
+    it('should not enumerate the groups again', () => {
+      component.deleteChildItem(0)
+      expect(component.cohortGroup.children.length).toEqual(3)
+      expect(component.cohortGroup.children[0]).toBeInstanceOf(CohortGroupUiModel)
+      expect(component.cohortGroup.children[1]).toBeInstanceOf(AqlUiModel)
+      const firstGroupAfterDeletion = component.cohortGroup.children[0] as CohortGroupUiModel
+      expect(firstGroupAfterDeletion.indexInGroup).toEqual(null)
+    })
+  })
+
+  describe('When a group in the group gets deleted', () => {
     beforeEach(() => {
       component.cohortGroup = new CohortGroupUiModel()
       component.isDisabled = false
@@ -187,12 +214,21 @@ describe('AqlConnectorGroupComponent', () => {
     })
 
     it('should enumerate the groups again', () => {
-      component.deleteChild(0)
+      component.deleteChildGroup(false, 0)
       const firstGroupAfterDeletion = component.cohortGroup.children[1] as CohortGroupUiModel
       expect(component.cohortGroup.children.length).toEqual(3)
       expect(component.cohortGroup.children[0]).toBeInstanceOf(AqlUiModel)
       expect(firstGroupAfterDeletion.indexInGroup).toEqual(1)
     })
+
+    test.each([true, false])(
+      'should get the active status if the deleted group was active',
+      (wasActive) => {
+        component.isActive = false
+        component.deleteChildGroup(wasActive, 0)
+        expect(component.isActive).toEqual(wasActive)
+      }
+    )
   })
 
   describe('When the targetReset event is received', () => {

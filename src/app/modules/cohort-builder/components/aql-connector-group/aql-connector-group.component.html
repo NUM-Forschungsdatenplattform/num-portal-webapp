@@ -82,7 +82,7 @@
       [ngClass]="{
         'group--last': i === cohortGroup.children.length - 1
       }"
-      (delete)="deleteChild($event)"
+      (delete)="deleteChildGroup($event, i)"
       data-test="cohort-builder__group"
     ></num-aql-connector-group>
 
@@ -95,7 +95,7 @@
       *ngIf="child.type === connectorNodeType.Aql"
       [aql]="child"
       [isDisabled]="isDisabled"
-      (deleteItem)="deleteChild(i)"
+      (deleteItem)="deleteChildItem(i)"
       role="listitem"
       fxLayout="row"
       fxLayoutAlign="space-between start"
