@@ -162,7 +162,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     dialogRef.afterClosed().subscribe((confirmResult) => {
       if (confirmResult === true) {
         this.delete(id).then(() => {
-          this.aqlService.getAll().subscribe((aqls) => this.handleData(aqls))
+          this.aqlService.getAll().subscribe()
         })
       }
     })
