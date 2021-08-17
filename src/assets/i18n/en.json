@@ -256,8 +256,8 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
     "APPLY_CONFIGURATION": "Apply configuration",
-    "CUSTOMIZE_CONFIGURATION": "Customize configuration",
-    "RESET_CUSTOMIZATION": "Reset configuration",
+    "CUSTOMIZE_CONFIGURATION": "Filter data",
+    "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
@@ -388,7 +388,7 @@
     "EXPLORE_PROJECT": "Retrieve project data",
     "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.\n\nYou can either start the data retrieval directly or optionally restrict the data retrieval defined in the project even further.",
     "RESULT_SET": "Result Set",
-    "NO_RESULTS_YET": "No results yet. Please press the button 'Get Data' first.",
+    "NO_RESULTS_YET": "No results yet. Please press the button 'Retreive Data' first.",
     "LOADING_RESULT_SET": "The result set is being loaded. Please wait a moment.",
     "EMPTY_RESULT_SET": "The configuration did not give any results. Please change the configuration and try again.",
     "CONFIGURATION": "Configuration",
@@ -399,7 +399,9 @@
     "QUERY_BUILDER_DIALOG_HEADER": "Edit data criterium configuration",
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT": "Export {{format}}",
-    "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later."
+    "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
+    "HEADLINE_RETREIVE_SECTION": "Retreive data",
+    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",

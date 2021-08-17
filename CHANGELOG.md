@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Changed
+
+- Data Explorer: Add help text and change labels of configurate result ([#302])
+- Data Explorer: Change english hint to use button to retreive data first
+
 ### Fixed
 
 - Project editor: Hide edit button from approvers ([#291])
@@ -576,3 +581,12 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#291]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/291
 [#292]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/292
 [#293]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/293
+[#294]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/294
+[#295]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/295
+[#296]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/296
+[#297]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/297
+[#298]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/298
+[#299]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/299
+[#300]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/300
+[#301]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/301
+[#302]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/302

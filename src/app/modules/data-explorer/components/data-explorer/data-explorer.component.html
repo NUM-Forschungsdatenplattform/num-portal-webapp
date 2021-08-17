@@ -32,6 +32,11 @@
     [generalInfoData]="generalInfoData"
   ></num-project-editor-accordion>
 
+  <section role="presentation">
+    <h3>{{ 'DATA_EXPLORER.HEADLINE_RETREIVE_SECTION' | translate }}</h3>
+    <p class="num-margin-b-20">{{ 'DATA_EXPLORER.INTRODUCTION_RETREIVE_SECTION' | translate }}</p>
+  </section>
+
   <section
     role="presentation"
     fxLayout="row wrap"
@@ -47,7 +52,7 @@
       >{{ 'BUTTON.GET_DATA' | translate }}</num-button
     >
 
-    <div fxLayoutGap="20px">
+    <div fxLayoutGap="20px" class="num-margin-b-10">
       <num-button
         [isDisabled]="!isCompositionsFetched || isDataSetLoading"
         type="secondary"
