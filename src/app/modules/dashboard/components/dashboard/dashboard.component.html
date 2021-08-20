@@ -36,7 +36,7 @@
         {{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}
       </div>
       <div fxLayout="row wrap" class="num-margin-b-10">
-        <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
+        <div fxFlex.sm="33%" fxFlex="100%" *ngFor="let logo of initiativeLogos">
           <img
             [attr.src]="participantLogosBaseUrl + logo"
             class="initiative-logo"
