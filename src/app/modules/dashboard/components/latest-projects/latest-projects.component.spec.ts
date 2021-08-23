@@ -24,11 +24,11 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 import { mockDashboardProjects } from 'src/mocks/data-mocks/dashboard-projects.mock'
 
-import { ProjectsComponent } from './projects.component'
+import { LatestProjectsComponent } from './latest-projects.component'
 
 describe('ProjectsComponent', () => {
-  let component: ProjectsComponent
-  let fixture: ComponentFixture<ProjectsComponent>
+  let component: LatestProjectsComponent
+  let fixture: ComponentFixture<LatestProjectsComponent>
 
   const mockContentService = {
     getLatestProjects: jest.fn(),
@@ -37,7 +37,7 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsComponent, LocalizedDatePipe],
+      declarations: [LatestProjectsComponent, LocalizedDatePipe],
       imports: [
         TranslateModule.forRoot(),
         FlexLayoutModule,
@@ -57,7 +57,7 @@ describe('ProjectsComponent', () => {
     jest
       .spyOn(mockContentService, 'getLatestProjects')
       .mockImplementation(() => of(mockDashboardProjects))
-    fixture = TestBed.createComponent(ProjectsComponent)
+    fixture = TestBed.createComponent(LatestProjectsComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

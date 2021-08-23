@@ -9,13 +9,14 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 ### Changed
 
 - Data Explorer: Add help text and change labels of configurate result ([#302])
-- Data Explorer: Change english hint to use button to retreive data first
+- Data Explorer: Change english hint to use button to retreive data first ([#302])
+- Dashboard: Add table headers to latest project table ([#305])
 
 ### Fixed
 
 - Project editor: Hide edit button from approvers ([#291])
 - Dashboard: Fixes layout issues for safari on mac os catalina ([#292])
-- Dashboard: Logo not displayed in Firefor ([#303])
+- Dashboard: Logo not displayed in Firefox ([#303])
 - Footer: Fixes layout on smaller devices ([#293])
 
 ---
@@ -592,3 +593,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#301]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/301
 [#302]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/302
 [#303]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/303
+[#304]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/304
+[#305]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/305

@@ -24,28 +24,36 @@
     data-test="dashboard__latest-projects__table"
   >
     <ng-container matColumnDef="createDate">
-      <th scope="col" mat-header-cell *matHeaderCellDef>Create Date</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef>
+        {{ 'FORM.CREATION_DATE' | translate }}
+      </th>
       <td mat-cell *matCellDef="let element" class="no-word-break">
         {{ element.createDate | localizedDate }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="title">
-      <th scope="col" mat-header-cell *matHeaderCellDef>Title</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef>
+        {{ 'FORM.NAME' | translate }}
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.title }}</td>
     </ng-container>
 
     <ng-container matColumnDef="coordinator">
-      <th scope="col" mat-header-cell *matHeaderCellDef>Coordinator</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef>
+        {{ 'FORM.AUTHOR' | translate }}
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.coordinator }}</td>
     </ng-container>
 
     <ng-container matColumnDef="organization">
-      <th scope="col" mat-header-cell *matHeaderCellDef>Organization</th>
+      <th scope="col" mat-header-cell *matHeaderCellDef>
+        {{ 'USER.ORGANIZATION' | translate }}
+      </th>
       <td mat-cell *matCellDef="let element">{{ element.organization }}</td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns; let i = index"
