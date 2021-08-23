@@ -1,7 +1,15 @@
 {
   "TEST_ENVIRONMENT": "Test environment",
   "DASHBOARD": {
-    "LATEST_PROJECTS": "Latest Projects",
+    "LATEST_PROJECTS": {
+      "HEADLINE": "Latest Projects",
+      "TABLE_HEADERS": {
+        "COORDINATOR": "Coordinator",
+        "CREATED_DATE": "Created date",
+        "TITLE": "Title",
+        "ORGANIZATION": "Organization"
+      }
+    },
     "INTRODUCTION": {
       "HEADER": "The COVID-19 Data Exchange Platform",
       "P1": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data.",
