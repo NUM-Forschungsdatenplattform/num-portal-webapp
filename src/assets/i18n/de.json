@@ -108,7 +108,9 @@
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst das Kriterium definieren, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
       "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
-    }
+    },
+    "PRIVACY_PRIVATE": "Nur mit mir",
+    "PRIVACY_PUBLIC": "Öffentlich"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",
@@ -202,7 +204,7 @@
     "FILTER": "Filter",
     "ACTION": "Aktion",
     "CREATION_DATE": "Erstellungsdatum",
-    "USAGE": "Nutzung",
+    "USAGE": "Geteilt",
     "YES": "Ja",
     "NO": "Nein",
     "VALUE": "Wert",

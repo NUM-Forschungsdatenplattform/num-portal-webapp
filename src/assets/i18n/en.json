@@ -108,7 +108,9 @@
       "MESSAGE_SET_ALL_PARAMETERS": "You should first define the criterium to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
       "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
-    }
+    },
+    "PRIVACY_PRIVATE": "Only with me",
+    "PRIVACY_PUBLIC": "Public"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
@@ -201,7 +203,7 @@
     "FILTER": "Filter",
     "ACTION": "Action",
     "CREATION_DATE": "Creation Date",
-    "USAGE": "Usage",
+    "USAGE": "Shared",
     "YES": "Yes",
     "NO": "No",
     "VALUE": "Value",
