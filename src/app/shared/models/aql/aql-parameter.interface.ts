@@ -23,6 +23,7 @@ export interface IAqlParameter {
   nameWithDollar: string
   value: string | number | boolean | Date
   operator: AqlParameterOperator
+  possibleOperators: AqlParameterOperator[]
   path: string
   archetypeId: string
   options?: IDictionary<any, any>
