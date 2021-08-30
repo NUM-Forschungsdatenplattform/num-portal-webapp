@@ -39,7 +39,7 @@
           data-test="cohort-builder__item__logical-operator__selector"
         >
           <mat-option
-            *ngFor="let operator of AqlParameterOperator"
+            *ngFor="let operator of parameter.possibleOperators"
             [value]="operator"
             [attr.data-test]="'cohort-builder__item__logical-operator__' + operator"
           >

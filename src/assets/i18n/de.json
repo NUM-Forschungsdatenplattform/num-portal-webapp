@@ -108,7 +108,9 @@
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst das Kriterium definieren, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
       "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
-    }
+    },
+    "PRIVACY_PRIVATE": "Nur mit mir",
+    "PRIVACY_PUBLIC": "Öffentlich"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",
@@ -202,7 +204,7 @@
     "FILTER": "Filter",
     "ACTION": "Aktion",
     "CREATION_DATE": "Erstellungsdatum",
-    "USAGE": "Nutzung",
+    "USAGE": "Geteilt",
     "YES": "Ja",
     "NO": "Nein",
     "VALUE": "Wert",
@@ -257,8 +259,8 @@
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
     "APPLY_CONFIGURATION": "Konfiguration übernehmen",
-    "CUSTOMIZE_CONFIGURATION": "Konfiguration anpassen",
-    "RESET_CUSTOMIZATION": "Konfiguration zurücksetzen",
+    "CUSTOMIZE_CONFIGURATION": "Daten filtern",
+    "RESET_CUSTOMIZATION": "Filter zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
@@ -400,7 +402,9 @@
     "QUERY_BUILDER_DIALOG_HEADER": "Konfiguration der Datenabfrage bearbeiten",
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
     "EXPORT": "{{format}} Exportieren",
-    "EXPORT_ERROR": "Fehler beim Versuch die {{format}} Datei zu exportieren, bitte versuchen Sie es später noch einmal."
+    "EXPORT_ERROR": "Fehler beim Versuch die {{format}} Datei zu exportieren, bitte versuchen Sie es später noch einmal.",
+    "HEADLINE_RETREIVE_SECTION": "Datenabruf",
+    "INTRODUCTION_RETREIVE_SECTION": "Rufen Sie Daten ab, schränken Sie die Ergebnismenge mit temporären Filtern ein oder entfernen Sie zuvor definierte temporäre Filter. Bitte beachten Sie: Bei der Filter-Definition können ungewollt Kreuzprodukte als Resultat entstehen."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "Alle neuen Benutzer",

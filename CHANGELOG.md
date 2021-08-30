@@ -6,10 +6,19 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Changed
+
+- Data Explorer: Add help text and change labels of configurate result ([#302])
+- Data Explorer: Change english hint to use button to retreive data first ([#302])
+- Dashboard: Add table headers to latest project table ([#305])
+- Cohort-Builder: Full set of logical operators just for numeric types ([#306])
+- Criteria Table: Label of private / public column ([#307])
+
 ### Fixed
 
 - Project editor: Hide edit button from approvers ([#291])
 - Dashboard: Fixes layout issues for safari on mac os catalina ([#292])
+- Dashboard: Logo not displayed in Firefox ([#303])
 - Footer: Fixes layout on smaller devices ([#293])
 
 ---
@@ -576,3 +585,17 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#291]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/291
 [#292]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/292
 [#293]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/293
+[#294]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/294
+[#295]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/295
+[#296]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/296
+[#297]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/297
+[#298]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/298
+[#299]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/299
+[#300]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/300
+[#301]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/301
+[#302]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/302
+[#303]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/303
+[#304]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/304
+[#305]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/305
+[#306]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/306
+[#307]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/307

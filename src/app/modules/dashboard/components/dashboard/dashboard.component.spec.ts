@@ -34,8 +34,8 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>
   @Component({ selector: 'num-metrics', template: '' })
   class MetricsStubComponent {}
-  @Component({ selector: 'num-projects', template: '' })
-  class ProjectsStubComponent {}
+  @Component({ selector: 'num-latest-projects', template: '' })
+  class LatestProjectsStubComponent {}
 
   const userInfoSubject$ = new Subject<any>()
 
@@ -60,7 +60,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent, MetricsStubComponent, ProjectsStubComponent],
+      declarations: [DashboardComponent, MetricsStubComponent, LatestProjectsStubComponent],
       imports: [
         TranslateModule.forRoot(),
         HttpClientTestingModule,
