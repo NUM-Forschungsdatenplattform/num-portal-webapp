@@ -13,5 +13,9 @@
   "legal": {
     "version": "#{legal_version}",
     "copyrightOwner": "#{legal_copyrightOwner}"
+  },
+  "welcomePageTitle": {
+    "de": "#{welcomePageTitle_de}",
+    "en": "#{welcomePageTitle_en}"
   }
 }
