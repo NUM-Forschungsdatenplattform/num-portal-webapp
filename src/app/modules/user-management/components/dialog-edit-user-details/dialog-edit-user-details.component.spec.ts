@@ -132,15 +132,12 @@ describe('DialogEditUserDetailsComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it.only('should emit the close event on confirmation', async (done) => {
-    const roleSubject = new Subject<string[]>()
-    const roleObservable$ = roleSubject.asObservable()
-    jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => roleObservable$)
+  it('should emit the close event on confirmation', async (done) => {
+    jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
     component.handleDialogConfirm().then(() => {
       expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
       done()
     })
-    roleSubject.next(['1', '2'])
   })
 
   it('should emit the close event on dialog cancel', () => {

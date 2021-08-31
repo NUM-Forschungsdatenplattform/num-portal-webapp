@@ -125,10 +125,6 @@ export class DialogEditUserDetailsComponent
 
     const addRolesTask$ = this.adminService.addUserRoles(this.userDetails.id, this.roles)
 
-    this.adminService.addUserRoles(this.userDetails.id, this.roles).subscribe(() => {
-      console.log('We can get here')
-    })
-
     const addOrganizationTask$ = this.hasOrganizationChanged()
       ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
       : of(null)
@@ -154,10 +150,6 @@ export class DialogEditUserDetailsComponent
       () => {
         console.log('Not getting here')
         this.toastMessageService.openToast(EDIT_USER_ERROR)
-        return this.closeDialogAndRefreshUsers()
-      },
-      () => {
-        console.log('Not getting here')
         return this.closeDialogAndRefreshUsers()
       }
     )
