@@ -1,11 +1,30 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
+import { MatSelectHarness } from '@angular/material/select/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
+import { IItem } from '../../models/item.interface'
 
 import { AqlParameterInputsComponent } from './aql-parameter-inputs.component'
 
@@ -195,5 +214,40 @@ describe('AqlParameterInputsComponent', () => {
         expect(component.item.value.getSeconds()).toEqual(0)
       }
     )
+  })
+
+  describe('Resolved aql parameter values', () => {
+    let harnesLoader: HarnessLoader
+
+    beforeEach(() => {
+      harnesLoader = TestbedHarnessEnvironment.loader(fixture)
+      const testItem: IItem = {
+        name: 'Test Item',
+        value: 'test',
+        valueType: AqlParameterValueType.Options,
+        options: {
+          at0013: 'Not pregnant',
+          at0012: 'Pregnant',
+          'LA26683-5': 'Not pregnant',
+        },
+      }
+
+      component.item = testItem
+    })
+
+    it('should list the possible parameter value options', async () => {
+      const select = await harnesLoader.getHarness(MatSelectHarness)
+      await select.open()
+      const options = await select.getOptions()
+      expect(options).toHaveLength(3)
+    })
+
+    it('should show the archetype type in brackets of the select option', async () => {
+      const select = await harnesLoader.getHarness(MatSelectHarness)
+      await select.open()
+      const options = await select.getOptions()
+      expect(await options[0].getText()).toEqual('Not pregnant (LA26683-5)')
+      expect(await options[1].getText()).toEqual('Pregnant (at0012)')
+    })
   })
 })
