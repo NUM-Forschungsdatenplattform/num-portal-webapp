@@ -47,10 +47,10 @@ describe('DialogEditUserDetailsComponent', () => {
 
   const adminService = {
     approveUser: jest.fn().mockImplementation(() => of('Success')),
-    addUserRoles: (userId: string, roles: string[]) => of(),
-    addUserOrganization: (userId: string, organization: string) => of(),
-    refreshFilterResult: () => [],
-    getUnapprovedUsers: () => of(),
+    addUserRoles: jest.fn(),
+    addUserOrganization: jest.fn(),
+    refreshFilterResult: jest.fn(),
+    getUnapprovedUsers: jest.fn(),
   } as unknown as AdminService
 
   const organizationService = {
@@ -121,20 +121,26 @@ describe('DialogEditUserDetailsComponent', () => {
     userProfileSubject$.next(mockUserProfile1)
     fixture.detectChanges()
     jest.spyOn(component.closeDialog, 'emit')
-    jest.spyOn(adminService, 'addUserRoles')
-    jest.spyOn(adminService, 'addUserOrganization')
-    jest.spyOn(adminService, 'approveUser')
-    jest.spyOn(adminService, 'refreshFilterResult')
-    jest.spyOn(adminService, 'getUnapprovedUsers')
+    jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of())
+    jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of())
+    jest.spyOn(adminService, 'approveUser').mockImplementation(() => of())
+    jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
+    jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of())
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should emit the close event on confirmation', () => {
-    component.handleDialogConfirm()
-    expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+  it.only('should emit the close event on confirmation', async (done) => {
+    const roleSubject = new Subject<string[]>()
+    const roleObservable$ = roleSubject.asObservable()
+    jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => roleObservable$)
+    component.handleDialogConfirm().then(() => {
+      expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+      done()
+    })
+    roleSubject.next(['1', '2'])
   })
 
   it('should emit the close event on dialog cancel', () => {

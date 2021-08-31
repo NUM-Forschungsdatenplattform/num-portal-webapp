@@ -31,3 +31,8 @@ export const EDIT_USER_ERROR: IToastMessageConfig = {
   message: 'USER_MANAGEMENT.EDIT_USER_ERROR',
   type: ToastMessageType.Error,
 }
+
+export const INVALID_USER_NAME_ERROR: IToastMessageConfig = {
+  message: 'USER_MANAGEMENT.INVALID_USER_NAME_ERROR',
+  type: ToastMessageType.Error,
+}

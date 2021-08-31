@@ -419,7 +419,8 @@
     "APPROVE_USER_SUCCESS": "{{firstName}} {{lastName}} wurde erfolgreich bearbeitet und in die Liste der genehmigten Benutzer übertragen.",
     "EDIT_USER_ERROR": "Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut.",
     "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} wurde erfolgreich aktualisiert.",
-    "REMOVE_ROLES_WARNING": "Bitte beachten Sie: Wenn Sie alle Rollen abwählen, ist es dem Benutzer nicht möglich, das Portal in vollem Umfang zu nutzen."
+    "REMOVE_ROLES_WARNING": "Bitte beachten Sie: Wenn Sie alle Rollen abwählen, ist es dem Benutzer nicht möglich, das Portal in vollem Umfang zu nutzen.",
+    "INVALID_USER_NAME_ERROR": "Bitte geben sie einen gültigen Namen an."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organisationsübersicht",
