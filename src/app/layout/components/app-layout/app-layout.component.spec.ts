@@ -37,6 +37,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -93,6 +94,18 @@ describe('AppLayoutComponent', () => {
     @Output() toggleMenu = new EventEmitter()
   }
 
+  const mockConfigService = {
+    config: {
+      api: {
+        baseUrl: '/api',
+      },
+      welcomePageTitle: {
+        de: 'Test',
+        en: 'Test',
+      },
+    },
+  } as AppConfigService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -136,6 +149,10 @@ describe('AppLayoutComponent', () => {
         {
           provide: ContentService,
           useValue: mockContentService,
+        },
+        {
+          provide: AppConfigService,
+          useValue: mockConfigService,
         },
       ],
     }).compileComponents()

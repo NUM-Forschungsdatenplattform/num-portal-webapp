@@ -34,6 +34,7 @@ import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { MatTabLinkHarness } from '@angular/material/tabs/testing'
 import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -43,6 +44,18 @@ describe('HeaderComponent', () => {
 
   @Component({ selector: 'num-stub', template: '' })
   class StubComponent {}
+
+  const mockConfigService = {
+    config: {
+      api: {
+        baseUrl: '/api',
+      },
+      welcomePageTitle: {
+        de: 'Test Seite',
+        en: 'Test page',
+      },
+    },
+  } as AppConfigService
 
   const firstNavItem: INavItem = {
     routeTo: 'first',
@@ -142,6 +155,10 @@ describe('HeaderComponent', () => {
         {
           provide: AuthService,
           useValue: mockAuthService,
+        },
+        {
+          provide: AppConfigService,
+          useValue: mockConfigService,
         },
       ],
     }).compileComponents()
