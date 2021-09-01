@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Cohort-Builder: Show parameter ([#310])
 - Criteria Table: Label of private / public column ([#307])
 - Project preview: Text explaining icons for boolean meta data values ([#309])
+- User management: Change name of approved user ([#312])
 
 ### Fixed
 
@@ -604,3 +605,4 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#308]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/308
 [#309]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/309
 [#310]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/310
+[#312]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/312
