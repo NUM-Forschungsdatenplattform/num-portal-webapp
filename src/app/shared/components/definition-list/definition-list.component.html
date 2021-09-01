@@ -37,12 +37,17 @@
       }}</ng-container>
 
       <ng-container *ngIf="dataRow?.type === definitionType.Boolean">
-        <fa-icon
-          [icon]="dataRow.description ? 'check' : 'times'"
-          size="lg"
-          fixedWidth="true"
-          [attr.aria-label]="dataRow.description"
-        ></fa-icon>
+        <div fxLayout="row" fxLayoutAlign="flex-start center">
+          <fa-icon
+            [icon]="dataRow.description ? 'check' : 'times'"
+            size="lg"
+            fixedWidth="true"
+            [attr.aria-label]="dataRow.description"
+          ></fa-icon>
+          <p class="num-margin-b-0" data-test="definition_list__boolean__element__text">
+            {{ dataRow.description ? ('FORM.YES' | translate) : ('FORM.NO' | translate) }}
+          </p>
+        </div>
       </ng-container>
     </dd>
   </ng-container>

@@ -12,7 +12,9 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Data Explorer: Change english hint to use button to retreive data first ([#302])
 - Dashboard: Add table headers to latest project table ([#305])
 - Cohort-Builder: Full set of logical operators just for numeric types ([#306])
+- Cohort-Builder: Show parameter ([#310])
 - Criteria Table: Label of private / public column ([#307])
+- Project preview: Text explaining icons for boolean meta data values ([#309])
 
 ### Fixed
 
@@ -599,3 +601,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#305]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/305
 [#306]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/306
 [#307]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/307
+[#308]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/308
+[#309]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/309
+[#310]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/310
