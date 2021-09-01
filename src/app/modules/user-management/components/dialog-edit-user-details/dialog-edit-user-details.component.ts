@@ -17,7 +17,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
-import { forkJoin, Observable, of, throwError } from 'rxjs'
+import { forkJoin, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'

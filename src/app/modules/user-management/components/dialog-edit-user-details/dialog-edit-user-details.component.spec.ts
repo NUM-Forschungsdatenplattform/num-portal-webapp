@@ -36,7 +36,7 @@ import { mockOrganization2, mockOrganizations } from 'src/mocks/data-mocks/organ
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
-import { EDIT_USER_ERROR, EDIT_USER_SUCCESS } from './constants'
+import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
 import { DialogEditUserDetailsComponent } from './dialog-edit-user-details.component'
 
 describe('DialogEditUserDetailsComponent', () => {
@@ -49,6 +49,7 @@ describe('DialogEditUserDetailsComponent', () => {
     approveUser: jest.fn().mockImplementation(() => of('Success')),
     addUserRoles: jest.fn(),
     addUserOrganization: jest.fn(),
+    changeUserName: jest.fn(),
     refreshFilterResult: jest.fn(),
     getUnapprovedUsers: jest.fn(),
   } as unknown as AdminService
@@ -126,6 +127,10 @@ describe('DialogEditUserDetailsComponent', () => {
     jest.spyOn(adminService, 'approveUser').mockImplementation((userId: string) => of(userId))
     jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
     jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of([]))
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -219,6 +224,69 @@ describe('DialogEditUserDetailsComponent', () => {
 
     it('should display the error message', () => {
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(EDIT_USER_ERROR)
+    })
+  })
+
+  describe('When editing the user name with valid data', () => {
+    beforeEach(async () => {
+      jest
+        .spyOn(adminService, 'changeUserName')
+        .mockImplementation((userId: string, firstName: string, lastName: string) =>
+          of(`${firstName} ${lastName}`)
+        )
+
+      jest
+        .spyOn(adminService, 'addUserRoles')
+        .mockImplementation((userId: string, roles: string[]) => of(roles))
+
+      jest.spyOn(mockToastMessageService, 'openToast')
+
+      component.isApproval = false
+      component.isUserNameEditMode = true
+      component.userNameForm.patchValue({ firstName: 'Test Changed', lastName: 'User Changed' })
+
+      await component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should call the changeUserName method of admin service with expected parameters', () => {
+      expect(adminService.changeUserName).toHaveBeenCalledWith(
+        '123-456',
+        'Test Changed',
+        'User Changed'
+      )
+    })
+
+    it('should call the addUserRole method of admin service with expected parameters', () => {
+      expect(adminService.addUserRoles).toHaveBeenCalledWith('123-456', ['some', 'role'])
+    })
+
+    it('should show a toast notification', () => {
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
+        ...EDIT_USER_SUCCESS,
+        messageParameters: { firstName: 'Max', lastName: 'Mustermann' },
+      })
+    })
+  })
+
+  describe('When editing the user name with invalid data', () => {
+    beforeEach(async () => {
+      jest.spyOn(mockToastMessageService, 'openToast')
+
+      component.userNameForm.patchValue({
+        firstName: '',
+      })
+      component.isUserNameEditMode = true
+      await component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should show a message if form data is invalid', () => {
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(INVALID_USER_NAME_ERROR)
+    })
+
+    it('should not call the updateUserName method of admin service', () => {
+      expect(adminService.changeUserName).not.toHaveBeenCalled()
     })
   })
 })
