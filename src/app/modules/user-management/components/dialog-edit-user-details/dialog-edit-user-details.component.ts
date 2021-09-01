@@ -129,36 +129,35 @@ export class DialogEditUserDetailsComponent
       ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
       : of(null)
 
-    forkJoin([
-      approveUserTask$,
-      addRolesTask$,
-      addOrganizationTask$,
-      this.userNameTask$(),
-    ]).subscribe(
-      () => {
-        console.log('Not getting here')
-        const messageConfig: IToastMessageConfig = {
-          ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
-          messageParameters: {
-            firstName: this.userDetails.firstName,
-            lastName: this.userDetails.lastName,
-          },
-        }
-        this.toastMessageService.openToast(messageConfig)
-        return this.closeDialogAndRefreshUsers()
-      },
-      () => {
-        console.log('Not getting here')
-        this.toastMessageService.openToast(EDIT_USER_ERROR)
-        return this.closeDialogAndRefreshUsers()
+    try {
+      await forkJoin([
+        approveUserTask$,
+        addRolesTask$,
+        addOrganizationTask$,
+        this.userNameTask$(),
+      ]).toPromise()
+      const messageConfig: IToastMessageConfig = {
+        ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
+        messageParameters: {
+          firstName: this.userDetails.firstName,
+          lastName: this.userDetails.lastName,
+        },
       }
-    )
+      this.toastMessageService.openToast(messageConfig)
+      await this.closeDialogAndRefreshUsers()
+    } catch (_) {
+      console.log('Not getting here')
+      this.toastMessageService.openToast(EDIT_USER_ERROR)
+      await this.closeDialogAndRefreshUsers()
+    }
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    this.isApproval
-      ? this.adminService.getUnapprovedUsers().subscribe()
-      : this.adminService.refreshFilterResult()
+    if (this.isApproval) {
+      await this.adminService.getUnapprovedUsers().toPromise()
+    } else {
+      this.adminService.refreshFilterResult()
+    }
 
     this.closeDialog.emit()
     return Promise.resolve()

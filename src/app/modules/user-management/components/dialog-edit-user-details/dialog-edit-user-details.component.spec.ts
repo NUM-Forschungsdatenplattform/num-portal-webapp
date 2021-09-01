@@ -123,9 +123,9 @@ describe('DialogEditUserDetailsComponent', () => {
     jest.spyOn(component.closeDialog, 'emit')
     jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of())
     jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of())
-    jest.spyOn(adminService, 'approveUser').mockImplementation(() => of())
+    jest.spyOn(adminService, 'approveUser').mockImplementation((userId: string) => of(userId))
     jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
-    jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of())
+    jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of([]))
   })
 
   it('should create', () => {
