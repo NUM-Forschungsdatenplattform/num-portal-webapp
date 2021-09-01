@@ -146,7 +146,6 @@ export class DialogEditUserDetailsComponent
       this.toastMessageService.openToast(messageConfig)
       await this.closeDialogAndRefreshUsers()
     } catch (_) {
-      console.log('Not getting here')
       this.toastMessageService.openToast(EDIT_USER_ERROR)
       await this.closeDialogAndRefreshUsers()
     }
