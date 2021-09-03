@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Criteria Table: Label of private / public column ([#307])
 - Project preview: Text explaining icons for boolean meta data values ([#309])
 - User management: Change name of approved user ([#312])
+- Welcome Page: Title notice ("Welcome to CODEX - Test environment") can be set via environment variable ([#311])
 
 ### Fixed
 
@@ -605,4 +606,5 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#308]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/308
 [#309]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/309
 [#310]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/310
+[#311]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/311
 [#312]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/312

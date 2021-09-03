@@ -12,5 +12,9 @@
   },
   "legal": {
     "copyrightOwner": "2021 CODEX | Covid-19 Data Exchange Platform"
+  },
+  "welcomePageTitle": {
+    "de": "Willkommen bei CODEX - Testumgebung",
+    "en": "Welcome to CODEX - Test environment"
   }
 }
