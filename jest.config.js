@@ -34,9 +34,9 @@ module.exports = {
     '!<rootDir>/src/**/*.harness.ts',
   ],
   coverageReporters: ['html', 'text-summary', 'json', 'lcov', 'text', 'clover', 'cobertura'],
-  reporters: ['default', 'jest-junit'],
-
-  coverageDirectory: '<rootDir>/coverage',
+  reporters: ['default', ['jest-junit', { outputDirectory: '<rootDir>/reports/junit' }]],
+  testResultsProcessor: 'jest-sonar-reporter',
+  coverageDirectory: '<rootDir>/reports/coverage',
   moduleNameMapper: {
     ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
       prefix: '<rootDir>/',

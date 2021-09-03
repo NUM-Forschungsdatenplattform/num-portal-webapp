@@ -340,4 +340,44 @@ describe('AdminService', () => {
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/3`)
     })
   })
+
+  describe('When a call to change the users name comes in', () => {
+    const userName = {
+      firstName: 'Jest',
+      lastName: 'Test',
+    }
+
+    it(`should call the api - with success`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+
+      jest.spyOn(httpClient, 'post')
+      service.changeUserName(id, userName.firstName, userName.lastName).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/name`,
+        userName,
+        httpOptions
+      )
+    })
+    it(`should call the api - with error`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+      jest.spyOn(service, 'handleError')
+      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
+      service
+        .changeUserName(id, userName.firstName, userName.lastName)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/name`,
+        userName,
+        httpOptions
+      )
+    })
+  })
 })

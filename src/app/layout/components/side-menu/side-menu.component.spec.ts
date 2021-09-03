@@ -80,6 +80,7 @@ describe('SideMenuComponent', () => {
           { path: '#login', component: TestRouterTargetComponentStub },
           { path: '#logout', component: TestRouterTargetComponentStub },
           { path: 'test', component: TestRouterTargetComponentStub },
+          { path: 'home', component: TestRouterTargetComponentStub },
         ]),
         TranslateModule.forRoot(),
         DirectivesModule,
@@ -126,7 +127,7 @@ describe('SideMenuComponent', () => {
     component.mainNavItems = [
       {
         icon: 'test',
-        routeTo: '/test',
+        routeTo: 'test',
         translationKey: 'test',
       },
     ]
