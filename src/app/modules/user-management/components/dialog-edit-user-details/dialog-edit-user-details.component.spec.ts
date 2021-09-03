@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
+import { MatButtonHarness } from '@angular/material/button/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -38,10 +41,13 @@ import { AddUserOrganizationComponent } from '../add-user-organization/add-user-
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
 import { DialogEditUserDetailsComponent } from './dialog-edit-user-details.component'
+import { MatInputHarness } from '@angular/material/input/testing'
+import { MatFormFieldControlHarness } from '@angular/material/form-field/testing/control'
 
 describe('DialogEditUserDetailsComponent', () => {
   let component: DialogEditUserDetailsComponent
   let fixture: ComponentFixture<DialogEditUserDetailsComponent>
+  let loader: HarnessLoader
 
   const organizationsSubject$ = new Subject<IOrganization>()
 
@@ -286,6 +292,50 @@ describe('DialogEditUserDetailsComponent', () => {
     })
 
     it('should not call the updateUserName method of admin service', () => {
+      expect(adminService.changeUserName).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When clicking on edit name buttons', () => {
+    let editButton: MatButtonHarness
+    beforeEach(async () => {
+      loader = TestbedHarnessEnvironment.loader(fixture)
+      editButton = await loader.getHarness(
+        MatButtonHarness.with({ selector: `[data-test="user-management__button__edit_user_name"]` })
+      )
+      await editButton.click()
+    })
+
+    it('should set the component into edit name mode', () => {
+      expect(component.isUserNameEditMode).toBe(true)
+    })
+
+    it('should reset the name to default on click discard button', async () => {
+      const firstNameInput = await loader.getHarness(
+        MatInputHarness.with({ selector: `[data-test="user-management__input__first_name"]` })
+      )
+      const lastNameInput = await loader.getHarness(
+        MatInputHarness.with({ selector: `[data-test="user-management__input__last_name"]` })
+      )
+
+      await firstNameInput.setValue('Changed first name')
+      await lastNameInput.setValue('Changed last name')
+
+      const discardButton = await loader.getHarness(
+        MatButtonHarness.with({
+          selector: `[data-test="user-management__button__discard_user_name_changes"]`,
+        })
+      )
+      await discardButton.click()
+
+      expect(component.isUserNameEditMode).toBe(false)
+      expect(component.userNameForm.get('firstName').value).toEqual(mockUser.firstName)
+      expect(component.userNameForm.get('lastName').value).toEqual(mockUser.lastName)
+    })
+
+    it('should not call changeUnserName method of admin service on uncahched data', async () => {
+      jest.spyOn(adminService, 'changeUserName')
+      await component.handleDialogConfirm()
       expect(adminService.changeUserName).not.toHaveBeenCalled()
     })
   })
