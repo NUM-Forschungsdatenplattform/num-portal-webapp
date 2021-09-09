@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
+import { HarnessLoader } from '@angular/cdk/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
+import { MatButtonHarness } from '@angular/material/button/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -36,21 +39,25 @@ import { mockOrganization2, mockOrganizations } from 'src/mocks/data-mocks/organ
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
-import { EDIT_USER_ERROR, EDIT_USER_SUCCESS } from './constants'
+import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
 import { DialogEditUserDetailsComponent } from './dialog-edit-user-details.component'
+import { MatInputHarness } from '@angular/material/input/testing'
+import { MatFormFieldControlHarness } from '@angular/material/form-field/testing/control'
 
 describe('DialogEditUserDetailsComponent', () => {
   let component: DialogEditUserDetailsComponent
   let fixture: ComponentFixture<DialogEditUserDetailsComponent>
+  let loader: HarnessLoader
 
   const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = {
     approveUser: jest.fn().mockImplementation(() => of('Success')),
-    addUserRoles: (userId: string, roles: string[]) => of(),
-    addUserOrganization: (userId: string, organization: string) => of(),
-    refreshFilterResult: () => [],
-    getUnapprovedUsers: () => of(),
+    addUserRoles: jest.fn(),
+    addUserOrganization: jest.fn(),
+    changeUserName: jest.fn(),
+    refreshFilterResult: jest.fn(),
+    getUnapprovedUsers: jest.fn(),
   } as unknown as AdminService
 
   const organizationService = {
@@ -121,20 +128,27 @@ describe('DialogEditUserDetailsComponent', () => {
     userProfileSubject$.next(mockUserProfile1)
     fixture.detectChanges()
     jest.spyOn(component.closeDialog, 'emit')
-    jest.spyOn(adminService, 'addUserRoles')
-    jest.spyOn(adminService, 'addUserOrganization')
-    jest.spyOn(adminService, 'approveUser')
-    jest.spyOn(adminService, 'refreshFilterResult')
-    jest.spyOn(adminService, 'getUnapprovedUsers')
+    jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of())
+    jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of())
+    jest.spyOn(adminService, 'approveUser').mockImplementation((userId: string) => of(userId))
+    jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
+    jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of([]))
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should emit the close event on confirmation', () => {
-    component.handleDialogConfirm()
-    expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+  it('should emit the close event on confirmation', async (done) => {
+    jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
+    component.handleDialogConfirm().then(() => {
+      expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
+      done()
+    })
   })
 
   it('should emit the close event on dialog cancel', () => {
@@ -216,6 +230,113 @@ describe('DialogEditUserDetailsComponent', () => {
 
     it('should display the error message', () => {
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(EDIT_USER_ERROR)
+    })
+  })
+
+  describe('When editing the user name with valid data', () => {
+    beforeEach(async () => {
+      jest
+        .spyOn(adminService, 'changeUserName')
+        .mockImplementation((userId: string, firstName: string, lastName: string) =>
+          of(`${firstName} ${lastName}`)
+        )
+
+      jest
+        .spyOn(adminService, 'addUserRoles')
+        .mockImplementation((userId: string, roles: string[]) => of(roles))
+
+      jest.spyOn(mockToastMessageService, 'openToast')
+
+      component.isApproval = false
+      component.isUserNameEditMode = true
+      component.userNameForm.patchValue({ firstName: 'Test Changed', lastName: 'User Changed' })
+
+      await component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should call the changeUserName method of admin service with expected parameters', () => {
+      expect(adminService.changeUserName).toHaveBeenCalledWith(
+        '123-456',
+        'Test Changed',
+        'User Changed'
+      )
+    })
+
+    it('should call the addUserRole method of admin service with expected parameters', () => {
+      expect(adminService.addUserRoles).toHaveBeenCalledWith('123-456', ['some', 'role'])
+    })
+
+    it('should show a toast notification', () => {
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith({
+        ...EDIT_USER_SUCCESS,
+        messageParameters: { firstName: 'Max', lastName: 'Mustermann' },
+      })
+    })
+  })
+
+  describe('When editing the user name with invalid data', () => {
+    beforeEach(async () => {
+      jest.spyOn(mockToastMessageService, 'openToast')
+
+      component.userNameForm.patchValue({
+        firstName: '',
+      })
+      component.isUserNameEditMode = true
+      await component.handleDialogConfirm()
+      fixture.detectChanges()
+    })
+
+    it('should show a message if form data is invalid', () => {
+      expect(mockToastMessageService.openToast).toHaveBeenCalledWith(INVALID_USER_NAME_ERROR)
+    })
+
+    it('should not call the updateUserName method of admin service', () => {
+      expect(adminService.changeUserName).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('When clicking on edit name buttons', () => {
+    let editButton: MatButtonHarness
+    beforeEach(async () => {
+      loader = TestbedHarnessEnvironment.loader(fixture)
+      editButton = await loader.getHarness(
+        MatButtonHarness.with({ selector: `[data-test="user-management__button__edit_user_name"]` })
+      )
+      await editButton.click()
+    })
+
+    it('should set the component into edit name mode', () => {
+      expect(component.isUserNameEditMode).toBe(true)
+    })
+
+    it('should reset the name to default on click discard button', async () => {
+      const firstNameInput = await loader.getHarness(
+        MatInputHarness.with({ selector: `[data-test="user-management__input__first_name"]` })
+      )
+      const lastNameInput = await loader.getHarness(
+        MatInputHarness.with({ selector: `[data-test="user-management__input__last_name"]` })
+      )
+
+      await firstNameInput.setValue('Changed first name')
+      await lastNameInput.setValue('Changed last name')
+
+      const discardButton = await loader.getHarness(
+        MatButtonHarness.with({
+          selector: `[data-test="user-management__button__discard_user_name_changes"]`,
+        })
+      )
+      await discardButton.click()
+
+      expect(component.isUserNameEditMode).toBe(false)
+      expect(component.userNameForm.get('firstName').value).toEqual(mockUser.firstName)
+      expect(component.userNameForm.get('lastName').value).toEqual(mockUser.lastName)
+    })
+
+    it('should not call changeUnserName method of admin service on uncahched data', async () => {
+      jest.spyOn(adminService, 'changeUserName')
+      await component.handleDialogConfirm()
+      expect(adminService.changeUserName).not.toHaveBeenCalled()
     })
   })
 })

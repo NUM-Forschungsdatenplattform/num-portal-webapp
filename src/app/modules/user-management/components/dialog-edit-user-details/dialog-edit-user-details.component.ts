@@ -15,8 +15,9 @@
  */
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
-import { forkJoin, of } from 'rxjs'
+import { forkJoin, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -25,7 +26,12 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { APPROVE_USER_SUCCESS, EDIT_USER_ERROR, EDIT_USER_SUCCESS } from './constants'
+import {
+  APPROVE_USER_SUCCESS,
+  EDIT_USER_ERROR,
+  EDIT_USER_SUCCESS,
+  INVALID_USER_NAME_ERROR,
+} from './constants'
 
 @Component({
   selector: 'num-dialog-edit-user-details',
@@ -44,6 +50,8 @@ export class DialogEditUserDetailsComponent
     id: undefined,
   }
   availableRoles = AvailableRoles
+  userNameForm: FormGroup
+  isUserNameEditMode: boolean
 
   constructor(
     private adminService: AdminService,
@@ -63,13 +71,54 @@ export class DialogEditUserDetailsComponent
     }
 
     this.organizationService.getAll().subscribe()
+
+    this.userNameForm = new FormGroup({
+      firstName: new FormControl(this.userDetails.firstName, [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+      lastName: new FormControl(this.userDetails.lastName, [
+        Validators.required,
+        Validators.minLength(2),
+      ]),
+    })
+  }
+
+  toggleNameEditMode(): void {
+    this.isUserNameEditMode = !this.isUserNameEditMode
+  }
+
+  discardNameEdit(): void {
+    this.userNameForm.patchValue({
+      firstName: this.userDetails.firstName,
+      lastName: this.userDetails.lastName,
+    })
+    this.toggleNameEditMode()
   }
 
   hasOrganizationChanged(): boolean {
     return this.userDetails.organization?.id !== this.organization.id
   }
 
-  handleDialogConfirm(): void {
+  userNameTask$(): Observable<any> {
+    if (this.isUserNameEditMode) {
+      const newFirstName = this.userNameForm.get('firstName').value?.trim()
+      const newLastName = this.userNameForm.get('lastName').value?.trim()
+      if (
+        newFirstName !== this.userDetails.firstName ||
+        newLastName !== this.userDetails.lastName
+      ) {
+        return this.adminService.changeUserName(this.userDetails.id, newFirstName, newLastName)
+      }
+    }
+    return of(null)
+  }
+
+  async handleDialogConfirm(): Promise<void> {
+    if (this.isUserNameEditMode && this.userNameForm.invalid) {
+      this.toastMessageService.openToast(INVALID_USER_NAME_ERROR)
+      return
+    }
     const approveUserTask$ = this.isApproval
       ? this.adminService.approveUser(this.userDetails.id)
       : of(null)
@@ -80,27 +129,37 @@ export class DialogEditUserDetailsComponent
       ? this.adminService.addUserOrganization(this.userDetails.id, this.organization)
       : of(null)
 
-    forkJoin([approveUserTask$, addRolesTask$, addOrganizationTask$]).subscribe(
-      () => {
-        const messageConfig: IToastMessageConfig = {
-          ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
-          messageParameters: {
-            firstName: this.userDetails.firstName,
-            lastName: this.userDetails.lastName,
-          },
-        }
-        this.toastMessageService.openToast(messageConfig)
-      },
-      () => {
-        this.toastMessageService.openToast(EDIT_USER_ERROR)
+    try {
+      await forkJoin([
+        approveUserTask$,
+        addRolesTask$,
+        addOrganizationTask$,
+        this.userNameTask$(),
+      ]).toPromise()
+      const messageConfig: IToastMessageConfig = {
+        ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
+        messageParameters: {
+          firstName: this.userDetails.firstName,
+          lastName: this.userDetails.lastName,
+        },
       }
-    )
+      this.toastMessageService.openToast(messageConfig)
+      await this.closeDialogAndRefreshUsers()
+    } catch (_) {
+      this.toastMessageService.openToast(EDIT_USER_ERROR)
+      await this.closeDialogAndRefreshUsers()
+    }
+  }
 
-    this.isApproval
-      ? this.adminService.getUnapprovedUsers().subscribe()
-      : this.adminService.refreshFilterResult()
+  async closeDialogAndRefreshUsers(): Promise<void> {
+    if (this.isApproval) {
+      await this.adminService.getUnapprovedUsers().toPromise()
+    } else {
+      this.adminService.refreshFilterResult()
+    }
 
     this.closeDialog.emit()
+    return Promise.resolve()
   }
 
   handleDialogCancel(): void {

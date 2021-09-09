@@ -13,4 +13,8 @@ export interface IAppConfig {
   legal: {
     copyrightOwner: string
   }
+  welcomePageTitle: {
+    de: string
+    en: string
+  }
 }

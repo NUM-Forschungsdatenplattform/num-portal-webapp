@@ -83,7 +83,7 @@
           [value]="option.key"
           [attr.data-test]="'aql-parameter-inputs__options-value__' + option.value"
         >
-          {{ option.value }}
+          {{ option.value + ' (' + option.key + ')' }}
         </mat-option>
       </mat-select>
     </mat-form-field>
