@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Willkommen zu NUM CODEX Documentation!
+Willkommen zu NUM CODEX Dokumentation!
 ======================================
 
 Hier finden sie die Dokumentation und das Benutzerhandbuch für das Projekt CODEX des

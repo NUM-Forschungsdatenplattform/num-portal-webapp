@@ -22,7 +22,7 @@ copyright = '2021, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 
 # The full version, including alpha/beta/rc tags
-release = '["v0.1.0", "v0.2.0", "v0.3.0", "v0.4.0", "v0.5.0", "v1.0.0", "v1.1.0", "v1.2.0", "v1.3.0", "v1.4.0", "v1.5.0", "v1.6.0"]'
+release = '["v1.6.0"]'
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,6 +31,7 @@ release = '["v0.1.0", "v0.2.0", "v0.3.0", "v0.4.0", "v0.5.0", "v1.0.0", "v1.1.0"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+  'myst_parser'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
