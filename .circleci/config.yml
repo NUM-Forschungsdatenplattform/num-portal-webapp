@@ -35,8 +35,6 @@ workflows:
       - test:
           context: 
             - org-global
-            # Slack notification runs and should run only on the nightly-builds branch,
-            # but it fails if there is no secret defined for it even when the branch_pattern is nightly-builds
             - slack-secrets
       - security_scan:
           filters:
