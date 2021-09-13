@@ -97,10 +97,10 @@ jobs:
           path: ./reports/junit/
       - run:
           name: Run CVE scan by npm audit
-          command: npm audit --audit-level=critical
+          command: npm audit --audit-level=low
       - slack/notify:
           event: always
-          branch_pattern: nightly-builds
+          # branch_pattern: nightly-builds
           custom: |
             {
               "blocks": [
