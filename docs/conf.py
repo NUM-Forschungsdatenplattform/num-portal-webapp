@@ -24,6 +24,7 @@ author = 'Netzwerk Universitätsmedizin'
 # The full version, including alpha/beta/rc tags
 release = '["v1.6.0"]'
 
+version = 'v1.6'
 
 # -- General configuration ---------------------------------------------------
 
