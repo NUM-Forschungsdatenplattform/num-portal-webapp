@@ -99,7 +99,7 @@ jobs:
           name: Run CVE scan by npm audit
           command: npm audit --audit-level=low
       - slack/notify:
-          event: pass
+          event: fail
           # branch_pattern: nightly-builds
           custom: |
             {
@@ -108,7 +108,7 @@ jobs:
                   "type": "header",
                   "text": {
                     "type": "plain_text",
-                    "text": "1 :warning: Pipeline has failed :warning:",
+                    "text": "2 :warning: Pipeline has failed :warning:",
                     "emoji": true
                   }
                 },
