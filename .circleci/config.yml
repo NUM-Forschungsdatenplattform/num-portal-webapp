@@ -97,7 +97,8 @@ jobs:
           path: ./reports/junit/
       - run:
           name: Run CVE scan by npm audit
-          command: npm audit --audit-level=critical
+          command: npm audit --audit-level=critical      
+      - sonarcloud/scan
       - slack/notify:
           event: fail
           branch_pattern: nightly-builds
@@ -123,7 +124,6 @@ jobs:
                 }
               ]
             }
-      - sonarcloud/scan
   tag_version:
     docker:
       - image: cimg/node:14.9.0
