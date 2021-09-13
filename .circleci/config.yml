@@ -96,6 +96,7 @@ jobs:
           command: npm audit --audit-level=critical
       - slack/notify:
           event: always
+          branch_pattern: nightly-builds
           custom: |
             {
               "blocks": [
