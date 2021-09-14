@@ -47,6 +47,3 @@ testem.log
 Thumbs.db
 
 junit.xml
-
-# Doc build output
-docs/_build/

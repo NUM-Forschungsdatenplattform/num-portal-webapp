@@ -69,7 +69,7 @@ Then generate the translation `.po` files inside the `locales/` folder at `/docs
 $ sphinx-intl update -p _build/gettext -l de_DE -l en_US
 ```
 
-These files
+These files can then be used to 
 
 
 ## License

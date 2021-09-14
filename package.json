@@ -15,7 +15,8 @@
     "e2e": "ng e2e",
     "playground": "angular-playground",
     "clean:test-results": "rimraf reports/**",
-    "clean:docs": "rimraf docs/_build/*"
+    "clean:docs": "rimraf docs/_build/*",
+    "docs:update-l10n": "cd ./docs && sphinx-l10n update -p _build/gettext"
   },
   "private": true,
   "dependencies": {
