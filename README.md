@@ -26,6 +26,51 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## Documentation
+
+The documentation for the end user has been created for deployment on 
+[Read the Docs](https://readthedocs.org/) and uses [Sphinx](https://www.sphinx-doc.org/) for
+building the output manuals (HTML, PDF, EPUB).
+
+You can find the user documentation at 
+<a href="https://num-portal-webapp.readthedocs.io/" target="_blank" rel="noopener">
+https://num-portal-webapp.readthedocs.io/</a>.
+
+If you want to help with the documentation you can find the doc sources at folder `/doc` inside this
+repository.
+
+### Documentation workflow
+
+#### I. Add your content:
+
+You can use Markdown syntax inside `.md` files or reStructuredText syntax inside `.rst` files.
+
+If you add new files to a section do not forget to add them into the corresponding index file with
+a `toc::` directive.
+
+The base documentation language is English. You or someone else can add translated content in later
+steps.
+
+#### II. Update translations
+
+![Diagram showing the workflow of updating and generating localozed content for Sphinx documentaions](https://www.sphinx-doc.org/en/master/_images/translation.svg "Sphinx translation workflow")
+
+Sphinx uses a special procedure to generate the translated content. First use this command to create
+the translation base `pot` file with all strings that have to be translated.
+
+```bash
+$ cd ./docs
+$ make gettext
+```
+
+Then generate the translation `.po` files inside the `locales/` folder at `/docs`:
+
+```bash
+$ sphinx-intl update -p _build/gettext -l de_DE -l en_US
+```
+
+These files
+
 
 ## License
 

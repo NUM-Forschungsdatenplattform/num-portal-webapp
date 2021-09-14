@@ -1,24 +1,33 @@
-.. NUM CODEX documentation master file, created by
-   sphinx-quickstart on Fri Sep 10 10:26:25 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+# NUM CODEX User documentation
 
-Willkommen zu NUM CODEX Dokumentation!
-======================================
+Welcome to the NUM CODEX App manual. This manual describes all features the NUM research data
+platform CODEX provides.
 
-Hier finden sie die Dokumentation und das Benutzerhandbuch für das Projekt CODEX des
-Forschungsnetzwerkes Universitätsmedizin (NUM) unter der Koordination der Charité - 
-Universitätsmedizin Berlin.
+This manual has been created with biggest diligence in the languages German and English. If you find
+an error or want to give other feedback to this documentation please do not hestitate to create a
+new issue for this project following 
+<a 
+href="https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues" 
+  target="_blank" 
+  rel="noopener">
+this link
+</a>
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+Please chaeck first if there is already a similar issue with the tag `docs`. Thanks for your
+feedback and contribution.
 
 
+```{toctree}
+---
+maxdepth: 2
+caption: "Table of contents:"
+---
+```
 
-Indices and tables
-==================
+## Indexes und tables
 
+```{eval-rst}
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+```

@@ -6,7 +6,7 @@
     "start": "ng serve",
     "start:hmr": "ng serve --hmr",
     "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
-    "build:docs": "npm run clean:docs && cd ./docs && make html",
+    "build:docs": "npm run clean:docs && cd ./docs && make -e SPHINXOPTS=\"-D language='de' -D language='en'\" html",
     "test": "npm run clean:test-results && jest",
     "test-ci": "node --expose-gc ./node_modules/.bin/jest --ci -w=1",
     "lint": "ng lint",
@@ -15,7 +15,7 @@
     "e2e": "ng e2e",
     "playground": "angular-playground",
     "clean:test-results": "rimraf reports/**",
-    "clean:docs": "rimraf docs/_build/**/*"
+    "clean:docs": "rimraf docs/_build/*"
   },
   "private": true,
   "dependencies": {
