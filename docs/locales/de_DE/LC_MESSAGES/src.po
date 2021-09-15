@@ -1,0 +1,407 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX v1.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-14 15:27+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Create User"
+msgstr "Benutzer anlegen"
+
+#: ../../src/01_create_user/01_create_user.md:3
+msgid ""
+"Before you can start using CODEX you have to create a new user account "
+"for your personal work."
+msgstr ""
+"Bevor Sie mit der Arbeit in CODEX beginnen können, benötigen Sie ein neues "
+"persönliches Benutzerkonto."
+
+#: ../../src/01_create_user/01_create_user.md:5
+msgid ""
+"A user account can be created by each indiviual by providing a company or"
+" institution email address. The responsive organization admin has to "
+"approve this new account before the user can  log in again and start "
+"working on research projects."
+msgstr ""
+"Ein neues Benutzerkonto kann von jedem mit einer Firmen- oder Einrichtungs-"
+"E-Mail-Adresse erstellt werden. Der Verantwortliche Organisations-Administrator "
+"muss das erstellte Benutzerkonto dann freigeben bevor der Benutzer sich "
+"anmelden und mit der Arbeit an Forschungsprojekten beginnen kann."
+
+#: ../../src/01_create_user/01_create_user.md:9
+msgid "Sign up a new user account"
+msgstr "Registrierung eines neuen Benutzerkontos"
+
+#: ../../src/01_create_user/01_create_user.md:11
+msgid ""
+"To create a new user account navigate to the sign up page which you can "
+"find by clicking \"SIGN IN\" at the main naviation. You will be asked to "
+"accept storing cookies on your machine. Accept and this will lead you to "
+"the \"Login-Page\". Hit \"Register\" below the login form to start a new "
+"account registration."
+msgstr ""
+"Navigieren Sie zur Registrierungsseite um ein neues Benutzerkonto zu erstellen "
+"welche Sie durch Klicken auf \"Anmelden\" in der Hauptnavigation aufrufen "
+"können. Sie werden zuvor um Erlaubnis gefragt, ob die App Cookies auf "
+"Ihrem Gerät speichern darf. Wenn Sie dies erlauben wird die Anmeldungsseite "
+"angezeigt. Um einen neuen Registrierungsvorgang zu starten, klicken Sie "
+"auf \"Registrieren\""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Login page with a red arrow pointing to the registration link"
+msgstr ""
+"Anmeldungsseite mit einem roten Pfeil, welcher auf den Link zur "
+"Registrierung zeigt"
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-01: Position of the register link on Login page"
+msgstr "Abb 01-01: Position des Registrierungsslinks auf der Anmeldungsseite"
+
+#: ../../src/01_create_user/01_create_user.md:23
+msgid ""
+"At the Signup page you will see a form to enter your basic data. All "
+"input fields marked with an asterisk are required to proceed."
+msgstr ""
+"Auf der Registrierungsseite finden Sie ein Formular zur Abfrage ihrer persönlichen "
+"Basisdaten vor. Alle mit einem Sternchen markierten Felder kennzeichnen "
+"Pflichtangaben."
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid ""
+"Sign up page with an empty form for first name, last name, email address,"
+" password and password confirm and a checkbox for accepting terms and "
+"conditions"
+msgstr ""
+"Registrierungsseite mit einem leeren Formular for Vorname, Nachname, "
+"E-Mail-Adresse, Passwort und Passwort-Wiederholung sowie einer Checkbox "
+"um die Zustimmung zu den Nutzungsbedingungen zu markieren."
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
+msgstr "Abb. 01-02: Leeres Registrierungsformular bei erstem Seitenaufruf"
+
+#: ../../src/01_create_user/01_create_user.md:33
+msgid ""
+"Additionally you have to aggree with the terms and conditions. If you "
+"want to read the terms and conditions you can click the link which opens "
+"an overlay with the current version of our terms and conditions that you "
+"also can directly accept or decline."
+msgstr ""
+"Zusätzlich müssen Sie den Nutzungsbedingungen zustimmen. Wenn Sie die "
+"Nutzungsbedingungen lesen möchten, können Sie durch Klick auf den Link "
+"ein Overlay öffnen, welches einerseits die aktuelle Fassung der "
+"Nutzungsbedingunen enthält und außerdem zwei Schaltflächen zum "
+"Zustimmen oder Ablehnen der Bedingungen anbietet."
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid ""
+"Sign up page with opened terms and conditions modal with to buttons to "
+"accept or decline the terms and conditions at the bottom"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-03: Open Terms and Conditions overlay modal"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:44
+msgid ""
+"Once you have filled out all information about your person and your login"
+" information an email will be sent to your provided email address. If the"
+" email has been sent to your inbox you will see the following screen:"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "After sign up page which informs about a sent email the user should check."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-04: Hint on sent email to confirm registration."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:55
+msgid ""
+"A browser window will open where you can then click the link \"Click here"
+" to proceed\" to confirm your address."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Screenshot of page to confirm the email address by clicking a link."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-05: Confirm email page"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:65
+msgid ""
+"If all succeeded you can click \"Back to Application\" to navigate back "
+"to the welcome page of CODEX. From there you can click \"Sign in\" again "
+"to log in with the credentials you entered in the prvious step."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid ""
+"Screenshot of page showing information about a successful email "
+"confirmation and a link to navigate back to the main app page"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid "Fig 01-06: Email confirmation has succeeded"
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:1
+msgid ""
+"You have to log in at least once to inform your organization admins about"
+" your request to use the CODEX app."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:4
+msgid ""
+"After your login succeeded you ca log out again. You will be informed "
+"about the approval of your account via email."
+msgstr ""
+
+#: ../../src/01_create_user/01_create_user.md:84
+msgid ""
+"You can only log in and log out unless your account gets approved. If you"
+" want to see how to approve user accounts go to the section  [User "
+"management -> Unapproved "
+"users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+msgstr ""
+
+#: ../../src/02_welcome/02_welcome.md:1
+msgid "Welcome page"
+msgstr ""
+
+#: ../../src/02_welcome/02_welcome.md:3
+msgid "This section covers the welcome page."
+msgstr ""
+
+#: ../../src/03_search/01_patient_filter/01_patient_filter.md:1
+msgid "Patient Filter"
+msgstr ""
+
+#: ../../src/03_search/01_patient_filter/01_patient_filter.md:3
+msgid "This section covers the Patient filter feature of the Search module."
+msgstr ""
+
+#: ../../src/03_search/02_data_filter/02_data_filter.md:1
+msgid "Data filter"
+msgstr ""
+
+#: ../../src/03_search/02_data_filter/02_data_filter.md:3
+msgid "Thissection covers the data filter page of the search module."
+msgstr ""
+
+#: ../../src/03_search/03_data_explorer/03_data_explorer.md:1
+#: ../../src/05_data_explorer/05_data_explorer.md:1
+msgid "Data explorer"
+msgstr ""
+
+#: ../../src/03_search/03_data_explorer/03_data_explorer.md:3
+msgid "This section covers the data explorer page of the search module."
+msgstr ""
+
+#: ../../src/03_search/03_search.md:1
+msgid "Search"
+msgstr ""
+
+#: ../../src/03_search/03_search.md:3
+msgid "This section covers the search feature."
+msgstr ""
+
+#: ../../src/04_projects/01_projects_overview/01_projects_overview.md:1
+msgid "Projects Overview"
+msgstr ""
+
+#: ../../src/04_projects/01_projects_overview/01_projects_overview.md:3
+msgid "This section covers the projects overview page of the projects module."
+msgstr ""
+
+#: ../../src/04_projects/02_projects_editor/02_projects_editor.md:1
+msgid "Projects Editor"
+msgstr ""
+
+#: ../../src/04_projects/02_projects_editor/02_projects_editor.md:3
+msgid "This section covers the projects editor page of the projects module."
+msgstr ""
+
+#: ../../src/04_projects/04_projects.md:1
+msgid "Projects"
+msgstr ""
+
+#: ../../src/04_projects/04_projects.md:3
+msgid "This section covers the projects feature."
+msgstr ""
+
+#: ../../src/05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:1
+msgid "Data explorer: Projects overview"
+msgstr ""
+
+#: ../../src/05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:3
+msgid "This section covers the Projects Overview page of the Data explorer."
+msgstr ""
+
+#: ../../src/05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+msgid "Data explorer - Data retrieval"
+msgstr ""
+
+#: ../../src/05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:3
+msgid "This section covers the data retrieval page of the data explorer feature."
+msgstr ""
+
+#: ../../src/05_data_explorer/05_data_explorer.md:3
+msgid "This section covers the data explorer feature."
+msgstr ""
+
+#: ../../src/06_criteria/01_criteria_overview/01_criteria_overview.md:1
+msgid "Criteria - Overview"
+msgstr ""
+
+#: ../../src/06_criteria/01_criteria_overview/01_criteria_overview.md:3
+msgid "This section covers the overview page of the criteria feature."
+msgstr ""
+
+#: ../../src/06_criteria/02_criteria_editor/02_criteria_editor.md:1
+msgid "Criteria - Editor"
+msgstr ""
+
+#: ../../src/06_criteria/02_criteria_editor/02_criteria_editor.md:3
+msgid "This section covers the editor of the criteria module"
+msgstr ""
+
+#: ../../src/06_criteria/03_criteria_categories/03_criteria_categories.md:1
+msgid "Criteria - Categories"
+msgstr ""
+
+#: ../../src/06_criteria/03_criteria_categories/03_criteria_categories.md:3
+msgid ""
+"This section covers the categories management page of the categories "
+"feature."
+msgstr ""
+
+#: ../../src/06_criteria/06_criteria.md:1
+msgid "Criteria"
+msgstr ""
+
+#: ../../src/06_criteria/06_criteria.md:3
+msgid "This section covers the criteria feature."
+msgstr ""
+
+#: ../../src/07_user_management/01_unapproved_users/01_unapproved_users.md:1
+msgid "Unapproved users management"
+msgstr ""
+
+#: ../../src/07_user_management/01_unapproved_users/01_unapproved_users.md:3
+msgid ""
+"This section covers the management of unapproved users. Unapproved users "
+"have just registered at the NUM CODEX app and wait for approval and "
+"assignment of a role."
+msgstr ""
+
+#: ../../src/07_user_management/01_unapproved_users/01_unapproved_users.md:1
+msgid ""
+"The following steps can only be executed by users with the role of "
+"\"Organization Admin\" or \"Super Admin\"."
+msgstr ""
+
+#: ../../src/07_user_management/02_approved_users/02_approved_users.md:1
+msgid "Approved user management"
+msgstr ""
+
+#: ../../src/07_user_management/02_approved_users/02_approved_users.md:3
+msgid ""
+"This section covers the management of approved users which will be "
+"necessary if the role of an existing user changes, e.g. a user gets new "
+"tasks and requires to use additional features of CODEX."
+msgstr ""
+
+#: ../../src/07_user_management/02_approved_users/02_approved_users.md:1
+msgid ""
+"The following steps can only be executed by users with the role "
+"\"Organization Admin\" or \"Super Admin\"."
+msgstr ""
+
+#: ../../src/07_user_management/07_user_management.md:1
+msgid "User Management"
+msgstr ""
+
+#: ../../src/07_user_management/07_user_management.md:3
+msgid ""
+"The user management page can be used by Organization Admins or Super "
+"Admins to approve users and assign or unassign roles of users."
+msgstr ""
+
+#: ../../src/08_organizations/01_organizations_overview/01_organizations_overview.md:1
+msgid "Organizations - Overview"
+msgstr ""
+
+#: ../../src/08_organizations/01_organizations_overview/01_organizations_overview.md:3
+msgid ""
+"This section covers the overview page of the organizations management "
+"feature."
+msgstr ""
+
+#: ../../src/08_organizations/02_organizations_editor/02_organizations_editor.md:1
+msgid "Organizations - Editor"
+msgstr ""
+
+#: ../../src/08_organizations/02_organizations_editor/02_organizations_editor.md:3
+msgid ""
+"This section covers the editor page of the organizations management "
+"feature."
+msgstr ""
+
+#: ../../src/08_organizations/08_organizations.md:1
+msgid "Organizations"
+msgstr ""
+
+#: ../../src/08_organizations/08_organizations.md:3
+msgid "This section covers the organization management feature."
+msgstr ""
+
+#: ../../src/09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:1
+msgid "Content editor - Welcome page"
+msgstr ""
+
+#: ../../src/09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:3
+msgid "This section covers the editor for welcome page content."
+msgstr ""
+
+#: ../../src/09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:1
+msgid "Content editor - Navigation items"
+msgstr ""
+
+#: ../../src/09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:3
+msgid "This section covers the editor for navigation content."
+msgstr ""
+
+#: ../../src/09_content_editor/09_content_editor.md:1
+msgid "Content editor"
+msgstr ""
+
+#: ../../src/09_content_editor/09_content_editor.md:3
+msgid "This section covers the content editor feature."
+msgstr ""
+
+#: ../../src/10_manager_tools/10_manager_tools.md:1
+msgid "Manager tools"
+msgstr ""
+
+#: ../../src/10_manager_tools/10_manager_tools.md:3
+msgid "This section covers the manager tools feature."
+msgstr ""
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 11:45+0200\n"
+"POT-Creation-Date: 2021-09-14 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../../index.md:20
 #: ../../index.md:20
 msgid "Table of contents:"
 msgstr ""
@@ -33,21 +34,21 @@ msgid "This manual has been created with biggest diligence in the languages Germ
 msgstr ""
 
 #: ../../index.md:16
-msgid "Please chaeck first if there is already a similar issue with the tag `docs`. Thanks for your feedback and contribution."
+msgid "Please check first if there is already a similar issue with the tag `docs`. Thanks for your feedback and contribution."
 msgstr ""
 
-#: ../../index.md:27
+#: ../../index.md:37
 msgid "Indexes und tables"
 msgstr ""
 
-#: ../../index.md:30
+#: ../../index.md:40
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.md:31
+#: ../../index.md:41
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../../index.md:32
+#: ../../index.md:42
 msgid ":ref:`search`"
 msgstr ""

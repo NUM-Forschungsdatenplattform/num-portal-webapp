@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 11:45+0200\n"
+"POT-Creation-Date: 2021-09-14 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,27 +53,27 @@ msgstr ""
 #: ../../index.md:16
 #, fuzzy
 msgid ""
-"Please chaeck first if there is already a similar issue with the tag "
+"Please check first if there is already a similar issue with the tag "
 "`docs`. Thanks for your feedback and contribution."
 msgstr ""
 "Bitte prüfen Sie vor der Erstellung eines neuen Vorgangs, ob es bereits "
 "einen ähnlichen Vorgang mit dem Tag `docs` in diesem Projekt gibt. Vielen"
 " Dank für Ihre Rückmeldung und Ihre Unterstützung."
 
-#: ../../index.md:27
+#: ../../index.md:37
 #, fuzzy
 msgid "Indexes und tables"
 msgstr "Index und Tabellen"
 
-#: ../../index.md:30
+#: ../../index.md:40
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.md:31
+#: ../../index.md:41
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../../index.md:32
+#: ../../index.md:42
 msgid ":ref:`search`"
 msgstr ""
 

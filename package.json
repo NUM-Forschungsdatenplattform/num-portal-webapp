@@ -14,7 +14,8 @@
     "e2e": "ng e2e",
     "playground": "angular-playground",
     "clean:test-results": "rimraf reports/**",
-    "docs:build": "cd ./docs && make -e SPHINXOPTS=\"-D language='de' -D language='en'\" html && cd ..",
+    "docs:build": "npm run docs:clean && cd ./docs && make -e SPHINXOPTS=\"-D language='de' -D language='en'\" html && cd ..",
+    "docs:clean": "rimraf ./docs/build/html/*",
     "docs:update-l10n": "cd ./docs && sphinx-intl update -p _build/gettext && cd .."
   },
   "private": true,
