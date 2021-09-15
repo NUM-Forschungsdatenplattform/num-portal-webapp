@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 15:27+0200\n"
+"POT-Creation-Date: 2021-09-15 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: ../../index.md:20
+#: ../index.md:20 1104af00c0d94098877b89767796e579
 msgid "Table of contents:"
 msgstr "Inhaltsverzeichnis"
 
-#: ../../index.md:1
+#: ../index.md:1 1c52e6530946405881b00fc39c148632
 msgid "NUM CODEX User documentation"
 msgstr "NUM CODEX Benutzerhandbuch"
 
-#: ../../index.md:3
+#: ../index.md:3 546c52cc0df646418e514ff26edc101d
 msgid ""
 "Welcome to the NUM CODEX App manual. This manual describes all features "
 "the NUM research data platform CODEX provides."
@@ -33,7 +33,7 @@ msgstr ""
 "Willkommen zum NUM CODEX App Handbuch. Dieses Handbuch beschreibt alle "
 "Funktionen welche die NUM Forschungsdatenplattform bietet."
 
-#: ../../index.md:6
+#: ../index.md:6 f831eb18f3ea408683ac20848bb08509
 msgid ""
 "This manual has been created with biggest diligence in the languages "
 "German and English. If you find an error or want to give other feedback "
@@ -50,30 +50,30 @@ msgstr ""
 "webapp/issues\"    target=\"_blank\"    rel=\"noopener\"> diesem Link "
 "</a> folgen."
 
-#: ../../index.md:16
+#: ../index.md:16 2d1419cd858440de827e679a94c6ff79
 #, fuzzy
 msgid ""
 "Please check first if there is already a similar issue with the tag "
-"`docs`. Thanks for your feedback and contribution."
+"`documentation`. Thanks for your feedback and contribution."
 msgstr ""
 "Bitte prüfen Sie vor der Erstellung eines neuen Vorgangs, ob es bereits "
-"einen ähnlichen Vorgang mit dem Tag `docs` in diesem Projekt gibt. Vielen"
-" Dank für Ihre Rückmeldung und Ihre Unterstützung."
+"einen ähnlichen Vorgang mit dem Tag `documentation` in diesem Projekt gibt. "
+"Vielen Dank für Ihre Rückmeldung und Ihre Unterstützung."
 
-#: ../../index.md:37
+#: ../index.md:37 200943c7874b47d3970872e7da26cec5
 #, fuzzy
 msgid "Indexes und tables"
 msgstr "Index und Tabellen"
 
-#: ../../index.md:40
+#: ../index.md:40 3c5b906dda8c4fd8acb8ee14f9694160
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../../index.md:41
+#: ../index.md:41 25c53fc6e36b420f8feb2e7f6312b833
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../../index.md:42
+#: ../index.md:42 cb5c3e9cd06a4ae8a06737eaf0f7ae83
 msgid ":ref:`search`"
 msgstr ""
 

@@ -1,7 +1,7 @@
 name: 'Documentation feedback / bug'
 description: 'You found an error in ou documentation or want to give feedback about its content.'
 title: '[Docs]: '
-labels: ['docs']
+labels: ['documentation']
 body:
   - type: markdown
     attributes:

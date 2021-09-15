@@ -13,7 +13,7 @@ href="https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues"
 this link
 </a>
 
-Please check first if there is already a similar issue with the tag `docs`. Thanks for your
+Please check first if there is already a similar issue with the tag `documentation`. Thanks for your
 feedback and contribution.
 
 
