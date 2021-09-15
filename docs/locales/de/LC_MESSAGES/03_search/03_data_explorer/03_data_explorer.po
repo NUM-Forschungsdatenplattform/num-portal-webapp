@@ -20,10 +20,11 @@ msgstr ""
 #: ../03_search/03_data_explorer/03_data_explorer.md:1
 #: f3fbe98e051d48118e491d953ce9148b
 msgid "Data explorer"
-msgstr ""
+msgstr "Datenabruf"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:3
 #: 3544b5c85e2547599b4437aad366a365
 msgid "This section covers the data explorer page of the search module."
 msgstr ""
+"Dieser Abschnitt behandelt die Datenabfrage der Suchfunktion."
 

@@ -22,9 +22,9 @@ copyright = '2021, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 
 # The full version, including alpha/beta/rc tags
-release = '["v1.6.0"]'
+release = '1.x'
 
-version = 'v1.6'
+version = '1.5.1'
 
 # -- General configuration ---------------------------------------------------
 
@@ -60,9 +60,7 @@ html_theme = 'sphinx_material'
 
 # Material theme options (see theme.conf for more information)
 html_theme_options = {
-  # Set the name of the project to appear in the navigation.
-    "nav_title": "NUM CODEX Dokumentation",
-
+  
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
     "base_url": "https://num-portal-webapp.readthedocs.io/de/latest/",
@@ -70,10 +68,11 @@ html_theme_options = {
     # Set the color and the accent color
     "color_primary": "indigo",
     "color_accent": "deep-orange",
+    "theme_color": "5f0d22",
 
     # Set the repo location to get a badge with stats
     "repo_url": "https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp",
-    "repo_name": "NUM CODEX",
+    "repo_name": "NUM Portal Webapp",
 
     # Visible levels of the global TOC; -1 means unlimited
     "globaltoc_depth": 3,
@@ -83,7 +82,11 @@ html_theme_options = {
     "globaltoc_includehidden": False,
 
     # Show version dropdown
-    "version_dropdown": True,
+    "version_dropdown": False,
+
+    # Minify output
+    "html_minify": False,
+    "css_minify": False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -98,3 +101,8 @@ locale_dirs = ['locales']
 gettext_uuid = True
 # Use compact
 gettext_compact = False
+
+# HTML sidebar config
+html_sidebars = {
+  "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"],
+}

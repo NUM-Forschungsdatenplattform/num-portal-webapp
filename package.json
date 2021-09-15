@@ -18,7 +18,8 @@
     "docs:build:en": "cd ./docs && sphinx-build -b html -D language=\"en\" . _build/html/en && cd ..",
     "docs:build:de": "cd ./docs && sphinx-build -b html -D language=\"de\" . _build/html/de && cd ..",
     "docs:clean": "rimraf ./docs/build/html/*",
-    "docs:extract-messages": "cd ./docs && sphinx-build -b gettext _gettext . && cd ..",
+    "docs:extract-messages": "cd ./docs && sphinx-build -b gettext . _gettext && cd ..",
+    "docs:update-l10n": "npm run docs:extract-messages && npm run docs:update-po",
     "docs:update-po": "cd ./docs && sphinx-intl update -p _gettext && cd .."
   },
   "private": true,

@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:1 aee674f8d35c4b899112a609a3383889
 msgid "Welcome page"
-msgstr ""
+msgstr "Willkommensseite"
 
 #: ../02_welcome/02_welcome.md:3 ef7dc1bf2e5a4dd99fd482e32e160f63
 msgid "This section covers the welcome page."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Willkommensseite von NUM CODEX."
 

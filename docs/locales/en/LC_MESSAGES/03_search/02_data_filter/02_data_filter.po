@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2021-09-15 12:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,9 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:3
 #: 9dc21c9f8cba4c9d94eff1695ddda472
-msgid "Thissection covers the data filter page of the search module."
+msgid "This section covers the data filter page of the search module."
 msgstr ""
+
+#~ msgid "Thissection covers the data filter page of the search module."
+#~ msgstr ""
 

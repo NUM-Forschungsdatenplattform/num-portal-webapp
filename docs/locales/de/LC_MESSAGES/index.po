@@ -23,7 +23,7 @@ msgstr "Inhaltsverzeichnis"
 
 #: ../../index.md:1
 msgid "NUM CODEX User documentation"
-msgstr "NUM CODEX Benutzerdokumentation"
+msgstr "NUM CODEX Benutzerhandbuch"
 
 #: ../../index.md:3
 msgid ""

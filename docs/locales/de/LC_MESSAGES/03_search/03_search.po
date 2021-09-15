@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../03_search/03_search.md:1 509825ff785c4c35904e182a8e8ee034
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: ../03_search/03_search.md:3 c995a2f4ed1a4a70998ad7c825d249ce
 msgid "This section covers the search feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Suchfunktion."
 

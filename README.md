@@ -55,21 +55,69 @@ steps.
 
 ![Diagram showing the workflow of updating and generating localozed content for Sphinx documentaions](https://www.sphinx-doc.org/en/master/_images/translation.svg "Sphinx translation workflow")
 
-Sphinx uses a special procedure to generate the translated content. First use this command to create
-the translation base `pot` file with all strings that have to be translated.
+Sphinx uses a special procedure to generate the translated content. First use this script to 
+extract the required message catalogue `pot` file:
 
 ```bash
-$ cd ./docs
-$ make gettext
+$ npm run docs:extract-messages
 ```
 
-Then generate the translation `.po` files inside the `locales/` folder at `/docs`:
+This will go through all `.md` and `.rst` files and looks for new text strings that might need
+a translation. The output of this command will be created within `docs/_gettext`.
+
+Then upda the translation `.po` files inside the `docs/locales/` by using this script:
 
 ```bash
-$ sphinx-intl update -p _build/gettext -l de_DE -l en_US
+$ npm run docs:update-po
 ```
 
-These files can then be used to 
+You can also execute both commands with one by using the following script:
+
+```bash
+$ npm run docs:update-l10n
+```
+
+To translate the messages created with your content, go into the folder `docs/locales/` with your
+target language and locate the folder named similar to your source file you worked on.
+
+Inside these files you will always find a meta data header which you can ignore. Below that there
+are multiple entries where you can add your translations.
+
+This is an example with a one-line translation:
+
+```pot
+#: ../01_create_user/01_create_user.md:1 b5e9052d813c4e89947a9e368cddccdf
+msgid "Create User"
+msgstr "Benutzer anlegen"
+```
+
+The first line  marks the position at the source `.md` or `.rst` file in addition to the uuid of
+this occurrence.
+The second line is a uniquie id for this translation string which is the same at all translation
+files. The value of this id will be used in case that there is no translation value provided.
+The third line labeled with `msgstr` contains the string that is in the target language abd will
+be used in the target translated documentation.
+
+If the `msgid` and `msgstr` values are too long for one line you can also leave the value empty
+at the line of the key and start in a new line. Please be aware of reStructuredText or MarkDown
+directives that might work no longer if you break the lines.
+
+```pot
+#: ../01_create_user/01_create_user.md:84 e3be248a709e44069d28492dfee8d77e
+msgid ""
+"You can only log in and log out unless your account gets approved. If you"
+" want to see how to approve user accounts go to the section  [User "
+"management -> Unapproved "
+"users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+msgstr ""
+"Sie können sich nur an- und wieder abmelden solange Ihr Benutzerkonto "
+"noch nicht freigegeben wurde. Wenn Sie wissen wollen, wie Sie "
+"Benutzerkonten freigeben können, gehen Sie zum Abschnitt "
+"[Benutzerverwaltung -> Neue Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md) "
+"dieses Handbuchs."
+```
+
+
 
 
 ## License

@@ -20,10 +20,11 @@ msgstr ""
 #: ../03_search/01_patient_filter/01_patient_filter.md:1
 #: 738d25ba82094d1bab6cb5193b468606
 msgid "Patient Filter"
-msgstr ""
+msgstr "Patientenfilter"
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:3
 #: 83a34684e4014e4d8311182c1e0152a2
 msgid "This section covers the Patient filter feature of the Search module."
 msgstr ""
+"Dieser Abschnitt behandelt den Patientenfilter der Suchfunktion."
 
