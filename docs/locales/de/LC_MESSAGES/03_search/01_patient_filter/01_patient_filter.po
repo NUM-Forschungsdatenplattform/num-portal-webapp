@@ -1,0 +1,30 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX v1.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 738d25ba82094d1bab6cb5193b468606
+msgid "Patient Filter"
+msgstr "Patientenfilter"
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:3
+#: 83a34684e4014e4d8311182c1e0152a2
+msgid "This section covers the Patient filter feature of the Search module."
+msgstr ""
+"Dieser Abschnitt behandelt den Patientenfilter der Suchfunktion."
+

@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
+# NUM CODEX User documentation
 
-You can use the [editor on GitHub](https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/edit/develop/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Welcome to the NUM CODEX App manual. This manual describes all features the NUM research data
+platform CODEX provides.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This manual has been created with biggest diligence in the languages German and English. If you find
+an error or want to give other feedback to this documentation please do not hestitate to create a
+new issue for this project following 
+<a 
+href="https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues" 
+  target="_blank" 
+  rel="noopener">
+this link
+</a>
 
-### Markdown
+Please check first if there is already a similar issue with the tag `documentation`. Thanks for your
+feedback and contribution.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```{toctree}
+---
+maxdepth: 2
+caption: "Table of contents:"
+---
+01_create_user/01_create_user.md
+02_welcome/02_welcome.md
+03_search/03_search.md
+04_projects/04_projects.md
+05_data_explorer/05_data_explorer.md
+06_criteria/06_criteria.md
+07_user_management/07_user_management.md
+08_organizations/08_organizations.md
+09_content_editor/09_content_editor.md
+10_manager_tools/10_manager_tools.md
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Indexes und tables
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```{eval-rst}
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+```
