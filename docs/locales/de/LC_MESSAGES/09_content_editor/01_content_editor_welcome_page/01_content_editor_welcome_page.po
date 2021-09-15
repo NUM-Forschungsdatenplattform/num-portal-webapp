@@ -20,10 +20,12 @@ msgstr ""
 #: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:1
 #: 9fffc60797a14a36832f9353a6f26f3a
 msgid "Content editor - Welcome page"
-msgstr ""
+msgstr "Inhaltseditor - Willkommensseite"
 
 #: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:3
 #: 2c837aab181f44f98cd37cac733f3b6f
 msgid "This section covers the editor for welcome page content."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung der Inhalte für die "
+"Willkommensseite."
 

@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../06_criteria/06_criteria.md:1 23562081ead24b14af81fa3484941313
 msgid "Criteria"
-msgstr ""
+msgstr "Kriterien"
 
 #: ../06_criteria/06_criteria.md:3 8805a11da2764c5eb158fb9f26468fd9
 msgid "This section covers the criteria feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Kriterienverwaltung"
 

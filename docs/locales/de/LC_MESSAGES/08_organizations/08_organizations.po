@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../08_organizations/08_organizations.md:1 a4b4f99b5b5b4d79b50b56546a7da7d5
 msgid "Organizations"
-msgstr ""
+msgstr "Organisationen"
 
 #: ../08_organizations/08_organizations.md:3 ced21ead9f5b4cfca766313be75c2b48
 msgid "This section covers the organization management feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Organisationsverwaltung."
 

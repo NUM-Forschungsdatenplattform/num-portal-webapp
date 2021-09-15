@@ -20,10 +20,10 @@ msgstr ""
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
 #: 653111db2ae94bc4a24298f1cb4c6bfb
 msgid "Criteria - Editor"
-msgstr ""
+msgstr "Kriterianeditor"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:3
 #: 6c0fa3f7f266409796a9ffd6022ab0c5
 msgid "This section covers the editor of the criteria module"
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Kriterieneditor."
 

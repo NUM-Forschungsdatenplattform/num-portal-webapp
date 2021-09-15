@@ -20,10 +20,10 @@ msgstr ""
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
 #: 14bdb46c66f346f8bafe079a7ae621ea
 msgid "Data explorer - Data retrieval"
-msgstr ""
+msgstr "Datenabruf: Datenabruf"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:3
 #: 8406961cb43f4900960462ee94ed8ef0
 msgid "This section covers the data retrieval page of the data explorer feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Datenabruf des Datenabruf-Moduls."
 

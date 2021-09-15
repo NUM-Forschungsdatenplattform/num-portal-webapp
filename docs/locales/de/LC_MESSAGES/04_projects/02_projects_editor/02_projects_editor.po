@@ -20,10 +20,10 @@ msgstr ""
 #: ../04_projects/02_projects_editor/02_projects_editor.md:1
 #: 199fb9d1096646b6b202c177874f00d7
 msgid "Projects Editor"
-msgstr ""
+msgstr "Projekteditor"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:3
 #: 818fd76badfe4040b98d52a213d71d12
 msgid "This section covers the projects editor page of the projects module."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Projekteditor des Projekt-Moduls."
 

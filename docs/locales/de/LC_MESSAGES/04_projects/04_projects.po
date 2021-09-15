@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../04_projects/04_projects.md:1 e786ad1a1de449de9a37213c6303eaf8
 msgid "Projects"
-msgstr ""
+msgstr "Projekte"
 
 #: ../04_projects/04_projects.md:3 4e688c3240c24076a14b113774a1d8e0
 msgid "This section covers the projects feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt das Projekt-Modul."
 

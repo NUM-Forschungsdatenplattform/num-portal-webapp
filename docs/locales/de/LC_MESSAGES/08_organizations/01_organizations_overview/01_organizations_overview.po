@@ -20,7 +20,7 @@ msgstr ""
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
 #: 9046f96d026947c5a845d925fca23360
 msgid "Organizations - Overview"
-msgstr ""
+msgstr "Organisationsübersicht"
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:3
 #: db45e4f0f830419b963cefe437101137
@@ -28,4 +28,5 @@ msgid ""
 "This section covers the overview page of the organizations management "
 "feature."
 msgstr ""
+"Dieser Abschnitt behandelt die Übersicht der Organisationsverwaltung."
 

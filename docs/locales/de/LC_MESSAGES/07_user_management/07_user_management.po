@@ -20,7 +20,7 @@ msgstr ""
 #: ../07_user_management/07_user_management.md:1
 #: e08c6311cb194f57828c2a0d6ca5b5b4
 msgid "User Management"
-msgstr ""
+msgstr "Benutzerverwaltung"
 
 #: ../07_user_management/07_user_management.md:3
 #: f22a3e7325cf4e788c5a51d60ea344fc
@@ -28,4 +28,7 @@ msgid ""
 "The user management page can be used by Organization Admins or Super "
 "Admins to approve users and assign or unassign roles of users."
 msgstr ""
+"Die Benutzerverwaltung dient Organisationsadministratoren und "
+"Superadministratoren dazu Benutzer freigzugeben und diesen Rollen "
+"zuzuweisen oder zu entziehen."
 

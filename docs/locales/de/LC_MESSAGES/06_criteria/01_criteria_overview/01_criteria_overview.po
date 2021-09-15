@@ -20,10 +20,10 @@ msgstr ""
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
 #: 01baaba8e8f24133b9e8d788d6c6de80
 msgid "Criteria - Overview"
-msgstr ""
+msgstr "Kriterienübersicht"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:3
 #: 2c7eb6b1fb3b403692b7a0f0c43b41ae
 msgid "This section covers the overview page of the criteria feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Kriterienübersicht."
 

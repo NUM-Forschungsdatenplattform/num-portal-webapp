@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../05_data_explorer/05_data_explorer.md:1 446454e29429452aa03e3ed1870b2a43
 msgid "Data explorer"
-msgstr ""
+msgstr "Datenabruf"
 
 #: ../05_data_explorer/05_data_explorer.md:3 0d25af723cad4eb087d64c448848b130
 msgid "This section covers the data explorer feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt das Datenabruf-Modul."
 

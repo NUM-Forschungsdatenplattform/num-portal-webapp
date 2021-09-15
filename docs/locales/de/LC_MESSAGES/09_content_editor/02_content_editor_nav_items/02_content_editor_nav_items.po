@@ -26,4 +26,5 @@ msgstr ""
 #: e5c863d9dff84ec594bcbdeba3a50990
 msgid "This section covers the editor for navigation content."
 msgstr ""
-
+"Dieser Abschnitt behandelt die Verwaltung der Inhalte für die "
+"zusätzlichen Navigationsleisten-Einträge."

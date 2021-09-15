@@ -20,7 +20,7 @@ msgstr ""
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
 #: 0323a0da7dd04cbe989082c7ab125d8a
 msgid "Unapproved users management"
-msgstr ""
+msgstr "Benutzerverwaltung - Neue Benutzer"
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:3
 #: cbe3b55bab0a45e7b900ee9b1bb2a616
@@ -29,6 +29,10 @@ msgid ""
 "have just registered at the NUM CODEX app and wait for approval and "
 "assignment of a role."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung von neuen und ungeprüften Benutzern. "
+"Neue Benutzer haben sich zunächst in der NUM CODEX App registriert und "
+"warten auf die Freigabe ihres Benutzerkontos und auf die Zuweisung "
+"einer Benutzerrolle."
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
 #: c19dd141611545009c0435c7c9f5c69f
@@ -36,4 +40,7 @@ msgid ""
 "The following steps can only be executed by users with the role of "
 "\"Organization Admin\" or \"Super Admin\"."
 msgstr ""
+"Die nachfolgend beschriebenen Schritte können nur von einem Benutzer "
+"mit der Rolle \"Organisationsadministrator\" oder der Rolle "
+"\"Superadministrator\" durchgeführt werden."
 

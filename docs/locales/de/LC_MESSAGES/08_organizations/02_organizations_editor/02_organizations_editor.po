@@ -20,7 +20,7 @@ msgstr ""
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:1
 #: cee867d1327241a3b040df17a527e3ae
 msgid "Organizations - Editor"
-msgstr ""
+msgstr "Organisationseditor"
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:3
 #: 1cd0098d9c194aa2a95976e0ef67eec4
@@ -28,4 +28,5 @@ msgid ""
 "This section covers the editor page of the organizations management "
 "feature."
 msgstr ""
+"Dieser Abschnitt behandelt den Editor der Organisationsverwaltung."
 

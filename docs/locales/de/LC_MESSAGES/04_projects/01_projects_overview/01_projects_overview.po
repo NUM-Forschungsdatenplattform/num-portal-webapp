@@ -20,10 +20,10 @@ msgstr ""
 #: ../04_projects/01_projects_overview/01_projects_overview.md:1
 #: 1b525eb755314818a6db33e4032ce61d
 msgid "Projects Overview"
-msgstr ""
+msgstr "Projektübersicht"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:3
 #: c20288831e3149509ee0bd8c8b7d53df
 msgid "This section covers the projects overview page of the projects module."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Projektübersicht des Projekt-Moduls."
 

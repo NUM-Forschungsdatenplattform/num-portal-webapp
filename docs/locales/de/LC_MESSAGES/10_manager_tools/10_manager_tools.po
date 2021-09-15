@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../10_manager_tools/10_manager_tools.md:1 773ff004a9ba4cb1b8c4127a6480b28f
 msgid "Manager tools"
-msgstr ""
+msgstr "Manager Tools"
 
 #: ../10_manager_tools/10_manager_tools.md:3 65cb64568c46468386eb017ef87368f8
 msgid "This section covers the manager tools feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Manager-Tools."
 

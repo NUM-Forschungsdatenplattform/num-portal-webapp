@@ -20,7 +20,7 @@ msgstr ""
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
 #: 2223e4d443f54fe196aa790aeef07c43
 msgid "Approved user management"
-msgstr ""
+msgstr "Benutzerverwaltung - Genehmigte Benutzer"
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:3
 #: 36232b39d5a04df795f1268cf6e518ef
@@ -29,6 +29,10 @@ msgid ""
 "necessary if the role of an existing user changes, e.g. a user gets new "
 "tasks and requires to use additional features of CODEX."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung zuvor freiegegebener Benutzer "
+"was in der Regel dann notwendig wird, wenn sich die Rolle eines Benutzers "
+"ändert, z.B. wenn ein Benutzer weitere Aufgaben übernehmen soll und "
+"daher weitere Funktionen von CODEX benötigt."
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
 #: 540ec450996d4dac97bc1a5b5ee09d3a
@@ -36,4 +40,6 @@ msgid ""
 "The following steps can only be executed by users with the role "
 "\"Organization Admin\" or \"Super Admin\"."
 msgstr ""
-
+"Die nachfolgend beschriebenen Schritte können nur von einem Benutzer "
+"mit der Rolle \"Organisationsadministrator\" oder der Rolle "
+"\"Superadministrator\" durchgeführt werden."

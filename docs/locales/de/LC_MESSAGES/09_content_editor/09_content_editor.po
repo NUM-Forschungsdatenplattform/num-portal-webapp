@@ -19,9 +19,9 @@ msgstr ""
 
 #: ../09_content_editor/09_content_editor.md:1 06e22726b0d5484b90b8ff0b553735e2
 msgid "Content editor"
-msgstr ""
+msgstr "Inhalts-Editor"
 
 #: ../09_content_editor/09_content_editor.md:3 a85175c6edd14945ab677294275db1b9
 msgid "This section covers the content editor feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Inhaltsverwaltung."
 
