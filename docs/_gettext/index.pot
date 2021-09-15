@@ -1,0 +1,64 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX v1.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../index.md:20
+#: ../index.md:20
+#: 
+#: 0f426c47b10c4623a4d7cceb939376c4
+msgid "Table of contents:"
+msgstr ""
+
+#: ../index.md:1
+#: 1c52e6530946405881b00fc39c148632
+msgid "NUM CODEX User documentation"
+msgstr ""
+
+#: ../index.md:3
+#: 546c52cc0df646418e514ff26edc101d
+msgid "Welcome to the NUM CODEX App manual. This manual describes all features the NUM research data platform CODEX provides."
+msgstr ""
+
+#: ../index.md:6
+#: f831eb18f3ea408683ac20848bb08509
+msgid "This manual has been created with biggest diligence in the languages German and English. If you find an error or want to give other feedback to this documentation please do not hestitate to create a new issue for this project following  <a  href=\"https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\"    rel=\"noopener\"> this link </a>"
+msgstr ""
+
+#: ../index.md:16
+#: 2d1419cd858440de827e679a94c6ff79
+msgid "Please check first if there is already a similar issue with the tag `docs`. Thanks for your feedback and contribution."
+msgstr ""
+
+#: ../index.md:37
+#: 200943c7874b47d3970872e7da26cec5
+msgid "Indexes und tables"
+msgstr ""
+
+#: ../index.md:40
+#: 3c5b906dda8c4fd8acb8ee14f9694160
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../index.md:41
+#: 25c53fc6e36b420f8feb2e7f6312b833
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../index.md:42
+#: cb5c3e9cd06a4ae8a06737eaf0f7ae83
+msgid ":ref:`search`"
+msgstr ""

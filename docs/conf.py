@@ -61,26 +61,29 @@ html_theme = 'sphinx_material'
 # Material theme options (see theme.conf for more information)
 html_theme_options = {
   # Set the name of the project to appear in the navigation.
-    'nav_title': 'NUM CODEX Dokumentation',
+    "nav_title": "NUM CODEX Dokumentation",
 
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
-    'base_url': 'https://num-portal-webapp.readthedocs.io/de/latest/',
+    "base_url": "https://num-portal-webapp.readthedocs.io/de/latest/",
 
     # Set the color and the accent color
-    'color_primary': '#5f0d22',
-    'color_accent': '#eb586a',
+    "color_primary": "indigo",
+    "color_accent": "deep-orange",
 
     # Set the repo location to get a badge with stats
-    'repo_url': 'https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp',
-    'repo_name': 'NUM CODEX',
+    "repo_url": "https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp",
+    "repo_name": "NUM CODEX",
 
     # Visible levels of the global TOC; -1 means unlimited
-    'globaltoc_depth': 3,
+    "globaltoc_depth": 3,
     # If False, expand all TOC entries
-    'globaltoc_collapse': False,
+    "globaltoc_collapse": False,
     # If True, show hidden TOC entries
-    'globaltoc_includehidden': False,
+    "globaltoc_includehidden": False,
+
+    # Show version dropdown
+    "version_dropdown": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -88,6 +91,10 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# Translation settings
+# File where translated locales are located
 locale_dirs = ['locales']
-
-master_doc = 'src/index'
+# Use uuid values for message catalogues
+gettext_uuid = True
+# Use compact
+gettext_compact = False
