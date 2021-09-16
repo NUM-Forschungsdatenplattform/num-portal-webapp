@@ -26,12 +26,16 @@ workflows:
                 - nightly-builds
     jobs:
       - test:
-          context: org-global
+          context: 
+            - org-global
+            - slack-secrets
       - security_scan
   build_and_test:
     jobs:
       - test:
-          context: org-global
+          context: 
+            - org-global
+            - slack-secrets
       - security_scan:
           filters:
             branches:
@@ -93,6 +97,31 @@ jobs:
           name: Run CVE scan by npm audit
           command: npm audit --audit-level=critical
       - sonarcloud/scan
+      - slack/notify:
+          event: fail
+          branch_pattern: nightly-builds
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": ":warning: CircleCI pipeline has failed :warning:",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project repository name:* ${CIRCLE_PROJECT_REPONAME} \n\n *Branch name:* ${CIRCLE_BRANCH} \n\n *GIT URL:* << pipeline.project.git_url >> \n\n *CircleCI Build URL:* ${CIRCLE_BUILD_URL} \n\n *Failed CircleCI Job:* ${CIRCLE_JOB} \n\n "
+                    }
+                  ]
+                }
+              ]
+            }
   tag_version:
     docker:
       - image: cimg/node:14.9.0
@@ -146,3 +175,4 @@ jobs:
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
   node: circleci/node@4.1.0
+  slack: circleci/slack@4.1.1
