@@ -1,0 +1,39 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX v1.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: 2223e4d443f54fe196aa790aeef07c43
+msgid "Approved user management"
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:3
+#: 36232b39d5a04df795f1268cf6e518ef
+msgid ""
+"This section covers the management of approved users which will be "
+"necessary if the role of an existing user changes, e.g. a user gets new "
+"tasks and requires to use additional features of CODEX."
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: 540ec450996d4dac97bc1a5b5ee09d3a
+msgid ""
+"The following steps can only be executed by users with the role "
+"\"Organization Admin\" or \"Super Admin\"."
+msgstr ""
+

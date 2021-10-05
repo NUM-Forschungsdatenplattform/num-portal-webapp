@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../01_create_user/01_create_user.md:1
+#: b5e9052d813c4e89947a9e368cddccdf
+msgid "Create User"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:3
+#: c81b4d9d24c449c28dec226a2a088ae0
+msgid "Before you can start using CODEX you have to create a new user account for your personal work."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:5
+#: 8f005fa6cf8f411b9b4b9503600c9e0b
+msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsive organization admin has to approve this new account before the user can  log in again and start working on research projects."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:9
+#: ee5295ff778e4a51933b2233366af30f
+msgid "Sign up a new user account"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:11
+#: 2968f12415ee4eaf81385d6adcaf0efb
+msgid "To create a new user account navigate to the sign up page which you can find by clicking \"SIGN IN\" at the main naviation. You will be asked to accept storing cookies on your machine. Accept and this will lead you to the \"Login-Page\". Hit \"Register\" below the login form to start a new account registration."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: f87e4302224246b983c19a400bfaa95a
+msgid "Login page with a red arrow pointing to the registration link"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: fa36324132f24a5cafba46107623397f
+msgid "Fig 01-01: Position of the register link on Login page"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:23
+#: bec6b1a9a97242d1bc529a8b52452258
+msgid "At the Signup page you will see a form to enter your basic data. All input fields marked with an asterisk are required to proceed."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 001ecc894b7e4a1397d12c67e5440d1d
+msgid "Sign up page with an empty form for first name, last name, email address, password and password confirm and a checkbox for accepting terms and conditions"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 6b66a1017e184a499291d20f36b7a6b5
+msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:33
+#: eefa9984501041a394957b82fd148928
+msgid "Additionally you have to aggree with the terms and conditions. If you want to read the terms and conditions you can click the link which opens an overlay with the current version of our terms and conditions that you also can directly accept or decline."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 35abfe772cdf4f6a96b32cdeea581cc3
+msgid "Sign up page with opened terms and conditions modal with to buttons to accept or decline the terms and conditions at the bottom"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 9cbe19c04a38408c813073aec08dfd50
+msgid "Fig 01-03: Open Terms and Conditions overlay modal"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:44
+#: e4bbf462e87f4be894281786cbd7ff3d
+msgid "Once you have filled out all information about your person and your login information an email will be sent to your provided email address. If the email has been sent to your inbox you will see the following screen:"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: c90bf23399064abf8b83de3a6c021eef
+msgid "After sign up page which informs about a sent email the user should check."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 4b961776c276445bb51ad04fc2d91892
+msgid "Fig 01-04: Hint on sent email to confirm registration."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:55
+#: e07388df700e4aaf86ca8fb7ab0ea82f
+msgid "A browser window will open where you can then click the link \"Click here to proceed\" to confirm your address."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 2b07bf2baa184f12adb2404e50a1bc54
+msgid "Screenshot of page to confirm the email address by clicking a link."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 323871d4a8aa4f188a427a8879d3260d
+msgid "Fig 01-05: Confirm email page"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:65
+#: d6a0265f96ff47d8950d7c16ddb7f154
+msgid "If all succeeded you can click \"Back to Application\" to navigate back to the welcome page of CODEX. From there you can click \"Sign in\" again to log in with the credentials you entered in the prvious step."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: a8397b6af65245e3a88ade3a32cc64d9
+msgid "Screenshot of page showing information about a successful email confirmation and a link to navigate back to the main app page"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: 67d7955730e44a9f9326975cfa37220e
+msgid "Fig 01-06: Email confirmation has succeeded"
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:1
+#: c5ef74f0b1154e1b96b0c02a5dde2160
+msgid "You have to log in at least once to inform your organization admins about your request to use the CODEX app."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:4
+#: 99bc7baf231e42299125941b5ffc83bd
+msgid "After your login succeeded you ca log out again. You will be informed about the approval of your account via email."
+msgstr ""
+
+#: ../01_create_user/01_create_user.md:84
+#: e3be248a709e44069d28492dfee8d77e
+msgid "You can only log in and log out unless your account gets approved. If you want to see how to approve user accounts go to the section  [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+msgstr ""
