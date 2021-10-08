@@ -1,0 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:1
+#: cee867d1327241a3b040df17a527e3ae
+msgid "Organizations - Editor"
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:3
+#: 1cd0098d9c194aa2a95976e0ef67eec4
+msgid "This section covers the editor page of the organizations management feature."
+msgstr ""

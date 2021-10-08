@@ -132,6 +132,7 @@
         projectStatus === possibleStatus.Approved
       )
     "
+    *numUserHasRole="[availableRoles.StudyCoordinator]"
     data-test="project-editor__buttons__start-edit-button"
     >{{
       (projectStatus === possibleStatus.Approved ? 'BUTTON.EDIT_RESEARCHERS' : 'BUTTON.EDIT')

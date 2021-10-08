@@ -19,7 +19,7 @@
     <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
   </div>
   <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
-    <div fxFlex fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
+    <div fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
       <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
       <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
       <a
@@ -35,8 +35,8 @@
       <div class="mat-display-3 num-margin-b-0">
         {{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}
       </div>
-      <div fxFlex fxLayout="row wrap" class="num-margin-b-10">
-        <div fxFlex.sm="33%" *ngFor="let logo of initiativeLogos">
+      <div fxLayout="row wrap" class="num-margin-b-10">
+        <div fxFlex.sm="33%" fxFlex="100%" *ngFor="let logo of initiativeLogos">
           <img
             [attr.src]="participantLogosBaseUrl + logo"
             class="initiative-logo"
@@ -49,13 +49,13 @@
 </section>
 
 <num-metrics></num-metrics>
-<num-projects *ngIf="isLoggedIn"></num-projects>
+<num-latest-projects *ngIf="isLoggedIn"></num-latest-projects>
 
 <section fxLayout="column" class="section" *ngIf="isLoggedIn">
   <div class="header">
     <h3>{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}</h3>
   </div>
-  <div fxFlex fxLayout="row wrap">
+  <div fxLayout="row wrap">
     <div
       fxFlex.gt-sm="49%"
       fxFlex.sm="49%"
@@ -86,7 +86,7 @@
   <div class="header" #participantsAnchor>
     <h3>{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}</h3>
   </div>
-  <div fxFlex fxLayout="row wrap" class="participant">
+  <div fxLayout="row wrap" class="participant">
     <div
       fxFlex.gt-sm="25%"
       fxFlex.sm="33%"

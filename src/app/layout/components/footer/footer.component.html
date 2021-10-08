@@ -1,13 +1,39 @@
-<mat-toolbar class="num-footer" role="contentinfo">
-  <mat-toolbar-row>
-    <div>© {{ config.legal.copyrightOwner }}</div>
-    <span fxFlex></span>
-    <a mat-button [routerLink]="['legal/imprint']">{{ 'LEGAL.DISCLOSURE' | translate }}</a>
+<!--
+ Copyright 2021 Vitagroup AG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section
+  class="num-footer"
+  role="contentinfo"
+  fxLayout="column-reverse"
+  fxLayout.gt-sm="row"
+  fxLayoutAlign="space-between center"
+>
+  <div>© {{ config.legal.copyrightOwner }}</div>
+
+  <section role="region" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="center center">
+    <a (click)="menuItemClicked($event)" mat-button [routerLink]="['legal/imprint']">{{
+      'LEGAL.DISCLOSURE' | translate
+    }}</a>
     <mat-divider [vertical]="true"></mat-divider>
-    <a mat-button [routerLink]="['legal/data-protection']">{{
+    <a (click)="menuItemClicked($event)" mat-button [routerLink]="['legal/data-protection']">{{
       'LEGAL.DATAPROTECTION' | translate
     }}</a>
     <mat-divider [vertical]="true"></mat-divider>
-    <a mat-button [routerLink]="['legal/contact']">{{ 'LEGAL.CONTACT' | translate }}</a>
-  </mat-toolbar-row>
-</mat-toolbar>
+    <a (click)="menuItemClicked($event)" mat-button [routerLink]="['legal/contact']">{{
+      'LEGAL.CONTACT' | translate
+    }}</a>
+  </section>
+</section>

@@ -18,6 +18,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
+import { IAqlParameter } from 'src/app/shared/models/aql/aql-parameter.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 
@@ -27,8 +28,6 @@ import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builde
   styleUrls: ['./aql-connector-item.component.scss'],
 })
 export class AqlConnectorItemComponent implements OnInit {
-  AqlParameterOperator = Object.keys(AqlParameterOperator)
-
   @Input() aql: AqlUiModel
   @Input() isDisabled: boolean
   @Output()
@@ -53,28 +52,8 @@ export class AqlConnectorItemComponent implements OnInit {
               parameter.valueType = this.getValueTypeForParameter(response.type)
             }
 
-            if (parameter.value === null || parameter.value === undefined) {
-              switch (parameter.valueType) {
-                case AqlParameterValueType.Boolean:
-                  parameter.value = true
-                  break
-                case AqlParameterValueType.Options:
-                  parameter.value = optionKeys[0]
-                  break
-                case AqlParameterValueType.Date:
-                case AqlParameterValueType.DateTime:
-                case AqlParameterValueType.Time:
-                  parameter.value = new Date()
-                  break
-              }
-            } else if (
-              parameter.valueType === AqlParameterValueType.Date ||
-              parameter.valueType === AqlParameterValueType.DateTime
-            ) {
-              parameter.value = this.convertDateStringToDate(parameter.value as string)
-            } else if (parameter.valueType === AqlParameterValueType.Time) {
-              parameter.value = this.convertTimeStringToDate(parameter.value as string)
-            }
+            this.prefillParameter(parameter, optionKeys)
+            this.setPossibleOperators(parameter, response.type)
 
             this.checkParameterStatus()
             parameter.isMetaFetched = true
@@ -84,6 +63,51 @@ export class AqlConnectorItemComponent implements OnInit {
           }
         )
       })
+    }
+  }
+
+  prefillParameter(parameter: IAqlParameter, optionKeys: string[]): void {
+    if (parameter.value === null || parameter.value === undefined) {
+      switch (parameter.valueType) {
+        case AqlParameterValueType.Boolean:
+          parameter.value = true
+          break
+        case AqlParameterValueType.Options:
+          parameter.value = optionKeys[0]
+          break
+        case AqlParameterValueType.Date:
+        case AqlParameterValueType.DateTime:
+        case AqlParameterValueType.Time:
+          parameter.value = new Date()
+          break
+      }
+    } else if (
+      parameter.valueType === AqlParameterValueType.Date ||
+      parameter.valueType === AqlParameterValueType.DateTime
+    ) {
+      parameter.value = this.convertDateStringToDate(parameter.value as string)
+    } else if (parameter.valueType === AqlParameterValueType.Time) {
+      parameter.value = this.convertTimeStringToDate(parameter.value as string)
+    }
+  }
+
+  setPossibleOperators(parameter: IAqlParameter, referenceModelType: ReferenceModelType): void {
+    switch (parameter.valueType) {
+      case AqlParameterValueType.Boolean:
+      case AqlParameterValueType.String:
+        parameter.possibleOperators = [AqlParameterOperator['='], AqlParameterOperator['!=']]
+        break
+      case AqlParameterValueType.Options:
+        if (referenceModelType === ReferenceModelType.Dv_ordinal) {
+          parameter.possibleOperators = Object.keys(AqlParameterOperator) as AqlParameterOperator[]
+        } else {
+          parameter.possibleOperators = [AqlParameterOperator['='], AqlParameterOperator['!=']]
+        }
+        break
+
+      default:
+        parameter.possibleOperators = Object.keys(AqlParameterOperator) as AqlParameterOperator[]
+        break
     }
   }
 

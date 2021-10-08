@@ -22,14 +22,6 @@
   <num-language></num-language>
 </mat-toolbar>
 
-<section
-  class="header-image"
-  [ngClass.xs]="{ 'header-image--small': true }"
-  *ngIf="currentMainNavItem?.routeTo === 'home'"
->
-  <num-logo [shouldAnimate]="isFirstHomeVisit"></num-logo>
-</section>
-
 <section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
   <div
     [ngClass]="{
@@ -48,9 +40,12 @@
         [icon]="currentMainNavItem.icon"
         size="sm"
         [fixedWidth]="true"
-      ></fa-icon
-      >{{ currentMainNavItem.translationKey | translate }}
-      {{ currentMainNavItem.routeTo === 'home' ? ' - ' + ('TEST_ENVIRONMENT' | translate) : '' }}
+      ></fa-icon>
+      {{
+        currentMainNavItem.routeTo === 'home'
+          ? welcomePageTitle[currentLang]
+          : (currentMainNavItem.translationKey | translate)
+      }}
     </h1>
 
     <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">

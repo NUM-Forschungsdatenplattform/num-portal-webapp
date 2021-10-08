@@ -80,6 +80,7 @@ describe('SideMenuComponent', () => {
           { path: '#login', component: TestRouterTargetComponentStub },
           { path: '#logout', component: TestRouterTargetComponentStub },
           { path: 'test', component: TestRouterTargetComponentStub },
+          { path: 'home', component: TestRouterTargetComponentStub },
         ]),
         TranslateModule.forRoot(),
         DirectivesModule,
@@ -126,7 +127,7 @@ describe('SideMenuComponent', () => {
     component.mainNavItems = [
       {
         icon: 'test',
-        routeTo: '/test',
+        routeTo: 'test',
         translationKey: 'test',
       },
     ]
@@ -139,17 +140,21 @@ describe('SideMenuComponent', () => {
   })
 
   it('Calls logout function when logout button is clicked', () => {
+    const navItem = {
+      icon: 'test',
+      routeTo: '#logout',
+      translationKey: 'test',
+    }
     component.mainNavItems = null
-    component.secondaryNavItems = [
-      {
-        icon: 'test',
-        routeTo: '#logout',
-        translationKey: 'test',
-      },
-    ]
+    component.secondaryNavItems = [navItem]
+
     fixture.detectChanges()
+
     const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector('.mat-list-item')
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
+
     button.click()
     fixture.detectChanges()
     expect(authService.logout).toHaveBeenCalled()
@@ -157,18 +162,19 @@ describe('SideMenuComponent', () => {
 
   describe('When the login button is clicked', () => {
     let button: HTMLElement
+    const navItem = {
+      icon: 'test',
+      routeTo: '#login',
+      translationKey: 'test',
+    }
     beforeEach(() => {
       component.mainNavItems = null
-      component.secondaryNavItems = [
-        {
-          icon: 'test',
-          routeTo: '#login',
-          translationKey: 'test',
-        },
-      ]
+      component.secondaryNavItems = [navItem]
       fixture.detectChanges()
       const nativeElement = fixture.debugElement.nativeElement
-      button = nativeElement.querySelector('.mat-list-item')
+      button = nativeElement.querySelector(
+        `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+      ) as HTMLElement
 
       button.click()
       fixture.detectChanges()

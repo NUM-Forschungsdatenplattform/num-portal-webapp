@@ -18,6 +18,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { DefinitionListComponent } from './definition-list.component'
 import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
+import { IDefinitionList } from '../../models/definition-list.interface'
+import { DefinitionType } from '../../models/definition-type.enum'
+import { By } from '@angular/platform-browser'
 
 describe('DifinationListComponent', () => {
   let component: DefinitionListComponent
@@ -38,5 +41,31 @@ describe('DifinationListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  it('should show text yes and no to boolean elements', () => {
+    const definitionList: IDefinitionList[] = [
+      {
+        description: true,
+        title: 'Test true',
+        type: DefinitionType.Boolean,
+      },
+      {
+        description: false,
+        title: 'Test false',
+        type: DefinitionType.Boolean,
+      },
+    ]
+
+    component.dataSource = definitionList
+    fixture.detectChanges()
+
+    const icons = fixture.debugElement.queryAll(
+      By.css(`[data-test="definition_list__boolean__element__text"]`)
+    )
+
+    expect(icons).toHaveLength(2)
+    expect((icons[0].nativeElement as HTMLParagraphElement).innerHTML.trim()).toEqual('FORM.YES')
+    expect((icons[1].nativeElement as HTMLParagraphElement).innerHTML.trim()).toEqual('FORM.NO')
   })
 })

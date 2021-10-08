@@ -24,18 +24,34 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { MatButtonHarness } from '@angular/material/button/testing'
+import { Subject } from 'rxjs'
+import { AuthService } from 'src/app/core/auth/auth.service'
 
 import { ProjectEditorButtonsComponent } from './project-editor-buttons.component'
+import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 
 describe('ProjectEditorButtonsComponent', () => {
   let component: ProjectEditorButtonsComponent
   let fixture: ComponentFixture<ProjectEditorButtonsComponent>
   let loader: HarnessLoader
 
+  const userInfoSubject$ = new Subject<IAuthUserInfo>()
+  const authService = {
+    userInfoObservable$: userInfoSubject$.asObservable(),
+  } as unknown as AuthService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorButtonsComponent, ButtonComponent],
+      declarations: [ProjectEditorButtonsComponent, ButtonComponent, UserHasRoleDirective],
       imports: [TranslateModule.forRoot(), MaterialModule, FontAwesomeTestingModule],
+      providers: [
+        {
+          provide: AuthService,
+          useValue: authService,
+        },
+      ],
     }).compileComponents()
   })
 
@@ -53,6 +69,10 @@ describe('ProjectEditorButtonsComponent', () => {
     jest.spyOn(component.cancel, 'emit')
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy()
   })
@@ -62,6 +82,11 @@ describe('ProjectEditorButtonsComponent', () => {
     let editButton
     beforeEach(() => {
       component.editorMode = PossibleProjectEditorMode.PREVIEW
+      fixture.detectChanges()
+      userInfoSubject$.next({
+        sub: '',
+        groups: [AvailableRoles.StudyCoordinator],
+      })
       fixture.detectChanges()
       const nativeElement = fixture.debugElement.nativeElement
       backButton = nativeElement.querySelector('#back-button')

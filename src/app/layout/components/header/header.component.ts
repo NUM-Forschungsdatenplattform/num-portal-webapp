@@ -19,6 +19,8 @@ import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
 import { mainNavItems } from '../../../core/constants/navigation'
+import { AppConfigService } from 'src/app/config/app-config.service'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-header',
@@ -28,19 +30,36 @@ import { mainNavItems } from '../../../core/constants/navigation'
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
-  isFirstHomeVisit = true
   mainNavItems = mainNavItems
+  currentLang: string
   currentNavId: string
   currentMainNavItem: INavItem
   currentTabNav: INavItem[] = null
   currentTabNavSelected: string
+  welcomePageTitle: {
+    de: string
+    en: string
+  }
 
-  constructor(private router: Router) {}
+  constructor(
+    private config: AppConfigService,
+    private router: Router,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.router.events.subscribe((event) => this.handleRouterEvent(event as RouterEvent))
     )
+
+    this.welcomePageTitle = this.config.config.welcomePageTitle
+
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((e) => {
+        this.currentLang = e.lang
+      })
+    )
+    this.currentLang = this.translateService.currentLang
   }
 
   ngOnDestroy(): void {
@@ -63,11 +82,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const navItem = this.mainNavItems.find((item) => item.routeTo === this.currentNavId)
     this.currentMainNavItem = navItem
     this.currentTabNav = navItem?.tabNav
-
-    if (this.isFirstHomeVisit && this.currentNavId === 'home') {
-      setTimeout(() => {
-        this.isFirstHomeVisit = false
-      }, 0)
-    }
   }
 }

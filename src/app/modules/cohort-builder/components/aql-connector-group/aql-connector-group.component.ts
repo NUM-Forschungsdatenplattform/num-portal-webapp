@@ -167,12 +167,19 @@ export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy 
     this.enumerateGroupsDebounced()
   }
 
-  deleteChild(index: number): void {
+  deleteChildItem(index: number): void {
     this.cohortGroup.children.splice(index, 1)
+  }
+
+  deleteChildGroup(wasActive: boolean, index: number): void {
+    this.cohortGroup.children.splice(index, 1)
+    if (wasActive) {
+      this.setDestination()
+    }
     this.enumerateGroupsDebounced()
   }
 
   deleteSelf(): void {
-    this.delete.emit(this.index)
+    this.delete.emit(this.isActive)
   }
 }

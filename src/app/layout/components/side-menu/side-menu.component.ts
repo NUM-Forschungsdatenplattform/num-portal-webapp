@@ -74,10 +74,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  menuItemClicked($event: Event, item: INavItem): void {
-    if (item.routeTo === '#logout') {
+  menuItemClicked($event: Event, item?: INavItem): void {
+    if (item?.routeTo === '#logout') {
       this.authService.logout()
-    } else if (item.routeTo === '#login') {
+    } else if (item?.routeTo === '#login') {
       this.handleLoginWithDialog()
     }
     const target = $event.currentTarget as HTMLElement

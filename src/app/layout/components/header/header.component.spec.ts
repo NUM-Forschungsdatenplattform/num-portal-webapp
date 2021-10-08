@@ -27,7 +27,6 @@ import { ButtonComponent } from '../../../shared/components/button/button.compon
 import { LanguageComponent } from '../language/language.component'
 import { HeaderComponent } from './header.component'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { LogoComponent } from 'src/app/shared/components/logo/logo.component'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { AuthService } from 'src/app/core/auth/auth.service'
@@ -35,6 +34,7 @@ import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { MatTabLinkHarness } from '@angular/material/tabs/testing'
 import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -44,6 +44,18 @@ describe('HeaderComponent', () => {
 
   @Component({ selector: 'num-stub', template: '' })
   class StubComponent {}
+
+  const mockConfigService = {
+    config: {
+      api: {
+        baseUrl: '/api',
+      },
+      welcomePageTitle: {
+        de: 'Test Seite',
+        en: 'Test page',
+      },
+    },
+  } as AppConfigService
 
   const firstNavItem: INavItem = {
     routeTo: 'first',
@@ -119,7 +131,6 @@ describe('HeaderComponent', () => {
         LanguageComponent,
         StubComponent,
         ButtonComponent,
-        LogoComponent,
         UserHasRoleDirective,
       ],
       imports: [
@@ -144,6 +155,10 @@ describe('HeaderComponent', () => {
         {
           provide: AuthService,
           useValue: mockAuthService,
+        },
+        {
+          provide: AppConfigService,
+          useValue: mockConfigService,
         },
       ],
     }).compileComponents()
@@ -179,25 +194,6 @@ describe('HeaderComponent', () => {
       expect(component.currentNavId).toEqual('second')
       expect(component.currentMainNavItem).toBe(secondNavItem)
       expect(component.currentTabNav).toBeFalsy()
-    })
-  })
-
-  describe('On ActivationEnd to the home route', () => {
-    const routeSnapshot = {
-      data: {
-        navId: 'home',
-      },
-    } as unknown as ActivatedRouteSnapshot
-    const routerEvent = new ActivationEnd(routeSnapshot)
-
-    it('should set the the flag that home was now visited', (done) => {
-      expect(component.isFirstHomeVisit).toBeTruthy()
-      routerEventsSubject.next(routerEvent)
-      fixture.detectChanges()
-      setTimeout(() => {
-        expect(component.isFirstHomeVisit).toBeFalsy()
-        done()
-      }, 1)
     })
   })
 

@@ -140,6 +140,15 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
+  changeUserName(userId: string, firstName: string, lastName: string): Observable<string> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/name`, { firstName, lastName }, httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
   setFilter(filterSet: IUserFilter): void {
     this.filterConfigSubject$.next(filterSet)
     this.filterSet = filterSet

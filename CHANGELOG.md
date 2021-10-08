@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 ## [Unreleased]
 
+### Changed
+
+- Data Explorer: Add help text and change labels of configurate result ([#302])
+- Data Explorer: Change english hint to use button to retreive data first ([#302])
+- Dashboard: Add table headers to latest project table ([#305])
+- Cohort-Builder: Full set of logical operators just for numeric types ([#306])
+- Cohort-Builder: Show parameter ([#310])
+- Criteria Table: Label of private / public column ([#307])
+- Project preview: Text explaining icons for boolean meta data values ([#309])
+- User management: Change name of approved user ([#312])
+- Welcome Page: Title notice ("Welcome to CODEX - Test environment") can be set via environment variable ([#311])
+
+### Fixed
+
+- Project editor: Hide edit button from approvers ([#291])
+- Dashboard: Fixes layout issues for safari on mac os catalina ([#292])
+- Dashboard: Logo not displayed in Firefox ([#303])
+- Footer: Fixes layout on smaller devices ([#293])
+
+---
+
+## [Released]
+
+## [1.5.0] - 2021-08-03
+
 ### Added
 
 - Resolving of pseudonyms to patient ids ([#276])
@@ -20,10 +45,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 - Project Editor: Change label for data protection label ([#280])
 - Favicons and Apptitle ([#281])
-
----
-
-## [Released]
 
 ## [1.4.0] - 2021-07-27
 
@@ -279,8 +300,9 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 
 <!-- Versions -->
 
-[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.5.0...HEAD
 [released]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/tree/master
+[1.5.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.4.0..v1.5.0
 [1.4.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.3.0..v1.4.0
 [1.3.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.2.0..v1.3.0
 [1.2.0]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/compare/v1.1.0..v1.2.0
@@ -564,3 +586,25 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 [#285]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/285
 [#286]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/286
 [#287]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/287
+[#291]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/291
+[#292]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/292
+[#293]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/293
+[#294]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/294
+[#295]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/295
+[#296]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/296
+[#297]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/297
+[#298]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/298
+[#299]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/299
+[#300]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/300
+[#301]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/301
+[#302]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/302
+[#303]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/303
+[#304]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/304
+[#305]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/305
+[#306]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/306
+[#307]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/307
+[#308]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/308
+[#309]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/309
+[#310]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/310
+[#311]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/311
+[#312]: https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/pull/312

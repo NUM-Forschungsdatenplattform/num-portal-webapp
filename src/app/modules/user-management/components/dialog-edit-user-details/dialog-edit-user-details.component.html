@@ -16,20 +16,64 @@
 
 <p *ngIf="isApproval">{{ 'USER_MANAGEMENT.EDIT_USER_DESCRIPTION' | translate }}</p>
 
-<table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">
-  <tbody>
-    <tr>
-      <th scope="row">Name:</th>
-      <td>{{ userDetails.firstName }} {{ userDetails.lastName }}</td>
-    </tr>
-    <tr>
-      <th scope="row">Email:</th>
-      <td>
-        {{ userDetails.email }}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<section role="table" fxLayout="column" class="num-margin-b-20">
+  <section role="row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
+    <div class="mat-body-strong" role="rowheader">Name:</div>
+    <div>{{ userDetails.firstName }} {{ userDetails.lastName }}</div>
+    <button
+      *ngIf="!isUserNameEditMode && !isApproval"
+      id="menu-toggle-button"
+      color="accent"
+      type="button"
+      [attr.aria-label]="'BUTTON.EDIT' | translate"
+      data-test="user-management__button__edit_user_name"
+      mat-icon-button
+      (click)="toggleNameEditMode()"
+    >
+      <fa-icon icon="pen"></fa-icon>
+    </button>
+  </section>
+
+  <form [formGroup]="userNameForm" *ngIf="isUserNameEditMode" fxLayoutGap="8px">
+    <mat-form-field appearance="fill">
+      <mat-label id="first-name-label">{{ 'USER.FIRST_NAME' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        aria-labelledby="first-name-label"
+        data-test="user-management__input__first_name"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label id="last-name-label">{{ 'USER.LAST_NAME' | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="lastName"
+        aria-labelledby="last-name-label"
+        data-test="user-management__input__last_name"
+      />
+    </mat-form-field>
+
+    <button
+      id="menu-toggle-button"
+      color="accent"
+      type="button"
+      [attr.aria-label]="'BUTTON.CANCEL' | translate"
+      data-test="user-management__button__discard_user_name_changes"
+      mat-icon-button
+      (click)="discardNameEdit()"
+    >
+      <fa-icon icon="undo"></fa-icon>
+    </button>
+  </form>
+
+  <section role="row" fxLayout="row" fxLayoutGap="8px">
+    <div class="mat-body-strong" role="rowheader">Email:</div>
+    <div>{{ userDetails.email }}</div>
+  </section>
+</section>
 
 <mat-card class="filter-area mat-elevation-z4" *numUserHasRole="[availableRoles.SuperAdmin]">
   <num-add-user-organization

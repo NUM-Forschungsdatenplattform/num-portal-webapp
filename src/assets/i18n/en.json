@@ -108,7 +108,9 @@
       "MESSAGE_SET_ALL_PARAMETERS": "You should first define the criterium to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
       "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
-    }
+    },
+    "PRIVACY_PRIVATE": "Only with me",
+    "PRIVACY_PUBLIC": "Public"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
@@ -201,7 +203,7 @@
     "FILTER": "Filter",
     "ACTION": "Action",
     "CREATION_DATE": "Creation Date",
-    "USAGE": "Usage",
+    "USAGE": "Shared",
     "YES": "Yes",
     "NO": "No",
     "VALUE": "Value",
@@ -256,8 +258,8 @@
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
     "APPLY_CONFIGURATION": "Apply configuration",
-    "CUSTOMIZE_CONFIGURATION": "Customize configuration",
-    "RESET_CUSTOMIZATION": "Reset configuration",
+    "CUSTOMIZE_CONFIGURATION": "Filter data",
+    "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
@@ -388,7 +390,7 @@
     "EXPLORE_PROJECT": "Retrieve project data",
     "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.\n\nYou can either start the data retrieval directly or optionally restrict the data retrieval defined in the project even further.",
     "RESULT_SET": "Result Set",
-    "NO_RESULTS_YET": "No results yet. Please press the button 'Get Data' first.",
+    "NO_RESULTS_YET": "No results yet. Please press the button 'Retreive Data' first.",
     "LOADING_RESULT_SET": "The result set is being loaded. Please wait a moment.",
     "EMPTY_RESULT_SET": "The configuration did not give any results. Please change the configuration and try again.",
     "CONFIGURATION": "Configuration",
@@ -399,7 +401,9 @@
     "QUERY_BUILDER_DIALOG_HEADER": "Edit data criterium configuration",
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT": "Export {{format}}",
-    "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later."
+    "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
+    "HEADLINE_RETREIVE_SECTION": "Retreive data",
+    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",
@@ -414,7 +418,8 @@
     "APPROVE_USER_SUCCESS": "{{firstName}} {{lastName}} has been successfully edited and transferred to the list of approved users.",
     "EDIT_USER_ERROR": "The changes could not be saved. Please try again.",
     "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} was updated successfully.",
-    "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent."
+    "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent.",
+    "INVALID_USER_NAME_ERROR": "Please provide a valid name"
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",

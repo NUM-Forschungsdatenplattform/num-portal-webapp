@@ -1,0 +1,27 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../02_welcome/02_welcome.md:1
+#: aee674f8d35c4b899112a609a3383889
+msgid "Welcome page"
+msgstr ""
+
+#: ../02_welcome/02_welcome.md:3
+#: ef7dc1bf2e5a4dd99fd482e32e160f63
+msgid "This section covers the welcome page."
+msgstr ""
