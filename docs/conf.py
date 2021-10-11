@@ -32,7 +32,9 @@ version = '1.5.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'myst_parser'
+  'myst_parser',
+  'hoverxref.extension',
+  'sphinxemoji.sphinxemoji'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -106,3 +108,10 @@ gettext_compact = False
 html_sidebars = {
   "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"],
 }
+
+# hoverxref settings for tooltips and modals used for glossary and other references.
+# Use the tooltip or modal of hoverxref for all reference roles inside this list
+hoverxref_roles = ['term']
+
+# Emoji style
+sphinxemoji_style = 'twemoji'
