@@ -77,9 +77,9 @@ html_theme_options = {
     "repo_name": "NUM Portal Webapp",
 
     # Visible levels of the global TOC; -1 means unlimited
-    "globaltoc_depth": 3,
+    "globaltoc_depth": 2,
     # If False, expand all TOC entries
-    "globaltoc_collapse": False,
+    "globaltoc_collapse": True,
     # If True, show hidden TOC entries
     "globaltoc_includehidden": False,
 

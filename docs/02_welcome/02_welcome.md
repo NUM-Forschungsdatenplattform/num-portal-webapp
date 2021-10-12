@@ -2,8 +2,8 @@
 
 All users will be redirected to the welcome page after a successful login. This page contains
 some basic statitics about data available for the logged in user, e.g. the projects that have
-received updates the last time, as well as general information that might be usedful for the user
-and that is managed by content admins.
+received updates the last time, as well as general information that might be useful for the user
+and that is managed by {term}`Content Admin`s.
 
 ## Introduction / Statistics
 
@@ -24,16 +24,16 @@ provided previously mentioned data.
 
 ```{note}
 These statistics only contain general data and contain no sensitive information about contents
-or names of participating clincs.
+or names of participating clinics.
 ```
 
 ## Latest projects
 
 ```{important}
-The list of latest projects is only visible for users that have logged in to the application.
+The list of latest {term}`Project`s is only visible for users that have logged in to the application.
 ```
 
-In the list of latest projects the user can see the last 5 projects the user has access to and that
+In the list of latest {term}`Project`s the user can see the last 5 projects the user has access to and that
 have changed the last time. This can be used to get a quick overview if there are recent changes
 to a project the user is interested in.
 

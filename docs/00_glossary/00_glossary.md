@@ -36,7 +36,7 @@ NUM
 
 
 openEHR
-  Open internation standard to store data together with the semantic information on how data has
+  Open international standard to store data together with the semantic information on how data has
   to be interpreted.
 
   See [openEHR project website](https://www.openehr.org) for more information.

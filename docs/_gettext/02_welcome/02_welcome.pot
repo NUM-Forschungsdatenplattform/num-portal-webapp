@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-11 17:01+0200\n"
+"POT-Creation-Date: 2021-10-12 13:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:3
 #: dcd3e1a372f24b0cbffd72e1d690b05a
-msgid "All users will be redirected to the welcome page after a successful login. This page contains some basic statitics about data available for the logged in user, e.g. the projects that have received updates the last time, as well as general information that might be usedful for the user and that is managed by content admins."
+msgid "All users will be redirected to the welcome page after a successful login. This page contains some basic statitics about data available for the logged in user, e.g. the projects that have received updates the last time, as well as general information that might be useful for the user and that is managed by {term}`Content Admin`s."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:8
@@ -53,7 +53,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:1
 #: d06ce4a933cb4751a17e69a78782f91b
-msgid "These statistics only contain general data and contain no sensitive information about contents or names of participating clincs."
+msgid "These statistics only contain general data and contain no sensitive information about contents or names of participating clinics."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:30
@@ -63,12 +63,12 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:1
 #: 818f50076b5e404699c97a3a310b837b
-msgid "The list of latest projects is only visible for users that have logged in to the application."
+msgid "The list of latest {term}`Project`s is only visible for users that have logged in to the application."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:36
 #: 96674ba90f3842d692f421de2865fbdc
-msgid "In the list of latest projects the user can see the last 5 projects the user has access to and that have changed the last time. This can be used to get a quick overview if there are recent changes to a project the user is interested in."
+msgid "In the list of latest {term}`Project`s the user can see the last 5 projects the user has access to and that have changed the last time. This can be used to get a quick overview if there are recent changes to a project the user is interested in."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:1
