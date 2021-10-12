@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-12 12:05+0200\n"
+"POT-Creation-Date: 2021-10-12 16:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,30 +21,30 @@ msgstr ""
 msgid "Glossary"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1 59af2acd28154624ab076c9ce5e25c32
-msgid "AQL"
+#: ../00_glossary/00_glossary.md:1 66905cc1c18e4359b92566a94060f878
+msgid "AQL : AQL"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 220cbfc86ee646bda2d34c85cfdfba59
 msgid ""
 "A special query language inspired by SQL to get data from an "
 "{term}`openEHR` like system. Can be used on all {term}`openEHR` systems "
-"to get data from stored EHRs."
+"to get data from stored {term}`EHRs<EHR>`."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:6 254140f974d24399abff2c31a2240654
-msgid "Cohort"
+#: ../00_glossary/00_glossary.md:6 d2bb84f2dab24830a8a701066eb53001
+msgid "Cohort : Cohort"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 584866f32356408c95e965884cb8b38a
 msgid ""
 "A combination and parametrized selection of {term}`Criteria` to restrict "
-"data output to a subset of EHRs, e.g. \"Vaccinated persons over the age "
-"of 18\" or \"All female persons over the age of 60\"."
+"data output to a subset of {term}`EHRs<EHR>`, e.g. \"Vaccinated persons "
+"over the age of 18\" or \"All female persons over the age of 60\"."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:11 f971bf17a8e4454cbd4912d53ff41c26
-msgid "Content Admin"
+#: ../00_glossary/00_glossary.md:11 92cf1dee225840068b5bc411f0400ce5
+msgid "Content Admin : Content Admin"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 f1fe1b0f831d46fb99523b01325eff85
@@ -53,8 +53,8 @@ msgid ""
 "Info Board and the  Navigation menu section."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:16 73099aaa7acb4839b052ea6d79c8ff14
-msgid "Criteria"
+#: ../00_glossary/00_glossary.md:16 55dc8a65945d4264985f81595b806050
+msgid "Criteria : Criteria"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 805fa862633e47448347ed5368a89f03
@@ -63,8 +63,8 @@ msgid ""
 "criteria to extract a sub set of data."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:21 f2449975e8fc4bc5b10eefe363c16075
-msgid "EHR"
+#: ../00_glossary/00_glossary.md:21 7c328719a070417daecd2a4edad7e1d5
+msgid "EHR : EHR"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 0624c3d38ac64d1aa61c41d85c24b0e4
@@ -74,8 +74,8 @@ msgid ""
 "time, e.g. duration of a clinical stay of the  person."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:27 1ed4a2e5b7ea42e69882114037e951cb
-msgid "NUM"
+#: ../00_glossary/00_glossary.md:27 76dbe6f721b34920bf392f8ee0552c7c
+msgid "NUM : NUM"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 a39b21c883de4552a67616531973dece
@@ -86,8 +86,8 @@ msgid ""
 "data sets."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:33 8bd8f8049354401ea9bccf87d4bbe67e
-msgid "openEHR"
+#: ../00_glossary/00_glossary.md:33 0cdd757d445d406582b088f78389e6af
+msgid "openEHR : openEHR"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 147da9768f7949048d96ea6ca14c79bb
@@ -102,8 +102,8 @@ msgid ""
 "information."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:40 95728aa593154e27ab5a3faaa13d7485
-msgid "Project"
+#: ../00_glossary/00_glossary.md:40 8d95a8fcb4554d1dab90f8f5bca51c70
+msgid "Project : Project"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 2a04bb2d84584510a40f6634c18074ac
@@ -125,8 +125,8 @@ msgid ""
 " are as well defined as the {term}`Researcher` who works with the data."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:51 099371a71c714e77867301f859a40a29
-msgid "Researcher"
+#: ../00_glossary/00_glossary.md:51 120935eda8e143e8a70efc4470f6eebb
+msgid "Researcher : Researcher"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 3904762efbaa49bfa83e4012b8220889
@@ -136,8 +136,8 @@ msgid ""
 "project."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:56 205fa36ecf62470cae228d3beda7795d
-msgid "Return Parameters"
+#: ../00_glossary/00_glossary.md:56 b17644a08612426e9d40b31a054ee97d
+msgid "Return Parameters : Return Parameters"
 msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 3f96a836f2b045ccb7f5373e0266f3ac
@@ -150,5 +150,52 @@ msgstr ""
 #~ "Open internation standard to store data"
 #~ " together with the semantic information "
 #~ "on how data has to be interpreted."
+#~ msgstr ""
+
+#~ msgid "AQL"
+#~ msgstr ""
+
+#~ msgid "Cohort"
+#~ msgstr ""
+
+#~ msgid "Content Admin"
+#~ msgstr ""
+
+#~ msgid "Criteria"
+#~ msgstr ""
+
+#~ msgid "EHR"
+#~ msgstr ""
+
+#~ msgid "NUM"
+#~ msgstr ""
+
+#~ msgid "openEHR"
+#~ msgstr ""
+
+#~ msgid "Project"
+#~ msgstr ""
+
+#~ msgid "Researcher"
+#~ msgstr ""
+
+#~ msgid "Return Parameters"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A special query language inspired by "
+#~ "SQL to get data from an "
+#~ "{term}`openEHR` like system. Can be used"
+#~ " on all {term}`openEHR` systems to "
+#~ "get data from stored EHRs."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "A combination and parametrized selection "
+#~ "of {term}`Criteria` to restrict data "
+#~ "output to a subset of EHRs, e.g."
+#~ " \"Vaccinated persons over the age of"
+#~ " 18\" or \"All female persons over"
+#~ " the age of 60\"."
 #~ msgstr ""
 
