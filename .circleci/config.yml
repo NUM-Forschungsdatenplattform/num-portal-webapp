@@ -38,11 +38,11 @@ workflows:
       - test:
           context: 
             - org-global
-            - test-slack-secrets
+            - slack-secrets
       - security_scan:
           context: 
             - org-global
-            - test-slack-secrets
+            - slack-secrets
           filters:
             branches:
               only:
@@ -201,9 +201,8 @@ commands:
   failed-build-slack-notification:
     steps:
       - slack/notify:
-          event: always
-          #event: fail
-          #branch_pattern: nightly-builds
+          event: fail
+          branch_pattern: nightly-builds
           custom: |
             {
               "blocks": [
