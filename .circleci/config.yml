@@ -29,7 +29,10 @@ workflows:
           context: 
             - org-global
             - slack-secrets
-      - security_scan
+      - security_scan:
+          context:
+            - org-global
+            - slack-secrets
   build_and_test:
     jobs:
       - test:
