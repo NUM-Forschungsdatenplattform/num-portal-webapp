@@ -8,7 +8,7 @@ and that is managed by {term}`Content Admin`s.
 ## Introduction / Statistics
 
 The first part includes a general introduction and welcome message to inform the user about the
-pupose of the platform. If you want to jump to the list of participating clinics you can use the
+purpose of the platform. If you want to jump to the list of participating clinics you can use the
 link at the end of the text.
 
 ```{figure} images/welcome_page_intro.png
