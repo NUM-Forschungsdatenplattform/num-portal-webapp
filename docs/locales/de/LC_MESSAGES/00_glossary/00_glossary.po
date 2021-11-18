@@ -31,7 +31,7 @@ msgid ""
 "to get data from stored {term}`EHRs<EHR>`."
 msgstr ""
 "Eine spezielle von SQL inspirierte Abfragesprache welche zum Abruf von "
-"Daten aus einekm {term}`openEHR<openEHR>` System genutzt werden kann. "
+"Daten aus einem {term}`openEHR<openEHR>` System genutzt werden kann. "
 "Kann in allen {term}`openEHR<openEHR>` Systemem dazu verwendet Daten von "
 "{term}`EHRs<EHR>` abzurufen."
 
