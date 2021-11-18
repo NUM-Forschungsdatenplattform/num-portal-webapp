@@ -32,6 +32,7 @@ caption: "Table of contents:"
 08_organizations/08_organizations.md
 09_content_editor/09_content_editor.md
 10_manager_tools/10_manager_tools.md
+00_glossary/00_glossary.md
 ```
 
 ## Indexes und tables

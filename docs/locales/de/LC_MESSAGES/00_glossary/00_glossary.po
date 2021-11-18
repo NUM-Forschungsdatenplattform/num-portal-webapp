@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-12 16:56+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: ../00_glossary/00_glossary.md:1 56ce5783422546848637374449a00d71
+msgid "Glossary"
+msgstr "Glossar"
+
+#: ../00_glossary/00_glossary.md:1 66905cc1c18e4359b92566a94060f878
+msgid "AQL : AQL"
+msgstr "AQL : AQL"
+
+#: ../00_glossary/00_glossary.md:1 220cbfc86ee646bda2d34c85cfdfba59
+msgid ""
+"A special query language inspired by SQL to get data from an "
+"{term}`openEHR` like system. Can be used on all {term}`openEHR` systems "
+"to get data from stored {term}`EHRs<EHR>`."
+msgstr ""
+"Eine spezielle von SQL inspirierte Abfragesprache welche zum Abruf von "
+"Daten aus einem {term}`openEHR<openEHR>` System genutzt werden kann. "
+"Kann in allen {term}`openEHR<openEHR>` Systemem dazu verwendet Daten von "
+"{term}`EHRs<EHR>` abzurufen."
+
+#: ../00_glossary/00_glossary.md:6 d2bb84f2dab24830a8a701066eb53001
+msgid "Cohort : Cohort"
+msgstr "Kohorte : Cohort"
+
+#: ../00_glossary/00_glossary.md:1 584866f32356408c95e965884cb8b38a
+msgid ""
+"A combination and parametrized selection of {term}`Criteria` to restrict "
+"data output to a subset of {term}`EHRs<EHR>`, e.g. \"Vaccinated persons "
+"over the age of 18\" or \"All female persons over the age of 60\"."
+msgstr ""
+"Eine Kombination und parameterisierte Auswahl von "
+"{term}`Kriterien<Criteria>` um die Ausgabedaten bei der Abfrage von "
+"{term}`EHRs<EHR>` einzugrenzen, z.B. \"Geimpfte personen über 18 Jahre\" oder "
+"\"Alle weiblichen Personen über 60 Jahre\"."
+
+#: ../00_glossary/00_glossary.md:11 92cf1dee225840068b5bc411f0400ce5
+msgid "Content Admin : Content Admin"
+msgstr "Inhalts-Administrator : Content Admin"
+
+#: ../00_glossary/00_glossary.md:1 f1fe1b0f831d46fb99523b01325eff85
+msgid ""
+"A role of users that is allowed to add, modify and delete content to the "
+"Info Board and the  Navigation menu section."
+msgstr ""
+"Eine Benutzerrolle die dem Benutzer erlaubt, Inhalte zum Info-Boards oder"
+" der Naviagtion hinzuzufügen, zu ändern oder zu löschen."
+
+#: ../00_glossary/00_glossary.md:16 55dc8a65945d4264985f81595b806050
+msgid "Criteria : Criteria"
+msgstr "Kriterien : Criteria"
+
+#: ../00_glossary/00_glossary.md:1 805fa862633e47448347ed5368a89f03
+msgid ""
+"A special description in {term}`AQL` sytax that describes a filter "
+"criteria to extract a sub set of data."
+msgstr ""
+"Eine Abfragebeschreibung in {term}`AQL<AQL>` Syntax welche ein "
+"Filterkriterium definiert um eine Untermenge von Daten zu extrahieren."
+
+#: ../00_glossary/00_glossary.md:21 7c328719a070417daecd2a4edad7e1d5
+msgid "EHR : EHR"
+msgstr "EHR : EHR"
+
+#: ../00_glossary/00_glossary.md:1 0624c3d38ac64d1aa61c41d85c24b0e4
+msgid ""
+"Electronic health record. A data record that is connected to a person and"
+" collects all treatments and measurements during a specific period of "
+"time, e.g. duration of a clinical stay of the  person."
+msgstr ""
+"Electonic health record - Elektronische Patientenakte. Ein einer Person "
+"zugeordneter Datensatz welcher alle Anwendungen und Messungen zu einem "
+"gegebenen Zeitraum gruppiert, z.B. über die Dauer eines Klinik-"
+"Aufenthaltes."
+
+#: ../00_glossary/00_glossary.md:27 76dbe6f721b34920bf392f8ee0552c7c
+msgid "NUM : NUM"
+msgstr "NUM : NUM"
+
+#: ../00_glossary/00_glossary.md:1 a39b21c883de4552a67616531973dece
+msgid ""
+"Netzwerk Universitätsmedizin. A collaboration of clinics in Germany that "
+"work together in several specific medical applications. In case of CODEX "
+"the goal is to implement a data exchange platform for researchers on big "
+"data sets."
+msgstr ""
+"Netzwerk Universitätsmedizin. Eine Kollaboration von Kliniken in "
+"Deutschland welche die Zusammenarbeit in mehreren speziellen "
+"medizinischen Anwendungen zum Ziel hat. Im Fall von CODEX ist das Ziel "
+"die Umsetzung einer Forschungsdatenplattform für Forschungprojekte mit "
+"verteilten und umfangreichen Datenbeständen."
+
+#: ../00_glossary/00_glossary.md:33 0cdd757d445d406582b088f78389e6af
+msgid "openEHR : openEHR"
+msgstr "openEHR : openEHR"
+
+#: ../00_glossary/00_glossary.md:1 147da9768f7949048d96ea6ca14c79bb
+msgid ""
+"Open international standard to store data together with the semantic "
+"information on how data has to be interpreted."
+msgstr ""
+"Offener, internationaler Standard für die Speicherung von Daten inklusive"
+" der sematischen Informationen darüber, wie die Daten zu interpretieren "
+"sind."
+
+#: ../00_glossary/00_glossary.md:4 84051772c201449cb67a511cdecf9c51
+msgid ""
+"See [openEHR project website](https://www.openehr.org) for more "
+"information."
+msgstr ""
+"Siehe [openEHR Projektwebseite](https://www.openehr.org) für weitere "
+"Informationen."
+
+#: ../00_glossary/00_glossary.md:40 8d95a8fcb4554d1dab90f8f5bca51c70
+msgid "Project : Project"
+msgstr "Projekt : Project"
+
+#: ../00_glossary/00_glossary.md:1 2a04bb2d84584510a40f6634c18074ac
+msgid ""
+"A project contains the meta and control data to stear research on a "
+"specific topic and subset of data extracted from the data pool."
+msgstr ""
+"Ein Projekt enthält die Meta- und Kontrolldaten um die Forschung zu einem"
+" bestimmten Thema und einer Untermenge an Daten zu steuern."
+
+#: ../00_glossary/00_glossary.md:4 5200fd14bc424545b62f78fde26d36af
+msgid ""
+"It contains the {term}`Cohort` definition as well as general information "
+"like the purpose, hypothesis or period of time the project is intended to"
+" run."
+msgstr ""
+"Es enthält die Definition der {term}`Kohorte<Cohort>` sowie allgemeine "
+"Inforamtioen wie den Zweck, Hypothesen als auch den Zeitraum der für die "
+"Laufzeit des Projekts vorgesehen ist."
+
+#: ../00_glossary/00_glossary.md:7 b445be362dfb47019abb85e881fc7b3a
+msgid ""
+"For the data retrieval and work on the data all {term}`Return Parameters`"
+" are as well defined as the {term}`Researcher` who works with the data."
+msgstr ""
+"Für den Abruf von und die Arbeit mit den Projektdaten werden im Projekt "
+"zusätzlich die {term}`Rückgabeparameter<Return Parameters>` und die "
+"{term}`Forscher<Researcher>` definiert welche mit den Daten arbeiten "
+"sollen."
+
+#: ../00_glossary/00_glossary.md:51 120935eda8e143e8a70efc4470f6eebb
+msgid "Researcher : Researcher"
+msgstr "Forscher : Researcher"
+
+#: ../00_glossary/00_glossary.md:1 3904762efbaa49bfa83e4012b8220889
+msgid ""
+"A natural person that works inside a project on the data and is allowed "
+"to retrieve the data. A researcher can only see the data assigned to a "
+"project."
+msgstr ""
+"Eine natürliche Person welche in einem Projekt arbeitet und dazu "
+"berechtigt ist Daten im Rahmen des Projekts abzufragen. Ein Forscher kann"
+" nur die Daten sehen, die zum jeweiligen Projekt zugeordnet werden."
+
+#: ../00_glossary/00_glossary.md:56 b17644a08612426e9d40b31a054ee97d
+msgid "Return Parameters : Return Parameters"
+msgstr "Rückgabeparameter : Return Parameters"
+
+#: ../00_glossary/00_glossary.md:1 3f96a836f2b045ccb7f5373e0266f3ac
+msgid ""
+"The clinical models that are used in a data retrieval. These models are "
+"usually defined in an {term}`openEHR` template."
+msgstr ""
+"Die Klinischen Modelle die in der Datenabfrage verwendet werden sollen. "
+"Diese Modelle werden in der Regel über ein {term}`openEHR<openEHR>` "
+"Template beschrieben."
+
