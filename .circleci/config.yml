@@ -50,7 +50,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master)$/
+                - /^(release\/v\d+\.\d+\.\d+|hotfix\/v\d+\.\d+\.\d+|master|develop)$/
       - tag_version:
           requires:
             - test
