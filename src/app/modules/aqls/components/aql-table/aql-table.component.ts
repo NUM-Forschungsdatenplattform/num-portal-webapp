@@ -225,8 +225,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
       case 'category': {
         return newData.sort((a, b) =>
           compareLocaleStringValues(
-            !!a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
-            !!b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
+            a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
+            b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
             a.id,
             b.id,
             isAsc

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 
@@ -23,7 +23,7 @@ import { IProjectComment } from 'src/app/shared/models/project/project-comment.i
   templateUrl: './project-editor-comments.component.html',
   styleUrls: ['./project-editor-comments.component.scss'],
 })
-export class ProjectEditorCommentsComponent implements OnInit {
+export class ProjectEditorCommentsComponent {
   constructor() {}
 
   @Input() isLoadingComplete: boolean
@@ -32,8 +32,6 @@ export class ProjectEditorCommentsComponent implements OnInit {
   @Output() postComment = new EventEmitter()
 
   commentLimit = true
-
-  ngOnInit(): void {}
 
   toggleCommentLimit(): void {
     this.commentLimit = !this.commentLimit

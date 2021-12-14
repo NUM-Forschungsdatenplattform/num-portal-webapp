@@ -32,6 +32,7 @@ import {
   timePortalRegExp,
 } from './regular-expressions/datetime.regex'
 
+/* eslint-disable no-useless-escape */
 export const numAqlTokenProvider: monaco.languages.IMonarchLanguage = {
   ignoreCase: true,
 

@@ -85,8 +85,8 @@ describe('DataExplorerComponent', () => {
 
   const dialogService = {
     openDialog: jest.fn().mockImplementation(() => ({
-        afterClosed: () => afterClosedSubject$.asObservable(),
-      })),
+      afterClosed: () => afterClosedSubject$.asObservable(),
+    })),
   } as unknown as DialogService
 
   const aqlEditorService = {

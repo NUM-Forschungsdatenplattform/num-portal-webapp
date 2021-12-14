@@ -26,9 +26,8 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
-import { ADD_DIALOG_CONFIG, SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
+import { SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 
 import { WelcomePageEditorComponent } from './welcome-page-editor.component'
 
@@ -125,15 +124,6 @@ describe('WelcomePageEditorComponent', () => {
   })
 
   describe('On the attempt to add a new item', () => {
-    let dialogConfig: DialogConfig
-
-    beforeEach(() => {
-      dialogConfig = {
-        ...ADD_DIALOG_CONFIG,
-        dialogContentPayload: component.buildFormInput(),
-      }
-    })
-
     it('should open the dialog with the dialogConfig', () => {
       component.addItem()
       expect(mockDialogService.openDialog).toHaveBeenCalled()

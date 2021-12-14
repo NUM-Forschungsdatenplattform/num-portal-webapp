@@ -230,7 +230,7 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfo)
-      const result = await guard.canLoad(route)
+      await guard.canLoad(route)
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
     })
   })
@@ -304,7 +304,7 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(false)
       jest.spyOn(authService, 'login')
 
-      const result = await guard.canActivate(activatedRoute, state)
+      await guard.canActivate(activatedRoute, state)
       expect(authService.login).toHaveBeenCalledWith('http://localhost/test/url')
     })
 
@@ -312,7 +312,7 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(false)
       jest.spyOn(authService, 'login')
 
-      const result = await guard.canLoad(route)
+      await guard.canLoad(route)
       expect(authService.login).toHaveBeenCalledWith('http://localhost/test/url')
     })
   })

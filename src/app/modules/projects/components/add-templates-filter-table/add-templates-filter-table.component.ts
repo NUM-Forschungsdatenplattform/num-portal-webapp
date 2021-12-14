@@ -65,7 +65,7 @@ export class AddTemplatesFilterTableComponent
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'selectedTemplates': {
             const changedData = changes[propName].currentValue as IProjectTemplateInfoApi[]

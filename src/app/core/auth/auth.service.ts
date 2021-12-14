@@ -22,6 +22,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
 import { ProfileService } from '../services/profile/profile.service'
 
 @Injectable({
@@ -79,30 +80,28 @@ export class AuthService {
       .pipe(catchError(() => of()))
   }
 
-  fetchUserInfo(): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      if (!this.isLoggedIn) {
-        return resolve()
-      }
+  async fetchUserInfo(): Promise<void> {
+    if (!this.isLoggedIn) {
+      return
+    }
 
-      let userInfo
+    let userInfo: IAuthUserProfile
 
-      try {
-        userInfo = await this.oauthService.loadUserProfile()
-      } catch (error) {
-        this.clearUserInfo()
-        return reject('Failed to fetch userInfo')
-      }
+    try {
+      userInfo = await this.oauthService.loadUserProfile()
+    } catch (error) {
+      this.clearUserInfo()
+      throw new Error('Failed to fetch userInfo')
+    }
 
-      if (this.userInfo.sub !== userInfo?.sub) {
-        await this.createUser(userInfo.sub).toPromise()
-      }
+    if (this.userInfo.sub !== userInfo?.info?.sub) {
+      await this.createUser(userInfo.info.sub).toPromise()
+    }
 
-      this.userInfo = userInfo
-      this.userInfoSubject$.next(this.userInfo)
+    this.userInfo = userInfo.info
+    this.userInfoSubject$.next(this.userInfo)
 
-      this.profileService.get().subscribe()
-    })
+    this.profileService.get().subscribe()
   }
 
   private clearUserInfo(): void {

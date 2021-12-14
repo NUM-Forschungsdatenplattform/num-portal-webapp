@@ -69,7 +69,7 @@ export class ContentService {
     return this.httpClient
       .post<INavigationLink[]>(`${this.baseUrl}/navigation`, navigationLinks, httpOptions)
       .pipe(
-        tap((links) => {
+        tap((_links) => {
           this.navigationLinks = navigationLinks
           this.navigationLinksSubject$.next(navigationLinks)
         }),

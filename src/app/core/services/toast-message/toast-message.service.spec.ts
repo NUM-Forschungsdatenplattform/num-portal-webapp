@@ -15,7 +15,7 @@
  */
 
 import { ToastMessageService } from './toast-message.service'
-import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'

@@ -87,6 +87,7 @@ describe('AqlService', () => {
       try {
         await service.getAll().toPromise()
       } catch (err) {
+        //
       } finally {
         expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
         expect(service.handleError).toHaveBeenCalled()

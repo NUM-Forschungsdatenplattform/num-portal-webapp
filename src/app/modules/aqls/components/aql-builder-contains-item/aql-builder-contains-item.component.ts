@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contains-item-ui.model'
 
 @Component({
@@ -22,7 +22,7 @@ import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contai
   templateUrl: './aql-builder-contains-item.component.html',
   styleUrls: ['./aql-builder-contains-item.component.scss'],
 })
-export class AqlBuilderContainsItemComponent implements OnInit {
+export class AqlBuilderContainsItemComponent {
   constructor() {}
 
   @Input()
@@ -30,8 +30,6 @@ export class AqlBuilderContainsItemComponent implements OnInit {
 
   @Output()
   deleteItemByArchetypeReferenceId = new EventEmitter<number>()
-
-  ngOnInit(): void {}
 
   deleteSelf(): void {
     this.deleteItemByArchetypeReferenceId.emit(this.item.archetypeReferenceId)

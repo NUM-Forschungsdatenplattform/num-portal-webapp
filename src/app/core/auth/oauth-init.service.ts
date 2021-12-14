@@ -34,11 +34,11 @@ export class OAuthInitService {
   private AUTH_CONFIG: AuthConfig
 
   constructor(private oauthService: OAuthService, private appConfig: AppConfigService) {}
-
   public initOAuth(): Promise<boolean> {
     let terminationTimer: number
     this.initVariables()
 
+    // eslint-disable-next-line
     return new Promise(async (resolve, reject) => {
       const terminationTimeout = new Promise((_, onTimeout) => {
         terminationTimer = window.setTimeout(() => {
@@ -59,7 +59,7 @@ export class OAuthInitService {
             })
           })
         })
-        .catch((error) => {
+        .catch((_error) => {
           return reject(this.ERROR_UNREACHABLE)
         })
 

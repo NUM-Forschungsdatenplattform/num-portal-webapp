@@ -56,7 +56,7 @@ export class AqlEditorService {
 
   getContainment(id: string): Observable<IContainmentNode> {
     const cachedContainment = this.containmentCache[id]
-    if (!!cachedContainment) {
+    if (cachedContainment) {
       return of(cachedContainment)
     }
 

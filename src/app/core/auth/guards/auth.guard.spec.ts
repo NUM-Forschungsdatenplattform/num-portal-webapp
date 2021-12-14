@@ -74,7 +74,7 @@ describe('AuthGuard', () => {
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(false)
       jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
 
-      const result = await guard.canActivate(activatedRoute, state)
+      await guard.canActivate(activatedRoute, state)
       expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalledWith({
         customRedirectUri: host + state.url,
       })
@@ -85,7 +85,7 @@ describe('AuthGuard', () => {
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(false)
       jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
 
-      const result = await guard.canLoad(route)
+      await guard.canLoad(route)
       expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalledWith({
         customRedirectUri: host + '/' + path,
       })

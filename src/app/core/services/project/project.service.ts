@@ -126,7 +126,7 @@ export class ProjectService {
       switchMap((project) => {
         if (project.status === newStatus) {
           return of(project)
-        } else if (!!isStatusSwitchable[project.status][newStatus]) {
+        } else if (isStatusSwitchable[project.status][newStatus]) {
           switch (newStatus) {
             case ProjectStatus.ToBeDeleted:
               return this.delete(project.id)

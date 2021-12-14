@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'num-patient-count-info',
   templateUrl: './patient-count-info.component.html',
   styleUrls: ['./patient-count-info.component.scss'],
 })
-export class PatientCountInfoComponent implements OnInit {
+export class PatientCountInfoComponent {
   @Input() patientCount: number
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

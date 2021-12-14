@@ -20,18 +20,18 @@ import ResizeObserver from 'resize-observer-polyfill'
 Object.defineProperty(window, 'CSS', { value: null })
 Object.defineProperty(window, 'getComputedStyle', {
   value: () => ({
-      display: 'none',
-      appearance: ['-webkit-appearance'],
-      getPropertyValue: () => {},
-    }),
+    display: 'none',
+    appearance: ['-webkit-appearance'],
+    getPropertyValue: () => {},
+  }),
 })
 
 Object.defineProperty(window, 'matchMedia', {
   value: () => ({
-      matches: false,
-      addListener: () => {},
-      removeListener: () => {},
-    }),
+    matches: false,
+    addListener: () => {},
+    removeListener: () => {},
+  }),
 })
 
 window.ResizeObserver = ResizeObserver
@@ -42,9 +42,9 @@ Object.defineProperty(document, 'doctype', {
 
 Object.defineProperty(document.body.style, 'transform', {
   value: () => ({
-      enumerable: true,
-      configurable: true,
-    }),
+    enumerable: true,
+    configurable: true,
+  }),
 })
 
 Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {

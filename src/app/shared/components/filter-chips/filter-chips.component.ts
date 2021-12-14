@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IFilterItem } from '../../models/filter-chip.interface'
 
 @Component({
@@ -22,13 +22,11 @@ import { IFilterItem } from '../../models/filter-chip.interface'
   templateUrl: './filter-chips.component.html',
   styleUrls: ['./filter-chips.component.scss'],
 })
-export class FilterChipsComponent implements OnInit {
+export class FilterChipsComponent {
   constructor() {}
   @Input() filterChips: IFilterItem<string | number>[]
   @Input() multiSelect: boolean
   @Output() selectionChange = new EventEmitter()
-
-  ngOnInit(): void {}
 
   handleClickOnChip($event: any): void {
     if (!this.multiSelect) {

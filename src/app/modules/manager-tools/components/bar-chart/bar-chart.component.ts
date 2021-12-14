@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
 
@@ -23,7 +23,7 @@ import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
 })
-export class BarChartComponent implements OnInit {
+export class BarChartComponent {
   private chart: IBarChart
   @Input() set chartData(chart: IBarChart) {
     if (chart) {
@@ -51,8 +51,6 @@ export class BarChartComponent implements OnInit {
   }
 
   results: any[] = []
-
-  ngOnInit(): void {}
 
   handleData(): void {
     this.xAxisLabel = this.translateService.instant(this.chart.xLabel)

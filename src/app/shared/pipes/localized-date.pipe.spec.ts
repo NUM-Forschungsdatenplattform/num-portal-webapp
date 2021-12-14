@@ -26,7 +26,7 @@ describe('LocalizedDatePipe', () => {
   } as TranslateService
 
   const datePipe = {
-    transform: (value, format, timezone, locale) => '',
+    transform: (_value: any, _format: any, _timezone: any, _locale: any) => '',
   } as DatePipe
 
   beforeEach(() => {

@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http'
-import { TestBed } from '@angular/core/testing'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 
@@ -54,7 +53,7 @@ describe('ManagerService', () => {
         .then(() => {
           // Nothing here, we just need the catch
         })
-        .catch((error) => {
+        .catch((_error) => {
           expect(httpClient.get).toHaveBeenCalledWith(
             `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
             { responseType: 'text' }

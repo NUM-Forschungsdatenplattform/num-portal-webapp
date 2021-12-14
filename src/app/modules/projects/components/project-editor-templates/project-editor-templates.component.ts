@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
@@ -25,7 +25,7 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
   templateUrl: './project-editor-templates.component.html',
   styleUrls: ['./project-editor-templates.component.scss'],
 })
-export class ProjectEditorTemplatesComponent implements OnInit {
+export class ProjectEditorTemplatesComponent {
   constructor(private dialogService: DialogService) {}
 
   templatesValue: IProjectTemplateInfoApi[] = []
@@ -39,8 +39,6 @@ export class ProjectEditorTemplatesComponent implements OnInit {
     this.templatesValue = templates
     this.templatesChange.emit(templates)
   }
-
-  ngOnInit(): void {}
 
   addTemplate(): void {
     const dialogContentPayload = this.templates

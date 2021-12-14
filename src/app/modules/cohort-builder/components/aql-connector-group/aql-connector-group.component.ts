@@ -96,7 +96,7 @@ export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy 
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'parentGroupIndex': {
             this.enumerateGroupsDebounced()

@@ -262,7 +262,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             this.resultSet = resultSet
             this.isDataSetLoading = false
           },
-          (err) => {
+          (_err) => {
             this.isDataSetLoading = false
             this.resultSet = undefined
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)

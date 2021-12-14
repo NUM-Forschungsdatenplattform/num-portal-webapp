@@ -84,8 +84,8 @@ describe('ProjectEditorComponent', () => {
   const afterClosedSubject$ = new Subject()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => ({
-        afterClosed: () => afterClosedSubject$.asObservable(),
-      })),
+      afterClosed: () => afterClosedSubject$.asObservable(),
+    })),
   } as unknown as DialogService
 
   const resolvedData: IProjectResolved = {

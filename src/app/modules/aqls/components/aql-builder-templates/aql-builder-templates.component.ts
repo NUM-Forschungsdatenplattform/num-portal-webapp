@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewChecked, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { AfterViewChecked, Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
@@ -25,7 +25,7 @@ import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-d
   templateUrl: './aql-builder-templates.component.html',
   styleUrls: ['./aql-builder-templates.component.scss'],
 })
-export class AqlBuilderTemplatesComponent implements OnInit, AfterViewChecked {
+export class AqlBuilderTemplatesComponent implements AfterViewChecked {
   constructor() {}
 
   @Input()
@@ -44,8 +44,6 @@ export class AqlBuilderTemplatesComponent implements OnInit, AfterViewChecked {
   selectedItem = new EventEmitter<IAqbSelectClick>()
 
   isViewRendered = false
-
-  ngOnInit(): void {}
 
   ngAfterViewChecked(): void {
     if (!this.isViewRendered) {

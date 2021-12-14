@@ -46,7 +46,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
 
   constructor(
     aql: Partial<IAqlApi>,
-    isNegated: boolean = false,
+    isNegated = false,
     parameters?: IDictionary<string, string | number | boolean>
   ) {
     this.type = ConnectorNodeType.Aql

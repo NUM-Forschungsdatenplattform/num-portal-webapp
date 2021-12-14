@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
@@ -24,7 +24,7 @@ import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
   templateUrl: './aql-builder-where.component.html',
   styleUrls: ['./aql-builder-where.component.scss'],
 })
-export class AqlBuilderWhereComponent implements OnInit {
+export class AqlBuilderWhereComponent {
   AqbSelectDestination = AqbSelectDestination
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode
   constructor() {}
@@ -34,8 +34,6 @@ export class AqlBuilderWhereComponent implements OnInit {
 
   @Input()
   dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
-
-  ngOnInit(): void {}
 
   setDestination(): void {
     this.aqbModel.selectDestination = AqbSelectDestination.Where

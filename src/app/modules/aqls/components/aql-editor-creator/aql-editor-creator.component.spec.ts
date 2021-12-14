@@ -104,7 +104,7 @@ describe('AqlEditorCeatorComponent', () => {
   const mockAqlEditorService = {
     buildAql: jest
       .fn()
-      .mockImplementation((aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
+      .mockImplementation((_aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
     validateAql: jest.fn(),
   } as unknown as AqlEditorService
 

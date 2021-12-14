@@ -25,19 +25,15 @@ export class MonacoLoaderService {
 
   isLoaded: boolean
 
-  loadMonaco(): Promise<void> {
-    return new Promise(async (resolve) => {
-      if (this.isLoaded || typeof (window as any).monaco === 'object') {
-        return resolve()
-      } else {
-        if (!(window as any).require) {
-          await this.getLoaderJs()
-        }
-        this.fetchMonacoWithAmd().then(() => {
-          return resolve()
-        })
+  async loadMonaco(): Promise<void> {
+    if (this.isLoaded || typeof (window as any).monaco === 'object') {
+      return
+    } else {
+      if (!(window as any).require) {
+        await this.getLoaderJs()
       }
-    })
+      await this.fetchMonacoWithAmd()
+    }
   }
 
   private fetchMonacoWithAmd(): Promise<void> {

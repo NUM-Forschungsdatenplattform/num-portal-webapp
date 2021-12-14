@@ -19,6 +19,7 @@ import { Router } from '@angular/router'
 import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
@@ -32,13 +33,17 @@ describe('Auth Service', () => {
 
   let eventSubject: Subject<any>
 
+  const mockAuthProfile: IAuthUserProfile = {
+    info: mockOAuthUser,
+  }
+
   const oauthService = {
     logOut: () => {},
     initCodeFlow: () => {},
     state: undefined,
     hasValidIdToken: jest.fn().mockImplementation(() => true),
     hasValidAccessToken: jest.fn().mockImplementation(() => true),
-    loadUserProfile: jest.fn().mockImplementation(() => of(mockOAuthUser)),
+    loadUserProfile: jest.fn().mockImplementation(() => of(mockAuthProfile)),
   } as unknown as OAuthService
 
   const httpClient = {
@@ -108,10 +113,9 @@ describe('Auth Service', () => {
     })
 
     it('should call the api to create the user on the first call if its a token event', (done) => {
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(mockOAuthUser)
+      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(mockAuthProfile)
       jest.spyOn(httpClient, 'post').mockImplementation((post) => {
         expect(true).toBeTruthy()
-        console.log(post)
         done()
         return of()
       })

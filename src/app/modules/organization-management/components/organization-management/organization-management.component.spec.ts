@@ -31,9 +31,7 @@ import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { OrganizationManagementComponent } from './organization-management.component'
 
 describe('OrganizationManagementComponent', () => {
-  let component: OrganizationManagementComponent
   let fixture: ComponentFixture<OrganizationManagementComponent>
-  let router: Router
 
   const organizationService = {
     getAll: jest.fn().mockImplementation(() => of()),
@@ -75,7 +73,7 @@ describe('OrganizationManagementComponent', () => {
   })
 
   beforeEach(() => {
-    router = TestBed.inject(Router)
+    TestBed.inject(Router)
     jest.restoreAllMocks()
     jest.clearAllMocks()
     jest.spyOn(organizationService, 'getAll')
@@ -84,7 +82,6 @@ describe('OrganizationManagementComponent', () => {
   describe('When the components gets initialized', () => {
     it('should call the getAll method', () => {
       fixture = TestBed.createComponent(OrganizationManagementComponent)
-      component = fixture.componentInstance
 
       fixture.detectChanges()
       expect(organizationService.getAll).toHaveBeenCalled()

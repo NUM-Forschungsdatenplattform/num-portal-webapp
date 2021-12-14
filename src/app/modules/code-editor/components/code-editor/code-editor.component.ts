@@ -21,7 +21,6 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  OnInit,
   Output,
   ViewChild,
 } from '@angular/core'
@@ -39,7 +38,7 @@ import { environment } from 'src/environments/environment'
   templateUrl: './code-editor.component.html',
   styleUrls: ['./code-editor.component.scss'],
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
+export class CodeEditorComponent implements AfterViewInit, OnDestroy {
   /* istanbul ignore next */
   private readonly throttleTime = environment.name === 'test' ? 50 : 500
   readonly LANG_NAME = 'num-aql'
@@ -65,8 +64,6 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() valueChange = new EventEmitter<string>()
 
   @Output() editorInit = new EventEmitter<monaco.editor.IStandaloneCodeEditor>()
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.monacoLoaderService.loadMonaco().then(() => {
@@ -121,7 +118,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   attachEditorEvents(): void {
-    this.codeEditor.onDidChangeModelContent((event: monaco.editor.IModelContentChangedEvent) => {
+    this.codeEditor.onDidChangeModelContent((_event: monaco.editor.IModelContentChangedEvent) => {
       this.componentValue = this.codeEditor.getValue()
       this.valueChange.emit(this.componentValue)
     })

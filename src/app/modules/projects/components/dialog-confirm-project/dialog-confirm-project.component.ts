@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, OnInit } from '@angular/core'
+import { Component, EventEmitter } from '@angular/core'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
 @Component({
@@ -22,13 +22,11 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   templateUrl: './dialog-confirm-project.component.html',
   styleUrls: ['./dialog-confirm-project.component.scss'],
 })
-export class DialogConfirmProjectComponent implements OnInit, IGenericDialog<string> {
+export class DialogConfirmProjectComponent implements IGenericDialog<string> {
   constructor() {}
 
   dialogInput: string
   closeDialog = new EventEmitter<boolean>()
-
-  ngOnInit(): void {}
 
   handleDialogCancel(): void {
     this.closeDialog.emit(false)

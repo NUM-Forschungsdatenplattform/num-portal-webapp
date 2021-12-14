@@ -106,7 +106,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .catch((error) => {
+        .catch((_error) => {
           expect(router.navigate).toHaveBeenCalledWith(['organizations'])
           done()
         })
@@ -127,7 +127,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .catch((error) => {
+        .catch((_error) => {
           expect(router.navigate).toHaveBeenCalledWith([
             'organizations',
             mockOrganization1.id,
@@ -173,7 +173,7 @@ describe('OrganizationResolver', () => {
       resolver
         .resolve(activatedRoute, state)
         .toPromise()
-        .catch((error) => {
+        .catch((_error) => {
           expect(router.navigate).toHaveBeenCalledWith(['organizations'])
           done()
         })
