@@ -176,7 +176,7 @@ describe('AqlEditorComponent', () => {
       }
     })
 
-    it('should validate the aql and call the AQL save method with success', async (done) => {
+    it('should validate the aql and call the AQL save method with success', (done) => {
       jest.spyOn(component.aqlCreator, 'validate').mockResolvedValue(true)
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)

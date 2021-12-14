@@ -28,7 +28,7 @@ describe('BarChartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BarChartComponent],
-      imports: [NgxChartsModule, TranslateModule.forRoot(), BrowserAnimationsModule],
+      imports: [TranslateModule.forRoot(), BrowserAnimationsModule, NgxChartsModule],
     }).compileComponents()
   })
 

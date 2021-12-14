@@ -91,12 +91,10 @@ describe('OAuth Init Service', () => {
       expect(authService.setupAutomaticSilentRefresh).toHaveBeenCalled()
     })
 
-    it('should try to login and try the silent refresh', async (done) => {
+    it('should try to login and try the silent refresh', (done) => {
       jest.spyOn(authService, 'configure')
       jest.spyOn(authService, 'loadDiscoveryDocument').mockResolvedValue(undefined)
-      jest.spyOn(authService, 'tryLoginCodeFlow').mockImplementation(() => {
-        return Promise.reject()
-      })
+      jest.spyOn(authService, 'tryLoginCodeFlow').mockImplementation(() => Promise.reject())
       jest.spyOn(authService, 'silentRefresh').mockImplementation(() => {
         expect(true).toBeTruthy()
         done()
@@ -104,7 +102,7 @@ describe('OAuth Init Service', () => {
       })
       jest.spyOn(authService, 'setupAutomaticSilentRefresh')
 
-      await initService.initOAuth()
+      initService.initOAuth()
 
       expect(authService.tryLoginCodeFlow).toHaveBeenCalled()
     })
@@ -112,9 +110,7 @@ describe('OAuth Init Service', () => {
 
   describe('When OAuth Server gets initialized with no success', () => {
     it('fails', async () => {
-      jest.spyOn(authService, 'loadDiscoveryDocument').mockImplementation(() => {
-        return Promise.reject()
-      })
+      jest.spyOn(authService, 'loadDiscoveryDocument').mockImplementation(() => Promise.reject())
 
       initService.initOAuth().catch((error) => {
         expect(error).toBeDefined()

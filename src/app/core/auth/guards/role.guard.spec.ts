@@ -115,7 +115,7 @@ describe('RoleGuard', () => {
       groups: ['user', 'has', 'required', 'role'],
     }
 
-    it('grants no access to the route in [canActivate] guard and redirects to home', async (done) => {
+    it('grants no access to the route in [canActivate] guard and redirects to home', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
@@ -129,7 +129,7 @@ describe('RoleGuard', () => {
       userInfoSubject$.next(userInfoUndefined)
     })
 
-    it('grants no access to the route in [canLoad] guard and redirects to home', async (done) => {
+    it('grants no access to the route in [canLoad] guard and redirects to home', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
@@ -145,7 +145,7 @@ describe('RoleGuard', () => {
 
     //
 
-    it('grants access to the route in [canActivate] guard if the userInfo is pushed within 2000ms', async (done) => {
+    it('grants access to the route in [canActivate] guard if the userInfo is pushed within 2000ms', (done) => {
       jest.useFakeTimers()
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
@@ -162,7 +162,7 @@ describe('RoleGuard', () => {
       userInfoSubject$.next(userInfoCorrect)
     })
 
-    it('grants access to the route in [canLoad] guard if the userInfo is pushed within 2000ms', async (done) => {
+    it('grants access to the route in [canLoad] guard if the userInfo is pushed within 2000ms', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
@@ -180,7 +180,7 @@ describe('RoleGuard', () => {
 
     //
 
-    it('grants no access to the route in [canActivate] guard if the userInfo is pushed within 2000ms with wrong roles', async (done) => {
+    it('grants no access to the route in [canActivate] guard if the userInfo is pushed within 2000ms with wrong roles', (done) => {
       jest.useFakeTimers()
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
@@ -267,7 +267,7 @@ describe('RoleGuard', () => {
       userInfoSubject$.next(userInfoWithoutRoles)
     })
 
-    it('grants no access to the route in [canLoad] guard', async (done) => {
+    it('grants no access to the route in [canLoad] guard', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       userInfoSubject$.next(userInfoWithoutRoles)
 

@@ -15,49 +15,42 @@
  */
 
 import 'jest-preset-angular/setup-jest'
+import ResizeObserver from 'resize-observer-polyfill'
 
 Object.defineProperty(window, 'CSS', { value: null })
 Object.defineProperty(window, 'getComputedStyle', {
-  value: () => {
-    return {
+  value: () => ({
       display: 'none',
       appearance: ['-webkit-appearance'],
       getPropertyValue: () => {},
-    }
-  },
+    }),
 })
 
 Object.defineProperty(window, 'matchMedia', {
-  value: () => {
-    return {
+  value: () => ({
       matches: false,
       addListener: () => {},
       removeListener: () => {},
-    }
-  },
+    }),
 })
+
+window.ResizeObserver = ResizeObserver
 
 Object.defineProperty(document, 'doctype', {
   value: '<!DOCTYPE html>',
 })
 
 Object.defineProperty(document.body.style, 'transform', {
-  value: () => {
-    return {
+  value: () => ({
       enumerable: true,
       configurable: true,
-    }
-  },
+    }),
 })
 
 Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-  value: () => {
-    return null
-  },
+  value: () => null,
 })
 
 Object.defineProperty(URL, 'createObjectURL', {
-  value: () => {
-    return 'https://test-link.com'
-  },
+  value: () => 'https://test-link.com',
 })

@@ -45,19 +45,23 @@ describe('ManagerService', () => {
       expect(result).toEqual(resolvedValue)
     })
 
-    it('should call the api and handle errors', async (done) => {
+    it('should call the api and handle errors', (done) => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
 
-      try {
-        await service.resolvePseudonym(projectId, pseudonym).toPromise()
-      } catch (error) {
-        expect(httpClient.get).toHaveBeenCalledWith(
-          `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
-          { responseType: 'text' }
-        )
-        expect(service.handleError).toHaveBeenCalled()
-        done()
-      }
+      service
+        .resolvePseudonym(projectId, pseudonym)
+        .toPromise()
+        .then(() => {
+          // Nothing here, we just need the catch
+        })
+        .catch((error) => {
+          expect(httpClient.get).toHaveBeenCalledWith(
+            `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
+            { responseType: 'text' }
+          )
+          expect(service.handleError).toHaveBeenCalled()
+          done()
+        })
     })
   })
 })

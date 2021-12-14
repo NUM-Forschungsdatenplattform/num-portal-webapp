@@ -84,11 +84,9 @@ describe('DataExplorerComponent', () => {
   const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
 
   const dialogService = {
-    openDialog: jest.fn().mockImplementation(() => {
-      return {
+    openDialog: jest.fn().mockImplementation(() => ({
         afterClosed: () => afterClosedSubject$.asObservable(),
-      }
-    }),
+      })),
   } as unknown as DialogService
 
   const aqlEditorService = {
@@ -221,7 +219,7 @@ describe('DataExplorerComponent', () => {
   })
 
   describe('When the components gets initialized and the cohortId is specified', () => {
-    it('should call the cohortService to get the cohort and flag the cohort as fetched', async (done) => {
+    it('should call the cohortService to get the cohort and flag the cohort as fetched', (done) => {
       fixture = TestBed.createComponent(DataExplorerComponent)
       component = fixture.componentInstance
 
@@ -237,7 +235,7 @@ describe('DataExplorerComponent', () => {
   })
 
   describe('When the components gets initialized and the researchers are specified', () => {
-    it('should call the adminService to get the researchers and flag the researchers as fetched', async (done) => {
+    it('should call the adminService to get the researchers and flag the researchers as fetched', (done) => {
       const users = [{ userId: 'abc-1' }, { userId: 'abc-2' }]
       resolvedData.project.researchersApi = users
       fixture = TestBed.createComponent(DataExplorerComponent)

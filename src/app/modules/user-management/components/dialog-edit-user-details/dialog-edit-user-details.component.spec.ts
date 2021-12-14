@@ -143,7 +143,7 @@ describe('DialogEditUserDetailsComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should emit the close event on confirmation', async (done) => {
+  it('should emit the close event on confirmation', (done) => {
     jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
     component.handleDialogConfirm().then(() => {
       expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)

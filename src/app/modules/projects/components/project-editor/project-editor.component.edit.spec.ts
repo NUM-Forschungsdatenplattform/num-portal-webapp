@@ -51,6 +51,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 jest.mock('src/app/core/utils/download-file.utils', () => ({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   __esModule: true,
   downloadFile: jest.fn().mockImplementation(() => ''),
 }))
@@ -82,11 +83,9 @@ describe('ProjectEditorComponent', () => {
 
   const afterClosedSubject$ = new Subject()
   const mockDialogService = {
-    openDialog: jest.fn().mockImplementation((_: any) => {
-      return {
+    openDialog: jest.fn().mockImplementation((_: any) => ({
         afterClosed: () => afterClosedSubject$.asObservable(),
-      }
-    }),
+      })),
   } as unknown as DialogService
 
   const resolvedData: IProjectResolved = {
@@ -255,7 +254,7 @@ describe('ProjectEditorComponent', () => {
   })
 
   describe('When the components gets initialized and the cohortId is specified', () => {
-    it('should call the cohortService to get the cohort and flag the cohort as fetched', async (done) => {
+    it('should call the cohortService to get the cohort and flag the cohort as fetched', (done) => {
       fixture = TestBed.createComponent(ProjectEditorComponent)
       component = fixture.componentInstance
 
@@ -271,7 +270,7 @@ describe('ProjectEditorComponent', () => {
   })
 
   describe('When the components gets initialized and the researchers are specified', () => {
-    it('should call the adminService to get the researchers and flag the researchers as fetched', async (done) => {
+    it('should call the adminService to get the researchers and flag the researchers as fetched', (done) => {
       const users = [{ userId: 'abc-1' }, { userId: 'abc-2' }]
       resolvedData.project.researchersApi = users
       fixture = TestBed.createComponent(ProjectEditorComponent)
@@ -289,7 +288,7 @@ describe('ProjectEditorComponent', () => {
   })
 
   describe('When the components gets initialized and the projectId is specified', () => {
-    it('should call the project service to fetch related comments and flag comments as fetched', async (done) => {
+    it('should call the project service to fetch related comments and flag comments as fetched', (done) => {
       resolvedData.project.id = 1
       fixture = TestBed.createComponent(ProjectEditorComponent)
       component = fixture.componentInstance
@@ -349,7 +348,7 @@ describe('ProjectEditorComponent', () => {
   })
 
   describe('When project is Saved', () => {
-    it('should navigate to projects and show success message on Success', async (done) => {
+    it('should navigate to projects and show success message on Success', (done) => {
       component.save().then(() => {
         expect(mockToast.openToast).toHaveBeenCalledWith({
           type: ToastMessageType.Success,
@@ -360,7 +359,7 @@ describe('ProjectEditorComponent', () => {
       })
     })
 
-    it('should NOT navigate and show Error message on Failure to Save', async (done) => {
+    it('should NOT navigate and show Error message on Failure to Save', (done) => {
       jest.spyOn(projectService, 'update').mockImplementationOnce(() => throwError({}))
 
       component.save().then(() => {

@@ -173,7 +173,7 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'save').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should call the AQL save method', async (done) => {
+    it('should call the AQL save method', (done) => {
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
@@ -188,7 +188,7 @@ describe('AqlEditorComponent', () => {
       jest.spyOn(aqlService, 'update').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should call the AQL update method', async (done) => {
+    it('should call the AQL update method', (done) => {
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
         expect(router.navigate).toHaveBeenCalledWith(['aqls'], {})
@@ -196,7 +196,7 @@ describe('AqlEditorComponent', () => {
       })
     })
 
-    it('should not call the AQL update method if the query is not valid', async (done) => {
+    it('should not call the AQL update method if the query is not valid', (done) => {
       jest.spyOn(component.aqlCreator, 'validate').mockResolvedValue(false)
       component.update().then(() => {
         expect(component.aqlCreator.validate).toHaveBeenCalled()

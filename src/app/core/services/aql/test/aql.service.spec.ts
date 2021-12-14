@@ -147,7 +147,7 @@ describe('AqlService', () => {
       service.getAllObservable$ = undefined
     })
 
-    it('should debounce the filtering', async (done) => {
+    it('should debounce the filtering', (done) => {
       const filterConfigLast: IAqlFilter = {
         filterItem: [],
         searchText: 'name1',

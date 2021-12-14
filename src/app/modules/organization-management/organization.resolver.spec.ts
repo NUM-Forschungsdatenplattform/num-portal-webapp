@@ -53,7 +53,7 @@ describe('OrganizationResolver', () => {
   })
 
   describe('When the resolve method is called and the user has the role SuperAdmin', () => {
-    it('should return with an empty ui model if the id was new', async (done) => {
+    it('should return with an empty ui model if the id was new', (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: 'new' })
       const activatedRoute = {
@@ -72,7 +72,7 @@ describe('OrganizationResolver', () => {
       userProfileSubject$.next(mockUserProfile3)
     })
 
-    it('should return with the organization if the id was valid', async (done) => {
+    it('should return with the organization if the id was valid', (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
@@ -94,7 +94,7 @@ describe('OrganizationResolver', () => {
       userProfileSubject$.next(mockUserProfile3)
     })
 
-    it('should return to the organization page if the id was invalid', async (done) => {
+    it('should return to the organization page if the id was invalid', (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
@@ -117,7 +117,7 @@ describe('OrganizationResolver', () => {
   })
 
   describe('When the resolve method is called and the user does not have the role SuperAdmin', () => {
-    it('should redirect to the editor with the users organization if the the id was different from the users organizatin id', async (done) => {
+    it('should redirect to the editor with the users organization if the the id was different from the users organizatin id', (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '2' })
 
@@ -140,7 +140,7 @@ describe('OrganizationResolver', () => {
       userProfileSubject$.next(mockUserProfile1)
     })
 
-    it('should return with the organization if the id was the users organization id', async (done) => {
+    it('should return with the organization if the id was the users organization id', (done) => {
       jest.spyOn(organizationService, 'get').mockImplementation(() => of(mockOrganization1))
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
@@ -163,7 +163,7 @@ describe('OrganizationResolver', () => {
   })
 
   describe('When the user profile could not be loaded after 10s', () => {
-    it('should redirect to the organizations page', async (done) => {
+    it('should redirect to the organizations page', (done) => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
