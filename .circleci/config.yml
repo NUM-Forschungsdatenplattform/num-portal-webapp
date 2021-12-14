@@ -26,7 +26,7 @@ workflows:
                 - nightly-builds
     jobs:
       - test:
-          context: 
+          context:
             - org-global
             - slack-secrets
             - ms_teams
@@ -38,12 +38,12 @@ workflows:
   build_and_test:
     jobs:
       - test:
-          context: 
+          context:
             - org-global
             - slack-secrets
             - ms_teams
       - security_scan:
-          context: 
+          context:
             - org-global
             - slack-secrets
             - ms_teams
@@ -147,7 +147,7 @@ jobs:
             )
             echo "$MS_TEAMS_MSG_TEMPLATE" > /tmp/ms_teams_message
           when: always
-      - run:    
+      - run:
           name: Report Build Success
           command: |
             MSG_PATH=/tmp/ms_teams_success_message
@@ -160,11 +160,11 @@ jobs:
             MSG_PATH=/tmp/ms_teams_failure_message
             sed -e 's/__build_status__/Failed/' -e 's/__theme_color__/e2091d/' /tmp/ms_teams_message > $MSG_PATH
             curl --fail -H "Content-Type: application/json" --data-binary @$MSG_PATH $CODEX_NOTIFICATIONS
-          when: on_fail    
+          when: on_fail
   test:
     docker:
-      # - image: circleci/node:14.9.0-buster
-      - image: cimg/node:14.9.0
+      # - image: circleci/node:16.13.0-buster
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - node/install-packages:
@@ -187,7 +187,7 @@ jobs:
       - failed-build-slack-notification
   tag_version:
     docker:
-      - image: cimg/node:14.9.0
+      - image: cimg/node:16.13.0
     steps:
       - checkout
       - add_ssh_keys:
@@ -211,7 +211,7 @@ jobs:
 
   build_and_deploy:
     docker:
-      - image: cimg/node:14.9.0
+      - image: cimg/node:16.13.0
         auth:
           username: $DOCKER_USER
           password: $DOCKER_HUB_PASSWORD
@@ -300,7 +300,7 @@ commands:
             )
             echo "$MS_TEAMS_MSG_TEMPLATE" > /tmp/ms_teams_message
           when: always
-      - run:    
+      - run:
           name: Report Build Success
           command: |
             MSG_PATH=/tmp/ms_teams_success_message
@@ -313,7 +313,7 @@ commands:
             MSG_PATH=/tmp/ms_teams_failure_message
             sed -e 's/__build_status__/Failed/' -e 's/__theme_color__/e2091d/' /tmp/ms_teams_message > $MSG_PATH
             curl --fail -H "Content-Type: application/json" --data-binary @$MSG_PATH $CODEX_NOTIFICATIONS
-          when: on_fail    
+          when: on_fail
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
