@@ -7,7 +7,7 @@
     "start:hmr": "ng serve --hmr",
     "build": "node --max_old_space_size=6144 ./node_modules/.bin/ng build",
     "test": "npm run clean:test-results && jest",
-    "test-ci": "node --expose-gc ./node_modules/.bin/jest --ci -w=1",
+    "test-ci": "node --expose-gc ./node_modules/.bin/jest --logHeapUsage --ci -w=1",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "pretty-quick": "pretty-quick --pattern \"src/**/*.{scss,html}\"",
