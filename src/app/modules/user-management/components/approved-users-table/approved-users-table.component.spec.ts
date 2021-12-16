@@ -28,7 +28,6 @@ import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 import { AvailableRolesPipe } from 'src/app/shared/pipes/available-roles.pipe'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
@@ -39,7 +38,6 @@ import { MatSortHeaderHarness } from '@angular/material/sort/testing'
 import { MatTableHarness } from '@angular/material/table/testing'
 import { maxBy, minBy } from 'lodash-es'
 import { Pipe, PipeTransform } from '@angular/core'
-import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 
 describe('ApprovedUsersTableComponent', () => {
   let component: ApprovedUsersTableComponent

@@ -26,12 +26,10 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
 import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.response.interface'
-import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
-import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 import { COMPILE_ERROR_CONFIG } from './constants'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'

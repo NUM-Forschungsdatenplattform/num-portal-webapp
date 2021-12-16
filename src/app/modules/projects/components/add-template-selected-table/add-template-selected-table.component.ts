@@ -20,7 +20,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
   ViewChild,
@@ -34,7 +33,7 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
   templateUrl: './add-template-selected-table.component.html',
   styleUrls: ['./add-template-selected-table.component.scss'],
 })
-export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit, OnChanges {
+export class AddTemplateSelectedTableComponent implements AfterViewInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator
   @Input() isDisabled: boolean
   @Input() selectedTemplates: IProjectTemplateInfoApi[]
@@ -45,7 +44,6 @@ export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit,
 
   constructor() {}
   displayedColumns: string[] = ['name', 'icon']
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.dataSource.data = this.selectedTemplates || []
@@ -53,7 +51,7 @@ export class AddTemplateSelectedTableComponent implements OnInit, AfterViewInit,
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'selectedTemplates': {
             const changedData = changes[propName].currentValue as IProjectTemplateInfoApi[]

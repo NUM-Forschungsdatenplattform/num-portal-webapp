@@ -78,37 +78,31 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "num-portal-webapp:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "deploy": {
               "browserTarget": "num-portal-webapp:build:deploy"
+            },
+            "development": {
+              "browserTarget": "num-portal-webapp:build:development"
             }
           },
-          "assets": [
-            {
-              "glob": "loader.js",
-              "input": "node_modules/monaco-editor/dev/vs",
-              "output": "./vs/"
-            },
-            {
-              "glob": "**/*",
-              "input": "node_modules/monaco-editor/dev/vs/editor",
-              "output": "./vs/editor"
-            },
-            {
-              "glob": "**/*",
-              "input": "node_modules/monaco-editor/dev/vs/base",
-              "output": "./vs/base"
-            }
-          ]
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -117,15 +111,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         },
@@ -189,5 +179,8 @@
       }
     }
   },
-  "defaultProject": "num-portal-webapp"
+  "defaultProject": "num-portal-webapp",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

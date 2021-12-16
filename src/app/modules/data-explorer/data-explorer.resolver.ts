@@ -40,7 +40,10 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
     this.authService.userInfoObservable$.subscribe((userInfo) => (this.userInfo = userInfo))
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProjectResolved> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot
+  ): Observable<IProjectResolved> {
     const id = route.paramMap.get('id')
 
     if (isNaN(+id)) {

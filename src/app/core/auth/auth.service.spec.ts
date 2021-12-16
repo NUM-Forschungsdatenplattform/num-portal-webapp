@@ -16,10 +16,10 @@
 
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
-import { OAuthService } from 'angular-oauth2-oidc'
+import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
+import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
@@ -31,7 +31,11 @@ describe('Auth Service', () => {
     type: 'token_received',
   }
 
-  const eventSubject = new Subject()
+  let eventSubject: Subject<any>
+
+  const mockAuthProfile: IAuthUserProfile = {
+    info: mockOAuthUser,
+  }
 
   const oauthService = {
     logOut: () => {},
@@ -39,8 +43,7 @@ describe('Auth Service', () => {
     state: undefined,
     hasValidIdToken: jest.fn().mockImplementation(() => true),
     hasValidAccessToken: jest.fn().mockImplementation(() => true),
-    events: eventSubject.asObservable(),
-    loadUserProfile: jest.fn().mockImplementation(() => of(mockOAuthUser)),
+    loadUserProfile: jest.fn().mockImplementation(() => of(mockAuthProfile)),
   } as unknown as OAuthService
 
   const httpClient = {
@@ -66,6 +69,8 @@ describe('Auth Service', () => {
   beforeEach(() => {
     authService = new AuthService(oauthService, profileService, appConfig, httpClient, mockRouter)
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
+    eventSubject = new Subject<OAuthEvent>()
+    oauthService.events = eventSubject.asObservable()
     jest.clearAllMocks()
   })
 
@@ -108,8 +113,8 @@ describe('Auth Service', () => {
     })
 
     it('should call the api to create the user on the first call if its a token event', (done) => {
-      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(mockOAuthUser)
-      jest.spyOn(httpClient, 'post').mockImplementation(() => {
+      jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(mockAuthProfile)
+      jest.spyOn(httpClient, 'post').mockImplementation((post) => {
         expect(true).toBeTruthy()
         done()
         return of()

@@ -66,7 +66,7 @@ export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'parentGroupIndex': {
             this.enumerateGroupsDebounced()

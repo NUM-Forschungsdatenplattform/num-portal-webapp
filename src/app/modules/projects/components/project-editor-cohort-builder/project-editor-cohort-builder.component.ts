@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
@@ -23,7 +23,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
   templateUrl: './project-editor-cohort-builder.component.html',
   styleUrls: ['./project-editor-cohort-builder.component.scss'],
 })
-export class ProjectEditorCohortBuilderComponent implements OnInit {
+export class ProjectEditorCohortBuilderComponent {
   @Input() cohortNode: CohortGroupUiModel
   @Input() isLoadingComplete: boolean
   @Input() isDisabled: boolean
@@ -32,6 +32,4 @@ export class ProjectEditorCohortBuilderComponent implements OnInit {
   @Output() determineHitsClicked = new EventEmitter()
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

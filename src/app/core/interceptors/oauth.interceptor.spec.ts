@@ -24,7 +24,7 @@ describe('OAuthInterceptor', () => {
   let authInterceptor: OAuthInterceptor
 
   const authStorage = {
-    getItem: (accessToken: string) => 'test_token',
+    getItem: (_accessToken: string) => 'test_token',
   } as OAuthStorage
 
   const authService = {

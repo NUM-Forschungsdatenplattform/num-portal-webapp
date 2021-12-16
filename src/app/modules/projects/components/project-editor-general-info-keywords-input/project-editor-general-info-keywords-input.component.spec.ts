@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'

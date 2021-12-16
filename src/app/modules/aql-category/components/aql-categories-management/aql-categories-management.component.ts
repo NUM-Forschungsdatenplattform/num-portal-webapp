@@ -54,14 +54,14 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
   }
 
   handleOpenEditDialog(categoryData?: IAqlCategoryApi): void {
-    const dialogData = !!categoryData ? categoryData : {}
+    const dialogData = categoryData ? categoryData : {}
     const dialogRef = this.dialogService.openDialog({
       ...EDIT_AQL_CATEGORY_DIALOG_CONFIG,
       dialogContentPayload: { aqlCategory: dialogData },
     })
     dialogRef.afterClosed().subscribe(async (result?: Omit<IAqlCategoryApi, 'id'>) => {
-      if (!!result) {
-        if (!!categoryData) {
+      if (result) {
+        if (categoryData) {
           await this.update(result, categoryData.id)
         } else {
           await this.create(result)

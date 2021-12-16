@@ -26,7 +26,7 @@ import { ManagerChartsComponent } from './manager-charts.component'
 const translations: any = { CARDS_TITLE: 'This is a test' }
 
 class FakeLoader implements TranslateLoader {
-  getTranslation(lang: string): Observable<any> {
+  getTranslation(_lang: string): Observable<any> {
     return of(translations)
   }
 }

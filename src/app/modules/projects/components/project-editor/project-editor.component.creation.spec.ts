@@ -48,7 +48,6 @@ import { HttpErrorResponse } from '@angular/common/http'
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
   let fixture: ComponentFixture<ProjectEditorComponent>
-  let router: Router
 
   const resolvedData: IProjectResolved = { project: new ProjectUiModel(), error: null }
 
@@ -191,7 +190,7 @@ describe('ProjectEditorComponent On Creation', () => {
 
   beforeEach(() => {
     jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
-    router = TestBed.inject(Router)
+    TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectEditorComponent)
     component = fixture.componentInstance
     fixture.detectChanges()

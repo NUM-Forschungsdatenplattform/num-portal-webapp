@@ -55,7 +55,7 @@
     mat-row
     *matRowDef="let row; columns: columnKeys; let i = index"
     (click)="handleRowClick(row)"
-    [ngClass]="{ 'mat-row--active': idOfHighlightedRow == row[identifierName] }"
+    [ngClass]="{ 'mat-row--active': idOfHighlightedRow === row[identifierName] }"
     [attr.data-test]="'generic-filter-table__row-' + i"
   ></tr>
 </table>

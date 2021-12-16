@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
@@ -24,14 +24,12 @@ import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
   templateUrl: './aql-builder-select.component.html',
   styleUrls: ['./aql-builder-select.component.scss'],
 })
-export class AqlBuilderSelectComponent implements OnInit {
+export class AqlBuilderSelectComponent {
   AqbSelectDestination = AqbSelectDestination
   constructor() {}
 
   @Input()
   aqbModel: AqbUiModel
-
-  ngOnInit(): void {}
 
   deleteItem(index: number): void {
     this.aqbModel.select.splice(index, 1)

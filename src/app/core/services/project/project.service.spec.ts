@@ -342,7 +342,7 @@ describe('ProjectService', () => {
       throttleTime = (service as any).throttleTime
     })
 
-    it('should debounce the filtering', async (done) => {
+    it('should debounce the filtering', (done) => {
       const filterConfigLast: IProjectFilter = {
         filterItem: [],
         searchText: 'filterText',

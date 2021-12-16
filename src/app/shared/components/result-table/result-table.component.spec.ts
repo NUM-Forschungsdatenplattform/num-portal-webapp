@@ -20,7 +20,6 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { ResultTableComponent } from './result-table.component'
@@ -72,11 +71,6 @@ describe('ResultTableComponent', () => {
         ['col1 result 1', 'col2 result 1'],
         ['col1 result 2', 'col2 result 2'],
       ],
-    }
-
-    const firstColumn: IAqlExecutionColumn = {
-      path: ' ',
-      name: '#',
     }
 
     beforeEach(() => {

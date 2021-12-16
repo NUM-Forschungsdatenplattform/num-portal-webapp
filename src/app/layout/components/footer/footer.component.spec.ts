@@ -30,7 +30,6 @@ describe('FooterComponent', () => {
   let component: FooterComponent
   let fixture: ComponentFixture<FooterComponent>
   let appConfig: AppConfigService
-  let router: Router
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -46,7 +45,7 @@ describe('FooterComponent', () => {
   })
 
   beforeEach(() => {
-    router = TestBed.inject(Router)
+    TestBed.inject(Router)
     appConfig = TestBed.inject(AppConfigService)
     appConfig.config = {} as unknown as IAppConfig
     appConfig.config.legal = {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
 import { TranslateService } from '@ngx-translate/core'
 
@@ -23,7 +23,7 @@ import { TranslateService } from '@ngx-translate/core'
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss'],
 })
-export class LanguageComponent implements OnInit {
+export class LanguageComponent {
   constructor(public translate: TranslateService, private dateAdapter: DateAdapter<Date>) {
     translate.addLangs(['de', 'en'])
     translate.setDefaultLang('de')
@@ -37,8 +37,6 @@ export class LanguageComponent implements OnInit {
       this.setLocale(browserLang.match(/de|en/) ? browserLang : 'de')
     }
   }
-
-  ngOnInit(): void {}
 
   setLocale(locale: string): void {
     localStorage.setItem('lang', locale)

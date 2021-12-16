@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../models/definition-list.interface'
 import { DefinitionType } from '../../models/definition-type.enum'
 
@@ -23,11 +23,9 @@ import { DefinitionType } from '../../models/definition-type.enum'
   templateUrl: './definition-list.component.html',
   styleUrls: ['./definition-list.component.scss'],
 })
-export class DefinitionListComponent implements OnInit {
+export class DefinitionListComponent {
   @Input() dataSource: IDefinitionList[]
   definitionType = DefinitionType
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

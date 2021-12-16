@@ -40,10 +40,6 @@ describe('Directive: UserHasRoleDirective', () => {
     groups: ['user', 'has', 'some', 'role'],
   }
 
-  const userInfoUndefined = {
-    sub: undefined,
-  }
-
   const userInfoNoGroups = {
     sub: 'sub123-456',
     groups: undefined,

@@ -183,7 +183,7 @@ describe('AqlTableComponent', () => {
       jest.spyOn(aqlService, 'delete').mockImplementation(() => mockAqlObservable)
     })
 
-    it('should call the AQL delete method', async (done) => {
+    it('should call the AQL delete method', (done) => {
       const aqlId = 1
       component.delete(aqlId).then(() => {
         expect(aqlService.delete).toHaveBeenCalledTimes(1)
@@ -201,7 +201,7 @@ describe('AqlTableComponent', () => {
       jest.spyOn(aqlService, 'delete').mockImplementation(() => throwError({}))
     })
 
-    it('should show Error toast', async (done) => {
+    it('should show Error toast', (done) => {
       const aqlId = 1
       component.delete(aqlId).then(() => {
         expect(mockToast.openToast).toHaveBeenCalledWith({

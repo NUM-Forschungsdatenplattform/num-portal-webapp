@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
@@ -26,7 +26,7 @@ import { ADD_DIALOG_CONFIG } from './constants'
   templateUrl: './data-filter-templates.component.html',
   styleUrls: ['./data-filter-templates.component.scss'],
 })
-export class DataFilterTemplatesComponent implements OnInit {
+export class DataFilterTemplatesComponent {
   @Input()
   project: ProjectUiModel
 
@@ -43,7 +43,6 @@ export class DataFilterTemplatesComponent implements OnInit {
   determineHits = new EventEmitter()
 
   constructor(private dialogService: DialogService) {}
-  ngOnInit(): void {}
 
   addTemplate(): void {
     const dialogContentPayload = this.project.templates

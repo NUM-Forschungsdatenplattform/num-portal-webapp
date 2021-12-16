@@ -141,7 +141,9 @@
         </th>
         <td mat-cell *matCellDef="let element" data-test="aqls__table__data__category">
           {{
-            element.categoryId != null && !!aqlCategories[element.categoryId]
+            element.categoryId !== null &&
+            element.categoryId !== undefined &&
+            !!aqlCategories[element.categoryId]
               ? aqlCategories[element.categoryId][lang]
               : uncategorizedString
           }}

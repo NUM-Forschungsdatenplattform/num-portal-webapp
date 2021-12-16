@@ -14,14 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  EventEmitter,
-  Output,
-  Input,
-} from '@angular/core'
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core'
 import { IDetermineHits } from './determine-hits.interface'
 
 @Component({
@@ -30,14 +23,12 @@ import { IDetermineHits } from './determine-hits.interface'
   styleUrls: ['./editor-determine-hits.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditorDetermineHitsComponent implements OnInit {
+export class EditorDetermineHitsComponent {
   @Input() isButtonDisabled: boolean
   @Input() content: IDetermineHits
   @Output() clicked = new EventEmitter()
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   determineHits(): void {
     this.clicked.emit()

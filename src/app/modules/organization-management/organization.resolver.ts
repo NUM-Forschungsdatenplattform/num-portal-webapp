@@ -45,7 +45,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    _state: RouterStateSnapshot
   ): Observable<IOrganizationResolved> {
     const requestedId = route.paramMap.get('id')
 

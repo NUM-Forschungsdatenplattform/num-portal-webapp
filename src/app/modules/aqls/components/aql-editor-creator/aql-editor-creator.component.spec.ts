@@ -41,6 +41,7 @@ import {
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
 
+/* eslint-disable @typescript-eslint/naming-convention */
 describe('AqlEditorCeatorComponent', () => {
   let component: AqlEditorCreatorComponent
   let fixture: ComponentFixture<AqlEditorCreatorComponent>
@@ -103,7 +104,7 @@ describe('AqlEditorCeatorComponent', () => {
   const mockAqlEditorService = {
     buildAql: jest
       .fn()
-      .mockImplementation((aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
+      .mockImplementation((_aqbModel: IArchetypeQueryBuilder) => of(builderResponse)),
     validateAql: jest.fn(),
   } as unknown as AqlEditorService
 
@@ -264,7 +265,7 @@ describe('AqlEditorCeatorComponent', () => {
       expect(result).toBeFalsy()
     })
 
-    it('should push the error markers to the validation observable', async (done) => {
+    it('should push the error markers to the validation observable', (done) => {
       component.validationObservable$.subscribe((validationResult: any) => {
         expect(validationResult[0]).toBeTruthy()
         expect(validationResult[0].message).toEqual(validationResponse.message)
@@ -272,8 +273,9 @@ describe('AqlEditorCeatorComponent', () => {
         expect(validationResult[0].startLineNumber).toEqual(validationResponse.startLine)
         done()
       })
-      const result = await component.validate()
-      expect(result).toBeFalsy()
+      component.validate().then((result) => {
+        expect(result).toBeFalsy()
+      })
     })
   })
 

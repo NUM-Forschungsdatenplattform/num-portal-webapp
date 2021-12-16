@@ -39,7 +39,10 @@ export class ProjectResolver implements Resolve<IProjectResolved> {
     )
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProjectResolved> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot
+  ): Observable<IProjectResolved> {
     const id = route.paramMap.get('id')
     const mode = route.queryParamMap.get('mode')?.toUpperCase()
 

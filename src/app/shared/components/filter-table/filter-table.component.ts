@@ -71,7 +71,7 @@ export class FilterTableComponent<T> implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'selectedItems': {
             const changedData = changes[propName].currentValue as T[]

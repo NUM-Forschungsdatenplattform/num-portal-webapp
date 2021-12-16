@@ -87,6 +87,7 @@ describe('AqlService', () => {
       try {
         await service.getAll().toPromise()
       } catch (err) {
+        //
       } finally {
         expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
         expect(service.handleError).toHaveBeenCalled()
@@ -147,7 +148,7 @@ describe('AqlService', () => {
       service.getAllObservable$ = undefined
     })
 
-    it('should debounce the filtering', async (done) => {
+    it('should debounce the filtering', (done) => {
       const filterConfigLast: IAqlFilter = {
         filterItem: [],
         searchText: 'name1',
