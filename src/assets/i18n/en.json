@@ -36,7 +36,7 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Welcome to CODEX",
-    "DATA_FILTER": "Data filter",
+    "DATA_FILTER": "Data Filter",
     "PATIENT_FILTER": "Patients Filter",
     "PROJECTS": "Projects",
     "PROJECTS_OVERVIEW": "Project Overview",
@@ -46,7 +46,7 @@
     "QUERIES": "Criteria",
     "QUERIES_OVERVIEW": "Criteria Overview",
     "QUERIES_EDITOR": "Criteria Editor",
-    "QUERIES_CATEGORIES_OVERVIEW": "Criteria categories",
+    "QUERIES_CATEGORIES_OVERVIEW": "Criteria Categories",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -70,7 +70,7 @@
     "COOKIE_WARNING_CONTENT": "This website sets technically essential cookies (session cookies) at your computer which are required for the basic functionality of the website."
   },
   "FILTER_CHIP": {
-    "MY_QUERIES": "My Criteria",
+    "MY_QUERIES": "My criteria",
     "MY_PROJECTS": "My projects",
     "ORGANIZATION": "My organization",
     "ALL": "All",
@@ -93,7 +93,7 @@
     "SEARCH_QUERIES": "Criteria search",
     "SELECT_AT_LEAST_ONE": "Please select one or more Criteria",
     "QUERY_BUILDER_DIALOG_HEADER": "Builder",
-    "AVAILABLE_QUERIES": "Available queries",
+    "AVAILABLE_QUERIES": "Available Queries",
     "SAVE_SUCCESS_MESSAGE": "Your criterium was created successfully.",
     "SAVE_ERROR_MESSAGE": "Failed to create your criterium.",
     "DELETE_QUERY_SUCCESS_MESSAGE": "The criterium was successfully deleted.",
@@ -402,7 +402,7 @@
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT": "Export {{format}}",
     "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
-    "HEADLINE_RETREIVE_SECTION": "Retreive data",
+    "HEADLINE_RETREIVE_SECTION": "Retreive Data",
     "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
   },
   "USER_MANAGEMENT": {
@@ -471,7 +471,7 @@
   },
   "QUERY_CATEGORIES": {
     "CREATE_DESCRIPTION_BUTTON": "To create a new criterium category please click the following button.",
-    "CREATE_HEADER": "Create criterium category",
+    "CREATE_HEADER": "Create Criterium Category",
     "CREATE_SUCCESS_MESSAGE": "Criteria category created successfully.",
     "CREATE_ERROR_MESSAGE": "Criteria category could not be created. Please try again.",
     "DE_NAME": "German name",
@@ -481,15 +481,15 @@
     "EDIT_DIALOG_TITLE": "Edit category",
     "EN_NAME": "English name",
     "OVERVIEW_DESCRIPTION": "In the following list you can see all the criterium categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
-    "TABLE_TITLE": "Available criterium categories",
+    "TABLE_TITLE": "Available Criterium Categories",
     "UNCATEGORIZED": "Uncategorized",
     "UPDATE_SUCCESS_MESSAGE": "Criteria category updated successfully.",
     "UPDATE_ERROR_MESSAGE": "Criteria category could not be updated. Please try again."
   },
   "SEARCH": {
-    "DATA_EXPLORER_HEADING": "Fetch project data",
+    "DATA_EXPLORER_HEADING": "Fetch Project Data",
     "DATA_EXPLORER_DESCRIPTION": "Fetch the project data you defined in the patient filter and data pages before using this page.",
-    "DATA_FILTER_HEADING": "Selection of return parameters",
+    "DATA_FILTER_HEADING": "Selection of Return Parameters",
     "DATA_FILTER_DESCRIPTION": "The return parameters are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
     "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "You have the possibility to request a project with the configured patient and data filter. If you do so, the defined cohort and return parameters are transferred to a new project.",
     "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more return parameters",
