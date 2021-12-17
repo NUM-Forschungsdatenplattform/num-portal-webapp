@@ -18,7 +18,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
-import { mainNavItems } from '../../../core/constants/navigation'
+import { mainNavItems, secondaryNavItemsLoggedIn } from '../../../core/constants/navigation'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { TranslateService } from '@ngx-translate/core'
 
@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   mainNavItems = mainNavItems
   currentLang: string
   currentNavId: string
-  currentMainNavItem: INavItem
+  currentNavItem: INavItem
   currentTabNav: INavItem[] = null
   currentTabNavSelected: string
   welcomePageTitle: {
@@ -79,8 +79,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   setHeader(): void {
-    const navItem = this.mainNavItems.find((item) => item.routeTo === this.currentNavId)
-    this.currentMainNavItem = navItem
+    const navItem = [...this.mainNavItems, ...secondaryNavItemsLoggedIn].find(
+      (item) => item.routeTo === this.currentNavId
+    )
+    this.currentNavItem = navItem
     this.currentTabNav = navItem?.tabNav
   }
 }

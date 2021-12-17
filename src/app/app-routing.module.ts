@@ -16,6 +16,7 @@
 
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
 import { AvailableRoles } from './shared/models/available-roles.enum'
@@ -30,6 +31,18 @@ export const routes: Routes = [
       import(
         /* webpackChunkName: "Dashboard.Module" */ './modules/dashboard/dashboard.module'
       ).then((m) => m.DashboardModule),
+  },
+  {
+    path: 'profile',
+    canLoad: [AuthGuard],
+    data: {
+      navId: 'profile',
+      onlyApprovedUsers: true,
+    },
+    loadChildren: () =>
+      import(/* webpackChunkName: "Profile.Module" */ './modules/profile/profile.module').then(
+        (m) => m.ProfileModule
+      ),
   },
   {
     path: 'search',
