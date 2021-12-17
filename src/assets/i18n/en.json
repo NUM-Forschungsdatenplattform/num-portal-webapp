@@ -495,7 +495,7 @@
     "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more return parameters",
     "DATA_FILTER_COHORT_SIZE": "Size of the specified cohort: {{amount}}",
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
-    "PATIENT_FILTER_DESCRIPTION": "Add one or more queries from the list to define the foundation of the new cohort."
+    "PATIENT_FILTER_DESCRIPTION": "Select one or more criteria from the list to define the basis of the new cohort."
   },
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {
