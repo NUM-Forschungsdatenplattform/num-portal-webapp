@@ -15,7 +15,7 @@
 -->
 
 <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
-  <h2 class="mat-display-2">{{ aql?.name }}</h2>
+  <h2 class="mat-display-2">{{ currentLang === 'de' ? aql?.name : aql?.nameTranslated }}</h2>
 </section>
 
 <table class="general-info" [attr.aria-label]="'FORM.GENERAL_INFO' | translate">

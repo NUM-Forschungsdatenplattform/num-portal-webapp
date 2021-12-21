@@ -31,7 +31,7 @@
     >
       <div class="aql__meta">
         <div class="aql__meta__name" data-test="cohort-builder__aql-selection__aql-name">
-          {{ aql.name }}
+          {{ currentLang === 'de' ? aql.name : aql.nameTranslated }}
         </div>
         <button
           color="primary"

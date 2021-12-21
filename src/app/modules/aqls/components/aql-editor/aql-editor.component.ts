@@ -87,8 +87,20 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
   generateForm(): void {
     this.aqlForm = new FormGroup({
       title: new FormControl(this.aql?.name, [Validators.required, Validators.minLength(3)]),
+      titleTranslated: new FormControl(this.aql?.nameTranslated, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
+      purposeTranslated: new FormControl(this.aql?.purposeTranslated, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
+      useTranslated: new FormControl(this.aql?.usageTranslated, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
       isPublic: new FormControl(this.aql?.publicAql),
       category: new FormControl(this.aql?.categoryId || ''),
     })
@@ -97,13 +109,16 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
   getAqlForApi(): IAqlApi {
     const formValues = this.aqlForm.value
 
-    return this.aql?.convertToApi(
-      formValues.title,
-      formValues.purpose,
-      formValues.use,
-      formValues.isPublic,
-      formValues.category
-    )
+    return this.aql?.convertToApi({
+      name: formValues.title,
+      nameTranslated: formValues.titleTranslated,
+      purpose: formValues.purpose,
+      purposeTranslated: formValues.purposeTranslated,
+      use: formValues.use,
+      useTranslated: formValues.useTranslated,
+      publicAql: formValues.isPublic,
+      categoryId: formValues.category,
+    })
   }
 
   async save(): Promise<void> {
