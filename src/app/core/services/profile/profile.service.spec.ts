@@ -25,6 +25,7 @@ describe('ProfileService', () => {
 
   const httpClient = {
     get: () => of(mockUserProfile1),
+    post: jest.fn(),
   } as unknown as HttpClient
 
   const appConfig = {
@@ -68,6 +69,51 @@ describe('ProfileService', () => {
     it('should call the api - with success', () => {
       service.get().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(`${appConfig.config.api.baseUrl}/profile`)
+    })
+  })
+
+  describe('When a call to changeUserName method comes in', () => {
+    const firstName = 'first'
+    const lastName = 'last'
+
+    beforeEach(() => {
+      const anyService = service as any
+      anyService.userProfile.id = '1-2-3'
+    })
+
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+
+      service
+        .changeUserName(firstName, lastName)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+
+      expect(httpClient.post).toHaveBeenCalledWith(
+        'localhost/api/admin/user/1-2-3/name',
+        {
+          firstName,
+          lastName,
+        },
+        { responseType: 'text' }
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of())
+
+      service.changeUserName(firstName, lastName)
+      expect(httpClient.post).toHaveBeenCalledWith(
+        'localhost/api/admin/user/1-2-3/name',
+        {
+          firstName,
+          lastName,
+        },
+        { responseType: 'text' }
+      )
     })
   })
 })

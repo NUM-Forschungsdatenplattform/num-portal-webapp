@@ -22,10 +22,10 @@
   <num-language></num-language>
 </mat-toolbar>
 
-<section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentMainNavItem">
+<section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentNavItem">
   <div
     [ngClass]="{
-      'titlebar num-margin-b-60': currentMainNavItem?.routeTo !== 'home'
+      'titlebar num-margin-b-60': currentNavItem?.routeTo !== 'home'
     }"
     role="presentation"
     fxLayout="column"
@@ -37,14 +37,14 @@
     <h1 data-test="header__page-headline">
       <fa-icon
         class="num-fc--a"
-        [icon]="currentMainNavItem.icon"
+        [icon]="currentNavItem.icon"
         size="sm"
         [fixedWidth]="true"
       ></fa-icon>
       {{
-        currentMainNavItem.routeTo === 'home'
+        currentNavItem.routeTo === 'home'
           ? welcomePageTitle[currentLang]
-          : (currentMainNavItem.translationKey | translate)
+          : (currentNavItem.translationKey | translate)
       }}
     </h1>
 

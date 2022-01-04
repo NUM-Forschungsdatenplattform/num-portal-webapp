@@ -192,7 +192,7 @@ describe('HeaderComponent', () => {
       fixture.detectChanges()
 
       expect(component.currentNavId).toEqual('second')
-      expect(component.currentMainNavItem).toBe(secondNavItem)
+      expect(component.currentNavItem).toBe(secondNavItem)
       expect(component.currentTabNav).toBeFalsy()
     })
   })
@@ -210,7 +210,7 @@ describe('HeaderComponent', () => {
       fixture.detectChanges()
 
       expect(component.currentNavId).toEqual('third')
-      expect(component.currentMainNavItem).toBe(thirdNavItem)
+      expect(component.currentNavItem).toBe(thirdNavItem)
       expect(component.currentTabNav).toBe(thirdNavItem.tabNav)
     })
   })
@@ -228,7 +228,7 @@ describe('HeaderComponent', () => {
       fixture.detectChanges()
 
       expect(component.currentNavId).toEqual('nope')
-      expect(component.currentMainNavItem).toBeFalsy()
+      expect(component.currentNavItem).toBeFalsy()
       expect(component.currentTabNav).toBeFalsy()
     })
   })

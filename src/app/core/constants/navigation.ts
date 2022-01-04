@@ -168,12 +168,11 @@ export const mainNavItems: INavItem[] = [
 ]
 
 export const secondaryNavItemsLoggedIn: INavItem[] = [
-  // Not shown in release 1.0
-  // {
-  //   routeTo: '#',
-  //   icon: 'cog',
-  //   translationKey: 'NAVIGATION.PROFILE',
-  // },
+  {
+    routeTo: 'profile',
+    icon: 'user-circle',
+    translationKey: 'NAVIGATION.PROFILE',
+  },
   {
     routeTo: '#logout',
     icon: 'sign-out-alt',

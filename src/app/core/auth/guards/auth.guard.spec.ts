@@ -16,6 +16,10 @@
 
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Route } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { Subject } from 'rxjs'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { mockUserProfile1, mockUserProfileUnapproved } from 'src/mocks/data-mocks/user-profile.mock'
+import { ProfileService } from '../../services/profile/profile.service'
 
 import { AuthGuard } from './auth.guard'
 
@@ -27,8 +31,13 @@ describe('AuthGuard', () => {
     loadDiscoveryDocumentAndLogin: () => Promise.resolve(true),
   } as OAuthService
 
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const mockProfileService = {
+    userProfileObservable$: userProfileSubject$.asObservable(),
+  } as unknown as ProfileService
+
   beforeEach(() => {
-    guard = new AuthGuard(authService)
+    guard = new AuthGuard(authService, mockProfileService)
   })
 
   afterEach(() => {
@@ -39,7 +48,7 @@ describe('AuthGuard', () => {
     expect(guard).toBeTruthy()
   })
 
-  describe('When the user is logged in', () => {
+  describe('When the user is logged in and the route is not restricted to approved users', () => {
     const activatedRoute = {} as ActivatedRouteSnapshot
     const route = {} as Route
     const state = {} as RouterStateSnapshot
@@ -57,6 +66,37 @@ describe('AuthGuard', () => {
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
       const result = await guard.canLoad(route)
       expect(result).toBeTruthy()
+    })
+  })
+
+  describe('When the user is logged in and the route is restricted to approved users', () => {
+    const activatedRoute = {} as ActivatedRouteSnapshot
+    const route = {
+      data: {
+        onlyApprovedUsers: true,
+      },
+    } as Route
+
+    it('grants access to the route in [canLoad] guard when the user is approved', (done) => {
+      jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
+      jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
+      guard.canLoad(route).then((result) => {
+        expect(result).toBeTruthy()
+        done()
+      })
+
+      userProfileSubject$.next(mockUserProfile1)
+    })
+
+    it('grants no access to the route in [canLoad] guard when the user is approved', (done) => {
+      jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
+      jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
+      guard.canLoad(route).then((result) => {
+        expect(result).toBeFalsy()
+        done()
+      })
+
+      userProfileSubject$.next(mockUserProfileUnapproved)
     })
   })
 
