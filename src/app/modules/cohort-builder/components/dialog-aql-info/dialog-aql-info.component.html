@@ -26,11 +26,11 @@
     </tr>
     <tr>
       <th scope="row">{{ 'FORM.PURPOSE' | translate }}:</th>
-      <td>{{ aql?.purpose }}</td>
+      <td>{{ currentLang === 'de' ? aql?.purpose : aql?.purposeTranslated }}</td>
     </tr>
     <tr>
       <th scope="row">{{ 'FORM.USE' | translate }}:</th>
-      <td>{{ aql?.use }}</td>
+      <td>{{ currentLang === 'de' ? aql?.use : aql?.useTranslated }}</td>
     </tr>
   </tbody>
 </table>
