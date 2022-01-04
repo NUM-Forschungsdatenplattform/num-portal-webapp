@@ -14,12 +14,12 @@
  limitations under the License.
 -->
 
-<section class="section">
+<section class="num-margin-b-40" fxLayout="column">
   <div class="main-header">
     <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
   </div>
-  <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
-    <div fxFlex.gt-sm="75%" fxFlex.lt-sm="100%" class="content">
+  <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction num-margin-b-40">
+    <div fxFlex="100%" class="content">
       <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
       <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
       <a
@@ -31,19 +31,15 @@
         {{ 'DASHBOARD.INTRODUCTION.PARTICIPANTS' | translate }}
       </a>
     </div>
-    <div fxLayout="column" fxFlex.gt-sm="20%" fxFlex.sm="100%" fxFlex.lt-sm="33%" class="sidebar">
-      <div class="mat-display-3 num-margin-b-0">
-        {{ 'DASHBOARD.INTRODUCTION.INITIATIVE' | translate }}
-      </div>
-      <div fxLayout="row wrap" class="num-margin-b-10">
-        <div fxFlex.sm="33%" fxFlex="100%" *ngFor="let logo of initiativeLogos">
-          <img
-            [attr.src]="participantLogosBaseUrl + logo"
-            class="initiative-logo"
-            alt="Initiative logo"
-          />
-        </div>
-      </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10%" class="num-margin-b-10">
+    <div fxFlex="33%" fxFlex.gt-md="25%" *ngFor="let logo of initiativeLogos">
+      <img
+        [attr.src]="participantLogosBaseUrl + logo"
+        class="initiative-logo"
+        alt="Initiative logo"
+      />
     </div>
   </div>
 </section>

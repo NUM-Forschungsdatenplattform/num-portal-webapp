@@ -18,10 +18,6 @@
   width: 100%;
 }
 
-.section {
-  margin: 20px 0 70px 0;
-}
-
 .main-header {
   .title {
     border-bottom-color: #eb586a;
@@ -48,19 +44,6 @@
   }
   .content a:hover {
     cursor: pointer;
-  }
-  .sidebar {
-    .header {
-      text-align: center;
-      font-weight: 500;
-    }
-    .partner-logo {
-      width: 100%;
-    }
-
-    .initiative-logo {
-      width: 100%;
-    }
   }
 }
 
@@ -101,31 +84,5 @@
   .partner-logo {
     width: 92%;
     margin-top: 3%;
-  }
-}
-
-/* Medium only */
-@media only screen and (min-width: 600px) and (max-width: 960px) {
-  .introduction {
-    .sidebar {
-      margin: auto;
-      padding-top: 40px;
-      .header {
-        text-align: left;
-      }
-      .partner-logo {
-        width: 92%;
-      }
-    }
-  }
-}
-
-/* up and Small */
-@media only screen and (max-width: 600px) {
-  .introduction {
-    .sidebar {
-      padding-top: 40px;
-      margin: auto;
-    }
   }
 }

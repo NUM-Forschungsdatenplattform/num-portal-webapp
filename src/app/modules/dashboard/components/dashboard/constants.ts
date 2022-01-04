@@ -15,13 +15,11 @@
  */
 
 export const LOGOS_BASE_URL = 'assets/partner-logo/'
-export const INITIATIVE_CLINICS_LOGOS = ['logo-medizin.svg']
+export const INITIATIVE_CLINICS_LOGOS = ['logo-medizin.svg', 'logo-bmbf.svg']
 export const PARTICIPANT_CLINICS_LOGOS = [
   'logo-aachen.jpg',
   'logo-augsburg.jpg',
   'logo-berlin.jpg',
-  'logo-bielefeld.jpg',
-  'logo-bochum.jpg',
   'logo-bonn.jpg',
   'logo-dresden.jpg',
   'logo-duesseldorf.jpg',
@@ -45,7 +43,6 @@ export const PARTICIPANT_CLINICS_LOGOS = [
   'logo-muenchen-lmu.jpg',
   'logo-muenchen-tum_mri.jpg',
   'logo-muenster.jpg',
-  'logo-oldenburg.jpg',
   'logo-regensburg.jpg',
   'logo-rostock.jpg',
   'logo-saarland.jpg',
