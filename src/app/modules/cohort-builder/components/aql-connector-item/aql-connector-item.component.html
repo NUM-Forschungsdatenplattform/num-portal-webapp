@@ -15,7 +15,7 @@
 -->
 
 <section role="region" fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start start">
-  <div>{{ aql.name }}</div>
+  <div>{{ currentLang === 'de' ? aql.name : aql.nameTranslated }}</div>
 
   <ng-template #parameterError>
     <mat-hint class="parameter-error">

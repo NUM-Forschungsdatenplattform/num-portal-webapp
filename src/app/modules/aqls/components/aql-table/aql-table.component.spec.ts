@@ -230,8 +230,8 @@ describe('AqlTableComponent', () => {
       const rows = await table.getCellTextByColumnName()
 
       expect(rows.name.text).toHaveLength(mockAqlsToSort.length)
-      expect(rows.name.text[0]).toEqual(aqlWithLatestId.name)
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual(aqlWithOldestId.name)
+      expect(rows.name.text[0]).toEqual(aqlWithLatestId.nameTranslated)
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual(aqlWithOldestId.nameTranslated)
     })
 
     it('should be able to sort by name', async () => {
@@ -244,12 +244,12 @@ describe('AqlTableComponent', () => {
       let rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
       expect(rows.name.text[0]).toEqual('')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('ü')
+      expect(rows.name.text[rows.name.text.length - 1]).toEqual('üTranslated')
       // Sort descending
       await sortHeaderButton.click()
       rows = await table.getCellTextByColumnName()
       expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.name.text[0]).toEqual('ü')
+      expect(rows.name.text[0]).toEqual('üTranslated')
       expect(rows.name.text[rows.name.text.length - 1]).toEqual('')
     })
 
@@ -349,9 +349,9 @@ describe('AqlTableComponent', () => {
       await sortHeaderButton.click()
       const rows = await table.getCellTextByColumnName()
       const firstIdx = rows.name.text.findIndex((txt) => '' === txt)
-      expect(rows.name.text[firstIdx + 1]).toEqual('%')
-      expect(rows.name.text[firstIdx + 2]).toEqual('1')
-      expect(rows.name.text[firstIdx + 3]).toEqual('a')
+      expect(rows.name.text[firstIdx + 1]).toEqual('%Translated')
+      expect(rows.name.text[firstIdx + 2]).toEqual('1Translated')
+      expect(rows.name.text[firstIdx + 3]).toEqual('aTranslated')
     })
 
     it('should sort by id descending again if sort has been unchecked again', async () => {
