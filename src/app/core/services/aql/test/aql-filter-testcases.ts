@@ -66,3 +66,41 @@ export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] 
     resultLength: 0,
   },
 ]
+export const aqlFilterLanguageTestcases: {
+  filter: IAqlFilter
+  resultLength: number
+  lang: string
+}[] = [
+  {
+    filter: {
+      filterItem: [],
+      searchText: 'germanName1',
+    },
+    lang: 'de',
+    resultLength: 1,
+  },
+  {
+    filter: {
+      filterItem: [],
+      searchText: 'germanName1',
+    },
+    lang: 'en',
+    resultLength: 0,
+  },
+  {
+    filter: {
+      filterItem: [],
+      searchText: 'englishName2',
+    },
+    lang: 'de',
+    resultLength: 0,
+  },
+  {
+    filter: {
+      filterItem: [],
+      searchText: 'englishName2',
+    },
+    lang: 'en',
+    resultLength: 1,
+  },
+]

@@ -26,7 +26,13 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
-import { mockAql1, mockAql4, mockAqls, mockAqlsToSort } from 'src/mocks/data-mocks/aqls.mock'
+import {
+  mockAql1,
+  mockAql12,
+  mockAql4,
+  mockAqls,
+  mockAqlsToSort,
+} from 'src/mocks/data-mocks/aqls.mock'
 import { AqlSelectionComponent } from './aql-selection.component'
 
 describe('AqlSelectionComponent', () => {
@@ -40,7 +46,7 @@ describe('AqlSelectionComponent', () => {
   const aqlsSubject = new Subject<IAqlApi[]>()
   const mockAqlService = {
     getAll: jest.fn(),
-    aqlsObservable$: aqlsSubject.asObservable(),
+    filteredAqlsObservable$: aqlsSubject.asObservable(),
   } as unknown as AqlService
 
   const aqlsCategoriesSubject = new Subject<IAqlCategoryApi[]>()
@@ -76,35 +82,21 @@ describe('AqlSelectionComponent', () => {
   })
 
   describe('On init', () => {
-    it('should set the default category', (done) => {
-      mockAqlCategoryService.aqlCategoriesObservable$.subscribe(() => {
-        expect(component.aqlCategories).toEqual(component.initialCategories)
-        done()
-      })
+    it('should set the default category', () => {
       expect(component.initialCategories).toBeTruthy()
-      aqlsCategoriesSubject.next([])
-    })
-
-    it('should subscribe to receive and restructure the categories', (done) => {
-      mockAqlCategoryService.aqlCategoriesObservable$.subscribe(() => {
-        expect(component.aqlCategories[mockAqlCategories[0].id]).toEqual(mockAqlCategories[0].name)
-        expect(component.aqlCategories[mockAqlCategories[1].id]).toEqual(mockAqlCategories[1].name)
-        expect(component.aqlCategories[mockAqlCategories[2].id]).toEqual(mockAqlCategories[2].name)
-        done()
-      })
-      aqlsCategoriesSubject.next(mockAqlCategories)
     })
 
     it('should subscribe to receive and group the aqls by category', (done) => {
-      component.groupedAqls.subscribe((aqls) => {
-        expect(aqls[0].length).toBeTruthy()
-        expect(aqls[1].length).toBeTruthy()
-        expect(aqls[2].length).toBeTruthy()
-        expect(aqls[3].length).toBeTruthy()
-        expect(aqls[0][0].id).toEqual(mockAql4.id)
+      component.groupedAqls.subscribe((groups) => {
+        expect(groups[0].aqls.length).toBeTruthy()
+        expect(groups[1].aqls.length).toBeTruthy()
+        expect(groups[2].aqls.length).toBeTruthy()
+        expect(groups[3].aqls.length).toBeTruthy()
+        expect(groups[0].aqls[0].id).toEqual(mockAql12.id)
         done()
       })
       aqlsSubject.next([mockAql4, ...mockAqlsToSort])
+      aqlsCategoriesSubject.next(mockAqlCategories)
     })
   })
 
@@ -114,6 +106,21 @@ describe('AqlSelectionComponent', () => {
       expect(mockCohortBuilderService.pushItemToTarget).toHaveBeenCalledWith(
         new AqlUiModel(mockAql1)
       )
+    })
+  })
+
+  describe('on language change', () => {
+    it('should set the current lang and group and sort the aqls', (done) => {
+      jest.spyOn(component, 'groupAndSortAql')
+      const componentAny = fixture.componentInstance as any
+
+      componentAny.translateService.onLangChange.subscribe(() => {
+        expect(component.currentLang).toEqual('de')
+        expect(component.groupAndSortAql).toHaveBeenCalledTimes(1)
+        done()
+      })
+
+      componentAny.translateService.use('de')
     })
   })
 })

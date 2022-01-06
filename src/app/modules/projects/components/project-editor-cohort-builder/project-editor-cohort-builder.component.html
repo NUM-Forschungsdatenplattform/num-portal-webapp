@@ -27,12 +27,21 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <num-editor-determine-hits
-    *ngIf="!isDisabled"
-    class="num-margin-b-20"
-    [content]="determineHitsContent"
-    (clicked)="determineHitsClicked.emit()"
-  ></num-editor-determine-hits>
+  <section fxLayout="row">
+    <num-filter-chips
+      [filterChips]="filterConfig.filterItem"
+      [multiSelect]="false"
+      (selectionChange)="handleFilterChange()"
+    ></num-filter-chips>
+
+    <num-search
+      fxFlexOffset="auto"
+      fxFlex="25%"
+      label="QUERIES.SEARCH_QUERIES"
+      [(searchText)]="filterConfig.searchText"
+      (searchTextChange)="handleSearchChange()"
+    ></num-search>
+  </section>
 
   <num-cohort-builder
     [cohortNode]="cohortNode"
@@ -40,5 +49,14 @@
     [raised]="false"
     [isDisabled]="isDisabled"
     data-test="project-editor__cohort-builder"
+    class="num-margin-b-20"
   ></num-cohort-builder>
+
+  <mat-divider class="num-d-c--g num-d-w--1 num-margin-b-20"></mat-divider>
+
+  <num-editor-determine-hits
+    *ngIf="!isDisabled"
+    [content]="determineHitsContent"
+    (clicked)="determineHitsClicked.emit()"
+  ></num-editor-determine-hits>
 </mat-expansion-panel>

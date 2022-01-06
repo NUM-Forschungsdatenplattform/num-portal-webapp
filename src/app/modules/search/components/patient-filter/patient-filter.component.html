@@ -20,6 +20,22 @@
 
 <num-patient-count-info [patientCount]="patientCount$ | async"></num-patient-count-info>
 
+<section fxLayout="row">
+  <num-filter-chips
+    [filterChips]="filterConfig.filterItem"
+    [multiSelect]="false"
+    (selectionChange)="handleFilterChange()"
+  ></num-filter-chips>
+
+  <num-search
+    fxFlexOffset="auto"
+    fxFlex="25%"
+    label="QUERIES.SEARCH_QUERIES"
+    [(searchText)]="filterConfig.searchText"
+    (searchTextChange)="handleSearchChange()"
+  ></num-search>
+</section>
+
 <num-cohort-builder
   [cohortNode]="cohortNode"
   [raised]="true"
