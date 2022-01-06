@@ -105,11 +105,9 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
       tap(([aqls]) => (this.noResults = aqls.length <= 0)),
       map(([aqls, categories]) => {
         const nameField = this.currentLang === 'de' ? 'name' : 'nameTranslated'
-        const sortedAql = aqls.sort((a, b) =>
-          compareLocaleStringValues(a[nameField], b[nameField], a.id, b.id, true)
-        )
+        aqls.sort((a, b) => compareLocaleStringValues(a[nameField], b[nameField], a.id, b.id, true))
         const aqlCategories = this.reduceCategories(categories)
-        return Object.entries(groupBy(sortedAql, (item) => item.categoryId || 0))
+        return Object.entries(groupBy(aqls, (item) => item.categoryId || 0))
           .sort(([keyA, _valueA], [keyB, _valueB]) => {
             // If no category is specified or the category is no longer existend we default to 0
             const categoryKeyA = aqlCategories[+keyA] ? +keyA : 0
