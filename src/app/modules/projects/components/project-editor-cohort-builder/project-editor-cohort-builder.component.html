@@ -27,7 +27,7 @@
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <section fxLayout="row">
+  <section fxLayout="row" *ngIf="!isDisabled">
     <num-filter-chips
       [filterChips]="filterConfig.filterItem"
       [multiSelect]="false"
