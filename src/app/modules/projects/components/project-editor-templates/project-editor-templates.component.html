@@ -18,7 +18,7 @@
   <mat-expansion-panel-header data-test="studies-editor__templates__select-ehr-template-button">
     <mat-panel-title>
       <h3 id="select-header" class="accordion" fxLayoutGap="8px">
-        <fa-icon [icon]="['far', 'check-circle']" *ngIf="templatesValue.length"></fa-icon>
+        <fa-icon [icon]="['far', 'check-circle']" *ngIf="project.templates.length"></fa-icon>
         <span>{{ 'SELECT_EHR_TEMPLATE' | translate }}*</span>
       </h3>
     </mat-panel-title>
@@ -35,19 +35,10 @@
       {{ 'PROJECT.EHR_TEMPLATE_CONTENT' | translate }}
     </div>
 
-    <num-add-template-selected-table
-      [(selectedTemplates)]="templates"
+    <num-add-templates
+      [project]="project"
       [isDisabled]="isDisabled"
       data-test="project-editor__templates__add-template-table"
-    ></num-add-template-selected-table>
-
-    <num-button
-      type="primary"
-      icon="plus"
-      [isDisabled]="isDisabled"
-      (singleClick)="addTemplate()"
-      data-test="project-editor__templates__add-template-button"
-      >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
-    >
+    ></num-add-templates>
   </section>
 </mat-expansion-panel>

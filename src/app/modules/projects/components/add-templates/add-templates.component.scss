@@ -14,16 +14,30 @@
  * limitations under the License.
  */
 
-import { DialogAddTemplateComponent } from 'src/app/modules/projects/components/dialog-add-template/dialog-add-template.component'
-import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
-import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+.determine-hits-count {
+  border: 1px solid var(--num-color--primary);
+  width: 90px;
+  height: 36px;
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
 
-export const ADD_DIALOG_CONFIG: DialogConfig = {
-  title: 'AVAILABLE_EHR_TEMPLATES',
-  confirmButtonText: 'BUTTON.APPLY_SELECTION',
-  cancelButtonText: 'BUTTON.CANCEL',
-  dialogSize: DialogSize.Medium,
-  dialogContentComponent: DialogAddTemplateComponent,
+.template {
+  border-bottom: 1px solid var(--num-color--light-grey);
+  padding: 5px;
+  min-height: 45px;
 
-  dialogContentPayload: undefined,
+  &:last-of-type {
+    margin: 0 0 16px 0;
+  }
+}
+
+.templates-container-empty {
+  padding: 50px;
+}
+
+.empty-state {
+  text-align: center;
 }

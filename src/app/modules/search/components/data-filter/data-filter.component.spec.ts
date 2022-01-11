@@ -170,28 +170,4 @@ describe('DataFilterComponent', () => {
       })
     })
   })
-
-  describe('When the user wants to get hits per template', () => {
-    it('should call the cohort service to get the hits', () => {
-      const templates = [
-        { templateId: 'test1', name: 'testName1' },
-        { templateId: 'test2', name: 'testName2' },
-        { templateId: 'test3', name: 'testName3' },
-      ]
-
-      component.currentProject.templates = templates
-      const { cohortGroup } = resolvedData.convertToApiInterface()
-
-      jest.spyOn(mockCohortService, 'getSizeForTemplates').mockImplementation(() => {
-        return of({ test1: 1, test2: 2, test3: 3 })
-      })
-
-      component.determineHits()
-      expect(mockCohortService.getSizeForTemplates).toHaveBeenCalledWith(cohortGroup, [
-        'test1',
-        'test2',
-        'test3',
-      ])
-    })
-  })
 })
