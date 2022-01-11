@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
-import { ADD_DIALOG_CONFIG } from './constants'
-import { DialogService } from '../../../../core/services/dialog/dialog.service'
-import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-template-info-api.interface'
+import { Component, Input } from '@angular/core'
+
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-project-editor-templates',
@@ -26,33 +24,8 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
   styleUrls: ['./project-editor-templates.component.scss'],
 })
 export class ProjectEditorTemplatesComponent {
-  constructor(private dialogService: DialogService) {}
+  constructor() {}
 
-  templatesValue: IProjectTemplateInfoApi[] = []
-  @Output() templatesChange = new EventEmitter<IProjectTemplateInfoApi[]>()
   @Input() isDisabled: boolean
-  @Input()
-  get templates(): IProjectTemplateInfoApi[] {
-    return this.templatesValue
-  }
-  set templates(templates: IProjectTemplateInfoApi[]) {
-    this.templatesValue = templates
-    this.templatesChange.emit(templates)
-  }
-
-  addTemplate(): void {
-    const dialogContentPayload = this.templates
-    const dialogConfig: DialogConfig = {
-      ...ADD_DIALOG_CONFIG,
-      dialogContentPayload,
-    }
-
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
-
-    dialogRef.afterClosed().subscribe((confirmResult: IProjectTemplateInfoApi | undefined) => {
-      if (Array.isArray(confirmResult)) {
-        this.templates = confirmResult
-      }
-    })
-  }
+  @Input() project: ProjectUiModel
 }

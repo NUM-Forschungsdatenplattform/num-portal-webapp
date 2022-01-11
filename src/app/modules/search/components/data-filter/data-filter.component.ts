@@ -62,20 +62,4 @@ export class DataFilterComponent implements OnInit {
       state: { project: this.currentProject.convertToApiInterface() },
     })
   }
-
-  determineHits(): void {
-    this.isHitCounterLoading = true
-    this.hitCounter = {}
-    const { cohortGroup } = this.currentProject.convertToApiInterface()
-    const templateIds = this.currentProject.templates.map((template) => template.templateId)
-    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe(
-      (result) => {
-        this.isHitCounterLoading = false
-        this.hitCounter = result
-      },
-      (_) => {
-        this.isHitCounterLoading = false
-      }
-    )
-  }
 }

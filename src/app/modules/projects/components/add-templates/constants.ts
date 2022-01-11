@@ -14,21 +14,16 @@
  * limitations under the License.
  */
 
-.templates-container {
-  border: 1px solid grey;
-  border-radius: 6px;
-  padding: 20px;
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+import { DialogAddTemplateComponent } from '../dialog-add-template/dialog-add-template.component'
 
-  table {
-    width: 100%;
+export const ADD_DIALOG_CONFIG: DialogConfig = {
+  title: 'AVAILABLE_EHR_TEMPLATES',
+  confirmButtonText: 'BUTTON.APPLY_SELECTION',
+  cancelButtonText: 'BUTTON.CANCEL',
+  dialogSize: DialogSize.Medium,
+  dialogContentComponent: DialogAddTemplateComponent,
 
-    .mat-column-icon {
-      text-align: right;
-    }
-  }
-
-  .no-results {
-    text-align: center;
-    width: 100%;
-  }
+  dialogContentPayload: undefined,
 }

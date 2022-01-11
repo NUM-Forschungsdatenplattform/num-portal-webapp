@@ -27,6 +27,7 @@ import { NgxEchartsModule } from 'ngx-echarts'
 import { VerticalBarChartComponent } from './components/vertical-bar-chart/vertical-bar-chart.component'
 import { DataFilterTemplatesComponent } from './components/data-filter-templates/data-filter-templates.component'
 import { ManagerDataExplorerComponent } from './components/manager-data-explorer/manager-data-explorer.component'
+import { SharedProjectsModule } from '../projects/shared-projects.module'
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ManagerDataExplorerComponent } from './components/manager-data-explorer
     }),
     SearchRoutingModule,
     SharedModule,
+    SharedProjectsModule,
   ],
 })
 export class SearchModule {}
