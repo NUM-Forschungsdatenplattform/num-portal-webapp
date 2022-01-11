@@ -217,18 +217,24 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.isLoading).toBe(false)
     })
 
-    it('gets the cohort size from patient filter service', async () => {
+    it('gets the cohort size from from cohort service', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => of(mockCohortPreviewData))
+      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(528))
       await component.getPreviewData()
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledTimes(1)
-      expect(component.determineHits.count).toEqual(mockCohortPreviewData.count)
+      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHits.count).toEqual(528)
     })
 
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+
+      jest
+        .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
       await component.getPreviewData()
@@ -238,6 +244,10 @@ describe('PatientFilterComponent', () => {
     it('should show a general error message for unknown errors', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+
+      jest
+        .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
@@ -261,18 +271,6 @@ describe('PatientFilterComponent', () => {
 
       await component.getPreviewData()
       expect(mockPatientFilterService.resetPreviewData).toHaveBeenCalledTimes(1)
-    })
-
-    it('should not call the getSize method from cohort service', async () => {
-      jest
-        .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of(mockCohortPreviewData))
-      jest.spyOn(mockCohortService, 'getSize')
-
-      await component.getPreviewData()
-
-      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalled()
-      expect(mockCohortService.getSize).not.toHaveBeenCalled()
     })
   })
 

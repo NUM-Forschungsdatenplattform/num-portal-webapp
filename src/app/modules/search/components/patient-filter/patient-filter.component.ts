@@ -16,7 +16,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable, Subscription } from 'rxjs'
-import { filter, map, take } from 'rxjs/operators'
+import { catchError, filter, map, take } from 'rxjs/operators'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
@@ -39,6 +39,7 @@ import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 })
 export class PatientFilterComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
+  private chartDataSubscription = new Subscription()
   userRoles: AvailableRoles[]
   determineHits: IDetermineHits = {
     defaultMessage: 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS',
@@ -47,6 +48,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   patientCount$: Observable<number>
   previewData$: Observable<ICohortPreviewApi>
   project: ProjectUiModel
+  isChartDataLoading: boolean
 
   filterConfig: IAqlFilter
 
@@ -91,6 +93,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+    this.chartDataSubscription.unsubscribe()
   }
 
   handleFilterChange(): void {
@@ -145,12 +148,24 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
 
   getCount(cohortGroupApi: ICohortGroupApi): Observable<number> {
     if (this.userRoles.includes(AvailableRoles.Manager)) {
-      return this.patientFilterService
+      this.isChartDataLoading = true
+      if (!this.chartDataSubscription || !this.chartDataSubscription.closed) {
+        this.chartDataSubscription.unsubscribe()
+      }
+      this.chartDataSubscription = this.patientFilterService
         .getPreviewData(cohortGroupApi, false)
-        .pipe(map((value) => value.count))
-    } else {
-      return this.cohortService.getSize(cohortGroupApi, false)
+        .subscribe(
+          () => (this.isChartDataLoading = false),
+          () => (this.isChartDataLoading = false)
+        )
     }
+    return this.cohortService.getSize(cohortGroupApi, false).pipe(
+      catchError((error) => {
+        this.chartDataSubscription.unsubscribe()
+        this.isChartDataLoading = false
+        throw error
+      })
+    )
   }
 
   goToDataFilter(): void {
