@@ -156,6 +156,7 @@
       "NOTIFICATION": "Benachrichtigung"
     }
   },
+  "NO_FILTER_RESULTS": "Keine Ergebnisse. Bitte die Filter oder die Suche anpassen.",
   "TABLE": "Tabelle",
   "INVALID_URL": "Die URL ist nicht valide. Bitte an das Beispiel anpassen:",
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
@@ -365,7 +366,8 @@
     "ROLES": "Rollen",
     "NAME": "Name",
     "EMAIL": "E-Mail Adresse",
-    "REGISTER_DATE": "Registriert am"
+    "REGISTER_DATE": "Registriert am",
+    "UNKNOWN": "Unbekannter Nutzer"
   },
   "ROLE": {
     "RESEARCHER": "Forscher",

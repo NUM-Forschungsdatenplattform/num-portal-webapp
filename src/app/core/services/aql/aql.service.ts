@@ -26,6 +26,7 @@ import { environment } from '../../../../environments/environment'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { TranslateService } from '@ngx-translate/core'
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +39,7 @@ export class AqlService {
   cacheTime = 3000
   getAllTimeStamp = new Date()
   user: IUserProfile
+  currentLang = this.translateService.currentLang || 'en'
 
   private aqls: IAqlApi[] = []
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
@@ -54,7 +56,8 @@ export class AqlService {
   constructor(
     private httpClient: HttpClient,
     appConfig: AppConfigService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private translateService: TranslateService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
@@ -70,6 +73,12 @@ export class AqlService {
         switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
+
+    this.translateService.onLangChange.subscribe((event) => {
+      console.log('lang change', event.lang)
+      this.currentLang = event.lang || 'en'
+      this.setFilter(this.filterSet)
+    })
   }
 
   getAll(): Observable<IAqlApi[]> {
@@ -136,10 +145,11 @@ export class AqlService {
 
     if (filterSet.searchText && filterSet.searchText.length) {
       const textFilter = filterSet.searchText.toLowerCase().trim()
+      const nameField = this.currentLang === 'de' ? 'name' : 'nameTranslated'
 
       result = allAqls.filter(
         (aql) =>
-          aql.name?.toLowerCase().includes(textFilter) ||
+          aql[nameField]?.toLowerCase().includes(textFilter) ||
           aql.owner?.lastName?.toLowerCase().includes(textFilter) ||
           aql.owner?.firstName?.toLowerCase().includes(textFilter) ||
           aql.owner?.firstName

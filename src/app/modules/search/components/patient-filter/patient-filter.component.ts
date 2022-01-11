@@ -17,11 +17,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable, Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
 import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.interface'
@@ -46,6 +48,8 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   previewData$: Observable<ICohortPreviewApi>
   project: ProjectUiModel
 
+  filterConfig: IAqlFilter
+
   get cohortNode(): CohortGroupUiModel {
     return this.project.cohortGroup
   }
@@ -55,7 +59,8 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
     private router: Router,
     private toastMessageService: ToastMessageService,
     private cohortService: CohortService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private aqlService: AqlService
   ) {}
 
   ngOnInit(): void {
@@ -75,11 +80,25 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
         .subscribe()
     )
 
+    this.subscriptions.add(
+      this.aqlService.filterConfigObservable$
+        .pipe(take(1))
+        .subscribe((config) => (this.filterConfig = config))
+    )
+
     this.patientFilterService.getAllDatasetCount().subscribe()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  handleFilterChange(): void {
+    this.aqlService.setFilter(this.filterConfig)
+  }
+
+  handleSearchChange(): void {
+    this.aqlService.setFilter(this.filterConfig)
   }
 
   setCurrentProject(): void {

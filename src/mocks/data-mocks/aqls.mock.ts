@@ -301,3 +301,32 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
     },
   },
 ]
+
+export const mockAqlsToFilterWithLanguage: DeepPartial<IAqlApi>[] = [
+  {
+    id: 1,
+    name: 'germanName1',
+    nameTranslated: 'englishName1',
+    owner: {
+      id: '1',
+      firstName: '',
+      lastName: '',
+      organization: {
+        id: 1,
+      },
+    },
+  },
+  {
+    id: 2,
+    name: 'germanName2',
+    nameTranslated: 'englishName2',
+    owner: {
+      id: '1',
+      firstName: 'firstname2',
+      lastName: null,
+      organization: {
+        id: null,
+      },
+    },
+  },
+]
