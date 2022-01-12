@@ -35,7 +35,7 @@ export abstract class ConnectorGroupUiModel<T extends IConnectorGroupApi<T>> {
     child: IConnectorGroupApi<T>
   ) => ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
 
-  public convertToUi(apiGroup: IConnectorGroupApi<T>, isNegated: boolean = false): void {
+  public convertToUi(apiGroup: IConnectorGroupApi<T>, isNegated = false): void {
     this.isNegated = isNegated
     this.logicalOperator =
       apiGroup.operator === LogicalOperator.And ? LogicalOperator.And : LogicalOperator.Or

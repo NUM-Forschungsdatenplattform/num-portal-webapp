@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { ApprovalOption } from '../../models/approval-option.enum'
 
@@ -23,12 +23,10 @@ import { ApprovalOption } from '../../models/approval-option.enum'
   templateUrl: './project-editor-approval.component.html',
   styleUrls: ['./project-editor-approval.component.scss'],
 })
-export class ProjectEditorApprovalComponent implements OnInit {
+export class ProjectEditorApprovalComponent {
   constructor() {}
 
   @Input() form: FormGroup
 
   approvalOptions = Object.values(ApprovalOption)
-
-  ngOnInit(): void {}
 }

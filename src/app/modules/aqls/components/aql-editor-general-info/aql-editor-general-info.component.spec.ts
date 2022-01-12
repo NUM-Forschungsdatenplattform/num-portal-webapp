@@ -50,8 +50,11 @@ describe('AqlEditorGeneralInfoComponent', () => {
     component = fixture.componentInstance
     component.form = new FormGroup({
       title: new FormControl(),
+      titleTranslated: new FormControl(),
       purpose: new FormControl(),
+      purposeTranslated: new FormControl(),
       use: new FormControl(),
+      useTranslated: new FormControl(),
       isPublic: new FormControl(),
       category: new FormControl(),
     })

@@ -62,8 +62,8 @@ export class NumAqlFormattingProvider {
    */
   format = (
     model: monaco.editor.ITextModel,
-    options?: monaco.languages.FormattingOptions,
-    token?: monaco.CancellationToken
+    _options?: monaco.languages.FormattingOptions,
+    _token?: monaco.CancellationToken
   ): monaco.languages.ProviderResult<monaco.languages.TextEdit[]> => {
     const query = model.getValue()
     const text = this.formatQuery(query)

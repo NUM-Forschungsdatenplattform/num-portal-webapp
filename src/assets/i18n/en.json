@@ -6,8 +6,7 @@
       "HEADER": "The COVID-19 Data Exchange Platform",
       "P1": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data.",
       "P2": "The collaborative CODEX platform provides comprehensive Covid-19 research datasets including clinical data and biospecimen data from all German university hospitals in a pseudonymized format. ",
-      "PARTICIPANTS": "Participating clinics",
-      "INITIATIVE": "An initiative of"
+      "PARTICIPANTS": "Participating clinics"
     },
     "INFO_CARD": {
       "HEADER": "Info Board"
@@ -36,7 +35,7 @@
   },
   "NAVIGATION": {
     "DASHBOARD": "Welcome to CODEX",
-    "DATA_FILTER": "Data filter",
+    "DATA_FILTER": "Data Filter",
     "PATIENT_FILTER": "Patients Filter",
     "PROJECTS": "Projects",
     "PROJECTS_OVERVIEW": "Project Overview",
@@ -46,7 +45,7 @@
     "QUERIES": "Criteria",
     "QUERIES_OVERVIEW": "Criteria Overview",
     "QUERIES_EDITOR": "Criteria Editor",
-    "QUERIES_CATEGORIES_OVERVIEW": "Criteria categories",
+    "QUERIES_CATEGORIES_OVERVIEW": "Criteria Categories",
     "USER_MANAGEMENT": "User Management",
     "NEW_USERS": "New Users",
     "ALL_USERS": "Approved Users",
@@ -57,10 +56,20 @@
     "CONTENT_EDITOR_WELCOME_PAGE": "Welcome Page",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "MANAGER_TOOLS": "Manager Tools",
-    "PROFILE": "Profile",
+    "PROFILE": "User Account",
     "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in"
+  },
+  "PROFILE": {
+    "EDIT_HEADER": "Edit User Account",
+    "EDIT_DESCRIPTION": "* Mandatory field",
+    "SAVE_DIALOG_HEADER": "Do you want to save the changes?",
+    "SAVE_DIALOG_TEXT": "The changes to your user account will be saved. You can change the information at any time afterwards.",
+    "DISCARD_DIALOG_HEADER": "Do you really want to cancel editing?",
+    "DISCARD_DIALOG_TEXT": "If you cancel the editing, the changes to your user account will be lost.",
+    "SAVE_SUCCESS": "The changes where saved successfully.",
+    "SAVE_ERROR": "The changes could not be saved. Please try again."
   },
   "LEGAL": {
     "DISCLOSURE": "Disclosure",
@@ -70,7 +79,7 @@
     "COOKIE_WARNING_CONTENT": "This website sets technically essential cookies (session cookies) at your computer which are required for the basic functionality of the website."
   },
   "FILTER_CHIP": {
-    "MY_QUERIES": "My Criteria",
+    "MY_QUERIES": "My criteria",
     "MY_PROJECTS": "My projects",
     "ORGANIZATION": "My organization",
     "ALL": "All",
@@ -93,7 +102,7 @@
     "SEARCH_QUERIES": "Criteria search",
     "SELECT_AT_LEAST_ONE": "Please select one or more Criteria",
     "QUERY_BUILDER_DIALOG_HEADER": "Builder",
-    "AVAILABLE_QUERIES": "Available queries",
+    "AVAILABLE_QUERIES": "Available Queries",
     "SAVE_SUCCESS_MESSAGE": "Your criterium was created successfully.",
     "SAVE_ERROR_MESSAGE": "Failed to create your criterium.",
     "DELETE_QUERY_SUCCESS_MESSAGE": "The criterium was successfully deleted.",
@@ -146,6 +155,7 @@
       "NOTIFICATION": "Notification"
     }
   },
+  "NO_FILTER_RESULTS": "No results found. Please adjust the filter or search.",
   "TABLE": "Table",
   "INVALID_URL": "The URL is not valid. Please adjust to the example:",
   "PROVIDE_URL": "Please enter a URL",
@@ -216,6 +226,7 @@
   "BUTTON": {
     "ARCHIVE": "Archive",
     "SAVE": "Save",
+    "SAVE_CHANGES": "Save Changes",
     "CANCEL": "Cancel",
     "DISCARD": "Discard changes",
     "ACCEPT": "Accept",
@@ -354,7 +365,8 @@
     "ROLES": "Roles",
     "NAME": "Name",
     "EMAIL": "E-mail address",
-    "REGISTER_DATE": "Register date"
+    "REGISTER_DATE": "Register date",
+    "UNKNOWN": "Unknown User"
   },
   "ROLE": {
     "RESEARCHER": "Researcher",
@@ -402,7 +414,7 @@
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT": "Export {{format}}",
     "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
-    "HEADLINE_RETREIVE_SECTION": "Retreive data",
+    "HEADLINE_RETREIVE_SECTION": "Retreive Data",
     "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
   },
   "USER_MANAGEMENT": {
@@ -471,7 +483,7 @@
   },
   "QUERY_CATEGORIES": {
     "CREATE_DESCRIPTION_BUTTON": "To create a new criterium category please click the following button.",
-    "CREATE_HEADER": "Create criterium category",
+    "CREATE_HEADER": "Create Criterium Category",
     "CREATE_SUCCESS_MESSAGE": "Criteria category created successfully.",
     "CREATE_ERROR_MESSAGE": "Criteria category could not be created. Please try again.",
     "DE_NAME": "German name",
@@ -481,21 +493,21 @@
     "EDIT_DIALOG_TITLE": "Edit category",
     "EN_NAME": "English name",
     "OVERVIEW_DESCRIPTION": "In the following list you can see all the criterium categories in the portal that you are authorized to edit. To edit a category, select it from the list.",
-    "TABLE_TITLE": "Available criterium categories",
+    "TABLE_TITLE": "Available Criterium Categories",
     "UNCATEGORIZED": "Uncategorized",
     "UPDATE_SUCCESS_MESSAGE": "Criteria category updated successfully.",
     "UPDATE_ERROR_MESSAGE": "Criteria category could not be updated. Please try again."
   },
   "SEARCH": {
-    "DATA_EXPLORER_HEADING": "Fetch project data",
+    "DATA_EXPLORER_HEADING": "Fetch Project Data",
     "DATA_EXPLORER_DESCRIPTION": "Fetch the project data you defined in the patient filter and data pages before using this page.",
-    "DATA_FILTER_HEADING": "Selection of return parameters",
+    "DATA_FILTER_HEADING": "Selection of Return Parameters",
     "DATA_FILTER_DESCRIPTION": "The return parameters are based on the GECCO 83 dataset. Select your desired elements from the dataset which should be used as the foundation for your project.",
     "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "You have the possibility to request a project with the configured patient and data filter. If you do so, the defined cohort and return parameters are transferred to a new project.",
     "DATA_FILTER_SELECT_TEMPLATES": "Please select one or more return parameters",
     "DATA_FILTER_COHORT_SIZE": "Size of the specified cohort: {{amount}}",
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
-    "PATIENT_FILTER_DESCRIPTION": "Add one or more queries from the list to define the foundation of the new cohort."
+    "PATIENT_FILTER_DESCRIPTION": "Select one or more criteria from the list to define the basis of the new cohort."
   },
   "IMPRINT": {
     "PUBLIC_KEY_LINKS": {

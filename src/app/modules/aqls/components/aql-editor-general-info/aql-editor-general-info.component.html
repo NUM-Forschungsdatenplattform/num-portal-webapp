@@ -31,7 +31,7 @@
 
       <form fxLayout="column" [formGroup]="form">
         <mat-form-field appearance="outline" color="accent">
-          <mat-label id="title-label">{{ 'FORM.TITLE' | translate }}*</mat-label>
+          <mat-label id="title-label">DE: {{ 'FORM.TITLE' | translate }}</mat-label>
           <input
             formControlName="title"
             matInput
@@ -41,9 +41,20 @@
           />
         </mat-form-field>
 
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label id="title-translated-label">EN: {{ 'FORM.TITLE' | translate }}</mat-label>
+          <input
+            formControlName="titleTranslated"
+            matInput
+            placeholder="Title"
+            aria-labelledby="title-translated-label"
+            data-test="aql-editor__general-info__title-translated-input"
+          />
+        </mat-form-field>
+
         <section role="presentation" fxLayout="row" fxLayoutGap="20px">
           <mat-form-field appearance="outline" color="accent" fxFlex="50%">
-            <mat-label id="label-purpose">{{ 'FORM.PURPOSE' | translate }}*</mat-label>
+            <mat-label id="label-purpose">DE: {{ 'FORM.PURPOSE' | translate }}</mat-label>
             <textarea
               formControlName="purpose"
               #textarea
@@ -56,7 +67,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" color="accent" fxFlex="50%">
-            <mat-label id="label-use">{{ 'FORM.USE' | translate }}*</mat-label>
+            <mat-label id="label-use">DE: {{ 'FORM.USE' | translate }}</mat-label>
             <textarea
               formControlName="use"
               #textarea
@@ -65,6 +76,36 @@
               aria-labelledby="label-use"
               rows="10"
               data-test="aql-editor__general-info__use-input"
+            ></textarea>
+          </mat-form-field>
+        </section>
+
+        <section role="presentation" fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+            <mat-label id="label-purpose-translated"
+              >EN: {{ 'FORM.PURPOSE' | translate }}</mat-label
+            >
+            <textarea
+              formControlName="purposeTranslated"
+              #textarea
+              matInput
+              style="resize: none"
+              aria-labelledby="label-purpose-translated"
+              rows="10"
+              data-test="aql-editor__general-info__purpose-translated-input"
+            ></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="accent" fxFlex="50%">
+            <mat-label id="label-use-translated">EN: {{ 'FORM.USE' | translate }}</mat-label>
+            <textarea
+              formControlName="useTranslated"
+              #textarea
+              matInput
+              style="resize: none"
+              aria-labelledby="label-use-translated"
+              rows="10"
+              data-test="aql-editor__general-info__use-translated-input"
             ></textarea>
           </mat-form-field>
         </section>

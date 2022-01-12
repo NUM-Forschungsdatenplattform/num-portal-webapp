@@ -259,7 +259,8 @@ describe('PatientFilterService', () => {
 
       try {
         await service.exportFile(cohort, templates).toPromise()
-      } catch (err) {
+      } catch (_err) {
+        //
       } finally {
         expect(service.handleError).toHaveBeenCalledTimes(1)
       }

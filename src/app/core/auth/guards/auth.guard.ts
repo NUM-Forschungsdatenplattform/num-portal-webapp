@@ -23,12 +23,14 @@ import {
   RouterStateSnapshot,
 } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
+import { filter, map, take } from 'rxjs/operators'
+import { ProfileService } from '../../services/profile/profile.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private oauthService: OAuthService) {}
+  constructor(private oauthService: OAuthService, private profileService: ProfileService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -41,11 +43,23 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   async isAllowed(route: ActivatedRouteSnapshot | Route, redirectUri: string): Promise<boolean> {
+    const onlyApprovedUsers: boolean = route.data?.onlyApprovedUsers
+
     const isLoggedIn =
       this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()
 
     if (isLoggedIn) {
-      return Promise.resolve(true)
+      if (!onlyApprovedUsers) {
+        return Promise.resolve(true)
+      }
+      return this.profileService.userProfileObservable$
+
+        .pipe(
+          filter((profile) => !!profile.id),
+          take(1),
+          map((profile) => profile.approved)
+        )
+        .toPromise()
     }
 
     return this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })

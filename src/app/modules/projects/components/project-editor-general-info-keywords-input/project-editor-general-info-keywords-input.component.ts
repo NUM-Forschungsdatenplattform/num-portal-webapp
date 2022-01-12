@@ -15,7 +15,7 @@
  */
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips'
 
@@ -24,7 +24,7 @@ import { MatChipInputEvent } from '@angular/material/chips'
   templateUrl: './project-editor-general-info-keywords-input.component.html',
   styleUrls: ['./project-editor-general-info-keywords-input.component.scss'],
 })
-export class ProjectEditorGeneralInfoKeywordsInputComponent implements OnInit {
+export class ProjectEditorGeneralInfoKeywordsInputComponent {
   constructor() {}
 
   @Input() form: FormGroup
@@ -36,8 +36,6 @@ export class ProjectEditorGeneralInfoKeywordsInputComponent implements OnInit {
   set keywords(value: string[]) {
     this.form?.get('keywords')?.setValue(value)
   }
-
-  ngOnInit(): void {}
 
   addKeyword(event: MatChipInputEvent): void {
     const value = event.value?.trim()

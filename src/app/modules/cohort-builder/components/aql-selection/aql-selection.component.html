@@ -15,23 +15,24 @@
 -->
 
 <mat-accordion class="num-accordion num-accordion-small">
-  <mat-expansion-panel *ngFor="let aqlGroup of groupedAqls | async | keyvalue">
+  <p class="no-results" *ngIf="noResults">
+    <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+    {{ 'NO_FILTER_RESULTS' | translate }}
+  </p>
+  <mat-expansion-panel *ngFor="let aqlGroup of groupedAqls | async">
     <mat-expansion-panel-header
-      *ngIf="aqlCategories[aqlGroup.key]"
-      [attr.data-test]="'cohort-builder__aql-selection__category--' + aqlGroup.key"
-      >{{
-        aqlCategories[aqlGroup.key] ? aqlCategories[aqlGroup.key][currentLang] : ''
-      }}</mat-expansion-panel-header
+      [attr.data-test]="'cohort-builder__aql-selection__category--' + aqlGroup.categoryId"
+      >{{ aqlGroup[currentLang] }}</mat-expansion-panel-header
     >
     <div
       class="aql"
-      *ngFor="let aql of aqlGroup.value"
+      *ngFor="let aql of aqlGroup.aqls"
       fxLayout="row"
       fxLayoutAlign="space-between center"
     >
       <div class="aql__meta">
         <div class="aql__meta__name" data-test="cohort-builder__aql-selection__aql-name">
-          {{ aql.name }}
+          {{ currentLang === 'de' ? aql.name : aql.nameTranslated }}
         </div>
         <button
           color="primary"

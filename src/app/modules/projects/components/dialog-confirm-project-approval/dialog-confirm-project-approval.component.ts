@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
@@ -23,7 +23,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   templateUrl: './dialog-confirm-project-approval.component.html',
   styleUrls: ['./dialog-confirm-project-approval.component.scss'],
 })
-export class DialogConfirmProjectApprovalComponent implements OnInit, IGenericDialog<never> {
+export class DialogConfirmProjectApprovalComponent implements IGenericDialog<never> {
   constructor() {}
 
   @Output() closeDialog = new EventEmitter()
@@ -32,8 +32,6 @@ export class DialogConfirmProjectApprovalComponent implements OnInit, IGenericDi
   form = new FormGroup({
     check: new FormControl(false, [Validators.requiredTrue]),
   })
-
-  ngOnInit(): void {}
 
   handleDialogCancel(): void {
     this.closeDialog.emit(false)

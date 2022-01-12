@@ -6,8 +6,7 @@
       "HEADER": "Die COVID-19-Datenaustauschplattform",
       "P1": "Die CODEX Forschungsdatenplattform ist eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu Covid-19. Sie verbindet Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertungen strukturierter Daten mit hoher Qualität.",
       "P2": "Die standortübergreifende CODEX Plattform stellt umfangreiche Covid-19-Forschungsdatensätze inklusive klinischer Daten und Daten zu Bioproben aus allen deutschen Universitätskliniken pseudonymisiert zur Verfügung.",
-      "PARTICIPANTS": "Teilnehmende Kliniken",
-      "INITIATIVE": "Eine Initiative von"
+      "PARTICIPANTS": "Teilnehmende Kliniken"
     },
     "INFO_CARD": {
       "HEADER": "Info Board"
@@ -57,10 +56,20 @@
     "CONTENT_EDITOR_WELCOME_PAGE": "Willkommens-Seite",
     "CONTENT_EDITOR_NAVIGATION_ITEMS": "Navigation",
     "MANAGER_TOOLS": "Manager Tools",
-    "PROFILE": "Profil",
+    "PROFILE": "Benutzerkonto",
     "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden"
+  },
+  "PROFILE": {
+    "EDIT_HEADER": "Benutzerkonto bearbeiten",
+    "EDIT_DESCRIPTION": "* Pflichtfeld",
+    "SAVE_DIALOG_HEADER": "Möchten Sie die Änderungen speichern?",
+    "SAVE_DIALOG_TEXT": "Die Änderungen an Ihrem Benutzerkonto werden gespeichert. Sie könne die Angaben danach jederzeit wieder ändern.",
+    "DISCARD_DIALOG_HEADER": "Möchten Sie die Bearbeitung wirklich abbrechen?",
+    "DISCARD_DIALOG_TEXT": "Wenn Sie die Bearbeitung abbrechen, gehen die Änderungen an Ihrem Benutzerkonto verloren.",
+    "SAVE_SUCCESS": "Die Änderungen wurden erfolgreich gespeichert.",
+    "SAVE_ERROR": "Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut."
   },
   "LEGAL": {
     "DISCLOSURE": "Impressum",
@@ -147,6 +156,7 @@
       "NOTIFICATION": "Benachrichtigung"
     }
   },
+  "NO_FILTER_RESULTS": "Keine Ergebnisse. Bitte die Filter oder die Suche anpassen.",
   "TABLE": "Tabelle",
   "INVALID_URL": "Die URL ist nicht valide. Bitte an das Beispiel anpassen:",
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
@@ -217,6 +227,7 @@
   "BUTTON": {
     "ARCHIVE": "Archivieren",
     "SAVE": "Speichern",
+    "SAVE_CHANGES": "Änderungen speichern",
     "CANCEL": "Abbrechen",
     "DISCARD": "Änderungen verwerfen",
     "ACCEPT": "Akzeptieren",
@@ -229,7 +240,7 @@
     "VALIDATE_QUERY": "Überprüfen",
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
-    "ADD_TEMPLATE": "Vorlage hinzufügen",
+    "ADD_TEMPLATE": "Parameter hinzufügen",
     "ADD": "Hinzufügen",
     "ADD_INFO_CARD": "Info-Kachel erstellen",
     "DELETE_GROUP": "Gruppe löschen",
@@ -355,7 +366,8 @@
     "ROLES": "Rollen",
     "NAME": "Name",
     "EMAIL": "E-Mail Adresse",
-    "REGISTER_DATE": "Registriert am"
+    "REGISTER_DATE": "Registriert am",
+    "UNKNOWN": "Unbekannter Nutzer"
   },
   "ROLE": {
     "RESEARCHER": "Forscher",

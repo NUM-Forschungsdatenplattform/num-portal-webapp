@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
@@ -26,7 +26,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   templateUrl: './project-editor-accordion.component.html',
   styleUrls: ['./project-editor-accordion.component.scss'],
 })
-export class ProjectEditorAccordionComponent implements OnInit {
+export class ProjectEditorAccordionComponent {
   @Input() isResearchersFetched: boolean
   @Input() isCohortsFetched: boolean
 
@@ -44,6 +44,4 @@ export class ProjectEditorAccordionComponent implements OnInit {
   @Output() determineHitsClicked = new EventEmitter()
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

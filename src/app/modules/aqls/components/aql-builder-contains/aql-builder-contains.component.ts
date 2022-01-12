@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
@@ -23,7 +23,7 @@ import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
   templateUrl: './aql-builder-contains.component.html',
   styleUrls: ['./aql-builder-contains.component.scss'],
 })
-export class AqlBuilderContainsComponent implements OnInit {
+export class AqlBuilderContainsComponent {
   constructor() {}
 
   @Input()
@@ -31,8 +31,6 @@ export class AqlBuilderContainsComponent implements OnInit {
 
   @Input()
   compositions: AqbContainsCompositionUiModel[] = []
-
-  ngOnInit(): void {}
 
   deleteCompositionByReferenceId(compositionReferenceId: number): void {
     this.aqbModel.handleDeletionByCompositionReferenceIds([compositionReferenceId])

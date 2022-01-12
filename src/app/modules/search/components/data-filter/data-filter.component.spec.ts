@@ -27,7 +27,6 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 import { DataFilterComponent } from './data-filter.component'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
@@ -169,30 +168,6 @@ describe('DataFilterComponent', () => {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['projects/new/editor'], {
         state: { project },
       })
-    })
-  })
-
-  describe('When the user wants to get hits per template', () => {
-    it('should call the cohort service to get the hits', () => {
-      const templates = [
-        { templateId: 'test1', name: 'testName1' },
-        { templateId: 'test2', name: 'testName2' },
-        { templateId: 'test3', name: 'testName3' },
-      ]
-
-      component.currentProject.templates = templates
-      const { cohortGroup } = resolvedData.convertToApiInterface()
-
-      jest.spyOn(mockCohortService, 'getSizeForTemplates').mockImplementation(() => {
-        return of({ test1: 1, test2: 2, test3: 3 })
-      })
-
-      component.determineHits()
-      expect(mockCohortService.getSizeForTemplates).toHaveBeenCalledWith(cohortGroup, [
-        'test1',
-        'test2',
-        'test3',
-      ])
     })
   })
 })

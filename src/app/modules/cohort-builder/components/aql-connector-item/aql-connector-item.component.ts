@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
+import { Subscription } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
@@ -27,17 +29,23 @@ import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builde
   templateUrl: './aql-connector-item.component.html',
   styleUrls: ['./aql-connector-item.component.scss'],
 })
-export class AqlConnectorItemComponent implements OnInit {
+export class AqlConnectorItemComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
   @Input() aql: AqlUiModel
   @Input() isDisabled: boolean
   @Output()
   deleteItem = new EventEmitter()
 
   hasParameterError: boolean
+  currentLang = this.translateService.currentLang || 'en'
 
-  constructor(private aqlParameterService: AqlParameterService) {}
+  constructor(
+    private aqlParameterService: AqlParameterService,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit(): void {
+    this.initSubscriptions()
     if (this.aql.hasParameterError) {
       this.hasParameterError = true
     } else {
@@ -64,6 +72,18 @@ export class AqlConnectorItemComponent implements OnInit {
         )
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
+  initSubscriptions() {
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.currentLang = event.lang || 'en'
+      })
+    )
   }
 
   prefillParameter(parameter: IAqlParameter, optionKeys: string[]): void {

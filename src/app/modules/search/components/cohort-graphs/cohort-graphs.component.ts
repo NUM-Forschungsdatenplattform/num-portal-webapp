@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interface'
@@ -23,14 +23,13 @@ import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interfac
   templateUrl: './cohort-graphs.component.html',
   styleUrls: ['./cohort-graphs.component.scss'],
 })
-export class CohortGraphsComponent implements OnInit {
+export class CohortGraphsComponent {
   @Input() determineHits: IDetermineHits
+  @Input() isChartDataLoading: boolean
   @Input() previewData: ICohortPreviewApi
   @Output() determine = new EventEmitter<void>()
 
   availableRoles = AvailableRoles
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -77,3 +77,15 @@ export const mockProjectLeadProfile: IUserProfile = {
   approved: true,
   organization: mockOrganization1,
 }
+
+export const mockUserProfileUnapproved: IUserProfile = {
+  id: '6',
+  username: 'username-6',
+  firstName: 'user6-firstname',
+  lastName: 'user6-lastname',
+  email: 'mockUser6@email.com',
+  createdTimestamp: 1603140166809,
+  roles: [],
+  approved: false,
+  organization: undefined,
+}

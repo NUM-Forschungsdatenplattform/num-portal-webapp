@@ -27,9 +27,12 @@ const queryWithTwoParameter =
 export const mockAql1: IAqlApi = {
   id: 1,
   name: 'name1',
+  nameTranslated: 'name1Translated',
   query: 'quer1',
   purpose: '',
+  purposeTranslated: '',
   use: '',
+  useTranslated: '',
   createDate: '',
   modifiedDate: '',
   owner: mockUser,
@@ -40,9 +43,12 @@ export const mockAql1: IAqlApi = {
 export const mockAql2: IAqlApi = {
   id: 2,
   name: 'name2',
+  nameTranslated: 'name2Translated',
   query: 'quer2',
   purpose: '',
+  purposeTranslated: '',
   use: '',
+  useTranslated: '',
   createDate: '',
   modifiedDate: '',
   owner: mockUser,
@@ -53,9 +59,12 @@ export const mockAql2: IAqlApi = {
 export const mockAql3: IAqlApi = {
   id: 3,
   name: 'name3 with param',
+  nameTranslated: 'name3 with param Translated',
   query: queryWithTwoParameter,
   purpose: '',
+  purposeTranslated: '',
   use: '',
+  useTranslated: '',
   createDate: '',
   modifiedDate: '',
   owner: mockUser,
@@ -66,9 +75,12 @@ export const mockAql3: IAqlApi = {
 export const mockAql4: IAqlApi = {
   id: 4,
   name: 'name4 with parameter',
+  nameTranslated: 'name4 with parameter Translated',
   query: 'quer4 has just this $parameter',
   purpose: '',
+  purposeTranslated: '',
   use: '',
+  useTranslated: '',
   createDate: '',
   modifiedDate: '',
   owner: mockUser,
@@ -79,9 +91,12 @@ export const mockAql4: IAqlApi = {
 export const mockAql5: IAqlApi = {
   id: 5,
   name: 'b',
+  nameTranslated: 'bTranslated',
   query: 'query5',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUser,
@@ -92,9 +107,12 @@ export const mockAql5: IAqlApi = {
 export const mockAql6: IAqlApi = {
   id: 6,
   name: 'a',
+  nameTranslated: 'aTranslated',
   query: 'query6',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserStudyCoordinator,
@@ -105,9 +123,12 @@ export const mockAql6: IAqlApi = {
 export const mockAql7: IAqlApi = {
   id: 7,
   name: 'A',
+  nameTranslated: 'ATranslated',
   query: 'query7',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserStudyCoordinator,
@@ -118,9 +139,12 @@ export const mockAql7: IAqlApi = {
 export const mockAql8: IAqlApi = {
   id: 8,
   name: 'ü',
+  nameTranslated: 'üTranslated',
   query: 'query8',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: '2020-01-01',
   modifiedDate: '2020-01-01',
   owner: mockUser,
@@ -131,9 +155,12 @@ export const mockAql8: IAqlApi = {
 export const mockAql9: IAqlApi = {
   id: 9,
   name: '%',
+  nameTranslated: '%Translated',
   query: 'query9',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUser,
@@ -144,9 +171,12 @@ export const mockAql9: IAqlApi = {
 export const mockAql10: IAqlApi = {
   id: 10,
   name: 'ö',
+  nameTranslated: 'öTranslated',
   query: 'query10',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
@@ -157,9 +187,12 @@ export const mockAql10: IAqlApi = {
 export const mockAql11: IAqlApi = {
   id: 11,
   name: '',
+  nameTranslated: '',
   query: 'query11',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
@@ -170,9 +203,12 @@ export const mockAql11: IAqlApi = {
 export const mockAql12: IAqlApi = {
   id: 12,
   name: '1',
+  nameTranslated: '1Translated',
   query: 'query12',
   purpose: 'Test sorting of AQLs',
+  purposeTranslated: 'Test sorting of AQLsTranslated',
   use: '',
+  useTranslated: '',
   createDate: DateHelperService.getDateString(new Date()),
   modifiedDate: DateHelperService.getDateString(new Date()),
   owner: mockUserProfile1,
@@ -206,6 +242,7 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
   {
     id: 1,
     name: 'aqlName1',
+    nameTranslated: 'aqlName1Translated',
     owner: {
       id: '1',
       firstName: '',
@@ -218,6 +255,7 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
   {
     id: 2,
     name: 'aqlName2',
+    nameTranslated: 'aqlName2Translated',
     owner: {
       id: '1',
       firstName: 'firstname2',
@@ -230,6 +268,7 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
   {
     id: 3,
     name: 'aqlName3',
+    nameTranslated: 'aqlName3Translated',
     owner: {
       id: '1',
       firstName: null,
@@ -240,6 +279,7 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
   {
     id: 4,
     name: null,
+    nameTranslated: null,
     owner: {
       id: '2',
       firstName: 'firstName4',
@@ -252,11 +292,41 @@ export const mockAqlsToFilter: DeepPartial<IAqlApi>[] = [
   {
     id: 44,
     name: null,
+    nameTranslated: null,
     owner: {
       id: '22',
       firstName: 'firstName4',
       lastName: 'lastName4',
       organization: null,
+    },
+  },
+]
+
+export const mockAqlsToFilterWithLanguage: DeepPartial<IAqlApi>[] = [
+  {
+    id: 1,
+    name: 'germanName1',
+    nameTranslated: 'englishName1',
+    owner: {
+      id: '1',
+      firstName: '',
+      lastName: '',
+      organization: {
+        id: 1,
+      },
+    },
+  },
+  {
+    id: 2,
+    name: 'germanName2',
+    nameTranslated: 'englishName2',
+    owner: {
+      id: '1',
+      firstName: 'firstname2',
+      lastName: null,
+      organization: {
+        id: null,
+      },
     },
   },
 ]

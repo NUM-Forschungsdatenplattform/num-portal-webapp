@@ -209,7 +209,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
         )
       }
       case 'name': {
-        return newData.sort((a, b) => compareLocaleStringValues(a.name, b.name, a.id, b.id, isAsc))
+        const nameField = this.lang === 'de' ? 'name' : 'nameTranslated'
+        return newData.sort((a, b) =>
+          compareLocaleStringValues(a[nameField], b[nameField], a.id, b.id, isAsc)
+        )
       }
       case 'organization': {
         return newData.sort((a, b) =>
@@ -225,8 +228,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
       case 'category': {
         return newData.sort((a, b) =>
           compareLocaleStringValues(
-            !!a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
-            !!b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
+            a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
+            b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
             a.id,
             b.id,
             isAsc

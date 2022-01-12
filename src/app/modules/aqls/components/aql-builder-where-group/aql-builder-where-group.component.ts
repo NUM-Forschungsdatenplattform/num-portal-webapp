@@ -57,7 +57,7 @@ export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         switch (propName) {
           case 'parentGroupIndex': {
             this.enumerateGroupsDebounced()
@@ -88,11 +88,11 @@ export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
     this.enumerateGroupsDebounced()
   }
 
-  deleteChildGroup(index: number): void {
+  deleteChildGroup(_index: number): void {
     this.enumerateGroupsDebounced()
   }
 
-  deleteChildItem(index: number, archetypeId: string): void {
+  deleteChildItem(index: number, _archetypeId: string): void {
     this.group.children.splice(index, 1)
   }
 

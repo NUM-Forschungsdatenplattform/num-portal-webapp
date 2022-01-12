@@ -18,14 +18,21 @@ import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
-import { mockAql1, mockAqls, mockAqlsToFilter } from 'src/mocks/data-mocks/aqls.mock'
+import {
+  mockAql1,
+  mockAqls,
+  mockAqlsToFilter,
+  mockAqlsToFilterWithLanguage,
+} from 'src/mocks/data-mocks/aqls.mock'
 import { AqlService } from '../aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { ProfileService } from '../../profile/profile.service'
 import { skipUntil } from 'rxjs/operators'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
-import { aqlFilterTestcases } from './aql-filter-testcases'
+import { aqlFilterLanguageTestcases, aqlFilterTestcases } from './aql-filter-testcases'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
+import { EventEmitter } from '@angular/core'
 
 describe('AqlService', () => {
   let service: AqlService
@@ -52,6 +59,12 @@ describe('AqlService', () => {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
+  let onLanguageChangeSubject$: EventEmitter<any>
+  const mockTranslateService = {
+    onLangChange: jest.fn(),
+    currentLang: 'de',
+  } as unknown as TranslateService
+
   const filterConfig: IAqlFilter = {
     filterItem: [],
     searchText: 'test',
@@ -59,9 +72,10 @@ describe('AqlService', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-
+    const mockTranslateServiceAny = mockTranslateService as any
+    mockTranslateServiceAny.onLangChange = new EventEmitter<any>()
     jest.spyOn(httpClient, 'get').mockImplementation(() => of())
-    service = new AqlService(httpClient, appConfig, userProfileService)
+    service = new AqlService(httpClient, appConfig, userProfileService, mockTranslateService)
   })
 
   it('should be created', () => {
@@ -87,6 +101,7 @@ describe('AqlService', () => {
       try {
         await service.getAll().toPromise()
       } catch (err) {
+        //
       } finally {
         expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
         expect(service.handleError).toHaveBeenCalled()
@@ -147,7 +162,7 @@ describe('AqlService', () => {
       service.getAllObservable$ = undefined
     })
 
-    it('should debounce the filtering', async (done) => {
+    it('should debounce the filtering', (done) => {
       const filterConfigLast: IAqlFilter = {
         filterItem: [],
         searchText: 'name1',
@@ -220,6 +235,44 @@ describe('AqlService', () => {
 
       const result = service.filterItems(mockAqlsToFilter as IAqlApi[], testcase.filter)
       expect(result.length).toEqual(testcase.resultLength)
+    })
+  })
+
+  describe('When passing in filters', () => {
+    test.each(aqlFilterTestcases)('It should filter as expected', (testcase) => {
+      const anyService = service as any
+      anyService.user = { id: '1', organization: { id: 1 } }
+
+      const result = service.filterItems(mockAqlsToFilter as IAqlApi[], testcase.filter)
+      expect(result.length).toEqual(testcase.resultLength)
+    })
+  })
+
+  describe('When changing the language', () => {
+    let serviceAny: any
+    beforeEach(() => {
+      serviceAny = service as any
+      serviceAny.aqls = mockAqlsToFilterWithLanguage
+    })
+
+    test.each(aqlFilterLanguageTestcases)('It should filter as expected', (testcase, done: any) => {
+      serviceAny.filterSet = testcase.filter
+      let callCounter = 0
+      service.filteredAqlsObservable$.subscribe((aqls) => {
+        // Filter out the initial filter on service start
+        if (callCounter === 0) {
+          callCounter++
+          mockTranslateService.onLangChange.next({ lang: testcase.lang } as LangChangeEvent)
+        } else {
+          if (
+            testcase.lang === service.currentLang &&
+            serviceAny.filterSet.searchText === testcase.filter.searchText
+          ) {
+            expect(aqls.length).toEqual(testcase.resultLength)
+            done()
+          }
+        }
+      })
     })
   })
 

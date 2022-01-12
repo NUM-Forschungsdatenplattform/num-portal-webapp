@@ -33,20 +33,6 @@ describe('DataFilterTemplatesComponent', () => {
   let component: DataFilterTemplatesComponent
   let fixture: ComponentFixture<DataFilterTemplatesComponent>
 
-  const templateRow: ITemplateMetaDataApi = {
-    templateId: '123',
-    archetypeId: '123',
-    createdOn: '2020-12-07T21:19:18.980Z',
-    name: 'Template test',
-  }
-
-  const projectTemplate: IProjectTemplateInfoApi = {
-    templateId: templateRow.templateId,
-    name: templateRow.name,
-  }
-
-  const projectTemplateArr: IProjectTemplateInfoApi[] = [projectTemplate]
-
   const afterClosedSubject$ = new Subject<IProjectTemplateInfoApi[] | undefined>()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
@@ -74,36 +60,11 @@ describe('DataFilterTemplatesComponent', () => {
     fixture = TestBed.createComponent(DataFilterTemplatesComponent)
     component = fixture.componentInstance
     component.project = new ProjectUiModel()
-    component.hitCounter = {}
+
     fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  describe('When template are supposed to be added to the list', () => {
-    const dialogContentPayload: IProjectTemplateInfoApi[] = projectTemplateArr
-    const dialogConfig: DialogConfig = {
-      ...ADD_DIALOG_CONFIG,
-      dialogContentPayload,
-    }
-
-    it('should open the dialog with the list of existing templates', () => {
-      component.project.templates = projectTemplateArr
-      fixture.detectChanges()
-      component.addTemplate()
-      expect(mockDialogService.openDialog).toHaveBeenCalledWith(dialogConfig)
-      afterClosedSubject$.next([])
-      expect(component.project.templates.length).toEqual(0)
-    })
-  })
-
-  describe('when templates are supposed to be deleted from the list', () => {
-    it('should delete them by index', () => {
-      component.project.templates = projectTemplateArr
-      component.deleteTemplate(0)
-      expect(component.project.templates.length).toEqual(0)
-    })
   })
 })

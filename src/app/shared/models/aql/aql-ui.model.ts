@@ -33,6 +33,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   type: ConnectorNodeType.Aql
   id: number
   name: string
+  nameTranslated: string
   query: string
   queryWithOperatorPlaceholder: string
   isNegated: boolean
@@ -40,24 +41,29 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   areParameterConfigured = true
   indexInGroup: number | null
   purpose: string
+  purposeTranslated: string
   use: string
+  useTranslated: string
   owner?: IUser | null
   hasParameterError: boolean
 
   constructor(
     aql: Partial<IAqlApi>,
-    isNegated: boolean = false,
+    isNegated = false,
     parameters?: IDictionary<string, string | number | boolean>
   ) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
     this.name = aql.name
+    this.nameTranslated = aql.nameTranslated ?? aql.name
     this.query = aql.query
     this.queryWithOperatorPlaceholder = aql.query
     this.isNegated = isNegated
 
     this.purpose = aql.purpose
+    this.purposeTranslated = aql.purposeTranslated ?? aql.purpose
     this.use = aql.use
+    this.useTranslated = aql.useTranslated ?? aql.use
     this.owner = aql.owner
 
     this.collectParameters()

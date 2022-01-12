@@ -143,10 +143,10 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     const name = this.form.get('name').value
     const organization = this.organization.convertToApi({ name })
     this.update(this.organization.id, organization).subscribe(
-      (updatedOrganization) => {
+      (_updatedOrganization) => {
         this.toastMessageService.openToast(UPDATING_SUCCESS)
       },
-      (error) => {
+      (_error) => {
         this.toastMessageService.openToast(UPDATING_ERROR)
       }
     )
@@ -197,7 +197,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
           mailDomains: updatedOrganization.mailDomains,
         })
       },
-      (error) => {
+      (_error) => {
         this.toastMessageService.openToast(DELETING_DOMAIN_ERROR)
       }
     )

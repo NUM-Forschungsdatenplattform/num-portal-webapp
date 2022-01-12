@@ -31,8 +31,11 @@ export class ProfileService {
 
   constructor(private httpClient: HttpClient, private appConfig: AppConfigService) {}
 
+  get apiBase(): string {
+    return this.appConfig.config.api.baseUrl
+  }
   get baseUrl(): string {
-    return `${this.appConfig.config.api.baseUrl}/profile`
+    return `${this.apiBase}/profile`
   }
 
   get(): Observable<IUserProfile> {
@@ -43,6 +46,23 @@ export class ProfileService {
       }),
       catchError(this.handleError)
     )
+  }
+
+  changeUserName(firstName: string, lastName: string): Observable<string> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+    const userId = this.userProfile.id
+    if (!userId) {
+      throw new Error('User id not found in profile')
+    }
+    return this.httpClient
+      .post<string>(
+        `${this.apiBase}/admin/user/${userId}/name`,
+        { firstName, lastName },
+        httpOptions
+      )
+      .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {

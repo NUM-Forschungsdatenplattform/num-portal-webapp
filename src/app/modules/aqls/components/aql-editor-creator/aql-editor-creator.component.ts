@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -39,7 +39,7 @@ import {
   templateUrl: './aql-editor-creator.component.html',
   styleUrls: ['./aql-editor-creator.component.scss'],
 })
-export class AqlEditorCeatorComponent implements OnInit {
+export class AqlEditorCeatorComponent {
   constructor(
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
@@ -78,8 +78,6 @@ export class AqlEditorCeatorComponent implements OnInit {
   editor: monaco.editor.IStandaloneCodeEditor
   aqbModel = new AqbUiModel()
   selectedTemplateIds: string[]
-
-  ngOnInit(): void {}
 
   onEditorInit(editor: monaco.editor.IStandaloneCodeEditor): void {
     this.editor = editor

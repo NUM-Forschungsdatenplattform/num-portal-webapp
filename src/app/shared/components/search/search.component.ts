@@ -66,7 +66,7 @@ export class SearchComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
+      if (Object.prototype.hasOwnProperty.call(changes, propName)) {
         const change = changes[propName]
         switch (propName) {
           case 'searchText': {

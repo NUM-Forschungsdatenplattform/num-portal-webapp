@@ -21,81 +21,8 @@
   class="num-margin-b-40"
   [ngClass]="{ 'templates-container-empty': !project.templates.length }"
 >
-  <ng-template #empty_state
-    ><p class="empty-state">
-      {{ 'SEARCH.DATA_FILTER_SELECT_TEMPLATES' | translate }}
-    </p></ng-template
-  >
-  <section role="list" *ngIf="project.templates.length; else empty_state">
-    <div
-      class="template"
-      role="listitem"
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
-      fxLayoutGap="16px"
-      *ngFor="let template of project.templates; let i = index"
-    >
-      <div>{{ template.name }}</div>
-      <section
-        role="presentation"
-        fxLayout="row"
-        fxLayoutAlign="space-between center"
-        fxLayoutGap="8px"
-      >
-        <div class="determine-hits-title">
-          {{ 'HITS' | translate }}
-        </div>
-
-        <div class="determine-hits-count">
-          <ng-template #hits_loading>
-            <mat-spinner color="accent" [diameter]="24"></mat-spinner>
-          </ng-template>
-
-          <span *ngIf="!isHitCounterLoading; else hits_loading">
-            {{
-              hitCounter[template.templateId] !== undefined
-                ? hitCounter[template.templateId] !== -1
-                  ? hitCounter[template.templateId]
-                  : 'Invalid'
-                : ''
-            }}</span
-          >
-        </div>
-
-        <button
-          color="accent"
-          mat-icon-button
-          (click)="deleteTemplate(i)"
-          [attr.aria-label]="'BUTTON.DELETE' | translate"
-          data-test="data-filter__templates__delete-template-button"
-        >
-          <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
-        </button>
-      </section>
-    </div>
-  </section>
-
-  <div
-    role="presentation"
-    fxLayout="row"
-    [fxLayoutAlign]="project.templates.length ? 'space-between' : 'center'"
-  >
-    <num-button
-      id="select-templates-button"
-      type="primary"
-      icon="plus"
-      (singleClick)="addTemplate()"
-      data-test="data-filter__templates__select-templates-button"
-      >{{ 'BUTTON.ADD_TEMPLATE' | translate }}</num-button
-    >
-
-    <num-button
-      *ngIf="project.templates.length"
-      id="determine-hits-button"
-      type="secondary"
-      (singleClick)="determineHits.emit()"
-      data-test="data-filter__templates__determine-hits-button"
-      >{{ 'BUTTON.DETERMINE_HITS' | translate }}</num-button
-    >
-  </div>
+  <num-add-templates
+    [project]="project"
+    data-test="project-editor__templates__add-template-table"
+  ></num-add-templates>
 </mat-card>

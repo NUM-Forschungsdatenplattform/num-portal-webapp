@@ -32,7 +32,7 @@
     }
     &--warn,
     &--w {
-      color: mat-color($warn);
+      color: mat-color($warn, warning);
     }
     &--success,
     &--s {
@@ -60,7 +60,7 @@
     }
     &--disabled,
     &--d {
-      color: mat-color($additional, mid-grey);
+      background: mat-color($additional, mid-grey);
     }
   }
 }

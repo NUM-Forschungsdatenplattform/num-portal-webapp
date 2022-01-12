@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
@@ -26,7 +26,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
   templateUrl: './project-editor-buttons.component.html',
   styleUrls: ['./project-editor-buttons.component.scss'],
 })
-export class ProjectEditorButtonsComponent implements OnInit {
+export class ProjectEditorButtonsComponent {
   availableRoles = AvailableRoles
   possibleModes = PossibleProjectEditorMode
   possibleStatus = ProjectStatus
@@ -49,8 +49,6 @@ export class ProjectEditorButtonsComponent implements OnInit {
   @Output() startEdit = new EventEmitter()
   @Output() cancel = new EventEmitter()
   @Output() exportPrint = new EventEmitter()
-
-  ngOnInit(): void {}
 
   get approvalDecision(): ApprovalOption {
     return this.approverForm.value.decision

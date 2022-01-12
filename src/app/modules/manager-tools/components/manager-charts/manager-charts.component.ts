@@ -82,7 +82,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             data: result,
           }
         },
-        (error) => {
+        (_error) => {
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
             data: [],
@@ -104,7 +104,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             data: result,
           }
         },
-        (error) => {
+        (_error) => {
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
             data: [],

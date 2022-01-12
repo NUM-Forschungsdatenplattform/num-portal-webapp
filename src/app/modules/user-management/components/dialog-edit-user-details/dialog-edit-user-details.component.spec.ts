@@ -42,7 +42,6 @@ import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.componen
 import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
 import { DialogEditUserDetailsComponent } from './dialog-edit-user-details.component'
 import { MatInputHarness } from '@angular/material/input/testing'
-import { MatFormFieldControlHarness } from '@angular/material/form-field/testing/control'
 
 describe('DialogEditUserDetailsComponent', () => {
   let component: DialogEditUserDetailsComponent
@@ -143,7 +142,7 @@ describe('DialogEditUserDetailsComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should emit the close event on confirmation', async (done) => {
+  it('should emit the close event on confirmation', (done) => {
     jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
     component.handleDialogConfirm().then(() => {
       expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)

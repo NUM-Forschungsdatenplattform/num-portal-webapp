@@ -14,21 +14,8 @@
  * limitations under the License.
  */
 
-.templates-container {
-  border: 1px solid grey;
-  border-radius: 6px;
-  padding: 20px;
+import { IAuthUserInfo } from './auth-user-info.interface'
 
-  table {
-    width: 100%;
-
-    .mat-column-icon {
-      text-align: right;
-    }
-  }
-
-  .no-results {
-    text-align: center;
-    width: 100%;
-  }
+export interface IAuthUserProfile {
+  info?: IAuthUserInfo
 }

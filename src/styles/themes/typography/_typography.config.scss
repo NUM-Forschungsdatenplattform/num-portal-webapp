@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 /* font-size | line-height |font-weight */
 $num-typography: mat-typography-config(
   $font-family: 'Roboto, monospace',

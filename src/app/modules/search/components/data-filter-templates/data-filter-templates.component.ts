@@ -13,55 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
-import { IDictionary } from 'src/app/shared/models/dictionary.interface'
-import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-template-info-api.interface'
+import { Component, Input } from '@angular/core'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
-import { ADD_DIALOG_CONFIG } from './constants'
 
 @Component({
   selector: 'num-data-filter-templates',
   templateUrl: './data-filter-templates.component.html',
   styleUrls: ['./data-filter-templates.component.scss'],
 })
-export class DataFilterTemplatesComponent implements OnInit {
+export class DataFilterTemplatesComponent {
   @Input()
   project: ProjectUiModel
 
   @Input()
-  isHitCounterLoading: boolean
-
-  @Input()
-  hitCounter: IDictionary<string, number>
-
-  @Input()
   totalCohortSize: number
 
-  @Output()
-  determineHits = new EventEmitter()
-
-  constructor(private dialogService: DialogService) {}
-  ngOnInit(): void {}
-
-  addTemplate(): void {
-    const dialogContentPayload = this.project.templates
-    const dialogConfig: DialogConfig = {
-      ...ADD_DIALOG_CONFIG,
-      dialogContentPayload,
-    }
-
-    const dialogRef = this.dialogService.openDialog(dialogConfig)
-
-    dialogRef.afterClosed().subscribe((confirmResult: IProjectTemplateInfoApi[] | undefined) => {
-      if (Array.isArray(confirmResult)) {
-        this.project.templates = confirmResult
-      }
-    })
-  }
-
-  deleteTemplate(index: number): void {
-    this.project.templates.splice(index, 1)
-  }
+  constructor() {}
 }

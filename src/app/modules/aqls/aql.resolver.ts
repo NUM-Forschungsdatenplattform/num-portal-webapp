@@ -29,7 +29,7 @@ import { AqlEditorUiModel } from '../../shared/models/aql/aql-editor-ui.model'
 export class AqlResolver implements Resolve<IAqlResolved> {
   constructor(private aqlService: AqlService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IAqlResolved> {
+  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<IAqlResolved> {
     const id = route.paramMap.get('id')
 
     if (id === 'new') {

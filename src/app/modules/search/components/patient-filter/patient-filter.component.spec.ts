@@ -19,16 +19,22 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject, throwError } from 'rxjs'
+import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
+import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
+import { SearchComponent } from 'src/app/shared/components/search/search.component'
+import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
+import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
@@ -79,6 +85,15 @@ describe('PatientFilterComponent', () => {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
+  const filteredAqlsSubject$ = new Subject<IAqlApi[]>()
+  const filterConfigSubject$ = new BehaviorSubject<IAqlFilter>({ searchText: '', filterItem: [] })
+
+  const mockAqlService = {
+    setFilter: jest.fn(),
+    filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
+    filterConfigObservable$: filterConfigSubject$.asObservable(),
+  } as unknown as AqlService
+
   @Component({
     selector: 'num-cohort-builder',
     template: '<div></div>',
@@ -106,8 +121,16 @@ describe('PatientFilterComponent', () => {
         CohortGraphsComponentStub,
         PatientCountInfoComponent,
         PatientFilterComponent,
+        SearchComponent,
       ],
-      imports: [MaterialModule, LayoutModule, SharedModule, TranslateModule.forRoot()],
+      imports: [
+        MaterialModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        SharedModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: PatientFilterService,
@@ -129,11 +152,16 @@ describe('PatientFilterComponent', () => {
           provide: Router,
           useValue: mockRouter,
         },
+        {
+          provide: AqlService,
+          useValue: mockAqlService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
+    jest.spyOn(mockAqlService, 'setFilter')
     jest.spyOn(mockPatientFilterService, 'getAllDatasetCount').mockImplementation(() => of(123))
     jest
       .spyOn(mockPatientFilterService, 'getCurrentProject')
@@ -189,18 +217,24 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.isLoading).toBe(false)
     })
 
-    it('gets the cohort size from patient filter service', async () => {
+    it('gets the cohort size from from cohort service', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => of(mockCohortPreviewData))
+      jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(528))
       await component.getPreviewData()
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledTimes(1)
-      expect(component.determineHits.count).toEqual(mockCohortPreviewData.count)
+      expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
+      expect(component.determineHits.count).toEqual(528)
     })
 
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+
+      jest
+        .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
       await component.getPreviewData()
@@ -210,6 +244,10 @@ describe('PatientFilterComponent', () => {
     it('should show a general error message for unknown errors', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
+        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+
+      jest
+        .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
@@ -233,18 +271,6 @@ describe('PatientFilterComponent', () => {
 
       await component.getPreviewData()
       expect(mockPatientFilterService.resetPreviewData).toHaveBeenCalledTimes(1)
-    })
-
-    it('should not call the getSize method from cohort service', async () => {
-      jest
-        .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => of(mockCohortPreviewData))
-      jest.spyOn(mockCohortService, 'getSize')
-
-      await component.getPreviewData()
-
-      expect(mockPatientFilterService.getPreviewData).toHaveBeenCalled()
-      expect(mockCohortService.getSize).not.toHaveBeenCalled()
     })
   })
 
@@ -343,6 +369,18 @@ describe('PatientFilterComponent', () => {
         type: ToastMessageType.Error,
         message: 'PROJECT.NO_QUERY_ERROR_MESSAGE',
       })
+    })
+  })
+
+  describe('When the user wants to filter and search aqls', () => {
+    it('should set the filter in the aqlService on searchChange', () => {
+      component.handleSearchChange()
+      expect(mockAqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
+    })
+
+    it('should set the filter in the aqlService on filterChange', () => {
+      component.handleFilterChange()
+      expect(mockAqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
     })
   })
 })

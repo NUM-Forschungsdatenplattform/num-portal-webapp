@@ -79,8 +79,8 @@ export const compareLocaleStringValues = (
   bId: string | number,
   isAsc: boolean
 ): number => {
-  const valA = !!a ? a : ''
-  const valB = !!b ? b : ''
+  const valA = a ? a : ''
+  const valB = b ? b : ''
   let compareResult = valA.toLocaleLowerCase().localeCompare(valB.toLocaleLowerCase())
   if (compareResult === 0) {
     compareResult = compareIdsWithoutDirection(aId, bId)

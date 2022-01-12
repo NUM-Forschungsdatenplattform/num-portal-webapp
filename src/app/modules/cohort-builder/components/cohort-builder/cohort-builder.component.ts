@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 @Component({
@@ -22,13 +22,11 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
   templateUrl: './cohort-builder.component.html',
   styleUrls: ['./cohort-builder.component.scss'],
 })
-export class CohortBuilderComponent implements OnInit {
+export class CohortBuilderComponent {
   @Input() cohortNode: CohortGroupUiModel
   @Input() isLoadingComplete: boolean
   @Input() raised: boolean
   @Input() isDisabled: boolean
 
   constructor() {}
-
-  ngOnInit(): void {}
 }
