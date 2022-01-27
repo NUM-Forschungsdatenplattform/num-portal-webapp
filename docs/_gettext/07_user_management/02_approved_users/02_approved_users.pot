@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-27 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,4 +29,14 @@ msgstr ""
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
 #: 540ec450996d4dac97bc1a5b5ee09d3a
 msgid "The following steps can only be executed by users with the role \"Organization Admin\" or \"Super Admin\"."
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: 9fefefe17bdb4a1abdb453376e9cfe9b
+msgid "Screenshot of approved users"
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: eff79593d2c8437889d38f685b2a9ba1
+msgid "Fig 07-01-01: Approved users"
 msgstr ""

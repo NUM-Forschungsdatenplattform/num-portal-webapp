@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-26 23:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,4 +26,505 @@ msgstr ""
 #: 83a34684e4014e4d8311182c1e0152a2
 msgid "This section covers the Patient filter feature of the Search module."
 msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:5
+#: 91245335a8054b01bfdc47d758e183ae
+msgid ""
+"With the patient filter you define the desired cohort by selecting and "
+"combining criteria. The available criteria are categorized thematically "
+"and can be combined as desired using logical operators: AND, OR and NOT."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:7
+#: 8f17445265244db390882c579e1c1476
+msgid ""
+"Once you have defined your cohort, you can go to the [Data "
+"filter](../02_data_filter/02_data_filter.md) step by clicking on *Next "
+"Step* button above the footer of the page."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:9
+#: 53fe60dfcc784fc0b6ada4162da25f20
+msgid "There are three main areas in the patient filter:"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:11
+#: c575aabc1eda421898af3ebe56284c2d
+msgid "The criteria list: a list of categorized criteria used to build a cohort"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:12
+#: ef80b49fdc9449d69453f8acb64e02c1
+msgid ""
+"The cohort builder: criterion can be combined here using logical "
+"operators to build the cohort"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:13
+#: 9843741395584bf68523dbf373659427
+msgid ""
+"The hit display: display of the expected hits in the data sets based on "
+"the combined criterion"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: e7be7d5883074dc5a74c06c7a7914463
+msgid "Screenshot of patient filter"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: e285bb3ecae844139889d7bdaf1a44e1
+msgid "Fig 03-01-01: Patient filter"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:23
+#: 48e67e072e3c49bfbf4fc5aab4fda20a
+msgid "1. Criteria list"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:24
+#: cf641d99c8c94308b1ac86b79648a664
+msgid ""
+"The various criteria are divided into categories, these can be expanded "
+"and collapsed. Detailed information on each individual criterion can be "
+"obtained by clicking on the *i* symbol."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:26
+#: a67b0dfbe2944605af37e1bb0c26033e
+msgid ""
+"To use a criterion and add it to the cohort builder, click it's plus "
+"icon. The criterion is then inserted directly into the cohort builder in "
+"the active (red bordered) group."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 5c2d0948ef26493e95ffea416da801dd
+msgid "Screenshot of patient filter criteria list"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 2d8cac9a159247ad96dc7a25ea1ac05a
+msgid "Fig 03-01-02: Criteria list"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:35
+#: 274758e13f86427d9e1925c411699a04
+msgid ""
+"After clicking on the *i* symbol of a criterion, a dialog window opens, "
+"from which you can find more detailed information about the criterion. "
+"The top section provides information about the title, author, purpose, "
+"and how the criterion is used. In the lower area you can see how the "
+"actual aql query, it is written in the Archetype Query Language (AQL)."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: db197b3ef298476da9eee9b1502ee26b
+msgid "Screenshot of criteria details dialog"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: b39f8c732df848fa94390b250c69584b
+msgid "Fig 03-01-03: Criteria detail view"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:45
+#: 39688b4f34ce497e9bc3e1d64dce3afa
+msgid "2. Cohort builder"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:47
+#: b7e60a229bad451697c0eb793a2e662e
+msgid ""
+"In the cohort builder, the criteria are inserted in the order you "
+"selected/clicked them from the list."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:49
+#: 12ca26dabe284b799e342976beda5b59
+msgid "You have the following options for forming a cohort:"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:51
+#: 6d4d7433dc9741c5b551464fd4ff8b82
+msgid ""
+"Groupings: by default, a main group is created in the cohort builder, you"
+" can either insert criteria directly (loosely) into this or create "
+"subgroups. In order for a criterioncriterion to be inserted into a group,"
+" it must be activated. To do this, you need to select the tick in the top"
+" left corner of the group. A selected group is marked with a red border; "
+"the unselected groups are outlined in light gray. You can also delete "
+"groups, but it should be noted that the criteria contained in them will "
+"then also be removed."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:52
+#: f59eaa76d4cb467a9ca367674e37b0c0
+msgid ""
+"Operators: you can set conditions using \"AND\" and \"OR\" operators. "
+"Operators can be applied directly to groups and within groups/subgroups "
+"to the criteria. \"AND\" is set by default as soon as two and more "
+"criteria or groups of criteria have been inserted in the cohort builder."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:53
+#: c05c4a52eb224be590efb3fcd942103d
+msgid ""
+"Negation: using the negate button, the conditions of criteria can be "
+"negated within a group or between entire groups."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 106e6a21ef5942d097150f0af9c72f98 9602b46eb2d14d5c844faf15e7cd0abe
+msgid "Screenshot of criteria in a main group"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 9a3727739cc64da8bae6ac8976ad2557
+msgid "Fig 03-01-04: Cohort builder with criteria in a main group"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: d93c4be095224261833d0d99704be824
+msgid "Fig 03-01-05: Cohort builder with criteria in two subgroups"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:71
+#: ab0f954cbd16406993f1e7f2affd74b6
+msgid "Structure of the criterion elements"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:73
+#: e91c7390d4714beaa8d48700050c1593
+msgid ""
+"The criterion elements can differ in structure, scope and the type of "
+"information required."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:75
+#: 512c76c74b00497ba95d9d35f92c885f
+msgid "Status"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:76
+#: 3b6b16b308b649618c268631dae6dc5b
+msgid "Green: all parameters have been filled in"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:77
+#: ef9efa885c064f4a8aa89a691fdabd8c
+msgid "Grey: some parameters need to be filled in"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:78
+#: 2355b5261d7d4359be5b08dc3eb3d4ae
+msgid "Name of the parameter"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:79
+#: ebdf363e92de411db20517724b4cb1e7
+msgid "Operator for the current parameter value"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:80
+#: 048510d52c2c485992c9abae34351b94
+msgid "Parameter value, there are three field types for the parameter value:"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:81
+#: 939b4ff270034ee8b2dcce9be7d35797
+msgid ""
+"Free text input field: the necessary unit of the value can be in the "
+"field name."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:82
+#: 64eba3fd6d4f4f7cacf92fd29841fe45
+msgid "Dropdown list with predefined values"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:83
+#: 3d4ce5399e8f40159aea516ddabd9d92
+msgid "Date field with calendar datepicker"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:84
+#: 0cdb22c6a8a149fc8b8b3ed729dd8389
+msgid "Check box:"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:85
+#: cb2f0173517b42a686eec4aaf1287f8e
+msgid ""
+"Selected: a parameter value must be entered/selected so that the "
+"criterion for the cohort is defined."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:86
+#: f5c49502bba14cb9bea2b92f8b6990e9
+msgid ""
+"Deselected: no parameter value can be entered/selected. As a result, all "
+"data sets in which information was provided on the respective criteria "
+"are included in the cohort - regardless of the value."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 9a3727739cc64da8bae6ac8976ad2557
+msgid "Screenshot of criteria elements"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 9a3727739cc64da8bae6ac8976ad2557
+msgid "Fig 03-01-06: Cohort builder with criteria elements"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: a40b91e71e4e4aad8a9013ce76863898
+msgid ""
+"There are also criteria that do not require the entry of parameters, "
+"these can be used directly."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:101
+#: c55c7e7ded9c4c9b8d1d9e2a2f084ab6
+msgid "Hits display"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:103
+#: 7fa765ee737d445a894099cd6937d017
+msgid ""
+"This area shows the number of hits in the entire dataset resulting from "
+"the configuration of the cohort. To retrieve the hits, you must click the"
+" *Retrieve* button. The number of hits is then displayed. Depending on "
+"the authorization and if the data is available, the hits are also "
+"displayed in a graphical representation."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 7bdaf843170f44a59f6b5554c98c94c5
+msgid ""
+"If you make changes to the cohort in the cohort builder, you need to "
+"press \"Retrieve\" each time for an accurate hits count"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 2b43a4a60a824ce9a7e0c2e7aceed60e
+msgid "Screenshot of cohort hits and diagrams"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: 919e3549df5f426286ca93202a5cc8c3
+msgid "Fig 03-01-07: Cohort builder data hits and data diagrams"
+msgstr ""
+
+#~ msgid ""
+#~ "The criteria List: a list of "
+#~ "categorized criteria used to build a "
+#~ "cohort"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Hit display: Display of the expected "
+#~ "hits in the data sets based on "
+#~ "the combined criteria"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The cohort builder: Criteria can be "
+#~ "combined here using logical operators to"
+#~ " build the cohort"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The hit display: Display of the "
+#~ "expected hits in the data sets "
+#~ "based on the combined criteria"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Groupings  By default, a main group "
+#~ "is created in the cohort builder, "
+#~ "you can either insert criteria directly"
+#~ " (loosely) into this or create "
+#~ "subgroups. In order for a criterion "
+#~ "to be inserted into a group, it"
+#~ " must be activated. To do this, "
+#~ "you need to select the tick in "
+#~ "the top left corner of the group."
+#~ " A selected group is marked with "
+#~ "a red border; the unselected groups "
+#~ "are outlined in light gray. You "
+#~ "can also delete groups, but it "
+#~ "should be noted that the criteria "
+#~ "contained in them will then also "
+#~ "be removed. 2.Operators  You can set "
+#~ "conditions using \"AND\" and \"OR\" "
+#~ "operators. Operators can be applied "
+#~ "directly to groups and within "
+#~ "groups/subgroups to the criteria. \"AND\" "
+#~ "is set by default as soon as "
+#~ "two and more criteria or groups of"
+#~ " criteria have been inserted in the"
+#~ " cohort builder."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Negation Using the negate button, the"
+#~ " conditions of criteria can be "
+#~ "negated within a group or between "
+#~ "entire groups."
+#~ msgstr ""
+
+#~ msgid "Fig 03-01: Patient filter"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The various criteria are divided into"
+#~ " categories, these can be expanded "
+#~ "and collapsed. Detailed information on "
+#~ "each individual criterion can be "
+#~ "obtained by clicking on the *i* "
+#~ "symbol."
+#~ msgstr ""
+
+#~ msgid "Fig 03-02: Criteria list"
+#~ msgstr ""
+
+#~ msgid "Fig 03-03: Criteria detail view"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Groupings: by default, a main group "
+#~ "is created in the cohort builder, "
+#~ "you can either insert criteria directly"
+#~ " (loosely) into this or create "
+#~ "subgroups. In order for a criterion "
+#~ "to be inserted into a group, it"
+#~ " must be activated. To do this, "
+#~ "you need to select the tick in "
+#~ "the top left corner of the group."
+#~ " A selected group is marked with "
+#~ "a red border; the unselected groups "
+#~ "are outlined in light gray. You "
+#~ "can also delete groups, but it "
+#~ "should be noted that the criteria "
+#~ "contained in them will then also "
+#~ "be removed."
+#~ msgstr ""
+
+#~ msgid "Fig 03-04: Cohort builder with criteria in a main group"
+#~ msgstr ""
+
+#~ msgid "Fig 03-05: Cohort builder with criteria in two subgroups"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Selected: a parameter value must be "
+#~ "entered/selected so that the criterion "
+#~ "for the cohort is defined."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Deselected: no parameter value can be"
+#~ " entered/selected. As a result, all "
+#~ "data sets in which information was "
+#~ "provided on the respective criterion are"
+#~ " included in the cohort - regardless"
+#~ " of the value."
+#~ msgstr ""
+
+#~ msgid "Fig 03-05: Cohort builder with criteria elements"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "There are also criteria that do "
+#~ "not require the entry of a "
+#~ "parameter,these can be used directly."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "There are also criteria that do "
+#~ "not require the entry of a "
+#~ "parameters, these can be used directly."
+#~ msgstr ""
+
+#~ msgid "Fig 03-01-06: Cohort builder data hits and data diagrams"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The cohort builder: criteria can be "
+#~ "combined here using logical operators to"
+#~ " build the cohort"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The hit display: display of the "
+#~ "expected hits in the data sets "
+#~ "based on the combined criteria"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The various criteria are divided into"
+#~ " categories, these can be expanded "
+#~ "and collapsed. Detailed information on "
+#~ "each individual criteria can be obtained"
+#~ " by clicking on the *i* symbol."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To use a criteria and add it "
+#~ "to the cohort builder, click it's "
+#~ "plus icon. The criteria is then "
+#~ "inserted directly into the cohort "
+#~ "builder in the active (red bordered) "
+#~ "group."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "After clicking on the *i* symbol "
+#~ "of a criteria, a dialog window "
+#~ "opens, from which you can find "
+#~ "more detailed information about the "
+#~ "criteria. The top section provides "
+#~ "information about the title, author, "
+#~ "purpose, and how the criteria is "
+#~ "used. In the lower area you can"
+#~ " see how the actual aql query, "
+#~ "it is written in the Archetype "
+#~ "Query Language (AQL)."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Groupings: by default, a main group "
+#~ "is created in the cohort builder, "
+#~ "you can either insert criteria directly"
+#~ " (loosely) into this or create "
+#~ "subgroups. In order for a criteria "
+#~ "to be inserted into a group, it"
+#~ " must be activated. To do this, "
+#~ "you need to select the tick in "
+#~ "the top left corner of the group."
+#~ " A selected group is marked with "
+#~ "a red border; the unselected groups "
+#~ "are outlined in light gray. You "
+#~ "can also delete groups, but it "
+#~ "should be noted that the criteria "
+#~ "contained in them will then also "
+#~ "be removed."
+#~ msgstr ""
+
+#~ msgid "Structure of the criteria elements"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The criteria elements can differ in "
+#~ "structure, scope and the type of "
+#~ "information required."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Selected: a parameter value must be "
+#~ "entered/selected so that the criteria "
+#~ "for the cohort is defined."
+#~ msgstr ""
 

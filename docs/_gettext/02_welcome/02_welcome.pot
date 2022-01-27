@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-12 13:28+0200\n"
+"POT-Creation-Date: 2022-01-24 10:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:3
 #: dcd3e1a372f24b0cbffd72e1d690b05a
-msgid "All users will be redirected to the welcome page after a successful login. This page contains some basic statitics about data available for the logged in user, e.g. the projects that have received updates the last time, as well as general information that might be useful for the user and that is managed by {term}`Content Admin`s."
+msgid "All users will be redirected to the welcome page after a successful login. This page contains some basic statistics about data available for the logged in user, e.g. the projects that have received updates the last time, as well as general information that might be useful for the user and that is managed by {term}`Content Admin`s."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:8
@@ -33,7 +33,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:10
 #: c30319daaff9435ca78a23763e5169e6
-msgid "The first part includes a general introduction and welcome message to inform the user about the pupose of the platform. If you want to jump to the list of participating clinics you can use the link at the end of the text."
+msgid "The first part includes a general introduction and welcome message to inform the user about the purpose of the platform. If you want to jump to the list of participating clinics you can use the link at the end of the text."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:1
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:21
 #: 008220e33f544a498060ed72984c2344
-msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the runnning CODEX system and also how many different clinics have provided previously mentioned data."
+msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the running CODEX system and also how many different clinics have provided previously mentioned data."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:1

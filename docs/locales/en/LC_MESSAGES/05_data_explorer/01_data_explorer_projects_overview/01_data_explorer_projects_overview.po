@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-24 17:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,54 @@ msgstr ""
 
 #: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:1
 #: 8e15efd1158e41f78bfbd996f67f8ae5
-msgid "Data explorer: Projects overview"
+msgid "Projects overview"
 msgstr ""
 
 #: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:3
 #: 9bf38264720244bd81dfbe203f785902
 msgid "This section covers the Projects Overview page of the Data explorer."
 msgstr ""
+
+#: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:5
+#: e7040749d67b4c599d9347dbd2605e27
+msgid ""
+"With the data explorer, researchers who have been assigned to a project "
+"can access the result set of the respective project. You get access to "
+"the research data that is defined as part of the project configuration "
+"and are available in the GECCO 83 data set."
+msgstr ""
+
+#: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:1
+#: 7643f122f8d048ad83630cc6eed89b47
+msgid "Screenshot of projects list"
+msgstr ""
+
+#: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:1
+#: 0ea1a015e27b49d18afa11ecbea9282c
+msgid "Fig 05-01-01: Projects list"
+msgstr ""
+
+#: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:14
+#: 4c58923f6156453c87ede882df2fa47b
+msgid ""
+"To open a project, click on the respective symbol in the action column. "
+"The selected project opens in the *Data retrieval* tab."
+msgstr ""
+
+#: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:1
+#: cfc3d928094344e4bc4044f87b57f0e0
+msgid ""
+"In the project overview you can see all ongoing projects to which you "
+"have been added as a researcher."
+msgstr ""
+
+#~ msgid "Data explorer: Projects overview"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "To open, click on the respective "
+#~ "symbol in the action column. The "
+#~ "selected project opens in the *Data "
+#~ "retrieval* tab."
+#~ msgstr ""
 

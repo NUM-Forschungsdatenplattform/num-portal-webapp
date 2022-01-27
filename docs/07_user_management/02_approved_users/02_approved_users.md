@@ -8,3 +8,10 @@ CODEX.
 The following steps can only be executed by users with the role "Organization Admin" or "Super
 Admin".
 ```
+
+```{figure} images/user_management_approve_users.png
+---
+alt: Screenshot of approved users
+---
+Fig 07-01-01: Approved users
+```

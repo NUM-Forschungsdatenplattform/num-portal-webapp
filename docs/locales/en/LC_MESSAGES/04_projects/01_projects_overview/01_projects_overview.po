@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-23 22:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,4 +26,45 @@ msgstr ""
 #: c20288831e3149509ee0bd8c8b7d53df
 msgid "This section covers the projects overview page of the projects module."
 msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:5
+#: cd67dad024e846009e51dbea4c6af87c
+msgid ""
+"Lists available projects in their different statuses. Provides "
+"functionality to search projects by project name and author as well as to"
+" filter projects on 4 criteria:"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:7
+#: 2872c85c3f184a888bb523c2f547edb9
+msgid "all"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:8
+#: 8cc4fb32fc334141bbc1659d8f802278
+msgid "owned"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:9
+#: 27f67734c11f4668a5c4c916b4153f86
+msgid "projects belonging to the logged-in user organization"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:10
+#: c461748fb16145eea6f5f18c3822afc3
+msgid "archived projects"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:1
+#: eb11a6fd35dc47a9a3dd22ec07dd9690
+msgid "Screenshot of projects list"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:1
+#: d05fc974c94a480c8582bea5491438c0
+msgid "Fig 04-01-01: Projects list"
+msgstr ""
+
+#~ msgid "Fig 04-01: Projects list"
+#~ msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-27 00:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,4 +24,9 @@ msgstr ""
 #: ../05_data_explorer/05_data_explorer.md:3
 #: 0d25af723cad4eb087d64c448848b130
 msgid "This section covers the data explorer feature."
+msgstr ""
+
+#: ../05_data_explorer/05_data_explorer.md:1
+#: 5d6d686b5c7a402f86c0921a3bdcf92b
+msgid "Only users with **Researcher** role can access the data explorer functionality."
 msgstr ""
