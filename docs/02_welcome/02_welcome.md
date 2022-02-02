@@ -1,7 +1,7 @@
 # Welcome page
 
 All users will be redirected to the welcome page after a successful login. This page contains
-some basic statitics about data available for the logged in user, e.g. the projects that have
+some basic statistics about data available for the logged in user, e.g. the projects that have
 received updates the last time, as well as general information that might be useful for the user
 and that is managed by {term}`Content Admin`s.
 
@@ -19,7 +19,7 @@ Fig 02-01: Introduction part of the welcome page
 ```
 
 The welcome message is followed by a general statistics that informs about how many projects and
-{term}`Criteria` haven been added to the runnning CODEX system and also how many different clinics have
+{term}`Criteria` haven been added to the running CODEX system and also how many different clinics have
 provided previously mentioned data.
 
 ```{note}

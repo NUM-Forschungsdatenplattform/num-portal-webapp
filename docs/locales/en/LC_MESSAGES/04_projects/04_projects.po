@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-23 22:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,19 @@ msgstr ""
 msgid "Projects"
 msgstr ""
 
-#: ../04_projects/04_projects.md:3 4e688c3240c24076a14b113774a1d8e0
-msgid "This section covers the projects feature."
+#: ../04_projects/04_projects.md:3 a5242c9b66a843cf9ee8e90f802a5de5
+msgid ""
+"This section covers the projects feature, functionality which allows "
+"project definition as well as management of the project life cycle."
 msgstr ""
+
+#~ msgid "This section covers the projects feature."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Functionality which allows project definition"
+#~ " as well as management of the "
+#~ "project life cycle. This section covers"
+#~ " the projects feature."
+#~ msgstr ""
 

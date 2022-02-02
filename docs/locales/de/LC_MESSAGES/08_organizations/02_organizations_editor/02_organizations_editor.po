@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-27 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,9 +24,42 @@ msgstr "Organisationseditor"
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:3
 #: 1cd0098d9c194aa2a95976e0ef67eec4
+#, fuzzy
 msgid ""
-"This section covers the editor page of the organizations management "
+"This section covers the editor page of the organization management "
 "feature."
+msgstr "Dieser Abschnitt behandelt den Editor der Organisationsverwaltung."
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:5
+#: a1db63a43c834f67bcb2990e3c97aa8b
+msgid ""
+"The organization editor feature provides functionality to create and "
+"update an organization."
 msgstr ""
-"Dieser Abschnitt behandelt den Editor der Organisationsverwaltung."
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:1
+#: b13111a173114a5fa857e067f4ea7249
+msgid "Organizations can be created only by users with **Super admin** role"
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:1
+#: 084bfdd0969143babe200556e2052740
+#, fuzzy
+msgid "Screenshot of organization editor"
+msgstr "Organisationseditor"
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:1
+#: 0d4ea0ff0dbc4d6e9a71a187c60bebaf
+msgid "Fig 08-02-01: Create organization"
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:18
+#: 9fc7ce90e1594ef3929885edc6f7888c
+msgid ""
+"In order to edit an organization, click on the pen icon on the respective"
+" organization in the organization overview list.  Organizations can be "
+"assigned a list of domain names. At user registration the user will be "
+"automatically assigned to the organization to which the  registration "
+"email matches."
+msgstr ""
 

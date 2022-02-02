@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-27 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgid ""
 "tasks and requires to use additional features of CODEX."
 msgstr ""
 "Dieser Abschnitt behandelt die Verwaltung zuvor freiegegebener Benutzer "
-"was in der Regel dann notwendig wird, wenn sich die Rolle eines Benutzers "
-"ändert, z.B. wenn ein Benutzer weitere Aufgaben übernehmen soll und "
+"was in der Regel dann notwendig wird, wenn sich die Rolle eines Benutzers"
+" ändert, z.B. wenn ein Benutzer weitere Aufgaben übernehmen soll und "
 "daher weitere Funktionen von CODEX benötigt."
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
@@ -40,6 +40,17 @@ msgid ""
 "The following steps can only be executed by users with the role "
 "\"Organization Admin\" or \"Super Admin\"."
 msgstr ""
-"Die nachfolgend beschriebenen Schritte können nur von einem Benutzer "
-"mit der Rolle \"Organisationsadministrator\" oder der Rolle "
+"Die nachfolgend beschriebenen Schritte können nur von einem Benutzer mit "
+"der Rolle \"Organisationsadministrator\" oder der Rolle "
 "\"Superadministrator\" durchgeführt werden."
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: 9fefefe17bdb4a1abdb453376e9cfe9b
+msgid "Screenshot of approved users"
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:1
+#: eff79593d2c8437889d38f685b2a9ba1
+msgid "Fig 07-01-01: Approved users"
+msgstr ""
+

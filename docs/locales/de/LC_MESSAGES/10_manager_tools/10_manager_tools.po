@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-27 00:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,4 +24,8 @@ msgstr "Manager Tools"
 #: ../10_manager_tools/10_manager_tools.md:3 65cb64568c46468386eb017ef87368f8
 msgid "This section covers the manager tools feature."
 msgstr "Dieser Abschnitt behandelt die Manager-Tools."
+
+#: ../10_manager_tools/10_manager_tools.md:1 167a64892305420d8df608d729f417cb
+msgid "Only users with **Manager** role can access the criteria feature."
+msgstr ""
 

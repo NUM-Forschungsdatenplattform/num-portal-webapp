@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-24 17:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,140 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
-#: 14bdb46c66f346f8bafe079a7ae621ea
-msgid "Data explorer - Data retrieval"
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:5
+#: cc746ff949914a30aad957b46c2ddf23
+#, fuzzy
+msgid "Data retrieval"
 msgstr "Datenabruf: Datenabruf"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:3
 #: 8406961cb43f4900960462ee94ed8ef0
 msgid "This section covers the data retrieval page of the data explorer feature."
 msgstr "Dieser Abschnitt behandelt den Datenabruf des Datenabruf-Moduls."
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:6
+#: 894f1141fa77488888149103f747cc38
+msgid "The data retrieval page is divided into three areas:"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:8
+#: a11cda68608749cdb3c2acb8da9d5fd5
+msgid ""
+"Project summary: here you have complete insight into the configuration of"
+" the project. All information is read-only. You can expand and collapse "
+"the individual areas."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:9
+#: 90c114d4ff0a4344a07cf339cda431b3
+msgid ""
+"Data retrieval: in this section you can start the complete data "
+"retrieval. You also have the option of limiting the data retrieval using "
+"filters. Start the entire data retrieval by clicking on *Retrieve data* "
+"button."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:10
+#: bcba5ce8b89b4d60908fb6804c6cdb92
+msgid ""
+"Result set: after the data retrieval has been started, the available data"
+" sets are displayed in this section."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: 4f029ea9a86c478ea1792dcf430ab502
+msgid "Screenshot of detailed data retrieval"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: f4830c656f7b494e950450e4dc1803f0
+msgid "Fig 05-02-01: Data retrieval"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:20
+#: 6b216d5cab954055aa8917f8ba1f9d9a
+msgid "Result set"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:22
+#: 242f36ce457e436f984873da54a13c43
+msgid ""
+"At data retrieval the result set is displayed based on the configurations"
+" specified in the project."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:24
+#: 60ce634e7fc54218949ce7d49444adfa
+msgid ""
+"In the standard configuration, the complete result set is produced as "
+"table(s). The output result set is based on the return parameters as "
+"defined in the project as a basis."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:26
+#: 50d994f5c03f4cd19e4b1c0cd682e79f
+msgid ""
+"In addition, you have the option of a user-defined configuration. You can"
+" customize the configuration of the data query as part of the defined "
+"return parameters. To access this function, click on *Filter data* "
+"button. Please note that setting filters can result in unwanted cross "
+"products."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:28
+#: 044aabfb5d7349df9bc81f13505ddea0
+msgid "Representation of the result set"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:30
+#: 6c6a47b8bcad449d98745247030b8ab1
+msgid ""
+"The result set is presented as a table. A separate table is generated for"
+" each return parameter defined in the project."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:32
+#: 0a7c4d3b8d9a450ca3ac3877932cfb47
+msgid "The table structure is as follows:"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:33
+#: aec1f6c5e00b40eba0c77a26b5f0dc9f
+msgid ""
+"Rows: the results of the cohort specified in the project, i.e. the "
+"patient filter, are displayed in rows. Each available record makes up one"
+" row."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:34
+#: 698dcb35af704e17a513ee74b1312241
+msgid ""
+"Columns: the columns represent the data filter and contain all parameters"
+" for which information is available in the respective data record."
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: ecc604d24bea44c0a060fb5f2fcb4339
+msgid "Screenshot of data retrieval results"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: 3e77295250af4466b4c5d6badec1a3c2
+msgid "Fig 05-02-02: Data retrieval results"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:45
+#: a74225c1590045d88dac3dd1a7f2554c
+msgid "Export of the result set"
+msgstr ""
+
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:47
+#: 789ec6c76a544ca5b5fb79086b42aa2d
+msgid ""
+"You can export the entire displayed result as either a CSV file or a JSON"
+" file. A separate file is created for each return parameter."
+msgstr ""
+
+#~ msgid "Data explorer - Data retrieval"
+#~ msgstr "Datenabruf: Datenabruf"
 

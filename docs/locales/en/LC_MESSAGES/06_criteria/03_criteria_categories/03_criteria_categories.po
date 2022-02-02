@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-27 10:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,50 @@ msgstr ""
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:3
 #: bf73d867caac4c4080fd5476aa8993f9
-msgid ""
-"This section covers the categories management page of the categories "
-"feature."
+msgid "This section covers the criteria categories management page."
 msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:5
+#: 6932d9fdac5948bea719781809aaf7e1
+msgid ""
+"The purpose of the criteria categories is to group criteria. In order to "
+"define a category press *Create category* button, a dialog will then open"
+"  where both English and German titles of the category must be provided. "
+"In order to delete or edit a category press on the three dots "
+"corresponding to the respective  category."
+msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
+#: bd03217b0945495eacede5c0dda012c6
+msgid "You cannot delete categories which have been assigned to criteria"
+msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
+#: 12fe4145d0284d5cb3ee6aa54c501871
+msgid "Screenshot of criteria categories"
+msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
+#: 5daf042838554ef0a8135899820bf2ec
+msgid "Fig 06-03-01: Criteria categories list"
+msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
+#: 3ce3fedd600e466bb18fd9a478dd16b5
+msgid "Screenshot of criteria categories add dialog"
+msgstr ""
+
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
+#: 15548a806ffe4c37832f8bbb395bfa5e
+msgid "Fig 06-03-02: Create category dialog"
+msgstr ""
+
+#~ msgid ""
+#~ "This section covers the categories "
+#~ "management page of the categories "
+#~ "feature."
+#~ msgstr ""
+
+#~ msgid "Fig 06-03-01: Create category dialog"
+#~ msgstr ""
 
