@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule } from '@ngx-translate/core'
+import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing'
+import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
@@ -27,7 +27,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ContentService } from '../../../../core/services/content/content.service'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { mockDashboardCards } from '../../../../../mocks/data-mocks/dashboard-cards.mock'
-import { Component } from '@angular/core'
+import { Component, Injector } from '@angular/core'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -86,7 +86,10 @@ describe('DashboardComponent', () => {
   })
 
   beforeEach(() => {
+    const injector: Injector = getTestBed()
+    const translate: TranslateService = injector.get(TranslateService)
     jest.spyOn(mockContentService, 'getCards').mockImplementation(() => of(mockDashboardCards))
+    jest.spyOn(translate, 'instant').mockImplementation(() => [])
     fixture = TestBed.createComponent(DashboardComponent)
     component = fixture.componentInstance
     component.config = config
@@ -99,5 +102,14 @@ describe('DashboardComponent', () => {
 
   it('should set the cards from the api to the component', () => {
     expect(component.cards).toEqual(mockDashboardCards)
+  })
+
+  it('should get new blocks and set display lang when changing language', () => {
+    const injector: Injector = getTestBed()
+    const translate: TranslateService = injector.get(TranslateService)
+    const newlang = 'de'
+    translate.onLangChange.next({ lang: newlang } as LangChangeEvent)
+    expect(translate.instant).toHaveBeenCalled()
+    expect(component.displayLang).toEqual(newlang)
   })
 })

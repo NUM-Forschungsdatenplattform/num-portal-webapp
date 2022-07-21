@@ -3,9 +3,17 @@
   "DASHBOARD": {
     "LATEST_PROJECTS": "Latest Projects",
     "INTRODUCTION": {
-      "HEADER": "The COVID-19 Data Exchange Platform",
-      "P1": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data.",
-      "P2": "The collaborative CODEX platform provides comprehensive Covid-19 research datasets including clinical data and biospecimen data from all German university hospitals in a pseudonymized format. ",
+      "HEADER": "Covid-19-Exchange Data Platform",
+      "BLOCKS": [
+        {
+          "HEADER": "",
+          "BODY": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data."
+        },
+        {
+          "HEADER": "",
+          "BODY": "The collaborative CODEX platform provides comprehensive Covid-19 research datasets including clinical data and biospecimen data from all German university hospitals in a pseudonymized format."
+        }
+      ],
       "PARTICIPANTS": "Participating clinics"
     },
     "INFO_CARD": {
