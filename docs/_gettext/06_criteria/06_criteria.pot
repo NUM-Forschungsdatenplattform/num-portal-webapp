@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-27 00:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,11 @@ msgid "Criteria"
 msgstr ""
 
 #: ../06_criteria/06_criteria.md:3
-#: 8805a11da2764c5eb158fb9f26468fd9
-msgid "This section covers the criteria feature."
+#: 3ff1f9442e1f4215ae122162da65554f
+msgid "This section covers the criteria feature, functionality which allows criteria definition and management."
+msgstr ""
+
+#: ../06_criteria/06_criteria.md:1
+#: d9eab91689454e739e1ceee1f6d18d53
+msgid "Only users with **Manager** role can access the criteria feature."
 msgstr ""

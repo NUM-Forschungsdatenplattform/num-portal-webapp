@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-24 16:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,176 @@ msgstr ""
 msgid "This section covers the data filter page of the search module."
 msgstr ""
 
+#: ../03_search/02_data_filter/02_data_filter.md:5
+#: d819b858d0924be6afa0126f6faa0d5b
+msgid ""
+"You get to the data filter if the cohort created in the [Patient "
+"filter](../01_patient_filter/01_patient_filter.md) in the previous step "
+"and clicked on *Next step* button. With the data filter you can now "
+"filter the defined cohort according to specific return parameters based "
+"on the data set GECCO 83."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:7
+#: a8a6e78dfb0c450f928858a982c0ff3f
+msgid ""
+"The size of the defined cohort is displayed above the return parameters "
+"area. To select the return parameters, click Add Parameter. A dialog "
+"window will then open in which you can make your selection. Depending on "
+"your authorization, you can then either start a data retrieval or "
+"transfer the configuration to a project in a further step."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:9
+#: a2957d4d8b6b4d3a93e75a4ebacd71b1
+msgid ""
+"Depending on your authorization, you have the following additional "
+"options and only see the corresponding button:"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:10
+#: fd7aae5d168c47c8b1901dec0890de3b
+msgid ""
+"Apply configuration: this function is only available and visible to "
+"project managers."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:11
+#: 4002e1fd1ad146f8906a40ccf019be46
+msgid ""
+"Start data retrieval: this function is only available and visible to "
+"managers."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 371b5c734f964d7a8d4dc2c3679eaec0
+msgid "Screenshot of data filter"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 74b880f38b65412ea1dfbed53bf07160
+msgid "Fig 03-02-01: Data filter"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:21
+#: 59a3d23f6c554fd19e41670d4cc7207d
+msgid ""
+"In order to select return parameters press *Add return parameter*. In the"
+" dialog you can select the desired return parameter(s) from a list. To do"
+" this, click on the respective plus symbol. As soon as a parameter is "
+"selected, the symbol changes to a tick. If you click the tick again, the "
+"symbol changes back to a plus and the return parameter is no longer "
+"selected. Above the list is a search box that you can use to search "
+"directly for parameters and narrow the list down accordingly."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:24
+#: a861e310446541138e53274a4fa220e1
+msgid ""
+"As soon as you have selected one or more return parameters, you can add "
+"the parameters to the data filter by clicking on *Apply selection* "
+"button. The dialog window then closes automatically."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 7166abdbb94f479184572515718d6b3b
+msgid ""
+"Return parameters are mandatory, in order to continue you must select at "
+"least one parameter."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 36f68f0f53e54cf4a04207d6931f461f
+msgid "Screenshot of data filter return parameters"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 36f68f0f53e54cf4a04207d6931f461f
+msgid "Fig 03-02-02: Data filter return parameters"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:38
+#: de712f40dc64409bb8f9e22ecbd667d1
+msgid ""
+"After you have selected the return parameters, they are displayed in the "
+"data filter list. Now you can calculate the number of hits in the data "
+"set within the defined cohort for the respective return parameter. To do "
+"this, click on \"Determine hits\". Each return parameter listed in the "
+"table can be removed from the list by clicking on the trash can icon. You"
+" can also add further return parameters to the list by clicking on *Add "
+"return parameter* button."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 71fed08b3e8e4436bf59ea2857f3649f
+msgid "Screenshot of data filter determine hits"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: 71fed08b3e8e4436bf59ea2857f3649f
+msgid "Fig 03-02-03: Hits per return parameter"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:47
+#: 27b68e88eadc4ec6967e416577f21c91
+msgid ""
+"With the return parameters now defined, depending on your role and/or "
+"permission in your organization, you can proceed as follows:"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:48
+#: a372715fa70b4295a9abadad5a8d7570
+msgid ""
+"Apply configuration: With the role \"Project manager\" you can now apply "
+"all settings that you have made in the patient and data filter directly "
+"to a new project. This configuration can also be adjusted in the project "
+"itself."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:49
+#: b212462f45544ad4827c6854beba01d2
+msgid ""
+"Start data retrieval: With the role \"Manager\" you can start a data "
+"retrieval based on the settings in the patient and data filter."
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: d4ca5d9df65243da916bb91b553347c2
+msgid "Screenshot of data filter next steps"
+msgstr ""
+
+#: ../03_search/02_data_filter/02_data_filter.md:1
+#: d4ca5d9df65243da916bb91b553347c2
+msgid "Fig 03-02-04: Data filter next steps"
+msgstr ""
+
 #~ msgid "Thissection covers the data filter page of the search module."
+#~ msgstr ""
+
+#~ msgid "Fig 03-02-03: Data filter next steps"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In order to select return parameters "
+#~ "press *Add return parameter*. In the "
+#~ "dialog you can select the desired "
+#~ "return parameter(s) from a list. To "
+#~ "do this, click on the respective "
+#~ "plus symbol. As soon as a "
+#~ "parameter is selected, the symbol "
+#~ "changes to a tick. If you click"
+#~ " the tick again, the symbol changes"
+#~ " back to a plus and the return"
+#~ " parameter is no longer selected. "
+#~ "Above the list is a search box "
+#~ "that you can use to search "
+#~ "directly for parameters and narrow the"
+#~ " list down accordingly. As soon as"
+#~ " you have selected one or more "
+#~ "return parameters, you can add the "
+#~ "parameters to the data filter by "
+#~ "clicking on *Apply selection* button. "
+#~ "The dialog window then closes "
+#~ "automatically."
 #~ msgstr ""
 

@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   cards: IDashboardCard[]
   displayLang: string
   isLoggedIn: boolean
+  blocks: any[]
 
   @ViewChild('participantsAnchor') participantsAnchor: ElementRef
 
@@ -57,6 +58,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.fetchContentCards()
       this.getCurrentLang()
     }
+
+    this.blocks = this.translateService?.instant('DASHBOARD.INTRODUCTION.BLOCKS')
+
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((newLang) => {
+        this.displayLang = newLang.lang
+        this.blocks = this.translateService?.instant('DASHBOARD.INTRODUCTION.BLOCKS')
+      })
+    )
   }
 
   ngOnDestroy(): void {
@@ -75,9 +85,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getCurrentLang(): void {
     this.displayLang = this.translateService.currentLang as 'en' | 'de'
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => (this.displayLang = newLang.lang))
-    )
   }
 
   scrollToParticipants(): void {

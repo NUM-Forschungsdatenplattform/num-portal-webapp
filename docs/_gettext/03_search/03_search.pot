@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-27 00:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,4 +24,14 @@ msgstr ""
 #: ../03_search/03_search.md:3
 #: c995a2f4ed1a4a70998ad7c825d249ce
 msgid "This section covers the search feature."
+msgstr ""
+
+#: ../03_search/03_search.md:5
+#: 9e5309e6500d4c2ba35e251a115c2d82
+msgid "The search functionality gives you easy access to the data sets that are available in the platform. Starting with the patient filter, you can start a data retrieval in three steps or transfer the selected parameters to a new project."
+msgstr ""
+
+#: ../03_search/03_search.md:1
+#: 25f5f43a0c6243a5a2ec8876df2d65fc
+msgid "Only users with **Manager** or **Project lead** roles can access the search functionality"
 msgstr ""

@@ -18,10 +18,16 @@
   <div class="main-header">
     <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
   </div>
+
+  <div *ngFor="let block of blocks" fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
+    <div fxFlex="100%" class="content">
+      <h4 *ngIf="block.HEADER">{{ block.HEADER }}</h4>
+      <p *ngIf="block.BODY" [innerHtml]="block.BODY"></p>
+    </div>
+  </div>
+
   <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction num-margin-b-40">
     <div fxFlex="100%" class="content">
-      <p>{{ 'DASHBOARD.INTRODUCTION.P1' | translate }}</p>
-      <p>{{ 'DASHBOARD.INTRODUCTION.P2' | translate }}</p>
       <a
         (click)="scrollToParticipants()"
         class="introduction__participating-clinics-link"

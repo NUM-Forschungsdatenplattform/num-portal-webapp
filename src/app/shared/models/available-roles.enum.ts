@@ -23,4 +23,5 @@ export enum AvailableRoles {
   SuperAdmin = 'SUPER_ADMIN',
   StudyApprover = 'STUDY_APPROVER',
   Manager = 'MANAGER',
+  CriteriaEditor = 'CRITERIA_EDITOR',
 }

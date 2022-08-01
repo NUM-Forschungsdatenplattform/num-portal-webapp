@@ -45,7 +45,7 @@ templates_path = ['_templates']
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = 'None'
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -62,7 +62,7 @@ html_theme = 'sphinx_material'
 
 # Material theme options (see theme.conf for more information)
 html_theme_options = {
-  
+
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
     "base_url": "https://num-portal-webapp.readthedocs.io/de/latest/",

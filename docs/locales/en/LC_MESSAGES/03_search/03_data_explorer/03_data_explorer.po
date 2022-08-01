@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-24 16:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,4 +26,71 @@ msgstr ""
 #: 3544b5c85e2547599b4437aad366a365
 msgid "This section covers the data explorer page of the search module."
 msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: 57b92e72ac744b1d9c48b05819bea6f2
+msgid ""
+"This feature is only available and visible to users with the \"Manager\" "
+"role."
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:9
+#: abf7fb8e0f6248e1ad0230eed895dae9
+msgid ""
+"Data explorer allows you to retrieve project available data from your "
+"previous selections in the patient and data filter."
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:11
+#: 8d41fa6d0ebc4e8db81bf100730b923b
+msgid ""
+"In order for the project data to be retrieved, click on *Retrieve data* "
+"button. The results are then loaded. Depending on the complexity and "
+"scope of the patient and data filter configurations, the calculation may "
+"take some time."
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: 7ee51f17d74c486880852df711336bbb
+msgid "Screenshot of data retrieval"
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: 66eb7db9b4ad4f468daa19f73af8cb71
+msgid "Fig 03-03-01: Data retrieval"
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:21
+#: c2e813297a4345c4b3153d8a1d68d227
+msgid ""
+"Once the data has loaded, the results are presented in tabular form. The "
+"results of each data filter selected in the previous step are presented "
+"in separate tables."
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:23
+#: 5b26579a68b54d62aacc1bd42180731c
+msgid ""
+"The results can be exported in two different formats: CSV and JSON - for "
+"further use."
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: 6552a1b03e2a47c19ec6372f947d827e
+msgid "Screenshot of data retrieval tables"
+msgstr ""
+
+#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: 936eb8e191914b6c84d21140646ea431
+msgid "Fig 03-03-02: Data retrieval results"
+msgstr ""
+
+#~ msgid ""
+#~ "The results can be exported in two"
+#~ " different formats: CSV and JSON -"
+#~ " for further use"
+#~ msgstr ""
+
+#~ msgid "Fig 03-03-01: Data retrieval results"
+#~ msgstr ""
 

@@ -8,3 +8,9 @@ The following steps can only be executed by users with the role of "Organization
 "Super Admin".
 ```
 
+```{figure} images/user_management_new_users.png
+---
+alt: Screenshot of new users
+---
+Fig 07-01-01: New users
+```

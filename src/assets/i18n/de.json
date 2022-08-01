@@ -3,9 +3,25 @@
   "DASHBOARD": {
     "LATEST_PROJECTS": "Neueste Projekte",
     "INTRODUCTION": {
-      "HEADER": "Die COVID-19-Datenaustauschplattform",
-      "P1": "Die CODEX Forschungsdatenplattform ist eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu Covid-19. Sie verbindet Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertungen strukturierter Daten mit hoher Qualität.",
-      "P2": "Die standortübergreifende CODEX Plattform stellt umfangreiche Covid-19-Forschungsdatensätze inklusive klinischer Daten und Daten zu Bioproben aus allen deutschen Universitätskliniken pseudonymisiert zur Verfügung.",
+      "HEADER": "Covid-19-Exchange Data Platform",
+      "BLOCKS": [
+        {
+          "HEADER": "Einleitung",
+          "BODY": "Das Netzwerk Universitätsmedizin (NUM) baut mit der CODEX-Forschungsdatenplattform eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu COVID-19. CODEX verbindet alle deutschen Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertung strukturierter, pseudonymisierter und versorgungsbezogener Daten aus der Patient*Innenversorgung („real world data“) mit hoher Qualität zur Verfügung."
+        },
+        {
+          "HEADER": "Wozu wird CODEX benötigt?",
+          "BODY": "Während der langwierigen Pandemiezeit sind im Zuge der Versorgung von COVID-19-Patient*Innen innerhalb der IT-Systeme und elektronischen Krankenaktensysteme der Universitätskliniken zahlreiche forschungsrelevante Daten und Erkenntnisse generiert worden. Daten, die möglichst standardisiert erhoben und zeitnah erfasst sowie zentral zusammengeführt und ausgewertet werden müssen, um eine zielgerichtete Forschung zu COVID-19 zu ermöglichen. Genau hier setzt CODEX an."
+        },
+        {
+          "HEADER": "CODEX Benutzerportal",
+          "BODY": "Das NUM CODEX Benutzerportal ermöglicht den zentralisierten Zugang zu forschungsrelevanten Gesundheitsdaten. Umgesetzt wird dies durch Machbarkeitsabfragen und, soweit die Nutzungsvoraussetzungen erfüllt sind, eine zentrale Datenherausgabe. Nationale und internationale Forscher*Innen können auf diese Weise, hochrelevante Daten zu COVID-19-Erkrankungen auswerten und somit einen Beitrag zur Bekämpfung der Pandemie leisten. Der operative Betrieb des CODEX Benutzerportals obliegt dem HiGHmed e.V."
+        },
+        {
+          "HEADER": "Welche Ziele hat CODEX?",
+          "BODY": "Die Plattform wurde geschaffen, um qualitativ hochwertige Forschungsdaten, Tools und Surveillance in der COVID-19-Pandemie bereitzustellen. Strukturierte Daten dienen als Grundlage neuartiger wissenschaftlicher Auswertungen und helfen bei der Entwicklung evidenzbasierter Entscheidungsunterstützungssysteme. Auf diese Weise trägt CODEX zu einem schnellen Erkenntnisgewinn bei und somit zum verbesserten Krisenmanagement bei pandemischen Notlagen wie auch einer optimierten Gestaltung des Gesundheitswesens insgesamt. Daraus ergeben sich folgende Vorteile:<ul><li>Für Patient*Innen: Bestmögliche Krankenversorgung bei COVID-19 durch schnelle Generierung und Verbreitung von Evidenz und Berücksichtigung rechtlicher und ethischer Fragestellungen</li><li>Für Forscher*Innen: Belastbare Datengrundlage zur Erforschung wissenschaftlicher Fragestellungen im Kontext der Erkrankung COVID-19</li><li>Für Industrie: das Schaffen von Grundlagen für die Impfstoff- und Wirkstoffentwicklung sowie das Trainieren künstlicher Intelligenz</li><li>Für Entscheider*Innen: die Optimierung des Krisenmanagements bei epidemischen Notlagen sowie eine optimierte Gestaltung des Gesundheitswesens insgesamt durch die Unterstützung politischer Entscheidungen auf Basis wissenschaftlicher Fakten</li><li>Für Ärzt*Innen und Behörden: Pandemiemanagement und Patientenversorgung können durch innovative, qualitativ hochwertige Dienste und Applikationen verbessert werden und für Entlastung sorgen</li></ul>"
+        }
+      ],
       "PARTICIPANTS": "Teilnehmende Kliniken"
     },
     "INFO_CARD": {
@@ -269,7 +285,7 @@
     "PROJECT_APPROVAL_DENY": "Projekt ablehnen",
     "EXECUTE": "Ausführen",
     "GET_DATA": "Daten abrufen",
-    "APPLY_CONFIGURATION": "Konfiguration übernehmen",
+    "APPLY_CONFIGURATION": "Projektantrag stellen",
     "CUSTOMIZE_CONFIGURATION": "Daten filtern",
     "RESET_CUSTOMIZATION": "Filter zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
@@ -376,7 +392,8 @@
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
     "CONTENT_ADMIN": "Content-Admin",
-    "MANAGER": "Manager"
+    "MANAGER": "Manager",
+    "CRITERIA_EDITOR": "Kriterien-Editor"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",

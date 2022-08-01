@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-01-26 23:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,5 +25,45 @@ msgstr ""
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:3
 #: 2c7eb6b1fb3b403692b7a0f0c43b41ae
 msgid "This section covers the overview page of the criteria feature."
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:5
+#: b3fc48590adc4bbb883e118e8c4a94f8
+msgid ""
+"Lists both owned criteria and public criteria. Provides functionality to "
+"search criteria by name and author as well as to filter projects on 4 "
+"criteria:"
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:7
+#: dddecf7b49514f5cbd8f9d4ce30ce975
+msgid "all visible criteria"
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:8
+#: 2882b00b41044794b313b47db98ecdc1
+msgid "criteria owned by the logged-in user"
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:9
+#: 7089f07962644e7db1ee9d120cc5ddcc
+msgid "criteria belonging to the organization of the logged-in user"
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:11
+#: 086473b7064c40dfaef602484258c825
+msgid ""
+"You can clone or delete public criteria, and you can edit or delete your "
+"own criteria."
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
+#: d60e20d9eb724535809b258afacaaa44
+msgid "Screenshot of criteria list"
+msgstr ""
+
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
+#: 6273f5cb13f6498fb1e046cab57433c9
+msgid "Fig 06-01-01: Criteria list"
 msgstr ""
 

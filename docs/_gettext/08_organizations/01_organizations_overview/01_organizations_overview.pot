@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 12:36+0200\n"
+"POT-Creation-Date: 2022-01-27 10:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,40 @@ msgstr ""
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:3
 #: db45e4f0f830419b963cefe437101137
-msgid "This section covers the overview page of the organizations management feature."
+msgid "This section covers the overview page of the organization management feature."
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:5
+#: 49fb7f628e3f4817850f631663605f34
+msgid "Only users with **Super admin** or **Organization admin** roles can access the organization management feature.  For **Super admin** user a list will all organizations available will be displayed."
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
+#: 1107db1b02854293bf4125d98995c6ba
+msgid "Organizations can be added and updated, they cannot be deleted."
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
+#: db45e4f0f830419b963cefe437101137
+msgid "Screenshot of organization overiew for super admin"
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
+#: db45e4f0f830419b963cefe437101137
+msgid "Fig 08-01-01: Organization overiew for Organization manager"
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:19
+#: cfef506688e34c4ea1688c7c31b9feb1
+msgid "For **Organization admin** users, the organization overview page will hold a single row with the admins own organization."
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
+#: 97dcc8dc5d7c4166a95c7364b8f5361a
+msgid "Screenshot of organization overiew"
+msgstr ""
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
+#: c42f6eee19f9406991fb4cef199683a5
+msgid "Fig 08-01-02: Organization overiew for Super admin"
 msgstr ""
