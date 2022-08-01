@@ -392,7 +392,8 @@
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
     "CONTENT_ADMIN": "Content-Admin",
-    "MANAGER": "Manager"
+    "MANAGER": "Manager",
+    "CRITERIA_EDITOR": "Kriterien-Editor"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",

@@ -383,7 +383,9 @@
     "SUPER_ADMIN": "Super admin",
     "STUDY_APPROVER": "Project approver",
     "CONTENT_ADMIN": "Content admin",
-    "MANAGER": "Manager"
+    "MANAGER": "Manager",
+    "CRITERIA_EDITOR": "Criteria editor"
+
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",
