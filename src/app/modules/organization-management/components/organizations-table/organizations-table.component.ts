@@ -40,6 +40,7 @@ export class OrganizationsTableComponent
   }
 
   displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
+  showPagination = false
 
   @ViewChild(MatSort) sort: MatSort
   @ViewChild(MatPaginator) paginator: MatPaginator
@@ -54,9 +55,12 @@ export class OrganizationsTableComponent
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.organizationService.organizationsObservable$.subscribe((organizations) =>
+      this.organizationService.organizationsObservable$.subscribe((organizations) => {
         this.handleData(organizations)
-      )
+        if (this.dataSource.data.length > 10) {
+          this.showPagination = true
+        }
+      })
     )
   }
 

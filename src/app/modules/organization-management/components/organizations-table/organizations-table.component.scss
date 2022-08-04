@@ -17,3 +17,9 @@
 table {
   width: 100%;
 }
+
+.pagination-container {
+  &.hidden {
+    display: none;
+  }
+}

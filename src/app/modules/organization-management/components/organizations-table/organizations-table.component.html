@@ -71,12 +71,17 @@
       [attr.data-test]="'organizations__table__row-' + i"
     ></tr>
   </table>
-
-  <mat-paginator
-    *ngIf="dataSource.data.length > 10"
-    [pageSizeOptions]="[10, 20, 40]"
-    [pageSize]="pageSize"
-    (page)="pageSize = $event.pageSize"
-    showFirstLastButtons
-  ></mat-paginator>
+  <span
+    class="pagination-container"
+    [ngClass]="{
+      hidden: !showPagination
+    }"
+  >
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 40]"
+      [pageSize]="pageSize"
+      (page)="pageSize = $event.pageSize"
+      showFirstLastButtons
+    ></mat-paginator>
+  </span>
 </div>
