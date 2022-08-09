@@ -294,7 +294,8 @@
     "PROJECT_CREATE": "Create project",
     "RESOLVE": "Resolve",
     "COPY_TO_CLIPBOARD": "Copy to clipboard",
-    "EXPORT": "Export"
+    "EXPORT": "Export",
+    "UPDATE_PASSWORD": "Update Password"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",

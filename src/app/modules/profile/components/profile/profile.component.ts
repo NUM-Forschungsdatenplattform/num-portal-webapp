@@ -13,6 +13,7 @@ import {
   SAVE_ERROR_CONFIG,
   SAVE_SUCCESS_CONFIG,
 } from './constants'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
 @Component({
   selector: 'num-profile',
@@ -25,7 +26,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private dialogService: DialogService,
     private toastMessageService: ToastMessageService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private appConfig: AppConfigService
   ) {}
 
   isLoading: boolean
@@ -111,6 +113,13 @@ export class ProfileComponent implements OnInit {
           )
         }
       })
+    )
+  }
+
+  updatePassword(): void {
+    const auth = this.appConfig.config.auth
+    window.location.assign(
+      auth.baseUrl + '/auth/realms/' + auth.realm + '/account/password?referrer=' + auth.clientId
     )
   }
 

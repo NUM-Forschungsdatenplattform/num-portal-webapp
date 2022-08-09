@@ -69,6 +69,12 @@
     </mat-card-content>
   </mat-card>
 
+  <section fxLayout="row" class="num-margin-b-20">
+    <num-button [isDisabled]="isLoading" type="primary" (singleClick)="updatePassword()">{{
+      'BUTTON.UPDATE_PASSWORD' | translate
+    }}</num-button>
+  </section>
+
   <mat-divider class="num-d-w--1 num-margin-b-20"></mat-divider>
 
   <section fxLayout="row" fxLayoutAlign="space-between" class="num-margin-b-40">

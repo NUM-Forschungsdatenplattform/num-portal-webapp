@@ -303,7 +303,8 @@
     "PROJECT_CREATE": "Projekt erstellen",
     "RESOLVE": "Auflösen",
     "COPY_TO_CLIPBOARD": "In Zwischenablage kopieren",
-    "EXPORT": "Exportieren"
+    "EXPORT": "Exportieren",
+    "UPDATE_PASSWORD": "Passwort aktualisieren"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",
