@@ -66,7 +66,8 @@ export class AddUserRolesComponent implements OnInit, OnDestroy {
         (role) =>
           role !== AvailableRoles.SuperAdmin &&
           role !== AvailableRoles.ContentAdmin &&
-          role !== AvailableRoles.Manager
+          role !== AvailableRoles.Manager &&
+          role !== AvailableRoles.StudyApprover
       )
     } else {
       this.dataSource.data = availableRoles

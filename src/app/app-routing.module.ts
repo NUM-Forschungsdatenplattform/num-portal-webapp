@@ -86,7 +86,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.Manager],
+      roles: [AvailableRoles.CriteriaEditor, AvailableRoles.SuperAdmin],
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
