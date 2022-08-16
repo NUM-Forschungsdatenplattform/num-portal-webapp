@@ -15,7 +15,6 @@
  */
 
 import {
-  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -38,13 +37,21 @@ import { MatPaginator } from '@angular/material/paginator'
   templateUrl: './add-templates-filter-table.component.html',
   styleUrls: ['./add-templates-filter-table.component.scss'],
 })
-export class AddTemplatesFilterTableComponent
-  implements OnInit, OnDestroy, OnChanges, AfterViewInit
-{
+export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription()
-  @ViewChild(MatPaginator) paginator: MatPaginator
   @Input() selectedTemplates: IProjectTemplateInfoApi[]
   @Output() selectedTemplatesChange = new EventEmitter<IProjectTemplateInfoApi[]>()
+
+  private paginator: MatPaginator
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator
+  }
 
   constructor(private templateService: TemplateService) {}
   dataSource = new MatTableDataSource<ITemplateMetaDataApi>()
@@ -82,10 +89,6 @@ export class AddTemplatesFilterTableComponent
 
   handleData(templates: ITemplateMetaDataApi[]): void {
     this.dataSource.data = templates
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
   }
 
   handleSelectClick(row: ITemplateMetaDataApi): void {

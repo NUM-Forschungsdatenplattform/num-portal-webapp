@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core'
+import { Component, OnDestroy, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
@@ -45,7 +45,7 @@ import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-ca
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterViewInit, OnDestroy {
+export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
   user: IUserProfile
   displayedColumns: AqlTableColumns[] = [
     'menu',
@@ -64,8 +64,24 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
   uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  private paginator: MatPaginator
+  private sort: MatSort
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, matSort) => this.sortAqls(data, matSort)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -113,14 +129,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements AfterVi
     this.lang = this.translateService.currentLang || 'en'
     this.uncategorizedString = this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED')
     this.aqlCategoryService.getAll().subscribe()
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
-
-    this.dataSource.sortData = (data, matSort) => this.sortAqls(data, matSort)
-
-    this.dataSource.sort = this.sort
   }
 
   handleFilterChange(): void {

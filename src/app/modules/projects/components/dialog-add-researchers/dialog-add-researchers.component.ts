@@ -14,15 +14,7 @@
  * limitations under the License.
  */
 
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -38,9 +30,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
   templateUrl: './dialog-add-researchers.component.html',
   styleUrls: ['./dialog-add-researchers.component.scss'],
 })
-export class DialogAddResearchersComponent
-  implements OnInit, OnDestroy, AfterViewInit, IGenericDialog<IUser[]>
-{
+export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGenericDialog<IUser[]> {
   private subscriptions = new Subscription()
 
   dialogInput: IUser[]
@@ -56,7 +46,16 @@ export class DialogAddResearchersComponent
 
   constructor(private adminService: AdminService) {}
 
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  private paginator: MatPaginator
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.paginator = this.paginator
+  }
 
   ngOnInit(): void {
     this.setLastFilter()
@@ -68,10 +67,6 @@ export class DialogAddResearchersComponent
         this.handleUsersData(users)
       })
     )
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
   }
 
   setLastFilter(): void {

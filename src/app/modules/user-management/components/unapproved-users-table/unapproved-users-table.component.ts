@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
 import { MatSort } from '@angular/material/sort'
@@ -39,7 +39,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 })
 export class UnapprovedUsersTableComponent
   extends SortableTable<IUser>
-  implements OnInit, AfterViewInit, OnDestroy
+  implements OnInit, OnDestroy
 {
   private subscriptions = new Subscription()
   constructor(
@@ -58,8 +58,24 @@ export class UnapprovedUsersTableComponent
     'createdTimestamp',
   ]
 
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  private paginator: MatPaginator
+  private sort: MatSort
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -81,12 +97,6 @@ export class UnapprovedUsersTableComponent
           this.handleData(users, userProfile)
         })
     )
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
