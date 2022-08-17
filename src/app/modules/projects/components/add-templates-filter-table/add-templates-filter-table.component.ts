@@ -42,7 +42,7 @@ export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnCh
   @Input() selectedTemplates: IProjectTemplateInfoApi[]
   @Output() selectedTemplatesChange = new EventEmitter<IProjectTemplateInfoApi[]>()
 
-  private paginator: MatPaginator
+  public paginator: MatPaginator
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp

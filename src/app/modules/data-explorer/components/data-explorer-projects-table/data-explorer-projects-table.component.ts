@@ -49,8 +49,8 @@ export class DataExplorerProjectsTableComponent
   ]
   dataSource = new MatTableDataSource()
 
-  private paginator: MatPaginator
-  private sort: MatSort
+  public paginator: MatPaginator
+  public sort: MatSort
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms

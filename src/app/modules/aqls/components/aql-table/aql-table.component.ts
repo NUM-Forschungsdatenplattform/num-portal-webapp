@@ -64,8 +64,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
-  private paginator: MatPaginator
-  private sort: MatSort
+  public paginator: MatPaginator
+  public sort: MatSort
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this.sort = ms

@@ -46,7 +46,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
 
   constructor(private adminService: AdminService) {}
 
-  private paginator: MatPaginator
+  public paginator: MatPaginator
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp
