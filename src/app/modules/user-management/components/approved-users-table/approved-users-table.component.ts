@@ -62,20 +62,14 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   public paginator: MatPaginator
   public sort: MatSort
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
-
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp
     this.setDataSourceAttributes()
   }
 
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
   }
 
   get pageSize(): number {
@@ -100,6 +94,12 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
   }
 
   handleData(users: IUser[], userProfile: IUserProfile): void {
