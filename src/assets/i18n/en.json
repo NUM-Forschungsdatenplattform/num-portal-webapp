@@ -6,12 +6,20 @@
       "HEADER": "Covid-19-Exchange Data Platform",
       "BLOCKS": [
         {
-          "HEADER": "",
-          "BODY": "The CODEX research data platform is a secure and interoperable platform for the provision of Covid-19 research data, connecting university hospitals all over Germany and providing the scientific community with a platform for the collection and analysis of high quality structured data."
+          "HEADER": "Introduction",
+          "BODY": "With the CODEX research data platform, the Network University Medicine (NUM) is building a secure and interoperable platform for the provision of research data on COVID-19. CODEX connects all German university hospitals nationwide and provides science with a platform for the collection and analysis of high quality, structured, pseudonymized and care-related data from patient care (\"real world data\")"
         },
         {
-          "HEADER": "",
-          "BODY": "The collaborative CODEX platform provides comprehensive Covid-19 research datasets including clinical data and biospecimen data from all German university hospitals in a pseudonymized format."
+          "HEADER": "What is CODEX required for?",
+          "BODY": "During the protracted pandemic period, numerous research-relevant data and findings on COVID-19 patients were generated within the IT systems and electronic medical record systems of university hospitals. Data must be collected in a standardized and timely manner, as well as centrally compiled and evaluated, in order to enable targeted research on COVID-19. This is where CODEX comes in."
+        },
+        {
+          "HEADER": "CODEX User Portal",
+          "BODY": "The NUM CODEX user portal enables centralized access to research-relevant health data. This is implemented through feasibility queries and, if the conditions for use are met, a central data output. This enables national and international researchers to evaluate highly relevant data on COVID-19 diseases and thus to contribute to the fight against the pandemic. HiGHmed e.V.oversees the operational management of the CODEX user portal."
+        },
+        {
+          "HEADER": "What are the goals of CODEX?",
+          "BODY": "The platform was created to provide high-quality research data, tools, and surveillance during the COVID-19 pandemic. Structured data serves as the basis for novel scientific evaluation and helps in the development of evidence-based decision support systems. CODEX contributes to a rapid knowledge gain and thus to improved crisis management in pandemic emergencies as well as to an optimized public health design. This results in the following benefits:<ul><li>For patients: Best possible care for COVID-19 patients through rapid generation and dissemination of evidence and consideration of legal and ethical issues.</li><li>For researchers: Robust data base for scientific research in the context of COVID-19.</li><li>For business: creating the basis for vaccine and drug development as well as training artificial intelligence.</li><li>For decision-makers: the optimization of crisis management in epidemic emergencies as well based on scientific facts.</li><li>For physicians and authorities: Pandemic management and patient care can be improved and relieved through innovative, high-quality services and applications.</li></ul>"
         }
       ],
       "PARTICIPANTS": "Participating clinics"
