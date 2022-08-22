@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
 import { MatSort } from '@angular/material/sort'
@@ -37,10 +37,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
   templateUrl: './approved-users-table.component.html',
   styleUrls: ['./approved-users-table.component.scss'],
 })
-export class ApprovedUsersTableComponent
-  extends SortableTable<IUser>
-  implements OnInit, AfterViewInit, OnDestroy
-{
+export class ApprovedUsersTableComponent extends SortableTable<IUser> implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   availableRoles = Object.values(AvailableRoles)
@@ -62,8 +59,18 @@ export class ApprovedUsersTableComponent
     'createdTimestamp',
   ]
 
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  public paginator: MatPaginator
+  public sort: MatSort
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -85,14 +92,14 @@ export class ApprovedUsersTableComponent
     )
   }
 
-  ngAfterViewInit(): void {
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
+  setDataSourceAttributes() {
     this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
     this.dataSource.paginator = this.paginator
     this.dataSource.sort = this.sort
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
   }
 
   handleData(users: IUser[], userProfile: IUserProfile): void {

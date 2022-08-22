@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { Params, Router } from '@angular/router'
@@ -53,7 +53,7 @@ import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } f
 })
 export class ProjectsTableComponent
   extends SortableTable<IProjectApi>
-  implements OnInit, AfterViewInit, OnDestroy
+  implements OnInit, OnDestroy
 {
   private subscriptions = new Subscription()
   constructor(
@@ -74,8 +74,24 @@ export class ProjectsTableComponent
   roles: string[] = []
   user: IUserProfile
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  public paginator: MatPaginator
+  public sort: MatSort
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort, this.translateService)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -101,14 +117,6 @@ export class ProjectsTableComponent
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
     )
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
-
-    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort, this.translateService)
-
-    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
