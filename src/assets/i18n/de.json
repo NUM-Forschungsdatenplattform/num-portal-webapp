@@ -131,8 +131,8 @@
     "VALIDATION_SUCCESS": "Die Syntax des Kriteriums ist valide",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst das Kriterium definieren, um ein valides Ergebnis zu erhalten.",
-      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
-      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Patienten liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut."
     },
     "PRIVACY_PRIVATE": "Nur mit mir",
     "PRIVACY_PUBLIC": "Öffentlich"
@@ -178,7 +178,7 @@
   "PROVIDE_URL": "Bitte geben Sie eine URL ein",
   "PROVIDE_URL_TEXT": "Bitte geben Sie einen Link-Text ein",
   "CONFIGURE": "Konfigurieren",
-  "HITS": "Treffer",
+  "HITS": "Patienten",
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
   "BUILD_QUERY": "Kriterium erstellen",
   "AVAILABLE_EHR_TEMPLATES": "Verfügbare Rückgabeparameter",
@@ -291,7 +291,7 @@
     "CREATE_ORGANIZATION": "Organisation erstellen",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
-    "DETERMINE_HITS": "Treffer Ermitteln",
+    "DETERMINE_HITS": "Patienten Ermitteln",
     "MOVE_UP": "Nach oben verschieben",
     "MOVE_DOWN": "Nach unten verschieben",
     "DRAG_TO_MOVE": "Zum Verschieben gedrückt halten und ziehen",
@@ -303,7 +303,8 @@
     "PROJECT_CREATE": "Projekt erstellen",
     "RESOLVE": "Auflösen",
     "COPY_TO_CLIPBOARD": "In Zwischenablage kopieren",
-    "EXPORT": "Exportieren"
+    "EXPORT": "Exportieren",
+    "UPDATE_PASSWORD": "Passwort aktualisieren"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Kohorte definieren",
@@ -333,8 +334,8 @@
     },
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Bitte stellen Sie zunächst alle Parameter ein.",
-      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Treffer liegen unter der Mindestschwelle.",
-      "MESSAGE_ERROR_MESSAGE": "Konnte keine Treffer ermitteln. Bitte versuchen Sie es erneut."
+      "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Patienten liegen unter der Mindestschwelle.",
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut."
     },
     "CATEGORIES": {
       "PEDIATRICS": "Pädiatrie",
@@ -392,7 +393,8 @@
     "SUPER_ADMIN": "Super-Admin",
     "STUDY_APPROVER": "Projektprüfer",
     "CONTENT_ADMIN": "Content-Admin",
-    "MANAGER": "Manager"
+    "MANAGER": "Manager",
+    "CRITERIA_EDITOR": "Kriterien-Editor"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
   "SEARCH_USERNAME": "Benutzernamen suchen",

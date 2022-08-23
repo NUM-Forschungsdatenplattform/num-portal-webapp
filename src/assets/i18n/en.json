@@ -123,8 +123,8 @@
     "VALIDATION_SUCCESS": "The syntax of the criterium is valid",
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "You should first define the criterium to get a valid result.",
-      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
-      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+      "MESSAGE_ERROR_FEW_HITS": "Matching Patients are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
     },
     "PRIVACY_PRIVATE": "Only with me",
     "PRIVACY_PUBLIC": "Public"
@@ -169,7 +169,7 @@
   "PROVIDE_URL": "Please enter a URL",
   "PROVIDE_URL_TEXT": "Please enter a link text",
   "CONFIGURE": "Configure",
-  "HITS": "Hits",
+  "HITS": "Patients",
   "AVAILABLE_PROJECTS": "Available Projects",
   "BUILD_QUERY": "Build the Criteria",
   "AVAILABLE_EHR_TEMPLATES": "Available Return Parameters",
@@ -282,7 +282,7 @@
     "CREATE_ORGANIZATION": "Create organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
-    "DETERMINE_HITS": "Determine Hits",
+    "DETERMINE_HITS": "Determine Patients",
     "MOVE_UP": "Move up",
     "MOVE_DOWN": "Move down",
     "DRAG_TO_MOVE": "Drag to move",
@@ -294,7 +294,8 @@
     "PROJECT_CREATE": "Create project",
     "RESOLVE": "Resolve",
     "COPY_TO_CLIPBOARD": "Copy to clipboard",
-    "EXPORT": "Export"
+    "EXPORT": "Export",
+    "UPDATE_PASSWORD": "Update Password"
   },
   "PROJECT": {
     "DEFINE_COHORT": "Define Cohort",
@@ -324,8 +325,8 @@
     },
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters first.",
-      "MESSAGE_ERROR_FEW_HITS": "Matching Hits are below minimum threshold.",
-      "MESSAGE_ERROR_MESSAGE": "Could not determine Hits. Please try again."
+      "MESSAGE_ERROR_FEW_HITS": "Matching Patients are below minimum threshold.",
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
     },
     "CATEGORIES": {
       "PEDIATRICS": "Pediatrics",
@@ -383,7 +384,9 @@
     "SUPER_ADMIN": "Super admin",
     "STUDY_APPROVER": "Project approver",
     "CONTENT_ADMIN": "Content admin",
-    "MANAGER": "Manager"
+    "MANAGER": "Manager",
+    "CRITERIA_EDITOR": "Criteria editor"
+
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",

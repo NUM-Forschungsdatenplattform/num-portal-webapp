@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
+import { AppConfigService } from 'src/app/config/app-config.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -10,7 +11,7 @@ import { LayoutModule } from 'src/app/layout/layout.module'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
-import { DISCARD_DIALOG_CONFIG, SAVE_DIALOG_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
+import { DISCARD_DIALOG_CONFIG, SAVE_DIALOG_CONFIG } from './constants'
 
 import { ProfileComponent } from './profile.component'
 
@@ -31,6 +32,16 @@ describe('ProfileComponent', () => {
       }
     }),
   } as unknown as DialogService
+
+  const mockAppConfigService = {
+    config: {
+      auth: {
+        baseUrl: 'localhost',
+        clientId: 'test-app',
+        realm: 'test-realm',
+      },
+    },
+  } as unknown as AppConfigService
 
   const mockToastMessageService = {
     openToast: jest.fn(),
@@ -58,6 +69,10 @@ describe('ProfileComponent', () => {
         {
           provide: ToastMessageService,
           useValue: mockToastMessageService,
+        },
+        {
+          provide: AppConfigService,
+          useValue: mockAppConfigService,
         },
       ],
     }).compileComponents()
@@ -137,6 +152,16 @@ describe('ProfileComponent', () => {
         afterClosedSubject$.next(false)
 
         expect(mockProfileService.changeUserName).not.toHaveBeenCalled()
+      })
+    })
+
+    describe('when update password action is triggered', () => {
+      it('should set location to update password url', () => {
+        const assignMock = jest.fn()
+        delete window.location
+        window.location = { assign: assignMock } as any
+        component.updatePassword()
+        assignMock.mockClear()
       })
     })
   })
