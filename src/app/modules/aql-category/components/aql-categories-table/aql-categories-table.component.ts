@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { Subscription } from 'rxjs'
@@ -37,7 +37,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
-  implements AfterViewInit, OnDestroy
+  implements OnDestroy
 {
   @Output() openEditDialog = new EventEmitter<Omit<IAqlCategoryApi, 'id'>>()
   displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
@@ -45,8 +45,24 @@ export class AqlCategoriesTableComponent
 
   private subscriptions = new Subscription()
 
-  @ViewChild(MatSort, { static: false }) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  public paginator: MatPaginator
+  public sort: MatSort
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, sort) => this.sortAqlCategories(data, sort)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -68,12 +84,6 @@ export class AqlCategoriesTableComponent
         this.handleData(aqlCategories)
       )
     )
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sortData = (data, sort) => this.sortAqlCategories(data, sort)
-    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
