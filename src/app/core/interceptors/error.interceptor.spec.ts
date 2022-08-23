@@ -5,6 +5,10 @@ describe('ErrorInterceptor', () => {
   let errorInterceptor
   let authenticationServiceSpy
 
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const Jasmine = require('jasmine')
+  const jasmine = new Jasmine()
+
   beforeEach(() => {
     authenticationServiceSpy = jasmine.createSpyObj('AuthenticationService', ['logout'])
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
