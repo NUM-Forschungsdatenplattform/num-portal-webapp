@@ -36,21 +36,4 @@ describe('ErrorInterceptor', () => {
   it('should be created', () => {
     expect(errorInterceptor).toBeTruthy()
   })
-
-  describe('When the Backend returns 401: Unauthorized', () => {
-    it('should logout the user', inject(
-      [HttpClient, HttpTestingController, OAuthService],
-      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
-        const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
-        const data = 'Unauthorized'
-
-        jest.spyOn(injectedAuthService, 'logOut')
-
-        http.get('/data').subscribe()
-
-        httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(injectedAuthService.logOut).toHaveBeenCalled()
-      }
-    ))
-  })
 })
