@@ -48,26 +48,6 @@ describe('ErrorInterceptor', () => {
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
         expect(injectedAuthService.logout).toHaveBeenCalled()
-
-        //
-        // const emsg = 'deliberate 401 error';
-        //
-        // // Make an HTTP GET request
-        // http.get('/data').subscribe(
-        //   () => fail('should have failed with the 401 error'),
-        //   (error: HttpErrorResponse) => {
-        //     // @ts-ignore
-        //     return expect(error).toEqual(emsg, 'message')
-        //   }
-        // );
-        //
-        // // The following `expectOne()` will match the request's URL.
-        // const req = httpMock.expectOne('/data')
-        //
-        // // Respond with mock error
-        // req.flush(emsg, { status: 401, statusText: 'Unauthorized' });
-        //
-        // expect(authService.logout).toHaveBeenCalledTimes(1);
       }
     ))
   })
