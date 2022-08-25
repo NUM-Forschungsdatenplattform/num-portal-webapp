@@ -1,4 +1,4 @@
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClient, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http'
 import { inject, TestBed } from '@angular/core/testing'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ErrorInterceptor } from './error.interceptor'
@@ -18,7 +18,7 @@ describe('ErrorInterceptor', () => {
         { provide: AuthService, useValue: authService },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: errorInterceptor,
+          useValue: errorInterceptor,
           multi: true,
         },
       ],
@@ -33,5 +33,42 @@ describe('ErrorInterceptor', () => {
 
   it('should be created', () => {
     expect(errorInterceptor).toBeTruthy()
+  })
+
+  describe('When the Backend returns 401: Unauthorized', () => {
+    it('should logout the user', inject(
+      [HttpClient, HttpTestingController, AuthService],
+      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: AuthService) => {
+        const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
+        const data = 'Unauthorized'
+
+        jest.spyOn(injectedAuthService, 'logout')
+
+        http.get('/data').subscribe()
+
+        httpMock.expectOne('/data').flush(data, mockErrorResponse)
+        expect(injectedAuthService.logout).toHaveBeenCalled()
+
+        //
+        // const emsg = 'deliberate 401 error';
+        //
+        // // Make an HTTP GET request
+        // http.get('/data').subscribe(
+        //   () => fail('should have failed with the 401 error'),
+        //   (error: HttpErrorResponse) => {
+        //     // @ts-ignore
+        //     return expect(error).toEqual(emsg, 'message')
+        //   }
+        // );
+        //
+        // // The following `expectOne()` will match the request's URL.
+        // const req = httpMock.expectOne('/data')
+        //
+        // // Respond with mock error
+        // req.flush(emsg, { status: 401, statusText: 'Unauthorized' });
+        //
+        // expect(authService.logout).toHaveBeenCalledTimes(1);
+      }
+    ))
   })
 })
