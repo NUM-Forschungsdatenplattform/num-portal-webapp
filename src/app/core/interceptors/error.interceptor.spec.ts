@@ -1,7 +1,5 @@
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { inject, TestBed } from '@angular/core/testing'
-import { OAuthStorage, OAuthService } from 'angular-oauth2-oidc'
-import { OAuthInterceptor } from './oauth.interceptor'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ErrorInterceptor } from './error.interceptor'
 import { AuthService } from '../auth/auth.service'
@@ -11,7 +9,7 @@ describe('ErrorInterceptor', () => {
 
   const authService = {
     logout: () => {},
-  } as unknown as AuthService
+  } as AuthService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
