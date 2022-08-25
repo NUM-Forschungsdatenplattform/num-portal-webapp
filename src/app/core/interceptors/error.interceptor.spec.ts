@@ -1,38 +1,56 @@
+import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { inject, TestBed } from '@angular/core/testing'
+import { OAuthStorage, OAuthService } from 'angular-oauth2-oidc'
+import { OAuthInterceptor } from './oauth.interceptor'
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ErrorInterceptor } from './error.interceptor'
-import { throwError } from 'rxjs'
+import { AuthService } from '../auth/auth.service'
 
 describe('ErrorInterceptor', () => {
-  let errorInterceptor
-  let authenticationServiceSpy
+  let errorInterceptor: ErrorInterceptor
+
+  const authService = {
+    logOut: () => {},
+  } as unknown as AuthService
 
   beforeEach(() => {
-    authenticationServiceSpy = jasmine.createSpyObj('AuthenticationService', ['logout'])
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    errorInterceptor = new ErrorInterceptor(authenticationServiceSpy)
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        { provide: AuthService, useValue: authService },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: errorInterceptor,
+          multi: true,
+        },
+      ],
+    })
+
+    errorInterceptor = new ErrorInterceptor(authService)
   })
 
-  it('should create', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  it('should be created', () => {
     expect(errorInterceptor).toBeTruthy()
   })
 
-  describe('intercept', () => {
-    let httpRequestSpy
-    let httpHandlerSpy
+  describe('When the Backend returns 401: Unauthorized', () => {
+    it('should logout the user', inject(
+      [HttpClient, HttpTestingController, OAuthService],
+      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
+        const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
+        const data = 'Unauthorized'
 
-    it('should auto logout if 401 response returned from api', () => {
-      //arrange
-      httpRequestSpy = jasmine.createSpyObj('HttpRequest', ['doesNotMatter'])
-      httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle'])
-      httpHandlerSpy.handle.and.returnValue(throwError({ error: { message: 'test-error' } }))
-      //act
-      errorInterceptor.intercept(httpRequestSpy, httpHandlerSpy).subscribe(
-        (result) => console.log('good', result),
-        (err) => {
-          console.log('error', err)
-          expect(err).toEqual('test-error')
-        }
-      )
-    })
+        jest.spyOn(injectedAuthService, 'logOut')
+
+        http.get('/data').subscribe()
+
+        httpMock.expectOne('/data').flush(data, mockErrorResponse)
+        expect(injectedAuthService.logOut).toHaveBeenCalled()
+      }
+    ))
   })
 })
