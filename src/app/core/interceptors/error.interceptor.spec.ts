@@ -35,7 +35,7 @@ describe('ErrorInterceptor', () => {
     expect(errorInterceptor).toBeTruthy()
   })
 
-  describe('When the Backend returns 401: Unauthorized', () => {
+  describe('intercept', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, AuthService],
       (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: AuthService) => {
