@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
@@ -33,7 +33,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 })
 export class DataExplorerProjectsTableComponent
   extends SortableTable<IProjectApi>
-  implements OnInit, AfterViewInit, OnDestroy
+  implements OnInit, OnDestroy
 {
   private subscriptions = new Subscription()
   constructor(private projectService: ProjectService, private router: Router) {
@@ -49,8 +49,24 @@ export class DataExplorerProjectsTableComponent
   ]
   dataSource = new MatTableDataSource()
 
-  @ViewChild(MatSort) sort: MatSort
-  @ViewChild(MatPaginator) paginator: MatPaginator
+  public paginator: MatPaginator
+  public sort: MatSort
+
+  @ViewChild(MatSort) set matSort(ms: MatSort) {
+    this.sort = ms
+    this.setDataSourceAttributes()
+  }
+
+  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
+    this.paginator = mp
+    this.setDataSourceAttributes()
+  }
+
+  setDataSourceAttributes() {
+    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort)
+    this.dataSource.paginator = this.paginator
+    this.dataSource.sort = this.sort
+  }
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -66,12 +82,6 @@ export class DataExplorerProjectsTableComponent
         this.handleData(projects)
       })
     )
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort)
-    this.dataSource.sort = this.sort
   }
 
   ngOnDestroy(): void {
