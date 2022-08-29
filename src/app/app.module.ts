@@ -32,6 +32,7 @@ import { DateAdapter } from '@angular/material/core'
 import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
 import { WebpackTranslateLoader } from './webpack-translate-loader'
+import { ErrorInterceptor } from './core/interceptors/error.interceptor'
 
 @NgModule({
   declarations: [AppComponent],
@@ -74,6 +75,11 @@ import { WebpackTranslateLoader } from './webpack-translate-loader'
     {
       provide: HTTP_INTERCEPTORS,
       useClass: OAuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
     { provide: DateAdapter, useClass: CustomDatePickerAdapter },
