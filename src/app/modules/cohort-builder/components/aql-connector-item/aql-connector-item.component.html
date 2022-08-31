@@ -60,6 +60,7 @@
         *ngIf="parameter.isMetaFetched"
         color="accent"
         [ngModel]="!parameter.isDisabled"
+        [matTooltip]="'AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP' | translate"
         (ngModelChange)="parameter.isDisabled = !parameter.isDisabled"
         data-test="cohort-builder__item__isDisabled-checkbox"
       ></mat-checkbox>

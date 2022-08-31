@@ -536,5 +536,6 @@
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
       "LINK_PROD_DESCRIPTION": "Public Key for Prod"
     }
-  }
+  },
+  "AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP": "If this checkbox is enabled, the value for the criterion can be set. If the checkbox is disabled, all patients are selected, where this criterion is documented regardless of the documented value."
 }
