@@ -119,7 +119,13 @@ export class ProfileComponent implements OnInit {
   updatePassword(): void {
     const auth = this.appConfig.config.auth
     window.location.assign(
-      auth.baseUrl + '/auth/realms/' + auth.realm + '/account/password?referrer=' + auth.clientId
+      auth.baseUrl +
+        '/auth/realms/' +
+        auth.realm +
+        '/account/password?referrer=' +
+        auth.clientId +
+        '&kc_locale=' +
+        this.translate.currentLang
     )
   }
 
