@@ -34,7 +34,7 @@ describe('OrganizationManagementComponent', () => {
   let fixture: ComponentFixture<OrganizationManagementComponent>
 
   const organizationService = {
-    getAll: jest.fn().mockImplementation(() => of()),
+    getAllPag: jest.fn().mockImplementation(() => of()),
   } as unknown as OrganizationService
 
   const userInfoSubject$ = new Subject<any>()
@@ -76,15 +76,15 @@ describe('OrganizationManagementComponent', () => {
     TestBed.inject(Router)
     jest.restoreAllMocks()
     jest.clearAllMocks()
-    jest.spyOn(organizationService, 'getAll')
+    jest.spyOn(organizationService, 'getAllPag')
   })
 
   describe('When the components gets initialized', () => {
-    it('should call the getAll method', () => {
+    it('should call the getAllPag method', () => {
       fixture = TestBed.createComponent(OrganizationManagementComponent)
 
       fixture.detectChanges()
-      expect(organizationService.getAll).toHaveBeenCalled()
+      expect(organizationService.getAllPag).toHaveBeenCalled()
     })
   })
 })
