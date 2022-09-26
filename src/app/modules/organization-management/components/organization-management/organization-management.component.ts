@@ -14,25 +14,37 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-organization-management',
   templateUrl: './organization-management.component.html',
   styleUrls: ['./organization-management.component.scss'],
 })
-export class OrganizationManagementComponent implements OnInit {
+export class OrganizationManagementComponent implements OnInit, OnDestroy {
   availableRoles = AvailableRoles
+
+  private subscription: Subscription[] = []
+
   constructor(private organizationService: OrganizationService, private router: Router) {}
 
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
   ngOnInit(): void {
-    this.organizationService.getAll().subscribe()
+    this.subscription.push(this.organizationService.getAllPag(0, this.pageSize).subscribe())
   }
 
   createOrganization(): void {
     this.router.navigate(['organizations/new/editor'])
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subscription) => subscription.unsubscribe())
   }
 }
