@@ -1,6 +1,6 @@
 {
   "name": "num-portal-webapp",
-  "version": "1.8.4",
+  "version": "1.9.0",
   "scripts": {
     "postinstall": "ngcc",
     "ng": "ng",
@@ -45,6 +45,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@swimlane/ngx-charts": "^19.2.0",
+    "@types/jasmine": "^4.3.0",
     "@types/jest": "^27.0.3",
     "angular-oauth2-oidc": "^13.0.1",
     "angular-playground": "^8.2.0",

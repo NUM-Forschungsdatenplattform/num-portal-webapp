@@ -7,7 +7,7 @@
       "BLOCKS": [
         {
           "HEADER": "Introduction",
-          "BODY": "With the CODEX research data platform, the Network University Medicine (NUM) is building a secure and interoperable platform for the provision of research data on COVID-19. CODEX connects all German university hospitals nationwide and provides science with a platform for the collection and analysis of high quality, structured, pseudonymized and care-related data from patient care (\"real world data\")"
+          "BODY": "With the CODEX research data platform, the Network University Medicine (NUM) is building a secure and interoperable platform for the provision of research data on COVID-19. CODEX connects all German university hospitals nationwide and provides science with a platform for the collection and analysis of high quality, structured, pseudonymized and care-related data from patient care (\"real world data\")."
         },
         {
           "HEADER": "What is CODEX required for?",
@@ -15,7 +15,7 @@
         },
         {
           "HEADER": "CODEX User Portal",
-          "BODY": "The NUM CODEX user portal enables centralized access to research-relevant health data. This is implemented through feasibility queries and, if the conditions for use are met, a central data output. This enables national and international researchers to evaluate highly relevant data on COVID-19 diseases and thus to contribute to the fight against the pandemic. HiGHmed e.V.oversees the operational management of the CODEX user portal."
+          "BODY": "The NUM CODEX user portal enables centralized access to research-relevant health data. This is implemented through feasibility queries and, if the conditions for use are met, a central data output. This enables national and international researchers to evaluate highly relevant data on COVID-19 diseases and thus to contribute to the fight against the pandemic. HiGHmed e.V. oversees the operational management of the CODEX user portal."
         },
         {
           "HEADER": "What are the goals of CODEX?",
@@ -284,7 +284,7 @@
     "PROJECT_APPROVAL_DENY": "Deny PROJECT",
     "EXECUTE": "Execute",
     "GET_DATA": "Retrieve data",
-    "APPLY_CONFIGURATION": "Apply configuration",
+    "APPLY_CONFIGURATION": "File Project Application",
     "CUSTOMIZE_CONFIGURATION": "Filter data",
     "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
@@ -394,7 +394,6 @@
     "CONTENT_ADMIN": "Content admin",
     "MANAGER": "Manager",
     "CRITERIA_EDITOR": "Criteria editor"
-
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
   "SEARCH_USERNAME": "Search user name",
@@ -536,5 +535,6 @@
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
       "LINK_PROD_DESCRIPTION": "Public Key for Prod"
     }
-  }
+  },
+  "AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP": "If this checkbox is enabled, the value for the criterion can be set. If the checkbox is disabled, all patients are selected, where this criterion is documented regardless of the documented value."
 }

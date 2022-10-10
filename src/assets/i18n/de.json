@@ -522,7 +522,7 @@
     "DATA_EXPLORER_DESCRIPTION": "Rufen Sie auf dieser Seite die Projektdaten ab, die im Rahmen Ihrer vorherigen Auswahl im Patienten- und Datenfilter verfügbar sind.",
     "DATA_FILTER_HEADING": "Auswahl der Rückgabeparameter",
     "DATA_FILTER_DESCRIPTION": "Die Rückgabeparameter basieren auf dem Datensatz GECCO 83. Wählen Sie die gewünschten Elemente aus dem Datensatz aus, die als Grundlage für Ihr Projekt dienen sollen.",
-    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "Sie haben die Möglichkeit, mit der die Konfiguration der Patienten- und Datenfilter direkt einen Projektantrag zu stellen. Dazu werden die definierte Kohorte und die ausgewählten Rückgabeparameter in ein neues Projekt übertragen.",
+    "DATA_FILTER_APPLY_CONFIG_DESCRIPTION": "Sie haben die Möglichkeit, mit der Konfiguration der Patienten- und Datenfilter direkt einen Projektantrag zu stellen. Dazu werden die definierte Kohorte und die ausgewählten Rückgabeparameter in ein neues Projekt übertragen.",
     "DATA_FILTER_SELECT_TEMPLATES": "Bitte wählen Sie ein oder mehrere Rückgabeparameter aus",
     "DATA_FILTER_COHORT_SIZE": "Größe der definierten Kohorte: {{amount}}",
     "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
@@ -536,5 +536,6 @@
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
       "LINK_PROD_DESCRIPTION": "Öffentlicher Schlüssel für Prod"
     }
-  }
+  },
+  "AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP": "Ist diese Checkbox aktiviert, kann für das Kriterium ein Wert festgelegt werden. Wenn die Checkbox deaktiviert wird, werden alle Patienten ausgewählt, bei denen dieses Kriterium dokumentiert ist, unabhängig vom dokumentierten Wert."
 }

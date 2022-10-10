@@ -27,12 +27,30 @@ import { IOrganization } from 'src/app/shared/models/organization/organization.i
 export class OrganizationService {
   private baseUrl: string
 
-  private organizations: IOrganization[] = []
+  private organizations: any = {}
   private organizationsSubject$ = new BehaviorSubject(this.organizations)
   public organizationsObservable$ = this.organizationsSubject$.asObservable()
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/organization`
+  }
+
+  getAllPag(page: number, size: number, sort: string = null): Observable<any> {
+    let queryString = ''
+    if (page !== null && size !== null) {
+      queryString = queryString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        queryString = queryString + '&sort=' + sort
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(
+      tap((data) => {
+        this.organizations = data.content
+        this.organizationsSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   getAll(): Observable<IOrganization[]> {
