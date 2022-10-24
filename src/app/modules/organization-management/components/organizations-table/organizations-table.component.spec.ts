@@ -92,4 +92,11 @@ describe('OrganizationsTableComponent', () => {
       expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
     })
   })
+
+  describe('xxxxxx', () => {
+    it('syyyyy', () => {
+      expect(component.sortBy).toBe('name')
+      expect(component.sortDir).toBe('ASC')
+    })
+  })
 })
