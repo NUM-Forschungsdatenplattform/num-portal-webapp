@@ -24,7 +24,11 @@ import { Subject } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
+import {
+  mockOrganization1,
+  mockOrganizations,
+  mockOrganizationsForSort,
+} from 'src/mocks/data-mocks/organizations.mock'
 
 import { OrganizationsTableComponent } from './organizations-table.component'
 
@@ -86,18 +90,6 @@ describe('OrganizationsTableComponent', () => {
     it('should navigate to the organization-editor', () => {
       component.handleSelectClick(mockOrganization1)
       expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
-    })
-  })
-
-  describe('When sorting the list', () => {
-    it('should sort by id descending as default', () => {
-      component.sortBy = 'name'
-      component.sortDir = 'ASC'
-
-      component.onPageChange({
-        pageIndex: 0,
-        pageSize: 10,
-      })
     })
   })
 })
