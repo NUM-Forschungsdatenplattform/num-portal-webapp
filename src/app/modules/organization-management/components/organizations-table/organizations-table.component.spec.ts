@@ -36,6 +36,7 @@ describe('OrganizationsTableComponent', () => {
   const organizationsSubject$ = new Subject<any>()
   const organizationService = {
     organizationsObservable$: organizationsSubject$.asObservable(),
+    getAllPag: jest.fn(),
   } as unknown as OrganizationService
 
   beforeEach(async () => {
