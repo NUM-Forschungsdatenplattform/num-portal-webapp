@@ -20,7 +20,7 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
@@ -87,6 +87,17 @@ describe('OrganizationsTableComponent', () => {
     it('should navigate to the organization-editor', () => {
       component.handleSelectClick(mockOrganization1)
       expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(organizationService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
     })
   })
 })
