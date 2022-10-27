@@ -27,6 +27,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 
 import { OrganizationsTableComponent } from './organizations-table.component'
+import { MatSort, Sort } from '@angular/material/sort'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -98,6 +99,16 @@ describe('OrganizationsTableComponent', () => {
         pageSize: 10,
       }
       component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(organizationService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
     })
   })
 })
