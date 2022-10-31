@@ -35,13 +35,18 @@ export class OrganizationService {
     this.baseUrl = `${appConfig.config.api.baseUrl}/organization`
   }
 
-  getAllPag(page: number, size: number, sort: string = null): Observable<any> {
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null
+  ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
       queryString = queryString + '?page=' + page + '&size=' + size
 
       if (sort) {
-        queryString = queryString + '&sort=' + sort
+        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
       }
     }
     return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(

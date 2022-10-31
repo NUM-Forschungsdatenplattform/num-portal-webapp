@@ -20,23 +20,14 @@ import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { Subject } from 'rxjs'
+import { of, Subject } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
-import {
-  mockOrganization1,
-  mockOrganizations,
-  mockOrganizationsForSort,
-} from 'src/mocks/data-mocks/organizations.mock'
-import { HarnessLoader } from '@angular/cdk/testing'
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
-import { MatSortHeaderHarness } from '@angular/material/sort/testing'
-import { MatTableHarness } from '@angular/material/table/testing'
-import { maxBy, minBy } from 'lodash-es'
+import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 
 import { OrganizationsTableComponent } from './organizations-table.component'
+import { MatSort, Sort } from '@angular/material/sort'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -46,6 +37,7 @@ describe('OrganizationsTableComponent', () => {
   const organizationsSubject$ = new Subject<any>()
   const organizationService = {
     organizationsObservable$: organizationsSubject$.asObservable(),
+    getAllPag: jest.fn(),
   } as unknown as OrganizationService
 
   beforeEach(async () => {
@@ -96,6 +88,27 @@ describe('OrganizationsTableComponent', () => {
     it('should navigate to the organization-editor', () => {
       component.handleSelectClick(mockOrganization1)
       expect(router.navigate).toHaveBeenCalledWith(['organizations', 1, 'editor'])
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(organizationService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(organizationService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
     })
   })
 })
