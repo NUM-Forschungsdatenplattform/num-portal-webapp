@@ -28,6 +28,7 @@ import {
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { Subject } from 'rxjs'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { Pipe, PipeTransform } from '@angular/core'
 
 describe('AddUserOrganizationComponent', () => {
   let component: AddUserOrganizationComponent
@@ -38,9 +39,16 @@ describe('AddUserOrganizationComponent', () => {
     organizationsObservable$: organizationsSubject$.asObservable(),
   } as OrganizationService
 
+  @Pipe({ name: 'objectToArray' })
+  class MockObjectToArrayPipe implements PipeTransform {
+    transform = (objects: any = []) => {
+      return Object.values(objects)
+    }
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddUserOrganizationComponent],
+      declarations: [AddUserOrganizationComponent, MockObjectToArrayPipe],
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,

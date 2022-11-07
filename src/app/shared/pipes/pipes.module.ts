@@ -24,6 +24,7 @@ import { ProjectMenuPipe } from './project-menu.pipe'
 import { LocalizedDatePipe } from './localized-date.pipe'
 import { AqlMenuPipe } from './aql-menu.pipe'
 import { AvailableRolesPipe } from './available-roles.pipe'
+import { ObjectToArrayPipe } from './object-to-array.pipe'
 
 const SHARED_DECLARATIONS = [
   GroupIndexPipe,
@@ -34,6 +35,7 @@ const SHARED_DECLARATIONS = [
   AqlMenuPipe,
   LocalizedDatePipe,
   AvailableRolesPipe,
+  ObjectToArrayPipe,
 ]
 
 @NgModule({

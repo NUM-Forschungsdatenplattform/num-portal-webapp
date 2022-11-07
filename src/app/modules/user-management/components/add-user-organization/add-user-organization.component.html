@@ -25,7 +25,7 @@
     data-test="user-management__add-organization__selector"
   >
     <mat-option
-      *ngFor="let organization of organizations"
+      *ngFor="let organization of organizations | objectToArray"
       [value]="organization.id"
       [attr.data-test]="'user-management__add-organization__' + organization.name"
     >

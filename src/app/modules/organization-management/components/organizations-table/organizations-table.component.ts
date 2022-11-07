@@ -21,6 +21,7 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { OrganizationTableColumn } from '../../models/organization-table-column.interface'
+import { Sort } from '@angular/material/sort'
 
 @Component({
   selector: 'num-organizations-table',
@@ -38,6 +39,11 @@ export class OrganizationsTableComponent
 
   displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
 
+  public sortBy: string
+  public sortDir: string
+
+  public pageIndex: number
+
   public totalItems: number
 
   get pageSize(): number {
@@ -49,17 +55,34 @@ export class OrganizationsTableComponent
   }
 
   ngOnInit(): void {
+    this.sortBy = 'name'
+    this.sortDir = 'ASC'
+
     this.subscriptions.add(
       this.organizationService.organizationsObservable$.subscribe((data) => this.handleData(data))
     )
   }
 
   onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  getAll() {
     this.subscriptions.add(
-      this.organizationService.getAllPag(event.pageIndex, event.pageSize).subscribe((data) => {
-        this.handleData(data)
-      })
+      this.organizationService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
     )
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+    this.getAll()
   }
 
   handleData(organizations: any): void {
