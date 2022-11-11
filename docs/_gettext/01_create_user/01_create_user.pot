@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 12:57+0100\n"
+"POT-Creation-Date: 2022-11-11 14:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:5
 #: 8f005fa6cf8f411b9b4b9503600c9e0b
-msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsive organization admin has to approve this new account before the user can  log in again and start working on research projects."
+msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsive organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:10
@@ -63,7 +63,7 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:35
 #: 6b66a1017e184a499291d20f36b7a6b5
-msgid "Sign up page with an empty form for first name, last name, email address, password and password confirm and a checkbox for accepting terms and conditions"
+msgid "Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:35
