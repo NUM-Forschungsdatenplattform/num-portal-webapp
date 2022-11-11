@@ -30,7 +30,6 @@ msgstr ""
 "neues persönliches Benutzerkonto."
 
 #: ../01_create_user/01_create_user.md:5 8f005fa6cf8f411b9b4b9503600c9e0b
-#, fuzzy
 msgid ""
 "An user account can be created by each indiviual by providing a company "
 "or institution email address. The responsible organization admin has to "
@@ -92,7 +91,6 @@ msgstr ""
 "kennzeichnen Pflichtangaben."
 
 #: ../01_create_user/01_create_user.md:35 6b66a1017e184a499291d20f36b7a6b5
-#, fuzzy
 msgid ""
 "Sign up page with an empty form for first name, last name, email address,"
 " password, password confirm, role, department and additional infos and a "
@@ -147,7 +145,6 @@ msgstr ""
 " er eine E-Mail erhalten hat."
 
 #: ../01_create_user/01_create_user.md:57 c90bf23399064abf8b83de3a6c021eef
-#, fuzzy
 msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr "Abb. 01-04: Hinweis auf eine versendete Bestätigungs-E-Mail"
 
