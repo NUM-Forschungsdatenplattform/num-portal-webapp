@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 12:57+0100\n"
+"POT-Creation-Date: 2022-11-11 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../index.md:20
 #: 
-#: e064db6b847040d1a0ada6ef90838823
+#: bb94becf78b842a29374e836f78aba26
 msgid "Table of contents:"
 msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:11+0100\n"
+"POT-Creation-Date: 2022-11-11 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,9 +30,10 @@ msgstr ""
 "neues persönliches Benutzerkonto."
 
 #: ../01_create_user/01_create_user.md:5 8f005fa6cf8f411b9b4b9503600c9e0b
+#, fuzzy
 msgid ""
-"A user account can be created by each indiviual by providing a company or"
-" institution email address. The responsive organization admin has to "
+"An user account can be created by each indiviual by providing a company "
+"or institution email address. The responsible organization admin has to "
 "approve this new account before the user can log in again and start "
 "working on research projects."
 msgstr ""
@@ -146,7 +147,8 @@ msgstr ""
 " er eine E-Mail erhalten hat."
 
 #: ../01_create_user/01_create_user.md:57 c90bf23399064abf8b83de3a6c021eef
-msgid "Fig 01-04: Hint on sent email to confirm registration."
+#, fuzzy
+msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr "Abb. 01-04: Hinweis auf eine versendete Bestätigungs-E-Mail"
 
 #: ../01_create_user/01_create_user.md:60 b63f3a9d7667419e9e73c4f05a9120b3

@@ -2,8 +2,8 @@
 
 Before you can start using CODEX you have to create a new user account for your personal work.
 
-A user account can be created by each indiviual by providing a company or institution email
-address. The responsive organization admin has to approve this new account before the user can
+An user account can be created by each indiviual by providing a company or institution email
+address. The responsible organization admin has to approve this new account before the user can
 log in again and start working on research projects.
 
 ```{caution}
@@ -54,7 +54,7 @@ the following screen:
 ---
 alt: 'After sign up page which informs about a sent email the user should check.'
 ---
-Fig 01-04: Hint on sent email to confirm registration.
+Fig 01-04: Hint on sent email to confirm registration
 ```
 
 In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again.
@@ -64,4 +64,3 @@ After your successful registration you can only see the portals welcome page unt
 approve user accounts go to the section 
 [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)
 ```
-

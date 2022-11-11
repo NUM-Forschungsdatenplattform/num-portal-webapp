@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:11+0100\n"
+"POT-Creation-Date: 2022-11-11 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:5
 #: 8f005fa6cf8f411b9b4b9503600c9e0b
-msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsive organization admin has to approve this new account before the user can log in again and start working on research projects."
+msgid "An user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:10
@@ -98,7 +98,7 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:57
 #: c90bf23399064abf8b83de3a6c021eef
-msgid "Fig 01-04: Hint on sent email to confirm registration."
+msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:60
