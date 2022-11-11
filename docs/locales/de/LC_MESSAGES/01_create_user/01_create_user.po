@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 15:16+0100\n"
+"POT-Creation-Date: 2022-11-11 16:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,19 +30,20 @@ msgstr ""
 "neues persönliches Benutzerkonto."
 
 #: ../01_create_user/01_create_user.md:5 8f005fa6cf8f411b9b4b9503600c9e0b
+#, fuzzy
 msgid ""
-"An user account can be created by each indiviual by providing a company "
-"or institution email address. The responsible organization admin has to "
+"A user account can be created by each indiviual by providing a company or"
+" institution email address. The responsible organization admin has to "
 "approve this new account before the user can log in again and start "
 "working on research projects."
 msgstr ""
 "Ein neues Benutzerkonto kann von jedem mit einer Firmen- oder "
-"Einrichtungs-E-Mail-Adresse erstellt werden. Der Verantwortliche "
+"Einrichtungs-E-Mail-Adresse erstellt werden. Der verantwortliche "
 "Organisations-Administrator muss das erstellte Benutzerkonto dann "
-"freigeben bevor der Benutzer sich anmelden und mit der Arbeit an "
+"freigeben, bevor der Benutzer sich anmelden und mit der Arbeit an "
 "Forschungsprojekten beginnen kann."
 
-#: ../01_create_user/01_create_user.md:10 b5481b839e2a4ab4b5a98b9c9727e564
+#: ../01_create_user/01_create_user.md:8 b5481b839e2a4ab4b5a98b9c9727e564
 msgid ""
 "The domain of your email address (part after the @-symbol) has to be "
 "listed in one of the organizations in the portal. If this is not the "
@@ -54,11 +55,11 @@ msgstr ""
 "Sie eine entsprechende Fehlermeldung während der Registrierung. In "
 "solchen Fällen kontaktieren Sie bitte den Portal-Support."
 
-#: ../01_create_user/01_create_user.md:14 ee5295ff778e4a51933b2233366af30f
+#: ../01_create_user/01_create_user.md:11 ee5295ff778e4a51933b2233366af30f
 msgid "Sign up a new user account"
 msgstr "Registrierung eines neuen Benutzerkontos"
 
-#: ../01_create_user/01_create_user.md:16 2968f12415ee4eaf81385d6adcaf0efb
+#: ../01_create_user/01_create_user.md:13 2968f12415ee4eaf81385d6adcaf0efb
 msgid ""
 "To create a new user account navigate to the sign up page which you can "
 "find by clicking \"SIGN IN\" at the main naviation. You will be asked to "
@@ -73,15 +74,15 @@ msgstr ""
 "erlauben, wird die Anmeldeseite angezeigt. Um einen neuen "
 "Registrierungsvorgang zu starten, klicken Sie auf \"Registrieren\"."
 
-#: ../01_create_user/01_create_user.md:25 fa36324132f24a5cafba46107623397f
+#: ../01_create_user/01_create_user.md:22 fa36324132f24a5cafba46107623397f
 msgid "Login page with a red arrow pointing to the registration link"
 msgstr "Anmelde-Seite mit rotem Pfeil, der auf den Registrierungslink zeigt"
 
-#: ../01_create_user/01_create_user.md:25 f87e4302224246b983c19a400bfaa95a
+#: ../01_create_user/01_create_user.md:22 f87e4302224246b983c19a400bfaa95a
 msgid "Fig 01-01: Position of the register link on Login page"
 msgstr "Abb 01-01: Position des Registrierungsslinks auf der Anmeldungsseite"
 
-#: ../01_create_user/01_create_user.md:28 bec6b1a9a97242d1bc529a8b52452258
+#: ../01_create_user/01_create_user.md:25 bec6b1a9a97242d1bc529a8b52452258
 msgid ""
 "At the Signup page you will see a form to enter your basic data. All "
 "input fields marked with an asterisk are required to proceed."
@@ -90,7 +91,7 @@ msgstr ""
 "persönlichen Basisdaten vor. Alle mit einem Sternchen markierten Felder "
 "kennzeichnen Pflichtangaben."
 
-#: ../01_create_user/01_create_user.md:35 6b66a1017e184a499291d20f36b7a6b5
+#: ../01_create_user/01_create_user.md:32 6b66a1017e184a499291d20f36b7a6b5
 msgid ""
 "Sign up page with an empty form for first name, last name, email address,"
 " password, password confirm, role, department and additional infos and a "
@@ -100,11 +101,11 @@ msgstr ""
 "Adresse, Passwort, Passwort-Bestätigung, Role, Abteilung und Sonstige "
 "Informatonen und einer Checkbox, um die AGB zu bestätigen"
 
-#: ../01_create_user/01_create_user.md:35 001ecc894b7e4a1397d12c67e5440d1d
+#: ../01_create_user/01_create_user.md:32 001ecc894b7e4a1397d12c67e5440d1d
 msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
 msgstr "Abb. 01-02: Leeres Registrierungsformular bei erstem Seitenaufruf"
 
-#: ../01_create_user/01_create_user.md:38 eefa9984501041a394957b82fd148928
+#: ../01_create_user/01_create_user.md:35 eefa9984501041a394957b82fd148928
 msgid ""
 "Additionally you have to aggree with the terms and conditions. If you "
 "want to read the terms and conditions you can click the link which opens "
@@ -117,19 +118,19 @@ msgstr ""
 "Nutzungsbedingunen enthält und außerdem zwei Schaltflächen zum Zustimmen "
 "oder Ablehnen der Bedingungen anbietet."
 
-#: ../01_create_user/01_create_user.md:46 9cbe19c04a38408c813073aec08dfd50
+#: ../01_create_user/01_create_user.md:43 9cbe19c04a38408c813073aec08dfd50
 msgid ""
 "Sign up page with opened terms and conditions modal with to buttons to "
 "accept or decline the terms and conditions at the bottom"
 msgstr ""
-"Registrierungsseite mit geöffneten AGB und Schaltflächen zum Annehmen oder"
-" Ablehnen der AGB"
+"Registrierungsseite mit geöffneten AGB und Schaltflächen zum Annehmen "
+"oder Ablehnen der AGB"
 
-#: ../01_create_user/01_create_user.md:46 35abfe772cdf4f6a96b32cdeea581cc3
+#: ../01_create_user/01_create_user.md:43 35abfe772cdf4f6a96b32cdeea581cc3
 msgid "Fig 01-03: Open Terms and Conditions overlay modal"
 msgstr "Abb. 01-03: Geöffnetes Overlay mit Nutzungsbedingungen"
 
-#: ../01_create_user/01_create_user.md:49 e4bbf462e87f4be894281786cbd7ff3d
+#: ../01_create_user/01_create_user.md:46 e4bbf462e87f4be894281786cbd7ff3d
 msgid ""
 "Once you have filled out all information about your person and your login"
 " information an email will be sent to your provided email address. If the"
@@ -140,17 +141,17 @@ msgstr ""
 "hinterlegte E-Mail-Adresse. Nachdem die E-Mail erfolgreich versandt "
 "wurde, sehen Sie folgende Seite:"
 
-#: ../01_create_user/01_create_user.md:57 4b961776c276445bb51ad04fc2d91892
+#: ../01_create_user/01_create_user.md:54 4b961776c276445bb51ad04fc2d91892
 msgid "After sign up page which informs about a sent email the user should check"
 msgstr ""
 "Informationsseite nach der Registrierung, die dem Benutzer mitteilt, dass"
 " er eine E-Mail erhalten hat."
 
-#: ../01_create_user/01_create_user.md:57 c90bf23399064abf8b83de3a6c021eef
+#: ../01_create_user/01_create_user.md:54 c90bf23399064abf8b83de3a6c021eef
 msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr "Abb. 01-04: Hinweis auf eine versendete Bestätigungs-E-Mail"
 
-#: ../01_create_user/01_create_user.md:60 b63f3a9d7667419e9e73c4f05a9120b3
+#: ../01_create_user/01_create_user.md:57 b63f3a9d7667419e9e73c4f05a9120b3
 msgid ""
 "In the next step click the activation link in the email, that has been "
 "sent to you within 5 minutes to activate your account. If you do not get "
@@ -168,14 +169,15 @@ msgstr ""
 "bei der Registrierung angegebenen Zugangsdaten (E-Mail, Passwort) in das "
 "Portal einloggen, um die Seite erneut angezeigt zu bekommen."
 
-#: ../01_create_user/01_create_user.md:63 29d057dfed154d12829c80a79682b6e7
+#: ../01_create_user/01_create_user.md:60 29d057dfed154d12829c80a79682b6e7
+#, fuzzy
 msgid ""
 "After your successful registration you can only see the portals welcome "
 "page until your account gets approved. The organization administrator "
 "responsible for you is automatically informed via email about your "
 "registration. However, the approval is a manual process due to security "
 "reasons and therefore can take some time. If you want to see how to "
-"approve user accounts go to the section  [User management -> Unapproved "
+"approve user accounts go to the section [User management -> Unapproved "
 "users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""
 "Nach erfolgreicher Registrierung können Sie zunächst nur auf die "
@@ -187,3 +189,4 @@ msgstr ""
 "werden, gehen Sie bitte zu Abschnitt [Benutzerverwaltung -> Nicht "
 "freigeschaltete "
 "Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 15:16+0100\n"
+"POT-Creation-Date: 2022-11-11 16:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,85 +28,85 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:5
 #: 8f005fa6cf8f411b9b4b9503600c9e0b
-msgid "An user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
+msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:10
+#: ../01_create_user/01_create_user.md:8
 #: b5481b839e2a4ab4b5a98b9c9727e564
 msgid "The domain of your email address (part after the @-symbol) has to be listed in one of the organizations in the portal. If this is not the case, you will receive an according error message upon registration. In such cases, please contact the portal support."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:14
+#: ../01_create_user/01_create_user.md:11
 #: ee5295ff778e4a51933b2233366af30f
 msgid "Sign up a new user account"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:16
+#: ../01_create_user/01_create_user.md:13
 #: 2968f12415ee4eaf81385d6adcaf0efb
 msgid "To create a new user account navigate to the sign up page which you can find by clicking \"SIGN IN\" at the main naviation. You will be asked to accept storing cookies on your machine. Accept and this will lead you to the \"Login-Page\". Hit \"Register\" below the login form to start a new account registration."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:25
+#: ../01_create_user/01_create_user.md:22
 #: fa36324132f24a5cafba46107623397f
 msgid "Login page with a red arrow pointing to the registration link"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:25
+#: ../01_create_user/01_create_user.md:22
 #: f87e4302224246b983c19a400bfaa95a
 msgid "Fig 01-01: Position of the register link on Login page"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:28
+#: ../01_create_user/01_create_user.md:25
 #: bec6b1a9a97242d1bc529a8b52452258
 msgid "At the Signup page you will see a form to enter your basic data. All input fields marked with an asterisk are required to proceed."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:35
+#: ../01_create_user/01_create_user.md:32
 #: 6b66a1017e184a499291d20f36b7a6b5
 msgid "Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:35
+#: ../01_create_user/01_create_user.md:32
 #: 001ecc894b7e4a1397d12c67e5440d1d
 msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:38
+#: ../01_create_user/01_create_user.md:35
 #: eefa9984501041a394957b82fd148928
 msgid "Additionally you have to aggree with the terms and conditions. If you want to read the terms and conditions you can click the link which opens an overlay with the current version of our terms and conditions that you also can directly accept or decline."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:46
+#: ../01_create_user/01_create_user.md:43
 #: 9cbe19c04a38408c813073aec08dfd50
 msgid "Sign up page with opened terms and conditions modal with to buttons to accept or decline the terms and conditions at the bottom"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:46
+#: ../01_create_user/01_create_user.md:43
 #: 35abfe772cdf4f6a96b32cdeea581cc3
 msgid "Fig 01-03: Open Terms and Conditions overlay modal"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:49
+#: ../01_create_user/01_create_user.md:46
 #: e4bbf462e87f4be894281786cbd7ff3d
 msgid "Once you have filled out all information about your person and your login information an email will be sent to your provided email address. If the email has been sent to your inbox you will see the following screen:"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:57
+#: ../01_create_user/01_create_user.md:54
 #: 4b961776c276445bb51ad04fc2d91892
 msgid "After sign up page which informs about a sent email the user should check"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:57
+#: ../01_create_user/01_create_user.md:54
 #: c90bf23399064abf8b83de3a6c021eef
 msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:60
+#: ../01_create_user/01_create_user.md:57
 #: b63f3a9d7667419e9e73c4f05a9120b3
 msgid "In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:63
+#: ../01_create_user/01_create_user.md:60
 #: 29d057dfed154d12829c80a79682b6e7
-msgid "After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section  [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+msgid "After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""
