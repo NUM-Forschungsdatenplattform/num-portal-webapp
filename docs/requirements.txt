@@ -1,4 +1,4 @@
-myst-parser==0.15.2
+myst-parser==0.18.0
 sphinx-material==0.0.34
 sphinx==5.3
 sphinx-hoverxref==0.7b1
