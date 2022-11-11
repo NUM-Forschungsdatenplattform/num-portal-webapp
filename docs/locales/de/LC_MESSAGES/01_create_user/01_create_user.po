@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-11 15:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,8 @@ msgstr ""
 "wurde, sehen Sie folgende Seite:"
 
 #: ../01_create_user/01_create_user.md:57 4b961776c276445bb51ad04fc2d91892
-msgid "After sign up page which informs about a sent email the user should check."
+#, fuzzy
+msgid "After sign up page which informs about a sent email the user should check"
 msgstr ""
 "Informationsseite nach der Registrierung, die dem Benutzer mitteilt, dass"
 " er eine E-Mail erhalten hat."

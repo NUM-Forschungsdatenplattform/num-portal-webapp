@@ -52,7 +52,7 @@ the following screen:
 
 ```{figure} images/sign_up_email_hint.png
 ---
-alt: 'After sign up page which informs about a sent email the user should check.'
+alt: 'After sign up page which informs about a sent email the user should check'
 ---
 Fig 01-04: Hint on sent email to confirm registration
 ```
