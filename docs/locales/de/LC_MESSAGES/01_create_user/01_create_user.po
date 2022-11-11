@@ -184,7 +184,7 @@ msgstr ""
 "Sicherheitsgründen manuell durchgeführt wird, kann dies einige Stunden in"
 " Anspruch nehmen. Wenn Sie erfahren möchten, wie Benutzer freigeschaltet "
 "werden, gehen Sie bitte zu Abschnitt [Benutzerverwaltung -> Nicht "
-"freisgeschaltete "
+"freigeschaltete "
 "Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 
 #~ msgid "Login page with a red arrow pointing to the registration link"

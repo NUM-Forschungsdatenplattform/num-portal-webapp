@@ -18,13 +18,13 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NUM CODEX'
-copyright = '2021, Netzwerk Universitätsmedizin'
+copyright = '2022, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 
 # The full version, including alpha/beta/rc tags
 release = '1.x'
 
-version = '1.5.1'
+version = '1.9.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -65,7 +65,7 @@ html_theme_options = {
 
     # Specify a base_url used to generate sitemap.xml. If not
     # specified, then no sitemap will be built.
-    "base_url": "https://num-portal-webapp.readthedocs.io/de/latest/",
+    "base_url": "https://wise-portal.readthedocs.io/de/latest/",
 
     # Set the color and the accent color
     "color_primary": "indigo",
@@ -73,7 +73,7 @@ html_theme_options = {
     "theme_color": "5f0d22",
 
     # Set the repo location to get a badge with stats
-    "repo_url": "https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp",
+    "repo_url": "https://github.com/xWiseWolfx/num-portal-webapp",
     "repo_name": "NUM Portal Webapp",
 
     # Visible levels of the global TOC; -1 means unlimited
