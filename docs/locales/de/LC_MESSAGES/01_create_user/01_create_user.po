@@ -32,10 +32,7 @@ msgstr ""
 #: ../01_create_user/01_create_user.md:5 8f005fa6cf8f411b9b4b9503600c9e0b
 #, fuzzy
 msgid ""
-"A user account can be created by each indiviual by providing a company or"
-" institution email address. The responsible organization admin has to "
-"approve this new account before the user can log in again and start "
-"working on research projects."
+"A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
 "Ein neues Benutzerkonto kann von jedem mit einer Firmen- oder "
 "Einrichtungs-E-Mail-Adresse erstellt werden. Der verantwortliche "
