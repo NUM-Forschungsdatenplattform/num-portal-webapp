@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 23:53+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,17 +46,17 @@ msgstr ""
 msgid "criteria belonging to the organization of the logged-in user"
 msgstr ""
 
-#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:12
 #: 086473b7064c40dfaef602484258c825
 msgid "You can clone or delete public criteria, and you can edit or delete your own criteria."
 msgstr ""
 
-#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
 #: d60e20d9eb724535809b258afacaaa44
 msgid "Screenshot of criteria list"
 msgstr ""
 
-#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
+#: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
 #: 6273f5cb13f6498fb1e046cab57433c9
 msgid "Fig 06-01-01: Criteria list"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 10:45+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,17 +26,17 @@ msgstr ""
 msgid "This section covers the management of unapproved users. Unapproved users have just registered at the NUM CODEX app and wait for approval and assignment of a role."
 msgstr ""
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:7
 #: c19dd141611545009c0435c7c9f5c69f
 msgid "The following steps can only be executed by users with the role of \"Organization Admin\" or \"Super Admin\"."
 msgstr ""
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
 #: 9371aea4839f4faeae77f2c5795bc71b
 msgid "Screenshot of new users"
 msgstr ""
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
 #: c31fbe0c3f0244e9bd315c4a51e3ff36
 msgid "Fig 07-01-01: New users"
 msgstr ""

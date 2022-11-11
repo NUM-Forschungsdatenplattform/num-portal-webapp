@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 23:39+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,12 +56,12 @@ msgstr ""
 msgid "The hit display: display of the expected hits in the data sets based on the combined criterion"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:20
 #: e7be7d5883074dc5a74c06c7a7914463
 msgid "Screenshot of patient filter"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:20
 #: e285bb3ecae844139889d7bdaf1a44e1
 msgid "Fig 03-01-01: Patient filter"
 msgstr ""
@@ -81,12 +81,12 @@ msgstr ""
 msgid "To use a criterion and add it to the cohort builder, click it's plus icon. The criterion is then inserted directly into the cohort builder in the active (red bordered) group."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:32
 #: 5c2d0948ef26493e95ffea416da801dd
 msgid "Screenshot of patient filter criteria list"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:32
 #: 2d8cac9a159247ad96dc7a25ea1ac05a
 msgid "Fig 03-01-02: Criteria list"
 msgstr ""
@@ -96,12 +96,12 @@ msgstr ""
 msgid "After clicking on the *i* symbol of a criterion, a dialog window opens, from which you can find more detailed information about the criterion. The top section provides information about the title, author, purpose, and how the criterion is used. In the lower area you can see how the actual aql query, it is written in the Archetype Query Language (AQL)."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:42
 #: db197b3ef298476da9eee9b1502ee26b
 msgid "Screenshot of criteria details dialog"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:42
 #: b39f8c732df848fa94390b250c69584b
 msgid "Fig 03-01-03: Criteria detail view"
 msgstr ""
@@ -136,19 +136,19 @@ msgstr ""
 msgid "Negation: using the negate button, the conditions of criteria can be negated within a group or between entire groups."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:60
+#: ../03_search/01_patient_filter/01_patient_filter.md:67
 #: 9602b46eb2d14d5c844faf15e7cd0abe
 #: 106e6a21ef5942d097150f0af9c72f98
 msgid "Screenshot of criteria in a main group"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:60
 #: 9a3727739cc64da8bae6ac8976ad2557
 msgid "Fig 03-01-04: Cohort builder with criteria in a main group"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:67
 #: d93c4be095224261833d0d99704be824
 msgid "Fig 03-01-05: Cohort builder with criteria in two subgroups"
 msgstr ""
@@ -223,17 +223,17 @@ msgstr ""
 msgid "Deselected: no parameter value can be entered/selected. As a result, all data sets in which information was provided on the respective criteria are included in the cohort - regardless of the value."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:93
 #: 9a3727739cc64da8bae6ac8976ad2557
 msgid "Screenshot of criteria elements"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:93
 #: 9a3727739cc64da8bae6ac8976ad2557
 msgid "Fig 03-01-06: Cohort builder with criteria elements"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:97
 #: a40b91e71e4e4aad8a9013ce76863898
 msgid "There are also criteria that do not require the entry of parameters, these can be used directly."
 msgstr ""
@@ -248,17 +248,17 @@ msgstr ""
 msgid "This area shows the number of hits in the entire dataset resulting from the configuration of the cohort. To retrieve the hits, you must click the *Retrieve* button. The number of hits is then displayed. Depending on the authorization and if the data is available, the hits are also displayed in a graphical representation."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:106
 #: 7bdaf843170f44a59f6b5554c98c94c5
 msgid "If you make changes to the cohort in the cohort builder, you need to press \"Retrieve\" each time for an accurate hits count"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:114
 #: 2b43a4a60a824ce9a7e0c2e7aceed60e
 msgid "Screenshot of cohort hits and diagrams"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:1
+#: ../03_search/01_patient_filter/01_patient_filter.md:114
 #: 919e3549df5f426286ca93202a5cc8c3
 msgid "Fig 03-01-07: Cohort builder data hits and data diagrams"
 msgstr ""

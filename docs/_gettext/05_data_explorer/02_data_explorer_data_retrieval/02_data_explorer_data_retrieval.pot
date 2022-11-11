@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 17:14+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,12 +48,12 @@ msgstr ""
 msgid "Result set: after the data retrieval has been started, the available data sets are displayed in this section."
 msgstr ""
 
-#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:17
 #: 4f029ea9a86c478ea1792dcf430ab502
 msgid "Screenshot of detailed data retrieval"
 msgstr ""
 
-#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:17
 #: f4830c656f7b494e950450e4dc1803f0
 msgid "Fig 05-02-01: Data retrieval"
 msgstr ""
@@ -103,12 +103,12 @@ msgstr ""
 msgid "Columns: the columns represent the data filter and contain all parameters for which information is available in the respective data record."
 msgstr ""
 
-#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:41
 #: ecc604d24bea44c0a060fb5f2fcb4339
 msgid "Screenshot of data retrieval results"
 msgstr ""
 
-#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:1
+#: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:41
 #: 3e77295250af4466b4c5d6badec1a3c2
 msgid "Fig 05-02-02: Data retrieval results"
 msgstr ""

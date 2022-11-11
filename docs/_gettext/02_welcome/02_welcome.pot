@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 10:22+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,12 +36,12 @@ msgstr ""
 msgid "The first part includes a general introduction and welcome message to inform the user about the purpose of the platform. If you want to jump to the list of participating clinics you can use the link at the end of the text."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:18
 #: 1867b459b93e49c1af3cd7f9931cb2a1
 msgid "Screenshot of the welcome page showing the introduction text followed by general statistics"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:18
 #: 1849008401254804a47bc8b6c6ca997a
 msgid "Fig 02-01: Introduction part of the welcome page"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the running CODEX system and also how many different clinics have provided previously mentioned data."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:26
 #: d06ce4a933cb4751a17e69a78782f91b
 msgid "These statistics only contain general data and contain no sensitive information about contents or names of participating clinics."
 msgstr ""
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Latest projects"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:33
 #: 818f50076b5e404699c97a3a310b837b
 msgid "The list of latest {term}`Project`s is only visible for users that have logged in to the application."
 msgstr ""
@@ -71,12 +71,12 @@ msgstr ""
 msgid "In the list of latest {term}`Project`s the user can see the last 5 projects the user has access to and that have changed the last time. This can be used to get a quick overview if there are recent changes to a project the user is interested in."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:44
 #: 917b3ad54a34463da1249ac08d944e40
 msgid "Screenshot of table of latest changed projects including the change date"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:44
 #: 1ce5b779a9b046c8913d9f76df9c387b
 msgid "Fig 02-02: Table of latest projects"
 msgstr ""
@@ -91,7 +91,7 @@ msgstr ""
 msgid "Info Board"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:53
 #: 592b1701abc24697bbee1e8bd452c19f
 msgid "The info board content is only visible to users that are successfully logged in."
 msgstr ""
@@ -101,12 +101,12 @@ msgstr ""
 msgid "The Info Board section contains of content provided by {term}`Content Admin` users. This section can contain useful information for users to assist them in their work or to announce information to logged in users."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:64
 #: beec48d0707b414aa16cb47e66e677ec
 msgid "Screenshot of the info board with two cards with test and demo content."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
+#: ../02_welcome/02_welcome.md:64
 #: 1544f6ff4fbe44988369a0f3b0fed5aa
 msgid "Fig 02-03: Info board cards"
 msgstr ""

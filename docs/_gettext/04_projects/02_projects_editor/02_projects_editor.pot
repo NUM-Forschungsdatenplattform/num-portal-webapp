@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 23:39+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,12 +31,12 @@ msgstr ""
 msgid "The project editor provides functionality to define a project. In order to create a project click *Create project* button in the [Project overview](../01_projects_overview/01_projects_overview.md). Saved projects have *draft* status and can be found in the project overview page."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:8
 #: 69e8bcfbfae649548c9c4b592cef6f14
 msgid "In the *draft* status the project can be previewed, edited or deleted."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:12
 #: f290f39ad7fc4822bb333fa7469f2e3f
 msgid "In edit and preview mode, comments can be added to the project using the comments section at the bottom of the page."
 msgstr ""
@@ -66,17 +66,17 @@ msgstr ""
 msgid "Researchers selection"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:22
 #: 7d3368fb944f4901b5ffbf38089fb9a9
 msgid "A project can be saved as a draft or directly sent for approval."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:30
 #: d035e6fa385d428d988318f7892feb27
 msgid "Screenshot of project editor"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:30
 #: d035e6fa385d428d988318f7892feb27
 msgid "Fig 04-02-01: Project editor"
 msgstr ""
@@ -116,12 +116,12 @@ msgstr ""
 msgid "Detailed information on how the search works can be found in the [Search](../../03_search/03_search.md) functionality documentation."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:52
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Screenshot of cohort definition"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:52
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Fig 04-02-02: Cohort definition"
 msgstr ""
@@ -136,21 +136,16 @@ msgstr ""
 msgid "The general information section contains information about the project. A list of the available fields can be found in the table below."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:65
 #: a50fa93e04f2413d976b1a8d557e2e2a
 msgid "Screenshot of project general info"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:65
 #: a50fa93e04f2413d976b1a8d557e2e2a
 msgid "Fig 04-02-03: Project general information fields"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
 #: 9d2136b3ab934155a031d8a12a744c73
@@ -187,11 +182,6 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: 3693676bb233468881dbdfaaef69bf0d
 #: 3693676bb233468881dbdfaaef69bf0d
@@ -327,12 +317,12 @@ msgstr ""
 msgid "There are 23 predefined project categories at the moment as listed in the table below."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:93
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Screenshot of project categories"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:93
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Fig 04-02-04: Project categories"
 msgstr ""
@@ -522,12 +512,12 @@ msgstr ""
 msgid "Results can be further filtered by selection return parameters. To select the return parameters, click Add Return Parameter button."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:133
 #: ec69cdf36c9e4368898371bd72e8fa05
 msgid "Screenshot of project parameters"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:133
 #: ec69cdf36c9e4368898371bd72e8fa05
 msgid "Fig 04-02-05: Project return prameters section"
 msgstr ""
@@ -549,12 +539,12 @@ msgstr ""
 msgid "As soon as you have selected one or more return parameters, you can add the parameters to the data filter by clicking on \"Accept selection\". The dialog window then closes automatically."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:148
 #: 95ad6b13e7ab4c7f8cda83ec93b0a951
 msgid "Screenshot of project parameters dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:148
 #: 95ad6b13e7ab4c7f8cda83ec93b0a951
 msgid "Fig 04-02-06: Project return prameters dialog"
 msgstr ""
@@ -564,17 +554,17 @@ msgstr ""
 msgid "After the parameters are selected, hits in the data set within the defined cohorts can be calculated individually per parameter."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:159
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Screenshot of hits per parameter"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:159
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Fig 04-02-07: Hits per parameter"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:164
 #: e98b082b27a940839eb957b62a6b472b
 msgid "Return parameters are mandatory, in order to save this project you must select at least one parameter."
 msgstr ""
@@ -589,27 +579,27 @@ msgstr ""
 msgid "The last section of the project screen is the researchers section, here researchers can be assigned to the project. By clicking the Add researchers button."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Screenshot project researchers"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Fig 04-02-08: Project researchers"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:187
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Screenshot project researchers dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:187
 #: 272c75dd6ca44658822ecd9d3f9d1233
 msgid "Fig 04-02-09: Project researchers dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
+#: ../04_projects/02_projects_editor/02_projects_editor.md:192
 #: e98b082b27a940839eb957b62a6b472b
 msgid "Researchers are mandatory, in order to save this project you must select at least one researcher."
 msgstr ""

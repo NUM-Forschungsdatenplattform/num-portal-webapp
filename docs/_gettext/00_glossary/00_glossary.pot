@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 09:35+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "AQL : AQL"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:6
 #: 220cbfc86ee646bda2d34c85cfdfba59
 msgid "A special query language inspired by SQL to get data from an {term}`openEHR` like system. Can be used on all {term}`openEHR` systems to get data from stored {term}`EHRs<EHR>`."
 msgstr ""
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Cohort : Cohort"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:11
 #: 584866f32356408c95e965884cb8b38a
 msgid "A combination and parametrized selection of {term}`Criteria` to restrict data output to a subset of {term}`EHRs<EHR>`, e.g. \"Vaccinated persons over the age of 18\" or \"All female persons over the age of 60\"."
 msgstr ""
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Content Admin : Content Admin"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:16
 #: f1fe1b0f831d46fb99523b01325eff85
 msgid "A role of users that is allowed to add, modify and delete content to the Info Board and the  Navigation menu section."
 msgstr ""
@@ -56,7 +56,7 @@ msgstr ""
 msgid "Criteria : Criteria"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:21
 #: 805fa862633e47448347ed5368a89f03
 msgid "A special description in {term}`AQL` sytax that describes a filter criteria to extract a sub set of data."
 msgstr ""
@@ -66,7 +66,7 @@ msgstr ""
 msgid "EHR : EHR"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:26
 #: 0624c3d38ac64d1aa61c41d85c24b0e4
 msgid "Electronic health record. A data record that is connected to a person and collects all treatments and measurements during a specific period of time, e.g. duration of a clinical stay of the  person."
 msgstr ""
@@ -76,7 +76,7 @@ msgstr ""
 msgid "NUM : NUM"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:32
 #: a39b21c883de4552a67616531973dece
 msgid "Netzwerk Universitätsmedizin. A collaboration of clinics in Germany that work together in several specific medical applications. In case of CODEX the goal is to implement a data exchange platform for researchers on big data sets."
 msgstr ""
@@ -86,12 +86,12 @@ msgstr ""
 msgid "openEHR : openEHR"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:38
 #: 147da9768f7949048d96ea6ca14c79bb
 msgid "Open international standard to store data together with the semantic information on how data has to be interpreted."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:4
+#: ../00_glossary/00_glossary.md:41
 #: 84051772c201449cb67a511cdecf9c51
 msgid "See [openEHR project website](https://www.openehr.org) for more information."
 msgstr ""
@@ -101,17 +101,17 @@ msgstr ""
 msgid "Project : Project"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:45
 #: 2a04bb2d84584510a40f6634c18074ac
 msgid "A project contains the meta and control data to stear research on a specific topic and subset of data extracted from the data pool."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:4
+#: ../00_glossary/00_glossary.md:48
 #: 5200fd14bc424545b62f78fde26d36af
 msgid "It contains the {term}`Cohort` definition as well as general information like the purpose, hypothesis or period of time the project is intended to run."
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:7
+#: ../00_glossary/00_glossary.md:51
 #: b445be362dfb47019abb85e881fc7b3a
 msgid "For the data retrieval and work on the data all {term}`Return Parameters` are as well defined as the {term}`Researcher` who works with the data."
 msgstr ""
@@ -121,7 +121,7 @@ msgstr ""
 msgid "Researcher : Researcher"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:56
 #: 3904762efbaa49bfa83e4012b8220889
 msgid "A natural person that works inside a project on the data and is allowed to retrieve the data. A researcher can only see the data assigned to a project."
 msgstr ""
@@ -131,7 +131,7 @@ msgstr ""
 msgid "Return Parameters : Return Parameters"
 msgstr ""
 
-#: ../00_glossary/00_glossary.md:1
+#: ../00_glossary/00_glossary.md:61
 #: 3f96a836f2b045ccb7f5373e0266f3ac
 msgid "The clinical models that are used in a data retrieval. These models are usually defined in an {term}`openEHR` template."
 msgstr ""

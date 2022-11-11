@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 10:22+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../01_create_user/01_create_user.md:1 b5e9052d813c4e89947a9e368cddccdf
 msgid "Create User"
@@ -33,7 +33,7 @@ msgstr ""
 msgid ""
 "A user account can be created by each indiviual by providing a company or"
 " institution email address. The responsive organization admin has to "
-"approve this new account before the user can  log in again and start "
+"approve this new account before the user can log in again and start "
 "working on research projects."
 msgstr ""
 "Ein neues Benutzerkonto kann von jedem mit einer Firmen- oder "
@@ -42,11 +42,23 @@ msgstr ""
 "freigeben bevor der Benutzer sich anmelden und mit der Arbeit an "
 "Forschungsprojekten beginnen kann."
 
-#: ../01_create_user/01_create_user.md:9 ee5295ff778e4a51933b2233366af30f
+#: ../01_create_user/01_create_user.md:10 b5481b839e2a4ab4b5a98b9c9727e564
+msgid ""
+"The domain of your email address (part after the @-symbol) has to be "
+"listed in one of the organizations in the portal. If this is not the "
+"case, you will receive an according error message upon registration. In "
+"such cases, please contact the portal support."
+msgstr ""
+"Die Domain Ihrer E-Mail-Adresse (der Teil nach dem @-Symbol) muss in einer "
+"der Organisationen im Portal zugelassen sein. Andernfalls erhalten Sie eine "
+"entsprechende Fehlermeldung während der Registrierung. In solchen Fällen "
+"kontaktieren Sie bitte den Portal-Support."
+
+#: ../01_create_user/01_create_user.md:14 ee5295ff778e4a51933b2233366af30f
 msgid "Sign up a new user account"
 msgstr "Registrierung eines neuen Benutzerkontos"
 
-#: ../01_create_user/01_create_user.md:11 2968f12415ee4eaf81385d6adcaf0efb
+#: ../01_create_user/01_create_user.md:16 2968f12415ee4eaf81385d6adcaf0efb
 msgid ""
 "To create a new user account navigate to the sign up page which you can "
 "find by clicking \"SIGN IN\" at the main naviation. You will be asked to "
@@ -54,22 +66,22 @@ msgid ""
 "the \"Login-Page\". Hit \"Register\" below the login form to start a new "
 "account registration."
 msgstr ""
-"Navigieren Sie zur Registrierungsseite um ein neues Benutzerkonto zu "
-"erstellen welche Sie durch Klicken auf \"Anmelden\" in der "
+"Navigieren Sie zur Registrierungsseite, um ein neues Benutzerkonto zu "
+"erstellen, welches Sie durch Klicken auf \"Anmelden\" in der "
 "Hauptnavigation aufrufen können. Sie werden zuvor um Erlaubnis gefragt, "
-"ob die App Cookies auf Ihrem Gerät speichern darf. Wenn Sie dies erlauben"
-" wird die Anmeldungsseite angezeigt. Um einen neuen Registrierungsvorgang"
-" zu starten, klicken Sie auf \"Registrieren\""
+"ob die App Cookies auf Ihrem Gerät speichern darf. Wenn Sie dies erlauben,"
+" wird die Anmeldeseite angezeigt. Um einen neuen Registrierungsvorgang"
+" zu starten, klicken Sie auf \"Registrieren\"."
 
-#: ../01_create_user/01_create_user.md:1 f87e4302224246b983c19a400bfaa95a
+#: ../01_create_user/01_create_user.md:25 fa36324132f24a5cafba46107623397f
 msgid "Login page with a red arrow pointing to the registration link"
-msgstr ""
+msgstr "Anmelde-Seite mit rotem Pfeil, der auf den Registrierungslink zeigt"
 
-#: ../01_create_user/01_create_user.md:1 fa36324132f24a5cafba46107623397f
+#: ../01_create_user/01_create_user.md:25 f87e4302224246b983c19a400bfaa95a
 msgid "Fig 01-01: Position of the register link on Login page"
 msgstr "Abb 01-01: Position des Registrierungsslinks auf der Anmeldungsseite"
 
-#: ../01_create_user/01_create_user.md:23 bec6b1a9a97242d1bc529a8b52452258
+#: ../01_create_user/01_create_user.md:28 bec6b1a9a97242d1bc529a8b52452258
 msgid ""
 "At the Signup page you will see a form to enter your basic data. All "
 "input fields marked with an asterisk are required to proceed."
@@ -78,18 +90,21 @@ msgstr ""
 "persönlichen Basisdaten vor. Alle mit einem Sternchen markierten Felder "
 "kennzeichnen Pflichtangaben."
 
-#: ../01_create_user/01_create_user.md:1 001ecc894b7e4a1397d12c67e5440d1d
+#: ../01_create_user/01_create_user.md:35 6b66a1017e184a499291d20f36b7a6b5
 msgid ""
 "Sign up page with an empty form for first name, last name, email address,"
-" password and password confirm and a checkbox for accepting terms and "
-"conditions"
+" password, password confirm, role, department and additional infos and a checkbox"
+" for accepting terms and conditions"
 msgstr ""
+"Registrierungsseite mit leerem Formular für Vorname, Nachname, E-Mail-Adresse, "
+"Passwort, Passwort-Bestätigung, Role, Abteilung und Sonstige Informatonen und "
+"einer Checkbox, um die AGB zu bestätigen"
 
-#: ../01_create_user/01_create_user.md:1 6b66a1017e184a499291d20f36b7a6b5
+#: ../01_create_user/01_create_user.md:35 001ecc894b7e4a1397d12c67e5440d1d
 msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
 msgstr "Abb. 01-02: Leeres Registrierungsformular bei erstem Seitenaufruf"
 
-#: ../01_create_user/01_create_user.md:33 eefa9984501041a394957b82fd148928
+#: ../01_create_user/01_create_user.md:38 eefa9984501041a394957b82fd148928
 msgid ""
 "Additionally you have to aggree with the terms and conditions. If you "
 "want to read the terms and conditions you can click the link which opens "
@@ -102,17 +117,17 @@ msgstr ""
 "Nutzungsbedingunen enthält und außerdem zwei Schaltflächen zum Zustimmen "
 "oder Ablehnen der Bedingungen anbietet."
 
-#: ../01_create_user/01_create_user.md:1 35abfe772cdf4f6a96b32cdeea581cc3
+#: ../01_create_user/01_create_user.md:46 9cbe19c04a38408c813073aec08dfd50
 msgid ""
 "Sign up page with opened terms and conditions modal with to buttons to "
 "accept or decline the terms and conditions at the bottom"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:1 9cbe19c04a38408c813073aec08dfd50
+#: ../01_create_user/01_create_user.md:46 35abfe772cdf4f6a96b32cdeea581cc3
 msgid "Fig 01-03: Open Terms and Conditions overlay modal"
 msgstr "Abb. 01-03: Geöffnetes Overlay mit Nutzungsbedingungen"
 
-#: ../01_create_user/01_create_user.md:44 e4bbf462e87f4be894281786cbd7ff3d
+#: ../01_create_user/01_create_user.md:49 e4bbf462e87f4be894281786cbd7ff3d
 msgid ""
 "Once you have filled out all information about your person and your login"
 " information an email will be sent to your provided email address. If the"
@@ -123,83 +138,49 @@ msgstr ""
 "hinterlegte E-Mail-Adresse. Nachdem die E-Mail erfolgreich versandt "
 "wurde, sehen Sie folgende Seite:"
 
-#: ../01_create_user/01_create_user.md:1 c90bf23399064abf8b83de3a6c021eef
+#: ../01_create_user/01_create_user.md:57 4b961776c276445bb51ad04fc2d91892
 msgid "After sign up page which informs about a sent email the user should check."
-msgstr ""
+msgstr "Informationsseite nach der Registrierung, die dem Benutzer mitteilt, "
+"dass er eine E-Mail erhalten hat."
 
-#: ../01_create_user/01_create_user.md:1 4b961776c276445bb51ad04fc2d91892
+#: ../01_create_user/01_create_user.md:57 c90bf23399064abf8b83de3a6c021eef
 msgid "Fig 01-04: Hint on sent email to confirm registration."
 msgstr "Abb. 01-04: Hinweis auf eine versendete Bestätigungs-E-Mail"
 
-#: ../01_create_user/01_create_user.md:55 e07388df700e4aaf86ca8fb7ab0ea82f
+#: ../01_create_user/01_create_user.md:60 b63f3a9d7667419e9e73c4f05a9120b3
 msgid ""
-"A browser window will open where you can then click the link \"Click here"
-" to proceed\" to confirm your address."
+"In the next step click the activation link in the email, that has been "
+"sent to you within 5 minutes to activate your account. If you do not get "
+"the email or manage to click the link within 5 minutes, you can always "
+"resend the email via the page shown above by clicking on the respective "
+"link. If you already closed the page, you can log into the portal with "
+"the credentials you provided in the registration process (email and "
+"password) to see the page again."
 msgstr ""
-"Ein neues Browser-Fenster wird geöffnet, in welchem Sie den Link "
-"\"Klicken Sie hier, um fortzufahren\" anklicken müssen, um Ihre "
-"angegebene E-Mail-Adresse zu bestätigen."
+"Im nächsten Schritt klicken Sie innerhalb von 5 Minuten auf den Aktivierungs-Link "
+"in der E-Mail, die Sie erhalten haben. Wenn Sie die E-Mail nicht erhalten oder den "
+"Link nicht rechtzeitig anklicken, können Sie die E-Mail über die oben dargestellte "
+"Seite erneut senden lassen. Falls Sie die Seite bereits geschlossen haben, können "
+"Sie sich mit den bei der Registrierung angegebenen Zugangsdaten (E-Mail, Passwort) "
+"in das Portal einloggen, um die Seite erneut angezeigt zu bekommen."
 
-#: ../01_create_user/01_create_user.md:1 2b07bf2baa184f12adb2404e50a1bc54
-msgid "Screenshot of page to confirm the email address by clicking a link."
-msgstr ""
-
-#: ../01_create_user/01_create_user.md:1 323871d4a8aa4f188a427a8879d3260d
-msgid "Fig 01-05: Confirm email page"
-msgstr "Abb. 01-05: E-Mail-Bestätigungsseite"
-
-#: ../01_create_user/01_create_user.md:65 d6a0265f96ff47d8950d7c16ddb7f154
+#: ../01_create_user/01_create_user.md:63 29d057dfed154d12829c80a79682b6e7
 msgid ""
-"If all succeeded you can click \"Back to Application\" to navigate back "
-"to the welcome page of CODEX. From there you can click \"Sign in\" again "
-"to log in with the credentials you entered in the prvious step."
-msgstr ""
-"Sobald die Bestätigung erfolgreich durchgeführt werden konnte, können Sie"
-" durch einen Klick auf \"Zurück zur Anwendung\" zurück zur "
-"Willkommensseite von CODEX nevigieren. Hier können Sie sich nun unter "
-"\"Anmelden\" mit Ihren zuvor eingegebenen Daten anmelden."
-
-#: ../01_create_user/01_create_user.md:1 a8397b6af65245e3a88ade3a32cc64d9
-msgid ""
-"Screenshot of page showing information about a successful email "
-"confirmation and a link to navigate back to the main app page"
-msgstr ""
-
-#: ../01_create_user/01_create_user.md:1 67d7955730e44a9f9326975cfa37220e
-msgid "Fig 01-06: Email confirmation has succeeded"
-msgstr "Abb. 01-06: Bestätigung der E-Mail-Adresse war erfolgreich"
-
-#: ../01_create_user/01_create_user.md:1 c5ef74f0b1154e1b96b0c02a5dde2160
-msgid ""
-"You have to log in at least once to inform your organization admins about"
-" your request to use the CODEX app."
-msgstr ""
-"Sie müssen sich mindestens einmal in der CODEX Anwendung anmelden, damit "
-"die zuständigen Organisations-Administratoren darüber informiert werden, "
-"dass Ihr Benutzerkonto einer Überprüfung und Freigabe bedarf."
-
-#: ../01_create_user/01_create_user.md:4 99bc7baf231e42299125941b5ffc83bd
-msgid ""
-"After your login succeeded you ca log out again. You will be informed "
-"about the approval of your account via email."
-msgstr ""
-"Nach der erfolgreichen Anmeldung können Sie sich direkt wieder abmelden. "
-"Sie erhalten eine E-Mail an die von Ihnen angegebene Adresse sobald ein "
-"Administrator Ihr Benutzerkonto freigegeben hat."
-
-#: ../01_create_user/01_create_user.md:84 e3be248a709e44069d28492dfee8d77e
-msgid ""
-"You can only log in and log out unless your account gets approved. If you"
-" want to see how to approve user accounts go to the section  [User "
-"management -> Unapproved "
+"After your successful registration you can only see the portals welcome "
+"page until your account gets approved. The organization administrator "
+"responsible for you is automatically informed via email about your "
+"registration. However, the approval is a manual process due to security "
+"reasons and therefore can take some time. If you want to see how to "
+"approve user accounts go to the section  [User management -> Unapproved "
 "users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""
-"Sie können sich nur an- und wieder abmelden solange Ihr Benutzerkonto "
-"noch nicht freigegeben wurde. Wenn Sie wissen wollen, wie Sie "
-"Benutzerkonten freigeben können, gehen Sie zum Abschnitt "
-"[Benutzerverwaltung -> Neue "
-"Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
-" dieses Handbuchs."
+"Nach erfolgreicher Registrierung können Sie zunächst nur auf die Startseite "
+"des Portals zugreifen bis Sie freigeschaltet wurden. Der für Sie zuständige "
+"Organisationsadministrator wird automatisch per E-Mail über Ihre Registrierung "
+"informiert. Da der Freischaltungsprozess aus Sicherheitsgründen manuell "
+"durchgeführt wird, kann dies einige Stunden in Anspruch nehmen. Wenn Sie erfahren "
+"möchten, wie Benutzer freigeschaltet werden, gehen Sie bitte zu Abschnitt "
+"[Benutzerverwaltung -> Nicht freisgeschaltete Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 
 #~ msgid "Login page with a red arrow pointing to the registration link"
 #~ msgstr ""
@@ -243,9 +224,6 @@ msgstr ""
 
 #~ msgid "Screenshot of page to confirm the email address by clicking a link."
 #~ msgstr ""
-#~ "Bildschirmfoto der Seite zur Bestätigung "
-#~ "der E-Mail-Adresse durch Anklicken eines"
-#~ " Links."
 
 #~ msgid ""
 #~ "Screenshot of page showing information "
@@ -253,11 +231,6 @@ msgstr ""
 #~ "and a link to navigate back to "
 #~ "the main app page"
 #~ msgstr ""
-#~ "Bildschirmfoto der Seite welche darüber "
-#~ "informiert, dass die Bestätigun erfolgreich"
-#~ " durchgeführt wurde mit einem Link um"
-#~ " zur Willkommensseite von CODEX "
-#~ "zurückzukehren"
 
 #~ msgid ""
 #~ "Anmeldungsseite mit einem roten Pfeil, "
@@ -300,4 +273,82 @@ msgstr ""
 #~ " zur Willkommensseite von CODEX "
 #~ "zurückzukehren"
 #~ msgstr ""
+
+#~ msgid ""
+#~ "A browser window will open where "
+#~ "you can then click the link "
+#~ "\"Click here to proceed\" to confirm "
+#~ "your address."
+#~ msgstr ""
+#~ "Ein neues Browser-Fenster wird geöffnet,"
+#~ " in welchem Sie den Link \"Klicken"
+#~ " Sie hier, um fortzufahren\" anklicken "
+#~ "müssen, um Ihre angegebene E-Mail-"
+#~ "Adresse zu bestätigen."
+
+#~ msgid "Fig 01-05: Confirm email page"
+#~ msgstr "Abb. 01-05: E-Mail-Bestätigungsseite"
+
+#~ msgid ""
+#~ "If all succeeded you can click "
+#~ "\"Back to Application\" to navigate back"
+#~ " to the welcome page of CODEX. "
+#~ "From there you can click \"Sign "
+#~ "in\" again to log in with the "
+#~ "credentials you entered in the prvious"
+#~ " step."
+#~ msgstr ""
+#~ "Sobald die Bestätigung erfolgreich "
+#~ "durchgeführt werden konnte, können Sie "
+#~ "durch einen Klick auf \"Zurück zur "
+#~ "Anwendung\" zurück zur Willkommensseite von"
+#~ " CODEX nevigieren. Hier können Sie "
+#~ "sich nun unter \"Anmelden\" mit Ihren"
+#~ " zuvor eingegebenen Daten anmelden."
+
+#~ msgid "Fig 01-06: Email confirmation has succeeded"
+#~ msgstr "Abb. 01-06: Bestätigung der E-Mail-Adresse war erfolgreich"
+
+#~ msgid ""
+#~ "You have to log in at least "
+#~ "once to inform your organization admins"
+#~ " about your request to use the "
+#~ "CODEX app."
+#~ msgstr ""
+#~ "Sie müssen sich mindestens einmal in "
+#~ "der CODEX Anwendung anmelden, damit die"
+#~ " zuständigen Organisations-Administratoren "
+#~ "darüber informiert werden, dass Ihr "
+#~ "Benutzerkonto einer Überprüfung und Freigabe"
+#~ " bedarf."
+
+#~ msgid ""
+#~ "After your login succeeded you ca "
+#~ "log out again. You will be "
+#~ "informed about the approval of your "
+#~ "account via email."
+#~ msgstr ""
+#~ "Nach der erfolgreichen Anmeldung können "
+#~ "Sie sich direkt wieder abmelden. Sie "
+#~ "erhalten eine E-Mail an die von "
+#~ "Ihnen angegebene Adresse sobald ein "
+#~ "Administrator Ihr Benutzerkonto freigegeben "
+#~ "hat."
+
+#~ msgid ""
+#~ "You can only log in and log "
+#~ "out unless your account gets approved."
+#~ " If you want to see how to "
+#~ "approve user accounts go to the "
+#~ "section  [User management -> Unapproved "
+#~ "users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+#~ msgstr ""
+#~ "Sie können sich nur an- und wieder"
+#~ " abmelden solange Ihr Benutzerkonto noch"
+#~ " nicht freigegeben wurde. Wenn Sie "
+#~ "wissen wollen, wie Sie Benutzerkonten "
+#~ "freigeben können, gehen Sie zum "
+#~ "Abschnitt [Benutzerverwaltung -> Neue "
+#~ "Benutzer](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+#~ " dieses Handbuchs."
 

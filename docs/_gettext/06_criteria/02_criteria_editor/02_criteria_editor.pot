@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:04+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,6 @@ msgid "The general information section contains information about the criterion 
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
 #: e8d0983a12454969881395a39bb28b67
 #: 15463dd28f6848f785397afa0c4a148a
 msgid "No"
@@ -77,12 +76,6 @@ msgstr ""
 msgid "English title"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
 #: 58dac4d7344a47db8f60c5e9d828d229
 #: e3f04a0e49b54103bb8349638499f5f1
@@ -164,12 +157,12 @@ msgstr ""
 msgid "Criteria for public use"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
 #: ccf056b3695f4e56ae1ee812cb8548a6
 msgid "Screenshot of criteria editor general information"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
 #: 82219d562239473ab6f0d42791bbdf34
 msgid "Fig 06-02-01: Criteria editor general information"
 msgstr ""
@@ -200,12 +193,12 @@ msgstr ""
 msgid "The hits area"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
 #: a5221ea41d9842268919ecbcb005fdcf
 msgid "Screenshot of criteria editor builder"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
 #: ebaceb0b482d4ebcbb4d81196edf616c
 msgid "Fig 06-02-02: Criteria editor builder"
 msgstr ""
@@ -215,12 +208,12 @@ msgstr ""
 msgid "One of two ways for building a criterion. By pressing the build criterion button a dialog will pop up, on the left-hand side of the dialog the return parameters can be  selected. After selecting the desired return parameters, the actual data of interest which will make up the criterion needs to be double-clicked on in order to be added to right-hand side of the dialog in the selected query clause."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
 #: 02be229cf78b428bb375da3f623811a7
 msgid "Screenshot of criteria editor dialog"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
 #: e0b7acc440684d9191ae4c16e4ecccce
 msgid "Fig 06-02-03: Criteria builder dialog"
 msgstr ""
@@ -245,7 +238,7 @@ msgstr ""
 msgid "The **Where** clause's purpose is to filter the data set within the data in the *From* clause. Logical operators can be applied to combine multiple expressions."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:67
 #: ad4b3bea092944dfa8e0aea84cd7ac25
 msgid "The **Select** and **From** clauses are mandatory, the **Where** clause is optional"
 msgstr ""

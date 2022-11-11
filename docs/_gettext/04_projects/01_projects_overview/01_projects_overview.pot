@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 09:35+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,12 +51,12 @@ msgstr ""
 msgid "archived projects"
 msgstr ""
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:1
+#: ../04_projects/01_projects_overview/01_projects_overview.md:18
 #: eb11a6fd35dc47a9a3dd22ec07dd9690
 msgid "Screenshot of projects list"
 msgstr ""
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:1
+#: ../04_projects/01_projects_overview/01_projects_overview.md:18
 #: d05fc974c94a480c8582bea5491438c0
 msgid "Fig 04-01-01: Projects list"
 msgstr ""

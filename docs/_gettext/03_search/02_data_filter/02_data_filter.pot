@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 16:09+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,12 +51,12 @@ msgstr ""
 msgid "Start data retrieval: this function is only available and visible to managers."
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:17
 #: 371b5c734f964d7a8d4dc2c3679eaec0
 msgid "Screenshot of data filter"
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:17
 #: 74b880f38b65412ea1dfbed53bf07160
 msgid "Fig 03-02-01: Data filter"
 msgstr ""
@@ -71,17 +71,17 @@ msgstr ""
 msgid "As soon as you have selected one or more return parameters, you can add the parameters to the data filter by clicking on *Apply selection* button. The dialog window then closes automatically."
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:27
 #: 7166abdbb94f479184572515718d6b3b
 msgid "Return parameters are mandatory, in order to continue you must select at least one parameter."
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:34
 #: 36f68f0f53e54cf4a04207d6931f461f
 msgid "Screenshot of data filter return parameters"
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:34
 #: 36f68f0f53e54cf4a04207d6931f461f
 msgid "Fig 03-02-02: Data filter return parameters"
 msgstr ""
@@ -91,12 +91,12 @@ msgstr ""
 msgid "After you have selected the return parameters, they are displayed in the data filter list. Now you can calculate the number of hits in the data set within the defined cohort for the respective return parameter. To do this, click on \"Determine hits\". Each return parameter listed in the table can be removed from the list by clicking on the trash can icon. You can also add further return parameters to the list by clicking on *Add return parameter* button."
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:44
 #: 71fed08b3e8e4436bf59ea2857f3649f
 msgid "Screenshot of data filter determine hits"
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:44
 #: 71fed08b3e8e4436bf59ea2857f3649f
 msgid "Fig 03-02-03: Hits per return parameter"
 msgstr ""
@@ -116,12 +116,12 @@ msgstr ""
 msgid "Start data retrieval: With the role \"Manager\" you can start a data retrieval based on the settings in the patient and data filter."
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:56
 #: d4ca5d9df65243da916bb91b553347c2
 msgid "Screenshot of data filter next steps"
 msgstr ""
 
-#: ../03_search/02_data_filter/02_data_filter.md:1
+#: ../03_search/02_data_filter/02_data_filter.md:56
 #: d4ca5d9df65243da916bb91b553347c2
 msgid "Fig 03-02-04: Data filter next steps"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.5.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 16:24+0200\n"
+"POT-Creation-Date: 2022-11-11 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "This section covers the data explorer page of the search module."
 msgstr ""
 
-#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: ../03_search/03_data_explorer/03_data_explorer.md:6
 #: 57b92e72ac744b1d9c48b05819bea6f2
 msgid "This feature is only available and visible to users with the \"Manager\" role."
 msgstr ""
@@ -41,12 +41,12 @@ msgstr ""
 msgid "In order for the project data to be retrieved, click on *Retrieve data* button. The results are then loaded. Depending on the complexity and scope of the patient and data filter configurations, the calculation may take some time."
 msgstr ""
 
-#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: ../03_search/03_data_explorer/03_data_explorer.md:17
 #: 7ee51f17d74c486880852df711336bbb
 msgid "Screenshot of data retrieval"
 msgstr ""
 
-#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: ../03_search/03_data_explorer/03_data_explorer.md:17
 #: 66eb7db9b4ad4f468daa19f73af8cb71
 msgid "Fig 03-03-01: Data retrieval"
 msgstr ""
@@ -61,12 +61,12 @@ msgstr ""
 msgid "The results can be exported in two different formats: CSV and JSON - for further use."
 msgstr ""
 
-#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: ../03_search/03_data_explorer/03_data_explorer.md:30
 #: 6552a1b03e2a47c19ec6372f947d827e
 msgid "Screenshot of data retrieval tables"
 msgstr ""
 
-#: ../03_search/03_data_explorer/03_data_explorer.md:1
+#: ../03_search/03_data_explorer/03_data_explorer.md:30
 #: 936eb8e191914b6c84d21140646ea431
 msgid "Fig 03-03-02: Data retrieval results"
 msgstr ""
