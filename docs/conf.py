@@ -116,4 +116,5 @@ hoverxref_roles = ['term']
 # Emoji style
 sphinxemoji_style = 'twemoji'
 
+# Allowing Sphinx to use fuzzy translations and don't fall back to the standard language (as is default for Sphinx)
 gettext_allow_fuzzy_translations = True
