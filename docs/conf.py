@@ -115,3 +115,5 @@ hoverxref_roles = ['term']
 
 # Emoji style
 sphinxemoji_style = 'twemoji'
+
+gettext_allow_fuzzy_translations = True
