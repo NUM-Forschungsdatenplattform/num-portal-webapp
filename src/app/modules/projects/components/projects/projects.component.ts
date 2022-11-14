@@ -14,19 +14,32 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   availableRoles = AvailableRoles
+
+  private subscription: Subscription[] = []
+
   constructor(private projectService: ProjectService) {}
+
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
   ngOnInit(): void {
-    this.projectService.getAll().subscribe()
+    this.subscription.push(this.projectService.getAllPag(0, this.pageSize).subscribe())
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subscription) => subscription.unsubscribe())
   }
 }

@@ -79,6 +79,25 @@ describe('ProjectService', () => {
     mockProject1Local = cloneDeep(mockProject1)
   })
 
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProjects))
+      service.getAllPag(0, 2).subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/organization/all?page=0&size=2')
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
   it('should be created', () => {
     expect(service).toBeTruthy()
   })

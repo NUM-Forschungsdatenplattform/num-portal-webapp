@@ -40,7 +40,7 @@ export class ProjectService {
   private baseUrl: string
   private user: IUserProfile
 
-  private projects: IProjectApi[] = []
+  private projects: any = {}
   private projectSubject$ = new BehaviorSubject(this.projects)
   public projectsObservable$ = this.projectSubject$.asObservable()
 
@@ -70,6 +70,24 @@ export class ProjectService {
         switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredProjectsSubject$.next(filterResult))
+  }
+
+  getAllPag(page: number, size: number, sort: string = null): Observable<any> {
+    let queryString = ''
+    if (page !== null && size !== null) {
+      queryString = queryString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        queryString = queryString + '&sort=' + sort
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(
+      tap((data) => {
+        this.projects = data.content
+        this.projectSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   getAll(): Observable<IProjectApi[]> {

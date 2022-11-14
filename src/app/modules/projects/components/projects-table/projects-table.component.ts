@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Params, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import { of, Subscription } from 'rxjs'
@@ -25,7 +23,6 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { sortProjects } from 'src/app/core/utils/sort.utils'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
@@ -74,24 +71,8 @@ export class ProjectsTableComponent
   roles: string[] = []
   user: IUserProfile
 
-  public paginator: MatPaginator
-  public sort: MatSort
-
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
-
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
-
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort, this.translateService)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public totalItems: number
+  public pageIndex: number
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -103,9 +84,9 @@ export class ProjectsTableComponent
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.projectService.filterConfigObservable$
-        .pipe(take(1))
-        .subscribe((config) => (this.filterConfig = config))
+      this.subscriptions.add(
+        this.projectService.projectsObservable$.subscribe((data) => this.handleData(data))
+      )
     )
 
     this.subscriptions.add(
@@ -116,6 +97,20 @@ export class ProjectsTableComponent
 
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
+    )
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  getAll() {
+    this.subscriptions.add(
+      this.projectService.getAllPag(this.pageIndex, this.pageSize, null).subscribe((data) => {
+        this.handleData(data)
+      })
     )
   }
 
