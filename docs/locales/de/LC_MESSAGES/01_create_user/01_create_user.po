@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
@@ -30,7 +29,6 @@ msgstr ""
 "neues persönliches Benutzerkonto."
 
 #: ../01_create_user/01_create_user.md:5 8f005fa6cf8f411b9b4b9503600c9e0b
-#, fuzzy
 msgid ""
 "A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
@@ -167,7 +165,6 @@ msgstr ""
 "Portal einloggen, um die Seite erneut angezeigt zu bekommen."
 
 #: ../01_create_user/01_create_user.md:60 29d057dfed154d12829c80a79682b6e7
-#, fuzzy
 msgid ""
 "After your successful registration you can only see the portals welcome "
 "page until your account gets approved. The organization administrator "

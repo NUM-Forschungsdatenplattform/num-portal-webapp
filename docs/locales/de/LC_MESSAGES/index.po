@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX v1.6\n"
@@ -51,7 +50,6 @@ msgstr ""
 "</a> folgen."
 
 #: ../index.md:16 2d1419cd858440de827e679a94c6ff79
-#, fuzzy
 msgid ""
 "Please check first if there is already a similar issue with the tag "
 "`documentation`. Thanks for your feedback and contribution."
@@ -61,7 +59,6 @@ msgstr ""
 "Vielen Dank für Ihre Rückmeldung und Ihre Unterstützung."
 
 #: ../index.md:37 200943c7874b47d3970872e7da26cec5
-#, fuzzy
 msgid "Indexes und tables"
 msgstr "Index und Tabellen"
 
