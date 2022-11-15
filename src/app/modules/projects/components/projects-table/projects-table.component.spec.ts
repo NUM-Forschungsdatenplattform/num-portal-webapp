@@ -187,6 +187,20 @@ describe('ProjectsTableComponent', () => {
   // })
   //
 
+  describe('When filter is triggered', () => {
+    it('should filter', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.handleFilterChange()
+    })
+  })
+
+  describe('When search is triggered', () => {
+    it('should filter', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.handleSearchChange()
+    })
+  })
+
   describe('When pagination is triggered', () => {
     it('should fetch next page', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
