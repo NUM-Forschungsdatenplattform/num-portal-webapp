@@ -48,6 +48,7 @@ import {
 import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } from './menu-items'
 
 import { ProjectsTableComponent } from './projects-table.component'
+import { MatSort } from '@angular/material/sort'
 
 describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
@@ -185,6 +186,28 @@ describe('ProjectsTableComponent', () => {
   //   })
   // })
   //
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
+    })
+  })
+
   describe('When a menu Item is clicked', () => {
     beforeEach(() => {
       jest.spyOn(router, 'navigate').mockImplementation()
