@@ -187,6 +187,21 @@ describe('ProjectsTableComponent', () => {
   // })
   //
 
+  describe('When generate role', () => {
+    it('should generate role', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.generateMenuForRole()
+    })
+  })
+
+  describe('When generate role', () => {
+    it('should generate role', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.ALL_PROJECTS', isSelected: true }]
+      component.handleFilterChange()
+    })
+  })
+
   describe('When filter is triggered', () => {
     it('should filter', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))

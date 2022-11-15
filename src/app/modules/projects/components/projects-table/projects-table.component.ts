@@ -70,7 +70,7 @@ export class ProjectsTableComponent
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
 
   menuItems: IItemVisibility[] = []
-  filterConfig: IProjectFilter
+  filterConfig: any
   roles: string[] = []
   user: IUserProfile
 
