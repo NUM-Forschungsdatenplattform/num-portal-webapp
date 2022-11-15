@@ -185,94 +185,94 @@ describe('ProjectsTableComponent', () => {
   //   })
   // })
   //
-  // describe('When a menu Item is clicked', () => {
-  //   beforeEach(() => {
-  //     jest.spyOn(router, 'navigate').mockImplementation()
-  //     jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of({}))
-  //     jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
-  //   })
-  //
-  //   test.each([ProjectMenuKeys.Edit, ProjectMenuKeys.Preview, ProjectMenuKeys.Review])(
-  //     'should call the project editor with the menu item key clicked as queryParam',
-  //     (menuKey: ProjectMenuKeys) => {
-  //       const projectId = 1
-  //       component.handleMenuClick(menuKey, projectId)
-  //
-  //       const queryParams = { mode: menuKey.toLocaleLowerCase() }
-  //       expect(router.navigate).toHaveBeenCalledWith(['projects', projectId, 'editor'], {
-  //         queryParams,
-  //       })
-  //     }
-  //   )
-  //
-  //   it('should call the project editor with the edit key if researchers are to be edited', () => {
-  //     const projectId = 1
-  //     component.handleMenuClick(ProjectMenuKeys.Edit_researchers, projectId)
-  //
-  //     const queryParams = { mode: ProjectMenuKeys.Edit.toLocaleLowerCase() }
-  //     expect(router.navigate).toHaveBeenCalledWith(['projects', projectId, 'editor'], {
-  //       queryParams,
-  //     })
-  //   })
-  //
-  //   const testCases = [
-  //     {
-  //       key: ProjectMenuKeys.Withdraw_approval,
-  //       dialog: WITHDRAW_APPROVAL_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.Draft,
-  //       decision: true,
-  //     },
-  //     {
-  //       key: ProjectMenuKeys.Withdraw_approval,
-  //       dialog: WITHDRAW_APPROVAL_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.Draft,
-  //       decision: false,
-  //     },
-  //     {
-  //       key: ProjectMenuKeys.Close,
-  //       dialog: CLOSE_PROJECT_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.Closed,
-  //       decision: true,
-  //     },
-  //     {
-  //       key: ProjectMenuKeys.Publish,
-  //       dialog: PUBLISH_PROJECT_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.Published,
-  //       decision: true,
-  //     },
-  //     {
-  //       key: ProjectMenuKeys.Archive,
-  //       dialog: ARCHIVE_PROJECT_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.Archived,
-  //       decision: true,
-  //     },
-  //     {
-  //       key: ProjectMenuKeys.Delete,
-  //       dialog: DELETE_PROJECT_DIALOG_CONFIG,
-  //       newStatus: ProjectStatus.ToBeDeleted,
-  //       decision: true,
-  //     },
-  //   ]
-  //
-  //   test.each(testCases)(
-  //     'should open the correct decision dialog and update the project on confirmation with success',
-  //     (testcase) => {
-  //       const projectId = 1
-  //       component.handleMenuClick(testcase.key, projectId)
-  //       expect(mockDialogService.openDialog).toHaveBeenCalledWith(testcase.dialog)
-  //       afterClosedSubject$.next(testcase.decision)
-  //       if (testcase.decision === true) {
-  //         expect(projectService.updateStatusById).toHaveBeenCalledWith(
-  //           projectId,
-  //           testcase.newStatus
-  //         )
-  //       } else {
-  //         expect(projectService.updateStatusById).not.toHaveBeenCalledWith(
-  //           projectId,
-  //           testcase.newStatus
-  //         )
-  //       }
-  //     }
-  //   )
-  // })
+  describe('When a menu Item is clicked', () => {
+    beforeEach(() => {
+      jest.spyOn(router, 'navigate').mockImplementation()
+      jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of({}))
+      jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
+    })
+
+    test.each([ProjectMenuKeys.Edit, ProjectMenuKeys.Preview, ProjectMenuKeys.Review])(
+      'should call the project editor with the menu item key clicked as queryParam',
+      (menuKey: ProjectMenuKeys) => {
+        const projectId = 1
+        component.handleMenuClick(menuKey, projectId)
+
+        const queryParams = { mode: menuKey.toLocaleLowerCase() }
+        expect(router.navigate).toHaveBeenCalledWith(['projects', projectId, 'editor'], {
+          queryParams,
+        })
+      }
+    )
+
+    it('should call the project editor with the edit key if researchers are to be edited', () => {
+      const projectId = 1
+      component.handleMenuClick(ProjectMenuKeys.Edit_researchers, projectId)
+
+      const queryParams = { mode: ProjectMenuKeys.Edit.toLocaleLowerCase() }
+      expect(router.navigate).toHaveBeenCalledWith(['projects', projectId, 'editor'], {
+        queryParams,
+      })
+    })
+
+    const testCases = [
+      {
+        key: ProjectMenuKeys.Withdraw_approval,
+        dialog: WITHDRAW_APPROVAL_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Draft,
+        decision: true,
+      },
+      {
+        key: ProjectMenuKeys.Withdraw_approval,
+        dialog: WITHDRAW_APPROVAL_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Draft,
+        decision: false,
+      },
+      {
+        key: ProjectMenuKeys.Close,
+        dialog: CLOSE_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Closed,
+        decision: true,
+      },
+      {
+        key: ProjectMenuKeys.Publish,
+        dialog: PUBLISH_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Published,
+        decision: true,
+      },
+      {
+        key: ProjectMenuKeys.Archive,
+        dialog: ARCHIVE_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.Archived,
+        decision: true,
+      },
+      {
+        key: ProjectMenuKeys.Delete,
+        dialog: DELETE_PROJECT_DIALOG_CONFIG,
+        newStatus: ProjectStatus.ToBeDeleted,
+        decision: true,
+      },
+    ]
+
+    test.each(testCases)(
+      'should open the correct decision dialog and update the project on confirmation with success',
+      (testcase) => {
+        const projectId = 1
+        component.handleMenuClick(testcase.key, projectId)
+        expect(mockDialogService.openDialog).toHaveBeenCalledWith(testcase.dialog)
+        afterClosedSubject$.next(testcase.decision)
+        if (testcase.decision === true) {
+          expect(projectService.updateStatusById).toHaveBeenCalledWith(
+            projectId,
+            testcase.newStatus
+          )
+        } else {
+          expect(projectService.updateStatusById).not.toHaveBeenCalledWith(
+            projectId,
+            testcase.newStatus
+          )
+        }
+      }
+    )
+  })
 })
