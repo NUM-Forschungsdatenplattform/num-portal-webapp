@@ -1,38 +1,37 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 17:01+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../index.md:20 1104af00c0d94098877b89767796e579
+#: ../index.md:20 1eb3e8a4549d4cc3b17d5e031e17a52d
 msgid "Table of contents:"
-msgstr "Inhaltsverzeichnis"
+msgstr ""
 
-#: ../index.md:1 1c52e6530946405881b00fc39c148632
+#: ../index.md:1 b667ec29c3cd447ca33f6fae1d521931
 msgid "NUM CODEX User documentation"
-msgstr "NUM CODEX Benutzerhandbuch"
+msgstr ""
 
-#: ../index.md:3 546c52cc0df646418e514ff26edc101d
+#: ../index.md:3 f5e9b269da6a43909d2940d602c60079
 msgid ""
 "Welcome to the NUM CODEX App manual. This manual describes all features "
 "the NUM research data platform CODEX provides."
 msgstr ""
-"Willkommen zum NUM CODEX App Handbuch. Dieses Handbuch beschreibt alle "
-"Funktionen welche die NUM Forschungsdatenplattform bietet."
 
-#: ../index.md:6 f831eb18f3ea408683ac20848bb08509
+#: ../index.md:6 f85b6896eaf940f6bdd191b56af90605
 msgid ""
 "This manual has been created with biggest diligence in the languages "
 "German and English. If you find an error or want to give other feedback "
@@ -41,36 +40,26 @@ msgid ""
 "Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\""
 "    rel=\"noopener\"> this link </a>"
 msgstr ""
-"Dieses Handbuch wurde mit der größtmöglichen Sorgfalt ind den Sprachen "
-"Deutsch und Englisch erstellt. Sollten Sie einen Fehler finden oder "
-"möchten anderes Feeback zu dieser Dokumentation geben, zögern Sie nicht "
-"einen neuen Vorgang im zugehörigen Projekt zu erstellen, indem Sie <a  "
-"href=\"https://github.com/NUM-Forschungsdatenplattform/num-portal-"
-"webapp/issues\"    target=\"_blank\"    rel=\"noopener\"> diesem Link "
-"</a> folgen."
 
-#: ../index.md:16 2d1419cd858440de827e679a94c6ff79
+#: ../index.md:16 0a9a5d598bf9468792d3d3ec3711197e
 msgid ""
 "Please check first if there is already a similar issue with the tag "
 "`documentation`. Thanks for your feedback and contribution."
 msgstr ""
-"Bitte prüfen Sie vor der Erstellung eines neuen Vorgangs, ob es bereits "
-"einen ähnlichen Vorgang mit dem Tag `documentation` in diesem Projekt gibt. "
-"Vielen Dank für Ihre Rückmeldung und Ihre Unterstützung."
 
-#: ../index.md:37 200943c7874b47d3970872e7da26cec5
+#: ../index.md:38 fe916f5259354f42bf596417ab4cc650
 msgid "Indexes und tables"
-msgstr "Index und Tabellen"
+msgstr ""
 
-#: ../index.md:40 3c5b906dda8c4fd8acb8ee14f9694160
+#: ../index.md:41 39282fc0a6cc42c19771a545b588319e
 msgid ":ref:`genindex`"
 msgstr ""
 
-#: ../index.md:41 25c53fc6e36b420f8feb2e7f6312b833
+#: ../index.md:42 1fd8094b07ad4ff2aa2f3a305df8f57a
 msgid ":ref:`modindex`"
 msgstr ""
 
-#: ../index.md:42 cb5c3e9cd06a4ae8a06737eaf0f7ae83
+#: ../index.md:43 8ca58f2d62ef47b686d6bdab98792e29
 msgid ":ref:`search`"
 msgstr ""
 

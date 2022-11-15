@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../05_data_explorer/05_data_explorer.md:1
-#: 446454e29429452aa03e3ed1870b2a43
+#: 62831ccb904b4011b53ae8713d423ce6
 msgid "Data explorer"
 msgstr ""
 
 #: ../05_data_explorer/05_data_explorer.md:3
-#: 0d25af723cad4eb087d64c448848b130
+#: 57c27ffa1eb3411490db33745be551fb
 msgid "This section covers the data explorer feature."
 msgstr ""
 
 #: ../05_data_explorer/05_data_explorer.md:6
-#: 5d6d686b5c7a402f86c0921a3bdcf92b
+#: 9680391cb518420ca42940bb032e0c24
 msgid "Only users with **Researcher** role can access the data explorer functionality."
 msgstr ""

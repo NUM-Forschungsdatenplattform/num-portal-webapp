@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
-#: 01baaba8e8f24133b9e8d788d6c6de80
+#: 6fb6d9be007e4d90939f46c3f038b955
 msgid "Criteria - Overview"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:3
-#: 2c7eb6b1fb3b403692b7a0f0c43b41ae
+#: f5901f3101a54fa2ae613a89f8cf9d17
 msgid "This section covers the overview page of the criteria feature."
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:5
-#: b3fc48590adc4bbb883e118e8c4a94f8
+#: 29ec4090e54e42ac9a4e15cdcd8d0ee0
 msgid "Lists both owned criteria and public criteria. Provides functionality to search criteria by name and author as well as to filter projects on 4 criteria:"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:7
-#: dddecf7b49514f5cbd8f9d4ce30ce975
+#: 9551c9d487594d08a25a15d327aa82da
 msgid "all visible criteria"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:8
-#: 2882b00b41044794b313b47db98ecdc1
+#: de3375c631a4400a97982a937226a585
 msgid "criteria owned by the logged-in user"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:9
-#: 7089f07962644e7db1ee9d120cc5ddcc
+#: 91c09cb8a2f94cf986504586b343727e
 msgid "criteria belonging to the organization of the logged-in user"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:12
-#: 086473b7064c40dfaef602484258c825
+#: 3db20340c6234ebc8689525f7720d127
 msgid "You can clone or delete public criteria, and you can edit or delete your own criteria."
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
-#: d60e20d9eb724535809b258afacaaa44
+#: c5d69010705c483fa145ae09458c61d3
 msgid "Screenshot of criteria list"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
-#: 6273f5cb13f6498fb1e046cab57433c9
+#: e24bdbe9a1ad4dfca72305c59fd7326e
 msgid "Fig 06-01-01: Criteria list"
 msgstr ""

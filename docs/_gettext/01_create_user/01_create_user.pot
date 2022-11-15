@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 16:02+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,96 +17,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../01_create_user/01_create_user.md:1
-#: b5e9052d813c4e89947a9e368cddccdf
+#: 071408d6c9274763b1d68c5e92027d91
 msgid "Create User"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:3
-#: c81b4d9d24c449c28dec226a2a088ae0
+#: 3ba5adb0afb7490a8d19a7ae60cbae49
 msgid "Before you can start using CODEX you have to create a new user account for your personal work."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:5
-#: 8f005fa6cf8f411b9b4b9503600c9e0b
+#: 49209643fd6648e495c488eb99d2144c
 msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:8
-#: b5481b839e2a4ab4b5a98b9c9727e564
+#: 7e966fec30cf42e6b50f6d7a6b457d59
 msgid "The domain of your email address (part after the @-symbol) has to be listed in one of the organizations in the portal. If this is not the case, you will receive an according error message upon registration. In such cases, please contact the portal support."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:11
-#: ee5295ff778e4a51933b2233366af30f
+#: 1d2b2beb22ed42089ef162736c94bc78
 msgid "Sign up a new user account"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:13
-#: 2968f12415ee4eaf81385d6adcaf0efb
+#: a6efe4ae604246419391fe58c557b51a
 msgid "To create a new user account navigate to the sign up page which you can find by clicking \"SIGN IN\" at the main naviation. You will be asked to accept storing cookies on your machine. Accept and this will lead you to the \"Login-Page\". Hit \"Register\" below the login form to start a new account registration."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:22
-#: fa36324132f24a5cafba46107623397f
+#: f4224cd37bc3421797e9de6996fbf0b8
 msgid "Login page with a red arrow pointing to the registration link"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:22
-#: f87e4302224246b983c19a400bfaa95a
+#: a110c5a26dcb4544b4061c9753c953e4
 msgid "Fig 01-01: Position of the register link on Login page"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:25
-#: bec6b1a9a97242d1bc529a8b52452258
+#: adc62f3862de498f97acf390e956409a
 msgid "At the Signup page you will see a form to enter your basic data. All input fields marked with an asterisk are required to proceed."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:32
-#: 6b66a1017e184a499291d20f36b7a6b5
+#: 98557297d6a243e5a8890c405639a80e
 msgid "Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:32
-#: 001ecc894b7e4a1397d12c67e5440d1d
+#: 2033f7dad1db4ac7885008b60e5427ef
 msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:35
-#: eefa9984501041a394957b82fd148928
+#: ed4651da5a9b4696b1cc952691610438
 msgid "Additionally you have to aggree with the terms and conditions. If you want to read the terms and conditions you can click the link which opens an overlay with the current version of our terms and conditions that you also can directly accept or decline."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:43
-#: 9cbe19c04a38408c813073aec08dfd50
+#: 20d65b0fd5f247feb8ecd2e66102dacf
 msgid "Sign up page with opened terms and conditions modal with to buttons to accept or decline the terms and conditions at the bottom"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:43
-#: 35abfe772cdf4f6a96b32cdeea581cc3
+#: 809afd3156754c7fb3a3628865a2cbc4
 msgid "Fig 01-03: Open Terms and Conditions overlay modal"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:46
-#: e4bbf462e87f4be894281786cbd7ff3d
+#: d943d3ca7f344b90802907c0fb83f90b
 msgid "Once you have filled out all information about your person and your login information an email will be sent to your provided email address. If the email has been sent to your inbox you will see the following screen:"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:54
-#: 4b961776c276445bb51ad04fc2d91892
+#: 3426ed8120d8474384af4f978d461708
 msgid "After sign up page which informs about a sent email the user should check"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:54
-#: c90bf23399064abf8b83de3a6c021eef
+#: 61d459da9aff41799ad6cd065ce8f4a7
 msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:57
-#: b63f3a9d7667419e9e73c4f05a9120b3
+#: f39dca41efb5426ab0c590267a618b0e
 msgid "In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again."
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:60
-#: 29d057dfed154d12829c80a79682b6e7
+#: 5765264328054131b17faa8e2ef353aa
 msgid "After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""

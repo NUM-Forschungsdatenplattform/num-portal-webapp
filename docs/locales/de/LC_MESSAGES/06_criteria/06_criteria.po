@@ -1,34 +1,33 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:11+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../06_criteria/06_criteria.md:1 23562081ead24b14af81fa3484941313
+#: ../06_criteria/06_criteria.md:1 9150d035852f47d48ff4e4ccd605a33a
 msgid "Criteria"
-msgstr "Kriterien"
+msgstr ""
 
-#: ../06_criteria/06_criteria.md:3 3ff1f9442e1f4215ae122162da65554f
+#: ../06_criteria/06_criteria.md:3 3c8c09ba59cb47239edfe4daf8e12027
 msgid ""
 "This section covers the criteria feature, functionality which allows "
 "criteria definition and management."
 msgstr ""
 
-#: ../06_criteria/06_criteria.md:1 d9eab91689454e739e1ceee1f6d18d53
-#, fuzzy
+#: ../06_criteria/06_criteria.md:6 8043d75cf0944cbf9908eea4d3e1556e
 msgid "Only users with **Manager** role can access the criteria feature."
-msgstr "Dieser Abschnitt behandelt die Kriterienverwaltung"
+msgstr ""
 

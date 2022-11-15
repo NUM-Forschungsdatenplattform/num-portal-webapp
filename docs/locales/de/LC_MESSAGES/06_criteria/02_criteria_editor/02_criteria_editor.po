@@ -1,35 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:04+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: 653111db2ae94bc4a24298f1cb4c6bfb
+#: b9c9210bf4594ac89f75c032f296e0ea
 msgid "Criteria - Editor"
-msgstr "Kriterianeditor"
+msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:3
-#: 6c0fa3f7f266409796a9ffd6022ab0c5
-#, fuzzy
+#: f9748f97566641369d19b88ea91e82e5
 msgid "This section covers the editor of the criteria module."
-msgstr "Dieser Abschnitt behandelt den Kriterieneditor."
+msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:5
-#: 79c466b97ab44953b7129c1e33a20320
+#: d4eb813d87c3485cbb9de2b985bcaa3d
 msgid ""
 "The criteria editor provides functionality to define a criterion, as well"
 " as to determine available datasets based on the criterion AQL query. "
@@ -38,138 +37,138 @@ msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:6
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:9
-#: 534e70e5f93549029e8474859946b1bc ce780f7977e94027b0611199bd56534e
+#: 35dca24cda7d4f63872dfa74417d4e71 623eed1fe42c48908d37874d6ed5900a
 msgid "General information"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:7
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:34
-#: a05e0ca15a9a4873889ef8f8f45a4f89 eb46f893ebbb4dc1afd41fc046b59547
+#: 98b89c00c2c7403baef65991616bd5ca b3ffc5b5ed9146f985a681c83cb64005
 msgid "Build the criterion"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:11
-#: 25dcc89e97bf4cd5a632d5d649245b1b
+#: 83c704c650424ab5b280d514b38d30a6
 msgid ""
 "The general information section contains information about the criterion "
 "such as:"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 15463dd28f6848f785397afa0c4a148a e8d0983a12454969881395a39bb28b67
+#: 3feb8d70b6ac4be3b61c5e103eb1bc2a 6108b8cbe2e445f3b85f0105401eee80
 msgid "No"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: c604a2f871454455a5af8f14361f2ada
+#: 62a29ba1e6834359814515055ff9bd0f
 msgid "Field"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 192ed229511047af8a7c1654986c7aa6
+#: 4569a7a6d5db461e853f70b8b94a0db0
 msgid "Mandatory"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 45960a4d6df94659981cca560a8a7e25
+#: 2047ede049524fa6bd9da6d6ada4937c
 msgid "1"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 5d1db03ab8c04c26a2c8a4095a2d2097
+#: 28fece9f9a6644508b5cbf036664906a
 msgid "English title"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 29f874243341498c839cc1b7a017fcf4 58dac4d7344a47db8f60c5e9d828d229
-#: 5c0a7f56dd7340858363c9fbdd323dc5 d11634c0ce33446da9fe26495cb34981
-#: e3f04a0e49b54103bb8349638499f5f1 ecaee05bd33d401db4f114524c076bbb
-#: efe3a06af158440382c0589dc9e3b5d0
+#: 13edcfacc42540c1af665ae7b7a88f64 16c6fd57dc844d47985f3475d81736bf
+#: 192308fc581a4db8bb151d69a910b683 31b4fd10c404482096227b72d8b3c1cf
+#: 653deb28be254229828c98de5eb35061 d019daaa91c64544bd4399321da17a65
+#: dfa19ea51ccf4b67be37a7d3f68a5c24
 msgid "Yes"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: c8a7772afcc7410a92185f5c0750c5c6
+#: 7ba801368b3d45d49a78b463cc2678fd
 msgid "2"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: e9fabd4869e845d0be8441b73805e40b
+#: 8b7ad608b1c2446094ee56767f81fa08
 msgid "English use"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 2f46eacd162e486091480e6d64c254c1
+#: 83319f6c7bc94924a7bc68c4a797718c
 msgid "3"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: dc3e9f80bf4f4f50b6b6d3a50294db6a
+#: 803d14370b824b769e818da89651786b
 msgid "English purpose"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 258ce401e9b74629bc2b1c9ee42de997
+#: 53aae2c619c04104a277a91bf3b93698
 msgid "4"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 400274ae38444ae1be32180ecd8fefe7
+#: 5164a1f963e84e11905baa4c7390a40e
 msgid "German title"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 59bdb646e80b48c49178ef18fa3d0502
+#: f9c1030b1d8e479abd3d89245cf70c89
 msgid "5"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 238d77eced2b497baec4e3a004f9c4ab
+#: b7a0817ff00c448ca94fcfc7c5485a66
 msgid "German use"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 71f2773a830c48c6b2ef4583b5f367a8
+#: d79825f8ae1046fc9959a17a1295b9e0
 msgid "6"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: fbab53a107ab42fca1e2c969a0df2b28
+#: ae1825caa304409c944bd1cc3434d201
 msgid "German purpose"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 6af48a8d9413415894179558cb61d036
+#: 67da50289d2a4db587c6c874f8869828
 msgid "7"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 31e90f204591433d832e0de7c5f96331
+#: 17800898166f43ba818b010e98e9dc6d
 msgid "Category"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: c781667bf6c046718c9d9e75ca0e33e2
+#: 1820ba1c659748bd9e898205bf89c103
 msgid "8"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: f2117dda922549f28b9fcc4c5cb58d05
+#: 01528f686ef54aa7bb287e327f151441
 msgid "Criteria for public use"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: ccf056b3695f4e56ae1ee812cb8548a6
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
+#: 5e095716ee1f442ebcfcc675767c7997
 msgid "Screenshot of criteria editor general information"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: 82219d562239473ab6f0d42791bbdf34
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
+#: 3bcbebc1b2b348dd9285336b10e8ce94
 msgid "Fig 06-02-01: Criteria editor general information"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:36
-#: 747e02e2f9ce431db3fc02bfd7a6300f
+#: a807a9e231f74a8eb173c326ce9fb8b6
 msgid ""
 "In this section the actual criterion is being defined, this area is split"
 " into 3 areas:"
@@ -177,34 +176,34 @@ msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:37
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:49
-#: bf2c309b17b44515b2b0c7494dee0de0 dc562109852d4ce6ad828bfac9a9b9a2
+#: 12ce18ee049441b49da04a7464b44eca 950121ccbdae4d45907dd6b984dfc3a1
 msgid "The criterion builder area"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:38
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:72
-#: a7b59a467d7544cb8a377a4fc68d7c8b c1c8c14416d148b9a063227b6824893c
+#: 3aae906e82be482a8191e32c285e2aae 3b92b5765af74ede9e088c4d47084443
 msgid "The criterion raw query area"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:39
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
-#: 5f8e2a436b804cd8b253e210e5d540aa 9bf846a66c604b718d6ce84f0a32197f
+#: 72b8ba16945a4ed18854ac1f5ecbeb92 7d58b8e17cbc442bb32bbc117c81be4c
 msgid "The hits area"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: a5221ea41d9842268919ecbcb005fdcf
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
+#: 795dd89473264e049ef17e2f8ce43337
 msgid "Screenshot of criteria editor builder"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: ebaceb0b482d4ebcbb4d81196edf616c
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
+#: a8842c67fdc14160924a38b0919e018f
 msgid "Fig 06-02-02: Criteria editor builder"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:50
-#: fb287c0e2bb24cac9b77d7a05f39b678
+#: 1f64bc94f8044b02b7c239ad09d66a9b
 msgid ""
 "One of two ways for building a criterion. By pressing the build criterion"
 " button a dialog will pop up, on the left-hand side of the dialog the "
@@ -214,30 +213,30 @@ msgid ""
 "the dialog in the selected query clause."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: 02be229cf78b428bb375da3f623811a7
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: a65b4c13218145139bbb3bea2f9aac38
 msgid "Screenshot of criteria editor dialog"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: e0b7acc440684d9191ae4c16e4ecccce
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: 15bda1d53ada4ab4a8e2a0e3163b0845
 msgid "Fig 06-02-03: Criteria builder dialog"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
-#: 62b5896769ce48fba0a704f3345a0466
+#: 7478356ddb8e46dab0756c61ea93e81a
 msgid ""
 "The right-hand side of the dialog contains the three query clauses "
 "supported by the builder:"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:62
-#: 2ce94b72d69c48ebae8ba9e6285ba838
+#: 22269b7d2467475c8565bb5d79930657
 msgid "The **Select** clause represents the exact data needed for the criterion"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:63
-#: e2815548bda64f229e056d671ce02570
+#: 3b11ebec77604877a2acf31380abf821
 msgid ""
 "The **From** clause's purpose is to scope the data source for the query "
 "by specifying a certain subset from the data available; for example "
@@ -245,29 +244,29 @@ msgid ""
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:64
-#: 51a653a5b65844b6a0e4e292f7e2f156
+#: e9e3c59b93344992a25b7cf55800bd30
 msgid ""
 "The **Where** clause's purpose is to filter the data set within the data "
 "in the *From* clause. Logical operators can be applied to combine "
 "multiple expressions."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
-#: ad4b3bea092944dfa8e0aea84cd7ac25
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:67
+#: e0e7148db8bc46d8b09633a148c9f56c
 msgid ""
 "The **Select** and **From** clauses are mandatory, the **Where** clause "
 "is optional"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:70
-#: 709b76cbcc2e4cf49685b0e89ce66f2f
+#: a893a48de9a5421ebacfeef0f4349c9a
 msgid ""
 "By pressing the *Apply Selection* button the raw query is computed and "
 "added to the criterion raw query area."
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:74
-#: 5d89ec80d0f3438c9ec1cf333d055960
+#: 021d327f88734a808df5965cf79490ee
 msgid ""
 "Contains the raw criterion query. This can be built by using the builder "
 "functionality or can be directly typed in. There is also the option to "
@@ -275,45 +274,10 @@ msgid ""
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:79
-#: c00040a10d6343e4bdca35e8b8c97e0e
+#: 34e2d232876a4e099554c00421cdc62b
 msgid ""
 "This area shows the number of hits in the entire dataset resulting from "
 "the query. To retrieve the hits, you must click the *Determine* button. "
 "The number of hits is then displayed depending on the authorization."
 msgstr ""
-
-#~ msgid ""
-#~ "The criteria editor provides functionality "
-#~ "to define a criteria, as well as"
-#~ " to determine available datasets based "
-#~ "on the criteria AQL query. There "
-#~ "are two main sections of the "
-#~ "criteria definition:"
-#~ msgstr ""
-
-#~ msgid "Build the criteria"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The general information section contains "
-#~ "information about the criteria such as:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In this section the actual criterion "
-#~ "is being defined, this area is "
-#~ "split into e areas:"
-#~ msgstr ""
-
-#~ msgid "Fig 06-02-02: Criteria builder dialog"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Contains the raw criterion query. This"
-#~ " can be build by using the "
-#~ "builder functionality or can be directly"
-#~ " typed in. There is also the "
-#~ "option the format the typed in "
-#~ "query and to validate its correctness."
-#~ msgstr ""
 

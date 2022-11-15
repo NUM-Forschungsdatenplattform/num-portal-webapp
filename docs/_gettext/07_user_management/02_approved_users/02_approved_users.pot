@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
-#: 2223e4d443f54fe196aa790aeef07c43
+#: a3ba20f5302744e08762ba28ed34b687
 msgid "Approved user management"
 msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:3
-#: 36232b39d5a04df795f1268cf6e518ef
+#: 958a0c944bce489488f9122ad913f203
 msgid "This section covers the management of approved users which will be necessary if the role of an existing user changes, e.g. a user gets new tasks and requires to use additional features of CODEX."
 msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:8
-#: 540ec450996d4dac97bc1a5b5ee09d3a
+#: 904e86fdb0174d3089f8cf89e1e7ce7a
 msgid "The following steps can only be executed by users with the role \"Organization Admin\" or \"Super Admin\"."
 msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:16
-#: 9fefefe17bdb4a1abdb453376e9cfe9b
+#: e1a7689f325c47abaec153bde0ad6044
 msgid "Screenshot of approved users"
 msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:16
-#: eff79593d2c8437889d38f685b2a9ba1
+#: 4a196e19824b40e5b59ea965a666362f
 msgid "Fig 07-01-01: Approved users"
 msgstr ""

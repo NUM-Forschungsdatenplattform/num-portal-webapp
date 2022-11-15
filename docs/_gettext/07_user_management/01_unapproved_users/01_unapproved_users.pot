@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
-#: 0323a0da7dd04cbe989082c7ab125d8a
+#: 931bb75c69004746a756d875b690fd79
 msgid "Unapproved users management"
 msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:3
-#: cbe3b55bab0a45e7b900ee9b1bb2a616
+#: 027d5762576e498fa9f740bfbb076f84
 msgid "This section covers the management of unapproved users. Unapproved users have just registered at the NUM CODEX app and wait for approval and assignment of a role."
 msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:7
-#: c19dd141611545009c0435c7c9f5c69f
+#: 10aed08479bf4cae899709f97a6c74dd
 msgid "The following steps can only be executed by users with the role of \"Organization Admin\" or \"Super Admin\"."
 msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
-#: 9371aea4839f4faeae77f2c5795bc71b
+#: 924333a073b444deb3b144363abb3a07
 msgid "Screenshot of new users"
 msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
-#: c31fbe0c3f0244e9bd315c4a51e3ff36
+#: 28eaaf84ea6a441995fb0dd14e07411c
 msgid "Fig 07-01-01: New users"
 msgstr ""

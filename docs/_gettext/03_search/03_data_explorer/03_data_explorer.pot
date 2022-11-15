@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,56 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:1
-#: f3fbe98e051d48118e491d953ce9148b
+#: d61ed88a336949539d045a3878aa0b1d
 msgid "Data explorer"
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:3
-#: 3544b5c85e2547599b4437aad366a365
+#: 98ad695010584c668baf5d5772ec408b
 msgid "This section covers the data explorer page of the search module."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:6
-#: 57b92e72ac744b1d9c48b05819bea6f2
+#: 00f7fb2e2f8343eea7c7f926408ab23e
 msgid "This feature is only available and visible to users with the \"Manager\" role."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:9
-#: abf7fb8e0f6248e1ad0230eed895dae9
+#: 68185d7b868b4870bec9f06f7439a339
 msgid "Data explorer allows you to retrieve project available data from your previous selections in the patient and data filter."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:11
-#: 8d41fa6d0ebc4e8db81bf100730b923b
+#: 784ab860786d414581fccedeef830155
 msgid "In order for the project data to be retrieved, click on *Retrieve data* button. The results are then loaded. Depending on the complexity and scope of the patient and data filter configurations, the calculation may take some time."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:17
-#: 7ee51f17d74c486880852df711336bbb
+#: aaf5e9a8baca40f897dda6f063ef49dc
 msgid "Screenshot of data retrieval"
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:17
-#: 66eb7db9b4ad4f468daa19f73af8cb71
+#: bacf98a51f4747c399f152ae12196a4d
 msgid "Fig 03-03-01: Data retrieval"
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:21
-#: c2e813297a4345c4b3153d8a1d68d227
+#: e9bfa1729dca4613b18e26bea44b9732
 msgid "Once the data has loaded, the results are presented in tabular form. The results of each data filter selected in the previous step are presented in separate tables."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:23
-#: 5b26579a68b54d62aacc1bd42180731c
+#: 7ad39359764a43ebb4dbc995585f22aa
 msgid "The results can be exported in two different formats: CSV and JSON - for further use."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:30
-#: 6552a1b03e2a47c19ec6372f947d827e
+#: 954db8a245fd4b0f911a2218bad3d10a
 msgid "Screenshot of data retrieval tables"
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:30
-#: 936eb8e191914b6c84d21140646ea431
+#: 1cb8ca94666c48618619e40425dba305
 msgid "Fig 03-03-02: Data retrieval results"
 msgstr ""

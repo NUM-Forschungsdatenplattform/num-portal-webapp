@@ -1,39 +1,29 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-23 22:35+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../04_projects/04_projects.md:1 e786ad1a1de449de9a37213c6303eaf8
+#: ../04_projects/04_projects.md:1 0f4721b28cb14ab49d4da6a78864e329
 msgid "Projects"
 msgstr ""
 
-#: ../04_projects/04_projects.md:3 a5242c9b66a843cf9ee8e90f802a5de5
+#: ../04_projects/04_projects.md:3 f2b55f3abf8e4fe9a1ba8318523ca53e
 msgid ""
 "This section covers the projects feature, functionality which allows "
 "project definition as well as management of the project life cycle."
 msgstr ""
-
-#~ msgid "This section covers the projects feature."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Functionality which allows project definition"
-#~ " as well as management of the "
-#~ "project life cycle. This section covers"
-#~ " the projects feature."
-#~ msgstr ""
 

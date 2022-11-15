@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 14:47+0100\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:1
-#: f52ae8eec2b9499f83bd0c3c7a2e4b28
+#: ecc29ff3aeca429fae5b8fdf9fd73d73
 msgid "Content editor - Navigation items"
 msgstr ""
 
 #: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:3
-#: e5c863d9dff84ec594bcbdeba3a50990
+#: 66408982256f45b39e8a6abc1b72a524
 msgid "This section covers the editor for navigation content."
 msgstr ""

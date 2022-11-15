@@ -1,34 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 23:39+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 199fb9d1096646b6b202c177874f00d7
+#: 8f380b00db5c4fc79abc77c54bb7ff2b
 msgid "Projects Editor"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:3
-#: 818fd76badfe4040b98d52a213d71d12
+#: de6c703dcb69491bae3537ae1c769f7f
 msgid "This section covers the projects editor page of the projects module."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:5
-#: 8dc73011e7724acdbe4046f84bb7ddee
+#: 9a2b77aabf01494cb7b7560c70bfda51
 msgid ""
 "The project editor provides functionality to define a project. In order "
 "to create a project click *Create project* button in the [Project "
@@ -37,67 +37,67 @@ msgid ""
 "page."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 69e8bcfbfae649548c9c4b592cef6f14
+#: ../04_projects/02_projects_editor/02_projects_editor.md:8
+#: 9765a149c3c84f11a4c1fb8188ab9caf
 msgid "In the *draft* status the project can be previewed, edited or deleted."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: f290f39ad7fc4822bb333fa7469f2e3f
+#: ../04_projects/02_projects_editor/02_projects_editor.md:12
+#: 3b12490003794b3fa72d6a2b1fa5d100
 msgid ""
 "In edit and preview mode, comments can be added to the project using the "
 "comments section at the bottom of the page."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:15
-#: 69e8bcfbfae649548c9c4b592cef6f14
+#: 303ec6f413e44f49be3d0ee977250cc8
 msgid ""
 "There are four main sections of the project definition, these can be "
 "individually collapsed and expanded:"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:16
-#: 9bb5b6394e294d5b877e09fda800f3d0
+#: b96e5bd05c2a453cb1bbe37afe4584d6
 msgid "Cohort definition"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:17
-#: c3e1b8acefdf44bb9b14f4f63c03f00d
+#: 0811b03c03194ebc97a1c357a16c32b0
 msgid "General information"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:18
-#: cd36c70872be4908be36a5b7f01d4d69
+#: 08205c59e5a14a5bb1fcc6cd1ef082f6
 msgid "Parameter selection"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:19
-#: 20b51e5593fd4dd58070dfc54e7be8dc
+#: f9bf4af4f89f49fd9209d41c91013d00
 msgid "Researchers selection"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 7d3368fb944f4901b5ffbf38089fb9a9
+#: ../04_projects/02_projects_editor/02_projects_editor.md:22
+#: 1cd95039076c416ebf23baae12d51148
 msgid "A project can be saved as a draft or directly sent for approval."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: d035e6fa385d428d988318f7892feb27
+#: ../04_projects/02_projects_editor/02_projects_editor.md:30
+#: 17369cc088e140d3abcd7a988dc066d9
 msgid "Screenshot of project editor"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: d035e6fa385d428d988318f7892feb27
+#: ../04_projects/02_projects_editor/02_projects_editor.md:30
+#: 6771411cd56e47acb6005270eb4f9b78
 msgid "Fig 04-02-01: Project editor"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:34
-#: 9bb5b6394e294d5b877e09fda800f3d0
+#: 6d6c860270614f0380e73d118451043c
 msgid "1. Cohort definition"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:35
-#: 0b92d4ff350c467b99d7e1af43a8ff0b
+#: ccfdd7a4966e40a78b255b0a8b35bd97
 msgid ""
 "The cohort definition section is the most important section and "
 "represents the criteria that is to define the cohort of patients taking "
@@ -105,7 +105,7 @@ msgid ""
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:37
-#: 29ccf6fa67a44288a413668fe1a19956
+#: cfcc2b098f8c4b6985746976ea954f29
 msgid ""
 "In this section all criteria available are displayed in the left pane on "
 "categories, these can be individually expanded and collapsed. The "
@@ -113,21 +113,21 @@ msgid ""
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:39
-#: 6178c991a6064fac885d9af1c969aa50
+#: f666f95dcf8949abb7c30840e14609e4
 msgid ""
 "Detailed information on each individual criterion can be obtained by "
 "clicking on the *i* symbol."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:41
-#: 1dc0975227bc4730a6a3806d98ad79bb
+#: 94c2a1e8a865458caa7890586f455507
 msgid ""
 "To use a criterion and add it to the cohort builder, click it's plus "
 "icon. The criterion is then inserted directly into the cohort builder."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:43
-#: 9eab2837caea46d980fd1044815ff177
+#: 690a9c58ed9245bca3be89e7c0ae8eca
 msgid ""
 "The number of hits in the data set within the defined cohort can be "
 "calculated at any time during the cohort definition. To do this, click on"
@@ -135,404 +135,409 @@ msgid ""
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:45
-#: 27269d8cd24e4c37ae6b92ef2fac971b
+#: 71b486bd345345779d85dc6c34777f6b
 msgid ""
 "Detailed information on how the search works can be found in the "
 "[Search](../../03_search/03_search.md) functionality documentation."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:52
+#: 0b90e4acafd54adca08fd170447db977
 msgid "Screenshot of cohort definition"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:52
+#: 9bb120d75f584096b78388d8df092df5
 msgid "Fig 04-02-02: Cohort definition"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:56
-#: 840393e5a18f4334853e57ef7cbd0358
+#: 2c27af224cfc471d89cdc39b9664c330
 msgid "2. General information"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:58
-#: aceb66a033ef43f4a7830345761eeae0
+#: 64e28a58e56f461990fad2b18856b476
 msgid ""
 "The general information section contains information about the project. A"
 " list of the available fields can be found in the table below."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: a50fa93e04f2413d976b1a8d557e2e2a
+#: ../04_projects/02_projects_editor/02_projects_editor.md:65
+#: 17886e37bbc94f549184c6f153a08f20
 msgid "Screenshot of project general info"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: a50fa93e04f2413d976b1a8d557e2e2a
+#: ../04_projects/02_projects_editor/02_projects_editor.md:65
+#: c3a320a17495406eb5d7548e6d178f3a
 msgid "Fig 04-02-03: Project general information fields"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 9d2136b3ab934155a031d8a12a744c73
+#: 1d9aad7adc8344b896e5c95597fb24f7 24ee12997bc84d7a97d8f55629459844
+#: 693673545dff4df08e7d529efdcef89f 8fdf7307b43c46ed9d064dc6774c16cd
+#: ae027e31d9904002bb50a0f2473a180d de92e9d03ca643da838a2895702db591
+#: e77701a1c8e54afb90396ba3385ac7e8
 msgid "No"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 0e3bd6d366234d3daf21cd6e671f5ffd
+#: 9ada979a614041bf80a7ff12876a282a d4c962f6715445949e1c72cb2921ddf2
 msgid "Field"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 4dd7a07d09eb43748f91255b7469da24
+#: c0a39cda458343a4b8b5337fe8868691
 msgid "Mandatory"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 657c59d2a29f48c99aa383384d9b3cc5
+#: 27717fa886254945970f321d24f880a8 31ee4196294c4b7389d76c3937a405b6
 msgid "1"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: c55d9d941bfc447dbeea644aac37abcd
+#: c0f2dc24086f4d0bbbd422c9eed756f9
 msgid "Title"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 3693676bb233468881dbdfaaef69bf0d
+#: 106d4391662c4c87a3f39e5fa5f4e6d1 1e098b0f6ee447bc8abda931f97af23e
+#: 2da4618f45e84494bc37f42056ddfeda 54d53e3eefe644b79f9890868c77ae0f
+#: cba12f6d4b8a47cb8e51751e5c2ccd9d faea7751838c45afbacf1f7831333269
 msgid "Yes"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 4c0609fd919f4692a67cfeed11d4211d
+#: 350b2490275548c1bf943bf48f729073 b821b005d9cc4d5ea1ad48d535457b65
 msgid "2"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: c3c0c45fedc246a09a4032f236da4398
+#: 241ac08e534c4a4b80cf5209af2bd07b
 msgid "Description"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: d1491ace82a643959f03f05fe33c11d1
+#: 2f0d0c82c8b54438986ca4dc3e6f86e3 f6281b92594744dfa950dcd40a8a410b
 msgid "3"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: ae1d7e409b984240ac9f9ca5833cdae3
+#: 02608bda2d714f96ae6c660a039e4d59
 msgid "Goal"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: db939fc9fc5b4a6eb2399d41ed9476c5
+#: 168757caf82f4db8a67d405f4c75f329 f05a167e3ed24dd180a6037234e54a16
 msgid "4"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 5adc52fb57b64706b7b4341347a00c19
+#: b55a667ab4254e20ad6b4f53f2971ebe
 msgid "Primary hypothesis"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: ca08610451484ed39155cd4b6de1ffd3
+#: 1437ef7afffb415c8f86433360d38de0 b64e5ff1fd0f443d9788ff03772e5399
 msgid "5"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: be0634d1211849669242970471011a77
+#: 80839f4c23f64043815b2e73d87226d5
 msgid "Secondary hypothesis"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: af28c1f4f46049ceb5284a4e081ec3e3
+#: 798fc47711ba431d864575a2763b0c69 e0546c8325df4f75a171cc18cef733ae
 msgid "6"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 59097e5a59554fde806406b341e47619
+#: 43352ed36b834466b66557480d50b466
 msgid "Keywords"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 6d9f90405bae4866ba579159c5a583cf
+#: 238e87b8550847348bb9bad56dd96dc4 4c12fd6487d74a5b988d36e0c0c2047a
 msgid "7"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 1f1336a4835b4430ace042021210973d
+#: 5ccd187c67044550862f2df2d7cf8569
 msgid "Category"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 9d94826b5b524faaaa7e5bdd0f4c27bb
+#: 226143029a71474f9fe8b13e5e93ab2b 46879ed5f9cc4890af790187f0aa8ab4
 msgid "8"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 5fe3788446d54151b08c13a73e10b391
+#: c942aa6575094d0b964fa4c48f3056b6
 msgid "Start date"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 41aa6e5681e747b191f45f9a59b3dc9c
+#: 023e99b1e420489eb8fb17cfb7970c4e d55cc11e2cda4e9596bf0299c5dd2e8a
 msgid "9"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 764bd67077f04cc2b2ba5d0a1d78acf7
+#: 7904a6d1056b4b0f84119b65fe58a3b3
 msgid "End date"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 2a1a98389c71460789241d0ac223052f
+#: 49d2c0e956364c318139c478dbb71c21 bae0261192854d64980a1fc34ad9cfe9
 msgid "10"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 3849104f5d5b4b9f8706a8fe04b73536
+#: 578307be582348f78f8545de113c7a26
 msgid "Financing"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: c7f1cfab64e9498f94c17afdae5bb4cf
+#: 6ca009729d994b6285a50a01286bec41 84df2c3919be44fda5c2c56b7a39fb4c
 msgid "11"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:61
-#: 1a18f0aa94bc48cf9af197fc2e9f9b64
+#: e21be6cd4e2d48c6982b5cc4b95ecfa3
 msgid "Data protection level"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:86
-#: a35a983d7858469ba23eb9e90e51b5a4
+#: 486a975a2b6743c9978880c30cda0a5e
 msgid ""
 "There are 23 predefined project categories at the moment as listed in the"
 " table below."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:93
+#: cde0a0822b4b47aca7c6f850d8ab1e3d
 msgid "Screenshot of project categories"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:93
+#: 4058446d85964218a0c16bc3b4541240
 msgid "Fig 04-02-04: Project categories"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: d29f69871a7d4bb191fc0d230be5a8a5
+#: 5b768f66b7fa4b0c86c80250f674f480
 msgid "Pediatrics"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: d16c9fac2f4d471692ce238e10df180b
+#: 2b6aa00817544749818016d6fe4f1b3f
 msgid "Symptomatology"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 677482fb8f5a4078b5c9ce6f96e6b1d8
+#: 889a1f9b551c4e078e5f9855a302921a
 msgid "Classification of disease progression"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 0c0cbf13880c47d6adb98fa510087e88
+#: 84313b30ad65416daec9850a98e4ffaa
 msgid "Drug therapies"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 3033af317ed744b3b6ea6dcf34a3adf2
+#: 1f8dfcebb00f4a758443c40ecb5eb3f5
 msgid "Surgical therapies"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 9e3ae0d7403a43aaab3cc56c3f32f49d
+#: 91cc9c7c1c7a4076b8312b7b5b5d8c25
 msgid "Treatment plan"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 60a6913ab2974f3d9a5c0b8773068e5a
+#: 91d537a0320a4a23814ea5ed2a9aac64
 msgid "Alternative therapies"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 658fcc5b056c47c2956bf441effafa14
+#: 65e46bd26cbc467398597e4a3fbdad03
 msgid "Prevention"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 4a2d55a8faa84d9e8f66b3328f688ebd
+#: 46ae341efd734fd08854efbf56eebea6
 msgid "Diagnostic methodology"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 8bce56c4780f4c64a1195dafc32fbd55
+#: 38452d2b622548b295849042d9b47bdf
 msgid "Drug side effects"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 153ae5d68a1c467b87b3fafa014c96f7
+#: 376cf4ba942a4740abc039ba667f5fe9
 msgid "Microbiology"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: fe7b5d372bc042a2bda85d60966b0aeb
+#: ba99137ccb1f425eae27c810316d04d8
 msgid "12"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 052dfe2f36df4625ba34a584d7b1fcbc
+#: 6aec36cf23b94237a26113a5fab01704
 msgid "Pathology"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: b93cf1123aed48f8b3a205b156f4f4d0
+#: c12d8d9a543349c0aaf078b2843eae34
 msgid "13"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 3b32c19fac264419aa621573357fe322
+#: 98ad11e75ee343cc89be8f6a912250b7
 msgid "Oncology"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: ab01af1dd13242288829d8d7a6e31bf5
+#: 60dc7d7021ca449da58b79223fac994e
 msgid "14"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 3178ce30a95947ae8214640bb7ce4e3d
+#: 58cc5a0ae5a3415c853da948176f66c4
 msgid "Rare diseases"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 8ddc5152afd74e9e8b630fc623a52831
+#: 2973cddb039e4a40a2ff4026ef5c0bf8
 msgid "15"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: f807eb6821714e75bc860381db571662
+#: eea01bae01334e888da2606782363879
 msgid "Decision support"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 594d4dd9737540f990e79652ff9dd7b9
+#: 8c4cc26989ef434e810ef79d2c296220
 msgid "16"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 2d774a73571e4a54acebdb17300c094e
+#: 8f678aae18f54852ba92bf473bf350af
 msgid "COVID-19"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 3e6e3f80caab40dda14e9323cecb6857
+#: 77aacc75676d4f5c9a90571394204a3f
 msgid "17"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 09894e3dee74462c8b0fe8cc747dc5c9
+#: 067ace5a20e547f9955414d443156a98
 msgid "Critical care medicine"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 74214bd3535a49dbb333ae6c08102e62
+#: d1bf6e26c5754a308c573c406b25805b
 msgid "18"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 950e5ea8fd8a4deb857dc46c93a3e7b5
+#: c3ee30b726b6445e8fef1ce47a0b0b98
 msgid "Quality management MII"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 3a5fddfb03aa4eb1a3debdc4a7f4ead8
+#: 2a6a66c642ad4209af00367825f41884
 msgid "19"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: ed6c62e951c546618e2fc605c4dd1bac
+#: 7ec1c8ee45dd4004b8d548bf99148903
 msgid "Quality management routine care"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: bfcbd34eb8174ee1991782ca622fbeb9
+#: 0894d3a72bd34341b48ed31889595d0b
 msgid "20"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 80329ad619694f669063c256b1d8be1e
+#: 3deac52fad1747d0862fece4a19bd699
 msgid "Longitudinal study"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 63a9660000874d999a8fe44cf4c999b0
+#: 14e48ab66f824ce9a19eb970ff2b62db
 msgid "21"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: fb347cf90d3f4c67850b317cf01d389a
+#: 5bfbf260216c4f6c8801ef3fc2640df1
 msgid "Prospective study"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: b5ae793bc9b04e3796031468930971ee
+#: 17cf1a7b033e48b8bb294bc9eeca6c7a
 msgid "22"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 1900e10378e1421abb62f4c0d3c8f2ef
+#: 1731e48c9ccc414a99b029c22e3a034e
 msgid "Retrospective study"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 13f752e37d76444aa9b6bc2e009b4b36
+#: f33b18364f3e469ab8e4ef8174470157
 msgid "23"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:89
-#: 86e63a6ca9b14345b31919ef3be56769
+#: 66f2ed148a5146c6938ff2af286a665e
 msgid "Registry"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:125
-#: a9d5025100e6448fb2fd1274fa6567cd
+#: 2fc1f0d9e8c34f6db88c7a350fe5a463
 msgid "3. Return parameters"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:126
-#: fc94dc19305d434297b601f71be3e589
+#: 9bcf1142179f4357870d3377172c770d
 msgid ""
 "Results can be further filtered by selection return parameters. To select"
 " the return parameters, click Add Return Parameter button."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: ec69cdf36c9e4368898371bd72e8fa05
+#: ../04_projects/02_projects_editor/02_projects_editor.md:133
+#: 38265fce95d043e6a2fb1842f149f959
 msgid "Screenshot of project parameters"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: ec69cdf36c9e4368898371bd72e8fa05
+#: ../04_projects/02_projects_editor/02_projects_editor.md:133
+#: 28b033085fb243709fac9e7d997fe9ff
 msgid "Fig 04-02-05: Project return prameters section"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:137
 #: ../04_projects/02_projects_editor/02_projects_editor.md:180
-#: dc9af83835d447d4a1d0b056f56a49f6
+#: 4f0a741cc4ce4f36863ad7c39e0310ba ead931c6e38c4614aa0536ff6582d934
 msgid ""
 "A dialog window will then open in which you can make your selection. To "
 "do this, click on the respective plus symbol. As soon as a parameter is "
@@ -542,187 +547,91 @@ msgid ""
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:139
-#: 2da2ffed41d843578aa83e02256e45fc
+#: 2adea35e4b524453bc82d49d7201d703
 msgid ""
 "Above the list is a search box that you can use to search directly for "
 "parameters and narrow down the list accordingly."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:141
-#: a891f2bd3134492dbf099fc639847acf
+#: 79ae654116184e62b732bba9c2b5f88a
 msgid ""
 "As soon as you have selected one or more return parameters, you can add "
 "the parameters to the data filter by clicking on \"Accept selection\". "
 "The dialog window then closes automatically."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 95ad6b13e7ab4c7f8cda83ec93b0a951
+#: ../04_projects/02_projects_editor/02_projects_editor.md:148
+#: c7c1bb95a40f42f79aa04df00e6f7200
 msgid "Screenshot of project parameters dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 95ad6b13e7ab4c7f8cda83ec93b0a951
+#: ../04_projects/02_projects_editor/02_projects_editor.md:148
+#: cd311ab5cd2845c7988575db4e1121a0
 msgid "Fig 04-02-06: Project return prameters dialog"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:152
-#: 9eab2837caea46d980fd1044815ff177
+#: 7bcdaaf3e730402cb3aaba01b92282a0
 msgid ""
 "After the parameters are selected, hits in the data set within the "
 "defined cohorts can be calculated individually per parameter."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:159
+#: e26c3b6c290048aa81ce0e48f98558a0
 msgid "Screenshot of hits per parameter"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:159
+#: 5f24c05b47a648cfb90362937b401f92
 msgid "Fig 04-02-07: Hits per parameter"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: e98b082b27a940839eb957b62a6b472b
+#: ../04_projects/02_projects_editor/02_projects_editor.md:164
+#: 28e6c1b251734148928ba7f68ef965ab
 msgid ""
 "Return parameters are mandatory, in order to save this project you must "
 "select at least one parameter."
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:168
-#: 20b51e5593fd4dd58070dfc54e7be8dc
+#: b046b2c532bb4adba1caa58e00bfb23b
 msgid "3. Researchers"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:169
-#: 7daabd1875e840a7a955e1aabd7a68d3
+#: d4f0a0c9c8b244f094f659f73a1ab45d
 msgid ""
 "The last section of the project screen is the researchers section, here "
 "researchers can be assigned to the project. By clicking the Add "
 "researchers button."
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
+#: 9646b5c8e7224d529da4278cc3cf2be5
 msgid "Screenshot project researchers"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
+#: d842e69908514ee596e348c350dd62da
 msgid "Fig 04-02-08: Project researchers"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:187
+#: 716ed8b97a1f4e408a41fd5dc64f2e45
 msgid "Screenshot project researchers dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: 272c75dd6ca44658822ecd9d3f9d1233
+#: ../04_projects/02_projects_editor/02_projects_editor.md:187
+#: ba108b17cefb48f9b834bd3ab03f17d4
 msgid "Fig 04-02-09: Project researchers dialog"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:1
-#: e98b082b27a940839eb957b62a6b472b
+#: ../04_projects/02_projects_editor/02_projects_editor.md:192
+#: f8eb0318d7e84d959f4196e0ac692572
 msgid ""
 "Researchers are mandatory, in order to save this project you must select "
 "at least one researcher."
 msgstr ""
-
-#~ msgid "Projects Editor overview"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Detailed information on how the search"
-#~ " works can be found in the "
-#~ "Search functionality documentation. :ref:`search`."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Detailed information on how the search"
-#~ " works can be found in the "
-#~ "[Search](../../03_search.md) functionality documentation."
-#~ msgstr ""
-
-#~ msgid "Screenshot of project cohort definition"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Provides functionality to define a "
-#~ "project. There are four main sections"
-#~ " of the project definition, these can"
-#~ " be individually collapsed and expanded:"
-#~ msgstr ""
-
-#~ msgid "1. General information"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The last section of the project "
-#~ "screen is the research section, here "
-#~ "researchers can be assigned to the "
-#~ "project. By clicking the Add researchers"
-#~ " button."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The project editor provides functionality "
-#~ "to define a project. In order to"
-#~ " create a project click *Create "
-#~ "project* button in the [Project "
-#~ "overview](../01_projects_overview/01_projects_overview.md) "
-#~ "section documentation. Saved projects have "
-#~ "*draft* status and can be found in"
-#~ " the project overview page. In this"
-#~ " status the project can be previewed,"
-#~ " edited or deleted. In edit and "
-#~ "preview mode, comments can be added "
-#~ "to the project using the comments "
-#~ "section at the bottom of the page."
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-03: Project categories"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-04: Project return prameters section"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-05: Project return prameters dialog"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-06: Hits per parameter"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-06: Project researchers"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-06: Project researchers dialog"
-#~ msgstr ""
-
-#~ msgid "Fig 04-02-03: project general information fields"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "In this section all criteria available"
-#~ " is displayed in the left pane "
-#~ "on categories, these can be individually"
-#~ " expanded and collapsed. The criteria "
-#~ "can be filtered as well as "
-#~ "searched on using the search box."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Detailed information on each individual "
-#~ "criteria can be obtained by clicking "
-#~ "on the *i* symbol."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "To use a criteria and add it "
-#~ "to the cohort builder, click it's "
-#~ "plus icon. The criteria is then "
-#~ "inserted directly into the cohort "
-#~ "builder."
-#~ msgstr ""
 

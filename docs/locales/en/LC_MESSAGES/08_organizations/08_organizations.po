@@ -1,31 +1,31 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:11+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../08_organizations/08_organizations.md:1 a4b4f99b5b5b4d79b50b56546a7da7d5
+#: ../08_organizations/08_organizations.md:1 4f4c09a2796547c3aa29a11ad607ea69
 msgid "Organizations"
 msgstr ""
 
-#: ../08_organizations/08_organizations.md:3 ced21ead9f5b4cfca766313be75c2b48
+#: ../08_organizations/08_organizations.md:3 63dbcaec060f4ad9994e3781f50af76d
 msgid "This section covers the organization management feature."
 msgstr ""
 
-#: ../08_organizations/08_organizations.md:1 857959f450be42ba8c5add4db5a52ba0
+#: ../08_organizations/08_organizations.md:6 1f2dd7fcc11d4bbabfa06bfde8911be1
 msgid ""
 "Only users with **Super admin** or **Organization admin** roles can "
 "access the organization management feature."
