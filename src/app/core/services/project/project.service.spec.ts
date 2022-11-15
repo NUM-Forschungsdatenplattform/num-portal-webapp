@@ -40,6 +40,7 @@ import { IProjectApi } from 'src/app/shared/models/project/project-api.interface
 import { skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
 import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
+import { mockOrganizations } from '../../../../mocks/data-mocks/organizations.mock'
 
 describe('ProjectService', () => {
   let service: ProjectService
@@ -81,6 +82,25 @@ describe('ProjectService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProjects))
+      service.getAllPag(0, 2, null, null, {}).subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2, null, null, {})
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith('localhost/api/project/all?page=0&size=2')
+      expect(service.handleError).toHaveBeenCalled()
+    })
   })
 
   describe('When a call to getAll method comes in', () => {
