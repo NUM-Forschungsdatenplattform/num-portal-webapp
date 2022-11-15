@@ -103,6 +103,8 @@ locale_dirs = ['locales']
 gettext_uuid = True
 # Use compact
 gettext_compact = False
+# Allowing Sphinx to use fuzzy translations and don't fall back to the standard language (as is default for Sphinx)
+gettext_allow_fuzzy_translations = True
 
 # HTML sidebar config
 html_sidebars = {
@@ -115,6 +117,3 @@ hoverxref_roles = ['term']
 
 # Emoji style
 sphinxemoji_style = 'twemoji'
-
-# Allowing Sphinx to use fuzzy translations and don't fall back to the standard language (as is default for Sphinx)
-gettext_allow_fuzzy_translations = True
