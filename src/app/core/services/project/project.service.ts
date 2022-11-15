@@ -77,7 +77,7 @@ export class ProjectService {
     size: number,
     sort: string = null,
     sortBy: string = null,
-    filters: any[] = []
+    filters: any
   ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
@@ -86,12 +86,10 @@ export class ProjectService {
       if (sort) {
         queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
       }
-      if (Object.keys(filters).length) {
-        for (const [key, value] of Object.keys(filters)) {
-          console.log(key, value)
-          if (value !== null) {
-            queryString = queryString + '&filter%5B' + key + '%5D=' + value
-          }
+
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== null) {
+          queryString = queryString + '&filter%5B' + key + '%5D=' + value
         }
       }
     }

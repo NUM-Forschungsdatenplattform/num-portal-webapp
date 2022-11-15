@@ -81,7 +81,7 @@ export class ProjectsTableComponent
 
   public totalItems: number
 
-  public filters: any[] = []
+  public filters: any
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -93,6 +93,10 @@ export class ProjectsTableComponent
 
   ngOnInit(): void {
     this.pageIndex = 0
+    this.filters = {
+      type: null,
+      search: null,
+    }
     this.subscriptions.add(
       this.projectService.filterConfigObservable$
         .pipe(take(1))
@@ -153,7 +157,12 @@ export class ProjectsTableComponent
   }
 
   handleSearchChange(): void {
-    //this.projectService.setFilter(this.filterConfig)
+    if (this.filterConfig.searchText === '') {
+      this.filters.search = null
+    } else {
+      this.filters.search = this.filterConfig.searchText
+    }
+    this.getAll()
   }
 
   handleFilterChange(): void {
@@ -161,16 +170,16 @@ export class ProjectsTableComponent
       if (this.filterConfig.filterItem[i].isSelected) {
         switch (this.filterConfig.filterItem[i].id) {
           case 'PROJECT.ALL_PROJECTS':
-            this.filters['type'] = null
+            this.filters.type = null
             break
           case 'PROJECT.MY_PROJECTS':
-            this.filters['type'] = 'OWNED'
+            this.filters.type = 'OWNED'
             break
           case 'PROJECT.ORGANIZATION_PROJECTS':
-            this.filters['type'] = 'ORGANIZATION'
+            this.filters.type = 'ORGANIZATION'
             break
           case 'PROJECT.ARCHIVED_PROJECTS':
-            this.filters['type'] = 'ARCHIVED'
+            this.filters.type = 'ARCHIVED'
             break
           default:
         }
