@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 17:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,14 +180,14 @@ msgid "The criterion builder area"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:38
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:72
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:70
 #: 3b92b5765af74ede9e088c4d47084443
 #: 3aae906e82be482a8191e32c285e2aae
 msgid "The criterion raw query area"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:39
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:75
 #: 72b8ba16945a4ed18854ac1f5ecbeb92
 #: 7d58b8e17cbc442bb32bbc117c81be4c
 msgid "The hits area"
@@ -205,55 +205,55 @@ msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:50
 #: 1f64bc94f8044b02b7c239ad09d66a9b
-msgid "One of two ways for building a criterion. By pressing the build criterion button a dialog will pop up, on the left-hand side of the dialog the return parameters can be  selected. After selecting the desired return parameters, the actual data of interest which will make up the criterion needs to be double-clicked on in order to be added to right-hand side of the dialog in the selected query clause."
+msgid "One of two ways for building a criterion. By pressing the build criterion button a dialog will pop up. On the left-hand side of the dialog the return parameters can be selected. After selecting the desired return parameters, the actual data of interest which will make up the criterion needs to be double-clicked in order to be added to the right-hand side of the dialog in the selected query clause."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:56
 #: a65b4c13218145139bbb3bea2f9aac38
 msgid "Screenshot of criteria editor dialog"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:56
 #: 15bda1d53ada4ab4a8e2a0e3163b0845
 msgid "Fig 06-02-03: Criteria builder dialog"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:59
 #: 7478356ddb8e46dab0756c61ea93e81a
 msgid "The right-hand side of the dialog contains the three query clauses supported by the builder:"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:62
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:60
 #: 22269b7d2467475c8565bb5d79930657
 msgid "The **Select** clause represents the exact data needed for the criterion"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:63
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
 #: 3b11ebec77604877a2acf31380abf821
 msgid "The **From** clause's purpose is to scope the data source for the query by specifying a certain subset from the data available; for example narrowing the data to a certain composition"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:64
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:62
 #: e9e3c59b93344992a25b7cf55800bd30
 msgid "The **Where** clause's purpose is to filter the data set within the data in the *From* clause. Logical operators can be applied to combine multiple expressions."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:67
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:65
 #: e0e7148db8bc46d8b09633a148c9f56c
 msgid "The **Select** and **From** clauses are mandatory, the **Where** clause is optional"
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:70
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:68
 #: a893a48de9a5421ebacfeef0f4349c9a
 msgid "By pressing the *Apply Selection* button the raw query is computed and added to the criterion raw query area."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:74
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:72
 #: 021d327f88734a808df5965cf79490ee
 msgid "Contains the raw criterion query. This can be built by using the builder functionality or can be directly typed in. There is also the option to format the typed in query and to validate its correctness."
 msgstr ""
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:79
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
 #: 34e2d232876a4e099554c00421cdc62b
-msgid "This area shows the number of hits in the entire dataset resulting from the query. To retrieve the hits, you must click the *Determine* button. The number of hits is then displayed depending on the authorization."
+msgid "This area shows the number of patients in the entire dataset resulting from the query. To retrieve the patients, you must click the *Determine* button. The number of patients is then displayed depending on the authorization."
 msgstr ""

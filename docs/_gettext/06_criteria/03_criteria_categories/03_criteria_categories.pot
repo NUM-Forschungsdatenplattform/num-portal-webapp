@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 17:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,30 +28,30 @@ msgstr ""
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:5
 #: 981521cf20ad4eb6a5f90e0f95d2efc4
-msgid "The purpose of the criteria categories is to group criteria. In order to define a category press *Create category* button, a dialog will then open  where both English and German titles of the category must be provided. In order to delete or edit a category press on the three dots corresponding to the respective  category."
+msgid "The purpose of the criteria categories is to group criteria. In order to define a category press *Create category* button, a dialog will then open up, where both English and German titles of the category must be provided. In order to delete or edit a category press on the three dots corresponding to the respective category."
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:10
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:8
 #: eeb23ed0325f44f3884d9e8ff84a4a41
 msgid "You cannot delete categories which have been assigned to criteria"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:17
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
 #: da24ed48d9f64fbab2a9ced46dbd1ddc
 msgid "Screenshot of criteria categories"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:17
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
 #: 9fa395189d9849cbb2086286487b191c
 msgid "Fig 06-03-01: Criteria categories list"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:24
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
 #: 4a331a99231c49ada9f7225a91db182b
 msgid "Screenshot of criteria categories add dialog"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:24
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
 #: 6279d8921bdd4c4794e81cb9425b2cb0
 msgid "Fig 06-03-02: Create category dialog"
 msgstr ""

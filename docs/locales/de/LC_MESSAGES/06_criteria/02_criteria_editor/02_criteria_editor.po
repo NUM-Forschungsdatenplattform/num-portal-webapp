@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 17:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:1
 #: b9c9210bf4594ac89f75c032f296e0ea
 msgid "Criteria - Editor"
-msgstr ""
+msgstr "Kriterien-Editor"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:3
 #: f9748f97566641369d19b88ea91e82e5
 msgid "This section covers the editor of the criteria module."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Kriterien-Editor."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:5
 #: d4eb813d87c3485cbb9de2b985bcaa3d
@@ -34,18 +34,21 @@ msgid ""
 " as to determine available datasets based on the criterion AQL query. "
 "There are two main sections of the criterion definition:"
 msgstr ""
+"Der Kriterien-Editor stellt Funktionen zur Verfügung, um Kriterien "
+"anzulegen und zu prüfen, wieviele Datensätze für bestimmte Kriterien-Definitionen "
+"verfügbar sind."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:6
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:9
 #: 35dca24cda7d4f63872dfa74417d4e71 623eed1fe42c48908d37874d6ed5900a
 msgid "General information"
-msgstr ""
+msgstr "Allgmeine Angaben"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:7
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:34
 #: 98b89c00c2c7403baef65991616bd5ca b3ffc5b5ed9146f985a681c83cb64005
 msgid "Build the criterion"
-msgstr ""
+msgstr "Kriterium erstellen"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:11
 #: 83c704c650424ab5b280d514b38d30a6
@@ -53,31 +56,33 @@ msgid ""
 "The general information section contains information about the criterion "
 "such as:"
 msgstr ""
+"Der Abschnitt \"Allgemeine Angaben\" enthält die folgenden Informationen "
+"zum Kriterium:"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 3feb8d70b6ac4be3b61c5e103eb1bc2a 6108b8cbe2e445f3b85f0105401eee80
 msgid "No"
-msgstr ""
+msgstr "Nr"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 62a29ba1e6834359814515055ff9bd0f
 msgid "Field"
-msgstr ""
+msgstr "Feld"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 4569a7a6d5db461e853f70b8b94a0db0
 msgid "Mandatory"
-msgstr ""
+msgstr "Pflichtfeld"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 2047ede049524fa6bd9da6d6ada4937c
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 28fece9f9a6644508b5cbf036664906a
 msgid "English title"
-msgstr ""
+msgstr "Englisch: Titel"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 13edcfacc42540c1af665ae7b7a88f64 16c6fd57dc844d47985f3475d81736bf
@@ -85,87 +90,87 @@ msgstr ""
 #: 653deb28be254229828c98de5eb35061 d019daaa91c64544bd4399321da17a65
 #: dfa19ea51ccf4b67be37a7d3f68a5c24
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 7ba801368b3d45d49a78b463cc2678fd
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 8b7ad608b1c2446094ee56767f81fa08
 msgid "English use"
-msgstr ""
+msgstr "Englisch: Verwendung"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 83319f6c7bc94924a7bc68c4a797718c
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 803d14370b824b769e818da89651786b
 msgid "English purpose"
-msgstr ""
+msgstr "Englisch: Zweck"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 53aae2c619c04104a277a91bf3b93698
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 5164a1f963e84e11905baa4c7390a40e
 msgid "German title"
-msgstr ""
+msgstr "Deutsch: Titel"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: f9c1030b1d8e479abd3d89245cf70c89
 msgid "5"
-msgstr ""
+msgstr "5"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: b7a0817ff00c448ca94fcfc7c5485a66
 msgid "German use"
-msgstr ""
+msgstr "Deutsch: Verwendung"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: d79825f8ae1046fc9959a17a1295b9e0
 msgid "6"
-msgstr ""
+msgstr "6"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: ae1825caa304409c944bd1cc3434d201
 msgid "German purpose"
-msgstr ""
+msgstr "Deutsch: Zweck"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 67da50289d2a4db587c6c874f8869828
 msgid "7"
-msgstr ""
+msgstr "7"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 17800898166f43ba818b010e98e9dc6d
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 1820ba1c659748bd9e898205bf89c103
 msgid "8"
-msgstr ""
+msgstr "8"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 01528f686ef54aa7bb287e327f151441
 msgid "Criteria for public use"
-msgstr ""
+msgstr "Kriterium zu öffentlichen Verwendung markieren"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
 #: 5e095716ee1f442ebcfcc675767c7997
 msgid "Screenshot of criteria editor general information"
-msgstr ""
+msgstr "Bildschirmfoto der Allgemeinen Angaben des Kriterien-Editors"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
 #: 3bcbebc1b2b348dd9285336b10e8ce94
 msgid "Fig 06-02-01: Criteria editor general information"
-msgstr ""
+msgstr "Abb 06-02-01: Kriterien-Editor Allgemeine Angaben"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:36
 #: a807a9e231f74a8eb173c326ce9fb8b6
@@ -173,111 +178,163 @@ msgid ""
 "In this section the actual criterion is being defined, this area is split"
 " into 3 areas:"
 msgstr ""
+"In diesem Abschnitt wird das Kriterium definiert. Der Abschnitt unterteilt "
+"sich in drei Bereiche."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:37
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:49
 #: 12ce18ee049441b49da04a7464b44eca 950121ccbdae4d45907dd6b984dfc3a1
 msgid "The criterion builder area"
-msgstr ""
+msgstr "Erstellung des Kriteriums"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:38
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:72
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:70
 #: 3aae906e82be482a8191e32c285e2aae 3b92b5765af74ede9e088c4d47084443
 msgid "The criterion raw query area"
-msgstr ""
+msgstr "Rohdarstellung der Abfrage"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:39
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:75
 #: 72b8ba16945a4ed18854ac1f5ecbeb92 7d58b8e17cbc442bb32bbc117c81be4c
 msgid "The hits area"
-msgstr ""
+msgstr "Ermittlung der Patientenzahl"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
 #: 795dd89473264e049ef17e2f8ce43337
 msgid "Screenshot of criteria editor builder"
-msgstr ""
+msgstr "Bildschirmfoto der Kriterien-Erstellung"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:46
 #: a8842c67fdc14160924a38b0919e018f
 msgid "Fig 06-02-02: Criteria editor builder"
-msgstr ""
+msgstr "Erstellung des Kriteriums"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:50
 #: 1f64bc94f8044b02b7c239ad09d66a9b
 msgid ""
 "One of two ways for building a criterion. By pressing the build criterion"
-" button a dialog will pop up, on the left-hand side of the dialog the "
-"return parameters can be  selected. After selecting the desired return "
+" button a dialog will pop up. On the left-hand side of the dialog the "
+"return parameters can be selected. After selecting the desired return "
 "parameters, the actual data of interest which will make up the criterion "
-"needs to be double-clicked on in order to be added to right-hand side of "
-"the dialog in the selected query clause."
+"needs to be double-clicked in order to be added to the right-hand side of"
+" the dialog in the selected query clause."
 msgstr ""
+"Durch Klick auf die Schaltfläche *Kriterium erstellen* öffnet sich ein Dialog. "
+"Auf der linken Seite des Dialogfensters können die Rückgabeparameter ausgewählt "
+"werden. Nach Auswahl des Rückgabeparameters müssen die eigentlichen Datenfelder, "
+"welche das Kriterium bilden sollen, per Doppelklick in das Abfragefenster auf "
+"der linken Seite eingefügt werden."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:56
 #: a65b4c13218145139bbb3bea2f9aac38
 msgid "Screenshot of criteria editor dialog"
-msgstr ""
+msgstr "Bildschirmfoto des Dialogfensters zur Kriterien-Erstellung"
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:58
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:56
 #: 15bda1d53ada4ab4a8e2a0e3163b0845
 msgid "Fig 06-02-03: Criteria builder dialog"
-msgstr ""
+msgstr "Abb 06-02-03: Dialogfenster Kriterien-Erstellung"
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:59
 #: 7478356ddb8e46dab0756c61ea93e81a
 msgid ""
 "The right-hand side of the dialog contains the three query clauses "
 "supported by the builder:"
 msgstr ""
+"Die rechte Seite des Dialogfensters enthält die drei Bestandteile "
+"der Abfrage, die bei der Kriterien-Erstellung unterstützt werden:"
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:62
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:60
 #: 22269b7d2467475c8565bb5d79930657
 msgid "The **Select** clause represents the exact data needed for the criterion"
 msgstr ""
+"Der Bestandteil **Select** repräsentiert die konkreten Daten, welche "
+"das Kriterium verarbeiten soll."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:63
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
 #: 3b11ebec77604877a2acf31380abf821
 msgid ""
 "The **From** clause's purpose is to scope the data source for the query "
 "by specifying a certain subset from the data available; for example "
 "narrowing the data to a certain composition"
 msgstr ""
+"Der Bestandteil **From** legt fest, aus welcher Datenquelle die Daten "
+"bezogen werden sollen, z.B. nur aus einer festgelegten Composition."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:64
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:62
 #: e9e3c59b93344992a25b7cf55800bd30
 msgid ""
 "The **Where** clause's purpose is to filter the data set within the data "
 "in the *From* clause. Logical operators can be applied to combine "
 "multiple expressions."
 msgstr ""
+"Die **Where**-Bedingung bietet die Möglichkeit, den Ergebnisdatensatz zu filtern. "
+"Um mehrere Bedingungen zu verknüpfen, können logische Operatoren verwendet werden "
+"(AND, OR)."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:67
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:65
 #: e0e7148db8bc46d8b09633a148c9f56c
 msgid ""
 "The **Select** and **From** clauses are mandatory, the **Where** clause "
 "is optional"
 msgstr ""
+"Die Bestandteile **Select** und **From** müssen angegeben werden. Die "
+"**Where**-Bedingungen sind optional."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:70
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:68
 #: a893a48de9a5421ebacfeef0f4349c9a
 msgid ""
 "By pressing the *Apply Selection* button the raw query is computed and "
 "added to the criterion raw query area."
 msgstr ""
+"Indem Sie auf *Auswahl übernehmen* klicken, wird die Abfrage in das "
+"Abfragefenster des Kriteriums übertragen."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:74
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:72
 #: 021d327f88734a808df5965cf79490ee
 msgid ""
 "Contains the raw criterion query. This can be built by using the builder "
 "functionality or can be directly typed in. There is also the option to "
 "format the typed in query and to validate its correctness."
 msgstr ""
+"Dieses Fenster enthält die für das Kriterium verwendete Abfrage. Diese kann "
+"entweder über die Kriterien-Erstellung angelegt oder direkt von Hand eingegeben "
+"werden. Über die Schaltflächen unterhalb des Fenster kann die Abfrage formiert "
+"und auf Validität geprüft werden."
 
-#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:79
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
 #: 34e2d232876a4e099554c00421cdc62b
 msgid ""
-"This area shows the number of hits in the entire dataset resulting from "
-"the query. To retrieve the hits, you must click the *Determine* button. "
-"The number of hits is then displayed depending on the authorization."
+"This area shows the number of patients in the entire dataset resulting "
+"from the query. To retrieve the patients, you must click the *Determine* "
+"button. The number of patients is then displayed depending on the "
+"authorization."
 msgstr ""
+"Dieser Abschnitt ermöglicht die Ermittlung der Anzahl der Patienten, welche "
+"bei Verwendung dieses Kriteriums berücksichtigt werden, basierend auf den "
+"in der Datenbank vorhandenen Datensätzen."
+
+#~ msgid ""
+#~ "One of two ways for building a "
+#~ "criterion. By pressing the build "
+#~ "criterion button a dialog will pop "
+#~ "up, on the left-hand side of "
+#~ "the dialog the return parameters can "
+#~ "be  selected. After selecting the "
+#~ "desired return parameters, the actual "
+#~ "data of interest which will make "
+#~ "up the criterion needs to be "
+#~ "double-clicked on in order to be "
+#~ "added to right-hand side of the"
+#~ " dialog in the selected query clause."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This area shows the number of hits"
+#~ " in the entire dataset resulting from"
+#~ " the query. To retrieve the hits, "
+#~ "you must click the *Determine* button."
+#~ " The number of hits is then "
+#~ "displayed depending on the authorization."
+#~ msgstr ""
 

@@ -21,17 +21,17 @@ msgstr ""
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:5
 #: 1201c8c99909435bba9ad5e01b564312 8de5fc98a7d24427898e397e8f5b15e8
 msgid "Data retrieval"
-msgstr ""
+msgstr "Datenabruf"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:3
 #: 8ba3527d07fc43338da7ab91da2033ba
 msgid "This section covers the data retrieval page of the data explorer feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Datenabruf aus Projekten."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:6
 #: 97c165aba300484d85614265534b6c54
 msgid "The data retrieval page is divided into three areas:"
-msgstr ""
+msgstr "Der Datenabruf ist in drei Abschnitte unterteilt:"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:8
 #: 2e0c4024a1354777a23df04b3819e36d
@@ -40,6 +40,9 @@ msgid ""
 " the project. All information is read-only. You can expand and collapse "
 "the individual areas."
 msgstr ""
+"Projektzusammenfassung: Vollständige Übersicht der Projekt-Konfiguration. "
+"Diese Information kann nur gelesen und nicht verändert werden. Jeder Bereich "
+"kann nach Bedarf ein- und ausgeklappt werden."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:9
 #: ec6ba0dbadc44d9bbb8ec05eb4f98a4b
@@ -49,6 +52,9 @@ msgid ""
 "filters. Start the entire data retrieval by clicking on *Retrieve data* "
 "button."
 msgstr ""
+"Datenabruf: In diesem Abschnitt kann der Datenabruf ausgeführt werden. "
+"Darüber hinaus besteht die Möglichkeit, die Daten vor Abruf weiter einzuschränken "
+"bzw. zu filtern. Zum Starten des Datenabrufs klicken Sie auf *Daten abrufen*."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:10
 #: 045e7c2ab36c463d846b37e92877100a
@@ -56,21 +62,23 @@ msgid ""
 "Result set: after the data retrieval has been started, the available data"
 " sets are displayed in this section."
 msgstr ""
+"Ergebnissatz: Nachdem der Datenabruf gestartet wurde, werden in diesem Abschnitt die tatsächlichen "
+"Daten dargestellt."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:17
 #: 6916434f19a24befab1daa231fe350d1
 msgid "Screenshot of detailed data retrieval"
-msgstr ""
+msgstr "Bildschirmfoto des Datenabrufs"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:17
 #: df44c0175d9243c8a8cfcc5ba636e5a1
 msgid "Fig 05-02-01: Data retrieval"
-msgstr ""
+msgstr "Abb 05-02-01: Datenabruf"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:20
 #: db295b336b9c45aeae8713b6c790a76e
 msgid "Result set"
-msgstr ""
+msgstr "Ergebnissatz"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:22
 #: 2798f8996b2c4e9aa14266a96261ccc9
@@ -78,6 +86,8 @@ msgid ""
 "At data retrieval the result set is displayed based on the configurations"
 " specified in the project."
 msgstr ""
+"Bei Abruf der Daten wird der Ergebnissatz gemäß der Projektkonfiguration "
+"dargestellt."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:24
 #: 6e9ed1ab1f184b4ebe362a3fc6f17ecf
@@ -86,6 +96,9 @@ msgid ""
 "table(s). The output result set is based on the return parameters as "
 "defined in the project as a basis."
 msgstr ""
+"In der Ausgangskonfiguration wird der gesamte Ergebnissatz als Tabelle(n) "
+"erzeugt. Der Ergebnissatz basiert auf der Konfiguration der Rückgabeparameter "
+"in der Projektdefinition."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:26
 #: ee704648b19c4247bc969ddfc334b86f
@@ -96,11 +109,15 @@ msgid ""
 "button. Please note that setting filters can result in unwanted cross "
 "products."
 msgstr ""
+"Zusätzlich besteht die Möglichkeit, den Ergebnissatz individuell zu filtern "
+"bzw. weiter einzuschränken. Klicken Sie auf *Daten filtern*, um diese Funktion "
+"aufzurufen. Bitte beachten Sie, dass das Setzen eigener Filter zu unerwünschten "
+"Kreuzprodukten führen kann."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:28
 #: 75ba998c9c674a24bbf1bcbfde588ac5
 msgid "Representation of the result set"
-msgstr ""
+msgstr "Darstellung des Ergebnissatzes"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:30
 #: 15de86c3be4f424bab7f35e8e674b93a
@@ -108,11 +125,13 @@ msgid ""
 "The result set is presented as a table. A separate table is generated for"
 " each return parameter defined in the project."
 msgstr ""
+"Der Ergebnissatz wird in Tabellenform dargestellt. Für jeden Rückgabeparameter "
+"wird eine separate Tabelle erzeugt."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:32
 #: 1c732808505f4970882c4301b472cb7e
 msgid "The table structure is as follows:"
-msgstr ""
+msgstr "Die Tabellen sind wie folgt strukturiert:"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:33
 #: 5b7d6618957d4688847ae1a3dcd21c4d
@@ -121,6 +140,8 @@ msgid ""
 "patient filter, are displayed in rows. Each available record makes up one"
 " row."
 msgstr ""
+"Zeilen: Die Ergebnisse der im Projekt definierten Kohorte (Patientenfilter), "
+"sind in Zeilen dargestellt. Jeder Datensatz wird durch eine Zeile repräsentiert."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:34
 #: bebc54a572ab44b98d51dc205a10c189
@@ -128,21 +149,23 @@ msgid ""
 "Columns: the columns represent the data filter and contain all parameters"
 " for which information is available in the respective data record."
 msgstr ""
+"Spalten: Die Spalten repräsentieren die Datenfilter und enthalten alle "
+"Parameter, für die Daten im Datensatz verfügbar sind."
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:41
 #: 7649a7efef5348c5ba48c78a8f0dd318
 msgid "Screenshot of data retrieval results"
-msgstr ""
+msgstr "Bildschirmfoto der Datenabruf-Ergebnisse"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:41
 #: 111cf84247eb4d6c9b24480358fcac1c
 msgid "Fig 05-02-02: Data retrieval results"
-msgstr ""
+msgstr "Abb 05-02-02: Ergebnisse des Datenabrufs"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:45
 #: 95661accd36d4f488c4c63ea68ce5ec5
 msgid "Export of the result set"
-msgstr ""
+msgstr "Exportieren des Ergebnissatzes"
 
 #: ../05_data_explorer/02_data_explorer_data_retrieval/02_data_explorer_data_retrieval.md:47
 #: 500528541e92423e8f7a08f93d8c92b9
@@ -150,4 +173,7 @@ msgid ""
 "You can export the entire displayed result as either a CSV file or a JSON"
 " file. A separate file is created for each return parameter."
 msgstr ""
+"Der angezeigte Ergebnissatzes kann vollständig im CSV- oder JSON-Format "
+"zur weiteren Verwendung exportiert werden. Für jeden Rückgabeparameter "
+"wird eine separate Datei erzeugt."
 

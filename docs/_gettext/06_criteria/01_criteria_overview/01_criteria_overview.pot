@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 17:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:5
 #: 29ec4090e54e42ac9a4e15cdcd8d0ee0
-msgid "Lists both owned criteria and public criteria. Provides functionality to search criteria by name and author as well as to filter projects on 4 criteria:"
+msgid "Lists both owned criteria and public criteria. Provides functionality to search criteria by name and author as well as to filter projects on 3 criteria:"
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:7
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:12
 #: 3db20340c6234ebc8689525f7720d127
-msgid "You can clone or delete public criteria, and you can edit or delete your own criteria."
+msgid "You can clone or delete public criteria, and you can only edit or delete your own criteria."
 msgstr ""
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20

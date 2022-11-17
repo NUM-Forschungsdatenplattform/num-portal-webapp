@@ -19,15 +19,16 @@ msgstr ""
 
 #: ../05_data_explorer/05_data_explorer.md:1 62831ccb904b4011b53ae8713d423ce6
 msgid "Data explorer"
-msgstr ""
+msgstr "Datenabruf"
 
 #: ../05_data_explorer/05_data_explorer.md:3 57c27ffa1eb3411490db33745be551fb
 msgid "This section covers the data explorer feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Funktion Datenabruf"
 
 #: ../05_data_explorer/05_data_explorer.md:6 9680391cb518420ca42940bb032e0c24
 msgid ""
 "Only users with **Researcher** role can access the data explorer "
 "functionality."
 msgstr ""
+"Nur Benutzer mit der Rolle **Forscher** haben Zugriff auf den Datenabruf."
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 16:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:5
 #: 4a58c905b6754ca09d27e058607f26e1
-msgid "With the data explorer, researchers who have been assigned to a project can access the result set of the respective project. You get access to the research data that is defined as part of the project configuration and are available in the GECCO 83 data set."
+msgid "With the data explorer, researchers who have been assigned to a project can access the result set of the respective project. You get access to the research data that is defined as part of the project configuration and is available in the GECCO data set."
 msgstr ""
 
 #: ../05_data_explorer/01_data_explorer_projects_overview/01_data_explorer_projects_overview.md:11

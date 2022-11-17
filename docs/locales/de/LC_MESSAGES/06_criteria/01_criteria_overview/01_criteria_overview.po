@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 17:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,50 +20,69 @@ msgstr ""
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:1
 #: 6fb6d9be007e4d90939f46c3f038b955
 msgid "Criteria - Overview"
-msgstr ""
+msgstr "Kriterien-Übersicht"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:3
 #: f5901f3101a54fa2ae613a89f8cf9d17
 msgid "This section covers the overview page of the criteria feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Übersichtsseite des Kriterien-Editors"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:5
 #: 29ec4090e54e42ac9a4e15cdcd8d0ee0
 msgid ""
 "Lists both owned criteria and public criteria. Provides functionality to "
-"search criteria by name and author as well as to filter projects on 4 "
+"search criteria by name and author as well as to filter projects on 3 "
 "criteria:"
 msgstr ""
+"Die Liste bietet eine Übersicht über eigene und öffentliche Kriterien. "
+"Sie können die Liste nach Bezeichnung und Autor durchuchen und nach "
+"folgenden Eigenschaften filtern:"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:7
 #: 9551c9d487594d08a25a15d327aa82da
 msgid "all visible criteria"
-msgstr ""
+msgstr "Alle Kriterien"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:8
 #: de3375c631a4400a97982a937226a585
 msgid "criteria owned by the logged-in user"
-msgstr ""
+msgstr "Meine Kriterien"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:9
 #: 91c09cb8a2f94cf986504586b343727e
 msgid "criteria belonging to the organization of the logged-in user"
-msgstr ""
+msgstr "Kriterien meiner Organisation"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:12
 #: 3db20340c6234ebc8689525f7720d127
 msgid ""
-"You can clone or delete public criteria, and you can edit or delete your "
-"own criteria."
+"You can clone or delete public criteria, and you can only edit or delete "
+"your own criteria."
 msgstr ""
+"Sie können öffentliche Kriterien klonen oder löschen sowie Ihre eigenen "
+"Kriterien bearbeiten."
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
 #: c5d69010705c483fa145ae09458c61d3
 msgid "Screenshot of criteria list"
-msgstr ""
+msgstr "Bildschirmfoto der Kriterienliste"
 
 #: ../06_criteria/01_criteria_overview/01_criteria_overview.md:20
 #: e24bdbe9a1ad4dfca72305c59fd7326e
 msgid "Fig 06-01-01: Criteria list"
-msgstr ""
+msgstr "Abb 06-01-01: Kriterienliste"
+
+#~ msgid ""
+#~ "Lists both owned criteria and public "
+#~ "criteria. Provides functionality to search "
+#~ "criteria by name and author as "
+#~ "well as to filter projects on 4"
+#~ " criteria:"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "You can clone or delete public "
+#~ "criteria, and you can edit or "
+#~ "delete your own criteria."
+#~ msgstr ""
 
