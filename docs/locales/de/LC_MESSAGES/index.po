@@ -19,17 +19,19 @@ msgstr ""
 
 #: ../index.md:20 1eb3e8a4549d4cc3b17d5e031e17a52d
 msgid "Table of contents:"
-msgstr ""
+msgstr "Inhaltsverzeichnis"
 
 #: ../index.md:1 b667ec29c3cd447ca33f6fae1d521931
 msgid "NUM CODEX User documentation"
-msgstr ""
+msgstr "NUM CODEX-Benutzerhandbuch"
 
 #: ../index.md:3 f5e9b269da6a43909d2940d602c60079
 msgid ""
 "Welcome to the NUM CODEX App manual. This manual describes all features "
 "the NUM research data platform CODEX provides."
 msgstr ""
+"Willkommen im NUM CODEX-Benutzerhandbuch. Dieses Handbuch beschreibt "
+"die Funktionen der Forschungsdatenplattform."
 
 #: ../index.md:6 f85b6896eaf940f6bdd191b56af90605
 msgid ""
@@ -40,16 +42,24 @@ msgid ""
 "Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\""
 "    rel=\"noopener\"> this link </a>"
 msgstr ""
+"Dieses Handbuch wurde in den Sprachen Deutsch und Englisch erstellt. "
+"Sollten Sie Fehler finden oder Anmerkungen haben, zögern Sie bitte nicht, "
+"eine neue Anfrage für dieses Projekt zu erstellen über <a  href=\"https://github.com/NUM-"
+"Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\""
+"    rel=\"noopener\"> diesen Link </a>"
 
 #: ../index.md:16 0a9a5d598bf9468792d3d3ec3711197e
 msgid ""
 "Please check first if there is already a similar issue with the tag "
 "`documentation`. Thanks for your feedback and contribution."
 msgstr ""
+"Bitte prüfen Sie zuerst, ob es bereits eine vergleichbare Anfrage mit dem "
+"Schlagwort `Dokumentation` gibt. Danke für Ihre Feedback und Ihre "
+"Unterstützung."
 
 #: ../index.md:38 fe916f5259354f42bf596417ab4cc650
 msgid "Indexes und tables"
-msgstr ""
+msgstr "Indizes und Verzeichnisse"
 
 #: ../index.md:41 39282fc0a6cc42c19771a545b588319e
 msgid ":ref:`genindex`"

@@ -160,7 +160,7 @@ msgstr "8"
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 01528f686ef54aa7bb287e327f151441
 msgid "Criteria for public use"
-msgstr "Kriterium zu öffentlichen Verwendung markieren"
+msgstr "Kriterium zur öffentlichen Verwendung markieren"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:30
 #: 5e095716ee1f442ebcfcc675767c7997
