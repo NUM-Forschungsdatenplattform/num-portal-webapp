@@ -103,12 +103,6 @@ export class ProjectsTableComponent
         .subscribe((config) => (this.filterConfig = config))
     )
 
-    // this.subscriptions.add(
-    //   this.projectService.filteredProjectsObservable$.subscribe((projects) =>
-    //     this.handleData(projects)
-    //   )
-    // )
-
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
     )

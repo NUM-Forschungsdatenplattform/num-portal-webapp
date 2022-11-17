@@ -140,53 +140,6 @@ describe('ProjectsTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  // it('should set the filter in the projectService on searchChange', () => {
-  //   component.handleSearchChange()
-  //   expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  // })
-  //
-  // it('should set the filter in the projectService on filterChange', () => {
-  //   component.handleFilterChange()
-  //   expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  // })
-
-  // describe('When new projects are received on the observable', () => {
-  //   it('should set the projects as the tables data source', () => {
-  //     projectsSubject$.next([mockProject1])
-  //     expect(component.dataSource.data).toEqual([mockProject1])
-  //   })
-  // })
-  //
-  // describe('When the userInfo gets updated', () => {
-  //   const roles = [AvailableRoles.StudyCoordinator]
-  //   const userInfo = {
-  //     id: '',
-  //     roles,
-  //   } as IUserProfile
-  //   it('should set the roles to the component', () => {
-  //     userProfileSubject$.next(userInfo)
-  //     expect(component.roles).toEqual(roles)
-  //   })
-  //
-  //   it('should generate the menu based on the role for the project coordinator', () => {
-  //     userProfileSubject$.next(userInfo)
-  //     expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...COORDINATOR_MENU])
-  //   })
-  //
-  //   it('should generate the menu based on the role for the project approver', () => {
-  //     userInfo.roles = [AvailableRoles.StudyApprover]
-  //     userProfileSubject$.next(userInfo)
-  //     expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...APPROVER_MENU])
-  //   })
-  //
-  //   it('should display the preview option to other roles', () => {
-  //     userInfo.roles = [AvailableRoles.Researcher]
-  //     userProfileSubject$.next(userInfo)
-  //     expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW])
-  //   })
-  // })
-  //
-
   describe('When generate role', () => {
     it('should generate role', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
@@ -194,25 +147,44 @@ describe('ProjectsTableComponent', () => {
     })
   })
 
-  describe('When generate role', () => {
-    it('should generate role', () => {
+  describe('When filter change', () => {
+    it('filter change to all projects', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
       component.filterConfig['filterItem'] = [{ id: 'PROJECT.ALL_PROJECTS', isSelected: true }]
       component.handleFilterChange()
+      expect(component.filters.type).toEqual(null)
     })
-  })
 
-  describe('When filter is triggered', () => {
-    it('should filter', () => {
+    it('filter change to my projects', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.MY_PROJECTS', isSelected: true }]
       component.handleFilterChange()
+      expect(component.filters.type).toEqual('OWNED')
+    })
+
+    it('filter change to organization projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [
+        { id: 'PROJECT.ORGANIZATION_PROJECTS', isSelected: true },
+      ]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual('ORGANIZATION')
+    })
+
+    it('filter change to archived projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.ARCHIVED_PROJECTS', isSelected: true }]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual('ARCHIVED')
     })
   })
 
   describe('When search is triggered', () => {
     it('should filter', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.searchText = 'testSearch'
       component.handleSearchChange()
+      expect(component.filters.search).toEqual('testSearch')
     })
   })
 
