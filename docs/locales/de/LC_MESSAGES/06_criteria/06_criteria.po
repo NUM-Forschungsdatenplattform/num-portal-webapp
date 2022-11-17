@@ -19,17 +19,18 @@ msgstr ""
 
 #: ../06_criteria/06_criteria.md:1 9150d035852f47d48ff4e4ccd605a33a
 msgid "Criteria"
-msgstr ""
+msgstr "Kriterien"
 
 #: ../06_criteria/06_criteria.md:3 3c8c09ba59cb47239edfe4daf8e12027
 msgid ""
 "This section covers the criteria feature which allows criteria definition"
 " and management."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung von Kriterien."
 
 #: ../06_criteria/06_criteria.md:6 8043d75cf0944cbf9908eea4d3e1556e
 msgid "Only users with **Criteria Editor** role can access the criteria feature."
-msgstr ""
+msgstr "Nur Benutzer mit der Rolle **Kriterien-Editor haben auf die Kriterien-Verwaltung Zugriff."
 
 #~ msgid ""
 #~ "This section covers the criteria "

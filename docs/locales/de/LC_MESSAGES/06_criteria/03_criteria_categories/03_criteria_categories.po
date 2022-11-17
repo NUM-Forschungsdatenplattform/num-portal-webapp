@@ -20,12 +20,12 @@ msgstr ""
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
 #: 3ad2891536414231a0e2ca9cb5089915
 msgid "Criteria - Categories"
-msgstr ""
+msgstr "Kriterien-Kategorien"
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:3
 #: 9b0e75392d0943e592c4bc31f83d23d5
 msgid "This section covers the criteria categories management page."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Verwaltung von Kriterien-Kategorien."
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:5
 #: 981521cf20ad4eb6a5f90e0f95d2efc4
@@ -36,31 +36,39 @@ msgid ""
 "provided. In order to delete or edit a category press on the three dots "
 "corresponding to the respective category."
 msgstr ""
+"Kriterien-Kategorien dienen der logischen Gruppierung von Kriterien. Um "
+"eine neue Kategorie anzulegen, klicken Sie auf die Schaltfläche "
+"*Kategorie erstellen*. Es erscheint ein Dialogfenster, in welchem die "
+"englische und deutsche Bezeichnung der Kategorie angegeben werden muss. "
+"Klicken Sie anschließend auf *Speichern*, um die Kategorie zu erstellen. "
+"Um eine Kategorie zu löschen oder zu bearbeiten, klicken Sie in der "
+"Liste der Kategorien auf das *Drei Punkte*-Symbol vor der jeweiligen "
+"Kategorie."
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:8
 #: eeb23ed0325f44f3884d9e8ff84a4a41
 msgid "You cannot delete categories which have been assigned to criteria"
-msgstr ""
+msgstr "Kategorien, die mindestens einem Kriterium zugewiesen wurden, können nicht gelöscht werden."
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
 #: da24ed48d9f64fbab2a9ced46dbd1ddc
 msgid "Screenshot of criteria categories"
-msgstr ""
+msgstr "Bildschirmfoto der Kriterien-Kategorien"
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
 #: 9fa395189d9849cbb2086286487b191c
 msgid "Fig 06-03-01: Criteria categories list"
-msgstr ""
+msgstr "Abb 06-03-01: Liste der Kriterien-Kategorien"
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
 #: 4a331a99231c49ada9f7225a91db182b
 msgid "Screenshot of criteria categories add dialog"
-msgstr ""
+msgstr "Bildschirmfoto des Dialogfenster zum Hinzufügen von Kriterien-Kategorien"
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
 #: 6279d8921bdd4c4794e81cb9425b2cb0
 msgid "Fig 06-03-02: Create category dialog"
-msgstr ""
+msgstr "Abb 06-03-02: Dialogfenster zur Ersellung einer Kategorie"
 
 #~ msgid ""
 #~ "The purpose of the criteria categories"
