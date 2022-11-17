@@ -6,7 +6,7 @@ This section covers the data explorer page of the search module.
 This feature is only available and visible to users with the "Manager" role.
 ```
 
-Data explorer allows you to retrieve project available data from your previous selections in the patient and data filter.
+Data explorer allows you to retrieve available data from your previous selections in the patient and data filter.
 
 In order for the project data to be retrieved, click on *Retrieve data* button. The results are then loaded. Depending on the complexity and scope of the patient and data filter configurations, the calculation may take some time.
 

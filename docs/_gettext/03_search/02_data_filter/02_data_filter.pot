@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 13:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,12 +28,12 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:5
 #: 0c8316e4cd59467bac055ebd3fbc767f
-msgid "You get to the data filter if the cohort created in the [Patient filter](../01_patient_filter/01_patient_filter.md) in the previous step and clicked on *Next step* button. With the data filter you can now filter the defined cohort according to specific return parameters based on the data set GECCO 83."
+msgid "You get to the data filter if you created the {term}`cohort` in the [Patient filter](../01_patient_filter/01_patient_filter.md) in the previous step and clicked on *Next step* button. With the data filter you can now filter the defined cohort according to specific return parameters based on the GECCO data set."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:7
 #: b152f5488931474fbd4a6299c32e2163
-msgid "The size of the defined cohort is displayed above the return parameters area. To select the return parameters, click Add Parameter. A dialog window will then open in which you can make your selection. Depending on your authorization, you can then either start a data retrieval or transfer the configuration to a project in a further step."
+msgid "The size of the defined cohort is displayed above the return parameters area. To select the return parameters, click *Add Parameter*. A dialog window will then open in which you can make your selection. Depending on your authorization, you can then either start a data retrieval or transfer the configuration to a project in a further step."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:9
@@ -43,7 +43,7 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:10
 #: e127f44eb1de4bf4916d315bbfd9325b
-msgid "Apply configuration: this function is only available and visible to project managers."
+msgid "Create project application: this function is only available and visible to project managers."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:11
@@ -63,7 +63,7 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:21
 #: fa0e67cc955442e9b2424f9aaa3fc6db
-msgid "In order to select return parameters press *Add return parameter*. In the dialog you can select the desired return parameter(s) from a list. To do this, click on the respective plus symbol. As soon as a parameter is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the return parameter is no longer selected. Above the list is a search box that you can use to search directly for parameters and narrow the list down accordingly."
+msgid "In order to select {term}`return parameters` press *Add return parameter*. In the dialog you can select the desired return parameter(s) from a list. To do this, click on the respective plus symbol. As soon as a parameter is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the return parameter is no longer selected. Above the list is a search box that you can use to search directly for parameters and narrow the list down accordingly."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:24
@@ -88,17 +88,17 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:38
 #: 31f3f95f2bf04679aa29e350221a4227
-msgid "After you have selected the return parameters, they are displayed in the data filter list. Now you can calculate the number of hits in the data set within the defined cohort for the respective return parameter. To do this, click on \"Determine hits\". Each return parameter listed in the table can be removed from the list by clicking on the trash can icon. You can also add further return parameters to the list by clicking on *Add return parameter* button."
+msgid "After you have selected the return parameters, they are displayed in the data filter list. Now you can calculate the number of patients in the data set within the defined cohort for the respective return parameter. To do this, click on *Determine patients*. Each return parameter listed in the table can be removed from the list by clicking on the trash can icon. You can also add further return parameters to the list by clicking on *Add return parameter* button."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:44
 #: ebdc7a57bfb948189e986574227907b4
-msgid "Screenshot of data filter determine hits"
+msgid "Screenshot of data filter determine patients"
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:44
 #: 505168a2886841a9ba31eab27d32a711
-msgid "Fig 03-02-03: Hits per return parameter"
+msgid "Fig 03-02-03: patients per return parameter"
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:47
@@ -108,7 +108,7 @@ msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:48
 #: d844651b402e43de8e37b23d0e7fb3e5
-msgid "Apply configuration: With the role \"Project manager\" you can now apply all settings that you have made in the patient and data filter directly to a new project. This configuration can also be adjusted in the project itself."
+msgid "Create project application: With the role \"Project manager\" you can now apply all settings that you have made in the patient and data filter directly to a new project. This configuration can also be adjusted in the project itself."
 msgstr ""
 
 #: ../03_search/02_data_filter/02_data_filter.md:49

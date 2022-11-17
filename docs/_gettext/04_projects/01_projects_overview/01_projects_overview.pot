@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 16:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,12 +51,62 @@ msgstr ""
 msgid "archived projects"
 msgstr ""
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:18
+#: ../04_projects/01_projects_overview/01_projects_overview.md:16
 #: 73ac0ff9e3fa426bbee284d6869b515f
 msgid "Screenshot of projects list"
 msgstr ""
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:18
+#: ../04_projects/01_projects_overview/01_projects_overview.md:16
 #: 43c9e2446854465ca57a976f300277ab
 msgid "Fig 04-01-01: Projects list"
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:19
+#: cf5fe21ba42d4a45aabf3d9e06596d97
+msgid "At the beginning of each entry in the list you find a Symbol representing three points. By clicking this symbol you can access further options, which are depending on your user role. The necessary user role is noted in brackets behind each option."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:21
+#: 5ca8bfae52924c568e9fe626cb3573e3
+msgid "Preview (Project Lead, Project Approver): Preview the project application. In preview mode, you can not edit the project."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:22
+#: fb949e04093245f68e9e6c74c33c2bb5
+msgid "Edit researchers (Project Lead): Edit the researchers that are assigned to the project."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:23
+#: f8f75405548f4a0bb6c4ed25ba59c8a4
+msgid "Start project (Project Lead): Start the project to allow researchers to retrieve data. This is only possible after the project application has been approved."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:24
+#: b8092620c7734abc95d7bb806d017472
+msgid "Withdraw approval request (Project Lead): Withdraw your request, so that the project application can be changed."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:25
+#: 3b58ee260b314a0284ad9ef7bdb440a5
+msgid "Finish project (Project Lead): Finish the project so that data can be no longer retrieved."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:26
+#: a1776c7e06214fc38f5d6c7a2f5469d5
+msgid "Delete (Project Lead): Delete the project completely. Only projects, that have not been started, can be deleted."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:27
+#: 0690cc90d69741d59f744af16ceeeaef
+msgid "Archive (Project Lead): Archive the project, so that it no longer appears in the list. Only projects that have been finished, can be archived."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:28
+#: e39a6a4c8ba04ef0a9e378ded371fa75
+msgid "Review project (Project approver): Start the review to approve or deny the project application."
+msgstr ""
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:31
+#: ae515f704fb140edb00139d7c9a8e95e
+msgid "As a project lead you can only edit projects, you have created yourself."
 msgstr ""

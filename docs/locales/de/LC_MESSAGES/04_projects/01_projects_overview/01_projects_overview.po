@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 16:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: ../04_projects/01_projects_overview/01_projects_overview.md:1
 #: 5c14512e5122486198202edceeb5d949
 msgid "Projects Overview"
-msgstr ""
+msgstr "Projekt-Übersicht"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:3
 #: 942fb770f56146e0a86113411ec03743
 msgid "This section covers the projects overview page of the projects module."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Projekt-Übersicht dder Projektverwaltung."
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:5
 #: ae21ed729b0246cd862cac0fb6328b9e
@@ -34,34 +34,138 @@ msgid ""
 "functionality to search projects by project name and author as well as to"
 " filter projects on 4 criteria:"
 msgstr ""
+"Die Projekt-Übersicht ist eine Liste der vorhandenen Projekte und ihres "
+"jeweiligen Status. Die Liste erlaubt die Suche nach Projektname und Autor"
+" sowie das Filtern nach 4 Kriterien:"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:7
 #: 3703dd33da964ab682ba4d9b6e473db5
 msgid "all"
-msgstr ""
+msgstr "Alle"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:8
 #: f5b3bba8b9724635939f8d1fc0552b90
 msgid "owned"
-msgstr ""
+msgstr "Meine"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:9
 #: bc2d0cb234494227a697f125e44d59bd
 msgid "projects belonging to the logged-in user organization"
-msgstr ""
+msgstr "Projekt meiner Organisation"
 
 #: ../04_projects/01_projects_overview/01_projects_overview.md:10
 #: 1e13d1ebb2474470899393cdfd93cf1f
 msgid "archived projects"
-msgstr ""
+msgstr "Archivierte Projekte"
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:18
+#: ../04_projects/01_projects_overview/01_projects_overview.md:16
 #: 73ac0ff9e3fa426bbee284d6869b515f
 msgid "Screenshot of projects list"
-msgstr ""
+msgstr "Bildschirmfoto der Projektliste"
 
-#: ../04_projects/01_projects_overview/01_projects_overview.md:18
+#: ../04_projects/01_projects_overview/01_projects_overview.md:16
 #: 43c9e2446854465ca57a976f300277ab
 msgid "Fig 04-01-01: Projects list"
+msgstr "Abb 04-01-01: Projektliste"
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:19
+#: cf5fe21ba42d4a45aabf3d9e06596d97
+msgid ""
+"At the beginning of each entry in the list you find a Symbol representing"
+" three points. By clicking this symbol you can access further options, "
+"which are depending on your user role. The necessary user role is noted "
+"in brackets behind each option."
 msgstr ""
+"Am Anfang jedes Listeneintrages finden Sie ein Symbol in der Form von "
+"drei Punkten. Klicken Sie auf dieses Symbol, um auf weitere "
+"projektbezogene Funktionen zuzugreifen, die von Ihrer Benutzer-Rolle "
+"abhängen. Die jeweils erforderliche Rolle ist in Klammern hinter jeder "
+"Option angegeben."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:21
+#: 5ca8bfae52924c568e9fe626cb3573e3
+msgid ""
+"Preview (Project Lead, Project Approver): Preview the project "
+"application. In preview mode, you can not edit the project."
+msgstr ""
+"Vorschau (Projektleiter, Projektprüfer): Vorschau des Projektantrages. Im"
+" Vorschau-Modus können keine Änderungen vorgenommen werden."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:22
+#: fb949e04093245f68e9e6c74c33c2bb5
+msgid ""
+"Edit researchers (Project Lead): Edit the researchers that are assigned "
+"to the project."
+msgstr ""
+"Forscher bearbeiten (Projektleiter): Bearbeiten der Forscher, die dem "
+"Projekt zugeordnet sind."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:23
+#: f8f75405548f4a0bb6c4ed25ba59c8a4
+msgid ""
+"Start project (Project Lead): Start the project to allow researchers to "
+"retrieve data. This is only possible after the project application has "
+"been approved."
+msgstr ""
+"Projekt starten (Projektleiter): Das Projekt starten, um Forscher den "
+"Datenabruf zu ermöglichen. Diese Funktion ist erst verfgübar, wenn der "
+"Projektantrag genehmigt wurde."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:24
+#: b8092620c7734abc95d7bb806d017472
+msgid ""
+"Withdraw approval request (Project Lead): Withdraw your request, so that "
+"the project application can be changed."
+msgstr ""
+"Anfrage zurückziehen (Projektleiter): Die Projektanfrage zurückziehen, "
+"damit Änderungen am Projektantrag vorgenommen werden können."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:25
+#: 3b58ee260b314a0284ad9ef7bdb440a5
+msgid ""
+"Finish project (Project Lead): Finish the project so that data can be no "
+"longer retrieved."
+msgstr ""
+"Projekt beenden (Projektleiter): Projekt beenden, um den weiteren "
+"Datenabruf zu unterbinden."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:26
+#: a1776c7e06214fc38f5d6c7a2f5469d5
+msgid ""
+"Delete (Project Lead): Delete the project completely. Only projects, that"
+" have not been started, can be deleted."
+msgstr ""
+"Löschen (Projektleiter): Vollständige Löschung des Projektantrages. Es "
+"können ausschließlich Projekte gelöscht werden, die noch nicht gestartet "
+"worden sind."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:27
+#: 0690cc90d69741d59f744af16ceeeaef
+msgid ""
+"Archive (Project Lead): Archive the project, so that it no longer appears"
+" in the list. Only projects that have been finished, can be archived."
+msgstr ""
+"Archivieren (Projektleiter): Das Projekt archivieren, sodass es nicht "
+"länger in der Projektliste angezeigt wird. Nur beendete Projekte können "
+"archiviert werden."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:28
+#: e39a6a4c8ba04ef0a9e378ded371fa75
+msgid ""
+"Review project (Project approver): Start the review to approve or deny "
+"the project application."
+msgstr ""
+"Projekt überprüfen (Projektprüfer): Überprüfung des Projektantrages "
+"starten."
+
+#: ../04_projects/01_projects_overview/01_projects_overview.md:31
+#: ae515f704fb140edb00139d7c9a8e95e
+msgid "As a project lead you can only edit projects, you have created yourself."
+msgstr "Projektleiter können nur Projekte bearbeiten, die sie selbst angelegt haben."
+
+#~ msgid ""
+#~ "As a project lead you can only "
+#~ "edit projects, you have created "
+#~ "yourself. ``"
+#~ msgstr ""
 

@@ -19,7 +19,7 @@ Content Admin : Content Admin
 
 
 Criteria : Criteria
-  A special description in {term}`AQL` sytax that describes a filter criteria to extract a sub set
+  A special description in {term}`AQL` syntax that describes a filter criteria to extract a sub set
   of data.
 
 

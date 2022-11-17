@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 14:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,12 +48,12 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:12
 #: d77354210068408da79248cf85b7adda
-msgid "The cohort builder: criterion can be combined here using logical operators to build the cohort"
+msgid "The cohort builder: criteria can be combined here using logical operators to build the cohort"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:13
 #: 8d680d9450474daba36355f4f3c84926
-msgid "The hit display: display of the expected hits in the data sets based on the combined criterion"
+msgid "The patients display: display of the expected number of patients in the data sets based on the combined criteria"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:20
@@ -93,7 +93,7 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:35
 #: 7f68765079f746cdbb63e968cf28e53a
-msgid "After clicking on the *i* symbol of a criterion, a dialog window opens, from which you can find more detailed information about the criterion. The top section provides information about the title, author, purpose, and how the criterion is used. In the lower area you can see how the actual aql query, it is written in the Archetype Query Language (AQL)."
+msgid "After clicking on the *i* symbol of a criterion, a dialog window opens, from which you can find more detailed information about the criterion. The top section provides information about the title, author, purpose, and how the criterion is used. In the lower area you can see how the actual aql query is written in the Archetype Query Language (AQL)."
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:42
@@ -123,7 +123,7 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:51
 #: 3dc92569bab14c548d50a27c22cff57f
-msgid "Groupings: by default, a main group is created in the cohort builder, you can either insert criteria directly (loosely) into this or create subgroups. In order for a criterioncriterion to be inserted into a group, it must be activated. To do this, you need to select the tick in the top left corner of the group. A selected group is marked with a red border; the unselected groups are outlined in light gray. You can also delete groups, but it should be noted that the criteria contained in them will then also be removed."
+msgid "Groupings: by default, a main group is created in the cohort builder, you can either insert criteria directly (loosely) into this or create subgroups. In order for a criterion to be inserted into a group, it must be activated. To do this, you need to select the tick in the top left corner of the group. A selected group is marked with a red border; the unselected groups are outlined in light gray. You can also delete groups, but it should be noted that the criteria contained in them will then also be removed."
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:52
@@ -137,15 +137,18 @@ msgid "Negation: using the negate button, the conditions of criteria can be nega
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:60
-#: ../03_search/01_patient_filter/01_patient_filter.md:67
 #: 85f3726d7a2243758f177b3d6bf32bf2
-#: 1b33944cf86945cca0e605b7f8ff2d40
 msgid "Screenshot of criteria in a main group"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:60
 #: a1b34e881b6f4af2b16b8cc4480946c6
 msgid "Fig 03-01-04: Cohort builder with criteria in a main group"
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:67
+#: 1b33944cf86945cca0e605b7f8ff2d40
+msgid "Screenshot of criteria in two subgroups"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:67
@@ -240,25 +243,30 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:101
 #: 31e85cdc38cd4b6a8f69ad9e124811e5
-msgid "Hits display"
+msgid "3. Patients display"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:103
 #: 590abd200d5e42668fa567758e217d21
-msgid "This area shows the number of hits in the entire dataset resulting from the configuration of the cohort. To retrieve the hits, you must click the *Retrieve* button. The number of hits is then displayed. Depending on the authorization and if the data is available, the hits are also displayed in a graphical representation."
+msgid "This area shows the number of patients in the entire dataset resulting from the configuration of the cohort. To retrieve the patients, you must click the *Retrieve* button. The number of patients is then displayed. Depending on the authorization and if the data is available, the patients are also displayed in a graphical representation."
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:106
 #: 734cfe917b3d44249aaa24fed76af603
-msgid "If you make changes to the cohort in the cohort builder, you need to press \"Retrieve\" each time for an accurate hits count"
+msgid "If you make changes to the cohort in the cohort builder, you need to press \"Retrieve\" each time for an accurate patients count."
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:114
-#: d12facb31edc4275affc5b2e10af1ff5
+#: ../03_search/01_patient_filter/01_patient_filter.md:110
+#: 8befe4de76214333b0f8674b9ed67527
+msgid "Due to data privacy reasons, only users inheriting the \"Manager\" role are able to see the exact number of patients. Users without this role will always see a slightly rounded number."
+msgstr ""
+
+#: ../03_search/01_patient_filter/01_patient_filter.md:117
+#: 5382c7f542ab4c0b8af7b5b055c95930
 msgid "Screenshot of cohort hits and diagrams"
 msgstr ""
 
-#: ../03_search/01_patient_filter/01_patient_filter.md:114
-#: 5382c7f542ab4c0b8af7b5b055c95930
+#: ../03_search/01_patient_filter/01_patient_filter.md:117
+#: d12facb31edc4275affc5b2e10af1ff5
 msgid "Fig 03-01-07: Cohort builder data hits and data diagrams"
 msgstr ""

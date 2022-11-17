@@ -32,17 +32,7 @@ Fig 04-02-01: Project editor
  
 
 #### 1. Cohort definition
-The cohort definition section is the most important section and represents the criteria that is to define the cohort of patients taking part in this project.
-
-In this section all criteria available are displayed in the left pane on categories, these can be individually expanded and collapsed. The criteria can be filtered as well as searched on using the search box.
-
-Detailed information on each individual criterion can be obtained by clicking on the *i* symbol.
-
-To use a criterion and add it to the cohort builder, click it's plus icon. The criterion is then inserted directly into the cohort builder.
-
-The number of hits in the data set within the defined cohort can be calculated at any time during the cohort definition. To do this, click on *Determine* button.
-
-Detailed information on how the search works can be found in the [Search](../../03_search/03_search.md) functionality documentation.
+The cohort definition section is the most important section and represents the criteria that is to define the cohort of patients taking part in this project. Detailed information on how the search works can be found in the [Search](../../03_search/03_search.md) functionality documentation.
 
 
 ```{figure} images/cohort_definition.png
@@ -70,15 +60,16 @@ Fig 04-02-03: Project general information fields
 |-----|-----------------------|-----------|
 | 1   | Title                 | Yes       |
 | 2   | Description           | Yes       |
-| 3   | Goal                  | Yes       |
-| 4   | Primary hypothesis    | Yes       |
-| 5   | Secondary hypothesis  | No        |
-| 6   | Keywords              | No        |
-| 7   | Category              | No        |
-| 8   | Start date            | Yes       |
-| 9   | End date              | Yes       |
-| 10  | Financing             | No        |
-| 11  | Data protection level | No        |
+| 3   | Simple Description    | Yes       |
+| 4   | Goal                  | Yes       |
+| 5   | Primary hypothesis    | Yes       |
+| 6   | Secondary hypothesis  | No        |
+| 7   | Keywords              | No        |
+| 8   | Category              | No        |
+| 9   | Start date            | Yes       |
+| 10  | End date              | Yes       |
+| 11  | Financing             | No        |
+| 12  | Data protection level | No        |
 
 
 
@@ -133,13 +124,10 @@ alt: Screenshot of project parameters
 Fig 04-02-05: Project return prameters section
 ```
 
+In order to select {term}`return parameters` press *Add return parameter*. In the dialog you can select the desired return parameter(s) from a list. To do this, click on the respective plus symbol. As soon as a parameter is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the return parameter is no longer selected.
+Above the list is a search box that you can use to search directly for parameters and narrow the list down accordingly. 
 
-A dialog window will then open in which you can make your selection. To do this, click on the respective plus symbol. As soon as a parameter is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the return parameter is no longer selected.
-
-Above the list is a search box that you can use to search directly for parameters and narrow down the list accordingly.
-
-As soon as you have selected one or more return parameters, you can add the parameters to the data filter by clicking on "Accept selection". The dialog window then closes automatically.
-
+As soon as you have selected one or more return parameters, you can add the parameters to the data filter by clicking on *Apply selection* button. The dialog window then closes automatically.
 
 ```{figure} images/project_parameters_selection.png
 ---
@@ -149,14 +137,14 @@ Fig 04-02-06: Project return prameters dialog
 ```
 
 
-After the parameters are selected, hits in the data set within the defined cohorts can be calculated individually per parameter.
+After the parameters are selected, patients in the data set within the defined cohorts can be calculated individually per parameter.
 
 
 ```{figure} images/project_parameters_hits.png
 ---
-alt: Screenshot of hits per parameter
+alt: Screenshot of patients per parameter
 ---
-Fig 04-02-07: Hits per parameter
+Fig 04-02-07: Patients per parameter
 ```
 
 
@@ -165,8 +153,8 @@ Return parameters are mandatory, in order to save this project you must select a
 ```
 
 
-#### 3. Researchers 
-The last section of the project screen is the researchers section, here researchers can be assigned to the project. By clicking the Add researchers button.
+#### 4. Researchers 
+The last section of the project screen is the researchers section, here researchers can be assigned to the project. By clicking the *Add researchers* button.
 
 
 ```{figure} images/project_researchers.png
@@ -177,7 +165,7 @@ Fig 04-02-08: Project researchers
 ```
 
 
-A dialog window will then open in which you can make your selection. To do this, click on the respective plus symbol. As soon as a parameter is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the return parameter is no longer selected.
+A dialog window will then open in which you can make your selection. To do this, click on the respective plus symbol. As soon as a researcher is selected, the symbol changes to a tick. If you click the tick again, the symbol changes back to a plus and the researcher is no longer selected.
 
 
 ```{figure} images/project_researchers_selection.png

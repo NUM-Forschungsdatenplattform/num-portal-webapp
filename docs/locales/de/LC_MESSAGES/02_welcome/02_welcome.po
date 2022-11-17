@@ -29,10 +29,16 @@ msgid ""
 " time, as well as general information that might be useful for the user "
 "and that is managed by {term}`Content Admin`s."
 msgstr ""
+"Jeder Benutzer wird nach erfolgreichem Login auf die Willkommensseite "
+"weitergeleitet. Diese Seite enthält grundlegende Informationen zum Portal "
+"sowie einige Statistiken und eine Übersicht über kürzlich aktualisierte Projekte "
+", die für den Benutzer nützlich sein können. Zusätzlich werden Kacheln zu "
+"weiterführenden Informationen angezeigt, welche von {term}`Inhalts-Administrator`en "
+"verwaltet werden."
 
 #: ../02_welcome/02_welcome.md:8 6e16991ca430475abf22bf03145449f3
 msgid "Introduction / Statistics"
-msgstr ""
+msgstr "Einführung / Statistiken"
 
 #: ../02_welcome/02_welcome.md:10 ec95a3b87b4b49eda8cfd3560a57474c
 msgid ""
@@ -41,16 +47,20 @@ msgid ""
 " the list of participating clinics you can use the link at the end of the"
 " text."
 msgstr ""
+"Der erste Abschnitt enthält eine generelle Einführung, um den Benutzer über "
+"den Zweck der Plattform zu informieren. Um direkt zu den teilnehmenden Kliniken "
+"zu springen, kann der Link am Ende des Textes verwendet werden."
 
 #: ../02_welcome/02_welcome.md:18 b2a84a80f48c4c92b1241765eb362a7f
 msgid ""
 "Screenshot of the welcome page showing the introduction text followed by "
 "general statistics"
 msgstr ""
+"Bildschirmfoto des Einführungsabschnitts der Willkommensseite"
 
 #: ../02_welcome/02_welcome.md:18 58b2d5e3415746e6a4cf65b04e415227
 msgid "Fig 02-01: Introduction part of the welcome page"
-msgstr ""
+msgstr "Abb 02-01: Einführungsabschnitt der Willkommensseite"
 
 #: ../02_welcome/02_welcome.md:21 4199e4e59b18490abb9f3e75e02f1bb0
 msgid ""
@@ -59,22 +69,30 @@ msgid ""
 "running CODEX system and also how many different clinics have provided "
 "previously mentioned data."
 msgstr ""
+"Auf die Einführung folgt eine Statistik der Anzahl der Projekte und {term}`Kriterien`"
+", die zum CODEX-System hinzugefügt wurden sowie die Anzahl der Kliniken, die "
+" Daten zur Verfügung gestellt haben."
 
 #: ../02_welcome/02_welcome.md:26 0a367d4451924c34963e5b99f13bd1bc
 msgid ""
 "These statistics only contain general data and contain no sensitive "
 "information about contents or names of participating clinics."
 msgstr ""
+"Diese Statistiken enthalten nur allgemeine Informationen und enthalten "
+"keinerlei sensible Informationen über die teilnehmenden Kliniken "
+"oder die bereitgestellten Daten."
 
 #: ../02_welcome/02_welcome.md:30 5f9ad86bcff74bf8a428becf74f9de65
 msgid "Latest projects"
-msgstr ""
+msgstr "Neueste Projekte"
 
 #: ../02_welcome/02_welcome.md:33 5c7c00cc329549ae967bc5d6ec8240de
 msgid ""
 "The list of latest {term}`Project`s is only visible for users that have "
 "logged in to the application."
 msgstr ""
+"Die Liste der neuesten {term}`Projekt`e ist nur für Benutzer sichtbar, "
+"die sich am Portal angemeldet haben."
 
 #: ../02_welcome/02_welcome.md:36 2412329d0315474582627d6d3003bf0a
 msgid ""
@@ -83,14 +101,19 @@ msgid ""
 " can be used to get a quick overview if there are recent changes to a "
 "project the user is interested in."
 msgstr ""
+"In der Liste der neuesten {term}`Projekt`e werden die 5 Projekte angezeigt, "
+"an welchen zuletzt Änderungen vorgenommen wurden. Es werden nur Projekte "
+", auf die der angemeldete Benutzer Zugriff hat. Die Liste kann dazu verwendet "
+"werden, einen schnellen Überblick über die Änderungen in den laufenden Projekten "
+"zu gewinnen."
 
 #: ../02_welcome/02_welcome.md:44 d51e69d463854ad2aa7ef5b9577c4ea6
 msgid "Screenshot of table of latest changed projects including the change date"
-msgstr ""
+msgstr "Bildschirmfoto der Tabelle der zuletzt geänderten Projekte inklusive des Änderungsdatums"
 
 #: ../02_welcome/02_welcome.md:44 9f32f83bd53e4191af67d2a6954584c3
 msgid "Fig 02-02: Table of latest projects"
-msgstr ""
+msgstr "Abb 02-02: Tablle der neuesten Projekte"
 
 #: ../02_welcome/02_welcome.md:47 035ee4c38f9749f39c3c32dab7887ed1
 msgid ""
@@ -98,16 +121,21 @@ msgid ""
 " with projects go to the page [Projects](../04_projects/04_projects.md) "
 "or [Data Explorer](../05_data_explorer/05_data_explorer.md)."
 msgstr ""
+"Die Informationen in dieser Liste können nicht bearbeitet werden. Wenn Sie "
+"Projekte bearbeiten oder mit deren Daten arbeiten möchten, wechseln Sie "
+"bitte zur Seite [Projekte](../04_projects/04_projects.md) oder "
+"[Datenabruf](../05_data_explorer/05_data_explorer.md)."
 
 #: ../02_welcome/02_welcome.md:50 26ea0e5b13784f6c915389a5ce1eb010
 msgid "Info Board"
-msgstr ""
+msgstr "Info Board"
 
 #: ../02_welcome/02_welcome.md:53 fbf0954bb4114d19b760a8f68781ee32
 msgid ""
 "The info board content is only visible to users that are successfully "
 "logged in."
 msgstr ""
+"Der Inhalt des Info Boards ist nur für angemeldete Benutzer sichtbar."
 
 #: ../02_welcome/02_welcome.md:56 7162352354a04a6a9d659febb104c7ab
 msgid ""
@@ -115,22 +143,26 @@ msgid ""
 "Admin` users. This section can contain useful information for users to "
 "assist them in their work or to announce information to logged in users."
 msgstr ""
+"Der Inhalt des Info Boards wird durch Benutzer mit der Rolle {term}`Inhalts-Administrator` "
+"bereitgestellt. Dieser Bereich kann hilfreiche Informationen bieten, um angemeldete "
+"Benutzer bei der Arbeit im Portal zu unterstützen."
 
 #: ../02_welcome/02_welcome.md:64 a5a1310583d544058c09ca90651dd860
 msgid "Screenshot of the info board with two cards with test and demo content."
-msgstr ""
+msgstr "Bildschirmfoto des Info Boards mit zwei Kacheln"
 
 #: ../02_welcome/02_welcome.md:64 c18e00d3a3d7474bb8cf6e983ac857e6
 msgid "Fig 02-03: Info board cards"
-msgstr ""
+msgstr "Abb 02-03: Info Board Kacheln"
 
 #: ../02_welcome/02_welcome.md:67 4ffbf1ada56f4bd38d46dc6f11adadbf
 msgid "Participating clinics"
-msgstr ""
+msgstr "Teilnehmende Kliniken"
 
 #: ../02_welcome/02_welcome.md:69 3c5d24cb775a4dd0b720720a0665ed29
 msgid ""
 "In the following section all participating clinics are represented by "
 "their corresponding logo."
 msgstr ""
-
+"Im folgenden Abschnitt werden alle teilnehmenden Kliniken durch ihr "
+"jeweiliges Logo repräsentiert."

@@ -5,7 +5,7 @@ This section covers the search feature.
 The search functionality gives you easy access to the data sets that are available in the platform. Starting with the patient filter, you can start a data retrieval in three steps or transfer the selected parameters to a new project.
 
 ```{important}
-Only users with **Manager** or **Project lead** roles can access the search functionality
+Only users with **Manager** or **Project lead** roles can access the search functionality.
 ```
 
 ```{toctree}

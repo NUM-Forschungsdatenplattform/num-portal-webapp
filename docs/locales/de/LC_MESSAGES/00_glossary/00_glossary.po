@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 13:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../00_glossary/00_glossary.md:1 64e6c04d51d7482ab03af391e3452b13
 msgid "Glossary"
-msgstr ""
+msgstr "Glossar"
 
 #: ../00_glossary/00_glossary.md:1 ffba6f4244814688830aaaac335f197f
 msgid "AQL : AQL"
-msgstr ""
+msgstr "AQL : AQL"
 
 #: ../00_glossary/00_glossary.md:6 0aa8d7fff1e5421d81a4fc5828f64c71
 msgid ""
@@ -31,10 +31,13 @@ msgid ""
 "{term}`openEHR` like system. Can be used on all {term}`openEHR` systems "
 "to get data from stored {term}`EHRs<EHR>`."
 msgstr ""
+"Eine spezielle Abfragesprache in Anlehnung an SQL, um Daten aus einem "
+"{term}`openEHR`-basierten System abzufragen. AQL kann verwendet werden, "
+"um Daten aus gespeicherten {term}`EHR`s auszulesen."
 
 #: ../00_glossary/00_glossary.md:6 4ea004ce13884b08b71207afe32ea1b4
 msgid "Cohort : Cohort"
-msgstr ""
+msgstr "Kohorte : Kohorte"
 
 #: ../00_glossary/00_glossary.md:11 681dababfde046bd8665b69da82aae35
 msgid ""
@@ -42,30 +45,39 @@ msgid ""
 "data output to a subset of {term}`EHRs<EHR>`, e.g. \"Vaccinated persons "
 "over the age of 18\" or \"All female persons over the age of 60\"."
 msgstr ""
+"Eine Kombination bzw. parametrisierte Selektion von {term}`Kriterien`um "
+"die Datenausgabe auf eine Teilmenge von {term}`EHR`s zu beschränken, z.B."
+" \"Über 18-jährige Geimpfte Personen\" oder \"Über 60-jährige weibliche "
+"Personen\"."
 
 #: ../00_glossary/00_glossary.md:11 d595dc1f829f4f94a5cc9572214f15e7
 msgid "Content Admin : Content Admin"
-msgstr ""
+msgstr "Inhalts-Administrator : Inhalts-Administrator"
 
 #: ../00_glossary/00_glossary.md:16 c15d264ba2a1479e912ae971e005a960
 msgid ""
 "A role of users that is allowed to add, modify and delete content to the "
 "Info Board and the  Navigation menu section."
 msgstr ""
+"Eine Benutzerrolle mit der Berechtigung, Kacheln des Info Boards auf der "
+"Willkommensseite zu erstellen, zu bearbeiten und zu löschen."
 
 #: ../00_glossary/00_glossary.md:16 ba9b77d2b6224213ad94c4c45bce4523
 msgid "Criteria : Criteria"
-msgstr ""
+msgstr "Kriterien : Kriterien"
 
 #: ../00_glossary/00_glossary.md:21 8fec9313c445493b923c7d2dfe73c042
+#, fuzzy
 msgid ""
-"A special description in {term}`AQL` sytax that describes a filter "
+"A special description in {term}`AQL` syntax that describes a filter "
 "criteria to extract a sub set of data."
 msgstr ""
+"Eine spezielle Beschreibung in {term}`AQL`-Syntax, die einen Filter zum "
+"Extrahieren von Teilmengen von Daten bereitstellt."
 
 #: ../00_glossary/00_glossary.md:21 4cbf5926568041b5a567f2c58427d9db
 msgid "EHR : EHR"
-msgstr ""
+msgstr "EHR : EHR"
 
 #: ../00_glossary/00_glossary.md:26 f987619129e3439ca98261aa3c4be057
 msgid ""
@@ -73,10 +85,14 @@ msgid ""
 " collects all treatments and measurements during a specific period of "
 "time, e.g. duration of a clinical stay of the  person."
 msgstr ""
+"Elektronischer Gesundheitsdatensatz. Ein Datensatz, der eine bestimmbaren"
+" Person zugeordnet ist und eine Dokumentation aller Untersuchungen und "
+"Behandlungen innerhalb eines festgelegten Zeitraums, z.B. eines "
+"stationären Aufenthalts, beinhaltet."
 
 #: ../00_glossary/00_glossary.md:27 fdf669e29ab4486ab655d313009c9485
 msgid "NUM : NUM"
-msgstr ""
+msgstr "NUM : NUM"
 
 #: ../00_glossary/00_glossary.md:32 dbd3d364ba414f3ab8e81f1db2d71c33
 msgid ""
@@ -85,32 +101,45 @@ msgid ""
 "the goal is to implement a data exchange platform for researchers on big "
 "data sets."
 msgstr ""
+"Netzwerk Universitätsmedizin. Eine Kollaboration von Kliniken in "
+"Deutschland, welche die Zusammenarbeit in verschiedenen medizinischen "
+"Anwendungen zum Ziel hat. Im Fall von CODEX ist das Ziel die Umsetzung "
+"einer Forschungsdatenplattform für Forschungsprojekte mit einem "
+"umfangreichen, zusammengeführten Datenbestand."
 
 #: ../00_glossary/00_glossary.md:33 433025b3c22e49cfb20bf1915de7eb0b
 msgid "openEHR : openEHR"
-msgstr ""
+msgstr "openEHR : openEHR"
 
 #: ../00_glossary/00_glossary.md:38 71938a4c72d8456eb430d13cf896771d
 msgid ""
 "Open international standard to store data together with the semantic "
 "information on how data has to be interpreted."
 msgstr ""
+"Offener, intenationaler Standard, um Daten inklusive semantischer "
+"Informationen zu speichern, welche beschreiben, wie die Daten zu "
+"interpretieren sind."
 
 #: ../00_glossary/00_glossary.md:41 ac3f6421aaf54932b173eb5524e66a9d
 msgid ""
 "See [openEHR project website](https://www.openehr.org) for more "
 "information."
 msgstr ""
+"Siehe [openEHR Projektwebseite](https://www.openehr.org) für weitere "
+"Informationen."
 
 #: ../00_glossary/00_glossary.md:40 3f6299f2c9dd4e59b0aee71a3a73644f
 msgid "Project : Project"
-msgstr ""
+msgstr "Projekt : Projekt"
 
 #: ../00_glossary/00_glossary.md:45 0af6967f9eca4724868da77a402cdde0
 msgid ""
 "A project contains the meta and control data to stear research on a "
 "specific topic and subset of data extracted from the data pool."
 msgstr ""
+"Ein Projekt enthält Meta- und Steuerungsdaten um Forschung zu einem "
+"spezifischen Thema auszuführen auf der Basis einer extrahierten Teilmenge"
+" von Daten aus der Gesamt-Datenbasis."
 
 #: ../00_glossary/00_glossary.md:48 7ebc479287ec4d20895cc1b6152272ca
 msgid ""
@@ -118,16 +147,22 @@ msgid ""
 "like the purpose, hypothesis or period of time the project is intended to"
 " run."
 msgstr ""
+"Es enthält die {term}`Kohorte`ndefinition sowie grundlegende "
+"Informationen, wie den Zweck, die Fragestellung oder den Zeitraum, über "
+"den das Projekt durchgeführt werden soll."
 
 #: ../00_glossary/00_glossary.md:51 b8daefdc0e9242fdbe2bfffa35a64b73
 msgid ""
 "For the data retrieval and work on the data all {term}`Return Parameters`"
 " are as well defined as the {term}`Researcher` who works with the data."
 msgstr ""
+"Für den Datenabruf und die Arbeit mit den Daten werden auch die "
+"{term}`Rückgabeparameter` definiert sowie die {term}`Forscher` "
+"festgelegt, die mit den Daten arbeiten werden."
 
 #: ../00_glossary/00_glossary.md:51 489357f6b3c64d1398d61faf137b617e
 msgid "Researcher : Researcher"
-msgstr ""
+msgstr "Forscher : Forscher"
 
 #: ../00_glossary/00_glossary.md:56 d1088a64f4af4832b106baaff3f3da94
 msgid ""
@@ -135,14 +170,19 @@ msgid ""
 "to retrieve the data. A researcher can only see the data assigned to a "
 "project."
 msgstr ""
+"Eine natürliche Person, die im Rahmen eines Projekts dazu berechtigt ist,"
+" Daten abzurufen. Ein Forscher kann nur Daten verarbeiten, die seinem "
+"Projekt zugeordnet sind."
 
 #: ../00_glossary/00_glossary.md:56 5d1930772c2945f3b631175088fd583e
 msgid "Return Parameters : Return Parameters"
-msgstr ""
+msgstr "Rückgabeparameter : Rückgabeparameter"
 
 #: ../00_glossary/00_glossary.md:61 e1808598c141463a9e7f5b0c3cdf3360
 msgid ""
 "The clinical models that are used in a data retrieval. These models are "
 "usually defined in an {term}`openEHR` template."
 msgstr ""
+"Die klinischen Modelle, welche zum Datenabruf verwendet werden. Diese "
+"Modelle werden in der Regel durch {term}`openEHR`-Vorlagen definiert."
 

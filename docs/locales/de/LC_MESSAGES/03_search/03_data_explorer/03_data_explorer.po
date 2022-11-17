@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 13:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: ../03_search/03_data_explorer/03_data_explorer.md:1
 #: d61ed88a336949539d045a3878aa0b1d
 msgid "Data explorer"
-msgstr ""
+msgstr "Datenabruf"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:3
 #: 98ad695010584c668baf5d5772ec408b
 msgid "This section covers the data explorer page of the search module."
-msgstr ""
+msgstr "Dieser Abschnitt beschreibt den Datenabruf der Such-Funktion."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:6
 #: 00f7fb2e2f8343eea7c7f926408ab23e
@@ -33,13 +33,16 @@ msgid ""
 "This feature is only available and visible to users with the \"Manager\" "
 "role."
 msgstr ""
+"Diese Funktion ist nur für Benutzer mit der Rolle \"Manager\" verfügbar."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:9
 #: 68185d7b868b4870bec9f06f7439a339
 msgid ""
-"Data explorer allows you to retrieve project available data from your "
-"previous selections in the patient and data filter."
+"Data explorer allows you to retrieve available data from your previous "
+"selections in the patient and data filter."
 msgstr ""
+"Der Datenabruf ermöglicht das Herunterladen der verfügbaren Daten basierend "
+"auf den vorher getroffenen Einstellungen."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:11
 #: 784ab860786d414581fccedeef830155
@@ -49,16 +52,20 @@ msgid ""
 "scope of the patient and data filter configurations, the calculation may "
 "take some time."
 msgstr ""
+"Um Daten abzurufe, klicke Sie auf die Schaltfläche *Daten abrufen*. Die "
+"Ergebnisse werden zunächst geladen. Basierend auf dem Umfang des Datensatzes "
+"und der Komplexität der Filterkonfiguration kann dieser Vorgang einige Zeit "
+"in Anspruch nehmen."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:17
 #: aaf5e9a8baca40f897dda6f063ef49dc
 msgid "Screenshot of data retrieval"
-msgstr ""
+msgstr "Bildschirmfoto des Datenabrufs"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:17
 #: bacf98a51f4747c399f152ae12196a4d
 msgid "Fig 03-03-01: Data retrieval"
-msgstr ""
+msgstr "Abb 03-03-01: Datenabruf"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:21
 #: e9bfa1729dca4613b18e26bea44b9732
@@ -67,6 +74,9 @@ msgid ""
 "results of each data filter selected in the previous step are presented "
 "in separate tables."
 msgstr ""
+"Sobald die Daten geladen wurden, werden die Ergebnisse in Tabellenform "
+"dargestellt. Die Ergebnisse jedes ausgewählten Rückgabeparameters werden "
+"in separaten Tabellen dargestellt."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:23
 #: 7ad39359764a43ebb4dbc995585f22aa
@@ -74,14 +84,23 @@ msgid ""
 "The results can be exported in two different formats: CSV and JSON - for "
 "further use."
 msgstr ""
+"Die Ergebnisse können entweder im CSV- oder JSON-Format zu weiteren "
+"Verwendung heruntergeladen werden."
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:30
 #: 954db8a245fd4b0f911a2218bad3d10a
 msgid "Screenshot of data retrieval tables"
-msgstr ""
+msgstr "Bildschirmfoto der Datenabruf-Tabellen"
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:30
 #: 1cb8ca94666c48618619e40425dba305
 msgid "Fig 03-03-02: Data retrieval results"
-msgstr ""
+msgstr "Abb 03-03-02: Ergebnisse des Datenabrufs"
+
+#~ msgid ""
+#~ "Data explorer allows you to retrieve "
+#~ "project available data from your "
+#~ "previous selections in the patient and"
+#~ " data filter."
+#~ msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 13:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,32 +20,43 @@ msgstr ""
 #: ../03_search/02_data_filter/02_data_filter.md:1
 #: 8b1a1f61f4264328862bb316a769ec79
 msgid "Data filter"
-msgstr ""
+msgstr "Datenfilter"
 
 #: ../03_search/02_data_filter/02_data_filter.md:3
 #: 7d79995e4ced49529b559c4909a14b1b
 msgid "This section covers the data filter page of the search module."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt den Datenfilter der Such-Funktion."
 
 #: ../03_search/02_data_filter/02_data_filter.md:5
 #: 0c8316e4cd59467bac055ebd3fbc767f
 msgid ""
-"You get to the data filter if the cohort created in the [Patient "
-"filter](../01_patient_filter/01_patient_filter.md) in the previous step "
-"and clicked on *Next step* button. With the data filter you can now "
-"filter the defined cohort according to specific return parameters based "
-"on the data set GECCO 83."
+"You get to the data filter if you created the {term}`cohort` in the "
+"[Patient filter](../01_patient_filter/01_patient_filter.md) in the "
+"previous step and clicked on *Next step* button. With the data filter you"
+" can now filter the defined cohort according to specific return "
+"parameters based on the GECCO data set."
 msgstr ""
+"Sie erreichen den Datenfilter indem Sie eine {term}`Kohorte` im "
+"[Patienten-Filter](../01_patient_filter/01_patient_filter.md) erstellen "
+"und anschließend auf die Schaltfläche *Nächster Schritt* klicken. Mittels "
+"des Datenfilters können Sie die über die Kohorte ermittelten Daten nun auf "
+"spezifische Rückgabeparameter basierend auf dem GECCO-Datensatz eingrenzen."
 
 #: ../03_search/02_data_filter/02_data_filter.md:7
 #: b152f5488931474fbd4a6299c32e2163
 msgid ""
 "The size of the defined cohort is displayed above the return parameters "
-"area. To select the return parameters, click Add Parameter. A dialog "
+"area. To select the return parameters, click *Add Parameter*. A dialog "
 "window will then open in which you can make your selection. Depending on "
 "your authorization, you can then either start a data retrieval or "
 "transfer the configuration to a project in a further step."
 msgstr ""
+"Der Umfang der definierten Kohorte wird oberhalb der Rückgabeparameter "
+"angezeigt. Klicken Sie auf *Parameter hinzufügen*, um Rückgabeparameter "
+"zu auszuwählen. Es öffnet sich ein Dialogfenster, in dem Sie Ihre Auswahl "
+"treffen können. Je nach den Ihnen zugeordneten Berechtigungen können Sie "
+"anschließend einen Datenabruf starten oder die Konfiguration in ein neues "
+"Projekt überführen."
 
 #: ../03_search/02_data_filter/02_data_filter.md:9
 #: eb2cb146eec34085821825bceca49f57
@@ -53,13 +64,16 @@ msgid ""
 "Depending on your authorization, you have the following additional "
 "options and only see the corresponding button:"
 msgstr ""
+"Basierend auf Ihren Berechtigungen haben Sie die folgenden Optionen: "
 
 #: ../03_search/02_data_filter/02_data_filter.md:10
 #: e127f44eb1de4bf4916d315bbfd9325b
 msgid ""
-"Apply configuration: this function is only available and visible to "
-"project managers."
+"Create project application: this function is only available and visible "
+"to project managers."
 msgstr ""
+"Projektantrag stellen: Diese Funktion ist ausschließlich für Benutzer "
+"mit der Rolle \"Projektleiter\" verfügbar."
 
 #: ../03_search/02_data_filter/02_data_filter.md:11
 #: 9b3f8d919eb74002b4e3d38fb96fbf07
@@ -67,28 +81,37 @@ msgid ""
 "Start data retrieval: this function is only available and visible to "
 "managers."
 msgstr ""
+"Datenabruf starten: Diese Funktion ist ausschließlich für Benutzer mit "
+"der Rolle \"Manager\" verfügbar."
 
 #: ../03_search/02_data_filter/02_data_filter.md:17
 #: a598fb385f4b464ebea0ba49621711c5
 msgid "Screenshot of data filter"
-msgstr ""
+msgstr "Bildschirmfoto des Datenfilters"
 
 #: ../03_search/02_data_filter/02_data_filter.md:17
 #: e0279961cc9847edafc5d50df6326a11
 msgid "Fig 03-02-01: Data filter"
-msgstr ""
+msgstr "Abb 03-02-01: Datenfilter"
 
 #: ../03_search/02_data_filter/02_data_filter.md:21
 #: fa0e67cc955442e9b2424f9aaa3fc6db
 msgid ""
-"In order to select return parameters press *Add return parameter*. In the"
-" dialog you can select the desired return parameter(s) from a list. To do"
-" this, click on the respective plus symbol. As soon as a parameter is "
-"selected, the symbol changes to a tick. If you click the tick again, the "
-"symbol changes back to a plus and the return parameter is no longer "
-"selected. Above the list is a search box that you can use to search "
-"directly for parameters and narrow the list down accordingly."
+"In order to select {term}`return parameters` press *Add return "
+"parameter*. In the dialog you can select the desired return parameter(s) "
+"from a list. To do this, click on the respective plus symbol. As soon as "
+"a parameter is selected, the symbol changes to a tick. If you click the "
+"tick again, the symbol changes back to a plus and the return parameter is"
+" no longer selected. Above the list is a search box that you can use to "
+"search directly for parameters and narrow the list down accordingly."
 msgstr ""
+"Klicken Sie auf *Paramter hinzufügen*, um {term}`Rückgabeparameter` auszuwählen. "
+"Im Dialogfenster können Sie die gewünschten Rückgabeparameter aus einer mehrseitigen "
+"Liste auswählen. Klicken Sie dazu auf das jeweilige Plus-Symbol, welches sich "
+"daraufhin in ein Häkchen ändert. Sie können beliebig viele Parameter auswählen. "
+"Klicken Sie erneut auf das Häkchen hinter einem Parameter, um diesen wieder "
+"abzuwählen. Oberhalb der Liste befindet sich ein Suchfeld, worüber Sie Parameter "
+"direkt suchen können."
 
 #: ../03_search/02_data_filter/02_data_filter.md:24
 #: ca2e23696a0c42d9bdb1195ba568ff37
@@ -97,6 +120,10 @@ msgid ""
 "the parameters to the data filter by clicking on *Apply selection* "
 "button. The dialog window then closes automatically."
 msgstr ""
+"Sobald Sie einen oder mehrere Rückgabeparameter ausgewählt haben, können "
+"Sie diese hinzufügen, indem Sie die Schaltfläche *Auswahl übernehmen* "
+"anklicken. Das Dialogfenster wird automatisch geschlossen und die "
+"ausgewählten Parameter nun im Bereich Datenfilter angezeigt."
 
 #: ../03_search/02_data_filter/02_data_filter.md:27
 #: 7ebaa18aef0249d9a3d63bce532ffb69
@@ -104,38 +131,43 @@ msgid ""
 "Return parameters are mandatory, in order to continue you must select at "
 "least one parameter."
 msgstr ""
+"Für die weitere Bearbeitung muss mindestens ein Rückgabeparameter ausgewählt werden."
 
 #: ../03_search/02_data_filter/02_data_filter.md:34
 #: f1b81361493f4b8a990c853ae16f84d6
 msgid "Screenshot of data filter return parameters"
-msgstr ""
+msgstr "Bildschirmfoto der Rückgabeparameter des Datenfilters"
 
 #: ../03_search/02_data_filter/02_data_filter.md:34
 #: 7fb5cf767cfd4e93b68f679b20a4bd4f
 msgid "Fig 03-02-02: Data filter return parameters"
-msgstr ""
+msgstr "Abb 03-02-02: Datenfilter mit Rückgabeparametern"
 
 #: ../03_search/02_data_filter/02_data_filter.md:38
 #: 31f3f95f2bf04679aa29e350221a4227
 msgid ""
 "After you have selected the return parameters, they are displayed in the "
-"data filter list. Now you can calculate the number of hits in the data "
-"set within the defined cohort for the respective return parameter. To do "
-"this, click on \"Determine hits\". Each return parameter listed in the "
-"table can be removed from the list by clicking on the trash can icon. You"
-" can also add further return parameters to the list by clicking on *Add "
-"return parameter* button."
+"data filter list. Now you can calculate the number of patients in the "
+"data set within the defined cohort for the respective return parameter. "
+"To do this, click on *Determine patients*. Each return parameter listed "
+"in the table can be removed from the list by clicking on the trash can "
+"icon. You can also add further return parameters to the list by clicking "
+"on *Add return parameter* button."
 msgstr ""
+"Sie können nun für jeden Rückgabeparameter die Anzahl der Patienten im Datensatz "
+"der Kohorte separat ermitteln lassen. Klicken Sie dazu auf *Patienten ermitteln*. "
+"Jeder Rückgabeparameter kann durch Klick auf das Mülltonnensymbol wieder aus der "
+"Liste entfernt werden. Ebenso können jederzeit weiter Parameter hinzugefügt werden."
 
 #: ../03_search/02_data_filter/02_data_filter.md:44
 #: ebdc7a57bfb948189e986574227907b4
-msgid "Screenshot of data filter determine hits"
-msgstr ""
+msgid "Screenshot of data filter determine patients"
+msgstr "Bildschirmfoto des Datenfilters mit ermittelten Patientenzahlen"
 
 #: ../03_search/02_data_filter/02_data_filter.md:44
 #: 505168a2886841a9ba31eab27d32a711
-msgid "Fig 03-02-03: Hits per return parameter"
-msgstr ""
+msgid "Fig 03-02-03: patients per return parameter"
+msgstr "Abb 03-02-03: Patienten pro Rückgabeparameter"
 
 #: ../03_search/02_data_filter/02_data_filter.md:47
 #: 386a285fa9694204bf25f5879bb3b788
@@ -143,15 +175,20 @@ msgid ""
 "With the return parameters now defined, depending on your role and/or "
 "permission in your organization, you can proceed as follows:"
 msgstr ""
+"Nach Auswahl der Rückgabeparameter können Sie nun je nach den Ihnen "
+"zugeordneten Berechtigungen wie folgt weiter verfahren:"
 
 #: ../03_search/02_data_filter/02_data_filter.md:48
 #: d844651b402e43de8e37b23d0e7fb3e5
 msgid ""
-"Apply configuration: With the role \"Project manager\" you can now apply "
-"all settings that you have made in the patient and data filter directly "
-"to a new project. This configuration can also be adjusted in the project "
-"itself."
+"Create project application: With the role \"Project manager\" you can now"
+" apply all settings that you have made in the patient and data filter "
+"directly to a new project. This configuration can also be adjusted in the"
+" project itself."
 msgstr ""
+"Projektantrag stellen: Mit der Rolle \"Projektleiter\" können Sie nun die "
+"Kohorte und die getroffenen Einstellungen in ein neues Projekt überführen. "
+"Die Konfiguration kann im Rahmen des Projektantrags noch weiter angepasst werden."
 
 #: ../03_search/02_data_filter/02_data_filter.md:49
 #: a600b010ad7c49d18408c12e54ab412b
@@ -159,14 +196,98 @@ msgid ""
 "Start data retrieval: With the role \"Manager\" you can start a data "
 "retrieval based on the settings in the patient and data filter."
 msgstr ""
+"Datenabruf staren: Mit der Rolle \"Manager\" können Sie einen Datenabruf "
+"auf Basis der getroffenen Einstellungen starten."
 
 #: ../03_search/02_data_filter/02_data_filter.md:56
 #: 7a1c00c599c1450596d6330a6ec08798
 msgid "Screenshot of data filter next steps"
-msgstr ""
+msgstr "Bildschirmfoto der möglichen nächsten Schritte im Datenfilter"
 
 #: ../03_search/02_data_filter/02_data_filter.md:56
 #: 265dafd9d0a14bf482366c4b849c6c60
 msgid "Fig 03-02-04: Data filter next steps"
-msgstr ""
+msgstr "Abb 03-02-04: Nächste Schritte im Datenfilter"
+
+#~ msgid ""
+#~ "You get to the data filter if "
+#~ "the cohort created in the [Patient "
+#~ "filter](../01_patient_filter/01_patient_filter.md) in the"
+#~ " previous step and clicked on *Next"
+#~ " step* button. With the data filter"
+#~ " you can now filter the defined "
+#~ "cohort according to specific return "
+#~ "parameters based on the data set "
+#~ "GECCO 83."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "The size of the defined cohort is"
+#~ " displayed above the return parameters "
+#~ "area. To select the return parameters,"
+#~ " click Add Parameter. A dialog window"
+#~ " will then open in which you "
+#~ "can make your selection. Depending on"
+#~ " your authorization, you can then "
+#~ "either start a data retrieval or "
+#~ "transfer the configuration to a project"
+#~ " in a further step."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Apply configuration: this function is "
+#~ "only available and visible to project"
+#~ " managers."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "In order to select return parameters "
+#~ "press *Add return parameter*. In the "
+#~ "dialog you can select the desired "
+#~ "return parameter(s) from a list. To "
+#~ "do this, click on the respective "
+#~ "plus symbol. As soon as a "
+#~ "parameter is selected, the symbol "
+#~ "changes to a tick. If you click"
+#~ " the tick again, the symbol changes"
+#~ " back to a plus and the return"
+#~ " parameter is no longer selected. "
+#~ "Above the list is a search box "
+#~ "that you can use to search "
+#~ "directly for parameters and narrow the"
+#~ " list down accordingly."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "After you have selected the return "
+#~ "parameters, they are displayed in the"
+#~ " data filter list. Now you can "
+#~ "calculate the number of hits in "
+#~ "the data set within the defined "
+#~ "cohort for the respective return "
+#~ "parameter. To do this, click on "
+#~ "\"Determine hits\". Each return parameter "
+#~ "listed in the table can be removed"
+#~ " from the list by clicking on "
+#~ "the trash can icon. You can also"
+#~ " add further return parameters to the"
+#~ " list by clicking on *Add return "
+#~ "parameter* button."
+#~ msgstr ""
+
+#~ msgid "Screenshot of data filter determine hits"
+#~ msgstr ""
+
+#~ msgid "Fig 03-02-03: Hits per return parameter"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Apply configuration: With the role "
+#~ "\"Project manager\" you can now apply"
+#~ " all settings that you have made "
+#~ "in the patient and data filter "
+#~ "directly to a new project. This "
+#~ "configuration can also be adjusted in"
+#~ " the project itself."
+#~ msgstr ""
 

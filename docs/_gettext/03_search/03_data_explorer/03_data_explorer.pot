@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-16 13:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:9
 #: 68185d7b868b4870bec9f06f7439a339
-msgid "Data explorer allows you to retrieve project available data from your previous selections in the patient and data filter."
+msgid "Data explorer allows you to retrieve available data from your previous selections in the patient and data filter."
 msgstr ""
 
 #: ../03_search/03_data_explorer/03_data_explorer.md:11

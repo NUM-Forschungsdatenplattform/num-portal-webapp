@@ -36,6 +36,6 @@ msgstr ""
 #: ../03_search/03_search.md:8 764ad6346d044ca2a796c40fa6394d2d
 msgid ""
 "Only users with **Manager** or **Project lead** roles can access the "
-"search functionality"
+"search functionality."
 msgstr ""
 

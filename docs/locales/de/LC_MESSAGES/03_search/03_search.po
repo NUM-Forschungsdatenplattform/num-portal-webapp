@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../03_search/03_search.md:1 0e73773841fc4a37b07c67dd4507c829
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: ../03_search/03_search.md:3 7efa6a45a84b41bbb5694b6a3c893828
 msgid "This section covers the search feature."
-msgstr ""
+msgstr "Dieser Abschnitt beschreibt die Such-Funktion"
 
 #: ../03_search/03_search.md:5 9c985280490f48238aefe7ea4414c7e1
 msgid ""
@@ -32,10 +32,16 @@ msgid ""
 "start a data retrieval in three steps or transfer the selected parameters"
 " to a new project."
 msgstr ""
+"Die Such-Funktion gestattet einfachen Zugriff auf die im Portal verfügbaren "
+"Datensätze. Beginnend mit dem Patientenfilter kann ein Datenabruf in drei "
+"Schritten gestartet werden. Alternativ können die gewählten Parameter in ein "
+"neues Projekt überführt werden."
 
 #: ../03_search/03_search.md:8 764ad6346d044ca2a796c40fa6394d2d
 msgid ""
 "Only users with **Manager** or **Project lead** roles can access the "
-"search functionality"
+"search functionality."
 msgstr ""
+"Nur Benutzer mit der Rolle **Manager** oder **Projektleiter** können "
+"auf die Such-Funktion zugreifen."
 

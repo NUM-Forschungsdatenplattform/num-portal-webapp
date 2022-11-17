@@ -19,11 +19,13 @@ msgstr ""
 
 #: ../04_projects/04_projects.md:1 0f4721b28cb14ab49d4da6a78864e329
 msgid "Projects"
-msgstr ""
+msgstr "Projekte"
 
 #: ../04_projects/04_projects.md:3 f2b55f3abf8e4fe9a1ba8318523ca53e
 msgid ""
 "This section covers the projects feature, functionality which allows "
 "project definition as well as management of the project life cycle."
 msgstr ""
+"Dieser Abschnitt beschreibt die Projektverwaltung, worüber Projekte "
+"definiert und der Verlauf von Projekten verwaltet werden kann."
 
