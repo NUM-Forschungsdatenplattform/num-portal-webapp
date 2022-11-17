@@ -31,7 +31,7 @@ Fig 04-02-01: Project editor
 ```
  
 
-#### 1. Cohort definition
+#### Cohort definition
 The cohort definition section is the most important section and represents the criteria that is to define the cohort of patients taking part in this project. Detailed information on how the search works can be found in the [Search](../../03_search/03_search.md) functionality documentation.
 
 
@@ -43,7 +43,7 @@ Fig 04-02-02: Cohort definition
 ```
 
 
-#### 2. General information
+#### General information
 
 The general information section contains information about the project. A list of the available fields can be found in the table below. 
 
@@ -113,7 +113,7 @@ Fig 04-02-04: Project categories
 
 
 
-#### 3. Return parameters
+#### Return parameters
 Results can be further filtered by selection return parameters. To select the return parameters, click Add Return Parameter button.
 
 
@@ -153,7 +153,7 @@ Return parameters are mandatory, in order to save this project you must select a
 ```
 
 
-#### 4. Researchers 
+#### Researchers 
 The last section of the project screen is the researchers section, here researchers can be assigned to the project. By clicking the *Add researchers* button.
 
 

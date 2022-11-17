@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 16:25+0100\n"
+"POT-Creation-Date: 2022-11-17 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,12 +47,16 @@ msgid "There are four main sections of the project definition, these can be indi
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:16
+#: ../04_projects/02_projects_editor/02_projects_editor.md:34
 #: b96e5bd05c2a453cb1bbe37afe4584d6
+#: 6d6c860270614f0380e73d118451043c
 msgid "Cohort definition"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:17
+#: ../04_projects/02_projects_editor/02_projects_editor.md:46
 #: 0811b03c03194ebc97a1c357a16c32b0
+#: 2c27af224cfc471d89cdc39b9664c330
 msgid "General information"
 msgstr ""
 
@@ -81,11 +85,6 @@ msgstr ""
 msgid "Fig 04-02-01: Project editor"
 msgstr ""
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:34
-#: 6d6c860270614f0380e73d118451043c
-msgid "1. Cohort definition"
-msgstr ""
-
 #: ../04_projects/02_projects_editor/02_projects_editor.md:35
 #: e7c6c910bdf3421b975d0551a6056ef3
 msgid "The cohort definition section is the most important section and represents the criteria that is to define the cohort of patients taking part in this project. Detailed information on how the search works can be found in the [Search](../../03_search/03_search.md) functionality documentation."
@@ -99,11 +98,6 @@ msgstr ""
 #: ../04_projects/02_projects_editor/02_projects_editor.md:42
 #: 0b90e4acafd54adca08fd170447db977
 msgid "Fig 04-02-02: Cohort definition"
-msgstr ""
-
-#: ../04_projects/02_projects_editor/02_projects_editor.md:46
-#: 2c27af224cfc471d89cdc39b9664c330
-msgid "2. General information"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:48
@@ -487,7 +481,7 @@ msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:116
 #: 2fc1f0d9e8c34f6db88c7a350fe5a463
-msgid "3. Return parameters"
+msgid "Return parameters"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:117
@@ -547,7 +541,7 @@ msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:156
 #: b046b2c532bb4adba1caa58e00bfb23b
-msgid "4. Researchers"
+msgid "Researchers"
 msgstr ""
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:157

@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:1 5f502bbe4c5d422a8e8a7e41f96370be
 msgid "Welcome page"
-msgstr ""
+msgstr "Willkommensseite"
 
 #: ../02_welcome/02_welcome.md:3 df996ca3a3a744dbad0edf51e3a11e01
 msgid ""

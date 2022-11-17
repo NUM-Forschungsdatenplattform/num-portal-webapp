@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 16:25+0100\n"
+"POT-Creation-Date: 2022-11-17 16:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,12 +68,14 @@ msgstr ""
 "ein- und ausgeklappt werden können."
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:16
-#: b96e5bd05c2a453cb1bbe37afe4584d6
+#: ../04_projects/02_projects_editor/02_projects_editor.md:34
+#: 6d6c860270614f0380e73d118451043c b96e5bd05c2a453cb1bbe37afe4584d6
 msgid "Cohort definition"
 msgstr "Kohorten definieren"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:17
-#: 0811b03c03194ebc97a1c357a16c32b0
+#: ../04_projects/02_projects_editor/02_projects_editor.md:46
+#: 0811b03c03194ebc97a1c357a16c32b0 2c27af224cfc471d89cdc39b9664c330
 msgid "General information"
 msgstr "Allgemeine Angaben"
 
@@ -104,11 +106,6 @@ msgstr "Bildschirmfoto des Projekt-Editors"
 msgid "Fig 04-02-01: Project editor"
 msgstr "Abb 04-02-01: Projekt-Editor"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:34
-#: 6d6c860270614f0380e73d118451043c
-msgid "1. Cohort definition"
-msgstr "1. Kohorte definieren"
-
 #: ../04_projects/02_projects_editor/02_projects_editor.md:35
 #: e7c6c910bdf3421b975d0551a6056ef3
 msgid ""
@@ -134,11 +131,6 @@ msgstr "Bildschirmfoto der Kohorten-Definition"
 msgid "Fig 04-02-02: Cohort definition"
 msgstr "Abb 04-02-02: Kohorten-Definition"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:46
-#: 2c27af224cfc471d89cdc39b9664c330
-msgid "2. General information"
-msgstr "2. Allgemeine Angaben"
-
 #: ../04_projects/02_projects_editor/02_projects_editor.md:48
 #: 64e28a58e56f461990fad2b18856b476
 msgid ""
@@ -163,7 +155,7 @@ msgstr "Abb 04-02-03: Felder Allgemeine Angaben"
 #: ../04_projects/02_projects_editor/02_projects_editor.md:80
 #: 24ee12997bc84d7a97d8f55629459844
 msgid "No"
-msgstr "Nr"
+msgstr "Nein"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:51
 #: ../04_projects/02_projects_editor/02_projects_editor.md:80
@@ -505,7 +497,8 @@ msgstr "Register"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:116
 #: 2fc1f0d9e8c34f6db88c7a350fe5a463
-msgid "3. Return parameters"
+#, fuzzy
+msgid "Return parameters"
 msgstr "3. Rückgabeparameter auswählen"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:117
@@ -599,7 +592,7 @@ msgstr ""
 #: ../04_projects/02_projects_editor/02_projects_editor.md:156
 #: b046b2c532bb4adba1caa58e00bfb23b
 #, fuzzy
-msgid "4. Researchers"
+msgid "Researchers"
 msgstr "4. Ausgewählte Forscher"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:157
@@ -609,8 +602,8 @@ msgid ""
 "researchers can be assigned to the project. By clicking the *Add "
 "researchers* button."
 msgstr ""
-"Der letzte Abschnitt erlaubt das Hinzufügen von Forschern zu dem Projekt. "
-"Klicken Sie dazu auf die Schaltfläche *Forscher hinzufügen*."
+"Der letzte Abschnitt erlaubt das Hinzufügen von Forschern zu dem Projekt."
+" Klicken Sie dazu auf die Schaltfläche *Forscher hinzufügen*."
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:164
 #: 9646b5c8e7224d529da4278cc3cf2be5
@@ -630,10 +623,10 @@ msgid ""
 "selected, the symbol changes to a tick. If you click the tick again, the "
 "symbol changes back to a plus and the researcher is no longer selected."
 msgstr ""
-"Es öffnet sich ein Dialogfenster, in welchem die Forscher durch das Klick "
-"auf das *Plus*-Symbol ausgewählt werden können. Das *Plus* wandelt sich in "
-"ein *Häkchen*. Durch erneuten Klick auf das *Häkchen* können Sie den Forscher "
-"wieder abwählen."
+"Es öffnet sich ein Dialogfenster, in welchem die Forscher durch das Klick"
+" auf das *Plus*-Symbol ausgewählt werden können. Das *Plus* wandelt sich "
+"in ein *Häkchen*. Durch erneuten Klick auf das *Häkchen* können Sie den "
+"Forscher wieder abwählen."
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:175
 #: 716ed8b97a1f4e408a41fd5dc64f2e45
@@ -651,8 +644,8 @@ msgid ""
 "Researchers are mandatory, in order to save this project you must select "
 "at least one researcher."
 msgstr ""
-"Es muss mindestens ein Forscher ausgewählt werden, um das Projekt anlegen "
-"zu können."
+"Es muss mindestens ein Forscher ausgewählt werden, um das Projekt anlegen"
+" zu können."
 
 #~ msgid ""
 #~ "The cohort definition section is the "
@@ -748,4 +741,10 @@ msgstr ""
 #~ " project. By clicking the Add "
 #~ "researchers button."
 #~ msgstr ""
+
+#~ msgid "1. Cohort definition"
+#~ msgstr "1. Kohorte definieren"
+
+#~ msgid "2. General information"
+#~ msgstr "2. Allgemeine Angaben"
 
