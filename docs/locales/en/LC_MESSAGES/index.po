@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-17 18:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: ../index.md:20 1eb3e8a4549d4cc3b17d5e031e17a52d
+#: ../index.md:20 dec28ffa10ae4ac397952d93635a9791
 msgid "Table of contents:"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgid ""
 "to this documentation please do not hestitate to create a new issue for "
 "this project following  <a  href=\"https://github.com/NUM-"
 "Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\""
-"    rel=\"noopener\"> this link </a>"
+"    rel=\"noopener\"> this link </a>."
 msgstr ""
 
 #: ../index.md:16 0a9a5d598bf9468792d3d3ec3711197e
@@ -47,19 +47,15 @@ msgid ""
 "`documentation`. Thanks for your feedback and contribution."
 msgstr ""
 
-#: ../index.md:38 fe916f5259354f42bf596417ab4cc650
-msgid "Indexes und tables"
-msgstr ""
+#~ msgid "Indexes und tables"
+#~ msgstr ""
 
-#: ../index.md:41 39282fc0a6cc42c19771a545b588319e
-msgid ":ref:`genindex`"
-msgstr ""
+#~ msgid ":ref:`genindex`"
+#~ msgstr ""
 
-#: ../index.md:42 1fd8094b07ad4ff2aa2f3a305df8f57a
-msgid ":ref:`modindex`"
-msgstr ""
+#~ msgid ":ref:`modindex`"
+#~ msgstr ""
 
-#: ../index.md:43 8ca58f2d62ef47b686d6bdab98792e29
-msgid ":ref:`search`"
-msgstr ""
+#~ msgid ":ref:`search`"
+#~ msgstr ""
 
