@@ -2,8 +2,10 @@
 
 This section covers the content editor feature.
 
+The content editor provides functionality to manage tiles that are displayed on the welcome page and to manage additional links at the lower part of the navigation bar on the left.
+
 ```{important}
-Only users with **Content admin** role can access the content editor feature.
+Only users with the **Content admin** role can access the content editor feature.
 ```
 
 ```{toctree}

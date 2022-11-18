@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:1
 #: 284d5c84138e4889b626e4a764b02c86
 msgid "Organizations - Overview"
-msgstr ""
+msgstr "Organisations-Übersicht"
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:3
 #: f1efd03780b04c44ab915ade1dbdf03d
@@ -28,29 +28,33 @@ msgid ""
 "This section covers the overview page of the organization management "
 "feature."
 msgstr ""
+"Dieser Abschnitt behandelt die Übersicht in der Organisationsverwaltung."
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:5
 #: b57c83fe96da4306b852ef240a5f6516
 msgid ""
 "Only users with **Super admin** or **Organization admin** roles can "
-"access the organization management feature.  For **Super admin** user a "
-"list will all organizations available will be displayed."
+"access the organization management feature. For **Super admin** users a "
+"list with all organizations available will be displayed."
 msgstr ""
+"Nur Benutzer mit der Rolle **Super-Admin** oder **Organisations-Admin** "
+"haben Zugriff auf die Organisationsverwaltung. **Super-Admins** bekommen "
+"eine Liste aller angelegten Organisationen angezeigt."
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:9
 #: 1f7c60d5c19c476184fa05d639db0837
 msgid "Organizations can be created and updated, they cannot be deleted."
-msgstr ""
+msgstr "Organisationen können angelegt und bearbeitet, aber nicht gelöscht werden."
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:16
-#: 8ab99d2f4d544b2bae3a5942eb5bfb38
+#: 95c2e3bfc3e44b57ac15c71d808d5b22
 msgid "Screenshot of organization overiew for super admin"
-msgstr ""
+msgstr "Bildschirmfoto der Organisations-Übersicht für den Super-Admin"
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:16
-#: e1ce19a330c04091a0fa55e935ed3a66
-msgid "Fig 08-01-01: Organization overiew for Organization manager"
-msgstr ""
+#: 95c2e3bfc3e44b57ac15c71d808d5b22
+msgid "Fig 08-01-01: Organization overiew for Super Admin"
+msgstr "Abb 08-01-01: Organisations-Übersicht für den Super-Admin"
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:19
 #: 02d2b5ff71554fe5a12f182e06e63042
@@ -58,14 +62,31 @@ msgid ""
 "For **Organization admin** users, the organization overview page will "
 "hold a single row with the admins own organization."
 msgstr ""
+"Für **Organisations-Admins** wird in der Übersicht ausschließlich die "
+"eigene Organisation angezeigt."
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:25
-#: 95c2e3bfc3e44b57ac15c71d808d5b22
+#: 8ab99d2f4d544b2bae3a5942eb5bfb38
 msgid "Screenshot of organization overiew"
-msgstr ""
+msgstr "Bildschirmfoto der Organisations-Übersicht"
 
 #: ../08_organizations/01_organizations_overview/01_organizations_overview.md:25
-#: d7f7661ffbc74639ae1eace2216c9b9c
-msgid "Fig 08-01-02: Organization overiew for Super admin"
+#: 8ab99d2f4d544b2bae3a5942eb5bfb38
+msgid "Fig 08-01-02: Organization overiew for Organization admin"
+msgstr "Abb 08-01-02: Organisations-Übersicht für Organisations-Admins"
+
+#: ../08_organizations/01_organizations_overview/01_organizations_overview.md:28
+#: dd72a640bc5c48f5875ceb30e961e889
+msgid ""
+"Click on the *pencil* symbol at the beginning of the row to access the "
+"organizations editor."
 msgstr ""
+"Klicken Sie auf das *Stift*-Symbolm am Beginn einer Zeile, um den "
+"Organisations-Editor aufzurufen."
+
+#~ msgid "Fig 08-01-01: Organization overiew for Organization manager"
+#~ msgstr ""
+
+#~ msgid "Fig 08-01-02: Organization overiew for Super admin"
+#~ msgstr ""
 

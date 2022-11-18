@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,23 @@ msgstr ""
 
 #: ../08_organizations/08_organizations.md:1 4f4c09a2796547c3aa29a11ad607ea69
 msgid "Organizations"
-msgstr ""
+msgstr "Organisationen"
 
 #: ../08_organizations/08_organizations.md:3 63dbcaec060f4ad9994e3781f50af76d
 msgid "This section covers the organization management feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Organisationsverwaltung."
 
 #: ../08_organizations/08_organizations.md:6 1f2dd7fcc11d4bbabfa06bfde8911be1
 msgid ""
-"Only users with **Super admin** or **Organization admin** roles can "
+"Only users with the **Super admin** or **Organization admin** roles can "
 "access the organization management feature."
 msgstr ""
+"Nur Benutzer mit der Rolle **Super-Admin** oder **Organisations-Admin** "
+"haben Zugriff auf die Organisationsverwaltung."
+
+#~ msgid ""
+#~ "Only users with **Super admin** or "
+#~ "**Organization admin** roles can access "
+#~ "the organization management feature."
+#~ msgstr ""
 

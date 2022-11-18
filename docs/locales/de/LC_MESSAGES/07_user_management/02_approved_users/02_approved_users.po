@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../07_user_management/02_approved_users/02_approved_users.md:1
 #: a3ba20f5302744e08762ba28ed34b687
 msgid "Approved user management"
-msgstr ""
+msgstr "Verwaltung genehmigter Benutzer"
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:3
 #: 958a0c944bce489488f9122ad913f203
@@ -29,21 +29,68 @@ msgid ""
 "necessary if the role of an existing user changes, e.g. a user gets new "
 "tasks and requires to use additional features of CODEX."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung genehmigter Benutzer. Dies ist erforderlich "
+"wenn sich die Rollen eines existierenden Benutzers verändern, weil er neue Aufgaben "
+"wahrnimmt oder Zugriff auf weitere Funktionen des CODEX-Portals erhalten soll."
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:8
 #: 904e86fdb0174d3089f8cf89e1e7ce7a
 msgid ""
 "The following steps can only be executed by users with the role "
-"\"Organization Admin\" or \"Super Admin\"."
+"**Organization Admin** or **Super Admin**."
 msgstr ""
+"Die folgenden Tätigkeiten können nur von Benutzern mit der Rolle "
+"**Organisations-Administrator** oder **Super-Administrator** durchgeführt "
+"werden."
 
-#: ../07_user_management/02_approved_users/02_approved_users.md:16
-#: e1a7689f325c47abaec153bde0ad6044
-msgid "Screenshot of approved users"
+#: ../07_user_management/02_approved_users/02_approved_users.md:12
+#: 89621b010244434e92d52b469be0af48
+msgid ""
+"The *approved users* list provides information about all users in your "
+"organization (or the whole portal for *Super Admins*). The list can be "
+"searched via the *search* field in the upper right corner. For *Super "
+"Admins* the list also provides an option to filter the list for only the "
+"own organization. In the column *roles* you can see all roles that have "
+"been assigned to a user. If you want to edit these, just click on the "
+"*pencil* symbol at the beginning of the row and act like described in "
+"section [Unapproved "
+"Users](../01_unapproved_users/01_unapproved_users.md)."
 msgstr ""
+"Die Liste *Genehmigte Benutzer* stellt Informationen über alle Nutzer "
+"Organisation bereit (oder alle Nutzer des Portals, als Super-Admin). Die "
+"Liste kann über das Suchfeld in der oberen rechten Ecke durchsucht werden. "
+"*Super-Admins* können die Liste außerdem nach Benutzern ihrer eigenen Organisation "
+"filten. In der Spalte *Rollen* werden alle Rollen angezeigt, die einem Benutzer "
+"zugewiesen sind. Wenn Sie diese Rollen bearbeiten wollen, klicken Sie auf das "
+"*Stift*-Symbol am Beginn der Zeile und verfahren Sie wie in "
+"[Verwaltung neuer Benutzer](../01_unapproved_users/01_unapproved_users.md) beschrieben."
 
-#: ../07_user_management/02_approved_users/02_approved_users.md:16
+#: ../07_user_management/02_approved_users/02_approved_users.md:18
 #: 4a196e19824b40e5b59ea965a666362f
-msgid "Fig 07-01-01: Approved users"
+msgid "Screenshot of approved users"
+msgstr "Bildschirmfoto des Abschnitts Genehmigte Benutzer"
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:18
+#: e1a7689f325c47abaec153bde0ad6044
+msgid "Fig 07-02-01: Approved users"
+msgstr "Abb 07-02-01: Genehmigte Benutzer"
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:22
+#: cd0d655015714c2bba45faed94a8ddcc
+msgid ""
+"It is not possible to deactivate a user. However, if you want to revoke "
+"all permissions for a user, just uncheck all roles in the role assignment"
+" dialog. The user can now only access the welcome page and no further "
+"features of the portal."
 msgstr ""
+"Es ist nicht möglich, Benutzer zu deaktivieren. Sie können jedoch einem "
+"Benutzer alle Berechtigungen entziehen, indem Sie alle Rollen im "
+"Dialogfenster abwählen. Der Benutzer kann dann auf keine Portal-Funktionen "
+"mehr zugreifen mit Ausnahme der Willkommensseite."
+
+#~ msgid ""
+#~ "The following steps can only be "
+#~ "executed by users with the role "
+#~ "\"Organization Admin\" or \"Super Admin\"."
+#~ msgstr ""
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 17:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,39 @@ msgstr ""
 
 #: ../10_manager_tools/10_manager_tools.md:1 543a1cb85175435481f71814329a66cf
 msgid "Manager tools"
-msgstr ""
+msgstr "Manager Tools"
 
 #: ../10_manager_tools/10_manager_tools.md:3 a94a3db5b440497f94fe3693b8b6726c
 msgid "This section covers the manager tools feature."
-msgstr ""
+msgstr "Dieser Abschnitt behandelt die Manager Tools."
 
 #: ../10_manager_tools/10_manager_tools.md:6 8213c8b06ac94c73a3220744b9e152ae
-msgid "Only users with **Manager** role can access the criteria feature."
+#, fuzzy
+msgid "Only users with the **Manager** role can access the manager tools feature."
 msgstr ""
+"Nur Benutzer mit der Rolle **Manager** können auf die Manager Tools "
+"zugreifen."
+
+#: ../10_manager_tools/10_manager_tools.md:9 73a64ecb7b034d5c86dcf5190b1b11df
+msgid ""
+"The manager tools provide two charts of the SOFA-Score. The left-hand "
+"chart represents the average SOFA-Score per clinic, that provided data "
+"for the CODEX platform. The right-hand chart provides a dropdown to "
+"select a specific clinic to access their patients SOFA-Scores."
+msgstr ""
+"Die Manager Tools stellen zwei Diagramme des SOFA-Scores bereit. Das linke "
+"Diagramm stellt den durchschnittlichen SOFA-Score pro Klinik dar. Im rechten "
+"Diagramm kann über ein Auswahlfeld eine Klinik ausgewählt werden. Anschließend "
+"werden die SOFA-Scores der Patienten dieser Klinik grafisch dargestellt."
+
+#: ../10_manager_tools/10_manager_tools.md:15 a082998cb155459789d50df10a5f28c2
+msgid "Screenshot of manager tools"
+msgstr "Bildschirmfoto der Manager Tools"
+
+#: ../10_manager_tools/10_manager_tools.md:15 712993f3701b450398d826916e71a50f
+msgid "Fig 10-01-01: Manager Tools"
+msgstr "Abb 10-01-01: Manager Tools"
+
+#~ msgid "Only users with **Manager** role can access the criteria feature."
+#~ msgstr ""
 

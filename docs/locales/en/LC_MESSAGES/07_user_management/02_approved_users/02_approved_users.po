@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,16 +34,45 @@ msgstr ""
 #: 904e86fdb0174d3089f8cf89e1e7ce7a
 msgid ""
 "The following steps can only be executed by users with the role "
-"\"Organization Admin\" or \"Super Admin\"."
+"**Organization Admin** or **Super Admin**."
 msgstr ""
 
-#: ../07_user_management/02_approved_users/02_approved_users.md:16
-#: e1a7689f325c47abaec153bde0ad6044
+#: ../07_user_management/02_approved_users/02_approved_users.md:12
+#: 89621b010244434e92d52b469be0af48
+msgid ""
+"The *approved users* list provides information about all users in your "
+"organization (or the whole portal for *Super Admins*). The list can be "
+"searched via the *search* field in the upper right corner. For *Super "
+"Admins* the list also provides an option to filter the list for only the "
+"own organization. In the column *roles* you can see all roles that have "
+"been assigned to a user. If you want to edit these, just click on the "
+"*pencil* symbol at the beginning of the row and act like described in "
+"section [Unapproved "
+"Users](../01_unapproved_users/01_unapproved_users.md)."
+msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:18
+#: 4a196e19824b40e5b59ea965a666362f
 msgid "Screenshot of approved users"
 msgstr ""
 
-#: ../07_user_management/02_approved_users/02_approved_users.md:16
-#: 4a196e19824b40e5b59ea965a666362f
-msgid "Fig 07-01-01: Approved users"
+#: ../07_user_management/02_approved_users/02_approved_users.md:18
+#: e1a7689f325c47abaec153bde0ad6044
+msgid "Fig 07-02-01: Approved users"
 msgstr ""
+
+#: ../07_user_management/02_approved_users/02_approved_users.md:22
+#: cd0d655015714c2bba45faed94a8ddcc
+msgid ""
+"It is not possible to deactivate a user. However, if you want to revoke "
+"all permissions for a user, just uncheck all roles in the role assignment"
+" dialog. The user can now only access the welcome page and no further "
+"features of the portal."
+msgstr ""
+
+#~ msgid ""
+#~ "The following steps can only be "
+#~ "executed by users with the role "
+#~ "\"Organization Admin\" or \"Super Admin\"."
+#~ msgstr ""
 

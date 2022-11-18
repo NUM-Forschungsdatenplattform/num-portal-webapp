@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,15 +28,60 @@ msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:7
 #: 10aed08479bf4cae899709f97a6c74dd
-msgid "The following steps can only be executed by users with the role of \"Organization Admin\" or \"Super Admin\"."
+msgid "The following steps can only be executed by users with the role of **Organization Admin** or **Super Admin**."
 msgstr ""
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:11
+#: 2bdbf501f76f4b80ae7267fd233c6702
+msgid "The user management page *New Users* features a list of users that have registered with platform but have not yet been approved. Before new users can use features of the portal, they have to be approved by assigning at least one role to the user."
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:14
+#: 22d430c66a5a406696979f3b613c7862
+msgid "Organization Admins are automatically notified via email, whenever a new user has registered for their organization. This email contains additional information about the user as well as the desired roles."
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:21
 #: 924333a073b444deb3b144363abb3a07
 msgid "Screenshot of new users"
 msgstr ""
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
-#: 28eaaf84ea6a441995fb0dd14e07411c
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:21
+#: 924333a073b444deb3b144363abb3a07
 msgid "Fig 07-01-01: New users"
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:24
+#: 924333a073b444deb3b144363abb3a07
+msgid "Approve new users"
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:26
+#: f4516dc004e64984b91e82730199c59d
+msgid "To approve a user, click  on the *pencil* symbol at the beginning of the row to open up a separate dialog. At the top of the dialog the users details as well as the assigned organization are displayed. Below you find a list of roles that you can assign. Do so by clicking the *plus* symbol at the end of the roles row. It changes into a *tick* symbol. You can assign as many roles as you like. You can revert the selection by clicking again on the *tick* symbol."
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:29
+#: 10aed08479bf4cae899709f97a6c74dd
+msgid "Super Admins can assign a wider set of roles than Organization Admins."
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:36
+#: 0759233cf8b844aba7889a7f9b033112
+msgid "Screenshot of user approval dialog"
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:36
+#: 8e766eeb8844435390a7779a8856f272
+msgid "Fig 07-01-02: User approval dialog"
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:39
+#: db02822b84e44cb28ee2acd5b28c1242
+msgid "To assign the roles, click the *save* button. This approves the user and assigns the selected roles. The user is informed via email about the approval and the assigned roles."
+msgstr ""
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:42
+#: 4caad64a0fd9415a9f8b40d14e1f8b74
+msgid "Users with the **Super Admin** role can also change the organization of the user. The organization is assigned automatically by the domain of the users email address. Please do not change the organization unless you know exactly what you are doing."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,13 +27,13 @@ msgid "This section covers the editor page of the organization management featur
 msgstr ""
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:5
-#: d6b08942db034e57a0a0720044e2b623
-msgid "The organization editor feature provides functionality to create and update an organization."
+#: 515481b9aaa84571be0484a695c5a612
+msgid "The organization editor feature provides functionality to create and update an organization. To create an organization, click on the *organizations editor* tab at the top of the section. Here you can insert a name and click *create organization* to create your new organization."
 msgstr ""
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:8
-#: 37e86389ae4c4888b8b3a6b0329de12d
-msgid "Organizations can be created only by users with **Super admin** role"
+#: 19d47cabb6e94409beb8286d0c5d925a
+msgid "Organizations can be created only by users with **Super admin** role. The names of organizations have to be unqiue."
 msgstr ""
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:15
@@ -48,5 +48,20 @@ msgstr ""
 
 #: ../08_organizations/02_organizations_editor/02_organizations_editor.md:18
 #: 08c910d884a24a0487035d7c3a538b63
-msgid "In order to edit an organization, click on the pen icon on the respective organization in the organization overview list.  Organizations can be assigned a list of domain names. At user registration the user will be automatically assigned to the organization to which the  registration email matches."
+msgid "In order to edit an organization, click on the pen icon on the respective organization in the organization overview list. Organizations can be assigned a list of domain names. At user registration the user will be automatically assigned to the organization to which the registration email matches. You can add domains as well as subdomains to the organization. Subdomains can be entered explicitly or with the wildcard \"*\". Please see examples in the screenshot."
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:24
+#: 28aad61b45d64cf5bdf79b6ed114a878
+msgid "Screenshot of organization editor with subdomains"
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:24
+#: 87799dfccb29487a99d5cb58a1ed1f98
+msgid "Fig 08-02-02: Subdomains in Organization editor"
+msgstr ""
+
+#: ../08_organizations/02_organizations_editor/02_organizations_editor.md:28
+#: 0e018621080c4d48b91941c1b56efa66
+msgid "Be sure to enter all possible domains and subdomains for your organization. Otherwise users may be unable to register and will get an according error message."
 msgstr ""

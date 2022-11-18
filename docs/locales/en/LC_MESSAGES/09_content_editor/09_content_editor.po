@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,9 +25,22 @@ msgstr ""
 msgid "This section covers the content editor feature."
 msgstr ""
 
-#: ../09_content_editor/09_content_editor.md:6 28790f75d91143099264e66a3fc9feeb
+#: ../09_content_editor/09_content_editor.md:5 45e70300de034144bcf05eac2aa7083e
 msgid ""
-"Only users with **Content admin** role can access the content editor "
+"The content editor provides functionality to manage tiles that are "
+"displayed on the welcome page and to manage additional links at the lower"
+" part of the navigation bar on the left."
+msgstr ""
+
+#: ../09_content_editor/09_content_editor.md:8 28790f75d91143099264e66a3fc9feeb
+msgid ""
+"Only users with the **Content admin** role can access the content editor "
 "feature."
 msgstr ""
+
+#~ msgid ""
+#~ "Only users with **Content admin** role"
+#~ " can access the content editor "
+#~ "feature."
+#~ msgstr ""
 

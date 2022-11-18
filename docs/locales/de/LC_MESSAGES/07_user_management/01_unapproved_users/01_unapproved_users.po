@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:1
 #: 931bb75c69004746a756d875b690fd79
 msgid "Unapproved users management"
-msgstr ""
+msgstr "Verwaltung neuer Benutzer"
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:3
 #: 027d5762576e498fa9f740bfbb076f84
@@ -29,21 +29,121 @@ msgid ""
 "have just registered at the NUM CODEX app and wait for approval and "
 "assignment of a role."
 msgstr ""
+"Dieser Abschnitt behandelt die Verwaltung neuer Benutzer. Neue Benutzer "
+"haben sich im CODEX-Portal registriert und warten auf ihre Freischaltung "
+"und die Zuweisung einer oder mehrer Rollen."
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:7
 #: 10aed08479bf4cae899709f97a6c74dd
 msgid ""
 "The following steps can only be executed by users with the role of "
-"\"Organization Admin\" or \"Super Admin\"."
+"**Organization Admin** or **Super Admin**."
 msgstr ""
+"Die folgenden Tätigkeiten können ausschließlich von Benutzern mit "
+"der Rolle **Organisations-Admin** oder **Super-Admin** ausgeführt werden."
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:11
+#: 2bdbf501f76f4b80ae7267fd233c6702
+msgid ""
+"The user management page *New Users* features a list of users that have "
+"registered with platform but have not yet been approved. Before new users"
+" can use features of the portal, they have to be approved by assigning at"
+" least one role to the user."
+msgstr ""
+"Die Seite *Neue Benutzer* der Benutzerverwaltung stellt eine Liste der Benutzer "
+"zur Verfügung, die sich in der Plattform registriert haben, aber noch nicht "
+"freigeschaltet wurden. Bevor Benutzer die Portalfunktionen verwenden können, "
+"müssen sie freigeschaltet werden, indem mindestens eine Rolle zugewiesen wird."
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:14
+#: 22d430c66a5a406696979f3b613c7862
+msgid ""
+"Organization Admins are automatically notified via email, whenever a new "
+"user has registered for their organization. This email contains "
+"additional information about the user as well as the desired roles."
+msgstr ""
+"Organisations-Administratoren werden automatisch per E-Mail informiert, "
+"sobald sich ein neuer Benutzer für die Organisation registriert hat. Diese "
+"E-Mail enthält zusätzliche Informationen zum Benutzer sowie die gewünschten "
+"Rollen."
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:21
 #: 924333a073b444deb3b144363abb3a07
 msgid "Screenshot of new users"
-msgstr ""
+msgstr "Bildschirmfoto des Abschnitts Neue Benutzer"
 
-#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:15
-#: 28eaaf84ea6a441995fb0dd14e07411c
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:21
+#: 924333a073b444deb3b144363abb3a07
 msgid "Fig 07-01-01: New users"
+msgstr "Abb 07-01-01: Neue Benutzer"
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:24
+#: 924333a073b444deb3b144363abb3a07
+msgid "Approve new users"
+msgstr "Freischalten neuer Benutzer"
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:26
+#: f4516dc004e64984b91e82730199c59d
+msgid ""
+"To approve a user, click  on the *pencil* symbol at the beginning of the "
+"row to open up a separate dialog. At the top of the dialog the users "
+"details as well as the assigned organization are displayed. Below you "
+"find a list of roles that you can assign. Do so by clicking the *plus* "
+"symbol at the end of the roles row. It changes into a *tick* symbol. You "
+"can assign as many roles as you like. You can revert the selection by "
+"clicking again on the *tick* symbol."
 msgstr ""
+"Klicken Sie auf das *Bleistift*-Symbol am Beginn der Zeile des Benutzers, "
+"den Sie freischalten wollen, um ein neues Fenster zu öffnen. Im oberen Teil "
+"des Dialogfenster werden die Benutzerdetails sowie die zugeordnete Organisation "
+"angezeigt. Im unteren Teil finden Sie eine Liste der Rollen, die Sie zuweisen "
+"können. Klicken Sie auf das *Plus*-Symbol am Ende einer Zeile, um die Rolle "
+"auszuwählen. Das Symbol ändert sich in ein *Häkchen*. Klicken Sie erneut auf "
+"das *Häkchen*, um die Rolle wieder abzuwählen. Sie können beliebig viele Rollen "
+"gleichzeitig auswählen."
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:29
+#: 10aed08479bf4cae899709f97a6c74dd
+msgid "Super Admins can assign a wider set of roles than Organization Admins."
+msgstr "Super-Administratoren können mehr Rollen zuweisen als Organisations-Administratoren."
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:36
+#: 0759233cf8b844aba7889a7f9b033112
+msgid "Screenshot of user approval dialog"
+msgstr "Bildschirmfoto des Dialogfensters zur Freischaltung neuer Benutzer"
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:36
+#: 8e766eeb8844435390a7779a8856f272
+msgid "Fig 07-01-02: User approval dialog"
+msgstr "Abb 07-01-02: Dialogfenster Freischaltung"
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:39
+#: db02822b84e44cb28ee2acd5b28c1242
+msgid ""
+"To assign the roles, click the *save* button. This approves the user and "
+"assigns the selected roles. The user is informed via email about the "
+"approval and the assigned roles."
+msgstr ""
+"Klicken Sie auf die Schaltfläche *Speichern*, um die ausgewählten Rollen "
+"zuzuweisen. Der Benutzer wird über die Freischaltung und die zugewiesenen "
+"Rollen per E-Mail informiert."
+
+#: ../07_user_management/01_unapproved_users/01_unapproved_users.md:42
+#: 4caad64a0fd9415a9f8b40d14e1f8b74
+msgid ""
+"Users with the **Super Admin** role can also change the organization of "
+"the user. The organization is assigned automatically by the domain of the"
+" users email address. Please do not change the organization unless you "
+"know exactly what you are doing."
+msgstr ""
+"Benutzer mit der Rolle **Super-Administrator** können die zugewiesene "
+"Organisation des Benutzers verändern. Die Organisation wird automatisch "
+"anhand der Domain der E-Mail-Adresse des Benutzers zugewiesen. Sofern Sie "
+"unsicher sind, ändern Sie bitte keinesfalls die Organisation des Benutzers."
+
+#~ msgid ""
+#~ "The following steps can only be "
+#~ "executed by users with the role of"
+#~ " \"Organization Admin\" or \"Super Admin\"."
+#~ msgstr ""
 

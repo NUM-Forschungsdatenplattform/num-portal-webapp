@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:1
+#: 7b187be31f4147b1afd21dd84eaa0c19
+msgid "Available roles"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:3
+#: f61070eb62e54e93b4d2b77efea722fb
+msgid "This section provides an overview of the roles that can be assigned and an indicator, if these are exclusive to the *Super Admin*."
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: da0332ed99cc4686b71b7765dbd0d8d6
+msgid "Role"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: b2cde958ad2c4e3399950096eea0154d
+msgid "Permissions"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 8326bb2ad8f141199ff07afef1a68510
+msgid "Super Admin only"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: d4f948e94f8f4a58b38157457af65c29
+msgid "Researcher"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 3a8ed95f61084d26b7ed225cbd7afd54
+msgid "Retrieve data from assigned projects"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 1ec07f6d65664dc1b1c81422d1d655d3
+#: 5c3f2f5c3a834f4db76d94c5610cfe0c
+#: ef6d3a6263c846ad9391d19eb573cf2a
+msgid "No"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 02132aedf21f4b038ee6446f6858df20
+msgid "Project Lead"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 28d409e39d1448e8a88dcfbe00c264ba
+msgid "Create, edit and manage projects"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 791cb8d280bf425d86c8521b57283ddc
+msgid "Project Approver"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 1c03bcb0ceeb410c8c3c2695da03b484
+msgid "Approve or deny project applications"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 325d96c5b90b4fb4a4b7e6d691974c97
+#: adee5067a1bc4ea2a963e45c6fc71cfd
+#: 56545fbf4a3e42d6986c7f9a6961cab7
+#: 77631e7fcc434239a673a1e8dd794f41
+#: 1d8ea9f052b1476893054190d31b5a61
+msgid "Yes"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 5eb2951f06d94e788355b94bcd7a102f
+msgid "Organization Admin"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 47047d6ea00b41b19c6df9d350b3d284
+msgid "Manage one organization and their users"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: af25ab5abebb4b7a88bc2a5690be66c1
+msgid "Content Editor"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 06cddb9f545b452a98c41f9c1dcfb179
+msgid "Edit welcome page tiles"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: f1773f1ecd3f44f49264aea4ba15cd5a
+msgid "Criteria Editor"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 2a66a85d9e814501914ba19d963edc9e
+msgid "Create and edit criteria"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: b5d2edf7a4da4f2b9ec68acafb7799ab
+msgid "Manager"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 645608f408d34eb386f5541b87b16663
+msgid "Retrieve data, display exact patient counts"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 8a595a71873a41789812056633cb3bdc
+msgid "Super Admin"
+msgstr ""
+
+#: ../07_user_management/03_available_roles/03_available_roles.md:0
+#: 1c41d9a363674f9ab6abff8b25b1b2a3
+msgid "All permissions, managing all organizations"
+msgstr ""

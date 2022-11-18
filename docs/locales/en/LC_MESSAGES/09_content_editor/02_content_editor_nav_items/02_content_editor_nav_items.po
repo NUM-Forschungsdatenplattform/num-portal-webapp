@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 16:01+0100\n"
+"POT-Creation-Date: 2022-11-18 17:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,4 +26,51 @@ msgstr ""
 #: 66408982256f45b39e8a6abc1b72a524
 msgid "This section covers the editor for navigation content."
 msgstr ""
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:5
+#: fb50b6e5bd0147fcb85a021b6922f6cc
+msgid ""
+"To access the navigation content, click the *navigation* tab at the top. "
+"The section contains a list of 5 Link items. To add a link, simply enter "
+"the link text and url in the respective fields of an empty item. To "
+"delete a link, click *clear entry* at the items lower right corner."
+msgstr ""
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:8
+#: 95ceccb263874796b485f74280906d81
+msgid ""
+"If all link items are already in use, you have to clear an entry at first"
+" to add a new one."
+msgstr ""
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:15
+#: 07c1faba581d43678cac253505861d96
+msgid "Screenshot of navgition editor"
+msgstr ""
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:15
+#: a1be06aaf5a743ba9c8b1a3ba9f8d398
+msgid "Fig 09-02-01: Navigation editor"
+msgstr ""
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:19
+#: 2b90e9ebc822428b844e06c9ec78b4c2
+msgid ""
+"Your changes are not yet applied. Scroll down to the very bottom of the "
+"page and click *publish links* to push your changes to navigation bar. If"
+" you click on *discard changes*, all your changes are reverted and the "
+"navigation bar is not changed at all."
+msgstr ""
+
+#~ msgid ""
+#~ "To access the navigation content, click"
+#~ " the *navigation* tab at the top. "
+#~ "The section contains a list of 5"
+#~ " Link items. To add a link, "
+#~ "simply enter the link text and url"
+#~ " in the respective fields of an "
+#~ "empty item. To delete a link, "
+#~ "click *clear entry* at the items "
+#~ "lower left corner."
+#~ msgstr ""
 
