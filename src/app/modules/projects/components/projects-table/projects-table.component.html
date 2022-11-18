@@ -41,7 +41,7 @@
       matSort
       matSortActive="id"
       matSortDirection="desc"
-      (matSortChange)="handleSortChange($event)"
+      (matSortChange)="handleSortChangeTable($event)"
       fixedLayout
       data-test="projects__table"
     >
@@ -147,11 +147,11 @@
     </table>
 
     <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
+      [length]="totalItems"
+      [pageSizeOptions]="[5, 10, 20, 40]"
+      (page)="onPageChange($event)"
       [pageSize]="pageSize"
-      (page)="pageSize = $event.pageSize"
-      data-test="projects__table__paginator"
+      showFirstLastButtons
     ></mat-paginator>
   </div>
 </section>

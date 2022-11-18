@@ -16,7 +16,7 @@
 
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { Params, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import { of, Subscription } from 'rxjs'
@@ -70,28 +70,18 @@ export class ProjectsTableComponent
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
 
   menuItems: IItemVisibility[] = []
-  filterConfig: IProjectFilter
+  filterConfig: any
   roles: string[] = []
   user: IUserProfile
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
+  public totalItems: number
 
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort, this.translateService)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public filters: any
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -102,6 +92,11 @@ export class ProjectsTableComponent
   }
 
   ngOnInit(): void {
+    this.pageIndex = 0
+    this.filters = {
+      type: null,
+      search: null,
+    }
     this.subscriptions.add(
       this.projectService.filterConfigObservable$
         .pipe(take(1))
@@ -109,13 +104,34 @@ export class ProjectsTableComponent
     )
 
     this.subscriptions.add(
-      this.projectService.filteredProjectsObservable$.subscribe((projects) =>
-        this.handleData(projects)
-      )
+      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
     )
 
+    this.sortBy = 'name'
+    this.sortDir = 'ASC'
+
+    this.getAll()
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+    this.getAll()
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  getAll() {
     this.subscriptions.add(
-      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
+      this.projectService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
     )
   }
 
@@ -123,8 +139,9 @@ export class ProjectsTableComponent
     this.subscriptions.unsubscribe()
   }
 
-  handleData(projects: IProjectApi[]): void {
-    this.dataSource.data = projects
+  handleData(projects: any): void {
+    this.dataSource.data = projects.content
+    this.totalItems = projects.totalElements
   }
 
   handleUserInfo(user: IUserProfile): void {
@@ -134,11 +151,35 @@ export class ProjectsTableComponent
   }
 
   handleSearchChange(): void {
-    this.projectService.setFilter(this.filterConfig)
+    if (this.filterConfig.searchText === '') {
+      this.filters.search = null
+    } else {
+      this.filters.search = this.filterConfig.searchText
+    }
+    this.getAll()
   }
 
   handleFilterChange(): void {
-    this.projectService.setFilter(this.filterConfig)
+    for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
+      if (this.filterConfig.filterItem[i].isSelected) {
+        switch (this.filterConfig.filterItem[i].id) {
+          case 'PROJECT.ALL_PROJECTS':
+            this.filters.type = null
+            break
+          case 'PROJECT.MY_PROJECTS':
+            this.filters.type = 'OWNED'
+            break
+          case 'PROJECT.ORGANIZATION_PROJECTS':
+            this.filters.type = 'ORGANIZATION'
+            break
+          case 'PROJECT.ARCHIVED_PROJECTS':
+            this.filters.type = 'ARCHIVED'
+            break
+          default:
+        }
+      }
+    }
+    this.getAll()
   }
 
   generateMenuForRole(): void {

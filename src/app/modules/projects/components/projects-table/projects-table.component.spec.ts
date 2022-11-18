@@ -48,6 +48,7 @@ import {
 import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } from './menu-items'
 
 import { ProjectsTableComponent } from './projects-table.component'
+import { MatSort } from '@angular/material/sort'
 
 describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
@@ -70,6 +71,7 @@ describe('ProjectsTableComponent', () => {
     filteredProjectsObservable$: projectsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
+    getAllPag: () => of(),
     updateStatusById: jest.fn(),
     setFilter: jest.fn(),
   } as unknown as ProjectService
@@ -138,49 +140,72 @@ describe('ProjectsTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should set the filter in the projectService on searchChange', () => {
-    component.handleSearchChange()
-    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
-  it('should set the filter in the projectService on filterChange', () => {
-    component.handleFilterChange()
-    expect(projectService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
-  describe('When new projects are received on the observable', () => {
-    it('should set the projects as the tables data source', () => {
-      projectsSubject$.next([mockProject1])
-      expect(component.dataSource.data).toEqual([mockProject1])
+  describe('When generate role', () => {
+    it('should generate role', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.generateMenuForRole()
     })
   })
 
-  describe('When the userInfo gets updated', () => {
-    const roles = [AvailableRoles.StudyCoordinator]
-    const userInfo = {
-      id: '',
-      roles,
-    } as IUserProfile
-    it('should set the roles to the component', () => {
-      userProfileSubject$.next(userInfo)
-      expect(component.roles).toEqual(roles)
+  describe('When filter change', () => {
+    it('filter change to all projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.ALL_PROJECTS', isSelected: true }]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual(null)
     })
 
-    it('should generate the menu based on the role for the project coordinator', () => {
-      userProfileSubject$.next(userInfo)
-      expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...COORDINATOR_MENU])
+    it('filter change to my projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.MY_PROJECTS', isSelected: true }]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual('OWNED')
     })
 
-    it('should generate the menu based on the role for the project approver', () => {
-      userInfo.roles = [AvailableRoles.StudyApprover]
-      userProfileSubject$.next(userInfo)
-      expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW, ...APPROVER_MENU])
+    it('filter change to organization projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [
+        { id: 'PROJECT.ORGANIZATION_PROJECTS', isSelected: true },
+      ]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual('ORGANIZATION')
     })
 
-    it('should display the preview option to other roles', () => {
-      userInfo.roles = [AvailableRoles.Researcher]
-      userProfileSubject$.next(userInfo)
-      expect(component.menuItems).toEqual([MENU_ITEM_PREVIEW])
+    it('filter change to archived projects', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'PROJECT.ARCHIVED_PROJECTS', isSelected: true }]
+      component.handleFilterChange()
+      expect(component.filters.type).toEqual('ARCHIVED')
+    })
+  })
+
+  describe('When search is triggered', () => {
+    it('should filter', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.searchText = 'testSearch'
+      component.handleSearchChange()
+      expect(component.filters.search).toEqual('testSearch')
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
     })
   })
 
@@ -273,129 +298,5 @@ describe('ProjectsTableComponent', () => {
         }
       }
     )
-  })
-
-  describe('When sorting the list', () => {
-    beforeEach(() => {
-      component.paginator.pageSize = 20
-      projectsSubject$.next(mockProjectsForSort)
-      fixture.detectChanges()
-    })
-    it('should sort by id descending as default', () => {
-      const projectWithLatestId = maxBy(mockProjectsForSort, 'id')
-      const projectWithOldestId = minBy(mockProjectsForSort, 'id')
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-name"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      expect(tableRows[0].innerHTML.trim()).toEqual(projectWithLatestId.name)
-      expect(tableRows[tableRows.length - 1].innerHTML.trim()).toEqual(projectWithOldestId.name)
-    })
-
-    it('should sort by id as second in same order as first field', () => {
-      component.sort.sort({ id: 'status', disableClear: false, start: 'asc' })
-      fixture.detectChanges()
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-status"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' PROJECT.STATUS.PENDING ')
-      expect(tableRows[firstIdx + 1].innerHTML).toEqual(tableRows[firstIdx].innerHTML)
-    })
-
-    it('should be case insensitive', () => {
-      component.sort.sort({ disableClear: false, id: 'name', start: 'desc' })
-      fixture.detectChanges()
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-name"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' TEST PROJECT ')
-      expect(tableRows[firstIdx + 1].innerHTML.toLocaleLowerCase()).toEqual(
-        tableRows[firstIdx].innerHTML.toLocaleLowerCase()
-      )
-    })
-
-    it('should sort umlaut characters', () => {
-      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
-      fixture.detectChanges()
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-name"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test project ä ')
-      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test project ö ')
-      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' Test project ü ')
-    })
-
-    it('should sort umlaut characters to corresponding vowel', () => {
-      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
-      fixture.detectChanges()
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-name"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      const firstIdx = tableRows.findIndex((r) => r.innerHTML === ' Test a ')
-      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' Test ä ')
-    })
-
-    it('should sort in order empty -> special -> numeric -> alphabetic', () => {
-      component.sort.sort({ disableClear: false, id: 'name', start: 'asc' })
-      fixture.detectChanges()
-      const queryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-name"]`
-      ) as NodeList
-      const tableRows = Array.from(queryResult) as HTMLTableCellElement[]
-      const firstIdx = tableRows.findIndex((r) => r.innerHTML === '  ')
-      expect(tableRows[firstIdx + 1].innerHTML).toEqual(' % ')
-      expect(tableRows[firstIdx + 2].innerHTML).toEqual(' 1 ')
-      expect(tableRows[firstIdx + 3].innerHTML).toEqual(' a ')
-    })
-
-    it('should sort by organization ascending', () => {
-      component.sort.sort({ disableClear: false, id: 'organization', start: 'asc' })
-      fixture.detectChanges()
-      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-organization"]`
-      ) as NodeList
-      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
-      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
-      expect(tableRows[idx - 1].innerHTML).toEqual(' abc ')
-    })
-
-    it('should sort by organization descending', () => {
-      component.sort.sort({ disableClear: false, id: 'organization', start: 'desc' })
-      fixture.detectChanges()
-      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-organization"]`
-      ) as NodeList
-      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
-      const idx = tableRows.findIndex((r) => r.innerHTML === ' cba ')
-      expect(tableRows[idx + 1].innerHTML).toEqual(' abc ')
-    })
-
-    it('should sort by author ascending', () => {
-      component.sort.sort({ disableClear: false, id: 'author', start: 'asc' })
-      fixture.detectChanges()
-      const ascQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-author"]`
-      ) as NodeList
-      const tableRows = Array.from(ascQueryResult) as HTMLTableCellElement[]
-      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
-      expect(tableRows[idx + 1].innerHTML).toEqual(' Max Mustermann ')
-      expect(tableRows[idx - 1].innerHTML).toEqual('  - ')
-    })
-
-    it('should sort by author descending', () => {
-      component.sort.sort({ disableClear: false, id: 'author', start: 'desc' })
-      fixture.detectChanges()
-      const descQueryResult = fixture.debugElement.nativeElement.querySelectorAll(
-        `[data-test="projects-table__table-data__project-author"]`
-      ) as NodeList
-      const tableRows = Array.from(descQueryResult) as HTMLTableCellElement[]
-      const idx = tableRows.findIndex((r) => r.innerHTML === ' Marianne Musterfrau ')
-      expect(tableRows[idx - 1].innerHTML).toEqual(' Max Mustermann ')
-      expect(tableRows[idx + 1].innerHTML).toEqual('  - ')
-    })
   })
 })
