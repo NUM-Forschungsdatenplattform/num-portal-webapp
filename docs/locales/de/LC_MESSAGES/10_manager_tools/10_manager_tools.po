@@ -40,7 +40,7 @@ msgid ""
 "select a specific clinic to access their patients SOFA-Scores."
 msgstr ""
 "Die Manager Tools stellen zwei Diagramme des SOFA-Scores bereit. Das linke "
-"Diagramm stellt den durchschnittlichen SOFA-Score pro Klinik dar. Im rechten "
+"Diagramm stellt den durchschnittlichen SOFA-Score je Klinik dar. Im rechten "
 "Diagramm kann über ein Auswahlfeld eine Klinik ausgewählt werden. Anschließend "
 "werden die SOFA-Scores der Patienten dieser Klinik grafisch dargestellt."
 

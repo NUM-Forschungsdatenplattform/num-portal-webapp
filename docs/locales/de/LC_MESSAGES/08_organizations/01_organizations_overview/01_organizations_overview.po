@@ -81,7 +81,7 @@ msgid ""
 "Click on the *pencil* symbol at the beginning of the row to access the "
 "organizations editor."
 msgstr ""
-"Klicken Sie auf das *Stift*-Symbolm am Beginn einer Zeile, um den "
+"Klicken Sie auf das *Stift*-Symbol am Beginn einer Zeile, um den "
 "Organisations-Editor aufzurufen."
 
 #~ msgid "Fig 08-01-01: Organization overiew for Organization manager"
