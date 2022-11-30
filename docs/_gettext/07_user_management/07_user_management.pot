@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:11+0200\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../07_user_management/07_user_management.md:1
-#: e08c6311cb194f57828c2a0d6ca5b5b4
+#: 3bbe62b3a971457ea40fc96d89fb9200
 msgid "User Management"
 msgstr ""
 
 #: ../07_user_management/07_user_management.md:3
-#: f22a3e7325cf4e788c5a51d60ea344fc
+#: 9ef8a441082340edac2617964182218f
 msgid "The user management page can be used by Organization Admins or Super Admins to approve users and assign or remove roles of users."
 msgstr ""
 
-#: ../07_user_management/07_user_management.md:1
-#: f22a3e7325cf4e788c5a51d60ea344fc
-msgid "Only users with **Super admin** or **Organization admin** roles can access the user management feature."
+#: ../07_user_management/07_user_management.md:7
+#: 8d1786d2fa314d82a9a3b5c69f3d99f3
+msgid "Only users with the **Super Admin** or **Organization Admin** roles can access the user management feature. **Organization Admins** can only access users of their respective organization."
 msgstr ""

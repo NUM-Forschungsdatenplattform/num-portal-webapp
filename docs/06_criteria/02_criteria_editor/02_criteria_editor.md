@@ -47,9 +47,7 @@ Fig 06-02-02: Criteria editor builder
 ```
 
 ###### The criterion builder area
-One of two ways for building a criterion. By pressing the build criterion button a dialog will pop up, on the left-hand side of the dialog the return parameters can be 
-selected. After selecting the desired return parameters, the actual data of interest which will make up the criterion needs to be double-clicked on in order to be added to
-right-hand side of the dialog in the selected query clause. 
+One of two ways for building a criterion. By pressing the build criterion button a dialog will pop up. On the left-hand side of the dialog the return parameters can be selected. After selecting the desired return parameters, the actual data of interest which will make up the criterion needs to be double-clicked in order to be added to the right-hand side of the dialog in the selected query clause. 
 
 ```{figure} images/criteria_builder_dialog.png
 ---
@@ -61,7 +59,7 @@ Fig 06-02-03: Criteria builder dialog
 The right-hand side of the dialog contains the three query clauses supported by the builder:
 1. The **Select** clause represents the exact data needed for the criterion
 2. The **From** clause's purpose is to scope the data source for the query by specifying a certain subset from the data available; for example narrowing the data to a certain composition
-2. The **Where** clause's purpose is to filter the data set within the data in the *From* clause. Logical operators can be applied to combine multiple expressions.
+3. The **Where** clause's purpose is to filter the data set within the data in the *From* clause. Logical operators can be applied to combine multiple expressions.
 
 ```{important}
 The **Select** and **From** clauses are mandatory, the **Where** clause is optional
@@ -76,4 +74,4 @@ and to validate its correctness.
 
 ###### The hits area
 
-This area shows the number of hits in the entire dataset resulting from the query. To retrieve the hits, you must click the *Determine* button. The number of hits is then displayed depending on the authorization.
+This area shows the number of patients in the entire dataset resulting from the query. To retrieve the patients, you must click the *Determine* button. The number of patients is then displayed depending on the authorization.

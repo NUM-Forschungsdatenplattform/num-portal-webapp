@@ -2,9 +2,7 @@
 
 This section covers the criteria categories management page. 
 
-The purpose of the criteria categories is to group criteria. In order to define a category press *Create category* button, a dialog will then open 
-where both English and German titles of the category must be provided. In order to delete or edit a category press on the three dots corresponding to the respective 
-category.
+The purpose of the criteria categories is to group criteria. In order to define a category press *Create category* button, a dialog will then open up, where both English and German titles of the category must be provided. In order to delete or edit a category press on the three dots corresponding to the respective category.
 
 ```{important}
 You cannot delete categories which have been assigned to criteria

@@ -1,9 +1,9 @@
 # Criteria
 
-This section covers the criteria feature, functionality which allows criteria definition and management.
+This section covers the criteria feature which allows criteria definition and management.
 
 ```{important}
-Only users with **Manager** role can access the criteria feature.
+Only users with **Criteria Editor** role can access the criteria feature.
 ```
 
 ```{toctree}

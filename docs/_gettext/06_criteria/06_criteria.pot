@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:11+0200\n"
+"POT-Creation-Date: 2022-11-17 17:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../06_criteria/06_criteria.md:1
-#: 23562081ead24b14af81fa3484941313
+#: 9150d035852f47d48ff4e4ccd605a33a
 msgid "Criteria"
 msgstr ""
 
 #: ../06_criteria/06_criteria.md:3
-#: 3ff1f9442e1f4215ae122162da65554f
-msgid "This section covers the criteria feature, functionality which allows criteria definition and management."
+#: 3c8c09ba59cb47239edfe4daf8e12027
+msgid "This section covers the criteria feature which allows criteria definition and management."
 msgstr ""
 
-#: ../06_criteria/06_criteria.md:1
-#: d9eab91689454e739e1ceee1f6d18d53
-msgid "Only users with **Manager** role can access the criteria feature."
+#: ../06_criteria/06_criteria.md:6
+#: 8043d75cf0944cbf9908eea4d3e1556e
+msgid "Only users with **Criteria Editor** role can access the criteria feature."
 msgstr ""

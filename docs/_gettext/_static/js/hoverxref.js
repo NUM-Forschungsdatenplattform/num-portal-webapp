@@ -82,7 +82,7 @@ function reLoadSphinxTabs() {
 function getEmbedURL(url) {
     var params = {
         'doctool': 'sphinx',
-        'doctoolversion': '4.4.0',
+        'doctoolversion': '5.3.0',
         'url': url,
     }
     console.debug('Data: ' + JSON.stringify(params));
@@ -91,14 +91,8 @@ function getEmbedURL(url) {
     return url
 }
 
-
-$(document).ready(function() {
-    // Remove ``title=`` attribute for intersphinx nodes that have hoverxref enabled.
-    // It doesn't make sense the browser shows the default tooltip (browser's built-in)
-    // and immediately after that our tooltip was shown.
-    $('.hoverxref.external').each(function () { $(this).removeAttr('title') });
-
-    $('.hoverxref.tooltip').tooltipster({
+function addTooltip(target) {
+    return target.tooltipster({
         theme: ['tooltipster-shadow', 'tooltipster-shadow-custom'],
         interactive: true,
         maxWidth: 450,
@@ -117,7 +111,7 @@ $(document).ready(function() {
                 var url = getEmbedURL(href);
                 $.ajax({
                     url: url,
-                    headers: {'X-HoverXRef-Version': '1.0.1'},
+                    headers: {'X-HoverXRef-Version': '1.3.0'},
                 }).done(
                     function (data) {
                         // call the 'content' method to update the content of our tooltip with the returned data.
@@ -144,6 +138,27 @@ $(document).ready(function() {
             );
         }
     })
+}
+
+
+$(document).ready(function() {
+    // Remove ``title=`` attribute for intersphinx nodes that have hoverxref enabled.
+    // It doesn't make sense the browser shows the default tooltip (browser's built-in)
+    // and immediately after that our tooltip was shown.
+
+    // Support lazy-loading here by switching between on-page-load (calling .tooltipster directly)
+    // or delaying it until after a mouseenter or click event.
+    // On large pages (the use case for lazy-loaded tooltipster) this moves dom manipulation to
+    // on-interaction, which is known to be less performant on small pages (as per tooltipster docs),
+    // but on massive docs pages fixes an otherwise severe page load stall when tooltipster
+    // manipulates the html for every single tooltip at once.
+    
+    $('.hxr-hoverxref.external').each(function () { $(this).removeAttr('title') });
+    addTooltip(
+        $('.hxr-hoverxref.hxr-tooltip')
+    )
+    
+
 
     var modalHtml = `
   <div class="modal micromodal-slide md-typeset" id="micromodal" aria-hidden="true">
@@ -187,7 +202,7 @@ $(document).ready(function() {
         var url = getEmbedURL(href);
         $.ajax({
             url: url,
-            headers: {'X-HoverXRef-Version': '1.0.1'},
+            headers: {'X-HoverXRef-Version': '1.3.0'},
         }).done(
             function (data) {
                 var content = $('<div></div>');
@@ -235,7 +250,7 @@ $(document).ready(function() {
     };
 
     var delay = 350, setTimeoutConst;
-    $('.hoverxref.modal').hover(function(event) {
+    $('.hxr-hoverxref.hxr-modal').hover(function(event) {
         var element = $(this);
         console.debug('Event: ' + event + ' Element: ' + element);
         event.preventDefault();

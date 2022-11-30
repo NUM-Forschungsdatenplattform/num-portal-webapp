@@ -1,73 +1,77 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 10:28+0200\n"
+"POT-Creation-Date: 2022-11-17 17:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: 99f8ac94898e4aac8a3602da82b8917b
+#: 3ad2891536414231a0e2ca9cb5089915
 msgid "Criteria - Categories"
 msgstr ""
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:3
-#: bf73d867caac4c4080fd5476aa8993f9
+#: 9b0e75392d0943e592c4bc31f83d23d5
 msgid "This section covers the criteria categories management page."
 msgstr ""
 
 #: ../06_criteria/03_criteria_categories/03_criteria_categories.md:5
-#: 6932d9fdac5948bea719781809aaf7e1
+#: 981521cf20ad4eb6a5f90e0f95d2efc4
 msgid ""
 "The purpose of the criteria categories is to group criteria. In order to "
 "define a category press *Create category* button, a dialog will then open"
-"  where both English and German titles of the category must be provided. "
-"In order to delete or edit a category press on the three dots "
-"corresponding to the respective  category."
+" up, where both English and German titles of the category must be "
+"provided. In order to delete or edit a category press on the three dots "
+"corresponding to the respective category."
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: bd03217b0945495eacede5c0dda012c6
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:8
+#: eeb23ed0325f44f3884d9e8ff84a4a41
 msgid "You cannot delete categories which have been assigned to criteria"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: 12fe4145d0284d5cb3ee6aa54c501871
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
+#: da24ed48d9f64fbab2a9ced46dbd1ddc
 msgid "Screenshot of criteria categories"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: 5daf042838554ef0a8135899820bf2ec
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:15
+#: 9fa395189d9849cbb2086286487b191c
 msgid "Fig 06-03-01: Criteria categories list"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: 3ce3fedd600e466bb18fd9a478dd16b5
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
+#: 4a331a99231c49ada9f7225a91db182b
 msgid "Screenshot of criteria categories add dialog"
 msgstr ""
 
-#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:1
-#: 15548a806ffe4c37832f8bbb395bfa5e
+#: ../06_criteria/03_criteria_categories/03_criteria_categories.md:22
+#: 6279d8921bdd4c4794e81cb9425b2cb0
 msgid "Fig 06-03-02: Create category dialog"
 msgstr ""
 
 #~ msgid ""
-#~ "This section covers the categories "
-#~ "management page of the categories "
-#~ "feature."
-#~ msgstr ""
-
-#~ msgid "Fig 06-03-01: Create category dialog"
+#~ "The purpose of the criteria categories"
+#~ " is to group criteria. In order "
+#~ "to define a category press *Create "
+#~ "category* button, a dialog will then "
+#~ "open  where both English and German "
+#~ "titles of the category must be "
+#~ "provided. In order to delete or "
+#~ "edit a category press on the three"
+#~ " dots corresponding to the respective  "
+#~ "category."
 #~ msgstr ""
 

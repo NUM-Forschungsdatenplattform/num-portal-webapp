@@ -1,31 +1,31 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:04+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../03_search/03_search.md:1 509825ff785c4c35904e182a8e8ee034
+#: ../03_search/03_search.md:1 0e73773841fc4a37b07c67dd4507c829
 msgid "Search"
 msgstr ""
 
-#: ../03_search/03_search.md:3 c995a2f4ed1a4a70998ad7c825d249ce
+#: ../03_search/03_search.md:3 7efa6a45a84b41bbb5694b6a3c893828
 msgid "This section covers the search feature."
 msgstr ""
 
-#: ../03_search/03_search.md:5 9e5309e6500d4c2ba35e251a115c2d82
+#: ../03_search/03_search.md:5 9c985280490f48238aefe7ea4414c7e1
 msgid ""
 "The search functionality gives you easy access to the data sets that are "
 "available in the platform. Starting with the patient filter, you can "
@@ -33,12 +33,9 @@ msgid ""
 " to a new project."
 msgstr ""
 
-#: ../03_search/03_search.md:1 25f5f43a0c6243a5a2ec8876df2d65fc
+#: ../03_search/03_search.md:8 764ad6346d044ca2a796c40fa6394d2d
 msgid ""
 "Only users with **Manager** or **Project lead** roles can access the "
-"search functionality"
+"search functionality."
 msgstr ""
-
-#~ msgid ".. _search:"
-#~ msgstr ""
 

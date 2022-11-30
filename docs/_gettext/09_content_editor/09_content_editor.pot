@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:11+0200\n"
+"POT-Creation-Date: 2022-11-18 16:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../09_content_editor/09_content_editor.md:1
-#: 06e22726b0d5484b90b8ff0b553735e2
+#: 41d4090994e2444f8f626dc3f94c71ee
 msgid "Content editor"
 msgstr ""
 
 #: ../09_content_editor/09_content_editor.md:3
-#: a85175c6edd14945ab677294275db1b9
+#: aeb56225ea2e4e29b17c843aa90a1bb5
 msgid "This section covers the content editor feature."
 msgstr ""
 
-#: ../09_content_editor/09_content_editor.md:1
-#: a8e1a3db70014c2c8e84cdd32d800691
-msgid "Only users with **Content admin** role can access the content editor feature."
+#: ../09_content_editor/09_content_editor.md:5
+#: 45e70300de034144bcf05eac2aa7083e
+msgid "The content editor provides functionality to manage tiles that are displayed on the welcome page and to manage additional links at the lower part of the navigation bar on the left."
+msgstr ""
+
+#: ../09_content_editor/09_content_editor.md:8
+#: 28790f75d91143099264e66a3fc9feeb
+msgid "Only users with the **Content admin** role can access the content editor feature."
 msgstr ""

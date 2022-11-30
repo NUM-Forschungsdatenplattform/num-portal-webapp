@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 09:35+0200\n"
+"POT-Creation-Date: 2022-11-18 17:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:1
-#: 9fffc60797a14a36832f9353a6f26f3a
+#: 47668486877746afb58974205fcd8a6a
 msgid "Content editor - Welcome page"
 msgstr ""
 
 #: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:3
-#: 2c837aab181f44f98cd37cac733f3b6f
+#: 2a43e6602f0243a59916ce5fcaf99d42
 msgid "This section covers the editor for welcome page content."
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:5
+#: dc13e572a153434f90cd7f81f34ec6b8
+msgid "To create a new info tile, click on *create info tile* to open up a new dialog window. You can to enter the headline of your tile in english and german, a descriptive text, a link to another website and also a picture. Please note, that the headline and picture are mandatory and have to be filled."
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:8
+#: a2ba1da4b7fa4aaebeac3e8bab68e85a
+msgid "Due to security reasons, pictures can not be uploaded. You are restricted to the pictures available in the dialog."
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:15
+#: 3baeb182497749c0beb97f100b4f3bbd
+msgid "Screenshot of dialog for tile creation"
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:15
+#: 93b95eb8b75b49a3b668c4e8e8086df5
+msgid "Fig 09-01-01: Dialog to create a new tile"
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:18
+#: aa7c6f92bded4409bfa10e4e4faa0cd1
+msgid "After you entered all necessary information, click *Save* at the bottom of the dialog to add the new tile to the list. The tile is added as the first item in the list. You can now move the tile up or down by clicking on the *up arrow* and *down arrow* buttons at the right border of the tile. You can alternatively hold down the left mouse button on the *crossed arrows* icon to move the tile via drag & drop."
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:24
+#: 82584195893742f98a5dd3d55345b625
+msgid "Screenshot of the welcome page editor"
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:24
+#: edf4ee8f444b4e2dac63f43724da0b12
+msgid "Fig 09-01-02: Editor for welcome page content"
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:27
+#: 1af2fb6a49624352b74a04e538e9dc6d
+msgid "If you want to edit the tiles, you can do so by clicking on the *pencil* icon at the upper right corner of the tile to bring up the dialog window. If you want to delete a tile, click on *delete tile* at the lower right corner of the tile."
+msgstr ""
+
+#: ../09_content_editor/01_content_editor_welcome_page/01_content_editor_welcome_page.md:30
+#: 6220b5ae236f4fe79a0e6a6fd786b0b0
+msgid "Your changes are not yet applied. Scroll down to the very bottom of the page and click *publish content* to push your changes to welcome page. If you click on *discard changes*, all your changes are reverted and the welcome page is not changed at all."
 msgstr ""
