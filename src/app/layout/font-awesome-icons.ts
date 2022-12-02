@@ -53,6 +53,7 @@ import {
   faClipboard,
   faQuestionCircle,
   faUserCircle,
+  faBookOpen,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faNewspaper, faCheckCircle, faEye, faHospital } from '@fortawesome/free-regular-svg-icons'
@@ -96,6 +97,7 @@ export const FONT_AWESOME_SOLID_ICONS = [
   faInfoCircle,
   faClipboard,
   faQuestionCircle,
+  faBookOpen,
 ]
 
 export const FONT_AWESOME_REGULAR_ICONS = [faNewspaper, faCheckCircle, faEye, faHospital]

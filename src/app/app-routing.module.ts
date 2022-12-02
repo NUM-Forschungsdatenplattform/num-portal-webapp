@@ -20,6 +20,7 @@ import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
 import { AvailableRoles } from './shared/models/available-roles.enum'
+import { UserManualUrlResolver } from './shared/resolvers/usermanualurl.resolver'
 
 export const routes: Routes = [
   {
@@ -140,6 +141,15 @@ export const routes: Routes = [
       import(
         /* webpackChunkName: "ManagerTools.Module" */ './modules/manager-tools/manager-tools.module'
       ).then((m) => m.ManagerToolsModule),
+  },
+  {
+    path: 'user-manual',
+    resolve: { url: UserManualUrlResolver },
+    canLoad: [RoleGuard],
+    data: {
+      navId: 'user-manual',
+    },
+    children: [],
   },
   {
     path: 'legal',

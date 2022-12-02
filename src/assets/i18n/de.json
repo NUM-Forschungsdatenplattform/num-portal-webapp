@@ -75,7 +75,8 @@
     "PROFILE": "Benutzerkonto",
     "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
-    "SIGNIN": "Anmelden"
+    "SIGNIN": "Anmelden",
+    "USER_MANUAL": "Benutzerhandbuch"
   },
   "PROFILE": {
     "EDIT_HEADER": "Benutzerkonto bearbeiten",
