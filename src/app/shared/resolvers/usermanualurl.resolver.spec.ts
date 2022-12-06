@@ -1,0 +1,60 @@
+/**
+ * Copyright 2021 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { TestBed } from '@angular/core/testing'
+import { Router } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
+import { TranslateService } from '@ngx-translate/core'
+import { UserManualUrlResolver } from './usermanualurl.resolver'
+
+describe('ProjectMenuPipe', () => {
+  let resolver: UserManualUrlResolver
+
+  const mockTranslateService = {
+    onLangChange: jest.fn(),
+    currentLang: 'de',
+  } as unknown as TranslateService
+
+  class MockWindow {
+    public location = {
+      href: '',
+    }
+    public open(url?: string | URL, target?: string, features?: string) {
+      this.location.href = url as string
+      return null
+    }
+  }
+
+  const mockWindow = new MockWindow() as Window
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([])],
+    }).compileComponents()
+    const router = TestBed.inject(Router)
+
+    resolver = new UserManualUrlResolver(mockTranslateService, router, mockWindow)
+  })
+
+  it('should create', () => {
+    expect(resolver).toBeTruthy()
+  })
+
+  it('resolve should open window', () => {
+    resolver.resolve()
+    // expect(mockWindow.location.href).toBe('https://num-portal-webapp.readthedocs.io/de/latest/');
+  })
+})
