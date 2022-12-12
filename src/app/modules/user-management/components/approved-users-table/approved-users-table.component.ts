@@ -71,6 +71,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.filters = {
       approved: true,
       search: null,
+      type: null,
     }
 
     this.sortBy = 'firstName'
@@ -121,6 +122,16 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     } else {
       this.filters.search = searchText
     }
+    this.getAll()
+  }
+
+  handleFilterChange(isOrg: any): void {
+    if (isOrg) {
+      this.filters.type = null
+    } else {
+      this.filters.type = 'ORGANIZATION'
+    }
+
     this.getAll()
   }
 

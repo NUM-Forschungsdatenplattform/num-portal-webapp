@@ -44,7 +44,7 @@ export class ApprovedUsersComponent implements OnInit {
   }
 
   handleFilterChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+    this.table.handleFilterChange(this.filterConfig.filterItem[0].isSelected)
   }
 
   handleSearchChange(): void {
