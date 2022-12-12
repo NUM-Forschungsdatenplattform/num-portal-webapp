@@ -90,21 +90,21 @@ export class AdminService {
     sortBy: string = null,
     filters: any
   ): Observable<any> {
-    let queryString = ''
+    let qString = ''
     if (page !== null && size !== null) {
-      queryString = queryString + '?page=' + page + '&size=' + size
-
-      if (sort) {
-        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
-      }
+      qString = qString + '?page=' + page + '&size=' + size
 
       for (const [key, value] of Object.entries(filters)) {
         if (value !== null) {
-          queryString = queryString + '&filter%5B' + key + '%5D=' + value
+          qString = qString + '&filter%5B' + key + '%5D=' + value
         }
       }
+
+      if (sort) {
+        qString = qString + '&sort=' + sort + '&sortBy=' + sortBy
+      }
     }
-    return this.httpClient.get<any>(this.baseUrl + '/user/all' + queryString).pipe(
+    return this.httpClient.get<any>(this.baseUrl + '/user/all' + qString).pipe(
       tap((data) => {
         this.users = data.content
         this.usersSubject$.next(data)
