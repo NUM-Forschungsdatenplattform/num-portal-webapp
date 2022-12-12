@@ -39,6 +39,10 @@ export class AdminService {
   private baseUrl: string
   user: IUserProfile
 
+  private users: any = {}
+  private usersSubject$ = new BehaviorSubject(this.users)
+  public usersObservable$ = this.usersSubject$.asObservable()
+
   private unapprovedUsers: IUser[] = []
   private unapprovedUsersSubject$ = new BehaviorSubject(this.unapprovedUsers)
   public unapprovedUsersObservable$ = this.unapprovedUsersSubject$.asObservable()
@@ -77,6 +81,36 @@ export class AdminService {
     return this.httpClient
       .get<IUser[]>(`${this.baseUrl}/user?approved=${approved}&withRoles=${withRoles}`)
       .pipe(catchError(this.handleError))
+  }
+
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null,
+    filters: any
+  ): Observable<any> {
+    let queryString = ''
+    if (page !== null && size !== null) {
+      queryString = queryString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
+      }
+
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== null) {
+          queryString = queryString + '&filter%5B' + key + '%5D=' + value
+        }
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/user/all' + queryString).pipe(
+      tap((data) => {
+        this.users = data.content
+        this.usersSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   getUserById(id: string): Observable<IUser> {

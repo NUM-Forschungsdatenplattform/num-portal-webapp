@@ -63,6 +63,27 @@ describe('AdminService', () => {
     expect(service).toBeTruthy()
   })
 
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
+      service.getAllPag(0, 2, 'ASC', 'firstName', { type: 'approved' }).subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' })
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/admin/user/all?page=0&size=2&sort=ASC&sortBy=firstName&filter%5Btype%5D=approved'
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
   describe('When a call to getUnapprovedUsers method comes in', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
@@ -250,54 +271,6 @@ describe('AdminService', () => {
         httpOptions
       )
       expect(service.handleError).toHaveBeenCalled()
-    })
-  })
-
-  describe('When multiple filter are passed in', () => {
-    beforeEach(() => {
-      jest.restoreAllMocks()
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
-      throttleTime = (service as any).throttleTime
-    })
-
-    it('should debounce the filtering', (done) => {
-      const filterConfigLast: IUserFilter = {
-        searchText: 'Musterfrau',
-        filterItem: [],
-      }
-      let filterResult: IUser[]
-      const callHelper = jest.fn((result) => (filterResult = result))
-      service.filteredApprovedUsersObservable$.subscribe(callHelper)
-
-      /* Service Init */
-      expect(callHelper).toHaveBeenCalledTimes(1)
-
-      /* First filter call after throttle time */
-      setTimeout(() => {
-        service.setFilter(filterConfig)
-        expect(callHelper).toBeCalledTimes(2)
-      }, throttleTime + 1)
-
-      setTimeout(() => {
-        /* Second filter call but within throttle time */
-        service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
-      }, throttleTime + 1)
-
-      setTimeout(() => {
-        /* Third filter call but within throttle time */
-        service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
-      }, throttleTime + 10)
-
-      setTimeout(() => {
-        /* Fourth filter call, meanwhile the third filter was pushed */
-        service.setFilter(filterConfigLast)
-        expect(callHelper).toHaveBeenCalledTimes(4)
-        expect(filterResult.length).toEqual(1)
-        expect(filterResult[0].id).toEqual('456-789')
-        done()
-      }, throttleTime * 3)
     })
   })
 
