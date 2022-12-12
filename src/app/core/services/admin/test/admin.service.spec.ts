@@ -78,7 +78,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/admin/user/all?page=0&size=2&sort=ASC&sortBy=firstName&filter%5Btype%5D=approved'
+        'localhost/api/admin/user/all?page=0&size=2&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
