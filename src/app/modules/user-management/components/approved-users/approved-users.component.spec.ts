@@ -97,9 +97,4 @@ describe('ApprovedUsersComponent', () => {
   it('should call getApprovedUsers', () => {
     expect(adminService.getApprovedUsers).toHaveBeenCalled()
   })
-
-  it('should set the filter in the adminService on filterChange', () => {
-    component.handleFilterChange()
-    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
 })
