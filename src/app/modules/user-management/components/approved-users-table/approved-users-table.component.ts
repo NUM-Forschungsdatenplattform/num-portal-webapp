@@ -14,22 +14,17 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
-import { MatSort } from '@angular/material/sort'
-import { MatPaginator } from '@angular/material/paginator'
+import { Sort } from '@angular/material/sort'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
-import { ProfileService } from 'src/app/core/services/profile/profile.service'
-import { filter, withLatestFrom } from 'rxjs/operators'
-import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
-import { sortUsers } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 
 @Component({
@@ -42,11 +37,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   availableRoles = Object.values(AvailableRoles)
 
-  constructor(
-    private adminService: AdminService,
-    private dialogService: DialogService,
-    private profileService: ProfileService
-  ) {
+  constructor(private adminService: AdminService, private dialogService: DialogService) {
     super()
   }
 
@@ -59,18 +50,13 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     'createdTimestamp',
   ]
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
+  public totalItems: number
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public filters: any
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -81,14 +67,26 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   ngOnInit(): void {
+    this.pageIndex = 0
+    this.filters = {
+      approved: true,
+      search: null,
+      type: null,
+    }
+
+    this.sortBy = 'firstName'
+    this.sortDir = 'ASC'
+
+    this.getAll()
+  }
+
+  getAll() {
     this.subscriptions.add(
-      this.adminService.filteredApprovedUsersObservable$
-        .pipe(
-          withLatestFrom(
-            this.profileService.userProfileObservable$.pipe(filter((profile) => !!profile.id))
-          )
-        )
-        .subscribe(([users, userProfile]) => this.handleData(users, userProfile))
+      this.adminService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
     )
   }
 
@@ -96,20 +94,45 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.subscriptions.unsubscribe()
   }
 
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, sort) => sortUsers(data, sort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'createdTimestamp') {
+      this.sortBy = 'registrationDate'
+    }
+
+    this.getAll()
   }
 
-  handleData(users: IUser[], userProfile: IUserProfile): void {
-    if (!userProfile.roles.includes(AvailableRoles.SuperAdmin)) {
-      this.dataSource.data = users.filter(
-        (user) => user.organization?.id === userProfile.organization.id
-      )
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  handleData(users: any): void {
+    this.dataSource.data = users.content
+    this.totalItems = users.totalElements
+  }
+
+  handleSearchChange(searchText: any): void {
+    if (searchText === '') {
+      this.filters.search = null
     } else {
-      this.dataSource.data = users
+      this.filters.search = searchText
     }
+    this.getAll()
+  }
+
+  handleFilterChange(isOrg: any): void {
+    if (isOrg) {
+      this.filters.type = null
+    } else {
+      this.filters.type = 'ORGANIZATION'
+    }
+
+    this.getAll()
   }
 
   handleSelectClick(user: IUser): void {

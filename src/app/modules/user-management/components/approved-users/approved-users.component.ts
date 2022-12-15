@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
+import { ApprovedUsersTableComponent } from '../approved-users-table/approved-users-table.component'
 
 @Component({
   selector: 'num-approved-users',
@@ -25,6 +26,8 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
   styleUrls: ['./approved-users.component.scss'],
 })
 export class ApprovedUsersComponent implements OnInit {
+  @ViewChild(ApprovedUsersTableComponent) table: ApprovedUsersTableComponent
+
   filterConfig: IUserFilter
 
   constructor(private adminService: AdminService) {}
@@ -41,10 +44,10 @@ export class ApprovedUsersComponent implements OnInit {
   }
 
   handleFilterChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+    this.table.handleFilterChange(this.filterConfig.filterItem[0].isSelected)
   }
 
   handleSearchChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+    this.table.handleSearchChange(this.filterConfig.searchText)
   }
 }
