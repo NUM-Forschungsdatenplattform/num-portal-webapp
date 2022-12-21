@@ -17,25 +17,22 @@
 import { Injectable } from '@angular/core'
 import { Resolve, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
+import { USER_MANUAL_LINK } from '../constants'
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserManualUrlResolver implements Resolve<void> {
-  constructor(
-    private translate: TranslateService,
-    private router: Router,
-    private window: Window
-  ) {}
+  constructor(private translate: TranslateService, private router: Router) {}
   resolve(): void {
     let link: string
     if (this.translate.currentLang == 'de') {
-      link = 'https://num-portal-webapp.readthedocs.io/de/latest/'
+      link = USER_MANUAL_LINK.DE
     } else {
-      link = 'https://num-portal-webapp.readthedocs.io/en/latest/'
+      link = USER_MANUAL_LINK.EN
     }
     this.router.navigate([]).then((_) => {
-      this.window.open(link, '_blank')
+      window.open(link, '_blank')
     })
   }
 }
