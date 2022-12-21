@@ -89,6 +89,11 @@ export class UnapprovedUsersTableComponent
   handleSortChangeTable(sort: Sort): void {
     this.sortBy = sort.active
     this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'createdTimestamp') {
+      this.sortBy = 'registrationDate'
+    }
+
     this.getAll()
   }
 
