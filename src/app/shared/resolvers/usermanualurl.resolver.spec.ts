@@ -28,25 +28,13 @@ describe('ProjectMenuPipe', () => {
     currentLang: 'de',
   } as unknown as TranslateService
 
-  class MockWindow {
-    public location = {
-      href: '',
-    }
-    public open(url?: string | URL, target?: string, features?: string) {
-      this.location.href = url as string
-      return null
-    }
-  }
-
-  const mockWindow = new MockWindow() as Window
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([])],
     }).compileComponents()
     const router = TestBed.inject(Router)
 
-    resolver = new UserManualUrlResolver(mockTranslateService, router, mockWindow)
+    resolver = new UserManualUrlResolver(mockTranslateService, router)
   })
 
   it('should create', () => {
