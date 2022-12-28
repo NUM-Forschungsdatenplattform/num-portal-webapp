@@ -38,6 +38,7 @@
           type="primary"
           (singleClick)="save()"
           [isDisabled]="!aqlForm.valid"
+          *numUserHasRole="[availableRoles.CriteriaEditor]"
           data-test="aql-editor__save-button"
           >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
         >
@@ -45,6 +46,7 @@
       <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="10px" class="editmode-on">
         <num-button
           [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
+          *numUserHasRole="[availableRoles.CriteriaEditor]"
           (singleClick)="save()"
           [isDisabled]="!aqlForm.valid"
           data-test="aql-editor__save-as-clone-button"

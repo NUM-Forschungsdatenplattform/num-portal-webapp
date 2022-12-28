@@ -28,6 +28,7 @@ import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-b
 import { IAqlValidationResponse } from 'src/app/shared/models/archetype-query-builder/aql-validation-response.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
 import {
   BUILDER_DIALOG_CONFIG,
   VALIDATION_ERROR_CONFIG,
@@ -40,6 +41,7 @@ import {
   styleUrls: ['./aql-editor-creator.component.scss'],
 })
 export class AqlEditorCeatorComponent {
+  availableRoles = AvailableRoles
   constructor(
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
