@@ -34,6 +34,36 @@ export class AqlCategoryService {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/category`
   }
 
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null,
+    filters: any
+  ): Observable<any> {
+    let queryString = ''
+    if (page !== null && size !== null) {
+      queryString = queryString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
+      }
+
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== null) {
+          queryString = queryString + '&filter%5B' + key + '%5D=' + value
+        }
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(
+      tap((data) => {
+        this.aqlCategories = data.content
+        this.aqlCategoriesSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
+  }
+
   /**
    * Get the list of persisted AQL categories from backend and propagate them to the components
    * via services' data subject.

@@ -28,6 +28,7 @@ describe('AqlCategoryService', () => {
     delete: jest.fn(),
     post: jest.fn(),
     put: jest.fn(),
+    getAllPag: jest.fn(),
   } as unknown as HttpClient
 
   const appConfig = {
@@ -47,6 +48,27 @@ describe('AqlCategoryService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqlCategories))
+      service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }).subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2, 'ASC', 'name', null)
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/project/all?page=0&size=2&sort=ASC&sortBy=name'
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
   })
 
   describe('When a call to getAll method comes in', () => {

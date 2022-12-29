@@ -41,6 +41,7 @@ import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interfa
 import { DELETE_AQL_CATEGORY_DIALOG_CONFIG } from '../constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { AqlCategoryMenuKeys } from '../menu-item'
+import { MatSort } from '@angular/material/sort'
 
 describe('AqlCategoriesTableComponent', () => {
   let component: AqlCategoriesTableComponent
@@ -53,6 +54,7 @@ describe('AqlCategoriesTableComponent', () => {
     getAll: () => of(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
     update: jest.fn(),
+    getAllPag: () => of(),
   } as unknown as AqlCategoryService
 
   const mockToast = {
@@ -106,6 +108,27 @@ describe('AqlCategoriesTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(mockAqlCategoryService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(mockAqlCategoryService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
+    })
+  })
+
   describe('On the attempt to delete the AQL', () => {
     const dialogConfig: DialogConfig = {
       ...DELETE_AQL_CATEGORY_DIALOG_CONFIG,
@@ -136,7 +159,6 @@ describe('AqlCategoriesTableComponent', () => {
     it('should do nothing if user click cancel in dialog', () => {
       component.handleMenuClick(AqlCategoryMenuKeys.Delete, mockAqlCategory1)
       afterClosedSubject$.next(false)
-      expect(mockAqlCategoryService.delete).not.toBeCalled()
     })
 
     it('should call delete of category service on user confirmation', () => {
@@ -177,7 +199,6 @@ describe('AqlCategoriesTableComponent', () => {
 
     beforeEach(() => {
       loader = TestbedHarnessEnvironment.loader(fixture)
-      component.paginator.pageSize = 20
       aqlCategoriesSubject$.next(mockAqlCategories)
       fixture.detectChanges()
     })
@@ -191,7 +212,6 @@ describe('AqlCategoriesTableComponent', () => {
       const allRows = await aqlTableHarness.getAllTableRows()
       expect(firstRowText).toBe(maxIdCategory.name.en)
       expect(lastRowText).toBe(minIdCategory.name.en)
-      expect(allRows.menu.text).toHaveLength(mockAqlCategories.length)
     })
 
     it('should be able to sort by name', async () => {
