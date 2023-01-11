@@ -26,6 +26,7 @@ import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dial
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { MatDialogRef } from '@angular/material/dialog'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -62,7 +63,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     return +localStorage.getItem('pageSize') || 5
   }
 
-  set pageSize(pageSize) {
+  set pageSize(pageSize: number) {
     localStorage.setItem('pageSize', pageSize.toString())
   }
 
@@ -80,7 +81,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.getAll()
   }
 
-  getAll() {
+  getAll(): void {
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -105,7 +106,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.getAll()
   }
 
-  onPageChange(event: any) {
+  onPageChange(event: any): void {
     this.pageIndex = event.pageIndex
     this.pageSize = event.pageSize
     this.getAll()
@@ -146,6 +147,9 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
       dialogContentPayload,
     }
 
-    this.dialogService.openDialog(dialogConfig)
+    const currentDialog: MatDialogRef<any> = this.dialogService.openDialog(dialogConfig)
+    currentDialog.afterClosed().subscribe(() => {
+      this.getAll()
+    })
   }
 }
