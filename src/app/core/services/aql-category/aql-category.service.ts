@@ -26,12 +26,35 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 export class AqlCategoryService {
   private baseUrl: string
 
-  private aqlCategories: IAqlCategoryApi[] = []
+  private aqlCategories: any = {}
   private aqlCategoriesSubject$ = new BehaviorSubject(this.aqlCategories)
   aqlCategoriesObservable$ = this.aqlCategoriesSubject$.asObservable()
 
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/category`
+  }
+
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null
+  ): Observable<any> {
+    let qString = ''
+    if (page !== null && size !== null) {
+      qString = qString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        qString = qString + '&sort=' + sort + '&sortBy=' + sortBy
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + qString).pipe(
+      tap((data) => {
+        this.aqlCategories = data.content
+        this.aqlCategoriesSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   /**

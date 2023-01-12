@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { Subscription } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { compareIds, compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
@@ -37,7 +37,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
-  implements OnDestroy
+  implements OnDestroy, OnInit
 {
   @Output() openEditDialog = new EventEmitter<Omit<IAqlCategoryApi, 'id'>>()
   displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
@@ -45,24 +45,12 @@ export class AqlCategoriesTableComponent
 
   private subscriptions = new Subscription()
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
-
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, sort) => this.sortAqlCategories(data, sort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public totalItems: number
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -78,16 +66,44 @@ export class AqlCategoriesTableComponent
     private toast: ToastMessageService
   ) {
     super()
+  }
 
-    this.subscriptions.add(
-      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) =>
-        this.handleData(aqlCategories)
-      )
-    )
+  ngOnInit() {
+    this.pageIndex = 0
+
+    this.sortBy = 'name-en'
+    this.sortDir = 'ASC'
+
+    this.getAll()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  getAll() {
+    this.subscriptions.add(
+      this.aqlCategoryService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+
+    console.log('this.sortBy', this.sortBy)
+
+    this.getAll()
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
   }
 
   handleMenuClick(key: string, aqlCategory: IAqlCategoryApi): void {
@@ -110,8 +126,9 @@ export class AqlCategoriesTableComponent
     })
   }
 
-  private handleData(aqlCategories: IAqlCategoryApi[]): void {
-    this.dataSource.data = aqlCategories
+  handleData(projects: any): void {
+    this.dataSource.data = projects.content
+    this.totalItems = projects.totalElements
   }
 
   private sortAqlCategories(data: IAqlCategoryApi[], sort: MatSort): IAqlCategoryApi[] {
