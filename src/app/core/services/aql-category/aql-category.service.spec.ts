@@ -18,6 +18,7 @@ import { AqlCategoryService } from './aql-category.service'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockAqlCategories, mockAqlCategory1 } from 'src/mocks/data-mocks/aql-categories.mock'
+import { mockProjects } from '../../../../mocks/data-mocks/project.mock'
 
 describe('AqlCategoryService', () => {
   let service: AqlCategoryService
@@ -47,6 +48,27 @@ describe('AqlCategoryService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqlCategories))
+      service.getAllPag(0, 2, 'ASC', 'name').subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2, 'ASC', 'name')
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/aql/category/all?page=0&size=2&sort=ASC&sortBy=name'
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
   })
 
   describe('When a call to getAll method comes in', () => {

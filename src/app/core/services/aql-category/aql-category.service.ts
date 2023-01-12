@@ -26,12 +26,35 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 export class AqlCategoryService {
   private baseUrl: string
 
-  private aqlCategories: IAqlCategoryApi[] = []
+  private aqlCategories: any = {}
   private aqlCategoriesSubject$ = new BehaviorSubject(this.aqlCategories)
   aqlCategoriesObservable$ = this.aqlCategoriesSubject$.asObservable()
 
   constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/category`
+  }
+
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null
+  ): Observable<any> {
+    let qString = ''
+    if (page !== null && size !== null) {
+      qString = qString + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        qString = qString + '&sort=' + sort + '&sortBy=' + sortBy
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + qString).pipe(
+      tap((data) => {
+        this.aqlCategories = data.content
+        this.aqlCategoriesSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   /**
@@ -99,10 +122,8 @@ export class AqlCategoryService {
    * @param id - Id of the AQL category to update
    */
   update(update: Omit<IAqlCategoryApi, 'id'>, id: number): Observable<IAqlCategoryApi> {
-    const listIdx = this.aqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
     return this.httpClient.put<IAqlCategoryApi>(`${this.baseUrl}/${id}`, update).pipe(
       tap((updated) => {
-        this.aqlCategories[listIdx] = updated
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
       catchError(this.handleError)
@@ -116,10 +137,8 @@ export class AqlCategoryService {
    * @param id - ID of AQL category to delete
    */
   delete(id: number): Observable<any> {
-    const cachedIdx = this.aqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
     return this.httpClient.delete<any>(`${this.baseUrl}/${id}`).pipe(
       tap(() => {
-        this.aqlCategories.splice(cachedIdx, 1)
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
       catchError(this.handleError)
