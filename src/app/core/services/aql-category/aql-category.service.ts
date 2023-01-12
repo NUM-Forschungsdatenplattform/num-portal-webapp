@@ -122,10 +122,8 @@ export class AqlCategoryService {
    * @param id - Id of the AQL category to update
    */
   update(update: Omit<IAqlCategoryApi, 'id'>, id: number): Observable<IAqlCategoryApi> {
-    const listIdx = this.aqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
     return this.httpClient.put<IAqlCategoryApi>(`${this.baseUrl}/${id}`, update).pipe(
       tap((updated) => {
-        this.aqlCategories[listIdx] = updated
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
       catchError(this.handleError)
@@ -139,10 +137,8 @@ export class AqlCategoryService {
    * @param id - ID of AQL category to delete
    */
   delete(id: number): Observable<any> {
-    const cachedIdx = this.aqlCategories.findIndex((aqlCategory) => id === aqlCategory.id)
     return this.httpClient.delete<any>(`${this.baseUrl}/${id}`).pipe(
       tap(() => {
-        this.aqlCategories.splice(cachedIdx, 1)
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
       catchError(this.handleError)

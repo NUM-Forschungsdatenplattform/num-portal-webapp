@@ -51,6 +51,7 @@ describe('AqlCategoriesManagementComponent', () => {
     getAll: jest.fn(() => of()),
     update: jest.fn(),
     save: jest.fn(),
+    getAllPag: () => of(),
     aqlCategoriesObservable$: aqlCategoriesSubject$.asObservable(),
   } as unknown as AqlCategoryService
 
