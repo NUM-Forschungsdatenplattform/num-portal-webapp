@@ -95,7 +95,13 @@ export class AqlCategoriesTableComponent
     this.sortBy = sort.active
     this.sortDir = sort.direction.toUpperCase()
 
-    console.log('this.sortBy', this.sortBy)
+    if (this.sortBy === 'nameEn') {
+      this.sortBy = 'name-en'
+    }
+
+    if (this.sortBy === 'nameDe') {
+      this.sortBy = 'name-de'
+    }
 
     this.getAll()
   }
@@ -131,30 +137,11 @@ export class AqlCategoriesTableComponent
     this.totalItems = projects.totalElements
   }
 
-  private sortAqlCategories(data: IAqlCategoryApi[], sort: MatSort): IAqlCategoryApi[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...data]
-
-    switch (sort.active as AqlCategoryTableColumn) {
-      case 'nameDe': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.name.de, b.name.de, a.id, b.id, isAsc)
-        )
-      }
-      case 'nameEn': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.name.en, b.name.en, a.id, b.id, isAsc)
-        )
-      }
-      default: {
-        return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
-      }
-    }
-  }
-
   async delete(id: number): Promise<void> {
     try {
       await this.aqlCategoryService.delete(id).toPromise()
+
+      this.getAll()
 
       this.toast.openToast({
         type: ToastMessageType.Success,

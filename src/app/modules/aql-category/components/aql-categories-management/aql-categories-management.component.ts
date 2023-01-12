@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 
 // Services
@@ -28,6 +28,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 // Constants
 import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { Subscription } from 'rxjs'
+import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
 
 @Component({
   selector: 'num-aql-categories-management',
@@ -38,6 +39,8 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
   availableRoles = AvailableRoles
 
   private subscriptions = new Subscription()
+
+  @ViewChild(AqlCategoriesTableComponent) aqlCategoriesTableComponent: AqlCategoriesTableComponent
 
   constructor(
     private aqlCategoryService: AqlCategoryService,
@@ -89,6 +92,8 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
   async update(data: Omit<IAqlCategoryApi, 'id'>, id: number): Promise<void> {
     try {
       await this.aqlCategoryService.update(data, id).toPromise()
+
+      this.aqlCategoriesTableComponent.getAll()
 
       this.toast.openToast({
         type: ToastMessageType.Success,
