@@ -357,9 +357,9 @@
       "CRITICAL_CARE_MEDICINE": "Critical Care Medicine",
       "QUALITY_MANAGEMENT_MII": "Quality Management MII",
       "QUALITY_MANAGEMENT_ROUTINE_CARE": "Quality Management Routine Care",
-      "LONGITUDINAL_PROJECT": "Longitudinal project",
-      "PROSPECTIVE_PROJECT": "Prospective project",
-      "RETROSPECTIVE_PROJECT": "Retrospective project",
+      "LONGITUDINAL_STUDY": "Longitudinal project",
+      "PROSPECTIVE_STUDY": "Prospective project",
+      "RETROSPECTIVE_STUDY": "Retrospective project",
       "REGISTRY": "Registry"
     },
     "CATEGORIES_NO_RESULTS": "No Results",
