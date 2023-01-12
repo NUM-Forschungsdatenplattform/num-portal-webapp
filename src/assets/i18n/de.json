@@ -358,9 +358,9 @@
       "CRITICAL_CARE_MEDICINE": "Intensivmedizin",
       "QUALITY_MANAGEMENT_MII": "Qualitätsmanagement MII",
       "QUALITY_MANAGEMENT_ROUTINE_CARE": "Qualitätsmanagement Routineversorgung",
-      "LONGITUDINAL_PROJECT": "Longitudinale Projekt",
-      "PROSPECTIVE_PROJECT": "Prospektive Projekt",
-      "RETROSPECTIVE_PROJECT": "Retrospektive Projekt",
+      "LONGITUDINAL_STUDY": "Longitudinale Projekt",
+      "PROSPECTIVE_STUDY": "Prospektive Projekt",
+      "RETROSPECTIVE_STUDY": "Retrospektive Projekt",
       "REGISTRY": "Register"
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
