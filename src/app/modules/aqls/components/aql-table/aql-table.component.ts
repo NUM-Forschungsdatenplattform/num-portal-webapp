@@ -213,6 +213,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     try {
       await this.aqlService.delete(id).toPromise()
 
+      this.getAll()
+
       this.toast.openToast({
         type: ToastMessageType.Success,
         message: 'QUERIES.DELETE_QUERY_SUCCESS_MESSAGE',
@@ -227,62 +229,5 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
-  }
-  sortAqls(data: IAqlApi[], sort: MatSort): IAqlApi[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...data]
-
-    switch (sort.active as AqlTableColumns) {
-      case 'author': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            `${a.owner?.firstName || ''} ${a.owner?.lastName || ''}`,
-            `${b.owner?.firstName || ''} ${b.owner?.lastName || ''}`,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'creationDate': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
-        )
-      }
-      case 'name': {
-        const nameField = this.lang === 'de' ? 'name' : 'nameTranslated'
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a[nameField], b[nameField], a.id, b.id, isAsc)
-        )
-      }
-      case 'organization': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            a.owner?.organization?.name || '',
-            b.owner?.organization?.name || '',
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'category': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
-            b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      default: {
-        return newData.sort((a, b) => {
-          const compareResult = a.id - b.id
-          return isAsc ? compareResult : compareResult * -1
-        })
-      }
-    }
   }
 }
