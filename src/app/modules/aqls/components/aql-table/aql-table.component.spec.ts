@@ -185,21 +185,21 @@ describe('AqlTableComponent', () => {
     it('filter change to all aql', () => {
       jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
       component.filterConfig['filterItem'] = [{ id: 'QUERIES.ALL_AQLS', isSelected: true }]
-      component.handleFilterChange()
+      component.handleChangeFilter()
       expect(component.filters.type).toEqual(null)
     })
 
     it('filter change to my aql', () => {
       jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
       component.filterConfig['filterItem'] = [{ id: 'QUERIES.MY_AQL', isSelected: true }]
-      component.handleFilterChange()
+      component.handleChangeFilter()
       expect(component.filters.type).toEqual('OWNED')
     })
 
     it('filter change to organization aql', () => {
       jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
       component.filterConfig['filterItem'] = [{ id: 'QUERIES.ORGANIZATION_AQLS', isSelected: true }]
-      component.handleFilterChange()
+      component.handleChangeFilter()
       expect(component.filters.type).toEqual('ORGANIZATION')
     })
   })
