@@ -58,7 +58,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   ]
   lang = 'en'
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
-  filterConfig: IAqlFilter
+  filterConfig: any
   selectedItem = 'QUERIES.ALL_AQLS'
   aqlCategories: IAqlCategoryIdNameMap = {}
   uncategorizedString = 'Uncategorized'

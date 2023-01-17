@@ -88,21 +88,21 @@ export class AqlService {
     sortBy: string = null,
     filters: any
   ): Observable<any> {
-    let queryString = ''
+    let queryS = ''
     if (page !== null && size !== null) {
-      queryString = queryString + '?page=' + page + '&size=' + size
+      queryS = queryS + '?page=' + page + '&size=' + size
 
       if (sort) {
-        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
+        queryS = queryS + '&sort=' + sort + '&sortBy=' + sortBy
       }
 
       for (const [key, value] of Object.entries(filters)) {
         if (value !== null) {
-          queryString = queryString + '&filter%5B' + key + '%5D=' + value
+          queryS = queryS + '&filter%5B' + key + '%5D=' + value
         }
       }
     }
-    return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(
+    return this.httpClient.get<any>(this.baseUrl + '/all' + queryS).pipe(
       tap((data) => {
         this.filteredAqls = data.content
         this.filteredAqlsSubject$.next(data)
