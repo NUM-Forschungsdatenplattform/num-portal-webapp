@@ -87,6 +87,27 @@ describe('AqlService', () => {
     expect(service.user).toEqual(mockUserProfile1)
   })
 
+  describe('When a call to getAllPag method comes in', () => {
+    it('should call the api - with success', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
+      service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }).subscribe()
+      expect(httpClient.get).toHaveBeenCalled()
+    })
+    it('should call the api - with error', () => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(service, 'handleError')
+      service
+        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' })
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(httpClient.get).toHaveBeenCalledWith(
+        'localhost/api/aql/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED'
+      )
+      expect(service.handleError).toHaveBeenCalled()
+    })
+  })
+
   describe('When a call to getAll method comes in', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
