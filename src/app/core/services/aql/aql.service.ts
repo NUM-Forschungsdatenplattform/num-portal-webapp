@@ -45,7 +45,7 @@ export class AqlService {
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
   public aqlsObservable$ = this.aqlsSubject$.asObservable()
 
-  private filteredAqls: IAqlApi[] = []
+  private filteredAqls: any = {}
   private filteredAqlsSubject$ = new BehaviorSubject(this.filteredAqls)
   public filteredAqlsObservable$ = this.filteredAqlsSubject$.asObservable()
 
@@ -79,6 +79,36 @@ export class AqlService {
       this.currentLang = event.lang || 'en'
       this.setFilter(this.filterSet)
     })
+  }
+
+  getAllPag(
+    page: number,
+    size: number,
+    sort: string = null,
+    sortBy: string = null,
+    filters: any
+  ): Observable<any> {
+    let queryS = ''
+    if (page !== null && size !== null) {
+      queryS = queryS + '?page=' + page + '&size=' + size
+
+      if (sort) {
+        queryS = queryS + '&sort=' + sort + '&sortBy=' + sortBy
+      }
+
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== null) {
+          queryS = queryS + '&filter%5B' + key + '%5D=' + value
+        }
+      }
+    }
+    return this.httpClient.get<any>(this.baseUrl + '/all' + queryS).pipe(
+      tap((data) => {
+        this.filteredAqls = data.content
+        this.filteredAqlsSubject$.next(data)
+      }),
+      catchError(this.handleError)
+    )
   }
 
   getAll(): Observable<IAqlApi[]> {
