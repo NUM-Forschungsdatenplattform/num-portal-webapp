@@ -127,6 +127,11 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   handleSortChangeTable(sort: Sort): void {
     this.sortBy = sort.active
     this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'creationDate') {
+      this.sortBy = 'createDate'
+    }
+
     this.getAll()
   }
 
