@@ -247,7 +247,7 @@ export class ProjectsTableComponent
               return of(error)
             })
           )
-          .subscribe()
+          .subscribe(() => this.getAll())
       }
     })
   }
