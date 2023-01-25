@@ -132,6 +132,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
       this.sortBy = 'createDate'
     }
 
+    if (this.lang === 'en' && this.sortBy === 'name') {
+      this.sortBy = 'nameTranslated'
+    }
+
     this.getAll()
   }
 
@@ -144,7 +148,14 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   getAll() {
     this.subscriptions.add(
       this.aqlService
-        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .getAllPag(
+          this.pageIndex,
+          this.pageSize,
+          this.sortDir,
+          this.sortBy,
+          this.filters,
+          this.lang
+        )
         .subscribe((data) => {
           this.handleData(data)
         })
