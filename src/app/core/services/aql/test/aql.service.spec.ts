@@ -90,19 +90,19 @@ describe('AqlService', () => {
   describe('When a call to getAllPag method comes in', () => {
     it('should call the api - with success', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqls))
-      service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }).subscribe()
+      service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en').subscribe()
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
       jest.spyOn(service, 'handleError')
       service
-        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' })
+        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en')
         .toPromise()
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/aql/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED'
+        'localhost/api/aql/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED&language=en'
       )
       expect(service.handleError).toHaveBeenCalled()
     })

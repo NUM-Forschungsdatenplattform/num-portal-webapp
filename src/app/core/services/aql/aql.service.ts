@@ -86,7 +86,8 @@ export class AqlService {
     size: number,
     sort: string = null,
     sortBy: string = null,
-    filters: any
+    filters: any,
+    lang: string
   ): Observable<any> {
     let queryS = ''
     if (page !== null && size !== null) {
@@ -100,6 +101,10 @@ export class AqlService {
         if (value !== null) {
           queryS = queryS + '&filter%5B' + key + '%5D=' + value
         }
+      }
+
+      if (lang) {
+        queryS = queryS + '&language=' + lang
       }
     }
     return this.httpClient.get<any>(this.baseUrl + '/all' + queryS).pipe(
