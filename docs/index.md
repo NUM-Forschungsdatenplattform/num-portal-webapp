@@ -11,7 +11,7 @@ href="https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues"
   target="_blank" 
   rel="noopener">
 this link
-</a>
+</a>.
 
 Please check first if there is already a similar issue with the tag `documentation`. Thanks for your
 feedback and contribution.
@@ -33,12 +33,4 @@ caption: "Table of contents:"
 09_content_editor/09_content_editor.md
 10_manager_tools/10_manager_tools.md
 00_glossary/00_glossary.md
-```
-
-## Indexes und tables
-
-```{eval-rst}
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 ```

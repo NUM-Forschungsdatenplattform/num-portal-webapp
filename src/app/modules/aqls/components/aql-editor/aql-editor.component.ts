@@ -29,6 +29,7 @@ import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creat
 import { Subscription } from 'rxjs'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-aql-editor',
@@ -36,6 +37,7 @@ import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-categ
   styleUrls: ['./aql-editor.component.scss'],
 })
 export class AqlEditorComponent implements OnDestroy, OnInit {
+  availableRoles = AvailableRoles
   resolvedData: IAqlResolved
   get aql(): AqlEditorUiModel {
     return this.resolvedData.aql

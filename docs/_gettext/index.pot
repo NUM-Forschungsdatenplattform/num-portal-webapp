@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-26 23:44+0200\n"
+"POT-Creation-Date: 2022-11-17 18:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../index.md:20
-#: ../index.md:20
 #: 
-#: 9aea5186ce3c492890249d6d0836e808
+#: dec28ffa10ae4ac397952d93635a9791
 msgid "Table of contents:"
 msgstr ""
 
 #: ../index.md:1
-#: 1c52e6530946405881b00fc39c148632
+#: b667ec29c3cd447ca33f6fae1d521931
 msgid "NUM CODEX User documentation"
 msgstr ""
 
 #: ../index.md:3
-#: 546c52cc0df646418e514ff26edc101d
+#: f5e9b269da6a43909d2940d602c60079
 msgid "Welcome to the NUM CODEX App manual. This manual describes all features the NUM research data platform CODEX provides."
 msgstr ""
 
 #: ../index.md:6
-#: f831eb18f3ea408683ac20848bb08509
-msgid "This manual has been created with biggest diligence in the languages German and English. If you find an error or want to give other feedback to this documentation please do not hestitate to create a new issue for this project following  <a  href=\"https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\"    rel=\"noopener\"> this link </a>"
+#: f85b6896eaf940f6bdd191b56af90605
+msgid "This manual has been created with biggest diligence in the languages German and English. If you find an error or want to give other feedback to this documentation please do not hestitate to create a new issue for this project following  <a  href=\"https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp/issues\"    target=\"_blank\"    rel=\"noopener\"> this link </a>."
 msgstr ""
 
 #: ../index.md:16
-#: 2d1419cd858440de827e679a94c6ff79
+#: 0a9a5d598bf9468792d3d3ec3711197e
 msgid "Please check first if there is already a similar issue with the tag `documentation`. Thanks for your feedback and contribution."
-msgstr ""
-
-#: ../index.md:38
-#: 200943c7874b47d3970872e7da26cec5
-msgid "Indexes und tables"
-msgstr ""
-
-#: ../index.md:41
-#: 3c5b906dda8c4fd8acb8ee14f9694160
-msgid ":ref:`genindex`"
-msgstr ""
-
-#: ../index.md:42
-#: 25c53fc6e36b420f8feb2e7f6312b833
-msgid ":ref:`modindex`"
-msgstr ""
-
-#: ../index.md:43
-#: cb5c3e9cd06a4ae8a06737eaf0f7ae83
-msgid ":ref:`search`"
 msgstr ""

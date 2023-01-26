@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, ViewChild } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
@@ -45,7 +45,7 @@ import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-ca
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
+export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy, OnInit {
   user: IUserProfile
   displayedColumns: AqlTableColumns[] = [
     'menu',
@@ -58,30 +58,20 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   ]
   lang = 'en'
   menuItems: IItemVisibility[] = [MENU_ITEM_CLONE, MENU_ITEM_EDIT, MENU_ITEM_DELETE]
-  filterConfig: IAqlFilter
+  filterConfig: any
   selectedItem = 'QUERIES.ALL_AQLS'
   aqlCategories: IAqlCategoryIdNameMap = {}
   uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
+  public totalItems: number
 
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, matSort) => this.sortAqls(data, matSort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public filters: any
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -106,17 +96,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
       .subscribe((config) => (this.filterConfig = config))
 
     this.subscriptions.add(
-      this.aqlService.filteredAqlsObservable$.subscribe((aqls) => this.handleData(aqls))
-    )
-
-    this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
-    )
-
-    this.subscriptions.add(
-      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) => {
-        this.handleCategories(aqlCategories)
-      })
     )
 
     this.subscriptions.add(
@@ -131,26 +111,95 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.aqlCategoryService.getAll().subscribe()
   }
 
+  ngOnInit() {
+    this.pageIndex = 0
+    this.filters = {
+      type: null,
+      search: null,
+    }
+
+    this.sortBy = 'name'
+    this.sortDir = 'ASC'
+
+    this.getAll()
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'creationDate') {
+      this.sortBy = 'createDate'
+    }
+
+    if (this.lang === 'en' && this.sortBy === 'name') {
+      this.sortBy = 'nameTranslated'
+    }
+
+    this.getAll()
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  getAll() {
+    this.subscriptions.add(
+      this.aqlService
+        .getAllPag(
+          this.pageIndex,
+          this.pageSize,
+          this.sortDir,
+          this.sortBy,
+          this.filters,
+          this.lang
+        )
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
+  }
+
   handleFilterChange(): void {
     this.aqlService.setFilter(this.filterConfig)
   }
 
   handleSearchChange(): void {
-    this.aqlService.setFilter(this.filterConfig)
+    if (this.filterConfig.searchText === '') {
+      this.filters.search = null
+    } else {
+      this.filters.search = this.filterConfig.searchText
+    }
+    this.getAll()
   }
 
-  handleData(aqls: IAqlApi[]): void {
-    this.dataSource.data = aqls
+  getCategory() {}
+
+  handleData(projects: any): void {
+    this.dataSource.data = projects.content
+    this.totalItems = projects.totalElements
   }
 
-  private handleCategories(aqlCategories: IAqlCategoryApi[]): void {
-    this.aqlCategories = aqlCategories.reduce((acc, category) => {
-      acc[category.id] = {
-        de: category.name.de,
-        en: category.name.en,
+  handleChangeFilter(): void {
+    for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
+      if (this.filterConfig.filterItem[i].isSelected) {
+        switch (this.filterConfig.filterItem[i].id) {
+          case 'QUERIES.ALL_AQLS':
+            this.filters.type = null
+            break
+          case 'QUERIES.MY_AQL':
+            this.filters.type = 'OWNED'
+            break
+          case 'QUERIES.ORGANIZATION_AQLS':
+            this.filters.type = 'ORGANIZATION'
+            break
+          default:
+        }
       }
-      return acc
-    }, {})
+    }
+    this.getAll()
   }
 
   handleMenuClick(key: string, id: number): void {
@@ -180,6 +229,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     try {
       await this.aqlService.delete(id).toPromise()
 
+      this.getAll()
+
       this.toast.openToast({
         type: ToastMessageType.Success,
         message: 'QUERIES.DELETE_QUERY_SUCCESS_MESSAGE',
@@ -194,62 +245,5 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
-  }
-  sortAqls(data: IAqlApi[], sort: MatSort): IAqlApi[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...data]
-
-    switch (sort.active as AqlTableColumns) {
-      case 'author': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            `${a.owner?.firstName || ''} ${a.owner?.lastName || ''}`,
-            `${b.owner?.firstName || ''} ${b.owner?.lastName || ''}`,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'creationDate': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.createDate || '', b.createDate || '', a.id, b.id, isAsc)
-        )
-      }
-      case 'name': {
-        const nameField = this.lang === 'de' ? 'name' : 'nameTranslated'
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a[nameField], b[nameField], a.id, b.id, isAsc)
-        )
-      }
-      case 'organization': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            a.owner?.organization?.name || '',
-            b.owner?.organization?.name || '',
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      case 'category': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(
-            a.categoryId ? this.aqlCategories[a.categoryId][this.lang] : this.uncategorizedString,
-            b.categoryId ? this.aqlCategories[b.categoryId][this.lang] : this.uncategorizedString,
-            a.id,
-            b.id,
-            isAsc
-          )
-        )
-      }
-      default: {
-        return newData.sort((a, b) => {
-          const compareResult = a.id - b.id
-          return isAsc ? compareResult : compareResult * -1
-        })
-      }
-    }
   }
 }

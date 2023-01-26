@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { Subscription } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { compareIds, compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
@@ -37,7 +37,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>
-  implements OnDestroy
+  implements OnDestroy, OnInit
 {
   @Output() openEditDialog = new EventEmitter<Omit<IAqlCategoryApi, 'id'>>()
   displayedColumns: AqlCategoryTableColumn[] = ['menu', 'nameDe', 'nameEn']
@@ -45,24 +45,12 @@ export class AqlCategoriesTableComponent
 
   private subscriptions = new Subscription()
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
-
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, sort) => this.sortAqlCategories(data, sort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public totalItems: number
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -78,16 +66,50 @@ export class AqlCategoriesTableComponent
     private toast: ToastMessageService
   ) {
     super()
+  }
 
-    this.subscriptions.add(
-      this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) =>
-        this.handleData(aqlCategories)
-      )
-    )
+  ngOnInit() {
+    this.pageIndex = 0
+
+    this.sortBy = 'name-en'
+    this.sortDir = 'ASC'
+
+    this.getAll()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  getAll() {
+    this.subscriptions.add(
+      this.aqlCategoryService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'nameEn') {
+      this.sortBy = 'name-en'
+    }
+
+    if (this.sortBy === 'nameDe') {
+      this.sortBy = 'name-de'
+    }
+
+    this.getAll()
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
   }
 
   handleMenuClick(key: string, aqlCategory: IAqlCategoryApi): void {
@@ -110,34 +132,16 @@ export class AqlCategoriesTableComponent
     })
   }
 
-  private handleData(aqlCategories: IAqlCategoryApi[]): void {
-    this.dataSource.data = aqlCategories
-  }
-
-  private sortAqlCategories(data: IAqlCategoryApi[], sort: MatSort): IAqlCategoryApi[] {
-    const isAsc = sort.direction === 'asc'
-    const newData = [...data]
-
-    switch (sort.active as AqlCategoryTableColumn) {
-      case 'nameDe': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.name.de, b.name.de, a.id, b.id, isAsc)
-        )
-      }
-      case 'nameEn': {
-        return newData.sort((a, b) =>
-          compareLocaleStringValues(a.name.en, b.name.en, a.id, b.id, isAsc)
-        )
-      }
-      default: {
-        return newData.sort((a, b) => compareIds(a.id, b.id, isAsc))
-      }
-    }
+  handleData(projects: any): void {
+    this.dataSource.data = projects.content
+    this.totalItems = projects.totalElements
   }
 
   async delete(id: number): Promise<void> {
     try {
       await this.aqlCategoryService.delete(id).toPromise()
+
+      this.getAll()
 
       this.toast.openToast({
         type: ToastMessageType.Success,

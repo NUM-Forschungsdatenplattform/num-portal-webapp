@@ -118,7 +118,11 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         parameter.possibleOperators = [AqlParameterOperator['='], AqlParameterOperator['!=']]
         break
       case AqlParameterValueType.Options:
-        if (referenceModelType === ReferenceModelType.Dv_ordinal) {
+        if (
+          referenceModelType === ReferenceModelType.Dv_ordinal ||
+          referenceModelType === ReferenceModelType.Dv_count ||
+          referenceModelType === ReferenceModelType.Dv_duration
+        ) {
           parameter.possibleOperators = Object.keys(AqlParameterOperator) as AqlParameterOperator[]
         } else {
           parameter.possibleOperators = [AqlParameterOperator['='], AqlParameterOperator['!=']]

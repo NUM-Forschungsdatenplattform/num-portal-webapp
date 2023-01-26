@@ -9,8 +9,8 @@ Once you have defined your cohort, you can go to the [Data filter](../02_data_fi
 There are three main areas in the patient filter:
 
 1. The criteria list: a list of categorized criteria used to build a cohort
-2. The cohort builder: criterion can be combined here using logical operators to build the cohort
-3. The hit display: display of the expected hits in the data sets based on the combined criterion
+2. The cohort builder: criteria can be combined here using logical operators to build the cohort
+3. The patients display: display of the expected number of patients in the data sets based on the combined criteria
 
 
 ```{figure} images/patient_filter.jpg
@@ -32,7 +32,7 @@ alt: Screenshot of patient filter criteria list
 Fig 03-01-02: Criteria list
 ```
 
-After clicking on the *i* symbol of a criterion, a dialog window opens, from which you can find more detailed information about the criterion. The top section provides information about the title, author, purpose, and how the criterion is used. In the lower area you can see how the actual aql query, it is written in the Archetype Query Language (AQL).
+After clicking on the *i* symbol of a criterion, a dialog window opens, from which you can find more detailed information about the criterion. The top section provides information about the title, author, purpose, and how the criterion is used. In the lower area you can see how the actual aql query is written in the Archetype Query Language (AQL).
 
 
 ```{figure} images/search_criteria_details.jpg
@@ -48,7 +48,7 @@ In the cohort builder, the criteria are inserted in the order you selected/click
 
 You have the following options for forming a cohort:
 
-1. Groupings: by default, a main group is created in the cohort builder, you can either insert criteria directly (loosely) into this or create subgroups. In order for a criterioncriterion to be inserted into a group, it must be activated. To do this, you need to select the tick in the top left corner of the group. A selected group is marked with a red border; the unselected groups are outlined in light gray. You can also delete groups, but it should be noted that the criteria contained in them will then also be removed.
+1. Groupings: by default, a main group is created in the cohort builder, you can either insert criteria directly (loosely) into this or create subgroups. In order for a criterion to be inserted into a group, it must be activated. To do this, you need to select the tick in the top left corner of the group. A selected group is marked with a red border; the unselected groups are outlined in light gray. You can also delete groups, but it should be noted that the criteria contained in them will then also be removed.
 2. Operators: you can set conditions using "AND" and "OR" operators. Operators can be applied directly to groups and within groups/subgroups to the criteria. "AND" is set by default as soon as two and more criteria or groups of criteria have been inserted in the cohort builder.
 3. Negation: using the negate button, the conditions of criteria can be negated within a group or between entire groups.
 
@@ -62,7 +62,7 @@ Fig 03-01-04: Cohort builder with criteria in a main group
 
 ```{figure} images/search_cohort_builder_two_groups.jpg
 ---
-alt: Screenshot of criteria in a main group
+alt: Screenshot of criteria in two subgroups
 ---
 Fig 03-01-05: Cohort builder with criteria in two subgroups
 ```
@@ -98,14 +98,17 @@ There are also criteria that do not require the entry of parameters, these can b
 ```
 
 
-###### Hits display
+#### 3. Patients display
 
-This area shows the number of hits in the entire dataset resulting from the configuration of the cohort. To retrieve the hits, you must click the *Retrieve* button. The number of hits is then displayed. Depending on the authorization and if the data is available, the hits are also displayed in a graphical representation.
+This area shows the number of patients in the entire dataset resulting from the configuration of the cohort. To retrieve the patients, you must click the *Retrieve* button. The number of patients is then displayed. Depending on the authorization and if the data is available, the patients are also displayed in a graphical representation.
 
 ```{note}
-If you make changes to the cohort in the cohort builder, you need to press "Retrieve" each time for an accurate hits count
+If you make changes to the cohort in the cohort builder, you need to press "Retrieve" each time for an accurate patients count.
 ```
 
+```{important}
+Due to data privacy reasons, only users inheriting the "Manager" role are able to see the exact number of patients. Users without this role will always see a slightly rounded number.
+```
 
 ```{figure} images/patient_filter_criteria_elements.jpg
 ---

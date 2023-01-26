@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.5.1\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 10:22+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,106 +17,106 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../02_welcome/02_welcome.md:1
-#: aee674f8d35c4b899112a609a3383889
+#: 5f502bbe4c5d422a8e8a7e41f96370be
 msgid "Welcome page"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:3
-#: dcd3e1a372f24b0cbffd72e1d690b05a
+#: df996ca3a3a744dbad0edf51e3a11e01
 msgid "All users will be redirected to the welcome page after a successful login. This page contains some basic statistics about data available for the logged in user, e.g. the projects that have received updates the last time, as well as general information that might be useful for the user and that is managed by {term}`Content Admin`s."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:8
-#: 56cde43950644f86bc4f6987028861ba
+#: 6e16991ca430475abf22bf03145449f3
 msgid "Introduction / Statistics"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:10
-#: c30319daaff9435ca78a23763e5169e6
+#: ec95a3b87b4b49eda8cfd3560a57474c
 msgid "The first part includes a general introduction and welcome message to inform the user about the purpose of the platform. If you want to jump to the list of participating clinics you can use the link at the end of the text."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 1867b459b93e49c1af3cd7f9931cb2a1
+#: ../02_welcome/02_welcome.md:18
+#: b2a84a80f48c4c92b1241765eb362a7f
 msgid "Screenshot of the welcome page showing the introduction text followed by general statistics"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 1849008401254804a47bc8b6c6ca997a
+#: ../02_welcome/02_welcome.md:18
+#: 58b2d5e3415746e6a4cf65b04e415227
 msgid "Fig 02-01: Introduction part of the welcome page"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:21
-#: 008220e33f544a498060ed72984c2344
+#: 4199e4e59b18490abb9f3e75e02f1bb0
 msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the running CODEX system and also how many different clinics have provided previously mentioned data."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: d06ce4a933cb4751a17e69a78782f91b
+#: ../02_welcome/02_welcome.md:26
+#: 0a367d4451924c34963e5b99f13bd1bc
 msgid "These statistics only contain general data and contain no sensitive information about contents or names of participating clinics."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:30
-#: 169eaebd30a54b20925ae9ea174c5188
+#: 5f9ad86bcff74bf8a428becf74f9de65
 msgid "Latest projects"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 818f50076b5e404699c97a3a310b837b
+#: ../02_welcome/02_welcome.md:33
+#: 5c7c00cc329549ae967bc5d6ec8240de
 msgid "The list of latest {term}`Project`s is only visible for users that have logged in to the application."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:36
-#: 96674ba90f3842d692f421de2865fbdc
+#: 2412329d0315474582627d6d3003bf0a
 msgid "In the list of latest {term}`Project`s the user can see the last 5 projects the user has access to and that have changed the last time. This can be used to get a quick overview if there are recent changes to a project the user is interested in."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 917b3ad54a34463da1249ac08d944e40
+#: ../02_welcome/02_welcome.md:44
+#: d51e69d463854ad2aa7ef5b9577c4ea6
 msgid "Screenshot of table of latest changed projects including the change date"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 1ce5b779a9b046c8913d9f76df9c387b
+#: ../02_welcome/02_welcome.md:44
+#: 9f32f83bd53e4191af67d2a6954584c3
 msgid "Fig 02-02: Table of latest projects"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:47
-#: a340b29c97fa4366a11074a5a98becf5
+#: 035ee4c38f9749f39c3c32dab7887ed1
 msgid "This list provides only readable information. If you want to edit or work with projects go to the page [Projects](../04_projects/04_projects.md) or [Data Explorer](../05_data_explorer/05_data_explorer.md)."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:50
-#: ab5ddbfbe6ab40078968d80921c30035
+#: 26ea0e5b13784f6c915389a5ce1eb010
 msgid "Info Board"
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 592b1701abc24697bbee1e8bd452c19f
+#: ../02_welcome/02_welcome.md:53
+#: fbf0954bb4114d19b760a8f68781ee32
 msgid "The info board content is only visible to users that are successfully logged in."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:56
-#: a0d64dd1a2e84de2a4d0ef44406f8ce1
+#: 7162352354a04a6a9d659febb104c7ab
 msgid "The Info Board section contains of content provided by {term}`Content Admin` users. This section can contain useful information for users to assist them in their work or to announce information to logged in users."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: beec48d0707b414aa16cb47e66e677ec
+#: ../02_welcome/02_welcome.md:64
+#: a5a1310583d544058c09ca90651dd860
 msgid "Screenshot of the info board with two cards with test and demo content."
 msgstr ""
 
-#: ../02_welcome/02_welcome.md:1
-#: 1544f6ff4fbe44988369a0f3b0fed5aa
+#: ../02_welcome/02_welcome.md:64
+#: c18e00d3a3d7474bb8cf6e983ac857e6
 msgid "Fig 02-03: Info board cards"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:67
-#: aac2f51066ad48c7afb906522e00916b
+#: 4ffbf1ada56f4bd38d46dc6f11adadbf
 msgid "Participating clinics"
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:69
-#: 49735fcbcf02440ba1752ead476ba831
+#: 3c5d24cb775a4dd0b720720a0665ed29
 msgid "In the following section all participating clinics are represented by their corresponding logo."
 msgstr ""

@@ -1,30 +1,78 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-15 10:32+0200\n"
+"POT-Creation-Date: 2022-11-18 17:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:1
-#: f52ae8eec2b9499f83bd0c3c7a2e4b28
+#: ecc29ff3aeca429fae5b8fdf9fd73d73
 msgid "Content editor - Navigation items"
-msgstr ""
+msgstr "Inhalts-Editor - Navigation"
 
 #: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:3
-#: e5c863d9dff84ec594bcbdeba3a50990
+#: 66408982256f45b39e8a6abc1b72a524
 msgid "This section covers the editor for navigation content."
+msgstr "Dieser Abschnitt behandelt den Editor für Inhalte der Navigationsleiste."
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:5
+#: fb50b6e5bd0147fcb85a021b6922f6cc
+#, fuzzy
+msgid ""
+"To access the navigation content, click the *navigation* tab at the top. "
+"The section contains a list of 5 Link items. To add a link, simply enter "
+"the link text and url in the respective fields of an empty item. To "
+"delete a link, click *clear entry* at the items lower right corner."
 msgstr ""
-"Dieser Abschnitt behandelt die Verwaltung der Inhalte für die "
-"zusätzlichen Navigationsleisten-Einträge."
+"Klicken Sie auf den Reiter *Navigation* am oberen Rand des Bereichs, um "
+"die Inhalte der Navigationsleiste aufzurufen. Der Abschnitt enthält eine "
+"Liste mit fünf Einträgen, wobei jeder Eintrag für einen Link steht. Um "
+"einen Link hinzuzufügen, tragen Sie einfach den Text und die URL in die "
+"entsprechenden Felder eines leeren Listen-Eintrages ein. Klicken Sie auf "
+"*Eingabe löschen* in der rechten unteren Ecke, um einen Link zu "
+"entfernen."
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:8
+#: 95ceccb263874796b485f74280906d81
+msgid ""
+"If all link items are already in use, you have to clear an entry at first"
+" to add a new one."
+msgstr ""
+"Sind bereits alle Listen-Einträge befüllt, müssen Sie zunächst einen Link "
+"entfernen, bevor Sie einen neuen Link hinzufügen können."
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:15
+#: 07c1faba581d43678cac253505861d96
+msgid "Screenshot of navgition editor"
+msgstr "Bildschirmfoto des Navigations-Editors"
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:15
+#: a1be06aaf5a743ba9c8b1a3ba9f8d398
+msgid "Fig 09-02-01: Navigation editor"
+msgstr "Abb 09-02-01: Navigations-Editor"
+
+#: ../09_content_editor/02_content_editor_nav_items/02_content_editor_nav_items.md:19
+#: 2b90e9ebc822428b844e06c9ec78b4c2
+msgid ""
+"Your changes are not yet applied. Scroll down to the very bottom of the "
+"page and click *publish links* to push your changes to navigation bar. If"
+" you click on *discard changes*, all your changes are reverted and the "
+"navigation bar is not changed at all."
+msgstr ""
+"Ihre Änderungen werden erst wirksam, nachdem Sie *Links veröffentlichen* "
+"angeklickt haben. Sie finden die Schaltfläche am unteren Ende der Liste. "
+"Wenn Sie Ihre Änderungen verwerfen und keine Anpassungen an der Navigation "
+"vornehmen möchten, klicken Sie stattdessen auf *Änderungen verwerfen*."
+

@@ -1,38 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2021, Netzwerk Universitätsmedizin
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX v1.6\n"
+"Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 00:24+0200\n"
+"POT-Creation-Date: 2022-11-15 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.11.0\n"
 
-#: ../05_data_explorer/05_data_explorer.md:1 446454e29429452aa03e3ed1870b2a43
+#: ../05_data_explorer/05_data_explorer.md:1 62831ccb904b4011b53ae8713d423ce6
 msgid "Data explorer"
 msgstr "Datenabruf"
 
-#: ../05_data_explorer/05_data_explorer.md:3 0d25af723cad4eb087d64c448848b130
+#: ../05_data_explorer/05_data_explorer.md:3 57c27ffa1eb3411490db33745be551fb
 msgid "This section covers the data explorer feature."
-msgstr "Dieser Abschnitt behandelt das Datenabruf-Modul."
+msgstr "Dieser Abschnitt behandelt die Funktion Datenabruf"
 
-#: ../05_data_explorer/05_data_explorer.md:1 5d6d686b5c7a402f86c0921a3bdcf92b
+#: ../05_data_explorer/05_data_explorer.md:6 9680391cb518420ca42940bb032e0c24
 msgid ""
 "Only users with **Researcher** role can access the data explorer "
 "functionality."
 msgstr ""
-
-#~ msgid ""
-#~ "Only users with **Researcher** role can"
-#~ " access the data explorer functionality"
-#~ msgstr ""
+"Nur Benutzer mit der Rolle **Forscher** haben Zugriff auf den Datenabruf."
 

@@ -38,15 +38,9 @@ import { AqlMenuKeys } from './menu-item'
 import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.mock'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { maxBy, minBy } from 'lodash-es'
-import { MatSortHeaderHarness } from '@angular/material/sort/testing'
-import { HarnessLoader } from '@angular/cdk/testing'
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
-import { MatTableHarness } from '@angular/material/table/testing'
-import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
-import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
+import { MatSort } from '@angular/material/sort'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -60,6 +54,7 @@ describe('AqlTableComponent', () => {
     delete: jest.fn(),
     getAll: () => of(),
     setFilter: (_: any) => {},
+    getAllPag: () => of(),
     filteredAqlsObservable$: filteredAqlsSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
   } as unknown as AqlService
@@ -151,16 +146,6 @@ describe('AqlTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should set the filter in the aqlService on searchChange', () => {
-    component.handleSearchChange()
-    expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
-  it('should set the filter in the aqlService on filterChange', () => {
-    component.handleFilterChange()
-    expect(aqlService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
   describe('When a menu Item is clicked', () => {
     beforeEach(() => {
       jest.spyOn(router, 'navigate').mockImplementation()
@@ -196,6 +181,59 @@ describe('AqlTableComponent', () => {
     })
   })
 
+  describe('When filter change', () => {
+    it('filter change to all aql', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'QUERIES.ALL_AQLS', isSelected: true }]
+      component.handleChangeFilter()
+      expect(component.filters.type).toEqual(null)
+    })
+
+    it('filter change to my aql', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'QUERIES.MY_AQL', isSelected: true }]
+      component.handleChangeFilter()
+      expect(component.filters.type).toEqual('OWNED')
+    })
+
+    it('filter change to organization aql', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig['filterItem'] = [{ id: 'QUERIES.ORGANIZATION_AQLS', isSelected: true }]
+      component.handleChangeFilter()
+      expect(component.filters.type).toEqual('ORGANIZATION')
+    })
+  })
+
+  describe('When search is triggered', () => {
+    it('should search', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.searchText = 'testSearch'
+      component.handleSearchChange()
+      expect(component.filters.search).toEqual('testSearch')
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(aqlService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
+    })
+  })
+
   describe('On fail to delete the AQL', () => {
     beforeEach(() => {
       jest.spyOn(aqlService, 'delete').mockImplementation(() => throwError({}))
@@ -210,186 +248,6 @@ describe('AqlTableComponent', () => {
         })
         done()
       })
-    })
-  })
-
-  describe('When sorting AQL table', () => {
-    let loader: HarnessLoader
-    beforeEach(() => {
-      loader = TestbedHarnessEnvironment.loader(fixture)
-      component.paginator.pageSize = 20
-      filteredAqlsSubject$.next(mockAqlsToSort)
-      aqlCategoriesSubject$.next(mockAqlCategories)
-      fixture.detectChanges()
-    })
-
-    it('should sort by id descending as default', async () => {
-      const aqlWithLatestId = maxBy(mockAqlsToSort, 'id')
-      const aqlWithOldestId = minBy(mockAqlsToSort, 'id')
-      const table = await loader.getHarness(MatTableHarness)
-      const rows = await table.getCellTextByColumnName()
-
-      expect(rows.name.text).toHaveLength(mockAqlsToSort.length)
-      expect(rows.name.text[0]).toEqual(aqlWithLatestId.nameTranslated)
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual(aqlWithOldestId.nameTranslated)
-    })
-
-    it('should be able to sort by name', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.name.text[0]).toEqual('')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('üTranslated')
-      // Sort descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.name.text[0]).toEqual('üTranslated')
-      expect(rows.name.text[rows.name.text.length - 1]).toEqual('')
-    })
-
-    it('should be able to sort by author', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.author.text[0]).toEqual('Marianne Musterfrau')
-      expect(rows.author.text[rows.author.text.length - 1]).toEqual(
-        'user1-firstname user1-lastname'
-      )
-      // Sort descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.author.text[0]).toEqual('user1-firstname user1-lastname')
-      expect(rows.author.text[rows.author.text.length - 1]).toEqual('Marianne Musterfrau')
-    })
-
-    it('should be able to sort by creationDate', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-creationDate' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.creationDate.text[0]).toEqual('2020-01-01')
-      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual(
-        DateHelperService.getDateString(new Date())
-      )
-      // Sort descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.creationDate.text[0]).toEqual(DateHelperService.getDateString(new Date()))
-      expect(rows.creationDate.text[rows.creationDate.text.length - 1]).toEqual('2020-01-01')
-    })
-
-    it('should be able to sort by organization', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-organization' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.organization.text[0]).toEqual('abc')
-      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('name1')
-      // Sort descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.organization.text[0]).toEqual('name1')
-      expect(rows.organization.text[rows.organization.text.length - 1]).toEqual('abc')
-    })
-
-    it('should sort by id in same order for equal elements', async () => {
-      // Show ID column
-      component.displayedColumns.push('id')
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(rows.author.text).toHaveLength(mockAqlsToSort.length)
-      let firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
-      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
-      let firstId = parseInt(rows.id.text[firstIdx], 10)
-      let secondId = parseInt(rows.id.text[firstIdx + 1], 10)
-      expect(firstId).toBeLessThan(secondId)
-      // Sort descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      firstIdx = rows.author.text.findIndex((txt) => 'Max Mustermann' === txt)
-      expect(rows.author.text[firstIdx + 1]).toEqual('Max Mustermann')
-      firstId = parseInt(rows.id.text[firstIdx], 10)
-      secondId = parseInt(rows.id.text[firstIdx + 1], 10)
-      expect(firstId).toBeGreaterThan(secondId)
-    })
-
-    it('should sort string values in order empty -> special characters -> numbers -> alphabetical', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-name' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Sort ascending
-      await sortHeaderButton.click()
-      const rows = await table.getCellTextByColumnName()
-      const firstIdx = rows.name.text.findIndex((txt) => '' === txt)
-      expect(rows.name.text[firstIdx + 1]).toEqual('%Translated')
-      expect(rows.name.text[firstIdx + 2]).toEqual('1Translated')
-      expect(rows.name.text[firstIdx + 3]).toEqual('aTranslated')
-    })
-
-    it('should sort by id descending again if sort has been unchecked again', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-author' })
-      )
-      // Ascending
-      await sortHeaderButton.click()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(await sortHeaderButton.isActive()).toBe(true)
-      // Descending
-      await sortHeaderButton.click()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(await sortHeaderButton.isActive()).toBe(true)
-      // No sorting
-      await sortHeaderButton.click()
-      expect(await sortHeaderButton.isActive()).toBe(false)
-      expect(component.dataSource.sort.active).toEqual('id')
-      expect(component.dataSource.sort.direction).toEqual('desc')
-    })
-
-    it('should be able to sort by category', async () => {
-      const sortHeaderButton = await loader.getHarness(
-        MatSortHeaderHarness.with({ selector: '.mat-column-category' })
-      )
-      const table = await loader.getHarness(MatTableHarness)
-      // Ascending
-      await sortHeaderButton.click()
-      let rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('asc')
-      expect(rows.category.text[0]).toEqual('Demographic')
-      expect(rows.category.text[rows.category.text.length - 1]).toEqual('Social')
-      // Descending
-      await sortHeaderButton.click()
-      rows = await table.getCellTextByColumnName()
-      expect(await sortHeaderButton.getSortDirection()).toEqual('desc')
-      expect(rows.category.text[0]).toEqual('Social')
-      expect(rows.category.text[rows.category.text.length - 1]).toEqual('Demographic')
     })
   })
 })

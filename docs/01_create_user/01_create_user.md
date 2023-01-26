@@ -2,9 +2,11 @@
 
 Before you can start using CODEX you have to create a new user account for your personal work.
 
-A user account can be created by each indiviual by providing a company or institution email
-address. The responsive organization admin has to approve this new account before the user can 
-log in again and start working on research projects.
+A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects.
+
+```{important}
+The domain of your email address (part after the @-symbol) has to be listed in one of the organizations in the portal. If this is not the case, you will receive an according error message upon registration. In such cases, please contact the portal support.
+```
 
 ## Sign up a new user account
 
@@ -25,7 +27,7 @@ asterisk are required to proceed.
 
 ```{figure} images/sign_up_form_empty.png
 ---
-alt: 'Sign up page with an empty form for first name, last name, email address, password and password confirm and a checkbox for accepting terms and conditions'
+alt: 'Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions'
 ---
 Fig 01-02: An emtpy Sign up form on initial page visit
 ```
@@ -47,41 +49,13 @@ the following screen:
 
 ```{figure} images/sign_up_email_hint.png
 ---
-alt: 'After sign up page which informs about a sent email the user should check.'
+alt: 'After sign up page which informs about a sent email the user should check'
 ---
-Fig 01-04: Hint on sent email to confirm registration.
+Fig 01-04: Hint on sent email to confirm registration
 ```
 
-A browser window will open where you can then click the link "Click here to proceed" to confirm your
-address.
+In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again.
 
-```{figure} images/sign_up_confirm_email.png
----
-alt: 'Screenshot of page to confirm the email address by clicking a link.'
----
-Fig 01-05: Confirm email page
+```{important}
+After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)
 ```
-
-If all succeeded you can click "Back to Application" to navigate back to the welcome page of CODEX.
-From there you can click "Sign in" again to log in with the credentials you entered in the prvious
-step.
-
-```{figure} images/sign_up_confirm_email_success.png
----
-alt: 'Screenshot of page showing information about a successful email confirmation and a link to navigate back to the main app page'
----
-Fig 01-06: Email confirmation has succeeded
-```
-
-```{caution}
-You have to log in at least once to inform your organization admins about your request to use the
-CODEX app.
-
-After your login succeeded you ca log out again. You will be informed about the approval of your
-account via email.
-```
-
-You can only log in and log out unless your account gets approved. If you want to see how to
-approve user accounts go to the section 
-[User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)
-

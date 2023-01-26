@@ -2,7 +2,7 @@
 
 This section covers the Projects Overview page of the Data explorer.
 
-With the data explorer, researchers who have been assigned to a project can access the result set of the respective project. You get access to the research data that is defined as part of the project configuration and are available in the GECCO 83 data set.
+With the data explorer, researchers who have been assigned to a project can access the result set of the respective project. You get access to the research data that is defined as part of the project configuration and is available in the GECCO data set.
 
 ```{figure} images/data_explorer_project.jpg
 ---

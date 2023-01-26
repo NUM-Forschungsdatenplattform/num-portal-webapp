@@ -76,9 +76,16 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
         this.groupAndSortAql()
       })
     )
-    this.subscriptions.add(this.aqlCategoryService.getAll().subscribe())
-    this.subscriptions.add(this.aqlService.getAll().subscribe())
-    this.groupAndSortAql()
+
+    this.subscriptions.add(
+      this.aqlCategoryService.getAll().subscribe(() => {
+        this.subscriptions.add(
+          this.aqlService.getAll().subscribe(() => {
+            this.groupAndSortAql()
+          })
+        )
+      })
+    )
   }
 
   ngOnDestroy(): void {
