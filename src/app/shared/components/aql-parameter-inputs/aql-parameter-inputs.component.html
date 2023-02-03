@@ -32,6 +32,7 @@
       }}</mat-label>
       <input
         aria-labelledby="value-label"
+        class="current-item"
         formControlName="value"
         [attr.inputmode]="item.valueType === AqlParameterValueType.String ? 'latin' : 'numeric'"
         matInput

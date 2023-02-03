@@ -46,6 +46,47 @@ export class CohortGroupUiModel extends ConnectorGroupUiModel<ICohortGroupApi> {
     })
   }
 
+  // get areOnlyParamContainers(): boolean {
+  //   return !this.children.every((child) => {
+  //     return child.areParameterConfigured === false
+  //   })
+  // }
+
+  areEmptyParams(nodeList: any): boolean {
+    let isEmpty = false
+    nodeList?.forEach((child: any) => {
+      // this.areEmptyParams(child)
+      child.parameters?.forEach((param) => {
+        if (param.type !== 'GROUP') {
+          // console.log('not group')
+          console.log('param.value', param.value === undefined || param.value === '')
+          if (param.value === undefined || param.value === '') {
+            isEmpty = true
+            return true
+          } else {
+            return this.areEmptyParams(child.children)
+          }
+        }
+      })
+      // return false
+    })
+    return isEmpty
+  }
+
+  // get areEmptyParams(): boolean {
+  //   let res = false
+  //   this.children.forEach((child: any) => {
+  //     child.parameters?.forEach((param) => {
+  //       console.log('param.value', param.value === undefined || param.value === '')
+  //       if (param.value === undefined || param.value === '') {
+  //         res = true
+  //       }
+  //     })
+  //     // return false
+  //   })
+  //   return res
+  // }
+
   mapChildrenToUi = (child: ICohortGroupApi): CohortGroupUiModel | AqlUiModel => {
     if (child.type === ConnectorNodeType.Group && child.operator === LogicalOperator.Not) {
       const firstChild = child.children[0]

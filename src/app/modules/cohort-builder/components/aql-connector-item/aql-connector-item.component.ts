@@ -50,16 +50,19 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
       this.hasParameterError = true
     } else {
       this.aql.parameters.forEach((parameter) => {
+        console.log('parameter', parameter)
         this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe(
           (response) => {
+            console.log('response', response)
             parameter.options = response.options
             const optionKeys = Object.keys(parameter.options)
+            //  console.log('options', parameter.options)
             if (optionKeys.length) {
               parameter.valueType = AqlParameterValueType.Options
             } else {
               parameter.valueType = this.getValueTypeForParameter(response.type)
             }
-
+            console.log('valueType', parameter.valueType)
             this.prefillParameter(parameter, optionKeys)
             this.setPossibleOperators(parameter, response.type)
 
@@ -182,6 +185,11 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
 
   deleteSelf(): void {
     this.deleteItem.emit()
+  }
+
+  onCheckboxChange(parameter: IAqlParameter): void {
+    parameter.isDisabled = !parameter.isDisabled
+    parameter
   }
 
   checkParameterStatus(): void {

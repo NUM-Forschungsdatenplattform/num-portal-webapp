@@ -94,6 +94,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   }
 
   handleInputChange(value): void {
+    console.log('change')
     let newValue
     if (value === null || value === undefined || !value.length || value === '-') {
       newValue = value

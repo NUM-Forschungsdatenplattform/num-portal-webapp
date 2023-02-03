@@ -55,5 +55,31 @@ export class ProjectEditorCohortBuilderComponent implements OnInit {
 
   handleSearchChange(): void {
     this.aqlService.setFilter(this.filterConfig)
+    console.log('cohortNode', this.cohortNode)
   }
+
+  disableButton(): boolean {
+    // console.log('cohortNode.areEmptyParams', this.cohortNode.areEmptyParams)
+    console.log(
+      'the end',
+      this.cohortNode.areEmptyParams(this.cohortNode.children) ||
+        this.cohortNode.children.length < 1
+    )
+    return (
+      this.cohortNode.areEmptyParams(this.cohortNode.children) ||
+      this.cohortNode.children.length < 1
+    )
+    // if (!this.cohortNode.areEmptyParams) {
+    //   // && this.cohortNode.areParameterConfigured
+    //   return true
+    // }
+    // return false
+  }
+
+  // isValidForExecution(): boolean {
+  //   let tempNode = this.cohortNode
+  //   while (tempNode.children.length > 0) {
+  //     if()
+  //   }
+  // }
 }

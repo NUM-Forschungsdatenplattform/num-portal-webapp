@@ -91,7 +91,7 @@
       id="determine-hits-button"
       type="secondary"
       (singleClick)="determineHits()"
-      [isDisabled]="!project.cohortGroup.children.length"
+      [isDisabled]="disableButton()"
       data-test="data-filter__templates__determine-hits-button"
       >{{ 'BUTTON.DETERMINE_HITS' | translate }}</num-button
     >
