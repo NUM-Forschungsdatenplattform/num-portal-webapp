@@ -146,10 +146,10 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkCohortValidation() {
+  checkCohortValidation(cohortNode) {
     this.isCohortValid.valid = true
     this.isCohortValid.hasAql = false
-    this.allCohortDescendants(this.cohortNode)
+    this.allCohortDescendants(cohortNode)
   }
 
   private updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
@@ -162,7 +162,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   }
 
   async getPreviewData(): Promise<void> {
-    this.checkCohortValidation()
+    this.checkCohortValidation(this.cohortNode)
 
     if (this.isCohortValid.hasAql && this.isCohortValid.valid) {
       if (!this.cohortNode) {

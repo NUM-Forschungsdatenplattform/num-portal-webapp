@@ -58,5 +58,6 @@
     *ngIf="!isDisabled"
     [content]="determineHitsContent"
     (clicked)="determineHitsClicked.emit()"
+    [isCohortValid]="isCohortValid"
   ></num-editor-determine-hits>
 </mat-expansion-panel>
