@@ -26,6 +26,7 @@ import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interfac
 export class CohortGraphsComponent {
   @Input() determineHits: IDetermineHits
   @Input() isChartDataLoading: boolean
+  @Input() isCohortValid: any
   @Input() previewData: ICohortPreviewApi
   @Output() determine = new EventEmitter<void>()
 

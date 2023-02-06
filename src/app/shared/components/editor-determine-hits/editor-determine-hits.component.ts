@@ -26,6 +26,7 @@ import { IDetermineHits } from './determine-hits.interface'
 export class EditorDetermineHitsComponent {
   @Input() isButtonDisabled: boolean
   @Input() content: IDetermineHits
+  @Input() isCohortValid: any
   @Output() clicked = new EventEmitter()
 
   constructor() {}

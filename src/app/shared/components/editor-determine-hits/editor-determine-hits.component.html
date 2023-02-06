@@ -38,6 +38,9 @@
     {{ 'BUTTON.DETERMINE' | translate }}
   </num-button>
 
+  <h1 *ngIf="isCohortValid.hasAql === false">No aqls</h1>
+  <h1 *ngIf="isCohortValid.valid === false && isCohortValid.hasAql === true">Invalid aql</h1>
+
   <mat-spinner *ngIf="content?.isLoading" color="accent" [diameter]="24"></mat-spinner>
 
   <div
