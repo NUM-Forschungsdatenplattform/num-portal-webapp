@@ -336,7 +336,9 @@
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Bitte stellen Sie zunächst alle Parameter ein.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Patienten liegen unter der Mindestschwelle.",
-      "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut."
+      "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut.",
+      "MESSAGE_NO_AQL": "Bitte mindestens ein Kriterium auswählen.",
+      "MESSAGE_INVALID_AQL": "Der Wert für mindestens ein Kriterium fehlt."
     },
     "CATEGORIES": {
       "PEDIATRICS": "Pädiatrie",

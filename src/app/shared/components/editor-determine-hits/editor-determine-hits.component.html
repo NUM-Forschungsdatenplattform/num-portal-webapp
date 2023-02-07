@@ -38,9 +38,6 @@
     {{ 'BUTTON.DETERMINE' | translate }}
   </num-button>
 
-  <h1 *ngIf="isCohortValid?.hasAql === false">No aqls</h1>
-  <h1 *ngIf="isCohortValid?.valid === false && isCohortValid?.hasAql === true">Invalid aql</h1>
-
   <mat-spinner *ngIf="content?.isLoading" color="accent" [diameter]="24"></mat-spinner>
 
   <div
@@ -49,6 +46,20 @@
     aria-live="polite"
   >
     <ng-container *ngIf="isButtonDisabled">{{ content?.defaultMessage | translate }}</ng-container>
-    <ng-container *ngIf="!isButtonDisabled">{{ content?.message | translate }}</ng-container>
+    <ng-container
+      *ngIf="!isButtonDisabled && isCohortValid?.valid === true && isCohortValid?.hasAql === true"
+      >{{ content?.message | translate }}</ng-container
+    >
+    <mat-hint class="parameter-error" *ngIf="isCohortValid?.hasAql === false">
+      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+      {{ 'PROJECT.HITS.MESSAGE_NO_AQL' | translate }}</mat-hint
+    >
+    <mat-hint
+      class="parameter-error"
+      *ngIf="isCohortValid?.valid === false && isCohortValid?.hasAql === true"
+    >
+      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+      {{ 'PROJECT.HITS.MESSAGE_INVALID_AQL' | translate }}</mat-hint
+    >
   </div>
 </section>
