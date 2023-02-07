@@ -193,6 +193,10 @@ describe('ProjectEditorComponent On Creation', () => {
     TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectEditorComponent)
     component = fixture.componentInstance
+    component.checkCohortValidation = function () {
+      component.isCohortValid.hasAql = true
+      component.isCohortValid.valid = true
+    }
     fixture.detectChanges()
     jest.clearAllMocks()
   })

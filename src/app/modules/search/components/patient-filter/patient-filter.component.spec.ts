@@ -169,6 +169,10 @@ describe('PatientFilterComponent', () => {
     jest.clearAllMocks()
     fixture = TestBed.createComponent(PatientFilterComponent)
     component = fixture.componentInstance
+    component.checkCohortValidation = function () {
+      component.isCohortValid.hasAql = true
+      component.isCohortValid.valid = true
+    }
     loader = TestbedHarnessEnvironment.loader(fixture)
     fixture.detectChanges()
   })
@@ -237,10 +241,6 @@ describe('PatientFilterComponent', () => {
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
-      component.checkCohortValidation = function () {
-        component.isCohortValid.hasAql = true
-        component.isCohortValid.valid = true
-      }
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
     })
