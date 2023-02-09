@@ -86,7 +86,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
         operator: undefined,
         possibleOperators: undefined,
         path: undefined,
-        isDisabled: true,
+        isDisabled: false,
       }
     })
 

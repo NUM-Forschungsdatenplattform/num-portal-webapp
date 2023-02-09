@@ -114,6 +114,11 @@ export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy 
   addEventSubscription(): void {
     if (!this.eventSubscription || this.eventSubscription.closed) {
       this.eventSubscription = this.cohortBuilderService.itemEventObservable$.subscribe((aql) => {
+        if (aql.parameters.length) {
+          for (let i = 0; i < aql.parameters.length; i++) {
+            aql.parameters[i]['isDisabled'] = true
+          }
+        }
         this.cohortGroup.children.push(aql)
       })
     }
