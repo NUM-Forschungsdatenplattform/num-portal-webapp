@@ -88,6 +88,8 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
     )
+
+    this.valueForm?.get('value').markAllAsTouched()
   }
 
   ngOnDestroy(): void {
