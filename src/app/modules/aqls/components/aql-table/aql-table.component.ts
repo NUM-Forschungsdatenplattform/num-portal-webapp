@@ -61,7 +61,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   filterConfig: any
   selectedItem = 'QUERIES.ALL_AQLS'
   aqlCategories: IAqlCategoryIdNameMap = {}
-  uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
   public sortBy: string
@@ -102,12 +101,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.lang = event.lang || 'en'
-        this.uncategorizedString = event.translations.QUERY_CATEGORIES.UNCATEGORIZED
       })
     )
 
     this.lang = this.translateService.currentLang || 'en'
-    this.uncategorizedString = this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED')
     this.aqlCategoryService.getAll().subscribe()
   }
 
