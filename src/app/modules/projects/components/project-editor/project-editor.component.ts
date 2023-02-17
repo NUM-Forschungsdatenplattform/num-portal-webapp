@@ -340,25 +340,25 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       .subscribe()
   }
 
-  private checkChild(child) {
-    if (child.type === ConnectorNodeType.Aql) {
+  private checkNode(node) {
+    if (node.type === ConnectorNodeType.Aql) {
       this.isCohortValid.hasAql = true
     }
 
     if (
-      typeof child['areParameterConfigured'] !== 'undefined' &&
-      child.areParameterConfigured === false
+      typeof node['areParameterConfigured'] !== 'undefined' &&
+      node.areParameterConfigured === false
     ) {
       this.isCohortValid.valid = false
     }
   }
 
-  private allCohortDescendants(node): any {
-    if (node.children) {
-      for (let i = 0; i < node.children.length; i++) {
-        const child = node.children[i]
-        this.allCohortDescendants(child)
-        this.checkChild(child)
+  private everyCohortDescendants(nodeParam): any {
+    if (nodeParam.children) {
+      for (let i = 0; i < nodeParam.children.length; i++) {
+        const child = nodeParam.children[i]
+        this.everyCohortDescendants(child)
+        this.checkNode(child)
       }
     }
   }
@@ -366,7 +366,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   checkCohortValidation(cohortNode) {
     this.isCohortValid.valid = true
     this.isCohortValid.hasAql = false
-    this.allCohortDescendants(cohortNode)
+    this.everyCohortDescendants(cohortNode)
   }
 
   async determineHits(): Promise<void> {

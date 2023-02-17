@@ -312,6 +312,10 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.count).toEqual(528)
     })
 
+    it('xxxx', async () => {
+      component.checkCohortValidation(component.project.cohortGroup)
+    })
+
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockCohortService, 'getSize')
