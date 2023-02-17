@@ -193,10 +193,6 @@ describe('ProjectEditorComponent On Creation', () => {
     TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectEditorComponent)
     component = fixture.componentInstance
-    component.checkCohortValidation = function () {
-      component.isCohortValid.hasAql = true
-      component.isCohortValid.valid = true
-    }
     fixture.detectChanges()
     jest.clearAllMocks()
   })
@@ -315,6 +311,11 @@ describe('ProjectEditorComponent On Creation', () => {
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
 
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
+
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual('')
@@ -322,10 +323,23 @@ describe('ProjectEditorComponent On Creation', () => {
       })
     })
 
+    it('xxxx', async () => {
+      component.checkCohortValidation(component.project.cohortGroup)
+      console.log(
+        '22222222222222222222222222222222222222222222222222222222222222222222222222',
+        component.isCohortValid
+      )
+    })
+
     it('should NOT call CohortService.getSize, if there is no query, and set default message', async () => {
       jest
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: undefined, cohort: undefined })
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
 
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(0)
@@ -343,6 +357,11 @@ describe('ProjectEditorComponent On Creation', () => {
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
       jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError({ status: 451 }))
 
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
+
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
@@ -357,6 +376,11 @@ describe('ProjectEditorComponent On Creation', () => {
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
       jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError('Error'))
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
 
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
