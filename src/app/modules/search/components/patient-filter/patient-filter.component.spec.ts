@@ -313,7 +313,9 @@ describe('PatientFilterComponent', () => {
     })
 
     it('xxxx', async () => {
-      component.checkCohortValidation(component.project.cohortGroup)
+      const xx = component.project.cohortGroup
+      component.checkCohortValidation(component.project.cohortGroup.convertToApi())
+      console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', component.isCohortValid)
     })
 
     it('should show an error for to few hits', async () => {
