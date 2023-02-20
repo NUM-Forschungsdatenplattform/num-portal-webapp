@@ -44,7 +44,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.profileService.getUnapprovedUser().subscribe((response: any) => {
-        this.unapprovedUser = response === true
+        this.unapprovedUser = response
       })
     )
   }
