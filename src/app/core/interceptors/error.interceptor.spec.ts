@@ -3,6 +3,7 @@ import { inject, TestBed } from '@angular/core/testing'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { ErrorInterceptor } from './error.interceptor'
 import { AuthService } from '../auth/auth.service'
+import { ProfileService } from '../services/profile/profile.service'
 
 describe('ErrorInterceptor', () => {
   let errorInterceptor: ErrorInterceptor
@@ -11,11 +12,15 @@ describe('ErrorInterceptor', () => {
     logout: () => {},
   } as AuthService
 
+  const profileService = {
+    userNotApproved: false,
+  } as ProfileService
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
-        { provide: AuthService, useValue: authService },
+        { provide: AuthService, ProfileService, useValue: authService, profileService },
         {
           provide: HTTP_INTERCEPTORS,
           useValue: errorInterceptor,
@@ -24,7 +29,7 @@ describe('ErrorInterceptor', () => {
       ],
     })
 
-    errorInterceptor = new ErrorInterceptor(authService)
+    errorInterceptor = new ErrorInterceptor(authService, profileService)
   })
 
   afterEach(() => {

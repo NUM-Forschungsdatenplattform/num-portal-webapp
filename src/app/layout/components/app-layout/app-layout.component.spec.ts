@@ -63,6 +63,8 @@ describe('AppLayoutComponent', () => {
 
   const profileService = {
     get: () => jest.fn(),
+    getUnapprovedUser: () => of(),
+    userNotApproved: false,
   } as unknown as ProfileService
 
   const mockContentService = {
