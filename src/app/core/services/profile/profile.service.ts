@@ -27,7 +27,7 @@ import { IUserProfile } from '../../../shared/models/user/user-profile.interface
 export class ProfileService {
   private userProfile = {} as IUserProfile
   private userProfileSubject$ = new BehaviorSubject(this.userProfile)
-  private subject = new Subject<any>()
+  private userApprovedSubject = new Subject<any>()
   public userProfileObservable$ = this.userProfileSubject$.asObservable()
   public userNotApproved = false
   constructor(private httpClient: HttpClient, private appConfig: AppConfigService) {}
@@ -71,10 +71,10 @@ export class ProfileService {
   }
 
   setUnapproveUser(unapproved: boolean): void {
-    this.subject.next(unapproved)
+    this.userApprovedSubject.next(unapproved)
   }
 
   getUnapprovedUser(): Observable<any> {
-    return this.subject.asObservable()
+    return this.userApprovedSubject.asObservable()
   }
 }
