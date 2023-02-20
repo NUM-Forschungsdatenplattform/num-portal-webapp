@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   })
 
   ngOnInit(): void {
+    console.log('rrr')
     this.fetchData()
     this.subscriptions.add(this.translate.onLangChange.subscribe(() => this.resolveRoles()))
   }

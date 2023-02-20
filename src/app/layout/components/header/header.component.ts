@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
@@ -47,9 +47,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private translateService: TranslateService
   ) {}
 
+  @Input()
+  unapprovedUser: boolean
+
   ngOnInit(): void {
     this.subscriptions.add(
-      this.router.events.subscribe((event) => this.handleRouterEvent(event as RouterEvent))
+      this.router.events.subscribe((event) => {
+        return this.handleRouterEvent(event as RouterEvent)
+      })
     )
 
     this.welcomePageTitle = this.config.config.welcomePageTitle

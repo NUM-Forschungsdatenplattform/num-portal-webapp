@@ -47,6 +47,10 @@
     },
     "TOGGLE": {
       "LABEL": "Seitennavigation umschalten"
+    },
+    "INFO": {
+      "UNAPPROVED_USER_MESSAGE": "Sie haben keine Zugriffsrechte für diesen Bereich.",
+      "UNAPPROVED_USER_MESSAGE_DESCRIPTION": "Um auf den Bereich zugreifen zu können, benötigen Sie eine Freigabe von Ihrem Organisations-Administrator."
     }
   },
   "NAVIGATION": {

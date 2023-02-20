@@ -17,7 +17,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { AppConfigService } from '../../../config/app-config.service'
-import { BehaviorSubject, Observable, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
@@ -27,8 +27,9 @@ import { IUserProfile } from '../../../shared/models/user/user-profile.interface
 export class ProfileService {
   private userProfile = {} as IUserProfile
   private userProfileSubject$ = new BehaviorSubject(this.userProfile)
+  private subject = new Subject<any>()
   public userProfileObservable$ = this.userProfileSubject$.asObservable()
-
+  public userNotApproved = false
   constructor(private httpClient: HttpClient, private appConfig: AppConfigService) {}
 
   get apiBase(): string {
@@ -67,5 +68,13 @@ export class ProfileService {
 
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
+  }
+
+  setUnapproveUser(unapproved: boolean): void {
+    this.subject.next(unapproved)
+  }
+
+  getUnapprovedUser(): Observable<any> {
+    return this.subject.asObservable()
   }
 }
