@@ -56,6 +56,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       this.valueForm?.get('value').disable()
     } else {
       this.valueForm?.get('value').enable()
+      this.valueForm?.get('value').markAllAsTouched()
     }
   }
   @Input() mode: 'aqb' | 'cohortBuilder'
@@ -87,6 +88,8 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
     )
+
+    this.valueForm?.get('value').markAllAsTouched()
   }
 
   ngOnDestroy(): void {

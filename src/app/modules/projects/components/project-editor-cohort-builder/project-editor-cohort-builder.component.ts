@@ -33,6 +33,7 @@ export class ProjectEditorCohortBuilderComponent implements OnInit {
   @Input() cohortNode: CohortGroupUiModel
   @Input() isLoadingComplete: boolean
   @Input() isDisabled: boolean
+  @Input() isCohortValid: any
 
   @Input() determineHitsContent: IDetermineHits
   @Output() determineHitsClicked = new EventEmitter()

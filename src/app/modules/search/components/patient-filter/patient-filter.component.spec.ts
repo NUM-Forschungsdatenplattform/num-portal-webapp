@@ -213,6 +213,10 @@ describe('PatientFilterComponent', () => {
 
     it('should set loading status if no cohortNode has been provided', async () => {
       component.project.cohortGroup = undefined
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(component.determineHits.isLoading).toBe(false)
     })
@@ -222,6 +226,10 @@ describe('PatientFilterComponent', () => {
         .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => of(mockCohortPreviewData))
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(528))
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(mockPatientFilterService.getPreviewData).toHaveBeenCalledTimes(1)
       expect(mockCohortService.getSize).toHaveBeenCalledTimes(1)
@@ -237,6 +245,11 @@ describe('PatientFilterComponent', () => {
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
+
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
     })
@@ -249,6 +262,10 @@ describe('PatientFilterComponent', () => {
       jest
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
     })
@@ -257,6 +274,11 @@ describe('PatientFilterComponent', () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => of(mockCohortPreviewData))
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
 
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
@@ -268,6 +290,11 @@ describe('PatientFilterComponent', () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
 
       await component.getPreviewData()
       expect(mockPatientFilterService.resetPreviewData).toHaveBeenCalledTimes(1)
@@ -295,12 +322,22 @@ describe('PatientFilterComponent', () => {
 
     it('should set loading status to false if no cohortNode has been provided', async () => {
       component.project.cohortGroup = undefined
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(component.determineHits.isLoading).toBe(false)
     })
 
     it('gets the cohort size from cohort service', async () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(528))
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       const cohortGroupApi = component.cohortNode.convertToApi()
       expect(mockCohortService.getSize).toHaveBeenCalledWith(cohortGroupApi, false)
@@ -308,11 +345,26 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.count).toEqual(528)
     })
 
+    it('check cohort validation', async () => {
+      component.checkCohortValidation(component.project.cohortGroup)
+      expect(component.isCohortValid.hasAql).toEqual(true)
+      expect(component.isCohortValid.valid).toEqual(false)
+    })
+
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
     })
@@ -321,6 +373,10 @@ describe('PatientFilterComponent', () => {
       jest
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
       await component.getPreviewData()
       expect(component.determineHits.message).toEqual('PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
     })
@@ -331,6 +387,11 @@ describe('PatientFilterComponent', () => {
         .spyOn(mockCohortService, 'getSize')
         .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
 
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
+
       await component.getPreviewData()
       expect(mockPatientFilterService.resetPreviewData).toHaveBeenCalledTimes(1)
     })
@@ -338,6 +399,11 @@ describe('PatientFilterComponent', () => {
     it('should not call the getSize method from patient-filter service', async () => {
       jest.spyOn(mockCohortService, 'getSize').mockImplementation(() => of(789))
       jest.spyOn(mockPatientFilterService, 'getPreviewData')
+
+      component.checkCohortValidation = function () {
+        component.isCohortValid.hasAql = true
+        component.isCohortValid.valid = true
+      }
 
       await component.getPreviewData()
 

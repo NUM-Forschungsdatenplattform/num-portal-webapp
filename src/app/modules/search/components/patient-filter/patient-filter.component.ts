@@ -31,6 +31,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 
 @Component({
   selector: 'num-patient-filter',
@@ -50,6 +51,8 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   project: ProjectUiModel
   isChartDataLoading: boolean
 
+  isCohortValid: any
+
   filterConfig: IAqlFilter
 
   get cohortNode(): CohortGroupUiModel {
@@ -66,6 +69,11 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isCohortValid = {
+      hasAql: null,
+      valid: null,
+    }
+
     this.setCurrentProject()
     this.patientCount$ = this.patientFilterService.totalDatasetCountObservable$
     this.previewData$ = this.patientFilterService.previewDataObservable$
@@ -115,6 +123,35 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
     )
   }
 
+  private checkChild(child) {
+    if (child.type === ConnectorNodeType.Aql) {
+      this.isCohortValid.hasAql = true
+    }
+
+    if (
+      typeof child['areParameterConfigured'] !== 'undefined' &&
+      child.areParameterConfigured === false
+    ) {
+      this.isCohortValid.valid = false
+    }
+  }
+
+  private allCohortDescendants(node): any {
+    if (node.children) {
+      for (let i = 0; i < node.children.length; i++) {
+        const child = node.children[i]
+        this.allCohortDescendants(child)
+        this.checkChild(child)
+      }
+    }
+  }
+
+  checkCohortValidation(cohortNode) {
+    this.isCohortValid.valid = true
+    this.isCohortValid.hasAql = false
+    this.allCohortDescendants(cohortNode)
+  }
+
   private updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
     this.determineHits = {
       defaultMessage: this.determineHits.defaultMessage,
@@ -125,23 +162,27 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   }
 
   async getPreviewData(): Promise<void> {
-    if (!this.cohortNode) {
-      this.updateDetermineHits(null, '')
-    } else {
-      try {
-        this.updateDetermineHits(null, '', true)
-        const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
-        const count = await this.getCount(cohortGroupApi).toPromise()
-        this.updateDetermineHits(count, '')
-      } catch (error) {
-        if (error.status === 451) {
-          // *** Error 451 means too few hits ***
-          this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
-        } else {
-          this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
+    this.checkCohortValidation(this.cohortNode)
+
+    if (this.isCohortValid.hasAql && this.isCohortValid.valid) {
+      if (!this.cohortNode) {
+        this.updateDetermineHits(null, '')
+      } else {
+        try {
+          this.updateDetermineHits(null, '', true)
+          const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
+          const count = await this.getCount(cohortGroupApi).toPromise()
+          this.updateDetermineHits(count, '')
+        } catch (error) {
+          if (error.status === 451) {
+            // *** Error 451 means too few hits ***
+            this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
+          } else {
+            this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
+          }
+          // Reset the preview data to hide graphs and reset hits counter
+          this.patientFilterService.resetPreviewData()
         }
-        // Reset the preview data to hide graphs and reset hits counter
-        this.patientFilterService.resetPreviewData()
       }
     }
   }

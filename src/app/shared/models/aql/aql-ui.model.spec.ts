@@ -90,7 +90,6 @@ describe('AqlUiModel', () => {
       const firstParameter = model.parameters[0]?.name
       const secondParameter = model.parameters[1]?.name
       const secondParameterValue = 'test'
-
       if (secondParameter) {
         model.parameters[1].value = secondParameterValue
       }
