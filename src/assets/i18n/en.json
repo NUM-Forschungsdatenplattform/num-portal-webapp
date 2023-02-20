@@ -47,6 +47,10 @@
     },
     "TOGGLE": {
       "LABEL": "Toggle sidenav"
+    },
+    "INFO": {
+      "UNAPPROVED_USER_MESSAGE": "You don't have access rights for this area.",
+      "UNAPPROVED_USER_MESSAGE_DESCRIPTION": "To access this area, you need to be approved by your organization administrator."
     }
   },
   "NAVIGATION": {

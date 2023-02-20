@@ -48,7 +48,12 @@
       }}
     </h1>
 
-    <nav mat-tab-nav-bar [backgroundColor]="'#fff'" color="accent" *ngIf="currentTabNav">
+    <nav
+      mat-tab-nav-bar
+      [backgroundColor]="'#fff'"
+      color="accent"
+      *ngIf="currentTabNav && !unapprovedUser"
+    >
       <ng-container *ngFor="let tab of currentTabNav">
         <a
           class="no-focus"
