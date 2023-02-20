@@ -323,12 +323,10 @@ describe('ProjectEditorComponent On Creation', () => {
       })
     })
 
-    it('xxxx', async () => {
+    it('check cohort validation', async () => {
       component.checkCohortValidation(component.project.cohortGroup)
-      console.log(
-        '22222222222222222222222222222222222222222222222222222222222222222222222222',
-        component.isCohortValid
-      )
+      expect(component.isCohortValid.hasAql).toEqual(false)
+      expect(component.isCohortValid.valid).toEqual(true)
     })
 
     it('should NOT call CohortService.getSize, if there is no query, and set default message', async () => {

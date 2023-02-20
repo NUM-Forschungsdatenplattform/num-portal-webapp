@@ -90,12 +90,8 @@ describe('AqlUiModel', () => {
       const firstParameter = model.parameters[0]?.name
       const secondParameter = model.parameters[1]?.name
       const secondParameterValue = 'test'
-      if (firstParameter) {
-        model.parameters[0].isDisabled = false
-      }
       if (secondParameter) {
         model.parameters[1].value = secondParameterValue
-        model.parameters[1].isDisabled = false
       }
 
       const convertedModel = model.convertToApi()

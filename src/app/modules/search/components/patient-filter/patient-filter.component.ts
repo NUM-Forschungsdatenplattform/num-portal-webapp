@@ -55,10 +55,6 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
 
   filterConfig: IAqlFilter
 
-  x = true
-  y = true
-  z = true
-
   get cohortNode(): CohortGroupUiModel {
     return this.project.cohortGroup
   }
@@ -129,7 +125,6 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
 
   private checkChild(child) {
     if (child.type === ConnectorNodeType.Aql) {
-      this.z = false
       this.isCohortValid.hasAql = true
     }
 
@@ -144,7 +139,6 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   private allCohortDescendants(node): any {
     if (node.children) {
       for (let i = 0; i < node.children.length; i++) {
-        this.y = false
         const child = node.children[i]
         this.allCohortDescendants(child)
         this.checkChild(child)
@@ -155,7 +149,6 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   checkCohortValidation(cohortNode) {
     this.isCohortValid.valid = true
     this.isCohortValid.hasAql = false
-    this.x = false
     this.allCohortDescendants(cohortNode)
   }
 

@@ -345,12 +345,10 @@ describe('PatientFilterComponent', () => {
       expect(component.determineHits.count).toEqual(528)
     })
 
-    it('xxxx', async () => {
+    it('check cohort validation', async () => {
       component.checkCohortValidation(component.project.cohortGroup)
-      console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy', component.isCohortValid)
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', component.x)
-      console.log('yyyyyyyyyyyyyyyyyyyyyyy', component.y)
-      console.log('zzzzzzzzzzzzzzzzzzzzzzzzzz', component.z)
+      expect(component.isCohortValid.hasAql).toEqual(true)
+      expect(component.isCohortValid.valid).toEqual(false)
     })
 
     it('should show an error for to few hits', async () => {
