@@ -123,10 +123,13 @@ export class UnapprovedUsersTableComponent
       dialogContentComponent: DialogEditUserDetailsComponent,
       dialogContentPayload,
     }
-
-    const currentDialog: MatDialogRef<any> = this.dialogService.openDialog(dialogConfig)
-    currentDialog.afterClosed().subscribe(() => {
-      this.getAll()
-    })
+    this.subscriptions.add(
+      this.dialogService
+        .openDialog(dialogConfig)
+        .afterClosed()
+        .subscribe(() => {
+          this.getAll()
+        })
+    )
   }
 }
