@@ -38,7 +38,7 @@ export const routes: Routes = [
     canLoad: [AuthGuard],
     data: {
       navId: 'profile',
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Profile.Module" */ './modules/profile/profile.module').then(
