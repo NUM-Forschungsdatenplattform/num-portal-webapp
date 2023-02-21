@@ -11,7 +11,7 @@ The criteria editor provides functionality to define a criterion, as well as to 
 The general information section contains information about the criterion such as:
 
 
-| No  | Field                   | Mandatory |
+| No. | Field                   | Mandatory |
 |-----|-------------------------|-----------|
 | 1   | English title           | Yes       |
 | 2   | English use             | Yes       |
