@@ -62,7 +62,7 @@ msgstr ""
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 3feb8d70b6ac4be3b61c5e103eb1bc2a 6108b8cbe2e445f3b85f0105401eee80
 msgid "No"
-msgstr "Nr"
+msgstr "Nein"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 62a29ba1e6834359814515055ff9bd0f
