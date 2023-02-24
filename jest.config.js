@@ -18,6 +18,9 @@ const { pathsToModuleNameMapper } = require('ts-jest/utils')
 const { compilerOptions } = require('./tsconfig')
 
 module.exports = {
+  transformIgnorePatterns: [
+    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
+  ],
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/src/'],
   modulePaths: ['<rootDir>'],
