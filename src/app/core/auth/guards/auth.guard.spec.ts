@@ -20,6 +20,7 @@ import { Subject } from 'rxjs'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockUserProfile1, mockUserProfileUnapproved } from 'src/mocks/data-mocks/user-profile.mock'
 import { ProfileService } from '../../services/profile/profile.service'
+import { ToastMessageService } from '../../services/toast-message/toast-message.service'
 
 import { AuthGuard } from './auth.guard'
 
@@ -36,8 +37,12 @@ describe('AuthGuard', () => {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
+  const mockToastService = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
+
   beforeEach(() => {
-    guard = new AuthGuard(authService, mockProfileService)
+    guard = new AuthGuard(authService, mockProfileService, mockToastService)
   })
 
   afterEach(() => {

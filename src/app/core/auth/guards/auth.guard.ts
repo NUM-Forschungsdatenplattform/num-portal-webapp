@@ -24,13 +24,19 @@ import {
 } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { filter, map, take } from 'rxjs/operators'
+import { ToastMessageType } from '../../../shared/models/toast-message-type.enum'
 import { ProfileService } from '../../services/profile/profile.service'
+import { ToastMessageService } from '../../services/toast-message/toast-message.service'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(private oauthService: OAuthService, private profileService: ProfileService) {}
+  constructor(
+    private oauthService: OAuthService,
+    private profileService: ProfileService,
+    private toast: ToastMessageService
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const redirectUri = window.location.origin + state.url
@@ -52,8 +58,13 @@ export class AuthGuard implements CanActivate, CanLoad {
       if (!onlyApprovedUsers) {
         return Promise.resolve(true)
       }
+      if (this.profileService.userNotApproved) {
+        this.toast.openToast({
+          type: ToastMessageType.Warn,
+          message: 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE_DESCRIPTION',
+        })
+      }
       return this.profileService.userProfileObservable$
-
         .pipe(
           filter((profile) => !!profile.id),
           take(1),

@@ -72,6 +72,7 @@ export class ProfileService {
 
   setUnapproveUser(unapproved: boolean): void {
     this.userApprovedSubject.next(unapproved)
+    this.userNotApproved = unapproved
   }
 
   getUnapprovedUser(): Observable<any> {

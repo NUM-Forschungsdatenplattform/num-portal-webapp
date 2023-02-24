@@ -52,8 +52,8 @@
         fxFlex.gt-md="90%"
         fxFlex.gt-lg="1200px"
       >
-        <router-outlet *ngIf="!unapprovedUser"></router-outlet>
-        <div *ngIf="unapprovedUser">
+        <router-outlet *ngIf="!unapprovedUser || onHomePage"></router-outlet>
+        <div *ngIf="unapprovedUser && !onHomePage">
           <p>
             <fa-icon
               class="num-fc--w"
