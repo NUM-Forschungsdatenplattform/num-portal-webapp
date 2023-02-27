@@ -37,6 +37,7 @@ import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -64,6 +65,7 @@ describe('AppLayoutComponent', () => {
   const profileService = {
     get: () => jest.fn(),
     getUnapprovedUser: () => of(),
+    userNotApproved: true,
   } as unknown as ProfileService
 
   const mockContentService = {
@@ -195,11 +197,6 @@ describe('AppLayoutComponent', () => {
       listenerCallback(event)
       expect(component.isSmallDevice).toBeFalsy()
     })
-    it('should call isRouterOutletDisplayed on small devices', () => {
-      jest.spyOn(component, 'isRouterOutletDisplayed')
-      component.isRouterOutletDisplayed()
-      expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
-    })
   })
 
   describe('On large devices', () => {
@@ -226,10 +223,28 @@ describe('AppLayoutComponent', () => {
       component.toggleMenu()
       expect(component.drawer.toggle).not.toHaveBeenCalled()
     })
-    it('should call isRouterOutletDisplayed on large devices', () => {
+  })
+
+  describe('On permission need to show content', () => {
+    beforeEach(() => {
+      const mediaQueryListFake = mediaQueryList as any
+      mediaQueryListFake.matches = false
+      fixture = TestBed.createComponent(AppLayoutComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+    })
+    it('should call isRouterOutletDisplayed', () => {
       jest.spyOn(component, 'isRouterOutletDisplayed')
       component.isRouterOutletDisplayed()
       expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
+    })
+    it('should set unapproved user to true', () => {
+      profileService
+        .getUnapprovedUser()
+        .toPromise()
+        .then((_) => {})
+        .catch((_) => {})
+      expect(component.unapprovedUser).toBeFalsy()
     })
   })
 })
