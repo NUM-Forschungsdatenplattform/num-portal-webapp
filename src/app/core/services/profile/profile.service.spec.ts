@@ -62,6 +62,17 @@ describe('ProfileService', () => {
     })
   })
 
+  describe('When call to setUnapproveUser comes in', () => {
+    beforeEach(() => {
+      jest.spyOn(service, 'setUnapproveUser')
+    })
+    it('should set unapproved user to true', () => {
+      service.setUnapproveUser(true)
+      expect(service.setUnapproveUser).toHaveBeenCalled()
+      expect(service.userNotApproved).toEqual(true)
+    })
+  })
+
   describe('When a call to get method comes in', () => {
     beforeEach(() => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUserProfile1))
