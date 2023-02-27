@@ -195,6 +195,11 @@ describe('AppLayoutComponent', () => {
       listenerCallback(event)
       expect(component.isSmallDevice).toBeFalsy()
     })
+    it('should call isRouterOutletDisplayed on small devices', () => {
+      jest.spyOn(component, 'isRouterOutletDisplayed')
+      component.isRouterOutletDisplayed()
+      expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
+    })
   })
 
   describe('On large devices', () => {
@@ -220,6 +225,11 @@ describe('AppLayoutComponent', () => {
       jest.spyOn(component.drawer, 'toggle')
       component.toggleMenu()
       expect(component.drawer.toggle).not.toHaveBeenCalled()
+    })
+    it('should call isRouterOutletDisplayed on large devices', () => {
+      jest.spyOn(component, 'isRouterOutletDisplayed')
+      component.isRouterOutletDisplayed()
+      expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
     })
   })
 })

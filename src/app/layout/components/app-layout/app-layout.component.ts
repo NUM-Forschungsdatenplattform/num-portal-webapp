@@ -66,6 +66,10 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     )
   }
 
+  isRouterOutletDisplayed(): boolean {
+    return !this.unapprovedUser || this.onHomePage
+  }
+
   ngOnDestroy(): void {
     this.matcher.removeEventListener('change', this.isSmallDeviceListener)
     this.subscriptions.unsubscribe()
