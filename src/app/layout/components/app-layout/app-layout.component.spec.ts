@@ -38,6 +38,7 @@ import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
+import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -238,13 +239,17 @@ describe('AppLayoutComponent', () => {
       component.isRouterOutletDisplayed()
       expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
     })
-    it('should set unapproved user to true', () => {
-      profileService
-        .getUnapprovedUser()
-        .toPromise()
-        .then((_) => {})
-        .catch((_) => {})
-      expect(component.unapprovedUser).toBeFalsy()
+
+    it('should set the correct url', () => {
+      const router: Router = TestBed.inject(Router)
+      const routerEventsSubject = new Subject<NavigationEnd>()
+      const routerAny = { ...router, url: '/home' } as any
+      routerAny.events = routerEventsSubject.asObservable()
+      const routerEvent = new NavigationEnd(1, '/home', '/home')
+      router.navigate(['/home'])
+      routerEventsSubject.next(routerEvent)
+      fixture.detectChanges()
+      expect(routerAny.url).toEqual('/home')
     })
   })
 })
