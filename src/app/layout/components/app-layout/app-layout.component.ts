@@ -19,6 +19,7 @@ import { MediaMatcher } from '@angular/cdk/layout'
 import { MatSidenav } from '@angular/material/sidenav'
 import { ProfileService } from '../../../core/services/profile/profile.service'
 import { Subscription } from 'rxjs'
+import { NavigationEnd, Router } from '@angular/router'
 
 @Component({
   selector: 'num-app-layout',
@@ -31,8 +32,13 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
   isSmallDevice = false
   matcher: MediaQueryList
   unapprovedUser = false
+  onHomePage = false
 
-  constructor(private mediaMatcher: MediaMatcher, private profileService: ProfileService) {}
+  constructor(
+    private mediaMatcher: MediaMatcher,
+    private profileService: ProfileService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
     this.matcher = this.mediaMatcher.matchMedia('(max-width: 960px)')
@@ -47,6 +53,21 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
         this.unapprovedUser = response
       })
     )
+    this.subscriptions.add(
+      this.route.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          if (event.url === '/home') {
+            this.onHomePage = true
+          } else {
+            this.onHomePage = false
+          }
+        }
+      })
+    )
+  }
+
+  isRouterOutletDisplayed(): boolean {
+    return !this.unapprovedUser || this.onHomePage
   }
 
   ngOnDestroy(): void {
