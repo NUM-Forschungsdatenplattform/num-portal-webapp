@@ -22,8 +22,10 @@ alt: 'Login page with a red arrow pointing to the registration link'
 Fig 01-01: Position of the register link on Login page
 ```
 
-At the Signup page you will see a form to enter your basic data. All input fields marked with an
-asterisk are required to proceed. 
+At the Signup page you will see a form to enter your basic data. 
+The **project lead** creates new projects, describes them, and manages them through the application process to project completion. He is responsible for defining the cohort and manages the researchers assigned to the project.
+**Researchers** retrieve research data from their assigned projects once the projects are approved and launched. Researchers have no influence on the project description, project application and cohort definition.
+All input fields marked with an asterisk are required to proceed. 
 
 ```{figure} images/sign_up_form_empty.png
 ---
