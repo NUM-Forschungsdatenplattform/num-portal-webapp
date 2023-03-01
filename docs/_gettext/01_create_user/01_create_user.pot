@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-21 12:47+0100\n"
+"POT-Creation-Date: 2023-03-01 12:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,56 +57,56 @@ msgid "Fig 01-01: Position of the register link on Login page"
 msgstr ""
 
 #: ../01_create_user/01_create_user.md:25
-#: adc62f3862de498f97acf390e956409a
-msgid "At the Signup page you will see a form to enter your basic data. All input fields marked with an asterisk are required to proceed."
+#: 216a952f95b14250b0b6e2d39f0bdfcb
+msgid "At the Signup page you will see a form to enter your basic data.  The **project lead** creates new projects, describes them, and manages them through the application process to project completion. He is responsible for defining the cohort and manages the researchers assigned to the project. **Researchers** retrieve research data from their assigned projects once the projects are approved and launched. Researchers have no influence on the project description, project application and cohort definition. All input fields marked with an asterisk are required to proceed."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:32
+#: ../01_create_user/01_create_user.md:34
 #: 98557297d6a243e5a8890c405639a80e
 msgid "Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:32
+#: ../01_create_user/01_create_user.md:34
 #: 2033f7dad1db4ac7885008b60e5427ef
 msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:35
+#: ../01_create_user/01_create_user.md:37
 #: ed4651da5a9b4696b1cc952691610438
 msgid "Additionally you have to aggree with the terms and conditions. If you want to read the terms and conditions you can click the link which opens an overlay with the current version of our terms and conditions that you also can directly accept or decline."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:43
+#: ../01_create_user/01_create_user.md:45
 #: 20d65b0fd5f247feb8ecd2e66102dacf
 msgid "Sign up page with opened terms and conditions modal with to buttons to accept or decline the terms and conditions at the bottom"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:43
+#: ../01_create_user/01_create_user.md:45
 #: 809afd3156754c7fb3a3628865a2cbc4
 msgid "Fig 01-03: Open Terms and Conditions overlay modal"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:46
+#: ../01_create_user/01_create_user.md:48
 #: d943d3ca7f344b90802907c0fb83f90b
 msgid "Once you have filled out all information about your person and your login information an email will be sent to your provided email address. If the email has been sent to your inbox you will see the following screen:"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:54
+#: ../01_create_user/01_create_user.md:56
 #: 3426ed8120d8474384af4f978d461708
 msgid "After sign up page which informs about a sent email the user should check"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:54
+#: ../01_create_user/01_create_user.md:56
 #: 61d459da9aff41799ad6cd065ce8f4a7
 msgid "Fig 01-04: Hint on sent email to confirm registration"
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:57
+#: ../01_create_user/01_create_user.md:59
 #: f39dca41efb5426ab0c590267a618b0e
 msgid "In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again."
 msgstr ""
 
-#: ../01_create_user/01_create_user.md:60
+#: ../01_create_user/01_create_user.md:62
 #: 5765264328054131b17faa8e2ef353aa
 msgid "After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""
