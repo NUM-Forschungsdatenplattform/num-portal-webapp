@@ -154,8 +154,9 @@ Return parameters are mandatory, in order to save this project you must select a
 
 
 #### Researchers 
-The last section of the project screen is the researchers section, here researchers can be assigned to the project. By clicking the *Add researchers* button.
-
+Select the researchers who are allowed to research on your project by clicking the *Add researchers* button.
+After approval is granted and the project is started, researchers can retrieve data. 
+Even after the project has started, you can still customize the list of authorized researchers.
 
 ```{figure} images/project_researchers.png
 ---

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 16:40+0100\n"
+"POT-Creation-Date: 2023-03-01 18:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -596,26 +596,29 @@ msgid "Researchers"
 msgstr "4. Ausgewählte Forscher"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:157
-#: d4f0a0c9c8b244f094f659f73a1ab45d
+#: 499b35dca6814739a184f940e9428912
 msgid ""
-"The last section of the project screen is the researchers section, here "
-"researchers can be assigned to the project. By clicking the *Add "
-"researchers* button."
+"Select the researchers who are allowed to research on your project by "
+"clicking the *Add researchers* button. After approval is granted and the "
+"project is started, researchers can retrieve data.  Even after the "
+"project has started, you can still customize the list of authorized "
+"researchers."
 msgstr ""
-"Der letzte Abschnitt erlaubt das Hinzufügen von Forschern zu dem Projekt."
-" Klicken Sie dazu auf die Schaltfläche *Forscher hinzufügen*."
+"Wählen Sie die Forscher aus, die an Ihrem Projekt forschen dürfen."
+"Nach erfolgter Genehmigung und Starten des Projekts können Forscher Daten abrufen."
+"Auch nach dem Projektstart können Sie die Liste der berechtigten Forscher noch anpassen."
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:164
+#: ../04_projects/02_projects_editor/02_projects_editor.md:165
 #: 9646b5c8e7224d529da4278cc3cf2be5
 msgid "Screenshot project researchers"
 msgstr "Bildschirmfoto Ausgewählte Forscher"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:164
+#: ../04_projects/02_projects_editor/02_projects_editor.md:165
 #: 9646b5c8e7224d529da4278cc3cf2be5
 msgid "Fig 04-02-08: Project researchers"
 msgstr "Abb 04-02-08: Ausgewählte Forscher"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:168
+#: ../04_projects/02_projects_editor/02_projects_editor.md:169
 #: ead931c6e38c4614aa0536ff6582d934
 msgid ""
 "A dialog window will then open in which you can make your selection. To "
@@ -628,17 +631,17 @@ msgstr ""
 "in ein *Häkchen*. Durch erneuten Klick auf das *Häkchen* können Sie den "
 "Forscher wieder abwählen."
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:175
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
 #: 716ed8b97a1f4e408a41fd5dc64f2e45
 msgid "Screenshot project researchers dialog"
 msgstr "Bildschirmfoto Dialogfenster Forscherauswahl"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:175
+#: ../04_projects/02_projects_editor/02_projects_editor.md:176
 #: 716ed8b97a1f4e408a41fd5dc64f2e45
 msgid "Fig 04-02-09: Project researchers dialog"
 msgstr "Abb 04-02-09: Forscherauswahl-Dialog"
 
-#: ../04_projects/02_projects_editor/02_projects_editor.md:180
+#: ../04_projects/02_projects_editor/02_projects_editor.md:181
 #: f8eb0318d7e84d959f4196e0ac692572
 msgid ""
 "Researchers are mandatory, in order to save this project you must select "
@@ -747,4 +750,16 @@ msgstr ""
 
 #~ msgid "2. General information"
 #~ msgstr "2. Allgemeine Angaben"
+
+#~ msgid ""
+#~ "The last section of the project "
+#~ "screen is the researchers section, here"
+#~ " researchers can be assigned to the"
+#~ " project. By clicking the *Add "
+#~ "researchers* button."
+#~ msgstr ""
+#~ "Der letzte Abschnitt erlaubt das "
+#~ "Hinzufügen von Forschern zu dem Projekt."
+#~ " Klicken Sie dazu auf die "
+#~ "Schaltfläche *Forscher hinzufügen*."
 
