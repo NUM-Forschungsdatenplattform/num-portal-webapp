@@ -58,8 +58,9 @@ msgid ""
 "Researchers retrieve research data from their assigned projects once the "
 "projects are approved and launched. Researchers have no influence on the "
 "project description, project application and cohort definition."
-msgstr "Die Forscher rufen die Forschungsdaten aus den ihnen zugeordneten Projekten ab, sobald diese bewilligt und gestartet wurden. 
-Forscher haben keinen Einfluss auf die Projektbeschreibung, den Projektantrag und die Kohortendefinition."
+msgstr ""
+"Die Forscher rufen die Forschungsdaten aus den ihnen zugeordneten Projekten ab, sobald diese bewilligt und gestartet wurden." 
+"Forscher haben keinen Einfluss auf die Projektbeschreibung, den Projektantrag und die Kohortendefinition."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 1ec07f6d65664dc1b1c81422d1d655d3 5c3f2f5c3a834f4db76d94c5610cfe0c
@@ -79,10 +80,9 @@ msgid ""
 "through the application process to project completion. He is responsible "
 "for defining the cohort and manages the researchers assigned to the "
 "project."
-msgstr "Der Projektleiter legt neue Projekte an, beschreibt diese 
-und verwaltet sie über den Antrag bis zum Projektabschluss. 
-Er verantwortet die Definition der Kohorte und verwaltet die dem 
-Projekt zugeordneten Forscher."
+msgstr ""
+"Der Projektleiter legt neue Projekte an, beschreibt diese und verwaltet sie über den Antrag bis zum Projektabschluss."
+"Er verantwortet die Definition der Kohorte und verwaltet die dem Projekt zugeordneten Forscher."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 791cb8d280bf425d86c8521b57283ddc
@@ -95,8 +95,9 @@ msgid ""
 "<div>Project approvers have an overview of all projects in their own "
 "organization.&nbsp;</div><div>They can accept, revise or reject project "
 "proposals.</div>"
-msgstr "Die Projektprüfer haben die Übersicht über alle Projekte der eigenen Organisation. 
-Sie können Projektanträge annehmen, überarbeiten oder ablehnen."
+msgstr ""
+"Die Projektprüfer haben die Übersicht über alle Projekte der eigenen Organisation." 
+"Sie können Projektanträge annehmen, überarbeiten oder ablehnen."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 1d8ea9f052b1476893054190d31b5a61 325d96c5b90b4fb4a4b7e6d691974c97
@@ -116,8 +117,9 @@ msgid ""
 "<div>The organization admins can manage their own organization and its "
 "users.</div><div>They approve new users, assign roles and can customize "
 "the organization's email domain.</div>"
-msgstr "Die Organisations-Admins können die eigene Organisation und deren Benutzer verwalten.
-Sie geben neue Benutzer frei, vergeben Rollen und können die E-Mail Domain der Organisation anpassen."
+msgstr ""
+"Die Organisations-Admins können die eigene Organisation und deren Benutzer verwalten."
+"Sie geben neue Benutzer frei, vergeben Rollen und können die E-Mail Domain der Organisation anpassen."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: af25ab5abebb4b7a88bc2a5690be66c1
@@ -140,8 +142,9 @@ msgid ""
 "The criteria editors manage the criteria within the projects that are "
 "unlocked for them. You customize criteria categories and create and "
 "modify General Specifications and AQL queries using the Criteria Editor."
-msgstr "Die Kriterien-Editoren verwalten innerhalb der für sie freigeschalteten Projekte die Kriterien. 
-Sie passen Kriterien-Kategorien an und erstellen und ändern Allgemeine Angaben und AQL-Queries mit dem Kriterien-Editor."
+msgstr ""
+"Die Kriterien-Editoren verwalten innerhalb der für sie freigeschalteten Projekte die Kriterien." 
+"Sie passen Kriterien-Kategorien an und erstellen und ändern Allgemeine Angaben und AQL-Queries mit dem Kriterien-Editor."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: b5d2edf7a4da4f2b9ec68acafb7799ab
