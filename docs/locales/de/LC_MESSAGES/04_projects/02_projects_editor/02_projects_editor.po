@@ -499,7 +499,7 @@ msgstr "Register"
 #: 2fc1f0d9e8c34f6db88c7a350fe5a463
 #, fuzzy
 msgid "Return parameters"
-msgstr "3. Rückgabeparameter auswählen"
+msgstr "Rückgabeparameter"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:117
 #: 9bcf1142179f4357870d3377172c770d
