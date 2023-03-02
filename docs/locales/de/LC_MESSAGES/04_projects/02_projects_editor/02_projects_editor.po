@@ -593,7 +593,7 @@ msgstr ""
 #: b046b2c532bb4adba1caa58e00bfb23b
 #, fuzzy
 msgid "Researchers"
-msgstr "4. Ausgewählte Forscher"
+msgstr "Forscher"
 
 #: ../04_projects/02_projects_editor/02_projects_editor.md:157
 #: 499b35dca6814739a184f940e9428912
