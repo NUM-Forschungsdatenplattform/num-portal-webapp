@@ -22,7 +22,7 @@ feedback and contribution.
 maxdepth: 2
 caption: "Table of contents:"
 ---
-01_create_user/01_create_user.md
+01_user_account/01_user_account.md
 02_welcome/02_welcome.md
 03_search/03_search.md
 04_projects/04_projects.md

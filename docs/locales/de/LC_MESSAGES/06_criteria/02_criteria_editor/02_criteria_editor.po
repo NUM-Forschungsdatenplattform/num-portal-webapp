@@ -42,7 +42,7 @@ msgstr ""
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:9
 #: 35dca24cda7d4f63872dfa74417d4e71 623eed1fe42c48908d37874d6ed5900a
 msgid "General information"
-msgstr "Allgmeine Angaben"
+msgstr "Allgemeine Angaben"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:7
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:34
