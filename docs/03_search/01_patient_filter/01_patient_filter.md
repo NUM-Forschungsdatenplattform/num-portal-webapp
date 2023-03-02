@@ -20,7 +20,7 @@ alt: Screenshot of patient filter
 Fig 03-01-01: Patient filter
 ```
 
-#### 1 Criteria list
+#### 1) Criteria list
 The various criteria are divided into categories, these can be expanded and collapsed. Detailed information on each individual criterion can be obtained by clicking on the *i* symbol.
 
 To use a criterion and add it to the cohort builder, click it's plus icon. The criterion is then inserted directly into the cohort builder in the active (red bordered) group.
@@ -42,7 +42,7 @@ alt: Screenshot of criteria details dialog
 Fig 03-01-03: Criteria detail view
 ```
 
-#### 2 Cohort builder
+#### 2) Cohort builder
 
 In the cohort builder, the criteria are inserted in the order you selected/clicked them from the list.
 
@@ -98,7 +98,7 @@ There are also criteria that do not require the entry of parameters, these can b
 ```
 
 
-#### 3 Patients display
+#### 3) Patients display
 
 This area shows the number of patients in the entire dataset resulting from the configuration of the cohort. To retrieve the patients, you must click the *Retrieve* button. The number of patients is then displayed. Depending on the authorization and if the data is available, the patients are also displayed in a graphical representation.
 

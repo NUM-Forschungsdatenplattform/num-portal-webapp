@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 14:06+0100\n"
+"POT-Creation-Date: 2023-03-02 14:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:23
 #: a5b75e3d67ec47b3961b1068afd42971
-msgid "1 Criteria list"
+msgid "1) Criteria list"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:24
@@ -108,7 +108,7 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:45
 #: 31bc079be7e64fd584b755349121fc56
-msgid "2 Cohort builder"
+msgid "2) Cohort builder"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:47
@@ -243,7 +243,7 @@ msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:101
 #: 31e85cdc38cd4b6a8f69ad9e124811e5
-msgid "3 Patients display"
+msgid "3) Patients display"
 msgstr ""
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:103
