@@ -94,7 +94,7 @@ msgstr "Abb 03-01-01: Patienten-Filter"
 #: ../03_search/01_patient_filter/01_patient_filter.md:23
 #: a5b75e3d67ec47b3961b1068afd42971
 msgid "1. Criteria list"
-msgstr "1. Kriterien-Liste"
+msgstr "1. Kriterien-Liste "
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:24
 #: e42d819e8f474296a3181e3f5a9351f0
