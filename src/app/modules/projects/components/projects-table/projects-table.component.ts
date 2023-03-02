@@ -55,6 +55,7 @@ export class ProjectsTableComponent
   extends SortableTable<IProjectApi>
   implements OnInit, OnDestroy
 {
+  lang = 'en'
   private subscriptions = new Subscription()
   constructor(
     private router: Router,
@@ -65,6 +66,13 @@ export class ProjectsTableComponent
     private translateService: TranslateService
   ) {
     super()
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.lang = event.lang || 'en'
+      })
+    )
+
+    this.lang = this.translateService.currentLang || 'en'
   }
 
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
@@ -128,7 +136,14 @@ export class ProjectsTableComponent
   getAll() {
     this.subscriptions.add(
       this.projectService
-        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .getAllPag(
+          this.pageIndex,
+          this.pageSize,
+          this.sortDir,
+          this.sortBy,
+          this.filters,
+          this.lang
+        )
         .subscribe((data) => {
           this.handleData(data)
         })
