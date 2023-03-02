@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 14:33+0100\n"
+"POT-Creation-Date: 2023-03-02 15:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,8 +94,8 @@ msgstr "Abb 03-01-01: Patienten-Filter"
 #: ../03_search/01_patient_filter/01_patient_filter.md:23
 #: a5b75e3d67ec47b3961b1068afd42971
 #, fuzzy
-msgid "1) Criteria list"
-msgstr "1) Kriterien-Liste"
+msgid "1 - Criteria list"
+msgstr "1 - Kriterien-Liste"
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:24
 #: e42d819e8f474296a3181e3f5a9351f0
@@ -157,8 +157,8 @@ msgstr "Abb 03-01-03: Kriterien-Detail-Ansicht"
 #: ../03_search/01_patient_filter/01_patient_filter.md:45
 #: 31bc079be7e64fd584b755349121fc56
 #, fuzzy
-msgid "2) Cohort builder"
-msgstr "2) Kohorten-Editor"
+msgid "2 - Cohort builder"
+msgstr "2 - Kohorten-Editor"
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:47
 #: 1db7b6bb46ef49a6a6d4d46653673ba7
@@ -353,8 +353,8 @@ msgstr ""
 #: ../03_search/01_patient_filter/01_patient_filter.md:101
 #: 31e85cdc38cd4b6a8f69ad9e124811e5
 #, fuzzy
-msgid "3) Patients display"
-msgstr "3) Patienten-Anzeige"
+msgid "3 - Patients display"
+msgstr "3 - Patienten-Anzeige"
 
 #: ../03_search/01_patient_filter/01_patient_filter.md:103
 #: 590abd200d5e42668fa567758e217d21
