@@ -20,7 +20,7 @@ msgstr ""
 #: ../01_user_account/01_user_account.md:1 eee2beef5b4e49d3a5bebdd0092c783a
 #, fuzzy
 msgid "User account"
-msgstr "Registrierung eines neuen Benutzerkontos"
+msgstr "Benutzerkontos"
 
 #: ../01_user_account/01_user_account.md:3 d65f8dd82e8d4a60b86a29a7be728531
 msgid ""
@@ -206,7 +206,7 @@ msgstr ""
 #: ../01_user_account/01_user_account.md:65 08b27a34ef7d4a28b1fc5983ae28c458
 #, fuzzy
 msgid "Edit your user account"
-msgstr "Registrierung eines neuen Benutzerkontos"
+msgstr "Verwalten Ihres Benutzerkontos"
 
 #: ../01_user_account/01_user_account.md:67 14f31a83506d4c759deb15d0d537fe74
 msgid ""
