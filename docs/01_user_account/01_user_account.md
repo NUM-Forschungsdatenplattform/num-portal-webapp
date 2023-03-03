@@ -64,7 +64,14 @@ After your successful registration you can only see the portals welcome page unt
 
 ## Edit your user account
 
-At the bottom left of the portal you can access your user account at any time.
+You can always access your user account at the bottom left.
+
+```{figure} images/user_account.png
+---
+alt: 'User account view with details and password change option'
+---
+Fig 01-05: User account view
+```
 
 Within the user account page you can change your First name and your Last name, as well as the passwort by clicking on the "UPDATE PASSWORD" button.
 To save your updated credentials you need to click "SAVE CHANGES".
