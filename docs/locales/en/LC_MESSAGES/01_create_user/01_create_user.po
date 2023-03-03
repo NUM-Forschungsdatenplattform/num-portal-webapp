@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2022, Netzwerk Universitätsmedizin
 # This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
@@ -11,7 +11,9 @@ msgstr ""
 "POT-Creation-Date: 2023-03-01 12:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -142,11 +144,4 @@ msgid ""
 "approve user accounts go to the section [User management -> Unapproved "
 "users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
 msgstr ""
-
-#~ msgid ""
-#~ "At the Signup page you will see"
-#~ " a form to enter your basic "
-#~ "data. All input fields marked with "
-#~ "an asterisk are required to proceed."
-#~ msgstr ""
 

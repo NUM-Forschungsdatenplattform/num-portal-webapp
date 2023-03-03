@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 19:01+0100\n"
+"POT-Creation-Date: 2023-03-03 11:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,15 +118,25 @@ msgstr ""
 
 #: ../01_user_account/01_user_account.md:67
 #: 14f31a83506d4c759deb15d0d537fe74
-msgid "At the bottom left of the portal you can access your user account at any time."
+msgid "You can always access your user account at the bottom left."
 msgstr ""
 
-#: ../01_user_account/01_user_account.md:69
+#: ../01_user_account/01_user_account.md:73
+#: d4847158cfbc43429a06514d03e80e40
+msgid "User account view with details and password change option"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:73
+#: 35b24285c58142b4b36fac63f258f6c3
+msgid "Fig 01-05: User account view"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:76
 #: 1caa28e7e76941a595fd7ab4f306eee7
 msgid "Within the user account page you can change your First name and your Last name, as well as the passwort by clicking on the \"UPDATE PASSWORD\" button. To save your updated credentials you need to click \"SAVE CHANGES\"."
 msgstr ""
 
-#: ../01_user_account/01_user_account.md:72
+#: ../01_user_account/01_user_account.md:79
 #: e09d64739fec4e99a5d27695ff9b3689
 msgid "Within this page you can see (but not change) your E-mail address, organization and current roles."
 msgstr ""

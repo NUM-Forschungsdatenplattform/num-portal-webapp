@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 19:01+0100\n"
+"POT-Creation-Date: 2023-03-03 11:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: ../01_user_account/01_user_account.md:1 eee2beef5b4e49d3a5bebdd0092c783a
 #, fuzzy
 msgid "User account"
-msgstr "Benutzerkontos"
+msgstr "Benutzerkonto"
 
 #: ../01_user_account/01_user_account.md:3 d65f8dd82e8d4a60b86a29a7be728531
 msgid ""
@@ -209,27 +209,37 @@ msgid "Edit your user account"
 msgstr "Verwalten Ihres Benutzerkontos"
 
 #: ../01_user_account/01_user_account.md:67 14f31a83506d4c759deb15d0d537fe74
-msgid ""
-"At the bottom left of the portal you can access your user account at any "
-"time."
-msgstr ""
-"Unten links im Portal können Sie jederzeit auf Ihr Benutzerkonto zugreifen."
+msgid "You can always access your user account at the bottom left."
+msgstr "Sie können jederzeit unten links auf Ihr Benutzerkonto zugreifen."
 
-#: ../01_user_account/01_user_account.md:69 1caa28e7e76941a595fd7ab4f306eee7
+#: ../01_user_account/01_user_account.md:73 d4847158cfbc43429a06514d03e80e40
+msgid "User account view with details and password change option"
+msgstr "Ansicht des Benutzerkontos mit Details und Option zur Passwortänderung"
+
+#: ../01_user_account/01_user_account.md:73 35b24285c58142b4b36fac63f258f6c3
+#, fuzzy
+msgid "Fig 01-05: User account view"
+msgstr "Fig 01-05: Ansicht des Benutzerkontos"
+
+#: ../01_user_account/01_user_account.md:76 1caa28e7e76941a595fd7ab4f306eee7
 msgid ""
 "Within the user account page you can change your First name and your Last"
 " name, as well as the passwort by clicking on the \"UPDATE PASSWORD\" "
-"button. To save your updated credentials you need to click \"SAVE CHANGES\"."
+"button. To save your updated credentials you need to click \"SAVE "
+"CHANGES\"."
 msgstr ""
-"Auf der Seite des Benutzerkontos können Sie Ihren Vor- und Nachnamen sowie das Passwort ändern, indem Sie auf die Schaltfläche \"PASSWORT AKTUALISIEREN\" klicken.
-"Um Ihre aktualisierten Anmeldedaten zu speichern, klicken Sie auf \"ÄNDERUNGEN SPEICHERN\".
+"Auf der Seite des Benutzerkontos können Sie Ihren Vor- und Nachnamen "
+"sowie das Passwort ändern, indem Sie auf die Schaltfläche \"PASSWORT "
+"AKTUALISIEREN\" klickenUm Ihre aktualisierten Anmeldedaten zu speichern, "
+"klicken Sie auf \"ÄNDERUNGEN SPEICHERN\""
 
-#: ../01_user_account/01_user_account.md:72 e09d64739fec4e99a5d27695ff9b3689
+#: ../01_user_account/01_user_account.md:79 e09d64739fec4e99a5d27695ff9b3689
 msgid ""
 "Within this page you can see (but not change) your E-mail address, "
 "organization and current roles."
 msgstr ""
-"Auf dieser Seite können Sie Ihre E-Mail-Adresse, Ihre Organisation und Ihre aktuellen Aufgaben einsehen (aber nicht ändern)."
+"Auf dieser Seite können Sie Ihre E-Mail-Adresse, Ihre Organisation und "
+"Ihre aktuellen Aufgaben einsehen (aber nicht ändern)."
 
 #~ msgid ""
 #~ "At the Signup page you will see"
@@ -245,4 +255,12 @@ msgstr ""
 
 #~ msgid "Create User"
 #~ msgstr "Benutzer anlegen"
+
+#~ msgid ""
+#~ "At the bottom left of the portal"
+#~ " you can access your user account "
+#~ "at any time."
+#~ msgstr ""
+#~ "Unten links im Portal können Sie "
+#~ "jederzeit auf Ihr Benutzerkonto zugreifen."
 
