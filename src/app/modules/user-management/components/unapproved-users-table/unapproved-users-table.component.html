@@ -66,7 +66,9 @@
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'USER.EMAIL' | translate }}
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      <td mat-cell *matCellDef="let element" class="truncate" title="{{ element.email }}">
+        {{ element.email }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="createdTimestamp">

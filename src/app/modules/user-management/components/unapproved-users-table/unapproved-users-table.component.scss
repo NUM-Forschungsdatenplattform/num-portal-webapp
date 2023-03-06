@@ -16,4 +16,10 @@
 
 table {
   width: 100%;
+
+  .truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 5px;
+  }
 }
