@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
 import { Sort } from '@angular/material/sort'
@@ -27,6 +27,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
+import { MatPaginator } from '@angular/material/paginator'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -59,6 +60,8 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   public filters: any
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
   }
@@ -81,7 +84,11 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.getAll()
   }
 
-  getAll(): void {
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex) {
+      this.paginator.firstPage()
+      this.pageIndex = 0
+    }
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -133,7 +140,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
       this.filters.type = 'ORGANIZATION'
     }
 
-    this.getAll()
+    this.getAll(true)
   }
 
   handleSelectClick(user: IUser): void {

@@ -45,7 +45,7 @@ import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-ca
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy, OnInit {
+export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
   user: IUserProfile
   displayedColumns: AqlTableColumns[] = [
     'menu',
@@ -72,6 +72,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
   public filters: any
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
   }
@@ -90,9 +92,20 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     private translateService: TranslateService
   ) {
     super()
-    this.aqlService.filterConfigObservable$
-      .pipe(take(1))
-      .subscribe((config) => (this.filterConfig = config))
+
+    this.pageIndex = 0
+    this.filters = {
+      type: null,
+      search: null,
+    }
+
+    this.sortBy = 'name'
+    this.sortDir = 'ASC'
+
+    this.aqlService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
+      this.filterConfig = config
+      this.handleChangeFilter()
+    })
 
     this.subscriptions.add(
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
@@ -106,19 +119,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
     this.lang = this.translateService.currentLang || 'en'
     this.aqlCategoryService.getAll().subscribe()
-  }
-
-  ngOnInit() {
-    this.pageIndex = 0
-    this.filters = {
-      type: null,
-      search: null,
-    }
-
-    this.sortBy = 'name'
-    this.sortDir = 'ASC'
-
-    this.getAll()
   }
 
   handleSortChangeTable(sort: Sort): void {
@@ -142,7 +142,11 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.getAll()
   }
 
-  getAll() {
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.paginator.firstPage()
+      this.pageIndex = 0
+    }
     this.subscriptions.add(
       this.aqlService
         .getAllPag(
@@ -196,7 +200,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
         }
       }
     }
-    this.getAll()
+    this.getAll(true)
   }
 
   handleMenuClick(key: string, id: number): void {
