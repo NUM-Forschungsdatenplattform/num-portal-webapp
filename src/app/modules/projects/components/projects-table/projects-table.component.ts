@@ -91,6 +91,8 @@ export class ProjectsTableComponent
 
   public filters: any
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
   }
@@ -106,9 +108,10 @@ export class ProjectsTableComponent
       search: null,
     }
     this.subscriptions.add(
-      this.projectService.filterConfigObservable$
-        .pipe(take(1))
-        .subscribe((config) => (this.filterConfig = config))
+      this.projectService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
+        this.filterConfig = config
+        this.handleFilterChange()
+      })
     )
 
     this.subscriptions.add(
@@ -117,8 +120,6 @@ export class ProjectsTableComponent
 
     this.sortBy = 'name'
     this.sortDir = 'ASC'
-
-    this.getAll()
   }
 
   handleSortChangeTable(sort: Sort): void {
@@ -133,7 +134,11 @@ export class ProjectsTableComponent
     this.getAll()
   }
 
-  getAll() {
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.paginator.firstPage()
+      this.pageIndex = 0
+    }
     this.subscriptions.add(
       this.projectService
         .getAllPag(
@@ -194,7 +199,7 @@ export class ProjectsTableComponent
         }
       }
     }
-    this.getAll()
+    this.getAll(true)
   }
 
   generateMenuForRole(): void {
