@@ -84,10 +84,14 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.getAll()
   }
 
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
   getAll(returnFirstIndex = false) {
-    if (returnFirstIndex) {
-      this.paginator.firstPage()
-      this.pageIndex = 0
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
     }
     this.subscriptions.add(
       this.adminService
@@ -125,6 +129,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   handleSearchChange(searchText: any): void {
+    this.goToFirstPage()
     if (searchText === '') {
       this.filters.search = null
     } else {
