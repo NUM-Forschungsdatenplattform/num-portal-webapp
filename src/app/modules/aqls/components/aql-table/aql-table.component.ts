@@ -114,6 +114,12 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.lang = event.lang || 'en'
+
+        if (this.lang === 'en' && this.sortBy === 'name') {
+          this.sortBy = 'nameTranslated'
+        }
+
+        this.getAll()
       })
     )
 
@@ -142,10 +148,14 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.getAll()
   }
 
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
   getAll(returnFirstIndex = false) {
     if (returnFirstIndex && typeof this.paginator !== 'undefined') {
-      this.paginator.firstPage()
-      this.pageIndex = 0
+      this.goToFirstPage()
     }
     this.subscriptions.add(
       this.aqlService
@@ -168,6 +178,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   }
 
   handleSearchChange(): void {
+    this.goToFirstPage()
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {

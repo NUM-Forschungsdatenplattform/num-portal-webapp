@@ -134,10 +134,14 @@ export class ProjectsTableComponent
     this.getAll()
   }
 
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
   getAll(returnFirstIndex = false) {
     if (returnFirstIndex && typeof this.paginator !== 'undefined') {
-      this.paginator.firstPage()
-      this.pageIndex = 0
+      this.goToFirstPage()
     }
     this.subscriptions.add(
       this.projectService
@@ -171,6 +175,7 @@ export class ProjectsTableComponent
   }
 
   handleSearchChange(): void {
+    this.goToFirstPage()
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {
