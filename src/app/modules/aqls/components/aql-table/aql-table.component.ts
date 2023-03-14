@@ -104,7 +104,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
     this.aqlService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
       this.filterConfig = config
-      this.handleChangeFilter()
+      this.handleSearchChange(true)
+      this.handleSearchChange(true)
+
+      this.getAll(true)
     })
 
     this.subscriptions.add(
@@ -177,14 +180,18 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.aqlService.setFilter(this.filterConfig)
   }
 
-  handleSearchChange(): void {
-    this.goToFirstPage()
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = this.filterConfig.searchText
     }
-    this.getAll()
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
   getCategory() {}
@@ -194,7 +201,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.totalItems = projects.totalElements
   }
 
-  handleChangeFilter(): void {
+  handleChangeFilter(noGet = false): void {
     for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
       if (this.filterConfig.filterItem[i].isSelected) {
         switch (this.filterConfig.filterItem[i].id) {
@@ -211,7 +218,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
         }
       }
     }
-    this.getAll(true)
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   handleMenuClick(key: string, id: number): void {

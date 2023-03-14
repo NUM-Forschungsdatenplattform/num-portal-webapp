@@ -110,7 +110,10 @@ export class ProjectsTableComponent
     this.subscriptions.add(
       this.projectService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
         this.filterConfig = config
-        this.handleFilterChange()
+        this.handleFilterChange(true)
+        this.handleSearchChange(true)
+
+        this.getAll(true)
       })
     )
 
@@ -174,17 +177,22 @@ export class ProjectsTableComponent
     this.generateMenuForRole()
   }
 
-  handleSearchChange(): void {
-    this.goToFirstPage()
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = this.filterConfig.searchText
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
-  handleFilterChange(): void {
+  handleFilterChange(noGet = false): void {
     for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
       if (this.filterConfig.filterItem[i].isSelected) {
         switch (this.filterConfig.filterItem[i].id) {
@@ -204,7 +212,10 @@ export class ProjectsTableComponent
         }
       }
     }
-    this.getAll(true)
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   generateMenuForRole(): void {
