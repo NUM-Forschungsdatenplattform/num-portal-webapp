@@ -90,7 +90,7 @@ export const routes: Routes = [
     canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.CriteriaEditor, AvailableRoles.SuperAdmin],
+      roles: [AvailableRoles.CriteriaEditor],
       onlyApprovedUsers: true,
     },
     loadChildren: () =>
