@@ -49,6 +49,7 @@ import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } f
 
 import { ProjectsTableComponent } from './projects-table.component'
 import { MatSort } from '@angular/material/sort'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
 
 describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
@@ -144,6 +145,22 @@ describe('ProjectsTableComponent', () => {
     it('should generate role', () => {
       jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
       component.generateMenuForRole()
+    })
+  })
+
+  describe('When handling user role', () => {
+    it('should generate role', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      component.handleUserInfo({
+        id: '999',
+        username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        email: 'test@test.com',
+        createdTimestamp: null,
+        approved: true,
+        organization: undefined,
+      })
     })
   })
 
