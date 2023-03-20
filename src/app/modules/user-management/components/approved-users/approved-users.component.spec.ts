@@ -90,6 +90,20 @@ describe('ApprovedUsersComponent', () => {
     jest.spyOn(adminService, 'getApprovedUsers')
   })
 
+  describe('When filter type is triggered', () => {
+    it('should filter', () => {
+      component['filterConfig']['filterItem'][0]['isSelected'] = false
+      component.handleFilterChange()
+    })
+  })
+
+  describe('When search is triggered', () => {
+    it('should search', () => {
+      component['filterConfig']['searchText'] = 'searchTest'
+      component.handleSearchChange()
+    })
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy()
   })
