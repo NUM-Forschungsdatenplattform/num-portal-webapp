@@ -122,6 +122,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
           this.sortBy = 'nameTranslated'
         }
 
+        if (this.lang === 'de' && this.sortBy === 'nameTranslated') {
+          this.sortBy = 'name'
+        }
+
         this.getAll()
       })
     )
