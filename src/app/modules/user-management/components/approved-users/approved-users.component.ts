@@ -45,7 +45,10 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
       this.adminService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
         this.filterConfig = config
         setTimeout(() => {
-          this.handleFilterChange()
+          this.table.initSearchAndFilters(
+            this.filterConfig.filterItem[0].isSelected,
+            this.filterConfig.searchText
+          )
         })
       })
     )
