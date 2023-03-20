@@ -92,7 +92,6 @@ describe('ApprovedUsersComponent', () => {
 
   describe('When filter type is triggered', () => {
     it('should filter', () => {
-      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
       component['filterConfig']['filterItem'][0]['isSelected'] = false
       component['table']['handleFilterChange'] = function () {
         return component['filterConfig']['filterItem'][0]['isSelected']
@@ -103,7 +102,6 @@ describe('ApprovedUsersComponent', () => {
 
   describe('When search is triggered', () => {
     it('should search', () => {
-      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
       component['filterConfig']['searchText'] = 'searchTest'
       component['table']['handleSearchChange'] = function () {
         return component['filterConfig']['searchText']
