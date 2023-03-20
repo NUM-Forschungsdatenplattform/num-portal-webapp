@@ -162,6 +162,19 @@ describe('AqlTableComponent', () => {
     )
   })
 
+  describe('on language change', () => {
+    it('should set the current lang', (done) => {
+      const componentAny = fixture.componentInstance as any
+
+      componentAny.translateService.onLangChange.subscribe(() => {
+        done()
+      })
+
+      componentAny.sortBy = 'nameTranslated'
+      componentAny.translateService.use('de')
+    })
+  })
+
   describe('On the attempt to delete the AQL', () => {
     beforeEach(() => {
       const mockAqlObservable = of(mockAql1)
