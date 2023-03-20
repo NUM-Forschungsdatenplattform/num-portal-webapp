@@ -80,8 +80,6 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
     this.sortBy = 'firstName'
     this.sortDir = 'ASC'
-
-    this.getAll()
   }
 
   goToFirstPage() {
@@ -93,6 +91,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     if (returnFirstIndex && typeof this.paginator !== 'undefined') {
       this.goToFirstPage()
     }
+
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -128,24 +127,38 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.totalItems = users.totalElements
   }
 
-  handleSearchChange(searchText: any): void {
-    this.goToFirstPage()
+  initSearchAndFilters(filter, search) {
+    this.handleFilterChange(filter, true)
+    this.handleSearchChange(search, true)
+
+    this.getAll(true)
+  }
+
+  handleSearchChange(searchText: any, noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = searchText
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
-  handleFilterChange(isOrg: any): void {
+  handleFilterChange(isOrg: any, noGet = false): void {
     if (isOrg) {
       this.filters.type = null
     } else {
       this.filters.type = 'ORGANIZATION'
     }
 
-    this.getAll(true)
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   handleSelectClick(user: IUser): void {

@@ -69,6 +69,8 @@ export class ProjectsTableComponent
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.lang = event.lang || 'en'
+
+        this.getAll()
       })
     )
 

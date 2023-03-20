@@ -101,6 +101,14 @@ describe('ApprovedUsersTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('When filter type and search is triggered', () => {
+    it('should filter and search', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.initSearchAndFilters(false, 'testSearch')
+      expect(component.filters.search).toEqual('testSearch')
+    })
+  })
+
   describe('When filter type is triggered', () => {
     it('should filter', () => {
       jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
