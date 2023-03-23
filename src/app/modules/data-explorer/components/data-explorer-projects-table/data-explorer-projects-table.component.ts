@@ -16,7 +16,7 @@
 
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, Sort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
@@ -25,6 +25,7 @@ import { sortProjects } from 'src/app/core/utils/sort.utils'
 import { DataExplorerProjectTableColumns } from 'src/app/shared/models/project/data-explorer-project-table.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { take } from 'rxjs/operators'
 
 @Component({
   selector: 'num-data-explorer-projects-table',
@@ -40,6 +41,8 @@ export class DataExplorerProjectsTableComponent
     super()
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   displayedColumns: DataExplorerProjectTableColumns[] = [
     'icon',
     'name',
@@ -49,24 +52,14 @@ export class DataExplorerProjectsTableComponent
   ]
   dataSource = new MatTableDataSource()
 
-  public paginator: MatPaginator
-  public sort: MatSort
+  public sortBy: string
+  public sortDir: string
 
-  @ViewChild(MatSort) set matSort(ms: MatSort) {
-    this.sort = ms
-    this.setDataSourceAttributes()
-  }
+  public pageIndex: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
+  public totalItems: number
 
-  setDataSourceAttributes() {
-    this.dataSource.sortData = (data, matSort) => sortProjects(data, matSort)
-    this.dataSource.paginator = this.paginator
-    this.dataSource.sort = this.sort
-  }
+  public filters: any
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -77,19 +70,57 @@ export class DataExplorerProjectsTableComponent
   }
 
   ngOnInit(): void {
+    this.pageIndex = 0
+    this.filters = {
+      status: 'PUBLISHED',
+    }
     this.subscriptions.add(
-      this.projectService.myPublishedProjectsObservable$.subscribe((projects) => {
-        this.handleData(projects)
+      this.projectService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
+        this.getAll(true)
       })
     )
+
+    this.sortBy = 'name'
+    this.sortDir = 'ASC'
+  }
+
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+    this.getAll()
+  }
+
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+    this.subscriptions.add(
+      this.projectService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters, 'en')
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
+  }
+
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }
 
-  handleData(projects: IProjectApi[]): void {
-    this.dataSource.data = projects
+  handleData(projects: any): void {
+    this.dataSource.data = projects.content
+    this.totalItems = projects.totalElements
+  }
+
+  onPageChange(event: any) {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
   }
 
   handleSelectClick(id: number): void {
