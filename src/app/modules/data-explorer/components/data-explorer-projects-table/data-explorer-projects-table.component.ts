@@ -74,11 +74,7 @@ export class DataExplorerProjectsTableComponent
     this.filters = {
       status: 'PUBLISHED',
     }
-    this.subscriptions.add(
-      this.projectService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
-        this.getAll(true)
-      })
-    )
+    this.getAll(true)
 
     this.sortBy = 'name'
     this.sortDir = 'ASC'
