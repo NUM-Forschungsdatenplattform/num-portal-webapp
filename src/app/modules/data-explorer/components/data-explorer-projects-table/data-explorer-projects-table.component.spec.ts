@@ -34,6 +34,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { mockProject3, mockProjectsForSort } from 'src/mocks/data-mocks/project.mock'
 
 import { DataExplorerProjectsTableComponent } from './data-explorer-projects-table.component'
+import { MatSort } from '@angular/material/sort'
 
 describe('DataExplorerProjectsTableComponent', () => {
   let component: DataExplorerProjectsTableComponent
@@ -93,6 +94,27 @@ describe('DataExplorerProjectsTableComponent', () => {
       const projectId = 1
       component.handleSelectClick(projectId)
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects', projectId])
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
+  describe('When sorting is triggered', () => {
+    it('should fetch sorting page', () => {
+      jest.spyOn(projectService, 'getAllPag').mockReturnValue(of({}))
+      const sort = new MatSort()
+      sort.active = 'name'
+      sort.direction = 'asc'
+      component.handleSortChangeTable(sort)
     })
   })
 })
