@@ -56,7 +56,13 @@ describe('Auth Service', () => {
     get: jest.fn(),
   } as unknown as ProfileService
 
-  const idle = {} as unknown as Idle
+  const idle = {
+    setIdle: () => jest.fn(),
+    setTimeout: () => jest.fn(),
+    setIdleTime: () => jest.fn(),
+    setTimeoutTime: () => jest.fn(),
+  } as unknown as Idle
+
   const keepAlive = {} as unknown as Keepalive
 
   const mockRouter = {
@@ -99,6 +105,18 @@ describe('Auth Service', () => {
       authService.login(redirectUri)
 
       expect(oauthService.initCodeFlow).toHaveBeenCalledWith(redirectUri)
+    })
+  })
+
+  describe('When the user wants goes afk idle process should be used', () => {
+    it('Should call the resetIdle method', () => {
+      jest.spyOn(authService, 'initIdle')
+      jest.spyOn(authService, 'logout')
+      idle.setIdleTime(1)
+      idle.setTimeoutTime(1)
+      authService.initIdle()
+      expect(authService.resetIdle).toHaveBeenCalled
+      expect(oauthService.logOut).toHaveBeenCalled
     })
   })
 
