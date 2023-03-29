@@ -16,6 +16,8 @@
 
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
+import { Idle } from '@ng-idle/core'
+import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
@@ -54,6 +56,9 @@ describe('Auth Service', () => {
     get: jest.fn(),
   } as unknown as ProfileService
 
+  const idle = {} as unknown as Idle
+  const keepAlive = {} as unknown as Keepalive
+
   const mockRouter = {
     navigate: () => jest.fn(),
   } as unknown as Router
@@ -67,7 +72,15 @@ describe('Auth Service', () => {
   } as AppConfigService
 
   beforeEach(() => {
-    authService = new AuthService(oauthService, profileService, appConfig, httpClient, mockRouter)
+    authService = new AuthService(
+      oauthService,
+      profileService,
+      appConfig,
+      httpClient,
+      mockRouter,
+      idle,
+      keepAlive
+    )
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
     eventSubject = new Subject<OAuthEvent>()
     oauthService.events = eventSubject.asObservable()

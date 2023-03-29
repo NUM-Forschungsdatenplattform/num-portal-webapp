@@ -121,9 +121,7 @@ export class AuthService {
     let userInfo: IAuthUserProfile
 
     try {
-      userInfo = await this.oauthService.loadUserProfile().finally(() => {
-        this.initIdle()
-      })
+      userInfo = await this.oauthService.loadUserProfile()
     } catch (error) {
       this.clearUserInfo()
       throw new Error('Failed to fetch userInfo')
@@ -137,6 +135,7 @@ export class AuthService {
     this.userInfoSubject$.next(this.userInfo)
 
     this.profileService.get().subscribe()
+    this.initIdle()
   }
 
   private clearUserInfo(): void {
