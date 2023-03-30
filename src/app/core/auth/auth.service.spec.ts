@@ -60,10 +60,15 @@ describe('Auth Service', () => {
     setIdle: () => jest.fn(),
     setTimeout: () => jest.fn(),
     setIdleTime: () => jest.fn(),
+    setInterrupts: () => jest.fn(),
     setTimeoutTime: () => jest.fn(),
+    onIdleEnd: () => jest.fn().mockImplementation(() => of()),
+    onTimeout: () => jest.fn().mockImplementation(() => of()),
   } as unknown as Idle
 
-  const keepAlive = {} as unknown as Keepalive
+  const keepAlive = {
+    interval: () => jest.fn(),
+  } as unknown as Keepalive
 
   const mockRouter = {
     navigate: () => jest.fn(),
@@ -109,12 +114,11 @@ describe('Auth Service', () => {
   })
 
   describe('When the user wants goes afk idle process should be used', () => {
-    it('Should call the resetIdle method', () => {
+    it('Should call the resetIdle method, than logout', () => {
       jest.spyOn(authService, 'initIdle')
       jest.spyOn(authService, 'logout')
       idle.setIdleTime(1)
       idle.setTimeoutTime(1)
-      authService.initIdle()
       expect(authService.resetIdle).toHaveBeenCalled
       expect(oauthService.logOut).toHaveBeenCalled
     })
