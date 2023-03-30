@@ -57,6 +57,7 @@ describe('Auth Service', () => {
   } as unknown as ProfileService
 
   const idle = {
+    watch: () => jest.fn(),
     setIdle: () => jest.fn(),
     setTimeout: () => jest.fn(),
     setIdleTime: () => jest.fn(),
@@ -121,6 +122,14 @@ describe('Auth Service', () => {
       idle.setTimeoutTime(1)
       expect(authService.resetIdle).toHaveBeenCalled
       expect(oauthService.logOut).toHaveBeenCalled
+    })
+  })
+
+  describe('When reseting idle process', () => {
+    it('timeout should be set to false', () => {
+      jest.spyOn(authService, 'resetIdle')
+      authService.resetIdle()
+      expect(authService.timedOut).toBeFalsy()
     })
   })
 
