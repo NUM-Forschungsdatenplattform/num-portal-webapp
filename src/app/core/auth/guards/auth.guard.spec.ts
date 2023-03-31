@@ -20,6 +20,7 @@ import { Subject } from 'rxjs'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockUserProfile1, mockUserProfileUnapproved } from 'src/mocks/data-mocks/user-profile.mock'
 import { ProfileService } from '../../services/profile/profile.service'
+import { ToastMessageService } from '../../services/toast-message/toast-message.service'
 
 import { AuthGuard } from './auth.guard'
 
@@ -34,10 +35,20 @@ describe('AuthGuard', () => {
   const userProfileSubject$ = new Subject<IUserProfile>()
   const mockProfileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
+    userNotApproved: true,
   } as unknown as ProfileService
 
+  const mockToastService = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
+
+  const mockToServiceUnapproved = {
+    openToast: jest.fn(),
+    userNotApproved: true,
+  } as unknown as ToastMessageService
+
   beforeEach(() => {
-    guard = new AuthGuard(authService, mockProfileService)
+    guard = new AuthGuard(authService, mockProfileService, mockToastService)
   })
 
   afterEach(() => {
@@ -92,6 +103,19 @@ describe('AuthGuard', () => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
       guard.canLoad(route).then((result) => {
+        expect(result).toBeFalsy()
+        done()
+      })
+
+      userProfileSubject$.next(mockUserProfileUnapproved)
+    })
+
+    it('the toastMessage is shown in [canLoad] guard when the user is approved', (done) => {
+      jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
+      jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
+      jest.spyOn(mockToastService, 'openToast')
+      guard.canLoad(route).then((result) => {
+        expect(mockToastService.openToast).toHaveBeenCalled()
         expect(result).toBeFalsy()
         done()
       })

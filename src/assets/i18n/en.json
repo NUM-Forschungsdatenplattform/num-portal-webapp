@@ -47,6 +47,10 @@
     },
     "TOGGLE": {
       "LABEL": "Toggle sidenav"
+    },
+    "INFO": {
+      "UNAPPROVED_USER_MESSAGE": "You don't have access rights for this area.",
+      "UNAPPROVED_USER_MESSAGE_DESCRIPTION": "To access this area, you need to be approved by your organization administrator."
     }
   },
   "NAVIGATION": {
@@ -335,7 +339,9 @@
     "HITS": {
       "MESSAGE_SET_ALL_PARAMETERS": "Please set all parameters first.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Patients are below minimum threshold.",
-      "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
+      "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again.",
+      "MESSAGE_NO_AQL": "Please select at least one criterion.",
+      "MESSAGE_INVALID_AQL": "The value of at least one criterion is missing."
     },
     "CATEGORIES": {
       "PEDIATRICS": "Pediatrics",

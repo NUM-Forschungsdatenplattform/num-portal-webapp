@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-18 16:07+0100\n"
+"POT-Creation-Date: 2023-03-01 16:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,9 +53,14 @@ msgid "Researcher"
 msgstr "Forscher"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 3a8ed95f61084d26b7ed225cbd7afd54
-msgid "Retrieve data from assigned projects"
-msgstr "Daten aus Projekten abrufen"
+#: b65350eeed2c44789a89aeb8d36aca30
+msgid ""
+"Researchers retrieve research data from their assigned projects once the "
+"projects are approved and launched. Researchers have no influence on the "
+"project description, project application and cohort definition."
+msgstr ""
+"Die Forscher rufen die Forschungsdaten aus den ihnen zugeordneten Projekten ab, sobald diese bewilligt und gestartet wurden." 
+"Forscher haben keinen Einfluss auf die Projektbeschreibung, den Projektantrag und die Kohortendefinition."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 1ec07f6d65664dc1b1c81422d1d655d3 5c3f2f5c3a834f4db76d94c5610cfe0c
@@ -69,9 +74,15 @@ msgid "Project Lead"
 msgstr "Projektleiter"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 28d409e39d1448e8a88dcfbe00c264ba
-msgid "Create, edit and manage projects"
-msgstr "Projekte erstellen, bearbeiten und verwalten"
+#: e4a746ce088a4ffd9a1a08f386db3e1d
+msgid ""
+"The project lead creates new projects, describes them, and manages them "
+"through the application process to project completion. He is responsible "
+"for defining the cohort and manages the researchers assigned to the "
+"project."
+msgstr ""
+"Der Projektleiter legt neue Projekte an, beschreibt diese und verwaltet sie über den Antrag bis zum Projektabschluss."
+"Er verantwortet die Definition der Kohorte und verwaltet die dem Projekt zugeordneten Forscher."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 791cb8d280bf425d86c8521b57283ddc
@@ -79,9 +90,14 @@ msgid "Project Approver"
 msgstr "Projektprüfer"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 1c03bcb0ceeb410c8c3c2695da03b484
-msgid "Approve or deny project applications"
-msgstr "Projektanträge annehmen oder ablehnen"
+#: d8ba74e2d3c8451bb3f69041dd597aa9
+msgid ""
+"<div>Project approvers have an overview of all projects in their own "
+"organization.&nbsp;</div><div>They can accept, revise or reject project "
+"proposals.</div>"
+msgstr ""
+"Die Projektprüfer haben die Übersicht über alle Projekte der eigenen Organisation." 
+"Sie können Projektanträge annehmen, überarbeiten oder ablehnen."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 1d8ea9f052b1476893054190d31b5a61 325d96c5b90b4fb4a4b7e6d691974c97
@@ -96,9 +112,14 @@ msgid "Organization Admin"
 msgstr "Organisations-Admin"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 47047d6ea00b41b19c6df9d350b3d284
-msgid "Manage one organization and their users"
-msgstr "Organisationen und deren Benutzer verwalten"
+#: 2b33b1b0d304431e96135a6cd541a130
+msgid ""
+"<div>The organization admins can manage their own organization and its "
+"users.</div><div>They approve new users, assign roles and can customize "
+"the organization's email domain.</div>"
+msgstr ""
+"Die Organisations-Admins können die eigene Organisation und deren Benutzer verwalten."
+"Sie geben neue Benutzer frei, vergeben Rollen und können die E-Mail Domain der Organisation anpassen."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: af25ab5abebb4b7a88bc2a5690be66c1
@@ -106,9 +127,9 @@ msgid "Content Editor"
 msgstr "Inhalts-Editor"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 06cddb9f545b452a98c41f9c1dcfb179
-msgid "Edit welcome page tiles"
-msgstr "Kacheln auf der Willkommensseite bearbeiten"
+#: d0c03542222f45768b6302cff81561e1
+msgid "The content editors can edit the information tiles on the welcome page."
+msgstr "Die Inhalts-Editoren können die Informations-Kacheln auf der Willkommensseite bearbeiten."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: f1773f1ecd3f44f49264aea4ba15cd5a
@@ -116,9 +137,14 @@ msgid "Criteria Editor"
 msgstr "Kriterien-Editor"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 2a66a85d9e814501914ba19d963edc9e
-msgid "Create and edit criteria"
-msgstr "Kriterien erstellen und bearbeiten"
+#: 4de7584980474c9296ddee79d57e995e
+msgid ""
+"The criteria editors manage the criteria within the projects that are "
+"unlocked for them. You customize criteria categories and create and "
+"modify General Specifications and AQL queries using the Criteria Editor."
+msgstr ""
+"Die Kriterien-Editoren verwalten innerhalb der für sie freigeschalteten Projekte die Kriterien." 
+"Sie passen Kriterien-Kategorien an und erstellen und ändern Allgemeine Angaben und AQL-Queries mit dem Kriterien-Editor."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: b5d2edf7a4da4f2b9ec68acafb7799ab
@@ -126,9 +152,11 @@ msgid "Manager"
 msgstr "Manager"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 645608f408d34eb386f5541b87b16663
-msgid "Retrieve data, display exact patient counts"
-msgstr "Daten abrufen, exakte Patientenzahlen ermitteln"
+#: 422ed852d9654f938b522cdcd9c62943
+msgid ""
+"Managers have access to data and patient search and analysis tools and "
+"can determine accurate patient counts."
+msgstr "Die Manager haben Zugriff auf Daten- und Patientensuch- und Auswertungs-Tools und können exakte Patientenzahlen ermitteln."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
 #: 8a595a71873a41789812056633cb3bdc
@@ -136,7 +164,33 @@ msgid "Super Admin"
 msgstr "Super-Admin"
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
-#: 1c41d9a363674f9ab6abff8b25b1b2a3
-msgid "All permissions, managing all organizations"
-msgstr "Alle Berechtigungen, Alle Organisationen verwalten"
+#: 704afb420b3343239ea14f7d51a7098f
+msgid ""
+"<div>The super admins have permissions to manage all users and "
+"organizations.</div>"
+msgstr "Die Super Admins haben Berechtigungen um alle Benutzer und Organisationen zu verwalten."
+
+#~ msgid "Retrieve data from assigned projects"
+#~ msgstr "Daten aus Projekten abrufen"
+
+#~ msgid "Create, edit and manage projects"
+#~ msgstr "Projekte erstellen, bearbeiten und verwalten"
+
+#~ msgid "Approve or deny project applications"
+#~ msgstr "Projektanträge annehmen oder ablehnen"
+
+#~ msgid "Manage one organization and their users"
+#~ msgstr "Organisationen und deren Benutzer verwalten"
+
+#~ msgid "Edit welcome page tiles"
+#~ msgstr "Kacheln auf der Willkommensseite bearbeiten"
+
+#~ msgid "Create and edit criteria"
+#~ msgstr "Kriterien erstellen und bearbeiten"
+
+#~ msgid "Retrieve data, display exact patient counts"
+#~ msgstr "Daten abrufen, exakte Patientenzahlen ermitteln"
+
+#~ msgid "All permissions, managing all organizations"
+#~ msgstr "Alle Berechtigungen, Alle Organisationen verwalten"
 

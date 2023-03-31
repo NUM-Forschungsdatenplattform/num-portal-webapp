@@ -47,11 +47,12 @@ export const routes: Routes = [
   },
   {
     path: 'search',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     canDeactivate: [CanDeactivateSearchGuard],
     data: {
       navId: 'search',
       roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Search.Module" */ './modules/search/search.module').then(
@@ -60,10 +61,11 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'projects',
       roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Projects.Module" */ './modules/projects/projects.module').then(
@@ -72,10 +74,11 @@ export const routes: Routes = [
   },
   {
     path: 'data-explorer',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'data-explorer',
       roles: [AvailableRoles.Researcher],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(
@@ -84,10 +87,11 @@ export const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'aqls',
-      roles: [AvailableRoles.CriteriaEditor, AvailableRoles.SuperAdmin],
+      roles: [AvailableRoles.CriteriaEditor],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
@@ -96,10 +100,11 @@ export const routes: Routes = [
   },
   {
     path: 'users',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'users',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(
@@ -108,10 +113,11 @@ export const routes: Routes = [
   },
   {
     path: 'organizations',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'organizations',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(
@@ -120,10 +126,11 @@ export const routes: Routes = [
   },
   {
     path: 'content-editor',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'content-editor',
       roles: [AvailableRoles.ContentAdmin],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(
@@ -132,10 +139,11 @@ export const routes: Routes = [
   },
   {
     path: 'manager-tools',
-    canLoad: [RoleGuard],
+    canLoad: [RoleGuard, AuthGuard],
     data: {
       navId: 'manager-tools',
       roles: [AvailableRoles.Manager],
+      onlyApprovedUsers: true,
     },
     loadChildren: () =>
       import(

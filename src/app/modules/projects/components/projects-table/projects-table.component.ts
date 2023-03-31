@@ -55,6 +55,7 @@ export class ProjectsTableComponent
   extends SortableTable<IProjectApi>
   implements OnInit, OnDestroy
 {
+  lang = 'en'
   private subscriptions = new Subscription()
   constructor(
     private router: Router,
@@ -65,6 +66,15 @@ export class ProjectsTableComponent
     private translateService: TranslateService
   ) {
     super()
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.lang = event.lang || 'en'
+
+        this.getAll()
+      })
+    )
+
+    this.lang = this.translateService.currentLang || 'en'
   }
 
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']
@@ -83,6 +93,8 @@ export class ProjectsTableComponent
 
   public filters: any
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
   }
@@ -98,9 +110,13 @@ export class ProjectsTableComponent
       search: null,
     }
     this.subscriptions.add(
-      this.projectService.filterConfigObservable$
-        .pipe(take(1))
-        .subscribe((config) => (this.filterConfig = config))
+      this.projectService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
+        this.filterConfig = config
+        this.handleFilterChange(true)
+        this.handleSearchChange(true)
+
+        this.getAll(true)
+      })
     )
 
     this.subscriptions.add(
@@ -109,8 +125,6 @@ export class ProjectsTableComponent
 
     this.sortBy = 'name'
     this.sortDir = 'ASC'
-
-    this.getAll()
   }
 
   handleSortChangeTable(sort: Sort): void {
@@ -125,10 +139,25 @@ export class ProjectsTableComponent
     this.getAll()
   }
 
-  getAll() {
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     this.subscriptions.add(
       this.projectService
-        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .getAllPag(
+          this.pageIndex,
+          this.pageSize,
+          this.sortDir,
+          this.sortBy,
+          this.filters,
+          this.lang
+        )
         .subscribe((data) => {
           this.handleData(data)
         })
@@ -150,16 +179,22 @@ export class ProjectsTableComponent
     this.generateMenuForRole()
   }
 
-  handleSearchChange(): void {
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = this.filterConfig.searchText
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
-  handleFilterChange(): void {
+  handleFilterChange(noGet = false): void {
     for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
       if (this.filterConfig.filterItem[i].isSelected) {
         switch (this.filterConfig.filterItem[i].id) {
@@ -179,7 +214,10 @@ export class ProjectsTableComponent
         }
       }
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   generateMenuForRole(): void {

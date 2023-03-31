@@ -1,0 +1,142 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-03 11:38+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../01_user_account/01_user_account.md:1
+#: eee2beef5b4e49d3a5bebdd0092c783a
+msgid "User account"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:3
+#: d65f8dd82e8d4a60b86a29a7be728531
+msgid "Before you can start using CODEX you have to create a new user account for your personal work."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:5
+#: 122e5ef3fe4c45ffb79b955d0f5facc5
+msgid "A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:8
+#: a6306529241f4e518542e8a92af3662a
+msgid "The domain of your email address (part after the @-symbol) has to be listed in one of the organizations in the portal. If this is not the case, you will receive an according error message upon registration. In such cases, please contact the portal support."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:11
+#: 01163b531f2546b2b66ae5d08294151a
+msgid "Create a new user account"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:13
+#: c824630f46e244228f07715e6eb7eb5a
+msgid "To create a new user account navigate to the sign up page which you can find by clicking \"SIGN IN\" at the main naviation. You will be asked to accept storing cookies on your machine. Accept and this will lead you to the \"Login-Page\". Hit \"Register\" below the login form to start a new account registration."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:22
+#: e081a1aec1d44ba798e151e4197f63d1
+msgid "Login page with a red arrow pointing to the registration link"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:22
+#: 3d4182e660904f87b3c2e15514c604e9
+msgid "Fig 01-01: Position of the register link on Login page"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:25
+#: a7e82b16e1084b689157aa2d89400e4e
+msgid "At the Signup page you will see a form to enter your basic data.  The **project lead** creates new projects, describes them, and manages them through the application process to project completion. He is responsible for defining the cohort and manages the researchers assigned to the project. **Researchers** retrieve research data from their assigned projects once the projects are approved and launched. Researchers have no influence on the project description, project application and cohort definition. All input fields marked with an asterisk are required to proceed."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:34
+#: c5027e4f6c584adbb9b1cb6d8f917c2a
+msgid "Sign up page with an empty form for first name, last name, email address, password, password confirm, role, department and additional infos and a checkbox for accepting terms and conditions"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:34
+#: 319225e7a40c432abc1fed18fb627498
+msgid "Fig 01-02: An emtpy Sign up form on initial page visit"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:37
+#: a0e90f0aaa5a43d0b9fdbc9e16333d43
+msgid "Additionally you have to aggree with the terms and conditions. If you want to read the terms and conditions you can click the link which opens an overlay with the current version of our terms and conditions that you also can directly accept or decline."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:45
+#: e4fede56da06493d90944ebbf6dd6c64
+msgid "Sign up page with opened terms and conditions modal with to buttons to accept or decline the terms and conditions at the bottom"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:45
+#: 85d71999f6474fa08271deb25ba12fe8
+msgid "Fig 01-03: Open Terms and Conditions overlay modal"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:48
+#: efacf271614f4530a13c07213e80ce25
+msgid "Once you have filled out all information about your person and your login information an email will be sent to your provided email address. If the email has been sent to your inbox you will see the following screen:"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:56
+#: 901957165bcc4f2ea2aa033c1aaa9903
+msgid "After sign up page which informs about a sent email the user should check"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:56
+#: fe02db4510d44c109a1a1bc18f0c77df
+msgid "Fig 01-04: Hint on sent email to confirm registration"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:59
+#: b2bd86cc63b8475a97b070f6b8a1b12d
+msgid "In the next step click the activation link in the email, that has been sent to you within 5 minutes to activate your account. If you do not get the email or manage to click the link within 5 minutes, you can always resend the email via the page shown above by clicking on the respective link. If you already closed the page, you can log into the portal with the credentials you provided in the registration process (email and password) to see the page again."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:62
+#: 87c0a3844bc542aa8c41de54eb40c01f
+msgid "After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:65
+#: 08b27a34ef7d4a28b1fc5983ae28c458
+msgid "Edit your user account"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:67
+#: 14f31a83506d4c759deb15d0d537fe74
+msgid "You can always access your user account at the bottom left."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:73
+#: d4847158cfbc43429a06514d03e80e40
+msgid "User account view with details and password change option"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:73
+#: 35b24285c58142b4b36fac63f258f6c3
+msgid "Fig 01-05: User account view"
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:76
+#: 1caa28e7e76941a595fd7ab4f306eee7
+msgid "Within the user account page you can change your First name and your Last name, as well as the passwort by clicking on the \"UPDATE PASSWORD\" button. To save your updated credentials you need to click \"SAVE CHANGES\"."
+msgstr ""
+
+#: ../01_user_account/01_user_account.md:79
+#: e09d64739fec4e99a5d27695ff9b3689
+msgid "Within this page you can see (but not change) your E-mail address, organization and current roles."
+msgstr ""

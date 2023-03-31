@@ -31,7 +31,7 @@
 
   <mat-sidenav-content fxLayout="column">
     <!-- Page Content -->
-    <num-header role="banner">
+    <num-header role="banner" [unapprovedUser]="unapprovedUser">
       <button
         id="menu-toggle-button"
         type="button"
@@ -52,7 +52,21 @@
         fxFlex.gt-md="90%"
         fxFlex.gt-lg="1200px"
       >
-        <router-outlet></router-outlet>
+        <router-outlet *ngIf="isRouterOutletDisplayed"></router-outlet>
+        <div *ngIf="!isRouterOutletDisplayed">
+          <p>
+            <fa-icon
+              class="num-fc--w"
+              icon="exclamation-circle"
+              size="lg"
+              [fixedWidth]="true"
+            ></fa-icon>
+            {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE' | translate }}
+          </p>
+          <p>
+            {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE_DESCRIPTION' | translate }}
+          </p>
+        </div>
       </main>
     </div>
 

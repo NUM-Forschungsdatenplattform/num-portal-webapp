@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 17:20+0100\n"
+"POT-Creation-Date: 2023-02-21 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,8 +52,7 @@ msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
 #: 3feb8d70b6ac4be3b61c5e103eb1bc2a
-#: 6108b8cbe2e445f3b85f0105401eee80
-msgid "No"
+msgid "No."
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
@@ -145,6 +144,11 @@ msgstr ""
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
 #: 17800898166f43ba818b010e98e9dc6d
 msgid "Category"
+msgstr ""
+
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0
+#: 6108b8cbe2e445f3b85f0105401eee80
+msgid "No"
 msgstr ""
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:0

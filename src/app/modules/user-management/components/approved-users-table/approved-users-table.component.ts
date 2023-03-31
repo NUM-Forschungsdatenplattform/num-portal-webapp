@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
 import { Sort } from '@angular/material/sort'
@@ -27,6 +27,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
+import { MatPaginator } from '@angular/material/paginator'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -59,6 +60,8 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   public filters: any
 
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
   }
@@ -77,11 +80,18 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
     this.sortBy = 'firstName'
     this.sortDir = 'ASC'
-
-    this.getAll()
   }
 
-  getAll(): void {
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -117,23 +127,38 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     this.totalItems = users.totalElements
   }
 
-  handleSearchChange(searchText: any): void {
+  initSearchAndFilters(filter, search) {
+    this.handleFilterChange(filter, true)
+    this.handleSearchChange(search, true)
+
+    this.getAll(true)
+  }
+
+  handleSearchChange(searchText: any, noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = searchText
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
-  handleFilterChange(isOrg: any): void {
+  handleFilterChange(isOrg: any, noGet = false): void {
     if (isOrg) {
       this.filters.type = null
     } else {
       this.filters.type = 'ORGANIZATION'
     }
 
-    this.getAll()
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   handleSelectClick(user: IUser): void {

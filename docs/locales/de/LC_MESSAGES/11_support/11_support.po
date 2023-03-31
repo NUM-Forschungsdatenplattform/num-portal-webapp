@@ -1,0 +1,32 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2022, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM CODEX package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-28 16:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: ../11_support/11_support.md:1 eed04f9c1c244b478cb2c44d5b6dac1d
+msgid "Support"
+msgstr "Support"
+
+#: ../11_support/11_support.md:3 08fe54178a52433280b9cbce30dee655
+msgid ""
+"If you need support for using the platform, please contact: "
+"support@vitagroup.ag"
+msgstr "Wenn Sie Support für die Benutzung der Plattform benötigen, wenden Sie sich bitte an:" 
+"support@vitagroup.ag"
+

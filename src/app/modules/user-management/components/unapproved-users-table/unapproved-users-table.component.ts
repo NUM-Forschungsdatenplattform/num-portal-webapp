@@ -25,6 +25,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { MatDialogRef } from '@angular/material/dialog'
 
 @Component({
   selector: 'num-unapproved-users-table',
@@ -122,7 +123,13 @@ export class UnapprovedUsersTableComponent
       dialogContentComponent: DialogEditUserDetailsComponent,
       dialogContentPayload,
     }
-
-    this.dialogService.openDialog(dialogConfig)
+    this.subscriptions.add(
+      this.dialogService
+        .openDialog(dialogConfig)
+        .afterClosed()
+        .subscribe(() => {
+          this.getAll()
+        })
+    )
   }
 }

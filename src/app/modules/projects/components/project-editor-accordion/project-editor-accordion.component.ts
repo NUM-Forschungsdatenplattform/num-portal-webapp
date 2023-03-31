@@ -40,6 +40,8 @@ export class ProjectEditorAccordionComponent {
   @Input() cohortGroup: CohortGroupUiModel
   @Input() generalInfoData: IDefinitionList[]
 
+  @Input() isCohortValid: any
+
   @Input() determineHitsContent: IDetermineHits
   @Output() determineHitsClicked = new EventEmitter()
 

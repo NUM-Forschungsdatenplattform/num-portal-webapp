@@ -39,6 +39,7 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { TranslateService } from '@ngx-translate/core'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 
 @Component({
   selector: 'num-project-editor',
@@ -81,6 +82,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   projectForm: FormGroup
   approverForm: FormGroup
 
+  isCohortValid: any
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -93,6 +96,11 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isCohortValid = {
+      hasAql: null,
+      valid: null,
+    }
+
     this.resolvedData = this.route.snapshot.data.resolvedData
     this.savedProjectStatus = this.resolvedData.project.status
     this.subscriptions.add(
@@ -332,30 +340,63 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       .subscribe()
   }
 
+  private checkNode(node) {
+    if (node.type === ConnectorNodeType.Aql) {
+      this.isCohortValid.hasAql = true
+    }
+
+    if (
+      typeof node['areParameterConfigured'] !== 'undefined' &&
+      node.areParameterConfigured === false
+    ) {
+      this.isCohortValid.valid = false
+    }
+  }
+
+  private everyCohortDescendants(nodeParam): any {
+    if (nodeParam.children) {
+      for (let i = 0; i < nodeParam.children.length; i++) {
+        const child = nodeParam.children[i]
+        this.everyCohortDescendants(child)
+        this.checkNode(child)
+      }
+    }
+  }
+
+  checkCohortValidation(cohortNode) {
+    this.isCohortValid.valid = true
+    this.isCohortValid.hasAql = false
+    this.everyCohortDescendants(cohortNode)
+  }
+
   async determineHits(): Promise<void> {
     const { cohort } = this.getProjectForApi()
 
-    if (cohort && cohort.cohortGroup) {
-      this.updateDetermineHits(null, '', true)
-      const usedOutsideEu = this.projectForm.get('usedOutsideEu').value
+    this.checkCohortValidation(this.cohortGroup)
 
-      try {
-        await this.cohortService
-          .getSize(cohort.cohortGroup, usedOutsideEu)
-          .toPromise()
-          .then((result) => {
-            this.updateDetermineHits(result, '')
-          })
-      } catch (error) {
-        if (error.status === 451) {
-          // *** Error 451 means too few hits ***
-          this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
-        } else {
-          this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
+    if (this.isCohortValid.hasAql && this.isCohortValid.valid) {
+      if (cohort && cohort.cohortGroup) {
+        this.updateDetermineHits(null, '', true)
+        const usedOutsideEu = this.projectForm.get('usedOutsideEu').value
+
+        try {
+          await this.cohortService
+            .getSize(cohort.cohortGroup, usedOutsideEu)
+            .toPromise()
+            .then((result) => {
+              this.updateDetermineHits(result, '')
+            })
+        } catch (error) {
+          if (error.status === 451) {
+            // *** Error 451 means too few hits ***
+            this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS')
+          } else {
+            this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE')
+          }
         }
+      } else {
+        this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS')
       }
-    } else {
-      this.updateDetermineHits(null, 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS')
     }
   }
 

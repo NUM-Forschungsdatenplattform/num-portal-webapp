@@ -45,7 +45,7 @@ import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-ca
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
 })
-export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy, OnInit {
+export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
   user: IUserProfile
   displayedColumns: AqlTableColumns[] = [
     'menu',
@@ -61,7 +61,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   filterConfig: any
   selectedItem = 'QUERIES.ALL_AQLS'
   aqlCategories: IAqlCategoryIdNameMap = {}
-  uncategorizedString = 'Uncategorized'
   private subscriptions = new Subscription()
 
   public sortBy: string
@@ -72,6 +71,8 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   public totalItems: number
 
   public filters: any
+
+  @ViewChild(MatPaginator) paginator: MatPaginator
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5
@@ -91,27 +92,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     private translateService: TranslateService
   ) {
     super()
-    this.aqlService.filterConfigObservable$
-      .pipe(take(1))
-      .subscribe((config) => (this.filterConfig = config))
 
-    this.subscriptions.add(
-      this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
-    )
-
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang || 'en'
-        this.uncategorizedString = event.translations.QUERY_CATEGORIES.UNCATEGORIZED
-      })
-    )
-
-    this.lang = this.translateService.currentLang || 'en'
-    this.uncategorizedString = this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED')
-    this.aqlCategoryService.getAll().subscribe()
-  }
-
-  ngOnInit() {
     this.pageIndex = 0
     this.filters = {
       type: null,
@@ -121,7 +102,36 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.sortBy = 'name'
     this.sortDir = 'ASC'
 
-    this.getAll()
+    this.aqlService.filterConfigObservable$.pipe(take(1)).subscribe((config) => {
+      this.filterConfig = config
+      this.handleSearchChange(true)
+      this.handleSearchChange(true)
+
+      this.getAll(true)
+    })
+
+    this.subscriptions.add(
+      this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
+    )
+
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((event) => {
+        this.lang = event.lang || 'en'
+
+        if (this.lang === 'en' && this.sortBy === 'name') {
+          this.sortBy = 'nameTranslated'
+        }
+
+        if (this.lang === 'de' && this.sortBy === 'nameTranslated') {
+          this.sortBy = 'name'
+        }
+
+        this.getAll()
+      })
+    )
+
+    this.lang = this.translateService.currentLang || 'en'
+    this.aqlCategoryService.getAll().subscribe()
   }
 
   handleSortChangeTable(sort: Sort): void {
@@ -145,7 +155,15 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.getAll()
   }
 
-  getAll() {
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
+  }
+
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     this.subscriptions.add(
       this.aqlService
         .getAllPag(
@@ -166,13 +184,18 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.aqlService.setFilter(this.filterConfig)
   }
 
-  handleSearchChange(): void {
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
     if (this.filterConfig.searchText === '') {
       this.filters.search = null
     } else {
       this.filters.search = this.filterConfig.searchText
     }
-    this.getAll()
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
   getCategory() {}
@@ -182,7 +205,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     this.totalItems = projects.totalElements
   }
 
-  handleChangeFilter(): void {
+  handleChangeFilter(noGet = false): void {
     for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
       if (this.filterConfig.filterItem[i].isSelected) {
         switch (this.filterConfig.filterItem[i].id) {
@@ -199,7 +222,10 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
         }
       }
     }
-    this.getAll()
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   handleMenuClick(key: string, id: number): void {

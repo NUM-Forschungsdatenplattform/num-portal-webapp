@@ -2,13 +2,13 @@
 
 This section provides an overview of the roles that can be assigned and an indicator, if these are exclusive to the *Super Admin*.
 
-| Role               | Permissions                                   | Super Admin only |
-|--------------------|-----------------------------------------------|------------------|
-| Researcher         | Retrieve data from assigned projects          | No               |
-| Project Lead       | Create, edit and manage projects              | No               |
-| Project Approver   | Approve or deny project applications          | Yes              |
-| Organization Admin | Manage one organization and their users       | No               |
-| Content Editor     | Edit welcome page tiles                       | Yes              |
-| Criteria Editor    | Create and edit criteria                      | Yes              |
-| Manager            | Retrieve data, display exact patient counts   | Yes              |
-| Super Admin        | All permissions, managing all organizations   | Yes              |
+|  Role                |  Permissions                                                                                                                                                                                                                                 |  Super Admin only  |
+|:---------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
+|  Researcher          |  Researchers retrieve research data from their assigned projects once the projects are approved and launched. Researchers have no influence on the project description, project application and cohort definition.                           |  No                |
+|  Project Lead        |  The project lead creates new projects, describes them, and manages them through the application process to project completion. He is responsible for defining the cohort and manages the researchers assigned to the project.               |  No                |
+|  Project Approver    | <div>Project approvers have an overview of all projects in their own organization.&nbsp;</div><div>They can accept, revise or reject project proposals.</div>                                                                                |  Yes               |
+|  Organization Admin  | <div>The organization admins can manage their own organization and its users.</div><div>They approve new users, assign roles and can customize the organization's email domain.</div>                                                        |  No                |
+|  Content Editor      |  The content editors can edit the information tiles on the welcome page.                                                                                                                                                                     |  Yes               |
+|  Criteria Editor     |  The criteria editors manage the criteria within the projects that are unlocked for them. You customize criteria categories and create and modify General Specifications and AQL queries using the Criteria Editor.                          |  Yes               |
+|  Manager             |  Managers have access to data and patient search and analysis tools and can determine accurate patient counts.                                                                                                                               |  Yes               |
+|  Super Admin         | <div>The super admins have permissions to manage all users and organizations.</div>                                                                                                                                                          |  Yes               |  

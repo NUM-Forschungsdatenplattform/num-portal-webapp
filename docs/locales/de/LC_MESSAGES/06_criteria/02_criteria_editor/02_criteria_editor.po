@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NUM CODEX 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 17:20+0100\n"
+"POT-Creation-Date: 2023-02-21 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,14 +35,14 @@ msgid ""
 "There are two main sections of the criterion definition:"
 msgstr ""
 "Der Kriterien-Editor stellt Funktionen zur Verfügung, um Kriterien "
-"anzulegen und zu prüfen, wieviele Datensätze für bestimmte Kriterien-Definitionen "
-"verfügbar sind."
+"anzulegen und zu prüfen, wieviele Datensätze für bestimmte Kriterien-"
+"Definitionen verfügbar sind."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:6
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:9
 #: 35dca24cda7d4f63872dfa74417d4e71 623eed1fe42c48908d37874d6ed5900a
 msgid "General information"
-msgstr "Allgmeine Angaben"
+msgstr "Allgemeine Angaben"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:7
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:34
@@ -60,9 +60,9 @@ msgstr ""
 "zum Kriterium:"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
-#: 3feb8d70b6ac4be3b61c5e103eb1bc2a 6108b8cbe2e445f3b85f0105401eee80
-msgid "No"
-msgstr "Nr"
+#: 3feb8d70b6ac4be3b61c5e103eb1bc2a
+msgid "No."
+msgstr "Nr."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 62a29ba1e6834359814515055ff9bd0f
@@ -153,6 +153,11 @@ msgid "Category"
 msgstr "Kategorie"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md
+#: 6108b8cbe2e445f3b85f0105401eee80
+msgid "No"
+msgstr "Nein"
+
+#: ../06_criteria/02_criteria_editor/02_criteria_editor.md
 #: 1820ba1c659748bd9e898205bf89c103
 msgid "8"
 msgstr "8"
@@ -178,8 +183,8 @@ msgid ""
 "In this section the actual criterion is being defined, this area is split"
 " into 3 areas:"
 msgstr ""
-"In diesem Abschnitt wird das Kriterium definiert. Der Abschnitt unterteilt "
-"sich in drei Bereiche."
+"In diesem Abschnitt wird das Kriterium definiert. Der Abschnitt "
+"unterteilt sich in drei Bereiche."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:37
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:49
@@ -219,11 +224,12 @@ msgid ""
 "needs to be double-clicked in order to be added to the right-hand side of"
 " the dialog in the selected query clause."
 msgstr ""
-"Durch Klick auf die Schaltfläche *Kriterium erstellen* öffnet sich ein Dialog. "
-"Auf der linken Seite des Dialogfensters können die Rückgabeparameter ausgewählt "
-"werden. Nach Auswahl des Rückgabeparameters müssen die eigentlichen Datenfelder, "
-"welche das Kriterium bilden sollen, per Doppelklick in das Abfragefenster auf "
-"der linken Seite eingefügt werden."
+"Durch Klick auf die Schaltfläche *Kriterium erstellen* öffnet sich ein "
+"Dialog. Auf der linken Seite des Dialogfensters können die "
+"Rückgabeparameter ausgewählt werden. Nach Auswahl des Rückgabeparameters "
+"müssen die eigentlichen Datenfelder, welche das Kriterium bilden sollen, "
+"per Doppelklick in das Abfragefenster auf der linken Seite eingefügt "
+"werden."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:56
 #: a65b4c13218145139bbb3bea2f9aac38
@@ -241,15 +247,15 @@ msgid ""
 "The right-hand side of the dialog contains the three query clauses "
 "supported by the builder:"
 msgstr ""
-"Die rechte Seite des Dialogfensters enthält die drei Bestandteile "
-"der Abfrage, die bei der Kriterien-Erstellung unterstützt werden:"
+"Die rechte Seite des Dialogfensters enthält die drei Bestandteile der "
+"Abfrage, die bei der Kriterien-Erstellung unterstützt werden:"
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:60
 #: 22269b7d2467475c8565bb5d79930657
 msgid "The **Select** clause represents the exact data needed for the criterion"
 msgstr ""
-"Der Bestandteil **Select** repräsentiert die konkreten Daten, welche "
-"das Kriterium verarbeiten soll."
+"Der Bestandteil **Select** repräsentiert die konkreten Daten, welche das "
+"Kriterium verarbeiten soll."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:61
 #: 3b11ebec77604877a2acf31380abf821
@@ -268,9 +274,9 @@ msgid ""
 "in the *From* clause. Logical operators can be applied to combine "
 "multiple expressions."
 msgstr ""
-"Die **Where**-Bedingung bietet die Möglichkeit, den Ergebnisdatensatz zu filtern. "
-"Um mehrere Bedingungen zu verknüpfen, können logische Operatoren verwendet werden "
-"(AND, OR)."
+"Die **Where**-Bedingung bietet die Möglichkeit, den Ergebnisdatensatz zu "
+"filtern. Um mehrere Bedingungen zu verknüpfen, können logische Operatoren"
+" verwendet werden (AND, OR)."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:65
 #: e0e7148db8bc46d8b09633a148c9f56c
@@ -297,10 +303,10 @@ msgid ""
 "functionality or can be directly typed in. There is also the option to "
 "format the typed in query and to validate its correctness."
 msgstr ""
-"Dieses Fenster enthält die für das Kriterium verwendete Abfrage. Diese kann "
-"entweder über die Kriterien-Erstellung angelegt oder direkt von Hand eingegeben "
-"werden. Über die Schaltflächen unterhalb des Fenster kann die Abfrage formiert "
-"und auf Validität geprüft werden."
+"Dieses Fenster enthält die für das Kriterium verwendete Abfrage. Diese "
+"kann entweder über die Kriterien-Erstellung angelegt oder direkt von Hand"
+" eingegeben werden. Über die Schaltflächen unterhalb des Fenster kann die"
+" Abfrage formiert und auf Validität geprüft werden."
 
 #: ../06_criteria/02_criteria_editor/02_criteria_editor.md:77
 #: 34e2d232876a4e099554c00421cdc62b
@@ -310,9 +316,9 @@ msgid ""
 "button. The number of patients is then displayed depending on the "
 "authorization."
 msgstr ""
-"Dieser Abschnitt ermöglicht die Ermittlung der Anzahl der Patienten, welche "
-"bei Verwendung dieses Kriteriums berücksichtigt werden, basierend auf den "
-"in der Datenbank vorhandenen Datensätzen."
+"Dieser Abschnitt ermöglicht die Ermittlung der Anzahl der Patienten, "
+"welche bei Verwendung dieses Kriteriums berücksichtigt werden, basierend "
+"auf den in der Datenbank vorhandenen Datensätzen."
 
 #~ msgid ""
 #~ "One of two ways for building a "

@@ -77,7 +77,8 @@ export class ProjectService {
     size: number,
     sort: string = null,
     sortBy: string = null,
-    filters: any
+    filters: any,
+    lang: string
   ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
@@ -91,6 +92,10 @@ export class ProjectService {
         if (value !== null) {
           queryString = queryString + '&filter%5B' + key + '%5D=' + value
         }
+      }
+
+      if (lang) {
+        queryString = queryString + '&language=' + lang
       }
     }
     return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(

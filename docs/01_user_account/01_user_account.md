@@ -1,4 +1,4 @@
-# Create User
+# User account
 
 Before you can start using CODEX you have to create a new user account for your personal work.
 
@@ -8,7 +8,7 @@ A user account can be created by each indiviual by providing a company or instit
 The domain of your email address (part after the @-symbol) has to be listed in one of the organizations in the portal. If this is not the case, you will receive an according error message upon registration. In such cases, please contact the portal support.
 ```
 
-## Sign up a new user account
+## Create a new user account
 
 To create a new user account navigate to the sign up page which you can find by clicking "SIGN IN"
 at the main naviation. You will be asked to accept storing cookies on your machine. Accept and this
@@ -22,8 +22,10 @@ alt: 'Login page with a red arrow pointing to the registration link'
 Fig 01-01: Position of the register link on Login page
 ```
 
-At the Signup page you will see a form to enter your basic data. All input fields marked with an
-asterisk are required to proceed. 
+At the Signup page you will see a form to enter your basic data. 
+The **project lead** creates new projects, describes them, and manages them through the application process to project completion. He is responsible for defining the cohort and manages the researchers assigned to the project.
+**Researchers** retrieve research data from their assigned projects once the projects are approved and launched. Researchers have no influence on the project description, project application and cohort definition.
+All input fields marked with an asterisk are required to proceed. 
 
 ```{figure} images/sign_up_form_empty.png
 ---
@@ -59,3 +61,20 @@ In the next step click the activation link in the email, that has been sent to y
 ```{important}
 After your successful registration you can only see the portals welcome page until your account gets approved. The organization administrator responsible for you is automatically informed via email about your registration. However, the approval is a manual process due to security reasons and therefore can take some time. If you want to see how to approve user accounts go to the section [User management -> Unapproved users](../07_user_management/01_unapproved_users/01_unapproved_users.md)
 ```
+
+## Edit your user account
+
+You can always access your user account at the bottom left.
+
+```{figure} images/user_account.png
+---
+alt: 'User account view with details and password change option'
+---
+Fig 01-05: User account view
+```
+
+Within the user account page you can change your First name and your Last name, as well as the passwort by clicking on the "UPDATE PASSWORD" button.
+To save your updated credentials you need to click "SAVE CHANGES".
+
+Within this page you can see (but not change) your E-mail address, organization and current roles.
+
