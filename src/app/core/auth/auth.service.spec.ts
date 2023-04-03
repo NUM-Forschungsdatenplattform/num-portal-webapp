@@ -16,6 +16,8 @@
 
 import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
+import { Idle } from '@ng-idle/core'
+import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
@@ -54,6 +56,21 @@ describe('Auth Service', () => {
     get: jest.fn(),
   } as unknown as ProfileService
 
+  const idle = {
+    watch: () => jest.fn(),
+    setIdle: () => jest.fn(),
+    setTimeout: () => jest.fn(),
+    setIdleTime: () => jest.fn(),
+    setInterrupts: () => jest.fn(),
+    setTimeoutTime: () => jest.fn(),
+    onIdleEnd: () => jest.fn().mockImplementation(() => of()),
+    onTimeout: () => jest.fn().mockImplementation(() => of()),
+  } as unknown as Idle
+
+  const keepAlive = {
+    interval: () => jest.fn(),
+  } as unknown as Keepalive
+
   const mockRouter = {
     navigate: () => jest.fn(),
   } as unknown as Router
@@ -67,7 +84,15 @@ describe('Auth Service', () => {
   } as AppConfigService
 
   beforeEach(() => {
-    authService = new AuthService(oauthService, profileService, appConfig, httpClient, mockRouter)
+    authService = new AuthService(
+      oauthService,
+      profileService,
+      appConfig,
+      httpClient,
+      mockRouter,
+      idle,
+      keepAlive
+    )
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
     eventSubject = new Subject<OAuthEvent>()
     oauthService.events = eventSubject.asObservable()
@@ -86,6 +111,25 @@ describe('Auth Service', () => {
       authService.login(redirectUri)
 
       expect(oauthService.initCodeFlow).toHaveBeenCalledWith(redirectUri)
+    })
+  })
+
+  describe('When the user wants goes afk idle process should be used', () => {
+    it('Should call the resetIdle method, than logout', () => {
+      jest.spyOn(authService, 'initIdle')
+      jest.spyOn(authService, 'logout')
+      idle.setIdleTime(1)
+      idle.setTimeoutTime(1)
+      expect(authService.resetIdle).toHaveBeenCalled
+      expect(oauthService.logOut).toHaveBeenCalled
+    })
+  })
+
+  describe('When reseting idle process', () => {
+    it('timeout should be set to false', () => {
+      jest.spyOn(authService, 'resetIdle')
+      authService.resetIdle()
+      expect(authService.timedOut).toBeFalsy()
     })
   })
 
