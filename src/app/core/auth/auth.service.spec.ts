@@ -19,10 +19,10 @@ import { Router } from '@angular/router'
 import { Idle } from '@ng-idle/core'
 import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
-import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockOAuthUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
 
@@ -49,6 +49,7 @@ describe('Auth Service', () => {
   } as unknown as OAuthService
 
   const httpClient = {
+    get: jest.fn(),
     post: jest.fn(),
   } as unknown as HttpClient
 
@@ -63,7 +64,7 @@ describe('Auth Service', () => {
     setIdleTime: () => jest.fn(),
     setInterrupts: () => jest.fn(),
     setTimeoutTime: () => jest.fn(),
-    onIdleEnd: () => jest.fn().mockImplementation(() => of()),
+    onIdleEnd: () => of(),
     onTimeout: () => jest.fn().mockImplementation(() => of()),
   } as unknown as Idle
 
@@ -96,6 +97,7 @@ describe('Auth Service', () => {
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
     eventSubject = new Subject<OAuthEvent>()
     oauthService.events = eventSubject.asObservable()
+
     jest.clearAllMocks()
   })
 
@@ -111,6 +113,20 @@ describe('Auth Service', () => {
       authService.login(redirectUri)
 
       expect(oauthService.initCodeFlow).toHaveBeenCalledWith(redirectUri)
+    })
+  })
+
+  describe('When createUser is called', () => {
+    it('createUser called', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of())
+      authService.createUser('test')
+    })
+  })
+
+  describe('When createUser is called with error', () => {
+    it('createUser called with error', () => {
+      jest.spyOn(httpClient, 'post').mockReturnValue(throwError(new Error('Error')))
+      authService.createUser('test')
     })
   })
 

@@ -46,7 +46,7 @@ export class AuthService {
     private appConfig: AppConfigService,
     private httpClient: HttpClient,
     private router: Router,
-    private idle: Idle,
+    public idle: Idle,
     private keepAlive: Keepalive
   ) {}
 
@@ -100,7 +100,7 @@ export class AuthService {
     this.timedOut = false
   }
 
-  private createUser(userId: string): Observable<any> {
+  public createUser(userId: string): Observable<any> {
     const httpOptions = {
       responseType: 'text' as 'json',
     }
