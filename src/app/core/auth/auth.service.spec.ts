@@ -125,7 +125,7 @@ describe('Auth Service', () => {
 
   describe('When createUser is called with error', () => {
     it('createUser called with error', () => {
-      jest.spyOn(httpClient, 'post').mockReturnValue(throwError(new Error('Error')))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError({}))
       authService.createUser('test')
     })
   })
