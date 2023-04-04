@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Router } from '@angular/router'
+import { Idle } from '@ng-idle/core'
+import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
-import { of, Subject } from 'rxjs'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
-import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
+import { mockOAuthUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
 
@@ -47,12 +49,29 @@ describe('Auth Service', () => {
   } as unknown as OAuthService
 
   const httpClient = {
-    post: jest.fn(),
+    get: jest.fn(),
+    post: jest.fn().mockImplementation(() => of()),
   } as unknown as HttpClient
 
   const profileService = {
     get: jest.fn(),
   } as unknown as ProfileService
+
+  const idle = {
+    watch: () => jest.fn(),
+    setIdle: () => jest.fn(),
+    setTimeout: () => jest.fn(),
+    setIdleTime: () => jest.fn(),
+    setInterrupts: () => jest.fn(),
+    setTimeoutTime: () => jest.fn(),
+    onIdleEnd: { subscribe: () => {} },
+    onTimeout: { subscribe: () => {} },
+  } as unknown as Idle
+
+  const keepAlive = {
+    interval: () => jest.fn(),
+    onPing: { subscribe: () => {} },
+  } as unknown as Keepalive
 
   const mockRouter = {
     navigate: () => jest.fn(),
@@ -67,10 +86,19 @@ describe('Auth Service', () => {
   } as AppConfigService
 
   beforeEach(() => {
-    authService = new AuthService(oauthService, profileService, appConfig, httpClient, mockRouter)
+    authService = new AuthService(
+      oauthService,
+      profileService,
+      appConfig,
+      httpClient,
+      mockRouter,
+      idle,
+      keepAlive
+    )
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
     eventSubject = new Subject<OAuthEvent>()
     oauthService.events = eventSubject.asObservable()
+
     jest.clearAllMocks()
   })
 
@@ -86,6 +114,45 @@ describe('Auth Service', () => {
       authService.login(redirectUri)
 
       expect(oauthService.initCodeFlow).toHaveBeenCalledWith(redirectUri)
+    })
+  })
+
+  describe('When initIdle is called', () => {
+    it('initIdle called', () => {
+      authService.initIdle()
+    })
+  })
+
+  describe('When createUser is called', () => {
+    it('createUser called', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => of())
+      authService.createUser('test')
+    })
+  })
+
+  describe('When createUser is called with error', () => {
+    it('createUser called with error', () => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      authService.createUser('test')
+    })
+  })
+
+  describe('When the user wants goes afk idle process should be used', () => {
+    it('Should call the resetIdle method, than logout', () => {
+      jest.spyOn(authService, 'initIdle')
+      jest.spyOn(authService, 'logout')
+      idle.setIdleTime(1)
+      idle.setTimeoutTime(1)
+      expect(authService.resetIdle).toHaveBeenCalled
+      expect(oauthService.logOut).toHaveBeenCalled
+    })
+  })
+
+  describe('When reseting idle process', () => {
+    it('timeout should be set to false', () => {
+      jest.spyOn(authService, 'resetIdle')
+      authService.resetIdle()
+      expect(authService.timedOut).toBeFalsy()
     })
   })
 
