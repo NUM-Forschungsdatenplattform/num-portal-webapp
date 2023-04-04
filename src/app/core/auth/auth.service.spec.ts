@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { Idle } from '@ng-idle/core'
 import { Keepalive } from '@ng-idle/keepalive'
@@ -50,7 +50,7 @@ describe('Auth Service', () => {
 
   const httpClient = {
     get: jest.fn(),
-    post: jest.fn(),
+    post: jest.fn().mockImplementation(() => of()),
   } as unknown as HttpClient
 
   const profileService = {
@@ -64,12 +64,13 @@ describe('Auth Service', () => {
     setIdleTime: () => jest.fn(),
     setInterrupts: () => jest.fn(),
     setTimeoutTime: () => jest.fn(),
-    onIdleEnd: () => of(),
-    onTimeout: () => jest.fn().mockImplementation(() => of()),
+    onIdleEnd: { subscribe: () => {} },
+    onTimeout: { subscribe: () => {} },
   } as unknown as Idle
 
   const keepAlive = {
     interval: () => jest.fn(),
+    onPing: { subscribe: () => {} },
   } as unknown as Keepalive
 
   const mockRouter = {
@@ -116,6 +117,12 @@ describe('Auth Service', () => {
     })
   })
 
+  describe('When initIdle is called', () => {
+    it('initIdle called', () => {
+      authService.initIdle()
+    })
+  })
+
   describe('When createUser is called', () => {
     it('createUser called', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of())
@@ -125,7 +132,7 @@ describe('Auth Service', () => {
 
   describe('When createUser is called with error', () => {
     it('createUser called with error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError({}))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
       authService.createUser('test')
     })
   })
