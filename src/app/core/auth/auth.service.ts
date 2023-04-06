@@ -69,7 +69,7 @@ export class AuthService {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES)
 
     this.idle.onIdleEnd.subscribe(() => {
-      console.log("IDLE RESTARTED")
+      console.log('IDLE RESTARTED')
       this.resetIdle()
     })
 
