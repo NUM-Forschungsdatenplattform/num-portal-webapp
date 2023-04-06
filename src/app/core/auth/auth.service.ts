@@ -48,7 +48,11 @@ export class AuthService {
     private router: Router,
     public idle: Idle,
     private keepAlive: Keepalive
-  ) {}
+  ) {
+    if (this.isLoggedIn) {
+      this.initIdle()
+    }
+  }
 
   public initTokenHandling(): void {
     if (this.oauthService.state) {
@@ -67,12 +71,10 @@ export class AuthService {
     this.idle.setIdle(TIME_BEFORE_START_IDLE)
     this.idle.setTimeout(TIME_TO_WAIT_IDLE)
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES)
-
     this.idle.onIdleEnd.subscribe(() => {
       console.log('IDLE RESTARTED')
       this.resetIdle()
     })
-
     this.idle.onTimeout.subscribe(() => {
       this.timedOut = true
       this.logout()
@@ -129,14 +131,19 @@ export class AuthService {
     }
 
     if (this.userInfo.sub !== userInfo?.info?.sub) {
-      await this.createUser(userInfo.info.sub).toPromise()
+      await this.createUser(userInfo.info.sub)
+        .toPromise()
+        .finally(() => {
+          if (!this.idle.isIdling()) {
+            this.initIdle()
+          }
+        })
     }
 
     this.userInfo = userInfo.info
     this.userInfoSubject$.next(this.userInfo)
 
     this.profileService.get().subscribe()
-    this.initIdle()
   }
 
   private clearUserInfo(): void {
