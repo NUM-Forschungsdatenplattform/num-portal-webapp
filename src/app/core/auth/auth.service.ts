@@ -28,7 +28,7 @@ import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.i
 import { ProfileService } from '../services/profile/profile.service'
 
 const TIME_BEFORE_START_IDLE = 1
-const TIME_TO_WAIT_IDLE = 3600
+const TIME_TO_WAIT_IDLE = 120
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +69,7 @@ export class AuthService {
     this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES)
 
     this.idle.onIdleEnd.subscribe(() => {
+      console.log("IDLE RESTARTED")
       this.resetIdle()
     })
 
