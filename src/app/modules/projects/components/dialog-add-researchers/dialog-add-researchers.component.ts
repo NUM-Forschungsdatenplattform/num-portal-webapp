@@ -25,6 +25,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { cloneDeep } from 'lodash-es'
 import { MatPaginator } from '@angular/material/paginator'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { Sort } from '@angular/material/sort'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -44,29 +45,39 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
   columnPaths = [['firstName'], ['lastName'], ['organization', 'name'], ['select']]
   columnKeys = ['firstName', 'lastName', 'info', 'isSelected']
 
+  public sortBy: string
+  public sortDir: string
+
+  public pageIndex: number
+  public totalItems: number
+
+  public filters: any
+
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
+  }
+
+  set pageSize(pageSize: number) {
+    localStorage.setItem('pageSize', pageSize.toString())
+  }
+
   constructor(private adminService: AdminService) {}
-
-  public paginator: MatPaginator
-
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
-  }
-
-  setDataSourceAttributes() {
-    this.dataSource.paginator = this.paginator
-  }
 
   ngOnInit(): void {
     this.setLastFilter()
-    this.handleDilaogInput()
 
-    this.adminService.getApprovedUsers().subscribe()
-    this.subscriptions.add(
-      this.adminService.filteredApprovedUsersObservable$.subscribe((users) => {
-        this.handleUsersData(users)
-      })
-    )
+    this.pageIndex = 0
+    this.filters = {
+      approved: true,
+      search: null,
+    }
+
+    this.sortBy = 'firstName'
+    this.sortDir = 'ASC'
+
+    this.getAll()
   }
 
   setLastFilter(): void {
@@ -75,20 +86,60 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
       .subscribe((config) => (this.filterConfig = config))
   }
 
-  handleUsersData(users: IUser[]): void {
-    this.dataSource.data = users.filter((user) => user.roles?.includes(AvailableRoles.Researcher))
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
   }
 
-  handleDilaogInput(): void {
-    this.selectedResearchers = cloneDeep(this.dialogInput)
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+
+    this.subscriptions.add(
+      this.adminService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
   }
 
-  handleFilterChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+  handleSortChangeTable(sort: Sort): void {
+    this.sortBy = sort.active
+    this.sortDir = sort.direction.toUpperCase()
+
+    if (this.sortBy === 'createdTimestamp') {
+      this.sortBy = 'registrationDate'
+    }
+
+    this.getAll()
   }
 
-  handleSearchChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+  onPageChange(event: any): void {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  handleData(users: any): void {
+    this.dataSource.data = users.content
+    this.totalItems = users.totalElements
+  }
+
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+    if (this.filterConfig.searchText === '') {
+      this.filters.search = null
+    } else {
+      this.filters.search = this.filterConfig.searchText
+    }
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
   handleDialogConfirm(): void {

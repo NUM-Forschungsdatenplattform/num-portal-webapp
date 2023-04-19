@@ -24,7 +24,7 @@
     fxFlex.gt-sm="50%"
     [filterChips]="filterConfig.filterItem"
     [multiSelect]="false"
-    (selectionChange)="handleFilterChange()"
+    (matSortChange)="handleSortChangeTable($event)"
   ></num-filter-chips>
 
   <num-search
@@ -49,9 +49,12 @@
     data-test="dialog-add-researchers__filter-table"
   ></num-filter-table>
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 20]"
+    #paginator
+    [length]="totalItems"
+    [pageSizeOptions]="[5, 10, 20, 40]"
+    (page)="onPageChange($event)"
+    [pageSize]="pageSize"
     showFirstLastButtons
-    data-test="dialog-add-researchers__paginator-buttons"
   ></mat-paginator>
 </mat-card>
 

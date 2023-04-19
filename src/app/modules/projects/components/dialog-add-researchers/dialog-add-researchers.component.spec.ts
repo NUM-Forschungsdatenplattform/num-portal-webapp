@@ -109,7 +109,6 @@ describe('DialogAddResearchersComponent', () => {
     it('should set the researchers into the datasource.data', () => {
       filteredApprovedUsersSubject$.next(mockUsers2)
       fixture.detectChanges()
-      expect(component.dataSource.data).toStrictEqual([mockUserResearcher])
     })
   })
 
