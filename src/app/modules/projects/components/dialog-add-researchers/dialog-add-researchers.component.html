@@ -24,7 +24,7 @@
     fxFlex.gt-sm="50%"
     [filterChips]="filterConfig.filterItem"
     [multiSelect]="false"
-    (matSortChange)="handleSortChangeTable($event)"
+    (selectionChange)="handleFilterChange()"
   ></num-filter-chips>
 
   <num-search

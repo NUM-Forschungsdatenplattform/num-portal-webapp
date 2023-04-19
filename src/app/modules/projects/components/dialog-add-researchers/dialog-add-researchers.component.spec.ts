@@ -105,6 +105,34 @@ describe('DialogAddResearchersComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('When filter type is triggered', () => {
+    it('should filter', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.searchText = 'testSearch'
+      component.handleSearchChange()
+      expect(component.filters.search).toEqual('testSearch')
+    })
+  })
+
+  describe('When search is triggered', () => {
+    it('should search', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.handleFilterChange(false)
+      expect(component.filters.type).toEqual('ORGANIZATION')
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
   describe('When approved users are received by the component', () => {
     it('should set the researchers into the datasource.data', () => {
       filteredApprovedUsersSubject$.next(mockUsers2)

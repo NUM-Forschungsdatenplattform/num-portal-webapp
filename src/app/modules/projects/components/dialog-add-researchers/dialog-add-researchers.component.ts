@@ -72,6 +72,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
     this.filters = {
       approved: true,
       search: null,
+      roles: 'RESEARCHER',
     }
 
     this.sortBy = 'firstName'
@@ -103,6 +104,18 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
           this.handleData(data)
         })
     )
+  }
+
+  handleFilterChange(noGet = false): void {
+    if (this.filterConfig.filterItem[0].isSelected) {
+      this.filters.type = null
+    } else {
+      this.filters.type = 'ORGANIZATION'
+    }
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
   handleSortChangeTable(sort: Sort): void {
