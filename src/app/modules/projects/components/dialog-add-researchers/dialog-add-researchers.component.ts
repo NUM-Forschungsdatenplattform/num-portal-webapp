@@ -133,17 +133,6 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
     }
   }
 
-  handleSortChangeTable(sort: Sort): void {
-    this.sortBy = sort.active
-    this.sortDir = sort.direction.toUpperCase()
-
-    if (this.sortBy === 'createdTimestamp') {
-      this.sortBy = 'registrationDate'
-    }
-
-    this.getAll()
-  }
-
   onPageChange(event: any): void {
     this.pageIndex = event.pageIndex
     this.pageSize = event.pageSize
