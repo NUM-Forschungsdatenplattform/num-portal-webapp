@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -22,9 +30,10 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
-import { cloneDeep } from 'lodash-es'
 import { MatPaginator } from '@angular/material/paginator'
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { Sort } from '@angular/material/sort'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -44,29 +53,47 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
   columnPaths = [['firstName'], ['lastName'], ['organization', 'name'], ['select']]
   columnKeys = ['firstName', 'lastName', 'info', 'isSelected']
 
-  constructor(private adminService: AdminService) {}
+  public sortBy: string
+  public sortDir: string
 
-  public paginator: MatPaginator
+  public pageIndex: number
+  public totalItems: number
 
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp
-    this.setDataSourceAttributes()
+  public filters: any
+
+  @ViewChild(MatPaginator) paginator: MatPaginator
+
+  get pageSize(): number {
+    return +localStorage.getItem('pageSize') || 5
   }
 
-  setDataSourceAttributes() {
-    this.dataSource.paginator = this.paginator
+  set pageSize(pageSize: number) {
+    localStorage.setItem('pageSize', pageSize.toString())
   }
+
+  constructor(
+    private adminService: AdminService,
+    @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig
+  ) {}
 
   ngOnInit(): void {
     this.setLastFilter()
-    this.handleDilaogInput()
 
-    this.adminService.getApprovedUsers().subscribe()
-    this.subscriptions.add(
-      this.adminService.filteredApprovedUsersObservable$.subscribe((users) => {
-        this.handleUsersData(users)
-      })
-    )
+    if (this.dialogConfig.dialogContentPayload && this.dialogConfig.dialogContentPayload.length) {
+      this.selectedResearchers = this.dialogConfig.dialogContentPayload
+    }
+
+    this.pageIndex = 0
+    this.filters = {
+      approved: true,
+      search: null,
+      roles: 'RESEARCHER',
+    }
+
+    this.sortBy = 'firstName'
+    this.sortDir = 'ASC'
+
+    this.getAll()
   }
 
   setLastFilter(): void {
@@ -75,20 +102,61 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
       .subscribe((config) => (this.filterConfig = config))
   }
 
-  handleUsersData(users: IUser[]): void {
-    this.dataSource.data = users.filter((user) => user.roles?.includes(AvailableRoles.Researcher))
+  goToFirstPage() {
+    this.paginator.firstPage()
+    this.pageIndex = 0
   }
 
-  handleDilaogInput(): void {
-    this.selectedResearchers = cloneDeep(this.dialogInput)
+  getAll(returnFirstIndex = false) {
+    if (returnFirstIndex && typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+
+    this.subscriptions.add(
+      this.adminService
+        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
+        .subscribe((data) => {
+          this.handleData(data)
+        })
+    )
   }
 
-  handleFilterChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+  handleFilterChange(noGet = false): void {
+    if (this.filterConfig.filterItem[0].isSelected) {
+      this.filters.type = null
+    } else {
+      this.filters.type = 'ORGANIZATION'
+    }
+
+    if (!noGet) {
+      this.getAll(true)
+    }
   }
 
-  handleSearchChange(): void {
-    this.adminService.setFilter(this.filterConfig)
+  onPageChange(event: any): void {
+    this.pageIndex = event.pageIndex
+    this.pageSize = event.pageSize
+    this.getAll()
+  }
+
+  handleData(users: any): void {
+    this.dataSource.data = users.content
+    this.totalItems = users.totalElements
+  }
+
+  handleSearchChange(noGet = false): void {
+    if (typeof this.paginator !== 'undefined') {
+      this.goToFirstPage()
+    }
+    if (this.filterConfig.searchText === '') {
+      this.filters.search = null
+    } else {
+      this.filters.search = this.filterConfig.searchText
+    }
+
+    if (!noGet) {
+      this.getAll()
+    }
   }
 
   handleDialogConfirm(): void {

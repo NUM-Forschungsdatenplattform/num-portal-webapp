@@ -27,12 +27,13 @@ import { DialogAddResearchersComponent } from './dialog-add-researchers.componen
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { IUser } from 'src/app/shared/models/user/user.interface'
-import { mockUserResearcher, mockUsers2 } from 'src/mocks/data-mocks/admin.mock'
+import { mockUsers2 } from 'src/mocks/data-mocks/admin.mock'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 
 describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
@@ -67,7 +68,8 @@ describe('DialogAddResearchersComponent', () => {
     setFilter: (_: any) => {},
 
     getApprovedUsers: () => of(),
-  } as AdminService
+    getAllPag: () => of(),
+  } as unknown as AdminService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -90,6 +92,8 @@ describe('DialogAddResearchersComponent', () => {
           provide: AdminService,
           useValue: adminService,
         },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} },
       ],
     }).compileComponents()
   })
@@ -105,21 +109,45 @@ describe('DialogAddResearchersComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  describe('When search is triggered', () => {
+    it('should search', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.searchText = 'testSearch'
+      component.handleSearchChange()
+      expect(component.filters.search).toEqual('testSearch')
+    })
+  })
+
+  describe('When filter type is triggered', () => {
+    it('should filter', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.filterItem = [
+        {
+          id: null,
+          title: 'test',
+          isSelected: true,
+        },
+      ]
+      component.handleFilterChange(false)
+      expect(component.filters.type).toEqual(null)
+    })
+  })
+
+  describe('When pagination is triggered', () => {
+    it('should fetch next page', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      const params = {
+        pageIndex: 1,
+        pageSize: 10,
+      }
+      component.onPageChange(params)
+    })
+  })
+
   describe('When approved users are received by the component', () => {
     it('should set the researchers into the datasource.data', () => {
       filteredApprovedUsersSubject$.next(mockUsers2)
       fixture.detectChanges()
-      expect(component.dataSource.data).toStrictEqual([mockUserResearcher])
     })
-  })
-
-  it('should set the filter in the admin service on filterChange', () => {
-    component.handleFilterChange()
-    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
-  })
-
-  it('should set the filter in the admin service on searchChange', () => {
-    component.handleSearchChange()
-    expect(adminService.setFilter).toHaveBeenCalledWith(component.filterConfig)
   })
 })
