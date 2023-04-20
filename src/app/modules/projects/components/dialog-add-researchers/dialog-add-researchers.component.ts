@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -22,10 +30,10 @@ import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
-import { cloneDeep } from 'lodash-es'
 import { MatPaginator } from '@angular/material/paginator'
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { Sort } from '@angular/material/sort'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
@@ -63,10 +71,17 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
     localStorage.setItem('pageSize', pageSize.toString())
   }
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig
+  ) {}
 
   ngOnInit(): void {
     this.setLastFilter()
+
+    if (this.dialogConfig.dialogContentPayload && this.dialogConfig.dialogContentPayload.length) {
+      this.selectedResearchers = this.dialogConfig.dialogContentPayload
+    }
 
     this.pageIndex = 0
     this.filters = {
