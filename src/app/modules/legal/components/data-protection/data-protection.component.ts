@@ -13,12 +13,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { TranslateService } from '@ngx-translate/core'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-data-protection',
   templateUrl: './data-protection.component.html',
 })
-export class DataProtectionComponent {
-  constructor() {}
+export class DataProtectionComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription()
+  constructor(private translateService: TranslateService) {}
+  generalDataList: any[]
+  registrationList: any[]
+  cookiesList: any[]
+  recipientsList: any[]
+  rightsList: any[]
+  decisionList: any[]
+
+  ngOnInit(): void {
+    this.generalDataList = this.translateService?.instant('DATA_PROTECTION.GENERAL_DATA_LIST')
+    this.registrationList = this.translateService?.instant('DATA_PROTECTION.REGISTRATION_LIST')
+    this.cookiesList = this.translateService?.instant('DATA_PROTECTION.COOKIES_LIST')
+    this.recipientsList = this.translateService?.instant(
+      'DATA_PROTECTION.RECIPIENTS.PART_B.RECIPIENTS_LIST'
+    )
+    this.rightsList = this.translateService?.instant('DATA_PROTECTION.RIGHTS.RIGHTS_LIST')
+    this.decisionList = this.translateService?.instant('DATA_PROTECTION.RIGHTS.RIGHTS_PART_J.LIST')
+
+    this.subscriptions.add(
+      this.translateService.onLangChange.subscribe((newLang) => {
+        this.generalDataList = this.translateService?.instant('DATA_PROTECTION.GENERAL_DATA_LIST')
+        this.registrationList = this.translateService?.instant('DATA_PROTECTION.REGISTRATION_LIST')
+        this.cookiesList = this.translateService?.instant('DATA_PROTECTION.COOKIES_LIST')
+        this.recipientsList = this.translateService?.instant(
+          'DATA_PROTECTION.RECIPIENTS.PART_B.RECIPIENTS_LIST'
+        )
+        this.rightsList = this.translateService?.instant('DATA_PROTECTION.RIGHTS.RIGHTS_LIST')
+        this.decisionList = this.translateService?.instant(
+          'DATA_PROTECTION.RIGHTS.RIGHTS_PART_J.LIST'
+        )
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
 }

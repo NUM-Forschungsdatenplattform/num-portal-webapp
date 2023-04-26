@@ -535,7 +535,286 @@
     "PATIENT_COUNT_INFO": "Insgesamt verfügbare Datensätze: {{amount}}",
     "PATIENT_FILTER_DESCRIPTION": "Wählen Sie eine oder mehrere Kriterien aus der Liste aus um die Grundlage der neuen Kohorte zu definieren."
   },
+  "DATA_PROTECTION": {
+    "TITLE": "Datenschutzinformation",
+    "DESCRIPTION": "Der Betriebsverantwortliche dieser Website nimmt den Schutz Ihrer personenbezogenen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften.",
+    "RESPONSIBLE_ENTITY_TITLE": "1. Hinweis zum Verantwortlichen",
+    "RESPONSIBLE_ENTITY_TEXT": "Der Verantwortliche für die Datenverarbeitung auf dieser Website ist: <br /> HiGHmed e.V. <br /> Langer Anger 7/9 <br /> 69115 Heidelberg",
+    "OFFICER_TITLE": "2. Datenschutzbeauftragter",
+    "OFFICER_DESCRIPTION": "Bei Fragen zur Verarbeitung Ihrer personenbezogenen Daten, sowie zu Ihren Rechten rund um den Datenschutz, wenden Sie sich bitte an unseren Datenschutzbeauftragten:",
+    "OFFICER_TEXT1": "Dirk Seeliger <br /> expertree consulting GmbH <br /> Friedensallee 110 <br /> 63263 Neu-Isenburg",
+    "OFFICER_TEXT2": "E-Mail: <a href=\"mailto:ds-service@expertree.de\">ds-service@expertree.de</a> <br /> Telefon: 069 / 6102 8150 556",
+    "GENERAL_DATA_TITLE": "3. Allgemeine Daten und Information bei dem Besuch der Website",
+    "GENERAL_DATA_DESCRIPTION": "Die durch HiGHmed e.V. betriebene Website erfasst mit jedem Aufruf der Website eine Reihe von allgemeinen Daten und Informationen. Diese allgemeinen Daten und Informationen werden in den Logfiles des Servers gespeichert und automatisch durch Ihren Browser an den HiGHmed e.V. übermittelt. Erfasst werden können:",
+    "GENERAL_DATA_LIST": [
+      {
+        "TEXT": "IP-Adresse;"
+      },
+      {
+        "TEXT": "Datum und Uhrzeit des Zugriffs auf diese Website;"
+      },
+      {
+        "TEXT": "Zeitzonendifferenz zur Greenwich Mean Time (GMT);"
+      },
+      {
+        "TEXT": "Inhalt der Anforderung (konkrete Seite);"
+      },
+      {
+        "TEXT": "Zugriffsstatus/HTTP-Statuscode;"
+      },
+      {
+        "TEXT": "jeweils übertragene Datenmenge;"
+      },
+      {
+        "TEXT": "Website, von der die Anforderung kommt;"
+      },
+      {
+        "TEXT": "Browsertyp;"
+      },
+      {
+        "TEXT": "Betriebssystem und dessen Oberfläche;"
+      },
+      {
+        "TEXT": "Sprache und Version der Browsersoftware;"
+      },
+      {
+        "TEXT": "sonstige ähnliche Daten und Informationen, die der Gefahrenabwehr im Falle von Angriffen auf unsere informationstechnologischen Systeme dienen."
+      }
+    ],
+    "GENERAL_DATA_TEXT1": "Grundlage für die Datenverarbeitung ist unser berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO, genauer die Bereitstellung einer funktionsfähigen Website. Hierin liegt auch der Zweck der Verarbeitung der oben abgebildeten personenbezogenen Daten. Die Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind. Im Falle der Erfassung der Daten zur Bereitstellung der Website ist dies der Fall, wenn die jeweilige Sitzung beendet ist. Im Falle der Speicherung der Daten in Logfiles ist dies nach spätestens neunzig Tagen der Fall. Eine darüber hinausgehende Speicherung ist anonymisiert möglich. In diesem Fall werden die IP-Adressen gelöscht oder verfremdet, sodass eine Zuordnung des aufrufenden Clients nicht mehr möglich ist.",
+    "GENERAL_DATA_TEXT2": "Die Bereitstellung der Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Die Erfassung der Daten zur Bereitstellung der Website und die Speicherung der Daten in Logfiles ist jedoch für den Betrieb der Website zwingend erforderlich. Die Nichtbereitstellung von personenbezogenen Daten kann zu Nachteilen für Sie führen. Etwa könnte dies zur Folge haben, dass Sie unsere Dienste nicht erhalten bzw. nutzen können (z. B. kann ein Zugriff auf die Website ggf. nicht möglich sein). Jedoch entstehen Ihnen, soweit nicht anders angegeben, aus der Nichtbereitstellung keine rechtlichen Nachteile.",
+    "REGISTRATION_TITLE": "4. Anmeldung für den internen Bereich",
+    "REGISTRATION_DESCRIPTION": "Nur wenn Sie ein Nutzerkonto haben, können Sie Ihren Benutzernamen und das Passwort in die Eingabefelder dieser Website eingeben und sich für den internen Bereich anmelden. Erfasst werden können:",
+    "REGISTRATION_LIST": [
+      {
+        "TEXT": "Vorname;"
+      },
+      {
+        "TEXT": "Nachname;"
+      },
+      {
+        "TEXT": "E-Mai-Adresse;"
+      },
+      {
+        "TEXT": "Passwort;"
+      },
+      {
+        "TEXT": "Rolle;"
+      },
+      {
+        "TEXT": "Abteilunge(en);"
+      },
+      {
+        "TEXT": "Sonstige Anmerkungen und"
+      },
+      {
+        "TEXT": "Zustimmung zu den allgemeinen Geschäftsbedingungen."
+      }
+    ],
+    "REGISTRATION_TEXT1": "Falls Sie Ihr Passwort vergessen haben, können Sie die Schaltfläche \"Passwort vergessen\" betätigen. In diesem Fall wird Ihnen eine automatische E-Mail an die von Ihnen hinterlegte E-Mailadresse gesendet. Bitte folgen Sie der Anleitung der E-Mail, um Ihr Passwort zurückzusetzen. Die Verarbeitung der oben genannten Daten für die Anmeldung und die Passwortzurücksetzung erfolgt auf Grundlage eines unentgeltlichen Nutzungsverhältnisses für diese Website durch den HiGHmed e.V. (Art. 6 Abs. 1 lit. b DSGVO).",
+    "REGISTRATION_TEXT2": "Die Bereitstellung Ihrer personenbezogenen Daten ist gesetzlich nicht vorgeschrieben. Die Erfassung Ihrer personenbezogenen Daten zur Anmeldung für den internen Bereich ist jedoch zwingend erforderlich, wenn Sie Zugriff auf den internen Bereich dieser Website erhalten möchten. Die Nichtbereitstellung von personenbezogenen Daten hat zur Folge, dass Sie unsere Dienste im Bereich für registrierte Nutzer nicht erhalten bzw. nutzen können (d.h. Sie kommen nicht über den Login-Bereich hinaus). Jedoch entstehen Ihnen, soweit nicht anders angegeben, aus der Nichtbereitstellung keine rechtlichen Nachteile.",
+    "REGISTRATION_TEXT3": "Wir löschen Ihre Anmeldedaten, sobald Sie Ihr Nutzerkonto bei uns aufgeben. Eine vorzeitige Löschung Ihrer Daten ist nur möglich, soweit nicht vertragliche oder gesetzliche Verpflichtungen einer Löschung entgegenstehen.",
+    "CONTACT_TITLE": "5. Kontaktmöglichkeit",
+    "CONTACT_TEXT1": "Wenn Sie uns Anfragen zukommen lassen, werden Ihre angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Welche Kontaktdaten Sie eingeben, ist Ihnen überlassen, es handelt sich um keine Pflichtangaben, zumindest eine Kontaktmöglichkeit müssen Sie aber angeben (Anschrift, Telefon oder E-Mail), damit wir Ihre Anfrage bearbeiten können. Die von Ihnen eingegebenen Daten geben wir nicht ohne Ihre Einwilligung weiter. Falls dies geplant ist, werden wir Sie vorher um Ihre Einwilligung bitten.",
+    "CONTACT_TEXT2": "Rechtsgrundlage für die Verarbeitung der Daten ist unser berechtigtes Interesse an der Beantwortung Ihres Anliegens gemäß Art. 6 Abs. 1 lit. f DSGVO. Zielt Ihre Kontaktierung auf den Abschluss eines Vertrages ab, so ist zusätzliche Rechtsgrundlage für die Verarbeitung Art. 6 Abs. 1 lit. b DSGVOWir löschen Ihre personenbezogenen Daten, soweit wir Ihre Anfrage abschließend bearbeitet haben. Dies ist in der Regel mit dem Ende der Konversation mit Ihnen der Fall, es sei denn wir sind zur Wahrung unserer gesetzlichen Pflichten verpflichtet, diese länger aufzubewahren.",
+    "CONTACT_TEXT3": "Die Bereitstellung der personenbezogenen Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Wenn Sie Ihre Daten nicht zur Verfügung stellen, können wir die Konversation mit Ihnen nicht (fort-)führen.",
+    "COOKIES_TITLE": "6. Cookies",
+    "COOKIES_TEXT1": "Diese Website verwendet Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Cookies sind kleine Textdateien, die Ihr Browser speichert.",
+    "COOKIES_TEXT2": "Cookies sind auf der Webseite erforderlich, um die Login-Informationen beizubehalten, damit Sie sich nicht auf jeder einzelnen Seite erneut einloggen müssen. Außerdem speichern Cookies die von Ihnen gewählte Sprache.",
+    "COOKIES_TEXT3": "Wir verwenden die folgenden Arten von Cookies:",
+    "COOKIES_LIST": [
+      {
+        "TEXT": "Login Cookie"
+      },
+      {
+        "TEXT": "Locale Cookie"
+      }
+    ],
+    "COOKIES_TEXT4": "Alle der von uns verwendeten Cookies sind so genannte “Session-Cookies”. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.",
+    "COOKIES_TEXT5": "Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein. Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs oder zur Bereitstellung der Website erforderlich sind, werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert. Wir haben ein berechtigtes Interesse an der Speicherung von Cookies zur technisch fehlerfreien Bereitstellung unserer Dienste. Wir nutzen die durch Cookies gesammelten Daten so lange, wie sie für den jeweiligen genannten Zweck erforderlich sind.",
+    "RECIPIENTS": {
+      "TITLE": "7. Empfänger von personenbezogenen Daten",
+      "DESCRIPTION": "Wir werden Ihre personenbezogenen Daten nur im Rahmen der geltenden Datenschutzgesetze an Dienstleister und andere Dritte weitergeben.",
+      "PART_A": {
+        "TITLE": "a. Auftragsverarbeiter",
+        "SUBTITLE1": "Operativer Betrieb",
+        "TEXT1": "Rechenzentrum der GWDG <br /> GWDG - Gesellschaft für wissenschaftliche <br /> Datenverarbeitung mbH Göttingen <br /> Am Fassberg 11, 37077 Göttingen <br /> E-Mail: <a href=\"mailto:piotr.kasprzak@gwdg.de\">piotr.kasprzak@gwdg.de</a> <br /> www: <a href=\"https://www.gwdg.de\" target=\"_blank\" rel=\"noopener\">https://www.gwdg.de</a>",
+        "SUBTITLE2": "Administration Plattform",
+        "TEXT2": "vitagroup health intelligence GmbH <br /> Hamburger Str. 273b <br /> 38114 Braunschweig <br /> E-Mail: <a href=\"mailto:itos@vitagroup.ag\">itos@vitagroup.ag</a> <br /> www: <a href=\"https://www.vitagroup.ag\" target=\"_blank\" rel=\"noopener\">https://www.vitagroup.ag</a>"
+      },
+      "PART_B": {
+        "TITLE": "b. Dritte",
+        "DESCRIPTION": "Darüber hinaus geben wir Ihre personenbezogenen Daten weiter,",
+        "RECIPIENTS_LIST": [
+          {
+            "TEXT": "wenn wir gesetzlich oder gerichtlich dazu verpflichtet sind,"
+          },
+          {
+            "TEXT": "an Strafverfolgungsbehörden oder andere staatliche Stellen, oder"
+          },
+          {
+            "TEXT": "wenn wir annehmen, dass eine Offenlegung notwendig oder angemessen ist, um physische Schäden oder finanzielle Verluste zu verhindern, oder im Zusammenhang mit einer Untersuchung vermuteter oder tatsächlicher betrügerischer oder illegaler Handlungen."
+          }
+        ]
+      }
+    },
+    "DATA_TRANSFER_TITLE": "8. Keine Datenübermittlung in Drittstaaten",
+    "DATA_TRANSFER_DESCRIPTION": "Es werden keine personenbezogenen Daten an Länder übermittelt, die sich außerhalb der EU befinden.",
+    "ENCRYPTION_TITLE": "9. SSL- bzw. TLS-Verschlüsselung",
+    "ENCRYPTION_DESCRIPTION": "Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von “http://” auf “https://” wechselt und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.",
+    "RIGHTS": {
+      "TITLE": "10. Ihre Rechte",
+      "DESCRIPTION": "Werden personenbezogene Daten von Ihnen verarbeitet, sind Sie Betroffener im Sinne der DSGVO und Sie haben das Recht zur Ausübung von Betroffenenrechten. Sie haben uns gegenüber folgende Rechte hinsichtlich der Verarbeitung der Sie betreffenden personenbezogenen Daten durch uns:",
+      "RIGHTS_LIST": [
+        {
+          "TEXT": "Recht auf Widerruf der datenschutzrechtlichen Einwilligungserklärung (Art. 7 Abs. 3 DSGVO)"
+        },
+        {
+          "TEXT": "Recht auf Auskunft (Art. 15 DSGVO);"
+        },
+        {
+          "TEXT": "Recht auf Berichtigung (Art. 16 DSGVO);"
+        },
+        {
+          "TEXT": "Recht auf Löschung (Art. 17 DSGVO);"
+        },
+        {
+          "TEXT": "Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO);"
+        },
+        {
+          "TEXT": "Recht auf Datenübertragbarkeit (Art. 20 DSGVO);"
+        },
+        {
+          "TEXT": "Recht auf Widerspruch gegen die Verarbeitung (21 DSGVO); und"
+        },
+        {
+          "TEXT": "Recht auf Beschwerde bei einer Aufsichtsbehörde (Art. 13 Abs. 2 lit. d DSGVO)."
+        }
+      ],
+      "RIGHTS_PART_A": {
+        "TITLE": "a. Recht auf Widerruf der datenschutzrechtlichen Einwilligungserklärung",
+        "DESCRIPTION": "Beruht die Verarbeitung Ihrer personenbezogenen Daten auf Ihrer Einwilligung, haben Sie das Recht, Ihre datenschutzrechtliche Einwilligungserklärung jederzeit mit Wirkung für die Zukunft zu widerrufen. Durch den Widerruf der Einwilligung wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt. Der Widerruf Ihrer Einwilligung ist an den relevanten Stellen in dieser Datenschutzerklärung und der Einwilligungserklärung selbst beschrieben. Sie können Ihre Einwilligung alternativ widerrufen, indem Sie uns eine E-Mail schreiben: datenschutz@highmed.org."
+      },
+      "RIGHTS_PART_B": {
+        "TITLE": "b. Recht auf Auskunft bezüglich der Verarbeitung",
+        "DESCRIPTION": "Sie können jederzeit im Rahmen der gesetzlichen Bestimmungen von uns Auskunft darüber verlangen, ob personenbezogene Daten von uns verarbeitet werden. Ist dies der Fall, haben Sie das Recht über den Umfang der Datenverarbeitung Auskunft zu verlangen."
+      },
+      "RIGHTS_PART_C": {
+        "TITLE": "c. Recht auf Berichtigung",
+        "DESCRIPTION": "Sie haben ein Recht auf Berichtigung und/oder Vervollständigung Ihrer Daten gegenüber dem Verantwortlichen, sofern die Sie betreffenden verarbeiteten personenbezogenen Daten unrichtig oder unvollständig sind."
+      },
+      "RIGHTS_PART_D": {
+        "TITLE": "d. Recht auf Löschung",
+        "DESCRIPTION": "Sie können von dem Verantwortlichen verlangen, dass die Sie betreffenden personenbezogenen Daten unverzüglich gelöscht werden sofern die Voraussetzungen hierfür vorliegen."
+      },
+      "RIGHTS_PART_E": {
+        "TITLE": "e. Recht auf Einschränkung der Verarbeitung",
+        "DESCRIPTION": "Liegen die Voraussetzungen hierfür vor, können Sie die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten verlangen. Das Recht auf Löschung besteht nicht, soweit die Verarbeitung erforderlich ist."
+      },
+      "RIGHTS_PART_F": {
+        "TITLE": "f. Recht auf Unterrichtung",
+        "DESCRIPTION": "Haben Sie das Recht auf Berichtigung, Löschung oder Einschränkung der Verarbeitung gegenüber dem Verantwortlichen geltend gemacht, ist dieser verpflichtet, allen Empfängern, denen die Sie betreffenden personenbezogenen Daten offengelegt wurden, diese Berichtigung oder Löschung der Daten oder Einschränkung der Verarbeitung mitzuteilen, es sei denn, dies erweist sich als unmöglich oder ist mit einem unverhältnismäßigen Aufwand verbunden."
+      },
+      "RIGHTS_PART_G": {
+        "TITLE": "g. Recht auf Datenübertragbarkeit",
+        "DESCRIPTION": "Sie haben das Recht, die Sie betreffenden personenbezogenen Daten, die Sie dem Verantwortlichen bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten. Außerdem haben Sie das Recht diese Daten einem anderen Verantwortlichen ohne Behinderung durch den Verantwortlichen, dem die personenbezogenen Daten bereitgestellt wurden, zu übermitteln, sofern die Voraussetzungen hierfür vorliegen."
+      },
+      "RIGHTS_PART_H": {
+        "TITLE": "h. Widerspruchsrecht",
+        "DESCRIPTION": "Sie haben das Recht, aus Gründen, die sich aus ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung der Sie betreffenden personenbezogenen Daten, die aufgrund von Artikel 6 Absatz 1 Buchstabe e oder f DSGVO erfolgt, Widerspruch einzulegen. Folge des Widerspruchs ist es, dass der Verantwortliche die Sie betreffenden personenbezogenen Daten nicht mehr verarbeitet, es sei denn, er kann zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen. Ihr Widerspruchsrecht kann insoweit beschränkt werden, als es voraussichtlich die Verwirklichung von Forschungs- oder Statistikzwecke unmöglich macht oder ernsthaft beeinträchtigt und die Beschränkung für die Erfüllung der Forschungs- oder Statistikzwecke notwendig ist."
+      },
+      "RIGHTS_PART_I": {
+        "TITLE": "i. Recht auf Widerruf der datenschutzrechtlichen Einwilligungserklärung",
+        "DESCRIPTION": "Sofern Sie eine datenschutzrechtliche Einwilligungserklärung abgegeben haben, können Sie diese jederzeit widerrufen. Durch den Widerruf der Einwilligung wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt."
+      },
+      "RIGHTS_PART_J": {
+        "TITLE": "j. Automatisierte Entscheidung im Einzelfall",
+        "DESCRIPTION": "Sie haben das Recht, nicht einer ausschließlich auf einer automatisierten Verarbeitung - einschließlich Profiling - beruhenden Entscheidung unterworfen zu werden, die Ihnen gegenüber rechtliche Wirkung entfaltet oder Sie in ähnlicher Weise erheblich beeinträchtigt. Dies gilt nicht, wenn die Entscheidung",
+        "LIST": [
+          {
+            "TEXT": "für den Abschluss oder die Erfüllung eines Vertrags zwischen Ihnen und dem Verantwortlichen erforderlich ist,"
+          },
+          {
+            "TEXT": "aufgrund von Rechtsvorschriften der Union oder der Mitgliedstaaten, denen der Verantwortliche unterliegt, zulässig ist und diese Rechtsvorschriften angemessene Maßnahmen zur Wahrung Ihrer Rechte und Freiheiten sowie Ihrer berechtigten Interessen enthalten oder"
+          },
+          {
+            "TEXT": "mit Ihrer ausdrücklichen Einwilligung erfolgt."
+          }
+        ]
+      },
+      "RIGHTS_PART_K": {
+        "TITLE": "k. Recht auf Beschwerde bei einer Aufsichtsbehörde",
+        "DESCRIPTION": "Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs steht Ihnen das Recht auf Beschwerde bei einer Aufsichtsbehörde zu, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden personenbezogenen Daten gegen die DSGVO verstößt. Zuständige Aufsichtsbehörde in datenschutzrechtlichen Fragen ist der Landesdatenschutzbeauftragte des Bundeslandes, in dem der Verantwortlicheseinen Sitz hat.",
+        "TEXT": "HiGHmed e.V.hat seinen Sitz in Heidelberg. <br/> Die zuständige Aufsichtsbehörde ist daher: <br /> Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit in Baden-Württemberg <br /> Lautenschlagerstraße 20 <br /> 70173 Stuttgart <br /> E-Mail: <a href=\"mailto:poststelle@lfdi.bwl.de\">poststelle@lfdi.bwl.de</a>"
+      }
+    },
+    "PRIVACY_INFO": {
+      "TITLE": "11. Änderungen unserer Datenschutzinformation",
+      "DESCRIPTION": "Unsere Datenschutzinformation kann sich von Zeit zu Zeit ändern, um eventuelle Änderungen bei unseren Datenschutzpraktiken abzubilden. Alle wichtigen Änderungen der Datenschutzerklärung werden Ihnen bei dem nächsten Einloggen nach der Änderung angezeigt und werden von uns zusätzlich auf dieser Website deutlich sichtbar veröffentlicht. Am Anfang der Information erscheint das Datum der letzten Änderung."
+    }
+  },
+  "CONTACT": {
+    "TITLE": "Kontakt",
+    "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für die zentrale Plattform von CODEX ist das NUM und somit die Charité - Universitätsmedizin Berlin als koordinierende Stelle.",
+    "SUBTITLE1": "Informationen i.S.d. § 5 TMG",
+    "TEXT1": "Charité - Universitätsmedizin Berlin (Koordinierungsstelle) <br /> Charitéplatz 1 <br /> 10117 Berlin",
+    "SUBTITLE2": "Vertretungsberechtigter",
+    "TEXT2": "Die Charité - Universitätsmedizin Berlin ist eine Körperschaft des Öffentlichen Rechts. Sie wird durch den Vorstandsvorsitzenden gesetzlich vertreten: Prof. Dr. Heyo K. Kroemer, der Vorstandsvorsitzende der Charité - Universitätsmedizin Berlin",
+    "TEXT3": "Umsatzsteuernummer: DE 228847810",
+    "TEXT4": "Die zuständige Aufsichtsbehörde ist der Regierende Bürgermeister von Berlin - inkl. Wissenschaft und Forschung und die Senatsverwaltung für Gesundheit, Pflege und Gleichstellung. <br /> Kontakt: <a href=\"https://www.berlin.de/rbmskzl/\">https://www.berlin.de/rbmskzl/</a> <br /> Kontakt: <a href=\"https://www.berlin.de/sen/gpg/\">https://www.berlin.de/sen/gpg/</a>",
+    "SUBTITLE3": "Verantwortlicher für journalistisch-redaktionelle Angebote i. S. d. § 55 Abs.2 RStV",
+    "TEXT5": "Ralf Heyder, Leiter der Koordinierungsstelle <br /> Charitéplatz 1 <br /> 10117 Berlin <br /> Telefon: 030 450 570 292 <br /> <a href=\"mailto:forschungsnetzwerk-unimedizin@charite.de\">forschungsnetzwerk-unimedizin@charite.de</a>",
+    "TEXT6": "Technisch verantwortlich für die genutzte zentrale IT-Infrastruktur ist die GWDG. Ebenso liegt die Administration der Infrastruktur sowie die Netzwerkadministration bei der GWDG. Auf Applikationsebene wird die zentrale Forschungsplattform durch die vitasystems GmbH administriert. Sowohl die GWDG als auch die vitasystems GmbH handeln dabei im Auftrag der koordinierenden Stelle.",
+    "SUBTITLE4": "Kontakt",
+    "SUBTITLE5": "Umgang mit Kontaktdaten",
+    "CONTACT_HANDLING1": "Wenn Sie uns Anfragen zukommen lassen, werden Ihre angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Welche Kontaktdaten Sie eingeben, ist Ihnen überlassen, es handelt sich um keine Pflichtangaben, zumindest eine Kontaktmöglichkeit müssen Sie aber angeben (Anschrift, Telefon oder E-Mail), damit wir Ihre Anfrage bearbeiten können. Die von Ihnen eingegebenen Daten geben wir nicht ohne Ihre Einwilligung weiter. Falls dies geplant ist, werden wir Sie vorher um Ihre Einwilligung bitten.",
+    "CONTACT_HANDLING2": "Die Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist Ihre Anfrage zu beantworten. Richtet sich die Kontaktanfrage auf einen bestehenden Vertrag, so ist die Rechtsgrundlage für die Verarbeitung Art. 6 Abs. 1 lit. b DSGVO.",
+    "CONTACT_HANDLING3": "Wir löschen Ihre personenbezogenen Daten, soweit wir Ihre Anfrage abschließend bearbeitet haben. Dies ist in der Regel mit dem Ende der Konversation mit Ihnen der Fall, es sei denn wir sind zur Wahrung unserer gesetzlichen Pflichten verpflichtet, diese länger aufzubewahren.",
+    "CONTACT_HANDLING4": "Die Bereitstellung der personenbezogenen Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Wenn Sie Ihre Daten nicht zur Verfügung stellen, können wir die Konversation mit Ihnen nicht (fort-)führen."
+  },
   "IMPRINT": {
+    "TEXTS": {
+      "IMPRESSUM": "Impressum123",
+      "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für den Betrieb der Website ist der HiGHmed e.V.",
+      "INFO_HEADER": "Informationen i.S.d. § 5 TMG",
+      "INFO_CONTENT": "HiGHmed e.V: <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /><br /> E-Mail: geschaeftsstelle@highmed.org",
+      "REPRESENTATIVE_TITLE": "Vertretungsberechtigter",
+      "REPRESENTATIVE_DESCRIPTION": "Der HiGHmed e.V. ist ein im Vereinsregister eingetragener Verein und wird gesetzlich vertreten durch den Vorstand:",
+      "PROFS": [
+        {
+          "TEXT": "Prof. Dr. Roland Eils (Vorsitzender, einzelvertretungsberechtigt)"
+        },
+        {
+          "TEXT": "Prof. Dr. Michael Marschollek (stv. Vorsitzender)"
+        },
+        {
+          "TEXT": "Prof. Dr. Björn Bergh"
+        },
+        {
+          "TEXT": "Prof. Dr. Ramin Yahyapour"
+        },
+        {
+          "TEXT": "Dr.-Ing. Steffen Ortmann"
+        }
+      ],
+      "REGISTRATION_NUMBER_TITLE": "Registernummer",
+      "REGISTRATION_NUMBER_TEXT": "VR 702758, Amtsgericht Mannheim – Registergericht –",
+      "VAT_TITLE": "Umsatzsteuernummer",
+      "VAT_TEXT": "Nicht erteilt",
+      "JOURNALISTIC_EDITORIAL_TITLE": "Verantwortlicher für journalistisch-redaktionelle Angebote i. S. d. § 55 Abs.2 RStV",
+      "JOURNALISTIC_EDITORIAL_TEXT": "HiGHmed e.V <br /> Prof. Dr. Roland Eils <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /> <a href=\"mailto:geschaeftsstelle@highmed.org\">geschaeftsstelle@highmed.org</a>",
+      "CONTACT_TITLE": "Kontakt",
+      "CONTACT_TEXT": "HiGHmed e.V <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /> E-Mail: <a href=\"mailto:geschaeftsstelle@highmed.org\">geschaeftsstelle@highmed.org</a> <br /> <a href=\"https://www.highmed.org\">https://www.highmed.org</a>",
+      "DISCLAIMER_TITLE": "Haftungsausschluss und Copyright",
+      "DISCLAIMER_TEXT1": "Die durch HiGHmed e.V. betriebene Website bietet Ihnen eine Vielzahl von Informationen, die regelmäßig aktualisiert werden. Sie können unsere Informationen speichern und Verknüpfungen zu unseren Seiten einrichten. Bei Verlinkung von kommerziellen Anbietern muss die verlinkte Website alleiniger Bestandteil des Navigator-Fensters sein. Die Informationen dürfen nicht verändert oder verfälscht werden.",
+      "DISCLAIMER_TEXT2": "Die auf dieser Webseite veröffentlichten Inhalte, Werke und bereitgestellten Informationen unterliegen dem deutschen Urheberrecht und Leistungsschutzrecht. Eine Vervielfältigung, Bearbeitung oder Verwendung in anderen gedruckten Publikationen ist nur nach vorheriger Genehmigung des Autors oder Rechteinhabers gestattet. Weiterhin können Bilder, Grafiken, Text- oder sonstige Dateien dem Urheberrecht Dritter unterliegen.  Inhalte Dritter werden als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.",
+      "OWN_PAGES_TITLE": "Inhalt der eigenen Seiten",
+      "OWN_PAGES_TEXT": "Der Betreiber der Website, HiGHmed e.V., übernimmt keine Gewähr für die Aktualität, Vollständigkeit oder Qualität der bereitgestellten Inhalte. Alle kostenfreien Angebote sind unverbindlich. Die Redaktion behält es sich vor, jederzeit ohne vorherige Ankündigung das Angebot zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung einzustellen.",
+      "LINKS_TITLE": "Links auf die Websites Dritter",
+      "LINKS_TEXT1": "Der Betreiber der Website, HiGHmed e.V., ist als Inhaltsanbieter nach § 7 Absatz 1 Telemediengesetz für die “eigenen Inhalte”, die sie zur Nutzung bereithält, nach den allgemeinen Gesetzen verantwortlich. Von diesen eigenen Inhalten sind Querverweise (“Links”) auf die von anderen Anbietern bereitgehaltenen Inhalte zu unterscheiden. Durch den Querverweis hält HiGHmed e.V. insofern “fremde Inhalte” zur Nutzung bereit, die in dieser Weise gekennzeichnet sind.",
+      "LINKS_TEXT2": "Die veröffentlichten Links werden mit größtmöglicher Sorgfalt recherchiert und zusammengestellt. Der Betreiber der Website, HiGHmed e.V., hat bei der erstmaligen Verknüpfung zwar den fremden Inhalt daraufhin überprüft, ob durch ihn eine mögliche zivilrechtliche oder strafrechtliche Verantwortlichkeit ausgelöst wird. Er überprüft aber die Inhalte, auf die sie in ihrem Angebot verweist, nicht ständig auf Veränderungen, die eine Verantwortlichkeit neu begründen könnten. Wenn er feststellt oder von anderen darauf hingewiesen wird, dass ein konkretes Angebot, zu dem sie einen Link bereitgestellt hat, eine zivil- oder strafrechtliche Verantwortlichkeit auslöst, wird er den Verweis auf dieses Angebot aufheben. Für fremde Hinweise ist HiGHmed e.V. nur dann verantwortlich, wenn er von (potentiell) rechtswidrigem bzw. strafbarem Inhalt positive Kenntnis hat, und es technisch möglich und zumutbar ist, deren Nutzung zu verhindern.",
+      "PUBLIC_KEYS_TITLE": "Public Keys"
+    },
     "PUBLIC_KEY_LINKS": {
       "INTRO": "Hier finden Sie die Links zu den jeweiligen Öffentlichen Schlüsseln für die sichere Übertragung der Daten an Prod, bzw. Pre-Prod.",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
