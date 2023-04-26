@@ -24,13 +24,13 @@ import { Subscription } from 'rxjs'
 export class ImprintComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   constructor(private translateService: TranslateService) {}
-  profs: any[]
+  profs: string[] = []
 
   ngOnInit(): void {
-    this.profs = this.translateService?.instant('IMPRINT.TEXTS.PROFS')
+    this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((newLang) => {
-        this.profs = this.translateService?.instant('IMPRINT.TEXTS.PROFS')
+        this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
       })
     )
   }

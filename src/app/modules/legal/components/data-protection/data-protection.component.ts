@@ -22,14 +22,14 @@ import { Subscription } from 'rxjs'
   templateUrl: './data-protection.component.html',
 })
 export class DataProtectionComponent implements OnInit, OnDestroy {
-  private subscriptions = new Subscription()
+  public subscriptions = new Subscription()
   constructor(private translateService: TranslateService) {}
-  generalDataList: any[]
-  registrationList: any[]
-  cookiesList: any[]
-  recipientsList: any[]
-  rightsList: any[]
-  decisionList: any[]
+  generalDataList: string[]
+  registrationList: string[]
+  cookiesList: string[]
+  recipientsList: string[]
+  rightsList: string[]
+  decisionList: string[]
 
   ngOnInit(): void {
     this.generalDataList = this.translateService?.instant('DATA_PROTECTION.GENERAL_DATA_LIST')

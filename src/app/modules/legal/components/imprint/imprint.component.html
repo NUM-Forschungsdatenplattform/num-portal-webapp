@@ -30,9 +30,7 @@
   {{ 'IMPRINT.TEXTS.REPRESENTATIVE_DESCRIPTION' | translate }}
 </p>
 
-<p>
-  <span *ngFor="let prof of profs"> {{ prof.TEXT }}<br /> </span>
-</p>
+<p *ngFor="let prof of profs">{{ prof }}</p>
 
 <div class="mat-body-strong">{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TITLE' | translate }}</div>
 <p>{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TEXT' | translate }}</p>

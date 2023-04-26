@@ -781,21 +781,11 @@
       "REPRESENTATIVE_TITLE": "Vertretungsberechtigter",
       "REPRESENTATIVE_DESCRIPTION": "Der HiGHmed e.V. ist ein im Vereinsregister eingetragener Verein und wird gesetzlich vertreten durch den Vorstand:",
       "PROFS": [
-        {
-          "TEXT": "Prof. Dr. Roland Eils (Vorsitzender, einzelvertretungsberechtigt)"
-        },
-        {
-          "TEXT": "Prof. Dr. Michael Marschollek (stv. Vorsitzender)"
-        },
-        {
-          "TEXT": "Prof. Dr. Björn Bergh"
-        },
-        {
-          "TEXT": "Prof. Dr. Ramin Yahyapour"
-        },
-        {
-          "TEXT": "Dr.-Ing. Steffen Ortmann"
-        }
+        "Prof. Dr. Roland Eils (Vorsitzender, einzelvertretungsberechtigt)",
+        "Prof. Dr. Michael Marschollek (stv. Vorsitzender)",
+        "Prof. Dr. Björn Bergh",
+        "Prof. Dr. Ramin Yahyapour",
+        "Dr.-Ing. Steffen Ortmann"
       ],
       "REGISTRATION_NUMBER_TITLE": "Registernummer",
       "REGISTRATION_NUMBER_TEXT": "VR 702758, Amtsgericht Mannheim – Registergericht –",

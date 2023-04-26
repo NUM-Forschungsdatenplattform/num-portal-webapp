@@ -777,24 +777,14 @@
       "REPRESENTATIVE_TITLE": "Authorized representative",
       "REPRESENTATIVE_DESCRIPTION": "HiGHmed e.V. is a registered association and legally represented by the management board",
       "PROFS": [
-        {
-          "TEXT": "Prof. Dr. Roland Eils (Chairman, with sole power of representation)"
-        },
-        {
-          "TEXT": "Prof. Dr. Michael Marschollek (deputy chairman)"
-        },
-        {
-          "TEXT": "Prof. Dr. Björn Bergh"
-        },
-        {
-          "TEXT": "Prof. Dr. Ramin Yahyapour"
-        },
-        {
-          "TEXT": "Dr.-Ing. Steffen Ortmann"
-        }
+        "Prof. Dr. Roland Eils (Chairman, with sole power of representation)",
+        "Prof. Dr. Michael Marschollek (deputy chairman)",
+        "Prof. Dr. Björn Bergh",
+        "Prof. Dr. Ramin Yahyapour",
+        "Dr.-Ing. Steffen Ortmann"
       ],
       "REGISTRATION_NUMBER_TITLE": "Registration number",
-      "REGISTRATION_NUMBER_TEXT": "VR 702758, Amtsgericht Mannheim – Vereinsregister -",
+      "REGISTRATION_NUMBER_TEXT": "VR 702758, Amtsgericht Mannheim - Vereinsregister -",
       "VAT_TITLE": "VAT number",
       "VAT_TEXT": "VAT number not issued",
       "JOURNALISTIC_EDITORIAL_TITLE": "Responsible for journalistic-editorial offers within the meaning of § 55 Abs.2 RStV",
