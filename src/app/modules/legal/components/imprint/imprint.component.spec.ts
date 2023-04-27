@@ -33,22 +33,22 @@ describe('ImprintComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  //   it('should set the profs property with the translated texts', () => {
-  //     const translateService = TestBed.inject(TranslateService);
-  //     spyOn(translateService, 'instant').and.returnValue(['Translated Texts']);
-  //     component.ngOnInit();
-  //     expect(component.profs).toEqual(['Translated Texts']);
-  //   });
+  it('should set the profs property with the translated texts', () => {
+    const translateService = TestBed.inject(TranslateService)
+    jest.spyOn(translateService, 'instant').mockReturnValue(['Translated Texts'])
+    component.ngOnInit()
+    expect(component.profs).toEqual(['Translated Texts'])
+  })
 
-  //   it('should update the profs property when the language changes', () => {
-  //     const translateService = TestBed.inject(TranslateService);
-  //     spyOn(translateService, 'instant').and.returnValue(['Translated Texts']);
-  //     component.ngOnInit();
-  //     expect(component.profs).toEqual(['Translated Texts']);
+  it('should update the profs property when the language changes', () => {
+    const translateService = TestBed.inject(TranslateService)
+    jest.spyOn(translateService, 'instant').mockReturnValue(['Translated Texts'])
+    component.ngOnInit()
+    expect(component.profs).toEqual(['Translated Texts'])
 
-  //     spyOn(translateService.onLangChange, 'subscribe').and.callThrough();
-  //     translateService.onLangChange.next({ lang: 'en', translations: {} } as LangChangeEvent);
-  //     expect(translateService.instant).toHaveBeenCalledWith('IMPRINT.TEXTS.PROFS');
-  //     expect(component.profs).toEqual(['Translated Texts']);
-  //   });
+    jest.spyOn(translateService.onLangChange, 'subscribe')
+    translateService.onLangChange.next({ lang: 'en', translations: {} } as LangChangeEvent)
+    expect(translateService.instant).toHaveBeenCalledWith('IMPRINT.TEXTS.PROFS')
+    expect(component.profs).toEqual(['Translated Texts'])
+  })
 })
