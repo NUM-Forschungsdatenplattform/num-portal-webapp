@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { ImprintComponent } from './imprint.component'
 import { LangChangeEvent } from '@ngx-translate/core'
+import { Injector } from '@angular/core'
 
 describe('ImprintComponent', () => {
   let component: ImprintComponent
@@ -16,6 +17,9 @@ describe('ImprintComponent', () => {
   })
 
   beforeEach(() => {
+    const injector: Injector = getTestBed()
+    const translate: TranslateService = injector.get(TranslateService)
+    jest.spyOn(translate, 'instant').mockImplementation(() => [])
     fixture = TestBed.createComponent(ImprintComponent)
     component = fixture.componentInstance
     fixture.detectChanges()

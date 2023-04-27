@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DataProtectionComponent } from './data-protection.component'
 import { LangChangeEvent } from '@ngx-translate/core'
+import { Injector } from '@angular/core'
 
 describe('DataProtectionComponent', () => {
   let component: DataProtectionComponent
@@ -17,6 +18,9 @@ describe('DataProtectionComponent', () => {
   })
 
   beforeEach(() => {
+    const injector: Injector = getTestBed()
+    const translate: TranslateService = injector.get(TranslateService)
+    jest.spyOn(translate, 'instant').mockImplementation(() => [])
     fixture = TestBed.createComponent(DataProtectionComponent)
     component = fixture.componentInstance
     translateService = TestBed.inject(TranslateService)
@@ -32,7 +36,7 @@ describe('DataProtectionComponent', () => {
   })
 
   it('should initialize the component with the translated texts', () => {
-    spyOn(translateService, 'instant').and.returnValue('translated text')
+    jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
 
     component.ngOnInit()
 
@@ -45,7 +49,7 @@ describe('DataProtectionComponent', () => {
   })
 
   it('should update the component with the translated texts when the language changes', () => {
-    spyOn(translateService, 'instant').and.returnValue('translated text')
+    jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
     component.ngOnInit()
 
     translateService.onLangChange.next({ lang: 'en', translations: {} } as LangChangeEvent)
@@ -59,7 +63,7 @@ describe('DataProtectionComponent', () => {
   })
 
   it('should unsubscribe from all subscriptions when the component is destroyed', () => {
-    spyOn(component.subscriptions, 'unsubscribe')
+    jest.spyOn(component.subscriptions, 'unsubscribe')
 
     component.ngOnDestroy()
 
