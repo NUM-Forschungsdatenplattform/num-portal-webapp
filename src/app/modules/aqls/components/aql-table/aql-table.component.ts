@@ -33,10 +33,8 @@ import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
-import { compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { TranslateService } from '@ngx-translate/core'
-import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-category-id-name-map.interface'
 
@@ -131,7 +129,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     )
 
     this.lang = this.translateService.currentLang || 'en'
-    this.aqlCategoryService.getAll().subscribe()
   }
 
   handleSortChangeTable(sort: Sort): void {

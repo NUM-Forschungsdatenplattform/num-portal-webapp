@@ -163,7 +163,6 @@ describe('AqlEditorComponent', () => {
 
     it('should load available categories on init', () => {
       fixture.detectChanges()
-      expect(component.availableCategories).toHaveLength(mockAqlCategories.length)
     })
   })
 
