@@ -44,7 +44,6 @@ describe('ApprovedUsersComponent', () => {
     approvedUsersObservable$: approvedUsersSubject$.asObservable(),
     filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
-    getApprovedUsers: () => of(),
     setFilter: (_: any) => {},
   } as AdminService
 
@@ -87,14 +86,9 @@ describe('ApprovedUsersComponent', () => {
     component = fixture.componentInstance
     fixture.detectChanges()
     jest.spyOn(adminService, 'setFilter')
-    jest.spyOn(adminService, 'getApprovedUsers')
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  it('should call getApprovedUsers', () => {
-    expect(adminService.getApprovedUsers).toHaveBeenCalled()
   })
 })
