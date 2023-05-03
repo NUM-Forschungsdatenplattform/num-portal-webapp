@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
-import { ProjectService } from 'src/app/core/services/project/project.service'
+import { Component } from '@angular/core'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 
 @Component({
@@ -23,10 +22,7 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent {
   availableRoles = AvailableRoles
-  constructor(private projectService: ProjectService) {}
-  ngOnInit(): void {
-    this.projectService.getAll().subscribe()
-  }
+  constructor() {}
 }
