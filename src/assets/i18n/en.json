@@ -537,13 +537,13 @@
   "DATA_PROTECTION": {
     "TITLE": "Data protection information",
     "DESCRIPTION": "The entity responsible for the operation of this website takes the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with applicable data protection regulations.",
-    "RESPONSIBLE_ENTITY_TITLE": "1. note regarding the responsible entity",
+    "RESPONSIBLE_ENTITY_TITLE": "1. Note regarding the responsible entity",
     "RESPONSIBLE_ENTITY_TEXT": "Responsible for data processing on this website is: <br/> HiGHmed e.V. <br/> Langer Anger 7/9 <br/> 69115 Heidelberg",
     "OFFICER_TITLE": "2. Data Protection Officer",
     "OFFICER_DESCRIPTION": "If you have any questions about the processing of your personal data, as well as your rights regarding data protection, please contact our data protection officer:",
     "OFFICER_TEXT1": "Dirk Seeliger <br/> expertree consulting GmbH <br/> Friedensallee 110 <br/> 63263 Neu-Isenburg",
     "OFFICER_TEXT2": "E-Mail: <a href=\"mailto:ds-service@expertree.de \">ds-service@expertree.de</a> <br/> Phone: 069 / 6102 8150 556 Expertree",
-    "GENERAL_DATA_TITLE": "General data and information when visiting the website",
+    "GENERAL_DATA_TITLE": "3. General data and information when visiting the website",
     "GENERAL_DATA_DESCRIPTION": "The website operated by HiGHmed e.V. collects a series of general data and information with each call of the website. This general data and information is stored in the log files of the server and automatically transmitted to HiGHmed e.V. by your browser. The following data may be collected:",
     "GENERAL_DATA_LIST": [
       {
