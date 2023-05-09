@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit } from '@angular/core'
-import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
-import { AqlService } from 'src/app/core/services/aql/aql.service'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'num-aqls',
