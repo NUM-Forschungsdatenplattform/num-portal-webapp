@@ -108,16 +108,7 @@ export class ProjectService {
   }
 
   getAll(): Observable<IProjectApi[]> {
-    return this.httpClient.get<IProjectApi[]>(this.baseUrl).pipe(
-      tap((projects) => {
-        this.projects = projects
-        this.projectSubject$.next(projects)
-        if (this.projects.length) {
-          this.setFilter(this.filterSet)
-        }
-      }),
-      catchError(this.handleError)
-    )
+    return of([])
   }
 
   get(id: number): Observable<IProjectApi> {
