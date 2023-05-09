@@ -37,7 +37,6 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setLastFilter()
-    this.subscriptions.add(this.adminService.getApprovedUsers().subscribe())
   }
 
   setLastFilter(): void {

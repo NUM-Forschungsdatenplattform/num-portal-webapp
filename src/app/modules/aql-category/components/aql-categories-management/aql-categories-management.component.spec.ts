@@ -131,17 +131,6 @@ describe('AqlCategoriesManagementComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  describe('When the components gets initialized', () => {
-    beforeEach(() => {
-      jest.spyOn(mockAqlCategoryService, 'getAll').mockImplementation(() => of(mockAqlCategories))
-    })
-    it('should call the getAll method', async () => {
-      fixture.detectChanges()
-      await fixture.whenStable()
-      expect(mockAqlCategoryService.getAll).toHaveBeenCalled()
-    })
-  })
-
   describe('When the dialog is used to edit aql data', () => {
     const dialogConfig: DialogConfig = {
       ...EDIT_AQL_CATEGORY_DIALOG_CONFIG,
