@@ -24,6 +24,7 @@ import { FilterTableComponent } from './filter-table.component'
 import { MatTableDataSource } from '@angular/material/table'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { PipesModule } from '../../pipes/pipes.module'
+import { SimpleChanges } from '@angular/core'
 
 describe('FilterTableComponent', () => {
   let component: FilterTableComponent<any>
@@ -59,6 +60,21 @@ describe('FilterTableComponent', () => {
     expect(component).toBeTruthy()
   })
 
+  it('should set the lookupSelectedItems map with the correct values', () => {
+    const selectedItem1 = { id: 1, name: 'John Doe' }
+    const selectedItem2 = { id: 2, name: 'Jane Smith' }
+    component.selectedItems = [selectedItem1, selectedItem2]
+    component.identifierName = 'id'
+    component.lookupSelectedItems = new Map<number, boolean>()
+    component.ngOnInit()
+    expect(component.lookupSelectedItems).toEqual(
+      new Map([
+        [1, true],
+        [2, true],
+      ])
+    )
+  })
+
   describe('When select button for a row is clicked', () => {
     beforeEach(() => {
       jest.spyOn(component.selectedItemsChange, 'emit')
@@ -70,6 +86,54 @@ describe('FilterTableComponent', () => {
 
     it('should item isSelected to true', () => {
       expect(component.selectedItemsChange.emit).toHaveBeenCalledWith([mockUsers[0]])
+    })
+  })
+
+  describe('handleRowClick', () => {
+    it('should emit the row data', () => {
+      const row = { id: 1, name: 'John Doe' }
+      component.rowClick.subscribe((rowData) => {
+        expect(rowData).toEqual(row)
+      })
+      component.handleRowClick(row)
+    })
+  })
+
+  describe('handleDeselectClick', () => {
+    it('should emit the updated selected items list', () => {
+      const row = { id: 1, name: 'John Doe' }
+      component.selectedItems = [
+        { id: 1, name: 'John Doe' },
+        { id: 2, name: 'Jane Smith' },
+      ]
+      const event = new Event('click')
+      component.selectedItems = component.handleDeselectClick(event, row)
+      expect(component.selectedItems).toEqual([{ id: 2, name: 'Jane Smith' }])
+    })
+  })
+
+  describe('ngOnChanges', () => {
+    it('should update the lookupSelectedItems map', () => {
+      const changes: SimpleChanges = {
+        selectedItems: {
+          currentValue: [
+            { id: 1, name: 'John Doe' },
+            { id: 2, name: 'Jane Smith' },
+          ],
+          previousValue: '',
+          firstChange: true,
+          isFirstChange: () => {
+            return true
+          },
+        },
+      }
+      component.ngOnChanges(changes)
+      expect(component.lookupSelectedItems).toEqual(
+        new Map([
+          [1, true],
+          [2, true],
+        ])
+      )
     })
   })
 })
