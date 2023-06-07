@@ -184,21 +184,6 @@ describe('DialogEditUserDetailsComponent', () => {
     })
   })
 
-  describe('When the user is approved and the dialog is confirmed', () => {
-    beforeEach(() => {
-      component.isApproval = true
-      component.handleDialogConfirm()
-      fixture.detectChanges()
-    })
-
-    it('should call approveUser methods', () => {
-      expect(adminService.approveUser).toHaveBeenCalledWith(mockUser.id)
-    })
-    it('should call getUnapprovedUsers method', () => {
-      expect(adminService.getUnapprovedUsers).toHaveBeenCalled()
-    })
-  })
-
   describe('When the editing of the user was successful', () => {
     beforeEach(() => {
       jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of(mockUser.roles))

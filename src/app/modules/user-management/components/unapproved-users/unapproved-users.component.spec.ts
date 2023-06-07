@@ -32,9 +32,7 @@ describe('UnapprovedUsersComponent', () => {
   const unapprovedUsersSubject$ = new Subject<IUser[]>()
   const adminService = {
     approvedUsersObservable$: approvedUsersSubject$.asObservable(),
-    getApprovedUsers: () => of(),
     unapprovedUsersObservable$: unapprovedUsersSubject$.asObservable(),
-    getUnapprovedUsers: () => of(),
   } as AdminService
 
   @Component({ selector: 'num-unapproved-users-table', template: '' })
@@ -57,14 +55,9 @@ describe('UnapprovedUsersComponent', () => {
     fixture = TestBed.createComponent(UnapprovedUsersComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
-    jest.spyOn(adminService, 'getUnapprovedUsers')
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-
-  it('should call getUnapprovedUsers', () => {
-    expect(adminService.getUnapprovedUsers).toHaveBeenCalled()
   })
 })

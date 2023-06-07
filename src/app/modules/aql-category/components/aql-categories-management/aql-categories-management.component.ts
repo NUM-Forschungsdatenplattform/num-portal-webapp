@@ -35,7 +35,7 @@ import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categor
   templateUrl: './aql-categories-management.component.html',
   styleUrls: ['./aql-categories-management.component.scss'],
 })
-export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
+export class AqlCategoriesManagementComponent implements OnDestroy {
   availableRoles = AvailableRoles
 
   private subscriptions = new Subscription()
@@ -47,10 +47,6 @@ export class AqlCategoriesManagementComponent implements OnDestroy, OnInit {
     private dialogService: DialogService,
     private toast: ToastMessageService
   ) {}
-
-  ngOnInit(): void {
-    this.subscriptions.add(this.aqlCategoryService.getAll().subscribe())
-  }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()

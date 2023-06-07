@@ -17,6 +17,8 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
+import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core'
+import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
@@ -25,6 +27,9 @@ import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interfa
 import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
 import { ProfileService } from '../services/profile/profile.service'
 
+const TIME_BEFORE_START_IDLE = 1
+const TIME_TO_WAIT_IDLE = 3600
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,14 +37,22 @@ export class AuthService {
   private userInfo: IAuthUserInfo = { sub: undefined }
   private userInfoSubject$ = new BehaviorSubject(this.userInfo)
   public userInfoObservable$ = this.userInfoSubject$.asObservable()
+  public timedOut = false
+  public lastPing?: Date = null
 
   constructor(
     private oauthService: OAuthService,
     private profileService: ProfileService,
     private appConfig: AppConfigService,
     private httpClient: HttpClient,
-    private router: Router
-  ) {}
+    private router: Router,
+    public idle: Idle,
+    private keepAlive: Keepalive
+  ) {
+    if (this.isLoggedIn) {
+      this.initIdle()
+    }
+  }
 
   public initTokenHandling(): void {
     if (this.oauthService.state) {
@@ -52,6 +65,23 @@ export class AuthService {
         this.fetchUserInfo()
       }
     })
+  }
+
+  public initIdle(): void {
+    this.idle.setIdle(TIME_BEFORE_START_IDLE)
+    this.idle.setTimeout(TIME_TO_WAIT_IDLE)
+    this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES)
+    this.idle.onIdleEnd.subscribe(() => {
+      this.resetIdle()
+    })
+    this.idle.onTimeout.subscribe(() => {
+      this.timedOut = true
+      this.logout()
+    })
+
+    this.keepAlive.interval(TIME_TO_WAIT_IDLE)
+    this.keepAlive.onPing.subscribe(() => (this.lastPing = new Date()))
+    this.resetIdle()
   }
 
   public get isLoggedIn(): boolean {
@@ -67,7 +97,12 @@ export class AuthService {
     this.oauthService.logOut()
   }
 
-  private createUser(userId: string): Observable<any> {
+  public resetIdle(): void {
+    this.idle.watch()
+    this.timedOut = false
+  }
+
+  public createUser(userId: string): Observable<any> {
     const httpOptions = {
       responseType: 'text' as 'json',
     }
@@ -95,7 +130,13 @@ export class AuthService {
     }
 
     if (this.userInfo.sub !== userInfo?.info?.sub) {
-      await this.createUser(userInfo.info.sub).toPromise()
+      await this.createUser(userInfo.info.sub)
+        .toPromise()
+        .finally(() => {
+          if (!this.idle.isIdling()) {
+            this.initIdle()
+          }
+        })
     }
 
     this.userInfo = userInfo.info

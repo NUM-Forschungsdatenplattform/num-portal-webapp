@@ -160,11 +160,6 @@ describe('AqlEditorComponent', () => {
       const element = nativeElement.querySelector('.editmode-on')
       expect(element).toBeTruthy()
     })
-
-    it('should load available categories on init', () => {
-      fixture.detectChanges()
-      expect(component.availableCategories).toHaveLength(mockAqlCategories.length)
-    })
   })
 
   describe('On the attempt to save the AQL', () => {

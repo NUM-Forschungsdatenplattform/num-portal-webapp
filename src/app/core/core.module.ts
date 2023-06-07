@@ -22,9 +22,16 @@ import { GenericDialogComponent } from './components/generic-dialog/generic-dial
 import { LayoutModule } from '../layout/layout.module'
 import { SharedModule } from '../shared/shared.module'
 import { OAuthModule } from 'angular-oauth2-oidc'
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'
 
 @NgModule({
-  imports: [CommonModule, LayoutModule, SharedModule, OAuthModule.forRoot()],
+  imports: [
+    CommonModule,
+    LayoutModule,
+    SharedModule,
+    OAuthModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
+  ],
   providers: [AqlService, CohortService],
   declarations: [GenericDialogComponent],
 })

@@ -13,129 +13,67 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<h1>Impressum</h1>
+<h1>{{ 'IMPRINT.TEXTS.IMPRESSUM' | translate }}</h1>
 <p>
-  Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für den Betrieb der Website ist der HiGHmed e.V.
+  {{ 'IMPRINT.TEXTS.DESCRIPTION' | translate }}
 </p>
 
 <div class="num-margin-b-40"></div>
-<h2>Informationen i.S.d. § 5 TMG</h2>
+<h2>{{ 'IMPRINT.TEXTS.INFO_HEADER' | translate }}</h2>
 
-<p>
-  HiGHmed e.V:
-  <br />
-  Langer Anger 7/9
-  <br />
-  69115 Heidelberg
-  <br /><br />
-  E-Mail: geschaeftsstelle@highmed.org
-</p>
+<p [innerHtml]="'IMPRINT.TEXTS.INFO_CONTENT' | translate"></p>
 
 <div class="num-margin-b-40"></div>
-<h2>Vertretungsberechtigter</h2>
+<h2>{{ 'IMPRINT.TEXTS.REPRESENTATIVE_TITLE' | translate }}</h2>
 
 <p>
-  Der HiGHmed e.V. ist ein im Vereinsregister eingetragener Verein und wird gesetzlich vertreten
-  durch den Vorstand:
+  {{ 'IMPRINT.TEXTS.REPRESENTATIVE_DESCRIPTION' | translate }}
 </p>
 
-<p>
-  Prof. Dr. Roland Eils (Vorsitzender, einzelvertretungsberechtigt)<br />
-  Prof. Dr. Michael Marschollek (stv. Vorsitzender)<br />
-  Prof. Dr. Björn Bergh<br />
-  Prof. Dr. Ramin Yahyapour<br />
-  Dr.-Ing. Steffen Ortmann
-</p>
+<p *ngFor="let prof of profs">{{ prof }}</p>
 
-<div class="mat-body-strong">Registernummer</div>
-<p>VR 702758, Amtsgericht Mannheim – Registergericht –</p>
+<div class="mat-body-strong">{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TITLE' | translate }}</div>
+<p>{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TEXT' | translate }}</p>
 
-<div class="mat-body-strong">Umsatzsteuernummer</div>
-<p>Nicht erteilt</p>
+<div class="mat-body-strong">{{ 'IMPRINT.TEXTS.VAT_TITLE' | translate }}</div>
+<p>{{ 'IMPRINT.TEXTS.VAT_TEXT' | translate }}</p>
 
 <div class="num-margin-b-40"></div>
-<h2>Verantwortlicher für journalistisch-redaktionelle Angebote i. S. d. § 55 Abs.2 RStV</h2>
-<p>
-  HiGHmed e.V
-  <br />
-  Prof. Dr. Roland Eils
-  <br />
-  Langer Anger 7/9
-  <br />
-  69115 Heidelberg
-  <br />
-  <a href="mailto:geschaeftsstelle@highmed.org">geschaeftsstelle@highmed.org</a>
-</p>
+<h2>{{ 'IMPRINT.TEXTS.JOURNALISTIC_EDITORIAL_TITLE' | translate }}</h2>
+<p [innerHtml]="'IMPRINT.TEXTS.JOURNALISTIC_EDITORIAL_TEXT' | translate"></p>
 <div class="num-margin-b-20"></div>
-<h3>Kontakt</h3>
+<h3>{{ 'IMPRINT.TEXTS.CONTACT_TITLE' | translate }}</h3>
+
+<p [innerHtml]="'IMPRINT.TEXTS.CONTACT_TEXT' | translate"></p>
+
+<div class="num-margin-b-40"></div>
+<h2>{{ 'IMPRINT.TEXTS.DISCLAIMER_TITLE' | translate }}</h2>
+<p>
+  {{ 'IMPRINT.TEXTS.DISCLAIMER_TEXT1' | translate }}
+</p>
 
 <p>
-  HiGHmed e.V
-  <br />
-  Langer Anger 7/9
-  <br />
-  69115 Heidelberg
-  <br />
-  E-Mail: <a href="mailto:geschaeftsstelle@highmed.org">geschaeftsstelle@highmed.org</a>
-  <br />
-  <a href="https://www.highmed.org">https://www.highmed.org</a>
+  {{ 'IMPRINT.TEXTS.DISCLAIMER_TEXT2' | translate }}
 </p>
 
 <div class="num-margin-b-40"></div>
-<h2>Haftungsausschluss und Copyright </h2>
+<h2>{{ 'IMPRINT.TEXTS.OWN_PAGES_TITLE' | translate }}</h2>
 <p>
-  Die durch HiGHmed e.V. betriebene Website bietet Ihnen eine Vielzahl von Informationen, die
-  regelmäßig aktualisiert werden. Sie können unsere Informationen speichern und Verknüpfungen zu
-  unseren Seiten einrichten. Bei Verlinkung von kommerziellen Anbietern muss die verlinkte Website
-  alleiniger Bestandteil des Navigator-Fensters sein. Die Informationen dürfen nicht verändert oder
-  verfälscht werden.
-</p>
-
-<p>
-  Die auf dieser Webseite veröffentlichten Inhalte, Werke und bereitgestellten Informationen
-  unterliegen dem deutschen Urheberrecht und Leistungsschutzrecht. Eine Vervielfältigung,
-  Bearbeitung oder Verwendung in anderen gedruckten Publikationen ist nur nach vorheriger
-  Genehmigung des Autors oder Rechteinhabers gestattet. Weiterhin können Bilder, Grafiken, Text-
-  oder sonstige Dateien dem Urheberrecht Dritter unterliegen.  Inhalte Dritter werden als solche
-  gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten
-  wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige
-  Inhalte umgehend entfernen.
+  {{ 'IMPRINT.TEXTS.OWN_PAGES_TEXT' | translate }}
 </p>
 
 <div class="num-margin-b-40"></div>
-<h2>Inhalt der eigenen Seiten</h2>
+<h2>{{ 'IMPRINT.TEXTS.LINKS_TITLE' | translate }}</h2>
 <p>
-  Der Betreiber der Website, HiGHmed e.V., übernimmt keine Gewähr für die Aktualität,
-  Vollständigkeit oder Qualität der bereitgestellten Inhalte. Alle kostenfreien Angebote sind
-  unverbindlich. Die Redaktion behält es sich vor, jederzeit ohne vorherige Ankündigung das Angebot
-  zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung einzustellen.
+  {{ 'IMPRINT.TEXTS.LINKS_TEXT1' | translate }}
+</p>
+
+<p>
+  {{ 'IMPRINT.TEXTS.LINKS_TEXT2' | translate }}
 </p>
 
 <div class="num-margin-b-40"></div>
-<h2>Links auf die Websites Dritter</h2>
-<p>
-  Der Betreiber der Website, HiGHmed e.V., ist als Inhaltsanbieter nach § 7 Absatz 1
-  Telemediengesetz für die “eigenen Inhalte”, die sie zur Nutzung bereithält, nach den allgemeinen
-  Gesetzen verantwortlich. Von diesen eigenen Inhalten sind Querverweise (“Links”) auf die von
-  anderen Anbietern bereitgehaltenen Inhalte zu unterscheiden. Durch den Querverweis hält HiGHmed
-  e.V. insofern “fremde Inhalte” zur Nutzung bereit, die in dieser Weise gekennzeichnet sind.
-</p>
-
-<p>
-  Die veröffentlichten Links werden mit größtmöglicher Sorgfalt recherchiert und zusammengestellt.
-  Der Betreiber der Website, HiGHmed e.V., hat bei der erstmaligen Verknüpfung zwar den fremden
-  Inhalt daraufhin überprüft, ob durch ihn eine mögliche zivilrechtliche oder strafrechtliche
-  Verantwortlichkeit ausgelöst wird. Er überprüft aber die Inhalte, auf die sie in ihrem Angebot
-  verweist, nicht ständig auf Veränderungen, die eine Verantwortlichkeit neu begründen könnten. Wenn
-  er feststellt oder von anderen darauf hingewiesen wird, dass ein konkretes Angebot, zu dem sie
-  einen Link bereitgestellt hat, eine zivil- oder strafrechtliche Verantwortlichkeit auslöst, wird
-  er den Verweis auf dieses Angebot aufheben. Für fremde Hinweise ist HiGHmed e.V. nur dann
-  verantwortlich, wenn er von (potentiell) rechtswidrigem bzw. strafbarem Inhalt positive Kenntnis
-  hat, und es technisch möglich und zumutbar ist, deren Nutzung zu verhindern.
-</p>
-
-<div class="num-margin-b-40"></div>
-<h2>Public Keys</h2>
+<h2>{{ 'IMPRINT.TEXTS.PUBLIC_KEYS_TITLE' | translate }}</h2>
 
 <p>{{ 'IMPRINT.PUBLIC_KEY_LINKS.INTRO' | translate }}</p>
 <p>
@@ -154,5 +92,5 @@
     >{{ 'IMPRINT.PUBLIC_KEY_LINKS.LINK_PROD_DESCRIPTION' | translate }}</a
   >
 </p>
-<p>Stand: 2023-03-09</p>
+<p>Stand: 2023-04-26</p>
 <div class="num-margin-b-40"></div>

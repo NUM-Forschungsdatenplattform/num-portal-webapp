@@ -60,13 +60,14 @@ export class FilterTableComponent<T> implements OnInit, OnChanges {
     this.rowClick.emit(row)
   }
 
-  handleDeselectClick(event: Event, row: any): void {
+  handleDeselectClick(event: Event, row: any): any[] {
     event.stopPropagation()
     const identifier = row[this.identifierName]
     const result = this.selectedItems.filter(
       (selectedItem) => selectedItem[this.identifierName] !== identifier
     )
     this.selectedItemsChange.emit(result)
+    return result
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -534,9 +534,275 @@
     "PATIENT_COUNT_INFO": "Total available datasets: {{amount}}",
     "PATIENT_FILTER_DESCRIPTION": "Select one or more criteria from the list to define the basis of the new cohort."
   },
+  "DATA_PROTECTION": {
+    "TITLE": "Data protection information",
+    "DESCRIPTION": "The entity responsible for the operation of this website takes the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with applicable data protection regulations.",
+    "RESPONSIBLE_ENTITY_TITLE": "1. Note regarding the responsible entity",
+    "RESPONSIBLE_ENTITY_TEXT": "Responsible for data processing on this website is: <br/> HiGHmed e.V. <br/> Langer Anger 7/9 <br/> 69115 Heidelberg",
+    "OFFICER_TITLE": "2. Data Protection Officer",
+    "OFFICER_DESCRIPTION": "If you have any questions about the processing of your personal data, as well as your rights regarding data protection, please contact our data protection officer:",
+    "OFFICER_TEXT1": "Dirk Seeliger <br/> expertree consulting GmbH <br/> Friedensallee 110 <br/> 63263 Neu-Isenburg",
+    "OFFICER_TEXT2": "E-Mail: <a href=\"mailto:ds-service@expertree.de \">ds-service@expertree.de</a> <br/> Phone: 069 / 6102 8150 556 Expertree",
+    "GENERAL_DATA_TITLE": "3. General data and information when visiting the website",
+    "GENERAL_DATA_DESCRIPTION": "The website operated by HiGHmed e.V. collects a series of general data and information with each call of the website. This general data and information is stored in the log files of the server and automatically transmitted to HiGHmed e.V. by your browser. The following data may be collected:",
+    "GENERAL_DATA_LIST": [
+      {
+        "TEXT": "IP address;"
+      },
+      {
+        "TEXT": "Date and time of access to this website;"
+      },
+      {
+        "TEXT": "Time zone difference to Greenwich Mean Time (GMT);"
+      },
+      {
+        "TEXT": "Content of the request (specific page);"
+      },
+      {
+        "TEXT": "amount of data transferred in each case;"
+      },
+      {
+        "TEXT": "Website from which the request came;"
+      },
+      {
+        "TEXT": "Browser type;"
+      },
+      {
+        "TEXT": "Operating system and its interface;"
+      },
+      {
+        "TEXT": "language and version of the browser software"
+      },
+      {
+        "TEXT": "other similar data and information that serve to avert danger in the event of attacks on our information technology systems."
+      }
+    ],
+    "GENERAL_DATA_TEXT1": "The basis for the data processing is our legitimate interest pursuant to Art. 6 (1) lit. f DSGVO, more specifically the provision of a functional website. This is also the purpose of processing the personal data shown above. The data will be deleted as soon as it is no longer required to serve the purpose for which it was collected. In the case of the collection of data for the provision of the website, this is the case when the respective session has ended. In the case of storage of data in log files, this is the case after ninety days at the latest. Storage beyond this period is possible in an anonymized form. In this case, the IP addresses are deleted or alienated, so that an assignment of the calling client is no longer possible.",
+    "GENERAL_DATA_TEXT2": "The provision of data is neither legally nor contractually required. However, the collection of data for the provision of the website and the storage of the data in log files is mandatory for the operation of the website. Failure to provide personal data may result in disadvantages for you. For example, this could result in you not being able to receive or use our services (e.g. access to the website may not be possible). However, unless otherwise stated, you will not suffer any legal disadvantages from the non-provision.",
+    "REGISTRATION_TITLE": "4. Registration for the internal area",
+    "REGISTRATION_DESCRIPTION": "If you have a user account, you can enter your username and password in the input fields of this website and log in to the internal area. The following can be entered:",
+    "REGISTRATION_LIST": [
+      {
+        "TEXT": "First name;"
+      },
+      {
+        "TEXT": "Last name;"
+      },
+      {
+        "TEXT": "Email address;"
+      },
+      {
+        "TEXT": "Password;"
+      },
+      {
+        "TEXT": "Role;"
+      },
+      {
+        "TEXT": "Department(s);"
+      },
+      {
+        "TEXT": "Other comments"
+      },
+      {
+        "TEXT": "Agreement to the terms and conditions."
+      }
+    ],
+    "REGISTRATION_TEXT1": "If you have forgotten your password, you can press the \"Forgot password\" button. In this case, an automatic email will be sent to the email address you provided. Please follow the instructions of the email to reset your password. The processing of the above-mentioned data for registration and password reset is based on a gratuitous user relationship for this website by HiGHmed e.V. (Art. 6 para. 1 lit. b DSGVO).",
+    "REGISTRATION_TEXT2": "The provision of your personal data is not required by law. However, the collection of your personal data to register to the internal area is mandatory if you wish to access the internal area of this website. Failure to provide personal data will result in you not being able to receive or use our services in the registered user area (i.e. you will not be able to get beyond the login area). However, unless otherwise stated, you will not suffer any legal disadvantages as a result of not providing such data.",
+    "REGISTRATION_TEXT3": "We delete your login data as soon as you give up your user account with us. Premature deletion of your data is only possible insofar as contractual or legal obligations do not prevent deletion.",
+    "CONTACT_TITLE": "5. Contact possibility",
+    "CONTACT_TEXT1": "If you send us inquiries, the contact data you provide will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. It is up to you which contact data you enter,It is not mandatory but you must provide at least one contact option (address, telephone or e-mail) so that we can process your request. We will not pass on the data you have entered without your consent. If this is planned, we will ask for your consent beforehand.",
+    "CONTACT_TEXT2": "The legal basis for processing the data is our legitimate interest in responding to your request pursuant to Art. 6 (1) lit. f DSGVO. If your contact aims at the conclusion of a contract, the additional legal basis for the processing is Art. 6 (1) lit. b DSGVO. We delete your personal data as soon as we have fully processed your request. This is usually the case at the end of the conversation with you, unless we are obliged to keep it longer to comply with our legal obligations.",
+    "CONTACT_TEXT3": "The provision of personal data is not required by law or contract. If you do not provide your data, we cannot (continue) the conversation with you.",
+    "COOKIES_TITLE": "6. Cookies",
+    "COOKIES_TEXT1": "This website uses cookies. Cookies do not cause any damage to your computer and do not contain viruses. Cookies make our service more user-friendly, effective and secure. Cookies are small text files that are stored by your browser.",
+    "COOKIES_TEXT2": "Cookies are required on the website to retain login information so that you do not have to log in again on each individual page. Cookies also store the language setting you choose.",
+    "COOKIES_TEXT3": "We use the following types of cookies:",
+    "COOKIES_LIST": [
+      {
+        "TEXT": "Login Cookie"
+      },
+      {
+        "TEXT": "Local Cookie"
+      }
+    ],
+    "COOKIES_TEXT4": "All of the cookies we use are so-called \"session cookies\". They are automatically deleted after the end of your visit. ",
+    "COOKIES_TEXT5": "You can set your browser so that you are informed about the setting of cookies and allow cookies only in individual cases, exclude the acceptance of cookies for certain cases or in general, as well as activate the automatic deletion of cookies when closing the browser. If cookies are deactivated, the functionality of this website may be limited. Cookies that are required to carry out the electronic communication process or to provide the website are stored on the basis of Art. 6 (1) lit. f DSGVO. We have a legitimate interest in storing cookies for the technically error-free provision of our services. We use the data collected by cookies for as long as they are required for the respective purpose mentioned.",
+    "RECIPIENTS": {
+      "TITLE": "7. Recipients of personal data",
+      "DESCRIPTION": "We will only share your personal data with service providers and other third parties in accordance with applicable data protection laws.",
+      "PART_A": {
+        "TITLE": "a. Processor",
+        "SUBTITLE1": "Operations",
+        "TEXT1": "Data Center of GWDG <br/> GWDG - Gesellschaft für wissenschaftliche <br/> Datenverarbeitung mbH Göttingen <br/> Am Fassberg 11, 37077 Göttingen <br/> E-Mail: <a href=\"mailto:piotr.kasprzak@gwdg.de\">piotr.kasprzak@gwdg.de</a> <br/> www: <a href=\"https://www.gwdg.de\">https://www.gwdg.de</a>",
+        "SUBTITLE2": "Administration Platform",
+        "TEXT2": "vitagroup health intelligence GmbH <br/> Hamburger Str. 273b <br/> 38114 Braunschweig <br/> E-Mail: <a href=\"mailto:itos@vitagroup.ag\">itos@vitagroup.ag</a> <br/> www: <a href=\"https://www.vitagroup.ag\">https://www.vitagroup.ag</a>"
+      },
+      "PART_B": {
+        "TITLE": "b. Third parties",
+        "DESCRIPTION": "In addition, we share your personal data,",
+        "RECIPIENTS_LIST": [
+          {
+            "TEXT": "if we are required to do so by law or court order,"
+          },
+          {
+            "TEXT": "to law enforcement or other government authorities; or"
+          },
+          {
+            "TEXT": "when we believe disclosure is necessary or appropriate to prevent physical harm or financial loss, or in connection with an investigation of suspected or actual fraudulent or illegal activity."
+          }
+        ]
+      }
+    },
+    "DATA_TRANSFER_TITLE": "8. No data transfer to third countries",
+    "DATA_TRANSFER_DESCRIPTION": "No personal data is transferred to countries that are outside of the European Union.",
+    "ENCRYPTION_TITLE": "9. SSL or TLS encryption",
+    "ENCRYPTION_DESCRIPTION": "For security reasons and to protect the transmission of confidential content, such as requests that you send to us as the site operator, this site uses SSL or TLS encryption. You can recognize an encrypted connection by the fact that the address line of the browser changes from \"http://\" to \"https://\" and by the lock symbol in your browser line. If SSL or TLS encryption is activated, the data you transmit to us cannot be read by third parties.",
+    "RIGHTS": {
+      "TITLE": "10. Your rights",
+      "DESCRIPTION": "If personal data of yours is processed, you are a data subject within the meaning of the GDPR and you have the right to exercise data subject rights. You have the following rights vis-à-vis us regarding the processing of your personal data by us:",
+      "RIGHTS_LIST": [
+        {
+          "TEXT": "Right to revoke the declaration of consent under data protection law (Art. 7 (3) DSGVO)."
+        },
+        {
+          "TEXT": "Right to information (Art. 15 DSGVO);"
+        },
+        {
+          "TEXT": "Right to rectification (Art. 16 DSGVO);"
+        },
+        {
+          "TEXT": "Right to erasure (Art. 17 DSGVO);"
+        },
+        {
+          "TEXT": "Right to restriction of processing (Art. 18 GDPR);"
+        },
+        {
+          "TEXT": "Right to data portability (Art. 20 DSGVO);"
+        },
+        {
+          "TEXT": "Right to object  processing (21 GDPR); and"
+        },
+        {
+          "TEXT": "Right to lodge a complaint with a supervisory authority (Art. 13(2)(d) DSGVO)."
+        }
+      ],
+      "RIGHTS_PART_A": {
+        "TITLE": "a. Right to revoke the declaration of consent under data protection law.",
+        "DESCRIPTION": "If the processing of your personal data is based on your consent, you have the right to revoke your declaration of consent under data protection law at any time. The revocation of consent does not affect the lawfulness of the processing carried out on the basis of the consent up to the revocation. The revocation of your consent is described at the relevant points in this privacy policy and the declaration of consent itself. Alternatively, you may revoke your consent by emailing us at: datenschutz@highmed.org."
+      },
+      "RIGHTS_PART_B": {
+        "TITLE": "b. Right to information regarding processing",
+        "DESCRIPTION": "You can request information from us at any time within the framework of the legal provisions as to whether personal data is being processed by us. If this is the case, you have the right to request information about the scope of the data processing."
+      },
+      "RIGHTS_PART_C": {
+        "TITLE": "c. Right to rectification",
+        "DESCRIPTION": "You have the right to have your data corrected and/or completed vis-à-vis the data controller if the personal data processed concerning you is incorrect or incomplete."
+      },
+      "RIGHTS_PART_D": {
+        "TITLE": "d. Right to erasure",
+        "DESCRIPTION": "You may request the controller to delete the personal data concerning you without delay provided that the conditions for this are met."
+      },
+      "RIGHTS_PART_E": {
+        "TITLE": "e. Right to restriction of processing",
+        "DESCRIPTION": "If the conditions for this exist, you can demand the restriction of the processing of your personal data. The right to erasure does not exist insofar as the processing is necessary."
+      },
+      "RIGHTS_PART_F": {
+        "TITLE": "f. Right to information",
+        "DESCRIPTION": "If you have asserted the right to rectification, erasure or restriction of processing against the controller, the controller is obliged to inform all recipients of the personal data regarding the rectification or erasure of the data or restriction of processing, unless this proves impossible or involves a disproportionate effort."
+      },
+      "RIGHTS_PART_G": {
+        "TITLE": "g. Right to data portability",
+        "DESCRIPTION": "You have the right to receive the personal data concerning you that you have provided to the controller in a structured, common and machine-readable format. In addition, you have the right to transfer this data to another controller without hindrance by the controller to whom the personal data was provided, provided that the conditions for this are met."
+      },
+      "RIGHTS_PART_H": {
+        "TITLE": "h. Right to object",
+        "DESCRIPTION": "You have the right to object at any time, on grounds relating to your particular situation, to the processing of personal data concerning you which is carried out on the basis of Article 6(1)(e) or (f) DSGVO. The consequence of the objection is that the controller no longer processes the personal data concerning you, unless it can demonstrate compelling legitimate grounds for the processing which override your interests, rights and freedoms, or the processing serves the purpose of asserting, exercising or defending legal claims. Your right to object may be limited to the extent that it is likely to render impossible or seriously impair the realization of research or statistical purposes and the limitation is necessary for the fulfilment of the research or statistical purposes."
+      },
+      "RIGHTS_PART_I": {
+        "TITLE": "i. Right to revoke the declaration of consent under data protection law",
+        "DESCRIPTION": "If you have submitted a declaration of consent under data protection law, you may revoke this at any time. The revocation of the consent does not affect the lawfulness of the processing carried out on the basis of the consent up to the revocation."
+      },
+      "RIGHTS_PART_J": {
+        "TITLE": "j. Automated decision in individual cases",
+        "DESCRIPTION": "You have the right not to be subjected to a decision which is based solely on automated processing - including profiling - if it would affect you legally you or significantly affect you in a similar manner. This does not apply if the decision",
+        "LIST": [
+          {
+            "TEXT": "is necessary for the conclusion or performance of a contract between you and the controller,"
+          },
+          {
+            "TEXT": "is permitted by legal provisions of the Union or the Member States to which the controller is subject of and these legal provisions contain appropriate measures to protect your rights and freedoms as well as your legitimate interests, or"
+          },
+          {
+            "TEXT": "is done with your explicit consent."
+          }
+        ]
+      },
+      "RIGHTS_PART_K": {
+        "TITLE": "k. Right to complain to a supervisory authority",
+        "DESCRIPTION": "Without prejudice to any other administrative or judicial remedy, you have the right to lodge a complaint with a supervisory authority if you believe the processing of your personal data infringes the GDPR. The competent supervisory authority in matters of data protection law is the State Data Protection Commissioner of the federal state in which the responsible party has its registered office.",
+        "TEXT": "HiGHmed e.V. has its registered office in Heidelberg. <br/> The competent supervisory authority is therefore: <br/> The State Commissioner for Data Protection and Freedom of Information in Baden-Württemberg. <br/> Lautenschlagerstraße 20 <br/> 70173 Stuttgart <br/> E-mail: <a href=\"mailto:poststelle@lfdi.bwl.de\">poststelle@lfdi.bwl.de </a>"
+      }
+    },
+    "PRIVACY_INFO": {
+      "TITLE": "11. Changes to our privacy information",
+      "DESCRIPTION": "Our privacy information may change from time to time to reflect any changes in our privacy practices. Any significant changes to the Privacy Notice will be displayed the next time you log on after the change and will also be prominently posted by us on this website. The date of the last change will appear at the top of the information."
+    }
+  },
+  "CONTACT": {
+    "TITLE": "Contact",
+    "DESCRIPTION": "Responsible according to Art. 4 sentence 1 No. 7 DSGVO for the central platform of CODEX is HiGHmed e. V. as coordinating body.",
+    "SUBTITLE1": "Information within the meaning of § 5 TMG",
+    "TEXT1": "HiGHmed e. V. <br/> Langer Anger 7/9 <br/> 69115 Heidelberg",
+    "SUBTITLE2": "Authorized representative",
+    "TEXT2": "HiGHmed e.V. is a registered association and legally represented by the management board: <br/> Prof. Dr. Roland Eils (Chairman, with sole power of representation) <br/> Prof. Dr. Michael Marschollek (deputy chairman) <br/> Prof. Dr. Björn Bergh <br/> Prof. Dr. Ramin Yahyapour <br/> Dr.-Ing. Steffen Ortmann",
+    "TEXT3": "Registration number: VR 702758, Amtsgericht Mannheim - Vereinsregister -",
+    "TEXT4": "Contact: <a href=\"https://www.highmed.org/de/kontakt-highmed-ev\" target=\"_blank\">https://www.highmed.org/de/kontakt-highmed-ev</a>",
+    "SUBTITLE3": "Responsible for journalistic-editorial offers within the meaning of § 55 Abs.2 RStV",
+    "TEXT5": "Ralf Heyder, Head of the Coordination ffice <br/> Charitéplatz 1 <br/> 10117 Berlin <br/> Phone: 030 450 570 292 <br/> <a href=\"mailto:forschungsnetzwerk-unimedizin@charite.de\">forschungsnetzwerk-unimedizin@charite.de</a>",
+    "TEXT6": "The GWDG is technically responsible for the central IT infrastructure used. The GWDG is also responsible for the administration of the infrastructure and the network administration. On the application level, the central research platform is administered by vitasystems GmbH. Both the GWDG and vitasystems GmbH act on behalf of the coordinating body.",
+    "SUBTITLE4": "Contact",
+    "SUBTITLE5": "Handling contact data",
+    "CONTACT_HANDLING1": "If you send us inquiries, the contact data you provide will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. It is up to you which contact data you enter, it is not mandatory, but you must provide at least one contact option (address, telephone or e-mail) so that we can process your request. We will not pass on the data you have entered without your consent. If this is planned, we will ask you for your consent beforehand.",
+    "CONTACT_HANDLING2": "The legal basis is Art. 6 para. 1 lit. f DSGVO. Our legitimate interest is to answer your inquiry. If the contact request is directed to an existing contract, the legal basis for the processing is Art. 6 (1) lit. b DSGVO.",
+    "CONTACT_HANDLING3": "We delete your personal data as soon as we have fully processed your request. This is usually the case with the end of the conversation with you, unless we are obliged to keep it longer to comply with our legal obligations.",
+    "CONTACT_HANDLING4": "The provision of personal data is not required by law or contract. If you do not provide your data, we cannot (continue) the conversation with you."
+  },
   "IMPRINT": {
+    "TEXTS": {
+      "IMPRESSUM": "Impressum",
+      "DESCRIPTION": "Responsible according to Art. 4 sentence 1 No. 7 DSGVO for the operation of the website is the HiGHmed e.V.",
+      "INFO_HEADER": "Informations i.S.d. § 5 TMG",
+      "INFO_CONTENT": "HiGHmed e.V: <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /><br /> E-Mail: geschaeftsstelle@highmed.org",
+      "REPRESENTATIVE_TITLE": "Authorized representative",
+      "REPRESENTATIVE_DESCRIPTION": "HiGHmed e.V. is a registered association and legally represented by the management board",
+      "PROFS": [
+        "Prof. Dr. Roland Eils (Chairman, with sole power of representation)",
+        "Prof. Dr. Michael Marschollek (deputy chairman)",
+        "Prof. Dr. Björn Bergh",
+        "Prof. Dr. Ramin Yahyapour",
+        "Dr.-Ing. Steffen Ortmann"
+      ],
+      "REGISTRATION_NUMBER_TITLE": "Registration number",
+      "REGISTRATION_NUMBER_TEXT": "VR 702758, Amtsgericht Mannheim - Vereinsregister -",
+      "VAT_TITLE": "VAT number",
+      "VAT_TEXT": "VAT number not issued",
+      "JOURNALISTIC_EDITORIAL_TITLE": "Responsible for journalistic-editorial offers within the meaning of § 55 Abs.2 RStV",
+      "JOURNALISTIC_EDITORIAL_TEXT": "HiGHmed e.V. <br /> Prof. Dr. Roland Eils <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /> <a href=\"mailto:geschaeftsstelle@highmed.org\">geschaeftsstelle@highmed.org</a>",
+      "CONTACT_TITLE": "Contact",
+      "CONTACT_TEXT": "HiGHmed e.V <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /> E-Mail: <a href=\"mailto:geschaeftsstelle@highmed.org\">geschaeftsstelle@highmed.org</a> <br /> <a href=\"https://www.highmed.org\">https://www.highmed.org</a>",
+      "DISCLAIMER_TITLE": "Disclaimer and copyright",
+      "DISCLAIMER_TEXT1": "The website operated by HiGHmed e.V. offers you a variety of information that is updated regularly. You can save our information and set up links to our pages. When linking to commercial providers, the linked website must be the sole component of the navigator window. The information may not be altered or falsified.",
+      "DISCLAIMER_TEXT2": "The content, works and information provided on this website are subject to German copyright and ancillary copyright laws. Any duplication, processing or use in other printed publications is only permitted with the prior consent of the author or copyright holder. Furthermore, pictures, graphics, text or other files may be subject to the copyright of third parties.  Contents of third parties are marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such content immediately.",
+      "OWN_PAGES_TITLE": "Content of own pages",
+      "OWN_PAGES_TEXT": "The operator of the website, HiGHmed e.V., assumes no responsibility for the topicality, completeness or quality of the content provided. All free offers are non-binding. The editors reserve the right to change, amend, delete or cease publication of the offer at any time without prior notice.",
+      "LINKS_TITLE": "Links to the websites of third parties",
+      "LINKS_TEXT1": "The operator of the website, HiGHmed e.V., is responsible as a content provider according to § 7 paragraph 1 of the German Telemedia Act (Telemediengesetz) for its \"own content\", which it makes available for use, in accordance with general laws. These own contents are to be distinguished from cross-references (\"links\") to contents provided by other providers. By means of the cross-reference, HiGHmed e.V. provides \"third-party content\" for use, which is identified in this manner.",
+      "LINKS_TEXT2": "The published links are researched and compiled with the greatest possible care. The operator of the website, HiGHmed e.V., has checked the external content at the time of the initial linking as to whether it may trigger  any civil or criminal liability. If it determines or is informed by others that a specific offer to which it has provided a link triggers civil or criminal liability, it will remove the reference to this offer. HiGHmed e.V. is only responsible for external references if it has positive knowledge of (potentially) illegal or criminal content and it is technically possible and reasonable to prevent its use.",
+      "PUBLIC_KEYS_TITLE": "Public Keys"
+    },
     "PUBLIC_KEY_LINKS": {
-      "INTRO": "These are links to the publics keys for prod, respective pre-prod, which you can use for safe data transfer.",
+      "INTRO": "Here you will find the links to the respective public keys for the secure transmission of data to Prod, or Pre-Prod.",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
