@@ -69,12 +69,8 @@ export class AdminService {
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
-      .pipe(
-        skip(1),
-        throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item))
-      )
-      .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
+      .pipe(skip(1), throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }))
+      .subscribe(() => this.filteredApprovedUsersSubject$)
   }
 
   private getUsers(approved: boolean, withRoles = false): Observable<IUser[]> {

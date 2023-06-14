@@ -26,7 +26,7 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
   styleUrls: ['./aql-editor-general-info.component.scss'],
 })
 export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
-  @Input() availableCategories: IAqlCategoryApi[]
+  @Input() availableCategories: any
   @Input() form: FormGroup
 
   lang = 'en'
@@ -38,7 +38,7 @@ export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang
+        this.lang = event.lang || 'en'
       })
     )
 

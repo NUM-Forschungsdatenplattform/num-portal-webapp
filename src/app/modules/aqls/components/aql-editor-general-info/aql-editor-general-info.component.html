@@ -112,10 +112,28 @@
 
         <mat-form-field appearance="outline" color="accent">
           <mat-label id="label-category" translate="FORM.CATEGORY"></mat-label>
-          <mat-select class="aql-category-select" formControlName="category">
-            <mat-option *ngFor="let category of availableCategories" [value]="category.id">{{
-              category.name[lang]
-            }}</mat-option>
+          <mat-select
+            *ngIf="!availableCategories.content"
+            class="aql-category-select"
+            formControlName="category"
+          >
+            <mat-option
+              *ngFor="let category of availableCategories | objectToArray"
+              [value]="category.id"
+              >{{ category.name[lang] }}</mat-option
+            >
+            <mat-option>{{ 'QUERY_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
+          </mat-select>
+          <mat-select
+            *ngIf="availableCategories.content"
+            class="aql-category-select"
+            formControlName="category"
+          >
+            <mat-option
+              *ngFor="let category of availableCategories | objectToArray"
+              [value]="category.id"
+              >{{ category[lang] }}</mat-option
+            >
             <mat-option>{{ 'QUERY_CATEGORIES.UNCATEGORIZED' | translate }}</mat-option>
           </mat-select>
         </mat-form-field>
