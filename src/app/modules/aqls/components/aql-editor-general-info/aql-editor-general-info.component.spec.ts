@@ -25,6 +25,7 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 import { MatSelectHarness } from '@angular/material/select/testing'
 import { AqlEditorGeneralInfoComponent } from './aql-editor-general-info.component'
+import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 
 describe('AqlEditorGeneralInfoComponent', () => {
   let component: AqlEditorGeneralInfoComponent
@@ -40,6 +41,7 @@ describe('AqlEditorGeneralInfoComponent', () => {
         FontAwesomeTestingModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        PipesModule,
       ],
     }).compileComponents()
   })
