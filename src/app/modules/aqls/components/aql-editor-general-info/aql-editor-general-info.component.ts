@@ -18,7 +18,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
-import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 
 @Component({
   selector: 'num-aql-editor-general-info',
@@ -26,7 +25,7 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
   styleUrls: ['./aql-editor-general-info.component.scss'],
 })
 export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
-  @Input() availableCategories: IAqlCategoryApi[]
+  @Input() availableCategories: any
   @Input() form: FormGroup
 
   lang = 'en'

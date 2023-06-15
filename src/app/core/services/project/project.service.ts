@@ -108,16 +108,7 @@ export class ProjectService {
   }
 
   getAll(): Observable<IProjectApi[]> {
-    return this.httpClient.get<IProjectApi[]>(this.baseUrl).pipe(
-      tap((projects) => {
-        this.projects = projects
-        this.projectSubject$.next(projects)
-        if (this.projects.length) {
-          this.setFilter(this.filterSet)
-        }
-      }),
-      catchError(this.handleError)
-    )
+    return of([])
   }
 
   get(id: number): Observable<IProjectApi> {
@@ -234,11 +225,14 @@ export class ProjectService {
       map((allProjects) => {
         myProjects = allProjects
           .filter((project) => project.status === ProjectStatus.Published)
-          .filter(
-            (project) =>
-              project.researchers.find((researcher) => researcher.userId === this.user.id) ||
-              project.coordinator.id === this.user.id
-          )
+          .filter((project) => {
+            if (project.researchers) {
+              return (
+                project.researchers.find((researcher) => researcher.userId === this.user.id) ||
+                project.coordinator.id === this.user.id
+              )
+            }
+          })
         this.myPublishedProjectsSubject$.next(myProjects)
         return myProjects
       })

@@ -77,6 +77,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
         type: ToastMessageType.Success,
         message: 'QUERY_CATEGORIES.CREATE_SUCCESS_MESSAGE',
       })
+      this.aqlCategoriesTableComponent.getAll()
     } catch (error) {
       this.toast.openToast({
         type: ToastMessageType.Error,

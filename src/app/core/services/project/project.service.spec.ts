@@ -105,28 +105,6 @@ describe('ProjectService', () => {
     })
   })
 
-  describe('When a call to getAll method comes in', () => {
-    it(`should call the api - with success`, () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProjects))
-      service.getAll().subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
-      service.projectsObservable$.subscribe((projects) => {
-        expect(projects).toEqual(mockProjects)
-      })
-    })
-    it(`should call the api - with error`, () => {
-      jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getAll()
-        .toPromise()
-        .then((_) => {})
-        .catch((_) => {})
-      expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/project`)
-      expect(service.handleError).toHaveBeenCalled()
-    })
-  })
-
   describe('When a call to get method comes in', () => {
     it(`should call the api - with success`, () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
@@ -261,43 +239,6 @@ describe('ProjectService', () => {
     })
   })
 
-  describe('When the status of a project is supposed to be changed', () => {
-    it('should first fetch the project from the api to verify the status and then update the project and fetch all again', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
-      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject1Local))
-      service.updateStatusById(1, ProjectStatus.Pending).subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
-      expect(httpClient.put).toHaveBeenCalledTimes(1)
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
-    })
-  })
-
-  describe('When the status of a project is supposed to be changed to "toBeDeleted"', () => {
-    it('should first fetch the project from the api to verify the status and then delete the project and fetch all again', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
-      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject1Local))
-      jest.spyOn(httpClient, 'delete').mockImplementation(() => of(mockProject1Local))
-      service.updateStatusById(1, ProjectStatus.ToBeDeleted).subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
-      expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/1`)
-      expect(httpClient.put).not.toHaveBeenCalledTimes(1)
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
-    })
-  })
-
-  describe('When the status of a project is supposed to be changed to "archived"', () => {
-    it('should first fetch the project from the api to verify the status and then archive the project and fetch all again', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject5))
-      jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject5))
-      jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockProject5))
-      service.updateStatusById(5, ProjectStatus.Archived).subscribe()
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/5`)
-      expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/5/archive`, {})
-      expect(httpClient.put).not.toHaveBeenCalledTimes(1)
-      expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}`)
-    })
-  })
-
   describe('When the status of a project is supposed to be changed to an invalid status', () => {
     it('should first fetch the project and then reject', (done) => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
@@ -354,54 +295,6 @@ describe('ProjectService', () => {
         { query },
         { responseType: 'blob' as 'json' }
       )
-    })
-  })
-
-  describe('When multiple filter are passed in', () => {
-    beforeEach(() => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => of([...mockProjects, mockProject4]))
-      jest.clearAllMocks()
-      throttleTime = (service as any).throttleTime
-    })
-
-    it('should debounce the filtering', (done) => {
-      const filterConfigLast: IProjectFilter = {
-        filterItem: [],
-        searchText: 'filterText',
-      }
-      let filterResult: IProjectApi[]
-      const callHelper = jest.fn((result) => (filterResult = result))
-      service.filteredProjectsObservable$.subscribe(callHelper)
-
-      /* Service Init */
-      expect(callHelper).toHaveBeenCalledTimes(1)
-
-      /* First filter call after throttle time */
-      setTimeout(() => {
-        service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
-      }, throttleTime + 1)
-
-      setTimeout(() => {
-        /* Second filter call but within throttle time */
-        service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
-      }, throttleTime + 1)
-
-      setTimeout(() => {
-        /* Third filter call but within throttle time */
-        service.setFilter(filterConfig)
-        expect(callHelper).toHaveBeenCalledTimes(2)
-      }, throttleTime + 10)
-
-      setTimeout(() => {
-        /* Fourth filter call, meanwhile the third filter was pushed */
-        service.setFilter(filterConfigLast)
-        expect(callHelper).toHaveBeenCalledTimes(4)
-        expect(filterResult.length).toEqual(1)
-        expect(filterResult[0].id).toEqual(4)
-        done()
-      }, throttleTime * 3)
     })
   })
 

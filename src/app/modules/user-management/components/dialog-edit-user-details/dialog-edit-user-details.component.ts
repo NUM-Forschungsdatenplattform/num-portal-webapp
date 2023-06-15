@@ -152,11 +152,7 @@ export class DialogEditUserDetailsComponent
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    if (this.isApproval) {
-      await this.adminService.getUnapprovedUsers().toPromise()
-    } else {
-      this.adminService.refreshFilterResult()
-    }
+    this.adminService.refreshFilterResult()
 
     this.closeDialog.emit()
     return Promise.resolve()

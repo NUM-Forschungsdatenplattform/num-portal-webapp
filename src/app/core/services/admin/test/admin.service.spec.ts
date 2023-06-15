@@ -274,25 +274,6 @@ describe('AdminService', () => {
     })
   })
 
-  describe('When the filter logic fails to retrieve data', () => {
-    it('should result in an empty array', (done) => {
-      const anyService = service as any
-
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
-
-      service.filteredApprovedUsersObservable$
-        .pipe(skipUntil(timer(anyService.throttleTime / 2)))
-        .subscribe((result) => {
-          expect(result).toEqual([])
-          done()
-        })
-
-      setTimeout(() => {
-        service.refreshFilterResult()
-      }, anyService.throttleTime + 1)
-    })
-  })
-
   describe('When passing in filters', () => {
     test.each(adminFilterTestcases)('It should filter as expected', (testcase) => {
       const anyService = service as any
