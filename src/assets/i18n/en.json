@@ -390,7 +390,9 @@
     "NAME": "Name",
     "EMAIL": "E-mail address",
     "REGISTER_DATE": "Register date",
-    "UNKNOWN": "Unknown User"
+    "UNKNOWN": "Unknown User",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive"
   },
   "ROLE": {
     "RESEARCHER": "Researcher",

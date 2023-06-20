@@ -27,4 +27,5 @@ export interface IUserProfile {
   roles?: AvailableRoles[]
   approved: boolean
   organization: IOrganization
+  active: boolean
 }

@@ -50,6 +50,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     'organization',
     'roles',
     'createdTimestamp',
+    'active',
   ]
 
   public sortBy: string
@@ -124,6 +125,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   handleData(users: any): void {
     this.dataSource.data = users.content
+    console.log('users.content', users)
     this.totalItems = users.totalElements
   }
 

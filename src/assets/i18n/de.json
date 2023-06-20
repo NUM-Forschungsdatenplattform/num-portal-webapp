@@ -391,7 +391,9 @@
     "NAME": "Name",
     "EMAIL": "E-Mail Adresse",
     "REGISTER_DATE": "Registriert am",
-    "UNKNOWN": "Unbekannter Nutzer"
+    "UNKNOWN": "Unbekannter Nutzer",
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv"
   },
   "ROLE": {
     "RESEARCHER": "Forscher",

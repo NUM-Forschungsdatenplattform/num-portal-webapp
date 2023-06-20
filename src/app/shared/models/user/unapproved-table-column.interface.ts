@@ -21,3 +21,4 @@ export type UnapprovedUsersTableColumn =
   | 'lastName'
   | 'email'
   | 'createdTimestamp'
+  | 'active'
