@@ -774,7 +774,7 @@
   },
   "IMPRINT": {
     "TEXTS": {
-      "IMPRESSUM": "Impressum",
+      "HEADING": "Impressum",
       "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für den Betrieb der Website ist der HiGHmed e.V.",
       "INFO_HEADER": "Informationen i.S.d. § 5 TMG",
       "INFO_CONTENT": "HiGHmed e.V: <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /><br /> E-Mail: geschaeftsstelle@highmed.org",
