@@ -440,7 +440,7 @@
     "EXPORT": "Export {{format}}",
     "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
     "HEADLINE_RETREIVE_SECTION": "Retreive Data",
-    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
+    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might result in unexpected cross products."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",
