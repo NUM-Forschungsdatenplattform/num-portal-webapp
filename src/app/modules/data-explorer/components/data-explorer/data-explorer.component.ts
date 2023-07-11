@@ -75,6 +75,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   isResearchersDisabled = true
   isGeneralInfoDisabled = true
   isCohortBuilderDisabled = true
+  isFilteringDisabled = true
 
   generalInfoData: IDefinitionList[]
 
