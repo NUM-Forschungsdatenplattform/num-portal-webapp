@@ -40,7 +40,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatRadioModule } from '@angular/material/radio'
 import { MatDatepickerModule } from '@angular/material/datepicker'
-import { MatNativeDateModule } from '@angular/material/core'
+// import { MatNativeDateModule } from '@angular/material/core'
+import { MatMomentDateModule } from '@angular/material-moment-adapter'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
@@ -73,7 +74,7 @@ const MATERIAL_MODULES = [
   MatMenuModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatNativeDateModule,
+  MatMomentDateModule,
   MatTooltipModule,
   MatProgressSpinnerModule,
   DragDropModule,
