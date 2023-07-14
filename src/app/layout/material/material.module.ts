@@ -83,6 +83,5 @@ const MATERIAL_MODULES = [
   declarations: [],
   imports: [...MATERIAL_MODULES],
   exports: [...MATERIAL_MODULES],
-  providers: [MatDatepickerModule],
 })
 export class MaterialModule {}
