@@ -52,6 +52,7 @@ export class DialogEditUserDetailsComponent
   availableRoles = AvailableRoles
   userNameForm: FormGroup
   isUserNameEditMode: boolean
+  isActive: boolean
 
   constructor(
     private adminService: AdminService,
@@ -82,6 +83,8 @@ export class DialogEditUserDetailsComponent
         Validators.minLength(2),
       ]),
     })
+
+    this.isActive = this.userDetails.enabled
   }
 
   toggleNameEditMode(): void {
@@ -152,10 +155,14 @@ export class DialogEditUserDetailsComponent
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    this.adminService.refreshFilterResult()
+    this.adminService
+      .changeUserEnabledStatus(this.userDetails.id, this.isActive)
+      .subscribe((result) => {
+        this.adminService.refreshFilterResult()
 
-    this.closeDialog.emit()
-    return Promise.resolve()
+        this.closeDialog.emit()
+        return Promise.resolve()
+      })
   }
 
   handleDialogCancel(): void {

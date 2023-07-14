@@ -50,6 +50,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     'organization',
     'roles',
     'createdTimestamp',
+    'active',
   ]
 
   public sortBy: string
@@ -76,6 +77,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
       approved: true,
       search: null,
       type: null,
+      enabled: null,
     }
 
     this.sortBy = 'firstName'
@@ -128,7 +130,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   initSearchAndFilters(filter, search) {
-    this.handleFilterChange(filter, true)
+    this.handleFilterChange(filter, '', true)
     this.handleSearchChange(search, true)
 
     this.getAll(true)
@@ -149,11 +151,23 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     }
   }
 
-  handleFilterChange(isOrg: any, noGet = false): void {
+  handleFilterChange(isOrg: any, selectedTab: any, noGet = false): void {
     if (isOrg) {
       this.filters.type = null
+      this.filters.enabled = null
     } else {
-      this.filters.type = 'ORGANIZATION'
+      if (selectedTab.includes('INACTIVE')) {
+        this.filters.enabled = false
+        this.filters.type = null
+      } else {
+        if (selectedTab.includes('ACTIVE')) {
+          this.filters.enabled = true
+          this.filters.type = null
+        } else {
+          this.filters.type = 'ORGANIZATION'
+          this.filters.enabled = null
+        }
+      }
     }
 
     if (!noGet) {

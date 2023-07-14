@@ -23,3 +23,4 @@ export type ApprovedUsersTableColumn =
   | 'createdTimestamp'
   | 'organization'
   | 'roles'
+  | 'active'

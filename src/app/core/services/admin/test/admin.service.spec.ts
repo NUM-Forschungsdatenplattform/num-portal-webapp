@@ -315,6 +315,21 @@ describe('AdminService', () => {
         httpOptions
       )
     })
+
+    it(`should call the api change status - with success`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+
+      jest.spyOn(httpClient, 'post')
+      service.changeUserEnabledStatus(id, true).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/status`,
+        true,
+        httpOptions
+      )
+    })
     it(`should call the api - with error`, () => {
       const id = '123-456'
       const httpOptions = {
