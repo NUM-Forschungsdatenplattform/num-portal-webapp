@@ -179,6 +179,15 @@ export class AdminService {
       .pipe(catchError(this.handleError))
   }
 
+  changeUserEnabledStatus(userId: string, enabled: boolean): Observable<string> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/status`, enabled, httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
   setFilter(filterSet: IUserFilter): void {
     this.filterConfigSubject$.next(filterSet)
     this.filterSet = filterSet

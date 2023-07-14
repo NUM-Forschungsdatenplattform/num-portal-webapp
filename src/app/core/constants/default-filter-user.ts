@@ -30,5 +30,15 @@ export const DEFAULT_USER_FILTER: IUserFilter = {
       title: 'FILTER_CHIP.ORGANIZATION',
       isSelected: false,
     },
+    {
+      id: UserFilterChipId.UserActive,
+      title: 'USER_MANAGEMENT.ACTIVE',
+      isSelected: false,
+    },
+    {
+      id: UserFilterChipId.UserInactive,
+      title: 'USER_MANAGEMENT.INACTIVE',
+      isSelected: false,
+    },
   ],
 }

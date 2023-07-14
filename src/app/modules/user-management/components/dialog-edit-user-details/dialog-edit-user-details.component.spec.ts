@@ -17,7 +17,7 @@
 import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonHarness } from '@angular/material/button/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -57,6 +57,7 @@ describe('DialogEditUserDetailsComponent', () => {
     changeUserName: jest.fn(),
     refreshFilterResult: jest.fn(),
     getUnapprovedUsers: jest.fn(),
+    changeUserEnabledStatus: jest.fn(),
   } as unknown as AdminService
 
   const organizationService = {
@@ -94,6 +95,7 @@ describe('DialogEditUserDetailsComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
+        FormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         DirectivesModule,
@@ -143,6 +145,7 @@ describe('DialogEditUserDetailsComponent', () => {
   })
 
   it('should emit the close event on confirmation', (done) => {
+    jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
     jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
     component.handleDialogConfirm().then(() => {
       expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
@@ -151,6 +154,7 @@ describe('DialogEditUserDetailsComponent', () => {
   })
 
   it('should emit the close event on dialog cancel', () => {
+    jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
   })
@@ -219,6 +223,7 @@ describe('DialogEditUserDetailsComponent', () => {
 
   describe('When editing the user name with valid data', () => {
     beforeEach(async () => {
+      jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
       jest
         .spyOn(adminService, 'changeUserName')
         .mockImplementation((userId: string, firstName: string, lastName: string) =>

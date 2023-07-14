@@ -456,7 +456,9 @@
     "EDIT_USER_ERROR": "The changes could not be saved. Please try again.",
     "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} was updated successfully.",
     "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent.",
-    "INVALID_USER_NAME_ERROR": "Please provide a valid name"
+    "INVALID_USER_NAME_ERROR": "Please provide a valid name",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive"
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",

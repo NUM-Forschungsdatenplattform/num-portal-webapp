@@ -26,4 +26,5 @@ export interface IUser {
   roles?: string[]
   username: string
   createdTimestamp: number
+  enabled?: boolean
 }

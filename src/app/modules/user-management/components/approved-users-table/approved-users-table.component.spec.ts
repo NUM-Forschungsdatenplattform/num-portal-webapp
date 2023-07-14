@@ -120,7 +120,7 @@ describe('ApprovedUsersTableComponent', () => {
   describe('When search is triggered', () => {
     it('should search', () => {
       jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
-      component.handleFilterChange(false)
+      component.handleFilterChange(false, 'ORGANIZATION')
       expect(component.filters.type).toEqual('ORGANIZATION')
     })
   })
