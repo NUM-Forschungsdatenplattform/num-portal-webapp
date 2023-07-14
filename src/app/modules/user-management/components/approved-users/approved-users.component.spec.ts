@@ -28,6 +28,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ReactiveFormsModule } from '@angular/forms'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
+import { UserFilterChipId } from '../../../../shared/models/user/user-filter-chip.enum'
 
 describe('ApprovedUsersComponent', () => {
   let component: ApprovedUsersComponent
@@ -90,5 +91,13 @@ describe('ApprovedUsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  describe('When handleFilterChange is triggered', () => {
+    it('should filter', () => {
+      component.filterConfig['filterItem'] = [
+        { id: UserFilterChipId.OrganizationUser, title: 'aaaa', isSelected: true },
+      ]
+    })
   })
 })
