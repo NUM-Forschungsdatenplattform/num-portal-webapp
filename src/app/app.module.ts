@@ -30,6 +30,7 @@ import { OAuthInterceptor } from './core/interceptors/oauth.interceptor'
 import { AuthService } from './core/auth/auth.service'
 import { DateAdapter } from '@angular/material/core'
 import { CustomDatePickerAdapter } from './core/adapter/date-picker-adapter'
+import { MomentDateAdapter } from '@angular/material-moment-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
 import { WebpackTranslateLoader } from './webpack-translate-loader'
 import { ErrorInterceptor } from './core/interceptors/error.interceptor'
@@ -82,7 +83,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
       useClass: ErrorInterceptor,
       multi: true,
     },
-    { provide: DateAdapter, useClass: CustomDatePickerAdapter },
+    { provide: DateAdapter, useClass: MomentDateAdapter },
   ],
   bootstrap: [AppComponent],
 })

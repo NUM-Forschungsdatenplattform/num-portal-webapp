@@ -71,11 +71,11 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       this.item.valueType === AqlParameterValueType.Date ||
       this.item.valueType === AqlParameterValueType.DateTime
     ) {
-      this.dateAdapter.setLocale(this.translate.currentLang)
+      this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
 
       this.subscriptions.add(
         this.translate.onLangChange.subscribe((lang) => {
-          this.dateAdapter.setLocale(lang.lang)
+          this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
         })
       )
     }

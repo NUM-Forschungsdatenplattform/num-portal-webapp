@@ -36,8 +36,7 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   ngOnInit(): void {
-    this.dateAdapter.setLocale(this.translate.currentLang)
-
+    this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
     this.subscriptions.add(
       this.translate.onLangChange.subscribe((lang) => {
         this.dateAdapter.setLocale(lang.lang)
