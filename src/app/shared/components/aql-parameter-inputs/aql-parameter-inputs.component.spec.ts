@@ -25,8 +25,8 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
-
 import { AqlParameterInputsComponent } from './aql-parameter-inputs.component'
+import moment from 'moment'
 
 describe('AqlParameterInputsComponent', () => {
   let component: AqlParameterInputsComponent
@@ -198,22 +198,19 @@ describe('AqlParameterInputsComponent', () => {
       }
     )
 
-    test.each([null, new Date(2012, 8, 24, 8, 30, 0)])(
-      'keeps the time part on date change',
-      (testCase) => {
-        component.item = testCases[2].item
-        fixture.detectChanges()
-        const event: MatDatepickerInputEvent<Date, any> = {
-          value: testCase,
-          target: null,
-          targetElement: null,
-        }
-        component.datePickerChange(event)
-        expect(component.item.value.getHours()).toEqual(12)
-        expect(component.item.value.getMinutes()).toEqual(0)
-        expect(component.item.value.getSeconds()).toEqual(0)
+    test.each([null, moment('2012-08-24')])('keeps the time part on date change', (testCase) => {
+      component.item = testCases[2].item
+      fixture.detectChanges()
+      const event: MatDatepickerInputEvent<moment.Moment, any> = {
+        value: testCase,
+        target: null,
+        targetElement: null,
       }
-    )
+      component.datePickerChange(event)
+      expect(component.item.value.hour()).toEqual(12)
+      expect(component.item.value.minute()).toEqual(0)
+      expect(component.item.value.second()).toEqual(0)
+    })
   })
 
   describe('Resolved aql parameter values', () => {
