@@ -127,6 +127,21 @@ describe('DialogAddResearchersComponent', () => {
           title: 'test',
           isSelected: true,
         },
+        {
+          id: null,
+          title: 'foo',
+          isSelected: false,
+        },
+        {
+          id: null,
+          title: 'bar',
+          isSelected: false,
+        },
+        {
+          id: null,
+          title: 'active',
+          isSelected: false,
+        },
       ]
       component.handleFilterChange(false)
       expect(component.filters.type).toEqual(null)
