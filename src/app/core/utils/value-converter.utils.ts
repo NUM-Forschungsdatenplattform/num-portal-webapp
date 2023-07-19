@@ -16,16 +16,17 @@
 
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
 import { DateHelperService } from '../helper/date-helper.service'
+import { Moment } from 'moment'
 
 export const convertParameterInputToType = (
   type: AqlParameterValueType,
-  inputValue: string | number | boolean | Date,
+  inputValue: string | number | boolean | Date | Moment,
   defaultToUndefined = false
 ): number | string | boolean => {
   let outputValue: number | string | boolean
   switch (type) {
     case AqlParameterValueType.Date:
-      outputValue = DateHelperService.getDateString(inputValue as Date)
+      outputValue = DateHelperService.getDateString(inputValue as Moment)
       break
     case AqlParameterValueType.Time:
       outputValue = DateHelperService.getTimeString(inputValue as Date)

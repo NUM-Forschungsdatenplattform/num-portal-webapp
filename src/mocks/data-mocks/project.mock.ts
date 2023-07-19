@@ -23,6 +23,7 @@ import {
   mockUserStudyCoordinator,
   mockUserSuperAdmin,
 } from './admin.mock'
+import moment from 'moment'
 
 export const mockProject1: IProjectApi = {
   id: 1,
@@ -35,8 +36,8 @@ export const mockProject1: IProjectApi = {
   researchers: [],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject2: IProjectApi = {
@@ -56,8 +57,8 @@ export const mockProject2: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Pending,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject3: IProjectApi = {
@@ -80,8 +81,8 @@ export const mockProject3: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Published,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject4: IProjectApi = {
@@ -104,8 +105,8 @@ export const mockProject4: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Archived,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject5: IProjectApi = {
@@ -128,8 +129,8 @@ export const mockProject5: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Closed,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject6: IProjectApi = {
@@ -146,8 +147,8 @@ export const mockProject6: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 6',
   status: ProjectStatus.Pending,
-  createDate: DateHelperService.getDateString(new Date(2000, 2, 1)),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment('2000-02-01')),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject7: IProjectApi = {
@@ -164,8 +165,8 @@ export const mockProject7: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 7',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject8: IProjectApi = {
@@ -182,8 +183,8 @@ export const mockProject8: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 8',
   status: ProjectStatus.Pending,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject9: IProjectApi = {
@@ -200,8 +201,8 @@ export const mockProject9: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 9',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject10: IProjectApi = {
@@ -218,8 +219,8 @@ export const mockProject10: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 6',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject11: IProjectApi = {
@@ -236,8 +237,8 @@ export const mockProject11: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 11',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject12: IProjectApi = {
@@ -254,8 +255,8 @@ export const mockProject12: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 12',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject13: IProjectApi = {
@@ -272,8 +273,8 @@ export const mockProject13: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 13',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject14: IProjectApi = {
@@ -290,8 +291,8 @@ export const mockProject14: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 14',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject15: IProjectApi = {
@@ -308,8 +309,8 @@ export const mockProject15: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 15',
   status: ProjectStatus.Approved,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject16: IProjectApi = {
@@ -326,8 +327,8 @@ export const mockProject16: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 16',
   status: ProjectStatus.ChangeRequest,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject17: IProjectApi = {
@@ -344,8 +345,8 @@ export const mockProject17: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 17',
   status: ProjectStatus.Reviewing,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject18: IProjectApi = {
@@ -362,8 +363,8 @@ export const mockProject18: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 18',
   status: ProjectStatus.Denied,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject19: IProjectApi = {
@@ -380,8 +381,8 @@ export const mockProject19: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 19',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject20: IProjectApi = {
@@ -398,8 +399,8 @@ export const mockProject20: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 20',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date()),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment()),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProject21: IProjectApi = {
@@ -416,8 +417,8 @@ export const mockProject21: IProjectApi = {
   ],
   firstHypotheses: 'Test Hypothesis 21',
   status: ProjectStatus.Draft,
-  createDate: DateHelperService.getDateString(new Date(2036, 3, 6)),
-  modifiedDate: DateHelperService.getDateString(new Date()),
+  createDate: DateHelperService.getDateString(moment('2036-03-06')),
+  modifiedDate: DateHelperService.getDateString(moment()),
 }
 
 export const mockProjects = [mockProject1, mockProject2]

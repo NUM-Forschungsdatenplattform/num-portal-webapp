@@ -26,6 +26,7 @@ import { CohortGroupUiModel } from './cohort-group-ui.model'
 import { IProjectApi } from './project-api.interface'
 import { ProjectStatus } from './project-status.enum'
 import { IProjectTemplateInfoApi } from './project-template-info-api.interface'
+import moment from 'moment'
 
 export class ProjectUiModel {
   cohortId: number | null
@@ -106,8 +107,10 @@ export class ProjectUiModel {
       secondHypotheses: formValues?.secondHypotheses || this.secondHypotheses,
       keywords: formValues?.keywords || this.keywords,
       categories: formValues?.categories || this.categories,
-      startDate: DateHelperService.getDateString(formValues?.startDate || this.startDate),
-      endDate: DateHelperService.getDateString(formValues?.endDate || this.endDate),
+      startDate: DateHelperService.getDateString(
+        moment(formValues?.startDate) || moment(this.startDate)
+      ),
+      endDate: DateHelperService.getDateString(moment(formValues?.endDate) || moment(this.endDate)),
       financed: formValues?.financed,
       usedOutsideEu: formValues?.usedOutsideEu,
       cohortId: formValues?.cohortId || this.cohortId,

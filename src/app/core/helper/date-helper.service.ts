@@ -15,21 +15,22 @@
  */
 
 import { Injectable } from '@angular/core'
+import moment from 'moment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class DateHelperService {
   constructor() {}
-
-  static getDateString(date: Date): string {
-    const year = date.getFullYear()
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const day = date.getDate().toString().padStart(2, '0')
+  static getDateString(date: moment.Moment): string {
+    const d = date.toDate()
+    const year = d.getFullYear()
+    const month = (d.getMonth() + 1).toString().padStart(2, '0')
+    const day = d.getDate().toString().padStart(2, '0')
 
     return `${year}-${month}-${day}`
   }
-
+  //we switched from javascript Date to Momentjs (https://momentjs.com/). If we need to support timebased funtions the cide below needs to be changed, too
   static getTimeString(date: Date): string {
     const hours = date.getHours().toString().padStart(2, '0')
     const minutes = date.getMinutes().toString().padStart(2, '0')
@@ -50,7 +51,7 @@ export class DateHelperService {
   }
 
   static getIsoString(date: Date): string {
-    const dateString = this.getDateString(date)
+    const dateString = this.getDateString(moment(date))
     const timeString = this.getTimeString(date)
     const offset = this.getOffsetString(date)
 
