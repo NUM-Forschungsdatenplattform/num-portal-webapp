@@ -148,6 +148,36 @@ describe('DialogAddResearchersComponent', () => {
     })
   })
 
+  describe('When filter type is triggered part 2', () => {
+    it('should filter', () => {
+      jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
+      component.filterConfig.filterItem = [
+        {
+          id: null,
+          title: 'test',
+          isSelected: true,
+        },
+        {
+          id: null,
+          title: 'foo',
+          isSelected: true,
+        },
+        {
+          id: null,
+          title: 'bar',
+          isSelected: false,
+        },
+        {
+          id: null,
+          title: 'active',
+          isSelected: true,
+        },
+      ]
+      component.handleFilterChange(false)
+      expect(component.filters.type).toEqual(null)
+    })
+  })
+
   describe('When pagination is triggered', () => {
     it('should fetch next page', () => {
       jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))

@@ -33,7 +33,6 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
-import { forEach } from 'lodash'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
