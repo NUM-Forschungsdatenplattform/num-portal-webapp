@@ -174,7 +174,7 @@ describe('DialogAddResearchersComponent', () => {
         },
       ]
       component.handleFilterChange(false)
-      expect(component.filters.type).toEqual(null)
+      expect(component.filters.type).toEqual('ORGANIZATION')
     })
   })
 
