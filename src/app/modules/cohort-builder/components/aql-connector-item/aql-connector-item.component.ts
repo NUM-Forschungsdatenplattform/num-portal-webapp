@@ -23,6 +23,7 @@ import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-v
 import { IAqlParameter } from 'src/app/shared/models/aql/aql-parameter.interface'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
+import moment from 'moment'
 
 @Component({
   selector: 'num-aql-connector-item',
@@ -98,7 +99,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         case AqlParameterValueType.Date:
         case AqlParameterValueType.DateTime:
         case AqlParameterValueType.Time:
-          parameter.value = new Date()
+          parameter.value = moment()
           break
       }
     } else if (
