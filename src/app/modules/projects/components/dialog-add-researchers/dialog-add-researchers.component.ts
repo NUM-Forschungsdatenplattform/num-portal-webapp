@@ -87,6 +87,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
       approved: true,
       search: null,
       roles: 'RESEARCHER',
+      enabled: true,
     }
 
     this.sortBy = 'firstName'
@@ -127,9 +128,9 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
       this.filters.type = null
     }
     if (this.filterConfig.filterItem[3].isSelected) {
-      this.filters.approved = false
+      this.filters.enabled = false
     } else {
-      this.filters.approved = true
+      this.filters.enabled = true
     }
 
     if (!noGet) {
