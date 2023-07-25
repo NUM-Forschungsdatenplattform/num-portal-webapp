@@ -32,6 +32,7 @@ import {
   EDIT_USER_SUCCESS,
   INVALID_USER_NAME_ERROR,
 } from './constants'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-dialog-edit-user-details',
@@ -53,16 +54,19 @@ export class DialogEditUserDetailsComponent
   userNameForm: FormGroup
   isUserNameEditMode: boolean
   isActive: boolean
+  isSelectedEqualToCurrent: Promise<boolean>
 
   constructor(
     private adminService: AdminService,
     private organizationService: OrganizationService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput.user
     this.isApproval = this.dialogInput.isApproval
+    this.isSelectedEqualToCurrent = this.checkIfSelectedIsCurrent()
 
     if (this.userDetails.organization) {
       this.organization = cloneDeep(this.userDetails.organization)
@@ -85,6 +89,14 @@ export class DialogEditUserDetailsComponent
     })
 
     this.isActive = this.userDetails.enabled
+  }
+
+  async checkIfSelectedIsCurrent(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.profileService.get().subscribe((currentProfile) => {
+        resolve(currentProfile.id === this.userDetails.id)
+      })
+    })
   }
 
   toggleNameEditMode(): void {

@@ -458,7 +458,8 @@
     "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent.",
     "INVALID_USER_NAME_ERROR": "Please provide a valid name",
     "ACTIVE": "Active",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "CAN_NOT_CHANGE_ITSELF": "Users cannot change their status themselves."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",
