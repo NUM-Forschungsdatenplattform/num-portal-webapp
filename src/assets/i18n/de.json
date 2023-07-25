@@ -459,7 +459,8 @@
     "REMOVE_ROLES_WARNING": "Bitte beachten Sie: Wenn Sie alle Rollen abwählen, ist es dem Benutzer nicht möglich, das Portal in vollem Umfang zu nutzen.",
     "INVALID_USER_NAME_ERROR": "Bitte geben sie einen gültigen Namen an.",
     "ACTIVE": "Aktiv",
-    "INACTIVE": "Inaktiv"
+    "INACTIVE": "Inaktiv",
+    "CAN_NOT_CHANGE_ITSELF": "Benutzer können ihren Status nicht selbst ändern."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organisationsübersicht",
