@@ -421,7 +421,10 @@
     "ARCHIVE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich archivieren?",
     "ARCHIVE_PROJECT_CONTENT": "Die Archivierung des Projekts kann nicht rückgängig gemacht werden.",
     "DELETE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich löschen?",
-    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden."
+    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden.",
+    "DELETE_ORGANIZATION_TITLE": "Wollen Sie die Organsiation wirklich löschen?",
+    "DELETE_ORGANIZATION_CONTENT": "Die Löschung der Organisation kann nicht rückgängig gemacht werden.",
+    "DELETE_ORGANIZATION_NOT_ALLOWED": "Nur Organisationen, denen keine Benutzer zugeordnet sind, können gelöscht werden."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",
