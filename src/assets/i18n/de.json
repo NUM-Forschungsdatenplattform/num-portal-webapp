@@ -482,7 +482,9 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "Die Mail-Domäne ist bereits in Verwendung. Bitte geben Sie eine andere Mail Domain an.",
     "DELETING_DOMAIN_SUCCESS": "Die Mail-Domäne wurde erfolgreich aus der Organisationsliste gelöscht.",
     "DELETING_DOMAIN_ERROR": "Die Mail-Domäne konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
-    "MAIL_DOMAIN": "Mail-Domänen"
+    "MAIL_DOMAIN": "Mail-Domänen",
+    "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "Die Organisation wurde erfolgreich gelöscht.",
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
   },
   "CHARTS": {
     "COHORT_AGE": {

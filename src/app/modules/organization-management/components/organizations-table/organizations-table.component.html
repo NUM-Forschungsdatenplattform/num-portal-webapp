@@ -37,7 +37,11 @@
           matTooltip="{{ 'CONFIRM_DIALOG.DELETE_ORGANIZATION_NOT_ALLOWED' | translate }}"
           [matTooltipDisabled]="data.allowedToBeDeleted"
         >
-          <button mat-menu-item [disabled]="!data.allowedToBeDeleted">
+          <button
+            mat-menu-item
+            [disabled]="!data.allowedToBeDeleted"
+            (click)="handleDeletionWithDialog(data.id)"
+          >
             {{ 'BUTTON.DELETE' | translate }}
           </button>
         </span>

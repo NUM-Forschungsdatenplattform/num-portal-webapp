@@ -24,7 +24,12 @@ import { OrganizationTableColumn } from '../../models/organization-table-column.
 import { Sort } from '@angular/material/sort'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
+import { HttpClient } from '@angular/common/http'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-organizations-table',
@@ -39,7 +44,9 @@ export class OrganizationsTableComponent
   constructor(
     private organizationService: OrganizationService,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private dialogService: DialogService,
+    private toast: ToastMessageService
   ) {
     super()
   }
@@ -109,5 +116,28 @@ export class OrganizationsTableComponent
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+  handleDeletionWithDialog(id: number): void {
+    const dialogRef = this.dialogService.openDialog(DELETE_ORGANIZATION_DIALOG_CONFIG)
+    dialogRef.afterClosed().subscribe((confirmResult) => {
+      if (confirmResult) {
+        console.log('call the delete endpoint with: ', id)
+        this.organizationService.delete(id).subscribe(
+          (result) => {
+            this.toast.openToast({
+              type: ToastMessageType.Success,
+              message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
+            })
+            this.getAll()
+          },
+          (error) => {
+            this.toast.openToast({
+              type: ToastMessageType.Error,
+              message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',
+            })
+          }
+        )
+      }
+    })
   }
 }

@@ -481,7 +481,9 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "The mail domain is already in use. Please enter another mail domain.",
     "DELETING_DOMAIN_SUCCESS": "The mail domain was successfully deleted from the organization list.",
     "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
-    "MAIL_DOMAIN": "Mail domain(s)"
+    "MAIL_DOMAIN": "Mail domain(s)",
+    "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "The organization was successfully deleted.",
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again."
   },
   "CHARTS": {
     "COHORT_AGE": {
