@@ -25,9 +25,11 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
-
 import { OrganizationsTableComponent } from './organizations-table.component'
-import { MatSort, Sort } from '@angular/material/sort'
+import { MatSort } from '@angular/material/sort'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -37,13 +39,18 @@ describe('OrganizationsTableComponent', () => {
   const organizationsSubject$ = new Subject<any>()
   const organizationService = {
     organizationsObservable$: organizationsSubject$.asObservable(),
+    delete: jest.fn(),
     getAllPag: jest.fn(),
   } as unknown as OrganizationService
+  const mockToast = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [OrganizationsTableComponent],
       imports: [
+        HttpClientTestingModule,
         MaterialModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
@@ -55,6 +62,10 @@ describe('OrganizationsTableComponent', () => {
         {
           provide: OrganizationService,
           useValue: organizationService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
         },
       ],
     }).compileComponents()
@@ -109,6 +120,23 @@ describe('OrganizationsTableComponent', () => {
       sort.active = 'name'
       sort.direction = 'asc'
       component.handleSortChangeTable(sort)
+    })
+  })
+
+  describe('On the attempt to delete an organization', () => {
+    beforeEach(() => {
+      const mockAqlObservable = of(mockOrganization1)
+      jest.spyOn(organizationService, 'delete').mockImplementation(() => mockAqlObservable)
+    })
+    it('should call the organization delete method', (done) => {
+      const orgId = 1
+      component.delete(orgId) /* .then(() => { */
+      expect(organizationService.delete).toHaveBeenCalledTimes(1)
+      expect(mockToast.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Success,
+        message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
+      })
+      done()
     })
   })
 })

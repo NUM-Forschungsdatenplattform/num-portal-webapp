@@ -22,6 +22,12 @@ import { IOrganization } from 'src/app/shared/models/organization/organization.i
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { OrganizationTableColumn } from '../../models/organization-table-column.interface'
 import { Sort } from '@angular/material/sort'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-organizations-table',
@@ -33,12 +39,18 @@ export class OrganizationsTableComponent
   implements OnInit, OnDestroy
 {
   private subscriptions = new Subscription()
-  constructor(private organizationService: OrganizationService, private router: Router) {
+  constructor(
+    private organizationService: OrganizationService,
+    private router: Router,
+    private profileService: ProfileService,
+    private dialogService: DialogService,
+    private toast: ToastMessageService
+  ) {
     super()
   }
 
   displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
-
+  private isSuperAdmin = false
   public sortBy: string
   public sortDir: string
 
@@ -60,6 +72,9 @@ export class OrganizationsTableComponent
 
     this.subscriptions.add(
       this.organizationService.organizationsObservable$.subscribe((data) => this.handleData(data))
+    )
+    this.subscriptions.add(
+      this.profileService.userProfileObservable$.subscribe((data) => this.handleProfileData(data))
     )
   }
 
@@ -89,6 +104,9 @@ export class OrganizationsTableComponent
     this.dataSource.data = organizations.content
     this.totalItems = organizations.totalElements
   }
+  handleProfileData(profile: any): void {
+    this.isSuperAdmin = profile.roles.includes(AvailableRoles.SuperAdmin)
+  }
 
   handleSelectClick(organization: IOrganization): void {
     this.router.navigate(['organizations', organization.id, 'editor'])
@@ -96,5 +114,30 @@ export class OrganizationsTableComponent
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+  handleWithDialog(id: number): void {
+    const dialogRef = this.dialogService.openDialog(DELETE_ORGANIZATION_DIALOG_CONFIG)
+    dialogRef.afterClosed().subscribe((confirmResult) => {
+      if (confirmResult) {
+        this.delete(id)
+      }
+    })
+  }
+  delete(id: number): void {
+    this.organizationService.delete(id).subscribe(
+      (result) => {
+        this.toast.openToast({
+          type: ToastMessageType.Success,
+          message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
+        })
+        this.getAll()
+      },
+      (error) => {
+        this.toast.openToast({
+          type: ToastMessageType.Error,
+          message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',
+        })
+      }
+    )
   }
 }

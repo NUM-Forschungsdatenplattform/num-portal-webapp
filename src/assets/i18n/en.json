@@ -420,7 +420,10 @@
     "ARCHIVE_PROJECT_TITLE": "Do you really want to archive the project?",
     "ARCHIVE_PROJECT_CONTENT": "The archiving of the project cannot be undone.",
     "DELETE_PROJECT_TITLE": "Do you really want to delete the project?",
-    "DELETE_PROJECT_CONTENT": "The deletion of the project cannot be undone."
+    "DELETE_PROJECT_CONTENT": "The deletion of the project cannot be undone.",
+    "DELETE_ORGANIZATION_TITLE": "Do you really want to delete the organization?",
+    "DELETE_ORGANIZATION_CONTENT": "The deletion of the organization cannot be undone.",
+    "DELETE_ORGANIZATION_NOT_ALLOWED": "Only organizations that have no users assigned to them can be deleted."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",
@@ -479,7 +482,9 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "The mail domain is already in use. Please enter another mail domain.",
     "DELETING_DOMAIN_SUCCESS": "The mail domain was successfully deleted from the organization list.",
     "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
-    "MAIL_DOMAIN": "Mail domain(s)"
+    "MAIL_DOMAIN": "Mail domain(s)",
+    "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "The organization was successfully deleted.",
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again."
   },
   "CHARTS": {
     "COHORT_AGE": {

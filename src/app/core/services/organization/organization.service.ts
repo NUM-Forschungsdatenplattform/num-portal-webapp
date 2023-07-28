@@ -86,6 +86,12 @@ export class OrganizationService {
       .pipe(catchError(this.handleError))
   }
 
+  delete(id: number): Observable<IOrganization> {
+    return this.httpClient
+      .delete<IOrganization>(`${this.baseUrl}/${id}`)
+      .pipe(catchError(this.handleError))
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(error)
   }

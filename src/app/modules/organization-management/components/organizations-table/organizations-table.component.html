@@ -28,12 +28,41 @@
     aria-labelledby="all-organizations-header"
     data-test="all-organizations__table"
   >
+    <mat-menu #menu="matMenu">
+      <ng-template matMenuContent let-data="element">
+        <button mat-menu-item (click)="handleSelectClick(data)">
+          {{ 'BUTTON.EDIT' | translate }}
+        </button>
+        <span
+          matTooltip="{{ 'CONFIRM_DIALOG.DELETE_ORGANIZATION_NOT_ALLOWED' | translate }}"
+          [matTooltipDisabled]="data.allowedToBeDeleted"
+        >
+          <button
+            mat-menu-item
+            [disabled]="!data.allowedToBeDeleted"
+            (click)="handleWithDialog(data.id)"
+          >
+            {{ 'BUTTON.DELETE' | translate }}
+          </button>
+        </span>
+      </ng-template>
+    </mat-menu>
     <ng-container matColumnDef="icon">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-header class="width-sm">
         {{ 'FORM.ACTION' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
         <button
+          *ngIf="isSuperAdmin"
+          mat-icon-button
+          data-test="all-organizations__table__context-action-button"
+          [matMenuTriggerFor]="menu"
+          [matMenuTriggerData]="{ element }"
+        >
+          <fa-icon icon="ellipsis-v"></fa-icon>
+        </button>
+        <button
+          *ngIf="!isSuperAdmin"
           color="accent"
           mat-icon-button
           [attr.aria-label]="'BUTTON.SELECT' | translate"
