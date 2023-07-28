@@ -25,9 +25,7 @@ import { Sort } from '@angular/material/sort'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
-import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
-import { HttpClient } from '@angular/common/http'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
@@ -117,27 +115,29 @@ export class OrganizationsTableComponent
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }
-  handleDeletionWithDialog(id: number): void {
+  handleWithDialog(id: number): void {
     const dialogRef = this.dialogService.openDialog(DELETE_ORGANIZATION_DIALOG_CONFIG)
     dialogRef.afterClosed().subscribe((confirmResult) => {
       if (confirmResult) {
-        console.log('call the delete endpoint with: ', id)
-        this.organizationService.delete(id).subscribe(
-          (result) => {
-            this.toast.openToast({
-              type: ToastMessageType.Success,
-              message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
-            })
-            this.getAll()
-          },
-          (error) => {
-            this.toast.openToast({
-              type: ToastMessageType.Error,
-              message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',
-            })
-          }
-        )
+        this.delete(id)
       }
     })
+  }
+  delete(id: number): void {
+    this.organizationService.delete(id).subscribe(
+      (result) => {
+        this.toast.openToast({
+          type: ToastMessageType.Success,
+          message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
+        })
+        this.getAll()
+      },
+      (error) => {
+        this.toast.openToast({
+          type: ToastMessageType.Error,
+          message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',
+        })
+      }
+    )
   }
 }

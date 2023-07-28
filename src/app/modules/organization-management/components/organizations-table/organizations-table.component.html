@@ -40,7 +40,7 @@
           <button
             mat-menu-item
             [disabled]="!data.allowedToBeDeleted"
-            (click)="handleDeletionWithDialog(data.id)"
+            (click)="handleWithDialog(data.id)"
           >
             {{ 'BUTTON.DELETE' | translate }}
           </button>
