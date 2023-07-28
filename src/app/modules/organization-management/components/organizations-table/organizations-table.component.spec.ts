@@ -28,6 +28,8 @@ import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organ
 
 import { OrganizationsTableComponent } from './organizations-table.component'
 import { MatSort, Sort } from '@angular/material/sort'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -39,11 +41,15 @@ describe('OrganizationsTableComponent', () => {
     organizationsObservable$: organizationsSubject$.asObservable(),
     getAllPag: jest.fn(),
   } as unknown as OrganizationService
+  const mockToast = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [OrganizationsTableComponent],
       imports: [
+        HttpClientTestingModule,
         MaterialModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot(),
@@ -55,6 +61,10 @@ describe('OrganizationsTableComponent', () => {
         {
           provide: OrganizationService,
           useValue: organizationService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: mockToast,
         },
       ],
     }).compileComponents()
