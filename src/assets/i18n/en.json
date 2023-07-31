@@ -403,7 +403,7 @@
     "CRITERIA_EDITOR": "Criteria editor"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
-  "SEARCH_USERNAME": "Search user name",
+  "SEARCH_USER": "Search user",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Do you really want to withdraw the permit request for this project?",
     "WITHDRAW_APPROVAL_CONTENT": "If you withdraw the project from the approval process, you can edit any item in the project again.\n\nHowever, you must then resubmit it for approval.",
