@@ -404,7 +404,7 @@
     "CRITERIA_EDITOR": "Kriterien-Editor"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
-  "SEARCH_USERNAME": "Benutzernamen suchen",
+  "SEARCH_USER": "Benutzer suchen",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Wollen Sie wirklich die Genehmigungsanfrage für dieses Projekt zurückziehen?",
     "WITHDRAW_APPROVAL_CONTENT": "Wenn Sie das Projekt aus dem Genehmigungsprozess zurückziehen, können Sie jede Position im Projekt erneut bearbeiten.\n\nAllerdings müssen Sie es dann erneut zur Genehmigung einreichen.",

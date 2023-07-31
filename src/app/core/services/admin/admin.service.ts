@@ -88,7 +88,8 @@ export class AdminService {
   ): Observable<any> {
     let qString = ''
     if (page !== null && size !== null) {
-      qString = qString + '?page=' + page + '&size=' + size
+      qString =
+        qString + '?page=' + page + '&size=' + size + '&language=' + localStorage.getItem('lang')
 
       for (const [key, value] of Object.entries(filters)) {
         if (value !== null) {
