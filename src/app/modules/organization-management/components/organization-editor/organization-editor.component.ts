@@ -48,6 +48,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
   form: FormGroup
   isLoading: boolean
   displayedColumns = ['domain', 'icon']
+  isActive: boolean
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +61,8 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     this.organization = cloneDeep(this.route.snapshot.data.resolvedData.organization)
     this.generateForm()
     this.registerSubscriptions()
+    console.log(this.organization)
+    this.isActive = this.organization.active
   }
 
   ngOnDestroy(): void {
@@ -72,6 +75,9 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         .get('newDomain')
         .valueChanges.subscribe((value) => this.handleNewDomainChange(value))
     )
+  }
+  activeChange() {
+    console.log(this.organization)
   }
 
   generateForm(): void {
@@ -89,6 +95,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         Validators.pattern(domainRegex),
       ]),
       mailDomains: new FormControl(this.organization.mailDomains),
+      active: new FormControl(this.organization.active),
     })
   }
 

@@ -163,9 +163,16 @@
           </table>
         </ng-template>
       </section>
+      <mat-checkbox
+        id="active"
+        color="accent"
+        formControlName="newDomain"
+        (change)="activeChange()"
+      >
+        {{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
+      >
     </ng-container>
   </mat-card>
-
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
 
   <section class="button-row" fxLayout="row" fxLayoutAlign="space-between">
