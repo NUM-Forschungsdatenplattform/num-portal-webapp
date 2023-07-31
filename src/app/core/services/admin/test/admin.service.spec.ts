@@ -15,8 +15,7 @@
  */
 
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
-import { skipUntil } from 'rxjs/operators'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -78,7 +77,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/admin/user/all?page=0&size=2&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
+        'localhost/api/admin/user/all?page=0&size=2&language=null&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
