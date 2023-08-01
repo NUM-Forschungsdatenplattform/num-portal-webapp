@@ -98,7 +98,9 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       active: new FormControl(this.organization.active),
     })
     this.profileService.get().subscribe((profile) => {
-      profile.organization.id === this.organization.id ? this.form.get('active').disable() : null
+      if (profile.organization.id === this.organization.id) {
+        this.form.get('active').disable()
+      }
     })
   }
 
