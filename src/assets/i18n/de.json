@@ -294,6 +294,7 @@
     "CUSTOMIZE_CONFIGURATION": "Daten filtern",
     "RESET_CUSTOMIZATION": "Filter zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
+    "UPDATE_ORGANIZATION": "Organisation aktualisieren",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
     "DETERMINE_HITS": "Patienten Ermitteln",

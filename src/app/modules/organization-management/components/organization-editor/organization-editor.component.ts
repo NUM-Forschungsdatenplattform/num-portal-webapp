@@ -36,6 +36,7 @@ import {
   UPDATING_ERROR,
   UPDATING_SUCCESS,
 } from './constants'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-organization-editor',
@@ -48,21 +49,19 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
   form: FormGroup
   isLoading: boolean
   displayedColumns = ['domain', 'icon']
-  isActive: boolean
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private organizationService: OrganizationService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
     this.organization = cloneDeep(this.route.snapshot.data.resolvedData.organization)
     this.generateForm()
     this.registerSubscriptions()
-    console.log(this.organization)
-    this.isActive = this.organization.active
   }
 
   ngOnDestroy(): void {
@@ -76,8 +75,9 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         .valueChanges.subscribe((value) => this.handleNewDomainChange(value))
     )
   }
-  activeChange() {
-    console.log(this.organization)
+
+  isUserPartOfOrg(): boolean {
+    return true
   }
 
   generateForm(): void {
@@ -96,6 +96,9 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       ]),
       mailDomains: new FormControl(this.organization.mailDomains),
       active: new FormControl(this.organization.active),
+    })
+    this.profileService.get().subscribe((profile) => {
+      profile.organization.id === this.organization.id ? this.form.get('active').disable() : null
     })
   }
 
@@ -146,9 +149,10 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     )
   }
 
-  updateName(): void {
+  updateOrganization(): void {
     const name = this.form.get('name').value
-    const organization = this.organization.convertToApi({ name })
+    const active = this.form.get('active').value
+    const organization = this.organization.convertToApi({ name, active })
     this.update(this.organization.id, organization).subscribe(
       (_updatedOrganization) => {
         this.toastMessageService.openToast(UPDATING_SUCCESS)

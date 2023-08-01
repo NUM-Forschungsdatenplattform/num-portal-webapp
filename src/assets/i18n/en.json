@@ -293,6 +293,7 @@
     "CUSTOMIZE_CONFIGURATION": "Filter data",
     "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
+    "UPDATE_ORGANIZATION": "Update organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
     "DETERMINE_HITS": "Determine Patients",

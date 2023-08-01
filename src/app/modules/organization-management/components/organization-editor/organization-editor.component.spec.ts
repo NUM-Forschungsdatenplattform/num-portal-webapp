@@ -22,7 +22,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { Subject } from 'rxjs'
+import { Subject, of } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -44,6 +44,10 @@ import {
 } from './constants'
 
 import { OrganizationEditorComponent } from './organization-editor.component'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 
 describe('OrganizationEditorComponent', () => {
   let component: OrganizationEditorComponent
@@ -75,6 +79,12 @@ describe('OrganizationEditorComponent', () => {
     update: jest.fn(),
   } as unknown as OrganizationService
 
+  const userProfileSubject$ = new Subject<IUserProfile>()
+  const mockProfileService = {
+    userProfileObservable$: userProfileSubject$.asObservable(),
+    get: jest.fn(),
+  } as unknown as ProfileService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [OrganizationEditorComponent, ButtonComponent],
@@ -86,6 +96,7 @@ describe('OrganizationEditorComponent', () => {
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         RouterTestingModule,
+        HttpClientTestingModule,
       ],
       providers: [
         {
@@ -94,6 +105,7 @@ describe('OrganizationEditorComponent', () => {
         },
         { provide: ToastMessageService, useValue: mockToastMessageService },
         { provide: OrganizationService, useValue: mockOrganizationService },
+        { provide: ProfileService, useValue: mockProfileService },
       ],
     }).compileComponents()
   })
@@ -103,6 +115,7 @@ describe('OrganizationEditorComponent', () => {
     fixture = TestBed.createComponent(OrganizationEditorComponent)
     component = fixture.componentInstance
     jest.spyOn(router, 'navigate').mockImplementation()
+    jest.spyOn(mockProfileService, 'get').mockImplementation(() => of(mockUserProfile1))
     jest.clearAllMocks()
     fixture.detectChanges()
   })
@@ -140,6 +153,7 @@ describe('OrganizationEditorComponent', () => {
       id: null,
       mailDomains: [],
       name: 'test',
+      active: false,
     }
     beforeEach(() => {
       jest
@@ -225,7 +239,7 @@ describe('OrganizationEditorComponent', () => {
     })
 
     it('should post the organization with just the updated name', () => {
-      component.updateName()
+      component.updateOrganization()
       expect(mockOrganizationService.update).toHaveBeenCalledWith(
         updatedOrganization.id,
         updatedOrganization
@@ -236,19 +250,19 @@ describe('OrganizationEditorComponent', () => {
     })
 
     it('should display the success message', () => {
-      component.updateName()
+      component.updateOrganization()
       callback.next(updatedOrganization)
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(UPDATING_SUCCESS)
     })
 
     it('should set the updated model to the component', () => {
-      component.updateName()
+      component.updateOrganization()
       callback.next(updatedOrganization)
       expect(component.organization.name).toEqual(name)
     })
 
     it('should display the error message in case of an error', () => {
-      component.updateName()
+      component.updateOrganization()
       expect(component.isLoading).toBeTruthy()
       callback.error(new Error('error'))
       expect(component.isLoading).toBeFalsy()

@@ -64,14 +64,6 @@
             data-test="organization-editor__name-input"
           />
         </mat-form-field>
-
-        <num-button
-          type="secondary"
-          (singleClick)="updateName()"
-          [isDisabled]="form.get('name').invalid || isLoading"
-          data-test="organization-editor__update-name-button"
-          >{{ 'BUTTON.UPDATE_NAME' | translate }}</num-button
-        >
       </section>
 
       <section
@@ -163,14 +155,19 @@
           </table>
         </ng-template>
       </section>
-      <mat-checkbox
-        id="active"
-        color="accent"
-        formControlName="newDomain"
-        (change)="activeChange()"
-      >
-        {{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
-      >
+      <section>
+        <mat-checkbox id="activeCB" color="accent" formControlName="active">
+          {{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
+        >
+        <br />
+        <num-button
+          type="secondary"
+          (singleClick)="updateOrganization()"
+          [isDisabled]="form.get('name').invalid || isLoading"
+          data-test="organization-editor__update-name-button"
+          >{{ 'BUTTON.UPDATE_ORGANIZATION' | translate }}</num-button
+        >
+      </section>
     </ng-container>
   </mat-card>
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
