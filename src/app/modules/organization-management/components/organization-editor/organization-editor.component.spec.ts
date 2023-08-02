@@ -153,7 +153,7 @@ describe('OrganizationEditorComponent', () => {
       id: null,
       mailDomains: [],
       name: 'test',
-      active: false,
+      active: true,
     }
     beforeEach(() => {
       jest
