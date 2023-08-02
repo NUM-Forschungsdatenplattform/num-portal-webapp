@@ -156,9 +156,16 @@
         </ng-template>
       </section>
       <section>
-        <mat-checkbox id="activeCB" color="accent" formControlName="active">
-          {{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
+        <span
+          matTooltip="{{
+            'ORGANIZATION_MANAGEMENT.DEACTIVATE_ORGANIZATION_NOT_ALLOWED' | translate
+          }}"
+          [matTooltipDisabled]="!isActiveCBDisabled"
         >
+          <mat-checkbox id="activeCB" color="accent" formControlName="active">
+            {{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
+          >
+        </span>
         <br />
         <num-button
           type="secondary"

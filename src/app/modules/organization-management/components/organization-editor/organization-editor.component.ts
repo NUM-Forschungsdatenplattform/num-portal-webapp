@@ -49,6 +49,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
   form: FormGroup
   isLoading: boolean
   displayedColumns = ['domain', 'icon']
+  isActiveCBDisabled = false
 
   constructor(
     private route: ActivatedRoute,
@@ -100,6 +101,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     this.profileService.get().subscribe((profile) => {
       if (profile.organization.id === this.organization.id) {
         this.form.get('active').disable()
+        this.isActiveCBDisabled = true
       }
     })
   }
