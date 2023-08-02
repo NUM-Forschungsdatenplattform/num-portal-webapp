@@ -26,7 +26,7 @@ export class OrganizationUiModel {
     this.id = organizationApi?.id || null
     this.name = organizationApi?.name
     this.mailDomains = organizationApi?.mailDomains || []
-    this.active = organizationApi?.active || false
+    this.active = organizationApi?.active || true
   }
 
   convertToApi(fillIn?: Partial<IOrganization>): IOrganization {
