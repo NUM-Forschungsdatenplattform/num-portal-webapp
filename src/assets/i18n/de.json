@@ -487,7 +487,9 @@
     "MAIL_DOMAIN": "Mail-Domänen",
     "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "Die Organisation wurde erfolgreich gelöscht.",
     "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
-    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Benutzer können ihre eigene Organisation nicht deaktivieren."
+    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Benutzer können ihre eigene Organisation nicht deaktivieren.",
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv"
   },
   "CHARTS": {
     "COHORT_AGE": {

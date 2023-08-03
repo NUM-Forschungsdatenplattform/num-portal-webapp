@@ -49,7 +49,7 @@ export class OrganizationsTableComponent
     super()
   }
 
-  displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
+  displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains', 'active']
   private isSuperAdmin = false
   public sortBy: string
   public sortDir: string

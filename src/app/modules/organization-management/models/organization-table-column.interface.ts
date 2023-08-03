@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export type OrganizationTableColumn = 'id' | 'icon' | 'name' | 'mailDomains'
+export type OrganizationTableColumn = 'id' | 'icon' | 'name' | 'mailDomains' | 'active'

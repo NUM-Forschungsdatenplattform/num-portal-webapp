@@ -92,6 +92,20 @@
       </th>
       <td mat-cell *matCellDef="let element">{{ element.mailDomains }}</td>
     </ng-container>
+    <ng-container matColumnDef="active">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-header>
+        {{ 'ORGANIZATION_MANAGEMENT.ACTIVE' | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <fa-icon
+          *ngIf="!element.active"
+          icon="building-lock"
+          size="lg"
+          [fixedWidth]="true"
+        ></fa-icon>
+        <fa-icon *ngIf="element.active" icon="building" size="lg" [fixedWidth]="true"></fa-icon>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr
