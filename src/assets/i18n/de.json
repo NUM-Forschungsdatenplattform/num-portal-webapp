@@ -294,6 +294,7 @@
     "CUSTOMIZE_CONFIGURATION": "Daten filtern",
     "RESET_CUSTOMIZATION": "Filter zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
+    "UPDATE_ORGANIZATION": "Organisation aktualisieren",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
     "DETERMINE_HITS": "Patienten Ermitteln",
@@ -485,7 +486,8 @@
     "DELETING_DOMAIN_ERROR": "Die Mail-Domäne konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "MAIL_DOMAIN": "Mail-Domänen",
     "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "Die Organisation wurde erfolgreich gelöscht.",
-    "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut."
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Benutzer können ihre eigene Organisation nicht deaktivieren."
   },
   "CHARTS": {
     "COHORT_AGE": {

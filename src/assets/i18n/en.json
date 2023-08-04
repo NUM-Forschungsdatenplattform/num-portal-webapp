@@ -293,6 +293,7 @@
     "CUSTOMIZE_CONFIGURATION": "Filter data",
     "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
+    "UPDATE_ORGANIZATION": "Update organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
     "DETERMINE_HITS": "Determine Patients",
@@ -484,7 +485,8 @@
     "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
     "MAIL_DOMAIN": "Mail domain(s)",
     "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "The organization was successfully deleted.",
-    "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again."
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again.",
+    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Users can not deactivate their own organization."
   },
   "CHARTS": {
     "COHORT_AGE": {
