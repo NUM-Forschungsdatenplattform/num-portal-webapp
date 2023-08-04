@@ -28,6 +28,7 @@ import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
 
 @Component({
   selector: 'num-organizations-table',
@@ -98,6 +99,10 @@ export class OrganizationsTableComponent
     this.sortBy = sort.active
     this.sortDir = sort.direction.toUpperCase()
     this.getAll()
+  }
+  handleFilterChange(filter: OrganizationUserFilterChipId): void {
+    console.log('handleFilterChange with: ', filter)
+    //todo: call getAll with filter
   }
 
   handleData(organizations: any): void {
