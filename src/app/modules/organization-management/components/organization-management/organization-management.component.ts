@@ -22,6 +22,7 @@ import { Subscription } from 'rxjs'
 import { DEFAULT_ORGANIZATION_FILTER } from 'src/app/core/constants/default-filter-organization'
 import { OrganizationsTableComponent } from '../organizations-table/organizations-table.component'
 import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
+import { forEach } from 'lodash'
 
 @Component({
   selector: 'num-organization-management',
@@ -43,6 +44,10 @@ export class OrganizationManagementComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription.push(this.organizationService.getAllPag(0, this.pageSize).subscribe())
+    for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
+      this.filterConfig.filterItem[i].isSelected = false
+    }
+    this.filterConfig.filterItem[0].isSelected = true
   }
 
   createOrganization(): void {

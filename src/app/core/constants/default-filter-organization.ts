@@ -20,12 +20,17 @@ import { IOrganizationFilter } from 'src/app/shared/models/organization/organiza
 export const DEFAULT_ORGANIZATION_FILTER: IOrganizationFilter = {
   filterItem: [
     {
-      id: OrganizationUserFilterChipId.OrganizationActive,
-      title: 'ORGANIZATION_MANAGEMENT.ACTIVE',
+      id: OrganizationUserFilterChipId.OrganizationAll,
+      title: 'ORGANIZATION_MANAGEMENT.ALL',
       isSelected: true,
     },
     {
-      id: OrganizationUserFilterChipId.OrganizationActiveInactive,
+      id: OrganizationUserFilterChipId.OrganizationActive,
+      title: 'ORGANIZATION_MANAGEMENT.ACTIVE',
+      isSelected: false,
+    },
+    {
+      id: OrganizationUserFilterChipId.OrganizationInactive,
       title: 'ORGANIZATION_MANAGEMENT.INACTIVE',
       isSelected: false,
     },

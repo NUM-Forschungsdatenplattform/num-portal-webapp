@@ -54,6 +54,7 @@ export class OrganizationsTableComponent
   private isSuperAdmin = false
   public sortBy: string
   public sortDir: string
+  public active: string
 
   public pageIndex: number
 
@@ -88,7 +89,7 @@ export class OrganizationsTableComponent
   getAll() {
     this.subscriptions.add(
       this.organizationService
-        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
+        .getAllPag(this.pageIndex, this.pageSize, this.active, this.sortDir, this.sortBy)
         .subscribe((data) => {
           this.handleData(data)
         })
@@ -101,8 +102,18 @@ export class OrganizationsTableComponent
     this.getAll()
   }
   handleFilterChange(filter: OrganizationUserFilterChipId): void {
-    console.log('handleFilterChange with: ', filter)
-    //todo: call getAll with filter
+    switch (filter) {
+      case OrganizationUserFilterChipId.OrganizationAll:
+        this.active = null
+        break
+      case OrganizationUserFilterChipId.OrganizationActive:
+        this.active = 'true'
+        break
+      case OrganizationUserFilterChipId.OrganizationInactive:
+        this.active = 'false'
+        break
+    }
+    this.getAll()
   }
 
   handleData(organizations: any): void {

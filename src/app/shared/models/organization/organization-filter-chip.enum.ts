@@ -15,6 +15,7 @@
  */
 
 export enum OrganizationUserFilterChipId {
-  OrganizationActive = 'USER_MANAGEMENT.ACTIVE',
-  OrganizationActiveInactive = 'USER_MANAGEMENT.INACTIVE',
+  OrganizationAll = 'ORGANIZATION_MANAGEMENT.ALL',
+  OrganizationActive = 'ORGANIZATION_MANAGEMENT.ACTIVE',
+  OrganizationInactive = 'ORGANIZATION_MANAGEMENT.INACTIVE',
 }

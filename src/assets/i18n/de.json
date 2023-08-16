@@ -489,7 +489,8 @@
     "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
     "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Benutzer können ihre eigene Organisation nicht deaktivieren.",
     "ACTIVE": "Aktiv",
-    "INACTIVE": "Inaktiv"
+    "INACTIVE": "Inaktiv",
+    "ALL": "Alle"
   },
   "CHARTS": {
     "COHORT_AGE": {

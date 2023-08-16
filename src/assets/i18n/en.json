@@ -488,7 +488,8 @@
     "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again.",
     "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Users can not deactivate their own organization.",
     "ACTIVE": "Active",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "ALL": "All"
   },
   "CHARTS": {
     "COHORT_AGE": {
