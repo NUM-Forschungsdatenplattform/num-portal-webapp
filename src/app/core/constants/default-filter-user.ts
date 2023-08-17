@@ -23,7 +23,7 @@ export const DEFAULT_USER_FILTER: IUserFilter = {
     {
       id: UserFilterChipId.AllUser,
       title: 'FILTER_CHIP.ALL',
-      isSelected: true,
+      isSelected: false,
     },
     {
       id: UserFilterChipId.OrganizationUser,
@@ -33,7 +33,7 @@ export const DEFAULT_USER_FILTER: IUserFilter = {
     {
       id: UserFilterChipId.UserActive,
       title: 'USER_MANAGEMENT.ACTIVE',
-      isSelected: false,
+      isSelected: true,
     },
     {
       id: UserFilterChipId.UserInactive,
