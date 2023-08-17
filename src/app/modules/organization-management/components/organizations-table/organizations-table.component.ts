@@ -69,6 +69,7 @@ export class OrganizationsTableComponent
   }
 
   ngOnInit(): void {
+    this.pageIndex = 0
     this.sortBy = 'name'
     this.sortDir = 'ASC'
 
@@ -87,6 +88,7 @@ export class OrganizationsTableComponent
   }
 
   getAll() {
+    console.log('PI: ', this.pageIndex)
     this.subscriptions.add(
       this.organizationService
         .getAllPag(this.pageIndex, this.pageSize, this.active, this.sortDir, this.sortBy)
