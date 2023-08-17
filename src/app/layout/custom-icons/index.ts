@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { buildingLock } from './building-lock'
 import { numWelcome } from './num-welcome'
 
-export const CUSTOM_ICONS = [numWelcome]
+export const CUSTOM_ICONS = [numWelcome, buildingLock]

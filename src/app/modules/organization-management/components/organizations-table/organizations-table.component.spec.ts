@@ -30,6 +30,7 @@ import { MatSort } from '@angular/material/sort'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -120,6 +121,14 @@ describe('OrganizationsTableComponent', () => {
       sort.active = 'name'
       sort.direction = 'asc'
       component.handleSortChangeTable(sort)
+    })
+  })
+  describe('When a filter is selected', () => {
+    it('should call the backend', () => {
+      jest.spyOn(organizationService, 'getAllPag').mockReturnValue(of({}))
+      component.handleFilterChange(OrganizationUserFilterChipId.OrganizationAll)
+      component.handleFilterChange(OrganizationUserFilterChipId.OrganizationActive)
+      component.handleFilterChange(OrganizationUserFilterChipId.OrganizationInactive)
     })
   })
 

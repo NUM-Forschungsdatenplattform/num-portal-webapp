@@ -28,6 +28,7 @@ import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
 
 @Component({
   selector: 'num-organizations-table',
@@ -49,10 +50,11 @@ export class OrganizationsTableComponent
     super()
   }
 
-  displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains']
+  displayedColumns: OrganizationTableColumn[] = ['icon', 'name', 'mailDomains', 'active']
   private isSuperAdmin = false
   public sortBy: string
   public sortDir: string
+  public active: string
 
   public pageIndex: number
 
@@ -87,7 +89,7 @@ export class OrganizationsTableComponent
   getAll() {
     this.subscriptions.add(
       this.organizationService
-        .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
+        .getAllPag(this.pageIndex, this.pageSize, this.active, this.sortDir, this.sortBy)
         .subscribe((data) => {
           this.handleData(data)
         })
@@ -97,6 +99,20 @@ export class OrganizationsTableComponent
   handleSortChangeTable(sort: Sort): void {
     this.sortBy = sort.active
     this.sortDir = sort.direction.toUpperCase()
+    this.getAll()
+  }
+  handleFilterChange(filter: OrganizationUserFilterChipId): void {
+    switch (filter) {
+      case OrganizationUserFilterChipId.OrganizationAll:
+        this.active = null
+        break
+      case OrganizationUserFilterChipId.OrganizationActive:
+        this.active = 'true'
+        break
+      case OrganizationUserFilterChipId.OrganizationInactive:
+        this.active = 'false'
+        break
+    }
     this.getAll()
   }
 

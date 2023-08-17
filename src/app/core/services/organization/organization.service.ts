@@ -38,16 +38,20 @@ export class OrganizationService {
   getAllPag(
     page: number,
     size: number,
+    active?: string,
     sort: string = null,
     sortBy: string = null
   ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
       queryString = queryString + '?page=' + page + '&size=' + size
+    }
 
-      if (sort) {
-        queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
-      }
+    if (sort) {
+      queryString = queryString + '&sort=' + sort + '&sortBy=' + sortBy
+    }
+    if (active) {
+      queryString = queryString + '&filter%5Bactive%5D=' + active
     }
     return this.httpClient.get<any>(this.baseUrl + '/all' + queryString).pipe(
       tap((data) => {
