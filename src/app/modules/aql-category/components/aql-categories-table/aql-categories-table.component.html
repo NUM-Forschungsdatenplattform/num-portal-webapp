@@ -34,13 +34,26 @@
           <button
             class="num-mat-list-item"
             mat-menu-item
-            *ngFor="let menuItem of menuItems"
-            (click)="handleMenuClick(menuItem.id, data)"
-            [disabled]="menuItem.isDisabled"
-            [attr.data-test]="'aql_categories__table__menu-item__' + menuItem.translationKey"
+            (click)="handleMenuClick(menuItems[0].id, data)"
+            [disabled]="menuItems[0].isDisabled"
+            [attr.data-test]="'aql_categories__table__menu-item__' + menuItems[0].translationKey"
           >
-            {{ menuItem.translationKey | translate }}
+            {{ menuItems[0].translationKey | translate }}
           </button>
+          <span
+            matTooltip="Kategorien mit zugewiesenen Kriterien können nicht gelöscht werden"
+            [matTooltipDisabled]="data.allowedToBeDeleted"
+          >
+            <button
+              class="num-mat-list-item"
+              mat-menu-item
+              (click)="handleMenuClick(menuItems[1].id, data)"
+              [disabled]="menuItems[1].isDisabled || !data.allowedToBeDeleted"
+              [attr.data-test]="'aql_categories__table__menu-item__' + menuItems[1].translationKey"
+            >
+              {{ menuItems[1].translationKey | translate }}
+            </button>
+          </span>
         </ng-template>
       </mat-menu>
 
