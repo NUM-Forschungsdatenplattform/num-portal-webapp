@@ -41,7 +41,7 @@
             {{ menuItems[0].translationKey | translate }}
           </button>
           <span
-            matTooltip="Kategorien mit zugewiesenen Kriterien können nicht gelöscht werden"
+            [matTooltip]="'QUERIES.CATEGORY_NOT_DELETABLE' | translate"
             [matTooltipDisabled]="data.allowedToBeDeleted"
           >
             <button
