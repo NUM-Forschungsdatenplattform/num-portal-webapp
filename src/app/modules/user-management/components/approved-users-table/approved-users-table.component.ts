@@ -152,7 +152,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   handleFilterChange(isOrg: any, selectedTab: any, noGet = false): void {
     if (selectedTab.includes('ORGANIZATION')) {
-      this.filters.type = 'foo'
+      this.filters.type = 'ORGANIZATION'
       this.filters.enabled = null
     } else {
       if (selectedTab.includes('INACTIVE')) {
