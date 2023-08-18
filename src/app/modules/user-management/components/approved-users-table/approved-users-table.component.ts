@@ -154,18 +154,15 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     if (selectedTab.includes('ORGANIZATION')) {
       this.filters.type = 'ORGANIZATION'
       this.filters.enabled = null
-    } else {
-      if (selectedTab.includes('INACTIVE')) {
-        this.filters.enabled = false
-        this.filters.type = null
-      } else {
-        if (selectedTab.includes('ACTIVE')) {
-          this.filters.enabled = true
-          this.filters.type = null
-        } else {
-          this.filters.enabled = true
-        }
-      }
+    } else if (selectedTab.includes('ALL')) {
+      this.filters.type = null
+      this.filters.enabled = null
+    } else if (selectedTab.includes('INACTIVE')) {
+      this.filters.type = null
+      this.filters.enabled = false
+    } else if (selectedTab.includes('ACTIVE')) {
+      this.filters.type = null
+      this.filters.enabled = true
     }
 
     if (!noGet) {
