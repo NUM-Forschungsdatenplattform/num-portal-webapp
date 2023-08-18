@@ -93,7 +93,6 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     if (returnFirstIndex && typeof this.paginator !== 'undefined') {
       this.goToFirstPage()
     }
-
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -152,8 +151,8 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   handleFilterChange(isOrg: any, selectedTab: any, noGet = false): void {
-    if (isOrg) {
-      this.filters.type = null
+    if (selectedTab.includes('ORGANIZATION')) {
+      this.filters.type = 'foo'
       this.filters.enabled = null
     } else {
       if (selectedTab.includes('INACTIVE')) {
@@ -164,8 +163,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
           this.filters.enabled = true
           this.filters.type = null
         } else {
-          this.filters.type = 'ORGANIZATION'
-          this.filters.enabled = null
+          this.filters.enabled = true
         }
       }
     }
