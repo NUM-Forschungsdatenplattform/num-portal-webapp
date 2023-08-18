@@ -31,7 +31,6 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
-import { Sort } from '@angular/material/sort'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
@@ -88,6 +87,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
       approved: true,
       search: null,
       roles: 'RESEARCHER',
+      enabled: true,
     }
 
     this.sortBy = 'firstName'
@@ -122,10 +122,15 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
   }
 
   handleFilterChange(noGet = false): void {
-    if (this.filterConfig.filterItem[0].isSelected) {
-      this.filters.type = null
-    } else {
+    if (this.filterConfig.filterItem[1].isSelected) {
       this.filters.type = 'ORGANIZATION'
+    } else {
+      this.filters.type = null
+    }
+    if (this.filterConfig.filterItem[3].isSelected) {
+      this.filters.enabled = false
+    } else {
+      this.filters.enabled = true
     }
 
     if (!noGet) {

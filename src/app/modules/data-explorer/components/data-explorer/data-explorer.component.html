@@ -34,7 +34,9 @@
 
   <section role="presentation">
     <h3>{{ 'DATA_EXPLORER.HEADLINE_RETREIVE_SECTION' | translate }}</h3>
-    <p class="num-margin-b-20">{{ 'DATA_EXPLORER.INTRODUCTION_RETREIVE_SECTION' | translate }}</p>
+    <p class="num-margin-b-20" *ngIf="!isFilteringDisabled">
+      {{ 'DATA_EXPLORER.INTRODUCTION_RETREIVE_SECTION' | translate }}
+    </p>
   </section>
 
   <section
@@ -54,6 +56,7 @@
 
     <div fxLayoutGap="20px" class="num-margin-b-10">
       <num-button
+        *ngIf="!isFilteringDisabled"
         [isDisabled]="!isCompositionsFetched || isDataSetLoading"
         type="secondary"
         icon="undo"
@@ -62,6 +65,7 @@
         >{{ 'BUTTON.RESET_CUSTOMIZATION' | translate }}</num-button
       >
       <num-button
+        *ngIf="!isFilteringDisabled"
         [isDisabled]="!isCompositionsFetched || isDataSetLoading"
         type="secondary"
         icon="pen"
@@ -85,7 +89,7 @@
   </section>
 
   <h3 id="result-set-header">{{ 'DATA_EXPLORER.RESULT_SET' | translate }}</h3>
-  <span class="num-margin-b-20"
+  <span class="num-margin-b-20" *ngIf="!isFilteringDisabled"
     >{{ 'DATA_EXPLORER.CONFIGURATION' | translate }}:
     {{ 'DATA_EXPLORER.' + configuration | translate }}</span
   >

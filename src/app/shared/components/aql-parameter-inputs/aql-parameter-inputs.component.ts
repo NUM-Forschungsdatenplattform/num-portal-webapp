@@ -21,6 +21,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
+import moment from 'moment'
 
 @Component({
   selector: 'num-aql-parameter-inputs',
@@ -71,11 +72,11 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       this.item.valueType === AqlParameterValueType.Date ||
       this.item.valueType === AqlParameterValueType.DateTime
     ) {
-      this.dateAdapter.setLocale(this.translate.currentLang)
+      this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
 
       this.subscriptions.add(
         this.translate.onLangChange.subscribe((lang) => {
-          this.dateAdapter.setLocale(lang.lang)
+          this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
         })
       )
     }
@@ -124,16 +125,18 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     })
   }
 
-  datePickerChange($event: MatDatepickerInputEvent<Date, any>): void {
-    const currentDate = this.item.value as Date
-    const hours = currentDate.getHours()
-    const minutes = currentDate.getMinutes()
-    const seconds = currentDate.getSeconds()
+  datePickerChange($event: MatDatepickerInputEvent<moment.Moment, any>): void {
+    const currentDate = moment(this.item.value)
+    const hour = currentDate.hours()
+    const minute = currentDate.minutes()
+    const second = currentDate.seconds()
     let newDate = $event.value
     if (newDate === null) {
-      newDate = new Date()
+      newDate = moment()
     }
-    newDate.setHours(hours, minutes, seconds, 0)
+    newDate.set('hour', hour)
+    newDate.set('minute', minute)
+    newDate.set('second', second)
     this.item.value = newDate
   }
 }

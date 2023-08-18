@@ -15,8 +15,7 @@
  */
 
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
-import { skipUntil } from 'rxjs/operators'
+import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -78,7 +77,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/admin/user/all?page=0&size=2&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
+        'localhost/api/admin/user/all?page=0&size=2&language=null&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -274,25 +273,6 @@ describe('AdminService', () => {
     })
   })
 
-  describe('When the filter logic fails to retrieve data', () => {
-    it('should result in an empty array', (done) => {
-      const anyService = service as any
-
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
-
-      service.filteredApprovedUsersObservable$
-        .pipe(skipUntil(timer(anyService.throttleTime / 2)))
-        .subscribe((result) => {
-          expect(result).toEqual([])
-          done()
-        })
-
-      setTimeout(() => {
-        service.refreshFilterResult()
-      }, anyService.throttleTime + 1)
-    })
-  })
-
   describe('When passing in filters', () => {
     test.each(adminFilterTestcases)('It should filter as expected', (testcase) => {
       const anyService = service as any
@@ -331,6 +311,21 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/name`,
         userName,
+        httpOptions
+      )
+    })
+
+    it(`should call the api change status - with success`, () => {
+      const id = '123-456'
+      const httpOptions = {
+        responseType: 'text' as 'json',
+      }
+
+      jest.spyOn(httpClient, 'post')
+      service.changeUserEnabledStatus(id, true).subscribe()
+      expect(httpClient.post).toHaveBeenCalledWith(
+        `localhost/api/admin/user/${id}/status`,
+        true,
         httpOptions
       )
     })

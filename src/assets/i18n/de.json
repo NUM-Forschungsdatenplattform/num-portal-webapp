@@ -294,6 +294,7 @@
     "CUSTOMIZE_CONFIGURATION": "Daten filtern",
     "RESET_CUSTOMIZATION": "Filter zurücksetzen",
     "CREATE_ORGANIZATION": "Organisation erstellen",
+    "UPDATE_ORGANIZATION": "Organisation aktualisieren",
     "UPDATE_NAME": "Name aktualisieren",
     "DETERMINE": "Ermitteln",
     "DETERMINE_HITS": "Patienten Ermitteln",
@@ -404,7 +405,7 @@
     "CRITERIA_EDITOR": "Kriterien-Editor"
   },
   "SEARCH_ORGANIZATIONS": "Organisation suchen",
-  "SEARCH_USERNAME": "Benutzernamen suchen",
+  "SEARCH_USER": "Benutzer suchen",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Wollen Sie wirklich die Genehmigungsanfrage für dieses Projekt zurückziehen?",
     "WITHDRAW_APPROVAL_CONTENT": "Wenn Sie das Projekt aus dem Genehmigungsprozess zurückziehen, können Sie jede Position im Projekt erneut bearbeiten.\n\nAllerdings müssen Sie es dann erneut zur Genehmigung einreichen.",
@@ -421,7 +422,10 @@
     "ARCHIVE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich archivieren?",
     "ARCHIVE_PROJECT_CONTENT": "Die Archivierung des Projekts kann nicht rückgängig gemacht werden.",
     "DELETE_PROJECT_TITLE": "Wollen Sie das Projekt wirklich löschen?",
-    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden."
+    "DELETE_PROJECT_CONTENT": "Die Löschung des Projekts kann nicht rückgängig gemacht werden.",
+    "DELETE_ORGANIZATION_TITLE": "Wollen Sie die Organsiation wirklich löschen?",
+    "DELETE_ORGANIZATION_CONTENT": "Die Löschung der Organisation kann nicht rückgängig gemacht werden.",
+    "DELETE_ORGANIZATION_NOT_ALLOWED": "Nur Organisationen, denen keine Benutzer zugeordnet sind, können gelöscht werden."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",
@@ -457,7 +461,10 @@
     "EDIT_USER_ERROR": "Die Änderungen konnten nicht gespeichert werden. Bitte versuchen Sie es erneut.",
     "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} wurde erfolgreich aktualisiert.",
     "REMOVE_ROLES_WARNING": "Bitte beachten Sie: Wenn Sie alle Rollen abwählen, ist es dem Benutzer nicht möglich, das Portal in vollem Umfang zu nutzen.",
-    "INVALID_USER_NAME_ERROR": "Bitte geben sie einen gültigen Namen an."
+    "INVALID_USER_NAME_ERROR": "Bitte geben sie einen gültigen Namen an.",
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv",
+    "CAN_NOT_CHANGE_ITSELF": "Benutzer können ihren Status nicht selbst ändern."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organisationsübersicht",
@@ -477,7 +484,13 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "Die Mail-Domäne ist bereits in Verwendung. Bitte geben Sie eine andere Mail Domain an.",
     "DELETING_DOMAIN_SUCCESS": "Die Mail-Domäne wurde erfolgreich aus der Organisationsliste gelöscht.",
     "DELETING_DOMAIN_ERROR": "Die Mail-Domäne konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
-    "MAIL_DOMAIN": "Mail-Domänen"
+    "MAIL_DOMAIN": "Mail-Domänen",
+    "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "Die Organisation wurde erfolgreich gelöscht.",
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "Die Organisation konnte nicht gelöscht werden. Bitte versuchen Sie es erneut.",
+    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Benutzer können ihre eigene Organisation nicht deaktivieren.",
+    "ACTIVE": "Aktiv",
+    "INACTIVE": "Inaktiv",
+    "ALL": "Alle"
   },
   "CHARTS": {
     "COHORT_AGE": {
@@ -774,7 +787,7 @@
   },
   "IMPRINT": {
     "TEXTS": {
-      "IMPRESSUM": "Impressum",
+      "HEADING": "Impressum",
       "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für den Betrieb der Website ist der HiGHmed e.V.",
       "INFO_HEADER": "Informationen i.S.d. § 5 TMG",
       "INFO_CONTENT": "HiGHmed e.V: <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /><br /> E-Mail: geschaeftsstelle@highmed.org",

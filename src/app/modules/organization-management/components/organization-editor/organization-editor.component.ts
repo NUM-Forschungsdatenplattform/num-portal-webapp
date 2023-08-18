@@ -36,6 +36,7 @@ import {
   UPDATING_ERROR,
   UPDATING_SUCCESS,
 } from './constants'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-organization-editor',
@@ -48,12 +49,14 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
   form: FormGroup
   isLoading: boolean
   displayedColumns = ['domain', 'icon']
+  isActiveCBDisabled = false
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private organizationService: OrganizationService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
@@ -74,6 +77,10 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     )
   }
 
+  isUserPartOfOrg(): boolean {
+    return true
+  }
+
   generateForm(): void {
     const nonWhitespaceRegex = /[^\s.]+/
     const domainRegex = /[^\s.]+\.[^\s."()[\],:;<>@][^\s"()[\],:;<>@]+$/
@@ -89,6 +96,13 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         Validators.pattern(domainRegex),
       ]),
       mailDomains: new FormControl(this.organization.mailDomains),
+      active: new FormControl(this.organization.active),
+    })
+    this.profileService.get().subscribe((profile) => {
+      if (profile.organization.id === this.organization.id) {
+        this.form.get('active').disable()
+        this.isActiveCBDisabled = true
+      }
     })
   }
 
@@ -139,9 +153,10 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     )
   }
 
-  updateName(): void {
+  updateOrganization(): void {
     const name = this.form.get('name').value
-    const organization = this.organization.convertToApi({ name })
+    const active = this.form.get('active').value
+    const organization = this.organization.convertToApi({ name, active })
     this.update(this.organization.id, organization).subscribe(
       (_updatedOrganization) => {
         this.toastMessageService.openToast(UPDATING_SUCCESS)

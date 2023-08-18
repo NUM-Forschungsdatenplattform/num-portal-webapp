@@ -93,3 +93,16 @@
   <fa-icon icon="exclamation-triangle"></fa-icon>
   {{ 'USER_MANAGEMENT.REMOVE_ROLES_WARNING' | translate }}
 </div>
+
+<mat-checkbox
+  id="isActive"
+  color="accent"
+  [(ngModel)]="isActive"
+  [disabled]="isSelectedEqualToCurrent | async"
+  [matTooltip]="
+    (isSelectedEqualToCurrent | async)
+      ? ('USER_MANAGEMENT.CAN_NOT_CHANGE_ITSELF' | translate)
+      : null
+  "
+  >{{ 'USER_MANAGEMENT.ACTIVE' | translate }}</mat-checkbox
+>

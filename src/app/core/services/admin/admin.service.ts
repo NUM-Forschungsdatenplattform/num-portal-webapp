@@ -69,12 +69,8 @@ export class AdminService {
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
 
     this.filterConfigObservable$
-      .pipe(
-        skip(1),
-        throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item))
-      )
-      .subscribe((filterResult) => this.filteredApprovedUsersSubject$.next(filterResult))
+      .pipe(skip(1), throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }))
+      .subscribe(() => this.filteredApprovedUsersSubject$)
   }
 
   private getUsers(approved: boolean, withRoles = false): Observable<IUser[]> {
@@ -92,7 +88,8 @@ export class AdminService {
   ): Observable<any> {
     let qString = ''
     if (page !== null && size !== null) {
-      qString = qString + '?page=' + page + '&size=' + size
+      qString =
+        qString + '?page=' + page + '&size=' + size + '&language=' + localStorage.getItem('lang')
 
       for (const [key, value] of Object.entries(filters)) {
         if (value !== null) {
@@ -180,6 +177,15 @@ export class AdminService {
     }
     return this.httpClient
       .post<string>(`${this.baseUrl}/user/${userId}/name`, { firstName, lastName }, httpOptions)
+      .pipe(catchError(this.handleError))
+  }
+
+  changeUserEnabledStatus(userId: string, enabled: boolean): Observable<string> {
+    const httpOptions = {
+      responseType: 'text' as 'json',
+    }
+    return this.httpClient
+      .post<string>(`${this.baseUrl}/user/${userId}/status`, enabled, httpOptions)
       .pipe(catchError(this.handleError))
   }
 

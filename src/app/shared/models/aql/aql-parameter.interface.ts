@@ -21,7 +21,7 @@ import { AqlParameterValueType } from './aql-parameter-value-type.enum'
 export interface IAqlParameter {
   name: string
   nameWithDollar: string
-  value: string | number | boolean | Date
+  value: string | number | boolean | Date | moment.Moment
   operator: AqlParameterOperator
   possibleOperators: AqlParameterOperator[]
   path: string

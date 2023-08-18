@@ -17,6 +17,14 @@
 <h2>{{ 'ORGANIZATION_MANAGEMENT.OVERVIEW_HEADER' | translate }}</h2>
 
 <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.OVERVIEW_DESCRIPTION' | translate }}</p>
+<h3 id="all-organizations-header">{{ 'NAVIGATION.ALL_ORGANIZATIONS' | translate }}</h3>
+<section fxLayout="row">
+  <num-filter-chips
+    [filterChips]="filterConfig.filterItem"
+    [multiSelect]="false"
+    (selectionChange)="handleFilterChange()"
+  ></num-filter-chips>
+</section>
 
 <num-organizations-table></num-organizations-table>
 

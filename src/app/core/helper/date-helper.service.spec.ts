@@ -17,6 +17,7 @@
 import { TestBed } from '@angular/core/testing'
 
 import { DateHelperService } from './date-helper.service'
+import moment from 'moment'
 
 describe('DateHelperService', () => {
   let service: DateHelperService
@@ -39,7 +40,7 @@ describe('DateHelperService', () => {
   })
 
   it('Should convert dates as expected', () => {
-    const result = DateHelperService.getDateString(date)
+    const result = DateHelperService.getDateString(moment(dateString))
     expect(result).toEqual('2021-01-02')
   })
 

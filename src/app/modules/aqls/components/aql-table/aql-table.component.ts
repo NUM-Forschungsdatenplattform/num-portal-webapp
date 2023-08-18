@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
-import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
 import { take } from 'rxjs/operators'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 import { Subscription } from 'rxjs'
-import { MatSort, Sort } from '@angular/material/sort'
 import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
@@ -35,8 +33,8 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { TranslateService } from '@ngx-translate/core'
-import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-category-id-name-map.interface'
+import { Sort } from '@angular/material/sort'
 
 @Component({
   selector: 'num-aql-table',
@@ -81,7 +79,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
   }
 
   constructor(
-    private aqlCategoryService: AqlCategoryService,
     private aqlService: AqlService,
     private profileService: ProfileService,
     private dialogService: DialogService,

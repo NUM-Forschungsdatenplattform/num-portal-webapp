@@ -32,6 +32,7 @@ import {
   EDIT_USER_SUCCESS,
   INVALID_USER_NAME_ERROR,
 } from './constants'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-dialog-edit-user-details',
@@ -52,16 +53,20 @@ export class DialogEditUserDetailsComponent
   availableRoles = AvailableRoles
   userNameForm: FormGroup
   isUserNameEditMode: boolean
+  isActive: boolean
+  isSelectedEqualToCurrent: Promise<boolean>
 
   constructor(
     private adminService: AdminService,
     private organizationService: OrganizationService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
     this.userDetails = this.dialogInput.user
     this.isApproval = this.dialogInput.isApproval
+    this.isSelectedEqualToCurrent = this.checkIfSelectedIsCurrent()
 
     if (this.userDetails.organization) {
       this.organization = cloneDeep(this.userDetails.organization)
@@ -81,6 +86,16 @@ export class DialogEditUserDetailsComponent
         Validators.required,
         Validators.minLength(2),
       ]),
+    })
+
+    this.isActive = this.userDetails.enabled
+  }
+
+  async checkIfSelectedIsCurrent(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.profileService.get().subscribe((currentProfile) => {
+        resolve(currentProfile.id === this.userDetails.id)
+      })
     })
   }
 
@@ -152,14 +167,14 @@ export class DialogEditUserDetailsComponent
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    if (this.isApproval) {
-      await this.adminService.getUnapprovedUsers().toPromise()
-    } else {
-      this.adminService.refreshFilterResult()
-    }
+    this.adminService
+      .changeUserEnabledStatus(this.userDetails.id, this.isActive)
+      .subscribe((result) => {
+        this.adminService.refreshFilterResult()
 
-    this.closeDialog.emit()
-    return Promise.resolve()
+        this.closeDialog.emit()
+        return Promise.resolve()
+      })
   }
 
   handleDialogCancel(): void {

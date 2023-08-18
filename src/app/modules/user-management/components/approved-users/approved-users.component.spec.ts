@@ -28,6 +28,8 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { ReactiveFormsModule } from '@angular/forms'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
+import { UserFilterChipId } from '../../../../shared/models/user/user-filter-chip.enum'
+import { ApprovedUsersTableComponent } from '../approved-users-table/approved-users-table.component'
 
 describe('ApprovedUsersComponent', () => {
   let component: ApprovedUsersComponent
@@ -44,11 +46,9 @@ describe('ApprovedUsersComponent', () => {
     approvedUsersObservable$: approvedUsersSubject$.asObservable(),
     filteredApprovedUsersObservable$: filteredApprovedUsersSubject$.asObservable(),
     filterConfigObservable$: filterConfigSubject$.asObservable(),
+    getAllPag: () => of(),
     setFilter: (_: any) => {},
-  } as AdminService
-
-  @Component({ selector: 'num-approved-users-table', template: '' })
-  class ApprovedUserTableStubComponent {}
+  } as unknown as AdminService
 
   @Component({ selector: 'num-filter-chips', template: '' })
   class StubFilterChipsComponent {
@@ -61,9 +61,9 @@ describe('ApprovedUsersComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         ApprovedUsersComponent,
-        ApprovedUserTableStubComponent,
         SearchComponent,
         StubFilterChipsComponent,
+        ApprovedUsersTableComponent,
       ],
       imports: [
         MaterialModule,
@@ -90,5 +90,14 @@ describe('ApprovedUsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy()
+  })
+
+  describe('When handleFilterChange is triggered', () => {
+    it('should filter', () => {
+      component.filterConfig['filterItem'] = [
+        { id: UserFilterChipId.OrganizationUser, title: 'aaaa', isSelected: true },
+      ]
+      component.handleFilterChange()
+    })
   })
 })

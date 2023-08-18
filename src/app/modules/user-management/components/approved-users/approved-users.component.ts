@@ -54,7 +54,15 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
   }
 
   handleFilterChange(): void {
-    this.table.handleFilterChange(this.filterConfig.filterItem[0].isSelected)
+    let selectedTab = null
+
+    for (let i = 0; i < this.filterConfig.filterItem.length; i++) {
+      if (this.filterConfig.filterItem[i].isSelected) {
+        selectedTab = this.filterConfig.filterItem[i].id
+      }
+    }
+
+    this.table.handleFilterChange(this.filterConfig.filterItem[0].isSelected, selectedTab)
   }
 
   handleSearchChange(): void {

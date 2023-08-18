@@ -293,6 +293,7 @@
     "CUSTOMIZE_CONFIGURATION": "Filter data",
     "RESET_CUSTOMIZATION": "Reset filter",
     "CREATE_ORGANIZATION": "Create organization",
+    "UPDATE_ORGANIZATION": "Update organization",
     "UPDATE_NAME": "Update name",
     "DETERMINE": "Determine",
     "DETERMINE_HITS": "Determine Patients",
@@ -403,7 +404,7 @@
     "CRITERIA_EDITOR": "Criteria editor"
   },
   "SEARCH_ORGANIZATIONS": "Search Organization",
-  "SEARCH_USERNAME": "Search user name",
+  "SEARCH_USER": "Search user",
   "CONFIRM_DIALOG": {
     "WITHDRAW_APPROVAL_TITLE": "Do you really want to withdraw the permit request for this project?",
     "WITHDRAW_APPROVAL_CONTENT": "If you withdraw the project from the approval process, you can edit any item in the project again.\n\nHowever, you must then resubmit it for approval.",
@@ -420,7 +421,10 @@
     "ARCHIVE_PROJECT_TITLE": "Do you really want to archive the project?",
     "ARCHIVE_PROJECT_CONTENT": "The archiving of the project cannot be undone.",
     "DELETE_PROJECT_TITLE": "Do you really want to delete the project?",
-    "DELETE_PROJECT_CONTENT": "The deletion of the project cannot be undone."
+    "DELETE_PROJECT_CONTENT": "The deletion of the project cannot be undone.",
+    "DELETE_ORGANIZATION_TITLE": "Do you really want to delete the organization?",
+    "DELETE_ORGANIZATION_CONTENT": "The deletion of the organization cannot be undone.",
+    "DELETE_ORGANIZATION_NOT_ALLOWED": "Only organizations that have no users assigned to them can be deleted."
   },
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",
@@ -440,7 +444,7 @@
     "EXPORT": "Export {{format}}",
     "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
     "HEADLINE_RETREIVE_SECTION": "Retreive Data",
-    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might reult in unexpected cross products."
+    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might result in unexpected cross products."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",
@@ -456,7 +460,10 @@
     "EDIT_USER_ERROR": "The changes could not be saved. Please try again.",
     "EDIT_USER_SUCCESS": "{{firstName}} {{lastName}} was updated successfully.",
     "REMOVE_ROLES_WARNING": "Please note: if you deselect all roles, it is not possible for the user to use the portal to its full extent.",
-    "INVALID_USER_NAME_ERROR": "Please provide a valid name"
+    "INVALID_USER_NAME_ERROR": "Please provide a valid name",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "CAN_NOT_CHANGE_ITSELF": "Users cannot change their status themselves."
   },
   "ORGANIZATION_MANAGEMENT": {
     "OVERVIEW_HEADER": "Organization Overview",
@@ -476,7 +483,13 @@
     "ADDING_DOMAIN_ERROR_TAKEN": "The mail domain is already in use. Please enter another mail domain.",
     "DELETING_DOMAIN_SUCCESS": "The mail domain was successfully deleted from the organization list.",
     "DELETING_DOMAIN_ERROR": "The mail domain could not be deleted. Please try again.",
-    "MAIL_DOMAIN": "Mail domain(s)"
+    "MAIL_DOMAIN": "Mail domain(s)",
+    "DELETE_ORGANIZATION_SUCCESS_MESSAGE": "The organization was successfully deleted.",
+    "DELETE_ORGANIZATION_ERROR_MESSAGE": "The organization could not be deleted. Please try again.",
+    "DEACTIVATE_ORGANIZATION_NOT_ALLOWED": "Users can not deactivate their own organization.",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "ALL": "All"
   },
   "CHARTS": {
     "COHORT_AGE": {
@@ -770,7 +783,7 @@
   },
   "IMPRINT": {
     "TEXTS": {
-      "IMPRESSUM": "Impressum",
+      "HEADING": "Disclosure",
       "DESCRIPTION": "Responsible according to Art. 4 sentence 1 No. 7 DSGVO for the operation of the website is the HiGHmed e.V.",
       "INFO_HEADER": "Informations i.S.d. § 5 TMG",
       "INFO_CONTENT": "HiGHmed e.V: <br /> Langer Anger 7/9 <br /> 69115 Heidelberg <br /><br /> E-Mail: geschaeftsstelle@highmed.org",
