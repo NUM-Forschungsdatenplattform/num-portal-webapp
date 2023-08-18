@@ -73,7 +73,6 @@ export class AqlCategoriesTableComponent
     this.sortBy = 'name-en'
     this.sortDir = 'ASC'
     this.getAll()
-    console.log(this.dataSource)
   }
 
   ngOnDestroy(): void {
