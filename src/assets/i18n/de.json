@@ -140,7 +140,9 @@
       "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut."
     },
     "PRIVACY_PRIVATE": "Nur mit mir",
-    "PRIVACY_PUBLIC": "Öffentlich"
+    "PRIVACY_PUBLIC": "Öffentlich",
+    "CATEGORY_NOT_DELETABLE": "Kategorien mit zugewiesenen Kriterien können nicht gelöscht werden."
+
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",

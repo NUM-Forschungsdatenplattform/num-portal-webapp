@@ -140,7 +140,8 @@
       "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
     },
     "PRIVACY_PRIVATE": "Only with me",
-    "PRIVACY_PUBLIC": "Public"
+    "PRIVACY_PUBLIC": "Public",
+    "CATEGORY_NOT_DELETABLE": "Categories with assigned criterias can not be deleted."
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
