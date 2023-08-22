@@ -170,6 +170,11 @@ export const mainNavItems: INavItem[] = [
     icon: 'book-open',
     translationKey: 'NAVIGATION.USER_MANUAL',
   },
+  {
+    routeTo: 'health-check',
+    icon: 'file-waveform',
+    translationKey: 'NAVIGATION.HEALTH_CHECK',
+  },
 ]
 
 export const secondaryNavItemsLoggedIn: INavItem[] = [

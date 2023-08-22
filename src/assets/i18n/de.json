@@ -80,7 +80,8 @@
     "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden",
-    "USER_MANUAL": "Benutzerhandbuch"
+    "USER_MANUAL": "Benutzerhandbuch",
+    "HEALTH_CHECK": "Systemstatus & Meldungen"
   },
   "PROFILE": {
     "EDIT_HEADER": "Benutzerkonto bearbeiten",
