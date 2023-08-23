@@ -77,7 +77,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
       approved: true,
       search: null,
       type: null,
-      enabled: null,
+      enabled: true,
     }
 
     this.sortBy = 'firstName'
