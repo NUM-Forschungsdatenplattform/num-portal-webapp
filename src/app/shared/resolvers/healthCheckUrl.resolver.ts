@@ -27,6 +27,7 @@ export class HealthCheckUrlResolver implements Resolve<void> {
   resolve(): void {
     let link: string
     if (this.translate.currentLang == 'de') {
+      // TODO: get correct url from BE service
       link = HEALTH_CHECK_URL.DE
     } else {
       link = HEALTH_CHECK_URL.EN

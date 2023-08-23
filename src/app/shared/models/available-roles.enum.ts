@@ -25,3 +25,13 @@ export enum AvailableRoles {
   Manager = 'MANAGER',
   CriteriaEditor = 'CRITERIA_EDITOR',
 }
+export const allRoles = [
+  AvailableRoles.Researcher,
+  AvailableRoles.StudyCoordinator,
+  AvailableRoles.ContentAdmin,
+  AvailableRoles.OrganizationAdmin,
+  AvailableRoles.SuperAdmin,
+  AvailableRoles.StudyApprover,
+  AvailableRoles.Manager,
+  AvailableRoles.CriteriaEditor,
+]
