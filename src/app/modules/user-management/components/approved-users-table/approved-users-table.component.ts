@@ -28,6 +28,7 @@ import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-ta
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatPaginator } from '@angular/material/paginator'
+import { forEach } from 'lodash'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -129,7 +130,13 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   initSearchAndFilters(filter, search) {
-    this.handleFilterChange(filter, '', true)
+    let selectedTab = ''
+    filter.filterItem.forEach((filterItem) => {
+      if (filterItem.isSelected) {
+        selectedTab = filterItem.title
+      }
+    })
+    this.handleFilterChange(null, selectedTab, true)
     this.handleSearchChange(search, true)
 
     this.getAll(true)
