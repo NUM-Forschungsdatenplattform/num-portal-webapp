@@ -130,7 +130,6 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   initSearchAndFilters(filter, search) {
-    console.log(filter)
     let selectedTab = ''
     filter.filterItem.forEach((filterItem) => {
       if (filterItem.isSelected) {
