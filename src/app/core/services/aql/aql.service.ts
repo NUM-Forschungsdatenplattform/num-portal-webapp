@@ -75,7 +75,6 @@ export class AqlService {
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
 
     this.translateService.onLangChange.subscribe((event) => {
-      console.log('lang change', event.lang)
       this.currentLang = event.lang || 'en'
       this.setFilter(this.filterSet)
     })

@@ -21,7 +21,6 @@ import { RoleGuard } from './core/auth/guards/role.guard'
 import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
 import { AvailableRoles, allRoles } from './shared/models/available-roles.enum'
 import { UserManualUrlResolver } from './shared/resolvers/usermanualurl.resolver'
-import { HealthCheckUrlResolver } from './shared/resolvers/healthCheckUrl.resolver'
 
 export const routes: Routes = [
   {
@@ -157,17 +156,6 @@ export const routes: Routes = [
     canLoad: [RoleGuard],
     data: {
       navId: 'user-manual',
-    },
-    children: [],
-  },
-  {
-    path: 'health-check',
-    resolve: { url: HealthCheckUrlResolver },
-    canLoad: [RoleGuard, AuthGuard],
-    data: {
-      roles: allRoles,
-      navId: 'health-check',
-      onlyApprovedUsers: true,
     },
     children: [],
   },

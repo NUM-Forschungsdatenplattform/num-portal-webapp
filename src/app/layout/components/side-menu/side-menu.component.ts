@@ -19,6 +19,7 @@ import { routes } from '../../../app-routing.module'
 import INavItem from '../../models/nav-item.interface'
 import {
   mainNavItems,
+  mainNavItemsExternal,
   secondaryNavItemsLoggedIn,
   secondaryNavItemsLoggedOut,
 } from '../../../core/constants/navigation'
@@ -27,6 +28,10 @@ import { Subscription } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
+import { HttpClient } from '@angular/common/http'
+import { AppConfigService } from 'src/app/config/app-config.service'
+import { isTemplateMiddle } from 'typescript'
+import { HEALTHCHECK } from 'src/app/core/constants/constants'
 
 @Component({
   selector: 'num-side-menu',
@@ -37,22 +42,31 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
   routes = routes
   mainNavItems = mainNavItems
+  mainNavItemsExternal = mainNavItemsExternal
   secondaryNavItems: INavItem[]
+  baseUrl: string
 
   isLoggedIn = false
+
+  healthCheckUrl: string
 
   @Output() toggleSideMenu = new EventEmitter()
 
   constructor(
     private authService: AuthService,
     public contentService: ContentService,
-    private dialogService: DialogService
-  ) {}
+    private dialogService: DialogService,
+    private httpClient: HttpClient,
+    private appConfig: AppConfigService
+  ) {
+    this.baseUrl = `${appConfig.config.api.baseUrl}/admin/status-url`
+  }
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
+    this.getDynamicExternalURLs()
     mainNavItems.forEach((item) => {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
       item.roles = roles
@@ -80,9 +94,23 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     } else if (item?.routeTo === '#login') {
       this.handleLoginWithDialog()
     }
+    // handle dynamic external urls
+    if (item.isExternal) {
+      switch (item.id) {
+        case HEALTHCHECK:
+          window.open(this.healthCheckUrl, '_blank')
+          break
+      }
+    }
     const target = $event.currentTarget as HTMLElement
     target.blur()
     this.toggleSideMenu.emit()
+  }
+
+  getDynamicExternalURLs(): void {
+    this.httpClient.get(this.baseUrl).subscribe((response: any) => {
+      this.healthCheckUrl = response.systemStatusUrl
+    })
   }
 
   handleLoginWithDialog(): void {
