@@ -29,6 +29,8 @@ import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-lin
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { AppConfigService } from 'src/app/config/app-config.service'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -43,6 +45,10 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const appConfig = {
+    config: { api: { baseUrl: 'foo.bar' } },
+  } as unknown as AppConfigService
 
   const mockContentService = {
     getNavigationLinks: jest.fn(),
@@ -84,6 +90,7 @@ describe('SideMenuComponent', () => {
         ]),
         TranslateModule.forRoot(),
         DirectivesModule,
+        HttpClientTestingModule,
       ],
       providers: [
         {
@@ -101,6 +108,10 @@ describe('SideMenuComponent', () => {
         {
           provide: DialogService,
           useValue: mockDialogService,
+        },
+        {
+          provide: AppConfigService,
+          useValue: appConfig,
         },
       ],
     }).compileComponents()
@@ -129,6 +140,7 @@ describe('SideMenuComponent', () => {
         icon: 'test',
         routeTo: 'test',
         translationKey: 'test',
+        isExternal: false,
       },
     ]
     userInfoSubject$.next(userInfo)
@@ -136,7 +148,7 @@ describe('SideMenuComponent', () => {
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
-    expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+    expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
   })
 
   it('Calls logout function when logout button is clicked', () => {
@@ -144,6 +156,7 @@ describe('SideMenuComponent', () => {
       icon: 'test',
       routeTo: '#logout',
       translationKey: 'test',
+      isExternal: false,
     }
     component.mainNavItems = null
     component.secondaryNavItems = [navItem]
@@ -166,6 +179,7 @@ describe('SideMenuComponent', () => {
       icon: 'test',
       routeTo: '#login',
       translationKey: 'test',
+      isExternal: false,
     }
     beforeEach(() => {
       component.mainNavItems = null

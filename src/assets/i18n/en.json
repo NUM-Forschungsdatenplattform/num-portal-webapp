@@ -80,7 +80,8 @@
     "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in",
-    "USER_MANUAL": "User Manual"
+    "USER_MANUAL": "User Manual",
+    "HEALTH_CHECK": "System Status & Messages"
   },
   "PROFILE": {
     "EDIT_HEADER": "Edit User Account",
