@@ -57,9 +57,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private httpClient: HttpClient,
     private appConfig: AppConfigService
-  ) {
-    this.baseUrl = `${appConfig.config.api.baseUrl}/admin/status-url`
-  }
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -94,7 +92,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       this.handleLoginWithDialog()
     }
     // handle dynamic external urls
-    if (item.isExternal) {
+    if (item && item.isExternal) {
       switch (item.id) {
         case HEALTHCHECK:
           window.open(this.healthCheckUrl, '_blank')
@@ -107,9 +105,11 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   }
 
   getDynamicExternalURLs(): void {
-    this.httpClient.get(this.baseUrl).subscribe((response: any) => {
-      this.healthCheckUrl = response.systemStatusUrl
-    })
+    this.httpClient
+      .get(`${this.appConfig.config.api.baseUrl}/admin/status-url`)
+      .subscribe((response: any) => {
+        this.healthCheckUrl = response.systemStatusUrl
+      })
   }
 
   handleLoginWithDialog(): void {
