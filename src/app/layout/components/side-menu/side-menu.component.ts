@@ -30,7 +30,6 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { isTemplateMiddle } from 'typescript'
 import { HEALTHCHECK } from 'src/app/core/constants/constants'
 
 @Component({
