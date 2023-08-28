@@ -23,6 +23,9 @@ import moment from 'moment'
 export class DateHelperService {
   constructor() {}
   static getDateString(date: moment.Moment): string {
+    if (!date.isValid) {
+      date = moment(date)
+    }
     const d = date.toDate()
     const year = d.getFullYear()
     const month = (d.getMonth() + 1).toString().padStart(2, '0')
