@@ -23,6 +23,7 @@ describe('DateHelperService', () => {
   let service: DateHelperService
   const dateString = '2021-01-02T11:12:13+0000'
   const date = new Date(2021, 0, 2, 11, 12, 13)
+  const momentDate = moment(date)
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
@@ -35,7 +36,7 @@ describe('DateHelperService', () => {
   })
 
   it('Should convert date times as expected', () => {
-    const result = DateHelperService.getIsoString(date)
+    const result = DateHelperService.getIsoString(momentDate)
     expect(result).toEqual(dateString)
   })
 
@@ -45,7 +46,7 @@ describe('DateHelperService', () => {
   })
 
   it('Should convert times as expected', () => {
-    const result = DateHelperService.getTimeString(date)
+    const result = DateHelperService.getTimeString(momentDate)
     expect(result).toEqual('11:12:13')
   })
 })

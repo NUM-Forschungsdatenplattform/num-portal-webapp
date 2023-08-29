@@ -111,11 +111,14 @@ export class TimeInputComponent implements OnInit, OnDestroy {
   }
 
   getValuesFromDate(value: Date): { hours; minutes; seconds } {
-    const hours = value.getHours()
-    const minutes = value.getMinutes()
-    const seconds = value.getSeconds()
+    if (value.getHours) {
+      const hours = value.getHours()
+      const minutes = value.getMinutes()
+      const seconds = value.getSeconds()
 
-    return { hours, minutes, seconds }
+      return { hours, minutes, seconds }
+    }
+    return { hours: 0, minutes: 0, seconds: 0 }
   }
 
   restrictToBoundaries(value: number, lower: number, upper: number): number {
