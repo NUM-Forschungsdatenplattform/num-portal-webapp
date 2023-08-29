@@ -34,16 +34,17 @@ export class DateHelperService {
     return `${year}-${month}-${day}`
   }
   //we switched from javascript Date to Momentjs (https://momentjs.com/). If we need to support timebased funtions the cide below needs to be changed, too
-  static getTimeString(date: Date): string {
-    const hours = date.getHours().toString().padStart(2, '0')
-    const minutes = date.getMinutes().toString().padStart(2, '0')
-    const seconds = date.getSeconds().toString().padStart(2, '0')
+  static getTimeString(date: moment.Moment): string {
+    console.log('date: ', date)
+    const hours = date.hours().toString().padStart(2, '0')
+    const minutes = date.minutes().toString().padStart(2, '0')
+    const seconds = date.seconds().toString().padStart(2, '0')
 
     return `${hours}:${minutes}:${seconds}`
   }
 
-  static getOffsetString(date: Date): string {
-    const offset = date.getTimezoneOffset()
+  static getOffsetString(date: moment.Moment): string {
+    const offset = date.toDate().getTimezoneOffset()
     const sign = offset > 0 ? '-' : '+'
     const hours = Math.abs(Math.trunc(offset / 60))
       .toString()
@@ -53,10 +54,11 @@ export class DateHelperService {
     return `${sign}${hours}${minutes}`
   }
 
-  static getIsoString(date: Date): string {
-    const dateString = this.getDateString(moment(date))
-    const timeString = this.getTimeString(date)
-    const offset = this.getOffsetString(date)
+  static getIsoString(date: moment.Moment): string {
+    const momentDate = moment(date)
+    const dateString = this.getDateString(momentDate)
+    const timeString = this.getTimeString(momentDate)
+    const offset = this.getOffsetString(momentDate)
 
     return `${dateString}T${timeString}${offset}`
   }
