@@ -160,7 +160,7 @@ describe('SideMenuComponent', () => {
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
   })
 
-  it('should navigate to dynamic external urls', () => {
+  it('should navigate to dynamic healthcheck url', () => {
     const navItem = {
       icon: 'test',
       routeTo: 'test',
@@ -175,7 +175,24 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector(
       `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
-    console.log('BUTTON: ', button)
+    button.click()
+    fixture.detectChanges()
+  })
+  it('should navigate to dynamic user manual url', () => {
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: USERMANUAL,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
     button.click()
     fixture.detectChanges()
   })
@@ -196,7 +213,6 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector(
       `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
-    //console.log('BUTTON2: ', button)
     button.click()
     fixture.detectChanges()
     expect(authService.logout).toHaveBeenCalled()
