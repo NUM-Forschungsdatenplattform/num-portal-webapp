@@ -179,6 +179,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url', () => {
+    mockTranslateService.currentLang = 'en'
     const navItem = {
       icon: 'test',
       routeTo: 'test',
@@ -193,6 +194,10 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector(
       `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
+    button.click()
+    fixture.detectChanges()
+    mockTranslateService.currentLang = 'de'
+    fixture.detectChanges()
     button.click()
     fixture.detectChanges()
   })
