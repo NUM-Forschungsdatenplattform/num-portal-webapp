@@ -151,20 +151,6 @@ describe('SideMenuComponent', () => {
         translationKey: 'test',
         isExternal: false,
       },
-      {
-        icon: 'test',
-        routeTo: 'test',
-        translationKey: 'test',
-        isExternal: true,
-        id: USERMANUAL,
-      },
-      {
-        icon: 'test',
-        routeTo: 'test',
-        translationKey: 'test',
-        isExternal: true,
-        id: HEALTHCHECK,
-      },
     ]
     userInfoSubject$.next(userInfo)
     fixture.detectChanges()
@@ -172,6 +158,26 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should navigate to dynamic external urls', () => {
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: HEALTHCHECK,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
+    console.log('BUTTON: ', button)
+    button.click()
+    fixture.detectChanges()
   })
 
   it('Calls logout function when logout button is clicked', () => {
@@ -190,7 +196,7 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector(
       `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
-
+    //console.log('BUTTON2: ', button)
     button.click()
     fixture.detectChanges()
     expect(authService.logout).toHaveBeenCalled()
