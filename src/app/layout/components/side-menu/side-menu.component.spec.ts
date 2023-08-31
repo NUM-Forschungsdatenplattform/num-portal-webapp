@@ -41,10 +41,6 @@ describe('SideMenuComponent', () => {
     sub: 'sub123-456',
     groups: ['user', 'has', 'required', 'role'],
   }
-  const mockTranslateService = {
-    onLangChange: jest.fn(),
-    currentLang: 'de',
-  } as unknown as TranslateService
 
   const oauthService = {
     logOut: () => {},
@@ -118,10 +114,6 @@ describe('SideMenuComponent', () => {
           provide: AppConfigService,
           useValue: appConfig,
         },
-        {
-          provide: TranslateService,
-          useVale: mockTranslateService,
-        },
       ],
     }).compileComponents()
   })
@@ -179,7 +171,6 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url (german)', () => {
-    mockTranslateService.currentLang = 'de'
     const navItem = {
       icon: 'test',
       routeTo: 'test',
@@ -198,7 +189,6 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url (english)', () => {
-    mockTranslateService.currentLang = 'en'
     const navItem = {
       icon: 'test',
       routeTo: 'test',
