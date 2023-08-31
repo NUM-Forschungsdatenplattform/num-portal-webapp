@@ -178,8 +178,8 @@ describe('SideMenuComponent', () => {
     button.click()
     fixture.detectChanges()
   })
-  it('should navigate to dynamic user manual url', () => {
-    mockTranslateService.currentLang = 'en'
+  it('should navigate to dynamic user manual url (german)', () => {
+    mockTranslateService.currentLang = 'de'
     const navItem = {
       icon: 'test',
       routeTo: 'test',
@@ -196,8 +196,23 @@ describe('SideMenuComponent', () => {
     ) as HTMLElement
     button.click()
     fixture.detectChanges()
-    mockTranslateService.currentLang = 'de'
+  })
+  it('should navigate to dynamic user manual url (english)', () => {
+    mockTranslateService.currentLang = 'en'
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: USERMANUAL,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
     fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
     button.click()
     fixture.detectChanges()
   })
