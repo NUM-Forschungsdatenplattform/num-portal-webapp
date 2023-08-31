@@ -30,7 +30,8 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { HEALTHCHECK } from 'src/app/core/constants/constants'
+import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-side-menu',
@@ -48,6 +49,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   isLoggedIn = false
 
   healthCheckUrl: string
+  manualUrl: any
 
   @Output() toggleSideMenu = new EventEmitter()
 
@@ -56,7 +58,8 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     public contentService: ContentService,
     private dialogService: DialogService,
     private httpClient: HttpClient,
-    private appConfig: AppConfigService
+    private appConfig: AppConfigService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -97,6 +100,12 @@ export class SideMenuComponent implements OnInit, OnDestroy {
         case HEALTHCHECK:
           window.open(this.healthCheckUrl, '_blank')
           break
+        case USERMANUAL:
+          if (this.translateService.currentLang == 'de') {
+            window.open(this.manualUrl.DE, '_blank')
+          } else if (this.translateService.currentLang == 'en') {
+            window.open(this.manualUrl.EN, '_blank')
+          }
       }
     }
     const target = $event.currentTarget as HTMLElement
@@ -106,9 +115,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   getDynamicExternalURLs(): void {
     this.httpClient
-      .get(`${this.appConfig.config.api.baseUrl}/admin/status-url`)
+      .get(`${this.appConfig.config.api.baseUrl}/admin/external-urls`)
       .subscribe((response: any) => {
         this.healthCheckUrl = response.systemStatusUrl
+        this.manualUrl = response.userManualUrl
       })
   }
 

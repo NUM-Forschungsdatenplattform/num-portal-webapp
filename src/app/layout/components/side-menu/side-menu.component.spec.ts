@@ -19,7 +19,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
-import { TranslateModule } from '@ngx-translate/core'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
@@ -40,6 +40,10 @@ describe('SideMenuComponent', () => {
     sub: 'sub123-456',
     groups: ['user', 'has', 'required', 'role'],
   }
+  const mockTranslateService = {
+    onLangChange: jest.fn(),
+    currentLang: 'de',
+  } as unknown as TranslateService
 
   const oauthService = {
     logOut: () => {},
@@ -112,6 +116,10 @@ describe('SideMenuComponent', () => {
         {
           provide: AppConfigService,
           useValue: appConfig,
+        },
+        {
+          provide: TranslateService,
+          useVale: mockTranslateService,
         },
       ],
     }).compileComponents()
