@@ -31,6 +31,7 @@ import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -149,6 +150,20 @@ describe('SideMenuComponent', () => {
         routeTo: 'test',
         translationKey: 'test',
         isExternal: false,
+      },
+      {
+        icon: 'test',
+        routeTo: 'test',
+        translationKey: 'test',
+        isExternal: true,
+        id: USERMANUAL,
+      },
+      {
+        icon: 'test',
+        routeTo: 'test',
+        translationKey: 'test',
+        isExternal: true,
+        id: HEALTHCHECK,
       },
     ]
     userInfoSubject$.next(userInfo)
