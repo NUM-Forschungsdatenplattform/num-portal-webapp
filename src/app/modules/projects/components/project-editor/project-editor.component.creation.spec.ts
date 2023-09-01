@@ -44,6 +44,7 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { HttpErrorResponse } from '@angular/common/http'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -88,7 +89,7 @@ describe('ProjectEditorComponent On Creation', () => {
   class StubProjectEditorAccordionComponent {
     @Input() isResearchersFetched: boolean
     @Input() isCohortsFetched: boolean
-
+    @Input() isUserProjectAdmin: boolean
     @Input() isTemplatesDisabled: boolean
     @Input() isResearchersDisabled: boolean
     @Input() isGeneralInfoDisabled: boolean
@@ -157,6 +158,7 @@ describe('ProjectEditorComponent On Creation', () => {
       ],
       imports: [
         BrowserAnimationsModule,
+        HttpClientTestingModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,

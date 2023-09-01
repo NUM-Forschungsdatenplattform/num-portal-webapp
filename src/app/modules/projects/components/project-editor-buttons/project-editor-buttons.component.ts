@@ -38,9 +38,11 @@ export class ProjectEditorButtonsComponent {
   @Input() isResearchersDefined: boolean
   @Input() isTemplatesDefined: boolean
   @Input() isCohortDefined: boolean
+  @Input() isCohortValid: boolean
   @Input() approverForm: FormGroup
   @Input() isExportLoading: boolean
   @Input() isSavedProject: boolean
+  @Input() isUserProjectAdmin: boolean
 
   @Output() saveAll = new EventEmitter()
   @Output() saveResearchers = new EventEmitter()
