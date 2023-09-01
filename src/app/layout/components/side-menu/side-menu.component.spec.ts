@@ -124,6 +124,7 @@ describe('SideMenuComponent', () => {
       .spyOn(mockContentService, 'getNavigationLinks')
       .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
+    component.manualUrl = { DE: 'foo', EN: 'bar' }
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
@@ -171,6 +172,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url (german)', () => {
+    component.currentLang = 'de'
     const navItem = {
       icon: 'test',
       routeTo: 'test',
@@ -189,6 +191,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url (english)', () => {
+    component.currentLang = 'en'
     const navItem = {
       icon: 'test',
       routeTo: 'test',

@@ -50,6 +50,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   healthCheckUrl: string
   manualUrl: any
+  currentLang = 'de'
 
   @Output() toggleSideMenu = new EventEmitter()
 
@@ -59,7 +60,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
-    private translateService: TranslateService
+    public translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -96,14 +97,22 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     }
     // handle dynamic external urls
     if (item && item.isExternal) {
+      let lang: string
       switch (item.id) {
         case HEALTHCHECK:
           window.open(this.healthCheckUrl, '_blank')
           break
         case USERMANUAL:
-          if (this.translateService.currentLang == 'de') {
+          if (!this.translateService || !this.translateService.currentLang) {
+            lang = this.currentLang
+          } else {
+            lang = this.translateService.currentLang
+          }
+          /* if (this.translateService.currentLang == 'de') { */
+          if (lang == 'de') {
             window.open(this.manualUrl.DE, '_blank')
-          } else if (this.translateService.currentLang == 'en') {
+            /* } else if (this.translateService.currentLang == 'en') { */
+          } else if (lang == 'en') {
             window.open(this.manualUrl.EN, '_blank')
           }
       }
