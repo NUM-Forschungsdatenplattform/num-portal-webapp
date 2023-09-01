@@ -59,7 +59,6 @@ describe('AqlService', () => {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
-  let onLanguageChangeSubject$: EventEmitter<any>
   const mockTranslateService = {
     onLangChange: jest.fn(),
     currentLang: 'de',

@@ -166,20 +166,14 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.MANAGER_TOOLS',
     roles: [AvailableRoles.Manager],
   },
-  {
-    routeTo: 'user-manual',
-    icon: 'book-open',
-    translationKey: 'NAVIGATION.USER_MANUAL',
-  },
 ]
 export const mainNavItemsExternal: INavItem[] = [
-  /*  
-  preparaion for user manual if available
   {
     icon: 'book-open',
     translationKey: 'NAVIGATION.USER_MANUAL',
     id: USERMANUAL,
-  }, */
+    isExternal: true,
+  },
   {
     icon: 'file-waveform',
     translationKey: 'NAVIGATION.HEALTH_CHECK',
