@@ -56,11 +56,17 @@ jest.mock('src/app/core/utils/download-file.utils', () => ({
   downloadFile: jest.fn().mockImplementation(() => ''),
 }))
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
   let fixture: ComponentFixture<ProjectEditorComponent>
   let router: Router
+
+  const mockProfileService = {
+    get: jest.fn(),
+  } as unknown as ProfileService
 
   const projectService = {
     create: jest.fn(),
@@ -179,6 +185,7 @@ describe('ProjectEditorComponent', () => {
         ProjectEditorApprovalStubComponent,
       ],
       imports: [
+        HttpClientTestingModule,
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
@@ -211,6 +218,10 @@ describe('ProjectEditorComponent', () => {
           provide: ToastMessageService,
           useValue: mockToast,
         },
+        {
+          provide: ProfileService,
+          useValue: mockProfileService,
+        },
       ],
     }).compileComponents()
   })
@@ -229,6 +240,19 @@ describe('ProjectEditorComponent', () => {
     jest.spyOn(projectService, 'update').mockImplementation(() => of(mockProject1))
     jest.spyOn(projectService, 'updateStatusById').mockImplementation(() => of(mockProject1))
     jest.spyOn(projectService, 'exportPrint').mockImplementation(() => of(''))
+    jest.spyOn(mockProfileService, 'get').mockImplementation(() =>
+      of({
+        id: 'string',
+        username: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        email: 'string',
+        createdTimestamp: 1,
+        roles: null,
+        approved: true,
+        organization: null,
+      })
+    )
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {

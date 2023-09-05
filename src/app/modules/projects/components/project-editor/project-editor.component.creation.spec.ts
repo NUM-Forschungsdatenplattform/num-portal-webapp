@@ -44,6 +44,8 @@ import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { HttpErrorResponse } from '@angular/common/http'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -84,11 +86,16 @@ describe('ProjectEditorComponent On Creation', () => {
     openToast: jest.fn(),
   } as unknown as ToastMessageService
 
+  const profileService = {
+    apiBase: jest.fn(),
+    get: jest.fn(),
+  }
+
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {
     @Input() isResearchersFetched: boolean
     @Input() isCohortsFetched: boolean
-
+    @Input() isUserProjectAdmin: boolean
     @Input() isTemplatesDisabled: boolean
     @Input() isResearchersDisabled: boolean
     @Input() isGeneralInfoDisabled: boolean
@@ -160,6 +167,7 @@ describe('ProjectEditorComponent On Creation', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
+        HttpClientTestingModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
@@ -184,12 +192,31 @@ describe('ProjectEditorComponent On Creation', () => {
           provide: ToastMessageService,
           useValue: mockToastMessageService,
         },
+        {
+          provide: ProfileService,
+          useValue: profileService,
+        },
       ],
     }).compileComponents()
   })
 
   beforeEach(() => {
     jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
+    jest.spyOn(profileService, 'apiBase').mockReturnValue('something')
+    jest.spyOn(profileService, 'get').mockImplementation(() => {
+      return of({
+        id: 'string',
+        username: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        email: 'string',
+        createdTimestamp: 1,
+        roles: null,
+        approved: true,
+        organization: null,
+      })
+    })
+
     TestBed.inject(Router)
     fixture = TestBed.createComponent(ProjectEditorComponent)
     component = fixture.componentInstance

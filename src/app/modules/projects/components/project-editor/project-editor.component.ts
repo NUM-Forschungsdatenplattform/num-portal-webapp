@@ -40,6 +40,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { TranslateService } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-project-editor',
@@ -84,6 +85,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   isCohortValid: any
 
+  isUserProjectAdmin: boolean
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -92,7 +95,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private adminService: AdminService,
     private dialogService: DialogService,
     private toast: ToastMessageService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +120,9 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.determineHitsContent = {
       defaultMessage: 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS',
     }
+    this.profileService.get().subscribe((user) => {
+      this.isUserProjectAdmin = user.id === this.project.coordinator.id
+    })
   }
 
   updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {

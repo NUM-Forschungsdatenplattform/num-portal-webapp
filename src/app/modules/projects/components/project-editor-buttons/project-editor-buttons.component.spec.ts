@@ -106,17 +106,17 @@ describe('ProjectEditorButtonsComponent', () => {
     const previewCases = [
       {
         status: ProjectStatus.Draft,
-        disabled: false,
+        disabled: true,
         text: 'BUTTON.EDIT',
       },
       {
         status: ProjectStatus.ChangeRequest,
-        disabled: false,
+        disabled: true,
         text: 'BUTTON.EDIT',
       },
       {
         status: ProjectStatus.Approved,
-        disabled: false,
+        disabled: true,
         text: 'BUTTON.EDIT_RESEARCHERS',
       },
       {
@@ -145,7 +145,6 @@ describe('ProjectEditorButtonsComponent', () => {
         text: 'BUTTON.EDIT',
       },
     ]
-
     test.each(previewCases)('shoud behave as expected', (testcase) => {
       component.projectStatus = testcase.status
       fixture.detectChanges()

@@ -130,7 +130,7 @@
         projectStatus === possibleStatus.Draft ||
         projectStatus === possibleStatus.ChangeRequest ||
         projectStatus === possibleStatus.Approved
-      )
+      ) || !isUserProjectAdmin
     "
     *numUserHasRole="[availableRoles.StudyCoordinator]"
     data-test="project-editor__buttons__start-edit-button"
