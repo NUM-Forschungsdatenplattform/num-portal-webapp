@@ -180,6 +180,10 @@ describe('SideMenuComponent', () => {
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
   })
 
+  it('should handle the system status', () => {
+    component.handleSystemStatus()
+  })
+
   it('should navigate to dynamic healthcheck url', () => {
     const navItem = {
       icon: 'test',

@@ -74,6 +74,14 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
       item.roles = roles
     })
+    this.handleSystemStatus()
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
+  }
+
+  handleSystemStatus(): void {
     this.systemService.getSystemStatus().then((status) => {
       this.mainNavItemsExternal.forEach((item) => {
         if (item.id === HEALTHCHECK) {
@@ -81,10 +89,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
         }
       })
     })
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe()
   }
 
   handleUserInfo(): void {
