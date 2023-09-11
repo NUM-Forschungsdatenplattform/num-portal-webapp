@@ -32,6 +32,7 @@ import { Component } from '@angular/core'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -46,6 +47,10 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const systemStatusService = {
+    getSystemStatus: jest.fn(),
+  } as unknown as SystemStatusService
 
   const appConfig = {
     config: { api: { baseUrl: 'foo.bar' } },
@@ -129,6 +134,13 @@ describe('SideMenuComponent', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
     jest.spyOn(authService, 'login').mockImplementation()
+    jest.spyOn(systemStatusService, 'getSystemStatus').mockResolvedValue({
+      EHRBASE: 'string',
+      FE: 'string',
+      FHIR_BRIDGE: 'string',
+      KEYCLOAK: 'string',
+      NUM: 'string',
+    })
     jest.clearAllMocks()
   })
 

@@ -49,8 +49,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false
 
-  systemHasAlert = false
-
   healthCheckUrl: string
   manualUrl: any
   currentLang = 'de'
