@@ -77,7 +77,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       item.roles = roles
     })
     this.systemService.getSystemStatus().then((status) => {
-      console.log(status)
       this.mainNavItemsExternal.forEach((item) => {
         if (item.id === HEALTHCHECK) {
           item.highlighted = this.systemService.hasError(status)
