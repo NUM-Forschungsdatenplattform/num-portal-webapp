@@ -447,8 +447,8 @@
     "RESULT_SET_ERROR": "Die Ergebnisse konnte nicht geladen werden. Bitte passen Sie die Konfiguration an und versuchen es erneut.",
     "EXPORT": "{{format}} Exportieren",
     "EXPORT_ERROR": "Fehler beim Versuch die {{format}} Datei zu exportieren, bitte versuchen Sie es später noch einmal.",
-    "HEADLINE_RETREIVE_SECTION": "Datenabruf",
-    "INTRODUCTION_RETREIVE_SECTION": "Rufen Sie Daten ab, schränken Sie die Ergebnismenge mit temporären Filtern ein oder entfernen Sie zuvor definierte temporäre Filter. Bitte beachten Sie: Bei der Filter-Definition können ungewollt Kreuzprodukte als Resultat entstehen."
+    "HEADLINE_RETRIEVE_SECTION": "Datenabruf",
+    "INTRODUCTION_RETRIEVE_SECTION": "Rufen Sie Daten ab, schränken Sie die Ergebnismenge mit temporären Filtern ein oder entfernen Sie zuvor definierte temporäre Filter. Bitte beachten Sie: Bei der Filter-Definition können ungewollt Kreuzprodukte als Resultat entstehen."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "Alle neuen Benutzer",

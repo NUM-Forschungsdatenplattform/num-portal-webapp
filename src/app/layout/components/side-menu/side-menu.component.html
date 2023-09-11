@@ -43,7 +43,7 @@
     <a
       *numUserHasRole="item.roles"
       mat-list-item
-      class="num-mat-list-item"
+      [ngClass]="{ 'num-mat-list-item': true, highlighted: item.highlighted }"
       (click)="menuItemClicked($event, item)"
       [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
     >
