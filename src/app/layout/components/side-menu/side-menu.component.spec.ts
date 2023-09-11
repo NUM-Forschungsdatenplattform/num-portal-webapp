@@ -130,6 +130,21 @@ describe('SideMenuComponent', () => {
       .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
     component.manualUrl = { DE: 'foo', EN: 'bar' }
+    component.mainNavItemsExternal = [
+      {
+        icon: 'book-open',
+        translationKey: 'NAVIGATION.USER_MANUAL',
+        id: USERMANUAL,
+        isExternal: true,
+      },
+      {
+        icon: 'file-waveform',
+        translationKey: 'NAVIGATION.HEALTH_CHECK',
+        id: HEALTHCHECK,
+        isExternal: true,
+        highlighted: true,
+      },
+    ]
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
