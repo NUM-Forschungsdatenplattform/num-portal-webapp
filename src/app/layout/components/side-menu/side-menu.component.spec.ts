@@ -29,9 +29,10 @@ import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-lin
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -46,6 +47,10 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const systemStatusService = {
+    getSystemStatusOberservable: jest.fn(),
+  } as unknown as SystemStatusService
 
   const appConfig = {
     config: { api: { baseUrl: 'foo.bar' } },
@@ -125,10 +130,35 @@ describe('SideMenuComponent', () => {
       .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
     component.manualUrl = { DE: 'foo', EN: 'bar' }
+    component.mainNavItemsExternal = [
+      {
+        icon: 'book-open',
+        translationKey: 'NAVIGATION.USER_MANUAL',
+        id: USERMANUAL,
+        isExternal: true,
+      },
+      {
+        icon: 'file-waveform',
+        translationKey: 'NAVIGATION.HEALTH_CHECK',
+        id: HEALTHCHECK,
+        isExternal: true,
+        highlighted: true,
+      },
+    ]
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
     jest.spyOn(authService, 'login').mockImplementation()
+    jest.spyOn(systemStatusService, 'getSystemStatusOberservable').mockImplementation(() =>
+      of({
+        EHRBASE: 'string',
+        FE: 'string',
+        FHIR_BRIDGE: 'string',
+        KEYCLOAK: 'string',
+        NUM: 'string',
+        CHECK_FOR_ANNOUNCEMENTS: 'string',
+      })
+    )
     jest.clearAllMocks()
   })
 
@@ -151,6 +181,10 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle the system status', () => {
+    component.handleSystemStatus()
   })
 
   it('should navigate to dynamic healthcheck url', () => {

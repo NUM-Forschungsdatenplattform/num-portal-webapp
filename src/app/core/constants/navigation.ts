@@ -180,6 +180,7 @@ export const mainNavItemsExternal: INavItem[] = [
     roles: allRoles,
     id: HEALTHCHECK,
     isExternal: true,
+    highlighted: true,
   },
 ]
 

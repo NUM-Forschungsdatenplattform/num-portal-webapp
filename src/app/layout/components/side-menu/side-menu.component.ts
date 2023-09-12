@@ -32,6 +32,7 @@ import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
 import { TranslateService } from '@ngx-translate/core'
+import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
 
 @Component({
   selector: 'num-side-menu',
@@ -60,7 +61,8 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    private systemService: SystemStatusService
   ) {}
 
   ngOnInit(): void {
@@ -72,10 +74,21 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
       item.roles = roles
     })
+    this.handleSystemStatus()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+  }
+
+  handleSystemStatus(): void {
+    this.systemService.getSystemStatusOberservable().subscribe((status) => {
+      this.mainNavItemsExternal.forEach((item) => {
+        if (item.id === HEALTHCHECK) {
+          item.highlighted = this.systemService.hasError(status)
+        }
+      })
+    })
   }
 
   handleUserInfo(): void {

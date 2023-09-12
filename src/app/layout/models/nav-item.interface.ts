@@ -25,4 +25,5 @@ export default interface INavItem {
   roles?: AvailableRoles[]
   disabled?: boolean
   isExternal?: boolean
+  highlighted?: boolean
 }
