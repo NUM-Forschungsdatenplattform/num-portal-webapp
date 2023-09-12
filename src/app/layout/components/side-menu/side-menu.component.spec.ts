@@ -29,10 +29,10 @@ import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-lin
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
 import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -49,7 +49,7 @@ describe('SideMenuComponent', () => {
   } as OAuthService
 
   const systemStatusService = {
-    getSystemStatus: jest.fn(),
+    getSystemStatusOberservable: jest.fn(),
   } as unknown as SystemStatusService
 
   const appConfig = {
@@ -149,13 +149,16 @@ describe('SideMenuComponent', () => {
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
     jest.spyOn(authService, 'login').mockImplementation()
-    jest.spyOn(systemStatusService, 'getSystemStatus').mockResolvedValue({
-      EHRBASE: 'string',
-      FE: 'string',
-      FHIR_BRIDGE: 'string',
-      KEYCLOAK: 'string',
-      NUM: 'string',
-    })
+    jest.spyOn(systemStatusService, 'getSystemStatusOberservable').mockImplementation(() =>
+      of({
+        EHRBASE: 'string',
+        FE: 'string',
+        FHIR_BRIDGE: 'string',
+        KEYCLOAK: 'string',
+        NUM: 'string',
+        CHECK_FOR_ANNOUNCEMENTS: 'string',
+      })
+    )
     jest.clearAllMocks()
   })
 

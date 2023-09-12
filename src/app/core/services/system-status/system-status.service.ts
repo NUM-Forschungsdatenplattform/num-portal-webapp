@@ -3,6 +3,7 @@ import { Environment } from './envs'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { SystemStatus } from './system-status.interface'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +28,17 @@ export class SystemStatusService {
     }
     return env
   }
-  getSystemStatus(): Promise<SystemStatus> {
+  /*  getSystemStatus(): Promise<SystemStatus> {
     return new Promise((resolve, reject) => {
       this.httpClient.get(`${this.baseUrl}?setup=${this.getEnv()}`).subscribe((systemStatus) => {
         resolve(systemStatus as SystemStatus)
+      })
+    })
+  } */
+  getSystemStatusOberservable(): Observable<SystemStatus> {
+    return new Observable((subscriber) => {
+      this.httpClient.get(`${this.baseUrl}?setup=${this.getEnv()}`).subscribe((systemStatus) => {
+        subscriber.next(systemStatus as SystemStatus)
       })
     })
   }
@@ -40,7 +48,8 @@ export class SystemStatusService {
       status.FE !== '' ||
       status.FHIR_BRIDGE !== '' ||
       status.KEYCLOAK !== '' ||
-      status.NUM !== ''
+      status.NUM !== '' ||
+      status.CHECK_FOR_ANNOUNCEMENTS !== ''
     )
   }
 }

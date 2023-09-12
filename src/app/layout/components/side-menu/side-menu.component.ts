@@ -82,7 +82,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   }
 
   handleSystemStatus(): void {
-    this.systemService.getSystemStatus().then((status) => {
+    this.systemService.getSystemStatusOberservable().subscribe((status) => {
       this.mainNavItemsExternal.forEach((item) => {
         if (item.id === HEALTHCHECK) {
           item.highlighted = this.systemService.hasError(status)

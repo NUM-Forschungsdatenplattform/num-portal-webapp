@@ -4,4 +4,5 @@ export interface SystemStatus {
   FHIR_BRIDGE: string
   KEYCLOAK: string
   NUM: string
+  CHECK_FOR_ANNOUNCEMENTS: string
 }
