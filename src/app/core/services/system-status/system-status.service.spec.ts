@@ -45,4 +45,14 @@ describe('SystemStatusService', () => {
   it('should check system status', () => {
     service.getSystemStatusOberservable()
   })
+  it('should check for errors', () => {
+    service.hasError({
+      EHRBASE: '',
+      KEYCLOAK: '',
+      NUM: '',
+      CHECK_FOR_ANNOUNCEMENTS: '',
+      FE: '',
+      FHIR_BRIDGE: '',
+    })
+  })
 })
