@@ -203,7 +203,7 @@ describe('DataExplorerComponent', () => {
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
     jest.spyOn(profileService, 'get').mockImplementation(() =>
       of({
-        id: 'string',
+        id: '123-abc',
         username: 'string',
         firstName: 'string',
         lastName: 'string',
