@@ -55,6 +55,7 @@ import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-b
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -65,6 +66,10 @@ describe('DataExplorerComponent', () => {
     q: 'result string',
     parameters: {},
   }
+
+  const profileService = {
+    get: jest.fn(),
+  } as unknown as ProfileService
 
   const cohortService = {
     create: jest.fn(),
@@ -180,6 +185,10 @@ describe('DataExplorerComponent', () => {
           provide: ToastMessageService,
           useValue: toastMessageService,
         },
+        {
+          provide: ProfileService,
+          useValue: profileService,
+        },
       ],
     }).compileComponents()
   })
@@ -192,6 +201,18 @@ describe('DataExplorerComponent', () => {
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
     jest.spyOn(cohortService, 'update').mockImplementation(() => of(mockCohort1))
     jest.spyOn(adminService, 'getUsersByIds').mockImplementation(() => of(mockUsers))
+    jest.spyOn(profileService, 'get').mockImplementation(() =>
+      of({
+        id: 'string',
+        username: 'string',
+        firstName: 'string',
+        lastName: 'string',
+        email: 'string',
+        createdTimestamp: 1,
+        approved: true,
+        organization: null,
+      })
+    )
   })
 
   describe('When the components gets initialized and the cohortId is not specified', () => {
