@@ -88,7 +88,6 @@ export class OrganizationsTableComponent
   }
 
   getAll() {
-    console.log('PI: ', this.pageIndex)
     this.subscriptions.add(
       this.organizationService
         .getAllPag(this.pageIndex, this.pageSize, this.active, this.sortDir, this.sortBy)

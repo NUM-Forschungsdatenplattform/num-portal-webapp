@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
+import { AvailableRoles, allRoles } from 'src/app/shared/models/available-roles.enum'
 import INavItem from '../../layout/models/nav-item.interface'
+import { HEALTHCHECK, USERMANUAL } from './constants'
 
 export const mainNavItems: INavItem[] = [
   {
@@ -165,10 +166,21 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.MANAGER_TOOLS',
     roles: [AvailableRoles.Manager],
   },
+]
+export const mainNavItemsExternal: INavItem[] = [
   {
-    routeTo: 'user-manual',
     icon: 'book-open',
     translationKey: 'NAVIGATION.USER_MANUAL',
+    id: USERMANUAL,
+    isExternal: true,
+  },
+  {
+    icon: 'file-waveform',
+    translationKey: 'NAVIGATION.HEALTH_CHECK',
+    roles: allRoles,
+    id: HEALTHCHECK,
+    isExternal: true,
+    highlighted: true,
   },
 ]
 

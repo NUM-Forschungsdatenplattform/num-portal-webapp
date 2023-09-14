@@ -104,7 +104,31 @@ describe('ApprovedUsersTableComponent', () => {
   describe('When filter type and search is triggered', () => {
     it('should filter and search', () => {
       jest.spyOn(adminService, 'getAllPag').mockReturnValue(of({}))
-      component.initSearchAndFilters(false, 'testSearch')
+      const filter = {
+        filterItem: [
+          {
+            id: 'USER.ALL_USERS',
+            title: 'FILTER_CHIP.ALL',
+            isSelected: true,
+          },
+          {
+            id: 'USER.ORGANIZATION_USERS',
+            title: 'FILTER_CHIP.ORGANIZATION',
+            isSelected: false,
+          },
+          {
+            id: 'USER_MANAGEMENT.ACTIVE',
+            title: 'USER_MANAGEMENT.ACTIVE',
+            isSelected: false,
+          },
+          {
+            id: 'USER_MANAGEMENT.INACTIVE',
+            title: 'USER_MANAGEMENT.INACTIVE',
+            isSelected: false,
+          },
+        ],
+      }
+      component.initSearchAndFilters(filter, 'testSearch')
       expect(component.filters.search).toEqual('testSearch')
     })
   })

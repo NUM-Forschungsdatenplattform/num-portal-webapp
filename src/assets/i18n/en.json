@@ -80,7 +80,8 @@
     "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in",
-    "USER_MANUAL": "User Manual"
+    "USER_MANUAL": "User Manual",
+    "HEALTH_CHECK": "System Status & Messages"
   },
   "PROFILE": {
     "EDIT_HEADER": "Edit User Account",
@@ -140,7 +141,8 @@
       "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
     },
     "PRIVACY_PRIVATE": "Only with me",
-    "PRIVACY_PUBLIC": "Public"
+    "PRIVACY_PUBLIC": "Public",
+    "CATEGORY_NOT_DELETABLE": "Categories with assigned criterias can not be deleted."
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
@@ -431,7 +433,7 @@
     "EXPLORE_PROJECT": "Retrieve project data",
     "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.\n\nYou can either start the data retrieval directly or optionally restrict the data retrieval defined in the project even further.",
     "RESULT_SET": "Result Set",
-    "NO_RESULTS_YET": "No results yet. Please press the button 'Retreive Data' first.",
+    "NO_RESULTS_YET": "No results yet. Please press the button 'Retrieve Data' first.",
     "LOADING_RESULT_SET": "The result set is being loaded. Please wait a moment.",
     "EMPTY_RESULT_SET": "The configuration did not give any results. Please change the configuration and try again.",
     "CONFIGURATION": "Configuration",
@@ -443,8 +445,8 @@
     "RESULT_SET_ERROR": "The results could not be loaded. Please adjust the configuration and try again.",
     "EXPORT": "Export {{format}}",
     "EXPORT_ERROR": "Error while trying to Export the {{format}} file, please try again later.",
-    "HEADLINE_RETREIVE_SECTION": "Retreive Data",
-    "INTRODUCTION_RETREIVE_SECTION": "Retreive data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might result in unexpected cross products."
+    "HEADLINE_RETRIEVE_SECTION": "Retrieve Data",
+    "INTRODUCTION_RETRIEVE_SECTION": "Retrieve data, restrict the result set with filters or reset previously defined filter. Caution: Using custom filters might result in unexpected cross products."
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",

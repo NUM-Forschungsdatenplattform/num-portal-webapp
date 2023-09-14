@@ -39,6 +39,18 @@
       <div>{{ item.translationKey | translate }}</div>
     </a>
   </ng-template>
+  <ng-template ngFor let-item [ngForOf]="mainNavItemsExternal">
+    <a
+      *numUserHasRole="item.roles"
+      mat-list-item
+      [ngClass]="{ 'num-mat-list-item': true, highlighted: item.highlighted }"
+      (click)="menuItemClicked($event, item)"
+      [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
+    >
+      <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
+      <div>{{ item.translationKey | translate }}</div>
+    </a>
+  </ng-template>
 
   <ng-template [ngIf]="isLoggedIn">
     <mat-divider class="num-d-c--g num-d-w--1"></mat-divider>

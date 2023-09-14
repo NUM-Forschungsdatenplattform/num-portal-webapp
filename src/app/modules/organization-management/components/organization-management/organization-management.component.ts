@@ -22,7 +22,6 @@ import { Subscription } from 'rxjs'
 import { DEFAULT_ORGANIZATION_FILTER } from 'src/app/core/constants/default-filter-organization'
 import { OrganizationsTableComponent } from '../organizations-table/organizations-table.component'
 import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
-import { forEach } from 'lodash'
 
 @Component({
   selector: 'num-organization-management',

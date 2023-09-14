@@ -29,10 +29,10 @@ export const convertParameterInputToType = (
       outputValue = DateHelperService.getDateString(inputValue as Moment)
       break
     case AqlParameterValueType.Time:
-      outputValue = DateHelperService.getTimeString(inputValue as Date)
+      outputValue = DateHelperService.getTimeString(inputValue as Moment)
       break
     case AqlParameterValueType.DateTime:
-      outputValue = DateHelperService.getIsoString(inputValue as Date)
+      outputValue = DateHelperService.getIsoString(inputValue as Moment)
       break
     case AqlParameterValueType.Number:
       outputValue = parseInt(inputValue as string, 10)

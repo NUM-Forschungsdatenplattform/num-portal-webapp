@@ -70,10 +70,8 @@ export class AqlCategoriesTableComponent
 
   ngOnInit() {
     this.pageIndex = 0
-
     this.sortBy = 'name-en'
     this.sortDir = 'ASC'
-
     this.getAll()
   }
 

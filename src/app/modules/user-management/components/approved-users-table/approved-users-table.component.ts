@@ -28,6 +28,7 @@ import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-ta
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatPaginator } from '@angular/material/paginator'
+import { forEach } from 'lodash'
 
 @Component({
   selector: 'num-approved-users-table',
@@ -77,7 +78,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
       approved: true,
       search: null,
       type: null,
-      enabled: null,
+      enabled: true,
     }
 
     this.sortBy = 'firstName'
@@ -93,7 +94,6 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
     if (returnFirstIndex && typeof this.paginator !== 'undefined') {
       this.goToFirstPage()
     }
-
     this.subscriptions.add(
       this.adminService
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
@@ -130,7 +130,13 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   initSearchAndFilters(filter, search) {
-    this.handleFilterChange(filter, '', true)
+    let selectedTab = ''
+    filter.filterItem.forEach((filterItem) => {
+      if (filterItem.isSelected) {
+        selectedTab = filterItem.title
+      }
+    })
+    this.handleFilterChange(null, selectedTab, true)
     this.handleSearchChange(search, true)
 
     this.getAll(true)
@@ -152,22 +158,18 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
   }
 
   handleFilterChange(isOrg: any, selectedTab: any, noGet = false): void {
-    if (isOrg) {
+    if (selectedTab.includes('ORGANIZATION')) {
+      this.filters.type = 'ORGANIZATION'
+      this.filters.enabled = null
+    } else if (selectedTab.includes('ALL')) {
       this.filters.type = null
       this.filters.enabled = null
-    } else {
-      if (selectedTab.includes('INACTIVE')) {
-        this.filters.enabled = false
-        this.filters.type = null
-      } else {
-        if (selectedTab.includes('ACTIVE')) {
-          this.filters.enabled = true
-          this.filters.type = null
-        } else {
-          this.filters.type = 'ORGANIZATION'
-          this.filters.enabled = null
-        }
-      }
+    } else if (selectedTab.includes('INACTIVE')) {
+      this.filters.type = null
+      this.filters.enabled = false
+    } else if (selectedTab.includes('ACTIVE')) {
+      this.filters.type = null
+      this.filters.enabled = true
     }
 
     if (!noGet) {

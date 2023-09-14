@@ -19,7 +19,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
-import { TranslateModule } from '@ngx-translate/core'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
@@ -29,6 +29,10 @@ import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-lin
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
+import { AppConfigService } from 'src/app/config/app-config.service'
+import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -43,6 +47,14 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
+
+  const systemStatusService = {
+    getSystemStatusOberservable: jest.fn(),
+  } as unknown as SystemStatusService
+
+  const appConfig = {
+    config: { api: { baseUrl: 'foo.bar' } },
+  } as unknown as AppConfigService
 
   const mockContentService = {
     getNavigationLinks: jest.fn(),
@@ -84,6 +96,7 @@ describe('SideMenuComponent', () => {
         ]),
         TranslateModule.forRoot(),
         DirectivesModule,
+        HttpClientTestingModule,
       ],
       providers: [
         {
@@ -102,6 +115,10 @@ describe('SideMenuComponent', () => {
           provide: DialogService,
           useValue: mockDialogService,
         },
+        {
+          provide: AppConfigService,
+          useValue: appConfig,
+        },
       ],
     }).compileComponents()
   })
@@ -112,10 +129,36 @@ describe('SideMenuComponent', () => {
       .spyOn(mockContentService, 'getNavigationLinks')
       .mockImplementation(() => of(mockNavigationLinks))
     component = fixture.componentInstance
+    component.manualUrl = { DE: 'foo', EN: 'bar' }
+    component.mainNavItemsExternal = [
+      {
+        icon: 'book-open',
+        translationKey: 'NAVIGATION.USER_MANUAL',
+        id: USERMANUAL,
+        isExternal: true,
+      },
+      {
+        icon: 'file-waveform',
+        translationKey: 'NAVIGATION.HEALTH_CHECK',
+        id: HEALTHCHECK,
+        isExternal: true,
+        highlighted: true,
+      },
+    ]
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
     jest.spyOn(authService, 'login').mockImplementation()
+    jest.spyOn(systemStatusService, 'getSystemStatusOberservable').mockImplementation(() =>
+      of({
+        EHRBASE: 'string',
+        FE: 'string',
+        FHIR_BRIDGE: 'string',
+        KEYCLOAK: 'string',
+        NUM: 'string',
+        CHECK_FOR_ANNOUNCEMENTS: 'string',
+      })
+    )
     jest.clearAllMocks()
   })
 
@@ -129,6 +172,7 @@ describe('SideMenuComponent', () => {
         icon: 'test',
         routeTo: 'test',
         translationKey: 'test',
+        isExternal: false,
       },
     ]
     userInfoSubject$.next(userInfo)
@@ -136,7 +180,68 @@ describe('SideMenuComponent', () => {
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
-    expect(component.toggleSideMenu.emit).toHaveBeenCalled()
+    expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
+  })
+
+  it('should handle the system status', () => {
+    component.handleSystemStatus()
+  })
+
+  it('should navigate to dynamic healthcheck url', () => {
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: HEALTHCHECK,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
+    button.click()
+    fixture.detectChanges()
+  })
+  it('should navigate to dynamic user manual url (german)', () => {
+    component.currentLang = 'de'
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: USERMANUAL,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
+    button.click()
+    fixture.detectChanges()
+  })
+  it('should navigate to dynamic user manual url (english)', () => {
+    component.currentLang = 'en'
+    const navItem = {
+      icon: 'test',
+      routeTo: 'test',
+      translationKey: 'test',
+      isExternal: true,
+      id: USERMANUAL,
+    }
+    component.mainNavItems = null
+    component.secondaryNavItems = [navItem]
+    fixture.detectChanges()
+    const nativeElement = fixture.debugElement.nativeElement
+    const button = nativeElement.querySelector(
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
+    ) as HTMLElement
+    button.click()
+    fixture.detectChanges()
   })
 
   it('Calls logout function when logout button is clicked', () => {
@@ -144,6 +249,7 @@ describe('SideMenuComponent', () => {
       icon: 'test',
       routeTo: '#logout',
       translationKey: 'test',
+      isExternal: false,
     }
     component.mainNavItems = null
     component.secondaryNavItems = [navItem]
@@ -154,7 +260,6 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector(
       `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
-
     button.click()
     fixture.detectChanges()
     expect(authService.logout).toHaveBeenCalled()
@@ -166,6 +271,7 @@ describe('SideMenuComponent', () => {
       icon: 'test',
       routeTo: '#login',
       translationKey: 'test',
+      isExternal: false,
     }
     beforeEach(() => {
       component.mainNavItems = null

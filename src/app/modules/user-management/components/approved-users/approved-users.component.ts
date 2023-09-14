@@ -45,7 +45,8 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
         this.filterConfig = config
         setTimeout(() => {
           this.table.initSearchAndFilters(
-            this.filterConfig.filterItem[0].isSelected,
+            //this.filterConfig.filterItem[0].isSelected,
+            this.filterConfig,
             this.filterConfig.searchText
           )
         })
