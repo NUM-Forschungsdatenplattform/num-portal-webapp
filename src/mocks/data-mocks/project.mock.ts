@@ -33,7 +33,12 @@ export const mockProject1: IProjectApi = {
   templates: [],
   cohortId: 1,
   coordinator: mockUserSuperAdmin,
-  researchers: [],
+  researchers: [
+    {
+      approved: true,
+      userId: '123-abc',
+    },
+  ],
   firstHypotheses: 'Test Hypothesis',
   status: ProjectStatus.Draft,
   createDate: DateHelperService.getDateString(moment()),
