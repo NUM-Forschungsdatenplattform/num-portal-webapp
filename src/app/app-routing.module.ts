@@ -16,11 +16,11 @@
 
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { AuthGuard } from './core/auth/guards/auth.guard'
-import { RoleGuard } from './core/auth/guards/role.guard'
-import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
-import { AvailableRoles, allRoles } from './shared/models/available-roles.enum'
-import { UserManualUrlResolver } from './shared/resolvers/usermanualurl.resolver'
+import { AuthGuard } from 'projects/num-lib/src/lib/core/auth/guards/auth.guard'
+import { RoleGuard } from 'projects/num-lib/src/lib/core/auth/guards/role.guard'
+import { CanDeactivateSearchGuard } from 'projects/num-lib/src/lib/modules/search/can-deactivate-search.guard'
+import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
+import { UserManualUrlResolver } from 'projects/num-lib/src/lib/shared/resolvers/usermanualurl.resolver'
 
 export const routes: Routes = [
   {
@@ -30,7 +30,7 @@ export const routes: Routes = [
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "Dashboard.Module" */ './modules/dashboard/dashboard.module'
+        /* webpackChunkName: "Dashboard.Module" */ 'projects/num-lib/src/lib/modules/dashboard/dashboard.module'
       ).then((m) => m.DashboardModule),
   },
   {
@@ -38,10 +38,10 @@ export const routes: Routes = [
     canLoad: [AuthGuard],
     data: {
       navId: 'profile',
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Profile.Module" */ './modules/profile/profile.module').then(
+      import(/* webpackChunkName: "Profile.Module" */ 'projects/num-lib/src/lib/modules/profile/profile.module').then(
         (m) => m.ProfileModule
       ),
   },
@@ -52,10 +52,10 @@ export const routes: Routes = [
     data: {
       navId: 'search',
       roles: [AvailableRoles.Manager, AvailableRoles.StudyCoordinator],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Search.Module" */ './modules/search/search.module').then(
+      import(/* webpackChunkName: "Search.Module" */ 'projects/num-lib/src/lib/modules/search/search.module').then(
         (m) => m.SearchModule
       ),
   },
@@ -65,10 +65,10 @@ export const routes: Routes = [
     data: {
       navId: 'projects',
       roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Projects.Module" */ './modules/projects/projects.module').then(
+      import(/* webpackChunkName: "Projects.Module" */ 'projects/num-lib/src/lib/modules/projects/projects.module').then(
         (m) => m.ProjectsModule
       ),
   },
@@ -78,11 +78,11 @@ export const routes: Routes = [
     data: {
       navId: 'data-explorer',
       roles: [AvailableRoles.Researcher],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "DataExplorer.Module" */ './modules/data-explorer/data-explorer.module'
+        /* webpackChunkName: "DataExplorer.Module" */ 'projects/num-lib/src/lib/modules/data-explorer/data-explorer.module'
       ).then((m) => m.DataExplorerModule),
   },
   {
@@ -91,10 +91,10 @@ export const routes: Routes = [
     data: {
       navId: 'aqls',
       roles: [AvailableRoles.CriteriaEditor],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
-      import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
+      import(/* webpackChunkName: "Aqls.Module" */ 'projects/num-lib/src/lib/modules/aqls/aqls.module').then(
         (m) => m.AqlsModule
       ),
   },
@@ -104,11 +104,11 @@ export const routes: Routes = [
     data: {
       navId: 'users',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "UserManagement.Module" */ './modules/user-management/user-management.module'
+        /* webpackChunkName: "UserManagement.Module" */ 'projects/num-lib/src/lib/modules/user-management/user-management.module'
       ).then((m) => m.UserManagementModule),
   },
   {
@@ -117,11 +117,11 @@ export const routes: Routes = [
     data: {
       navId: 'organizations',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "OrganizationManagement.Module" */ './modules/organization-management/organization-management.module'
+        /* webpackChunkName: "OrganizationManagement.Module" */ 'projects/num-lib/src/lib/modules/organization-management/organization-management.module'
       ).then((m) => m.OrganizationManagementModule),
   },
   {
@@ -130,11 +130,11 @@ export const routes: Routes = [
     data: {
       navId: 'content-editor',
       roles: [AvailableRoles.ContentAdmin],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "ContentEditor.Module" */ './modules/content-editor/content-editor.module'
+        /* webpackChunkName: "ContentEditor.Module" */ 'projects/num-lib/src/lib/modules/content-editor/content-editor.module'
       ).then((m) => m.ContentEditorModule),
   },
   {
@@ -143,11 +143,11 @@ export const routes: Routes = [
     data: {
       navId: 'manager-tools',
       roles: [AvailableRoles.Manager],
-      onlyApprovedUsers: true,
+      onlyApprovedUsers: false,
     },
     loadChildren: () =>
       import(
-        /* webpackChunkName: "ManagerTools.Module" */ './modules/manager-tools/manager-tools.module'
+        /* webpackChunkName: "ManagerTools.Module" */ 'projects/num-lib/src/lib/modules/manager-tools/manager-tools.module'
       ).then((m) => m.ManagerToolsModule),
   },
   {
@@ -162,7 +162,7 @@ export const routes: Routes = [
   {
     path: 'legal',
     loadChildren: () =>
-      import(/* webpackChunkName: "Legal.Module" */ './modules/legal/legal.module').then(
+      import(/* webpackChunkName: "Legal.Module" */ 'projects/num-lib/src/lib/modules/legal/legal.module').then(
         (m) => m.LegalModule
       ),
   },

@@ -21,18 +21,19 @@ import { APP_INITIALIZER } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { CoreModule } from './core/core.module'
-import { LayoutModule } from './layout/layout.module'
-import { AppConfigService } from './config/app-config.service'
-import { OAuthInitService } from './core/auth/oauth-init.service'
+import { AppConfigService, environmentToken } from '../../projects/num-lib/src/lib/config/app-config.service'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
-import { OAuthInterceptor } from './core/interceptors/oauth.interceptor'
-import { AuthService } from './core/auth/auth.service'
 import { DateAdapter } from '@angular/material/core'
 import { MomentDateAdapter } from '@angular/material-moment-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
 import { WebpackTranslateLoader } from './webpack-translate-loader'
-import { ErrorInterceptor } from './core/interceptors/error.interceptor'
+import { environment } from 'src/environments/environment'
+import { LayoutModule } from 'projects/num-lib/src/lib/layout/layout.module'
+import { OAuthInterceptor } from 'projects/num-lib/src/lib/core/interceptors/oauth.interceptor'
+import { CoreModule } from 'projects/num-lib/src/lib/core/core.module'
+import { ErrorInterceptor } from 'projects/num-lib/src/lib/core/interceptors/error.interceptor'
+import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
+import { OAuthInitService } from 'projects/num-lib/src/lib/core/auth/oauth-init.service'
 
 @NgModule({
   declarations: [AppComponent],
@@ -83,6 +84,10 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
       multi: true,
     },
     { provide: DateAdapter, useClass: MomentDateAdapter },
+    {
+      provide: environmentToken,
+      useValue: environment
+    }
   ],
   bootstrap: [AppComponent],
 })

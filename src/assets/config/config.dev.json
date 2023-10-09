@@ -3,7 +3,7 @@
     "name": "dev"
   },
   "api": {
-    "baseUrl": "https://num-portal.crr.dev.num-codex.de"
+    "baseUrl": "http://localhost:8090"
   },
   "auth": {
     "baseUrl": "https://keycloak.dev.num-codex.de",
