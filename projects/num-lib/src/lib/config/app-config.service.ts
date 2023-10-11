@@ -22,11 +22,11 @@ export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROM
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigService {
-  private readonly CONFIG_URL = `assets/config/config.${this.environmentToken.name}.json`
-
   config: IAppConfig = null
 
   constructor(private http: HttpClient, @Inject(environmentToken) readonly environmentToken: any) {}
+
+  private readonly CONFIG_URL = `assets/config/config.${this.environmentToken.name}.json`
 
   public loadConfig(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
