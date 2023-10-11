@@ -16,7 +16,7 @@
 
 <mat-form-field appearance="outline">
   <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
-  <mat-chip-list
+  <mat-chip-listbox
     #categoryChipList
     aria-label="Category selection"
     data-test="project-editor__general-info__categories-chip-list"
@@ -47,7 +47,7 @@
       (focus)="openCategoryAutocomplete()"
       data-test="project-editor__general-info__categories-input"
     />
-  </mat-chip-list>
+  </mat-chip-listbox>
   <mat-autocomplete
     #categoryAutocomplete="matAutocomplete"
     (optionSelected)="addCategory($event, trigger)"

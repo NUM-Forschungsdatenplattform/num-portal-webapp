@@ -15,7 +15,7 @@
 -->
 
 <label for="filter-chips">{{ 'FORM.FILTER' | translate }}</label>
-<mat-chip-list id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
+<mat-chip-listbox id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
   <mat-chip
     color="primary"
     *ngFor="let chip of filterChips"
@@ -26,4 +26,4 @@
     <fa-icon icon="check"></fa-icon>
     {{ chip.title | translate }}
   </mat-chip>
-</mat-chip-list>
+</mat-chip-listbox>

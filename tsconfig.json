@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "es2020",
     "paths": {
       "num-lib": [
         "dist/num-lib/num-lib",

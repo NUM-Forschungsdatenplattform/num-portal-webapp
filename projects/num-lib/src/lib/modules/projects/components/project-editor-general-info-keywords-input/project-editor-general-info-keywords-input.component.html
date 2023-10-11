@@ -16,7 +16,7 @@
 
 <mat-form-field appearance="outline">
   <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
-  <mat-chip-list
+  <mat-chip-listbox
     #keywordsChipList
     aria-label="Keywords selection"
     data-test="project-editor__general-info__keywords-chip-list"
@@ -44,5 +44,5 @@
       autocomplete="off"
       data-test="project-editor__general-info__keywords-input"
     />
-  </mat-chip-list>
+  </mat-chip-listbox>
 </mat-form-field>
