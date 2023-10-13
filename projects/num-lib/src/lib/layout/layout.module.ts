@@ -21,7 +21,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { RouterModule } from '@angular/router'
 import { AppLayoutComponent } from './components/app-layout/app-layout.component'
 import { HeaderComponent } from './components/header/header.component'
-import { SideMenuComponent } from './components/side-menu/side-menu.component'
 import { LanguageComponent } from './components/language/language.component'
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import { FONT_AWESOME_ICONS } from './font-awesome-icons'
@@ -37,7 +36,6 @@ const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
   declarations: [
     AppLayoutComponent,
     HeaderComponent,
-    SideMenuComponent,
     LanguageComponent,
     FooterComponent,
   ],

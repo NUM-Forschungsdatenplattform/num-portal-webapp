@@ -22,7 +22,7 @@ import { catchError, map, switchMap, tap, throttleTime } from 'rxjs/operators'
 import { ITemplateFilter } from '../../../shared/models/template/template-filter.interface'
 import { DEFAULT_TEMPLATE_FILTER } from '../../constants/default-filter-template'
 import { environment } from 'src/environments/environment'
-import { AppConfigService } from 'projects/num-lib/src/public-api'
+import { AppConfigService } from '../../../config/app-config.service'
 
 @Injectable({
   providedIn: 'root',

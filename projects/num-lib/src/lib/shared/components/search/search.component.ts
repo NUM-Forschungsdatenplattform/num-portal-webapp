@@ -38,10 +38,12 @@ export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROM
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit, OnChanges, OnDestroy {
+
+  constructor(@Inject(environmentToken) readonly environmentToken: any) {}
+
   /* istanbul ignore next */
   private readonly debounceTime = this.environmentToken.name === 'test' ? 10 : 200
   searchForm: FormGroup
-  constructor(@Inject(environmentToken) readonly environmentToken: any) {}
 
   private subscriptions = new Subscription()
 

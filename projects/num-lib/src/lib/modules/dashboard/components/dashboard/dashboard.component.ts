@@ -22,7 +22,7 @@ import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available
 import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
 import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
 import { IDashboardCard } from 'projects/num-lib/src/lib/shared/models/content/dashboard-card.interface'
-import { AppConfigService } from 'projects/num-lib/src/public-api'
+import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
 
 @Component({
   selector: 'num-dashboard',

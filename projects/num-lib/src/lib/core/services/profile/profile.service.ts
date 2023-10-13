@@ -19,7 +19,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
-import { AppConfigService } from 'projects/num-lib/src/public-api'
+import { AppConfigService } from '../../../config/app-config.service'
 
 @Injectable({
   providedIn: 'root',

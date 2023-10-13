@@ -23,8 +23,8 @@ import { of, Subject, throwError } from 'rxjs'
 import { mockOAuthUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
-import { AppConfigService } from 'projects/num-lib/src/public-api'
 import { IAuthUserProfile } from '../../shared/models/user/auth-user-profile.interface'
+import { AppConfigService } from '../../config/app-config.service'
 
 describe('Auth Service', () => {
   let authService: AuthService

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NumLibComponent } from './num-lib.component';
-
-
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +9,8 @@ import { NumLibComponent } from './num-lib.component';
   imports: [
   ],
   exports: [
-    NumLibComponent
+    NumLibComponent,
+    DashboardModule
   ]
 })
 export class NumLibModule { }

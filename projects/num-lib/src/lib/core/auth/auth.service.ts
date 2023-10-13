@@ -23,9 +23,9 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { ProfileService } from '../services/profile/profile.service'
-import { AppConfigService } from 'projects/num-lib/src/public-api'
 import { IAuthUserInfo } from '../../shared/models/user/auth-user-info.interface'
 import { IAuthUserProfile } from '../../shared/models/user/auth-user-profile.interface'
+import { AppConfigService } from '../../config/app-config.service'
 
 const TIME_BEFORE_START_IDLE = 1
 const TIME_TO_WAIT_IDLE = 3600

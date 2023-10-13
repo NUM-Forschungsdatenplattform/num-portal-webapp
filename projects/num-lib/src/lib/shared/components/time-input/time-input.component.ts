@@ -27,6 +27,9 @@ export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROM
   styleUrls: ['./time-input.component.scss'],
 })
 export class TimeInputComponent implements OnInit, OnDestroy {
+  
+  constructor( @Inject(environmentToken) readonly environmentToken: any) {}
+
   /* istanbul ignore next */
   private readonly debounceTime = this.environmentToken.name === 'test' ? 10 : 200
   private subscriptions = new Subscription()
@@ -78,8 +81,6 @@ export class TimeInputComponent implements OnInit, OnDestroy {
     this.currentDate = newDate
     this.dateChange.emit(newDate)
   }
-
-  constructor( @Inject(environmentToken) readonly environmentToken: any) {}
 
   form = new FormGroup({
     hours: new FormControl(0),
