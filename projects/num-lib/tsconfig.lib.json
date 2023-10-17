@@ -11,7 +11,16 @@
     "lib": [
       "dom",
       "es2018"
-    ]
+    ],
+    "paths": {
+      "num-lib": [
+        "dist/num-lib/num-lib",
+        "dist/num-lib"
+      ],
+      "num-project": [
+        "project/num-lib/public-api.ts"
+      ]
+    },
   },
   "exclude": [
     "src/test.ts",
