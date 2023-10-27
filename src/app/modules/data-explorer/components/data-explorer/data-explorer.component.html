@@ -46,7 +46,13 @@
     class="num-margin-b-40"
   >
     <num-button
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isDataSetLoading || isExportLoading"
+      [isDisabled]="
+        !isCompositionsFetched ||
+        !compiledQuery ||
+        isDataSetLoading ||
+        isExportLoading ||
+        !isUserResearcher
+      "
       type="primary"
       icon="play"
       (singleClick)="getDataSet()"

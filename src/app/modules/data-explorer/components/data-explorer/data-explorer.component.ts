@@ -17,7 +17,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
-import { forkJoin, Subscription } from 'rxjs'
+import { combineLatest, forkJoin, Subscription } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
@@ -47,6 +47,7 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { cloneDeep } from 'lodash-es'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
+import { ProfileService } from 'src/app/core/services/profile/profile.service'
 
 @Component({
   selector: 'num-data-explorer',
@@ -77,6 +78,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   isCohortBuilderDisabled = true
   isFilteringDisabled = true
 
+  isUserResearcher = false
+
   generalInfoData: IDefinitionList[]
 
   get project(): ProjectUiModel {
@@ -100,7 +103,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
@@ -181,9 +185,17 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
       this.isResearchersFetched = true
     } else {
       this.subscriptions.add(
-        this.adminService.getUsersByIds(userIds).subscribe((researchers) => {
+        combineLatest([
+          this.adminService.getUsersByIds(userIds),
+          this.profileService.get(),
+        ]).subscribe(([researchers, userProfile]) => {
           this.project.researchers = researchers
           this.isResearchersFetched = true
+          this.project.researchers.forEach((researcher) => {
+            if (researcher.id === userProfile.id) {
+              this.isUserResearcher = true
+            }
+          })
         })
       )
     }
