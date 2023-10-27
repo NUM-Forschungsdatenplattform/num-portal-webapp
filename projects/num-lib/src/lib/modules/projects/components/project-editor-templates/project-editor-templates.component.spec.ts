@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms'
 import { ButtonComponent } from '../../../../shared/components/button/button.component'
 import { Component, Input } from '@angular/core'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 @Component({ selector: 'num-add-templates', template: '' })
 class StubAddTemplatesComponent {

@@ -29,12 +29,12 @@ import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
 import { TranslateService } from '@ngx-translate/core'
 import { Sort } from '@angular/material/sort'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { AqlTableColumns } from 'projects/num-lib/src/lib/shared/models/aql/aql-table.interface'
-import { IAqlCategoryIdNameMap } from 'projects/num-lib/src/lib/shared/models/aql/category/aql-category-id-name-map.interface'
-import { SortableTable } from 'projects/num-lib/src/lib/shared/models/sortable-table.model'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
-import { AqlService } from 'projects/num-lib/src/lib/core/services/aql/aql.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { AqlTableColumns } from '../../../../shared/models/aql/aql-table.interface'
+import { IAqlCategoryIdNameMap } from '../../../../shared/models/aql/category/aql-category-id-name-map.interface'
+import { SortableTable } from '../../../../shared/models/sortable-table.model'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
+import { AqlService } from '../../../../core/services/aql/aql.service'
 
 @Component({
   selector: 'num-aql-table',

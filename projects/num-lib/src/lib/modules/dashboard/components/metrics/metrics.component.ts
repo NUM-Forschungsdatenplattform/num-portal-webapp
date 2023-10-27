@@ -15,7 +15,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
+import { ContentService } from '../../../../core/services/content/content.service'
 import { Subscription } from 'rxjs'
 
 @Component({

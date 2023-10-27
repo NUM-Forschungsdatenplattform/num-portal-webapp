@@ -3,17 +3,17 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { DISCARD_DIALOG_CONFIG, SAVE_DIALOG_CONFIG } from './constants'
 
 import { ProfileComponent } from './profile.component'
 import { LayoutModule } from '@angular/cdk/layout'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent

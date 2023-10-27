@@ -25,11 +25,11 @@ import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 
 import { WelcomePageEditorComponent } from './welcome-page-editor.component'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
 
 describe('WelcomePageEditorComponent', () => {
   let component: WelcomePageEditorComponent

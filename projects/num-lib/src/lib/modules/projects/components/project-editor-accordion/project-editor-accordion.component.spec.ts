@@ -24,9 +24,9 @@ import { TranslateModule } from '@ngx-translate/core'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { IDefinitionList } from 'projects/num-lib/src/lib/shared/models/definition-list.interface'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 describe('ProjectEditorAccordionComponent', () => {
   let component: ProjectEditorAccordionComponent

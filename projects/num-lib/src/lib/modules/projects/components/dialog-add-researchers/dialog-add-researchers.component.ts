@@ -29,10 +29,10 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
-import { AdminService } from 'projects/num-lib/src/lib/core/services/admin/admin.service'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
-import { IUserFilter } from 'projects/num-lib/src/lib/shared/models/user/user-filter.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { AdminService } from '../../../../core/services/admin/admin.service'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
+import { IUserFilter } from '../../../../shared/models/user/user-filter.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',

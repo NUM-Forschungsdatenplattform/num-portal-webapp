@@ -15,7 +15,7 @@
  */
 
 import { Component } from '@angular/core'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
 
 @Component({
   selector: 'num-projects',

@@ -36,7 +36,7 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router'
 

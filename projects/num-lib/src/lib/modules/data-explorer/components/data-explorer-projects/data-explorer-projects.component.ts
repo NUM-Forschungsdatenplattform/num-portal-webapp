@@ -15,7 +15,7 @@
  */
 
 import { Component, OnInit } from '@angular/core'
-import { ProjectService } from 'projects/num-lib/src/lib/core/services/project/project.service'
+import { ProjectService } from '../../../../core/services/project/project.service'
 
 @Component({
   selector: 'num-data-explorer-projects',

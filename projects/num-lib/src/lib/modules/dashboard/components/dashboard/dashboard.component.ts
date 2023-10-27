@@ -18,10 +18,10 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } from './constants'
-import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
-import { IDashboardCard } from 'projects/num-lib/src/lib/shared/models/content/dashboard-card.interface'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AuthService } from '../../../../core/auth/auth.service'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { IDashboardCard } from '../../../../shared/models/content/dashboard-card.interface'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
 
 @Component({

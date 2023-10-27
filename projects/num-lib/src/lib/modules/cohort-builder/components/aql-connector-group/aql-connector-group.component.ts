@@ -26,11 +26,11 @@ import {
   SimpleChanges,
 } from '@angular/core'
 import { debounce } from 'lodash-es'
-import { CohortBuilderService } from 'projects/num-lib/src/lib/core/services/cohort-builder/cohort-builder.service'
-import { ConnectorGroupType } from 'projects/num-lib/src/lib/shared/models/connector-group-type.enum'
-import { ConnectorNodeType } from 'projects/num-lib/src/lib/shared/models/connector-node-type.enum'
-import { LogicalOperator } from 'projects/num-lib/src/lib/shared/models/logical-operator.enum'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
+import { CohortBuilderService } from '../../../../core/services/cohort-builder/cohort-builder.service'
+import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { LogicalOperator } from '../../../../shared/models/logical-operator.enum'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
 import { Subscription } from 'rxjs'
 
 @Component({

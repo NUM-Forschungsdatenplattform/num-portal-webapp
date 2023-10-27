@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { UserFilterChipId } from "projects/num-lib/src/lib/shared/models/user/user-filter-chip.enum";
-import { IUserFilter } from "projects/num-lib/src/lib/shared/models/user/user-filter.interface";
+import { UserFilterChipId } from "../../../../shared/models/user/user-filter-chip.enum";
+import { IUserFilter } from "../../../../shared/models/user/user-filter.interface";
 
 
 export const adminFilterTestcases: { filter: IUserFilter; resultLength: number }[] = [

@@ -20,10 +20,10 @@ import { MatTreeNestedDataSource } from '@angular/material/tree'
 import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
-import { AqlEditorService } from 'projects/num-lib/src/lib/core/services/aql-editor/aql-editor.service'
-import { AqlBuilderDialogMode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { IContainmentNodeField } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/template/containment-node-field.interface'
-import { IContainmentNode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/template/containment-node.interface'
+import { AqlEditorService } from '../../../../core/services/aql-editor/aql-editor.service'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IContainmentNodeField } from '../../../../shared/models/archetype-query-builder/template/containment-node-field.interface'
+import { IContainmentNode } from '../../../../shared/models/archetype-query-builder/template/containment-node.interface'
 
 @Component({
   selector: 'num-aql-builder-template-tree',

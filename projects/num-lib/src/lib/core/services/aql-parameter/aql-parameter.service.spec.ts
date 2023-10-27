@@ -15,7 +15,7 @@
  */
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { AqlParameterService } from './aql-parameter.service'
 
 describe('AqlCategoryService', () => {

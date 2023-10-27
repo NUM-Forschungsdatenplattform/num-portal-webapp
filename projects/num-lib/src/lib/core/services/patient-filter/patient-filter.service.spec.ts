@@ -16,7 +16,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
 import { take } from 'rxjs/operators'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockAql1, mockAql2 } from 'src/mocks/data-mocks/aqls.mock'
 import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'

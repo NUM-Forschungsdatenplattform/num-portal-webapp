@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 
 export enum AqlOwner {

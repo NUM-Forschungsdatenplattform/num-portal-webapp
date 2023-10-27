@@ -19,7 +19,7 @@ import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-transla
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-import { IAppConfig } from 'projects/num-lib/src/lib/config/app-config.model'
+import { IAppConfig } from '../../../../config/app-config.model'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { of, Subject } from 'rxjs'

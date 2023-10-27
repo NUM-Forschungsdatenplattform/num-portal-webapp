@@ -17,10 +17,10 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { debounce } from 'lodash-es'
 import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-group-ui.model'
-import { AqlBuilderDialogMode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { ConnectorGroupType } from 'projects/num-lib/src/lib/shared/models/connector-group-type.enum'
-import { ConnectorNodeType } from 'projects/num-lib/src/lib/shared/models/connector-node-type.enum'
-import { LogicalOperator } from 'projects/num-lib/src/lib/shared/models/logical-operator.enum'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { LogicalOperator } from '../../../../shared/models/logical-operator.enum'
 
 @Component({
   selector: 'num-aql-builder-where-group',

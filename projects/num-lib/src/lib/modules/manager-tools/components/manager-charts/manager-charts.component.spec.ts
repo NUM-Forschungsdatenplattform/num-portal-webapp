@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { Observable, of, throwError } from 'rxjs'
 import { ManagerChartsComponent } from './manager-charts.component'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
+import { ContentService } from '../../../../core/services/content/content.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
 
 const translations: any = { CARDS_TITLE: 'This is a test' }

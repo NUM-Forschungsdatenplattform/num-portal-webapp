@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { AqlFilterChipId } from "projects/num-lib/src/lib/shared/models/aql/aql-filter-chip.enum";
-import { IAqlFilter } from "projects/num-lib/src/lib/shared/models/aql/aql-filter.interface";
+import { AqlFilterChipId } from "../../../../shared/models/aql/aql-filter-chip.enum";
+import { IAqlFilter } from "../../../../shared/models/aql/aql-filter.interface";
 
 
 export const aqlFilterTestcases: { filter: IAqlFilter; resultLength: number }[] = [

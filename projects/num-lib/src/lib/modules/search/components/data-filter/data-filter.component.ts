@@ -15,11 +15,11 @@
  */
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { CohortService } from 'projects/num-lib/src/lib/core/services/cohort/cohort.service'
-import { PatientFilterService } from 'projects/num-lib/src/lib/core/services/patient-filter/patient-filter.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { IDictionary } from 'projects/num-lib/src/lib/shared/models/dictionary.interface'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { CohortService } from '../../../../core/services/cohort/cohort.service'
+import { PatientFilterService } from '../../../../core/services/patient-filter/patient-filter.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { IDictionary } from '../../../../shared/models/dictionary.interface'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-data-filter',

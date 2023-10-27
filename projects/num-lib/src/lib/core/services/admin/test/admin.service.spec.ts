@@ -16,15 +16,15 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockRoles, mockUser, mockUsers, mockUsersToFilter } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { ProfileService } from '../../profile/profile.service'
 import { AdminService } from '../admin.service'
 import { adminFilterTestcases } from './admin-filter-testcases'
-import { IUserFilter } from 'projects/num-lib/src/lib/shared/models/user/user-filter.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { IUserFilter } from '../../../../shared/models/user/user-filter.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 describe('AdminService', () => {
   let service: AdminService

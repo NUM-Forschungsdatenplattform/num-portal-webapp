@@ -15,7 +15,7 @@
  */
 
 import { Component, Input } from '@angular/core'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
 
 @Component({
   selector: 'num-cohort-builder',

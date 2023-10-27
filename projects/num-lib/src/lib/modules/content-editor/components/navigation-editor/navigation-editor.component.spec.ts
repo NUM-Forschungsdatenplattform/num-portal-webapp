@@ -25,10 +25,10 @@ import { mockNavigationLinks } from 'src/mocks/data-mocks/navigation-links.mock'
 import { SAVE_NAVIGATION_ERROR_CONFIG, SAVE_NAVIGATION_SUCCESS_CONFIG } from './constants'
 
 import { NavigationEditorComponent } from './navigation-editor.component'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { ContentService } from '../../../../core/services/content/content.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
 
 describe('NavigationEditorComponent', () => {
   let component: NavigationEditorComponent

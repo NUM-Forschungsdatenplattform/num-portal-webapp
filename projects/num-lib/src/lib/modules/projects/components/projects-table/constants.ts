@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { DialogSize } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-size.enum'
-import { IToastMessageConfig } from 'projects/num-lib/src/lib/shared/models/toast-message-config.interface'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+import { IToastMessageConfig } from '../../../../shared/models/toast-message-config.interface'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
 import { DialogConfirmProjectComponent } from '../dialog-confirm-project/dialog-confirm-project.component'
 
 export const WITHDRAW_APPROVAL_DIALOG_CONFIG: DialogConfig = {

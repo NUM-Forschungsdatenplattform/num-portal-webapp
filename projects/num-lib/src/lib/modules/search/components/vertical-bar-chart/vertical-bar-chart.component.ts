@@ -16,7 +16,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { EChartsOption } from 'echarts'
 import { isEmpty, map } from 'lodash-es'
-import { IDictionary } from 'projects/num-lib/src/lib/shared/models/dictionary.interface'
+import { IDictionary } from '../../../../shared/models/dictionary.interface'
 
 @Component({
   selector: 'num-vertical-bar-chart',

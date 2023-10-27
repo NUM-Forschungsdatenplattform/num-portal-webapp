@@ -18,7 +18,7 @@ import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { CohortBuilderComponent } from './cohort-builder.component'
 import { LayoutModule } from '@angular/cdk/layout'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
 
 describe('CohortBuilderComponent', () => {
   let component: CohortBuilderComponent

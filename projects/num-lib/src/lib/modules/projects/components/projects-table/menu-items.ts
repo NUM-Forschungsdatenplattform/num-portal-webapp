@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { AvailableRoles } from "projects/num-lib/src/lib/shared/models/available-roles.enum"
-import { IItemVisibility } from "projects/num-lib/src/lib/shared/models/item-visibility.interface"
-import { ProjectStatus } from "projects/num-lib/src/lib/shared/models/project/project-status.enum"
+import { AvailableRoles } from "../../../../shared/models/available-roles.enum"
+import { IItemVisibility } from "../../../../shared/models/item-visibility.interface"
+import { ProjectStatus } from "../../../../shared/models/project/project-status.enum"
 
 export enum ProjectMenuKeys {
   Preview = 'PREVIEW',

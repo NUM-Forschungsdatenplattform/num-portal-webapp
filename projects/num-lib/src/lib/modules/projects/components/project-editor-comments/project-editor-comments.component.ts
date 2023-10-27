@@ -16,7 +16,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { IProjectComment } from 'projects/num-lib/src/lib/shared/models/project/project-comment.interface'
+import { IProjectComment } from '../../../../shared/models/project/project-comment.interface'
 
 @Component({
   selector: 'num-project-editor-comments',

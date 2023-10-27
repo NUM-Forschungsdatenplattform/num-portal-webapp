@@ -21,7 +21,7 @@ import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { numEditorTheme } from '../../num-editor.theme'
 
 import { CodeEditorComponent } from './code-editor.component'
-import { MonacoLoaderService } from 'projects/num-lib/src/lib/core/services/monaco-loader/monaco-loader.service'
+import { MonacoLoaderService } from '../../../../core/services/monaco-loader/monaco-loader.service'
 
 describe('CodeEditorComponent', () => {
   let component: CodeEditorComponent

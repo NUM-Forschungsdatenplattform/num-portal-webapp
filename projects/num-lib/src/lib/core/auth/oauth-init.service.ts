@@ -15,7 +15,7 @@
  */
 
 import { Injectable } from '@angular/core'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc'
 @Injectable({
   providedIn: 'root',

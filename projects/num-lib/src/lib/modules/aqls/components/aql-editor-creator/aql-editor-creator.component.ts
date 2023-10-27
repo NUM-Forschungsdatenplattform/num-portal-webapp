@@ -23,16 +23,16 @@ import {
   VALIDATION_ERROR_CONFIG,
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
-import { AqlEditorService } from 'projects/num-lib/src/lib/core/services/aql-editor/aql-editor.service'
-import { AqlService } from 'projects/num-lib/src/lib/core/services/aql/aql.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { IDetermineHits } from 'projects/num-lib/src/lib/shared/components/editor-determine-hits/determine-hits.interface'
-import { IAqlBuilderDialogInput } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
-import { AqlBuilderDialogMode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { IAqlBuilderDialogOutput } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
-import { IAqlValidationResponse } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-validation-response.interface'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
+import { AqlEditorService } from '../../../../core/services/aql-editor/aql-editor.service'
+import { AqlService } from '../../../../core/services/aql/aql.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { IDetermineHits } from '../../../../shared/components/editor-determine-hits/determine-hits.interface'
+import { IAqlBuilderDialogInput } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IAqlBuilderDialogOutput } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { IAqlValidationResponse } from '../../../../shared/models/archetype-query-builder/aql-validation-response.interface'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { NumAqlFormattingProvider } from '../../../code-editor/num-aql-formatting-provider'
 
 @Component({

@@ -24,8 +24,8 @@ import { projectCommentMocks } from 'src/mocks/data-mocks/project-comments.mock'
 
 import { ProjectEditorCommentsComponent } from './project-editor-comments.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
-import { LocalizedDatePipe } from 'projects/num-lib/src/lib/shared/pipes/localized-date.pipe'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe'
 
 describe('ProjectEditorCommentsComponent', () => {
   let component: ProjectEditorCommentsComponent

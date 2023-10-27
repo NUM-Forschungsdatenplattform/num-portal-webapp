@@ -27,13 +27,13 @@ import {
   mockAqlsToSort,
 } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlSelectionComponent } from './aql-selection.component'
-import { AqlCategoryService } from 'projects/num-lib/src/lib/core/services/aql-category/aql-category.service'
-import { AqlService } from 'projects/num-lib/src/lib/core/services/aql/aql.service'
-import { CohortBuilderService } from 'projects/num-lib/src/lib/core/services/cohort-builder/cohort-builder.service'
+import { AqlCategoryService } from '../../../../core/services/aql-category/aql-category.service'
+import { AqlService } from '../../../../core/services/aql/aql.service'
+import { CohortBuilderService } from '../../../../core/services/cohort-builder/cohort-builder.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { AqlUiModel } from 'projects/num-lib/src/lib/shared/models/aql/aql-ui.model'
-import { IAqlApi } from 'projects/num-lib/src/lib/shared/models/aql/aql.interface'
-import { IAqlCategoryApi } from 'projects/num-lib/src/lib/shared/models/aql/category/aql-category.interface'
+import { AqlUiModel } from '../../../../shared/models/aql/aql-ui.model'
+import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
+import { IAqlCategoryApi } from '../../../../shared/models/aql/category/aql-category.interface'
 
 describe('AqlSelectionComponent', () => {
   let component: AqlSelectionComponent

@@ -22,13 +22,13 @@ import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dial
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatPaginator } from '@angular/material/paginator'
 import { forEach } from 'lodash'
-import { SortableTable } from 'projects/num-lib/src/lib/shared/models/sortable-table.model'
-import { AdminService } from 'projects/num-lib/src/lib/core/services/admin/admin.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { ApprovedUsersTableColumn } from 'projects/num-lib/src/lib/shared/models/user/approved-table-column.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { SortableTable } from '../../../../shared/models/sortable-table.model'
+import { AdminService } from '../../../../core/services/admin/admin.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { ApprovedUsersTableColumn } from '../../../../shared/models/user/approved-table-column.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   selector: 'num-approved-users-table',

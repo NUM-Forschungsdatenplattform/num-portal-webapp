@@ -16,7 +16,7 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError, timer } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import {
   mockAql1,
   mockAqls,
@@ -30,9 +30,9 @@ import { aqlFilterLanguageTestcases, aqlFilterTestcases } from './aql-filter-tes
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core'
 import { EventEmitter } from '@angular/core'
-import { IAqlFilter } from 'projects/num-lib/src/lib/shared/models/aql/aql-filter.interface'
-import { AqlEditorUiModel } from 'projects/num-lib/src/lib/shared/models/aql/aql-editor-ui.model'
-import { IAqlApi } from 'projects/num-lib/src/lib/shared/models/aql/aql.interface'
+import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
+import { AqlEditorUiModel } from '../../../../shared/models/aql/aql-editor-ui.model'
+import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
 
 describe('AqlService', () => {
   let service: AqlService

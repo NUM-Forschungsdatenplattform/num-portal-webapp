@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { IToastMessageConfig } from "projects/num-lib/src/lib/shared/models/toast-message-config.interface"
-import { ToastMessageType } from "projects/num-lib/src/lib/shared/models/toast-message-type.enum"
+import { IToastMessageConfig } from "../../../../shared/models/toast-message-config.interface"
+import { ToastMessageType } from "../../../../shared/models/toast-message-type.enum"
 
 
 export const CREATION_SUCCESS: IToastMessageConfig = {

@@ -20,12 +20,12 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { ADD_DIALOG_CONFIG, SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { DEFAULT_DASHBOARD_CARD_IMAGE } from 'projects/num-lib/src/lib/shared/constants'
-import { IDashboardCard } from 'projects/num-lib/src/lib/shared/models/content/dashboard-card.interface'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { DEFAULT_DASHBOARD_CARD_IMAGE } from '../../../../shared/constants'
+import { IDashboardCard } from '../../../../shared/models/content/dashboard-card.interface'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
   selector: 'num-welcome-page-editor',

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing'
 
 import { SystemStatusService } from './system-status.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { HttpClient } from '@angular/common/http'
 
 describe('SystemStatusService', () => {

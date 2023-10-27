@@ -22,12 +22,12 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 
 import { ProjectsComponent } from './projects.component'
-import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
-import { ProjectService } from 'projects/num-lib/src/lib/core/services/project/project.service'
+import { AuthService } from '../../../../core/auth/auth.service'
+import { ProjectService } from '../../../../core/services/project/project.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { IAuthUserInfo } from 'projects/num-lib/src/lib/shared/models/user/auth-user-info.interface'
-import { SharedModule } from 'projects/num-lib/src/lib/shared/shared.module'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { IAuthUserInfo } from '../../../../shared/models/user/auth-user-info.interface'
+import { SharedModule } from '../../../../shared/shared.module'
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent

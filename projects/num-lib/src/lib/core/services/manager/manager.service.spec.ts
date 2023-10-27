@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 
 import { ManagerService } from './manager.service'
 

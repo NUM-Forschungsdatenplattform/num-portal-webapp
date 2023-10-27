@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core'
 
 import { DialogConfirmProjectApprovalComponent } from './dialog-confirm-project-approval.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
 
 describe('DialogConfirmProjectApprovalComponent', () => {
   let component: DialogConfirmProjectApprovalComponent

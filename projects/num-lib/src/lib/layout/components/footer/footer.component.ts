@@ -15,8 +15,8 @@
  */
 
 import { Component } from '@angular/core'
-import { IAppConfig } from 'projects/num-lib/src/lib/config/app-config.model'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { IAppConfig } from '../../../config/app-config.model'
+import { AppConfigService } from '../../../config/app-config.service'
 
 @Component({
   selector: 'num-footer',

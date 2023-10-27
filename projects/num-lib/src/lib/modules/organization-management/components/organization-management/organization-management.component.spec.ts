@@ -24,11 +24,11 @@ import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 
 import { OrganizationManagementComponent } from './organization-management.component'
-import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
+import { AuthService } from '../../../../core/auth/auth.service'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
-import { DirectivesModule } from 'projects/num-lib/src/lib/shared/directives/directives.module'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { DirectivesModule } from '../../../../shared/directives/directives.module'
 
 describe('OrganizationManagementComponent', () => {
   let fixture: ComponentFixture<OrganizationManagementComponent>

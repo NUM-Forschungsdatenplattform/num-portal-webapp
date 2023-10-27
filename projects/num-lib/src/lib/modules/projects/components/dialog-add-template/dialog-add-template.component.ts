@@ -18,7 +18,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { ITemplateFilter } from '../../../../shared/models/template/template-filter.interface'
 import { TemplateService } from '../../../../core/services/template/template.service'
 import { take } from 'rxjs/operators'
-import { IProjectTemplateInfoApi } from 'projects/num-lib/src/lib/shared/models/project/project-template-info-api.interface'
+import { IProjectTemplateInfoApi } from '../../../../shared/models/project/project-template-info-api.interface'
 
 @Component({
   selector: 'num-dialog-add-template',

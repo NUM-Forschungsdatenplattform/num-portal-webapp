@@ -39,15 +39,15 @@ import {
 import { OrganizationEditorComponent } from './organization-editor.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
-import { OrganizationUiModel } from 'projects/num-lib/src/lib/shared/models/organization/organization-ui.model'
-import { IOrganization } from 'projects/num-lib/src/lib/shared/models/organization/organization.interface'
-import { IToastMessageConfig } from 'projects/num-lib/src/lib/shared/models/toast-message-config.interface'
-import { IUserProfile } from 'projects/num-lib/src/lib/shared/models/user/user-profile.interface'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { OrganizationUiModel } from '../../../../shared/models/organization/organization-ui.model'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
+import { IToastMessageConfig } from '../../../../shared/models/toast-message-config.interface'
+import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
 
 describe('OrganizationEditorComponent', () => {
   let component: OrganizationEditorComponent

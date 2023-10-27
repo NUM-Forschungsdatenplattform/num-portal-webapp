@@ -17,12 +17,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { EXPORT_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
-import { PatientFilterService } from 'projects/num-lib/src/lib/core/services/patient-filter/patient-filter.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { downloadFile } from 'projects/num-lib/src/lib/core/utils/download-file.utils'
-import { AqbUiModel } from 'projects/num-lib/src/lib/shared/models/aqb/aqb-ui.model'
-import { IAqlExecutionResponse } from 'projects/num-lib/src/lib/shared/models/aql/execution/aql-execution-response.interface'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { PatientFilterService } from '../../../../core/services/patient-filter/patient-filter.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { downloadFile } from '../../../../core/utils/download-file.utils'
+import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
+import { IAqlExecutionResponse } from '../../../../shared/models/aql/execution/aql-execution-response.interface'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-manager-data-explorer',

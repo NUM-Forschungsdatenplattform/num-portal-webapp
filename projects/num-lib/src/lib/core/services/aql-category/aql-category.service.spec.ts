@@ -16,7 +16,7 @@
 import { HttpClient } from '@angular/common/http'
 import { AqlCategoryService } from './aql-category.service'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockAqlCategories, mockAqlCategory1 } from 'src/mocks/data-mocks/aql-categories.mock'
 
 describe('AqlCategoryService', () => {

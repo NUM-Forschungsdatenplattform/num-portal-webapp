@@ -23,10 +23,10 @@ import { Subject } from 'rxjs'
 import { EDIT_DIALOG_CONFIG } from './constants'
 
 import { WelcomePageItemComponent } from './welcome-page-item.component'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
 describe('WelcomePageItemComponent', () => {
   let component: WelcomePageItemComponent

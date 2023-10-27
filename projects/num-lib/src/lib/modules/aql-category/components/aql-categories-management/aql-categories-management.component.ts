@@ -20,12 +20,12 @@ import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { Subscription } from 'rxjs'
 
 import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
-import { AqlCategoryService } from 'projects/num-lib/src/lib/core/services/aql-category/aql-category.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { IAqlCategoryApi } from 'projects/num-lib/src/lib/shared/models/aql/category/aql-category.interface'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
+import { AqlCategoryService } from '../../../../core/services/aql-category/aql-category.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { IAqlCategoryApi } from '../../../../shared/models/aql/category/aql-category.interface'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-aql-categories-management',

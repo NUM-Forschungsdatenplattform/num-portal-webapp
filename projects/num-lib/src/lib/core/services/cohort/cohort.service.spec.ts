@@ -16,7 +16,7 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { CohortService } from './cohort.service'
 import { ConnectorNodeType } from '../../../shared/models/connector-node-type.enum'
 import { LogicalOperator } from '../../../shared/models/logical-operator.enum'

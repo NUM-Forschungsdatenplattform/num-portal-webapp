@@ -28,9 +28,9 @@ import {
 import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { MatPaginator } from '@angular/material/paginator'
-import { TemplateService } from 'projects/num-lib/src/lib/core/services/template/template.service'
-import { IProjectTemplateInfoApi } from 'projects/num-lib/src/lib/shared/models/project/project-template-info-api.interface'
-import { ITemplateMetaDataApi } from 'projects/num-lib/src/lib/shared/models/template/template-api.interface'
+import { TemplateService } from '../../../../core/services/template/template.service'
+import { IProjectTemplateInfoApi } from '../../../../shared/models/project/project-template-info-api.interface'
+import { ITemplateMetaDataApi } from '../../../../shared/models/template/template-api.interface'
 
 @Component({
   selector: 'num-add-templates-filter-table',

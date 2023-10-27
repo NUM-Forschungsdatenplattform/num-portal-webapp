@@ -16,8 +16,8 @@
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { cloneDeep } from 'lodash-es'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { IOrganization } from 'projects/num-lib/src/lib/shared/models/organization/organization.interface'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
 import { Subscription } from 'rxjs'
 
 @Component({

@@ -18,12 +18,12 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import moment from 'moment'
-import { AqlParameterService } from 'projects/num-lib/src/lib/core/services/aql-parameter/aql-parameter.service'
-import { AqlParameterOperator } from 'projects/num-lib/src/lib/shared/models/aql/aql-parameter-operator.type'
-import { AqlParameterValueType } from 'projects/num-lib/src/lib/shared/models/aql/aql-parameter-value-type.enum'
-import { IAqlParameter } from 'projects/num-lib/src/lib/shared/models/aql/aql-parameter.interface'
-import { AqlUiModel } from 'projects/num-lib/src/lib/shared/models/aql/aql-ui.model'
-import { ReferenceModelType } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/referencemodel-type.enum'
+import { AqlParameterService } from '../../../../core/services/aql-parameter/aql-parameter.service'
+import { AqlParameterOperator } from '../../../../shared/models/aql/aql-parameter-operator.type'
+import { AqlParameterValueType } from '../../../../shared/models/aql/aql-parameter-value-type.enum'
+import { IAqlParameter } from '../../../../shared/models/aql/aql-parameter.interface'
+import { AqlUiModel } from '../../../../shared/models/aql/aql-ui.model'
+import { ReferenceModelType } from '../../../../shared/models/archetype-query-builder/referencemodel-type.enum'
 
 @Component({
   selector: 'num-aql-connector-item',

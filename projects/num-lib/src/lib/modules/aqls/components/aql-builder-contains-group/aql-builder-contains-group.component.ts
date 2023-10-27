@@ -26,9 +26,9 @@ import {
 import { AqbContainsGroupUiModel } from '../../../../shared/models/aqb/aqb-contains-group-ui.model'
 import { debounce } from 'lodash-es'
 import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
-import { ConnectorGroupType } from 'projects/num-lib/src/lib/shared/models/connector-group-type.enum'
-import { ConnectorNodeType } from 'projects/num-lib/src/lib/shared/models/connector-node-type.enum'
-import { LogicalOperator } from 'projects/num-lib/src/lib/shared/models/logical-operator.enum'
+import { ConnectorGroupType } from '../../../../shared/models/connector-group-type.enum'
+import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { LogicalOperator } from '../../../../shared/models/logical-operator.enum'
 
 @Component({
   selector: 'num-aql-builder-contains-group',

@@ -18,8 +18,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { take } from 'rxjs/operators'
 import { ApprovedUsersTableComponent } from '../approved-users-table/approved-users-table.component'
 import { Subscription } from 'rxjs'
-import { AdminService } from 'projects/num-lib/src/lib/core/services/admin/admin.service'
-import { IUserFilter } from 'projects/num-lib/src/lib/shared/models/user/user-filter.interface'
+import { AdminService } from '../../../../core/services/admin/admin.service'
+import { IUserFilter } from '../../../../shared/models/user/user-filter.interface'
 
 @Component({
   selector: 'num-approved-users',

@@ -16,9 +16,9 @@
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { IUserProfile } from 'projects/num-lib/src/lib/shared/models/user/user-profile.interface'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
 import { Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 

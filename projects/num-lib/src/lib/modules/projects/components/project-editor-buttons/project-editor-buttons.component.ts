@@ -17,9 +17,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { ApprovalOption } from '../../models/approval-option.enum'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { PossibleProjectEditorMode } from 'projects/num-lib/src/lib/shared/models/project/possible-project-editor-mode.enum'
-import { ProjectStatus } from 'projects/num-lib/src/lib/shared/models/project/project-status.enum'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { PossibleProjectEditorMode } from '../../../../shared/models/project/possible-project-editor-mode.enum'
+import { ProjectStatus } from '../../../../shared/models/project/project-status.enum'
 
 @Component({
   selector: 'num-project-editor-buttons',

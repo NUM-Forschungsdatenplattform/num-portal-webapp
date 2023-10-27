@@ -17,8 +17,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { COPY_CLIPBOARD_SUCCESS_CONFIG, RESOLVE_ERROR_CONFIG } from './constants'
-import { ManagerService } from 'projects/num-lib/src/lib/core/services/manager/manager.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
+import { ManagerService } from '../../../../core/services/manager/manager.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 
 @Component({
   selector: 'num-pseudonym-resolver',

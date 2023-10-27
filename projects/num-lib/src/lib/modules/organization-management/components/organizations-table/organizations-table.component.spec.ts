@@ -25,12 +25,12 @@ import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organ
 import { OrganizationsTableComponent } from './organizations-table.component'
 import { MatSort } from '@angular/material/sort'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { OrganizationUserFilterChipId } from 'projects/num-lib/src/lib/shared/models/organization/organization-filter-chip.enum'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
-import { PipesModule } from 'projects/num-lib/src/lib/shared/pipes/pipes.module'
+import { OrganizationUserFilterChipId } from '../../../../shared/models/organization/organization-filter-chip.enum'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
+import { PipesModule } from '../../../../shared/pipes/pipes.module'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent

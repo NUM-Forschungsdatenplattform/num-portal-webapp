@@ -23,14 +23,14 @@ import { MatButtonHarness } from '@angular/material/button/testing'
 import { Subject } from 'rxjs'
 
 import { ProjectEditorButtonsComponent } from './project-editor-buttons.component'
-import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
+import { AuthService } from '../../../../core/auth/auth.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { ButtonComponent } from 'projects/num-lib/src/lib/shared/components/button/button.component'
-import { UserHasRoleDirective } from 'projects/num-lib/src/lib/shared/directives/user-has-role.directive'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { PossibleProjectEditorMode } from 'projects/num-lib/src/lib/shared/models/project/possible-project-editor-mode.enum'
-import { ProjectStatus } from 'projects/num-lib/src/lib/shared/models/project/project-status.enum'
-import { IAuthUserInfo } from 'projects/num-lib/src/lib/shared/models/user/auth-user-info.interface'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { PossibleProjectEditorMode } from '../../../../shared/models/project/possible-project-editor-mode.enum'
+import { ProjectStatus } from '../../../../shared/models/project/project-status.enum'
+import { IAuthUserInfo } from '../../../../shared/models/user/auth-user-info.interface'
 
 describe('ProjectEditorButtonsComponent', () => {
   let component: ProjectEditorButtonsComponent

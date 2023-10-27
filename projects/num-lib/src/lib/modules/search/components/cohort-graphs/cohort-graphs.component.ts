@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { IDetermineHits } from 'projects/num-lib/src/lib/shared/components/editor-determine-hits/determine-hits.interface'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { ICohortPreviewApi } from 'projects/num-lib/src/lib/shared/models/cohort-preview.interface'
+import { IDetermineHits } from '../../../../shared/components/editor-determine-hits/determine-hits.interface'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { ICohortPreviewApi } from '../../../../shared/models/cohort-preview.interface'
 
 @Component({
   selector: 'num-cohort-graphs',

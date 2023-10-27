@@ -16,7 +16,7 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { mockDashboardMetrics } from 'src/mocks/data-mocks/dashboard-metrics.mock'
 import { mockDashboardProjects } from 'src/mocks/data-mocks/dashboard-projects.mock'

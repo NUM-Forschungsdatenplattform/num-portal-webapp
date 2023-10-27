@@ -15,10 +15,10 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { AqlService } from 'projects/num-lib/src/lib/core/services/aql/aql.service'
-import { IDetermineHits } from 'projects/num-lib/src/lib/shared/components/editor-determine-hits/determine-hits.interface'
-import { IAqlFilter } from 'projects/num-lib/src/lib/shared/models/aql/aql-filter.interface'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
+import { AqlService } from '../../../../core/services/aql/aql.service'
+import { IDetermineHits } from '../../../../shared/components/editor-determine-hits/determine-hits.interface'
+import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
 import { Subscription } from 'rxjs'
 import { take } from 'rxjs/operators'
 

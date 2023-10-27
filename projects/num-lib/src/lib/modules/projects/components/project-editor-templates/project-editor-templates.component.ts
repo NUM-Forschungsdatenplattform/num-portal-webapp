@@ -15,7 +15,7 @@
  */
 
 import { Component, Input } from '@angular/core'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 
 @Component({

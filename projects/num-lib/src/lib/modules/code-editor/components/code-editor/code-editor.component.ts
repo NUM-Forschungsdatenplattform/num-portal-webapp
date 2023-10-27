@@ -31,7 +31,7 @@ import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { editorConstructionOptions } from '../../num-editor-options'
 import { numEditorTheme } from '../../num-editor.theme'
 import { environment } from 'src/environments/environment'
-import { MonacoLoaderService } from 'projects/num-lib/src/lib/core/services/monaco-loader/monaco-loader.service'
+import { MonacoLoaderService } from '../../../../core/services/monaco-loader/monaco-loader.service'
 
 @Component({
   selector: 'num-code-editor',

@@ -24,15 +24,15 @@ import {
   EDIT_USER_SUCCESS,
   INVALID_USER_NAME_ERROR,
 } from './constants'
-import { AdminService } from 'projects/num-lib/src/lib/core/services/admin/admin.service'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
-import { IOrganization } from 'projects/num-lib/src/lib/shared/models/organization/organization.interface'
-import { IToastMessageConfig } from 'projects/num-lib/src/lib/shared/models/toast-message-config.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { AdminService } from '../../../../core/services/admin/admin.service'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
+import { IToastMessageConfig } from '../../../../shared/models/toast-message-config.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   selector: 'num-dialog-edit-user-details',

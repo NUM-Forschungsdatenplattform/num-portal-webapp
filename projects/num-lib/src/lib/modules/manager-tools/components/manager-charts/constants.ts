@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { IBarChart } from "projects/num-lib/src/lib/shared/models/charts/bar-chart.interface"
+import { IBarChart } from "../../../../shared/models/charts/bar-chart.interface"
 
 
 export const CHART_SOFA_SCORE: IBarChart = {

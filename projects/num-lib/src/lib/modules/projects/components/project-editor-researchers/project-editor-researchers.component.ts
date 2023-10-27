@@ -18,9 +18,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-add-researchers.component'
 import { MatTableDataSource } from '@angular/material/table'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   selector: 'num-project-editor-researchers',

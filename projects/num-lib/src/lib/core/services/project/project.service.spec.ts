@@ -16,7 +16,7 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError, timer } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import {
   mockProjects,
   mockProjects1,

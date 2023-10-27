@@ -16,14 +16,14 @@
 
 import { Component, Input } from '@angular/core'
 import { ADD_DIALOG_CONFIG } from './constants'
-import { CohortService } from 'projects/num-lib/src/lib/core/services/cohort/cohort.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { IDictionary } from 'projects/num-lib/src/lib/shared/models/dictionary.interface'
-import { IProjectTemplateInfoApi } from 'projects/num-lib/src/lib/shared/models/project/project-template-info-api.interface'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
+import { CohortService } from '../../../../core/services/cohort/cohort.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { IDictionary } from '../../../../shared/models/dictionary.interface'
+import { IProjectTemplateInfoApi } from '../../../../shared/models/project/project-template-info-api.interface'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-add-templates',

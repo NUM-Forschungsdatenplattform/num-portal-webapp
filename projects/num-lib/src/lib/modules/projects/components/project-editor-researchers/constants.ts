@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { DialogConfig } from "projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface";
-import { DialogSize } from "projects/num-lib/src/lib/shared/models/dialog/dialog-size.enum";
+import { DialogConfig } from "../../../../shared/models/dialog/dialog-config.interface";
+import { DialogSize } from "../../../../shared/models/dialog/dialog-size.enum";
 
 
 

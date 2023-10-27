@@ -17,7 +17,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, throwError } from 'rxjs'
 import { catchError, shareReplay } from 'rxjs/operators'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { IAqlParameterValuesApi } from '../../../shared/models/aql/aql-parameter-values.interface'
 
 @Injectable({

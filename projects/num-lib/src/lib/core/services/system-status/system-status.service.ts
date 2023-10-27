@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Environment } from './envs'
 import { HttpClient } from '@angular/common/http'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { SystemStatus } from './system-status.interface'
 import { Observable } from 'rxjs'
 

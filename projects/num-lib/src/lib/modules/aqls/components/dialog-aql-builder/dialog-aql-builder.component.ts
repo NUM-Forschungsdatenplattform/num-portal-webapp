@@ -24,12 +24,12 @@ import { cloneDeep } from 'lodash-es'
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 
 import { COMPILE_ERROR_CONFIG } from './constants'
-import { AqlEditorService } from 'projects/num-lib/src/lib/core/services/aql-editor/aql-editor.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { IAqlBuilderDialogInput } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
-import { AqlBuilderDialogMode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
-import { IAqlBuilderDialogOutput } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
+import { AqlEditorService } from '../../../../core/services/aql-editor/aql-editor.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { IAqlBuilderDialogInput } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-input.interface'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { IAqlBuilderDialogOutput } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-output.interface'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
 
 @Component({
   selector: 'num-dialog-aql-builder',

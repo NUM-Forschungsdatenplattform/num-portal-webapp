@@ -17,8 +17,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
-import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'projects/num-lib/src/lib/shared/constants'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
+import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from '../../../../shared/constants'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
 
 @Component({
   selector: 'num-dialog-edit-welcome-card',

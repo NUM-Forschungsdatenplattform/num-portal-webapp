@@ -15,10 +15,10 @@
  */
 
 
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { DialogSize } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-size.enum'
-import { IToastMessageConfig } from 'projects/num-lib/src/lib/shared/models/toast-message-config.interface'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
+import { IToastMessageConfig } from '../../../../shared/models/toast-message-config.interface'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
 import { DialogEditWelcomeCardComponent } from '../dialog-edit-welcome-card/dialog-edit-welcome-card.component'
 
 export const ADD_DIALOG_CONFIG: DialogConfig = {

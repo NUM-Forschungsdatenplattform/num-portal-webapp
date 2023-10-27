@@ -18,9 +18,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { SAVE_NAVIGATION_SUCCESS_CONFIG, SAVE_NAVIGATION_ERROR_CONFIG } from './constants'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { INavigationLink } from 'projects/num-lib/src/lib/shared/models/content/navigation-link.interface'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { INavigationLink } from '../../../../shared/models/content/navigation-link.interface'
 
 @Component({
   selector: 'num-navigation-editor',

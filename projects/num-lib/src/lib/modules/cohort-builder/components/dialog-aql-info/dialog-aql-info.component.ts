@@ -17,8 +17,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { cloneDeep } from 'lodash-es'
-import { AqlUiModel } from 'projects/num-lib/src/lib/shared/models/aql/aql-ui.model'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
+import { AqlUiModel } from '../../../../shared/models/aql/aql-ui.model'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
 import { Subscription } from 'rxjs'
 
 @Component({

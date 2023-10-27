@@ -19,7 +19,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqbWhereItemUiModel } from '../../../../shared/models/aqb/aqb-where-item-ui.model'
 import { AqlParameterValueType } from '../../../../shared/models/aql/aql-parameter-value-type.enum'
-import { AqlBuilderDialogMode } from 'projects/num-lib/src/lib/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 
 @Component({
   selector: 'num-aql-builder-where-item',

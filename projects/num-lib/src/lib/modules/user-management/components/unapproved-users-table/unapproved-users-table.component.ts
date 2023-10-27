@@ -20,12 +20,12 @@ import { Sort } from '@angular/material/sort'
 import { ADD_DIALOG_CONFIG } from './constants'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { MatDialogRef } from '@angular/material/dialog'
-import { AdminService } from 'projects/num-lib/src/lib/core/services/admin/admin.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { SortableTable } from 'projects/num-lib/src/lib/shared/models/sortable-table.model'
-import { UnapprovedUsersTableColumn } from 'projects/num-lib/src/lib/shared/models/user/unapproved-table-column.interface'
-import { IUser } from 'projects/num-lib/src/lib/shared/models/user/user.interface'
+import { AdminService } from '../../../../core/services/admin/admin.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { SortableTable } from '../../../../shared/models/sortable-table.model'
+import { UnapprovedUsersTableColumn } from '../../../../shared/models/user/unapproved-table-column.interface'
+import { IUser } from '../../../../shared/models/user/user.interface'
 
 @Component({
   selector: 'num-unapproved-users-table',

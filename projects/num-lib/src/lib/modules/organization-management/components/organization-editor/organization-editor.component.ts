@@ -31,12 +31,12 @@ import {
   UPDATING_ERROR,
   UPDATING_SUCCESS,
 } from './constants'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { OrganizationUiModel } from 'projects/num-lib/src/lib/shared/models/organization/organization-ui.model'
-import { IOrganization } from 'projects/num-lib/src/lib/shared/models/organization/organization.interface'
-import { IToastMessageConfig } from 'projects/num-lib/src/lib/shared/models/toast-message-config.interface'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { OrganizationUiModel } from '../../../../shared/models/organization/organization-ui.model'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
+import { IToastMessageConfig } from '../../../../shared/models/toast-message-config.interface'
 
 @Component({
   selector: 'num-organization-editor',

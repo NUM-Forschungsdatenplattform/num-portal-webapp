@@ -8,12 +8,12 @@ import {
   SAVE_ERROR_CONFIG,
   SAVE_SUCCESS_CONFIG,
 } from './constants'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { IUserProfile } from 'projects/num-lib/src/lib/shared/models/user/user-profile.interface'
+import { AppConfigService } from '../../../../config/app-config.service'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
 
 @Component({
   selector: 'num-profile',

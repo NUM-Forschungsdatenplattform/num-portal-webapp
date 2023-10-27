@@ -17,10 +17,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { EDIT_DIALOG_CONFIG } from './constants'
-import { DialogService } from 'projects/num-lib/src/lib/core/services/dialog/dialog.service'
-import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'projects/num-lib/src/lib/shared/constants'
-import { IDashboardCard } from 'projects/num-lib/src/lib/shared/models/content/dashboard-card.interface'
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
+import { DialogService } from '../../../../core/services/dialog/dialog.service'
+import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from '../../../../shared/constants'
+import { IDashboardCard } from '../../../../shared/models/content/dashboard-card.interface'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 
 @Component({
   selector: 'num-welcome-page-item',

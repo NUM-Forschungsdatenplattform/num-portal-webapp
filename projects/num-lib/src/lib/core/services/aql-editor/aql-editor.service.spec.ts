@@ -16,7 +16,7 @@
 
 import { HttpClient } from '@angular/common/http'
 import { of, throwError } from 'rxjs'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../../config/app-config.service'
 import { mockAqbTemplates } from 'src/mocks/data-mocks/aqb/aqb-templates.mock'
 import { mockComplexContains } from 'src/mocks/data-mocks/aqb/complex-contains.mock'
 import { mockCoronaAnamnese } from 'src/mocks/data-mocks/aqb/corona-anamnese.mock'

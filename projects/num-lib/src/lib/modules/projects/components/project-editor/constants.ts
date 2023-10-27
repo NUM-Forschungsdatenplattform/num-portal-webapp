@@ -15,8 +15,8 @@
  */
 
 
-import { DialogConfig } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-config.interface'
-import { DialogSize } from 'projects/num-lib/src/lib/shared/models/dialog/dialog-size.enum'
+import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { DialogSize } from '../../../../shared/models/dialog/dialog-size.enum'
 import { DialogConfirmProjectApprovalComponent } from '../dialog-confirm-project-approval/dialog-confirm-project-approval.component'
 
 export const APPROVE_PROJECT_DIALOG_CONFIG: DialogConfig = {

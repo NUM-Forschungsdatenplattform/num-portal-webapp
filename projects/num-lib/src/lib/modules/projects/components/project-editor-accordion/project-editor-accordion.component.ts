@@ -16,10 +16,10 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { IDetermineHits } from 'projects/num-lib/src/lib/shared/components/editor-determine-hits/determine-hits.interface'
-import { IDefinitionList } from 'projects/num-lib/src/lib/shared/models/definition-list.interface'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
-import { ProjectUiModel } from 'projects/num-lib/src/lib/shared/models/project/project-ui.model'
+import { IDetermineHits } from '../../../../shared/components/editor-determine-hits/determine-hits.interface'
+import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
+import { ProjectUiModel } from '../../../../shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-project-editor-accordion',

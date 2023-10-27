@@ -16,7 +16,7 @@
 
 import { Component, Input } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import { IBarChart } from 'projects/num-lib/src/lib/shared/models/charts/bar-chart.interface'
+import { IBarChart } from '../../../../shared/models/charts/bar-chart.interface'
 
 @Component({
   selector: 'num-bar-chart',

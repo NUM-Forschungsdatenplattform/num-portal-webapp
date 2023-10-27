@@ -18,10 +18,10 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { OrganizationsTableComponent } from '../organizations-table/organizations-table.component'
-import { DEFAULT_ORGANIZATION_FILTER } from 'projects/num-lib/src/lib/core/constants/default-filter-organization'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { OrganizationUserFilterChipId } from 'projects/num-lib/src/lib/shared/models/organization/organization-filter-chip.enum'
+import { DEFAULT_ORGANIZATION_FILTER } from '../../../../core/constants/default-filter-organization'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { OrganizationUserFilterChipId } from '../../../../shared/models/organization/organization-filter-chip.enum'
 
 @Component({
   selector: 'num-organization-management',

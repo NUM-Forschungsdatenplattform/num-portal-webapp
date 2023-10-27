@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { IGenericDialog } from 'projects/num-lib/src/lib/shared/models/generic-dialog.interface'
+import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
 
 @Component({
   selector: 'num-dialog-save-profile',

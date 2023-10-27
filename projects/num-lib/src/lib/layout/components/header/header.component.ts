@@ -19,7 +19,7 @@ import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
 import { mainNavItems, secondaryNavItemsLoggedIn } from '../../../core/constants/navigation'
-import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 import { TranslateService } from '@ngx-translate/core'
 
 @Component({

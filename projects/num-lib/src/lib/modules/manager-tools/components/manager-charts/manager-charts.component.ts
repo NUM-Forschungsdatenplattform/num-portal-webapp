@@ -18,8 +18,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
-import { ContentService } from 'projects/num-lib/src/lib/core/services/content/content.service'
-import { IBarChart } from 'projects/num-lib/src/lib/shared/models/charts/bar-chart.interface'
+import { ContentService } from '../../../../core/services/content/content.service'
+import { IBarChart } from '../../../../shared/models/charts/bar-chart.interface'
 
 @Component({
   selector: 'num-manager-charts',

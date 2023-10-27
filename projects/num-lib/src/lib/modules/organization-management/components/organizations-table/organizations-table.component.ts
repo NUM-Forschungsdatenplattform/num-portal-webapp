@@ -21,14 +21,14 @@ import { OrganizationTableColumn } from '../../models/organization-table-column.
 import { Sort } from '@angular/material/sort'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
-import { OrganizationService } from 'projects/num-lib/src/lib/core/services/organization/organization.service'
-import { ProfileService } from 'projects/num-lib/src/lib/core/services/profile/profile.service'
-import { ToastMessageService } from 'projects/num-lib/src/lib/core/services/toast-message/toast-message.service'
-import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
-import { OrganizationUserFilterChipId } from 'projects/num-lib/src/lib/shared/models/organization/organization-filter-chip.enum'
-import { IOrganization } from 'projects/num-lib/src/lib/shared/models/organization/organization.interface'
-import { SortableTable } from 'projects/num-lib/src/lib/shared/models/sortable-table.model'
-import { ToastMessageType } from 'projects/num-lib/src/lib/shared/models/toast-message-type.enum'
+import { OrganizationService } from '../../../../core/services/organization/organization.service'
+import { ProfileService } from '../../../../core/services/profile/profile.service'
+import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
+import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { OrganizationUserFilterChipId } from '../../../../shared/models/organization/organization-filter-chip.enum'
+import { IOrganization } from '../../../../shared/models/organization/organization.interface'
+import { SortableTable } from '../../../../shared/models/sortable-table.model'
+import { ToastMessageType } from '../../../../shared/models/toast-message-type.enum'
 
 @Component({
   selector: 'num-organizations-table',

@@ -23,13 +23,13 @@ import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, Subject } from 'rxjs'
 
 import { ProjectEditorCohortBuilderComponent } from './project-editor-cohort-builder.component'
-import { AqlService } from 'projects/num-lib/src/lib/core/services/aql/aql.service'
+import { AqlService } from '../../../../core/services/aql/aql.service'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
-import { SearchComponent } from 'projects/num-lib/src/lib/shared/components/search/search.component'
-import { IAqlFilter } from 'projects/num-lib/src/lib/shared/models/aql/aql-filter.interface'
-import { IAqlApi } from 'projects/num-lib/src/lib/shared/models/aql/aql.interface'
-import { IFilterItem } from 'projects/num-lib/src/lib/shared/models/filter-chip.interface'
-import { CohortGroupUiModel } from 'projects/num-lib/src/lib/shared/models/project/cohort-group-ui.model'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
+import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
+import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
+import { CohortGroupUiModel } from '../../../../shared/models/project/cohort-group-ui.model'
 
 describe('ProjectEditorCohortBuilderComponent', () => {
   let component: ProjectEditorCohortBuilderComponent
