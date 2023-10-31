@@ -18,7 +18,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
-import { AppConfigService } from '../../../../config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 import { IOrganization } from '../../../shared/models/organization/organization.interface'
 
 @Injectable({

@@ -29,8 +29,8 @@ import {
 } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
+import { ENVIROMENT_TOKEN } from '../../../config/app-config.service'
 
-export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROMENT_TOKEN");
 
 @Component({
   selector: 'num-search',
@@ -39,7 +39,7 @@ export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROM
 })
 export class SearchComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor(@Inject(environmentToken) readonly environmentToken: any) {}
+  constructor(@Inject(ENVIROMENT_TOKEN) readonly environmentToken: any) {}
 
   /* istanbul ignore next */
   private readonly debounceTime = this.environmentToken.name === 'test' ? 10 : 200

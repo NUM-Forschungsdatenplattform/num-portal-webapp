@@ -30,7 +30,7 @@ import { NumAqlFormattingProvider } from '../../num-aql-formatting-provider'
 import { numAqlTokenProvider } from '../../num-aql-token.provider'
 import { editorConstructionOptions } from '../../num-editor-options'
 import { numEditorTheme } from '../../num-editor.theme'
-import { environment } from 'src/environments/environment'
+import { environment } from 'projects/num-lib/src/lib/environments/environment'
 import { MonacoLoaderService } from '../../../../core/services/monaco-loader/monaco-loader.service'
 
 @Component({

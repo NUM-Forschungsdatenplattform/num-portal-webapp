@@ -17,7 +17,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, tap, map } from 'rxjs/operators'
-import { AppConfigService } from '../../../../config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 import { IAqlCategoryApi } from '../../../shared/models/aql/category/aql-category.interface'
 
 @Injectable({

@@ -16,11 +16,11 @@
 
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { AuthGuard } from '../../../../core/auth/guards/auth.guard'
-import { RoleGuard } from '../../../../core/auth/guards/role.guard'
+import { AuthGuard } from 'projects/num-lib/src/lib/core/auth/guards/auth.guard'
+import { RoleGuard } from 'projects/num-lib/src/lib/core/auth/guards/role.guard'
 import { CanDeactivateSearchGuard } from 'projects/num-lib/src/lib/modules/search/can-deactivate-search.guard'
-import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
-import { UserManualUrlResolver } from '../../../../shared/resolvers/usermanualurl.resolver'
+import { AvailableRoles } from 'projects/num-lib/src/lib/shared/models/available-roles.enum'
+import { UserManualUrlResolver } from 'projects/num-lib/src/lib/shared/resolvers/usermanualurl.resolver'
 
 export const routes: Routes = [
   {

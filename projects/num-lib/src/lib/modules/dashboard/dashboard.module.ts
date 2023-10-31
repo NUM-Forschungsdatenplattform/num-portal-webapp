@@ -24,9 +24,11 @@ import { LayoutModule } from '../../layout/layout.module'
 import { MetricsComponent } from './components/metrics/metrics.component'
 import { LatestProjectsComponent } from './components/latest-projects/latest-projects.component'
 import { SharedModule } from '../../shared/shared.module'
+import { AppConfigService } from '../../config/app-config.service'
 
 @NgModule({
   declarations: [DashboardComponent, MetricsComponent, LatestProjectsComponent],
   imports: [CommonModule, DashboardRoutingModule, SharedModule, ExtendedModule, LayoutModule],
+  providers: [AppConfigService]
 })
 export class DashboardModule {}

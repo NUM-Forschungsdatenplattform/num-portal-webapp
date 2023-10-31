@@ -18,7 +18,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Inject, Injectable, InjectionToken } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, shareReplay, switchMap, tap, throttleTime } from 'rxjs/operators'
-import { AppConfigService } from '../../../../config/app-config.service'
+import { AppConfigService, ENVIROMENT_TOKEN } from '../../../config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
@@ -27,7 +27,6 @@ import { ProfileService } from '../profile/profile.service'
 import { TranslateService } from '@ngx-translate/core'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
-export const environmentToken: InjectionToken<any> = new InjectionToken("ENVIROMENT_TOKEN");
 
 @Injectable({
   providedIn: 'root',
@@ -59,7 +58,7 @@ export class AqlService {
     appConfig: AppConfigService,
     private profileService: ProfileService,
     private translateService: TranslateService,
-    @Inject(environmentToken) readonly environmentToken: any
+    @Inject(ENVIROMENT_TOKEN) readonly environmentToken: any
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
