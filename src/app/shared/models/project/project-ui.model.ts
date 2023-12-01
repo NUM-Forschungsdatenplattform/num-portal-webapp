@@ -27,6 +27,7 @@ import { IProjectApi } from './project-api.interface'
 import { ProjectStatus } from './project-status.enum'
 import { IProjectTemplateInfoApi } from './project-template-info-api.interface'
 import moment from 'moment'
+import { ProjectAttachmentUiModel } from './project-attachment-ui.model'
 
 export class ProjectUiModel {
   cohortId: number | null
@@ -51,6 +52,7 @@ export class ProjectUiModel {
   researchersApi: IProjectUser[]
   status: ProjectStatus
   templates: IProjectTemplateInfoApi[]
+  attachments: ProjectAttachmentUiModel[] = []
 
   constructor(projectApi?: IProjectApi) {
     this.id = projectApi?.id || null
@@ -77,6 +79,9 @@ export class ProjectUiModel {
     this.researchersApi = projectApi?.researchers || []
     this.templates = projectApi?.templates || []
     this.cohortGroup = new CohortGroupUiModel()
+    this.attachments = projectApi.attachments.map(
+      (attachment) => new ProjectAttachmentUiModel(attachment)
+    )
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {
