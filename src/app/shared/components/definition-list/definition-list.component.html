@@ -23,12 +23,19 @@
       }}</ng-container>
 
       <ng-container *ngIf="dataRow?.type === definitionType.Array">
-        <ng-container *ngIf="dataRow?.description?.length === 0"> - </ng-container>
-
-        <ng-container *ngIf="dataRow?.description?.length !== 0">
+        <ng-container *ngIf="dataRow?.description?.length !== 0; else emptyIterable">
           <span class="num-display-chip" *ngFor="let chip of dataRow.description">{{
             dataRow.title !== 'FORM.CATEGORY' ? chip : ('PROJECT.CATEGORIES.' + chip | translate)
           }}</span>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="dataRow?.type === definitionType.Table">
+        <ng-container *ngIf="dataRow?.description?.length > 0; else emptyIterable">
+          <num-attachments-table
+            [attachments]="dataRow?.description"
+            [viewMode]="true"
+          ></num-attachments-table>
         </ng-container>
       </ng-container>
 
@@ -52,3 +59,7 @@
     </dd>
   </ng-container>
 </dl>
+
+<ng-template #emptyIterable>
+  <ng-container> - </ng-container>
+</ng-template>

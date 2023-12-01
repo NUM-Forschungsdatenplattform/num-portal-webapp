@@ -244,7 +244,8 @@
     "ORGANIZATION_NAME_PLACEHOLDER": "Enter organization name",
     "ADD_ORGANIZATION_DOMAIN": "Add mail domain (domain part)",
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g. domain.de or sub.domain.de",
-    "PSEUDONYM_PROJECT_ID": "Project-id"
+    "PSEUDONYM_PROJECT_ID": "Project-id",
+    "ATTACHMENTS": "Attachments"
   },
   "BUTTON": {
     "ARCHIVE": "Archive",
@@ -370,6 +371,11 @@
       "PROSPECTIVE_STUDY": "Prospective project",
       "RETROSPECTIVE_STUDY": "Retrospective project",
       "REGISTRY": "Registry"
+    },
+    "ATTACHMENT": {
+      "NAME": "Filename",
+      "DESCRIPTION": "Description",
+      "UPLOAD_DATE": "Date"
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",

@@ -79,9 +79,8 @@ export class ProjectUiModel {
     this.researchersApi = projectApi?.researchers || []
     this.templates = projectApi?.templates || []
     this.cohortGroup = new CohortGroupUiModel()
-    this.attachments = projectApi.attachments.map(
-      (attachment) => new ProjectAttachmentUiModel(attachment)
-    )
+    this.attachments =
+      projectApi.attachments?.map((attachment) => new ProjectAttachmentUiModel(attachment)) || []
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {
@@ -148,6 +147,11 @@ export class ProjectUiModel {
         title: 'FORM.END_DATE',
         description: this.endDate || undefined,
         type: DefinitionType.Date,
+      },
+      {
+        title: 'FORM.ATTACHMENTS',
+        description: this.attachments || [],
+        type: DefinitionType.Table,
       },
       {
         title: 'FORM.FINANCED_BY_PRIVATE',

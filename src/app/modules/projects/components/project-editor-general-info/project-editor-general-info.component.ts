@@ -20,6 +20,7 @@ import { IDefinitionList } from '../../../../shared/models/definition-list.inter
 import { DateAdapter } from '@angular/material/core'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 
 @Component({
   selector: 'num-project-editor-general-info',
@@ -29,6 +30,7 @@ import { Subscription } from 'rxjs'
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
 
+  @Input() attachments: ProjectAttachmentUiModel[] = []
   @Input() form: FormGroup
   @Input() isDisabled: boolean
   @Input() generalInfoData: IDefinitionList[]

@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Vitagroup AG
+ * Copyright 2023 Vitagroup AG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-export enum DefinitionType {
-  String = 'string',
-  Array = 'array',
-  Boolean = 'boolean',
-  Date = 'date',
-  Table = 'table',
+table {
+  width: 100%;
+
+  .truncate {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-right: 5px;
+  }
 }

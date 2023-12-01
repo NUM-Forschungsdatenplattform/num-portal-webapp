@@ -143,7 +143,6 @@
     "PRIVACY_PRIVATE": "Nur mit mir",
     "PRIVACY_PUBLIC": "Öffentlich",
     "CATEGORY_NOT_DELETABLE": "Kategorien mit zugewiesenen Kriterien können nicht gelöscht werden."
-
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",
@@ -246,7 +245,8 @@
     "ORGANIZATION_NAME_PLACEHOLDER": "Name der Organisation eingeben",
     "ADD_ORGANIZATION_DOMAIN": "Mail-Domäne hinzufügen (domain part)",
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "Z.B. domain.de or sub.domain.de",
-    "PSEUDONYM_PROJECT_ID": "Projekt-Id"
+    "PSEUDONYM_PROJECT_ID": "Projekt-Id",
+    "ATTACHMENTS": "Anhänge"
   },
   "BUTTON": {
     "ARCHIVE": "Archivieren",
@@ -373,6 +373,11 @@
       "RETROSPECTIVE_STUDY": "Retrospektive Projekt",
       "REGISTRY": "Register"
     },
+    "ATTACHMENT": {
+      "NAME": "Dateiname",
+      "DESCRIPTION": "Beschreibung",
+      "UPLOAD_DATE": "Datum"
+    },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",
     "CHANGE_STATUS_ERROR": "Der Projektstatus konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut.",
@@ -387,6 +392,7 @@
     "DESCRIPTION_PLACEHOLDER": "Bitte verfassen Sie eine Projektbeschreibung",
     "GOAL_PLACEHOLDER": "Bitte geben Sie das Ziel des Projekts ein"
   },
+ 
   "USER": {
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname",

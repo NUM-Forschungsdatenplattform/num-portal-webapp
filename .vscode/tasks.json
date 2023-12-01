@@ -4,7 +4,7 @@
     {
       "label": "Start Dev Server",
       "type": "shell",
-      "command": ["npm", "run", "start:hmr"],
+      "command": ["npm", "run", "start"],
       "isBackground": true,
       "group": {
         "isDefault": true,
