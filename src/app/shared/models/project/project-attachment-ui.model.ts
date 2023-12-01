@@ -14,4 +14,16 @@ export class ProjectAttachmentUiModel {
     this.uploadDate = new Date(uploadDate)
     this.description = description
   }
+
+  convertToApi(): IProjectAttachmentApi {
+    const { id, name, reviewCounter, description, uploadDate } = this
+
+    return {
+      id,
+      name,
+      reviewCounter,
+      description,
+      uploadDate: uploadDate.toISOString(),
+    }
+  }
 }
