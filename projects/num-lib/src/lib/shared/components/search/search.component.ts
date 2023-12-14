@@ -29,7 +29,7 @@ import {
 } from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
-import { ENVIROMENT_TOKEN } from '../../../config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 
 
 @Component({
@@ -39,10 +39,10 @@ import { ENVIROMENT_TOKEN } from '../../../config/app-config.service'
 })
 export class SearchComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor(@Inject(ENVIROMENT_TOKEN) readonly environmentToken: any) {}
+  constructor(private appConfig: AppConfigService) {}
 
   /* istanbul ignore next */
-  private readonly debounceTime = this.environmentToken.name === 'test' ? 10 : 200
+  private readonly debounceTime = this.appConfig.name === 'test' ? 10 : 200
   searchForm: FormGroup
 
   private subscriptions = new Subscription()

@@ -18,7 +18,7 @@ import { Component, EventEmitter, Inject, InjectionToken, Input, OnDestroy, OnIn
 import { FormControl, FormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
-import { ENVIROMENT_TOKEN } from '../../../config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 
 @Component({
   selector: 'num-time-input',
@@ -27,10 +27,10 @@ import { ENVIROMENT_TOKEN } from '../../../config/app-config.service'
 })
 export class TimeInputComponent implements OnInit, OnDestroy {
   
-  constructor( @Inject(ENVIROMENT_TOKEN) readonly environmentToken: any) {}
+  constructor(private appConfig: AppConfigService) {}
 
   /* istanbul ignore next */
-  private readonly debounceTime = this.environmentToken.name === 'test' ? 10 : 200
+  private readonly debounceTime = this.appConfig.name === 'test' ? 10 : 200
   private subscriptions = new Subscription()
 
   inputFields = [

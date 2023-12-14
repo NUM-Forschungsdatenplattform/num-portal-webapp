@@ -18,15 +18,16 @@ import { Inject, Injectable, InjectionToken } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { IAppConfig } from './app-config.model'
 
-export const ENVIROMENT_TOKEN: InjectionToken<any> = new InjectionToken("ENVIROMENT_TOKEN");
-
-@Injectable()
+@Injectable({providedIn: "root"})
 export class AppConfigService {
+  public name = "";
+  public isProduction = false;
+
   config: IAppConfig = null
 
-  constructor(private http: HttpClient, @Inject(ENVIROMENT_TOKEN) readonly environmentToken: any) {}
+  constructor(private http: HttpClient) {}
 
-  private readonly CONFIG_URL = `assets/config/config.${this.environmentToken.name}.json`
+  private readonly CONFIG_URL = `assets/config/config.${this.name}.json`
 
   public loadConfig(): Promise<void> {
     return new Promise<void>((resolve, reject) => {

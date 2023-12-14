@@ -18,7 +18,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Inject, Injectable, InjectionToken } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
 import { catchError, map, shareReplay, switchMap, tap, throttleTime } from 'rxjs/operators'
-import { AppConfigService, ENVIROMENT_TOKEN } from '../../../config/app-config.service'
+import { AppConfigService } from '../../../config/app-config.service'
 import { DEFAULT_AQL_FILTER } from '../../constants/default-filter-aql'
 import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
@@ -33,7 +33,7 @@ import { IUserProfile } from '../../../shared/models/user/user-profile.interface
 })
 export class AqlService {
   /* istanbul ignore next */
-  private readonly throttleTime = this.environmentToken.name === 'test' ? 50 : 300
+  private readonly throttleTime = this.appConfig.name === 'test' ? 50 : 300
   private baseUrl: string
   getAllObservable$: Observable<IAqlApi[]>
   cacheTime = 3000
@@ -55,10 +55,9 @@ export class AqlService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService,
+    private appConfig: AppConfigService,
     private profileService: ProfileService,
     private translateService: TranslateService,
-    @Inject(ENVIROMENT_TOKEN) readonly environmentToken: any
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
