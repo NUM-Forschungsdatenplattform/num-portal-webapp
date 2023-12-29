@@ -78,9 +78,11 @@
         {{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}
       </th>
       <td
+        #descriptionCell
         mat-cell
         *matCellDef="let element"
-        class="truncate"
+        numTooltipNecessary
+        matTooltipPosition="below"
         data-test="attachments-table__table-data__attachment-description"
       >
         {{ element.description }}

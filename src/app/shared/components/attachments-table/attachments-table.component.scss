@@ -17,9 +17,9 @@
 table {
   width: 100%;
 
-  .truncate {
-    text-overflow: ellipsis;
+  td {
     overflow: hidden;
-    padding-right: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

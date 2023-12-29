@@ -80,7 +80,7 @@ export class ProjectUiModel {
     this.templates = projectApi?.templates || []
     this.cohortGroup = new CohortGroupUiModel()
     this.attachments =
-      projectApi.attachments?.map((attachment) => new ProjectAttachmentUiModel(attachment)) || []
+      projectApi?.attachments?.map((attachment) => new ProjectAttachmentUiModel(attachment)) || []
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {

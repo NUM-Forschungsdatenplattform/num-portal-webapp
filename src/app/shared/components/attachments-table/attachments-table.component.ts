@@ -52,13 +52,38 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
   }
 
-  isAllSelected() {
+  /**
+   * Checks whether all attachment elements from table have been selected by checking the count of
+   * total selected rows and the total count of rows.
+   *
+   * @returns true if all attachments have been selected false otherwise
+   */
+  isAllSelected(): boolean {
     const numSelected = this.selection.selected.length
     const numRows = this.dataSource.data.length
     return numSelected === numRows
   }
 
+  /**
+   * If all attachments have been selected this method will deselect all of them. In all other
+   * cases all elements will be selected.
+   */
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
+  }
+
+  /**
+   * Inspect a given html element and check if the scrollable text content exceeds the overall
+   * dimensions of the element. If the content remains within the boundaries this will return
+   * 'true' meaning the tooltip can be disabled. In all other cases null will be returned which
+   * in html will be interpreted as the attribute is not set at all.
+   *
+   * @param {HTMLElement} elem - Target element to inspect
+   * @returns true if tooltip is not necessary or null if it has to be shown
+   */
+  isTooltipDisabled(elem: HTMLElement): true | null {
+    return elem.scrollWidth <= elem.clientWidth && elem.scrollHeight <= elem.clientHeight
+      ? true
+      : null
   }
 }
