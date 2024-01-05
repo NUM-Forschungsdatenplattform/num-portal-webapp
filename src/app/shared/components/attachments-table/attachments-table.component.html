@@ -68,13 +68,15 @@
       <td
         mat-cell
         *matCellDef="let element"
-        class="truncate"
+        numTooltipNecessary
+        matTooltipPosition="below"
         data-test="attachments-table__table-data__attachment-name"
       >
         {{ element.name }}
       </td>
     </ng-container>
 
+    <!-- Description column -->
     <ng-container matColumnDef="description">
       <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}
