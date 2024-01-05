@@ -15,7 +15,7 @@
  */
 
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
@@ -34,7 +34,7 @@ import { ProjectCategory } from '../../models/project-category.enum'
 export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit {
   constructor(private translate: TranslateService) {}
 
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
   @ViewChild('categoryAutocomplete') categoryAutocomplete: MatAutocomplete
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>
 
@@ -47,7 +47,7 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
 
   allCategories = Object.values(ProjectCategory) as ProjectCategory[]
   filteredCategories: Observable<ProjectCategory[]>
-  categoryCtrl = new FormControl()
+  categoryCtrl = new UntypedFormControl()
   isNoResults: boolean
 
   ngOnInit(): void {

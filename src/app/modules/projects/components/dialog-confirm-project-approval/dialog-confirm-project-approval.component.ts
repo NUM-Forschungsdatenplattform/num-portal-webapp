@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Output } from '@angular/core'
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 
 @Component({
@@ -29,8 +29,8 @@ export class DialogConfirmProjectApprovalComponent implements IGenericDialog<nev
   @Output() closeDialog = new EventEmitter()
   dialogInput: never
 
-  form = new FormGroup({
-    check: new FormControl(false, [Validators.requiredTrue]),
+  form = new UntypedFormGroup({
+    check: new UntypedFormControl(false, [Validators.requiredTrue]),
   })
 
   handleDialogCancel(): void {

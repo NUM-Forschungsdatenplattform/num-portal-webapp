@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { TranslateService } from '@ngx-translate/core'
@@ -65,7 +65,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
 
   constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
 
-  valueForm: FormGroup
+  valueForm: UntypedFormGroup
 
   ngOnInit(): void {
     if (
@@ -80,8 +80,8 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
         })
       )
     }
-    this.valueForm = new FormGroup({
-      value: new FormControl({ value: this.item?.value, disabled: this.disabled }, [
+    this.valueForm = new UntypedFormGroup({
+      value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
         Validators.required,
       ]),
     })

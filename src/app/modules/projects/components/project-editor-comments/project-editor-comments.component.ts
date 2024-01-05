@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 
 @Component({
@@ -28,7 +28,7 @@ export class ProjectEditorCommentsComponent {
 
   @Input() isLoadingComplete: boolean
   @Input() comments: IProjectComment[]
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
   @Output() postComment = new EventEmitter()
 
   commentLimit = true

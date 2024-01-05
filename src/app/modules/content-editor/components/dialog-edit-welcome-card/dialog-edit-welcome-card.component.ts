@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { cloneDeep } from 'lodash-es'
 import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'src/app/shared/constants'
@@ -25,13 +25,13 @@ import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'src/app/sha
   templateUrl: './dialog-edit-welcome-card.component.html',
   styleUrls: ['./dialog-edit-welcome-card.component.scss'],
 })
-export class DialogEditWelcomeCardComponent implements OnInit, IGenericDialog<FormGroup> {
+export class DialogEditWelcomeCardComponent implements OnInit, IGenericDialog<UntypedFormGroup> {
   constructor() {}
   images = DASHBOARD_CARD_IMAGES
   defaultImage = DEFAULT_DASHBOARD_CARD_IMAGE
 
-  dialogInput: FormGroup
-  form: FormGroup
+  dialogInput: UntypedFormGroup
+  form: UntypedFormGroup
   @Output() closeDialog = new EventEmitter()
 
   ngOnInit(): void {

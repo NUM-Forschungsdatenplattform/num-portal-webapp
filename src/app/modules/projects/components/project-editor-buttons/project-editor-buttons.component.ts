@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
@@ -39,7 +39,7 @@ export class ProjectEditorButtonsComponent {
   @Input() isTemplatesDefined: boolean
   @Input() isCohortDefined: boolean
   @Input() isCohortValid: boolean
-  @Input() approverForm: FormGroup
+  @Input() approverForm: UntypedFormGroup
   @Input() isExportLoading: boolean
   @Input() isSavedProject: boolean
   @Input() isUserProjectAdmin: boolean

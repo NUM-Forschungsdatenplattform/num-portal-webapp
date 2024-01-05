@@ -15,7 +15,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { combineLatest, forkJoin, Subscription } from 'rxjs'
 import { map, mergeMap } from 'rxjs/operators'
@@ -90,7 +90,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     return this.project.cohortGroup
   }
 
-  projectForm: FormGroup = new FormGroup({})
+  projectForm: UntypedFormGroup = new UntypedFormGroup({})
 
   resultSet: IAqlExecutionResponse[]
   configuration: DataExplorerConfigurations = DataExplorerConfigurations.Default

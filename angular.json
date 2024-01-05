@@ -179,8 +179,9 @@
       }
     }
   },
-  "defaultProject": "num-portal-webapp",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

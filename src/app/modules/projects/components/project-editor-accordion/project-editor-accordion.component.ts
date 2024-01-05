@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
@@ -36,7 +36,7 @@ export class ProjectEditorAccordionComponent {
   @Input() isCohortBuilderDisabled: boolean
   @Input() isUserProjectAdmin: boolean
   @Input() project: ProjectUiModel
-  @Input() projectForm: FormGroup
+  @Input() projectForm: UntypedFormGroup
   @Input() cohortGroup: CohortGroupUiModel
   @Input() generalInfoData: IDefinitionList[]
 

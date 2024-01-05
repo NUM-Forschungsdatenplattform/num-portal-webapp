@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ManagerService } from 'src/app/core/services/manager/manager.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -35,7 +35,7 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
 
   isLoading: boolean
   resolvedPseudonym: string
-  form: FormGroup
+  form: UntypedFormGroup
   hasClipboardApi: boolean
 
   ngOnInit(): void {
@@ -43,9 +43,9 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
       this.hasClipboardApi = true
     }
 
-    this.form = new FormGroup({
-      projectId: new FormControl(undefined, [Validators.required]),
-      pseudonym: new FormControl(undefined, [Validators.required, Validators.minLength(8)]),
+    this.form = new UntypedFormGroup({
+      projectId: new UntypedFormControl(undefined, [Validators.required]),
+      pseudonym: new UntypedFormControl(undefined, [Validators.required, Validators.minLength(8)]),
     })
 
     this.subsriptions.add(

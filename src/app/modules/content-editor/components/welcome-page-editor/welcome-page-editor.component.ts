@@ -15,7 +15,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
@@ -36,7 +36,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private contentService: ContentService,
     private toastMessageService: ToastMessageService,
     private translateService: TranslateService,
@@ -49,15 +49,15 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
 
   cards: IDashboardCard[]
 
-  cardForm = new FormGroup({
+  cardForm = new UntypedFormGroup({
     cardItems: this.formBuilder.array([]),
   })
 
-  get dashboardCards(): FormArray {
-    return this.cardForm.get('cardItems') as FormArray
+  get dashboardCards(): UntypedFormArray {
+    return this.cardForm.get('cardItems') as UntypedFormArray
   }
 
-  set dashboardCards(cardItems: FormArray) {
+  set dashboardCards(cardItems: UntypedFormArray) {
     this.cardForm.setControl('cardItems', cardItems)
   }
 
@@ -91,14 +91,14 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   }
 
   generateForm(cards: IDashboardCard[]): void {
-    const newCards = new FormArray([])
+    const newCards = new UntypedFormArray([])
     cards.forEach((card) => {
       newCards.push(this.buildFormInput(card))
     })
     this.dashboardCards = newCards
   }
 
-  buildFormInput(card?: IDashboardCard): FormGroup {
+  buildFormInput(card?: IDashboardCard): UntypedFormGroup {
     const urlRegex = /^https?:\/\/[^\s/$.?#!<>|;'"\\@:&=_()].+\.[^\s]*[^\s.]$/
     return this.formBuilder.group({
       titleEnglish: [
@@ -127,8 +127,8 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
-    dialogRef.afterClosed().subscribe((confirmResult: FormGroup | undefined) => {
-      if (confirmResult instanceof FormGroup) {
+    dialogRef.afterClosed().subscribe((confirmResult: UntypedFormGroup | undefined) => {
+      if (confirmResult instanceof UntypedFormGroup) {
         this.dashboardCards.insert(0, confirmResult)
       }
     })

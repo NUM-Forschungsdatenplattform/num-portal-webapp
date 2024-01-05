@@ -15,7 +15,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { cloneDeep } from 'lodash-es'
 import { Observable, Subscription, throwError } from 'rxjs'
@@ -46,7 +46,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
 export class OrganizationEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
   organization: OrganizationUiModel
-  form: FormGroup
+  form: UntypedFormGroup
   isLoading: boolean
   displayedColumns = ['domain', 'icon']
   isActiveCBDisabled = false
@@ -84,19 +84,19 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
   generateForm(): void {
     const nonWhitespaceRegex = /[^\s.]+/
     const domainRegex = /[^\s.]+\.[^\s."()[\],:;<>@][^\s"()[\],:;<>@]+$/
-    this.form = new FormGroup({
-      name: new FormControl(this.organization.name, [
+    this.form = new UntypedFormGroup({
+      name: new UntypedFormControl(this.organization.name, [
         Validators.required,
         Validators.minLength(3),
         Validators.pattern(nonWhitespaceRegex),
       ]),
-      newDomain: new FormControl('', [
+      newDomain: new UntypedFormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.pattern(domainRegex),
       ]),
-      mailDomains: new FormControl(this.organization.mailDomains),
-      active: new FormControl(this.organization.active),
+      mailDomains: new UntypedFormControl(this.organization.mailDomains),
+      active: new UntypedFormControl(this.organization.active),
     })
     this.profileService.get().subscribe((profile) => {
       if (profile.organization.id === this.organization.id) {

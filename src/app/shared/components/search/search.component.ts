@@ -25,7 +25,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from '../../../../environments/environment'
 
@@ -37,7 +37,7 @@ import { environment } from '../../../../environments/environment'
 export class SearchComponent implements OnInit, OnChanges, OnDestroy {
   /* istanbul ignore next */
   private readonly debounceTime = environment.name === 'test' ? 10 : 200
-  searchForm: FormGroup
+  searchForm: UntypedFormGroup
   constructor() {}
 
   private subscriptions = new Subscription()
@@ -49,8 +49,8 @@ export class SearchComponent implements OnInit, OnChanges, OnDestroy {
   currentText = ''
 
   ngOnInit(): void {
-    this.searchForm = new FormGroup({
-      query: new FormControl(this.searchText || ''),
+    this.searchForm = new UntypedFormGroup({
+      query: new UntypedFormControl(this.searchText || ''),
     })
 
     this.subscriptions.add(
