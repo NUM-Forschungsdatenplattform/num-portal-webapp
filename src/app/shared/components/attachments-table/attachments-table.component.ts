@@ -71,19 +71,4 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
   }
-
-  /**
-   * Inspect a given html element and check if the scrollable text content exceeds the overall
-   * dimensions of the element. If the content remains within the boundaries this will return
-   * 'true' meaning the tooltip can be disabled. In all other cases null will be returned which
-   * in html will be interpreted as the attribute is not set at all.
-   *
-   * @param {HTMLElement} elem - Target element to inspect
-   * @returns true if tooltip is not necessary or null if it has to be shown
-   */
-  isTooltipDisabled(elem: HTMLElement): true | null {
-    return elem.scrollWidth <= elem.clientWidth && elem.scrollHeight <= elem.clientHeight
-      ? true
-      : null
-  }
 }
