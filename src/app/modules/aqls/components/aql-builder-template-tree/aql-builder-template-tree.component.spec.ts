@@ -15,7 +15,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, throwError } from 'rxjs'
@@ -43,7 +43,7 @@ describe('AqlBuilderTemplateTreeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AqlBuilderTemplateTreeComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),

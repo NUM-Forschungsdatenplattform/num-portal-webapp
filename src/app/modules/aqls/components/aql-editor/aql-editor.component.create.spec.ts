@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, Directive, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -30,7 +30,7 @@ import { AqlEditorComponent } from './aql-editor.component'
 import { of, Subject, throwError } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
@@ -87,6 +87,13 @@ describe('AqlEditorComponent', () => {
     validate = jest.fn().mockResolvedValue(true)
   }
 
+  @Directive({
+    selector: '[numUserHasRole]',
+  })
+  class UserHasRoleStubDirective {
+    @Input() numUserHasRole: string[]
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -94,13 +101,14 @@ describe('AqlEditorComponent', () => {
         StubGeneralInfoComponent,
         StubEditorCreatorComponent,
         ButtonComponent,
+        UserHasRoleStubDirective,
       ],
       imports: [
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         RouterTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {

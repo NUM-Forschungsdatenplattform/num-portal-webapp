@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { TranslateModule } from '@ngx-translate/core'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 import { FilterTableComponent } from './filter-table.component'
@@ -35,7 +35,7 @@ describe('FilterTableComponent', () => {
       declarations: [FilterTableComponent],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         PipesModule,

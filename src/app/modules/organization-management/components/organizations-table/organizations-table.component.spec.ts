@@ -15,7 +15,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -53,7 +53,7 @@ describe('OrganizationsTableComponent', () => {
       imports: [
         HttpClientTestingModule,
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,

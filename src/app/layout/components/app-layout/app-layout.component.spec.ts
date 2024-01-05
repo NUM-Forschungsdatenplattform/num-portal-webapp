@@ -21,7 +21,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 
 import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
@@ -119,7 +119,7 @@ describe('AppLayoutComponent', () => {
         FooterStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,

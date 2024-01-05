@@ -20,7 +20,7 @@ import { Pipe, PipeTransform } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MatSortHeaderHarness } from '@angular/material/sort/testing'
 import { MatTableHarness } from '@angular/material/table/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -59,7 +59,7 @@ describe('DataExplorerProjectsTableComponent', () => {
       declarations: [DataExplorerProjectsTableComponent, MockLocalizedDatePipe],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,

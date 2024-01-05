@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -27,8 +27,8 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
-
 import { OrganizationManagementComponent } from './organization-management.component'
+import { IFilterItem } from '../../../../shared/models//filter-chip.interface'
 
 describe('OrganizationManagementComponent', () => {
   let fixture: ComponentFixture<OrganizationManagementComponent>
@@ -48,12 +48,27 @@ describe('OrganizationManagementComponent', () => {
   @Component({ selector: 'num-organizations-table', template: '' })
   class StubOrganizationsTable {}
 
+  @Component({
+    selector: 'num-filter-chips',
+    template: '',
+  })
+  class FilterChipsStubComponent {
+    @Input() filterChips: IFilterItem<string | number>[]
+    @Input() multiSelect: boolean
+    @Output() selectionChange = new EventEmitter()
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrganizationManagementComponent, StubOrganizationsTable, ButtonComponent],
+      declarations: [
+        OrganizationManagementComponent,
+        StubOrganizationsTable,
+        ButtonComponent,
+        FilterChipsStubComponent,
+      ],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         DirectivesModule,

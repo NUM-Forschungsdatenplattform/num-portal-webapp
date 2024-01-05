@@ -17,7 +17,7 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
@@ -39,7 +39,7 @@ describe('AqlBuilderTemplatesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AqlBuilderTemplatesComponent, TemplatesStubComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),
         ReactiveFormsModule,

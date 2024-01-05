@@ -15,7 +15,7 @@
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { DialogEditCategoryDetailsComponent } from './dialog-edit-category-details.component'
@@ -28,7 +28,7 @@ describe('DialogEditCategoryDetailsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DialogEditCategoryDetailsComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),

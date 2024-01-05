@@ -16,7 +16,7 @@
 
 import { Component, Injector, Input } from '@angular/core'
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { Observable, of, throwError } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
@@ -60,7 +60,7 @@ describe('ManagerChartsComponent', () => {
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: FakeLoader },
         }),
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {

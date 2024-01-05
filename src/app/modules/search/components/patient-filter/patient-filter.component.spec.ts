@@ -20,7 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
@@ -111,6 +111,8 @@ describe('PatientFilterComponent', () => {
   class CohortGraphsComponentStub {
     @Input() previewData: string
     @Input() determineHits: IDetermineHits
+    @Input() isCohortValid: boolean
+    @Input() isChartDataLoading: boolean
     @Output() determine = new EventEmitter<void>()
   }
 
@@ -126,7 +128,7 @@ describe('PatientFilterComponent', () => {
       imports: [
         MaterialModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         LayoutModule,
         SharedModule,
         TranslateModule.forRoot(),

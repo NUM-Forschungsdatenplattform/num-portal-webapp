@@ -16,7 +16,7 @@
 
 import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
@@ -52,7 +52,7 @@ describe('ProjectsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectsComponent, ProjectsTableStubComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         RouterTestingModule,
         SharedModule,

@@ -17,7 +17,7 @@
 import { Component, Input, SimpleChange } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
@@ -61,7 +61,7 @@ describe('AqlConnectorGroupComponent', () => {
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
       ],

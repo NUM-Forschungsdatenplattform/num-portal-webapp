@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 describe('EditorDetermineHitsComponent', () => {
   let component: EditorDetermineHitsComponent
@@ -35,7 +35,7 @@ describe('EditorDetermineHitsComponent', () => {
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
     }).compileComponents()
   })

@@ -19,7 +19,7 @@ import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { ApprovedUsersTableComponent } from './approved-users-table.component'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { mockUsers, mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { IUser } from 'src/app/shared/models/user/user.interface'
@@ -73,7 +73,7 @@ describe('ApprovedUsersTableComponent', () => {
       declarations: [ApprovedUsersTableComponent, MockLocalizedDatePipe, AvailableRolesPipe],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
       ],

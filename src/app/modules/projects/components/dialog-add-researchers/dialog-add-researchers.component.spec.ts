@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
 import { DialogAddResearchersComponent } from './dialog-add-researchers.component'
@@ -84,7 +84,7 @@ describe('DialogAddResearchersComponent', () => {
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         PipesModule,
       ],
       providers: [
