@@ -15,6 +15,7 @@
  */
 
 import 'jest-preset-angular/setup-jest'
+import { randomBytes } from 'crypto'
 import ResizeObserver from 'resize-observer-polyfill'
 
 Object.defineProperty(window, 'CSS', { value: null })
@@ -53,4 +54,8 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
 
 Object.defineProperty(URL, 'createObjectURL', {
   value: () => 'https://test-link.com',
+})
+
+Object.defineProperty(globalThis, 'crypto', {
+  value: (arr: Buffer) => randomBytes(arr.length),
 })

@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('./tsconfig')
+import type { Config } from 'jest'
+import { pathsToModuleNameMapper } from 'ts-jest'
+import { compilerOptions } from './tsconfig.json'
 
-module.exports = {
-  transformIgnorePatterns: [
-    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
-  ],
+const config: Config = {
+  transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/src/'],
   modulePaths: ['<rootDir>'],
@@ -43,10 +42,12 @@ module.exports = {
   testResultsProcessor: 'jest-sonar-reporter',
   coverageDirectory: '<rootDir>/reports/coverage',
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
+    ...pathsToModuleNameMapper(compilerOptions['paths'] || {}, {
       prefix: '<rootDir>/',
     }),
     '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
     '^lodash-es$': '<rootDir>/node_modules/lodash/index.js',
   },
 }
+
+export default config
