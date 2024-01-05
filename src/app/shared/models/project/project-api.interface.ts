@@ -19,6 +19,7 @@ import { IProjectUser } from '../user/project-user.interface'
 import { IUser } from '../user/user.interface'
 import { ProjectStatus } from './project-status.enum'
 import { IProjectTemplateInfoApi } from './project-template-info-api.interface'
+import { IProjectAttachmentApi } from './project-attachment-api.interface'
 
 export interface IProjectApi {
   cohortId?: number
@@ -41,4 +42,5 @@ export interface IProjectApi {
   researchers?: IProjectUser[]
   status?: ProjectStatus
   templates?: IProjectTemplateInfoApi[]
+  attachments?: IProjectAttachmentApi[]
 }

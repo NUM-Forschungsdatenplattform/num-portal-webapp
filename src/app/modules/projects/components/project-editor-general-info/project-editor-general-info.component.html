@@ -162,6 +162,13 @@
       </section>
 
       <section role="presentation" class="num-margin-b-10">
+        <num-attachments-table
+          [attachments]="attachments"
+          [viewMode]="false"
+        ></num-attachments-table>
+      </section>
+
+      <section role="presentation" class="num-margin-b-10">
         <p class="mat-display-4 num-margin-b-10">{{ 'FORM.FINANCED' | translate }}</p>
         <mat-slide-toggle
           formControlName="financed"
