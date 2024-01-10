@@ -16,7 +16,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { Subject } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { LayoutModule } from 'src/app/layout/layout.module'
@@ -50,7 +50,7 @@ describe('DataFilterTemplatesComponent', () => {
         FontAwesomeModule,
         LayoutModule,
         SharedModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [{ provide: DialogService, useValue: mockDialogService }],
     }).compileComponents()

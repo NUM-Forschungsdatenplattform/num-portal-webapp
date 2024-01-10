@@ -19,7 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { ProjectCategory } from '../../models/project-category.enum'
 
 import { ProjectEditorGeneralInfoCategoriesInputComponent } from './project-editor-general-info-categories-input.component'
@@ -37,7 +37,7 @@ describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
       ],
     }).compileComponents()
   })

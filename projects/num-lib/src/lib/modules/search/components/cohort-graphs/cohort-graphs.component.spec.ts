@@ -18,7 +18,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MatDividerModule } from '@angular/material/divider'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { Subject } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
@@ -58,7 +58,7 @@ describe('CohortGraphsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CohortGraphsComponent, VerticalBarChartComponentStub],
-      imports: [MatDividerModule, SharedModule, TranslateModule.forRoot()],
+      imports: [MatDividerModule, SharedModule, ],
       providers: [
         {
           provide: AuthService,

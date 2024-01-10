@@ -16,7 +16,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { of, Subject, throwError } from 'rxjs'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
 import { AqlCategoriesManagementComponent } from './aql-categories-management.component'
 import {
   mockAqlCategories,
@@ -89,7 +88,6 @@ describe('AqlCategoriesManagementComponent', () => {
         FontAwesomeModule,
         LayoutModule,
         SharedModule,
-        TranslateModule.forRoot(),
       ],
       providers: [
         {

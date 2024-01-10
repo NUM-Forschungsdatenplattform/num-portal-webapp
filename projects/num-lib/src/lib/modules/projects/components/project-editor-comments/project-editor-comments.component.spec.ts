@@ -19,7 +19,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { projectCommentMocks } from 'src/mocks/data-mocks/project-comments.mock'
 
 import { ProjectEditorCommentsComponent } from './project-editor-comments.component'
@@ -42,7 +42,7 @@ describe('ProjectEditorCommentsComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [DatePipe],
     }).compileComponents()

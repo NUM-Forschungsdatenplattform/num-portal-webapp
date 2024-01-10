@@ -17,7 +17,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { mockDashboardMetrics } from 'src/mocks/data-mocks/dashboard-metrics.mock'
@@ -36,7 +35,7 @@ describe('MetricsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MetricsComponent],
-      imports: [TranslateModule.forRoot(), FlexLayoutModule, FontAwesomeTestingModule],
+      imports: [FlexLayoutModule, FontAwesomeTestingModule],
       providers: [
         {
           provide: ContentService,

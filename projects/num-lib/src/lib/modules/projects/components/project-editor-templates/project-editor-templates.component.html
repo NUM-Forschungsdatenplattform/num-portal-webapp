@@ -19,7 +19,7 @@
     <mat-panel-title>
       <h3 id="select-header" class="accordion" fxLayoutGap="8px">
         <fa-icon [icon]="['far', 'check-circle']" *ngIf="project.templates.length"></fa-icon>
-        <span>{{ 'SELECT_EHR_TEMPLATE' | translate }}*</span>
+        <span>{{ 'SELECT_EHR_TEMPLATE' }}*</span>
       </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
@@ -32,7 +32,7 @@
     fxLayoutGap="20px"
   >
     <div>
-      {{ 'PROJECT.EHR_TEMPLATE_CONTENT' | translate }}
+      {{ 'PROJECT.EHR_TEMPLATE_CONTENT' }}
     </div>
 
     <num-add-templates

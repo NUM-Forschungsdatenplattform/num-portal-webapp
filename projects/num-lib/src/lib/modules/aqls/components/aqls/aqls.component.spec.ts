@@ -21,7 +21,6 @@ import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { AqlsComponent } from './aqls.component'
-import { TranslateModule } from '@ngx-translate/core'
 import { Component } from '@angular/core'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
@@ -48,7 +47,7 @@ describe('AqlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AqlsComponent, AqlTableStubComponent],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      imports: [MaterialModule],
       providers: [
         {
           provide: AqlService,

@@ -15,7 +15,6 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AqlCategoriesTableComponent } from '../aql-categories-table.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -78,7 +77,6 @@ describe('AqlCategoriesTableComponent', () => {
         FontAwesomeTestingModule,
         MaterialModule,
         RouterTestingModule.withRoutes([]),
-        TranslateModule.forRoot(),
       ],
       providers: [
         {

@@ -15,12 +15,11 @@
  */
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
 import { mainNavItems, secondaryNavItemsLoggedIn } from '../../../core/constants/navigation'
 import { AppConfigService } from '../../../config/app-config.service'
-import { TranslateService } from '@ngx-translate/core'
+import { ActivationEnd, Router, RouterEvent } from '@angular/router'
 
 @Component({
   selector: 'num-header',
@@ -44,7 +43,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private config: AppConfigService,
     private router: Router,
-    private translateService: TranslateService
   ) {}
 
   @Input()
@@ -59,12 +57,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.welcomePageTitle = this.config.config.welcomePageTitle
 
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((e) => {
-        this.currentLang = e.lang
-      })
-    )
-    this.currentLang = this.translateService.currentLang
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((e) => {
+    //     this.currentLang = e.lang
+    //   })
+    // )
+    // this.currentLang = this.translateService.currentLang;
   }
 
   ngOnDestroy(): void {

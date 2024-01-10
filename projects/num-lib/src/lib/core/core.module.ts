@@ -15,21 +15,21 @@
  */
 
 import { NgModule, Optional, SkipSelf } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import { AqlService } from './services/aql/aql.service'
 import { CohortService } from './services/cohort/cohort.service'
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component'
-import { OAuthModule } from 'angular-oauth2-oidc'
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'
 import { SharedModule } from '../shared/shared.module'
 import { LayoutModule } from '../layout/layout.module'
+import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatDialogModule } from '@angular/material/dialog'
+import { CommonModule } from '@angular/common'
 
 @NgModule({
   imports: [
     CommonModule,
     LayoutModule,
     SharedModule,
-    OAuthModule.forRoot(),
     NgIdleKeepaliveModule.forRoot(),
   ],
   providers: [AqlService, CohortService],

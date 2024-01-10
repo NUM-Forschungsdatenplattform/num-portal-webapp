@@ -19,7 +19,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
@@ -81,7 +80,6 @@ describe('WelcomePageEditorComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WelcomePageEditorComponent, ButtonComponent, WelcomePageItemStubComponent],
       imports: [
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,
         FontAwesomeTestingModule,

@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
@@ -190,7 +190,7 @@ describe('ProjectEditorComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
         RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
       providers: [

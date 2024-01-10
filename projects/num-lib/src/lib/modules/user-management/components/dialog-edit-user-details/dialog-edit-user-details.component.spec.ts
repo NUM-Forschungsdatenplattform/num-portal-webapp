@@ -21,7 +21,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonHarness } from '@angular/material/button/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -97,7 +96,6 @@ describe('DialogEditUserDetailsComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
         DirectivesModule,
       ],
       providers: [

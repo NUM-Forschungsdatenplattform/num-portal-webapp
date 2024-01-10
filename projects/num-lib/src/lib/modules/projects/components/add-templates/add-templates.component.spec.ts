@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { of, Subject, throwError } from 'rxjs'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 
@@ -71,7 +71,7 @@ describe('AddTemplatesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddTemplatesComponent],
-      imports: [BrowserAnimationsModule, SharedModule, LayoutModule, TranslateModule.forRoot()],
+      imports: [BrowserAnimationsModule, SharedModule, LayoutModule, ],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         {

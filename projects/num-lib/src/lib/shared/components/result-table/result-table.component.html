@@ -16,13 +16,13 @@
 
 <section role="region" fxLayout="column">
   <h4>
-    {{ 'TABLE' | translate }} {{ index + 1 }} / {{ totalTables }}
+    {{ 'TABLE' }} {{ index + 1 }} / {{ totalTables }}
     {{ resultSet?.name ? ', ' + resultSet?.name : '' }}
   </h4>
   <div *ngIf="resultSet && !resultSet.rows.length">
     <mat-card class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center">
-        <span>{{ 'DATA_EXPLORER.EMPTY_RESULT_SET' | translate }}</span>
+        <span>{{ 'DATA_EXPLORER.EMPTY_RESULT_SET' }}</span>
       </div>
     </mat-card>
   </div>

@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { AddUserRolesComponent } from './add-user-roles.component'
 import { Subject } from 'rxjs'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
@@ -38,7 +38,7 @@ describe('AddUserRolesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddUserRolesComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, FontAwesomeTestingModule, ],
       providers: [
         {
           provide: ProfileService,

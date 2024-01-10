@@ -19,7 +19,6 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
 import { ContentService } from '../../../core/services/content/content.service'
@@ -94,7 +93,6 @@ describe('SideMenuComponent', () => {
           { path: 'test', component: TestRouterTargetComponentStub },
           { path: 'home', component: TestRouterTargetComponentStub },
         ]),
-        TranslateModule.forRoot(),
         DirectivesModule,
         HttpClientTestingModule,
       ],

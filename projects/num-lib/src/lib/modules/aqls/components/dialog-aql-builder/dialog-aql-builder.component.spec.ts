@@ -17,7 +17,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -86,7 +85,7 @@ describe('DialogAqlBuilderComponent', () => {
         WhereStubComponent,
         ButtonComponent,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [MaterialModule, FontAwesomeTestingModule],
       providers: [
         { provide: AqlEditorService, useValue: aqlEditorService },
         { provide: ToastMessageService, useValue: mockToastMessageService },

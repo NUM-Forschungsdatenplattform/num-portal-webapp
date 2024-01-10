@@ -20,7 +20,6 @@ import { AppLayoutComponent } from './app-layout.component'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 import { MediaMatcher } from '@angular/cdk/layout'
-import { TranslateModule } from '@ngx-translate/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
 import { RouterTestingModule } from '@angular/router/testing'
@@ -123,7 +122,6 @@ describe('AppLayoutComponent', () => {
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         DirectivesModule,
         SharedComponentsModule,

@@ -14,16 +14,16 @@
  limitations under the License.
 -->
 <section role="region" fxLayout="column" fxFlex="100%">
-  <h2>{{ 'SEARCH.DATA_EXPLORER_HEADING' | translate }}</h2>
+  <h2>{{ 'SEARCH.DATA_EXPLORER_HEADING' }}</h2>
 
-  <p class="mat-body num-margin-b-40">{{ 'SEARCH.DATA_EXPLORER_DESCRIPTION' | translate }}</p>
+  <p class="mat-body num-margin-b-40">{{ 'SEARCH.DATA_EXPLORER_DESCRIPTION' }}</p>
 
   <num-button
     icon="play"
     class="num-margin-b-60"
     (singleClick)="getData()"
     data-test="manager-data-explorer__retrieval-button"
-    >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+    >{{ 'BUTTON.GET_DATA' }}</num-button
   >
 
   <div
@@ -41,7 +41,7 @@
       [isDisabled]="isExportLoading"
       data-test="manager-data-explorer__export-csv-button"
     >
-      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
+      {{ 'DATA_EXPLORER.EXPORT' }}
     </num-button>
 
     <num-button
@@ -51,7 +51,7 @@
       [isDisabled]="isExportLoading"
       data-test="manager-data-explorer__export-json-button"
     >
-      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
+      {{ 'DATA_EXPLORER.EXPORT' }}
     </num-button>
 
     <mat-spinner
@@ -78,7 +78,7 @@
     <mat-card class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
         <mat-spinner color="accent" [diameter]="24"></mat-spinner>
-        <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
+        <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' }}</span>
       </div>
     </mat-card>
   </ng-template>
@@ -91,7 +91,7 @@
       type="secondary"
       (singleClick)="goBack()"
       [attr.data-test]="'manager-data-explorer__back-button'"
-      >{{ 'BUTTON.BACK' | translate }}</num-button
+      >{{ 'BUTTON.BACK' }}</num-button
     >
   </div>
 </section>

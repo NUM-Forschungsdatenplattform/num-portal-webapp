@@ -27,7 +27,6 @@ import { AqlMenuKeys, MENU_ITEM_CLONE, MENU_ITEM_DELETE, MENU_ITEM_EDIT } from '
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
 import { DELETE_APPROVAL_DIALOG_CONFIG } from './constants'
-import { TranslateService } from '@ngx-translate/core'
 import { Sort } from '@angular/material/sort'
 import { ToastMessageService } from '../../../../core/services/toast-message/toast-message.service'
 import { AqlTableColumns } from '../../../../shared/models/aql/aql-table.interface'
@@ -84,7 +83,6 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     private dialogService: DialogService,
     private router: Router,
     private toast: ToastMessageService,
-    private translateService: TranslateService
   ) {
     super()
 
@@ -109,23 +107,23 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
       this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
     )
 
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang || 'en'
+    // this.subscriptions.add(
+      // this.translateService.onLangChange.subscribe((event) => {
+        // this.lang = event.lang || 'en'
 
-        if (this.lang === 'en' && this.sortBy === 'name') {
+        if(this.lang === 'en' && this.sortBy === 'name') {
           this.sortBy = 'nameTranslated'
         }
 
-        if (this.lang === 'de' && this.sortBy === 'nameTranslated') {
+        if(this.lang === 'de' && this.sortBy === 'nameTranslated') {
           this.sortBy = 'name'
         }
 
         this.getAll()
-      })
-    )
+      // })
+    // )
 
-    this.lang = this.translateService.currentLang || 'en'
+    this.lang = 'en'
   }
 
   handleSortChangeTable(sort: Sort): void {

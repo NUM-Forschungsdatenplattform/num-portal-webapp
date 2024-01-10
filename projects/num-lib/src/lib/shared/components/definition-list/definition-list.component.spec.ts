@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { DefinitionListComponent } from './definition-list.component'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { IDefinitionList } from '../../models/definition-list.interface'
 import { DefinitionType } from '../../models/definition-type.enum'
@@ -29,7 +29,7 @@ describe('DifinationListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DefinitionListComponent],
-      imports: [TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [, FontAwesomeTestingModule],
     }).compileComponents()
   })
 

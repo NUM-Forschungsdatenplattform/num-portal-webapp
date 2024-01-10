@@ -17,7 +17,6 @@
 import { Component, Injector, Input } from '@angular/core'
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { Observable, of, throwError } from 'rxjs'
 import { ManagerChartsComponent } from './manager-charts.component'
 import { ContentService } from '../../../../core/services/content/content.service'
@@ -25,16 +24,15 @@ import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/materia
 
 const translations: any = { CARDS_TITLE: 'This is a test' }
 
-class FakeLoader implements TranslateLoader {
-  getTranslation(_lang: string): Observable<any> {
-    return of(translations)
-  }
-}
+// class FakeLoader implements TranslateLoader {
+//   getTranslation(_lang: string): Observable<any> {
+//     return of(translations)
+//   }
+// }
 
 describe('ManagerChartsComponent', () => {
   let component: ManagerChartsComponent
   let fixture: ComponentFixture<ManagerChartsComponent>
-  let translate: TranslateService
   let injector: Injector
 
   const contentService = {
@@ -57,9 +55,6 @@ describe('ManagerChartsComponent', () => {
       declarations: [ManagerChartsComponent, BarChartStubComponent],
       imports: [
         MaterialModule,
-        TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: FakeLoader },
-        }),
         BrowserAnimationsModule,
       ],
       providers: [

@@ -27,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 describe('DialogAddTemplateComponent', () => {
   let component: DialogAddTemplateComponent
@@ -50,7 +50,6 @@ describe('DialogAddTemplateComponent', () => {
         ReactiveFormsModule,
         MaterialModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
       ],
       providers: [
         {

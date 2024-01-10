@@ -17,7 +17,6 @@
 import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
 import { of } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -37,7 +36,7 @@ describe('DataExplorerProjectsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DataExplorerProjectsComponent, DataExplorerProjectsTableStubComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, BrowserAnimationsModule],
       providers: [
         {
           provide: ProjectService,

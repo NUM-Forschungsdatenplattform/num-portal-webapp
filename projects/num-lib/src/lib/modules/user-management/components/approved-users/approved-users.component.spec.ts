@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { ApprovedUsersComponent } from './approved-users.component'
@@ -68,7 +68,7 @@ describe('ApprovedUsersComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+        ,
         FontAwesomeTestingModule,
         ReactiveFormsModule,
       ],

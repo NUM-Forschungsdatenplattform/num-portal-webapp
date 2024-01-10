@@ -21,7 +21,6 @@ import {
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete'
-import { TranslateService } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ProjectCategory } from '../../models/project-category.enum'
@@ -32,7 +31,7 @@ import { ProjectCategory } from '../../models/project-category.enum'
   styleUrls: ['./project-editor-general-info-categories-input.component.scss'],
 })
 export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit {
-  constructor(private translate: TranslateService) {}
+  constructor() {}
 
   @Input() form: FormGroup
   @ViewChild('categoryAutocomplete') categoryAutocomplete: MatAutocomplete
@@ -96,12 +95,12 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
     if (filterText) {
       filterText = filterText.toLowerCase().trim()
 
-      filteredCategories = allCategoriesWithoutSelected.filter((category) =>
-        this.translate
-          .instant('PROJECT.CATEGORIES.' + category)
-          .toLowerCase()
-          .includes(filterText)
-      )
+      // filteredCategories = allCategoriesWithoutSelected.filter((category) =>
+      //   this.translate
+      //     .instant('PROJECT.CATEGORIES.' + category)
+      //     .toLowerCase()
+      //     .includes(filterText)
+      // )
     } else {
       filteredCategories = allCategoriesWithoutSelected
     }

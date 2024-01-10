@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { AddUserOrganizationComponent } from './add-user-organization.component'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import {
@@ -53,7 +53,7 @@ describe('AddUserOrganizationComponent', () => {
         MaterialModule,
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [
         {

@@ -15,7 +15,6 @@
  */
 
 import { MatSort } from '@angular/material/sort'
-import { TranslateService } from '@ngx-translate/core'
 import { DataExplorerProjectTableColumns } from '../../shared/models/project/data-explorer-project-table.interface'
 import { IProjectApi } from '../../shared/models/project/project-api.interface'
 import { ProjectTableColumns } from '../../shared/models/project/project-table.interface'
@@ -186,7 +185,6 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
 export const sortProjects = (
   data: IProjectApi[],
   sort: MatSort,
-  translateService?: TranslateService
 ): IProjectApi[] => {
   const isAsc = sort.direction === 'asc'
   const newData = [...data]
@@ -220,8 +218,8 @@ export const sortProjects = (
     case 'status': {
       return newData.sort((a, b) =>
         compareLocaleStringValues(
-          translateService?.instant(`PROJECT.STATUS.${a.status}`) || a.status,
-          translateService?.instant(`PROJECT.STATUS.${b.status}`) || b.status,
+          `PROJECT.STATUS.${a.status}` || a.status,
+          `PROJECT.STATUS.${b.status}` || b.status,
           a.id,
           b.id,
           isAsc

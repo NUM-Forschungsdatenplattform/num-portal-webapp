@@ -16,7 +16,6 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BarChartComponent } from './bar-chart.component'
-import { TranslateModule } from '@ngx-translate/core'
 import { NgxChartsModule } from '@swimlane/ngx-charts'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { IBarChart } from '../../../../shared/models/charts/bar-chart.interface'
@@ -28,7 +27,7 @@ describe('BarChartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BarChartComponent],
-      imports: [TranslateModule.forRoot(), BrowserAnimationsModule, NgxChartsModule],
+      imports: [ BrowserAnimationsModule, NgxChartsModule],
     }).compileComponents()
   })
 

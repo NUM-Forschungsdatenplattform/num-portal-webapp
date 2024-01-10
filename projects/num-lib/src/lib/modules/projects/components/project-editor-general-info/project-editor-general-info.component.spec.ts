@@ -18,7 +18,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info.component'
@@ -57,7 +57,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
       ],
     }).compileComponents()
   })

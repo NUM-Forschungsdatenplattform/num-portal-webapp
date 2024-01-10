@@ -15,7 +15,7 @@
 -->
 
 <mat-form-field appearance="outline">
-  <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
+  <mat-label>{{ 'FORM.CATEGORY' }}</mat-label>
   <mat-chip-listbox
     #categoryChipList
     aria-label="Category selection"
@@ -28,7 +28,7 @@
       class="chip-primary"
       data-test="project-editor__general-info__category-chip"
     >
-      <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
+      <span>{{ 'PROJECT.CATEGORIES.' + category }}</span>
       <fa-icon
         icon="times-circle"
         class="chip__remove-icon"
@@ -38,7 +38,7 @@
     </mat-chip>
     <input
       #categoryInput
-      placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
+      placeholder="{{ 'FORM.SELECT_CATEGORY' }}"
       [formControl]="categoryCtrl"
       [matAutocomplete]="categoryAutocomplete"
       #trigger="matAutocompleteTrigger"

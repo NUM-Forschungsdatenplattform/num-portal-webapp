@@ -21,19 +21,19 @@ import { APP_INITIALIZER } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { DateAdapter } from '@angular/material/core'
 import { MomentDateAdapter } from '@angular/material-moment-adapter'
 import { OAuthStorage } from 'angular-oauth2-oidc'
-import { WebpackTranslateLoader } from './webpack-translate-loader'
 import { environment } from 'projects/num-lib/src/lib/environments/environment'
 import { LayoutModule } from 'projects/num-lib/src/lib/layout/layout.module'
-import { CoreModule } from 'projects/num-lib/src/lib/core/core.module'
 import { OAuthInitService } from 'projects/num-lib/src/lib/core/auth/oauth-init.service'
 import { ErrorInterceptor } from 'projects/num-lib/src/lib/core/interceptors/error.interceptor'
 import { OAuthInterceptor } from 'projects/num-lib/src/lib/core/interceptors/oauth.interceptor'
-import { AppConfigService, environmentToken } from 'projects/num-lib/src/lib/config/app-config.service'
+import { AppConfigService } from 'projects/num-lib/src/lib/config/app-config.service'
 import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
+import { MatDialogModule } from '@angular/material/dialog'
+import { CommonModule } from '@angular/common'
+import { CoreModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,16 +41,11 @@ import { AuthService } from 'projects/num-lib/src/lib/core/auth/auth.service'
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
+    CommonModule,
+    MatDialogModule,
     LayoutModule,
     AppRoutingModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'de',
-      loader: {
-        provide: TranslateLoader,
-        useClass: WebpackTranslateLoader,
-      },
-    }),
   ],
   providers: [
     { provide: OAuthStorage, useValue: localStorage },

@@ -14,8 +14,7 @@
  limitations under the License.
 -->
 
-<section
-  [ngClass]="{ 'num-large-dialog': dialogConfig.dialogSize === DialogSize.Large }"
+<section [ngClass]="{ 'num-large-dialog': dialogConfig.dialogSize === DialogSize.Large }"
   fxLayout="column"
 >
   <section role="presentation" fxLayout="row" fxLayoutAlign="space-between start">
@@ -24,12 +23,12 @@
       mat-dialog-title
       [ngClass]="{ 'decision-dialog': dialogConfig.isDecision }"
     >
-      {{ dialogConfig.title | translate }}
+      {{ dialogConfig.title }}
     </h1>
     <fa-icon
       *ngIf="dialogConfig.hasCloseIcon"
       role="button"
-      [attr.aria-label]="'BUTTON.CANCEL' | translate"
+      [attr.aria-label]="'BUTTON.CANCEL'"
       class="pointer close-icon"
       icon="times"
       (click)="handleDialogClose()"
@@ -54,14 +53,14 @@
       type="secondary"
       (singleClick)="handleDialogCancel()"
       *ngIf="dialogConfig.cancelButtonText"
-      >{{ dialogConfig.cancelButtonText | translate }}</num-button
+      >{{ dialogConfig.cancelButtonText }}</num-button
     >
 
     <num-button
       type="primary"
       (singleClick)="handleDialogConfirm()"
       *ngIf="dialogConfig.confirmButtonText"
-      >{{ dialogConfig.confirmButtonText | translate }}</num-button
+      >{{ dialogConfig.confirmButtonText }}</num-button
     >
   </div>
 </section>

@@ -18,7 +18,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { DateAdapter } from '@angular/material/core'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -27,7 +26,7 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./project-editor-general-info.component.scss'],
 })
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(private dateAdapter: DateAdapter<any>) {}
 
   @Input() form: FormGroup
   @Input() isDisabled: boolean
@@ -36,12 +35,12 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   ngOnInit(): void {
-    this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
-    this.subscriptions.add(
-      this.translate.onLangChange.subscribe((lang) => {
-        this.dateAdapter.setLocale(lang.lang)
-      })
-    )
+    this.dateAdapter.setLocale('de-DE')
+    // this.subscriptions.add(
+    //   this.translate.onLangChange.subscribe((lang) => {
+    //     this.dateAdapter.setLocale(lang.lang)
+    //   })
+    // )
   }
 
   ngOnDestroy(): void {

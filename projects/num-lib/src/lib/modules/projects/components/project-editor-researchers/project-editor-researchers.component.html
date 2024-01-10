@@ -18,7 +18,7 @@
   <mat-expansion-panel-header data-test="studies-editor__researchers__select-researchers-button">
     <h3 class="accordion" fxLayoutGap="8px">
       <fa-icon [icon]="['far', 'check-circle']" *ngIf="dataSource.data.length"></fa-icon>
-      <span>{{ 'RESEARCHERS.SELECT_RESEARCHERS' | translate }}*</span>
+      <span>{{ 'RESEARCHERS.SELECT_RESEARCHERS' }}*</span>
     </h3>
   </mat-expansion-panel-header>
 
@@ -34,11 +34,11 @@
     fxLayoutGap="20px"
     *ngIf="isLoadingComplete; else spinner"
   >
-    <div id="select-description">{{ 'RESEARCHERS.SELECT_RESEARCHERS_CONTENT' | translate }}</div>
+    <div id="select-description">{{ 'RESEARCHERS.SELECT_RESEARCHERS_CONTENT' }}</div>
 
     <div class="researchers-container">
       <div class="no-results" *ngIf="!dataSource.data?.length; else researchersList">
-        {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' | translate }}
+        {{ 'RESEARCHERS.NO_RESEARCHERS_SELECTED' }}
       </div>
       <ng-template #researchersList>
         <table mat-table [dataSource]="dataSource" aria-labelledby="select-description">
@@ -82,7 +82,7 @@
       (singleClick)="addResearchers()"
       data-test="project-editor__researchers__add-researchers-button"
     >
-      {{ 'BUTTON.ADD_RESEARCHERS' | translate }}
+      {{ 'BUTTON.ADD_RESEARCHERS' }}
     </num-button>
   </section>
 </mat-expansion-panel>

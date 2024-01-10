@@ -15,7 +15,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 import { DialogConfirmProjectComponent } from './dialog-confirm-project.component'
 
@@ -26,7 +26,7 @@ describe('DialogConfirmProjectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogConfirmProjectComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [],
     }).compileComponents()
   })
 

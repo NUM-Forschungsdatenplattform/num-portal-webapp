@@ -15,7 +15,6 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import moment from 'moment'
 import { AqlParameterService } from '../../../../core/services/aql-parameter/aql-parameter.service'
@@ -38,11 +37,10 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
   deleteItem = new EventEmitter()
 
   hasParameterError: boolean
-  currentLang = this.translateService.currentLang || 'en'
+  currentLang = 'en'
 
   constructor(
     private aqlParameterService: AqlParameterService,
-    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -80,11 +78,11 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
   }
 
   initSubscriptions() {
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.currentLang = event.lang || 'en'
-      })
-    )
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((event) => {
+    //     this.currentLang = event.lang || 'en'
+    //   })
+    // )
   }
 
   prefillParameter(parameter: IAqlParameter, optionKeys: string[]): void {

@@ -15,7 +15,7 @@
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { By } from '@angular/platform-browser'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { PatientCountInfoComponent } from './patient-count-info.component'
 
 describe('PatientCountInfoComponent', () => {
@@ -25,7 +25,7 @@ describe('PatientCountInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PatientCountInfoComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [],
     }).compileComponents()
   })
 

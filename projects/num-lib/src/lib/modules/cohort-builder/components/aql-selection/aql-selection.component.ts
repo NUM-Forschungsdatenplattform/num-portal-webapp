@@ -15,7 +15,6 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { groupBy } from 'lodash-es'
 import { combineLatest, Observable, Subscription } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
@@ -42,11 +41,10 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
     private cohortBuilderService: CohortBuilderService,
     private aqlService: AqlService,
     private aqlCategoryService: AqlCategoryService,
-    private translateService: TranslateService,
     private dialogService: DialogService
   ) {}
 
-  currentLang = this.translateService.currentLang || 'en'
+  currentLang = 'en'
   groupedAqls: Observable<
     {
       de: string
@@ -62,20 +60,20 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initialCategories = {
       0: {
-        en: this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED'),
-        de: this.translateService.instant('QUERY_CATEGORIES.UNCATEGORIZED'),
+        en: 'QUERY_CATEGORIES.UNCATEGORIZED',
+        de: 'QUERY_CATEGORIES.UNCATEGORIZED',
       },
     }
 
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.currentLang = event.lang || 'en'
-        this.initialCategories[0][event.lang] = this.translateService.instant(
-          'QUERY_CATEGORIES.UNCATEGORIZED'
-        )
-        this.groupAndSortAql()
-      })
-    )
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((event) => {
+    //     this.currentLang = event.lang || 'en'
+    //     this.initialCategories[0][event.lang] = this.translateService.instant(
+    //       'QUERY_CATEGORIES.UNCATEGORIZED'
+    //     )
+    //     this.groupAndSortAql()
+    //   })
+    // )
 
     this.subscriptions.add(
       this.aqlCategoryService.getAll().subscribe(() => {

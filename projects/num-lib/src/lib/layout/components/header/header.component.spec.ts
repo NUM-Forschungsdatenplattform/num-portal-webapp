@@ -19,7 +19,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRouteSnapshot, ActivationEnd, ActivationStart, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
 import { MaterialModule } from '../../material/material.module'
 import INavItem from '../../models/nav-item.interface'
@@ -137,7 +136,6 @@ describe('HeaderComponent', () => {
         FontAwesomeTestingModule,
         MaterialModule,
         FlexLayoutModule,
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([
           {
             path: 'third',

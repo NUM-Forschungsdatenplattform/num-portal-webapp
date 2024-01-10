@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { DialogConfirmationComponent } from './dialog-confirmation.component'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 describe('DialogConfirmationComponent', () => {
   let component: DialogConfirmationComponent
@@ -26,7 +26,7 @@ describe('DialogConfirmationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogConfirmationComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [],
     }).compileComponents()
   })
 

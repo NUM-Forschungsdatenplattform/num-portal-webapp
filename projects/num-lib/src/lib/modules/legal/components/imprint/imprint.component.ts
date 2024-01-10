@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -23,16 +22,16 @@ import { Subscription } from 'rxjs'
 })
 export class ImprintComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
-  constructor(private translateService: TranslateService) {}
+  constructor() {}
   profs: string[] = []
 
   ngOnInit(): void {
-    this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => {
-        this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
-      })
-    )
+    this.profs = ['IMPRINT.TEXTS.PROFS']
+    // this.subscriptions.add(
+      // this.translateService.onLangChange.subscribe((newLang) => {
+        this.profs = ['IMPRINT.TEXTS.PROFS']
+      // })
+    // )
   }
 
   ngOnDestroy(): void {

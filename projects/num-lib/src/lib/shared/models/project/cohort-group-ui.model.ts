@@ -22,9 +22,9 @@ import { ICohortGroupApi } from './cohort-group-api.interface'
 
 export class CohortGroupUiModel extends ConnectorGroupUiModel<ICohortGroupApi> {
   type: ConnectorNodeType.Group
-  logicalOperator: LogicalOperator.And | LogicalOperator.Or
-  isNegated: boolean
-  children: (CohortGroupUiModel | AqlUiModel)[]
+  // logicalOperator: LogicalOperator.And | LogicalOperator.Or
+  // isNegated: boolean
+  children: (CohortGroupUiModel | AqlUiModel)[] = []
   indexInGroup: number | null = null
   addedByClick: boolean
 

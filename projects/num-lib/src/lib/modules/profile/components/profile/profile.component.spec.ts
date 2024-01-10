@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { of, Subject } from 'rxjs'
 import { AppConfigService } from '../../../../config/app-config.service'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
@@ -55,7 +55,7 @@ describe('ProfileComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [
         {

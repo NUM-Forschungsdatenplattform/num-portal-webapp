@@ -20,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -75,7 +75,7 @@ describe('ProjectEditorAccordionComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
         RouterTestingModule.withRoutes([]),
       ],
     }).compileComponents()

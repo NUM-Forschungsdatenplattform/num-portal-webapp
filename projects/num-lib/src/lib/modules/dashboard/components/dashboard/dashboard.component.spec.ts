@@ -15,7 +15,6 @@
  */
 
 import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing'
-import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DashboardComponent } from './dashboard.component'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
@@ -62,7 +61,6 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent, MetricsStubComponent, LatestProjectsStubComponent],
       imports: [
-        TranslateModule.forRoot(),
         HttpClientTestingModule,
         DirectivesModule,
         FlexLayoutModule,

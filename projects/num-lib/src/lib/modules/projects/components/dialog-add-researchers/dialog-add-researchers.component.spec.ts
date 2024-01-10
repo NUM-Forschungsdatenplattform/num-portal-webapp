@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { TranslateModule } from '@ngx-translate/core'
+
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -82,7 +82,6 @@ describe('DialogAddResearchersComponent', () => {
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         BrowserAnimationsModule,
         PipesModule,

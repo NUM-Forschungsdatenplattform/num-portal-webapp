@@ -17,7 +17,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -39,7 +38,6 @@ describe('ProjectsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [LatestProjectsComponent, LocalizedDatePipe],
       imports: [
-        TranslateModule.forRoot(),
         FlexLayoutModule,
         FontAwesomeTestingModule,
         MaterialModule,

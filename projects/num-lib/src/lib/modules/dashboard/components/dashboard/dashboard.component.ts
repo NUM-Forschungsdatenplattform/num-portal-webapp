@@ -15,7 +15,6 @@
  */
 
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } from './constants'
 import { AuthService } from '../../../../core/auth/auth.service'
@@ -34,12 +33,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   AvailableRoles = AvailableRoles
   constructor(
     private appConfig: AppConfigService,
-    private authService: AuthService,
+    // private authService: AuthService,
     private contentService: ContentService,
-    private translateService: TranslateService
+    // private translateService: TranslateService
   ) {}
 
-  config = this.appConfig.config
+  // config = this.appConfig?.config
   participantLogosBaseUrl = LOGOS_BASE_URL
   participantLogos = PARTICIPANT_CLINICS_LOGOS
   initiativeLogos = INITIATIVE_CLINICS_LOGOS
@@ -47,26 +46,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
   cards: IDashboardCard[]
   displayLang: string
   isLoggedIn: boolean
-  blocks: any[]
+  blocks: any[] | string
 
   @ViewChild('participantsAnchor') participantsAnchor: ElementRef
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn
+    // this.isLoggedIn = this.authService.isLoggedIn
 
-    if (this.authService.isLoggedIn) {
+    // if (this.authService.isLoggedIn) {
       this.fetchContentCards()
       this.getCurrentLang()
-    }
+    // }
 
-    this.blocks = this.translateService?.instant('DASHBOARD.INTRODUCTION.BLOCKS')
+    this.blocks = 'DASHBOARD.INTRODUCTION.BLOCKS'
 
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => {
-        this.displayLang = newLang.lang
-        this.blocks = this.translateService?.instant('DASHBOARD.INTRODUCTION.BLOCKS')
-      })
-    )
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((newLang) => {
+    //     this.displayLang = newLang.lang
+    //     this.blocks = 'DASHBOARD.INTRODUCTION.BLOCKS'
+    //   })
+    // )
   }
 
   ngOnDestroy(): void {
@@ -84,7 +83,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getCurrentLang(): void {
-    this.displayLang = this.translateService.currentLang as 'en' | 'de'
+    this.displayLang = 'en'
   }
 
   scrollToParticipants(): void {

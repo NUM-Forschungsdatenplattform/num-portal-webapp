@@ -18,7 +18,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
 import { MatSort, Sort } from '@angular/material/sort'
 import { Params, Router } from '@angular/router'
-import { TranslateService } from '@ngx-translate/core'
 import { of, Subscription } from 'rxjs'
 import { catchError, take, tap } from 'rxjs/operators'
 import {
@@ -60,19 +59,18 @@ export class ProjectsTableComponent
     private projectService: ProjectService,
     private dialogService: DialogService,
     private profileService: ProfileService,
-    private toastMessageService: ToastMessageService,
-    private translateService: TranslateService
+    private toastMessageService: ToastMessageService
   ) {
     super()
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang || 'en'
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((event) => {
+    //     this.lang = event.lang || 'en'
 
-        this.getAll()
-      })
-    )
+    //     this.getAll()
+    //   })
+    // )
 
-    this.lang = this.translateService.currentLang || 'en'
+    this.lang = 'en'
   }
 
   displayedColumns: ProjectTableColumns[] = ['menu', 'name', 'author', 'organization', 'status']

@@ -18,7 +18,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 import { DialogConfirmProjectApprovalComponent } from './dialog-confirm-project-approval.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -35,7 +35,7 @@ describe('DialogConfirmProjectApprovalComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+        ,
         FontAwesomeTestingModule,
       ],
     }).compileComponents()

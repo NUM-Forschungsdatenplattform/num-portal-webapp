@@ -19,7 +19,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { BehaviorSubject, Subject } from 'rxjs'
 
 import { ProjectEditorCohortBuilderComponent } from './project-editor-cohort-builder.component'
@@ -78,7 +78,7 @@ describe('ProjectEditorCohortBuilderComponent', () => {
       imports: [
         MaterialModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot(),
+        ,
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
       ],

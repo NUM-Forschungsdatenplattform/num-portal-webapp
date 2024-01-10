@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { NumLibComponent } from './num-lib.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { AppConfigService } from './config/app-config.service';
+import { SearchModule } from './modules/search/search.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { AppConfigService } from './config/app-config.service';
   ],
   exports: [
     NumLibComponent,
-    DashboardModule
+    DashboardModule,
+    SearchModule
   ],
   providers: [
     AppConfigService

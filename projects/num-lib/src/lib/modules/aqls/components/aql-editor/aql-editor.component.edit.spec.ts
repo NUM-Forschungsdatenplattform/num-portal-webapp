@@ -18,7 +18,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
@@ -92,7 +91,6 @@ describe('AqlEditorComponent', () => {
       ],
       imports: [
         MaterialModule,
-        TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         RouterTestingModule,
         BrowserAnimationsModule,

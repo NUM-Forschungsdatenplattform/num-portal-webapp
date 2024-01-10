@@ -18,7 +18,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 
 import { NavigationEditorItemComponent } from './navigation-editor-item.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -34,7 +33,6 @@ describe('NavigationEditorItemComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         FontAwesomeTestingModule,
       ],

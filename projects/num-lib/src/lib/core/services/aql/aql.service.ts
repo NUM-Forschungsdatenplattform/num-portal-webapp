@@ -24,7 +24,6 @@ import { IAqlFilter } from '../../../shared/models/aql/aql-filter.interface'
 import { IAqlApi } from '../../../shared/models/aql/aql.interface'
 import { AqlFilterChipId } from '../../../shared/models/aql/aql-filter-chip.enum'
 import { ProfileService } from '../profile/profile.service'
-import { TranslateService } from '@ngx-translate/core'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 
 
@@ -33,13 +32,13 @@ import { IUserProfile } from '../../../shared/models/user/user-profile.interface
 })
 export class AqlService {
   /* istanbul ignore next */
-  private readonly throttleTime = this.appConfig.name === 'test' ? 50 : 300
+  private readonly throttleTime:  number;
   private baseUrl: string
   getAllObservable$: Observable<IAqlApi[]>
   cacheTime = 3000
   getAllTimeStamp = new Date()
   user: IUserProfile
-  currentLang = this.translateService.currentLang || 'en'
+  currentLang =  'en'
 
   private aqls: IAqlApi[] = []
   private aqlsSubject$ = new BehaviorSubject(this.aqls)
@@ -57,9 +56,9 @@ export class AqlService {
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
     private profileService: ProfileService,
-    private translateService: TranslateService,
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
+    this.throttleTime = this.appConfig.name === 'test' ? 50 : 300
 
     // Set initial cache timestamp to past to ensure the first call of getting AQLs will be always
     // done
@@ -74,10 +73,10 @@ export class AqlService {
       )
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
 
-    this.translateService.onLangChange.subscribe((event) => {
-      this.currentLang = event.lang || 'en'
+    // this.translateService.onLangChange.subscribe((event) => {
+      this.currentLang =  'en'
       this.setFilter(this.filterSet)
-    })
+    // })
   }
 
   getAllPag(

@@ -32,6 +32,8 @@ import { SharedProjectsModule } from './shared-projects.module'
 import { DialogConfirmProjectApprovalComponent } from './components/dialog-confirm-project-approval/dialog-confirm-project-approval.component'
 import { LayoutModule } from '../../layout/layout.module'
 import { SharedModule } from '../../shared/shared.module'
+import { MatDividerModule } from '@angular/material/divider'
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 @NgModule({
   declarations: [
@@ -47,6 +49,6 @@ import { SharedModule } from '../../shared/shared.module'
     ProjectEditorApprovalComponent,
     DialogConfirmProjectApprovalComponent,
   ],
-  imports: [CommonModule, ProjectsRoutingModule, SharedModule, LayoutModule, SharedProjectsModule],
+  imports: [ MatDividerModule, MatPaginatorModule, CommonModule, ProjectsRoutingModule, SharedModule, LayoutModule, SharedProjectsModule],
 })
 export class ProjectsModule {}

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import {
   DISCARD_DIALOG_CONFIG,
@@ -26,7 +25,6 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private dialogService: DialogService,
     private toastMessageService: ToastMessageService,
-    private translate: TranslateService,
     private appConfig: AppConfigService
   ) {}
 
@@ -51,7 +49,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData()
-    this.subscriptions.add(this.translate.onLangChange.subscribe(() => this.resolveRoles()))
+     this.resolveRoles()
   }
 
   fetchData(): void {
@@ -78,7 +76,7 @@ export class ProfileComponent implements OnInit {
   resolveRoles() {
     this.userRoles = this.profile?.roles
       .filter((role) => Object.values(AvailableRoles).includes(role))
-      .map((role) => this.translate.instant(`ROLE.${role}`))
+      .map((role) => `ROLE.${role}`)
       .join(', ')
   }
 
@@ -124,8 +122,9 @@ export class ProfileComponent implements OnInit {
         auth.realm +
         '/account/password?referrer=' +
         auth.clientId +
-        '&kc_locale=' +
-        this.translate.currentLang
+        '&kc_locale=' 
+        // +
+        // this.translate.currentLang
     )
   }
 

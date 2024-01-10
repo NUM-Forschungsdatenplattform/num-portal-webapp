@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 import { DialogSaveProfileComponent } from './dialog-save-profile.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -13,7 +13,7 @@ describe('DialogSaveProfileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogSaveProfileComponent, ButtonComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, BrowserAnimationsModule, ],
     }).compileComponents()
   })
 

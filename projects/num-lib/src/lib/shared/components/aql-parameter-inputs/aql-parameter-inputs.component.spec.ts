@@ -21,7 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { MatSelectHarness } from '@angular/material/select/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
@@ -45,7 +45,7 @@ describe('AqlParameterInputsComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
+        ,
       ],
     }).compileComponents()
   })

@@ -14,7 +14,7 @@
  limitations under the License.
 -->
 
-<label for="filter-chips">{{ 'FORM.FILTER' | translate }}</label>
+<label for="filter-chips">{{ 'FORM.FILTER'}}</label>
 <mat-chip-listbox id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
   <mat-chip
     color="primary"
@@ -24,6 +24,6 @@
     [attr.data-test]="'generic-filter-chip__' + chip.title"
   >
     <fa-icon icon="check"></fa-icon>
-    {{ chip.title | translate }}
+    {{ chip.title}}
   </mat-chip>
 </mat-chip-listbox>

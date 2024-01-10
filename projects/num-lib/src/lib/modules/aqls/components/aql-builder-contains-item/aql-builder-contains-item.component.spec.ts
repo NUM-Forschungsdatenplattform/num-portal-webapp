@@ -17,7 +17,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ArchetypePipe } from 'src/app/shared/pipes/archetype.pipe'
 import { AqbContainsItemUiModel } from '../../../../shared/models/aqb/aqb-contains-item-ui.model'
@@ -44,7 +43,6 @@ describe('AqlBuilderContainsItemComponent', () => {
       declarations: [AqlBuilderContainsItemComponent, ArchetypePipe],
       imports: [
         MaterialModule,
-        TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
       ],

@@ -16,7 +16,6 @@
 
 import { ToastMessageService } from './toast-message.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { TranslateService } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
 import { IToastMessageConfig } from '../../../shared/models/toast-message-config.interface'
 import { ToastMessageType } from '../../../shared/models/toast-message-type.enum'

@@ -23,7 +23,7 @@ import { ITemplateMetaDataApi } from '../../../../shared/models/template/templat
 import { TemplateService } from '../../../../core/services/template/template.service'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { IProjectTemplateInfoApi } from '../../../../shared/models/project/project-template-info-api.interface'
 import { SimpleChange } from '@angular/core'
 
@@ -52,7 +52,7 @@ describe('AddTemplatesFilterTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddTemplatesFilterTableComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, FontAwesomeTestingModule, ],
       providers: [
         {
           provide: TemplateService,

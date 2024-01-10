@@ -13,9 +13,9 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<h2>{{ 'NAVIGATION.PATIENT_FILTER' | translate }}</h2>
+<h2>{{ 'NAVIGATION.PATIENT_FILTER' }}</h2>
 <p class="num-margin-b-40">
-  {{ 'SEARCH.PATIENT_FILTER_DESCRIPTION' | translate }}
+  {{ 'SEARCH.PATIENT_FILTER_DESCRIPTION' }}
 </p>
 
 <num-patient-count-info [patientCount]="patientCount$ | async"></num-patient-count-info>
@@ -61,6 +61,6 @@
     (singleClick)="goToDataFilter()"
     [isDisabled]="!project.cohortGroup.children.length"
     data-test="patient-filter__next-step-button"
-    >{{ 'BUTTON.NEXT_STEP' | translate }}</num-button
+    >{{ 'BUTTON.NEXT_STEP' }}</num-button
   >
 </div>

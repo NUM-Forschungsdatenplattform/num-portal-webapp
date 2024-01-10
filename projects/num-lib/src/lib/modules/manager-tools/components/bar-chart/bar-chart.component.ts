@@ -15,7 +15,6 @@
  */
 
 import { Component, Input } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { IBarChart } from '../../../../shared/models/charts/bar-chart.interface'
 
 @Component({
@@ -35,7 +34,7 @@ export class BarChartComponent {
     return this.chart
   }
 
-  constructor(private translateService: TranslateService) {}
+  constructor() {}
 
   showXAxis = true
   showYAxis = true
@@ -53,8 +52,8 @@ export class BarChartComponent {
   results: any[] = []
 
   handleData(): void {
-    this.xAxisLabel = this.translateService.instant(this.chart.xLabel)
-    this.yAxisLabel = this.translateService.instant(this.chart.yLabel)
+    this.xAxisLabel =this.chart.xLabel
+    this.yAxisLabel = this.chart.yLabel
     this.colorScheme.domain = [this.chart.color]
     this.results = this.chart.data
   }

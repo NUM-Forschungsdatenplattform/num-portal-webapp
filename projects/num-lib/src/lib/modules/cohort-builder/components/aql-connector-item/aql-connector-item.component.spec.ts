@@ -19,7 +19,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, throwError } from 'rxjs'
 import { mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlConnectorItemComponent } from './aql-connector-item.component'
@@ -60,7 +59,6 @@ describe('AqlConnectorItemComponent', () => {
       imports: [
         FormsModule,
         MaterialModule,
-        TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
       ],

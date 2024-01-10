@@ -16,7 +16,6 @@
 
 import { Injectable } from '@angular/core'
 import { Resolve, Router } from '@angular/router'
-import { TranslateService } from '@ngx-translate/core'
 import { USER_MANUAL_LINK } from '../constants'
 
 @Injectable({

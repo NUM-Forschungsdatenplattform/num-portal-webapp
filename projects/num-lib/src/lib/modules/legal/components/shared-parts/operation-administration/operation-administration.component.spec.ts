@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing'
 import { OperationAdministrationComponent } from './operation-administration.component'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 describe('OperationAdministrationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
+      imports: [],
       declarations: [OperationAdministrationComponent],
-      providers: [TranslateService],
+      providers: [],
     }).compileComponents()
   })
 

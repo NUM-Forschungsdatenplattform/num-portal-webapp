@@ -15,17 +15,16 @@
  */
 
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core'
-import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing'
 import { GenericDialogComponent } from './generic-dialog.component'
 import { MaterialModule } from '../../../layout/material/material.module'
 import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interface'
 import { DialogSize } from '../../../shared/models/dialog/dialog-size.enum'
 import { ButtonComponent } from '../../../shared/components/button/button.component'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 describe('GenericDialogComponent', () => {
   let component: GenericDialogComponent
@@ -61,7 +60,6 @@ describe('GenericDialogComponent', () => {
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
       ],
       providers: [
         ChangeDetectorRef,
@@ -70,9 +68,9 @@ describe('GenericDialogComponent', () => {
       ],
     })
     TestBed.overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [StubComponent],
-      },
+      // set: {
+      //   entryComponents: [StubComponent],
+      // },
     })
   })
 

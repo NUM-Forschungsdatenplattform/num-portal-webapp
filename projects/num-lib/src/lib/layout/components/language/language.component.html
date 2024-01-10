@@ -18,14 +18,14 @@
 <mat-button-toggle-group
   class="num-mat-lang-toggle-button"
   #group="matButtonToggleGroup"
-  [attr.aria-label]="'LANGUAGE.LABEL' | translate"
+  [attr.aria-label]="'LANGUAGE.LABEL'"
   (change)="setLocale(group.value)"
-  [value]="translate.currentLang"
+  [value]="'en'"
 >
   <mat-button-toggle value="de" data-test="header__top-row__lang-button-german">{{
-    'LANGUAGE.GERMAN' | translate
+    'LANGUAGE.GERMAN'
   }}</mat-button-toggle>
   <mat-button-toggle value="en" data-test="header__top-row__lang-button-english">{{
-    'LANGUAGE.ENGLISH' | translate
+    'LANGUAGE.ENGLISH'
   }}</mat-button-toggle>
 </mat-button-toggle-group>

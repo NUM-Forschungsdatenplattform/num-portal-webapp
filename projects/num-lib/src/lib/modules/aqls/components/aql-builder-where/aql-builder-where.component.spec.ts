@@ -18,7 +18,6 @@ import { Input } from '@angular/core'
 import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderWhereComponent } from './aql-builder-where.component'
@@ -38,7 +37,7 @@ describe('AqlBuilderWhereComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AqlBuilderWhereComponent, WhereGroupStubComponent],
-      imports: [FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [FontAwesomeTestingModule],
     }).compileComponents()
   })
 

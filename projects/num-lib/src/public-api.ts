@@ -9,3 +9,4 @@ export * from './lib/config/app-config.service';
 export * from './lib/config/app-config.model';
 export * from './lib/modules/dashboard/dashboard.module';
 export * from './lib/modules/dashboard/components/dashboard/dashboard.component';
+// export * from './lib/modules/search/search.module';

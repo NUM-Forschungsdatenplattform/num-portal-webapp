@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
 import { OrganizationsTableComponent } from './organizations-table.component'
@@ -54,7 +53,6 @@ describe('OrganizationsTableComponent', () => {
         HttpClientTestingModule,
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,
         RouterTestingModule.withRoutes([]),

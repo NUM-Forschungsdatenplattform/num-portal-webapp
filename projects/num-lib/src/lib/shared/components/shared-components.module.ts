@@ -17,9 +17,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { TranslateModule } from '@ngx-translate/core'
 import { FilterChipsComponent } from './filter-chips/filter-chips.component'
 import { SearchComponent } from './search/search.component'
 import { FilterTableComponent } from './filter-table/filter-table.component'
@@ -32,6 +30,7 @@ import { AqlParameterInputsComponent } from './aql-parameter-inputs/aql-paramete
 import { ResultTableComponent } from './result-table/result-table.component'
 import { MaterialModule } from '../../layout/material/material.module'
 import { ButtonComponent } from './button/button.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 const SHARED_DECLARATIONS = [
   SearchComponent,
@@ -55,7 +54,6 @@ const SHARED_DECLARATIONS = [
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule,
     PipesModule,
   ],
   exports: SHARED_DECLARATIONS,

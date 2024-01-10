@@ -19,7 +19,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
@@ -58,7 +57,6 @@ describe('AqlBuilderWhereItemComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         ReactiveFormsModule,
         PipesModule,

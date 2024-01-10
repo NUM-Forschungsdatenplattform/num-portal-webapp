@@ -20,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 
 import { OrganizationManagementComponent } from './organization-management.component'
@@ -54,7 +53,6 @@ describe('OrganizationManagementComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         DirectivesModule,
         FontAwesomeTestingModule,

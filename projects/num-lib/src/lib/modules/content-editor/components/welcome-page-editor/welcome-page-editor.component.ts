@@ -17,7 +17,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { CdkDragDrop } from '@angular/cdk/drag-drop'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { ADD_DIALOG_CONFIG, SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 import { ContentService } from '../../../../core/services/content/content.service'
@@ -39,7 +38,6 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private contentService: ContentService,
     private toastMessageService: ToastMessageService,
-    private translateService: TranslateService,
     private dialogService: DialogService
   ) {}
 
@@ -63,10 +61,10 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.fetchData()
-    this.displayLang = this.translateService.currentLang as 'en' | 'de'
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => (this.displayLang = newLang.lang))
-    )
+    this.displayLang = 'de'
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((newLang) => (this.displayLang = newLang.lang))
+    // )
   }
 
   ngOnDestroy(): void {

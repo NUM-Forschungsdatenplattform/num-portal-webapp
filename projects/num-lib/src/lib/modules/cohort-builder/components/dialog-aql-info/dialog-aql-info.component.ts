@@ -15,7 +15,6 @@
  */
 
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { cloneDeep } from 'lodash-es'
 import { AqlUiModel } from '../../../../shared/models/aql/aql-ui.model'
 import { IGenericDialog } from '../../../../shared/models/generic-dialog.interface'
@@ -31,21 +30,17 @@ export class DialogAqlInfoComponent implements OnInit, OnDestroy, IGenericDialog
   private readonly NAME_SUFFIX = '__NAME'
   private subscriptions = new Subscription()
 
-  currentLang = this.translateService.currentLang || 'en'
+  currentLang = 'en'
   dialogInput: AqlUiModel
   aql: AqlUiModel
   queryHighlighted: string
   @Output() closeDialog = new EventEmitter()
-  constructor(private translateService: TranslateService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.aql = cloneDeep(this.dialogInput)
     this.queryHighlighted = this.highlightQueryString(this.aql.queryWithOperatorPlaceholder)
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.currentLang = event.lang || 'en'
-      })
-    )
+    this.currentLang = 'en'
   }
 
   ngOnDestroy(): void {

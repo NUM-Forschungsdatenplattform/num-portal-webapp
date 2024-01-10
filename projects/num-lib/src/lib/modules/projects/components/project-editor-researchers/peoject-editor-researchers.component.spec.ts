@@ -15,7 +15,7 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -31,7 +31,7 @@ describe('ProjectEditorResearchersComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectEditorResearchersComponent, ButtonComponent],
       imports: [
-        TranslateModule.forRoot(),
+        ,
         MaterialModule,
         FontAwesomeTestingModule,
         BrowserAnimationsModule,

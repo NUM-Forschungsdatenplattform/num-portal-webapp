@@ -15,7 +15,7 @@
 -->
 
 <mat-form-field appearance="outline">
-  <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
+  <mat-label>{{ 'FORM.KEYWORDS' }}</mat-label>
   <mat-chip-listbox
     #keywordsChipList
     aria-label="Keywords selection"
@@ -36,7 +36,7 @@
       ></fa-icon>
     </mat-chip>
     <input
-      placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
+      placeholder="{{ 'FORM.ENTER_KEYWORD' }}"
       [matChipInputFor]="keywordsChipList"
       [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
       matChipInputAddOnBlur

@@ -22,7 +22,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
@@ -129,7 +129,7 @@ describe('PatientFilterComponent', () => {
         BrowserAnimationsModule,
         LayoutModule,
         SharedModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [
         {

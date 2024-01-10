@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { of, Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -41,7 +41,7 @@ describe('UnapprovedUsersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UnapprovedUsersComponent, UserTableStubComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, BrowserAnimationsModule, ],
       providers: [
         {
           provide: AdminService,

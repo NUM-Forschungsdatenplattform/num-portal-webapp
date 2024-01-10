@@ -16,7 +16,6 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
 import {
@@ -58,7 +57,7 @@ describe('AqlSelectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AqlSelectionComponent],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [MaterialModule, FontAwesomeTestingModule],
       providers: [
         { provide: CohortBuilderService, useValue: mockCohortBuilderService },
         { provide: AqlService, useValue: mockAqlService },

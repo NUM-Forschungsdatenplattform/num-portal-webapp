@@ -21,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { maxBy, minBy } from 'lodash'
 import { BehaviorSubject, of, Subject } from 'rxjs'
 import { mockProject1, mockProjectsForSort } from 'src/mocks/data-mocks/project.mock'
@@ -101,7 +101,7 @@ describe('ProjectsTableComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot(),
+        ,
         RouterTestingModule.withRoutes([]),
         PipesModule,
         FontAwesomeTestingModule,

@@ -18,7 +18,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { Subject } from 'rxjs'
 import { EDIT_DIALOG_CONFIG } from './constants'
 
@@ -58,7 +57,6 @@ describe('WelcomePageItemComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [WelcomePageItemComponent, ButtonComponent],
       imports: [
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,
         FontAwesomeTestingModule,

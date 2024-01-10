@@ -17,7 +17,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -46,7 +45,6 @@ describe('AqlBuilderTemplateTreeComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
       ],
       providers: [
         {

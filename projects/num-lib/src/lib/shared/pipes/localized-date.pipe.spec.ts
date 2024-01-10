@@ -15,7 +15,6 @@
  */
 
 import { DatePipe } from '@angular/common'
-import { TranslateService } from '@ngx-translate/core'
 import { LocalizedDatePipe } from './localized-date.pipe'
 
 describe('LocalizedDatePipe', () => {

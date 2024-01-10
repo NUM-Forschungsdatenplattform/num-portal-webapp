@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing'
 import { ContactComponent } from './contact.component'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 describe('ContactComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
+      imports: [],
       declarations: [ContactComponent],
-      providers: [TranslateService],
+      providers: [],
     }).compileComponents()
   })
 

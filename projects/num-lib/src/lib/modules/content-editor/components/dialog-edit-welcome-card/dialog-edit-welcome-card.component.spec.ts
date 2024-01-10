@@ -18,7 +18,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 
 import { DialogEditWelcomeCardComponent } from './dialog-edit-welcome-card.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -32,7 +31,6 @@ describe('DialogEditWelcomeCardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [DialogEditWelcomeCardComponent, ButtonComponent],
       imports: [
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,
         BrowserAnimationsModule,

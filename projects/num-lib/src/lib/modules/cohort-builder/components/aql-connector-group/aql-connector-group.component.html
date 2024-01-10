@@ -35,7 +35,7 @@
   <section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
     <span class="mat-body-strong"
       ><span class="not-icon" *ngIf="cohortGroup.isNegated">&not;</span>
-      {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
+      {{ groupType }} {{ groupIndex | groupIndex }}</span
     >
 
     <mat-form-field
@@ -44,7 +44,7 @@
       [style.visibility]="cohortGroup.children.length <= 1 ? 'hidden' : 'visible'"
     >
       <mat-select
-        [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+        [attr.aria-label]="'LOGICAL_OPERATOR'"
         [(value)]="cohortGroup.logicalOperator"
         [disabled]="cohortGroup.children.length <= 1 || isDisabled"
         data-test="cohort-builder__group__logical-operator__selector"
@@ -116,7 +116,7 @@
       icon="plus"
       (singleClick)="addGroup()"
       data-test="cohort-builder__group__add-group-button"
-      >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
+      >{{ 'BUTTON.ADD_GROUP' }}</num-button
     >
 
     <span fxFlex></span>
@@ -127,7 +127,7 @@
       type="basic"
       (singleClick)="deleteSelf()"
       data-test="cohort-builder__group__delete-group-button"
-      >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
+      >{{ 'BUTTON.DELETE_GROUP' }}</num-button
     >
   </section>
 </div>

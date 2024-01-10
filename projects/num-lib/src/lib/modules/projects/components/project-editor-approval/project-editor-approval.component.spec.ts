@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { ApprovalOption } from '../../models/approval-option.enum'
 
 import { ProjectEditorApprovalComponent } from './project-editor-approval.component'
@@ -38,7 +38,7 @@ describe('ProjectEditorApprovalComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
-        TranslateModule.forRoot(),
+        ,
       ],
     }).compileComponents()
   })

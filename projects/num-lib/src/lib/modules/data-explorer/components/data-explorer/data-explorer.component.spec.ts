@@ -20,7 +20,6 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
@@ -153,7 +152,6 @@ describe('DataExplorerComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
       ],
       providers: [

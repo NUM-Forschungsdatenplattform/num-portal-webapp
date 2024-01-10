@@ -19,7 +19,7 @@ import { ProjectEditorTemplatesComponent } from './project-editor-templates.comp
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { FormsModule } from '@angular/forms'
 
 import { ButtonComponent } from '../../../../shared/components/button/button.component'
@@ -44,7 +44,7 @@ describe('ProjectEditorTemplatesComponent', () => {
         BrowserAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,
-        TranslateModule.forRoot(),
+        ,
         FormsModule,
       ],
     }).compileComponents()

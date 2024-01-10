@@ -15,7 +15,6 @@
  */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { DialogAqlInfoComponent } from './dialog-aql-info.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -28,7 +27,7 @@ describe('DialogAqlInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogAqlInfoComponent],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      imports: [MaterialModule],
     }).compileComponents()
   })
 

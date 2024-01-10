@@ -16,22 +16,21 @@
 
 import { Injectable } from '@angular/core'
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar'
-import { TranslateService } from '@ngx-translate/core'
 import { IToastMessageConfig } from '../../../shared/models/toast-message-config.interface'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToastMessageService {
-  constructor(private snackbar: MatSnackBar, private translate: TranslateService) {}
+  constructor(private snackbar: MatSnackBar) {}
 
   public openToast(config: IToastMessageConfig): MatSnackBarRef<any> {
-    const translatedMessage = this.translate.instant(config.message, config.messageParameters)
+    const translatedMessage =[ config.message, config.messageParameters]
     const translatedAction = config.callbackButtonLabel
-      ? this.translate.instant(config.callbackButtonLabel)
+      ? [config.callbackButtonLabel]
       : null
 
-    const snackbarRef = this.snackbar.open(translatedMessage, translatedAction, {
+    const snackbarRef = this.snackbar.open(translatedMessage[0] as string, translatedAction[0], {
       duration: config.duration >= 0 ? config.duration : 4000,
       panelClass: ['num-toast', `num-toast-${config.type}`],
       verticalPosition: 'top',

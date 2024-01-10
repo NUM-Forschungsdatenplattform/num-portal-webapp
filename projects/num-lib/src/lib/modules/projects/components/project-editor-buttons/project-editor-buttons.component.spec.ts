@@ -18,7 +18,7 @@ import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { MatButtonHarness } from '@angular/material/button/testing'
 import { Subject } from 'rxjs'
 
@@ -45,7 +45,7 @@ describe('ProjectEditorButtonsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectEditorButtonsComponent, ButtonComponent, UserHasRoleDirective],
-      imports: [TranslateModule.forRoot(), MaterialModule, FontAwesomeTestingModule],
+      imports: [, MaterialModule, FontAwesomeTestingModule],
       providers: [
         {
           provide: AuthService,

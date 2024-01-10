@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateModule } from '@ngx-translate/core'
 
 import { DialogDiscardProfileComponent } from './dialog-discard-profile.component'
 import { MaterialModule } from 'projects/num-lib/src/lib/layout/material/material.module'
@@ -13,7 +12,7 @@ describe('DialogDiscardProfileComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogDiscardProfileComponent, ButtonComponent],
-      imports: [MaterialModule, BrowserAnimationsModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, BrowserAnimationsModule],
     }).compileComponents()
   })
 

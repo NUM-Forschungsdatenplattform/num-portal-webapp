@@ -15,7 +15,6 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
 import { ContentService } from '../../../../core/services/content/content.service'
@@ -35,18 +34,18 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
   chartSofaScore: IBarChart
   chartSofaScoreAvg: IBarChart
 
-  constructor(private translateService: TranslateService, private contentService: ContentService) {}
+  constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
     this.getSofaScoreAverage()
     this.getClinics()
 
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe(() => {
+    // this.subscriptions.add(
+      // this.translateService.onLangChange.subscribe(() => {
         this.getSofaScoreDistribution()
         this.getSofaScoreAverage()
-      })
-    )
+      // })
+    // )
   }
 
   ngOnDestroy(): void {

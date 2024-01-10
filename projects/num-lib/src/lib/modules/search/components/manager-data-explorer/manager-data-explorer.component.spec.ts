@@ -18,7 +18,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
@@ -103,7 +103,7 @@ describe('ManagerDataRetrievComponent', () => {
         MaterialModule,
         FontAwesomeTestingModule,
         RouterTestingModule,
-        TranslateModule.forRoot(),
+        ,
       ],
       providers: [
         {

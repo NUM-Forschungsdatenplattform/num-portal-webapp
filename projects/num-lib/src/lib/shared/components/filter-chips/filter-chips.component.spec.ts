@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
+
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlFilterChipId } from '../../models/aql/aql-filter-chip.enum'
 import { IFilterItem } from '../../models/filter-chip.interface'
@@ -48,7 +48,7 @@ describe('FilterChipsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FilterChipsComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [MaterialModule, FontAwesomeTestingModule, ],
     }).compileComponents()
   })
 

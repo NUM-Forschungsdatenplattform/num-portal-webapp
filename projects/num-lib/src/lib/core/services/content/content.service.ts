@@ -49,7 +49,7 @@ export class ContentService {
   public projectsObservable$ = this.projectsSubject$.asObservable()
 
   constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
-    this.baseUrl = `${appConfig.config.api.baseUrl}/content`
+    this.baseUrl = `${appConfig.config?.api.baseUrl}/content`
   }
 
   getNavigationLinks(): Observable<INavigationLink[]> {

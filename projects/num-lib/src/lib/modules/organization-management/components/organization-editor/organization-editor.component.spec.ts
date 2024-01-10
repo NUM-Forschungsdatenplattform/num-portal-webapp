@@ -21,7 +21,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { Subject, of } from 'rxjs'
 import { IOrganizationResolved } from '../../models/organization-resolved.interface'
 import {
@@ -92,7 +91,6 @@ describe('OrganizationEditorComponent', () => {
         FlexLayoutModule,
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         RouterTestingModule,

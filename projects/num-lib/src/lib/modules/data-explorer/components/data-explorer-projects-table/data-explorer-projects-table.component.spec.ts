@@ -24,7 +24,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { maxBy, minBy } from 'lodash-es'
 import { of, Subject } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
@@ -60,7 +59,6 @@ describe('DataExplorerProjectsTableComponent', () => {
       imports: [
         MaterialModule,
         BrowserAnimationsModule,
-        TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,
         RouterTestingModule.withRoutes([]),

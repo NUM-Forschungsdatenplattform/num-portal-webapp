@@ -19,7 +19,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { IAppConfig } from '../../../../config/app-config.model'
 import { AppConfigService } from '../../../../config/app-config.service'
 import { MaterialModule } from '../../material/material.module'
@@ -37,7 +36,6 @@ describe('FooterComponent', () => {
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,
-        TranslateModule.forRoot(),
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([]),
       ],

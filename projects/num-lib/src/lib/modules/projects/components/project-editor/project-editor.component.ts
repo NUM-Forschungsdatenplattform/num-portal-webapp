@@ -23,7 +23,6 @@ import { of, Subscription } from 'rxjs'
 import { ApprovalOption } from '../../models/approval-option.enum'
 import { catchError, tap } from 'rxjs/operators'
 import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
-import { TranslateService } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { AdminService } from '../../../../core/services/admin/admin.service'
 import { CohortService } from '../../../../core/services/cohort/cohort.service'
@@ -95,7 +94,6 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private adminService: AdminService,
     private dialogService: DialogService,
     private toast: ToastMessageService,
-    private translateService: TranslateService,
     private profileService: ProfileService
   ) {}
 
@@ -412,7 +410,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   exportPrint(): void {
-    const currentLang = this.translateService.currentLang as 'de' | 'en'
+    const currentLang = 'de'
     this.isExportLoading = true
 
     this.subscriptions.add(

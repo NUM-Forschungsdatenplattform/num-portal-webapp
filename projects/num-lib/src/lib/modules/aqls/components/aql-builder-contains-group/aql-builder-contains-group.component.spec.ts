@@ -18,7 +18,6 @@ import { Component, Input, SimpleChange } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
@@ -51,7 +50,6 @@ describe('AqlBuilderContainsGroupComponent', () => {
       ],
       imports: [
         MaterialModule,
-        TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         BrowserAnimationsModule,
       ],

@@ -1,29 +1,25 @@
 import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DataProtectionComponent } from './data-protection.component'
-import { LangChangeEvent } from '@ngx-translate/core'
 import { Injector } from '@angular/core'
 
 describe('DataProtectionComponent', () => {
   let component: DataProtectionComponent
   let fixture: ComponentFixture<DataProtectionComponent>
-  let translateService: TranslateService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DataProtectionComponent],
-      imports: [TranslateModule.forRoot()],
-      providers: [TranslateService],
+      imports: [],
+      providers: [],
     }).compileComponents()
   })
 
   beforeEach(() => {
     const injector: Injector = getTestBed()
-    const translate: TranslateService = injector.get(TranslateService)
-    jest.spyOn(translate, 'instant').mockImplementation(() => [])
+    // jest.spyOn(translate, 'instant').mockImplementation(() => [])
     fixture = TestBed.createComponent(DataProtectionComponent)
     component = fixture.componentInstance
-    translateService = TestBed.inject(TranslateService)
+    // translateService = TestBed.inject(TranslateService)
     fixture.detectChanges()
   })
 
@@ -36,7 +32,7 @@ describe('DataProtectionComponent', () => {
   })
 
   it('should initialize the component with the translated texts', () => {
-    jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
+    // jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
 
     component.ngOnInit()
 
@@ -49,10 +45,10 @@ describe('DataProtectionComponent', () => {
   })
 
   it('should update the component with the translated texts when the language changes', () => {
-    jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
+    // jest.spyOn(translateService, 'instant').mockReturnValue('translated text')
     component.ngOnInit()
 
-    translateService.onLangChange.next({ lang: 'en', translations: {} } as LangChangeEvent)
+    // translateService.onLangChange.next({ lang: 'en', translations: {} } as LangChangeEvent)
 
     expect(component.generalDataList).toEqual('translated text')
     expect(component.registrationList).toEqual('translated text')

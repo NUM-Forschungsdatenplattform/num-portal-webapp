@@ -17,7 +17,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
@@ -124,7 +123,7 @@ describe('AqlEditorCeatorComponent', () => {
         ButtonComponent,
         EditorDetermineHitsStubComponent,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [MaterialModule, FontAwesomeTestingModule],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         { provide: AqlEditorService, useValue: mockAqlEditorService },

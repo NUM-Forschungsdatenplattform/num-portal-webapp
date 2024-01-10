@@ -17,7 +17,6 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
@@ -63,7 +62,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(private dateAdapter: DateAdapter<any>) {}
 
   valueForm: FormGroup
 
@@ -72,13 +71,15 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       this.item.valueType === AqlParameterValueType.Date ||
       this.item.valueType === AqlParameterValueType.DateTime
     ) {
-      this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
+      this.dateAdapter.setLocale('de-DE')
 
-      this.subscriptions.add(
-        this.translate.onLangChange.subscribe((lang) => {
-          this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
-        })
-      )
+      // this.dateAdapter.setLocale(this.translate.currentLang ? this.translate.currentLang : 'de-DE')
+
+      // this.subscriptions.add(
+      //   this.translate.onLangChange.subscribe((lang) => {
+      //     this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
+      //   })
+      // )
     }
     this.valueForm = new FormGroup({
       value: new FormControl({ value: this.item?.value, disabled: this.disabled }, [

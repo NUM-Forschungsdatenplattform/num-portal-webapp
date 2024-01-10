@@ -16,7 +16,6 @@
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
 import { FormGroup } from '@angular/forms'
-import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 
 @Component({
@@ -32,16 +31,16 @@ export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
 
   private subscriptions = new Subscription()
 
-  constructor(private translateService: TranslateService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((event) => {
-        this.lang = event.lang
-      })
-    )
+    // this.subscriptions.add(
+    //   this.translateService.onLangChange.subscribe((event) => {
+    //     this.lang = event.lang
+    //   })
+    // )
 
-    this.lang = this.translateService.currentLang
+    // this.lang = this.translateService.currentLang
   }
 
   ngOnDestroy(): void {
