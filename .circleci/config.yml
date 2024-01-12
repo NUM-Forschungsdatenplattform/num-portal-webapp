@@ -164,7 +164,7 @@ jobs:
   test:
     docker:
       # - image: circleci/node:16.13.0-buster
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
     steps:
       - checkout
       - node/install-packages:
@@ -187,7 +187,7 @@ jobs:
       - failed-build-slack-notification
   tag_version:
     docker:
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
     steps:
       - checkout
       - add_ssh_keys:
@@ -211,7 +211,7 @@ jobs:
 
   build_and_deploy:
     docker:
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
         auth:
           username: $DOCKER_USER
           password: $DOCKER_HUB_PASSWORD
