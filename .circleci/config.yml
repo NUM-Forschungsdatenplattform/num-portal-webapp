@@ -167,11 +167,14 @@ jobs:
       - image: cimg/node:16.20.2
     steps:
       - checkout
+      - run:
+          name: Prepare installation
+          command: >-
+            echo "@fortawesome:registry=https://npm.fontawesome.com/" >> ~/project/.npmrc
+            echp "//npm.fontawesome.com/:_authToken=${FONTAWESOME_NPM_AUTH_TOKEN}" >> ~/project/.npmrc
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - store_artifacts:
-          path: ~/.npm/_logs/*.log
       - run:
           name: Run Linter
           command: npm run lint
