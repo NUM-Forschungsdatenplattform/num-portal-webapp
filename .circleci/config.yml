@@ -170,6 +170,8 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
+      - store_artifacts:
+          path: ~/.npm/_logs/*.log
       - run:
           name: Run Linter
           command: npm run lint
@@ -317,6 +319,6 @@ commands:
 
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.2
-  node: circleci/node@4.1.0
+  node: circleci/node@5.2.0
   slack: circleci/slack@4.1.1
   jq: circleci/jq@2.2.0
