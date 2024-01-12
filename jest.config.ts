@@ -25,7 +25,7 @@ const config: Config = {
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/+(*.)+(spec).+(ts)'],
-  setupFilesAfterEnv: ['<rootDir>/src/test.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTest.ts'],
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/app/**/*.ts',
@@ -36,6 +36,7 @@ const config: Config = {
     '!<rootDir>/src/main.playground.ts',
     '!<rootDir>/src/test.ts',
     '!<rootDir>/src/**/*.harness.ts',
+    '!<rootDir>/src/custom-test-resolver.js',
   ],
   coverageReporters: ['html', 'text-summary', 'json', 'lcov', 'text', 'clover', 'cobertura'],
   reporters: ['default', ['jest-junit', { outputDirectory: '<rootDir>/reports/junit' }]],
@@ -48,6 +49,8 @@ const config: Config = {
     '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
     '^lodash-es$': '<rootDir>/node_modules/lodash/index.js',
   },
+  // This custom resolver is only for handling problems with Jest v28 and can be removed with Jest v29
+  resolver: '<rootDir>/src/custom-test-resolver.js',
 }
 
 export default config

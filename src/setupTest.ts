@@ -15,7 +15,6 @@
  */
 
 import 'jest-preset-angular/setup-jest'
-import * as nodeCrypto from 'crypto'
 import ResizeObserver from 'resize-observer-polyfill'
 
 Object.defineProperty(window, 'CSS', { value: null })
@@ -55,9 +54,3 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
 Object.defineProperty(URL, 'createObjectURL', {
   value: () => 'https://test-link.com',
 })
-
-window.crypto = {
-  getRandomValues: function (buffer: any) {
-    return nodeCrypto.randomFillSync(buffer)
-  },
-} as unknown as Crypto
