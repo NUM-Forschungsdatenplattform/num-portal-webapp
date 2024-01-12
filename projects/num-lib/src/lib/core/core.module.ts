@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common'
     CommonModule,
     LayoutModule,
     SharedModule,
+    MatDialogModule,
     NgIdleKeepaliveModule.forRoot(),
   ],
   providers: [AqlService, CohortService],
