@@ -43,13 +43,9 @@
                 "output": "./vs/base"
               }
             ],
-            "styles": [
-              "src/styles/styles.scss"
-            ],
+            "styles": ["src/styles/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "keycloak-js"
-            ]
+            "allowedCommonJsDependencies": ["keycloak-js"]
           },
           "configurations": {
             "deploy": {
@@ -113,10 +109,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         },
         "e2e": {
@@ -143,17 +136,12 @@
           "options": {
             "outputPath": "dist/playground",
             "index": "src/index.html",
-            "main": "src/main.playground.ts",
+            "main": ".angular-playground//main.playground.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.playground.json",
+            "tsConfig": ".angular-playground/tsconfig.playground.json",
             "aot": false,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -180,9 +168,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ],
+    "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": false
   }
 }
