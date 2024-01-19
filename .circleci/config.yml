@@ -15,7 +15,6 @@
 version: 2.1
 
 workflows:
-  version: 2
   nightly:
     triggers:
       - schedule:
@@ -321,7 +320,7 @@ commands:
           when: on_fail
 
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.2
+  sonarcloud: sonarsource/sonarcloud@2.0.0
   node: circleci/node@5.2.0
   slack: circleci/slack@4.1.1
   jq: circleci/jq@2.2.0
