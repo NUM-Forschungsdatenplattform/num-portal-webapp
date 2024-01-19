@@ -34,7 +34,7 @@ const config: Config = {
     '!<rootDir>/src/app/**/font-awesome-icons.ts',
     '!<rootDir>/src/playground/**',
     '!<rootDir>/src/main.playground.ts',
-    '!<rootDir>/src/test.ts',
+    '!<rootDir>/src/setupTest.ts',
     '!<rootDir>/src/**/*.harness.ts',
     '!<rootDir>/src/custom-test-resolver.js',
   ],
