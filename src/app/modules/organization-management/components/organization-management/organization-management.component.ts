@@ -35,7 +35,10 @@ export class OrganizationManagementComponent implements OnInit, OnDestroy {
   private subscription: Subscription[] = []
   filterConfig = DEFAULT_ORGANIZATION_FILTER
 
-  constructor(private organizationService: OrganizationService, private router: Router) {}
+  constructor(
+    private organizationService: OrganizationService,
+    private router: Router
+  ) {}
 
   get pageSize(): number {
     return +localStorage.getItem('pageSize') || 5

@@ -58,8 +58,8 @@ export class AqbSelectItemUiModel {
       name: this.givenName.length
         ? this.givenName
         : this.isComposition
-        ? this.templateId
-        : this.name,
+          ? this.templateId
+          : this.name,
     }
   }
 }

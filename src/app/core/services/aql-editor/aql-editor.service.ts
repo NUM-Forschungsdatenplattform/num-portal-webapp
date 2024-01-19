@@ -40,7 +40,10 @@ export class AqlEditorService {
 
   private containmentCache: IDictionary<string, IContainmentNode> = {}
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aqleditor/v1`
   }
 

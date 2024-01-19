@@ -30,7 +30,10 @@ export class ProfileService {
   private userApprovedSubject = new Subject<any>()
   public userProfileObservable$ = this.userProfileSubject$.asObservable()
   public userNotApproved = false
-  constructor(private httpClient: HttpClient, private appConfig: AppConfigService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private appConfig: AppConfigService
+  ) {}
 
   get apiBase(): string {
     return this.appConfig.config.api.baseUrl

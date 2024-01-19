@@ -40,7 +40,7 @@
       </ng-container>
 
       <ng-container *ngIf="dataRow?.type === definitionType.Date">{{
-        dataRow.description | date : 'dd.MM.yyyy' || '-'
+        dataRow.description | date: 'dd.MM.yyyy' || '-'
       }}</ng-container>
 
       <ng-container *ngIf="dataRow?.type === definitionType.Boolean">

@@ -63,7 +63,10 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(
+    private dateAdapter: DateAdapter<any>,
+    private translate: TranslateService
+  ) {}
 
   valueForm: UntypedFormGroup
 

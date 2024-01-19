@@ -35,7 +35,10 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
   chartSofaScore: IBarChart
   chartSofaScoreAvg: IBarChart
 
-  constructor(private translateService: TranslateService, private contentService: ContentService) {}
+  constructor(
+    private translateService: TranslateService,
+    private contentService: ContentService
+  ) {}
 
   ngOnInit(): void {
     this.getSofaScoreAverage()

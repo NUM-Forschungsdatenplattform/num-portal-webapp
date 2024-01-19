@@ -31,7 +31,10 @@ export class OAuthInterceptor implements HttpInterceptor {
   excludedUrls = ['assets', '/assets']
   excludedUrlsRegEx = this.excludedUrls.map((url) => new RegExp('^' + url, 'i'))
 
-  constructor(private oauthService: OAuthService, private authStorage: OAuthStorage) {}
+  constructor(
+    private oauthService: OAuthService,
+    private authStorage: OAuthStorage
+  ) {}
 
   private isExcluded(req: HttpRequest<any>): boolean {
     return this.excludedUrlsRegEx.some((toBeExcluded) => toBeExcluded.test(req.url))

@@ -23,7 +23,10 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
   providedIn: 'root',
 })
 export class ToastMessageService {
-  constructor(private snackbar: MatSnackBar, private translate: TranslateService) {}
+  constructor(
+    private snackbar: MatSnackBar,
+    private translate: TranslateService
+  ) {}
 
   public openToast(config: IToastMessageConfig): MatSnackBarRef<any> {
     const translatedMessage = this.translate.instant(config.message, config.messageParameters)

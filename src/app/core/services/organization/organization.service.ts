@@ -31,7 +31,10 @@ export class OrganizationService {
   private organizationsSubject$ = new BehaviorSubject(this.organizations)
   public organizationsObservable$ = this.organizationsSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/organization`
   }
 

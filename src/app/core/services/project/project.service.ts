@@ -317,10 +317,9 @@ export class ProjectService {
     defaultConfiguration: boolean
   ): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
-      .post<IAqlExecutionResponse[]>(
-        `${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`,
-        { query }
-      )
+      .post<
+        IAqlExecutionResponse[]
+      >(`${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`, { query })
       .pipe(catchError(this.handleError))
   }
 

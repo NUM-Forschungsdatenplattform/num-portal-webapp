@@ -40,7 +40,10 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   availableRoles = Object.values(AvailableRoles)
 
-  constructor(private adminService: AdminService, private dialogService: DialogService) {
+  constructor(
+    private adminService: AdminService,
+    private dialogService: DialogService
+  ) {
     super()
   }
 

@@ -28,7 +28,10 @@ import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-
   styleUrls: ['./project-editor-general-info.component.scss'],
 })
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(
+    private dateAdapter: DateAdapter<any>,
+    private translate: TranslateService
+  ) {}
 
   @Input() attachments: ProjectAttachmentUiModel[] = []
   @Input() form: UntypedFormGroup
