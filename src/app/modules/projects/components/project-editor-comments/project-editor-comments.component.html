@@ -35,7 +35,7 @@
       role="region"
       *ngFor="
         let comment of commentLimit
-          ? (comments | slice: comments.length - 2:comments.length)
+          ? (comments | slice : comments.length - 2 : comments.length)
           : comments
       "
       class="comment"
@@ -44,7 +44,7 @@
       <div fxLayout="row" fxLayoutGap="20px" class="comment-info">
         <span>
           <fa-icon icon="clock"></fa-icon>
-          {{ comment.createDate | localizedDate: 'medium' }}
+          {{ comment.createDate | localizedDate : 'medium' }}
         </span>
         <span>
           <fa-icon icon="user"></fa-icon>

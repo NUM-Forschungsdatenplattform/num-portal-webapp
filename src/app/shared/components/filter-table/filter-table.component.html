@@ -21,14 +21,14 @@
   >
     <th scope="col" mat-header-cell *matHeaderCellDef>columnPath</th>
     <ng-container *ngIf="columnPath[0] !== 'select'">
-      <td mat-cell *matCellDef="let element">{{ element | nestedAccess: columnPath }}</td>
+      <td mat-cell *matCellDef="let element">{{ element | nestedAccess : columnPath }}</td>
     </ng-container>
     <ng-container *ngIf="columnPath[0] === 'select'">
       <td mat-cell *matCellDef="let element; let i = index" class="right-align">
         <button
           color="accent"
           mat-icon-button
-          *ngIf="!(element[identifierName] | isSelected: lookupSelectedItems); else selectedIcon"
+          *ngIf="!(element[identifierName] | isSelected : lookupSelectedItems); else selectedIcon"
           (click)="handleSelectClick($event, element)"
           [attr.aria-label]="'BUTTON.SELECT' | translate"
           data-test="generic-filter-table__row__select-button"
