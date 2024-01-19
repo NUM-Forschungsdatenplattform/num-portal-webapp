@@ -68,7 +68,7 @@ describe('WelcomePageEditorComponent', () => {
     openToast: jest.fn(),
   } as unknown as ToastMessageService
 
-  const afterClosedSubject$ = new Subject()
+  const afterClosedSubject$ = new Subject<FormGroup | void>()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {

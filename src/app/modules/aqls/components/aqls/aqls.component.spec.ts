@@ -34,7 +34,7 @@ describe('AqlsComponent', () => {
   const aqlService = {
     aqlsObservable$: aqlsSubject$.asObservable(),
     getAll: () => of(),
-  } as AqlService
+  } as unknown as AqlService
 
   const aqlCategoriesSubject$ = new Subject<IAqlCategoryApi[]>()
   const mockAqlCategoryService = {

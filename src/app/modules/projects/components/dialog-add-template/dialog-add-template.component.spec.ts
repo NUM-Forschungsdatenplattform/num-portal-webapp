@@ -40,7 +40,7 @@ describe('DialogAddTemplateComponent', () => {
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
     setFilter: (_: any) => {},
-  } as TemplateService
+  } as unknown as TemplateService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

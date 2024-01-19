@@ -34,6 +34,8 @@ Object.defineProperty(window, 'matchMedia', {
   }),
 })
 
+window.open = jest.fn()
+
 window.ResizeObserver = ResizeObserver
 
 Object.defineProperty(document, 'doctype', {

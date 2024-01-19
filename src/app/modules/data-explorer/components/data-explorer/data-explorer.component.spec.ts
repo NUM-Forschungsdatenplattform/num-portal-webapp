@@ -86,7 +86,7 @@ describe('DataExplorerComponent', () => {
     exportFile: jest.fn(),
   } as unknown as ProjectService
 
-  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
+  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput | void>()
 
   const dialogService = {
     openDialog: jest.fn().mockImplementation(() => ({
