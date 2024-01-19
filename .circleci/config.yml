@@ -168,8 +168,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Prepare installation
-          command: echo "@fortawesome:registry=https://npm.fontawesome.com/\n//npm.fontawesome.com/:_authToken=${FONTAWESOME_NPM_AUTH_TOKEN}" >> ~/project/.npmrc
+          name: Configure NPM
+          command: |
+            cp ~/project/.circleci/.npmrc ~/project/
+            envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/project/.npmrc
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
