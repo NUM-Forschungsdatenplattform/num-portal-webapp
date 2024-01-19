@@ -42,7 +42,7 @@ describe('AqlConnectorGroupComponent', () => {
   }
 
   const itemEventSubject = new Subject<AqlUiModel>()
-  const targetResetSubject = new Subject<never>()
+  const targetResetSubject = new Subject<void>()
   const mockCohortBuilderService = {
     resetTargets: jest.fn(),
     itemEventObservable$: itemEventSubject.asObservable(),

@@ -93,7 +93,7 @@ describe('AqlEditorCeatorComponent', () => {
   }
 
   let dialogCallParameter: DialogConfig
-  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
+  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput | void>()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((callParameter: any) => {
       dialogCallParameter = callParameter
