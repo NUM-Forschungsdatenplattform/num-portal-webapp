@@ -23,7 +23,13 @@ $num-additional-palette: (
   error: #b30519,
   warning: #eeb70c,
   success: #30d288,
+  100: #d2d2d2,
+  500: #737373,
+  700: #232323,
   contrast: (
+    100: #232323,
+    500: #ffffff,
+    700: #ffffff,
     white: #232323,
     page-background: #232323,
     light-grey: #232323,
