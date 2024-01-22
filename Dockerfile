@@ -13,14 +13,17 @@
 # limitations under the License.
 
 ### STAGE 1: Build ###
-FROM node:16-alpine3.11 AS build
+FROM node:16.20-alpine AS build
 WORKDIR /usr/src/app
 COPY . .
+ARG FONTAWESOME_NPM_AUTH_TOKEN=
+RUN cp ./.circleci/.npmrc .
+RUN envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ./.npmrc
 RUN npm install
 ARG ENVIRONMENT=deploy
 RUN npm run build -- --configuration=${ENVIRONMENT}
 
 ### STAGE 2: Run ###
-FROM nginx:1.21.0-alpine
+FROM nginx:1.25-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/num-portal-webapp /usr/share/nginx/html
