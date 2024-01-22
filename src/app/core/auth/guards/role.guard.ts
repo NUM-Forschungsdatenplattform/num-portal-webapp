@@ -35,7 +35,10 @@ import { AuthService } from '../auth.service'
 export class RoleGuard implements CanActivate, CanLoad {
   userInfo: IAuthUserInfo
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.authService.userInfoObservable$.subscribe((user: IAuthUserInfo) => {
       this.userInfo = user
     })

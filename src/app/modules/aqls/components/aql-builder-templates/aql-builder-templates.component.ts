@@ -15,7 +15,7 @@
  */
 
 import { AfterViewChecked, Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { UntypedFormControl } from '@angular/forms'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
@@ -32,7 +32,7 @@ export class AqlBuilderTemplatesComponent implements AfterViewChecked {
   templates: string[]
 
   @Input()
-  selectedTemplates: FormControl
+  selectedTemplates: UntypedFormControl
 
   @Input()
   mode: AqlBuilderDialogMode

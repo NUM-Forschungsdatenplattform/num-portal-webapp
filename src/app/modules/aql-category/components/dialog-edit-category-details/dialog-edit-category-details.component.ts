@@ -15,7 +15,7 @@
  */
 // Third-Party
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
 
 // Data models
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
@@ -31,9 +31,9 @@ export class DialogEditCategoryDetailsComponent
 {
   @Output() closeDialog = new EventEmitter<void | Omit<IAqlCategoryApi, 'id'>>()
 
-  categoryForm: FormGroup
+  categoryForm: UntypedFormGroup
   dialogInput: { aqlCategory?: Omit<IAqlCategoryApi, 'id'> }
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.categoryForm = this.formBuilder.group({

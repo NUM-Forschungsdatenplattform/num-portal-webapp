@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, Directive, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -85,8 +85,15 @@ describe('AqlEditorCeatorComponent', () => {
     @Output() clicked = new EventEmitter()
   }
 
+  @Directive({
+    selector: '[numUserHasRole]',
+  })
+  class UserHasRoleStubDirective {
+    @Input() numUserHasRole: string[]
+  }
+
   let dialogCallParameter: DialogConfig
-  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput>()
+  const afterClosedSubject$ = new Subject<IAqlBuilderDialogOutput | void>()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((callParameter: any) => {
       dialogCallParameter = callParameter
@@ -123,6 +130,7 @@ describe('AqlEditorCeatorComponent', () => {
         CodeEditorStubComponent,
         ButtonComponent,
         EditorDetermineHitsStubComponent,
+        UserHasRoleStubDirective,
       ],
       imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [

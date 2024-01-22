@@ -27,7 +27,7 @@ import {
 } from 'src/mocks/data-mocks/organizations.mock'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { Subject } from 'rxjs'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Pipe, PipeTransform } from '@angular/core'
 
 describe('AddUserOrganizationComponent', () => {
@@ -52,7 +52,7 @@ describe('AddUserOrganizationComponent', () => {
       imports: [
         MaterialModule,
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
       ],
       providers: [

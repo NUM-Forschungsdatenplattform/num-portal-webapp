@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -32,7 +32,7 @@ describe('ProjectEditorGeneralInfoKeywordsInputComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectEditorGeneralInfoKeywordsInputComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
@@ -51,10 +51,10 @@ describe('ProjectEditorGeneralInfoKeywordsInputComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  const mockKeyword: MatChipInputEvent = {
+  const mockKeyword = {
     input: null,
     value: 'keyword 1',
-  }
+  } as unknown as MatChipInputEvent
 
   describe('Adding/Removing Keywords', () => {
     beforeEach(() => {

@@ -7,7 +7,10 @@ import { ProfileService } from '../services/profile/profile.service'
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private profileService: ProfileService) {}
+  constructor(
+    private authService: AuthService,
+    private profileService: ProfileService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(

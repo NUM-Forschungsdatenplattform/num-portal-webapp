@@ -33,7 +33,10 @@ export class OAuthInitService {
 
   private AUTH_CONFIG: AuthConfig
 
-  constructor(private oauthService: OAuthService, private appConfig: AppConfigService) {}
+  constructor(
+    private oauthService: OAuthService,
+    private appConfig: AppConfigService
+  ) {}
   public initOAuth(): Promise<boolean> {
     let terminationTimer: number
     this.initVariables()

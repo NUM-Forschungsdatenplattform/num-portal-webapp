@@ -45,7 +45,7 @@ describe('WelcomePageItemComponent', () => {
     },
   }
 
-  const afterClosedSubject$ = new Subject()
+  const afterClosedSubject$ = new Subject<FormGroup | void>()
   const mockDialogService = {
     openDialog: jest.fn().mockImplementation((_: any) => {
       return {

@@ -15,7 +15,7 @@
  */
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 
@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs'
 })
 export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
   @Input() availableCategories: any
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
 
   lang = 'en'
 

@@ -25,7 +25,7 @@ import { SearchComponent } from '../../../../shared/components/search/search.com
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Component, EventEmitter, Input, Output, Pipe, PipeTransform } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
@@ -106,7 +106,7 @@ describe('AqlTableComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         PipesModule,

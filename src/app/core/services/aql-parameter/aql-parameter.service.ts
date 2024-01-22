@@ -27,7 +27,10 @@ export class AqlParameterService {
   private baseUrl: string
   private valueCache = new Map<string, Observable<IAqlParameterValuesApi>>()
 
-  constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
+  constructor(
+    private appConfigService: AppConfigService,
+    private httpClient: HttpClient
+  ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/parameter`
   }
 

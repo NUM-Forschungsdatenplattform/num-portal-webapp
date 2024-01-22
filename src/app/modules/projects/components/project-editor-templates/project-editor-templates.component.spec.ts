@@ -16,7 +16,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ProjectEditorTemplatesComponent } from './project-editor-templates.component'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -41,7 +41,7 @@ describe('ProjectEditorTemplatesComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ProjectEditorTemplatesComponent, ButtonComponent, StubAddTemplatesComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),

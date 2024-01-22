@@ -54,7 +54,7 @@
         >
           <button
             class="num-mat-list-item"
-            *ngFor="let menuItem of menuItems | projectMenu: projectStatus:ownerId:user"
+            *ngFor="let menuItem of menuItems | projectMenu: projectStatus : ownerId : user"
             [disabled]="menuItem.isDisabled"
             mat-menu-item
             (click)="handleMenuClick(menuItem.id, id)"

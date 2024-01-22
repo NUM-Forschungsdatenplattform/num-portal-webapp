@@ -15,7 +15,6 @@
 version: 2.1
 
 workflows:
-  version: 2
   nightly:
     triggers:
       - schedule:
@@ -28,24 +27,20 @@ workflows:
       - test:
           context:
             - org-global
-            - slack-secrets
             - ms_teams
       - security_scan:
           context:
             - org-global
-            - slack-secrets
             - ms_teams
   build_and_test:
     jobs:
       - test:
           context:
             - org-global
-            - slack-secrets
             - ms_teams
       - security_scan:
           context:
             - org-global
-            - slack-secrets
             - ms_teams
           filters:
             branches:
@@ -72,6 +67,11 @@ jobs:
       - image: cimg/openjdk:16.0.0-node
     steps:
       - checkout
+      - run:
+          name: Configure NPM
+          command: |
+            cp ~/project/.circleci/.npmrc ~/project/
+            envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/project/.npmrc
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
@@ -163,10 +163,14 @@ jobs:
           when: on_fail
   test:
     docker:
-      # - image: circleci/node:16.13.0-buster
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
     steps:
       - checkout
+      - run:
+          name: Configure NPM
+          command: |
+            cp ~/project/.circleci/.npmrc ~/project/
+            envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/project/.npmrc
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
@@ -184,10 +188,10 @@ jobs:
           name: Run CVE scan by npm audit
           command: npm audit --audit-level=critical
       - sonarcloud/scan
-      - failed-build-slack-notification
+      - failed-build-ms-teams-notification
   tag_version:
     docker:
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
     steps:
       - checkout
       - add_ssh_keys:
@@ -211,7 +215,7 @@ jobs:
 
   build_and_deploy:
     docker:
-      - image: cimg/node:16.13.0
+      - image: cimg/node:16.20.2
         auth:
           username: $DOCKER_USER
           password: $DOCKER_HUB_PASSWORD
@@ -236,7 +240,7 @@ jobs:
             docker push $DOCKER_USER/num-portal-webapp:$TAG
 
 commands:
-  failed-build-slack-notification:
+  failed-build-ms-teams-notification:
     steps:
       - run:
           name: Get OWASP report artifact URL
@@ -316,7 +320,6 @@ commands:
           when: on_fail
 
 orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.2
-  node: circleci/node@4.1.0
-  slack: circleci/slack@4.1.1
-  jq: circleci/jq@2.2.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
+  node: circleci/node@5.2.0
+  jq: circleci/jq@3.0.0

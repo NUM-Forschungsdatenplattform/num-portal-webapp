@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'src/app/shared/constants'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
@@ -37,7 +37,7 @@ export class WelcomePageItemComponent implements OnInit {
   isLast: boolean
 
   @Input()
-  form: FormGroup
+  form: UntypedFormGroup
 
   @Input()
   isLoading: boolean
@@ -97,8 +97,8 @@ export class WelcomePageItemComponent implements OnInit {
 
     const dialogRef = this.dialogService.openDialog(dialogConfig)
 
-    dialogRef.afterClosed().subscribe((confirmResult: FormGroup | undefined) => {
-      if (confirmResult instanceof FormGroup) {
+    dialogRef.afterClosed().subscribe((confirmResult: UntypedFormGroup | undefined) => {
+      if (confirmResult instanceof UntypedFormGroup) {
         this.form.setValue(confirmResult.value)
         this.mapFields()
       }

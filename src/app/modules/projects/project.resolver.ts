@@ -30,7 +30,10 @@ import { IProjectResolved } from './models/project-resolved.interface'
   providedIn: 'root',
 })
 export class ProjectResolver implements Resolve<IProjectResolved> {
-  constructor(private projectService: ProjectService, private router: Router) {}
+  constructor(
+    private projectService: ProjectService,
+    private router: Router
+  ) {}
 
   shouldChangeStatusToReview(mode: string, project: IProjectApi): boolean {
     return (

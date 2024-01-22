@@ -45,7 +45,10 @@ export class TemplateService {
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/template/metadata`
 
     this.filterConfigObservable$

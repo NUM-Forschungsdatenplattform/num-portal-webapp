@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
 import { forkJoin, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -51,7 +51,7 @@ export class DialogEditUserDetailsComponent
     id: undefined,
   }
   availableRoles = AvailableRoles
-  userNameForm: FormGroup
+  userNameForm: UntypedFormGroup
   isUserNameEditMode: boolean
   isActive: boolean
   isSelectedEqualToCurrent: Promise<boolean>
@@ -77,12 +77,12 @@ export class DialogEditUserDetailsComponent
 
     this.organizationService.getAll().subscribe()
 
-    this.userNameForm = new FormGroup({
-      firstName: new FormControl(this.userDetails.firstName, [
+    this.userNameForm = new UntypedFormGroup({
+      firstName: new UntypedFormControl(this.userDetails.firstName, [
         Validators.required,
         Validators.minLength(2),
       ]),
-      lastName: new FormControl(this.userDetails.lastName, [
+      lastName: new UntypedFormControl(this.userDetails.lastName, [
         Validators.required,
         Validators.minLength(2),
       ]),

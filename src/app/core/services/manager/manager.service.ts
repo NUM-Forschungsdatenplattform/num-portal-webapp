@@ -10,7 +10,10 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 export class ManagerService {
   private baseUrl: string
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}`
   }
 

@@ -10,7 +10,10 @@ import { Observable } from 'rxjs'
 })
 export class SystemStatusService {
   baseUrl: string
-  constructor(private httpClient: HttpClient, public appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    public appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin/services-status`
   }
 

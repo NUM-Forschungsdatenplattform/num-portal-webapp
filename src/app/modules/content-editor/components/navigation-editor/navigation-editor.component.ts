@@ -15,7 +15,13 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms'
+import {
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -31,7 +37,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private contentService: ContentService,
     private toastMessageService: ToastMessageService
   ) {}
@@ -40,11 +46,11 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
 
   navigationItems: INavigationLink[]
 
-  navigationForm = new FormGroup({
+  navigationForm = new UntypedFormGroup({
     navigationItems: this.formBuilder.array([]),
   })
-  get navigationLinks(): FormArray {
-    return this.navigationForm.get('navigationItems') as FormArray
+  get navigationLinks(): UntypedFormArray {
+    return this.navigationForm.get('navigationItems') as UntypedFormArray
   }
 
   ngOnInit(): void {
@@ -68,7 +74,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
     })
   }
 
-  buildFormInput(): FormGroup {
+  buildFormInput(): UntypedFormGroup {
     const urlRegex = /^https?:\/\/[^\s/$.?#!<>|;'"\\@:&=_()].+\.[^\s]*[^\s.]$/
     return this.formBuilder.group(
       {
@@ -79,7 +85,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
     )
   }
 
-  fillBothValidation(formGroup: FormGroup): ValidationErrors {
+  fillBothValidation(formGroup: UntypedFormGroup): ValidationErrors {
     const titleMissing = !(formGroup.get('title').value || '').trim().length
     const urlMissing = !(formGroup.get('url').value || '').trim().length
 

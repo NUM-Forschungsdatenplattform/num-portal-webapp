@@ -15,7 +15,7 @@
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, throwError } from 'rxjs'
@@ -44,7 +44,7 @@ describe('PseudonymResolverComponent', () => {
       declarations: [PseudonymResolverComponent, ButtonComponent],
       imports: [
         MaterialModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

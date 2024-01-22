@@ -23,7 +23,7 @@ import { TemplateService } from '../../../../core/services/template/template.ser
 import { ITemplateFilter } from '../../../../shared/models/template/template-filter.interface'
 import { SearchComponent } from '../../../../shared/components/search/search.component'
 import { AddTemplatesFilterTableComponent } from '../add-templates-filter-table/add-templates-filter-table.component'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MaterialModule } from '../../../../layout/material/material.module'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -40,13 +40,13 @@ describe('DialogAddTemplateComponent', () => {
     filterConfigObservable$: filterConfigSubject$.asObservable(),
     getAll: () => of(),
     setFilter: (_: any) => {},
-  } as TemplateService
+  } as unknown as TemplateService
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogAddTemplateComponent, SearchComponent, AddTemplatesFilterTableComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         ReactiveFormsModule,
         MaterialModule,
         FontAwesomeTestingModule,

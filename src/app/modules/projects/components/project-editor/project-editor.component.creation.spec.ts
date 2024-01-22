@@ -17,7 +17,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -100,6 +100,7 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() isResearchersDisabled: boolean
     @Input() isGeneralInfoDisabled: boolean
     @Input() isCohortBuilderDisabled: boolean
+    @Input() isCohortValid: boolean
 
     @Input() project: ProjectUiModel
     @Input() projectForm: FormGroup
@@ -142,6 +143,7 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() approverForm: any
     @Input() isExportLoading: any
     @Input() isSavedProject: any
+    @Input() isUserProjectAdmin: boolean
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -163,7 +165,7 @@ describe('ProjectEditorComponent On Creation', () => {
         ProjectEditorApprovalStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,

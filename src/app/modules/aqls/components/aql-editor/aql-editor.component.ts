@@ -16,7 +16,7 @@
 
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
@@ -43,7 +43,7 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     return this.resolvedData.aql
   }
 
-  aqlForm: FormGroup
+  aqlForm: UntypedFormGroup
   availableCategories: IAqlCategoryApi[]
 
   isEditMode: boolean
@@ -87,24 +87,27 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
   }
 
   generateForm(): void {
-    this.aqlForm = new FormGroup({
-      title: new FormControl(this.aql?.name, [Validators.required, Validators.minLength(3)]),
-      titleTranslated: new FormControl(this.aql?.nameTranslated, [
+    this.aqlForm = new UntypedFormGroup({
+      title: new UntypedFormControl(this.aql?.name, [Validators.required, Validators.minLength(3)]),
+      titleTranslated: new UntypedFormControl(this.aql?.nameTranslated, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      purpose: new FormControl(this.aql?.purpose, [Validators.required, Validators.minLength(3)]),
-      purposeTranslated: new FormControl(this.aql?.purposeTranslated, [
+      purpose: new UntypedFormControl(this.aql?.purpose, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      use: new FormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
-      useTranslated: new FormControl(this.aql?.usageTranslated, [
+      purposeTranslated: new UntypedFormControl(this.aql?.purposeTranslated, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      isPublic: new FormControl(this.aql?.publicAql),
-      category: new FormControl(this.aql?.categoryId || ''),
+      use: new UntypedFormControl(this.aql?.usage, [Validators.required, Validators.minLength(3)]),
+      useTranslated: new UntypedFormControl(this.aql?.usageTranslated, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      isPublic: new UntypedFormControl(this.aql?.publicAql),
+      category: new UntypedFormControl(this.aql?.categoryId || ''),
     })
   }
 

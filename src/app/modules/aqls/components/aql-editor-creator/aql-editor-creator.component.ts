@@ -49,7 +49,7 @@ export class AqlEditorCeatorComponent {
     private toastMessageService: ToastMessageService
   ) {}
   formatter = new NumAqlFormattingProvider()
-  formatSubject$ = new Subject<monaco.editor.IMarkerData[]>()
+  formatSubject$ = new Subject<monaco.editor.IMarkerData[] | void>()
   formatObservable$ = this.formatSubject$.asObservable()
 
   validationSubject$ = new Subject()

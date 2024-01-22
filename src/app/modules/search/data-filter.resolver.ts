@@ -26,7 +26,10 @@ import { PatientFilterService } from 'src/app/core/services/patient-filter/patie
   providedIn: 'root',
 })
 export class DataFilterResolver implements Resolve<ProjectUiModel> {
-  constructor(private router: Router, private patientFilterService: PatientFilterService) {}
+  constructor(
+    private router: Router,
+    private patientFilterService: PatientFilterService
+  ) {}
 
   resolve(): Observable<ProjectUiModel> {
     return this.patientFilterService.getCurrentProject().pipe(

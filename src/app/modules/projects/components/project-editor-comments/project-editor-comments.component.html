@@ -35,7 +35,7 @@
       role="region"
       *ngFor="
         let comment of commentLimit
-          ? (comments | slice: comments.length - 2:comments.length)
+          ? (comments | slice: comments.length - 2 : comments.length)
           : comments
       "
       class="comment"

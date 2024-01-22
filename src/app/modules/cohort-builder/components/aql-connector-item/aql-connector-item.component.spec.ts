@@ -17,7 +17,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, throwError } from 'rxjs'
@@ -63,7 +63,7 @@ describe('AqlConnectorItemComponent', () => {
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
       providers: [{ provide: AqlParameterService, useValue: mockAqlParameterService }],
     }).compileComponents()

@@ -30,7 +30,10 @@ export class AqlCategoryService {
   private aqlCategoriesSubject$ = new BehaviorSubject(this.aqlCategories)
   aqlCategoriesObservable$ = this.aqlCategoriesSubject$.asObservable()
 
-  constructor(private appConfigService: AppConfigService, private httpClient: HttpClient) {
+  constructor(
+    private appConfigService: AppConfigService,
+    private httpClient: HttpClient
+  ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/category`
   }
 

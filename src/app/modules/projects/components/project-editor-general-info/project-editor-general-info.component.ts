@@ -15,7 +15,7 @@
  */
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { DateAdapter } from '@angular/material/core'
 import { TranslateService } from '@ngx-translate/core'
@@ -28,10 +28,13 @@ import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-
   styleUrls: ['./project-editor-general-info.component.scss'],
 })
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(
+    private dateAdapter: DateAdapter<any>,
+    private translate: TranslateService
+  ) {}
 
   @Input() attachments: ProjectAttachmentUiModel[] = []
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
   @Input() isDisabled: boolean
   @Input() generalInfoData: IDefinitionList[]
 

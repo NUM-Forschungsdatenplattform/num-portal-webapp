@@ -29,7 +29,10 @@ import { ICohortGroupApi } from 'src/app/shared/models/project/cohort-group-api.
 export class CohortService {
   private baseUrl: string
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/cohort`
   }
 

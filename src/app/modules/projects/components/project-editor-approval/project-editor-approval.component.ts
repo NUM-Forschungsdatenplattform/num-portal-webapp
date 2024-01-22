@@ -15,7 +15,7 @@
  */
 
 import { Component, Input } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { ApprovalOption } from '../../models/approval-option.enum'
 
 @Component({
@@ -26,7 +26,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
 export class ProjectEditorApprovalComponent {
   constructor() {}
 
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
 
   approvalOptions = Object.values(ApprovalOption)
 }

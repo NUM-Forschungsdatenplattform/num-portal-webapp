@@ -16,14 +16,15 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { MaterialModule } from 'src/app/layout/material/material.module'
+import { MaterialModule } from '../../../../layout/material/material.module'
 
 import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info.component'
 import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { ProjectAttachmentUiModel } from '../../../../shared/models/project/project-attachment-ui.model'
 
 describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
@@ -44,6 +45,15 @@ describe('ProjectEditorGeneralInfoComponent', () => {
     @Input() form: FormGroup
   }
 
+  @Component({
+    selector: 'num-attachments-table',
+    template: '',
+  })
+  class AttachmentsTableStubComponent {
+    @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() viewMode: boolean
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -51,9 +61,10 @@ describe('ProjectEditorGeneralInfoComponent', () => {
         DefinitionListStubComponent,
         ProjectEditorGeneralInfoKeywordsInputComponent,
         ProjectEditorGeneralInfoCategoriesInputComponent,
+        AttachmentsTableStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,

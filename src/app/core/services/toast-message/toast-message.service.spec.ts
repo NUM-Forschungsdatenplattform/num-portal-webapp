@@ -15,7 +15,7 @@
  */
 
 import { ToastMessageService } from './toast-message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
@@ -36,9 +36,9 @@ describe('ToastService', () => {
     duration: toastConfig.duration,
     panelClass: ['num-toast', `num-toast-${toastConfig.type}`],
     verticalPosition: 'top',
-  }
+  } as MatSnackBarConfig
 
-  const closeActionSubject$ = new Subject()
+  const closeActionSubject$ = new Subject<void>()
   const mockSnackbar = {
     open: jest.fn().mockImplementation(() => {
       return {

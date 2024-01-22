@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { UntypedFormControl } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
@@ -49,7 +49,7 @@ export class DialogAqlBuilderComponent
 
   subscriptions = new Subscription()
   templates: string[]
-  selectedTemplates: FormControl
+  selectedTemplates: UntypedFormControl
 
   compositions: AqbContainsCompositionUiModel[] = []
 
@@ -57,7 +57,7 @@ export class DialogAqlBuilderComponent
 
   ngOnInit(): void {
     this.aqbModel = cloneDeep(this.dialogInput.model)
-    this.selectedTemplates = new FormControl(this.dialogInput.selectedTemplateIds)
+    this.selectedTemplates = new UntypedFormControl(this.dialogInput.selectedTemplateIds)
 
     if (this.dialogInput.allowedTemplates) {
       this.handleTemplates(this.dialogInput.allowedTemplates)

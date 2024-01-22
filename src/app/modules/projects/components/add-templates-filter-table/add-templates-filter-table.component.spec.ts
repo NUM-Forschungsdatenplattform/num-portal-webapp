@@ -35,7 +35,7 @@ describe('AddTemplatesFilterTableComponent', () => {
   const templateService = {
     filteredTemplatesObservable$: filteredTemplatesSubject$.asObservable(),
     getAll: () => of(),
-  } as TemplateService
+  } as unknown as TemplateService
 
   const templateRow: ITemplateMetaDataApi = {
     templateId: '123',

@@ -39,7 +39,7 @@ describe('OrganizationResolver', () => {
     navigate: jest.fn(),
   } as unknown as Router
 
-  const userProfileSubject$ = new Subject<IUserProfile>()
+  const userProfileSubject$ = new Subject<IUserProfile | void>()
   const profileService = {
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as ProfileService

@@ -17,7 +17,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, Subject } from 'rxjs'
@@ -56,6 +56,7 @@ describe('ProjectEditorCohortBuilderComponent', () => {
   class StubEditorDetermineHitsComponent {
     @Input() isButtonDisabled: boolean
     @Input() content: any
+    @Input() isCohortValid: boolean
     @Output() clicked = new EventEmitter()
   }
 
@@ -80,7 +81,7 @@ describe('ProjectEditorCohortBuilderComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {

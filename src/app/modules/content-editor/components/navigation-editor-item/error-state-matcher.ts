@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms'
+import { UntypedFormControl, FormGroupDirective, NgForm } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core'
 
 export class InputErrorStateMatcher implements ErrorStateMatcher {
@@ -24,7 +24,7 @@ export class InputErrorStateMatcher implements ErrorStateMatcher {
   }
 
   isErrorState(
-    control: FormControl | null,
+    control: UntypedFormControl | null,
     formGroup: FormGroupDirective | NgForm | null
   ): boolean {
     const requiredError = formGroup.form.errors ? formGroup.form.errors[this.requiredField] : false

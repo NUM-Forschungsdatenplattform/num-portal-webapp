@@ -21,7 +21,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 
 import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
@@ -37,8 +37,7 @@ import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
-import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, Router } from '@angular/router'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -51,7 +50,7 @@ describe('AppLayoutComponent', () => {
     hasValidAccessToken: () => true,
     initCodeFlow: () => {},
     events: of(),
-  } as OAuthService
+  } as unknown as OAuthService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -119,7 +118,7 @@ describe('AppLayoutComponent', () => {
         FooterStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,

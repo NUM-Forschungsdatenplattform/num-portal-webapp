@@ -48,7 +48,10 @@ export class ContentService {
   private projectsSubject$ = new BehaviorSubject(this.projects)
   public projectsObservable$ = this.projectsSubject$.asObservable()
 
-  constructor(private httpClient: HttpClient, appConfig: AppConfigService) {
+  constructor(
+    private httpClient: HttpClient,
+    appConfig: AppConfigService
+  ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/content`
   }
 

@@ -15,7 +15,7 @@
  */
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { InputErrorStateMatcher } from './error-state-matcher'
 
@@ -32,7 +32,7 @@ export class NavigationEditorItemComponent implements OnInit, OnDestroy {
   index: number
 
   @Input()
-  form: FormGroup
+  form: UntypedFormGroup
 
   @Input()
   isLoading = true

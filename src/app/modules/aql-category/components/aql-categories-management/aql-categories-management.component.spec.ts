@@ -15,7 +15,7 @@
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { of, Subject, throwError } from 'rxjs'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
 import { AqlCategoriesManagementComponent } from './aql-categories-management.component'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
@@ -85,7 +85,7 @@ describe('AqlCategoriesManagementComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AqlCategoriesManagementComponent, AqlCategoriesTableComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         FontAwesomeModule,
         LayoutModule,
         SharedModule,

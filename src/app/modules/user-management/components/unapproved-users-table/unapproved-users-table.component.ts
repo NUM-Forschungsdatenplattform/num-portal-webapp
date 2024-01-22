@@ -37,7 +37,10 @@ export class UnapprovedUsersTableComponent
   implements OnInit, OnDestroy
 {
   private subscriptions = new Subscription()
-  constructor(private adminService: AdminService, private dialogService: DialogService) {
+  constructor(
+    private adminService: AdminService,
+    private dialogService: DialogService
+  ) {
     super()
   }
 

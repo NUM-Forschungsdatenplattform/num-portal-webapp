@@ -29,7 +29,7 @@ describe('CodeEditorComponent', () => {
 
   const LANG_NAME = 'num-aql'
 
-  const formatSubject$ = new Subject()
+  const formatSubject$ = new Subject<void>()
   const validateSubject$ = new Subject<any>()
 
   let onDidChangeModelContentCallback

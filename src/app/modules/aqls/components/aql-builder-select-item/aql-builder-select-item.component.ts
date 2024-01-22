@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
 
@@ -34,11 +34,11 @@ export class AqlBuilderSelectItemComponent implements OnInit, OnDestroy {
   @Output()
   deleteItem = new EventEmitter()
 
-  aliasForm: FormGroup
+  aliasForm: UntypedFormGroup
 
   ngOnInit(): void {
-    this.aliasForm = new FormGroup({
-      value: new FormControl(this.item.givenName),
+    this.aliasForm = new UntypedFormGroup({
+      value: new UntypedFormControl(this.item.givenName),
     })
 
     this.subscriptions.add(

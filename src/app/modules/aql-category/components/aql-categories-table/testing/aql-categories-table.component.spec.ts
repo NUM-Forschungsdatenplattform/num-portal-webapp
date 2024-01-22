@@ -21,7 +21,7 @@ import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-categ
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlCategoriesTableComponent } from '../aql-categories-table.component'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HarnessLoader } from '@angular/cdk/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import {
@@ -74,7 +74,7 @@ describe('AqlCategoriesTableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AqlCategoriesTableComponent],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         FontAwesomeTestingModule,
         MaterialModule,
         RouterTestingModule.withRoutes([]),

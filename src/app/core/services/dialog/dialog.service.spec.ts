@@ -25,7 +25,7 @@ import { DialogService } from './dialog.service'
 describe('DialogService', () => {
   let service: DialogService
   const dialog = {
-    open: () => ({} as MatDialogRef<any, any>),
+    open: () => ({}) as MatDialogRef<any, any>,
   } as unknown as MatDialog
 
   @Component({ selector: 'num-test-component', template: '' })

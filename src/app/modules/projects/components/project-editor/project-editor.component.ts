@@ -15,7 +15,7 @@
  */
 
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
@@ -79,9 +79,9 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   savedProjectStatus: ProjectStatus
 
-  commentForm: FormGroup
-  projectForm: FormGroup
-  approverForm: FormGroup
+  commentForm: UntypedFormGroup
+  projectForm: UntypedFormGroup
+  approverForm: UntypedFormGroup
 
   isCohortValid: any
 
@@ -186,36 +186,42 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   generateForm(): void {
-    this.projectForm = new FormGroup({
-      name: new FormControl(this.project?.name, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(this.project?.description, [
+    this.projectForm = new UntypedFormGroup({
+      name: new UntypedFormControl(this.project?.name, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      simpleDescription: new FormControl(this.project?.simpleDescription, [
+      description: new UntypedFormControl(this.project?.description, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      goal: new FormControl(this.project?.goal, [Validators.required, Validators.minLength(3)]),
-      firstHypotheses: new FormControl(this.project?.firstHypotheses, [
+      simpleDescription: new UntypedFormControl(this.project?.simpleDescription, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      secondHypotheses: new FormControl(this.project?.secondHypotheses),
-      keywords: new FormControl(this.project?.keywords),
-      categories: new FormControl(this.project?.categories),
-      startDate: new FormControl(this.project?.startDate, [Validators.required]),
-      endDate: new FormControl(this.project?.endDate, [Validators.required]),
-      financed: new FormControl(this.project?.financed),
-      usedOutsideEu: new FormControl(this.project?.usedOutsideEu),
+      goal: new UntypedFormControl(this.project?.goal, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      firstHypotheses: new UntypedFormControl(this.project?.firstHypotheses, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      secondHypotheses: new UntypedFormControl(this.project?.secondHypotheses),
+      keywords: new UntypedFormControl(this.project?.keywords),
+      categories: new UntypedFormControl(this.project?.categories),
+      startDate: new UntypedFormControl(this.project?.startDate, [Validators.required]),
+      endDate: new UntypedFormControl(this.project?.endDate, [Validators.required]),
+      financed: new UntypedFormControl(this.project?.financed),
+      usedOutsideEu: new UntypedFormControl(this.project?.usedOutsideEu),
     })
 
-    this.commentForm = new FormGroup({
-      text: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    this.commentForm = new UntypedFormGroup({
+      text: new UntypedFormControl('', [Validators.required, Validators.minLength(3)]),
     })
 
-    this.approverForm = new FormGroup({
-      decision: new FormControl(ApprovalOption.Approve, Validators.required),
+    this.approverForm = new UntypedFormGroup({
+      decision: new UntypedFormControl(ApprovalOption.Approve, Validators.required),
     })
   }
 

@@ -15,7 +15,7 @@
  */
 
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { environment } from '../../../../environments/environment'
@@ -80,10 +80,10 @@ export class TimeInputComponent implements OnInit, OnDestroy {
 
   constructor() {}
 
-  form = new FormGroup({
-    hours: new FormControl(0),
-    minutes: new FormControl(0),
-    seconds: new FormControl(0),
+  form = new UntypedFormGroup({
+    hours: new UntypedFormControl(0),
+    minutes: new UntypedFormControl(0),
+    seconds: new UntypedFormControl(0),
   })
 
   ngOnInit(): void {

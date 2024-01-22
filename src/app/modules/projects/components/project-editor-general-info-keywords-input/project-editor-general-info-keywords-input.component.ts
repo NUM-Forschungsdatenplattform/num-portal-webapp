@@ -16,7 +16,7 @@
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes'
 import { Component, Input } from '@angular/core'
-import { FormGroup } from '@angular/forms'
+import { UntypedFormGroup } from '@angular/forms'
 import { MatChipInputEvent } from '@angular/material/chips'
 
 @Component({
@@ -27,7 +27,7 @@ import { MatChipInputEvent } from '@angular/material/chips'
 export class ProjectEditorGeneralInfoKeywordsInputComponent {
   constructor() {}
 
-  @Input() form: FormGroup
+  @Input() form: UntypedFormGroup
   separatorKeyCodes: number[] = [ENTER, COMMA]
 
   get keywords(): string[] {

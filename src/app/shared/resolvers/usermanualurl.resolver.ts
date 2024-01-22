@@ -23,7 +23,10 @@ import { USER_MANUAL_LINK } from '../constants'
   providedIn: 'root',
 })
 export class UserManualUrlResolver implements Resolve<void> {
-  constructor(private translate: TranslateService, private router: Router) {}
+  constructor(
+    private translate: TranslateService,
+    private router: Router
+  ) {}
   resolve(): void {
     let link: string
     if (this.translate.currentLang == 'de') {
