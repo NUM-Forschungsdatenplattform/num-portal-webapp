@@ -78,9 +78,9 @@ jobs:
       - run:
           name: Run CVE scan by OWASP Dependency Check
           command: |
-            wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v6.2.2/dependency-check-6.2.2-release.zip
-            mv dependency-check-6.2.2-release.zip ~
-            unzip ~/dependency-check-6.2.2-release.zip -d ~
+            wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v9.0.9/dependency-check-9.0.9-release.zip
+            mv dependency-check-9.0.9-release.zip ~
+            unzip ~/dependency-check-9.0.9-release.zip -d ~
             ~/dependency-check/bin/dependency-check.sh -s ~/project --project num-portal-webapp -o ~/project -f HTML -f XML
       - store_artifacts:
           path: ~/project/dependency-check-report.html
