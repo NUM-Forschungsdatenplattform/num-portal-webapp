@@ -235,7 +235,7 @@ jobs:
             else
               TAG="$(echo $CIRCLE_BRANCH | awk -F'/' '{print $2;}')-rc$CIRCLE_BUILD_NUM"
             fi
-            docker build -t $DOCKER_USER/num-portal-webapp:$TAG .
+            docker build --build-arg FONTAWESOME_NPM_AUTH_TOKEN=$FONTAWESOME_NPM_AUTH_TOKEN -t $DOCKER_USER/num-portal-webapp:$TAG .
             echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
             docker push $DOCKER_USER/num-portal-webapp:$TAG
 

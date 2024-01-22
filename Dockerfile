@@ -16,7 +16,7 @@
 FROM node:16.20-alpine AS build
 WORKDIR /usr/src/app
 COPY . .
-ENV FONTAWESOME_NPM_AUTH_TOKEN=
+ARG FONTAWESOME_NPM_AUTH_TOKEN=
 RUN cp ./.circleci/.npmrc .
 RUN envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ./.npmrc
 RUN npm install
