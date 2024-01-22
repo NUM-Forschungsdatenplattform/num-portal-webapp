@@ -15,6 +15,10 @@
 ### STAGE 1: Build ###
 FROM node:16.20-alpine AS build
 WORKDIR /usr/src/app
+
+# Install gettext for envsubst
+RUN apk add -i gettext
+
 COPY . .
 ARG FONTAWESOME_NPM_AUTH_TOKEN=
 RUN cp ./.circleci/.npmrc .
