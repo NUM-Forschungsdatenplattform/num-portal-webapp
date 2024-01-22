@@ -25,7 +25,7 @@ RUN cp ./.circleci/.npmrc .
 RUN envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ./.npmrc
 RUN npm install
 ARG ENVIRONMENT=deploy
-RUN npm run build -- --configuration=${ENVIRONMENT}
+RUN npm run build -- num-portal-webapp --configuration=${ENVIRONMENT}
 
 ### STAGE 2: Run ###
 FROM nginx:1.25-alpine
