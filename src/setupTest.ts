@@ -56,3 +56,7 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
 Object.defineProperty(URL, 'createObjectURL', {
   value: () => 'https://test-link.com',
 })
+
+Object.defineProperty(URL, 'revokeObjectURL', {
+  value: () => undefined,
+})

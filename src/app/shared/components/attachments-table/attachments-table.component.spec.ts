@@ -38,6 +38,11 @@ import { ButtonComponent } from '../button/button.component'
 import { of } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
+jest.mock('src/app/core/utils/download-file.utils.ts', () => ({
+  downloadPdf: jest.fn(),
+}))
+import { downloadPdf } from 'src/app/core/utils/download-file.utils'
+
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
 )
@@ -227,6 +232,21 @@ describe('AttachmentsTableComponent', () => {
       expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
         2,
         attachmentUiMocks[1].id
+      )
+      expect(downloadPdf).toHaveBeenCalledTimes(2)
+      expect(downloadPdf).toHaveBeenNthCalledWith(
+        1,
+        attachmentUiMocks[0].name,
+        new Blob([`This is test file ${attachmentUiMocks[0].id} content`], {
+          type: 'application/pdf',
+        })
+      )
+      expect(downloadPdf).toHaveBeenNthCalledWith(
+        2,
+        attachmentUiMocks[1].name,
+        new Blob([`This is test file ${attachmentUiMocks[1].id} content`], {
+          type: 'application/pdf',
+        })
       )
     })
 
