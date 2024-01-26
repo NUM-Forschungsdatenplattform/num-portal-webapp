@@ -158,7 +158,7 @@ describe('AqlTableComponent', () => {
         component.handleMenuClick(menuKey, aqlId)
 
         expect(router.navigate).toHaveBeenCalledWith(['aqls', aqlId, 'editor'])
-      },
+      }
     )
   })
 

@@ -42,7 +42,7 @@ export const routes: Routes = [
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Profile.Module" */ './modules/profile/profile.module').then(
-        (m) => m.ProfileModule,
+        (m) => m.ProfileModule
       ),
   },
   {
@@ -56,7 +56,7 @@ export const routes: Routes = [
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Search.Module" */ './modules/search/search.module').then(
-        (m) => m.SearchModule,
+        (m) => m.SearchModule
       ),
   },
   {
@@ -69,7 +69,7 @@ export const routes: Routes = [
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Projects.Module" */ './modules/projects/projects.module').then(
-        (m) => m.ProjectsModule,
+        (m) => m.ProjectsModule
       ),
   },
   {
@@ -95,7 +95,7 @@ export const routes: Routes = [
     },
     loadChildren: () =>
       import(/* webpackChunkName: "Aqls.Module" */ './modules/aqls/aqls.module').then(
-        (m) => m.AqlsModule,
+        (m) => m.AqlsModule
       ),
   },
   {
@@ -163,7 +163,7 @@ export const routes: Routes = [
     path: 'legal',
     loadChildren: () =>
       import(/* webpackChunkName: "Legal.Module" */ './modules/legal/legal.module').then(
-        (m) => m.LegalModule,
+        (m) => m.LegalModule
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -84,7 +84,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     private dialogService: DialogService,
     private router: Router,
     private toast: ToastMessageService,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {
     super()
 
@@ -106,7 +106,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
     })
 
     this.subscriptions.add(
-      this.profileService.userProfileObservable$.subscribe((user) => (this.user = user)),
+      this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
     )
 
     this.subscriptions.add(
@@ -122,7 +122,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
         }
 
         this.getAll()
-      }),
+      })
     )
 
     this.lang = this.translateService.currentLang || 'en'
@@ -166,11 +166,11 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
           this.sortDir,
           this.sortBy,
           this.filters,
-          this.lang,
+          this.lang
         )
         .subscribe((data) => {
           this.handleData(data)
-        }),
+        })
     )
   }
 

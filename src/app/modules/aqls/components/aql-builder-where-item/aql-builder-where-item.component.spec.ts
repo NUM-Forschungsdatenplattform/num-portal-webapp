@@ -72,7 +72,7 @@ describe('AqlBuilderWhereItemComponent', () => {
     component.item = new AqbWhereItemUiModel(
       containmentTreeNode,
       compositionReferenceId,
-      archetypeReferenceId,
+      archetypeReferenceId
     )
     fixture.detectChanges()
   })

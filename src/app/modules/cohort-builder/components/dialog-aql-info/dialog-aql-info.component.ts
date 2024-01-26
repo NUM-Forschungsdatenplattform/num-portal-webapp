@@ -44,7 +44,7 @@ export class DialogAqlInfoComponent implements OnInit, OnDestroy, IGenericDialog
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.currentLang = event.lang || 'en'
-      }),
+      })
     )
   }
 
@@ -57,11 +57,11 @@ export class DialogAqlInfoComponent implements OnInit, OnDestroy, IGenericDialog
     this.aql.parameters.forEach((param) => {
       resultString = resultString.replace(
         '$' + param.name + this.NAME_SUFFIX,
-        `<span class="mark--name">$${param.name}</span>`,
+        `<span class="mark--name">$${param.name}</span>`
       )
       resultString = resultString.replace(
         '$' + param.name + this.OPERATOR_SUFFIX,
-        `<span class="mark--operator">${param.operator}</span>`,
+        `<span class="mark--operator">${param.operator}</span>`
       )
     })
     return resultString

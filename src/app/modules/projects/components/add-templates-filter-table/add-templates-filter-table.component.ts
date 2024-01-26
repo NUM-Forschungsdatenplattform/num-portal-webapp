@@ -61,8 +61,8 @@ export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnCh
   ngOnInit(): void {
     this.subscriptions.add(
       this.templateService.filteredTemplatesObservable$.subscribe((templates) =>
-        this.handleData(templates),
-      ),
+        this.handleData(templates)
+      )
     )
   }
 
@@ -78,7 +78,7 @@ export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnCh
             const changedData = changes[propName].currentValue as IProjectTemplateInfoApi[]
             const selectedTemplates: { [id: number]: boolean } = {}
             changedData.forEach(
-              (selectedTemplate) => (selectedTemplates[selectedTemplate.templateId] = true),
+              (selectedTemplate) => (selectedTemplates[selectedTemplate.templateId] = true)
             )
             this.lookupSelectedTemplates = selectedTemplates
           }
@@ -102,7 +102,7 @@ export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnCh
 
   handleDeselectClick(row: ITemplateMetaDataApi): void {
     const newSelection = this.selectedTemplates.filter(
-      (selectedTemplate) => selectedTemplate.templateId !== row.templateId,
+      (selectedTemplate) => selectedTemplate.templateId !== row.templateId
     )
     this.lookupSelectedTemplates[row.templateId] = false
     this.selectedTemplatesChange.emit(newSelection)

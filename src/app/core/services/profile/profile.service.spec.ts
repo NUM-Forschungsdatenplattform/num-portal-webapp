@@ -108,7 +108,7 @@ describe('ProfileService', () => {
           firstName,
           lastName,
         },
-        { responseType: 'text' },
+        { responseType: 'text' }
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -123,7 +123,7 @@ describe('ProfileService', () => {
           firstName,
           lastName,
         },
-        { responseType: 'text' },
+        { responseType: 'text' }
       )
     })
   })

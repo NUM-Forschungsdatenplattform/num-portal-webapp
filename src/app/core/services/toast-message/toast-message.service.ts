@@ -25,7 +25,7 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 export class ToastMessageService {
   constructor(
     private snackbar: MatSnackBar,
-    private translate: TranslateService,
+    private translate: TranslateService
   ) {}
 
   public openToast(config: IToastMessageConfig): MatSnackBarRef<any> {

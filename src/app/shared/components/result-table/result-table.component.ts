@@ -65,7 +65,7 @@ export class ResultTableComponent {
 
     this.displayedColumns = resultSetColumns.map((column) => column.path)
     this.displayedColumnNames = resultSetColumns.map(
-      (column) => column.name.match(columnNamePattern)[0],
+      (column) => column.name.match(columnNamePattern)[0]
     )
     this.dataSource.data = this.resultSet.rows.map((row, index) => [index + 1, ...row])
   }

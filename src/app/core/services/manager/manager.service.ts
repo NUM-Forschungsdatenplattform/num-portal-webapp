@@ -12,7 +12,7 @@ export class ManagerService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService,
+    appConfig: AppConfigService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}`
   }

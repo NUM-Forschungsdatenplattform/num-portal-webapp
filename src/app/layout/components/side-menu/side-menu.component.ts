@@ -62,12 +62,12 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
     public translateService: TranslateService,
-    private systemService: SystemStatusService,
+    private systemService: SystemStatusService
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo()),
+      this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
     this.getDynamicExternalURLs()
     mainNavItems.forEach((item) => {

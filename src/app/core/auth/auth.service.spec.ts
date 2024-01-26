@@ -93,7 +93,7 @@ describe('Auth Service', () => {
       httpClient,
       mockRouter,
       idle,
-      keepAlive,
+      keepAlive
     )
     jest.spyOn(profileService, 'get').mockImplementation(() => of())
     eventSubject = new Subject<OAuthEvent>()

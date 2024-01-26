@@ -253,7 +253,7 @@ describe('ProjectEditorComponent', () => {
         roles: null,
         approved: true,
         organization: null,
-      }),
+      })
     )
   })
 
@@ -427,7 +427,7 @@ describe('ProjectEditorComponent', () => {
         ['projects', resolvedData.project.id, 'editor'],
         {
           queryParams,
-        },
+        }
       )
     })
   })
@@ -480,7 +480,7 @@ describe('ProjectEditorComponent', () => {
         }
         expect(projectService.updateStatusById).toHaveBeenCalledWith(1, testCase.newState)
         expect(router.navigate).toHaveBeenCalledWith(['/projects'])
-      },
+      }
     )
 
     it('should open the dialog to confirm the approval on approval decision and do nothing on cancel', () => {
@@ -506,7 +506,7 @@ describe('ProjectEditorComponent', () => {
       exportEmitter.emit()
       expect(projectService.exportPrint).toHaveBeenCalledWith(
         resolvedData.project.id,
-        componentAny.translateService.currentLang,
+        componentAny.translateService.currentLang
       )
       expect(downloadFile).toHaveBeenCalledTimes(1)
     })

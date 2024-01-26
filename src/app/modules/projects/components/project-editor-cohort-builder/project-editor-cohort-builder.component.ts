@@ -46,7 +46,7 @@ export class ProjectEditorCohortBuilderComponent implements OnInit {
     this.subscriptions.add(
       this.aqlService.filterConfigObservable$
         .pipe(take(1))
-        .subscribe((config) => (this.filterConfig = config)),
+        .subscribe((config) => (this.filterConfig = config))
     )
   }
 

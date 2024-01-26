@@ -34,7 +34,7 @@ export class DialogService {
 
   public openDialog(
     dialogConfig: DialogConfig,
-    disableClose = false,
+    disableClose = false
   ): MatDialogRef<GenericDialogComponent, any> {
     return this.dialog.open(GenericDialogComponent, {
       ...this.getSize(dialogConfig.dialogSize),

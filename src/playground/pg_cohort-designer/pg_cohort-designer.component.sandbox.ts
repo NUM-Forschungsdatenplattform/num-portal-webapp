@@ -6,5 +6,5 @@ export default sandboxOf(PgCohortDesignerComponent, { imports: [CohortBuilderMod
   'CohortDesigner',
   {
     template: `<num-pg-cohort-designer></num-pg-cohort-designer>`,
-  },
+  }
 )

@@ -37,7 +37,7 @@ export class AqbSelectItemUiModel {
     compositionReferenceId: number,
     archetypeReferenceId: number,
     isComposition: boolean,
-    templateId: string,
+    templateId: string
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = ''

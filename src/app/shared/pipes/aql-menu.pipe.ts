@@ -55,7 +55,7 @@ export class AqlMenuPipe<T extends IItemVisibility> implements PipeTransform {
 
     /** Checks if the item should be disabled based on the ownership */
     const disabledByOwnership = item.disabledUnless.some(
-      (activeMenuItem) => activeMenuItem === this.isOwnAql,
+      (activeMenuItem) => activeMenuItem === this.isOwnAql
     )
 
     item.isDisabled = enabledByRole ? false : disabledByOwnership

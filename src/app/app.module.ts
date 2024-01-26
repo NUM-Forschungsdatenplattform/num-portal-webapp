@@ -61,7 +61,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
         (
           configService: AppConfigService,
           oauthInitService: OAuthInitService,
-          authService: AuthService,
+          authService: AuthService
         ) =>
         () =>
           configService.loadConfig().then(() =>
@@ -69,7 +69,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
               authService.fetchUserInfo().then(() => {
                 authService.initTokenHandling()
               })
-            }),
+            })
           ),
     },
     {

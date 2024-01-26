@@ -38,8 +38,8 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(
       this.organizationService.organizationsObservable$.subscribe((organizations) =>
-        this.handleData(organizations),
-      ),
+        this.handleData(organizations)
+      )
     )
     this.organizationId = cloneDeep(this.selectedOrganization.id)
   }
@@ -54,7 +54,7 @@ export class AddUserOrganizationComponent implements OnInit, OnDestroy {
 
   handleSelectClick(): void {
     const newOrganization = this.organizations.find(
-      (organization) => organization.id === this.organizationId,
+      (organization) => organization.id === this.organizationId
     )
 
     this.selectedOrganizationChange.emit(newOrganization)

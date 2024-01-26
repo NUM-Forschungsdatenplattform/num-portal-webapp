@@ -53,7 +53,7 @@ export class AqbUiModel {
       this.addTemplateRestriction(
         compositionReferenceId,
         clickEvent.compositionId,
-        clickEvent.templateId,
+        clickEvent.templateId
       )
     }
 
@@ -64,7 +64,7 @@ export class AqbUiModel {
         compositionReferenceId,
         archetypeReferenceId,
         isComposition,
-        clickEvent.templateId,
+        clickEvent.templateId
       )
     } else {
       const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
@@ -72,7 +72,7 @@ export class AqbUiModel {
         userGeneratedWhereClause,
         clickEvent,
         compositionReferenceId,
-        archetypeReferenceId,
+        archetypeReferenceId
       )
     }
 
@@ -81,14 +81,14 @@ export class AqbUiModel {
       clickEvent.compositionId,
       compositionReferenceId,
       archetypeId,
-      archetypeReferenceId,
+      archetypeReferenceId
     )
   }
 
   private addTemplateRestriction(
     compositionReferenceId: number,
     compositionId: string,
-    templateId: string,
+    templateId: string
   ): void {
     const templateRestrictionItem: IContainmentTreeNode = {
       displayName: 'Template ID',
@@ -102,7 +102,7 @@ export class AqbUiModel {
     const aqbWhere = new AqbWhereItemUiModel(
       templateRestrictionItem,
       compositionReferenceId,
-      compositionReferenceId,
+      compositionReferenceId
     )
 
     aqbWhere.value = templateId
@@ -115,14 +115,14 @@ export class AqbUiModel {
     compositionReferenceId: number,
     archetypeReferenceId: number,
     isComposition: boolean,
-    templateId: string,
+    templateId: string
   ): void {
     const aqbSelect = new AqbSelectItemUiModel(
       clickEvent.item,
       compositionReferenceId,
       archetypeReferenceId,
       isComposition,
-      templateId,
+      templateId
     )
     this.select.push(aqbSelect)
   }
@@ -131,12 +131,12 @@ export class AqbUiModel {
     whereGroup: AqbWhereGroupUiModel,
     clickEvent: IAqbSelectClick,
     compositionReferenceId: number,
-    archetypeReferenceId: number,
+    archetypeReferenceId: number
   ): void {
     const aqbWhere = new AqbWhereItemUiModel(
       clickEvent.item,
       compositionReferenceId,
-      archetypeReferenceId,
+      archetypeReferenceId
     )
 
     whereGroup.children.push(aqbWhere)
@@ -157,7 +157,7 @@ export class AqbUiModel {
     this.deleteReferencesByIds(compositionReferenceIds)
 
     this.select = this.select.filter(
-      (item) => !compositionReferenceIds.includes(item.compositionReferenceId),
+      (item) => !compositionReferenceIds.includes(item.compositionReferenceId)
     )
 
     const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
@@ -173,7 +173,7 @@ export class AqbUiModel {
     this.deleteReferencesByIds(archetypeReferenceIds)
 
     this.select = this.select.filter(
-      (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId),
+      (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId)
     )
 
     const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel

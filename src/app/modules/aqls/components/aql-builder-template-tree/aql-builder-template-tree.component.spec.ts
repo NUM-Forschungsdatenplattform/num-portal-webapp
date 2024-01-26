@@ -95,7 +95,7 @@ describe('AqlBuilderTemplateTreeComponent', () => {
       const name = 'test_field1::value'
       const nativeElement = fixture.debugElement.nativeElement
       const nodeElement = nativeElement.querySelector(
-        `[data-test="aqb__containment__${templateId}__node__${archetypeId}__${name}"]`,
+        `[data-test="aqb__containment__${templateId}__node__${archetypeId}__${name}"]`
       ) as HTMLElement
 
       const clickEvent = document.createEvent('MouseEvents')
@@ -128,7 +128,7 @@ describe('AqlBuilderTemplateTreeComponent', () => {
       await fixture.whenStable()
       const nativeElement = fixture.debugElement.nativeElement
       const errorElement = nativeElement.querySelector(
-        '[data-test="aqb__containment__testId__error"]',
+        '[data-test="aqb__containment__testId__error"]'
       )
       expect(errorElement.textContent).toBeDefined()
     })

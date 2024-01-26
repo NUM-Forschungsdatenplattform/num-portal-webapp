@@ -57,7 +57,7 @@ export class AqlService {
     private httpClient: HttpClient,
     appConfig: AppConfigService,
     private profileService: ProfileService,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aql`
 
@@ -70,7 +70,7 @@ export class AqlService {
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item)),
+        switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredAqlsSubject$.next(filterResult))
 
@@ -86,7 +86,7 @@ export class AqlService {
     sort: string = null,
     sortBy: string = null,
     filters: any,
-    lang: string,
+    lang: string
   ): Observable<any> {
     let queryS = ''
     if (page !== null && size !== null) {
@@ -111,7 +111,7 @@ export class AqlService {
         this.filteredAqls = data.content
         this.filteredAqlsSubject$.next(data)
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -127,7 +127,7 @@ export class AqlService {
           }
         }),
         catchError(this.handleError),
-        shareReplay(1),
+        shareReplay(1)
       )
       this.setNewCacheTimestamp()
     }
@@ -148,7 +148,7 @@ export class AqlService {
             return searchResult
           }
           throw new Error('Not Found')
-        }),
+        })
       )
     }
 
@@ -169,7 +169,7 @@ export class AqlService {
         }),
         catchError(() => {
           return of([])
-        }),
+        })
       )
     }
   }
@@ -190,7 +190,7 @@ export class AqlService {
             ?.concat(' ', aql.owner?.lastName)
             .toLowerCase()
             .includes(textFilter) ||
-          aql.owner?.lastName?.concat(' ', aql.owner?.firstName).toLowerCase().includes(textFilter),
+          aql.owner?.lastName?.concat(' ', aql.owner?.firstName).toLowerCase().includes(textFilter)
       )
     }
 
@@ -200,7 +200,7 @@ export class AqlService {
           result = result.filter((aql) => aql.owner?.id === this.user.id)
         } else if (filterItem.id === AqlFilterChipId.OrganizationAql) {
           result = result.filter(
-            (aql) => aql.owner?.organization?.id === this.user.organization?.id,
+            (aql) => aql.owner?.organization?.id === this.user.organization?.id
           )
         }
       }

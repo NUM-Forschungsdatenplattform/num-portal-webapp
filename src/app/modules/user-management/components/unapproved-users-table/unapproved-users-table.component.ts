@@ -39,7 +39,7 @@ export class UnapprovedUsersTableComponent
   private subscriptions = new Subscription()
   constructor(
     private adminService: AdminService,
-    private dialogService: DialogService,
+    private dialogService: DialogService
   ) {
     super()
   }
@@ -86,7 +86,7 @@ export class UnapprovedUsersTableComponent
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
         .subscribe((data) => {
           this.handleData(data)
-        }),
+        })
     )
   }
 
@@ -132,7 +132,7 @@ export class UnapprovedUsersTableComponent
         .afterClosed()
         .subscribe(() => {
           this.getAll()
-        }),
+        })
     )
   }
 }

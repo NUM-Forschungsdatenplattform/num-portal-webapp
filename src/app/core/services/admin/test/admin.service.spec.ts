@@ -77,7 +77,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/admin/user/all?page=0&size=2&language=null&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName',
+        'localhost/api/admin/user/all?page=0&size=2&language=null&filter%5Btype%5D=approved&sort=ASC&sortBy=firstName'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -88,7 +88,7 @@ describe('AdminService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getUnapprovedUsers().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=true`,
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       service.unapprovedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
@@ -103,7 +103,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=false&withRoles=true`,
+        `localhost/api/admin/user?approved=false&withRoles=true`
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -114,7 +114,7 @@ describe('AdminService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUsers))
       service.getApprovedUsers().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=true&withRoles=true`,
+        `localhost/api/admin/user?approved=true&withRoles=true`
       )
       service.approvedUsersObservable$.subscribe((users) => {
         expect(users).toEqual(mockUsers)
@@ -129,7 +129,7 @@ describe('AdminService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        `localhost/api/admin/user?approved=true&withRoles=true`,
+        `localhost/api/admin/user?approved=true&withRoles=true`
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -147,7 +147,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/approve`,
         undefined,
-        httpOptions,
+        httpOptions
       )
     })
     it(`should call the api - with error`, () => {
@@ -165,7 +165,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/approve`,
         undefined,
-        httpOptions,
+        httpOptions
       )
     })
   })
@@ -247,7 +247,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/organization`,
         organization,
-        httpOptions,
+        httpOptions
       )
     })
     it(`should call the api - with error`, () => {
@@ -267,7 +267,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/organization`,
         organization,
-        httpOptions,
+        httpOptions
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -311,7 +311,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/name`,
         userName,
-        httpOptions,
+        httpOptions
       )
     })
 
@@ -326,7 +326,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/status`,
         true,
-        httpOptions,
+        httpOptions
       )
     })
     it(`should call the api - with error`, () => {
@@ -344,7 +344,7 @@ describe('AdminService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `localhost/api/admin/user/${id}/name`,
         userName,
-        httpOptions,
+        httpOptions
       )
     })
   })

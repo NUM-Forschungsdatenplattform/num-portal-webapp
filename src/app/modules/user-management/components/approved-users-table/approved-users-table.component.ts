@@ -42,7 +42,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
 
   constructor(
     private adminService: AdminService,
-    private dialogService: DialogService,
+    private dialogService: DialogService
   ) {
     super()
   }
@@ -102,7 +102,7 @@ export class ApprovedUsersTableComponent extends SortableTable<IUser> implements
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
         .subscribe((data) => {
           this.handleData(data)
-        }),
+        })
     )
   }
 

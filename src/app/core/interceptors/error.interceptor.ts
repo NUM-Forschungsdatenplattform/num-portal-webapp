@@ -9,7 +9,7 @@ import { ProfileService } from '../services/profile/profile.service'
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
-    private profileService: ProfileService,
+    private profileService: ProfileService
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         const error = err.error.message || err.statusText
         return throwError(error)
-      }),
+      })
     )
   }
 }

@@ -96,7 +96,7 @@ describe('ProjectService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/project/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED&language=en',
+        'localhost/api/project/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED&language=en'
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -194,7 +194,7 @@ describe('ProjectService', () => {
         `localhost/api/project/${1}/execute?defaultConfiguration=true`,
         {
           query: 'query',
-        },
+        }
       )
     })
     it(`should call the api - with error`, () => {
@@ -209,7 +209,7 @@ describe('ProjectService', () => {
         `localhost/api/project/${1}/execute?defaultConfiguration=false`,
         {
           query: 'query',
-        },
+        }
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -290,7 +290,7 @@ describe('ProjectService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `${baseUrl}/${id}/export?format=csv&defaultConfiguration=true`,
         { query },
-        { responseType: 'blob' as 'json' },
+        { responseType: 'blob' as 'json' }
       )
     })
   })
@@ -322,7 +322,7 @@ describe('ProjectService', () => {
 
       const result = service.filterItems(
         [...mockProjects, mockProject4] as IProjectApi[],
-        testcase.filter,
+        testcase.filter
       )
       expect(result.length).toEqual(testcase.resultLength)
     })

@@ -39,7 +39,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private contentService: ContentService,
-    private toastMessageService: ToastMessageService,
+    private toastMessageService: ToastMessageService
   ) {}
 
   isLoading = true
@@ -59,8 +59,8 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
 
     this.subscriptions.add(
       this.contentService.navigationLinksObservable$.subscribe((navigationItems) =>
-        this.handleData(navigationItems),
-      ),
+        this.handleData(navigationItems)
+      )
     )
   }
 
@@ -81,7 +81,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
         title: ['', [Validators.maxLength(20)]],
         url: ['', [Validators.pattern(urlRegex)]],
       },
-      { validators: this.fillBothValidation },
+      { validators: this.fillBothValidation }
     )
   }
 
@@ -135,7 +135,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
       () => {
         this.toastMessageService.openToast(SAVE_NAVIGATION_ERROR_CONFIG)
         this.isLoading = false
-      },
+      }
     )
   }
 

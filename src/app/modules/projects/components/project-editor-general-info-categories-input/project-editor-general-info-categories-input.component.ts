@@ -53,8 +53,8 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
   ngOnInit(): void {
     this.filteredCategories = this.categoryCtrl.valueChanges.pipe(
       map((filterText: string | null) =>
-        filterText ? this.filterCategories(filterText) : this.filterCategories(),
-      ),
+        filterText ? this.filterCategories(filterText) : this.filterCategories()
+      )
     )
   }
 
@@ -88,7 +88,7 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
 
   filterCategories(filterText?: string): ProjectCategory[] {
     const allCategoriesWithoutSelected = this.allCategories.filter(
-      (c) => !this.categories.includes(c),
+      (c) => !this.categories.includes(c)
     )
 
     let filteredCategories: ProjectCategory[] = []
@@ -100,7 +100,7 @@ export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit 
         this.translate
           .instant('PROJECT.CATEGORIES.' + category)
           .toLowerCase()
-          .includes(filterText),
+          .includes(filterText)
       )
     } else {
       filteredCategories = allCategoriesWithoutSelected

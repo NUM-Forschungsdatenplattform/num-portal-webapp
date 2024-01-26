@@ -34,14 +34,14 @@ export class AqbContainsUiModel {
     compositionId: string,
     compositionReferenceId: number,
     archetypeId: string,
-    archetypeReferenceId: number,
+    archetypeReferenceId: number
   ): void {
     let composition = this.compositions.get(compositionReferenceId)
     if (composition === undefined || composition === null) {
       composition = new AqbContainsCompositionUiModel(
         templateId,
         compositionId,
-        compositionReferenceId,
+        compositionReferenceId
       )
     }
 
@@ -51,7 +51,7 @@ export class AqbContainsUiModel {
 
   deleteCompositions(compositionReferenceIds: number[]): void {
     compositionReferenceIds.forEach((compositionReferenceId) =>
-      this.compositions.delete(compositionReferenceId),
+      this.compositions.delete(compositionReferenceId)
     )
   }
 

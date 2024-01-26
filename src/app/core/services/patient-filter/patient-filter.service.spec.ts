@@ -100,7 +100,7 @@ describe('PatientFilterService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/cohort/size/distribution?allowUsageOutsideEu=false',
 
-        cohortGroup,
+        cohortGroup
       )
       service.previewDataObservable$.subscribe((data) => {
         expect(data).toEqual('result')
@@ -118,7 +118,7 @@ describe('PatientFilterService', () => {
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/cohort/size/distribution?allowUsageOutsideEu=true',
-        cohortGroup,
+        cohortGroup
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -174,7 +174,7 @@ describe('PatientFilterService', () => {
         (error) => {
           expect(error).toBeDefined()
           done()
-        },
+        }
       )
     })
   })
@@ -227,7 +227,7 @@ describe('PatientFilterService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `${baseProjectUrl}/manager/export?format=json`,
         { cohort, templates },
-        { responseType: 'text' },
+        { responseType: 'text' }
       )
     })
 
@@ -237,7 +237,7 @@ describe('PatientFilterService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `${baseProjectUrl}/manager/export?format=csv`,
         { cohort, templates },
-        { responseType: 'blob' as 'json' },
+        { responseType: 'blob' as 'json' }
       )
     })
 
@@ -247,7 +247,7 @@ describe('PatientFilterService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         `${baseProjectUrl}/manager/export?format=csv`,
         { cohort, templates },
-        { responseType: 'blob' as 'json' },
+        { responseType: 'blob' as 'json' }
       )
     })
 

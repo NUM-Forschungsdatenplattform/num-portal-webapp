@@ -35,14 +35,14 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    private authService: AuthService,
+    private authService: AuthService
   ) {
     this.authService.userInfoObservable$.subscribe((userInfo) => (this.userInfo = userInfo))
   }
 
   resolve(
     route: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot,
+    _state: RouterStateSnapshot
   ): Observable<IProjectResolved> {
     const id = route.paramMap.get('id')
 
@@ -64,7 +64,7 @@ export class DataExplorerResolver implements Resolve<IProjectResolved> {
       catchError((error) => {
         this.router.navigate(['data-explorer/projects'])
         return of(error)
-      }),
+      })
     )
   }
 

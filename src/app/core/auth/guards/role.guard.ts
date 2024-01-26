@@ -37,7 +37,7 @@ export class RoleGuard implements CanActivate, CanLoad {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
     this.authService.userInfoObservable$.subscribe((user: IAuthUserInfo) => {
       this.userInfo = user
@@ -86,7 +86,7 @@ export class RoleGuard implements CanActivate, CanLoad {
       catchError(() => {
         this.router.navigate(['/home'])
         return of(false)
-      }),
+      })
     )
   }
 }

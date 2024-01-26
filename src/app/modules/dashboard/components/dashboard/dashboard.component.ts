@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private appConfig: AppConfigService,
     private authService: AuthService,
     private contentService: ContentService,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {}
 
   config = this.appConfig.config
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.translateService.onLangChange.subscribe((newLang) => {
         this.displayLang = newLang.lang
         this.blocks = this.translateService?.instant('DASHBOARD.INTRODUCTION.BLOCKS')
-      }),
+      })
     )
   }
 

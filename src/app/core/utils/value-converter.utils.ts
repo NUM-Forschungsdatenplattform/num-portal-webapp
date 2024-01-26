@@ -21,7 +21,7 @@ import { Moment } from 'moment'
 export const convertParameterInputToType = (
   type: AqlParameterValueType,
   inputValue: string | number | boolean | Date | Moment,
-  defaultToUndefined = false,
+  defaultToUndefined = false
 ): number | string | boolean => {
   let outputValue: number | string | boolean
   switch (type) {

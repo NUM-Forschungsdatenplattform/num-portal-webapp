@@ -39,7 +39,7 @@ import { of } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
 const attachmentUiMocks = attachmentApiMocks.map(
-  (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock),
+  (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
 )
 
 describe('AttachmentsTableComponent', () => {
@@ -133,7 +133,7 @@ describe('AttachmentsTableComponent', () => {
 
     it('should (de)select single rows using the checkbox', async () => {
       const firstSelect = await harnessLoader.getHarness(
-        MatCellHarness.with({ columnName: 'select' }),
+        MatCellHarness.with({ columnName: 'select' })
       )
       const checkbox = await firstSelect.getHarness(MatCheckboxHarness)
       await checkbox.toggle()
@@ -145,7 +145,7 @@ describe('AttachmentsTableComponent', () => {
 
     it('should (de)select all rows if none has been selected before', async () => {
       const masterSelect = await harnessLoader.getHarness(
-        MatHeaderCellHarness.with({ columnName: 'select' }),
+        MatHeaderCellHarness.with({ columnName: 'select' })
       )
       const checkbox = await masterSelect.getHarness(MatCheckboxHarness)
       await checkbox.toggle()
@@ -158,14 +158,14 @@ describe('AttachmentsTableComponent', () => {
 
     it('should select all rows if only partial rows have been selected before', async () => {
       const selects = await harnessLoader.getAllHarnesses(
-        MatCellHarness.with({ columnName: 'select' }),
+        MatCellHarness.with({ columnName: 'select' })
       )
       const firstCheckbox = await selects[0].getHarness(MatCheckboxHarness)
       const thirdCheckbox = await selects[2].getHarness(MatCheckboxHarness)
       await Promise.all([firstCheckbox.toggle(), thirdCheckbox.toggle()])
       expect(component.selection.selected.length).toEqual(2)
       const masterSelect = await harnessLoader.getHarness(
-        MatHeaderCellHarness.with({ columnName: 'select' }),
+        MatHeaderCellHarness.with({ columnName: 'select' })
       )
       const masterToggleCheckbox = await masterSelect.getHarness(MatCheckboxHarness)
       await masterToggleCheckbox.toggle()
@@ -181,10 +181,10 @@ describe('AttachmentsTableComponent', () => {
       component.attachments = attachmentUiMocks
       component.viewMode = false
       downloadButton = await harnessLoader.getHarness(
-        MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' }),
+        MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
       )
       selectCells = await harnessLoader.getAllHarnesses(
-        MatCellHarness.with({ columnName: 'select' }),
+        MatCellHarness.with({ columnName: 'select' })
       )
     })
     it('should be disabled if no attachment have been selected', async () => {
@@ -202,7 +202,7 @@ describe('AttachmentsTableComponent', () => {
       jest
         .spyOn(attachmentMockService, 'downloadAttachment')
         .mockImplementation((id: number) =>
-          of(new Blob([`This is test file ${id} content`], { type: 'application/pdf' })),
+          of(new Blob([`This is test file ${id} content`], { type: 'application/pdf' }))
         )
 
       await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
@@ -211,11 +211,11 @@ describe('AttachmentsTableComponent', () => {
       expect(attachmentMockService.downloadAttachment).toHaveBeenCalledTimes(2)
       expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
         1,
-        attachmentUiMocks[0].id,
+        attachmentUiMocks[0].id
       )
       expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
         2,
-        attachmentUiMocks[1].id,
+        attachmentUiMocks[1].id
       )
     })
   })

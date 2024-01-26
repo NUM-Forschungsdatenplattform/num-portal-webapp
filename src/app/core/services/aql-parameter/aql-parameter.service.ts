@@ -29,7 +29,7 @@ export class AqlParameterService {
 
   constructor(
     private appConfigService: AppConfigService,
-    private httpClient: HttpClient,
+    private httpClient: HttpClient
   ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/parameter`
   }
@@ -43,7 +43,7 @@ export class AqlParameterService {
         cacheKey,
         this.httpClient
           .get<IAqlParameterValuesApi>(`${this.baseUrl}/values`, { params })
-          .pipe(shareReplay(), catchError(this.handleError)),
+          .pipe(shareReplay(), catchError(this.handleError))
       )
     }
     return this.valueCache.get(cacheKey)

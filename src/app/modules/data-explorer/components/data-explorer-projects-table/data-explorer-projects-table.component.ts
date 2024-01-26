@@ -39,7 +39,7 @@ export class DataExplorerProjectsTableComponent
   private subscriptions = new Subscription()
   constructor(
     private projectService: ProjectService,
-    private router: Router,
+    private router: Router
   ) {
     super()
   }
@@ -98,7 +98,7 @@ export class DataExplorerProjectsTableComponent
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters, 'en')
         .subscribe((data) => {
           this.handleData(data)
-        }),
+        })
     )
   }
 

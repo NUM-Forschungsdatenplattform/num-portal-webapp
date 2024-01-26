@@ -47,14 +47,14 @@ export class TemplateService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService,
+    appConfig: AppConfigService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/template/metadata`
 
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item)),
+        switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredTemplatesSubject$.next(filterResult))
   }
@@ -68,7 +68,7 @@ export class TemplateService {
           this.setFilter(this.filterSet)
         }
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -86,14 +86,14 @@ export class TemplateService {
         }),
         catchError(() => {
           return of([])
-        }),
+        })
       )
     }
   }
 
   filterItems(
     allTemplates: ITemplateMetaDataApi[],
-    filterSet: ITemplateFilter,
+    filterSet: ITemplateFilter
   ): ITemplateMetaDataApi[] {
     let result: ITemplateMetaDataApi[] = allTemplates
 

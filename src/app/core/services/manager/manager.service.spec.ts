@@ -39,7 +39,7 @@ describe('ManagerService', () => {
       const result = await service.resolvePseudonym(projectId, pseudonym).toPromise()
       expect(httpClient.get).toHaveBeenCalledWith(
         `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
-        { responseType: 'text' },
+        { responseType: 'text' }
       )
       expect(result).toEqual(resolvedValue)
     })
@@ -56,7 +56,7 @@ describe('ManagerService', () => {
         .catch((_error) => {
           expect(httpClient.get).toHaveBeenCalledWith(
             `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
-            { responseType: 'text' },
+            { responseType: 'text' }
           )
           expect(service.handleError).toHaveBeenCalled()
           done()

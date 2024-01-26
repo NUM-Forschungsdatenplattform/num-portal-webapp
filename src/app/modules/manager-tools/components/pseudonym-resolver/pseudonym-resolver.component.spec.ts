@@ -78,10 +78,10 @@ describe('PseudonymResolverComponent', () => {
     const projectId = '1'
     beforeEach(() => {
       const projectIdInput = fixture.nativeElement.querySelector(
-        `[data-test="manager-tools__resolve-pseudonym__projectid-input"]`,
+        `[data-test="manager-tools__resolve-pseudonym__projectid-input"]`
       )
       const pseudonymInput = fixture.nativeElement.querySelector(
-        `[data-test="manager-tools__resolve-pseudonym__pseudonym-input"]`,
+        `[data-test="manager-tools__resolve-pseudonym__pseudonym-input"]`
       )
       projectIdInput.value = projectId
       projectIdInput.dispatchEvent(new Event('input'))
@@ -97,7 +97,7 @@ describe('PseudonymResolverComponent', () => {
       expect(mockManagerService.resolvePseudonym).toHaveBeenCalledWith(projectId, pseudonym)
 
       const value = fixture.nativeElement.querySelector(
-        `[data-test="manager-tools__resolve-pseudonym__pseudonym-value"]`,
+        `[data-test="manager-tools__resolve-pseudonym__pseudonym-value"]`
       )
 
       expect(value.innerHTML.trim()).toEqual('resolved')

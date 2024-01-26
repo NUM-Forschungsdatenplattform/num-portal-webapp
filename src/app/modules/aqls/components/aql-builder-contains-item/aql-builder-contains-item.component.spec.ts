@@ -36,7 +36,7 @@ describe('AqlBuilderContainsItemComponent', () => {
     compositionId,
     compositionReferenceId,
     archetypeId,
-    archetypeReferenceId,
+    archetypeReferenceId
   )
 
   beforeEach(async () => {
@@ -67,7 +67,7 @@ describe('AqlBuilderContainsItemComponent', () => {
       jest.spyOn(component.deleteItemByArchetypeReferenceId, 'emit')
       component.deleteSelf()
       expect(component.deleteItemByArchetypeReferenceId.emit).toHaveBeenCalledWith(
-        archetypeReferenceId,
+        archetypeReferenceId
       )
     })
   })

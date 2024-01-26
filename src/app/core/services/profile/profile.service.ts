@@ -32,7 +32,7 @@ export class ProfileService {
   public userNotApproved = false
   constructor(
     private httpClient: HttpClient,
-    private appConfig: AppConfigService,
+    private appConfig: AppConfigService
   ) {}
 
   get apiBase(): string {
@@ -48,7 +48,7 @@ export class ProfileService {
         this.userProfile = userProfile
         this.userProfileSubject$.next(userProfile)
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -64,7 +64,7 @@ export class ProfileService {
       .post<string>(
         `${this.apiBase}/admin/user/${userId}/name`,
         { firstName, lastName },
-        httpOptions,
+        httpOptions
       )
       .pipe(catchError(this.handleError))
   }

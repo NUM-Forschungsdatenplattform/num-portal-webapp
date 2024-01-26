@@ -64,7 +64,7 @@ export class FilterTableComponent<T> implements OnInit, OnChanges {
     event.stopPropagation()
     const identifier = row[this.identifierName]
     const result = this.selectedItems.filter(
-      (selectedItem) => selectedItem[this.identifierName] !== identifier,
+      (selectedItem) => selectedItem[this.identifierName] !== identifier
     )
     this.selectedItemsChange.emit(result)
     return result

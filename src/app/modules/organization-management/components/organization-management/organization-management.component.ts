@@ -37,7 +37,7 @@ export class OrganizationManagementComponent implements OnInit, OnDestroy {
 
   constructor(
     private organizationService: OrganizationService,
-    private router: Router,
+    private router: Router
   ) {}
 
   get pageSize(): number {

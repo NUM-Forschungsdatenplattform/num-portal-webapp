@@ -47,10 +47,10 @@ export class ApprovedUsersComponent implements OnInit, OnDestroy {
           this.table.initSearchAndFilters(
             //this.filterConfig.filterItem[0].isSelected,
             this.filterConfig,
-            this.filterConfig.searchText,
+            this.filterConfig.searchText
           )
         })
-      }),
+      })
     )
   }
 

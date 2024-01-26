@@ -61,7 +61,7 @@ describe('DifinationListComponent', () => {
     fixture.detectChanges()
 
     const icons = fixture.debugElement.queryAll(
-      By.css(`[data-test="definition_list__boolean__element__text"]`),
+      By.css(`[data-test="definition_list__boolean__element__text"]`)
     )
 
     expect(icons).toHaveLength(2)

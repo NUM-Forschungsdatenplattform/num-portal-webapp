@@ -31,7 +31,7 @@ export class CohortService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService,
+    appConfig: AppConfigService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/cohort`
   }
@@ -63,7 +63,7 @@ export class CohortService {
 
   getSizeForTemplates(
     cohortGroup: ICohortGroupApi,
-    templateIds: string[],
+    templateIds: string[]
   ): Observable<IDictionary<string, number>> {
     return this.httpClient
       .post<IDictionary<string, number>>(`${this.baseUrl}/size/template`, {

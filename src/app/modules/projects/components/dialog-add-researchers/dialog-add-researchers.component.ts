@@ -72,7 +72,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
 
   constructor(
     private adminService: AdminService,
-    @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig,
+    @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig
   ) {}
 
   ngOnInit(): void {
@@ -117,7 +117,7 @@ export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGeneri
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy, this.filters)
         .subscribe((data) => {
           this.handleData(data)
-        }),
+        })
     )
   }
 

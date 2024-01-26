@@ -45,7 +45,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
   constructor(
     private aqlCategoryService: AqlCategoryService,
     private dialogService: DialogService,
-    private toast: ToastMessageService,
+    private toast: ToastMessageService
   ) {}
 
   ngOnDestroy(): void {

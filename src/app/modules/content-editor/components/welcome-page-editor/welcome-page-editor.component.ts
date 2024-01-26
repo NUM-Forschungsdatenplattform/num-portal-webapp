@@ -40,7 +40,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     private contentService: ContentService,
     private toastMessageService: ToastMessageService,
     private translateService: TranslateService,
-    private dialogService: DialogService,
+    private dialogService: DialogService
   ) {}
 
   isLoading = true
@@ -65,7 +65,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     this.fetchData()
     this.displayLang = this.translateService.currentLang as 'en' | 'de'
     this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => (this.displayLang = newLang.lang)),
+      this.translateService.onLangChange.subscribe((newLang) => (this.displayLang = newLang.lang))
     )
   }
 
@@ -81,7 +81,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
       },
       () => {
         this.isLoading = false
-      },
+      }
     )
   }
 
@@ -171,7 +171,7 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
     const dashboardCards = this.getCardsForApi()
     this.contentService.updateCards(dashboardCards).subscribe(
       () => this.handleSaveSuccess(dashboardCards),
-      () => this.handleSaveError(),
+      () => this.handleSaveError()
     )
   }
 

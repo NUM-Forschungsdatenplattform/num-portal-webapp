@@ -37,7 +37,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
 
   constructor(
     private translateService: TranslateService,
-    private contentService: ContentService,
+    private contentService: ContentService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
       this.translateService.onLangChange.subscribe(() => {
         this.getSofaScoreDistribution()
         this.getSofaScoreAverage()
-      }),
+      })
     )
   }
 
@@ -63,7 +63,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
         this.clinics = clinics
         this.selectedClinic = clinics[Math.floor(Math.random() * clinics.length)]
         this.getSofaScoreDistribution()
-      }),
+      })
     )
   }
 
@@ -90,7 +90,7 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             ...CHART_SOFA_SCORE,
             data: [],
           }
-        },
+        }
       )
   }
 
@@ -112,8 +112,8 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             ...CHART_SOFA_SCORE_AVG,
             data: [],
           }
-        },
-      ),
+        }
+      )
     )
   }
 

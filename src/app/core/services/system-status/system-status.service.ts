@@ -12,7 +12,7 @@ export class SystemStatusService {
   baseUrl: string
   constructor(
     private httpClient: HttpClient,
-    public appConfig: AppConfigService,
+    public appConfig: AppConfigService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin/services-status`
   }

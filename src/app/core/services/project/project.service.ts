@@ -59,7 +59,7 @@ export class ProjectService {
   constructor(
     private httpClient: HttpClient,
     appConfig: AppConfigService,
-    private profileService: ProfileService,
+    private profileService: ProfileService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/project`
     this.profileService.userProfileObservable$.subscribe((user) => (this.user = user))
@@ -67,7 +67,7 @@ export class ProjectService {
     this.filterConfigObservable$
       .pipe(
         throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-        switchMap((item) => this.getFilterResult$(item)),
+        switchMap((item) => this.getFilterResult$(item))
       )
       .subscribe((filterResult) => this.filteredProjectsSubject$.next(filterResult))
   }
@@ -78,7 +78,7 @@ export class ProjectService {
     sort: string = null,
     sortBy: string = null,
     filters: any,
-    lang: string,
+    lang: string
   ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
@@ -103,7 +103,7 @@ export class ProjectService {
         this.projects = data.content
         this.projectSubject$.next(data)
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -134,7 +134,7 @@ export class ProjectService {
       tap(() => {
         this.getAll().subscribe()
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -143,7 +143,7 @@ export class ProjectService {
       tap(() => {
         this.getAll().subscribe()
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -168,7 +168,7 @@ export class ProjectService {
       }),
       tap(() => {
         this.getAll().subscribe()
-      }),
+      })
     )
   }
 
@@ -188,13 +188,13 @@ export class ProjectService {
     id: number,
     query: string,
     format: string,
-    defaultConfiguration: boolean,
+    defaultConfiguration: boolean
   ): Observable<string> {
     return this.httpClient
       .post<string>(
         `${this.baseUrl}/${id}/export?format=${format}&defaultConfiguration=${defaultConfiguration}`,
         { query },
-        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' },
+        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
       )
       .pipe(catchError(this.handleError))
   }
@@ -235,7 +235,7 @@ export class ProjectService {
           })
         this.myPublishedProjectsSubject$.next(myProjects)
         return myProjects
-      }),
+      })
     )
   }
 
@@ -253,7 +253,7 @@ export class ProjectService {
         }),
         catchError(() => {
           return of([])
-        }),
+        })
       )
     }
   }
@@ -276,7 +276,7 @@ export class ProjectService {
           project.coordinator?.lastName
             ?.concat(' ', project.coordinator?.firstName)
             .toLowerCase()
-            .includes(textFilter),
+            .includes(textFilter)
       )
     }
 
@@ -287,14 +287,14 @@ export class ProjectService {
             result = result.filter(
               (project) =>
                 project.coordinator?.id === this.user.id &&
-                project.status !== ProjectStatus.Archived,
+                project.status !== ProjectStatus.Archived
             )
             break
           case ProjectFilterChipId.OrganizationProjects:
             result = result.filter(
               (project) =>
                 project.coordinator?.organization?.id === this.user.organization?.id &&
-                project.status !== ProjectStatus.Archived,
+                project.status !== ProjectStatus.Archived
             )
             break
           case ProjectFilterChipId.Archived:
@@ -314,7 +314,7 @@ export class ProjectService {
   executeAdHocAql(
     query: string,
     projectId: number,
-    defaultConfiguration: boolean,
+    defaultConfiguration: boolean
   ): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
       .post<

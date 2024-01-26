@@ -42,7 +42,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
 
   constructor(
     private aqlParameterService: AqlParameterService,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
           },
           (_) => {
             this.hasParameterError = true
-          },
+          }
         )
       })
     }
@@ -83,7 +83,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.currentLang = event.lang || 'en'
-      }),
+      })
     )
   }
 

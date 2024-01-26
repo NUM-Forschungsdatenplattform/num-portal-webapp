@@ -30,7 +30,7 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
 
   constructor(
     private managerService: ManagerService,
-    private toastMessageService: ToastMessageService,
+    private toastMessageService: ToastMessageService
   ) {}
 
   isLoading: boolean
@@ -51,7 +51,7 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
     this.subsriptions.add(
       this.form.valueChanges.subscribe(() => {
         this.resolvedPseudonym = undefined
-      }),
+      })
     )
   }
 
@@ -66,7 +66,7 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
       this.managerService
         .resolvePseudonym(
           this.form.get('projectId').value.trim(),
-          this.form.get('pseudonym').value.trim(),
+          this.form.get('pseudonym').value.trim()
         )
         .subscribe(
           (resolvedPseudonym) => {
@@ -76,7 +76,7 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
           (_) => {
             this.isLoading = false
             this.toastMessageService.openToast(RESOLVE_ERROR_CONFIG)
-          },
+          }
         )
     }
   }

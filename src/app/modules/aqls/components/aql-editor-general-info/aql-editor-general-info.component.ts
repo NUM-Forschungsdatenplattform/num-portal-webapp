@@ -38,7 +38,7 @@ export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((event) => {
         this.lang = event.lang
-      }),
+      })
     )
 
     this.lang = this.translateService.currentLang

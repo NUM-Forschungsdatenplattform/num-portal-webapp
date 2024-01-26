@@ -32,19 +32,19 @@ describe('CohortGroupUiModel', () => {
       new AqlUiModel(mockAqlCohort, false, {
         bodyHeight: 'testHeight',
         bodyWeight: 'testWeight',
-      }),
+      })
     )
 
     secondGroup.children.push(
       new AqlUiModel(mockAqlCohort, false, {
         bodyHeight: 'testHeight',
         bodyWeight: 'testWeight',
-      }),
+      })
     )
     secondGroup.children.push(
       new AqlUiModel(mockAqlCohort, false, {
         bodyHeight: 'testHeight',
-      }),
+      })
     )
 
     cohort.children.push(new AqlUiModel(mockAqlCohort, true))

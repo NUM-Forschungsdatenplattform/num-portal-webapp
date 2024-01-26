@@ -227,7 +227,7 @@ describe('DialogEditUserDetailsComponent', () => {
       jest
         .spyOn(adminService, 'changeUserName')
         .mockImplementation((userId: string, firstName: string, lastName: string) =>
-          of(`${firstName} ${lastName}`),
+          of(`${firstName} ${lastName}`)
         )
 
       jest
@@ -248,7 +248,7 @@ describe('DialogEditUserDetailsComponent', () => {
       expect(adminService.changeUserName).toHaveBeenCalledWith(
         '123-456',
         'Test Changed',
-        'User Changed',
+        'User Changed'
       )
     })
 
@@ -292,7 +292,7 @@ describe('DialogEditUserDetailsComponent', () => {
       editButton = await loader.getHarness(
         MatButtonHarness.with({
           selector: `[data-test="user-management__button__edit_user_name"]`,
-        }),
+        })
       )
       await editButton.click()
     })
@@ -303,10 +303,10 @@ describe('DialogEditUserDetailsComponent', () => {
 
     it('should reset the name to default on click discard button', async () => {
       const firstNameInput = await loader.getHarness(
-        MatInputHarness.with({ selector: `[data-test="user-management__input__first_name"]` }),
+        MatInputHarness.with({ selector: `[data-test="user-management__input__first_name"]` })
       )
       const lastNameInput = await loader.getHarness(
-        MatInputHarness.with({ selector: `[data-test="user-management__input__last_name"]` }),
+        MatInputHarness.with({ selector: `[data-test="user-management__input__last_name"]` })
       )
 
       await firstNameInput.setValue('Changed first name')
@@ -315,7 +315,7 @@ describe('DialogEditUserDetailsComponent', () => {
       const discardButton = await loader.getHarness(
         MatButtonHarness.with({
           selector: `[data-test="user-management__button__discard_user_name_changes"]`,
-        }),
+        })
       )
       await discardButton.click()
 

@@ -46,7 +46,7 @@ export class AqlEditorCeatorComponent {
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private aqlService: AqlService,
-    private toastMessageService: ToastMessageService,
+    private toastMessageService: ToastMessageService
   ) {}
   formatter = new NumAqlFormattingProvider()
   formatSubject$ = new Subject<monaco.editor.IMarkerData[] | void>()

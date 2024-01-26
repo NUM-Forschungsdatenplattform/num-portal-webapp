@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private config: AppConfigService,
     private router: Router,
-    private translateService: TranslateService,
+    private translateService: TranslateService
   ) {}
 
   @Input()
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.router.events.subscribe((event) => {
         return this.handleRouterEvent(event as RouterEvent)
-      }),
+      })
     )
 
     this.welcomePageTitle = this.config.config.welcomePageTitle
@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((e) => {
         this.currentLang = e.lang
-      }),
+      })
     )
     this.currentLang = this.translateService.currentLang
   }
@@ -85,7 +85,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   setHeader(): void {
     const navItem = [...this.mainNavItems, ...secondaryNavItemsLoggedIn].find(
-      (item) => item.routeTo === this.currentNavId,
+      (item) => item.routeTo === this.currentNavId
     )
     this.currentNavItem = navItem
     this.currentTabNav = navItem?.tabNav

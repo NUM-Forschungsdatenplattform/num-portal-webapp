@@ -61,7 +61,7 @@ describe('NavigationEditorItemComponent', () => {
     let urlInput = component.form.get('url').value
     expect(urlInput).not.toEqual('https://domain.com')
     const input = fixture.nativeElement.querySelector(
-      `[data-test="content-editor__navigation__item__url-input"]`,
+      `[data-test="content-editor__navigation__item__url-input"]`
     )
     input.value = '  https://domain.com  '
     input.dispatchEvent(new Event('input'))

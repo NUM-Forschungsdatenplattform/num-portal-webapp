@@ -204,7 +204,7 @@ describe('PatientFilterComponent', () => {
         new AqlUiModel(mockAqlCohort, false, {
           $bodyHeight: 'testHeight',
           $bodyWeight: 'testWeight',
-        }),
+        })
       )
       project.cohortGroup = cohort
       component.project = project
@@ -313,7 +313,7 @@ describe('PatientFilterComponent', () => {
         new AqlUiModel(mockAqlCohort, false, {
           $bodyHeight: 'testHeight',
           $bodyWeight: 'testWeight',
-        }),
+        })
       )
       project.cohortGroup = cohort
       component.project = project

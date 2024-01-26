@@ -26,7 +26,7 @@ import { TranslateService } from '@ngx-translate/core'
 export class LanguageComponent {
   constructor(
     public translate: TranslateService,
-    private dateAdapter: DateAdapter<Date>,
+    private dateAdapter: DateAdapter<Date>
   ) {
     translate.addLangs(['de', 'en'])
     translate.setDefaultLang('de')

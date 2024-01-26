@@ -111,7 +111,7 @@ describe('AqbWhereItemUiModel', () => {
         expect(model.comparisonOperatorOptions).toEqual(options)
         expect(model.valueType).toEqual(AqlParameterValueType.Number)
         expect(model.value).toEqual(0)
-      },
+      }
     )
 
     it('should do so for type boolean', () => {

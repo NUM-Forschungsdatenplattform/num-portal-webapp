@@ -32,7 +32,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
   constructor(
     private organizationService: OrganizationService,
     private profileService: ProfileService,
-    private router: Router,
+    private router: Router
   ) {}
 
   private isSuperAdmin(userProfile: IUserProfile): boolean {
@@ -45,7 +45,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot,
+    _state: RouterStateSnapshot
   ): Observable<IOrganizationResolved> {
     const requestedId = route.paramMap.get('id')
 
@@ -67,14 +67,14 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
         return this.organizationService.get(allowedId).pipe(
           map((organization) => {
             return { organization: new OrganizationUiModel(organization), error: null }
-          }),
+          })
         )
       }),
       timeout(10000),
       catchError((error) => {
         this.router.navigate(['organizations'])
         return throwError(error)
-      }),
+      })
     )
   }
 }

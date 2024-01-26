@@ -157,7 +157,7 @@ describe('SideMenuComponent', () => {
         KEYCLOAK: 'string',
         NUM: 'string',
         CHECK_FOR_ANNOUNCEMENTS: 'string',
-      }),
+      })
     )
     jest.clearAllMocks()
   })
@@ -200,7 +200,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector(
-      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`,
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
     button.click()
     fixture.detectChanges()
@@ -219,7 +219,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector(
-      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`,
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
     button.click()
     fixture.detectChanges()
@@ -238,7 +238,7 @@ describe('SideMenuComponent', () => {
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector(
-      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`,
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
     button.click()
     fixture.detectChanges()
@@ -258,7 +258,7 @@ describe('SideMenuComponent', () => {
 
     const nativeElement = fixture.debugElement.nativeElement
     const button = nativeElement.querySelector(
-      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`,
+      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
     ) as HTMLElement
     button.click()
     fixture.detectChanges()
@@ -279,7 +279,7 @@ describe('SideMenuComponent', () => {
       fixture.detectChanges()
       const nativeElement = fixture.debugElement.nativeElement
       button = nativeElement.querySelector(
-        `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`,
+        `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
       ) as HTMLElement
 
       button.click()

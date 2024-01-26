@@ -37,7 +37,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private mediaMatcher: MediaMatcher,
     private profileService: ProfileService,
-    private route: Router,
+    private route: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.profileService.getUnapprovedUser().subscribe((response: any) => {
         this.unapprovedUser = response
-      }),
+      })
     )
     this.subscriptions.add(
       this.route.events.subscribe((event) => {
@@ -62,7 +62,7 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
             this.onHomePage = false
           }
         }
-      }),
+      })
     )
   }
 

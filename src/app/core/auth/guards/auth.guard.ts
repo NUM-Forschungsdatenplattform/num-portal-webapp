@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private oauthService: OAuthService,
     private profileService: ProfileService,
-    private toast: ToastMessageService,
+    private toast: ToastMessageService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
@@ -68,7 +68,7 @@ export class AuthGuard implements CanActivate, CanLoad {
         .pipe(
           filter((profile) => !!profile.id),
           take(1),
-          map((profile) => profile.approved),
+          map((profile) => profile.approved)
         )
         .toPromise()
     }

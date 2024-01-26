@@ -173,7 +173,7 @@ describe('AqlConnectorGroupComponent', () => {
         component.isActive = activeStatus
         component.deleteSelf()
         expect(component.delete.emit).toHaveBeenCalledWith(component.isActive)
-      },
+      }
     )
   })
 
@@ -227,7 +227,7 @@ describe('AqlConnectorGroupComponent', () => {
         component.isActive = false
         component.deleteChildGroup(wasActive, 0)
         expect(component.isActive).toEqual(wasActive)
-      },
+      }
     )
   })
 

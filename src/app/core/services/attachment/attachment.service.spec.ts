@@ -16,12 +16,21 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
 import { firstValueFrom, of } from 'rxjs'
+import { AppConfigService } from 'src/app/config/app-config.service'
 import { attachmentContentMock1 } from 'src/mocks/data-mocks/attachment.mock'
 
 import { AttachmentService } from './attachment.service'
 
 describe('AttachmentService', () => {
   let service: AttachmentService
+
+  const appConfigMockService = {
+    config: {
+      api: {
+        baseUrl: 'localhost/api',
+      },
+    },
+  } as AppConfigService
 
   const httpMockClient = {
     get: jest.fn(),
@@ -30,6 +39,10 @@ describe('AttachmentService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        {
+          provide: AppConfigService,
+          useValue: appConfigMockService,
+        },
         {
           provide: HttpClient,
           useValue: httpMockClient,
@@ -51,8 +64,8 @@ describe('AttachmentService', () => {
             body: attachmentContentMock1,
             headers: new HttpHeaders({ 'content-disposition': 'attachment;filename=test.pdf' }),
             status: 200,
-          }),
-        ),
+          })
+        )
       )
 
       service.downloadAttachment(123).subscribe((fileBlob) => {

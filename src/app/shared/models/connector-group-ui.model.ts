@@ -32,7 +32,7 @@ export abstract class ConnectorGroupUiModel<T extends IConnectorGroupApi<T>> {
   }
 
   abstract mapChildrenToUi: (
-    child: IConnectorGroupApi<T>,
+    child: IConnectorGroupApi<T>
   ) => ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
 
   public convertToUi(apiGroup: IConnectorGroupApi<T>, isNegated = false): void {
@@ -90,7 +90,7 @@ export abstract class ConnectorGroupUiModel<T extends IConnectorGroupApi<T>> {
   }
 
   private mapChildrentoApi = (
-    child: ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>,
+    child: ConnectorGroupUiModel<T> | ConnectorMainNodeUi<T>
   ): IConnectorGroupApi<T> | null => {
     return child.convertToApi()
   }

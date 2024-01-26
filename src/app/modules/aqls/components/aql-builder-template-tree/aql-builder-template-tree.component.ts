@@ -60,7 +60,7 @@ export class AqlBuilderTemplateTreeComponent implements OnInit {
   ngOnInit(): void {
     this.aqlEditorService.getContainment(this.templateId).subscribe(
       (containment) => this.handleData(containment),
-      () => (this.hasError = true),
+      () => (this.hasError = true)
     )
   }
 

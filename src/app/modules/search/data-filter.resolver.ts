@@ -28,7 +28,7 @@ import { PatientFilterService } from 'src/app/core/services/patient-filter/patie
 export class DataFilterResolver implements Resolve<ProjectUiModel> {
   constructor(
     private router: Router,
-    private patientFilterService: PatientFilterService,
+    private patientFilterService: PatientFilterService
   ) {}
 
   resolve(): Observable<ProjectUiModel> {
@@ -36,7 +36,7 @@ export class DataFilterResolver implements Resolve<ProjectUiModel> {
       catchError(() => {
         this.router.navigate(['search'])
         return EMPTY
-      }),
+      })
     )
   }
 }

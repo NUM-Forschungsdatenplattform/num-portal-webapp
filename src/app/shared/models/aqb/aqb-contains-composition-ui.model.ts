@@ -48,7 +48,7 @@ export class AqbContainsCompositionUiModel {
         this.compositionId,
         this.compositionReferenceId,
         archetypeId,
-        archetypeReferenceId,
+        archetypeReferenceId
       )
       this.children.push(containsItem)
       this.existingItems.set(archetypeReferenceId, true)

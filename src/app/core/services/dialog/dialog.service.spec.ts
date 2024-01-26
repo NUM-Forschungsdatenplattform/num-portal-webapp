@@ -108,7 +108,7 @@ describe('DialogService', () => {
           data: config,
           disableClose,
         })
-      },
+      }
     )
   })
 })

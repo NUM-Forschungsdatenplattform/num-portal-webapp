@@ -59,7 +59,7 @@ export class AqbWhereItemUiModel {
   constructor(
     item: IContainmentTreeNode,
     compositionReferenceId: number,
-    archetypeReferenceId: number,
+    archetypeReferenceId: number
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId

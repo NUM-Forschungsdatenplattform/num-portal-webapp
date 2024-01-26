@@ -132,10 +132,10 @@ describe('DialogAqlBuilderComponent', () => {
           expect(component.aqbModel.handleElementSelect).toHaveBeenCalledWith(testcase.clickEvent)
         } else {
           expect(component.aqbModel.handleElementSelect).not.toHaveBeenCalledWith(
-            testcase.clickEvent,
+            testcase.clickEvent
           )
         }
-      },
+      }
     )
 
     it('should set the templates to the component once they are received', () => {

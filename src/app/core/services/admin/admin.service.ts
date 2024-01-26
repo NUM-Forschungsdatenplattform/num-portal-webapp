@@ -62,7 +62,7 @@ export class AdminService {
   constructor(
     private httpClient: HttpClient,
     appConfig: AppConfigService,
-    private profileService: ProfileService,
+    private profileService: ProfileService
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/admin`
 
@@ -84,7 +84,7 @@ export class AdminService {
     size: number,
     sort: string = null,
     sortBy: string = null,
-    filters: any,
+    filters: any
   ): Observable<any> {
     let qString = ''
     if (page !== null && size !== null) {
@@ -106,7 +106,7 @@ export class AdminService {
         this.users = data.content
         this.usersSubject$.next(data)
       }),
-      catchError(this.handleError),
+      catchError(this.handleError)
     )
   }
 
@@ -125,7 +125,7 @@ export class AdminService {
       tap((users) => {
         this.unapprovedUsers = users
         this.unapprovedUsersSubject$.next(users)
-      }),
+      })
     )
   }
 
@@ -137,7 +137,7 @@ export class AdminService {
         if (this.approvedUsers.length) {
           this.setFilter(this.filterSet)
         }
-      }),
+      })
     )
   }
 
@@ -204,7 +204,7 @@ export class AdminService {
         }),
         catchError(() => {
           return of([])
-        }),
+        })
       )
     }
   }
@@ -220,7 +220,7 @@ export class AdminService {
           user.firstName?.toUpperCase().includes(textFilter) ||
           user.firstName?.concat(' ', user.lastName).toUpperCase().includes(textFilter) ||
           user.lastName?.concat(' ', user.firstName).toUpperCase().includes(textFilter) ||
-          user.email.toUpperCase().includes(textFilter),
+          user.email.toUpperCase().includes(textFilter)
       )
     }
 
