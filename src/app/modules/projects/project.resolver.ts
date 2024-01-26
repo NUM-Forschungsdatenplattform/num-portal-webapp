@@ -32,7 +32,7 @@ import { IProjectResolved } from './models/project-resolved.interface'
 export class ProjectResolver implements Resolve<IProjectResolved> {
   constructor(
     private projectService: ProjectService,
-    private router: Router
+    private router: Router,
   ) {}
 
   shouldChangeStatusToReview(mode: string, project: IProjectApi): boolean {
@@ -44,7 +44,7 @@ export class ProjectResolver implements Resolve<IProjectResolved> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    _state: RouterStateSnapshot
+    _state: RouterStateSnapshot,
   ): Observable<IProjectResolved> {
     const id = route.paramMap.get('id')
     const mode = route.queryParamMap.get('mode')?.toUpperCase()
@@ -84,7 +84,7 @@ export class ProjectResolver implements Resolve<IProjectResolved> {
         this.router.navigate(['/projects'])
         // TODO: Display message to user
         return of(error)
-      })
+      }),
     )
   }
 }

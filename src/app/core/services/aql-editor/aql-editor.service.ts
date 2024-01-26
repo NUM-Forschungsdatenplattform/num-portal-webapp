@@ -42,7 +42,7 @@ export class AqlEditorService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService
+    appConfig: AppConfigService,
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/aqleditor/v1`
   }
@@ -53,7 +53,7 @@ export class AqlEditorService {
         this.templates = templates
         this.templatesSubject$.next(templates)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -67,7 +67,7 @@ export class AqlEditorService {
       tap((containment) => {
         this.containmentCache[id] = containment
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -79,7 +79,7 @@ export class AqlEditorService {
           result.q = this.formatter.formatQuery(result.q)
           return result
         }),
-        catchError((error) => this.handleError(error))
+        catchError((error) => this.handleError(error)),
       )
   }
 

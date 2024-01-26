@@ -45,7 +45,7 @@ export class OrganizationsTableComponent
     private router: Router,
     private profileService: ProfileService,
     private dialogService: DialogService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
   ) {
     super()
   }
@@ -74,10 +74,10 @@ export class OrganizationsTableComponent
     this.sortDir = 'ASC'
 
     this.subscriptions.add(
-      this.organizationService.organizationsObservable$.subscribe((data) => this.handleData(data))
+      this.organizationService.organizationsObservable$.subscribe((data) => this.handleData(data)),
     )
     this.subscriptions.add(
-      this.profileService.userProfileObservable$.subscribe((data) => this.handleProfileData(data))
+      this.profileService.userProfileObservable$.subscribe((data) => this.handleProfileData(data)),
     )
   }
 
@@ -93,7 +93,7 @@ export class OrganizationsTableComponent
         .getAllPag(this.pageIndex, this.pageSize, this.active, this.sortDir, this.sortBy)
         .subscribe((data) => {
           this.handleData(data)
-        })
+        }),
     )
   }
 
@@ -154,7 +154,7 @@ export class OrganizationsTableComponent
           type: ToastMessageType.Error,
           message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',
         })
-      }
+      },
     )
   }
 }

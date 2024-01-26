@@ -51,7 +51,7 @@ export class PatientFilterService {
 
   constructor(
     private appConfigService: AppConfigService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}`
   }
@@ -66,25 +66,25 @@ export class PatientFilterService {
           this.totalDatasetCount = size
           this.totalDatasetCountSubject$.next(size)
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 
   getPreviewData(
     cohortGroup: ICohortGroupApi,
-    allowUsageOutsideEu = true
+    allowUsageOutsideEu = true,
   ): Observable<ICohortPreviewApi> {
     return this.httpClient
       .post<ICohortPreviewApi>(
         `${this.baseUrl}/cohort/size/distribution?allowUsageOutsideEu=${allowUsageOutsideEu}`,
-        cohortGroup
+        cohortGroup,
       )
       .pipe(
         tap((res) => {
           this.previewData = res
           this.previewDataSubject$.next(res)
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 
@@ -99,20 +99,20 @@ export class PatientFilterService {
           this.projectData = res
           this.projectDataSubject$.next(res)
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 
   exportFile(
     cohort: ICohortApi,
     templates: string[],
-    format: 'json' | 'csv' = 'csv'
+    format: 'json' | 'csv' = 'csv',
   ): Observable<string> {
     return this.httpClient
       .post<string>(
         `${this.baseUrl}/project/manager/export?format=${format}`,
         { cohort, templates },
-        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
+        { responseType: (format === 'json' ? 'text' : 'blob') as 'json' },
       )
       .pipe(catchError(this.handleError))
   }

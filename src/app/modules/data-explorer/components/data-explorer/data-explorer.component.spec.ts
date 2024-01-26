@@ -211,7 +211,7 @@ describe('DataExplorerComponent', () => {
         createdTimestamp: 1,
         approved: true,
         organization: null,
-      })
+      }),
     )
   })
 
@@ -294,7 +294,7 @@ describe('DataExplorerComponent', () => {
 
     it('should set the selected and allowed templates to the component', () => {
       const templateIds = resolvedData.project.templates.map(
-        (resolvedTemplate) => resolvedTemplate.templateId
+        (resolvedTemplate) => resolvedTemplate.templateId,
       )
       expect(component.selectedTemplateIds).toEqual(templateIds)
       expect(component.allowedTemplateIds).toEqual(templateIds)
@@ -307,7 +307,7 @@ describe('DataExplorerComponent', () => {
 
     it('should fetch the containments of the templates and flag the compositions as fetched', () => {
       expect(aqlEditorService.getContainment).toHaveBeenCalledWith(
-        resolvedData.project.templates[0].templateId
+        resolvedData.project.templates[0].templateId,
       )
       expect(component.isCompositionsFetched).toEqual(true)
     })

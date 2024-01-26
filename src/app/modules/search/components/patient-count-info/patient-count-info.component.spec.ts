@@ -43,7 +43,7 @@ describe('PatientCountInfoComponent', () => {
     component.patientCount = 1234
     const paragraphElement = fixture.debugElement.query(By.css('p'))
     expect((paragraphElement.nativeElement as HTMLParagraphElement).innerHTML.trim()).toEqual(
-      'SEARCH.PATIENT_COUNT_INFO'
+      'SEARCH.PATIENT_COUNT_INFO',
     )
   })
 })

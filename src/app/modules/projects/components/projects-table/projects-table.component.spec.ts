@@ -243,7 +243,7 @@ describe('ProjectsTableComponent', () => {
         expect(router.navigate).toHaveBeenCalledWith(['projects', projectId, 'editor'], {
           queryParams,
         })
-      }
+      },
     )
 
     it('should call the project editor with the edit key if researchers are to be edited', () => {
@@ -305,15 +305,15 @@ describe('ProjectsTableComponent', () => {
         if (testcase.decision === true) {
           expect(projectService.updateStatusById).toHaveBeenCalledWith(
             projectId,
-            testcase.newStatus
+            testcase.newStatus,
           )
         } else {
           expect(projectService.updateStatusById).not.toHaveBeenCalledWith(
             projectId,
-            testcase.newStatus
+            testcase.newStatus,
           )
         }
-      }
+      },
     )
   })
 })

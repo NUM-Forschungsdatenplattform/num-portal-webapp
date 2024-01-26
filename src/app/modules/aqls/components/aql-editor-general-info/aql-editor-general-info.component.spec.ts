@@ -75,7 +75,7 @@ describe('AqlEditorGeneralInfoComponent', () => {
 
     it('should provide all available categories as select options', async () => {
       const selectField = await loader.getHarness<MatSelectHarness>(
-        MatSelectHarness.with({ selector: '.aql-category-select' })
+        MatSelectHarness.with({ selector: '.aql-category-select' }),
       )
       // Open the select menu and get available options
       await (await selectField.host()).click()
@@ -88,7 +88,7 @@ describe('AqlEditorGeneralInfoComponent', () => {
       const selectField = await loader.getHarness<MatSelectHarness>(
         MatSelectHarness.with({
           selector: '.aql-category-select',
-        })
+        }),
       )
 
       // Open the select menu and select first option
@@ -103,7 +103,7 @@ describe('AqlEditorGeneralInfoComponent', () => {
       const selectField = await loader.getHarness<MatSelectHarness>(
         MatSelectHarness.with({
           selector: '.aql-category-select',
-        })
+        }),
       )
 
       // Open the select menu and select first option

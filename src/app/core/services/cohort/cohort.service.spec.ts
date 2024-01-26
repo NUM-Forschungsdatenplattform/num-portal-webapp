@@ -81,7 +81,7 @@ describe('CohortService', () => {
 
         expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
         expect(result).toEqual(cohortSize)
-      }
+      },
     )
 
     it('should call the api and handle erros', () => {
@@ -99,7 +99,7 @@ describe('CohortService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of())
       service.get(cohortId).subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(
-        `${appConfig.config.api.baseUrl}/cohort/${cohortId}`
+        `${appConfig.config.api.baseUrl}/cohort/${cohortId}`,
       )
     })
   })

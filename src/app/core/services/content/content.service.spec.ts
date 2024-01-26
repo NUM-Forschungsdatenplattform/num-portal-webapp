@@ -58,7 +58,7 @@ describe('ContentService', () => {
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/navigation')
       expect((service as any).navigationLinks).toEqual(mockNavigationLinks)
       expect((service as any).navigationLinksSubject$.next).toHaveBeenCalledWith(
-        mockNavigationLinks
+        mockNavigationLinks,
       )
     })
 
@@ -87,11 +87,11 @@ describe('ContentService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/navigation',
         mockNavigationLinks,
-        httpOptions
+        httpOptions,
       )
       expect((service as any).navigationLinks).toEqual(mockNavigationLinks)
       expect((service as any).navigationLinksSubject$.next).toHaveBeenCalledWith(
-        mockNavigationLinks
+        mockNavigationLinks,
       )
     })
 
@@ -109,7 +109,7 @@ describe('ContentService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/navigation',
         mockNavigationLinks,
-        httpOptions
+        httpOptions,
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -151,7 +151,7 @@ describe('ContentService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/cards',
         mockDashboardCards,
-        httpOptions
+        httpOptions,
       )
       expect((service as any).cards).toEqual(mockDashboardCards)
       expect((service as any).cardsSubject$.next).toHaveBeenCalledWith(mockDashboardCards)
@@ -171,7 +171,7 @@ describe('ContentService', () => {
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/cards',
         mockDashboardCards,
-        httpOptions
+        httpOptions,
       )
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -254,7 +254,7 @@ describe('ContentService', () => {
       service.getSofaScoreDistribution('clinic1')
 
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution',
       )
     })
 
@@ -267,7 +267,7 @@ describe('ContentService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/content/graph/clinic/clinic1/sofaDistribution'
+        'localhost/api/content/graph/clinic/clinic1/sofaDistribution',
       )
       expect(service.handleError).toHaveBeenCalled()
     })

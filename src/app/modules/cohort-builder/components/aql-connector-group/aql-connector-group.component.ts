@@ -44,7 +44,7 @@ export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy 
 
   constructor(
     private cohortBuilderService: CohortBuilderService,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
   ) {}
 
   readonly connectorNodeType = ConnectorNodeType
@@ -86,7 +86,7 @@ export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy 
     }
 
     this.targetSubscription = this.cohortBuilderService.targetResetObservable$.subscribe(() =>
-      this.handleTargetReset()
+      this.handleTargetReset(),
     )
 
     if (this.cohortGroup.addedByClick) {

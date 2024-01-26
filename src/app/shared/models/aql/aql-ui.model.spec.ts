@@ -80,7 +80,7 @@ describe('AqlUiModel', () => {
         if (model.parameters.length) {
           expect(model.parameters[0].value).toEqual(testCase.parameters[model.parameters[0].name])
         }
-      }
+      },
     )
   })
 

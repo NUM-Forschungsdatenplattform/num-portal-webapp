@@ -47,7 +47,7 @@ describe('AqlBuilderSelectItemComponent', () => {
     compositionReferenceId,
     archetypeReferenceId,
     false,
-    templateId
+    templateId,
   )
 
   beforeEach(async () => {
@@ -98,7 +98,7 @@ describe('AqlBuilderSelectItemComponent', () => {
         element.value = value
         element.dispatchEvent(new Event('input'))
         expect(component.item.givenName).toEqual('before')
-      }
+      },
     )
   })
 })

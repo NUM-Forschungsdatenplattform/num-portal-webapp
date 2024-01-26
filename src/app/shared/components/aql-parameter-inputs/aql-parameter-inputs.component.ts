@@ -65,7 +65,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
 
   constructor(
     private dateAdapter: DateAdapter<any>,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {}
 
   valueForm: UntypedFormGroup
@@ -80,7 +80,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       this.subscriptions.add(
         this.translate.onLangChange.subscribe((lang) => {
           this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
-        })
+        }),
       )
     }
     this.valueForm = new UntypedFormGroup({
@@ -90,7 +90,7 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     })
 
     this.subscriptions.add(
-      this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
+      this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value)),
     )
 
     this.valueForm?.get('value').markAllAsTouched()

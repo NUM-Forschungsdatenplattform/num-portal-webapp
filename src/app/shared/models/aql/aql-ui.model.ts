@@ -50,7 +50,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   constructor(
     aql: Partial<IAqlApi>,
     isNegated = false,
-    parameters?: IDictionary<string, string | number | boolean>
+    parameters?: IDictionary<string, string | number | boolean>,
   ) {
     this.type = ConnectorNodeType.Aql
     this.id = aql.id
@@ -94,7 +94,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
       try {
         const parameterPathRegex = new RegExp(
           '\\S+\\s+\\S+\\s+\\' + parameter.nameWithDollar,
-          'gmi'
+          'gmi',
         )
         const fullParameterPath = this.query.match(parameterPathRegex)[0]
         const fullParameterPathSplitted = fullParameterPath.split(' ')
@@ -140,7 +140,7 @@ export class AqlUiModel implements ConnectorMainNodeUi<ICohortGroupApi> {
   public checkParameterStatus(): void {
     this.areParameterConfigured = !this.parameters.some(
       (parameter) =>
-        !parameter.isDisabled && (parameter.value === undefined || parameter.value === '')
+        !parameter.isDisabled && (parameter.value === undefined || parameter.value === ''),
     )
   }
 

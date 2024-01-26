@@ -49,9 +49,9 @@ export class AddUserRolesComponent implements OnInit, OnDestroy {
           map((profile: IUserProfile) => {
             this.userProfile = profile
             this.handleData()
-          })
+          }),
         )
-        .subscribe()
+        .subscribe(),
     )
   }
 
@@ -68,7 +68,7 @@ export class AddUserRolesComponent implements OnInit, OnDestroy {
           role !== AvailableRoles.ContentAdmin &&
           role !== AvailableRoles.Manager &&
           role !== AvailableRoles.StudyApprover &&
-          role !== AvailableRoles.CriteriaEditor
+          role !== AvailableRoles.CriteriaEditor,
       )
     } else {
       this.dataSource.data = availableRoles

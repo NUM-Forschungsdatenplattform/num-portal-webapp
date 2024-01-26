@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     private dialogService: DialogService,
     private toastMessageService: ToastMessageService,
     private translate: TranslateService,
-    private appConfig: AppConfigService
+    private appConfig: AppConfigService,
   ) {}
 
   isLoading: boolean
@@ -64,8 +64,8 @@ export class ProfileComponent implements OnInit {
         },
         () => {
           this.isLoading = false
-        }
-      )
+        },
+      ),
     )
   }
 
@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
         if (result === true) {
           this.updateForm(this.profile)
         }
-      })
+      }),
     )
   }
 
@@ -109,10 +109,10 @@ export class ProfileComponent implements OnInit {
               const newProfile = Object.assign(this.profile, { firstName, lastName })
               this.handleSaveSuccess(newProfile)
             },
-            () => this.handleSaveError()
+            () => this.handleSaveError(),
           )
         }
-      })
+      }),
     )
   }
 
@@ -125,7 +125,7 @@ export class ProfileComponent implements OnInit {
         '/account/password?referrer=' +
         auth.clientId +
         '&kc_locale=' +
-        this.translate.currentLang
+        this.translate.currentLang,
     )
   }
 

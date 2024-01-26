@@ -56,7 +56,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     private router: Router,
     private organizationService: OrganizationService,
     private toastMessageService: ToastMessageService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.form
         .get('newDomain')
-        .valueChanges.subscribe((value) => this.handleNewDomainChange(value))
+        .valueChanges.subscribe((value) => this.handleNewDomainChange(value)),
     )
   }
 
@@ -135,7 +135,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       () => {
         this.isLoading = false
         this.toastMessageService.openToast(CREATION_ERROR)
-      }
+      },
     )
   }
 
@@ -149,7 +149,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       catchError((error) => {
         this.isLoading = false
         return throwError(error)
-      })
+      }),
     )
   }
 
@@ -163,7 +163,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       },
       (_error) => {
         this.toastMessageService.openToast(UPDATING_ERROR)
-      }
+      },
     )
   }
 
@@ -195,7 +195,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
           } else {
             this.toastMessageService.openToast(ADDING_DOMAIN_ERROR_GENERIC)
           }
-        }
+        },
       )
     }
   }
@@ -214,7 +214,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       },
       (_error) => {
         this.toastMessageService.openToast(DELETING_DOMAIN_ERROR)
-      }
+      },
     )
   }
 }

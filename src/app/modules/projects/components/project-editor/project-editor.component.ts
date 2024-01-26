@@ -96,7 +96,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private toast: ToastMessageService,
     private translateService: TranslateService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -108,7 +108,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.resolvedData = this.route.snapshot.data.resolvedData
     this.savedProjectStatus = this.resolvedData.project.status
     this.subscriptions.add(
-      this.route.queryParams.subscribe((params) => this.handleQueryParams(params))
+      this.route.queryParams.subscribe((params) => this.handleQueryParams(params)),
     )
 
     this.generateForm()
@@ -348,7 +348,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
           // TODO: Show message to user
           console.log(error)
           return of(error)
-        })
+        }),
       )
       .subscribe()
   }
@@ -429,8 +429,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         },
         () => {
           this.isExportLoading = false
-        }
-      )
+        },
+      ),
     )
   }
 

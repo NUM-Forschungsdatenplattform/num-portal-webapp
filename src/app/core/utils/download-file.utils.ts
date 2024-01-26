@@ -17,7 +17,7 @@
 export const downloadFile = (
   name: string | number,
   format: 'csv' | 'json' | 'txt',
-  data: string
+  data: string,
 ): void => {
   const filename =
     format === 'csv' ? `csv_export_${name}.zip` : `${format}_export_${name}.${format}`
@@ -33,19 +33,19 @@ export const downloadFile = (
 const setContent = (
   downloadLink: HTMLAnchorElement,
   format: 'csv' | 'json' | 'txt',
-  data: string
+  data: string,
 ): void => {
   switch (format) {
     case 'csv':
       downloadLink.setAttribute(
         'href',
-        URL.createObjectURL(new Blob([data], { type: 'application/zip' }))
+        URL.createObjectURL(new Blob([data], { type: 'application/zip' })),
       )
       break
     case 'json':
       downloadLink.setAttribute(
         'href',
-        `data:text/${format};charset=utf-8,${encodeURIComponent(data)}`
+        `data:text/${format};charset=utf-8,${encodeURIComponent(data)}`,
       )
       break
     case 'txt':

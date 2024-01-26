@@ -106,7 +106,7 @@ describe('CodeEditorComponent', () => {
   it('should set the MonarchTokensProvider', () => {
     expect(monacoLanguageMock.setMonarchTokensProvider).toHaveBeenCalledWith(
       LANG_NAME,
-      numAqlTokenProvider
+      numAqlTokenProvider,
     )
   })
 
@@ -116,7 +116,7 @@ describe('CodeEditorComponent', () => {
       LANG_NAME,
       {
         provideDocumentFormattingEdits: formatterMock.format,
-      }
+      },
     )
   })
 
@@ -164,7 +164,7 @@ describe('CodeEditorComponent', () => {
     expect(monacoEditorMock.setModelMarkers).toHaveBeenCalledWith(
       'model',
       'validationError',
-      markers
+      markers,
     )
   })
 

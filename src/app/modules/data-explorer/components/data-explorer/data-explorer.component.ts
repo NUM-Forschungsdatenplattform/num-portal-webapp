@@ -104,7 +104,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private toastMessageService: ToastMessageService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -137,8 +137,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
               displayName: containment.archetypeId,
             },
           } as IAqbSelectClick
-        })
-      )
+        }),
+      ),
     )
 
     this.subscriptions.add(
@@ -146,12 +146,12 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
         .pipe(
           mergeMap((selectedCompositions) => {
             selectedCompositions.forEach((composition) =>
-              this.aqbModel.handleElementSelect(composition)
+              this.aqbModel.handleElementSelect(composition),
             )
             const apiModel = this.aqbModel.convertToApi()
             this.initialAqbModel = cloneDeep(this.aqbModel)
             return this.aqlEditorService.buildAql(apiModel)
-          })
+          }),
         )
         .subscribe(
           (compiledQuery) => {
@@ -161,8 +161,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
           () => {
             this.isCompositionsFetched = true
             this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-          }
-        )
+          },
+        ),
     )
   }
 
@@ -174,7 +174,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
         this.cohortService.get(this.project.cohortId).subscribe((cohortApi) => {
           this.project.addCohortGroup(cohortApi?.cohortGroup)
           this.isCohortsFetched = true
-        })
+        }),
       )
     }
   }
@@ -196,7 +196,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
               this.isUserResearcher = true
             }
           })
-        })
+        }),
       )
     }
   }
@@ -225,7 +225,7 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
         if (confirmResult) {
           this.handleDialogConfirm(confirmResult)
         }
-      })
+      }),
     )
   }
 
@@ -254,8 +254,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
         (_) => {
           this.isDataSetLoading = false
           this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-        }
-      )
+        },
+      ),
     )
   }
 
@@ -279,8 +279,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             this.isDataSetLoading = false
             this.resultSet = undefined
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+          },
+        ),
     )
   }
 
@@ -309,8 +309,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             }
 
             this.toastMessageService.openToast(messageConfig)
-          }
-        )
+          },
+        ),
     )
   }
 }

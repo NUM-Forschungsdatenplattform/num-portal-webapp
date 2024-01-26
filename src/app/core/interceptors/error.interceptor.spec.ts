@@ -53,7 +53,7 @@ describe('ErrorInterceptor', () => {
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
         expect(injectedAuthService.logout).toHaveBeenCalled()
-      }
+      },
     ))
   })
 })

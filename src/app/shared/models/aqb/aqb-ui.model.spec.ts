@@ -83,14 +83,14 @@ describe('AqbUiModel', () => {
         clickEvent1.compositionId,
         1,
         clickEvent1.item.archetypeId,
-        2
+        2,
       )
       expect(model.contains.setContains).toHaveBeenCalledWith(
         clickEvent2.templateId,
         clickEvent2.compositionId,
         3,
         clickEvent2.item.parentArchetypeId,
-        4
+        4,
       )
     })
   })

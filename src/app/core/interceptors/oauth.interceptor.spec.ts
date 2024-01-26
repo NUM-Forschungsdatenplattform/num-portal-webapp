@@ -67,9 +67,9 @@ describe('OAuthInterceptor', () => {
         httpMock.expectOne(
           (r) =>
             r.headers.has('Authorization') &&
-            r.headers.get('Authorization') === 'Bearer ' + authStorage.getItem('access_token')
+            r.headers.get('Authorization') === 'Bearer ' + authStorage.getItem('access_token'),
         )
-      }
+      },
     ))
   })
   describe('When the intercepted url is excluded', () => {
@@ -81,7 +81,7 @@ describe('OAuthInterceptor', () => {
         })
 
         httpMock.expectOne((r) => !r.headers.keys().includes('Authorization'))
-      }
+      },
     ))
   })
   describe('When the Backend returns 401: Unauthorized', () => {
@@ -97,7 +97,7 @@ describe('OAuthInterceptor', () => {
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
         expect(injectedAuthService.logOut).toHaveBeenCalled()
-      }
+      },
     ))
   })
 
@@ -114,7 +114,7 @@ describe('OAuthInterceptor', () => {
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
         expect(injectedAuthService.logOut).not.toHaveBeenCalled()
-      }
+      },
     ))
   })
 })

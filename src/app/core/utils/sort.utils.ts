@@ -77,7 +77,7 @@ export const compareLocaleStringValues = (
   b: string,
   aId: string | number,
   bId: string | number,
-  isAsc: boolean
+  isAsc: boolean,
 ): number => {
   const valA = a ? a : ''
   const valB = b ? b : ''
@@ -119,7 +119,7 @@ export const compareTimestamps = (
   bValue: number,
   aId: string | number,
   bId: string | number,
-  isAsc: boolean
+  isAsc: boolean,
 ): number => {
   let compareResult = aValue - bValue
   if (compareResult === 0) {
@@ -141,7 +141,7 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
   switch (sort.active as ApprovedUsersTableColumn | UnapprovedUsersTableColumn) {
     case 'createdTimestamp': {
       return newData.sort((a, b) =>
-        compareTimestamps(a.createdTimestamp, b.createdTimestamp, a.id, b.id, isAsc)
+        compareTimestamps(a.createdTimestamp, b.createdTimestamp, a.id, b.id, isAsc),
       )
     }
     case 'email': {
@@ -149,12 +149,12 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
     }
     case 'firstName': {
       return newData.sort((a, b) =>
-        compareLocaleStringValues(a.firstName, b.firstName, a.id, b.id, isAsc)
+        compareLocaleStringValues(a.firstName, b.firstName, a.id, b.id, isAsc),
       )
     }
     case 'lastName': {
       return newData.sort((a, b) =>
-        compareLocaleStringValues(a.lastName, b.lastName, a.id, b.id, isAsc)
+        compareLocaleStringValues(a.lastName, b.lastName, a.id, b.id, isAsc),
       )
     }
     case 'organization': {
@@ -164,8 +164,8 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
           b.organization?.name || '',
           a.id,
           b.id,
-          isAsc
-        )
+          isAsc,
+        ),
       )
     }
     default: {
@@ -185,7 +185,7 @@ export const sortUsers = (data: IUser[], sort: MatSort): IUser[] => {
 export const sortProjects = (
   data: IProjectApi[],
   sort: MatSort,
-  translateService?: TranslateService
+  translateService?: TranslateService,
 ): IProjectApi[] => {
   const isAsc = sort.direction === 'asc'
   const newData = [...data]
@@ -198,8 +198,8 @@ export const sortProjects = (
           `${b.coordinator?.firstName || ''} ${b.coordinator?.lastName || ''}`,
           a.id,
           b.id,
-          isAsc
-        )
+          isAsc,
+        ),
       )
     }
     case 'name': {
@@ -212,8 +212,8 @@ export const sortProjects = (
           `${b.coordinator?.organization?.name || ''}`,
           a.id,
           b.id,
-          isAsc
-        )
+          isAsc,
+        ),
       )
     }
     case 'status': {
@@ -223,8 +223,8 @@ export const sortProjects = (
           translateService?.instant(`PROJECT.STATUS.${b.status}`) || b.status,
           a.id,
           b.id,
-          isAsc
-        )
+          isAsc,
+        ),
       )
     }
     case 'createDate': {
@@ -234,8 +234,8 @@ export const sortProjects = (
           `${b.createDate || ''}`,
           a.id,
           b.id,
-          isAsc
-        )
+          isAsc,
+        ),
       )
     }
     default: {

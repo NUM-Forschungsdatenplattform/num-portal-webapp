@@ -33,7 +33,7 @@ export class OrganizationService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService
+    appConfig: AppConfigService,
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/organization`
   }
@@ -43,7 +43,7 @@ export class OrganizationService {
     size: number,
     active?: string,
     sort: string = null,
-    sortBy: string = null
+    sortBy: string = null,
   ): Observable<any> {
     let queryString = ''
     if (page !== null && size !== null) {
@@ -61,7 +61,7 @@ export class OrganizationService {
         this.organizations = data.content
         this.organizationsSubject$.next(data)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -71,7 +71,7 @@ export class OrganizationService {
         this.organizations = organizations
         this.organizationsSubject$.next(organizations)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 

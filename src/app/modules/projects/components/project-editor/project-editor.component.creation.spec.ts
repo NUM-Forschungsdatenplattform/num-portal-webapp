@@ -372,7 +372,7 @@ describe('ProjectEditorComponent On Creation', () => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(0)
         expect(component.updateDetermineHits).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
-          'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS'
+          'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS',
         )
         expect(component.determineHitsContent.count).toEqual(null)
       })
@@ -392,7 +392,7 @@ describe('ProjectEditorComponent On Creation', () => {
       await component.determineHits().then(() => {
         expect(cohortService.getSize).toHaveBeenCalledTimes(1)
         expect(component.determineHitsContent.message).toEqual(
-          'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS'
+          'PROJECT.HITS.MESSAGE_ERROR_FEW_HITS',
         )
         expect(component.determineHitsContent.count).toEqual(null)
       })

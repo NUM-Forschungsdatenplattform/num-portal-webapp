@@ -43,7 +43,7 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
     private aqlService: AqlService,
     private aqlCategoryService: AqlCategoryService,
     private translateService: TranslateService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
   ) {}
 
   currentLang = this.translateService.currentLang || 'en'
@@ -71,10 +71,10 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
       this.translateService.onLangChange.subscribe((event) => {
         this.currentLang = event.lang || 'en'
         this.initialCategories[0][event.lang] = this.translateService.instant(
-          'QUERY_CATEGORIES.UNCATEGORIZED'
+          'QUERY_CATEGORIES.UNCATEGORIZED',
         )
         this.groupAndSortAql()
-      })
+      }),
     )
 
     this.subscriptions.add(
@@ -82,9 +82,9 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
         this.subscriptions.add(
           this.aqlService.getAll().subscribe(() => {
             this.groupAndSortAql()
-          })
+          }),
         )
-      })
+      }),
     )
   }
 
@@ -93,7 +93,7 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
   }
 
   reduceCategories(
-    aqlCategories: IAqlCategoryApi[]
+    aqlCategories: IAqlCategoryApi[],
   ): IDictionary<number, IDictionary<string, string>> {
     return aqlCategories.reduce((acc, category) => {
       acc[category.id] = {
@@ -124,7 +124,7 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
               aqlCategories[categoryKeyB][this.currentLang],
               categoryKeyA,
               categoryKeyB,
-              true
+              true,
             )
           })
           .map(([key, value]) => {
@@ -137,7 +137,7 @@ export class AqlSelectionComponent implements OnInit, OnDestroy {
               aqls: value,
             }
           })
-      })
+      }),
     )
   }
 

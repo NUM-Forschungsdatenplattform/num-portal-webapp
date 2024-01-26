@@ -57,7 +57,7 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     private aqlCategoryService: AqlCategoryService,
     private aqlService: AqlService,
     private authService: AuthService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
   ) {}
 
   @ViewChild('aqlCreator') aqlCreator: AqlEditorCeatorComponent
@@ -76,7 +76,7 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     this.subscriptions.add(
       this.aqlCategoryService.aqlCategoriesObservable$.subscribe((aqlCategories) => {
         this.availableCategories = aqlCategories
-      })
+      }),
     )
 
     this.aqlCategoryService.getAll().subscribe()

@@ -26,7 +26,7 @@ export class AttachmentService {
 
   constructor(
     private appConfigService: AppConfigService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/attachment`
   }
@@ -45,7 +45,7 @@ export class AttachmentService {
             throw response
           }
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 

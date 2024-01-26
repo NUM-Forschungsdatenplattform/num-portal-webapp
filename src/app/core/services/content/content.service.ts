@@ -50,7 +50,7 @@ export class ContentService {
 
   constructor(
     private httpClient: HttpClient,
-    appConfig: AppConfigService
+    appConfig: AppConfigService,
   ) {
     this.baseUrl = `${appConfig.config.api.baseUrl}/content`
   }
@@ -61,7 +61,7 @@ export class ContentService {
         this.navigationLinks = links
         this.navigationLinksSubject$.next(links)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -76,7 +76,7 @@ export class ContentService {
           this.navigationLinks = navigationLinks
           this.navigationLinksSubject$.next(navigationLinks)
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 
@@ -86,7 +86,7 @@ export class ContentService {
         this.cards = cards
         this.cardsSubject$.next(cards)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -101,7 +101,7 @@ export class ContentService {
           this.cards = cards
           this.cardsSubject$.next(cards)
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       )
   }
 
@@ -111,7 +111,7 @@ export class ContentService {
         this.metrics = metrics
         this.metricsSubject$.next(metrics)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -121,7 +121,7 @@ export class ContentService {
         this.projects = projects
         this.projectsSubject$.next(projects)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 

@@ -25,7 +25,7 @@ import { USER_MANUAL_LINK } from '../constants'
 export class UserManualUrlResolver implements Resolve<void> {
   constructor(
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
   ) {}
   resolve(): void {
     let link: string

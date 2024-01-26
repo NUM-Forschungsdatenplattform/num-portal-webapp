@@ -177,7 +177,7 @@ describe('AqlEditorCeatorComponent', () => {
       component.openBuilderDialog()
       expect(mockDialogService.openDialog).toHaveBeenCalledTimes(1)
       expect(dialogCallParameter.dialogContentComponent).toEqual(
-        dialogConfig.dialogContentComponent
+        dialogConfig.dialogContentComponent,
       )
       expect(dialogCallParameter.dialogContentPayload).toEqual(dialogConfig.dialogContentPayload)
     })
@@ -324,7 +324,7 @@ describe('AqlEditorCeatorComponent', () => {
           error: {
             errors: [JSON.stringify(validationResponse)],
           },
-        })
+        }),
       )
       component.aqlQuery = 'test'
       await component.determineHits()
@@ -340,7 +340,7 @@ describe('AqlEditorCeatorComponent', () => {
           error: {
             errors: [JSON.stringify({ valid: true })],
           },
-        })
+        }),
       )
       component.aqlQuery = 'test'
       await component.determineHits()
@@ -370,7 +370,7 @@ describe('AqlEditorCeatorComponent', () => {
     it('should display the message that the aql must be set', async () => {
       await component.determineHits()
       expect(component.determineHitsContent.message).toEqual(
-        'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS'
+        'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS',
       )
       expect(component.determineHitsContent.count).toEqual(null)
     })

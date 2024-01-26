@@ -65,7 +65,7 @@ describe('AqlCategoryService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/aql/category/all?page=0&size=2&sort=ASC&sortBy=name'
+        'localhost/api/aql/category/all?page=0&size=2&sort=ASC&sortBy=name',
       )
       expect(service.handleError).toHaveBeenCalled()
     })

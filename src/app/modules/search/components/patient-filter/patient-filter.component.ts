@@ -65,7 +65,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
     private toastMessageService: ToastMessageService,
     private cohortService: CohortService,
     private profileService: ProfileService,
-    private aqlService: AqlService
+    private aqlService: AqlService,
   ) {}
 
   ngOnInit(): void {
@@ -85,15 +85,15 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
           take(1),
           map((profile: IUserProfile) => {
             this.userRoles = profile.roles
-          })
+          }),
         )
-        .subscribe()
+        .subscribe(),
     )
 
     this.subscriptions.add(
       this.aqlService.filterConfigObservable$
         .pipe(take(1))
-        .subscribe((config) => (this.filterConfig = config))
+        .subscribe((config) => (this.filterConfig = config)),
     )
 
     this.patientFilterService.getAllDatasetCount().subscribe()
@@ -119,7 +119,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
       },
       (_) => {
         this.project = new ProjectUiModel()
-      }
+      },
     )
   }
 
@@ -197,7 +197,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
         .getPreviewData(cohortGroupApi, false)
         .subscribe(
           () => (this.isChartDataLoading = false),
-          () => (this.isChartDataLoading = false)
+          () => (this.isChartDataLoading = false),
         )
     }
     return this.cohortService.getSize(cohortGroupApi, false).pipe(
@@ -205,7 +205,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
         this.chartDataSubscription.unsubscribe()
         this.isChartDataLoading = false
         throw error
-      })
+      }),
     )
   }
 

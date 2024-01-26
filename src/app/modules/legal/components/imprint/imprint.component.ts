@@ -31,7 +31,7 @@ export class ImprintComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.translateService.onLangChange.subscribe((newLang) => {
         this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
-      })
+      }),
     )
   }
 

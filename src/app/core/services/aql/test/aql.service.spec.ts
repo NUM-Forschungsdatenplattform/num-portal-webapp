@@ -101,7 +101,7 @@ describe('AqlService', () => {
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
-        'localhost/api/aql/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED&language=en'
+        'localhost/api/aql/all?page=0&size=2&sort=ASC&sortBy=name&filter%5Btype%5D=OWNED&language=en',
       )
       expect(service.handleError).toHaveBeenCalled()
     })

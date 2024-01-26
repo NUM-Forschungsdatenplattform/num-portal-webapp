@@ -115,11 +115,11 @@ describe('ValueConverter Utils', () => {
       const result = convertParameterInputToType(
         testcase.type,
         testcase.inputValue,
-        testcase.defaultToUndefined
+        testcase.defaultToUndefined,
       )
       if (testcase.expectDateConversion) {
         expect(DateHelperService[testcase.expectDateConversion]).toHaveBeenCalledWith(
-          testcase.inputValue
+          testcase.inputValue,
         )
       }
       expect(result).toEqual(testcase.expectedValue)

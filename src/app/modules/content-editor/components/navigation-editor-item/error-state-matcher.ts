@@ -25,7 +25,7 @@ export class InputErrorStateMatcher implements ErrorStateMatcher {
 
   isErrorState(
     control: UntypedFormControl | null,
-    formGroup: FormGroupDirective | NgForm | null
+    formGroup: FormGroupDirective | NgForm | null,
   ): boolean {
     const requiredError = formGroup.form.errors ? formGroup.form.errors[this.requiredField] : false
     return !!(requiredError || control.invalid)

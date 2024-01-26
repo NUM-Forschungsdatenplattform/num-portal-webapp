@@ -42,7 +42,7 @@ export class NavigationEditorItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.form.get('url').valueChanges.subscribe((value) => this.handleUrlChange(value))
+      this.form.get('url').valueChanges.subscribe((value) => this.handleUrlChange(value)),
     )
   }
 

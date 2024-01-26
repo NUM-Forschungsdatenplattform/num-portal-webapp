@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit, OnChanges, OnDestroy {
         .subscribe((value) => {
           this.currentText = value
           this.searchTextChange.emit(value)
-        })
+        }),
     )
   }
 

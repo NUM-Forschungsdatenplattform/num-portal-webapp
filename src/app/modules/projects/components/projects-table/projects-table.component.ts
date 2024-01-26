@@ -63,7 +63,7 @@ export class ProjectsTableComponent
     private dialogService: DialogService,
     private profileService: ProfileService,
     private toastMessageService: ToastMessageService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
   ) {
     super()
     this.subscriptions.add(
@@ -71,7 +71,7 @@ export class ProjectsTableComponent
         this.lang = event.lang || 'en'
 
         this.getAll()
-      })
+      }),
     )
 
     this.lang = this.translateService.currentLang || 'en'
@@ -116,11 +116,11 @@ export class ProjectsTableComponent
         this.handleSearchChange(true)
 
         this.getAll(true)
-      })
+      }),
     )
 
     this.subscriptions.add(
-      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user))
+      this.profileService.userProfileObservable$.subscribe((user) => this.handleUserInfo(user)),
     )
 
     this.sortBy = 'name'
@@ -156,11 +156,11 @@ export class ProjectsTableComponent
           this.sortDir,
           this.sortBy,
           this.filters,
-          this.lang
+          this.lang,
         )
         .subscribe((data) => {
           this.handleData(data)
-        })
+        }),
     )
   }
 
@@ -283,7 +283,7 @@ export class ProjectsTableComponent
             catchError((error) => {
               this.toastMessageService.openToast(CHANGE_STATUS_ERROR)
               return of(error)
-            })
+            }),
           )
           .subscribe(() => this.getAll())
       }

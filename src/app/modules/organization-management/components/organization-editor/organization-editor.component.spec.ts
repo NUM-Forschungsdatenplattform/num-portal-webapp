@@ -133,7 +133,7 @@ describe('OrganizationEditorComponent', () => {
 
   it('should trim and remove the @-sign in the mail-domain input', () => {
     const element = fixture.nativeElement.querySelector(
-      `[data-test="organization-editor__add-domain-input"]`
+      `[data-test="organization-editor__add-domain-input"]`,
     )
 
     element.value = ' @mail-domain.com '
@@ -242,7 +242,7 @@ describe('OrganizationEditorComponent', () => {
       component.updateOrganization()
       expect(mockOrganizationService.update).toHaveBeenCalledWith(
         updatedOrganization.id,
-        updatedOrganization
+        updatedOrganization,
       )
       expect(component.isLoading).toBeTruthy()
       callback.next(updatedOrganization)
@@ -295,7 +295,7 @@ describe('OrganizationEditorComponent', () => {
       expect(component.isLoading).toBeFalsy()
       expect(mockOrganizationService.update).toHaveBeenCalledWith(
         updatedOrganization.id,
-        updatedOrganization
+        updatedOrganization,
       )
     })
 
@@ -385,7 +385,7 @@ describe('OrganizationEditorComponent', () => {
       expect(component.isLoading).toBeFalsy()
       expect(mockOrganizationService.update).toHaveBeenCalledWith(
         updatedOrganization.id,
-        updatedOrganization
+        updatedOrganization,
       )
     })
     //

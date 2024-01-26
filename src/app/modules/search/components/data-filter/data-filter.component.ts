@@ -36,7 +36,7 @@ export class DataFilterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private patientFilterService: PatientFilterService,
-    private cohortService: CohortService
+    private cohortService: CohortService,
   ) {}
 
   ngOnInit(): void {

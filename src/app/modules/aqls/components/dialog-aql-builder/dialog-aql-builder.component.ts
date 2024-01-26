@@ -40,7 +40,7 @@ export class DialogAqlBuilderComponent
 {
   constructor(
     private aqlEditorService: AqlEditorService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
   ) {}
 
   dialogInput: IAqlBuilderDialogInput
@@ -67,7 +67,7 @@ export class DialogAqlBuilderComponent
         this.aqlEditorService.templatesObservable$.subscribe((templates) => {
           const templateIds = templates.map((template) => template.templateId)
           this.handleTemplates(templateIds)
-        })
+        }),
       )
     }
 

@@ -42,7 +42,7 @@ export class AqlBuilderSelectItemComponent implements OnInit, OnDestroy {
     })
 
     this.subscriptions.add(
-      this.aliasForm.get('value').valueChanges.subscribe((value) => this.handleAliasChange(value))
+      this.aliasForm.get('value').valueChanges.subscribe((value) => this.handleAliasChange(value)),
     )
   }
 

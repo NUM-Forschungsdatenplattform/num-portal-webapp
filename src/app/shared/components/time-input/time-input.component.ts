@@ -94,7 +94,7 @@ export class TimeInputComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.form.valueChanges
         .pipe(debounceTime(this.debounceTime))
-        .subscribe(() => this.handleInputChange())
+        .subscribe(() => this.handleInputChange()),
     )
   }
 

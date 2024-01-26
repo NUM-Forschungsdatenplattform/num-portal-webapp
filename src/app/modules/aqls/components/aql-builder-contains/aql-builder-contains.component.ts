@@ -35,7 +35,7 @@ export class AqlBuilderContainsComponent {
   deleteCompositionByReferenceId(compositionReferenceId: number): void {
     this.aqbModel.handleDeletionByCompositionReferenceIds([compositionReferenceId])
     this.compositions = this.compositions.filter(
-      (composition) => composition.compositionReferenceId !== compositionReferenceId
+      (composition) => composition.compositionReferenceId !== compositionReferenceId,
     )
   }
 

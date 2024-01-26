@@ -127,7 +127,7 @@ describe('AqlEditorService', () => {
         (error) => {
           expect(error).toBeDefined()
           done()
-        }
+        },
       )
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql`, mockComplexContains)
       expect(service.handleError).toHaveBeenCalled()
@@ -162,7 +162,7 @@ describe('AqlEditorService', () => {
         (error) => {
           expect(error).toBeDefined()
           done()
-        }
+        },
       )
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql/validate`, { q: query })
       expect(service.handleError).toHaveBeenCalled()

@@ -51,7 +51,7 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.parameterForm
         .get('value')
-        .valueChanges.subscribe((value) => this.handleParameterChange(value))
+        .valueChanges.subscribe((value) => this.handleParameterChange(value)),
     )
   }
 

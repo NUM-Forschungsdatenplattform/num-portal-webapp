@@ -51,8 +51,8 @@ describe('AttachmentService', () => {
             body: attachmentContentMock1,
             headers: new HttpHeaders({ 'content-disposition': 'attachment;filename=test.pdf' }),
             status: 200,
-          })
-        )
+          }),
+        ),
       )
 
       service.downloadAttachment(123).subscribe((fileBlob) => {

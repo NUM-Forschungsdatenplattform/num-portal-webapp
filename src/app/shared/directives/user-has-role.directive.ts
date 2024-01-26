@@ -26,7 +26,7 @@ export class UserHasRoleDirective implements OnInit, OnDestroy {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   private subscriptions = new Subscription()
@@ -35,7 +35,7 @@ export class UserHasRoleDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo))
+      this.authService.userInfoObservable$.subscribe((userInfo) => this.handleUserInfo(userInfo)),
     )
   }
 

@@ -32,7 +32,7 @@ export class AqlCategoryService {
 
   constructor(
     private appConfigService: AppConfigService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
   ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/aql/category`
   }
@@ -41,7 +41,7 @@ export class AqlCategoryService {
     page: number,
     size: number,
     sort: string = null,
-    sortBy: string = null
+    sortBy: string = null,
   ): Observable<any> {
     let qString = ''
     if (page !== null && size !== null) {
@@ -56,7 +56,7 @@ export class AqlCategoryService {
         this.aqlCategories = data.content
         this.aqlCategoriesSubject$.next(data)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -70,7 +70,7 @@ export class AqlCategoryService {
         this.aqlCategories = aqlCategories
         this.aqlCategoriesSubject$.next(aqlCategories)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -95,7 +95,7 @@ export class AqlCategoryService {
             return searchResult
           }
           throw new Error(`AQL category with id ${id} not found`)
-        })
+        }),
       )
     }
 
@@ -113,7 +113,7 @@ export class AqlCategoryService {
         this.aqlCategories.push(created)
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -129,7 +129,7 @@ export class AqlCategoryService {
       tap((updated) => {
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 
@@ -144,7 +144,7 @@ export class AqlCategoryService {
       tap(() => {
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     )
   }
 

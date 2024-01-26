@@ -63,7 +63,7 @@ export class AqlCategoriesTableComponent
   constructor(
     private aqlCategoryService: AqlCategoryService,
     private dialogService: DialogService,
-    private toast: ToastMessageService
+    private toast: ToastMessageService,
   ) {
     super()
   }
@@ -85,7 +85,7 @@ export class AqlCategoriesTableComponent
         .getAllPag(this.pageIndex, this.pageSize, this.sortDir, this.sortBy)
         .subscribe((data) => {
           this.handleData(data)
-        })
+        }),
     )
   }
 

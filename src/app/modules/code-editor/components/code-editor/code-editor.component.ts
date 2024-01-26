@@ -95,7 +95,7 @@ export class CodeEditorComponent implements AfterViewInit, OnDestroy {
   createEditor(): void {
     this.codeEditor = monaco.editor.create(
       this.codeEditorElementRef.nativeElement,
-      editorConstructionOptions
+      editorConstructionOptions,
     )
     this.setValue(this.componentValue)
     this.attachEditorEvents()
@@ -103,15 +103,15 @@ export class CodeEditorComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.add(
       this.formatObservable$
         .pipe(throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }))
-        .subscribe(() => this.format())
+        .subscribe(() => this.format()),
     )
     this.subscriptions.add(
       this.validationObservable$
         .pipe(
           throttleTime(this.throttleTime, undefined, { leading: true, trailing: true }),
-          distinctUntilChanged()
+          distinctUntilChanged(),
         )
-        .subscribe((markers) => this.setMarkers(markers))
+        .subscribe((markers) => this.setMarkers(markers)),
     )
 
     this.editorInit.emit(this.codeEditor)

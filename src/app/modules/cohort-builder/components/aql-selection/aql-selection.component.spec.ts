@@ -104,7 +104,7 @@ describe('AqlSelectionComponent', () => {
     it('should push it to the builder service', () => {
       component.emitAqlEvent(mockAql1)
       expect(mockCohortBuilderService.pushItemToTarget).toHaveBeenCalledWith(
-        new AqlUiModel(mockAql1)
+        new AqlUiModel(mockAql1),
       )
     })
   })

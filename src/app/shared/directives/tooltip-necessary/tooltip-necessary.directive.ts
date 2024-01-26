@@ -25,7 +25,7 @@ export class TooltipNecessaryDirective {
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private tooltip: MatTooltip
+    private tooltip: MatTooltip,
   ) {
     this.htmlElement = this.elementRef.nativeElement
   }

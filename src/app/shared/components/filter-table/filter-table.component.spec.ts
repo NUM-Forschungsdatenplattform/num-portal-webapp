@@ -71,7 +71,7 @@ describe('FilterTableComponent', () => {
       new Map([
         [1, true],
         [2, true],
-      ])
+      ]),
     )
   })
 
@@ -132,7 +132,7 @@ describe('FilterTableComponent', () => {
         new Map([
           [1, true],
           [2, true],
-        ])
+        ]),
       )
     })
   })

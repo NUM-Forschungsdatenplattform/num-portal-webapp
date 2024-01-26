@@ -88,6 +88,6 @@ describe('AqlBuilderTemplatesComponent', () => {
       } else {
         expect(callCatcher).toHaveBeenCalled()
       }
-    }
+    },
   )
 })

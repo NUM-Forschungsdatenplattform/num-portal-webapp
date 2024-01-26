@@ -30,7 +30,7 @@ import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   constructor(
     private dateAdapter: DateAdapter<any>,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {}
 
   @Input() attachments: ProjectAttachmentUiModel[] = []
@@ -45,7 +45,7 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.translate.onLangChange.subscribe((lang) => {
         this.dateAdapter.setLocale(lang.lang)
-      })
+      }),
     )
   }
 

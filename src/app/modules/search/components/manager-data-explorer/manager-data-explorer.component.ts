@@ -42,7 +42,7 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
     private patientFilterService: PatientFilterService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +70,7 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
             projectId: null,
             description: '',
           },
-          this.currentProject.templates.map((template) => template.templateId)
+          this.currentProject.templates.map((template) => template.templateId),
         )
         .subscribe(
           (result) => {
@@ -80,8 +80,8 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
           () => {
             this.isDataSetLoading = false
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+          },
+        ),
     )
   }
 
@@ -98,7 +98,7 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
             description: '',
           },
           this.currentProject.templates.map((template) => template.templateId),
-          format
+          format,
         )
         .subscribe(
           (response) => {
@@ -113,8 +113,8 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
                 format: format.toUpperCase(),
               },
             })
-          }
-        )
+          },
+        ),
     )
   }
 }

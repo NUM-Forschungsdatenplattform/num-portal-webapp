@@ -28,7 +28,7 @@ export class AqbContainsItemUiModel {
     compositionId: string,
     compositionReferenceId: number,
     archetypeId: string,
-    archetypeReferenceId: number
+    archetypeReferenceId: number,
   ) {
     this.compositionId = compositionId
     this.compositionReferenceId = compositionReferenceId

@@ -33,7 +33,7 @@ export class OAuthInterceptor implements HttpInterceptor {
 
   constructor(
     private oauthService: OAuthService,
-    private authStorage: OAuthStorage
+    private authStorage: OAuthStorage,
   ) {}
 
   private isExcluded(req: HttpRequest<any>): boolean {

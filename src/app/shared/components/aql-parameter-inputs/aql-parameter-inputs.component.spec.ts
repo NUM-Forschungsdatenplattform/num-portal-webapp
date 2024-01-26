@@ -189,13 +189,13 @@ describe('AqlParameterInputsComponent', () => {
         fixture.detectChanges()
 
         const element = fixture.nativeElement.querySelector(
-          `[data-test="${testCase.inputSelector}"]`
+          `[data-test="${testCase.inputSelector}"]`,
         )
 
         element.value = '4.56'
         element.dispatchEvent(new Event('input'))
         expect(element.value).toEqual(testCase.item.value)
-      }
+      },
     )
 
     test.each([null, moment('2012-08-24')])('keeps the time part on date change', (testCase) => {

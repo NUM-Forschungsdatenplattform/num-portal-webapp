@@ -63,7 +63,7 @@ export class NumAqlFormattingProvider {
   format = (
     model: monaco.editor.ITextModel,
     _options?: monaco.languages.FormattingOptions,
-    _token?: monaco.CancellationToken
+    _token?: monaco.CancellationToken,
   ): monaco.languages.ProviderResult<monaco.languages.TextEdit[]> => {
     const query = model.getValue()
     const text = this.formatQuery(query)
@@ -147,7 +147,7 @@ export class NumAqlFormattingProvider {
   private handleLineBreakForCurrent(
     resultArray: string[],
     word: string,
-    lastWasLineBreak: boolean
+    lastWasLineBreak: boolean,
   ): void {
     if (!lastWasLineBreak) {
       resultArray.push(this.ADD_NEW_LINE)
@@ -165,7 +165,7 @@ export class NumAqlFormattingProvider {
   private handleLineBreakForNext(
     resultArray: string[],
     word: string,
-    lastWasLineBreak: boolean
+    lastWasLineBreak: boolean,
   ): void {
     if (!lastWasLineBreak) {
       resultArray.push(this.ADD_SPACE)

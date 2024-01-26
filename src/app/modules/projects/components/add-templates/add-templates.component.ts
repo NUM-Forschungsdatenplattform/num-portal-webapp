@@ -34,7 +34,7 @@ export class AddTemplatesComponent {
   constructor(
     private dialogService: DialogService,
     private cohortService: CohortService,
-    private toastMessageService: ToastMessageService
+    private toastMessageService: ToastMessageService,
   ) {}
 
   @Input() isDisabled: boolean
@@ -80,7 +80,7 @@ export class AddTemplatesComponent {
           type: ToastMessageType.Error,
           message: 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE',
         })
-      }
+      },
     )
   }
 }

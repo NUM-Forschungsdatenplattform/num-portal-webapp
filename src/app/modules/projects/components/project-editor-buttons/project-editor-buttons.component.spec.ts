@@ -184,7 +184,7 @@ describe('ProjectEditorButtonsComponent', () => {
     beforeEach(async () => {
       component.editorMode = PossibleProjectEditorMode.EDIT
       requestApprovalButton = await loader.getHarness(
-        MatButtonHarness.with({ text: 'BUTTON.REQUEST_APPROVAL' })
+        MatButtonHarness.with({ text: 'BUTTON.REQUEST_APPROVAL' }),
       )
     })
 

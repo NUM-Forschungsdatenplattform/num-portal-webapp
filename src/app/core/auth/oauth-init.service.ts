@@ -35,7 +35,7 @@ export class OAuthInitService {
 
   constructor(
     private oauthService: OAuthService,
-    private appConfig: AppConfigService
+    private appConfig: AppConfigService,
   ) {}
   public initOAuth(): Promise<boolean> {
     let terminationTimer: number

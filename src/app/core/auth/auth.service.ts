@@ -47,7 +47,7 @@ export class AuthService {
     private httpClient: HttpClient,
     private router: Router,
     public idle: Idle,
-    private keepAlive: Keepalive
+    private keepAlive: Keepalive,
   ) {
     if (this.isLoggedIn) {
       this.initIdle()
@@ -110,7 +110,7 @@ export class AuthService {
       .post<any>(
         `${this.appConfig.config.api.baseUrl}/admin/user/${userId}`,
         undefined,
-        httpOptions
+        httpOptions,
       )
       .pipe(catchError(() => of()))
   }

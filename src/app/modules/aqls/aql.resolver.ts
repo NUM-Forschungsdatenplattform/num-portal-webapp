@@ -48,7 +48,7 @@ export class AqlResolver implements Resolve<IAqlResolved> {
       }),
       catchError((error) => {
         return of({ aql: new AqlEditorUiModel(), error })
-      })
+      }),
     )
   }
 }

@@ -57,7 +57,7 @@ export class ProjectMenuPipe<T extends IItemVisibility> implements PipeTransform
      * This is not overwritten by the role
      */
     const disabledByStatus = !item.disabledUnless.some(
-      (activeStatus) => activeStatus === this.status
+      (activeStatus) => activeStatus === this.status,
     )
 
     /** Checks if the item should be disabled based on the ownership */

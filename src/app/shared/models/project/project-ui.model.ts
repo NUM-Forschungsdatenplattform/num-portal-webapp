@@ -99,7 +99,7 @@ export class ProjectUiModel {
 
   public convertToApiInterface(
     id?: number,
-    formValues?: ProjectUiModel
+    formValues?: ProjectUiModel,
   ): { project: IProjectApi; cohortGroup: ICohortGroupApi } {
     const projectApi: IProjectApi = {
       id: id || this.id,
@@ -112,7 +112,7 @@ export class ProjectUiModel {
       keywords: formValues?.keywords || this.keywords,
       categories: formValues?.categories || this.categories,
       startDate: DateHelperService.getDateString(
-        moment(formValues?.startDate) || moment(this.startDate)
+        moment(formValues?.startDate) || moment(this.startDate),
       ),
       endDate: DateHelperService.getDateString(moment(formValues?.endDate) || moment(this.endDate)),
       financed: formValues?.financed,

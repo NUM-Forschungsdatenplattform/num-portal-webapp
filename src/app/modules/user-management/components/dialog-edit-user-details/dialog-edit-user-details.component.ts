@@ -60,7 +60,7 @@ export class DialogEditUserDetailsComponent
     private adminService: AdminService,
     private organizationService: OrganizationService,
     private toastMessageService: ToastMessageService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
 
   ngOnInit(): void {
