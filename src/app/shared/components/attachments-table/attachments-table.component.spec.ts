@@ -1,3 +1,18 @@
+/**
+ * Copyright 2024 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Directive, Pipe, PipeTransform } from '@angular/core'
@@ -20,6 +35,8 @@ import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachm
 import { AttachmentsTableComponent } from './attachments-table.component'
 import { MatButtonHarness } from '@angular/material/button/testing'
 import { ButtonComponent } from '../button/button.component'
+import { of } from 'rxjs'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -44,6 +61,10 @@ describe('AttachmentsTableComponent', () => {
     }
   }
 
+  const attachmentMockService = {
+    downloadAttachment: jest.fn(),
+  } as unknown as AttachmentService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -60,6 +81,12 @@ describe('AttachmentsTableComponent', () => {
         MatTooltipModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: AttachmentService,
+          useValue: attachmentMockService,
+        },
       ],
     }).compileComponents()
     fixture = TestBed.createComponent(AttachmentsTableComponent)
@@ -148,6 +175,7 @@ describe('AttachmentsTableComponent', () => {
 
   describe('Download button', () => {
     let downloadButton: MatButtonHarness
+    let selectCells: MatCellHarness[]
 
     beforeEach(async () => {
       component.attachments = attachmentUiMocks
@@ -155,19 +183,40 @@ describe('AttachmentsTableComponent', () => {
       downloadButton = await harnessLoader.getHarness(
         MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
       )
+      selectCells = await harnessLoader.getAllHarnesses(
+        MatCellHarness.with({ columnName: 'select' })
+      )
     })
     it('should be disabled if no attachment have been selected', async () => {
       expect(await downloadButton.isDisabled()).toBeTruthy()
     })
 
     it('should be enabled if one or more attachments have been selected', async () => {
-      const selectBoxes = await harnessLoader.getAllHarnesses(
-        MatCellHarness.with({ columnName: 'select' })
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+    })
+
+    it('should trigger download for all selected rows', async () => {
+      jest
+        .spyOn(attachmentMockService, 'downloadAttachment')
+        .mockImplementation((id: number) =>
+          of(new Blob([`This is test file ${id} content`], { type: 'application/pdf' }))
+        )
+
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+      expect(attachmentMockService.downloadAttachment).toHaveBeenCalledTimes(2)
+      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
+        1,
+        attachmentUiMocks[0].id
       )
-      await (await selectBoxes[0].getHarness(MatCheckboxHarness)).check()
-      expect(await downloadButton.isDisabled()).toBeFalsy()
-      await (await selectBoxes[1].getHarness(MatCheckboxHarness)).check()
-      expect(await downloadButton.isDisabled()).toBeFalsy()
+      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
+        2,
+        attachmentUiMocks[1].id
+      )
     })
   })
 })

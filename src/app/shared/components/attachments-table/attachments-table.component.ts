@@ -19,6 +19,8 @@ import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
 import { Subject, takeUntil } from 'rxjs'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import { downloadPdf } from 'src/app/core/utils/download-file.utils'
 
 @Component({
   selector: 'num-attachments-table',
@@ -54,7 +56,7 @@ export class AttachmentsTableComponent
 
   private onDestroy$ = new Subject<void>()
 
-  constructor() {
+  constructor(private attachmentService: AttachmentService) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
   }
@@ -99,13 +101,15 @@ export class AttachmentsTableComponent
     if ((this.selection?.selected?.length ?? 0) < 1) {
       return
     } else {
-      for (const { name } of this.selection.selected) {
-        this.downloadFile(name)
+      for (const selected of this.selection.selected) {
+        this.downloadFile(selected)
       }
     }
   }
 
-  private downloadFile(fileName: string): void {
-    console.log(fileName)
+  private downloadFile(attachment: ProjectAttachmentUiModel): void {
+    this.attachmentService.downloadAttachment(attachment.id).subscribe((fileBlob) => {
+      downloadPdf(attachment.name, fileBlob)
+    })
   }
 }
