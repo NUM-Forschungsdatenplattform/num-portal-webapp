@@ -95,6 +95,10 @@ describe('AttachmentsTableComponent', () => {
     fixture.detectChanges()
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should create', () => {
     expect(component).toBeTruthy()
   })
@@ -191,6 +195,13 @@ describe('AttachmentsTableComponent', () => {
       expect(await downloadButton.isDisabled()).toBeTruthy()
     })
 
+    it('should disable the button if last row has been unchecked', async () => {
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).uncheck()
+      expect(await downloadButton.isDisabled()).toBeTruthy()
+    })
+
     it('should be enabled if one or more attachments have been selected', async () => {
       await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
       expect(await downloadButton.isDisabled()).toBeFalsy()
@@ -217,6 +228,20 @@ describe('AttachmentsTableComponent', () => {
         2,
         attachmentUiMocks[1].id
       )
+    })
+
+    it('should not trigger a download if there were no attachments selected', () => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment')
+      component.handleDownloadClick()
+      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
+    })
+
+    it('should handle selection is not defined as no selection has been made', () => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment')
+      component.selection = undefined
+      component.handleDownloadClick()
+      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
+      expect(component.isDownloadButtonDisabled).toBeTruthy()
     })
   })
 })
