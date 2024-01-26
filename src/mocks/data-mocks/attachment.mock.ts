@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Vitagroup AG
+ * Copyright 2024 Vitagroup AG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,4 @@
  * limitations under the License.
  */
 
-import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
-
-export const mockAqlExecution1: IAqlExecutionResponse = {
-  q: 'test query',
-  columns: [
-    {
-      path: '/test',
-      name: 'test',
-    },
-  ],
-  rows: ['test-row-1', 'test-row-2'],
-}
+export const attachmentContentMock1 = new Blob(['Test file content 1 to be parsed as blob'])

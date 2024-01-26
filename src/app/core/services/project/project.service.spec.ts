@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http'
+import { firstValueFrom, of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import {
@@ -37,10 +37,11 @@ import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../profile/profile.service'
 import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
-import { skipUntil } from 'rxjs/operators'
+import { catchError, skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
 import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
 import { mockOrganizations } from '../../../../mocks/data-mocks/organizations.mock'
+import { attachmentContentMock1 } from 'src/mocks/data-mocks/attachment.mock'
 
 describe('ProjectService', () => {
   let service: ProjectService
@@ -328,6 +329,43 @@ describe('ProjectService', () => {
         testcase.filter
       )
       expect(result.length).toEqual(testcase.resultLength)
+    })
+  })
+
+  describe('When downloading an attachment', () => {
+    it('should return a blob representation of the file returned by backend', (done) => {
+      jest.spyOn(httpClient, 'get').mockImplementation(() =>
+        of(
+          new HttpResponse({
+            body: attachmentContentMock1,
+            headers: new HttpHeaders({ 'content-disposition': 'attachment;filename=test.pdf' }),
+            status: 200,
+          })
+        )
+      )
+
+      service.downloadAttachment(123).subscribe((fileBlob) => {
+        expect(fileBlob).toBeInstanceOf(Blob)
+        expect(fileBlob.type).toEqual('application/pdf')
+        done()
+      })
+    })
+
+    it('should throw error responses', async () => {
+      const fileId = 234
+      const notFoundResponse = new HttpErrorResponse({
+        error: `File with id ${fileId} not found`,
+        status: 404,
+        statusText: 'NOT FOUND',
+      })
+      jest.spyOn(httpClient, 'get').mockImplementation(() => of(notFoundResponse))
+      jest.spyOn(service, 'handleError')
+
+      try {
+        await firstValueFrom(service.downloadAttachment(fileId))
+      } catch (error) {
+        expect(service.handleError).toHaveBeenCalled()
+      }
     })
   })
 })

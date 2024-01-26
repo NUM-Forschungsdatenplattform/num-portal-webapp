@@ -375,7 +375,8 @@
     "ATTACHMENT": {
       "NAME": "Filename",
       "DESCRIPTION": "Description",
-      "UPLOAD_DATE": "Date"
+      "UPLOAD_DATE": "Date",
+      "DOWNLOAD": "Download"
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",

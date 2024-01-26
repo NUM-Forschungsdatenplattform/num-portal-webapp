@@ -18,6 +18,8 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { TranslateModule } from '@ngx-translate/core'
 import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachment.mock'
 import { AttachmentsTableComponent } from './attachments-table.component'
+import { MatButtonHarness } from '@angular/material/button/testing'
+import { ButtonComponent } from '../button/button.component'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -46,6 +48,7 @@ describe('AttachmentsTableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         AttachmentsTableComponent,
+        ButtonComponent,
         ToolTipNecessaryStubDirective,
         MockLocalizedDatePipe,
       ],
@@ -140,6 +143,31 @@ describe('AttachmentsTableComponent', () => {
       const masterToggleCheckbox = await masterSelect.getHarness(MatCheckboxHarness)
       await masterToggleCheckbox.toggle()
       expect(component.selection.selected.length).toEqual(attachmentUiMocks.length)
+    })
+  })
+
+  describe('Download button', () => {
+    let downloadButton: MatButtonHarness
+
+    beforeEach(async () => {
+      component.attachments = attachmentUiMocks
+      component.viewMode = false
+      downloadButton = await harnessLoader.getHarness(
+        MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
+      )
+    })
+    it('should be disabled if no attachment have been selected', async () => {
+      expect(await downloadButton.isDisabled()).toBeTruthy()
+    })
+
+    it('should be enabled if one or more attachments have been selected', async () => {
+      const selectBoxes = await harnessLoader.getAllHarnesses(
+        MatCellHarness.with({ columnName: 'select' })
+      )
+      await (await selectBoxes[0].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+      await (await selectBoxes[1].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
     })
   })
 })

@@ -323,7 +323,25 @@ export class ProjectService {
       .pipe(catchError(this.handleError))
   }
 
+  downloadAttachment(attachmentId: number): Observable<Blob> {
+    return this.httpClient
+      .get(`${this.baseUrl}/attachment/${attachmentId}`, {
+        observe: 'response',
+        responseType: 'blob',
+      })
+      .pipe(
+        map((response) => {
+          if (response.status >= 200 && response.status < 400) {
+            return new Blob([response.body], { type: 'application/pdf' })
+          } else {
+            throw response
+          }
+        }),
+        catchError(this.handleError)
+      )
+  }
+
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
   }
 }

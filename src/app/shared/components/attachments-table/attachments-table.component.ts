@@ -13,18 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input, ViewChild } from '@angular/core'
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
+import { Subject, takeUntil } from 'rxjs'
 
 @Component({
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
 })
-export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUiModel> {
+export class AttachmentsTableComponent
+  extends SortableTable<ProjectAttachmentUiModel>
+  implements OnDestroy, OnInit
+{
   @Input()
   set attachments(attachments: ProjectAttachmentUiModel[]) {
     this.dataSource.data = attachments
@@ -44,12 +48,26 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
     'description',
     'uploadDate',
   ]
+  isDownloadButtonDisabled = true
 
   selection: SelectionModel<ProjectAttachmentUiModel>
+
+  private onDestroy$ = new Subject<void>()
 
   constructor() {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
+  }
+
+  ngOnInit(): void {
+    this.selection.changed.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
+      this.handleSelectionChange()
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next()
+    this.onDestroy$.unsubscribe()
   }
 
   /**
@@ -70,5 +88,24 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
    */
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
+    this.isDownloadButtonDisabled = this.selection.selected.length < 1
+  }
+
+  handleSelectionChange(): void {
+    this.isDownloadButtonDisabled = (this.selection?.selected?.length ?? 0) < 1
+  }
+
+  handleDownloadClick(): void {
+    if ((this.selection?.selected?.length ?? 0) < 1) {
+      return
+    } else {
+      for (const { name } of this.selection.selected) {
+        this.downloadFile(name)
+      }
+    }
+  }
+
+  private downloadFile(fileName: string): void {
+    console.log(fileName)
   }
 }

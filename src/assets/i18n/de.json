@@ -376,7 +376,8 @@
     "ATTACHMENT": {
       "NAME": "Dateiname",
       "DESCRIPTION": "Beschreibung",
-      "UPLOAD_DATE": "Datum"
+      "UPLOAD_DATE": "Datum",
+      "DOWNLOAD": "Herunterladen"
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",
@@ -392,7 +393,7 @@
     "DESCRIPTION_PLACEHOLDER": "Bitte verfassen Sie eine Projektbeschreibung",
     "GOAL_PLACEHOLDER": "Bitte geben Sie das Ziel des Projekts ein"
   },
- 
+
   "USER": {
     "FIRST_NAME": "Vorname",
     "LAST_NAME": "Nachname",
