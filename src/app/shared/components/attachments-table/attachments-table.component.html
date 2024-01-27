@@ -25,7 +25,6 @@
     [dataSource]="dataSource"
     matSort
     matSortActive="uploadDate"
-    fixedLayout
     data-test="attachments-table"
   >
     <!-- Checkbox column -->
@@ -117,6 +116,7 @@
 
   <div class="attachments-table-actions-wrapper">
     <num-button
+      [attr.hidden]="viewMode === true"
       type="primary"
       [isDisabled]="isDownloadButtonDisabled === true ? true : null"
       (click)="handleDownloadClick()"
