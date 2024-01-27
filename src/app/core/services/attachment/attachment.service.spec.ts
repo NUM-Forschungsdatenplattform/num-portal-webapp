@@ -52,6 +52,10 @@ describe('AttachmentService', () => {
     service = TestBed.inject(AttachmentService)
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
@@ -89,6 +93,18 @@ describe('AttachmentService', () => {
         await firstValueFrom(service.downloadAttachment(fileId))
       } catch (error) {
         expect(service.handleError).toHaveBeenCalled()
+      }
+    })
+    it('should handle unexpected errors', async () => {
+      const expectedError = new Error('Something unexpected happened.')
+      jest.spyOn(httpMockClient, 'get').mockImplementation(() => {
+        throw expectedError
+      })
+
+      try {
+        await firstValueFrom(service.downloadAttachment(345))
+      } catch (error) {
+        expect(error).toEqual(expectedError)
       }
     })
   })

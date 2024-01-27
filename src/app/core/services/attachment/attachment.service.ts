@@ -42,7 +42,7 @@ export class AttachmentService {
           if (response.status >= 200 && response.status < 400) {
             return new Blob([response.body], { type: 'application/pdf' })
           } else {
-            throw response
+            this.handleError(new HttpErrorResponse(response))
           }
         }),
         catchError(this.handleError)

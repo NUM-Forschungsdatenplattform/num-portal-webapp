@@ -35,13 +35,16 @@ import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachm
 import { AttachmentsTableComponent } from './attachments-table.component'
 import { MatButtonHarness } from '@angular/material/button/testing'
 import { ButtonComponent } from '../button/button.component'
-import { of } from 'rxjs'
+import { of, throwError } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
 jest.mock('src/app/core/utils/download-file.utils.ts', () => ({
   downloadPdf: jest.fn(),
 }))
 import { downloadPdf } from 'src/app/core/utils/download-file.utils'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from '../../models/toast-message-type.enum'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -70,6 +73,10 @@ describe('AttachmentsTableComponent', () => {
     downloadAttachment: jest.fn(),
   } as unknown as AttachmentService
 
+  const toastMessageMockService = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -91,6 +98,10 @@ describe('AttachmentsTableComponent', () => {
         {
           provide: AttachmentService,
           useValue: attachmentMockService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: toastMessageMockService,
         },
       ],
     }).compileComponents()
@@ -262,6 +273,42 @@ describe('AttachmentsTableComponent', () => {
       component.handleDownloadClick()
       expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
       expect(component.isDownloadButtonDisabled).toBeTruthy()
+    })
+
+    test.each([
+      [404, 'PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND'],
+      [503, 'PROJECT.ATTACHMENT.ERROR_TRY_AGAIN'],
+      [500, 'PROJECT.ATTACHMENT.ERROR_OTHER'],
+    ])('should show the correct error toast for %p responses', async (status, expectedMessage) => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment').mockImplementation(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              error: `Error with status ${status} occurred.`,
+              status: status,
+            })
+        )
+      )
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Error,
+        message: expectedMessage,
+      })
+    })
+
+    it('should show generic error toast for all unexpected errors', async () => {
+      jest
+        .spyOn(attachmentMockService, 'downloadAttachment')
+        .mockImplementation(() => throwError(() => new Error('Something unexpected happened.')))
+
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+
+      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Error,
+        message: 'PROJECT.ATTACHMENT.ERROR_OTHER',
+      })
     })
   })
 })

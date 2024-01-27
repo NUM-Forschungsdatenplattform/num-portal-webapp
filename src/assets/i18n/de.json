@@ -377,7 +377,10 @@
       "NAME": "Dateiname",
       "DESCRIPTION": "Beschreibung",
       "UPLOAD_DATE": "Datum",
-      "DOWNLOAD": "Herunterladen"
+      "DOWNLOAD": "Herunterladen",
+      "ERROR_FILE_NOT_FOUND": "Datei {{fileName}} konnte nicht gefunden werden. Bitte versuchen Sie es erneut oder wenden Sie sich an Ihren Administrator.",
+      "ERROR_TRY_AGAIN": "Es gab ein Problem beim Abruf der Datei {{fileName}}. Bitte versuchen Sie es nach einer kurzen Wartezeit erneut.",
+      "ERROR_OTHER": "Es gab ein Problem beim Abruf der Datei {{fileName}}. Bitte wenden Sie sich an Ihren Administrator."
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",

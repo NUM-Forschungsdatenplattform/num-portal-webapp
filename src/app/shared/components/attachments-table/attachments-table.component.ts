@@ -21,6 +21,10 @@ import { SelectionModel } from '@angular/cdk/collections'
 import { Subject, takeUntil } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 import { downloadPdf } from 'src/app/core/utils/download-file.utils'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastMessageType } from '../../models/toast-message-type.enum'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-attachments-table',
@@ -56,7 +60,11 @@ export class AttachmentsTableComponent
 
   private onDestroy$ = new Subject<void>()
 
-  constructor(private attachmentService: AttachmentService) {
+  constructor(
+    private attachmentService: AttachmentService,
+    private toastMessageService: ToastMessageService,
+    private translateService: TranslateService
+  ) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
   }
@@ -108,8 +116,45 @@ export class AttachmentsTableComponent
   }
 
   private downloadFile(attachment: ProjectAttachmentUiModel): void {
-    this.attachmentService.downloadAttachment(attachment.id).subscribe((fileBlob) => {
-      downloadPdf(attachment.name, fileBlob)
+    this.attachmentService.downloadAttachment(attachment.id).subscribe({
+      next: (fileBlob) => {
+        downloadPdf(attachment.name, fileBlob)
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          switch (error.status) {
+            case 404:
+              this.toastMessageService.openToast({
+                type: ToastMessageType.Error,
+                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND', {
+                  fileName: attachment.name,
+                }),
+              })
+              break
+            case 503:
+              this.toastMessageService.openToast({
+                type: ToastMessageType.Error,
+                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_TRY_AGAIN', {
+                  fileName: attachment.name,
+                }),
+              })
+              break
+            default:
+              this.showGenericErrorToast(attachment.name)
+          }
+        } else {
+          this.showGenericErrorToast(attachment.name)
+        }
+      },
+    })
+  }
+
+  private showGenericErrorToast(fileName: string): void {
+    this.toastMessageService.openToast({
+      type: ToastMessageType.Error,
+      message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_OTHER', {
+        fileName: fileName,
+      }),
     })
   }
 }
