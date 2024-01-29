@@ -53,3 +53,15 @@ const setContent = (
       break
   }
 }
+
+export const downloadPdf = (filename: string, data: Blob): void => {
+  const downloadLink = document.createElement('a')
+  const objectUrl = URL.createObjectURL(data)
+  downloadLink.setAttribute('href', objectUrl)
+  downloadLink.setAttribute('download', filename)
+  downloadLink.style.display = 'none'
+  document.body.appendChild(downloadLink)
+  downloadLink.click()
+  downloadLink.remove()
+  URL.revokeObjectURL(objectUrl)
+}

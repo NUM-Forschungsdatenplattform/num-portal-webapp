@@ -25,7 +25,6 @@ import {
   mockProject2,
   mockProject3,
   mockProject4,
-  mockProject5,
 } from 'src/mocks/data-mocks/project.mock'
 import {
   projectCommentMock1,
@@ -40,13 +39,11 @@ import { IProjectApi } from 'src/app/shared/models/project/project-api.interface
 import { skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
 import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
-import { mockOrganizations } from '../../../../mocks/data-mocks/organizations.mock'
 
 describe('ProjectService', () => {
   let service: ProjectService
   const baseUrl = 'localhost/api/project'
   let mockProject1Local
-  let throttleTime: number
 
   const filterConfig: IProjectFilter = {
     filterItem: [],

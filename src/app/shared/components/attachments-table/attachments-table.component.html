@@ -14,7 +14,7 @@
  limitations under the License.
 -->
 
-<p class="mat-display-4" id="attachments-header" *ngIf="viewMode === false">
+<p class="mat-display-4" id="attachments-header" *ngIf="showSelectColumn === true">
   {{ 'FORM.ATTACHMENTS' | translate }}
 </p>
 
@@ -25,8 +25,7 @@
     [dataSource]="dataSource"
     matSort
     matSortActive="uploadDate"
-    fixedLayout
-    data-test="attachments__table"
+    data-test="attachments-table"
   >
     <!-- Checkbox column -->
     <ng-container matColumnDef="select">
@@ -114,4 +113,16 @@
       (click)="selection.toggle(row)"
     ></tr>
   </table>
+
+  <div class="attachments-table-actions-wrapper">
+    <num-button
+      *ngIf="isDownloadButtonVisible"
+      type="primary"
+      [isDisabled]="isDownloadButtonDisabled === true ? true : null"
+      (click)="handleDownloadClick()"
+      class="attachment-download-button"
+      data-test="attachments-table__table-actions__download_button"
+      >{{ 'PROJECT.ATTACHMENT.DOWNLOAD' | translate }}</num-button
+    >
+  </div>
 </div>

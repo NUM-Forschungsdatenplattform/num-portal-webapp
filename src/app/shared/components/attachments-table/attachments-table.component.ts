@@ -13,27 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input, ViewChild } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
+import { Subject, takeUntil } from 'rxjs'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import { downloadPdf } from 'src/app/core/utils/download-file.utils'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastMessageType } from '../../models/toast-message-type.enum'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUiModel> {
+export class AttachmentsTableComponent
+  extends SortableTable<ProjectAttachmentUiModel>
+  implements OnDestroy, OnInit
+{
   @Input()
   set attachments(attachments: ProjectAttachmentUiModel[]) {
     this.dataSource.data = attachments
   }
   @Input()
-  set viewMode(mode: boolean) {
-    if (!mode) {
+  set showSelectColumn(mode: boolean) {
+    if (mode) {
       this.displayedColumns.unshift('select')
+      this.isDownloadButtonVisible = true
     }
+    this.cd.markForCheck()
   }
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
@@ -44,12 +65,32 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
     'description',
     'uploadDate',
   ]
+  isDownloadButtonDisabled = true
+  isDownloadButtonVisible = false
 
   selection: SelectionModel<ProjectAttachmentUiModel>
 
-  constructor() {
+  private onDestroy$ = new Subject<void>()
+
+  constructor(
+    private attachmentService: AttachmentService,
+    private cd: ChangeDetectorRef,
+    private toastMessageService: ToastMessageService,
+    private translateService: TranslateService
+  ) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
+  }
+
+  ngOnInit(): void {
+    this.selection.changed.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
+      this.handleSelectionChange()
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next()
+    this.onDestroy$.unsubscribe()
   }
 
   /**
@@ -70,5 +111,63 @@ export class AttachmentsTableComponent extends SortableTable<ProjectAttachmentUi
    */
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
+    this.isDownloadButtonDisabled = this.selection.selected.length < 1
+  }
+
+  handleSelectionChange(): void {
+    this.isDownloadButtonDisabled = (this.selection?.selected?.length ?? 0) < 1
+  }
+
+  handleDownloadClick(): void {
+    if ((this.selection?.selected?.length ?? 0) < 1) {
+      return
+    } else {
+      for (const selected of this.selection.selected) {
+        this.downloadFile(selected)
+      }
+    }
+  }
+
+  private downloadFile(attachment: ProjectAttachmentUiModel): void {
+    this.attachmentService.downloadAttachment(attachment.id).subscribe({
+      next: (fileBlob) => {
+        downloadPdf(attachment.name, fileBlob)
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          switch (error.status) {
+            case 404:
+              this.toastMessageService.openToast({
+                type: ToastMessageType.Error,
+                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND', {
+                  fileName: attachment.name,
+                }),
+              })
+              break
+            case 503:
+              this.toastMessageService.openToast({
+                type: ToastMessageType.Error,
+                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_TRY_AGAIN', {
+                  fileName: attachment.name,
+                }),
+              })
+              break
+            default:
+              this.showGenericErrorToast(attachment.name)
+          }
+        } else {
+          this.showGenericErrorToast(attachment.name)
+        }
+      },
+    })
+  }
+
+  private showGenericErrorToast(fileName: string): void {
+    this.toastMessageService.openToast({
+      type: ToastMessageType.Error,
+      message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_OTHER', {
+        fileName: fileName,
+      }),
+    })
   }
 }

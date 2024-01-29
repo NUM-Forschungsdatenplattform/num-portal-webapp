@@ -36,6 +36,7 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   @Input() attachments: ProjectAttachmentUiModel[] = []
   @Input() form: UntypedFormGroup
   @Input() isDisabled: boolean
+  @Input() showAttachmentSelects: boolean
   @Input() generalInfoData: IDefinitionList[]
 
   private subscriptions = new Subscription()
