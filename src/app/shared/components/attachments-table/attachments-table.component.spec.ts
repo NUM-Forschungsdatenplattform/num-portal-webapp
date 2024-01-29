@@ -1,3 +1,18 @@
+/**
+ * Copyright 2024 Vitagroup AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { Directive, Pipe, PipeTransform } from '@angular/core'
@@ -18,6 +33,18 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { TranslateModule } from '@ngx-translate/core'
 import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachment.mock'
 import { AttachmentsTableComponent } from './attachments-table.component'
+import { MatButtonHarness } from '@angular/material/button/testing'
+import { ButtonComponent } from '../button/button.component'
+import { of, throwError } from 'rxjs'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+
+jest.mock('src/app/core/utils/download-file.utils.ts', () => ({
+  downloadPdf: jest.fn(),
+}))
+import { downloadPdf } from 'src/app/core/utils/download-file.utils'
+import { HttpErrorResponse } from '@angular/common/http'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
+import { ToastMessageType } from '../../models/toast-message-type.enum'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -42,10 +69,19 @@ describe('AttachmentsTableComponent', () => {
     }
   }
 
+  const attachmentMockService = {
+    downloadAttachment: jest.fn(),
+  } as unknown as AttachmentService
+
+  const toastMessageMockService = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         AttachmentsTableComponent,
+        ButtonComponent,
         ToolTipNecessaryStubDirective,
         MockLocalizedDatePipe,
       ],
@@ -58,11 +94,25 @@ describe('AttachmentsTableComponent', () => {
         NoopAnimationsModule,
         TranslateModule.forRoot(),
       ],
+      providers: [
+        {
+          provide: AttachmentService,
+          useValue: attachmentMockService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: toastMessageMockService,
+        },
+      ],
     }).compileComponents()
     fixture = TestBed.createComponent(AttachmentsTableComponent)
     component = fixture.componentInstance
     harnessLoader = TestbedHarnessEnvironment.loader(fixture)
     fixture.detectChanges()
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -140,6 +190,125 @@ describe('AttachmentsTableComponent', () => {
       const masterToggleCheckbox = await masterSelect.getHarness(MatCheckboxHarness)
       await masterToggleCheckbox.toggle()
       expect(component.selection.selected.length).toEqual(attachmentUiMocks.length)
+    })
+  })
+
+  describe('Download button', () => {
+    let downloadButton: MatButtonHarness
+    let selectCells: MatCellHarness[]
+
+    beforeEach(async () => {
+      component.attachments = attachmentUiMocks
+      component.viewMode = false
+      downloadButton = await harnessLoader.getHarness(
+        MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
+      )
+      selectCells = await harnessLoader.getAllHarnesses(
+        MatCellHarness.with({ columnName: 'select' })
+      )
+    })
+    it('should be disabled if no attachment have been selected', async () => {
+      expect(await downloadButton.isDisabled()).toBeTruthy()
+    })
+
+    it('should disable the button if last row has been unchecked', async () => {
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).uncheck()
+      expect(await downloadButton.isDisabled()).toBeTruthy()
+    })
+
+    it('should be enabled if one or more attachments have been selected', async () => {
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
+      expect(await downloadButton.isDisabled()).toBeFalsy()
+    })
+
+    it('should trigger download for all selected rows', async () => {
+      jest
+        .spyOn(attachmentMockService, 'downloadAttachment')
+        .mockImplementation((id: number) =>
+          of(new Blob([`This is test file ${id} content`], { type: 'application/pdf' }))
+        )
+
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+      expect(attachmentMockService.downloadAttachment).toHaveBeenCalledTimes(2)
+      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
+        1,
+        attachmentUiMocks[0].id
+      )
+      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
+        2,
+        attachmentUiMocks[1].id
+      )
+      expect(downloadPdf).toHaveBeenCalledTimes(2)
+      expect(downloadPdf).toHaveBeenNthCalledWith(
+        1,
+        attachmentUiMocks[0].name,
+        new Blob([`This is test file ${attachmentUiMocks[0].id} content`], {
+          type: 'application/pdf',
+        })
+      )
+      expect(downloadPdf).toHaveBeenNthCalledWith(
+        2,
+        attachmentUiMocks[1].name,
+        new Blob([`This is test file ${attachmentUiMocks[1].id} content`], {
+          type: 'application/pdf',
+        })
+      )
+    })
+
+    it('should not trigger a download if there were no attachments selected', () => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment')
+      component.handleDownloadClick()
+      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
+    })
+
+    it('should handle selection is not defined as no selection has been made', () => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment')
+      component.selection = undefined
+      component.handleDownloadClick()
+      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
+      expect(component.isDownloadButtonDisabled).toBeTruthy()
+    })
+
+    test.each([
+      [404, 'PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND'],
+      [503, 'PROJECT.ATTACHMENT.ERROR_TRY_AGAIN'],
+      [500, 'PROJECT.ATTACHMENT.ERROR_OTHER'],
+    ])('should show the correct error toast for %p responses', async (status, expectedMessage) => {
+      jest.spyOn(attachmentMockService, 'downloadAttachment').mockImplementation(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              error: `Error with status ${status} occurred.`,
+              status: status,
+            })
+        )
+      )
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Error,
+        message: expectedMessage,
+      })
+    })
+
+    it('should show generic error toast for all unexpected errors', async () => {
+      jest
+        .spyOn(attachmentMockService, 'downloadAttachment')
+        .mockImplementation(() => throwError(() => new Error('Something unexpected happened.')))
+
+      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
+      await downloadButton.click()
+
+      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
+        type: ToastMessageType.Error,
+        message: 'PROJECT.ATTACHMENT.ERROR_OTHER',
+      })
     })
   })
 })

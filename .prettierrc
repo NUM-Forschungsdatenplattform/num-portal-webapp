@@ -8,12 +8,15 @@
   "semi": false,
   "overrides": [
     {
-      "files": [
-        "index.html",
-        "silent-refresh.html"
-      ],
+      "files": ["index.html", "silent-refresh.html"],
       "options": {
         "parser": "html"
+      }
+    },
+    {
+      "files": ["*.json"],
+      "options": {
+        "trailingComma": "none"
       }
     }
   ]

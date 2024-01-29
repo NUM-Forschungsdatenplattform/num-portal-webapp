@@ -375,7 +375,11 @@
     "ATTACHMENT": {
       "NAME": "Filename",
       "DESCRIPTION": "Description",
-      "UPLOAD_DATE": "Date"
+      "UPLOAD_DATE": "Date",
+      "DOWNLOAD": "Download",
+      "ERROR_FILE_NOT_FOUND": "File {{fileName}} could not be found. Please try again or contact your IT administrator.",
+      "ERROR_TRY_AGAIN": "A problem occurred fetching file {{fileName}}. Please try again after a short waiting time.",
+      "ERROR_OTHER": "An error occurred fetching file {{fileName}}.Please contact your IT administrator."
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",

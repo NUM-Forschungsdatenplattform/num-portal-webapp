@@ -290,7 +290,9 @@ describe('DialogEditUserDetailsComponent', () => {
     beforeEach(async () => {
       loader = TestbedHarnessEnvironment.loader(fixture)
       editButton = await loader.getHarness(
-        MatButtonHarness.with({ selector: `[data-test="user-management__button__edit_user_name"]` })
+        MatButtonHarness.with({
+          selector: `[data-test="user-management__button__edit_user_name"]`,
+        })
       )
       await editButton.click()
     })

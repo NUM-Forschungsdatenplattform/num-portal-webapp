@@ -69,7 +69,6 @@
     "@angular-eslint/template-parser": "14.4.0",
     "@angular/cli": "^14.2.13",
     "@angular/compiler-cli": "^14.3.0",
-    "@types/jasmine": "^5.1.4",
     "@types/jest": "^28.1.8",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^16.18.72",

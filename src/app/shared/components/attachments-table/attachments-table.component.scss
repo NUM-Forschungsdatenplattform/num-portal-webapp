@@ -23,3 +23,13 @@ table {
     white-space: nowrap;
   }
 }
+
+.attachments-table-actions-wrapper {
+  display: grid;
+  align-items: center;
+  padding: 10px;
+
+  .attachment-download-button {
+    justify-self: flex-end;
+  }
+}
