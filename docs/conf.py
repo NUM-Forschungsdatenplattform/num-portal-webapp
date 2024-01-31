@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NUM CODEX'
-copyright = '2022, Netzwerk Universitätsmedizin'
+copyright = '2024, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 
 # The full version, including alpha/beta/rc tags
