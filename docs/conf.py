@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'NUM CODEX'
-copyright = '2022, Netzwerk Universitätsmedizin'
+copyright = '2024, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 
 # The full version, including alpha/beta/rc tags
@@ -73,7 +73,7 @@ html_theme_options = {
     "theme_color": "5f0d22",
 
     # Set the repo location to get a badge with stats
-    "repo_url": "https://github.com/xWiseWolfx/num-portal-webapp",
+    "repo_url": "https://github.com/NUM-Forschungsdatenplattform/num-portal-webapp",
     "repo_name": "NUM Portal Webapp",
 
     # Visible levels of the global TOC; -1 means unlimited
