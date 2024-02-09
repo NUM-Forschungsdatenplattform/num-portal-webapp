@@ -101,6 +101,7 @@ describe('ProjectEditorComponent On Creation', () => {
     @Input() isGeneralInfoDisabled: boolean
     @Input() isCohortBuilderDisabled: boolean
     @Input() isCohortValid: boolean
+    @Input() showAttachmentSelects: boolean
 
     @Input() project: ProjectUiModel
     @Input() projectForm: FormGroup

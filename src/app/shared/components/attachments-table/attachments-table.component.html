@@ -14,7 +14,7 @@
  limitations under the License.
 -->
 
-<p class="mat-display-4" id="attachments-header" *ngIf="viewMode === false">
+<p class="mat-display-4" id="attachments-header" *ngIf="showSelectColumn === true">
   {{ 'FORM.ATTACHMENTS' | translate }}
 </p>
 
@@ -116,7 +116,7 @@
 
   <div class="attachments-table-actions-wrapper">
     <num-button
-      [attr.hidden]="viewMode === true"
+      *ngIf="isDownloadButtonVisible"
       type="primary"
       [isDisabled]="isDownloadButtonDisabled === true ? true : null"
       (click)="handleDownloadClick()"

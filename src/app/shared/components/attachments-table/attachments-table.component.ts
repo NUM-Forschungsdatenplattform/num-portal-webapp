@@ -13,7 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
@@ -30,6 +38,7 @@ import { TranslateService } from '@ngx-translate/core'
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>
@@ -40,10 +49,12 @@ export class AttachmentsTableComponent
     this.dataSource.data = attachments
   }
   @Input()
-  set viewMode(mode: boolean) {
-    if (!mode) {
+  set showSelectColumn(mode: boolean) {
+    if (mode) {
       this.displayedColumns.unshift('select')
+      this.isDownloadButtonVisible = true
     }
+    this.cd.markForCheck()
   }
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
@@ -55,6 +66,7 @@ export class AttachmentsTableComponent
     'uploadDate',
   ]
   isDownloadButtonDisabled = true
+  isDownloadButtonVisible = false
 
   selection: SelectionModel<ProjectAttachmentUiModel>
 
@@ -62,6 +74,7 @@ export class AttachmentsTableComponent
 
   constructor(
     private attachmentService: AttachmentService,
+    private cd: ChangeDetectorRef,
     private toastMessageService: ToastMessageService,
     private translateService: TranslateService
   ) {

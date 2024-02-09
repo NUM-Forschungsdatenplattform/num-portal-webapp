@@ -21,4 +21,7 @@ export interface IDefinitionList {
   title: string
   description: string | string[] | ProjectAttachmentUiModel[] | boolean | Date
   type?: DefinitionType
+  extraOptions?: {
+    showAttachmentSelects?: boolean
+  }
 }
