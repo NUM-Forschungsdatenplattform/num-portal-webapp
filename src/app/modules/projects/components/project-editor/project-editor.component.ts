@@ -122,7 +122,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       defaultMessage: 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS',
     }
     this.profileService.get().subscribe((user) => {
-      this.isUserProjectAdmin = user.id === this.project.coordinator.id
+      this.isUserProjectAdmin = user.id === this.project.coordinator?.id ?? false
     })
   }
 

@@ -373,13 +373,19 @@
       "REGISTRY": "Registry"
     },
     "ATTACHMENT": {
-      "NAME": "Filename",
+      "ADD_DIALOG_TITLE": "Add attachment",
+      "ADD_HINT": "Attachments of type PDF with a maximum size of 10MB can be added.",
+      "ADD": "Add",
       "DESCRIPTION": "Description",
-      "UPLOAD_DATE": "Date",
       "DOWNLOAD": "Download",
+      "EMPTY_LIST_INFO": "There are no files attached to this project",
       "ERROR_FILE_NOT_FOUND": "File {{fileName}} could not be found. Please try again or contact your IT administrator.",
+      "ERROR_OTHER": "An error occurred fetching file {{fileName}}.Please contact your IT administrator.",
       "ERROR_TRY_AGAIN": "A problem occurred fetching file {{fileName}}. Please try again after a short waiting time.",
-      "ERROR_OTHER": "An error occurred fetching file {{fileName}}.Please contact your IT administrator."
+      "NAME": "Filename",
+      "SELECT_FILES_LABEL": "Please select files.",
+      "UPLOAD_DATE": "Date",
+      "UPLOAD": "Upload"
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",

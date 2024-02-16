@@ -34,16 +34,11 @@ export class AttachmentService {
   downloadAttachment(attachmentId: number): Observable<Blob> {
     return this.httpClient
       .get(`${this.baseUrl}/${attachmentId}`, {
-        observe: 'response',
         responseType: 'blob',
       })
       .pipe(
         map((response) => {
-          if (response.status >= 200 && response.status < 400) {
-            return new Blob([response.body], { type: 'application/pdf' })
-          } else {
-            this.handleError(new HttpErrorResponse(response))
-          }
+          return new Blob([response], { type: 'application/pdf' })
         }),
         catchError(this.handleError)
       )

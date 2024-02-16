@@ -251,13 +251,13 @@ describe('AppLayoutComponent', () => {
       expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
     })
 
-    it('should set the correct url', () => {
+    it('should set the correct url', async () => {
       const router: Router = TestBed.inject(Router)
       const routerEventsSubject = new Subject<NavigationEnd>()
       const routerAny = { ...router, url: '/home' } as any
       routerAny.events = routerEventsSubject.asObservable()
       const routerEvent = new NavigationEnd(1, '/home', '/home')
-      router.navigate(['/home'])
+      await fixture.ngZone.run(() => router.navigate(['/home']))
       routerEventsSubject.next(routerEvent)
       fixture.detectChanges()
       expect(routerAny.url).toEqual('/home')

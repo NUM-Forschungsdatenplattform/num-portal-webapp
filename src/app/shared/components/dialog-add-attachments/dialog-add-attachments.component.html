@@ -1,0 +1,31 @@
+<!--
+ Copyright 2024 Vitagroup AG
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+      http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<section role="presentation">
+  <p>{{ 'PROJECT.ATTACHMENT.ADD_HINT' | translate }}</p>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+      <div class="file-input">
+        <label for="file">{{ 'PROJECT.ATTACHMENT.SELECT_FILES_LABEL' | translate }}</label>
+        <input id="file" formControlName="file" type="file" />
+      </div>
+      <mat-form-field class="description-input">
+        <mat-label>{{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}</mat-label>
+        <input matInput formControlName="description" type="text" />
+      </mat-form-field>
+    </div>
+  </form>
+</section>

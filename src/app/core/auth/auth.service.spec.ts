@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { Idle } from '@ng-idle/core'
 import { Keepalive } from '@ng-idle/keepalive'
@@ -22,7 +22,7 @@ import { OAuthEvent, OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.interface'
-import { mockOAuthUser, mockUsers } from 'src/mocks/data-mocks/admin.mock'
+import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
 
@@ -58,6 +58,7 @@ describe('Auth Service', () => {
   } as unknown as ProfileService
 
   const idle = {
+    isIdling: jest.fn(),
     watch: () => jest.fn(),
     setIdle: () => jest.fn(),
     setTimeout: () => jest.fn(),

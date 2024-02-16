@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Vitagroup AG
+ * Copyright 2024 Vitagroup AG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
  * limitations under the License.
  */
 
-table {
-  width: 100%;
+$file-input-width: 35%;
 
-  td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.file-input {
+  display: flex;
+  width: $file-input-width;
+  margin-right: 8px;
+
+  label {
+    margin-right: 8px;
   }
 }
 
-.empty-message-wrapper {
-  width: 100%;
-  padding: 10px;
-  text-align: center;
+.description-input {
+  width: calc(100% - $file-input-width - 8px);
 }

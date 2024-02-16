@@ -114,15 +114,16 @@
     ></tr>
   </table>
 
-  <div class="attachments-table-actions-wrapper">
-    <num-button
-      *ngIf="isDownloadButtonVisible"
-      type="primary"
-      [isDisabled]="isDownloadButtonDisabled === true ? true : null"
-      (click)="handleDownloadClick()"
-      class="attachment-download-button"
-      data-test="attachments-table__table-actions__download_button"
-      >{{ 'PROJECT.ATTACHMENT.DOWNLOAD' | translate }}</num-button
-    >
-  </div>
+  <ng-container *ngIf="attachments?.length <= 0">
+    <div class="empty-message-wrapper">
+      <p>{{ 'PROJECT.ATTACHMENT.EMPTY_LIST_INFO' | translate }}</p>
+    </div>
+  </ng-container>
+
+  <num-attachments-table-actions
+    [attachments]="attachments"
+    [selected]="selection?.selected ?? []"
+    [showDownloadButton]="showSelectColumn"
+    [showUploadButton]="allowUpload"
+  ></num-attachments-table-actions>
 </div>

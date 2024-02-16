@@ -34,19 +34,23 @@ import { AqlParameterInputsComponent } from './aql-parameter-inputs/aql-paramete
 import { ResultTableComponent } from './result-table/result-table.component'
 import { AttachmentsTableComponent } from './attachments-table/attachments-table.component'
 import { DirectivesModule } from '../directives/directives.module'
+import { AttachmentsTableActionsComponent } from './attachments-table-actions/attachments-table-actions.component'
+import { DialogAddAttachmentsComponent } from './dialog-add-attachments/dialog-add-attachments.component'
 
 const SHARED_DECLARATIONS = [
-  SearchComponent,
-  FilterChipsComponent,
+  AqlParameterInputsComponent,
+  AttachmentsTableComponent,
+  AttachmentsTableActionsComponent,
   ButtonComponent,
-  FilterTableComponent,
   DefinitionListComponent,
-  TimeInputComponent,
+  DialogAddAttachmentsComponent,
   DialogConfirmationComponent,
   EditorDetermineHitsComponent,
-  AqlParameterInputsComponent,
+  FilterChipsComponent,
+  FilterTableComponent,
   ResultTableComponent,
-  AttachmentsTableComponent,
+  SearchComponent,
+  TimeInputComponent,
 ]
 
 @NgModule({
