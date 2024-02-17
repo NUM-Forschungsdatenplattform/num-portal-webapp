@@ -212,7 +212,7 @@ describe('AttachmentTableActionsComponent', () => {
             })
         )
       )
-      component.selected = [attachmentUiMocks[0]]
+      hostComponent.selected = [attachmentUiMocks[0]]
       fixture.detectChanges()
       await downloadButton.click()
       expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
@@ -226,7 +226,7 @@ describe('AttachmentTableActionsComponent', () => {
         .spyOn(attachmentMockService, 'downloadAttachment')
         .mockImplementation(() => throwError(() => new Error('Something unexpected happened.')))
 
-      component.selected = [attachmentUiMocks[0]]
+      hostComponent.selected = [attachmentUiMocks[0]]
       fixture.detectChanges()
       await downloadButton.click()
 

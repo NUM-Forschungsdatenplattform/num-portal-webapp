@@ -16,7 +16,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule, UntypedFormArray, UntypedFormGroup } from '@angular/forms'
+import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -25,6 +25,7 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
+import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
@@ -40,6 +41,7 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
     @Input() showAttachmentSelects: boolean
+    @Input() projectStatus: ProjectStatus
   }
 
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })

@@ -44,8 +44,8 @@ export class AttachmentsTableComponent
   @Input()
   showSelectColumn: boolean
 
-  @Input() set projectStatus(projectStatus: ProjectStatus) {
-    this.allowUpload = [ProjectStatus.Draft].includes(projectStatus)
+  @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
+    this.allowUpload = [ProjectStatus.Draft].includes(projectStatus) ?? false
   }
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {

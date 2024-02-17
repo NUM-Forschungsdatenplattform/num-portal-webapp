@@ -50,6 +50,7 @@ describe('AttachmentsTableComponent', () => {
     @Input() attachments: ProjectAttachmentUiModel[]
     @Input() selected?: ProjectAttachmentUiModel[]
     @Input() showDownloadButton: boolean
+    @Input() showUploadButton: boolean
   }
 
   @Directive({

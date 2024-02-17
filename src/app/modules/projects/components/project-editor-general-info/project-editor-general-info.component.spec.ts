@@ -25,6 +25,7 @@ import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info
 import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { ProjectAttachmentUiModel } from '../../../../shared/models/project/project-attachment-ui.model'
+import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 
 describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
@@ -52,6 +53,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
     @Input() showSelectColumn: boolean
+    @Input() projectStatus: ProjectStatus
   }
 
   beforeEach(async () => {
