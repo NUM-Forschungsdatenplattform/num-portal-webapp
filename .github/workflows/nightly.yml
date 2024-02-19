@@ -15,8 +15,8 @@ jobs:
           cache: 'npm'
       - name: Fontawesome
         run: |
-          cp ~/project/.circleci/.npmrc ~/project/
-          envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/project/.npmrc
+          cp ~/.circleci/.npmrc ~/
+          envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/.npmrc
       - name: Install
         run: npm install
       - name: Run Linter
