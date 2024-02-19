@@ -15,7 +15,7 @@ jobs:
           cache: 'npm'
       - name: Fontawesome
         run: |
-          cp ~/.circleci/.npmrc ~/
+          cp ~/work/num-portal-webapp/num-portal-webapp/.circleci/.npmrc ~/
           envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/.npmrc
       - name: Install
         run: npm install
