@@ -1,0 +1,51 @@
+name: nightly test run
+on:
+  push:
+  schedule:
+    - cron: '0 21 * * *'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Fontawesome
+        run: |
+          cp ~/project/.circleci/.npmrc ~/project/
+          envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/project/.npmrc
+      - name: Install
+        run: npm install
+      - name: Run Linter
+        run: npm run lint
+      - name: Run frontend unit tests
+        run: npm run test-ci
+        env:
+          NODE_OPTIONS:  --max_old_space_size=4096
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: ./reports/junit/
+      - name: Run CVE scan with audit
+        run: npm audit --audit-level=critical
+      - name: Run CVE scan
+        run: |
+          wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v9.0.9/dependency-check-9.0.9-release.zip
+          mv dependency-check-9.0.9-release.zip ~
+          unzip ~/dependency-check-9.0.9-release.zip -d ~
+          ~/dependency-check/bin/dependency-check.sh -s ~/project --project num-portal-webapp -o ~/project -f HTML -f XML
+      - name: Upload dependency check report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path:  ~/project/dependency-check-report.html
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
