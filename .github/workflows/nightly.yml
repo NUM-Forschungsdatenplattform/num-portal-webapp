@@ -37,12 +37,12 @@ jobs:
           wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v9.0.9/dependency-check-9.0.9-release.zip
           mv dependency-check-9.0.9-release.zip ~
           unzip ~/dependency-check-9.0.9-release.zip -d ~
-          ~/dependency-check/bin/dependency-check.sh -s ~/project --project num-portal-webapp -o ~/project -f HTML -f XML
+          ~/dependency-check/bin/dependency-check.sh -s ~/work/num-portal-webapp/num-portal-webapp/ --project num-portal-webapp -o ~/result/ -f HTML -f XML
       - name: Upload dependency check report
         uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
-          path:  ~/project/dependency-check-report.html
+          path:  ~/result/dependency-check-report.html
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2.1.1
         env:
