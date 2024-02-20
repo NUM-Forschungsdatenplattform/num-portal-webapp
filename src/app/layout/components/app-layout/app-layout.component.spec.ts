@@ -96,6 +96,12 @@ describe('AppLayoutComponent', () => {
     @Output() toggleMenu = new EventEmitter()
   }
 
+  @Component({
+    selector: 'num-home',
+    template: '',
+  })
+  class HomeStubComponent {}
+
   const mockConfigService = {
     config: {
       api: {
@@ -116,6 +122,7 @@ describe('AppLayoutComponent', () => {
         SideMenuComponentStub,
         LanguageComponent,
         FooterStubComponent,
+        HomeStubComponent,
       ],
       imports: [
         NoopAnimationsModule,
@@ -123,7 +130,12 @@ describe('AppLayoutComponent', () => {
         FlexLayoutModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([
+          {
+            path: 'home',
+            component: HomeStubComponent,
+          },
+        ]),
         DirectivesModule,
         SharedComponentsModule,
       ],

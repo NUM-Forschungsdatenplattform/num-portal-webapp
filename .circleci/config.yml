@@ -320,6 +320,6 @@ commands:
           when: on_fail
 
 orbs:
-  sonarcloud: sonarsource/sonarcloud@2.0.0
+  # sonarcloud: sonarsource/sonarcloud@2.0.0
   node: circleci/node@5.2.0
   jq: circleci/jq@3.0.0

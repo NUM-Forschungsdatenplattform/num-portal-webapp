@@ -51,7 +51,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   })
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
-    @Input() viewMode: boolean
+    @Input() showSelectColumn: boolean
   }
 
   beforeEach(async () => {
