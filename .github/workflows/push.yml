@@ -1,0 +1,50 @@
+name: onpush pipeline
+on:
+  push:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Fontawesome
+        run: |
+          cp ~/work/num-portal-webapp/num-portal-webapp/.circleci/.npmrc ~/
+          envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/.npmrc
+      - name: Install
+        run: npm install
+      - name: Run Linter
+        run: npm run lint
+      - name: Run frontend unit tests
+        run: npm run test-ci
+        env:
+          NODE_OPTIONS:  --max_old_space_size=4096
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: ./reports/junit/
+      - name: Run CVE scan with audit
+        run: npm audit --audit-level=critical
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
