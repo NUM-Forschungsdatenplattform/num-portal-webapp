@@ -187,7 +187,7 @@ jobs:
       - run:
           name: Run CVE scan by npm audit
           command: npm audit --audit-level=critical
-      - sonarcloud/scan
+#      - sonarcloud/scan
       - failed-build-ms-teams-notification
   tag_version:
     docker:
@@ -319,7 +319,7 @@ commands:
             curl --fail -H "Content-Type: application/json" --data-binary @$MSG_PATH $CODEX_NOTIFICATIONS
           when: on_fail
 
-orbs:
-  sonarcloud: sonarsource/sonarcloud@2.0.0
-  node: circleci/node@5.2.0
-  jq: circleci/jq@3.0.0
+#orbs:
+#  sonarcloud: sonarsource/sonarcloud@2.0.0
+#  node: circleci/node@5.2.0
+#  jq: circleci/jq@3.0.0
