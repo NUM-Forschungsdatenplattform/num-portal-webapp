@@ -137,7 +137,8 @@ describe('AttachmentsTableComponent', () => {
     })
 
     it('should also show select columns if view only mode is switched off', async () => {
-      component.viewMode = false
+      component.showSelectColumn = true
+      await fixture.whenStable()
       const table = await harnessLoader.getHarness(MatTableHarness)
       const columns = await table.getCellTextByColumnName()
       expect(Object.keys(columns)).toContain('select')
@@ -147,7 +148,7 @@ describe('AttachmentsTableComponent', () => {
   describe('when selecting rows from table', () => {
     beforeEach(() => {
       component.attachments = attachmentUiMocks
-      component.viewMode = false
+      component.showSelectColumn = true
       fixture.detectChanges()
     })
 
@@ -199,7 +200,7 @@ describe('AttachmentsTableComponent', () => {
 
     beforeEach(async () => {
       component.attachments = attachmentUiMocks
-      component.viewMode = false
+      component.showSelectColumn = true
       downloadButton = await harnessLoader.getHarness(
         MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
       )

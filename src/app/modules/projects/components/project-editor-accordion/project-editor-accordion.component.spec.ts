@@ -16,7 +16,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule, UntypedFormArray, UntypedFormGroup } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -36,9 +36,10 @@ describe('ProjectEditorAccordionComponent', () => {
   @Component({ selector: 'num-project-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
-    @Input() form: any
+    @Input() form: UntypedFormGroup
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
+    @Input() showAttachmentSelects: boolean
   }
 
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })

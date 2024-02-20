@@ -41,6 +41,7 @@ import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { TranslateService } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { DefinitionType } from 'src/app/shared/models/definition-type.enum'
 
 @Component({
   selector: 'num-project-editor',
@@ -242,7 +243,13 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = this.project.getProjectPreviewGeneralInfo()
+    this.generalInfoData = this.project
+      .getProjectPreviewGeneralInfo()
+      .map((infoData) =>
+        infoData.type !== DefinitionType.Table
+          ? infoData
+          : { ...infoData, extraOptions: { showAttachmentSelects: true } }
+      )
   }
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {

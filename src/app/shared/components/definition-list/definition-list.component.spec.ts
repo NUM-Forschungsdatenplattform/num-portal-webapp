@@ -21,14 +21,25 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { IDefinitionList } from '../../models/definition-list.interface'
 import { DefinitionType } from '../../models/definition-type.enum'
 import { By } from '@angular/platform-browser'
+import { Component, Input } from '@angular/core'
+import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 
 describe('DifinationListComponent', () => {
   let component: DefinitionListComponent
   let fixture: ComponentFixture<DefinitionListComponent>
 
+  @Component({
+    selector: 'num-attachments-table',
+    template: '',
+  })
+  class AttachmentsTableStubComponent {
+    @Input() attachments: ProjectAttachmentUiModel[] = []
+    @Input() showSelectColumn: boolean
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DefinitionListComponent],
+      declarations: [AttachmentsTableStubComponent, DefinitionListComponent],
       imports: [TranslateModule.forRoot(), FontAwesomeTestingModule],
     }).compileComponents()
   })
