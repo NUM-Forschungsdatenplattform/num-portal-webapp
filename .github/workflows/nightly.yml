@@ -1,6 +1,5 @@
 name: nightly test run
 on:
-  push:
   schedule:
     - cron: '0 21 * * *'
 
