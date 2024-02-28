@@ -1,16 +1,21 @@
-name: onpush pipeline
+name: Build for development
+
 on:
   push:
-  pull_request:
+    branches: [ 'feature/**', 'dependabot/**' ]
+  pull_request_target:
     branches: [ develop ]
     types: [ closed ]
 
 jobs:
-  verify:
+  test_and_scan:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -53,13 +58,15 @@ jobs:
         continue-on-error: true
 
   docker:
-    runs-on: ubuntu-latest
-    needs: verify
+    needs: test_and_scan
     if: github.event.pull_request.merged == true
+
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'

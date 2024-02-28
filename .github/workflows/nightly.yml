@@ -1,4 +1,5 @@
-name: nightly
+name: Nightly
+
 on:
   schedule:
     - cron: '0 21 * * *'
@@ -7,8 +8,10 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -31,17 +34,18 @@ jobs:
           path: ./reports/junit/
       - name: Run CVE scan with audit
         run: npm audit --audit-level=critical
-      - name: Run CVE scan
-        run: |
-          wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v9.0.9/dependency-check-9.0.9-release.zip
-          mv dependency-check-9.0.9-release.zip ~
-          unzip ~/dependency-check-9.0.9-release.zip -d ~
-          ~/dependency-check/bin/dependency-check.sh -s ~/work/num-portal-webapp/num-portal-webapp/ --project num-portal-webapp -o ~/result/ -f HTML -f XML
-      - name: Upload dependency check report
-        uses: actions/upload-artifact@v4
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
         with:
-          name: dependency-check-report
-          path:  ~/result/dependency-check-report.html
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@v2.1.1
         env:
