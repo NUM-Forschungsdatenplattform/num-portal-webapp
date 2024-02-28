@@ -21,7 +21,7 @@ RUN apk add -i gettext
 
 COPY . .
 ARG FONTAWESOME_NPM_AUTH_TOKEN=
-RUN cp ./.circleci/.npmrc .
+RUN cp ./.github/.npmrc .
 RUN envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ./.npmrc
 RUN npm install
 ARG ENVIRONMENT=deploy
