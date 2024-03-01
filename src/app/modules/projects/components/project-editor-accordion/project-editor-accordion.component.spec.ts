@@ -40,7 +40,8 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() form: UntypedFormGroup
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
-    @Input() showAttachmentSelects: boolean
+    @Input() showAttachmentsSelect: boolean
+    @Input() isInPreview: boolean
     @Input() projectId?: number
     @Input() projectStatus: ProjectStatus
   }

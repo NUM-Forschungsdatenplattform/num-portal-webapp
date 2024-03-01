@@ -125,7 +125,8 @@ describe('DataExplorerComponent', () => {
     @Input() isResearchersDisabled: boolean
     @Input() isGeneralInfoDisabled: boolean
     @Input() isCohortBuilderDisabled: boolean
-    @Input() showAttachmentSelects: boolean
+    @Input() showAttachmentsSelect: boolean
+    @Input() isInPreview: boolean
 
     @Input() project: ProjectUiModel
     @Input() projectForm: FormGroup

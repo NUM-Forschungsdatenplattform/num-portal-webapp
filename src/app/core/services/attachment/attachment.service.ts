@@ -19,11 +19,16 @@ import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
+import { IProjectAttachmentApi } from 'src/app/shared/models/project/project-attachment-api.interface'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttachmentService {
+  private attachmentsSubject$ = new BehaviorSubject<ProjectAttachmentUiModel[]>([])
+  public attachmentsObservable$ = this.attachmentsSubject$.asObservable()
+
   private baseUrl: string
   private uploadProgressSubject$ = new BehaviorSubject<AttachmentUploadProgress>({
     percentage: 0,
@@ -36,6 +41,17 @@ export class AttachmentService {
     private httpClient: HttpClient
   ) {
     this.baseUrl = `${this.appConfigService.config.api.baseUrl}/attachment`
+  }
+
+  loadAttachments(projectId): Observable<void> {
+    return this.httpClient
+      .get<IProjectAttachmentApi[]>(`${this.baseUrl}/project/${projectId}`)
+      .pipe(
+        map((response) => {
+          const attachments = response.map((attachment) => new ProjectAttachmentUiModel(attachment))
+          this.attachmentsSubject$.next(attachments)
+        })
+      )
   }
 
   downloadAttachment(attachmentId: number): Observable<Blob> {

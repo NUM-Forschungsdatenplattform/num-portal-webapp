@@ -35,7 +35,8 @@ export class ProjectEditorAccordionComponent {
   @Input() isGeneralInfoDisabled: boolean
   @Input() isCohortBuilderDisabled: boolean
   @Input() isUserProjectAdmin: boolean
-  @Input() showAttachmentSelects: boolean
+  @Input() showAttachmentsSelect: boolean
+  @Input() isInPreview: boolean
   @Input() project: ProjectUiModel
   @Input() projectForm: UntypedFormGroup
   @Input() cohortGroup: CohortGroupUiModel

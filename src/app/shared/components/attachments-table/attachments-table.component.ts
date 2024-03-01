@@ -43,9 +43,11 @@ export class AttachmentsTableComponent
   }
   @Input() projectId?: number
   @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
-    this.allowUpload = [ProjectStatus.Draft].includes(projectStatus) ?? false
+    this.allowUpload =
+      ([ProjectStatus.Draft].includes(projectStatus) ?? false) && this.projectId !== null
   }
   @Input() showSelectColumn: boolean
+  @Input() isInPreview: boolean
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort
@@ -72,6 +74,9 @@ export class AttachmentsTableComponent
         this.displayedColumns.splice(this.displayedColumns.indexOf('select'), 1)
       }
       this.cd.markForCheck()
+    }
+    if ('isInPreview' in changes) {
+      this.allowUpload = changes['isInPreview'].currentValue === false
     }
   }
 

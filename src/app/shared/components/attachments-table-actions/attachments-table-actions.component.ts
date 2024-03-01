@@ -44,7 +44,7 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   @Input() showUploadButton: boolean = false
 
   isDownloadButtonDisabled = true
-  isUploadButtonDisabled = false
+  isUploadButtonDisabled = true
 
   private subscriptions = new Subscription()
 
@@ -59,6 +59,10 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
     if ('selected' in changes) {
       const newSelections = changes['selected'].currentValue as ProjectAttachmentUiModel[]
       this.isDownloadButtonDisabled = (newSelections?.length ?? 0) < 1
+    }
+
+    if ('projectId' in changes) {
+      this.isUploadButtonDisabled = changes['projectId'].currentValue === null
     }
   }
 
@@ -100,7 +104,7 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
               }),
             })
 
-            //TODO: Reload attachments
+            this.attachmentService.loadAttachments(this.projectId).subscribe()
           }
         })
     )

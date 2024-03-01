@@ -22,11 +22,16 @@ import {
   HttpResponse,
 } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
-import { firstValueFrom, of } from 'rxjs'
+import { firstValueFrom, of, skip } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { attachmentContentMock1 } from 'src/mocks/data-mocks/attachment.mock'
+import {
+  attachmentApiMock1,
+  attachmentApiMock2,
+} from 'src/mocks/data-mocks/project-attachment.mock'
 
 import { AttachmentService } from './attachment.service'
 
@@ -68,6 +73,26 @@ describe('AttachmentService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy()
+  })
+
+  describe('When loading all project attachments', () => {
+    beforeEach(() => {
+      jest
+        .spyOn(httpMockClient, 'get')
+        .mockReturnValue(of([attachmentApiMock1, attachmentApiMock2]))
+    })
+
+    it('should emit a new list of ui model attachments', (done) => {
+      service.attachmentsObservable$.subscribe((attachments) => {
+        expect(attachments).toHaveLength(2)
+        for (const attachment of attachments) {
+          expect(attachment).toBeInstanceOf(ProjectAttachmentUiModel)
+        }
+        done()
+      })
+
+      service.loadAttachments(124).subscribe()
+    })
   })
 
   describe('When downloading an attachment', () => {

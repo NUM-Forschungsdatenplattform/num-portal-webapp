@@ -14,13 +14,15 @@
  limitations under the License.
 -->
 
-<p class="mat-display-4" id="attachments-header" *ngIf="showSelectColumn === true">
+<p class="mat-display-4 num-margin-b-10" id="attachments-header" *ngIf="!isInPreview">
   {{ 'FORM.ATTACHMENTS' | translate }}
 </p>
 
-<div role="presentation" class="project-attachments-table-wrapper mat-elevation num-margin-b-60">
+<div role="presentation" class="project-attachments-table-wrapper mat-elevation">
   <table
+    *ngIf="dataSource.filteredData.length > 0; else empty"
     aria-labelledby="attachments-header"
+    class="num-margin-b-60"
     mat-table
     [dataSource]="dataSource"
     matSort
@@ -114,12 +116,6 @@
     ></tr>
   </table>
 
-  <ng-container *ngIf="attachments?.length <= 0">
-    <div class="empty-message-wrapper">
-      <p>{{ 'PROJECT.ATTACHMENT.EMPTY_LIST_INFO' | translate }}</p>
-    </div>
-  </ng-container>
-
   <num-attachments-table-actions
     [attachments]="attachments"
     [projectId]="projectId"
@@ -128,3 +124,7 @@
     [showUploadButton]="allowUpload"
   ></num-attachments-table-actions>
 </div>
+
+<ng-template #empty>
+  <p class="empty-placeholder">-</p>
+</ng-template>

@@ -58,6 +58,13 @@ jest.mock('src/app/core/utils/download-file.utils', () => ({
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import {
+  attachmentApiMock1,
+  attachmentApiMock2,
+  attachmentApiMock3,
+} from 'src/mocks/data-mocks/project-attachment.mock'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
@@ -113,6 +120,11 @@ describe('ProjectEditorComponent', () => {
     openToast: jest.fn(),
   } as unknown as ToastMessageService
 
+  const attachmentsSubject$ = new BehaviorSubject<ProjectAttachmentUiModel[]>([])
+  const mockAttachmentService = {
+    attachmentsObservable$: attachmentsSubject$.asObservable(),
+  } as unknown as AttachmentService
+
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {
     @Input() isResearchersFetched: boolean
@@ -123,7 +135,8 @@ describe('ProjectEditorComponent', () => {
     @Input() isGeneralInfoDisabled: boolean
     @Input() isCohortBuilderDisabled: boolean
     @Input() isCohortValid: boolean
-    @Input() showAttachmentSelects: boolean
+    @Input() showAttachmentsSelect: boolean
+    @Input() isInPreview: boolean
 
     @Input() project: ProjectUiModel
     @Input() projectForm: FormGroup
@@ -224,6 +237,10 @@ describe('ProjectEditorComponent', () => {
         {
           provide: ProfileService,
           useValue: mockProfileService,
+        },
+        {
+          provide: AttachmentService,
+          useValue: mockAttachmentService,
         },
       ],
     }).compileComponents()
@@ -523,6 +540,23 @@ describe('ProjectEditorComponent', () => {
       fixture.detectChanges()
       exportEmitter.emit()
       expect(downloadFile).toHaveBeenCalledWith(`${projectId}_${currentLang}`, 'txt', '')
+    })
+  })
+
+  describe('When a new list of attachments has been loaded', () => {
+    const attachmentUiMocks = [attachmentApiMock1, attachmentApiMock2, attachmentApiMock3].map(
+      (attachment) => new ProjectAttachmentUiModel(attachment)
+    )
+    beforeEach(() => {
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+      attachmentsSubject$.next(attachmentUiMocks)
+    })
+
+    it('should update the project with the new list of attachments', () => {
+      expect(component.project.attachments).toHaveLength(3)
+      expect(component.project.attachments).toEqual(attachmentUiMocks)
     })
   })
 })

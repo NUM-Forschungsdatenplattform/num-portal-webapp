@@ -35,6 +35,7 @@ describe('DifinationListComponent', () => {
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[] = []
     @Input() showSelectColumn: boolean
+    @Input() isInPreview: boolean
   }
 
   beforeEach(async () => {

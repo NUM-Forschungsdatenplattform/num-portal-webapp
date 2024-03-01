@@ -31,7 +31,7 @@ import { of, Subscription } from 'rxjs'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ApprovalOption } from '../../models/approval-option.enum'
-import { catchError, tap } from 'rxjs/operators'
+import { catchError, skip, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
@@ -42,6 +42,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { DefinitionType } from 'src/app/shared/models/definition-type.enum'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
 @Component({
   selector: 'num-project-editor',
@@ -97,7 +98,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private toast: ToastMessageService,
     private translateService: TranslateService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private attachmentsService: AttachmentService
   ) {}
 
   ngOnInit(): void {
@@ -124,6 +126,12 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.profileService.get().subscribe((user) => {
       this.isUserProjectAdmin = user.id === this.project.coordinator?.id ?? false
     })
+
+    this.subscriptions.add(
+      this.attachmentsService.attachmentsObservable$.pipe(skip(1)).subscribe((attachments) => {
+        this.project.updateAttachments(attachments)
+      })
+    )
   }
 
   updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
