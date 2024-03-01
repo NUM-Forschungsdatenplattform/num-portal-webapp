@@ -35,4 +35,4 @@
   [value]="(uploadProgress$ | async).percentage"
 ></mat-progress-bar>
 
-<input #fileInput type="file" hidden (change)="handleFileSelect($event)" />
+<input #fileInput accept=".pdf" type="file" hidden (change)="handleFileSelect($event)" />
