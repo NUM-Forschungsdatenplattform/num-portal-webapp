@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-$file-input-width: 35%;
-
 .form-row {
   display: flex;
   flex-direction: row;
@@ -23,15 +21,10 @@ $file-input-width: 35%;
 }
 
 .file-input {
-  display: flex;
-  width: $file-input-width;
-  margin-right: 8px;
-
-  label {
-    margin-right: 8px;
-  }
+  margin: 0 10px;
+  width: 35%;
 }
 
 .description-input {
-  width: calc(100% - $file-input-width - 8px);
+  width: 50%;
 }

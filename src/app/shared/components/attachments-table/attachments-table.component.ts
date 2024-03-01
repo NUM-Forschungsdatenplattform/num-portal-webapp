@@ -41,12 +41,11 @@ export class AttachmentsTableComponent
     this.dataSource.data = attachments
     this.allowUpload = attachments.length < 10
   }
-  @Input()
-  showSelectColumn: boolean
-
+  @Input() projectId?: number
   @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
     this.allowUpload = [ProjectStatus.Draft].includes(projectStatus) ?? false
   }
+  @Input() showSelectColumn: boolean
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort

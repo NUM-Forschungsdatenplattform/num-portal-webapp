@@ -39,6 +39,7 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   @Input() isDisabled: boolean
   @Input() showAttachmentSelects: boolean
   @Input() generalInfoData: IDefinitionList[]
+  @Input() projectId?: number
   @Input() projectStatus: ProjectStatus
 
   private subscriptions = new Subscription()

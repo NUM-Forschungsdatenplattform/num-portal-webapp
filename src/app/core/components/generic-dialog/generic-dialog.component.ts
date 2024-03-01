@@ -18,7 +18,6 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   ComponentRef,
   Inject,
   OnDestroy,
@@ -43,17 +42,14 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private resolver: ComponentFactoryResolver,
     @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig,
     private dialogRef: MatDialogRef<GenericDialogComponent>
   ) {}
 
   ngAfterViewInit(): void {
-    const componentFactory = this.resolver.resolveComponentFactory(
+    this.componentRef = this.viewContainerRef.createComponent(
       this.dialogConfig.dialogContentComponent
     )
-
-    this.componentRef = this.viewContainerRef.createComponent(componentFactory)
     this.componentRef.instance.dialogInput = this.dialogConfig.dialogContentPayload
 
     this.subscriptions.add(

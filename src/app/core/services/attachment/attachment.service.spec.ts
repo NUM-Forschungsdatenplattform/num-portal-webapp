@@ -22,7 +22,7 @@ import {
   HttpResponse,
 } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
-import { firstValueFrom, lastValueFrom, of } from 'rxjs'
+import { firstValueFrom, of } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
@@ -154,7 +154,7 @@ describe('AttachmentService', () => {
       })
 
       service
-        .uploadAttachment('1', new File([attachmentContentMock1], 'test'), 'A test file')
+        .uploadAttachment(1, new File([attachmentContentMock1], 'test'), 'A test file')
         .subscribe(() => {})
     })
 
@@ -190,18 +190,14 @@ describe('AttachmentService', () => {
       })
 
       service
-        .uploadAttachment('1', new File([attachmentContentMock1], 'test'), 'A test file')
+        .uploadAttachment(1, new File([attachmentContentMock1], 'test'), 'A test file')
         .subscribe(() => {})
     })
 
     it('should complete after response has been received', async () => {
       jest.spyOn(httpMockClient, 'post').mockReturnValue(of(new HttpResponse({ status: 200 })))
       await firstValueFrom(
-        service.uploadAttachment(
-          '2',
-          new File([attachmentContentMock1], 'test'),
-          'Another test file'
-        )
+        service.uploadAttachment(2, new File([attachmentContentMock1], 'test'), 'Another test file')
       )
       const lastProgress = await firstValueFrom(service.uploadProgressObservable$)
       expect(lastProgress).toEqual({
@@ -211,13 +207,13 @@ describe('AttachmentService', () => {
     })
 
     it('should set progress to error on http error response', async () => {
-      jest.spyOn(httpMockClient, 'post').mockReturnValue(of(new HttpErrorResponse({ status: 404 })))
-      await firstValueFrom(
-        service.uploadAttachment(
-          '3',
-          new File([attachmentContentMock1], 'test3'),
-          'Third test file'
+      jest
+        .spyOn(httpMockClient, 'post')
+        .mockReturnValue(
+          of({ status: 404, type: HttpEventType.Response } as HttpEvent<HttpEventType.Response>)
         )
+      await firstValueFrom(
+        service.uploadAttachment(3, new File([attachmentContentMock1], 'test3'), 'Third test file')
       )
       const lastProgress = await firstValueFrom(service.uploadProgressObservable$)
       expect(lastProgress).toEqual({
@@ -233,7 +229,7 @@ describe('AttachmentService', () => {
       try {
         await firstValueFrom(
           service.uploadAttachment(
-            '4',
+            4,
             new File([attachmentContentMock1], 'test_error'),
             'A file producing an error'
           )

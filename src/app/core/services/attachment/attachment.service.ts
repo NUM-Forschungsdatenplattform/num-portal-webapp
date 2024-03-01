@@ -51,7 +51,7 @@ export class AttachmentService {
       )
   }
 
-  uploadAttachment(projectId: string, file: File, description?: string): Observable<boolean> {
+  uploadAttachment(projectId: number, file: File, description?: string): Observable<boolean> {
     return new Observable<boolean>((subscriber) => {
       const data = new FormData()
       data.append('files', file)
@@ -61,9 +61,10 @@ export class AttachmentService {
         status: AttachmentUploadStatus.IN_PROGRESS,
       })
       return this.httpClient
-        .post(`${this.baseUrl}/attachment/${projectId}`, data, {
+        .post(`${this.baseUrl}/${projectId}`, data, {
           observe: 'events',
           reportProgress: true,
+          responseType: 'text',
         })
         .subscribe((event) => {
           if (event.type === HttpEventType.UploadProgress) {
@@ -73,19 +74,21 @@ export class AttachmentService {
               status: AttachmentUploadStatus.IN_PROGRESS,
             })
           } else if (event.type === HttpEventType.Response) {
-            this.uploadProgressSubject$.next({
-              percentage: 100,
-              status: AttachmentUploadStatus.DONE,
-            })
-            subscriber.next(true)
-            subscriber.complete()
-          } else {
-            this.uploadProgressSubject$.next({
-              percentage: 0,
-              status: AttachmentUploadStatus.ERROR,
-            })
-            subscriber.next(false)
-            subscriber.complete()
+            if (event.status >= 200 && event.status < 400) {
+              this.uploadProgressSubject$.next({
+                percentage: 100,
+                status: AttachmentUploadStatus.DONE,
+              })
+              subscriber.next(true)
+              subscriber.complete()
+            } else {
+              this.uploadProgressSubject$.next({
+                percentage: 0,
+                status: AttachmentUploadStatus.ERROR,
+              })
+              subscriber.next(false)
+              subscriber.complete()
+            }
           }
         })
     })

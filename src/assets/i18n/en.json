@@ -383,8 +383,9 @@
       "ERROR_OTHER": "An error occurred fetching file {{fileName}}.Please contact your IT administrator.",
       "ERROR_TRY_AGAIN": "A problem occurred fetching file {{fileName}}. Please try again after a short waiting time.",
       "NAME": "Filename",
-      "SELECT_FILES_LABEL": "Please select files.",
+      "SELECT_FILES_LABEL": "Select file",
       "UPLOAD_DATE": "Date",
+      "UPLOAD_SUCCESS_MESSAGE": "File {{fileName}} has been uploaded successfully.",
       "UPLOAD": "Upload"
     },
     "CATEGORIES_NO_RESULTS": "No Results",

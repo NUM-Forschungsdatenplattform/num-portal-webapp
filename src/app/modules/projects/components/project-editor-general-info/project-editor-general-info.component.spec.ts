@@ -52,6 +52,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   })
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() projectId?: number
     @Input() showSelectColumn: boolean
     @Input() projectStatus: ProjectStatus
   }

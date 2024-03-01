@@ -22,9 +22,14 @@ import { TranslateService } from '@ngx-translate/core'
 import { HttpErrorResponse } from '@angular/common/http'
 import { ToastMessageType } from '../../models/toast-message-type.enum'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
-import { DialogAddAttachmentsComponent } from '../dialog-add-attachments/dialog-add-attachments.component'
+import {
+  DialogAddAttachmentsComponent,
+  UploadDialogData,
+} from '../dialog-add-attachments/dialog-add-attachments.component'
 import { DialogSize } from '../../models/dialog/dialog-size.enum'
 import { Subscription } from 'rxjs'
+import { MatDialogRef } from '@angular/material/dialog'
+import { GenericDialogComponent } from 'src/app/core/components/generic-dialog/generic-dialog.component'
 
 @Component({
   selector: 'num-attachments-table-actions',
@@ -33,9 +38,10 @@ import { Subscription } from 'rxjs'
 })
 export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   @Input() attachments: ProjectAttachmentUiModel[]
+  @Input() projectId?: number
   @Input() selected: ProjectAttachmentUiModel[] = []
-  @Input() showDownloadButton: boolean
-  @Input() showUploadButton: boolean
+  @Input() showDownloadButton: boolean = false
+  @Input() showUploadButton: boolean = false
 
   isDownloadButtonDisabled = true
   isUploadButtonDisabled = false
@@ -71,8 +77,11 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   }
 
   handleUploadClick(): void {
-    const dialogRef = this.dialogService.openDialog({
+    const dialogRef: MatDialogRef<GenericDialogComponent> = this.dialogService.openDialog({
       dialogContentComponent: DialogAddAttachmentsComponent,
+      dialogContentPayload: {
+        projectId: this.projectId,
+      } as UploadDialogData,
       dialogSize: DialogSize.Medium,
       title: this.translateService.instant('PROJECT.ATTACHMENT.ADD_DIALOG_TITLE'),
       confirmButtonText: this.translateService.instant('PROJECT.ATTACHMENT.UPLOAD'),
@@ -84,7 +93,14 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
         .afterClosed()
         .subscribe((saveResult: { file: File; description?: string } | undefined) => {
           if (saveResult !== undefined) {
-            console.log(saveResult)
+            this.toastMessageService.openToast({
+              type: ToastMessageType.Success,
+              message: this.translateService.instant('PROJECT.ATTACHMENT.UPLOAD_SUCCESS_MESSAGE', {
+                fileName: saveResult.file.name,
+              }),
+            })
+
+            //TODO: Reload attachments
           }
         })
     )

@@ -41,6 +41,7 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
     @Input() showAttachmentSelects: boolean
+    @Input() projectId?: number
     @Input() projectStatus: ProjectStatus
   }
 

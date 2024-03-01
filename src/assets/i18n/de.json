@@ -384,8 +384,9 @@
       "ERROR_OTHER": "Es gab ein Problem beim Abruf der Datei {{fileName}}. Bitte wenden Sie sich an Ihren Administrator.",
       "ERROR_TRY_AGAIN": "Es gab ein Problem beim Abruf der Datei {{fileName}}. Bitte versuchen Sie es nach einer kurzen Wartezeit erneut.",
       "NAME": "Dateiname",
-      "SELECT_FILES_LABEL": "Datei",
+      "SELECT_FILES_LABEL": "Datei wählen",
       "UPLOAD_DATE": "Datum",
+      "UPLOAD_SUCCESS_MESSAGE": "Datei {{fileName}} wurde erfolgreich hochgeladen.",
       "UPLOAD": "Hochladen"
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",

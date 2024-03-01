@@ -48,6 +48,7 @@ describe('AttachmentsTableComponent', () => {
   })
   class AttachmentsTableActionsStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() projectId?: number
     @Input() selected?: ProjectAttachmentUiModel[]
     @Input() showDownloadButton: boolean
     @Input() showUploadButton: boolean

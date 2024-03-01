@@ -14,18 +14,25 @@
  limitations under the License.
 -->
 
-<section role="presentation">
-  <p>{{ 'PROJECT.ATTACHMENT.ADD_HINT' | translate }}</p>
-  <form [formGroup]="formGroup">
-    <div class="form-row">
-      <div class="file-input">
-        <label for="file">{{ 'PROJECT.ATTACHMENT.SELECT_FILES_LABEL' | translate }}</label>
-        <input id="file" formControlName="file" type="file" />
-      </div>
-      <mat-form-field class="description-input">
-        <mat-label>{{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}</mat-label>
-        <input matInput formControlName="description" type="text" />
-      </mat-form-field>
-    </div>
-  </form>
-</section>
+<p>{{ 'PROJECT.ATTACHMENT.ADD_HINT' | translate }}</p>
+<form class="form-row" [formGroup]="formGroup" (ngSubmit)="(handleDialogConfirm)">
+  <button mat-mini-fab (click)="fileInput.click()" color="primary">
+    <fa-icon icon="paperclip"></fa-icon>
+  </button>
+  <mat-form-field class="file-input" appearance="fill">
+    <mat-label>{{ 'PROJECT.ATTACHMENT.SELECT_FILES_LABEL' | translate }}</mat-label>
+    <input matInput formControlName="fileName" type="text" />
+  </mat-form-field>
+  <mat-form-field class="description-input" appearance="fill">
+    <mat-label>{{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}</mat-label>
+    <input matInput formControlName="description" type="text" />
+  </mat-form-field>
+</form>
+
+<mat-progress-bar
+  *ngIf="(uploadProgress$ | async).status === attachmentUploadStatus.IN_PROGRESS"
+  mode="determinate"
+  [value]="(uploadProgress$ | async).percentage"
+></mat-progress-bar>
+
+<input #fileInput type="file" hidden (change)="handleFileSelect($event)" />
