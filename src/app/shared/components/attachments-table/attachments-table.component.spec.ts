@@ -32,6 +32,8 @@ import { MatTableModule } from '@angular/material/table'
 import { CommonModule } from '@angular/common'
 import { MatSortModule } from '@angular/material/sort'
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { mockProject12 } from 'src/mocks/data-mocks/project.mock'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -48,7 +50,7 @@ describe('AttachmentsTableComponent', () => {
   })
   class AttachmentsTableActionsStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
-    @Input() projectId?: number
+    @Input() project: ProjectUiModel
     @Input() selected?: ProjectAttachmentUiModel[]
     @Input() showDownloadButton: boolean
     @Input() showUploadButton: boolean
@@ -103,6 +105,7 @@ describe('AttachmentsTableComponent', () => {
   describe('when a list of attachments have been loaded', () => {
     beforeEach(() => {
       component.attachments = attachmentUiMocks
+      component.project = new ProjectUiModel({ ...mockProject12, attachments: attachmentApiMocks })
       fixture.detectChanges()
     })
 

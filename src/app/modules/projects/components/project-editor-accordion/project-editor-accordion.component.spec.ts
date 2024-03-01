@@ -42,8 +42,7 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() generalInfoData: IDefinitionList[]
     @Input() showAttachmentsSelect: boolean
     @Input() isInPreview: boolean
-    @Input() projectId?: number
-    @Input() projectStatus: ProjectStatus
+    @Input() project: ProjectUiModel
   }
 
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })

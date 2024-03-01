@@ -30,6 +30,9 @@ import { DialogSize } from '../../models/dialog/dialog-size.enum'
 import { Subscription } from 'rxjs'
 import { MatDialogRef } from '@angular/material/dialog'
 import { GenericDialogComponent } from 'src/app/core/components/generic-dialog/generic-dialog.component'
+import { DialogConfirmationComponent } from '../dialog-confirmation/dialog-confirmation.component'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { ProjectStatus } from '../../models/project/project-status.enum'
 
 @Component({
   selector: 'num-attachments-table-actions',
@@ -38,11 +41,13 @@ import { GenericDialogComponent } from 'src/app/core/components/generic-dialog/g
 })
 export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   @Input() attachments: ProjectAttachmentUiModel[]
-  @Input() projectId?: number
+  @Input() project: ProjectUiModel
   @Input() selected: ProjectAttachmentUiModel[] = []
+  @Input() showDeleteButton = false
   @Input() showDownloadButton: boolean = false
   @Input() showUploadButton: boolean = false
 
+  isDeleteButtonDisabled = true
   isDownloadButtonDisabled = true
   isUploadButtonDisabled = true
 
@@ -59,10 +64,15 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
     if ('selected' in changes) {
       const newSelections = changes['selected'].currentValue as ProjectAttachmentUiModel[]
       this.isDownloadButtonDisabled = (newSelections?.length ?? 0) < 1
+      this.isDeleteButtonDisabled = this.getDeleteButtonDisabled(this.project)
+      this.showDeleteButton = this.getDeleteButtonVisible(this.project)
     }
 
-    if ('projectId' in changes) {
-      this.isUploadButtonDisabled = changes['projectId'].currentValue === null
+    if ('project' in changes) {
+      const project = changes['project'].currentValue as ProjectUiModel
+      this.isUploadButtonDisabled = project.id === null
+      this.isDeleteButtonDisabled = this.getDeleteButtonDisabled(project)
+      this.showDeleteButton = this.getDeleteButtonVisible(project)
     }
   }
 
@@ -84,7 +94,7 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
     const dialogRef: MatDialogRef<GenericDialogComponent> = this.dialogService.openDialog({
       dialogContentComponent: DialogAddAttachmentsComponent,
       dialogContentPayload: {
-        projectId: this.projectId,
+        projectId: this.project.id,
       } as UploadDialogData,
       dialogSize: DialogSize.Medium,
       title: this.translateService.instant('PROJECT.ATTACHMENT.ADD_DIALOG_TITLE'),
@@ -104,9 +114,28 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
               }),
             })
 
-            this.attachmentService.loadAttachments(this.projectId).subscribe()
+            this.attachmentService.loadAttachments(this.project.id).subscribe()
           }
         })
+    )
+  }
+
+  handleDeleteClick(): void {
+    const confirmDialogRef: MatDialogRef<GenericDialogComponent> = this.dialogService.openDialog({
+      cancelButtonText: this.translateService.instant('BUTTON.CANCEL'),
+      confirmButtonText: this.translateService.instant('PROJECT.ATTACHMENT.REMOVE'),
+      dialogContentComponent: DialogConfirmationComponent,
+      dialogContentPayload: this.translateService.instant(
+        'PROJECT.ATTACHMENT.CONFIRM_REMOVE_DIALOG_CONTENT'
+      ),
+      dialogSize: DialogSize.Medium,
+      title: this.translateService.instant('PROJECT.ATTACHMENT.CONFIRM_REMOVE_DIALOG_TITLE'),
+    })
+
+    this.subscriptions.add(
+      confirmDialogRef.afterClosed().subscribe(() => {
+        this.attachmentService.loadAttachments(this.project.id).subscribe()
+      })
     )
   }
 
@@ -158,5 +187,21 @@ export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
         fileName: fileName,
       }),
     })
+  }
+
+  private getDeleteButtonDisabled({ status }: ProjectUiModel): boolean {
+    return (
+      ([ProjectStatus.ChangeRequest, ProjectStatus.Draft, ProjectStatus.Reviewing].includes(
+        status
+      ) &&
+        this.selected?.length <= 0) ??
+      false
+    )
+  }
+
+  private getDeleteButtonVisible({ status }: ProjectUiModel): boolean {
+    return [ProjectStatus.ChangeRequest, ProjectStatus.Draft, ProjectStatus.Reviewing].includes(
+      status
+    )
   }
 }

@@ -29,13 +29,20 @@ import { HttpErrorResponse } from '@angular/common/http'
 import { ToastMessageType } from '../../models/toast-message-type.enum'
 import { AttachmentsTableActionsComponent } from './attachments-table-actions.component'
 import { ButtonComponent } from '../button/button.component'
-import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachment.mock'
+import {
+  attachmentApiMock1,
+  attachmentApiMock2,
+  attachmentApiMock3,
+  attachmentApiMocks,
+} from '../../../../mocks/data-mocks/project-attachment.mock'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 jest.mock('src/app/core/utils/download-file.utils.ts', () => ({
   downloadPdf: jest.fn(),
 }))
 import { downloadPdf } from 'src/app/core/utils/download-file.utils'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -52,6 +59,7 @@ describe('AttachmentTableActionsComponent', () => {
     template: `<div>
       <num-attachments-table-actions
         [attachments]="attachments"
+        [project]="project"
         [selected]="selected"
         [showDownloadButton]="showDownloadButton"
       ></num-attachments-table-actions>
@@ -59,6 +67,10 @@ describe('AttachmentTableActionsComponent', () => {
   })
   class TestHostComponent {
     attachments: ProjectAttachmentUiModel[] = []
+    project: ProjectUiModel = new ProjectUiModel({
+      ...mockProject1,
+      attachments: [attachmentApiMock1, attachmentApiMock2, attachmentApiMock3],
+    })
     selected: ProjectAttachmentUiModel[] = []
     showDownloadButton: boolean = false
     showUploadButton: boolean = false

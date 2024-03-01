@@ -26,6 +26,7 @@ import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
 import { ProjectStatus } from '../../models/project/project-status.enum'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
 
 @Component({
   selector: 'num-attachments-table',
@@ -41,13 +42,9 @@ export class AttachmentsTableComponent
     this.dataSource.data = attachments
     this.allowUpload = attachments.length < 10
   }
-  @Input() projectId?: number
-  @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
-    this.allowUpload =
-      ([ProjectStatus.Draft].includes(projectStatus) ?? false) && this.projectId !== null
-  }
-  @Input() showSelectColumn: boolean
   @Input() isInPreview: boolean
+  @Input() project: ProjectUiModel
+  @Input() showSelectColumn: boolean
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort
@@ -77,6 +74,13 @@ export class AttachmentsTableComponent
     }
     if ('isInPreview' in changes) {
       this.allowUpload = changes['isInPreview'].currentValue === false
+      this.cd.markForCheck()
+    }
+    if ('project' in changes) {
+      const project = changes['project'].currentValue as ProjectUiModel
+      this.allowUpload =
+        ([ProjectStatus.Draft].includes(project.status) ?? false) && project.id !== null
+      this.cd.markForCheck()
     }
   }
 
