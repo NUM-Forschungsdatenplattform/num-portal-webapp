@@ -22,6 +22,7 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/projects/state-machine'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ProjectFilterChipId } from 'src/app/shared/models/project/project-filter-chip.enum'
 import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
@@ -55,6 +56,8 @@ export class ProjectService {
   private filterSet: IProjectFilter = DEFAULT_PROJECT_FILTER
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
+
+  private attachmentsForRemoval: ProjectAttachmentUiModel[] = []
 
   constructor(
     private httpClient: HttpClient,
@@ -124,6 +127,9 @@ export class ProjectService {
   }
 
   update(project: IProjectApi, id: number): Observable<IProjectApi> {
+    if ((this.attachmentsForRemoval?.length ?? 0) > 0) {
+      project.attachmentsToBeDeleted = this.attachmentsForRemoval.map(({ id }) => id)
+    }
     return this.httpClient
       .put<IProjectApi>(`${this.baseUrl}/${id}`, project)
       .pipe(catchError(this.handleError))
@@ -325,5 +331,9 @@ export class ProjectService {
 
   handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(() => error)
+  }
+
+  markAttachmentsForDelete(attachments: ProjectAttachmentUiModel[]): void {
+    this.attachmentsForRemoval = attachments
   }
 }

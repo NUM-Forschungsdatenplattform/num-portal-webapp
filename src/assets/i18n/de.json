@@ -377,7 +377,7 @@
       "ADD_DIALOG_TITLE": "Anhang hinzufügen",
       "ADD_HINT": "Es können Anhänge vom Typ PDF mit einer Größe von maximal 10MB hinzufügt werden.",
       "ADD": "Hinzufügen",
-      "CONFIRM_REMOVE_DIALOG_CONTENT": "Wollen Sie wirklich die folgenden Anhänge entfernen? Dieser Schritt kann nur durch erneutes Öffnen des Projekts, ohne dieses vor dem Verlassen zu speichern, rückgängig gemacht werden.",
+      "CONFIRM_REMOVE_DIALOG_CONTENT": "Wollen Sie wirklich die folgenden Anhänge entfernen? Dieser Schritt kann nur durch erneutes Öffnen des Projekts, ohne dieses vor dem Verlassen zu speichern, rückgängig gemacht werden.<br />{{fileNames}}",
       "CONFIRM_REMOVE_DIALOG_TITLE": "Anhänge entfernen",
       "DESCRIPTION": "Beschreibung",
       "DOWNLOAD": "Herunterladen",

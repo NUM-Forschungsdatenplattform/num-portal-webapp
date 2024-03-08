@@ -17,16 +17,26 @@
 import { Component, EventEmitter } from '@angular/core'
 import { IGenericDialog } from '../../models/generic-dialog.interface'
 
+export type ConfirmationDialogInput =
+  | string
+  | {
+      useHtml: boolean
+      text: string
+    }
+
 @Component({
   selector: 'num-dialog-confirmation',
   templateUrl: './dialog-confirmation.component.html',
   styleUrls: ['./dialog-confirmation.component.scss'],
 })
-export class DialogConfirmationComponent implements IGenericDialog<string> {
-  dialogInput: string
+export class DialogConfirmationComponent implements IGenericDialog<ConfirmationDialogInput> {
+  isPlainString: boolean
+  dialogInput: ConfirmationDialogInput
   closeDialog = new EventEmitter<boolean>()
 
-  constructor() {}
+  constructor() {
+    this.isPlainString = typeof this.dialogInput === 'string' || true
+  }
 
   handleDialogCancel(): void {
     this.closeDialog.emit(false)

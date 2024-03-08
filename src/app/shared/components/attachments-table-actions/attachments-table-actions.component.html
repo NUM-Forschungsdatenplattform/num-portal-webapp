@@ -27,7 +27,7 @@
   <num-button
     *ngIf="showDeleteButton"
     type="secondary"
-    [isDisabled]="isDeleteButtonDisabled"
+    [isDisabled]="isDeleteButtonDisabled === true ? true : null"
     (singleClick)="handleDeleteClick()"
     class="attachment-action-button"
     data-test="attachments-table__table-actions__delete-button"

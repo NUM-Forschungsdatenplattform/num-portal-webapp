@@ -376,7 +376,7 @@
       "ADD_DIALOG_TITLE": "Add attachment",
       "ADD_HINT": "Attachments of type PDF with a maximum size of 10MB can be added.",
       "ADD": "Add",
-      "CONFIRM_REMOVE_DIALOG_CONTENT": "Do you really want to remove the following attachments? This step can only be undone by reopening the project without saving it before leaving.",
+      "CONFIRM_REMOVE_DIALOG_CONTENT": "Do you really want to remove the following attachments? This step can only be undone by reopening the project without saving it before leaving.<br />{{fileNames}}",
       "CONFIRM_REMOVE_DIALOG_TITLE": "Remove attachments",
       "DESCRIPTION": "Description",
       "DOWNLOAD": "Download",
