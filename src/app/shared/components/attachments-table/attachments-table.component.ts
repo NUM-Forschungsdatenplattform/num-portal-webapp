@@ -14,48 +14,40 @@
  * limitations under the License.
  */
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
-  OnDestroy,
-  OnInit,
+  OnChanges,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
-import { Subject, takeUntil } from 'rxjs'
-import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
-import { downloadPdf } from 'src/app/core/utils/download-file.utils'
-import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { HttpErrorResponse } from '@angular/common/http'
-import { ToastMessageType } from '../../models/toast-message-type.enum'
-import { TranslateService } from '@ngx-translate/core'
+import { ProjectStatus } from '../../models/project/project-status.enum'
 
 @Component({
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>
-  implements OnDestroy, OnInit
+  implements OnChanges
 {
   @Input()
   set attachments(attachments: ProjectAttachmentUiModel[]) {
     this.dataSource.data = attachments
+    this.allowUpload = attachments.length < 10
   }
-  @Input()
-  set showSelectColumn(mode: boolean) {
-    if (mode) {
-      this.displayedColumns.unshift('select')
-      this.isDownloadButtonVisible = true
-    }
-    this.cd.markForCheck()
+  @Input() projectId?: number
+  @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
+    this.allowUpload =
+      ([ProjectStatus.Draft].includes(projectStatus) ?? false) && this.projectId !== null
   }
+  @Input() showSelectColumn: boolean
+  @Input() isInPreview: boolean
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort
@@ -65,32 +57,27 @@ export class AttachmentsTableComponent
     'description',
     'uploadDate',
   ]
-  isDownloadButtonDisabled = true
-  isDownloadButtonVisible = false
 
   selection: SelectionModel<ProjectAttachmentUiModel>
+  allowUpload = false
 
-  private onDestroy$ = new Subject<void>()
-
-  constructor(
-    private attachmentService: AttachmentService,
-    private cd: ChangeDetectorRef,
-    private toastMessageService: ToastMessageService,
-    private translateService: TranslateService
-  ) {
+  constructor(private cd: ChangeDetectorRef) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
   }
 
-  ngOnInit(): void {
-    this.selection.changed.pipe(takeUntil(this.onDestroy$)).subscribe(() => {
-      this.handleSelectionChange()
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.onDestroy$.next()
-    this.onDestroy$.unsubscribe()
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('showSelectColumn' in changes) {
+      if (changes['showSelectColumn'].currentValue === true) {
+        this.displayedColumns.unshift('select')
+      } else if (this.displayedColumns.includes('select')) {
+        this.displayedColumns.splice(this.displayedColumns.indexOf('select'), 1)
+      }
+      this.cd.markForCheck()
+    }
+    if ('isInPreview' in changes) {
+      this.allowUpload = changes['isInPreview'].currentValue === false
+    }
   }
 
   /**
@@ -111,63 +98,5 @@ export class AttachmentsTableComponent
    */
   masterToggle() {
     this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
-    this.isDownloadButtonDisabled = this.selection.selected.length < 1
-  }
-
-  handleSelectionChange(): void {
-    this.isDownloadButtonDisabled = (this.selection?.selected?.length ?? 0) < 1
-  }
-
-  handleDownloadClick(): void {
-    if ((this.selection?.selected?.length ?? 0) < 1) {
-      return
-    } else {
-      for (const selected of this.selection.selected) {
-        this.downloadFile(selected)
-      }
-    }
-  }
-
-  private downloadFile(attachment: ProjectAttachmentUiModel): void {
-    this.attachmentService.downloadAttachment(attachment.id).subscribe({
-      next: (fileBlob) => {
-        downloadPdf(attachment.name, fileBlob)
-      },
-      error: (error) => {
-        if (error instanceof HttpErrorResponse) {
-          switch (error.status) {
-            case 404:
-              this.toastMessageService.openToast({
-                type: ToastMessageType.Error,
-                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND', {
-                  fileName: attachment.name,
-                }),
-              })
-              break
-            case 503:
-              this.toastMessageService.openToast({
-                type: ToastMessageType.Error,
-                message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_TRY_AGAIN', {
-                  fileName: attachment.name,
-                }),
-              })
-              break
-            default:
-              this.showGenericErrorToast(attachment.name)
-          }
-        } else {
-          this.showGenericErrorToast(attachment.name)
-        }
-      },
-    })
-  }
-
-  private showGenericErrorToast(fileName: string): void {
-    this.toastMessageService.openToast({
-      type: ToastMessageType.Error,
-      message: this.translateService.instant('PROJECT.ATTACHMENT.ERROR_OTHER', {
-        fileName: fileName,
-      }),
-    })
   }
 }

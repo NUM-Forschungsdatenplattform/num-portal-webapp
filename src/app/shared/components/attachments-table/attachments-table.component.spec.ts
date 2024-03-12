@@ -13,38 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommonModule } from '@angular/common'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { Directive, Pipe, PipeTransform } from '@angular/core'
+import { Component, Directive, Input, Pipe, PipeTransform, SimpleChange } from '@angular/core'
 import { HarnessLoader } from '@angular/cdk/testing'
-import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatCheckboxHarness } from '@angular/material/checkbox/testing'
-import { MatSortModule } from '@angular/material/sort'
 import {
   MatTableHarness,
   MatCellHarness,
   MatHeaderCellHarness,
 } from '@angular/material/table/testing'
-import { MatTableModule } from '@angular/material/table'
-import { MatTooltipModule } from '@angular/material/tooltip'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { TranslateModule } from '@ngx-translate/core'
 import { attachmentApiMocks } from '../../../../mocks/data-mocks/project-attachment.mock'
 import { AttachmentsTableComponent } from './attachments-table.component'
-import { MatButtonHarness } from '@angular/material/button/testing'
-import { ButtonComponent } from '../button/button.component'
-import { of, throwError } from 'rxjs'
-import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
-
-jest.mock('src/app/core/utils/download-file.utils.ts', () => ({
-  downloadPdf: jest.fn(),
-}))
-import { downloadPdf } from 'src/app/core/utils/download-file.utils'
-import { HttpErrorResponse } from '@angular/common/http'
-import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { ToastMessageType } from '../../models/toast-message-type.enum'
+import { MatTableModule } from '@angular/material/table'
+import { CommonModule } from '@angular/common'
+import { MatSortModule } from '@angular/material/sort'
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -55,6 +42,18 @@ describe('AttachmentsTableComponent', () => {
   let fixture: ComponentFixture<AttachmentsTableComponent>
   let harnessLoader: HarnessLoader
 
+  @Component({
+    selector: 'num-attachments-table-actions',
+    template: '',
+  })
+  class AttachmentsTableActionsStubComponent {
+    @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() projectId?: number
+    @Input() selected?: ProjectAttachmentUiModel[]
+    @Input() showDownloadButton: boolean
+    @Input() showUploadButton: boolean
+  }
+
   @Directive({
     selector: '[numTooltipNecessary]',
   })
@@ -63,48 +62,30 @@ describe('AttachmentsTableComponent', () => {
   @Pipe({
     name: 'localizedDate',
   })
-  class MockLocalizedDatePipe implements PipeTransform {
+  class LocalizedDateStubPipe implements PipeTransform {
     transform(value: number): number {
       return value
     }
   }
 
-  const attachmentMockService = {
-    downloadAttachment: jest.fn(),
-  } as unknown as AttachmentService
-
-  const toastMessageMockService = {
-    openToast: jest.fn(),
-  } as unknown as ToastMessageService
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         AttachmentsTableComponent,
-        ButtonComponent,
+        AttachmentsTableActionsStubComponent,
+        LocalizedDateStubPipe,
         ToolTipNecessaryStubDirective,
-        MockLocalizedDatePipe,
       ],
       imports: [
         CommonModule,
         MatCheckboxModule,
         MatSortModule,
         MatTableModule,
-        MatTooltipModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
       ],
-      providers: [
-        {
-          provide: AttachmentService,
-          useValue: attachmentMockService,
-        },
-        {
-          provide: ToastMessageService,
-          useValue: toastMessageMockService,
-        },
-      ],
     }).compileComponents()
+
     fixture = TestBed.createComponent(AttachmentsTableComponent)
     component = fixture.componentInstance
     harnessLoader = TestbedHarnessEnvironment.loader(fixture)
@@ -137,8 +118,9 @@ describe('AttachmentsTableComponent', () => {
     })
 
     it('should also show select columns if view only mode is switched off', async () => {
-      component.showSelectColumn = true
-      await fixture.whenStable()
+      component.ngOnChanges({
+        showSelectColumn: new SimpleChange(false, true, false),
+      })
       const table = await harnessLoader.getHarness(MatTableHarness)
       const columns = await table.getCellTextByColumnName()
       expect(Object.keys(columns)).toContain('select')
@@ -148,7 +130,9 @@ describe('AttachmentsTableComponent', () => {
   describe('when selecting rows from table', () => {
     beforeEach(() => {
       component.attachments = attachmentUiMocks
-      component.showSelectColumn = true
+      component.ngOnChanges({
+        showSelectColumn: new SimpleChange(false, true, false),
+      })
       fixture.detectChanges()
     })
 
@@ -191,125 +175,6 @@ describe('AttachmentsTableComponent', () => {
       const masterToggleCheckbox = await masterSelect.getHarness(MatCheckboxHarness)
       await masterToggleCheckbox.toggle()
       expect(component.selection.selected.length).toEqual(attachmentUiMocks.length)
-    })
-  })
-
-  describe('Download button', () => {
-    let downloadButton: MatButtonHarness
-    let selectCells: MatCellHarness[]
-
-    beforeEach(async () => {
-      component.attachments = attachmentUiMocks
-      component.showSelectColumn = true
-      downloadButton = await harnessLoader.getHarness(
-        MatButtonHarness.with({ text: 'PROJECT.ATTACHMENT.DOWNLOAD' })
-      )
-      selectCells = await harnessLoader.getAllHarnesses(
-        MatCellHarness.with({ columnName: 'select' })
-      )
-    })
-    it('should be disabled if no attachment have been selected', async () => {
-      expect(await downloadButton.isDisabled()).toBeTruthy()
-    })
-
-    it('should disable the button if last row has been unchecked', async () => {
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
-      expect(await downloadButton.isDisabled()).toBeFalsy()
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).uncheck()
-      expect(await downloadButton.isDisabled()).toBeTruthy()
-    })
-
-    it('should be enabled if one or more attachments have been selected', async () => {
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
-      expect(await downloadButton.isDisabled()).toBeFalsy()
-      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
-      expect(await downloadButton.isDisabled()).toBeFalsy()
-    })
-
-    it('should trigger download for all selected rows', async () => {
-      jest
-        .spyOn(attachmentMockService, 'downloadAttachment')
-        .mockImplementation((id: number) =>
-          of(new Blob([`This is test file ${id} content`], { type: 'application/pdf' }))
-        )
-
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
-      await (await selectCells[1].getHarness(MatCheckboxHarness)).check()
-      await downloadButton.click()
-      expect(attachmentMockService.downloadAttachment).toHaveBeenCalledTimes(2)
-      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
-        1,
-        attachmentUiMocks[0].id
-      )
-      expect(attachmentMockService.downloadAttachment).toHaveBeenNthCalledWith(
-        2,
-        attachmentUiMocks[1].id
-      )
-      expect(downloadPdf).toHaveBeenCalledTimes(2)
-      expect(downloadPdf).toHaveBeenNthCalledWith(
-        1,
-        attachmentUiMocks[0].name,
-        new Blob([`This is test file ${attachmentUiMocks[0].id} content`], {
-          type: 'application/pdf',
-        })
-      )
-      expect(downloadPdf).toHaveBeenNthCalledWith(
-        2,
-        attachmentUiMocks[1].name,
-        new Blob([`This is test file ${attachmentUiMocks[1].id} content`], {
-          type: 'application/pdf',
-        })
-      )
-    })
-
-    it('should not trigger a download if there were no attachments selected', () => {
-      jest.spyOn(attachmentMockService, 'downloadAttachment')
-      component.handleDownloadClick()
-      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
-    })
-
-    it('should handle selection is not defined as no selection has been made', () => {
-      jest.spyOn(attachmentMockService, 'downloadAttachment')
-      component.selection = undefined
-      component.handleDownloadClick()
-      expect(attachmentMockService.downloadAttachment).not.toHaveBeenCalled()
-      expect(component.isDownloadButtonDisabled).toBeTruthy()
-    })
-
-    test.each([
-      [404, 'PROJECT.ATTACHMENT.ERROR_FILE_NOT_FOUND'],
-      [503, 'PROJECT.ATTACHMENT.ERROR_TRY_AGAIN'],
-      [500, 'PROJECT.ATTACHMENT.ERROR_OTHER'],
-    ])('should show the correct error toast for %p responses', async (status, expectedMessage) => {
-      jest.spyOn(attachmentMockService, 'downloadAttachment').mockImplementation(() =>
-        throwError(
-          () =>
-            new HttpErrorResponse({
-              error: `Error with status ${status} occurred.`,
-              status: status,
-            })
-        )
-      )
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
-      await downloadButton.click()
-      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
-        type: ToastMessageType.Error,
-        message: expectedMessage,
-      })
-    })
-
-    it('should show generic error toast for all unexpected errors', async () => {
-      jest
-        .spyOn(attachmentMockService, 'downloadAttachment')
-        .mockImplementation(() => throwError(() => new Error('Something unexpected happened.')))
-
-      await (await selectCells[0].getHarness(MatCheckboxHarness)).check()
-      await downloadButton.click()
-
-      expect(toastMessageMockService.openToast).toHaveBeenCalledWith({
-        type: ToastMessageType.Error,
-        message: 'PROJECT.ATTACHMENT.ERROR_OTHER',
-      })
     })
   })
 })

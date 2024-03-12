@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Vitagroup AG
+ * Copyright 2024 Vitagroup AG
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-table {
-  width: 100%;
+import { AttachmentUploadStatus } from './attachment-upload-status.enum'
 
-  td {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
-.empty-placeholder {
-  margin-left: 5px;
+export interface AttachmentUploadProgress {
+  /**
+   * Percentage value of already uploaded bytes
+   */
+  percentage: number
+  status: AttachmentUploadStatus
 }

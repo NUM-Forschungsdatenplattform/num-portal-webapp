@@ -166,6 +166,10 @@ export class ProjectUiModel {
     ]
   }
 
+  public updateAttachments(attachments: ProjectAttachmentUiModel[]): void {
+    this.attachments = attachments
+  }
+
   private getResearchersForApi(): IProjectUser[] {
     return this.researchers.map((researcher) => {
       return {
