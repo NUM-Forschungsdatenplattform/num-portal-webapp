@@ -22,6 +22,10 @@ table {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  .remove {
+    text-decoration: line-through;
+  }
 }
 
 .empty-placeholder {

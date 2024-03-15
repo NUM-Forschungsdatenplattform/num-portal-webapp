@@ -30,18 +30,19 @@ export type ConfirmationDialogInput =
   styleUrls: ['./dialog-confirmation.component.scss'],
 })
 export class DialogConfirmationComponent implements IGenericDialog<ConfirmationDialogInput> {
-  isPlainString: boolean
   dialogInput: ConfirmationDialogInput
   closeDialog = new EventEmitter<boolean>()
 
-  constructor() {
-    this.isPlainString = typeof this.dialogInput === 'string' || true
-  }
+  constructor() {}
 
   handleDialogCancel(): void {
     this.closeDialog.emit(false)
   }
   handleDialogConfirm(): void {
     this.closeDialog.emit(true)
+  }
+
+  typeOf(value: unknown): string {
+    return typeof value
   }
 }

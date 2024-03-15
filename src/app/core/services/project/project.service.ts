@@ -58,6 +58,8 @@ export class ProjectService {
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
 
   private attachmentsForRemoval: ProjectAttachmentUiModel[] = []
+  private attachmentsForRemovalSubject$ = new BehaviorSubject(this.attachmentsForRemoval)
+  public attachmentsForRemovalObservable$ = this.attachmentsForRemovalSubject$.asObservable()
 
   constructor(
     private httpClient: HttpClient,
@@ -335,5 +337,6 @@ export class ProjectService {
 
   markAttachmentsForDelete(attachments: ProjectAttachmentUiModel[]): void {
     this.attachmentsForRemoval = attachments
+    this.attachmentsForRemovalSubject$.next(attachments)
   }
 }

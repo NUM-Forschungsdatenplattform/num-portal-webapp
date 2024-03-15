@@ -18,6 +18,8 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
   SimpleChanges,
   ViewChild,
 } from '@angular/core'
@@ -27,6 +29,8 @@ import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
 import { ProjectStatus } from '../../models/project/project-status.enum'
 import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-attachments-table',
@@ -35,7 +39,7 @@ import { ProjectUiModel } from '../../models/project/project-ui.model'
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>
-  implements OnChanges
+  implements OnChanges, OnDestroy, OnInit
 {
   @Input()
   set attachments(attachments: ProjectAttachmentUiModel[]) {
@@ -56,11 +60,33 @@ export class AttachmentsTableComponent
   ]
 
   selection: SelectionModel<ProjectAttachmentUiModel>
+  markedForRemoval = new Map<number, boolean>()
   allowUpload = false
 
-  constructor(private cd: ChangeDetectorRef) {
+  private subscriptions = new Subscription()
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    private projectService: ProjectService
+  ) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
+  }
+
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.projectService.attachmentsForRemovalObservable$.subscribe((attachments) => {
+        this.markedForRemoval.clear()
+        for (const attachment of attachments) {
+          this.markedForRemoval.set(attachment.id, true)
+        }
+        this.selection.deselect(...attachments)
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -21,6 +21,7 @@ import {
   MatTableHarness,
   MatCellHarness,
   MatHeaderCellHarness,
+  MatRowHarness,
 } from '@angular/material/table/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
@@ -34,6 +35,8 @@ import { MatSortModule } from '@angular/material/sort'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ProjectUiModel } from '../../models/project/project-ui.model'
 import { mockProject12 } from 'src/mocks/data-mocks/project.mock'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { BehaviorSubject } from 'rxjs'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -70,6 +73,11 @@ describe('AttachmentsTableComponent', () => {
     }
   }
 
+  const attachmentsForRemovalSubject$ = new BehaviorSubject<ProjectAttachmentUiModel[]>([])
+  const projectMockService = {
+    attachmentsForRemovalObservable$: attachmentsForRemovalSubject$.asObservable(),
+  } as unknown as ProjectService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -85,6 +93,12 @@ describe('AttachmentsTableComponent', () => {
         MatTableModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
+      ],
+      providers: [
+        {
+          provide: ProjectService,
+          useValue: projectMockService,
+        },
       ],
     }).compileComponents()
 
@@ -178,6 +192,20 @@ describe('AttachmentsTableComponent', () => {
       const masterToggleCheckbox = await masterSelect.getHarness(MatCheckboxHarness)
       await masterToggleCheckbox.toggle()
       expect(component.selection.selected.length).toEqual(attachmentUiMocks.length)
+    })
+  })
+
+  describe('when attachments have been marked for removal', () => {
+    let rows: MatRowHarness[]
+    beforeEach(async () => {
+      component.attachments = attachmentUiMocks
+      attachmentsForRemovalSubject$.next([attachmentUiMocks[1]])
+      rows = await harnessLoader.getAllHarnesses(MatRowHarness)
+    })
+
+    it('should strike through the text for marked entries', async () => {
+      expect(await (await rows[0].host()).hasClass('remove')).toBeFalsy()
+      expect(await (await rows[1].host()).hasClass('remove')).toBeTruthy()
     })
   })
 })

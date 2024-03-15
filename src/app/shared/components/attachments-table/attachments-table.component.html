@@ -112,6 +112,7 @@
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns"
+      [class.remove]="markedForRemoval.get(row.id)"
       (click)="selection.toggle(row)"
     ></tr>
   </table>
