@@ -8,7 +8,8 @@
   "auth": {
     "baseUrl": "http://localhost:8180",
     "realm": "crr",
-    "clientId": "webApp"
+    "clientId": "webApp",
+    "redirectProfileUrl": "http://localhost:4200/profile"
   },
   "legal": {
     "copyrightOwner": "2024 NUM Routinedatenplattform | RDP"

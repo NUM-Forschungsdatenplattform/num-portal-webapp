@@ -9,6 +9,7 @@ export interface IAppConfig {
     baseUrl: string
     realm: string
     clientId: string
+    redirectProfileUrl: string
   }
   legal: {
     copyrightOwner: string
