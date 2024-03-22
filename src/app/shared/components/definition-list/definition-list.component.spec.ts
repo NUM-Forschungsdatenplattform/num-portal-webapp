@@ -23,6 +23,7 @@ import { DefinitionType } from '../../models/definition-type.enum'
 import { By } from '@angular/platform-browser'
 import { Component, Input } from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
 
 describe('DifinationListComponent', () => {
   let component: DefinitionListComponent
@@ -34,6 +35,7 @@ describe('DifinationListComponent', () => {
   })
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[] = []
+    @Input() project: ProjectUiModel
     @Input() showSelectColumn: boolean
     @Input() isInPreview: boolean
   }

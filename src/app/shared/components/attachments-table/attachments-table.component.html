@@ -112,13 +112,14 @@
     <tr
       mat-row
       *matRowDef="let row; columns: displayedColumns"
+      [class.remove]="markedForRemoval.get(row.id)"
       (click)="selection.toggle(row)"
     ></tr>
   </table>
 
   <num-attachments-table-actions
     [attachments]="attachments"
-    [projectId]="projectId"
+    [project]="project"
     [selected]="selection?.selected ?? []"
     [showDownloadButton]="showSelectColumn"
     [showUploadButton]="allowUpload"

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { Component, OnDestroy, ViewChild } from '@angular/core'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 
 // Services

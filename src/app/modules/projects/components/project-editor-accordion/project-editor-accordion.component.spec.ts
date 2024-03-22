@@ -25,7 +25,6 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
-import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
@@ -42,8 +41,7 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() generalInfoData: IDefinitionList[]
     @Input() showAttachmentsSelect: boolean
     @Input() isInPreview: boolean
-    @Input() projectId?: number
-    @Input() projectStatus: ProjectStatus
+    @Input() project: ProjectUiModel
   }
 
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })

@@ -18,6 +18,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { DialogConfirmationComponent } from './dialog-confirmation.component'
 import { TranslateModule } from '@ngx-translate/core'
+import { By } from '@angular/platform-browser'
 
 describe('DialogConfirmationComponent', () => {
   let component: DialogConfirmationComponent
@@ -33,6 +34,7 @@ describe('DialogConfirmationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogConfirmationComponent)
     component = fixture.componentInstance
+    component.dialogInput = 'test-text'
     fixture.detectChanges()
   })
 
@@ -50,5 +52,12 @@ describe('DialogConfirmationComponent', () => {
     jest.spyOn(component.closeDialog, 'emit')
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledWith(false)
+  })
+
+  it('should use the innerHtml attribute if the input is not a string', () => {
+    component.dialogInput = { useHtml: true, text: 'test-text' }
+    fixture.detectChanges()
+    const paragraph = fixture.debugElement.query(By.css('p'))
+    expect((paragraph.nativeElement as HTMLParagraphElement).innerHTML).toEqual('test-text')
   })
 })

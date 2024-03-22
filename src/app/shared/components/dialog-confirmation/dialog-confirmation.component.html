@@ -13,5 +13,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+<p
+  *ngIf="typeOf(this.dialogInput) !== 'string'; else withHtmlContent"
+  [innerHtml]="$any(dialogInput.text)"
+></p>
 
-<p>{{ dialogInput | translate }}</p>
+<ng-template #withHtmlContent>
+  <p>{{ dialogInput | translate }}</p>
+</ng-template>

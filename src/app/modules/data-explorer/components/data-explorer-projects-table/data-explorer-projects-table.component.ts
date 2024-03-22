@@ -16,16 +16,14 @@
 
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort, Sort } from '@angular/material/sort'
+import { Sort } from '@angular/material/sort'
 import { MatTableDataSource } from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
-import { sortProjects } from 'src/app/core/utils/sort.utils'
 import { DataExplorerProjectTableColumns } from 'src/app/shared/models/project/data-explorer-project-table.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
-import { take } from 'rxjs/operators'
 
 @Component({
   selector: 'num-data-explorer-projects-table',
