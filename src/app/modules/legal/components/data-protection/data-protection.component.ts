@@ -35,7 +35,7 @@ export class DataProtectionComponent implements OnInit, OnDestroy {
     this.getTranslations()
 
     this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => {
+      this.translateService.onLangChange.subscribe(() => {
         this.getTranslations()
       })
     )

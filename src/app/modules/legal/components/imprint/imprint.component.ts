@@ -29,7 +29,7 @@ export class ImprintComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
     this.subscriptions.add(
-      this.translateService.onLangChange.subscribe((newLang) => {
+      this.translateService.onLangChange.subscribe(() => {
         this.profs = this.translateService.instant('IMPRINT.TEXTS.PROFS')
       })
     )

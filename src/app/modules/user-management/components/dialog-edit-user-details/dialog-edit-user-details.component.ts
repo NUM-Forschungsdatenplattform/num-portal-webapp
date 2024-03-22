@@ -167,14 +167,12 @@ export class DialogEditUserDetailsComponent
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    this.adminService
-      .changeUserEnabledStatus(this.userDetails.id, this.isActive)
-      .subscribe((result) => {
-        this.adminService.refreshFilterResult()
+    this.adminService.changeUserEnabledStatus(this.userDetails.id, this.isActive).subscribe(() => {
+      this.adminService.refreshFilterResult()
 
-        this.closeDialog.emit()
-        return Promise.resolve()
-      })
+      this.closeDialog.emit()
+      return Promise.resolve()
+    })
   }
 
   handleDialogCancel(): void {

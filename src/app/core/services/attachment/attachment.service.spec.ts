@@ -22,7 +22,7 @@ import {
   HttpResponse,
 } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
-import { firstValueFrom, of, skip } from 'rxjs'
+import { firstValueFrom, of } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
