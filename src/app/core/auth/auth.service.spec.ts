@@ -182,7 +182,7 @@ describe('Auth Service', () => {
 
     it('should call the api to create the user on the first call if its a token event', (done) => {
       jest.spyOn(oauthService, 'loadUserProfile').mockResolvedValue(mockAuthProfile)
-      jest.spyOn(httpClient, 'post').mockImplementation((post) => {
+      jest.spyOn(httpClient, 'post').mockImplementation(() => {
         expect(true).toBeTruthy()
         done()
         return of()
