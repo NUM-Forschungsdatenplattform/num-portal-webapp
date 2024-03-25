@@ -6,7 +6,6 @@
     "baseUrl": "https://num-portal.crr.dev.num-codex.de"
   },
   "auth": {
-//    änderung damit der auf das richtige realm zugreift, beim lokalen starten
     "baseUrl": "http://localhost:8180",
     "realm": "crr",
     "clientId": "webApp"
