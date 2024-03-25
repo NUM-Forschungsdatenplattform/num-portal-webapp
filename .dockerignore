@@ -8,8 +8,7 @@ README.md
 # Required for NPM install
 !.circleci/.npmrc
 .github
-# Required for NPM install
-!.github/.npmrc
+
 
 # IDEs and editors
 /.idea
