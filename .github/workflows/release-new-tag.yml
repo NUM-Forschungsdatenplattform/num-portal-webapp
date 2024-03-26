@@ -22,9 +22,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push docker image
+        uses: docker/build-push-action@v5
+        with:
+          load: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/num-portal-webapp:${{ github.ref_name }}
+      - name: Print Release Version
         run: |
-          mvn spring-boot:build-image -Dspring-boot.build-image.imageName=${{ secrets.DOCKER_USERNAME }}/num-portal-webapp:${{ github.ref_name }} -DskipTests
-          docker tag ${{ secrets.DOCKER_USERNAME }}/num-portal-webapp ${{ secrets.DOCKER_USERNAME }}/num-portal-webapp:${{ github.ref_name }}
-          docker push ${{ secrets.DOCKER_USERNAME }}/num-portal-webapp:${{ github.ref_name }}
-
           echo "### :rocket: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
