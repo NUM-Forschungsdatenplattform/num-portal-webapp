@@ -15,10 +15,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Fontawesome
-        run: |
-          cp ~/work/num-portal-webapp/num-portal-webapp/.github/.npmrc ~/
-          envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ~/.npmrc
       - name: Install
         run: npm install
       - name: Run Linter
