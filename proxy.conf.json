@@ -3,6 +3,8 @@
     "target": "http://localhost:8090",
     "pathRewrite": {
       "^/api": ""
-    }
+    },
+    "changeOrigin": true,
+    "secure": false
   }
 }
