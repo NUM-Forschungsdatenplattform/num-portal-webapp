@@ -63,7 +63,7 @@ describe('OAuth Init Service', () => {
 
   describe('When OAuth Server gets initialized with success', () => {
     const authConfig = {
-      issuer: `${appConfig.config.auth.baseUrl}/auth/realms/${appConfig.config.auth.realm}`,
+      issuer: `${appConfig.config.auth.baseUrl}/realms/${appConfig.config.auth.realm}`,
       clientId: `${appConfig.config.auth.clientId}`,
       responseType: 'code',
       redirectUri: window.location.origin + '/home',

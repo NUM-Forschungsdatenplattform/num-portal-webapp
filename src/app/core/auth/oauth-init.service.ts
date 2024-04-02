@@ -83,7 +83,7 @@ export class OAuthInitService {
     this.CLIENT_ID = this.appConfig.config.auth.clientId
 
     this.AUTH_CONFIG = {
-      issuer: `${this.BASE_URL}/auth/realms/${this.REALM}`,
+      issuer: `${this.BASE_URL}/realms/${this.REALM}`,
       clientId: this.CLIENT_ID,
       responseType: 'code',
       redirectUri: window.location.origin + '/home',

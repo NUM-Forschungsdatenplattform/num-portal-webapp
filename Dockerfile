@@ -20,9 +20,6 @@ WORKDIR /usr/src/app
 RUN apk add -i gettext
 
 COPY . .
-ARG FONTAWESOME_NPM_AUTH_TOKEN=
-RUN cp ./.github/.npmrc .
-RUN envsubst '$FONTAWESOME_NPM_AUTH_TOKEN' < ./.npmrc
 RUN npm install
 ARG ENVIRONMENT=deploy
 RUN npm run build -- num-portal-webapp --configuration=${ENVIRONMENT}

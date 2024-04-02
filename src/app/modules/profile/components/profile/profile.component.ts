@@ -120,7 +120,7 @@ export class ProfileComponent implements OnInit {
     const auth = this.appConfig.config.auth
     window.location.assign(
       auth.baseUrl +
-        '/auth/realms/' +
+        '/realms/' +
         auth.realm +
         '/account/password?referrer=' +
         auth.clientId +
