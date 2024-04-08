@@ -256,7 +256,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       .map((infoData) =>
         infoData.type !== DefinitionType.Table
           ? infoData
-          : { ...infoData, extraOptions: { showAttachmentSelects: true } }
+          : { ...infoData, extraOptions: { project: this.project, showAttachmentSelects: true } }
       )
   }
 

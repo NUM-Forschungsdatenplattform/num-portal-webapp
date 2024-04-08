@@ -42,11 +42,6 @@ describe('AuthGuard', () => {
     openToast: jest.fn(),
   } as unknown as ToastMessageService
 
-  const mockToServiceUnapproved = {
-    openToast: jest.fn(),
-    userNotApproved: true,
-  } as unknown as ToastMessageService
-
   beforeEach(() => {
     guard = new AuthGuard(authService, mockProfileService, mockToastService)
   })
@@ -81,7 +76,6 @@ describe('AuthGuard', () => {
   })
 
   describe('When the user is logged in and the route is restricted to approved users', () => {
-    const activatedRoute = {} as ActivatedRouteSnapshot
     const route = {
       data: {
         onlyApprovedUsers: true,

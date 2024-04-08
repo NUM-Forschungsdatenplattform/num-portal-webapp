@@ -35,7 +35,7 @@ import { ProfileService } from '../../../../core/services/profile/profile.servic
 import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
-import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.mock'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'

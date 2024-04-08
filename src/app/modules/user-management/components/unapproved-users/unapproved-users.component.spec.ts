@@ -17,7 +17,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { of, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { Component } from '@angular/core'

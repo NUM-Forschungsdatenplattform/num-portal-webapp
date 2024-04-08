@@ -21,7 +21,7 @@ import { DateAdapter } from '@angular/material/core'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
-import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 @Component({
   selector: 'num-project-editor-general-info',
@@ -40,8 +40,7 @@ export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   @Input() showAttachmentsSelect: boolean
   @Input() isInPreview: boolean
   @Input() generalInfoData: IDefinitionList[]
-  @Input() projectId?: number
-  @Input() projectStatus: ProjectStatus
+  @Input() project: ProjectUiModel
 
   private subscriptions = new Subscription()
 

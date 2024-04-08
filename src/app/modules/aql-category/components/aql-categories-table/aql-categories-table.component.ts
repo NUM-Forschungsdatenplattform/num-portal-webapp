@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
-import { MatSort, Sort } from '@angular/material/sort'
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
-import { compareIds, compareLocaleStringValues } from 'src/app/core/utils/sort.utils'
 import { AqlCategoryTableColumn } from 'src/app/shared/models/aql/category/aql-category-table.interface'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
@@ -29,6 +26,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
+import { Sort } from '@angular/material/sort'
 
 @Component({
   selector: 'num-aql-categories-table',
