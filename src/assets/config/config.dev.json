@@ -11,10 +11,10 @@
     "clientId": "webApp"
   },
   "legal": {
-    "copyrightOwner": "2021 CODEX | Covid-19 Data Exchange Platform"
+    "copyrightOwner": "2024 NUM Routinedatenplattform | RDP"
   },
   "welcomePageTitle": {
-    "de": "Willkommen bei CODEX - Testumgebung",
-    "en": "Welcome to CODEX - Test environment"
+    "de": "Willkommen bei NUM RDP - Testumgebung",
+    "en": "Welcome to NUM RDP - Test environment"
   }
 }

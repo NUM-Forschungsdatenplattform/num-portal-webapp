@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-01 12:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../01_create_user/01_create_user.md:3 3ba5adb0afb7490a8d19a7ae60cbae49
 msgid ""
-"Before you can start using CODEX you have to create a new user account "
+"Before you can start using RDP you have to create a new user account "
 "for your personal work."
 msgstr ""
 

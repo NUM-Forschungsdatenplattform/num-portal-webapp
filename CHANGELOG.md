@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Criteria Table: Label of private / public column ([#307])
 - Project preview: Text explaining icons for boolean meta data values ([#309])
 - User management: Change name of approved user ([#312])
-- Welcome Page: Title notice ("Welcome to CODEX - Test environment") can be set via environment variable ([#311])
+- Welcome Page: Title notice ("Welcome to RDP - Test environment") can be set via environment variable ([#311])
 
 ### Fixed
 

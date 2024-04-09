@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP  package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-01 16:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -59,7 +59,7 @@ msgid ""
 "projects are approved and launched. Researchers have no influence on the "
 "project description, project application and cohort definition."
 msgstr ""
-"Die Forscher rufen die Forschungsdaten aus den ihnen zugeordneten Projekten ab, sobald diese bewilligt und gestartet wurden." 
+"Die Forscher rufen die Forschungsdaten aus den ihnen zugeordneten Projekten ab, sobald diese bewilligt und gestartet wurden."
 "Forscher haben keinen Einfluss auf die Projektbeschreibung, den Projektantrag und die Kohortendefinition."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
@@ -96,7 +96,7 @@ msgid ""
 "organization.&nbsp;</div><div>They can accept, revise or reject project "
 "proposals.</div>"
 msgstr ""
-"Die Projektprüfer haben die Übersicht über alle Projekte der eigenen Organisation." 
+"Die Projektprüfer haben die Übersicht über alle Projekte der eigenen Organisation."
 "Sie können Projektanträge annehmen, überarbeiten oder ablehnen."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md
@@ -143,7 +143,7 @@ msgid ""
 "unlocked for them. You customize criteria categories and create and "
 "modify General Specifications and AQL queries using the Criteria Editor."
 msgstr ""
-"Die Kriterien-Editoren verwalten innerhalb der für sie freigeschalteten Projekte die Kriterien." 
+"Die Kriterien-Editoren verwalten innerhalb der für sie freigeschalteten Projekte die Kriterien."
 "Sie passen Kriterien-Kategorien an und erstellen und ändern Allgemeine Angaben und AQL-Queries mit dem Kriterien-Editor."
 
 #: ../07_user_management/03_available_roles/03_available_roles.md

@@ -1,7 +1,7 @@
-# NUM CODEX User documentation
+# NUM RDP User documentation
 
-Welcome to the NUM CODEX App manual. This manual describes all features the NUM research data
-platform CODEX provides.
+Welcome to the NUM RDP App manual. This manual describes all features the NUM research data
+platform RDP provides.
 
 This manual has been created with biggest diligence in the languages German and English. If you find
 an error or want to give other feedback to this documentation please do not hestitate to create a

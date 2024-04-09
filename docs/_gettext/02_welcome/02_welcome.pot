@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-21 12:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../02_welcome/02_welcome.md:21
 #: 4199e4e59b18490abb9f3e75e02f1bb0
-msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the running CODEX system and also how many different clinics have provided previously mentioned data."
+msgid "The welcome message is followed by a general statistics that informs about how many projects and {term}`Criteria` haven been added to the running RDP system and also how many different clinics have provided previously mentioned data."
 msgstr ""
 
 #: ../02_welcome/02_welcome.md:26

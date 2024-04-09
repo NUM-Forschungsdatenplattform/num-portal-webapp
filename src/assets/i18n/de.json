@@ -3,23 +3,19 @@
   "DASHBOARD": {
     "LATEST_PROJECTS": "Neueste Projekte",
     "INTRODUCTION": {
-      "HEADER": "Covid-19-Exchange Data Platform",
+      "HEADER": "NUM Routinedatenplattform",
       "BLOCKS": [
         {
           "HEADER": "Einleitung",
-          "BODY": "Das Netzwerk Universitätsmedizin (NUM) baut mit der CODEX-Forschungsdatenplattform eine sichere und interoperable Plattform zur Bereitstellung von Forschungsdaten zu COVID-19. CODEX verbindet alle deutschen Universitätskliniken bundesweit und stellt der Wissenschaft eine Plattform zur Erhebung und Auswertung strukturierter, pseudonymisierter und versorgungsbezogener Daten aus der Patient*Innenversorgung („real world data“) mit hoher Qualität zur Verfügung."
+          "BODY": "Das Netzwerk Universitätsmedizin (NUM) betreibt die Routinedatenplattform (RDP): Eine sichere, erweiterbare und interoperable Plattform für die Bereitstellung von Patientendaten der klinischen Routinedokumentation. RDP verbindet Universitätskliniken bundesweit miteinander."
         },
         {
-          "HEADER": "Wozu wird CODEX benötigt?",
-          "BODY": "Während der langwierigen Pandemiezeit sind im Zuge der Versorgung von COVID-19-Patient*Innen innerhalb der IT-Systeme und elektronischen Krankenaktensysteme der Universitätskliniken zahlreiche forschungsrelevante Daten und Erkenntnisse generiert worden. Daten, die möglichst standardisiert erhoben und zeitnah erfasst sowie zentral zusammengeführt und ausgewertet werden müssen, um eine zielgerichtete Forschung zu COVID-19 zu ermöglichen. Genau hier setzt CODEX an."
+          "HEADER": "Nutzen & Zielsetzung",
+          "BODY": "Um die technische und regulatorische Verfügbarkeit von Versorgungsdaten zu gewährleisten, bietet RDP eine komponentenbasierte, nach industriellen Standards gefertigte Plattform zur Übertragung, Zusammenführung, Speicherung und Analyse klinischer Daten. RDP ermöglicht Kliniken die standardisierte und sichere Übermittlung der Versorgungsdaten. Es befähigt weiter deren Nutzung entlang fachspezifischer Szenarien, welche sowohl die wissenschaftliche Forschung als auch die evidenzbasierte Steuerung gesundheitspolitischer Entscheidungen unterstützt."
         },
         {
-          "HEADER": "CODEX Benutzerportal",
-          "BODY": "Das NUM CODEX Benutzerportal ermöglicht den zentralisierten Zugang zu forschungsrelevanten Gesundheitsdaten. Umgesetzt wird dies durch Machbarkeitsabfragen und, soweit die Nutzungsvoraussetzungen erfüllt sind, eine zentrale Datenherausgabe. Nationale und internationale Forscher*Innen können auf diese Weise, hochrelevante Daten zu COVID-19-Erkrankungen auswerten und somit einen Beitrag zur Bekämpfung der Pandemie leisten. Der operative Betrieb des CODEX Benutzerportals obliegt dem HiGHmed e.V."
-        },
-        {
-          "HEADER": "Welche Ziele hat CODEX?",
-          "BODY": "Die Plattform wurde geschaffen, um qualitativ hochwertige Forschungsdaten, Tools und Surveillance in der COVID-19-Pandemie bereitzustellen. Strukturierte Daten dienen als Grundlage neuartiger wissenschaftlicher Auswertungen und helfen bei der Entwicklung evidenzbasierter Entscheidungsunterstützungssysteme. Auf diese Weise trägt CODEX zu einem schnellen Erkenntnisgewinn bei und somit zum verbesserten Krisenmanagement bei pandemischen Notlagen wie auch einer optimierten Gestaltung des Gesundheitswesens insgesamt. Daraus ergeben sich folgende Vorteile:<ul><li>Für Patient*Innen: Bestmögliche Krankenversorgung bei COVID-19 durch schnelle Generierung und Verbreitung von Evidenz und Berücksichtigung rechtlicher und ethischer Fragestellungen</li><li>Für Forscher*Innen: Belastbare Datengrundlage zur Erforschung wissenschaftlicher Fragestellungen im Kontext der Erkrankung COVID-19</li><li>Für Industrie: das Schaffen von Grundlagen für die Impfstoff- und Wirkstoffentwicklung sowie das Trainieren künstlicher Intelligenz</li><li>Für Entscheider*Innen: die Optimierung des Krisenmanagements bei epidemischen Notlagen sowie eine optimierte Gestaltung des Gesundheitswesens insgesamt durch die Unterstützung politischer Entscheidungen auf Basis wissenschaftlicher Fakten</li><li>Für Ärzt*Innen und Behörden: Pandemiemanagement und Patientenversorgung können durch innovative, qualitativ hochwertige Dienste und Applikationen verbessert werden und für Entlastung sorgen</li></ul>"
+          "HEADER": "Die Routinedatenplattform, RDP",
+          "BODY": "<ul><li>Entspricht den FAIR-Prinzipien für Forschungsdaten</li><li>Implementiert die Ethik- und Datenschutz-rechtlichen Grundlagen zur Beantragung und Nutzung klinischer Routinedaten</li><li>Verwendet offene technische Standards und ist auf der Grundlage offener Spezifikationen und austauschbarer Komponenten aufgebaut</li><li>Ermöglicht die Entwicklung neuartiger Anwendungen zur Unterstützung der klinischen Routine, z.B. zur Infektionskontrolle</li><li>Bietet Datenmanagement sowohl für die zentrale Datenhaltung, als auch für (temporäre) Zusammenführung föderierter Daten</li><li>Integriert Daten-Sicherheit und Qualität durch verschlüsselte Übertragung, Pseudonymisierung und Validierung von Terminologie</li><li>Bietet Interoperabilität zum Kerndatensatz-Format der Medizininformatik-Initiative (MII)</li><li>Fördert die Anbindung klinischer Datenintegrationszentren (des NUM, der MII oder anderer) durch Schnittstellen im FHIR und openEHR Standard</li><li>Unterstützt die Integration international abgestimmter Datenmodelle für elektronische Gesundheitsakten (EHR)</li></ul>"
         }
       ],
       "PARTICIPANTS": "Teilnehmende Kliniken"
@@ -31,8 +27,8 @@
       "HEADER": "Teilnehmende Kliniken"
     },
     "METRICS": {
-      "PROJECTS": "{{count}} Projekte in CODEX veröffentlicht",
-      "QUERIES": "{{count}} Kriterien in CODEX verfügbar",
+      "PROJECTS": "{{count}} Projekte in RDP veröffentlicht",
+      "QUERIES": "{{count}} Kriterien in RDP verfügbar",
       "ORGANIZATIONS": "{{count}} teilnehmende Universitätskliniken"
     }
   },
@@ -54,7 +50,7 @@
     }
   },
   "NAVIGATION": {
-    "DASHBOARD": "Willkommen bei CODEX",
+    "DASHBOARD": "Willkommen bei RDP",
     "DATA_FILTER": "Datenfilter",
     "PATIENT_FILTER": "Patientenfilter",
     "PROJECTS": "Projekte",
@@ -150,7 +146,7 @@
     "EDIT_INFO_CARDS_HEADER": "Info-Kacheln bearbeiten",
     "EDIT_INFO_CARDS_DESCRIPTION": "Sie können auf der Willkommen-Seite Info-Kacheln einfügen, die Information und einen Link zu einer externen Seite enthalten können.",
     "EDIT_NAVIGATION_ITEMS_HEADER": "Navigationspunkte bearbeiten",
-    "EDIT_NAVIGATION_DESCRIPTION": "Sie können in der Navigation eigene Links hinzufügen, bearbeiten oder löschen. Die Links sollten nur auf andere Webseiten verweisen, die für die Nutzer der CODEX Forschungsdatenplattform von Interesse sein können.",
+    "EDIT_NAVIGATION_DESCRIPTION": "Sie können in der Navigation eigene Links hinzufügen, bearbeiten oder löschen. Die Links sollten nur auf andere Webseiten verweisen, die für die Nutzer der RDP von Interesse sein können.",
     "URL_PLACEHOLDER": "Z.B. https://www.domain.com",
     "URL_TEXT_PLACEHOLDER": "Z.B. Uni Beispielstadt",
     "URL_TEXT_LABEL": "Link-Text",
@@ -469,9 +465,9 @@
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "Alle neuen Benutzer",
-    "NEW_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie die neu angemeldeten Nutzer, denen noch keine Rolle zugewiesen wurde.\n\nBitte überprüfen Sie die Nutzer und weisen ihnen eine Rolle zu, damit sie an der CODEX Forschungsdatenplattform teilhaben können.",
+    "NEW_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie die neu angemeldeten Nutzer, denen noch keine Rolle zugewiesen wurde.\n\nBitte überprüfen Sie die Nutzer und weisen ihnen eine Rolle zu, damit sie an der RDP teilhaben können.",
     "ALL_USERS_HEADER": "Alle genehmigten Benutzer",
-    "ALL_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie alle aktiven Nutzer der CODEX Forschungsdatenplattform. Bei Bedarf können Sie den Nutzern andere Rollen zuweisen oder sie deaktivieren.",
+    "ALL_USERS_DESCRIPTION": "In der folgenden Liste sehen Sie alle aktiven Nutzer der RDP. Bei Bedarf können Sie den Nutzern andere Rollen zuweisen oder sie deaktivieren.",
     "EDIT_USER_DIALOG_HEADER": "Benutzer bearbeiten",
     "EDIT_USER_DESCRIPTION": "Der Benutzer wird über die Bestätigung per E-Mail informiert.",
     "ASSIGN_ROLES": "Benutzerrolle(n) zuordnen",
@@ -788,7 +784,7 @@
   },
   "CONTACT": {
     "TITLE": "Kontakt",
-    "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für die zentrale Plattform von CODEX ist das NUM und somit die Charité - Universitätsmedizin Berlin als koordinierende Stelle.",
+    "DESCRIPTION": "Verantwortlich nach Art. 4 Satz 1 Nr. 7 DSGVO für die zentrale Plattform von RDP ist das NUM und somit die Charité - Universitätsmedizin Berlin als koordinierende Stelle.",
     "SUBTITLE1": "Informationen i.S.d. § 5 TMG",
     "TEXT1": "Charité - Universitätsmedizin Berlin (Koordinierungsstelle) <br /> Charitéplatz 1 <br /> 10117 Berlin",
     "SUBTITLE2": "Vertretungsberechtigter",
