@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs'
+import { BehaviorSubject, catchError, filter, map, Observable, of, tap, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
@@ -65,32 +65,37 @@ export class AttachmentService {
         .post(`${this.baseUrl}/${projectId}`, data, {
           observe: 'events',
           reportProgress: true,
-          responseType: 'text',
+          responseType: 'text' as 'json',
         })
-        .subscribe((event) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            const { loaded, total } = event
-            this.uploadProgressSubject$.next({
-              percentage: total ? Math.round((loaded * 100) / total) : 0,
-              status: AttachmentUploadStatus.IN_PROGRESS,
-            })
-          } else if (event.type === HttpEventType.Response) {
-            if (event.status >= 200 && event.status < 400) {
+        .pipe(
+          tap((event) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              const { loaded, total } = event
               this.uploadProgressSubject$.next({
-                percentage: 100,
-                status: AttachmentUploadStatus.DONE,
+                percentage: total ? Math.round((loaded * 100) / total) : 0,
+                status: AttachmentUploadStatus.IN_PROGRESS,
               })
-              subscriber.next(true)
-              subscriber.complete()
-            } else {
-              this.uploadProgressSubject$.next({
-                percentage: 0,
-                status: AttachmentUploadStatus.ERROR,
-              })
-              subscriber.next(false)
-              subscriber.complete()
             }
-          }
+          }),
+          filter((event) => event.type === HttpEventType.Response)
+        )
+        .subscribe({
+          next: () => {
+            this.uploadProgressSubject$.next({
+              percentage: 100,
+              status: AttachmentUploadStatus.DONE,
+            })
+            subscriber.next(true)
+            subscriber.complete()
+          },
+          error: (error) => {
+            this.uploadProgressSubject$.next({
+              percentage: 0,
+              status: AttachmentUploadStatus.ERROR,
+            })
+            subscriber.error(error)
+            subscriber.complete()
+          },
         })
     })
   }

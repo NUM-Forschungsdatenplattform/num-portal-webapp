@@ -27,4 +27,5 @@ export interface IProjectApi {
   status?: ProjectStatus
   templates?: IProjectTemplateInfoApi[]
   attachments?: IProjectAttachmentApi[]
+  attachmentsToBeDeleted?: number[]
 }

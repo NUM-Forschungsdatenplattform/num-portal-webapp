@@ -8,6 +8,7 @@ import {
   mockUserSuperAdmin,
 } from './admin.mock'
 import moment from 'moment'
+import { attachmentApiMocks } from './project-attachment.mock'
 
 export const mockProject1: IProjectApi = {
   id: 1,
@@ -408,6 +409,25 @@ export const mockProject21: IProjectApi = {
   status: ProjectStatus.Draft,
   createDate: DateHelperService.getDateString(moment('2036-03-06')),
   modifiedDate: DateHelperService.getDateString(moment()),
+}
+
+export const mockProject22: IProjectApi = {
+  id: 22,
+  name: 'Test attachments',
+  description: 'Test project with attachments',
+  templates: [],
+  cohortId: 21,
+  coordinator: mockUserStudyCoordinator,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 22',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(moment('2024-03-08')),
+  modifiedDate: DateHelperService.getDateString(moment()),
+  attachments: attachmentApiMocks,
 }
 
 export const mockProjects = [mockProject1, mockProject2]

@@ -9,7 +9,6 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
-import { MatDialogRef } from '@angular/material/dialog'
 
 @Component({
   selector: 'num-unapproved-users-table',

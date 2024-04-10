@@ -12,7 +12,6 @@ import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-ta
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatPaginator } from '@angular/material/paginator'
-import { forEach } from 'lodash'
 
 @Component({
   selector: 'num-approved-users-table',

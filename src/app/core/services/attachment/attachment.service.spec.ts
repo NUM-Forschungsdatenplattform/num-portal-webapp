@@ -7,7 +7,7 @@ import {
   HttpResponse,
 } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
-import { firstValueFrom, of, skip } from 'rxjs'
+import { firstValueFrom, of, skip, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'
@@ -219,17 +219,22 @@ describe('AttachmentService', () => {
     it('should set progress to error on http error response', async () => {
       jest
         .spyOn(httpMockClient, 'post')
-        .mockReturnValue(
-          of({ status: 404, type: HttpEventType.Response } as HttpEvent<HttpEventType.Response>)
+        .mockReturnValue(throwError(() => new HttpErrorResponse({ status: 404 })))
+      try {
+        await firstValueFrom(
+          service.uploadAttachment(
+            3,
+            new File([attachmentContentMock1], 'test3'),
+            'Third test file'
+          )
         )
-      await firstValueFrom(
-        service.uploadAttachment(3, new File([attachmentContentMock1], 'test3'), 'Third test file')
-      )
-      const lastProgress = await firstValueFrom(service.uploadProgressObservable$)
-      expect(lastProgress).toEqual({
-        percentage: 0,
-        status: AttachmentUploadStatus.ERROR,
-      } as AttachmentUploadProgress)
+      } catch {
+        const lastProgress = await firstValueFrom(service.uploadProgressObservable$)
+        expect(lastProgress).toEqual({
+          percentage: 0,
+          status: AttachmentUploadStatus.ERROR,
+        } as AttachmentUploadProgress)
+      }
     })
 
     it('should throw all other errors', async () => {

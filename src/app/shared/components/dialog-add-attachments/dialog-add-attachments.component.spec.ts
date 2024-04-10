@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common'
+import { HttpErrorResponse } from '@angular/common/http'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
@@ -8,11 +9,14 @@ import { By } from '@angular/platform-browser'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, of } from 'rxjs'
+import { BehaviorSubject, of, throwError } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { AttachmentUploadStatus } from '../../models/attachment/attachment-upload-status.enum'
 import { DialogConfig } from '../../models/dialog/dialog-config.interface'
 import { DialogSize } from '../../models/dialog/dialog-size.enum'
+import { IToastMessageConfig } from '../../models/toast-message-config.interface'
+import { ToastMessageType } from '../../models/toast-message-type.enum'
 
 import { DialogAddAttachmentsComponent, UploadDialogData } from './dialog-add-attachments.component'
 
@@ -40,6 +44,10 @@ describe('DialogAddAttachmentsComponent', () => {
     uploadProgressObservable$: uploadProgressSubject$.asObservable(),
   } as unknown as AttachmentService
 
+  const toastMockService = {
+    openToast: jest.fn(),
+  } as unknown as ToastMessageService
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DialogAddAttachmentsComponent],
@@ -51,6 +59,10 @@ describe('DialogAddAttachmentsComponent', () => {
         {
           provide: AttachmentService,
           useValue: attachmentMockService,
+        },
+        {
+          provide: ToastMessageService,
+          useValue: toastMockService,
         },
       ],
       imports: [
@@ -68,6 +80,10 @@ describe('DialogAddAttachmentsComponent', () => {
     component = fixture.componentInstance
 
     fixture.detectChanges()
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   it('should create', () => {
@@ -154,6 +170,116 @@ describe('DialogAddAttachmentsComponent', () => {
       expect(component.closeDialog.emit).toHaveBeenCalledWith({
         description: 'test successful form values',
         file: file,
+      })
+    })
+
+    test.each<{ message: string; status: number; translation: string }>([
+      {
+        message: 'Invalid file. Missing content',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_FILE_EMPTY',
+      },
+      {
+        message: 'Document type mismatch.',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_WRONG_TYPE',
+      },
+      {
+        message: 'PDF File Size Exceeded.',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_FILE_TOO_LARGE',
+      },
+      {
+        message: 'PDF Files are not attached',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_NO_FILES_ATTACHED',
+      },
+      {
+        message: 'Attachment limit reached.',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_FILE_LIMIT_REACHED',
+      },
+      {
+        message: 'Wrong project status',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_WRONG_PROJECT_STATUS',
+      },
+      {
+        message: 'Description is too long.',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_DESCRIPTION_TOO_LONG',
+      },
+      {
+        message: 'Something other happened in validation.',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_VALIDATION_UNKNOWN',
+      },
+      {
+        message: 'File rejected',
+        status: 400,
+        translation: 'PROJECT.ATTACHMENT.ERROR_VIRUS_SCAN_REJECTED',
+      },
+      {
+        message: 'PDF File Size Exceeded.',
+        status: 413,
+        translation: 'PROJECT.ATTACHMENT.ERROR_FILE_TOO_LARGE',
+      },
+      {
+        message: 'Internal server error occurred',
+        status: 500,
+        translation: 'PROJECT.ATTACHMENT.ERROR_HTTP_OTHER',
+      },
+    ])(
+      'should open toast with correct message for $status and "$message"',
+      ({ message, status, translation }) => {
+        const file = new File(['Content of validation error file'], 'test-validation-error.pdf')
+        component.formGroup.patchValue({
+          description: 'Test file upload validation errors',
+          fileName: 'test-validation-error.pdf',
+        })
+        component.file = file
+
+        jest.spyOn(attachmentMockService, 'uploadAttachment').mockImplementation(() =>
+          throwError(
+            () =>
+              new HttpErrorResponse({
+                error: JSON.stringify({ message }),
+                status,
+              })
+          )
+        )
+
+        jest.spyOn(toastMockService, 'openToast')
+
+        component.handleDialogConfirm()
+
+        expect(toastMockService.openToast).toHaveBeenCalledWith<IToastMessageConfig[]>({
+          message: translation,
+          type: ToastMessageType.Error,
+        })
+      }
+    )
+
+    it('should show toast message for unknown errors', () => {
+      const file = new File(['Content of error test file'], 'test-unknown-error.pdf')
+      component.formGroup.patchValue({
+        description: 'Test file upload unknown error',
+        fileName: 'test-unknown-error.pdf',
+      })
+      component.file = file
+      jest
+        .spyOn(attachmentMockService, 'uploadAttachment')
+        .mockImplementation(() =>
+          throwError(() => new Error('Something prevents us from sending a message.'))
+        )
+
+      jest.spyOn(toastMockService, 'openToast')
+
+      component.handleDialogConfirm()
+
+      expect(toastMockService.openToast).toHaveBeenCalledWith<IToastMessageConfig[]>({
+        message: 'PROJECT.ATTACHMENT.ERROR_UNKNOWN',
+        type: ToastMessageType.Error,
       })
     })
   })
