@@ -1,4 +1,3 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core'
 import {
   Component,
   Input,
