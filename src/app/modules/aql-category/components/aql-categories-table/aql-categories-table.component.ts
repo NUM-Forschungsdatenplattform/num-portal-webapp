@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { Subscription } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AqlCategoryTableColumn } from 'src/app/shared/models/aql/category/aql-category-table.interface'
