@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockRoles, mockUser, mockUsers, mockUsersToFilter } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
@@ -12,12 +11,6 @@ import { adminFilterTestcases } from './admin-filter-testcases'
 
 describe('AdminService', () => {
   let service: AdminService
-  let throttleTime: number
-
-  const filterConfig: IUserFilter = {
-    searchText: 'test',
-    filterItem: [],
-  }
 
   const userProfileSubject$ = new Subject<any>()
   const userProfileService = {

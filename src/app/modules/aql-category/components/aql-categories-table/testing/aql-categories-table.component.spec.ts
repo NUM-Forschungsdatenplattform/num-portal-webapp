@@ -6,21 +6,15 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { AqlCategoriesTableComponent } from '../aql-categories-table.component'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { HarnessLoader } from '@angular/cdk/testing'
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import {
   mockAqlCategories,
   mockAqlCategory1,
   mockAqlCategory2,
 } from 'src/mocks/data-mocks/aql-categories.mock'
-import { maxBy, minBy } from 'lodash-es'
-import { MatTableHarness } from '@angular/material/table/testing'
-import { MatSortHeaderHarness } from '@angular/material/sort/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
-import { AqlCategoriesTableHarness } from './aql-categories-table.harness'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { DELETE_AQL_CATEGORY_DIALOG_CONFIG } from '../constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'

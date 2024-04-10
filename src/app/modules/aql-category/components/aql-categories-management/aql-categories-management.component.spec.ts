@@ -7,7 +7,6 @@ import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-categ
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import {
-  mockAqlCategories,
   mockAqlCategory1,
   mockAqlCategory2,
   mockAqlCategory3,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { AppConfigService } from '../../../config/app-config.service'
-import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs'
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
 

@@ -3,7 +3,6 @@ import { AqlCategoryService } from './aql-category.service'
 import { of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockAqlCategories, mockAqlCategory1 } from 'src/mocks/data-mocks/aql-categories.mock'
-import { mockProjects } from '../../../../mocks/data-mocks/project.mock'
 
 describe('AqlCategoryService', () => {
   let service: AqlCategoryService

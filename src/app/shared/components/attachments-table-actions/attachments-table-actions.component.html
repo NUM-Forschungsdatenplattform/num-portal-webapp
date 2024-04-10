@@ -10,12 +10,21 @@
     {{ 'PROJECT.ATTACHMENT.ADD' | translate }}
   </num-button>
   <num-button
+    *ngIf="showDeleteButton"
+    type="secondary"
+    [isDisabled]="isDeleteButtonDisabled === true ? true : null"
+    (singleClick)="handleDeleteClick()"
+    class="attachment-action-button"
+    data-test="attachments-table__table-actions__delete-button"
+    >{{ 'PROJECT.ATTACHMENT.REMOVE' | translate }}</num-button
+  >
+  <num-button
     *ngIf="showDownloadButton"
     type="primary"
     [isDisabled]="isDownloadButtonDisabled === true ? true : null"
     (singleClick)="handleDownloadClick()"
     class="attachment-action-button"
-    data-test="attachments-table__table-actions__download_button"
+    data-test="attachments-table__table-actions__download-button"
     >{{ 'PROJECT.ATTACHMENT.DOWNLOAD' | translate }}</num-button
   >
 </div>

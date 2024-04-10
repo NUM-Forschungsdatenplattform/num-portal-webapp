@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { AuthGuard } from './core/auth/guards/auth.guard'
 import { RoleGuard } from './core/auth/guards/role.guard'
 import { CanDeactivateSearchGuard } from './modules/search/can-deactivate-search.guard'
-import { AvailableRoles, allRoles } from './shared/models/available-roles.enum'
+import { AvailableRoles } from './shared/models/available-roles.enum'
 import { UserManualUrlResolver } from './shared/resolvers/usermanualurl.resolver'
 
 export const routes: Routes = [

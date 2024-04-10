@@ -111,7 +111,7 @@ export class AqlCategoryService {
    */
   update(update: Omit<IAqlCategoryApi, 'id'>, id: number): Observable<IAqlCategoryApi> {
     return this.httpClient.put<IAqlCategoryApi>(`${this.baseUrl}/${id}`, update).pipe(
-      tap((updated) => {
+      tap(() => {
         this.aqlCategoriesSubject$.next(this.aqlCategories)
       }),
       catchError(this.handleError)

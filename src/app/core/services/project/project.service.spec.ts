@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
+import { firstValueFrom, of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import {
@@ -9,6 +9,7 @@ import {
   mockProject2,
   mockProject3,
   mockProject4,
+  mockProject22,
 } from 'src/mocks/data-mocks/project.mock'
 import {
   projectCommentMock1,
@@ -23,6 +24,7 @@ import { IProjectApi } from 'src/app/shared/models/project/project-api.interface
 import { skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
 import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 
 describe('ProjectService', () => {
   let service: ProjectService
@@ -135,6 +137,25 @@ describe('ProjectService', () => {
         expect(result).toEqual(mockProject1Local)
       })
       expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${1}`, mockProject1Local)
+    })
+    it('should append optional attachment IDs to be removed if existing', async () => {
+      const attachmentsToDelete = [mockProject22.attachments[0], mockProject22.attachments[2]]
+      jest.spyOn(httpClient, 'put').mockImplementation(() =>
+        of({
+          ...mockProject22,
+          attachments: mockProject22.attachments.filter(
+            (attachment) => !attachmentsToDelete.includes(attachment)
+          ),
+        })
+      )
+      service.markAttachmentsForDelete(
+        attachmentsToDelete.map((attachmentApi) => new ProjectAttachmentUiModel(attachmentApi))
+      )
+      await firstValueFrom(service.update(mockProject22, 22))
+      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${22}`, {
+        ...mockProject22,
+        attachmentsToBeDeleted: [mockProject22.attachments[0].id, mockProject22.attachments[2].id],
+      })
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')

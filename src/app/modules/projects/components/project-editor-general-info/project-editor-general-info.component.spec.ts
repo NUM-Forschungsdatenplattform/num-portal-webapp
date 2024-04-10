@@ -9,7 +9,8 @@ import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info
 import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { ProjectAttachmentUiModel } from '../../../../shared/models/project/project-attachment-ui.model'
-import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { mockProject2 } from 'src/mocks/data-mocks/project.mock'
 
 describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
@@ -36,10 +37,9 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   })
   class AttachmentsTableStubComponent {
     @Input() attachments: ProjectAttachmentUiModel[]
-    @Input() projectId?: number
     @Input() isInPreview: boolean
+    @Input() project: ProjectUiModel
     @Input() showSelectColumn: boolean
-    @Input() projectStatus: ProjectStatus
   }
 
   beforeEach(async () => {
@@ -64,6 +64,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectEditorGeneralInfoComponent)
     component = fixture.componentInstance
+    component.project = new ProjectUiModel(mockProject2)
     component.isDisabled = false
     component.form = new FormGroup({
       name: new FormControl(),

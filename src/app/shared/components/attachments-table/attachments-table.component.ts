@@ -3,6 +3,8 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
+  OnInit,
   SimpleChanges,
   ViewChild,
 } from '@angular/core'
@@ -11,6 +13,9 @@ import { SortableTable } from '../../models/sortable-table.model'
 import { MatSort } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
 import { ProjectStatus } from '../../models/project/project-status.enum'
+import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { ProjectService } from 'src/app/core/services/project/project.service'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'num-attachments-table',
@@ -19,20 +24,16 @@ import { ProjectStatus } from '../../models/project/project-status.enum'
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>
-  implements OnChanges
+  implements OnChanges, OnDestroy, OnInit
 {
   @Input()
   set attachments(attachments: ProjectAttachmentUiModel[]) {
     this.dataSource.data = attachments
     this.allowUpload = attachments.length < 10
   }
-  @Input() projectId?: number
-  @Input() set projectStatus(projectStatus: ProjectStatus | undefined) {
-    this.allowUpload =
-      ([ProjectStatus.Draft].includes(projectStatus) ?? false) && this.projectId !== null
-  }
-  @Input() showSelectColumn: boolean
   @Input() isInPreview: boolean
+  @Input() project: ProjectUiModel
+  @Input() showSelectColumn: boolean
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     this.dataSource.sort = sort
@@ -44,11 +45,33 @@ export class AttachmentsTableComponent
   ]
 
   selection: SelectionModel<ProjectAttachmentUiModel>
+  markedForRemoval = new Map<number, boolean>()
   allowUpload = false
 
-  constructor(private cd: ChangeDetectorRef) {
+  private subscriptions = new Subscription()
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    private projectService: ProjectService
+  ) {
     super()
     this.selection = new SelectionModel<ProjectAttachmentUiModel>(true, [])
+  }
+
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.projectService.attachmentsForRemovalObservable$.subscribe((attachments) => {
+        this.markedForRemoval.clear()
+        for (const attachment of attachments) {
+          this.markedForRemoval.set(attachment.id, true)
+        }
+        this.selection.deselect(...attachments)
+      })
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -62,6 +85,13 @@ export class AttachmentsTableComponent
     }
     if ('isInPreview' in changes) {
       this.allowUpload = changes['isInPreview'].currentValue === false
+      this.cd.markForCheck()
+    }
+    if ('project' in changes) {
+      const project = changes['project'].currentValue as ProjectUiModel
+      this.allowUpload =
+        ([ProjectStatus.Draft].includes(project.status) ?? false) && project.id !== null
+      this.cd.markForCheck()
     }
   }
 

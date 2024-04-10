@@ -126,14 +126,14 @@ export class OrganizationsTableComponent
   }
   delete(id: number): void {
     this.organizationService.delete(id).subscribe(
-      (result) => {
+      () => {
         this.toast.openToast({
           type: ToastMessageType.Success,
           message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_SUCCESS_MESSAGE',
         })
         this.getAll()
       },
-      (error) => {
+      () => {
         this.toast.openToast({
           type: ToastMessageType.Error,
           message: 'ORGANIZATION_MANAGEMENT.DELETE_ORGANIZATION_ERROR_MESSAGE',

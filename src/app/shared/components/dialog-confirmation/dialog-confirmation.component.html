@@ -1,1 +1,9 @@
-<p>{{ dialogInput | translate }}</p>
+<p
+  *ngIf="typeOf(this.dialogInput) !== 'string'; else withHtmlContent"
+  [innerHtml]="$any(dialogInput.text)"
+></p>
+
+<ng-template #withHtmlContent>
+  <p>{{ dialogInput | translate }}</p>
+</ng-template>
+
