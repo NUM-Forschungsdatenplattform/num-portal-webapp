@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'NUM CODEX'
+project = 'NUM RDP'
 copyright = '2024, Netzwerk Universitätsmedizin'
 author = 'Netzwerk Universitätsmedizin'
 

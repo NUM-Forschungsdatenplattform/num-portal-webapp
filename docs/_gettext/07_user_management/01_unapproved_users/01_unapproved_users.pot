@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP  package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-21 12:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:3
 #: 027d5762576e498fa9f740bfbb076f84
-msgid "This section covers the management of unapproved users. Unapproved users have just registered at the NUM CODEX app and wait for approval and assignment of a role."
+msgid "This section covers the management of unapproved users. Unapproved users have just registered at the NUM RDP app and wait for approval and assignment of a role."
 msgstr ""
 
 #: ../07_user_management/01_unapproved_users/01_unapproved_users.md:7
