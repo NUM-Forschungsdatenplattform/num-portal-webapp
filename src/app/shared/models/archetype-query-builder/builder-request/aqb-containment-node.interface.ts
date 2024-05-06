@@ -16,12 +16,12 @@ export interface IAqbContainmentNode {
    * The id of this containment node.
    * **This is the reference id for the select fields**
    */
-  identifier: number
+  identifier?: number
 
   /**
    * The archetype id from the template containment
    */
-  type: string
+  predicates: string
 
   /**
    * Another nested containment or logical-operator node
