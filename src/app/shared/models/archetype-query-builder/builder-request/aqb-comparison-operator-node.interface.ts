@@ -17,7 +17,7 @@ export interface IAqbComparisonOperatorNode {
   /**
    * The field where the comparison is applied to
    */
-  statement: IAqbSelectFieldNode
+  statement: IAqbIdentifiedPathValueNode
 
   /**
    * The applied comparison-operator

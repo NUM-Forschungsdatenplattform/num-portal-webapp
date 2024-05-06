@@ -157,10 +157,9 @@ export class AqbWhereItemUiModel {
   convertFieldToApi(): IAqbIdentifiedPathValueNode {
     return {
       _type: AqbNodeType.IdentifiedPath,
-      root: { _type: 'Containment' },
-      aqlPath: this.aqlPath,
-      containmentId: this.archetypeReferenceId,
-      name: this.givenName,
+      root: { _type: 'Containment', identifier: this.aqlPath },
+      // containmentId: this.archetypeReferenceId,
+      // name: this.givenName,
     }
   }
 }
