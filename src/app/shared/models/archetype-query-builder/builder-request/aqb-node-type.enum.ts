@@ -8,4 +8,5 @@ export enum AqbNodeType {
   ComparisonOperator = 'ComparisonOperator',
   ParameterValue = 'Parameter',
   SimpleValue = 'Simple',
+  IdentifiedPath = 'IdentifiedPath',
 }

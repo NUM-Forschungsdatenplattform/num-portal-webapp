@@ -7,7 +7,7 @@ export interface IAqbSelectFieldNode {
   /**
    * The identifier
    */
-  _type: AqbNodeType.SelectField
+  _type: AqbNodeType.SelectField | AqbNodeType.IdentifiedPath
 
   /**
    * The id of the referenced containment node in the contains clause

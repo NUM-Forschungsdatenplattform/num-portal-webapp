@@ -15,6 +15,7 @@ import { IComparisonOperatorOption } from './aqb-comparison-operator-options.int
 import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
 import { convertParameterInputToType } from 'src/app/core/utils/value-converter.utils'
+import { IAqbIdentifiedPathValueNode } from '../archetype-query-builder/builder-request/aqb-IdentifiedPath-value-node.interface'
 
 export class AqbWhereItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
@@ -133,7 +134,7 @@ export class AqbWhereItemUiModel {
     }
   }
 
-  convertValueToApi(): IAqbParameterNode | IAqbSimpleValueNode {
+  convertValueToApi(): IAqbParameterNode | IAqbIdentifiedPathValueNode {
     if (this.isParameterType) {
       if (!this.parameterName || !this.parameterName.length) {
         this.parameterName = 'parameter_' + IdHelperService.getSimpleId()
@@ -147,12 +148,12 @@ export class AqbWhereItemUiModel {
 
     const value = convertParameterInputToType(this.valueType, this.value)
 
-    return { _type: AqbNodeType.SimpleValue, value } as IAqbSimpleValueNode
+    return { _type: AqbNodeType.IdentifiedPath, value } as IAqbIdentifiedPathValueNode
   }
 
   convertFieldToApi(): IAqbSelectFieldNode {
     return {
-      _type: AqbNodeType.SelectField,
+      _type: AqbNodeType.IdentifiedPath,
       aqlPath: this.aqlPath,
       containmentId: this.archetypeReferenceId,
       name: this.givenName,
