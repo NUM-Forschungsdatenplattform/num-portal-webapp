@@ -5,8 +5,9 @@ export enum AqbNodeType {
   Containment = 'Containment',
   LogicalOperator = 'LogicalOperator',
   SelectField = 'SelectField',
+  SelectExpression = 'SelectExpression',
   ComparisonOperator = 'ComparisonOperator',
-  ParameterValue = 'Parameter',
+  ParameterValue = 'QueryParameter',
   SimpleValue = 'Simple',
   IdentifiedPath = 'IdentifiedPath',
 }

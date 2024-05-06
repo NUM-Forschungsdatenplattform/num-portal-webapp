@@ -148,12 +148,16 @@ export class AqbWhereItemUiModel {
 
     const value = convertParameterInputToType(this.valueType, this.value)
 
-    return { _type: AqbNodeType.IdentifiedPath, value } as IAqbIdentifiedPathValueNode
-  }
-
-  convertFieldToApi(): IAqbSelectFieldNode {
     return {
       _type: AqbNodeType.IdentifiedPath,
+      root: { _type: 'Containment', identifier: value },
+    } as IAqbIdentifiedPathValueNode
+  }
+
+  convertFieldToApi(): IAqbIdentifiedPathValueNode {
+    return {
+      _type: AqbNodeType.IdentifiedPath,
+      root: { _type: 'Containment' },
       aqlPath: this.aqlPath,
       containmentId: this.archetypeReferenceId,
       name: this.givenName,

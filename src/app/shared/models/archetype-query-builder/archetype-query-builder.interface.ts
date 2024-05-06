@@ -15,7 +15,7 @@ export interface IArchetypeQueryBuilder {
   ehr?: {
     containmentId: number
   }
-  contains: PossibleContains
+  from: PossibleContains
   orderBy?: IAqbOrderByStatement[]
   where?: PossibleWhereStatements
 }

@@ -181,24 +181,24 @@ export class AqbUiModel {
     const select: IAqbSelectClause = {
       statement: this.select.map((selectItem) => {
         const convertedSelectItem = selectItem.convertToApi()
-        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.name)
+        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.alias)
 
         if (aliasCount++) {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, aliasCount)
-          convertedSelectItem.name = `${convertedSelectItem.name}_${aliasCount}`
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, aliasCount)
+          convertedSelectItem.alias = `${convertedSelectItem.alias}_${aliasCount}`
         } else {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, 1)
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, 1)
         }
         return convertedSelectItem
       }),
     }
 
-    const contains = this.contains.convertToApi()
+    const from = this.contains.convertToApi()
     const where = this.where.convertToApi()
 
     return {
       select,
-      contains,
+      from,
       where,
     }
   }

@@ -9,8 +9,8 @@ export interface IAqbIdentifiedPathValueNode {
    */
   _type: AqbNodeType.IdentifiedPath
 
-  /**
-   * The specified value
-   */
-  value: string | number
+  root: {
+    _type: 'Containment'
+    identifier: string
+  }
 }

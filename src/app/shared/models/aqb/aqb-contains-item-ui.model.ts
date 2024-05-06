@@ -23,8 +23,8 @@ export class AqbContainsItemUiModel {
   convertToApi(): IAqbContainmentNode {
     return {
       _type: AqbNodeType.Containment,
-      archetypeId: this.archetypeId,
-      id: this.archetypeReferenceId,
+      type: this.archetypeId,
+      identifier: this.archetypeReferenceId,
     }
   }
 }

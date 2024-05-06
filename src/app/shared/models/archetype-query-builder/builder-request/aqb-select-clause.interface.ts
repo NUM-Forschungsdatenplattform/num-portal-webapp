@@ -1,4 +1,4 @@
-import { IAqbSelectFieldNode } from './aqb-select-field-node.interface'
+import { IAqbSelectExpressionNode } from './aqb-select-Expression-node.interface'
 import { AqbSelectTopDirection } from './aqb-select-top-direction.enum'
 
 /**
@@ -19,5 +19,5 @@ export interface IAqbSelectClause {
   /**
    * The selected template elements specifying the result to be returned
    */
-  statement: IAqbSelectFieldNode[]
+  statement: IAqbSelectExpressionNode[]
 }
