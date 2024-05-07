@@ -25,6 +25,7 @@ export class AqbUiModel {
   constructor() {}
 
   handleElementSelect(clickEvent: IAqbSelectClick): void {
+    console.log('CLICK', clickEvent)
     const archetypeId = clickEvent.item.archetypeId || clickEvent.item.parentArchetypeId
     const compositionReferenceKey = clickEvent.templateId + '--' + clickEvent.compositionId
     const archetypeReferenceKey = clickEvent.templateId + '--' + archetypeId

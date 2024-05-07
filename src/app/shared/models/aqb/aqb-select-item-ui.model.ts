@@ -37,11 +37,15 @@ export class AqbSelectItemUiModel {
   }
 
   convertToApi(): IAqbSelectExpressionNode {
+    console.log('RM Type', this.rmType, this)
     return {
       _type: AqbNodeType.SelectExpression,
       columnExpression: {
         _type: AqbNodeType.IdentifiedPath,
-        root: { _type: 'Containment', identifier: this.aqlPath },
+        root: {
+          _type: 'Containment',
+          identifier: `${this.isComposition ? 'c' : 'o'}${this.aqlPath}`,
+        },
       },
       alias: this.givenName.length
         ? this.givenName

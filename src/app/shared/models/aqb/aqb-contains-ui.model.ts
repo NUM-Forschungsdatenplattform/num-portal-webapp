@@ -40,18 +40,26 @@ export class AqbContainsUiModel {
   }
 
   convertToApi(): PossibleContains {
-    const compositions = Array.from(this.compositions.values())
-    if (compositions.length > 1) {
-      const contains: IAqbLogicalOperatorNode<PossibleContains> = {
-        _type: AqbNodeType.LogicalOperator,
-        symbol: LogicalOperator.Or,
-        values: compositions.map((composition) => composition.convertToApi()),
+    function containsTree(compositions: AqbContainsCompositionUiModel[]) {
+      if (compositions.length > 1) {
+        const contains: IAqbLogicalOperatorNode<PossibleContains> = {
+          _type: AqbNodeType.LogicalOperator,
+          symbol: LogicalOperator.Or,
+          values: compositions.map((composition) => composition.convertToApi()),
+        }
+        return contains
+      } else if (compositions.length) {
+        return compositions[0].convertToApi()
+      } else {
+        return null
       }
-      return contains
-    } else if (compositions.length) {
-      return compositions[0].convertToApi()
-    } else {
-      return null
+    }
+
+    return {
+      _type: AqbNodeType.Containment,
+      type: 'EHR',
+      identifier: 'e',
+      contains: containsTree(Array.from(this.compositions.values())),
     }
   }
 }

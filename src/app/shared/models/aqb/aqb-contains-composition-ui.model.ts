@@ -26,6 +26,14 @@ export class AqbContainsCompositionUiModel {
   }
 
   setContainsItem(archetypeId: string, archetypeReferenceId: number): void {
+    console.log(
+      'Lustige Sachen:',
+      archetypeId,
+      archetypeReferenceId,
+      this.compositionId,
+      this.compositionReferenceId,
+      this
+    )
     const isExisting = !!this.existingItems.get(archetypeReferenceId)
     if (!isExisting && archetypeId !== this.compositionId) {
       const containsItem = new AqbContainsItemUiModel(
@@ -53,6 +61,8 @@ export class AqbContainsCompositionUiModel {
     return {
       _type: AqbNodeType.Containment,
       // identifier: this.compositionReferenceId,
+      type: 'COMPOSITION',
+      identifier: 'c',
       predicates: `[${this.compositionId}]`,
       contains: subContains,
     }

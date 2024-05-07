@@ -13,15 +13,19 @@ export interface IAqbContainmentNode {
   _type: AqbNodeType.Containment
 
   /**
-   * The id of this containment node.
-   * **This is the reference id for the select fields**
+   * RM class name, such as EHR, COMPOSITION, OBSERVATION etc.
    */
-  identifier?: number
+  type?: string
 
   /**
-   * The archetype id from the template containment
+   * AQL variable name
    */
-  predicates: string
+  identifier?: string
+
+  /**
+   * A standard predicate or an archetype predicate.
+   */
+  predicates?: string
 
   /**
    * Another nested containment or logical-operator node
