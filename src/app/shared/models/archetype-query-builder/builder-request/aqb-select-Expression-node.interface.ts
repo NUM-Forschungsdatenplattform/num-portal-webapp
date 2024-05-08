@@ -16,5 +16,5 @@ export interface IAqbSelectExpressionNode {
    * The alias of the selected field.
    * To be used to define the alias of the field
    */
-  alias: string
+  alias?: string
 }

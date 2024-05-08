@@ -47,11 +47,7 @@ export class AqbSelectItemUiModel {
           identifier: `${this.isComposition ? 'c' : 'o'}${this.aqlPath}`,
         },
       },
-      alias: this.givenName.length
-        ? this.givenName
-        : this.isComposition
-          ? this.templateId
-          : this.name,
+      alias: this.givenName || undefined,
     }
   }
 }

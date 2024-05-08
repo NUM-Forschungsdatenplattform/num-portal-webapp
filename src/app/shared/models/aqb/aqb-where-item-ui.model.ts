@@ -1,4 +1,6 @@
-import { IAqbComparisonOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
+import {
+  IAqbComparisonOperatorNode,
+} from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
 import { AqbComparisonOperator } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator.enum'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { IAqbParameterNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-parameter-node.interface'
@@ -44,7 +46,7 @@ export class AqbWhereItemUiModel {
   constructor(
     item: IContainmentTreeNode,
     compositionReferenceId: number,
-    archetypeReferenceId: number
+    archetypeReferenceId: number,
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId
@@ -63,6 +65,21 @@ export class AqbWhereItemUiModel {
 
   private configurePath(aqlPath: string): string {
     return aqlPath.endsWith('defining_code') ? aqlPath + '/code_string' : aqlPath
+  }
+
+  private convertRMType(rmType: ReferenceModelType): string {
+    switch (rmType) {
+      case ReferenceModelType.Boolean:
+        return 'Boolean'
+      case ReferenceModelType.Double:
+        return 'Double'
+      case ReferenceModelType.Long:
+        return 'Long'
+      case ReferenceModelType.String:
+        return 'String'
+      default:
+        return rmType
+    }
   }
 
   configureOptions(): void {
@@ -134,7 +151,7 @@ export class AqbWhereItemUiModel {
     }
   }
 
-  convertValueToApi(): IAqbParameterNode | IAqbIdentifiedPathValueNode {
+  convertValueToApi(): IAqbParameterNode | IAqbSimpleValueNode {
     if (this.isParameterType) {
       if (!this.parameterName || !this.parameterName.length) {
         this.parameterName = 'parameter_' + IdHelperService.getSimpleId()
@@ -148,18 +165,17 @@ export class AqbWhereItemUiModel {
 
     const value = convertParameterInputToType(this.valueType, this.value)
 
+    console.log('hier:', value, this)
     return {
-      _type: AqbNodeType.IdentifiedPath,
-      root: { _type: 'Containment', identifier: value },
-    } as IAqbIdentifiedPathValueNode
+      _type: this.convertRMType(this.rmType),
+      value: value,
+    } as IAqbSimpleValueNode
   }
 
   convertFieldToApi(): IAqbIdentifiedPathValueNode {
     return {
       _type: AqbNodeType.IdentifiedPath,
       root: { _type: 'Containment', identifier: this.aqlPath },
-      // containmentId: this.archetypeReferenceId,
-      // name: this.givenName,
     }
   }
 }

@@ -28,5 +28,5 @@ export interface IAqbComparisonOperatorNode {
    * The value to be checked against the select field.
    * Might be a value or parameter
    */
-  value?: IAqbParameterNode | IAqbIdentifiedPathValueNode
+  value?: IAqbParameterNode | IAqbSimpleValueNode
 }

@@ -93,6 +93,7 @@ export class AqbUiModel {
     aqbWhere.value = templateId
 
     templateRestrictionWhereClause.children.push(aqbWhere)
+    console.log('WHERE', templateRestrictionItem)
   }
 
   private pushToSelectClause(
