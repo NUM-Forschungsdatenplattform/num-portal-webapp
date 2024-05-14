@@ -1,10 +1,7 @@
-import {
-  IAqbComparisonOperatorNode,
-} from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
+import { IAqbComparisonOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
 import { AqbComparisonOperator } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator.enum'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { IAqbParameterNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-parameter-node.interface'
-import { IAqbSelectFieldNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-field-node.interface'
 import { IAqbSimpleValueNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-simple-value-node.interface'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
@@ -18,12 +15,14 @@ import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
 import { convertParameterInputToType } from 'src/app/core/utils/value-converter.utils'
 import { IAqbIdentifiedPathValueNode } from '../archetype-query-builder/builder-request/aqb-IdentifiedPath-value-node.interface'
+import { id } from '@swimlane/ngx-charts'
 
 export class AqbWhereItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
   name: string
   givenName: string
   rmType: ReferenceModelType
+  identifier: string
   aqlPath: string
   humanReadablePath: string
   compositionReferenceId: number
@@ -45,12 +44,14 @@ export class AqbWhereItemUiModel {
 
   constructor(
     item: IContainmentTreeNode,
+    identifier: string,
     compositionReferenceId: number,
-    archetypeReferenceId: number,
+    archetypeReferenceId: number
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId
     this.rmType = item.rmType
+    this.identifier = identifier
     this.aqlPath = this.configurePath(item.aqlPath || '')
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
@@ -164,8 +165,6 @@ export class AqbWhereItemUiModel {
     }
 
     const value = convertParameterInputToType(this.valueType, this.value)
-
-    console.log('hier:', value, this)
     return {
       _type: this.convertRMType(this.rmType),
       value: value,
@@ -175,7 +174,7 @@ export class AqbWhereItemUiModel {
   convertFieldToApi(): IAqbIdentifiedPathValueNode {
     return {
       _type: AqbNodeType.IdentifiedPath,
-      root: { _type: 'Containment', identifier: this.aqlPath },
+      root: { _type: 'Containment', identifier: this.identifier + this.aqlPath },
     }
   }
 }

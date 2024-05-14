@@ -16,6 +16,7 @@ export class AqbContainsCompositionUiModel {
   templateId: string
   compositionId: string
   compositionReferenceId: number
+  archetypeReferenceId: number
 
   constructor(templateId: string, compositionId: string, compositionReferenceId: number) {
     this.logicalOperator = LogicalOperator.And
@@ -23,17 +24,10 @@ export class AqbContainsCompositionUiModel {
     this.templateId = templateId
     this.compositionId = compositionId
     this.compositionReferenceId = compositionReferenceId
+    this.archetypeReferenceId = compositionReferenceId
   }
 
   setContainsItem(archetypeId: string, archetypeReferenceId: number): void {
-    console.log(
-      'Lustige Sachen:',
-      archetypeId,
-      archetypeReferenceId,
-      this.compositionId,
-      this.compositionReferenceId,
-      this
-    )
     const isExisting = !!this.existingItems.get(archetypeReferenceId)
     if (!isExisting && archetypeId !== this.compositionId) {
       const containsItem = new AqbContainsItemUiModel(
@@ -62,7 +56,7 @@ export class AqbContainsCompositionUiModel {
       _type: AqbNodeType.Containment,
       // identifier: this.compositionReferenceId,
       type: 'COMPOSITION',
-      identifier: 'c',
+      identifier: `c${this.archetypeReferenceId}`,
       predicates: `[${this.compositionId}]`,
       contains: subContains,
     }

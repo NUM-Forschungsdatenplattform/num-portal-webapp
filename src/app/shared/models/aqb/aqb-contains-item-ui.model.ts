@@ -24,7 +24,7 @@ export class AqbContainsItemUiModel {
     return {
       _type: AqbNodeType.Containment,
       type: 'OBSERVATION',
-      identifier: 'o',
+      identifier: `o${this.archetypeReferenceId}`,
       predicates: `[${this.archetypeId}]`,
     }
   }
