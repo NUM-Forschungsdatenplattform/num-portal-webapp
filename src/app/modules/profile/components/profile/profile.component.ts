@@ -122,10 +122,12 @@ export class ProfileComponent implements OnInit {
       auth.baseUrl +
         '/realms/' +
         auth.realm +
-        '/account/password?referrer=' +
+        '/protocol/openid-connect/auth?kc_action=UPDATE_PASSWORD&scope=openid&response_type=code&client_id=' +
         auth.clientId +
         '&kc_locale=' +
-        this.translate.currentLang
+        this.translate.currentLang +
+        '&redirect_uri=' +
+        window.location.href
     )
   }
 
