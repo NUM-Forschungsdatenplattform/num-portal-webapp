@@ -26,7 +26,7 @@ export class AqbSelectItemUiModel {
     this.name = item.name || item.archetypeId
     this.givenName = ''
     this.rmType = item.rmType
-    this.aqlPath = item.aqlPath || ''
+    this.aqlPath = (item.aqlPath || '').replace(/^\//, '')
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
     this.archetypeReferenceId = archetypeReferenceId
@@ -39,10 +39,8 @@ export class AqbSelectItemUiModel {
       _type: AqbNodeType.SelectExpression,
       columnExpression: {
         _type: AqbNodeType.IdentifiedPath,
-        root: {
-          _type: 'Containment',
-          identifier: `${this.isComposition ? 'c' : 'o'}${this.archetypeReferenceId}${this.aqlPath}`,
-        },
+        root: `${this.isComposition ? 'c' : 'o'}${this.archetypeReferenceId}`,
+        path: this.aqlPath,
       },
       ...(this.givenName && { alias: this.givenName }),
     }

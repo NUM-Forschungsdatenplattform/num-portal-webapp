@@ -9,9 +9,7 @@ export interface IAqbIdentifiedPathValueNode {
    */
   _type: AqbNodeType.IdentifiedPath
 
-  root: {
-    _type: 'Containment'
-    // necessary, because backend (openEhrSDK) not allow to add path with JSON
-    identifier: string
-  }
+  path: string
+
+  root: string
 }

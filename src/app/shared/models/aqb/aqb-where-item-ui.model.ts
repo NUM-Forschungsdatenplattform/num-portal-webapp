@@ -52,7 +52,7 @@ export class AqbWhereItemUiModel {
     this.givenName = item.name || item.archetypeId
     this.rmType = item.rmType
     this.identifier = identifier
-    this.aqlPath = this.configurePath(item.aqlPath || '')
+    this.aqlPath = this.configurePath(item.aqlPath || '').replace(/^\//, '')
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
     this.archetypeReferenceId = archetypeReferenceId
@@ -174,7 +174,8 @@ export class AqbWhereItemUiModel {
   convertFieldToApi(): IAqbIdentifiedPathValueNode {
     return {
       _type: AqbNodeType.IdentifiedPath,
-      root: { _type: 'Containment', identifier: this.identifier + this.aqlPath },
+      root: this.identifier,
+      path: this.aqlPath,
     }
   }
 }
