@@ -14,9 +14,8 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { USERMANUAL } from 'src/app/core/constants/constants'
 import { TranslateService } from '@ngx-translate/core'
-import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
 
 @Component({
   selector: 'num-side-menu',
@@ -33,7 +32,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false
 
-  healthCheckUrl: string
   manualUrl: any
   currentLang = 'de'
 
@@ -45,8 +43,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
-    public translateService: TranslateService,
-    private systemService: SystemStatusService
+    public translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -58,21 +55,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
       item.roles = roles
     })
-    this.handleSystemStatus()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
-  }
-
-  handleSystemStatus(): void {
-    this.systemService.getSystemStatusOberservable().subscribe((status) => {
-      this.mainNavItemsExternal.forEach((item) => {
-        if (item.id === HEALTHCHECK) {
-          item.highlighted = this.systemService.hasError(status)
-        }
-      })
-    })
   }
 
   handleUserInfo(): void {
@@ -96,9 +82,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     if (item && item.isExternal) {
       let lang: string
       switch (item.id) {
-        case HEALTHCHECK:
-          window.open(this.healthCheckUrl, '_blank')
-          break
         case USERMANUAL:
           if (!this.translateService || !this.translateService.currentLang) {
             lang = this.currentLang
@@ -121,9 +104,8 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   getDynamicExternalURLs(): void {
     this.httpClient
-      .get(`${this.appConfig.config.api.baseUrl}/admin/external-urls`)
+      .get(`${this.appConfig.config.api.baseUrl}/admin/manuel-url`)
       .subscribe((response: any) => {
-        this.healthCheckUrl = response.systemStatusUrl
         this.manualUrl = response.userManualUrl
       })
   }

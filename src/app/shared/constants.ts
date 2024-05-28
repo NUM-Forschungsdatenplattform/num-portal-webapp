@@ -13,8 +13,3 @@ export const USER_MANUAL_LINK = {
   EN: 'https://num-portal-webapp.readthedocs.io/en/latest/',
   DE: 'https://num-portal-webapp.readthedocs.io/de/latest/',
 }
-
-export const HEALTH_CHECK_URL = {
-  EN: 'https://health.num-codex.de/',
-  DE: 'https://health.num-codex.de/',
-}
