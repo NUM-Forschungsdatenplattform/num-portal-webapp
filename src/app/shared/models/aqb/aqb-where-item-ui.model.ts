@@ -1,6 +1,4 @@
-import {
-  IAqbComparisonOperatorNode,
-} from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
+import { IAqbComparisonOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
 import { AqbComparisonOperator } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator.enum'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { IAqbParameterNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-parameter-node.interface'
@@ -47,7 +45,7 @@ export class AqbWhereItemUiModel {
     item: IContainmentTreeNode,
     identifier: string,
     compositionReferenceId: number,
-    archetypeReferenceId: number,
+    archetypeReferenceId: number
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId
