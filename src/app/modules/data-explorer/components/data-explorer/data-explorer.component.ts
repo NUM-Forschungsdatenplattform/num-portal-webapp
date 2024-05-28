@@ -129,7 +129,6 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
       forkJoin(selectedCompositions$)
         .pipe(
           mergeMap((selectedCompositions) => {
-            debugger
             selectedCompositions.forEach((composition) =>
               this.aqbModel.handleElementSelect(composition)
             )
