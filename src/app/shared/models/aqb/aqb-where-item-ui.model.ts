@@ -8,7 +8,10 @@ import { IAqbSimpleValueNode } from 'src/app/shared/models/archetype-query-build
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
-import { COMPARISON_OPERATOR_OPTIONS_EQUALS, COMPARISON_OPERATOR_OPTIONS_INEQUALS } from './aqb-comparison-operator-options'
+import {
+  COMPARISON_OPERATOR_OPTIONS_EQUALS,
+  COMPARISON_OPERATOR_OPTIONS_INEQUALS,
+} from './aqb-comparison-operator-options'
 import { IComparisonOperatorOption } from './aqb-comparison-operator-options.interface'
 import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
@@ -44,7 +47,7 @@ export class AqbWhereItemUiModel {
     item: IContainmentTreeNode,
     identifier: string,
     compositionReferenceId: number,
-    archetypeReferenceId: number
+    archetypeReferenceId: number,
   ) {
     this.name = item.name || item.archetypeId
     this.givenName = item.name || item.archetypeId
