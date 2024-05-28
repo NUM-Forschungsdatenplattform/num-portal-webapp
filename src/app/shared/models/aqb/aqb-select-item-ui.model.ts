@@ -40,7 +40,7 @@ export class AqbSelectItemUiModel {
       columnExpression: {
         _type: AqbNodeType.IdentifiedPath,
         root: `${this.isComposition ? 'c' : 'o'}${this.archetypeReferenceId}`,
-        path: this.aqlPath,
+        ...(this.aqlPath && { path: this.aqlPath }),
       },
       ...(this.givenName && { alias: this.givenName }),
     }

@@ -175,7 +175,7 @@ export class AqbWhereItemUiModel {
     return {
       _type: AqbNodeType.IdentifiedPath,
       root: this.identifier,
-      path: this.aqlPath,
+      ...(this.aqlPath && { path: this.aqlPath }),
     }
   }
 }

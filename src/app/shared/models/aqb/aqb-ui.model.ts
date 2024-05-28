@@ -12,6 +12,7 @@ import { AqbWhereItemUiModel } from './aqb-where-item-ui.model'
 export class AqbUiModel {
   private referenceCounter = 0
   private references = new Map<string, number>()
+  private usedTemplates: string[] = []
 
   selectDestination = AqbSelectDestination.Select
 
@@ -26,14 +27,14 @@ export class AqbUiModel {
 
   handleElementSelect(clickEvent: IAqbSelectClick): void {
     const archetypeId = clickEvent.item.archetypeId || clickEvent.item.parentArchetypeId
-    const compositionReferenceKey = clickEvent.templateId + '--' + clickEvent.compositionId
-    const archetypeReferenceKey = clickEvent.templateId + '--' + archetypeId
-    const isExistingComposition = this.references.has(compositionReferenceKey)
+    const compositionReferenceKey = clickEvent.compositionId
+    const archetypeReferenceKey = archetypeId
 
     const compositionReferenceId = this.setReference(compositionReferenceKey)
     const archetypeReferenceId = this.setReference(archetypeReferenceKey)
 
-    if (!isExistingComposition) {
+    if (!this.usedTemplates.includes(clickEvent.templateId)) {
+      this.usedTemplates.push(clickEvent.templateId)
       this.addTemplateRestriction(
         compositionReferenceId,
         clickEvent.compositionId,
