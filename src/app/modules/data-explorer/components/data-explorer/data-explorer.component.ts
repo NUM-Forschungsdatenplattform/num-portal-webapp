@@ -191,7 +191,6 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   }
 
   openBuilderDialog(): void {
-    debugger
     const dialogContentPayload: IAqlBuilderDialogInput = {
       model: this.aqbModel,
       mode: AqlBuilderDialogMode.DataRetrieval,
@@ -216,7 +215,6 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   }
 
   handleDialogConfirm(confirmResult: IAqlBuilderDialogOutput): void {
-    debugger
     this.aqbModel = confirmResult.model
     this.selectedTemplateIds = confirmResult.selectedTemplateIds
     this.compiledQuery = confirmResult.result
@@ -226,7 +224,6 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
   }
 
   resetAqbModel(): void {
-    debugger
     this.isDataSetLoading = true
     this.aqbModel = cloneDeep(this.initialAqbModel)
     this.selectedTemplateIds = cloneDeep(this.allowedTemplateIds)

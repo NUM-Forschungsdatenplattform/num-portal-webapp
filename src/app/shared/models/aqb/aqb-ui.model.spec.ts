@@ -123,9 +123,9 @@ describe('AqbUiModel', () => {
 
     it('should convert with unique aliases', () => {
       const convertedModel = model.convertToApi()
-      expect(convertedModel.select.statement[0].name).toEqual('test3')
-      expect(convertedModel.select.statement[1].name).toEqual('test3_2')
-      expect(convertedModel.select.statement[2].name).toEqual('test3_3')
+      expect(convertedModel.select.statement[0].alias).toEqual('test3')
+      expect(convertedModel.select.statement[1].alias).toEqual('test3_2')
+      expect(convertedModel.select.statement[2].alias).toEqual('test3_3')
     })
   })
 })

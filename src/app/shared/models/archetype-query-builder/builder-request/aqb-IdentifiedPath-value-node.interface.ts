@@ -9,7 +9,7 @@ export interface IAqbIdentifiedPathValueNode {
    */
   _type: AqbNodeType.IdentifiedPath
 
-  path: string
+  path?: string
 
   root: string
 }

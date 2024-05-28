@@ -43,7 +43,10 @@ export class AqbUiModel {
     }
 
     if (this.selectDestination === AqbSelectDestination.Select) {
-      const isComposition = clickEvent.compositionId === clickEvent.item.parentArchetypeId
+      debugger
+      const isComposition =
+        clickEvent.compositionId === clickEvent.item.parentArchetypeId ||
+        clickEvent.compositionId === clickEvent.item.archetypeId
       this.pushToSelectClause(
         clickEvent,
         compositionReferenceId,

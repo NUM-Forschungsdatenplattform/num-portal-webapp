@@ -1,4 +1,6 @@
-import { IAqbComparisonOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
+import {
+  IAqbComparisonOperatorNode,
+} from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator-node.interface'
 import { AqbComparisonOperator } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-comparison-operator.enum'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { IAqbParameterNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-parameter-node.interface'
@@ -6,16 +8,12 @@ import { IAqbSimpleValueNode } from 'src/app/shared/models/archetype-query-build
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-tree-node.interface'
-import {
-  COMPARISON_OPERATOR_OPTIONS_EQUALS,
-  COMPARISON_OPERATOR_OPTIONS_INEQUALS,
-} from './aqb-comparison-operator-options'
+import { COMPARISON_OPERATOR_OPTIONS_EQUALS, COMPARISON_OPERATOR_OPTIONS_INEQUALS } from './aqb-comparison-operator-options'
 import { IComparisonOperatorOption } from './aqb-comparison-operator-options.interface'
 import { AqlParameterValueType } from '../aql/aql-parameter-value-type.enum'
 import { IdHelperService } from 'src/app/core/helper/id-helper.service'
 import { convertParameterInputToType } from 'src/app/core/utils/value-converter.utils'
 import { IAqbIdentifiedPathValueNode } from '../archetype-query-builder/builder-request/aqb-IdentifiedPath-value-node.interface'
-import { id } from '@swimlane/ngx-charts'
 
 export class AqbWhereItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
@@ -77,6 +75,7 @@ export class AqbWhereItemUiModel {
       case ReferenceModelType.Long:
         return 'Long'
       case ReferenceModelType.String:
+      case ReferenceModelType.Code_phrase:
         return 'String'
       default:
         return rmType
