@@ -10,7 +10,7 @@ describe('AqbUiModel', () => {
     item: {
       archetypeId: 'testArchetypeId1',
       displayName: 'test1',
-      name: 'test1',
+      givenName: 'test1',
     },
   }
 
@@ -19,7 +19,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId2',
     item: {
       displayName: 'test2',
-      name: 'test2',
+      givenName: 'test2',
       parentArchetypeId: 'testArchetypeId2',
     },
   }
@@ -29,7 +29,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId3',
     item: {
       displayName: 'test3',
-      name: 'test3',
+      givenName: 'test3',
       parentArchetypeId: 'testCompId3',
     },
   }

@@ -55,6 +55,7 @@ describe('AqlBuilderWhereItemComponent', () => {
     component = fixture.componentInstance
     component.item = new AqbWhereItemUiModel(
       containmentTreeNode,
+      'o1',
       compositionReferenceId,
       archetypeReferenceId
     )
