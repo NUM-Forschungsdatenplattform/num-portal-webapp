@@ -50,10 +50,9 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
-    this.getDynamicExternalURLs()
+    this.getManuelURL()
     mainNavItems.forEach((item) => {
-      const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
-      item.roles = roles
+      item.roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
     })
   }
 
@@ -79,22 +78,19 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       this.handleLoginWithDialog()
     }
     // handle dynamic external urls
-    if (item && item.isExternal) {
+    if (item && item.isExternal && item.id === USERMANUAL) {
       let lang: string
-      switch (item.id) {
-        case USERMANUAL:
-          if (!this.translateService || !this.translateService.currentLang) {
-            lang = this.currentLang
-          } else {
-            lang = this.translateService.currentLang
-          }
-          /* if (this.translateService.currentLang == 'de') { */
-          if (lang == 'de') {
-            window.open(this.manualUrl.DE, '_blank')
-            /* } else if (this.translateService.currentLang == 'en') { */
-          } else if (lang == 'en') {
-            window.open(this.manualUrl.EN, '_blank')
-          }
+      if (!this.translateService || !this.translateService.currentLang) {
+        lang = this.currentLang
+      } else {
+        lang = this.translateService.currentLang
+      }
+      /* if (this.translateService.currentLang == 'de') { */
+      if (lang == 'de') {
+        window.open(this.manualUrl.DE, '_blank')
+        /* } else if (this.translateService.currentLang == 'en') { */
+      } else if (lang == 'en') {
+        window.open(this.manualUrl.EN, '_blank')
       }
     }
     const target = $event.currentTarget as HTMLElement
@@ -102,7 +98,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.toggleSideMenu.emit()
   }
 
-  getDynamicExternalURLs(): void {
+  getManuelURL(): void {
     this.httpClient
       .get(`${this.appConfig.config.api.baseUrl}/admin/manuel-url`)
       .subscribe((response: any) => {
