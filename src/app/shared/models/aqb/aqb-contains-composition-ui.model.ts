@@ -54,7 +54,6 @@ export class AqbContainsCompositionUiModel {
     }
     return {
       _type: AqbNodeType.Containment,
-      // identifier: this.compositionReferenceId,
       type: 'COMPOSITION',
       identifier: `c${this.archetypeReferenceId}`,
       predicates: `[${this.compositionId}]`,
