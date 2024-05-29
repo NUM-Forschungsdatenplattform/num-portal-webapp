@@ -33,10 +33,10 @@ describe('AqbWhereGroupUiModel', () => {
     rmType: ReferenceModelType.Double,
   }
 
-  const whereItem1 = new AqbWhereItemUiModel(item1, 1, 2)
-  const whereItem2 = new AqbWhereItemUiModel(item2, 3, 4)
-  const whereItem3 = new AqbWhereItemUiModel(item3, 5, 6)
-  const whereItem4 = new AqbWhereItemUiModel(item4, 5, 7)
+  const whereItem1 = new AqbWhereItemUiModel(item1, 'o1', 1, 2)
+  const whereItem2 = new AqbWhereItemUiModel(item2, 'o2', 3, 4)
+  const whereItem3 = new AqbWhereItemUiModel(item3, 'o3', 5, 6)
+  const whereItem4 = new AqbWhereItemUiModel(item4, 'o4', 5, 7)
 
   it('should handle the deletion by composition ref ids', () => {
     const group = new AqbWhereGroupUiModel()

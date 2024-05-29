@@ -1,8 +1,8 @@
 export const json1 = {
   _type: 'ComparisonOperator',
-  statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
+  statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
   symbol: 'EQ',
-  value: { _type: 'Simple', value: ' ' },
+  value: { _type: 'DV_TEXT', value: ' ' },
 }
 
 export const json2 = {
@@ -12,28 +12,26 @@ export const json2 = {
     {
       _type: 'ComparisonOperator',
       statement: {
-        _type: 'SelectField',
-        aqlPath: '/path',
-        containmentId: 2,
-        name: 'test',
+        _type: 'IdentifiedPath',
+        path: 'path',
+        root: 'o1',
       },
       symbol: 'EQ',
       value: {
-        _type: 'Simple',
+        _type: 'DV_TEXT',
         value: ' ',
       },
     },
     {
       _type: 'ComparisonOperator',
       statement: {
-        _type: 'SelectField',
-        aqlPath: '/path',
-        containmentId: 4,
-        name: 'test',
+        _type: 'IdentifiedPath',
+        path: 'path',
+        root: 'o2',
       },
       symbol: 'EQ',
       value: {
-        _type: 'Simple',
+        _type: 'DV_BOOLEAN',
         value: true,
       },
     },
@@ -46,9 +44,9 @@ export const json3 = {
   values: [
     {
       _type: 'ComparisonOperator',
-      statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
+      statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
       symbol: 'EQ',
-      value: { _type: 'Simple', value: ' ' },
+      value: { _type: 'DV_TEXT', value: ' ' },
     },
     {
       _type: 'LogicalOperator',
@@ -56,15 +54,15 @@ export const json3 = {
       values: [
         {
           _type: 'ComparisonOperator',
-          statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 4, name: 'test' },
+          statement: { _type: 'IdentifiedPath', path: 'path', root: 'o2' },
           symbol: 'EQ',
-          value: { _type: 'Simple', value: true },
+          value: { _type: 'DV_BOOLEAN', value: true },
         },
         {
           _type: 'ComparisonOperator',
-          statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 6, name: 'test' },
+          statement: { _type: 'IdentifiedPath', path: 'path', root: 'o3' },
           symbol: 'EQ',
-          value: { _type: 'Simple', value: 0 },
+          value: { _type: 'Long', value: 0 },
         },
       ],
     },

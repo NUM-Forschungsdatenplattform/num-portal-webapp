@@ -76,8 +76,7 @@
     "SEARCH": "Suche",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden",
-    "USER_MANUAL": "Benutzerhandbuch",
-    "HEALTH_CHECK": "Systemstatus & Meldungen"
+    "USER_MANUAL": "Benutzerhandbuch"
   },
   "PROFILE": {
     "EDIT_HEADER": "Benutzerkonto bearbeiten",

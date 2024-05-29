@@ -16,6 +16,7 @@ export class AqbContainsCompositionUiModel {
   templateId: string
   compositionId: string
   compositionReferenceId: number
+  archetypeReferenceId: number
 
   constructor(templateId: string, compositionId: string, compositionReferenceId: number) {
     this.logicalOperator = LogicalOperator.And
@@ -23,6 +24,7 @@ export class AqbContainsCompositionUiModel {
     this.templateId = templateId
     this.compositionId = compositionId
     this.compositionReferenceId = compositionReferenceId
+    this.archetypeReferenceId = compositionReferenceId
   }
 
   setContainsItem(archetypeId: string, archetypeReferenceId: number): void {
@@ -52,8 +54,9 @@ export class AqbContainsCompositionUiModel {
     }
     return {
       _type: AqbNodeType.Containment,
-      id: this.compositionReferenceId,
-      archetypeId: this.compositionId,
+      type: 'COMPOSITION',
+      identifier: `c${this.archetypeReferenceId}`,
+      predicates: `[${this.compositionId}]`,
       contains: subContains,
     }
   }

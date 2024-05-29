@@ -2,7 +2,7 @@ import { AqbComparisonOperator } from './aqb-comparison-operator.enum'
 import { AqbNodeType } from './aqb-node-type.enum'
 import { IAqbParameterNode } from './aqb-parameter-node.interface'
 import { IAqbSimpleValueNode } from './aqb-simple-value-node.interface'
-import { IAqbSelectFieldNode } from './aqb-select-field-node.interface'
+import { IAqbIdentifiedPathValueNode } from './aqb-IdentifiedPath-value-node.interface'
 
 /**
  * Element for applying a comparison in the where clause on a specific field
@@ -16,7 +16,7 @@ export interface IAqbComparisonOperatorNode {
   /**
    * The field where the comparison is applied to
    */
-  statement: IAqbSelectFieldNode
+  statement: IAqbIdentifiedPathValueNode
 
   /**
    * The applied comparison-operator

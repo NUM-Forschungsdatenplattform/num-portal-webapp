@@ -22,7 +22,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type double', () => {
       item.rmType = ReferenceModelType.Double
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = [
         ...COMPARISON_OPERATOR_OPTIONS_EQUALS,
         ...COMPARISON_OPERATOR_OPTIONS_INEQUALS,
@@ -35,7 +40,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type date', () => {
       item.rmType = ReferenceModelType.Dv_date
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = [
         ...COMPARISON_OPERATOR_OPTIONS_EQUALS,
         ...COMPARISON_OPERATOR_OPTIONS_INEQUALS,
@@ -48,7 +58,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type date time', () => {
       item.rmType = ReferenceModelType.Dv_date_time
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = [
         ...COMPARISON_OPERATOR_OPTIONS_EQUALS,
         ...COMPARISON_OPERATOR_OPTIONS_INEQUALS,
@@ -61,7 +76,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type time', () => {
       item.rmType = ReferenceModelType.Dv_time
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = [
         ...COMPARISON_OPERATOR_OPTIONS_EQUALS,
         ...COMPARISON_OPERATOR_OPTIONS_INEQUALS,
@@ -74,7 +94,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type string', () => {
       item.rmType = ReferenceModelType.Dv_text
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = COMPARISON_OPERATOR_OPTIONS_EQUALS
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)
@@ -86,7 +111,12 @@ describe('AqbWhereItemUiModel', () => {
       'should do so for type long',
       (type) => {
         item.rmType = type
-        const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+        const model = new AqbWhereItemUiModel(
+          item,
+          'c1',
+          compositionReferenceId,
+          archetypeReferenceId
+        )
         const options = [
           ...COMPARISON_OPERATOR_OPTIONS_EQUALS,
           ...COMPARISON_OPERATOR_OPTIONS_INEQUALS,
@@ -100,7 +130,12 @@ describe('AqbWhereItemUiModel', () => {
 
     it('should do so for type boolean', () => {
       item.rmType = ReferenceModelType.Boolean
-      const model = new AqbWhereItemUiModel(item, compositionReferenceId, archetypeReferenceId)
+      const model = new AqbWhereItemUiModel(
+        item,
+        'c1',
+        compositionReferenceId,
+        archetypeReferenceId
+      )
       const options = COMPARISON_OPERATOR_OPTIONS_EQUALS
       jest.setTimeout(2)
       expect(model.comparisonOperatorOptions).toEqual(options)

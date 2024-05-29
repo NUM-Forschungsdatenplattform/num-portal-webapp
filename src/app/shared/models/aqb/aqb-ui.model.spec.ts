@@ -10,7 +10,7 @@ describe('AqbUiModel', () => {
     item: {
       archetypeId: 'testArchetypeId1',
       displayName: 'test1',
-      name: 'test1',
+      givenName: 'test1',
     },
   }
 
@@ -19,7 +19,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId2',
     item: {
       displayName: 'test2',
-      name: 'test2',
+      givenName: 'test2',
       parentArchetypeId: 'testArchetypeId2',
     },
   }
@@ -29,7 +29,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId3',
     item: {
       displayName: 'test3',
-      name: 'test3',
+      givenName: 'test3',
       parentArchetypeId: 'testCompId3',
     },
   }
@@ -123,9 +123,9 @@ describe('AqbUiModel', () => {
 
     it('should convert with unique aliases', () => {
       const convertedModel = model.convertToApi()
-      expect(convertedModel.select.statement[0].name).toEqual('test3')
-      expect(convertedModel.select.statement[1].name).toEqual('test3_2')
-      expect(convertedModel.select.statement[2].name).toEqual('test3_3')
+      expect(convertedModel.select.statement[0].alias).toEqual('test3')
+      expect(convertedModel.select.statement[1].alias).toEqual('test3_2')
+      expect(convertedModel.select.statement[2].alias).toEqual('test3_3')
     })
   })
 })

@@ -4,5 +4,6 @@ export interface IContainmentTreeNode extends Partial<IContainmentNodeField> {
   archetypeId?: string
   parentArchetypeId?: string
   displayName: string
+  givenName?: string
   children?: IContainmentTreeNode[]
 }

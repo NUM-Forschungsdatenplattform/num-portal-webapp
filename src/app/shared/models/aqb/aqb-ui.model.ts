@@ -12,6 +12,7 @@ import { AqbWhereItemUiModel } from './aqb-where-item-ui.model'
 export class AqbUiModel {
   private referenceCounter = 0
   private references = new Map<string, number>()
+  private usedTemplates: string[] = []
 
   selectDestination = AqbSelectDestination.Select
 
@@ -26,14 +27,14 @@ export class AqbUiModel {
 
   handleElementSelect(clickEvent: IAqbSelectClick): void {
     const archetypeId = clickEvent.item.archetypeId || clickEvent.item.parentArchetypeId
-    const compositionReferenceKey = clickEvent.templateId + '--' + clickEvent.compositionId
-    const archetypeReferenceKey = clickEvent.templateId + '--' + archetypeId
-    const isExistingComposition = !!this.references.get(compositionReferenceKey)
+    const compositionReferenceKey = clickEvent.compositionId
+    const archetypeReferenceKey = archetypeId
 
     const compositionReferenceId = this.setReference(compositionReferenceKey)
     const archetypeReferenceId = this.setReference(archetypeReferenceKey)
 
-    if (!isExistingComposition) {
+    if (!this.usedTemplates.includes(clickEvent.templateId)) {
+      this.usedTemplates.push(clickEvent.templateId)
       this.addTemplateRestriction(
         compositionReferenceId,
         clickEvent.compositionId,
@@ -42,7 +43,9 @@ export class AqbUiModel {
     }
 
     if (this.selectDestination === AqbSelectDestination.Select) {
-      const isComposition = clickEvent.compositionId === clickEvent.item.archetypeId
+      const isComposition =
+        clickEvent.compositionId === clickEvent.item.parentArchetypeId ||
+        clickEvent.compositionId === clickEvent.item.archetypeId
       this.pushToSelectClause(
         clickEvent,
         compositionReferenceId,
@@ -85,6 +88,7 @@ export class AqbUiModel {
     const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
     const aqbWhere = new AqbWhereItemUiModel(
       templateRestrictionItem,
+      `c${compositionReferenceId}`,
       compositionReferenceId,
       compositionReferenceId
     )
@@ -117,8 +121,11 @@ export class AqbUiModel {
     compositionReferenceId: number,
     archetypeReferenceId: number
   ): void {
+    const identifierPrefix =
+      clickEvent.compositionId === clickEvent.item.parentArchetypeId ? 'c' : 'o'
     const aqbWhere = new AqbWhereItemUiModel(
       clickEvent.item,
+      `${identifierPrefix}${archetypeReferenceId}`,
       compositionReferenceId,
       archetypeReferenceId
     )
@@ -181,24 +188,28 @@ export class AqbUiModel {
     const select: IAqbSelectClause = {
       statement: this.select.map((selectItem) => {
         const convertedSelectItem = selectItem.convertToApi()
-        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.name)
+        if (!convertedSelectItem.alias) {
+          return convertedSelectItem
+        }
+
+        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.alias)
 
         if (aliasCount++) {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, aliasCount)
-          convertedSelectItem.name = `${convertedSelectItem.name}_${aliasCount}`
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, aliasCount)
+          convertedSelectItem.alias = `${convertedSelectItem.alias}_${aliasCount}`
         } else {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, 1)
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, 1)
         }
         return convertedSelectItem
       }),
     }
 
-    const contains = this.contains.convertToApi()
+    const from = this.contains.convertToApi()
     const where = this.where.convertToApi()
 
     return {
       select,
-      contains,
+      from,
       where,
     }
   }
