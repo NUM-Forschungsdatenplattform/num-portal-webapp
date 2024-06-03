@@ -37,7 +37,7 @@ export class AqbUiModel {
       this.usedTemplates.push(clickEvent.templateId)
       this.addTemplateRestriction(
         compositionReferenceId,
-        clickEvent.compositionId,
+        archetypeReferenceId,
         clickEvent.templateId
       )
     }
@@ -74,14 +74,14 @@ export class AqbUiModel {
 
   private addTemplateRestriction(
     compositionReferenceId: number,
-    compositionId: string,
+    archetypeReferenceId: number,
     templateId: string
   ): void {
     const templateRestrictionItem: IContainmentTreeNode = {
       displayName: 'Template ID',
       name: 'Template ID',
       aqlPath: '/archetype_details/template_id/value',
-      archetypeId: compositionId,
+      archetypeId: String(archetypeReferenceId),
       rmType: ReferenceModelType.String,
     }
 
@@ -90,7 +90,7 @@ export class AqbUiModel {
       templateRestrictionItem,
       `c${compositionReferenceId}`,
       compositionReferenceId,
-      compositionReferenceId
+      archetypeReferenceId
     )
 
     aqbWhere.value = templateId
@@ -145,8 +145,6 @@ export class AqbUiModel {
   }
 
   handleDeletionByCompositionReferenceIds(compositionReferenceIds: number[]): void {
-    this.deleteReferencesByIds(compositionReferenceIds)
-
     this.select = this.select.filter(
       (item) => !compositionReferenceIds.includes(item.compositionReferenceId)
     )
@@ -158,6 +156,8 @@ export class AqbUiModel {
     userGeneratedWhereClause?.handleDeletionByComposition(compositionReferenceIds)
 
     this.contains.deleteCompositions(compositionReferenceIds)
+
+    this.deleteReferencesByIds(compositionReferenceIds)
   }
 
   handleDeletionByArchetypeReferenceIds(archetypeReferenceIds: number[]): void {
@@ -167,7 +167,10 @@ export class AqbUiModel {
       (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId)
     )
 
+    const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
     const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
+
+    templateRestrictionWhereClause?.handleDeletionByArchetype(archetypeReferenceIds)
     userGeneratedWhereClause?.handleDeletionByArchetype(archetypeReferenceIds)
   }
 
