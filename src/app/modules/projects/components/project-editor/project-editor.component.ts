@@ -1,21 +1,5 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
@@ -31,7 +15,7 @@ import { of, Subscription } from 'rxjs'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ApprovalOption } from '../../models/approval-option.enum'
-import { catchError, tap } from 'rxjs/operators'
+import { catchError, skip, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { APPROVE_PROJECT_DIALOG_CONFIG } from './constants'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
@@ -41,6 +25,8 @@ import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { TranslateService } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { DefinitionType } from 'src/app/shared/models/definition-type.enum'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 
 @Component({
   selector: 'num-project-editor',
@@ -79,9 +65,9 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   savedProjectStatus: ProjectStatus
 
-  commentForm: FormGroup
-  projectForm: FormGroup
-  approverForm: FormGroup
+  commentForm: UntypedFormGroup
+  projectForm: UntypedFormGroup
+  approverForm: UntypedFormGroup
 
   isCohortValid: any
 
@@ -96,7 +82,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private toast: ToastMessageService,
     private translateService: TranslateService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private attachmentsService: AttachmentService
   ) {}
 
   ngOnInit(): void {
@@ -121,8 +108,14 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       defaultMessage: 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS',
     }
     this.profileService.get().subscribe((user) => {
-      this.isUserProjectAdmin = user.id === this.project.coordinator.id
+      this.isUserProjectAdmin = user.id === this.project.coordinator?.id ?? false
     })
+
+    this.subscriptions.add(
+      this.attachmentsService.attachmentsObservable$.pipe(skip(1)).subscribe((attachments) => {
+        this.project.updateAttachments(attachments)
+      })
+    )
   }
 
   updateDetermineHits(count?: number | null, message?: string, isLoading = false): void {
@@ -186,36 +179,42 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   generateForm(): void {
-    this.projectForm = new FormGroup({
-      name: new FormControl(this.project?.name, [Validators.required, Validators.minLength(3)]),
-      description: new FormControl(this.project?.description, [
+    this.projectForm = new UntypedFormGroup({
+      name: new UntypedFormControl(this.project?.name, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      simpleDescription: new FormControl(this.project?.simpleDescription, [
+      description: new UntypedFormControl(this.project?.description, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      goal: new FormControl(this.project?.goal, [Validators.required, Validators.minLength(3)]),
-      firstHypotheses: new FormControl(this.project?.firstHypotheses, [
+      simpleDescription: new UntypedFormControl(this.project?.simpleDescription, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      secondHypotheses: new FormControl(this.project?.secondHypotheses),
-      keywords: new FormControl(this.project?.keywords),
-      categories: new FormControl(this.project?.categories),
-      startDate: new FormControl(this.project?.startDate, [Validators.required]),
-      endDate: new FormControl(this.project?.endDate, [Validators.required]),
-      financed: new FormControl(this.project?.financed),
-      usedOutsideEu: new FormControl(this.project?.usedOutsideEu),
+      goal: new UntypedFormControl(this.project?.goal, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      firstHypotheses: new UntypedFormControl(this.project?.firstHypotheses, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      secondHypotheses: new UntypedFormControl(this.project?.secondHypotheses),
+      keywords: new UntypedFormControl(this.project?.keywords),
+      categories: new UntypedFormControl(this.project?.categories),
+      startDate: new UntypedFormControl(this.project?.startDate, [Validators.required]),
+      endDate: new UntypedFormControl(this.project?.endDate, [Validators.required]),
+      financed: new UntypedFormControl(this.project?.financed),
+      usedOutsideEu: new UntypedFormControl(this.project?.usedOutsideEu),
     })
 
-    this.commentForm = new FormGroup({
-      text: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    this.commentForm = new UntypedFormGroup({
+      text: new UntypedFormControl('', [Validators.required, Validators.minLength(3)]),
     })
 
-    this.approverForm = new FormGroup({
-      decision: new FormControl(ApprovalOption.Approve, Validators.required),
+    this.approverForm = new UntypedFormGroup({
+      decision: new UntypedFormControl(ApprovalOption.Approve, Validators.required),
     })
   }
 
@@ -236,7 +235,13 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
   }
 
   getGeneralInfoListData(): void {
-    this.generalInfoData = this.project.getProjectPreviewGeneralInfo()
+    this.generalInfoData = this.project
+      .getProjectPreviewGeneralInfo()
+      .map((infoData) =>
+        infoData.type !== DefinitionType.Table
+          ? infoData
+          : { ...infoData, extraOptions: { project: this.project, showAttachmentSelects: true } }
+      )
   }
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {

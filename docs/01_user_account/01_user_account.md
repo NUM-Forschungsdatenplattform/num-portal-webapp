@@ -1,6 +1,6 @@
 # User account
 
-Before you can start using CODEX you have to create a new user account for your personal work.
+Before you can start using RDP you have to create a new user account for your personal work.
 
 A user account can be created by each indiviual by providing a company or institution email address. The responsible organization admin has to approve this new account before the user can log in again and start working on research projects.
 

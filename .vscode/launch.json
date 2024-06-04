@@ -55,7 +55,10 @@
       "disableOptimisticBPs": true,
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "npm",
-      "args": ["run", "test", "--", "--runInBand", "--watchAll=false"]
+      "args": ["run", "test", "--", "--runInBand", "--watchAll=false"],
+      "env": {
+        "TZ": "UTC"
+      }
     }
   ]
 }

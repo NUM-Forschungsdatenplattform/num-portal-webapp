@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { TranslateService } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -34,14 +34,14 @@ export class ProfileComponent implements OnInit {
   profile: IUserProfile
   userRoles: string
   nonWhitespaceRegex = /[^\s.]+/
-  profileForm = new FormGroup({
-    firstName: new FormControl(undefined, [
+  profileForm = new UntypedFormGroup({
+    firstName: new UntypedFormControl(undefined, [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
       Validators.pattern(this.nonWhitespaceRegex),
     ]),
-    lastName: new FormControl(undefined, [
+    lastName: new UntypedFormControl(undefined, [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
@@ -120,12 +120,14 @@ export class ProfileComponent implements OnInit {
     const auth = this.appConfig.config.auth
     window.location.assign(
       auth.baseUrl +
-        '/auth/realms/' +
+        '/realms/' +
         auth.realm +
-        '/account/password?referrer=' +
+        '/protocol/openid-connect/auth?kc_action=UPDATE_PASSWORD&scope=openid&response_type=code&client_id=' +
         auth.clientId +
         '&kc_locale=' +
-        this.translate.currentLang
+        this.translate.currentLang +
+        '&redirect_uri=' +
+        window.location.href
     )
   }
 

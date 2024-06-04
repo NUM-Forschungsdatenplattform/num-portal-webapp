@@ -1,24 +1,8 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 export const json1 = {
   _type: 'ComparisonOperator',
-  statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
+  statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
   symbol: 'EQ',
-  value: { _type: 'Simple', value: ' ' },
+  value: { _type: 'DV_TEXT', value: ' ' },
 }
 
 export const json2 = {
@@ -28,28 +12,26 @@ export const json2 = {
     {
       _type: 'ComparisonOperator',
       statement: {
-        _type: 'SelectField',
-        aqlPath: '/path',
-        containmentId: 2,
-        name: 'test',
+        _type: 'IdentifiedPath',
+        path: 'path',
+        root: 'o1',
       },
       symbol: 'EQ',
       value: {
-        _type: 'Simple',
+        _type: 'DV_TEXT',
         value: ' ',
       },
     },
     {
       _type: 'ComparisonOperator',
       statement: {
-        _type: 'SelectField',
-        aqlPath: '/path',
-        containmentId: 4,
-        name: 'test',
+        _type: 'IdentifiedPath',
+        path: 'path',
+        root: 'o2',
       },
       symbol: 'EQ',
       value: {
-        _type: 'Simple',
+        _type: 'DV_BOOLEAN',
         value: true,
       },
     },
@@ -62,9 +44,9 @@ export const json3 = {
   values: [
     {
       _type: 'ComparisonOperator',
-      statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 2, name: 'test' },
+      statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
       symbol: 'EQ',
-      value: { _type: 'Simple', value: ' ' },
+      value: { _type: 'DV_TEXT', value: ' ' },
     },
     {
       _type: 'LogicalOperator',
@@ -72,15 +54,15 @@ export const json3 = {
       values: [
         {
           _type: 'ComparisonOperator',
-          statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 4, name: 'test' },
+          statement: { _type: 'IdentifiedPath', path: 'path', root: 'o2' },
           symbol: 'EQ',
-          value: { _type: 'Simple', value: true },
+          value: { _type: 'DV_BOOLEAN', value: true },
         },
         {
           _type: 'ComparisonOperator',
-          statement: { _type: 'SelectField', aqlPath: '/path', containmentId: 6, name: 'test' },
+          statement: { _type: 'IdentifiedPath', path: 'path', root: 'o3' },
           symbol: 'EQ',
-          value: { _type: 'Simple', value: 0 },
+          value: { _type: 'Long', value: 0 },
         },
       ],
     },

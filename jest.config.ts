@@ -1,32 +1,15 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+import type { Config } from 'jest'
+import { pathsToModuleNameMapper } from 'ts-jest'
+import { compilerOptions } from './tsconfig.json'
 
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
-const { compilerOptions } = require('./tsconfig')
-
-module.exports = {
-  transformIgnorePatterns: [
-    "node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)"
-  ],
+const config: Config = {
+  transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/src/'],
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/+(*.)+(spec).+(ts)'],
-  setupFilesAfterEnv: ['<rootDir>/src/test.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTest.ts'],
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/app/**/*.ts',
@@ -35,18 +18,23 @@ module.exports = {
     '!<rootDir>/src/app/**/font-awesome-icons.ts',
     '!<rootDir>/src/playground/**',
     '!<rootDir>/src/main.playground.ts',
-    '!<rootDir>/src/test.ts',
+    '!<rootDir>/src/setupTest.ts',
     '!<rootDir>/src/**/*.harness.ts',
+    '!<rootDir>/src/custom-test-resolver.js',
   ],
   coverageReporters: ['html', 'text-summary', 'json', 'lcov', 'text', 'clover', 'cobertura'],
   reporters: ['default', ['jest-junit', { outputDirectory: '<rootDir>/reports/junit' }]],
   testResultsProcessor: 'jest-sonar-reporter',
   coverageDirectory: '<rootDir>/reports/coverage',
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
+    ...pathsToModuleNameMapper(compilerOptions['paths'] || {}, {
       prefix: '<rootDir>/',
     }),
     '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
     '^lodash-es$': '<rootDir>/node_modules/lodash/index.js',
   },
+  // This custom resolver is only for handling problems with Jest v28 and can be removed with Jest v29
+  resolver: '<rootDir>/src/custom-test-resolver.js',
 }
+
+export default config

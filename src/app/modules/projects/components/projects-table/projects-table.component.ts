@@ -1,22 +1,6 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort, Sort } from '@angular/material/sort'
+import { Sort } from '@angular/material/sort'
 import { Params, Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import { of, Subscription } from 'rxjs'
@@ -25,12 +9,10 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { sortProjects } from 'src/app/core/utils/sort.utils'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IItemVisibility } from 'src/app/shared/models/item-visibility.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
-import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectTableColumns } from 'src/app/shared/models/project/project-table.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'

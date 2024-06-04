@@ -1,21 +1,5 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
+import { firstValueFrom, of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import {
@@ -25,7 +9,7 @@ import {
   mockProject2,
   mockProject3,
   mockProject4,
-  mockProject5,
+  mockProject22,
 } from 'src/mocks/data-mocks/project.mock'
 import {
   projectCommentMock1,
@@ -40,13 +24,12 @@ import { IProjectApi } from 'src/app/shared/models/project/project-api.interface
 import { skipUntil } from 'rxjs/operators'
 import { projectFilterTestcases } from './project-filter-testcases'
 import { mockResultSetFlat } from 'src/mocks/data-mocks/result-set-mock'
-import { mockOrganizations } from '../../../../mocks/data-mocks/organizations.mock'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 
 describe('ProjectService', () => {
   let service: ProjectService
   const baseUrl = 'localhost/api/project'
   let mockProject1Local
-  let throttleTime: number
 
   const filterConfig: IProjectFilter = {
     filterItem: [],
@@ -154,6 +137,25 @@ describe('ProjectService', () => {
         expect(result).toEqual(mockProject1Local)
       })
       expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${1}`, mockProject1Local)
+    })
+    it('should append optional attachment IDs to be removed if existing', async () => {
+      const attachmentsToDelete = [mockProject22.attachments[0], mockProject22.attachments[2]]
+      jest.spyOn(httpClient, 'put').mockImplementation(() =>
+        of({
+          ...mockProject22,
+          attachments: mockProject22.attachments.filter(
+            (attachment) => !attachmentsToDelete.includes(attachment)
+          ),
+        })
+      )
+      service.markAttachmentsForDelete(
+        attachmentsToDelete.map((attachmentApi) => new ProjectAttachmentUiModel(attachmentApi))
+      )
+      await firstValueFrom(service.update(mockProject22, 22))
+      expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${22}`, {
+        ...mockProject22,
+        attachmentsToBeDeleted: [mockProject22.attachments[0].id, mockProject22.attachments[2].id],
+      })
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')

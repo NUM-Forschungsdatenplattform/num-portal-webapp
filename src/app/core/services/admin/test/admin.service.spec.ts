@@ -1,23 +1,6 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { HttpClient } from '@angular/common/http'
 import { of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockRoles, mockUser, mockUsers, mockUsersToFilter } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization1 } from 'src/mocks/data-mocks/organizations.mock'
@@ -28,12 +11,6 @@ import { adminFilterTestcases } from './admin-filter-testcases'
 
 describe('AdminService', () => {
   let service: AdminService
-  let throttleTime: number
-
-  const filterConfig: IUserFilter = {
-    searchText: 'test',
-    filterItem: [],
-  }
 
   const userProfileSubject$ = new Subject<any>()
   const userProfileService = {

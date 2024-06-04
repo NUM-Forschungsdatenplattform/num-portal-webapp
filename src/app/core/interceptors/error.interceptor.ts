@@ -7,7 +7,10 @@ import { ProfileService } from '../services/profile/profile.service'
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private profileService: ProfileService) {}
+  constructor(
+    private authService: AuthService,
+    private profileService: ProfileService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -19,8 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.profileService.setUnapproveUser(true)
         }
 
-        const error = err.error.message || err.statusText
-        return throwError(error)
+        return throwError(() => err)
       })
     )
   }

@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP  package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-21 12:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:3
 #: 958a0c944bce489488f9122ad913f203
-msgid "This section covers the management of approved users which will be necessary if the role of an existing user changes, e.g. a user gets new tasks and requires to use additional features of CODEX."
+msgid "This section covers the management of approved users which will be necessary if the role of an existing user changes, e.g. a user gets new tasks and requires to use additional features of RDP."
 msgstr ""
 
 #: ../07_user_management/02_approved_users/02_approved_users.md:8

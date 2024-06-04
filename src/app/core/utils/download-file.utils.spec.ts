@@ -1,20 +1,4 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import { downloadFile } from './download-file.utils'
+import { downloadFile, downloadPdf } from './download-file.utils'
 
 describe('Download file utils', () => {
   beforeEach(() => {
@@ -39,6 +23,25 @@ describe('Download file utils', () => {
     expectedLink.setAttribute('download', 'json_export_test.json')
     expectedLink.style.display = 'none'
     downloadFile('test', 'json', 'test-data-string')
+    expect(document.body.appendChild).toHaveBeenCalledWith(expectedLink)
+  })
+
+  it('should create the link for a txt export correctly', () => {
+    const expectedLink = document.createElement('a')
+    expectedLink.setAttribute('href', 'data:text/txt;charset=utf-8,test-txt-data-string')
+    expectedLink.setAttribute('download', 'txt_export_test.txt')
+    expectedLink.style.display = 'none'
+    downloadFile('test', 'txt', 'test-txt-data-string')
+    expect(document.body.appendChild).toHaveBeenCalledWith(expectedLink)
+  })
+
+  it('should create expected download link for pdf files', () => {
+    const blob = new Blob(['I am a test file blob'], { type: 'application/pdf' })
+    const expectedLink = document.createElement('a')
+    expectedLink.setAttribute('href', 'https://test-link.com')
+    expectedLink.setAttribute('download', 'test-file.pdf')
+    expectedLink.style.display = 'none'
+    downloadPdf('test-file.pdf', blob)
     expect(document.body.appendChild).toHaveBeenCalledWith(expectedLink)
   })
 })

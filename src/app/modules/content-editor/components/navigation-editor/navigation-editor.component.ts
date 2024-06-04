@@ -1,21 +1,11 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { FormArray, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms'
+import {
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -31,7 +21,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private contentService: ContentService,
     private toastMessageService: ToastMessageService
   ) {}
@@ -40,11 +30,11 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
 
   navigationItems: INavigationLink[]
 
-  navigationForm = new FormGroup({
+  navigationForm = new UntypedFormGroup({
     navigationItems: this.formBuilder.array([]),
   })
-  get navigationLinks(): FormArray {
-    return this.navigationForm.get('navigationItems') as FormArray
+  get navigationLinks(): UntypedFormArray {
+    return this.navigationForm.get('navigationItems') as UntypedFormArray
   }
 
   ngOnInit(): void {
@@ -68,7 +58,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
     })
   }
 
-  buildFormInput(): FormGroup {
+  buildFormInput(): UntypedFormGroup {
     const urlRegex = /^https?:\/\/[^\s/$.?#!<>|;'"\\@:&=_()].+\.[^\s]*[^\s.]$/
     return this.formBuilder.group(
       {
@@ -79,7 +69,7 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
     )
   }
 
-  fillBothValidation(formGroup: FormGroup): ValidationErrors {
+  fillBothValidation(formGroup: UntypedFormGroup): ValidationErrors {
     const titleMissing = !(formGroup.get('title').value || '').trim().length
     const urlMissing = !(formGroup.get('url').value || '').trim().length
 

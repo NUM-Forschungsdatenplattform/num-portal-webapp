@@ -19,7 +19,7 @@ Fig 02-01: Introduction part of the welcome page
 ```
 
 The welcome message is followed by a general statistics that informs about how many projects and
-{term}`Criteria` haven been added to the running CODEX system and also how many different clinics have
+{term}`Criteria` haven been added to the running RDP system and also how many different clinics have
 provided previously mentioned data.
 
 ```{note}

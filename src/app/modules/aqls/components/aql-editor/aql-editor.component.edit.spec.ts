@@ -1,20 +1,4 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, Directive, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -30,7 +14,7 @@ import { AqlEditorComponent } from './aql-editor.component'
 import { of, Subject } from 'rxjs'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
@@ -82,6 +66,13 @@ describe('AqlEditorComponent', () => {
     validate = jest.fn().mockResolvedValue(true)
   }
 
+  @Directive({
+    selector: '[numUserHasRole]',
+  })
+  class UserHasRoleStubDirective {
+    @Input() numUserHasRole: string[] = []
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -89,13 +80,14 @@ describe('AqlEditorComponent', () => {
         StubGeneralInfoComponent,
         StubEditorCreatorComponent,
         ButtonComponent,
+        UserHasRoleStubDirective,
       ],
       imports: [
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         RouterTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
       ],
       providers: [
         {

@@ -1,0 +1,14 @@
+.attachments-table-actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 10px;
+
+  .attachment-action-button {
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+  }
+}

@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { IAqbSelectClick } from './aqb-select-click.interface'
 import { AqbUiModel } from './aqb-ui.model'
 
@@ -26,7 +10,7 @@ describe('AqbUiModel', () => {
     item: {
       archetypeId: 'testArchetypeId1',
       displayName: 'test1',
-      name: 'test1',
+      givenName: 'test1',
     },
   }
 
@@ -35,7 +19,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId2',
     item: {
       displayName: 'test2',
-      name: 'test2',
+      givenName: 'test2',
       parentArchetypeId: 'testArchetypeId2',
     },
   }
@@ -45,7 +29,7 @@ describe('AqbUiModel', () => {
     templateId: 'testTemplId3',
     item: {
       displayName: 'test3',
-      name: 'test3',
+      givenName: 'test3',
       parentArchetypeId: 'testCompId3',
     },
   }
@@ -139,9 +123,9 @@ describe('AqbUiModel', () => {
 
     it('should convert with unique aliases', () => {
       const convertedModel = model.convertToApi()
-      expect(convertedModel.select.statement[0].name).toEqual('test3')
-      expect(convertedModel.select.statement[1].name).toEqual('test3_2')
-      expect(convertedModel.select.statement[2].name).toEqual('test3_3')
+      expect(convertedModel.select.statement[0].alias).toEqual('test3')
+      expect(convertedModel.select.statement[1].alias).toEqual('test3_2')
+      expect(convertedModel.select.statement[2].alias).toEqual('test3_3')
     })
   })
 })

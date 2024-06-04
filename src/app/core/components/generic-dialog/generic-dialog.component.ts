@@ -1,24 +1,7 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   ComponentRef,
   Inject,
   OnDestroy,
@@ -43,17 +26,14 @@ export class GenericDialogComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private resolver: ComponentFactoryResolver,
     @Inject(MAT_DIALOG_DATA) public dialogConfig: DialogConfig,
     private dialogRef: MatDialogRef<GenericDialogComponent>
   ) {}
 
   ngAfterViewInit(): void {
-    const componentFactory = this.resolver.resolveComponentFactory(
+    this.componentRef = this.viewContainerRef.createComponent(
       this.dialogConfig.dialogContentComponent
     )
-
-    this.componentRef = this.viewContainerRef.createComponent(componentFactory)
     this.componentRef.instance.dialogInput = this.dialogConfig.dialogContentPayload
 
     this.subscriptions.add(

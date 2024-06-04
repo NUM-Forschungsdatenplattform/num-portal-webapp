@@ -1,29 +1,14 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
@@ -34,9 +19,13 @@ describe('ProjectEditorAccordionComponent', () => {
 
   @Component({ selector: 'num-project-editor-general-info', template: '' })
   class StubGeneralInfoComponent {
-    @Input() form: any
+    @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() form: UntypedFormGroup
     @Input() isDisabled: boolean
     @Input() generalInfoData: IDefinitionList[]
+    @Input() showAttachmentsSelect: boolean
+    @Input() isInPreview: boolean
+    @Input() project: ProjectUiModel
   }
 
   @Component({ selector: 'num-project-editor-cohort-builder', template: '' })
@@ -44,6 +33,7 @@ describe('ProjectEditorAccordionComponent', () => {
     @Input() cohortNode: CohortGroupUiModel
     @Input() isDisabled: boolean
     @Input() isLoadingComplete: boolean
+    @Input() isCohortValid: boolean
     @Input() determineHitsContent: any
     @Output() determineHitsClicked = new EventEmitter()
   }
@@ -59,6 +49,7 @@ describe('ProjectEditorAccordionComponent', () => {
   class StubProjectEditorTemplatesComponent {
     @Input() templates: any
     @Input() isDisabled: boolean
+    @Input() project: ProjectUiModel
   }
 
   beforeEach(async () => {
@@ -71,7 +62,7 @@ describe('ProjectEditorAccordionComponent', () => {
         StubProjectEditorTemplatesComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,

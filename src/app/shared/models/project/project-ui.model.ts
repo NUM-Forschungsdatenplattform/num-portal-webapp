@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { ProjectCategory } from 'src/app/modules/projects/models/project-category.enum'
 import { IDefinitionList } from '../definition-list.interface'
@@ -27,6 +11,7 @@ import { IProjectApi } from './project-api.interface'
 import { ProjectStatus } from './project-status.enum'
 import { IProjectTemplateInfoApi } from './project-template-info-api.interface'
 import moment from 'moment'
+import { ProjectAttachmentUiModel } from './project-attachment-ui.model'
 
 export class ProjectUiModel {
   cohortId: number | null
@@ -51,6 +36,7 @@ export class ProjectUiModel {
   researchersApi: IProjectUser[]
   status: ProjectStatus
   templates: IProjectTemplateInfoApi[]
+  attachments: ProjectAttachmentUiModel[] = []
 
   constructor(projectApi?: IProjectApi) {
     this.id = projectApi?.id || null
@@ -77,6 +63,8 @@ export class ProjectUiModel {
     this.researchersApi = projectApi?.researchers || []
     this.templates = projectApi?.templates || []
     this.cohortGroup = new CohortGroupUiModel()
+    this.attachments =
+      projectApi?.attachments?.map((attachment) => new ProjectAttachmentUiModel(attachment)) || []
   }
 
   addCohortGroup(cohortGroup?: ICohortGroupApi): void {
@@ -145,6 +133,11 @@ export class ProjectUiModel {
         type: DefinitionType.Date,
       },
       {
+        title: 'FORM.ATTACHMENTS',
+        description: this.attachments || [],
+        type: DefinitionType.Table,
+      },
+      {
         title: 'FORM.FINANCED_BY_PRIVATE',
         description: this.financed,
         type: DefinitionType.Boolean,
@@ -155,6 +148,10 @@ export class ProjectUiModel {
         type: DefinitionType.Boolean,
       },
     ]
+  }
+
+  public updateAttachments(attachments: ProjectAttachmentUiModel[]): void {
+    this.attachments = attachments
   }
 
   private getResearchersForApi(): IProjectUser[] {

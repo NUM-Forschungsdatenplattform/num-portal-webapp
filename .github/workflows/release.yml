@@ -1,0 +1,109 @@
+name: release
+
+on:
+  workflow_dispatch:
+    branches: [ 'release/**' ]
+
+env:
+  RELEASE_VERSION: ''
+  DEV_VERSION: ''
+
+jobs:
+
+  read_version:
+    runs-on: ubuntu-latest
+
+    outputs:
+      DEV_VERSION: ${{ steps.createVersion.outputs.DEV_VERSION}}
+      RELEASE_VERSION: ${{ steps.createVersion.outputs.RELEASE_VERSION}}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Create new development version
+        id: createVersion
+        run: |
+          CURRENT_VERSION=$(node -e "console.log(require('./package.json').version)")
+          RELEASE_VERSION=`echo $CURRENT_VERSION | cut -d- -f1`
+          echo "Current version: $CURRENT_VERSION"
+          MAJOR=`echo $CURRENT_VERSION | cut -d. -f1`
+          MINOR=`echo $CURRENT_VERSION | cut -d. -f2`
+
+          DEV_VERSION=${MAJOR}.$((MINOR+1)).0-SNAPSHOT
+
+          echo
+          echo "Release version: $RELEASE_VERSION"
+          echo "Develop version: $DEV_VERSION"
+
+          echo "RELEASE_VERSION=${RELEASE_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "DEV_VERSION=${DEV_VERSION}" >> "$GITHUB_OUTPUT"
+
+          echo "### :rocket: ${RELEASE_VERSION}" >> $GITHUB_STEP_SUMMARY
+
+  update_dev:
+    needs: read_version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Create branch to update develop version
+        env:
+          DEV_VERSION: ${{ needs.read_version.outputs.DEV_VERSION }}
+        run: |
+          git config --global user.email "noreply@github.com"
+          git config --global user.name "Github Actions"
+
+          git branch feature/update_develop_${DEV_VERSION}
+          git checkout feature/update_develop_${DEV_VERSION}
+      
+          npm version -allow-same-version ${DEV_VERSION}
+          git push --set-upstream origin feature/update_develop_${DEV_VERSION}
+
+      - name: Create PR to merge changes to Develop and update Version
+        env:
+          RELEASE_VERSION: ${{ needs.read_version.outputs.RELEASE_VERSION }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_URL=`gh pr create --draft -B develop --title "Merge release branch '${RELEASE_VERSION}' back to develop" --body "Merge release branch '${RELEASE_VERSION}' back to develop"`
+          echo $PR_URL
+
+  release:
+    needs: read_version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Set the release version
+        env:
+          RELEASE_VERSION: ${{ needs.read_version.outputs.RELEASE_VERSION }}
+        run: |
+          git config --global user.email "noreply@github.com"
+          git config --global user.name "Github Actions"
+
+          npm version -allow-same-version ${RELEASE_VERSION}
+          git push
+
+      - name: Create PR to merge release branch to main
+        env:
+          RELEASE_VERSION: ${{ needs.read_version.outputs.RELEASE_VERSION }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_URL=`gh pr create --draft -B main --title "Merge release branch '${RELEASE_VERSION}'" --body "Merge release branch '${RELEASE_VERSION}'"`
+          echo $PR_URL

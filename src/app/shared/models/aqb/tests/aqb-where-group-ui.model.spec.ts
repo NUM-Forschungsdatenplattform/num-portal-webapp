@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import { IContainmentTreeNode } from '../../../../modules/aqls/models/containment-tree-node.interface'
 import { AqbWhereGroupUiModel } from '../aqb-where-group-ui.model'
@@ -49,10 +33,10 @@ describe('AqbWhereGroupUiModel', () => {
     rmType: ReferenceModelType.Double,
   }
 
-  const whereItem1 = new AqbWhereItemUiModel(item1, 1, 2)
-  const whereItem2 = new AqbWhereItemUiModel(item2, 3, 4)
-  const whereItem3 = new AqbWhereItemUiModel(item3, 5, 6)
-  const whereItem4 = new AqbWhereItemUiModel(item4, 5, 7)
+  const whereItem1 = new AqbWhereItemUiModel(item1, 'o1', 1, 2)
+  const whereItem2 = new AqbWhereItemUiModel(item2, 'o2', 3, 4)
+  const whereItem3 = new AqbWhereItemUiModel(item3, 'o3', 5, 6)
+  const whereItem4 = new AqbWhereItemUiModel(item4, 'o4', 5, 7)
 
   it('should handle the deletion by composition ref ids', () => {
     const group = new AqbWhereGroupUiModel()

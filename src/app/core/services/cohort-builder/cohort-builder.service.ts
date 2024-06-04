@@ -9,7 +9,7 @@ export class CohortBuilderService {
   private itemEventSubject = new Subject<AqlUiModel>()
   public itemEventObservable$ = this.itemEventSubject.asObservable()
 
-  private targetResetSubject = new Subject<never>()
+  private targetResetSubject = new Subject<void>()
   public targetResetObservable$ = this.targetResetSubject.asObservable()
 
   constructor() {}

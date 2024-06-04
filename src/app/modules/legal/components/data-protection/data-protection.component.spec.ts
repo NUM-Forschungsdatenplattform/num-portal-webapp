@@ -1,17 +1,23 @@
+import { Component, Injector } from '@angular/core'
 import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DataProtectionComponent } from './data-protection.component'
 import { LangChangeEvent } from '@ngx-translate/core'
-import { Injector } from '@angular/core'
 
 describe('DataProtectionComponent', () => {
   let component: DataProtectionComponent
   let fixture: ComponentFixture<DataProtectionComponent>
   let translateService: TranslateService
 
+  @Component({
+    selector: 'num-operation-administration',
+    template: '',
+  })
+  class OperationAdministrationStubComponent {}
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataProtectionComponent],
+      declarations: [DataProtectionComponent, OperationAdministrationStubComponent],
       imports: [TranslateModule.forRoot()],
       providers: [TranslateService],
     }).compileComponents()

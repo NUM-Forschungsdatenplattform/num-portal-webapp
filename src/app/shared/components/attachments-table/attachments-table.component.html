@@ -1,0 +1,115 @@
+<p class="mat-display-4 num-margin-b-10" id="attachments-header" *ngIf="!isInPreview">
+  {{ 'FORM.ATTACHMENTS' | translate }}
+</p>
+
+<div role="presentation" class="project-attachments-table-wrapper mat-elevation">
+  <table
+    *ngIf="dataSource.filteredData.length > 0; else empty"
+    aria-labelledby="attachments-header"
+    class="num-margin-b-60"
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="uploadDate"
+    data-test="attachments-table"
+  >
+    <!-- Checkbox column -->
+    <ng-container matColumnDef="select">
+      <th scope="col" mat-header-cell *matHeaderCellDef class="width-sm" mat-header>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          data-test="attachments-table__select-all-toggle"
+        ></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          [attr.data-test]="'attachments-table__select-row-toggle-' + row.id"
+        ></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- ID column is only for default sorting and will not be displayed -->
+    <ng-container matColumnDef="id">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        data-test="attachments-table__table-data__attachment-id"
+      >
+        {{ element.id }}
+      </td>
+    </ng-container>
+
+    <!-- Filename column -->
+    <ng-container matColumnDef="name">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'PROJECT.ATTACHMENT.NAME' | translate }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        numTooltipNecessary
+        matTooltipPosition="below"
+        data-test="attachments-table__table-data__attachment-name"
+      >
+        {{ element.name }}
+      </td>
+    </ng-container>
+
+    <!-- Description column -->
+    <ng-container matColumnDef="description">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}
+      </th>
+      <td
+        #descriptionCell
+        mat-cell
+        *matCellDef="let element"
+        numTooltipNecessary
+        matTooltipPosition="below"
+        data-test="attachments-table__table-data__attachment-description"
+      >
+        {{ element.description }}
+      </td>
+    </ng-container>
+
+    <!-- Upload date column -->
+    <ng-container matColumnDef="uploadDate">
+      <th scope="col" mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ 'PROJECT.ATTACHMENT.UPLOAD_DATE' | translate }}
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        data-test="attachments-table__table-data__attachment-author"
+      >
+        {{ element.uploadDate | localizedDate }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [class.remove]="markedForRemoval.get(row.id)"
+      (click)="selection.toggle(row)"
+    ></tr>
+  </table>
+
+  <num-attachments-table-actions
+    [attachments]="attachments"
+    [project]="project"
+    [selected]="selection?.selected ?? []"
+    [showDownloadButton]="showSelectColumn"
+    [showUploadButton]="allowUpload"
+  ></num-attachments-table-actions>
+</div>
+
+<ng-template #empty>
+  <p class="empty-placeholder">-</p>
+</ng-template>

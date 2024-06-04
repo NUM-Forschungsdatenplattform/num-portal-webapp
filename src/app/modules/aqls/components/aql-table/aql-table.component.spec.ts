@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
 import { IAqlApi } from 'src/app/shared/models/aql/aql.interface'
@@ -25,7 +9,7 @@ import { SearchComponent } from '../../../../shared/components/search/search.com
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { IAqlFilter } from '../../../../shared/models/aql/aql-filter.interface'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Component, EventEmitter, Input, Output, Pipe, PipeTransform } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
 import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
@@ -35,7 +19,7 @@ import { ProfileService } from '../../../../core/services/profile/profile.servic
 import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
-import { mockAql1, mockAqlsToSort } from '../../../../../mocks/data-mocks/aqls.mock'
+import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
@@ -106,7 +90,7 @@ describe('AqlTableComponent', () => {
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes([]),
         PipesModule,

@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { IAqbContainmentNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-containment-node.interface'
 import { IAqbLogicalOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-logical-operator-node.interface'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
@@ -32,6 +16,7 @@ export class AqbContainsCompositionUiModel {
   templateId: string
   compositionId: string
   compositionReferenceId: number
+  archetypeReferenceId: number
 
   constructor(templateId: string, compositionId: string, compositionReferenceId: number) {
     this.logicalOperator = LogicalOperator.And
@@ -39,6 +24,7 @@ export class AqbContainsCompositionUiModel {
     this.templateId = templateId
     this.compositionId = compositionId
     this.compositionReferenceId = compositionReferenceId
+    this.archetypeReferenceId = compositionReferenceId
   }
 
   setContainsItem(archetypeId: string, archetypeReferenceId: number): void {
@@ -68,8 +54,9 @@ export class AqbContainsCompositionUiModel {
     }
     return {
       _type: AqbNodeType.Containment,
-      id: this.compositionReferenceId,
-      archetypeId: this.compositionId,
+      type: 'COMPOSITION',
+      identifier: `c${this.archetypeReferenceId}`,
+      predicates: `[${this.compositionId}]`,
       contains: subContains,
     }
   }

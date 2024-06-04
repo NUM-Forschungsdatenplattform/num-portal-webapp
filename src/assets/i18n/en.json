@@ -3,23 +3,19 @@
   "DASHBOARD": {
     "LATEST_PROJECTS": "Latest Projects",
     "INTRODUCTION": {
-      "HEADER": "Covid-19-Exchange Data Platform",
+      "HEADER": "NUM Routinedatenplattform",
       "BLOCKS": [
         {
           "HEADER": "Introduction",
-          "BODY": "With the CODEX research data platform, the Network University Medicine (NUM) is building a secure and interoperable platform for the provision of research data on COVID-19. CODEX connects all German university hospitals nationwide and provides science with a platform for the collection and analysis of high quality, structured, pseudonymized and care-related data from patient care (\"real world data\")."
+          "BODY": "The clinical Routine Data Platform (RDP) is operated by the network of university clinics in Germany (NUM): It is a secure and scalable platform offering interoperability in the provision of patient data sourced from clinical routine treatment. RDP interconnects university hospitals across the entire federal network in Germany."
         },
         {
-          "HEADER": "What is CODEX required for?",
-          "BODY": "During the protracted pandemic period, numerous research-relevant data and findings on COVID-19 patients were generated within the IT systems and electronic medical record systems of university hospitals. Data must be collected in a standardized and timely manner, as well as centrally compiled and evaluated, in order to enable targeted research on COVID-19. This is where CODEX comes in."
+          "HEADER": "Goals & Benefits",
+          "BODY": "To ensure secure technical and regulatory access to clinical care data, RDP offers a component-based, industry-standard platform for transfer, aggregation, storage and analysis of clinical data. RDP enables clinics to transmit care data in a standardized and secure manner. It further enables data use in specific scenarios in the medical domain, in support of both scientific research and evidence-based public health policy making."
         },
         {
-          "HEADER": "CODEX User Portal",
-          "BODY": "The NUM CODEX user portal enables centralized access to research-relevant health data. This is implemented through feasibility queries and, if the conditions for use are met, a central data output. This enables national and international researchers to evaluate highly relevant data on COVID-19 diseases and thus to contribute to the fight against the pandemic. HiGHmed e.V. oversees the operational management of the CODEX user portal."
-        },
-        {
-          "HEADER": "What are the goals of CODEX?",
-          "BODY": "The platform was created to provide high-quality research data, tools, and surveillance during the COVID-19 pandemic. Structured data serves as the basis for novel scientific evaluation and helps in the development of evidence-based decision support systems. CODEX contributes to a rapid knowledge gain and thus to improved crisis management in pandemic emergencies as well as to an optimized public health design. This results in the following benefits:<ul><li>For patients: Best possible care for COVID-19 patients through rapid generation and dissemination of evidence and consideration of legal and ethical issues.</li><li>For researchers: Robust data base for scientific research in the context of COVID-19.</li><li>For business: creating the basis for vaccine and drug development as well as training artificial intelligence.</li><li>For decision-makers: the optimization of crisis management in epidemic emergencies as well based on scientific facts.</li><li>For physicians and authorities: Pandemic management and patient care can be improved and relieved through innovative, high-quality services and applications.</li></ul>"
+          "HEADER": "The Routine Data Platform, RDP",
+          "BODY":"<ul><li>Observes the FAIR principles for research data use</li><li>Implements a legal basis with regard to ethics and data protection rules for the compliant use of routine clinical data</li><li>Uses open-source technical standards and is built on the basis of open specifications and interchangeable components</li><li>Enables the development of novel applications in support of the clinical routine, e.g. infection control</li><li>Offers data management both for central data storage and for the (temporary) aggregation of federated data</li><li>Integrates data security and data quality via encrypted transmission, pseudonymization and validation of terminology</li><li>Provides interoperability with the German Medical Informatics Initiative (MII) core dataset FHIR format</li><li>Promotes the connection of clinical data integration centers (from NUM, MII or other networks) via FHIR or openEHR standard interfaces</li><li>Supports the integration of internationally coordinated data models for electronic health records (EHR)</li></ul>"
         }
       ],
       "PARTICIPANTS": "Participating clinics"
@@ -31,8 +27,8 @@
       "HEADER": "Participating Clinics"
     },
     "METRICS": {
-      "PROJECTS": "{{count}} Projects published in CODEX",
-      "QUERIES": "{{count}} criteria available in CODEX",
+      "PROJECTS": "{{count}} Projects published in RDP",
+      "QUERIES": "{{count}} criteria available in RDP",
       "ORGANIZATIONS": "{{count}} participating university hospitals"
     }
   },
@@ -54,7 +50,7 @@
     }
   },
   "NAVIGATION": {
-    "DASHBOARD": "Welcome to CODEX",
+    "DASHBOARD": "Welcome to RDP",
     "DATA_FILTER": "Data Filter",
     "PATIENT_FILTER": "Patients Filter",
     "PROJECTS": "Projects",
@@ -80,8 +76,7 @@
     "SEARCH": "Search",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in",
-    "USER_MANUAL": "User Manual",
-    "HEALTH_CHECK": "System Status & Messages"
+    "USER_MANUAL": "User Manual"
   },
   "PROFILE": {
     "EDIT_HEADER": "Edit User Account",
@@ -150,7 +145,7 @@
     "EDIT_INFO_CARDS_HEADER": "Edit Info Tiles",
     "EDIT_INFO_CARDS_DESCRIPTION": "You can insert info tiles on the welcome page, which can contain information and a link to an external page.",
     "EDIT_NAVIGATION_ITEMS_HEADER": "Edit Navigation Items",
-    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the CODEX research data platform.",
+    "EDIT_NAVIGATION_DESCRIPTION": "You can add, edit or delete custom links in the navigation. The links only refer to other websites that may be of interest to users of the RDP.",
     "URL_PLACEHOLDER": "E.g. https://www.domain.com",
     "URL_TEXT_PLACEHOLDER": "E.g. Uni Example City",
     "URL_TEXT_LABEL": "Link text",
@@ -244,7 +239,8 @@
     "ORGANIZATION_NAME_PLACEHOLDER": "Enter organization name",
     "ADD_ORGANIZATION_DOMAIN": "Add mail domain (domain part)",
     "ADD_ORGANIZATION_DOMAIN_PLACEHOLDER": "E.g. domain.de or sub.domain.de",
-    "PSEUDONYM_PROJECT_ID": "Project-id"
+    "PSEUDONYM_PROJECT_ID": "Project-id",
+    "ATTACHMENTS": "Attachments"
   },
   "BUTTON": {
     "ARCHIVE": "Archive",
@@ -371,6 +367,36 @@
       "RETROSPECTIVE_STUDY": "Retrospective project",
       "REGISTRY": "Registry"
     },
+    "ATTACHMENT": {
+      "ADD_DIALOG_TITLE": "Add attachment",
+      "ADD_HINT": "Attachments of type PDF with a maximum size of 10MB can be added.",
+      "ADD": "Add",
+      "CONFIRM_REMOVE_DIALOG_CONTENT": "Do you really want to remove the following attachments? This step can only be undone by reopening the project without saving it before leaving.<br />{{fileNames}}",
+      "CONFIRM_REMOVE_DIALOG_TITLE": "Remove attachments",
+      "DESCRIPTION": "Description",
+      "DOWNLOAD": "Download",
+      "EMPTY_LIST_INFO": "There are no files attached to this project",
+      "ERROR_DESCRIPTION_TOO_LONG": "The file description can contain up to 255 characters.",
+      "ERROR_FILE_EMPTY": "This file has no content.",
+      "ERROR_HTTP_OTHER": "Unexpected error during file processing. Please try again in a few moments.",
+      "ERROR_FILE_LIMIT_REACHED": "A maximum of 10 files can be attached.",
+      "ERROR_FILE_NOT_FOUND": "File {{fileName}} could not be found. Please try again or contact your IT administrator.",
+      "ERROR_FILE_TOO_LARGE": "The attachment is too large (maximum 10MB).",
+      "ERROR_NO_FILES_ATTACHED": "There were no files attached to the project.",
+      "ERROR_OTHER": "An error occurred fetching file {{fileName}}.Please contact your IT administrator.",
+      "ERROR_TRY_AGAIN": "A problem occurred fetching file {{fileName}}. Please try again after a short waiting time.",
+      "ERROR_UNKNOWN": "Unknown error while uploading. Please check your internet connection and try again.",
+      "ERROR_VALIDATION_UNKNOWN": "Unknown validation error. Please check the file.",
+      "ERROR_VIRUS_SCAN_REJECTED": "Virus detected in your file. Please check the file with your virus scanner.",
+      "ERROR_WRONG_PROJECT_STATUS": "Attachments can only be added to projects that are in 'draft' or 'change request' status.",
+      "ERROR_WRONG_TYPE": "The attachment is not of type PDF.",
+      "NAME": "Filename",
+      "REMOVE": "Remove",
+      "SELECT_FILES_LABEL": "Select file",
+      "UPLOAD_DATE": "Date",
+      "UPLOAD_SUCCESS_MESSAGE": "File {{fileName}} has been uploaded successfully.",
+      "UPLOAD": "Upload"
+    },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",
     "CHANGE_STATUS_ERROR": "The status of the project could not be updated. Please try again.",
@@ -450,9 +476,9 @@
   },
   "USER_MANAGEMENT": {
     "NEW_USERS_HEADER": "All New Users",
-    "NEW_USERS_DESCRIPTION": "The following list shows the new registered users who have not yet been assigned to a role.\n\nPlease review the users and assign them to a role so that they can participate in the CODEX research data platform.",
+    "NEW_USERS_DESCRIPTION": "The following list shows the new registered users who have not yet been assigned to a role.\n\nPlease review the users and assign them to a role so that they can participate in the RDP.",
     "ALL_USERS_HEADER": "All Approved Users",
-    "ALL_USERS_DESCRIPTION": "In the following list you can see all active users of the CODEX research data platform. If required, you can assign other roles to the users or deactivate them.",
+    "ALL_USERS_DESCRIPTION": "In the following list you can see all active users of the RDP. If required, you can assign other roles to the users or deactivate them.",
     "EDIT_USER_DIALOG_HEADER": "Edit User",
     "EDIT_USER_DESCRIPTION": "The user will be informed about the approval by e-mail.",
     "ASSIGN_ROLES": "Assign user role(s)",
@@ -651,7 +677,7 @@
         "SUBTITLE1": "Operations",
         "TEXT1": "Data Center of GWDG <br/> GWDG - Gesellschaft für wissenschaftliche <br/> Datenverarbeitung mbH Göttingen <br/> Am Fassberg 11, 37077 Göttingen <br/> E-Mail: <a href=\"mailto:piotr.kasprzak@gwdg.de\">piotr.kasprzak@gwdg.de</a> <br/> www: <a href=\"https://www.gwdg.de\">https://www.gwdg.de</a>",
         "SUBTITLE2": "Administration Platform",
-        "TEXT2": "vitagroup health intelligence GmbH <br/> Hamburger Str. 273b <br/> 38114 Braunschweig <br/> E-Mail: <a href=\"mailto:itos@vitagroup.ag\">itos@vitagroup.ag</a> <br/> www: <a href=\"https://www.vitagroup.ag\">https://www.vitagroup.ag</a>"
+        "TEXT2": "System Vertieb Alexander GmbH <br/> Borsigstraße 26 <br/> 65205 Wiesbaden <br/> E-Mail: <a href=\"rdp-support@highmed.org\">rdp-support@highmed.org</a> <br/> www: <a href=\"https://www.sva.de\">https://www.sva.de</a>"
       },
       "PART_B": {
         "TITLE": "b. Third parties",
@@ -766,7 +792,7 @@
   },
   "CONTACT": {
     "TITLE": "Contact",
-    "DESCRIPTION": "Responsible according to Art. 4 sentence 1 No. 7 DSGVO for the central platform of CODEX is HiGHmed e. V. as coordinating body.",
+    "DESCRIPTION": "Responsible according to Art. 4 sentence 1 No. 7 DSGVO for the central platform of RDP is HiGHmed e. V. as coordinating body.",
     "SUBTITLE1": "Information within the meaning of § 5 TMG",
     "TEXT1": "HiGHmed e. V. <br/> Langer Anger 7/9 <br/> 69115 Heidelberg",
     "SUBTITLE2": "Authorized representative",
@@ -775,7 +801,7 @@
     "TEXT4": "Contact: <a href=\"https://www.highmed.org/de/kontakt-highmed-ev\" target=\"_blank\">https://www.highmed.org/de/kontakt-highmed-ev</a>",
     "SUBTITLE3": "Responsible for journalistic-editorial offers within the meaning of § 55 Abs.2 RStV",
     "TEXT5": "Ralf Heyder, Head of the Coordination ffice <br/> Charitéplatz 1 <br/> 10117 Berlin <br/> Phone: 030 450 570 292 <br/> <a href=\"mailto:forschungsnetzwerk-unimedizin@charite.de\">forschungsnetzwerk-unimedizin@charite.de</a>",
-    "TEXT6": "The GWDG is technically responsible for the central IT infrastructure used. The GWDG is also responsible for the administration of the infrastructure and the network administration. On the application level, the central research platform is administered by vitasystems GmbH. Both the GWDG and vitasystems GmbH act on behalf of the coordinating body.",
+    "TEXT6": "The GWDG is technically responsible for the central IT infrastructure used. The GWDG is also responsible for the administration of the infrastructure and the network administration. On the application level, the central research platform is administered by SVA GmbH. Both the GWDG and SVA GmbH act on behalf of the coordinating body.",
     "SUBTITLE4": "Contact",
     "SUBTITLE5": "Handling contact data",
     "CONTACT_HANDLING1": "If you send us inquiries, the contact data you provide will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. It is up to you which contact data you enter, it is not mandatory, but you must provide at least one contact option (address, telephone or e-mail) so that we can process your request. We will not pass on the data you have entered without your consent. If this is planned, we will ask you for your consent beforehand.",

@@ -1,0 +1,17 @@
+table {
+  width: 100%;
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .remove {
+    text-decoration: line-through;
+  }
+}
+
+.empty-placeholder {
+  margin-left: 5px;
+}

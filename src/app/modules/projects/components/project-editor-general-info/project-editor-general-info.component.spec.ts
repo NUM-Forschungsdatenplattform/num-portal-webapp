@@ -1,29 +1,16 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { MaterialModule } from 'src/app/layout/material/material.module'
+import { MaterialModule } from '../../../../layout/material/material.module'
 
 import { ProjectEditorGeneralInfoComponent } from './project-editor-general-info.component'
 import { Component, Input } from '@angular/core'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
+import { ProjectAttachmentUiModel } from '../../../../shared/models/project/project-attachment-ui.model'
+import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { mockProject2 } from 'src/mocks/data-mocks/project.mock'
 
 describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
@@ -44,6 +31,17 @@ describe('ProjectEditorGeneralInfoComponent', () => {
     @Input() form: FormGroup
   }
 
+  @Component({
+    selector: 'num-attachments-table',
+    template: '',
+  })
+  class AttachmentsTableStubComponent {
+    @Input() attachments: ProjectAttachmentUiModel[]
+    @Input() isInPreview: boolean
+    @Input() project: ProjectUiModel
+    @Input() showSelectColumn: boolean
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -51,9 +49,10 @@ describe('ProjectEditorGeneralInfoComponent', () => {
         DefinitionListStubComponent,
         ProjectEditorGeneralInfoKeywordsInputComponent,
         ProjectEditorGeneralInfoCategoriesInputComponent,
+        AttachmentsTableStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
@@ -65,6 +64,7 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProjectEditorGeneralInfoComponent)
     component = fixture.componentInstance
+    component.project = new ProjectUiModel(mockProject2)
     component.isDisabled = false
     component.form = new FormGroup({
       name: new FormControl(),

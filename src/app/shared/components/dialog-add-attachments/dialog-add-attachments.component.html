@@ -1,0 +1,22 @@
+<p>{{ 'PROJECT.ATTACHMENT.ADD_HINT' | translate }}</p>
+<form class="form-row" [formGroup]="formGroup" (ngSubmit)="(handleDialogConfirm)">
+  <button mat-mini-fab (click)="fileInput.click()" color="primary">
+    <fa-icon icon="paperclip"></fa-icon>
+  </button>
+  <mat-form-field class="file-input" appearance="fill">
+    <mat-label>{{ 'PROJECT.ATTACHMENT.SELECT_FILES_LABEL' | translate }}</mat-label>
+    <input matInput formControlName="fileName" type="text" />
+  </mat-form-field>
+  <mat-form-field class="description-input" appearance="fill">
+    <mat-label>{{ 'PROJECT.ATTACHMENT.DESCRIPTION' | translate }}</mat-label>
+    <input matInput formControlName="description" type="text" />
+  </mat-form-field>
+</form>
+
+<mat-progress-bar
+  *ngIf="(uploadProgress$ | async).status === attachmentUploadStatus.IN_PROGRESS"
+  mode="determinate"
+  [value]="(uploadProgress$ | async).percentage"
+></mat-progress-bar>
+
+<input #fileInput accept=".pdf" type="file" hidden (change)="handleFileSelect($event)" />

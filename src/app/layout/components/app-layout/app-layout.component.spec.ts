@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { MaterialModule } from '../../material/material.module'
 import { AppLayoutComponent } from './app-layout.component'
@@ -21,7 +5,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 
 import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
 import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
@@ -37,8 +21,7 @@ import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { IUserProfile } from '../../../shared/models/user/user-profile.interface'
-import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, Router } from '@angular/router'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -51,7 +34,7 @@ describe('AppLayoutComponent', () => {
     hasValidAccessToken: () => true,
     initCodeFlow: () => {},
     events: of(),
-  } as OAuthService
+  } as unknown as OAuthService
 
   const userInfoSubject$ = new Subject<any>()
   const authService = {
@@ -97,6 +80,12 @@ describe('AppLayoutComponent', () => {
     @Output() toggleMenu = new EventEmitter()
   }
 
+  @Component({
+    selector: 'num-home',
+    template: '',
+  })
+  class HomeStubComponent {}
+
   const mockConfigService = {
     config: {
       api: {
@@ -117,14 +106,20 @@ describe('AppLayoutComponent', () => {
         SideMenuComponentStub,
         LanguageComponent,
         FooterStubComponent,
+        HomeStubComponent,
       ],
       imports: [
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
+        RouterTestingModule.withRoutes([
+          {
+            path: 'home',
+            component: HomeStubComponent,
+          },
+        ]),
         DirectivesModule,
         SharedComponentsModule,
       ],
@@ -240,13 +235,13 @@ describe('AppLayoutComponent', () => {
       expect(component.isRouterOutletDisplayed).toHaveBeenCalled()
     })
 
-    it('should set the correct url', () => {
+    it('should set the correct url', async () => {
       const router: Router = TestBed.inject(Router)
       const routerEventsSubject = new Subject<NavigationEnd>()
       const routerAny = { ...router, url: '/home' } as any
       routerAny.events = routerEventsSubject.asObservable()
       const routerEvent = new NavigationEnd(1, '/home', '/home')
-      router.navigate(['/home'])
+      await fixture.ngZone.run(() => router.navigate(['/home']))
       routerEventsSubject.next(routerEvent)
       fixture.detectChanges()
       expect(routerAny.url).toEqual('/home')

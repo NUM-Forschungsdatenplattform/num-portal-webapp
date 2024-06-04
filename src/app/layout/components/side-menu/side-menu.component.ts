@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { routes } from '../../../app-routing.module'
 import INavItem from '../../models/nav-item.interface'
@@ -30,9 +14,8 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
+import { USERMANUAL } from 'src/app/core/constants/constants'
 import { TranslateService } from '@ngx-translate/core'
-import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
 
 @Component({
   selector: 'num-side-menu',
@@ -49,7 +32,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   isLoggedIn = false
 
-  healthCheckUrl: string
   manualUrl: any
   currentLang = 'de'
 
@@ -61,34 +43,21 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private dialogService: DialogService,
     private httpClient: HttpClient,
     private appConfig: AppConfigService,
-    public translateService: TranslateService,
-    private systemService: SystemStatusService
+    public translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.authService.userInfoObservable$.subscribe(() => this.handleUserInfo())
     )
-    this.getDynamicExternalURLs()
+    this.getManuelURL()
     mainNavItems.forEach((item) => {
-      const roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
-      item.roles = roles
+      item.roles = routes.filter((route) => route.path === item.routeTo)[0].data?.roles
     })
-    this.handleSystemStatus()
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
-  }
-
-  handleSystemStatus(): void {
-    this.systemService.getSystemStatusOberservable().subscribe((status) => {
-      this.mainNavItemsExternal.forEach((item) => {
-        if (item.id === HEALTHCHECK) {
-          item.highlighted = this.systemService.hasError(status)
-        }
-      })
-    })
   }
 
   handleUserInfo(): void {
@@ -109,25 +78,19 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       this.handleLoginWithDialog()
     }
     // handle dynamic external urls
-    if (item && item.isExternal) {
+    if (item && item.isExternal && item.id === USERMANUAL) {
       let lang: string
-      switch (item.id) {
-        case HEALTHCHECK:
-          window.open(this.healthCheckUrl, '_blank')
-          break
-        case USERMANUAL:
-          if (!this.translateService || !this.translateService.currentLang) {
-            lang = this.currentLang
-          } else {
-            lang = this.translateService.currentLang
-          }
-          /* if (this.translateService.currentLang == 'de') { */
-          if (lang == 'de') {
-            window.open(this.manualUrl.DE, '_blank')
-            /* } else if (this.translateService.currentLang == 'en') { */
-          } else if (lang == 'en') {
-            window.open(this.manualUrl.EN, '_blank')
-          }
+      if (!this.translateService || !this.translateService.currentLang) {
+        lang = this.currentLang
+      } else {
+        lang = this.translateService.currentLang
+      }
+      /* if (this.translateService.currentLang == 'de') { */
+      if (lang == 'de') {
+        window.open(this.manualUrl.DE, '_blank')
+        /* } else if (this.translateService.currentLang == 'en') { */
+      } else if (lang == 'en') {
+        window.open(this.manualUrl.EN, '_blank')
       }
     }
     const target = $event.currentTarget as HTMLElement
@@ -135,11 +98,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     this.toggleSideMenu.emit()
   }
 
-  getDynamicExternalURLs(): void {
+  getManuelURL(): void {
     this.httpClient
-      .get(`${this.appConfig.config.api.baseUrl}/admin/external-urls`)
+      .get(`${this.appConfig.config.api.baseUrl}/admin/manuel-url`)
       .subscribe((response: any) => {
-        this.healthCheckUrl = response.systemStatusUrl
         this.manualUrl = response.userManualUrl
       })
   }

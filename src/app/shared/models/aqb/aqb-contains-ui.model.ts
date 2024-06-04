@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { IAqbContainmentNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-containment-node.interface'
 import { IAqbLogicalOperatorNode } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-logical-operator-node.interface'
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
@@ -56,18 +40,26 @@ export class AqbContainsUiModel {
   }
 
   convertToApi(): PossibleContains {
-    const compositions = Array.from(this.compositions.values())
-    if (compositions.length > 1) {
-      const contains: IAqbLogicalOperatorNode<PossibleContains> = {
-        _type: AqbNodeType.LogicalOperator,
-        symbol: LogicalOperator.Or,
-        values: compositions.map((composition) => composition.convertToApi()),
+    function containsTree(compositions: AqbContainsCompositionUiModel[]) {
+      if (compositions.length > 1) {
+        const contains: IAqbLogicalOperatorNode<PossibleContains> = {
+          _type: AqbNodeType.LogicalOperator,
+          symbol: LogicalOperator.Or,
+          values: compositions.map((composition) => composition.convertToApi()),
+        }
+        return contains
+      } else if (compositions.length) {
+        return compositions[0].convertToApi()
+      } else {
+        return null
       }
-      return contains
-    } else if (compositions.length) {
-      return compositions[0].convertToApi()
-    } else {
-      return null
+    }
+
+    return {
+      _type: AqbNodeType.Containment,
+      type: 'EHR',
+      identifier: 'e',
+      contains: containsTree(Array.from(this.compositions.values())),
     }
   }
 }

@@ -31,7 +31,7 @@ EHR : EHR
 
 NUM : NUM
   Netzwerk Universitätsmedizin. A collaboration of clinics in Germany that work together in several
-  specific medical applications. In case of CODEX the goal is to implement a data exchange
+  specific medical applications. In case of RDP the goal is to implement a data exchange
   platform for researchers on big data sets.
 
 

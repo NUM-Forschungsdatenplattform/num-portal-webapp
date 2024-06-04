@@ -1,21 +1,5 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
 import { forkJoin, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -51,7 +35,7 @@ export class DialogEditUserDetailsComponent
     id: undefined,
   }
   availableRoles = AvailableRoles
-  userNameForm: FormGroup
+  userNameForm: UntypedFormGroup
   isUserNameEditMode: boolean
   isActive: boolean
   isSelectedEqualToCurrent: Promise<boolean>
@@ -77,12 +61,12 @@ export class DialogEditUserDetailsComponent
 
     this.organizationService.getAll().subscribe()
 
-    this.userNameForm = new FormGroup({
-      firstName: new FormControl(this.userDetails.firstName, [
+    this.userNameForm = new UntypedFormGroup({
+      firstName: new UntypedFormControl(this.userDetails.firstName, [
         Validators.required,
         Validators.minLength(2),
       ]),
-      lastName: new FormControl(this.userDetails.lastName, [
+      lastName: new UntypedFormControl(this.userDetails.lastName, [
         Validators.required,
         Validators.minLength(2),
       ]),
@@ -167,14 +151,12 @@ export class DialogEditUserDetailsComponent
   }
 
   async closeDialogAndRefreshUsers(): Promise<void> {
-    this.adminService
-      .changeUserEnabledStatus(this.userDetails.id, this.isActive)
-      .subscribe((result) => {
-        this.adminService.refreshFilterResult()
+    this.adminService.changeUserEnabledStatus(this.userDetails.id, this.isActive).subscribe(() => {
+      this.adminService.refreshFilterResult()
 
-        this.closeDialog.emit()
-        return Promise.resolve()
-      })
+      this.closeDialog.emit()
+      return Promise.resolve()
+    })
   }
 
   handleDialogCancel(): void {

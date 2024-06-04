@@ -1,25 +1,9 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { RouterTestingModule } from '@angular/router/testing'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
@@ -30,8 +14,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { HEALTHCHECK, USERMANUAL } from 'src/app/core/constants/constants'
-import { SystemStatusService } from 'src/app/core/services/system-status/system-status.service'
+import { USERMANUAL } from 'src/app/core/constants/constants'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 
 describe('SideMenuComponent', () => {
@@ -47,10 +30,6 @@ describe('SideMenuComponent', () => {
     logOut: () => {},
     initCodeFlow: () => {},
   } as OAuthService
-
-  const systemStatusService = {
-    getSystemStatusOberservable: jest.fn(),
-  } as unknown as SystemStatusService
 
   const appConfig = {
     config: { api: { baseUrl: 'foo.bar' } },
@@ -137,28 +116,11 @@ describe('SideMenuComponent', () => {
         id: USERMANUAL,
         isExternal: true,
       },
-      {
-        icon: 'file-waveform',
-        translationKey: 'NAVIGATION.HEALTH_CHECK',
-        id: HEALTHCHECK,
-        isExternal: true,
-        highlighted: true,
-      },
     ]
     fixture.detectChanges()
     jest.spyOn(component.toggleSideMenu, 'emit')
     jest.spyOn(authService, 'logout').mockImplementation()
     jest.spyOn(authService, 'login').mockImplementation()
-    jest.spyOn(systemStatusService, 'getSystemStatusOberservable').mockImplementation(() =>
-      of({
-        EHRBASE: 'string',
-        FE: 'string',
-        FHIR_BRIDGE: 'string',
-        KEYCLOAK: 'string',
-        NUM: 'string',
-        CHECK_FOR_ANNOUNCEMENTS: 'string',
-      })
-    )
     jest.clearAllMocks()
   })
 
@@ -181,29 +143,6 @@ describe('SideMenuComponent', () => {
     const button = nativeElement.querySelector('.mat-list-item')
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
-  })
-
-  it('should handle the system status', () => {
-    component.handleSystemStatus()
-  })
-
-  it('should navigate to dynamic healthcheck url', () => {
-    const navItem = {
-      icon: 'test',
-      routeTo: 'test',
-      translationKey: 'test',
-      isExternal: true,
-      id: HEALTHCHECK,
-    }
-    component.mainNavItems = null
-    component.secondaryNavItems = [navItem]
-    fixture.detectChanges()
-    const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector(
-      `[data-test="side-menu__secondary-nav__${navItem.translationKey}"]`
-    ) as HTMLElement
-    button.click()
-    fixture.detectChanges()
   })
   it('should navigate to dynamic user manual url (german)', () => {
     component.currentLang = 'de'

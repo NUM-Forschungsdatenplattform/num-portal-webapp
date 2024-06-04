@@ -1,23 +1,7 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -58,6 +42,13 @@ jest.mock('src/app/core/utils/download-file.utils', () => ({
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
+import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import {
+  attachmentApiMock1,
+  attachmentApiMock2,
+  attachmentApiMock3,
+} from 'src/mocks/data-mocks/project-attachment.mock'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
@@ -113,6 +104,11 @@ describe('ProjectEditorComponent', () => {
     openToast: jest.fn(),
   } as unknown as ToastMessageService
 
+  const attachmentsSubject$ = new BehaviorSubject<ProjectAttachmentUiModel[]>([])
+  const mockAttachmentService = {
+    attachmentsObservable$: attachmentsSubject$.asObservable(),
+  } as unknown as AttachmentService
+
   @Component({ selector: 'num-project-editor-accordion', template: '' })
   class StubProjectEditorAccordionComponent {
     @Input() isResearchersFetched: boolean
@@ -122,6 +118,9 @@ describe('ProjectEditorComponent', () => {
     @Input() isResearchersDisabled: boolean
     @Input() isGeneralInfoDisabled: boolean
     @Input() isCohortBuilderDisabled: boolean
+    @Input() isCohortValid: boolean
+    @Input() showAttachmentsSelect: boolean
+    @Input() isInPreview: boolean
 
     @Input() project: ProjectUiModel
     @Input() projectForm: FormGroup
@@ -164,6 +163,7 @@ describe('ProjectEditorComponent', () => {
     @Input() approverForm: any
     @Input() isExportLoading: any
     @Input() isSavedProject: any
+    @Input() isUserProjectAdmin: boolean
 
     @Output() saveAll = saveAllEmitter
     @Output() saveResearchers = saveResearchersEmitter
@@ -186,7 +186,7 @@ describe('ProjectEditorComponent', () => {
       ],
       imports: [
         HttpClientTestingModule,
-        BrowserAnimationsModule,
+        NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
@@ -221,6 +221,10 @@ describe('ProjectEditorComponent', () => {
         {
           provide: ProfileService,
           useValue: mockProfileService,
+        },
+        {
+          provide: AttachmentService,
+          useValue: mockAttachmentService,
         },
       ],
     }).compileComponents()
@@ -520,6 +524,23 @@ describe('ProjectEditorComponent', () => {
       fixture.detectChanges()
       exportEmitter.emit()
       expect(downloadFile).toHaveBeenCalledWith(`${projectId}_${currentLang}`, 'txt', '')
+    })
+  })
+
+  describe('When a new list of attachments has been loaded', () => {
+    const attachmentUiMocks = [attachmentApiMock1, attachmentApiMock2, attachmentApiMock3].map(
+      (attachment) => new ProjectAttachmentUiModel(attachment)
+    )
+    beforeEach(() => {
+      fixture = TestBed.createComponent(ProjectEditorComponent)
+      component = fixture.componentInstance
+      fixture.detectChanges()
+      attachmentsSubject$.next(attachmentUiMocks)
+    })
+
+    it('should update the project with the new list of attachments', () => {
+      expect(component.project.attachments).toHaveLength(3)
+      expect(component.project.attachments).toEqual(attachmentUiMocks)
     })
   })
 })

@@ -5,6 +5,10 @@ README.md
 .gitignore
 .editorconfig
 .circleci
+# Required for NPM install
+!.circleci/.npmrc
+.github
+
 
 # IDEs and editors
 /.idea

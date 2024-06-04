@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs'
@@ -22,6 +6,7 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 import { isStatusSwitchable } from 'src/app/modules/projects/state-machine'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
+import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ProjectFilterChipId } from 'src/app/shared/models/project/project-filter-chip.enum'
 import { IProjectFilter } from 'src/app/shared/models/project/project-filter.interface'
@@ -55,6 +40,10 @@ export class ProjectService {
   private filterSet: IProjectFilter = DEFAULT_PROJECT_FILTER
   private filterConfigSubject$ = new BehaviorSubject(this.filterSet)
   public filterConfigObservable$ = this.filterConfigSubject$.asObservable()
+
+  private attachmentsForRemoval: ProjectAttachmentUiModel[] = []
+  private attachmentsForRemovalSubject$ = new BehaviorSubject(this.attachmentsForRemoval)
+  public attachmentsForRemovalObservable$ = this.attachmentsForRemovalSubject$.asObservable()
 
   constructor(
     private httpClient: HttpClient,
@@ -124,6 +113,9 @@ export class ProjectService {
   }
 
   update(project: IProjectApi, id: number): Observable<IProjectApi> {
+    if ((this.attachmentsForRemoval?.length ?? 0) > 0) {
+      project.attachmentsToBeDeleted = this.attachmentsForRemoval.map(({ id }) => id)
+    }
     return this.httpClient
       .put<IProjectApi>(`${this.baseUrl}/${id}`, project)
       .pipe(catchError(this.handleError))
@@ -317,14 +309,18 @@ export class ProjectService {
     defaultConfiguration: boolean
   ): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
-      .post<IAqlExecutionResponse[]>(
-        `${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`,
-        { query }
-      )
+      .post<
+        IAqlExecutionResponse[]
+      >(`${this.baseUrl}/${projectId}/execute?defaultConfiguration=${defaultConfiguration}`, { query })
       .pipe(catchError(this.handleError))
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
+  }
+
+  markAttachmentsForDelete(attachments: ProjectAttachmentUiModel[]): void {
+    this.attachmentsForRemoval = attachments
+    this.attachmentsForRemovalSubject$.next(attachments)
   }
 }

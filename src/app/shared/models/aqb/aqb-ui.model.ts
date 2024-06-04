@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { IArchetypeQueryBuilder } from 'src/app/shared/models/archetype-query-builder/archetype-query-builder.interface'
 import { IAqbSelectClause } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-select-clause.interface'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
@@ -28,6 +12,7 @@ import { AqbWhereItemUiModel } from './aqb-where-item-ui.model'
 export class AqbUiModel {
   private referenceCounter = 0
   private references = new Map<string, number>()
+  private usedTemplates: string[] = []
 
   selectDestination = AqbSelectDestination.Select
 
@@ -42,23 +27,25 @@ export class AqbUiModel {
 
   handleElementSelect(clickEvent: IAqbSelectClick): void {
     const archetypeId = clickEvent.item.archetypeId || clickEvent.item.parentArchetypeId
-    const compositionReferenceKey = clickEvent.templateId + '--' + clickEvent.compositionId
-    const archetypeReferenceKey = clickEvent.templateId + '--' + archetypeId
-    const isExistingComposition = !!this.references.get(compositionReferenceKey)
+    const compositionReferenceKey = clickEvent.compositionId
+    const archetypeReferenceKey = archetypeId
 
     const compositionReferenceId = this.setReference(compositionReferenceKey)
     const archetypeReferenceId = this.setReference(archetypeReferenceKey)
 
-    if (!isExistingComposition) {
+    if (!this.usedTemplates.includes(clickEvent.templateId)) {
+      this.usedTemplates.push(clickEvent.templateId)
       this.addTemplateRestriction(
         compositionReferenceId,
-        clickEvent.compositionId,
+        archetypeReferenceId,
         clickEvent.templateId
       )
     }
 
     if (this.selectDestination === AqbSelectDestination.Select) {
-      const isComposition = clickEvent.compositionId === clickEvent.item.archetypeId
+      const isComposition =
+        clickEvent.compositionId === clickEvent.item.parentArchetypeId ||
+        clickEvent.compositionId === clickEvent.item.archetypeId
       this.pushToSelectClause(
         clickEvent,
         compositionReferenceId,
@@ -87,22 +74,23 @@ export class AqbUiModel {
 
   private addTemplateRestriction(
     compositionReferenceId: number,
-    compositionId: string,
+    archetypeReferenceId: number,
     templateId: string
   ): void {
     const templateRestrictionItem: IContainmentTreeNode = {
       displayName: 'Template ID',
       name: 'Template ID',
       aqlPath: '/archetype_details/template_id/value',
-      archetypeId: compositionId,
+      archetypeId: String(archetypeReferenceId),
       rmType: ReferenceModelType.String,
     }
 
     const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
     const aqbWhere = new AqbWhereItemUiModel(
       templateRestrictionItem,
+      `c${compositionReferenceId}`,
       compositionReferenceId,
-      compositionReferenceId
+      archetypeReferenceId
     )
 
     aqbWhere.value = templateId
@@ -133,8 +121,11 @@ export class AqbUiModel {
     compositionReferenceId: number,
     archetypeReferenceId: number
   ): void {
+    const identifierPrefix =
+      clickEvent.compositionId === clickEvent.item.parentArchetypeId ? 'c' : 'o'
     const aqbWhere = new AqbWhereItemUiModel(
       clickEvent.item,
+      `${identifierPrefix}${archetypeReferenceId}`,
       compositionReferenceId,
       archetypeReferenceId
     )
@@ -154,8 +145,6 @@ export class AqbUiModel {
   }
 
   handleDeletionByCompositionReferenceIds(compositionReferenceIds: number[]): void {
-    this.deleteReferencesByIds(compositionReferenceIds)
-
     this.select = this.select.filter(
       (item) => !compositionReferenceIds.includes(item.compositionReferenceId)
     )
@@ -167,6 +156,8 @@ export class AqbUiModel {
     userGeneratedWhereClause?.handleDeletionByComposition(compositionReferenceIds)
 
     this.contains.deleteCompositions(compositionReferenceIds)
+
+    this.deleteReferencesByIds(compositionReferenceIds)
   }
 
   handleDeletionByArchetypeReferenceIds(archetypeReferenceIds: number[]): void {
@@ -176,7 +167,10 @@ export class AqbUiModel {
       (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId)
     )
 
+    const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
     const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
+
+    templateRestrictionWhereClause?.handleDeletionByArchetype(archetypeReferenceIds)
     userGeneratedWhereClause?.handleDeletionByArchetype(archetypeReferenceIds)
   }
 
@@ -197,24 +191,28 @@ export class AqbUiModel {
     const select: IAqbSelectClause = {
       statement: this.select.map((selectItem) => {
         const convertedSelectItem = selectItem.convertToApi()
-        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.name)
+        if (!convertedSelectItem.alias) {
+          return convertedSelectItem
+        }
+
+        let aliasCount = uniqueSelectAliasCounter.get(convertedSelectItem.alias)
 
         if (aliasCount++) {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, aliasCount)
-          convertedSelectItem.name = `${convertedSelectItem.name}_${aliasCount}`
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, aliasCount)
+          convertedSelectItem.alias = `${convertedSelectItem.alias}_${aliasCount}`
         } else {
-          uniqueSelectAliasCounter.set(convertedSelectItem.name, 1)
+          uniqueSelectAliasCounter.set(convertedSelectItem.alias, 1)
         }
         return convertedSelectItem
       }),
     }
 
-    const contains = this.contains.convertToApi()
+    const from = this.contains.convertToApi()
     const where = this.where.convertToApi()
 
     return {
       select,
-      contains,
+      from,
       where,
     }
   }

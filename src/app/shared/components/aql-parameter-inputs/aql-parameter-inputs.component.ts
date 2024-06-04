@@ -1,20 +1,5 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { DateAdapter } from '@angular/material/core'
 import { MatDatepickerInputEvent } from '@angular/material/datepicker'
 import { TranslateService } from '@ngx-translate/core'
@@ -63,9 +48,12 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   @Input() mode: 'aqb' | 'cohortBuilder'
   @Output() valueChange = new EventEmitter()
 
-  constructor(private dateAdapter: DateAdapter<any>, private translate: TranslateService) {}
+  constructor(
+    private dateAdapter: DateAdapter<any>,
+    private translate: TranslateService
+  ) {}
 
-  valueForm: FormGroup
+  valueForm: UntypedFormGroup
 
   ngOnInit(): void {
     if (
@@ -80,8 +68,8 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
         })
       )
     }
-    this.valueForm = new FormGroup({
-      value: new FormControl({ value: this.item?.value, disabled: this.disabled }, [
+    this.valueForm = new UntypedFormGroup({
+      value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
         Validators.required,
       ]),
     })

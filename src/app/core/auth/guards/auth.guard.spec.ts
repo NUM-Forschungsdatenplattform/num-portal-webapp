@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Route } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { Subject } from 'rxjs'
@@ -40,11 +24,6 @@ describe('AuthGuard', () => {
 
   const mockToastService = {
     openToast: jest.fn(),
-  } as unknown as ToastMessageService
-
-  const mockToServiceUnapproved = {
-    openToast: jest.fn(),
-    userNotApproved: true,
   } as unknown as ToastMessageService
 
   beforeEach(() => {
@@ -81,7 +60,6 @@ describe('AuthGuard', () => {
   })
 
   describe('When the user is logged in and the route is restricted to approved users', () => {
-    const activatedRoute = {} as ActivatedRouteSnapshot
     const route = {
       data: {
         onlyApprovedUsers: true,

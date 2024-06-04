@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Vitagroup AG
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { DateHelperService } from 'src/app/core/helper/date-helper.service'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
@@ -24,6 +8,7 @@ import {
   mockUserSuperAdmin,
 } from './admin.mock'
 import moment from 'moment'
+import { attachmentApiMocks } from './project-attachment.mock'
 
 export const mockProject1: IProjectApi = {
   id: 1,
@@ -424,6 +409,25 @@ export const mockProject21: IProjectApi = {
   status: ProjectStatus.Draft,
   createDate: DateHelperService.getDateString(moment('2036-03-06')),
   modifiedDate: DateHelperService.getDateString(moment()),
+}
+
+export const mockProject22: IProjectApi = {
+  id: 22,
+  name: 'Test attachments',
+  description: 'Test project with attachments',
+  templates: [],
+  cohortId: 21,
+  coordinator: mockUserStudyCoordinator,
+  researchers: [
+    {
+      userId: 'abc-1',
+    },
+  ],
+  firstHypotheses: 'Test Hypothesis 22',
+  status: ProjectStatus.Draft,
+  createDate: DateHelperService.getDateString(moment('2024-03-08')),
+  modifiedDate: DateHelperService.getDateString(moment()),
+  attachments: attachmentApiMocks,
 }
 
 export const mockProjects = [mockProject1, mockProject2]

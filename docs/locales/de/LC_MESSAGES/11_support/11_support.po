@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2022, Netzwerk Universitätsmedizin
-# This file is distributed under the same license as the NUM CODEX package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+# Copyright (C) 2024, Netzwerk Universitätsmedizin
+# This file is distributed under the same license as the NUM RDP package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: NUM CODEX 1.9.0\n"
+"Project-Id-Version: NUM RDP 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-28 16:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -26,7 +26,7 @@ msgstr "Support"
 #: ../11_support/11_support.md:3 08fe54178a52433280b9cbce30dee655
 msgid ""
 "If you need support for using the platform, please contact: "
-"support@vitagroup.ag"
-msgstr "Wenn Sie Support für die Benutzung der Plattform benötigen, wenden Sie sich bitte an:" 
-"support@vitagroup.ag"
+"rdp-support@highmed.org"
+msgstr "Wenn Sie Support für die Benutzung der Plattform benötigen, wenden Sie sich bitte an:"
+"rdp-support@highmed.org"
 
