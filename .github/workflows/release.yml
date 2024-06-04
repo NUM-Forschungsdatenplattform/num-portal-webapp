@@ -66,10 +66,8 @@ jobs:
 
           git branch feature/update_develop_${DEV_VERSION}
           git checkout feature/update_develop_${DEV_VERSION}
-
-          npm version ${DEV_VERSION}
-          git commit -am "updated development version to ${DEV_VERSION}"
-
+      
+          npm version -allow-same-version ${DEV_VERSION}
           git push --set-upstream origin feature/update_develop_${DEV_VERSION}
 
       - name: Create PR to merge changes to Develop and update Version
@@ -99,8 +97,7 @@ jobs:
           git config --global user.email "noreply@github.com"
           git config --global user.name "Github Actions"
 
-          npm version ${RELEASE_VERSION}
-          git commit -am "updated release version to ${RELEASE_VERSION}"
+          npm version -allow-same-version ${RELEASE_VERSION}
           git push
 
       - name: Create PR to merge release branch to main
