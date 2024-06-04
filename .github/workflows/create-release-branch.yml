@@ -68,10 +68,7 @@ jobs:
           git branch release/$VERSION
           git checkout release/$VERSION
 
-          npm version ${VERSION}-SNAPSHOT
-          git add package.json
-          git commit -m "updated project version to ${VERSION}"
-
+          npm version -allow-same-version ${VERSION}-SNAPSHOT
           git push --set-upstream origin release/$VERSION
 
   wrong_branch:
