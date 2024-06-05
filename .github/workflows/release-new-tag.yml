@@ -24,7 +24,7 @@ jobs:
       - name: Build and push docker image
         uses: docker/build-push-action@v5
         with:
-          load: true
+          push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/num-portal-webapp:${{ github.ref_name }}
       - name: Print Release Version
         run: |
