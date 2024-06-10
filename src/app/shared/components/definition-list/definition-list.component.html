@@ -14,7 +14,7 @@
         </ng-container>
       </ng-container>
 
-      <ng-container *ngIf="dataRow?.type === definitionType.Table">
+      <!-- <ng-container *ngIf="dataRow?.type === definitionType.Table">
         <ng-container *ngIf="dataRow?.description?.length > 0; else emptyIterable">
           <num-attachments-table
             [attachments]="dataRow?.description"
@@ -23,7 +23,7 @@
             [showSelectColumn]="dataRow.extraOptions?.showAttachmentSelects"
           ></num-attachments-table>
         </ng-container>
-      </ng-container>
+      </ng-container> -->
 
       <ng-container *ngIf="dataRow?.type === definitionType.Date">{{
         dataRow.description | date: 'dd.MM.yyyy' || '-'

@@ -6,6 +6,9 @@ fa-icon {
   display: flex;
   justify-content: center;
   align-items: center;
+  img {
+    padding: 10px 10px 10px 0;
+  }
 }
 .num-mat-list-item.highlighted {
   color: #eb586a;
