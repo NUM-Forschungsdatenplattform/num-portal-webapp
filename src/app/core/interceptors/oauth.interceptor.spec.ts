@@ -12,7 +12,7 @@ describe('OAuthInterceptor', () => {
   } as OAuthStorage
 
   const authService = {
-    logOut: () => {},
+    initCodeFlow: () => {},
   } as OAuthService
 
   beforeEach(() => {
@@ -75,12 +75,12 @@ describe('OAuthInterceptor', () => {
         const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
         const data = 'Unauthorized'
 
-        jest.spyOn(injectedAuthService, 'logOut')
+        jest.spyOn(injectedAuthService, 'initCodeFlow')
 
         http.get('/data').subscribe()
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(injectedAuthService.logOut).toHaveBeenCalled()
+        expect(injectedAuthService.initCodeFlow).toHaveBeenCalled()
       }
     ))
   })
@@ -92,12 +92,12 @@ describe('OAuthInterceptor', () => {
         const mockErrorResponse = { status: 500, statusText: 'Internal Server Error' }
         const data = 'Internal Server Error'
 
-        jest.spyOn(injectedAuthService, 'logOut')
+        jest.spyOn(injectedAuthService, 'initCodeFlow')
 
         http.get('/data').subscribe()
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(injectedAuthService.logOut).not.toHaveBeenCalled()
+        expect(injectedAuthService.initCodeFlow).not.toHaveBeenCalled()
       }
     ))
   })

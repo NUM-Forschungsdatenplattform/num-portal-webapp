@@ -35,7 +35,7 @@ export class OAuthInterceptor implements HttpInterceptor {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 401) {
-      this.oauthService.logOut()
+      this.oauthService.initCodeFlow(window.location.href)
     } else if (error.status === 409 && error.url.includes('/admin/user/')) {
       return of()
     }

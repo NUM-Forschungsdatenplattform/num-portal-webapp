@@ -9,7 +9,7 @@ describe('ErrorInterceptor', () => {
   let errorInterceptor: ErrorInterceptor
 
   const authService = {
-    logout: () => {},
+    login: () => {},
   } as AuthService
 
   const profileService = {
@@ -47,12 +47,12 @@ describe('ErrorInterceptor', () => {
         const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
         const data = 'Unauthorized'
 
-        jest.spyOn(injectedAuthService, 'logout')
+        jest.spyOn(injectedAuthService, 'login')
 
         http.get('/data').subscribe()
 
         httpMock.expectOne('/data').flush(data, mockErrorResponse)
-        expect(injectedAuthService.logout).toHaveBeenCalled()
+        expect(injectedAuthService.login).toHaveBeenCalled()
       }
     ))
   })
