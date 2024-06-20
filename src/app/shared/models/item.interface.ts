@@ -6,4 +6,5 @@ export interface IItem {
   valueType: AqlParameterValueType
   name: string
   options?: IDictionary<any, any>
+  unit?: string
 }

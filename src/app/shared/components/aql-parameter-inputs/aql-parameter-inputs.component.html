@@ -22,6 +22,7 @@
         type="text"
         data-test="aql-parameter-inputs__value-input"
       />
+      <span *ngIf="item.unit" matSuffix>{{ item.unit }}</span>
     </mat-form-field>
 
     <mat-form-field

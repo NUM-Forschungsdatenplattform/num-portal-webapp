@@ -14,4 +14,5 @@ export interface IAqlParameter {
   valueType?: AqlParameterValueType
   isMetaFetched?: boolean
   isDisabled: boolean
+  unit?: string
 }
