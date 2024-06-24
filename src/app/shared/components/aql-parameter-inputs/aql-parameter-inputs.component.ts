@@ -68,14 +68,25 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
         })
       )
     }
-    this.valueForm = new UntypedFormGroup({
-      value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
-        Validators.required,
-      ]),
-    })
+    if (this.item.valueType === AqlParameterValueType.Duration) {
+      this.valueForm = new UntypedFormGroup({
+        value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
+          Validators.required,
+        ]),
+        unit: new UntypedFormControl({ value: 'y', disabled: this.disabled }, [
+          Validators.required,
+        ]),
+      })
+    } else {
+      this.valueForm = new UntypedFormGroup({
+        value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
+          Validators.required,
+        ]),
+      })
+    }
 
     this.subscriptions.add(
-      this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
+      this.valueForm.valueChanges.subscribe((value) => this.handleInputChange(value))
     )
 
     this.valueForm?.get('value').markAllAsTouched()
@@ -85,21 +96,29 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  handleInputChange(value): void {
+  handleInputChange(input: { value: string; unit: 'y' | 'M' | 'd' | 'h' | 'm' | 's' }): void {
+    console.log(input)
     let newValue
-    if (value === null || value === undefined || !value.length || value === '-') {
-      newValue = value
+    if (
+      input.value === null ||
+      input.value === undefined ||
+      !input.value.length ||
+      input.value === '-'
+    ) {
+      newValue = input.value
     } else if (this.item?.valueType === AqlParameterValueType.Number) {
-      newValue = (parseInt(value?.toString(), 10) || 0).toString()
+      newValue = (parseInt(input.value?.toString(), 10) || 0).toString()
     } else if (this.item?.valueType === AqlParameterValueType.Double) {
       const numberPattern = new RegExp('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$')
-      const isValid = numberPattern.test(value.replace(',', '.'))
-      newValue = isValid ? value : this.item.value
+      const isValid = numberPattern.test(input.value.replace(',', '.'))
+      newValue = isValid ? input.value : this.item.value
+    } else if (this.item?.valueType === AqlParameterValueType.Duration) {
+      newValue = moment.duration(input.value, input.unit)
     } else {
-      newValue = value
+      newValue = input.value
     }
 
-    if (newValue !== value) {
+    if (newValue !== input.value && this.item?.valueType !== AqlParameterValueType.Duration) {
       this.patchValue(newValue)
     } else {
       this.item.value = newValue

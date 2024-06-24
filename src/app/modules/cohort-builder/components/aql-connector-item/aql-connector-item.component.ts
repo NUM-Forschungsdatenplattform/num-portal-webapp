@@ -159,6 +159,8 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         return AqlParameterValueType.DateTime
       case ReferenceModelType.Dv_time:
         return AqlParameterValueType.Time
+      case ReferenceModelType.Dv_duration:
+        return AqlParameterValueType.Duration
 
       default:
         return AqlParameterValueType.String

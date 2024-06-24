@@ -139,6 +139,14 @@
     "PRIVACY_PUBLIC": "Öffentlich",
     "CATEGORY_NOT_DELETABLE": "Kategorien mit zugewiesenen Kriterien können nicht gelöscht werden."
   },
+  "UNITS": {
+    "YEARS": "Jahre",
+    "MONTHS": "Monate",
+    "DAYS": "Tage",
+    "HOURS": "Stunden",
+    "MINUTES": "Minuten",
+    "SECONDS": "Sekunden"
+  },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",
     "SAVE_NAVIGATION_ERROR": "Die Navigationselemente konnten nicht veröffentlicht werden. Bitte überprüfen Sie Ihre Eingabe und versuchen es erneut.",
