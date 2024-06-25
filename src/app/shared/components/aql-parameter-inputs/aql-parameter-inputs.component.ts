@@ -69,11 +69,35 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
       )
     }
     if (this.item.valueType === AqlParameterValueType.Duration) {
+      let value: string = '',
+        unit: string = 'y'
+      if (this.item?.value) {
+        if (this.item.value.seconds() != 0) {
+          value = this.item.value.asSeconds().toString()
+          unit = 's'
+        } else if (this.item.value.minutes() != 0) {
+          value = this.item.value.asMinutes().toString()
+          unit = 'm'
+        } else if (this.item.value.hours() != 0) {
+          value = this.item.value.asHours().toString()
+          unit = 'h'
+        } else if (this.item.value.days() != 0) {
+          value = this.item.value.asDays().toString()
+          unit = 'd'
+        } else if (this.item.value.months() != 0) {
+          value = this.item.value.asMonths().toString()
+          unit = 'M'
+        } else if (this.item.value.years() != 0) {
+          value = this.item.value.asYears().toString()
+          unit = 'y'
+        }
+      }
+
       this.valueForm = new UntypedFormGroup({
-        value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
+        value: new UntypedFormControl({ value: value, disabled: this.disabled }, [
           Validators.required,
         ]),
-        unit: new UntypedFormControl({ value: 'y', disabled: this.disabled }, [
+        unit: new UntypedFormControl({ value: unit, disabled: this.disabled }, [
           Validators.required,
         ]),
       })
@@ -97,7 +121,6 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   }
 
   handleInputChange(input: { value: string; unit: 'y' | 'M' | 'd' | 'h' | 'm' | 's' }): void {
-    console.log(input)
     let newValue
     if (
       input.value === null ||
@@ -145,5 +168,11 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     newDate.set('minute', minute)
     newDate.set('second', second)
     this.item.value = newDate
+  }
+
+  numericValuesOnly(event: InputEvent): boolean {
+    console.log(event.data)
+    const pattern = /^\d*$/
+    return event.data === null || pattern.test(event.data)
   }
 }

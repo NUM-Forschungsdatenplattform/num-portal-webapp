@@ -128,6 +128,7 @@
         matInput
         type="text"
         data-test="aql-parameter-inputs__value-input"
+        (beforeinput)="numericValuesOnly($event)"
       />
       <mat-select formControlName="unit" matSuffix>
         <mat-option value="y">{{ 'UNITS.YEARS' | translate }}</mat-option>
