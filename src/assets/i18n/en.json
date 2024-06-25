@@ -139,6 +139,14 @@
     "PRIVACY_PUBLIC": "Public",
     "CATEGORY_NOT_DELETABLE": "Categories with assigned criterias can not be deleted."
   },
+  "UNITS": {
+    "YEARS": "years",
+    "MONTHS": "months",
+    "DAYS": "days",
+    "HOURS": "hours",
+    "MINUTES": "minutes",
+    "SECONDS": "seconds"
+  },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
     "SAVE_NAVIGATION_ERROR": "The navigation items could not be published. Please check your entries and try again.",

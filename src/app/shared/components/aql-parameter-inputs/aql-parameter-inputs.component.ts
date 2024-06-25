@@ -68,14 +68,49 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
         })
       )
     }
-    this.valueForm = new UntypedFormGroup({
-      value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
-        Validators.required,
-      ]),
-    })
+    if (this.item.valueType === AqlParameterValueType.Duration) {
+      let value: string = '',
+        unit: string = 'y'
+      if (this.item?.value) {
+        if (this.item.value.seconds() != 0) {
+          value = this.item.value.asSeconds().toString()
+          unit = 's'
+        } else if (this.item.value.minutes() != 0) {
+          value = this.item.value.asMinutes().toString()
+          unit = 'm'
+        } else if (this.item.value.hours() != 0) {
+          value = this.item.value.asHours().toString()
+          unit = 'h'
+        } else if (this.item.value.days() != 0) {
+          value = this.item.value.asDays().toString()
+          unit = 'd'
+        } else if (this.item.value.months() != 0) {
+          value = this.item.value.asMonths().toString()
+          unit = 'M'
+        } else if (this.item.value.years() != 0) {
+          value = this.item.value.asYears().toString()
+          unit = 'y'
+        }
+      }
+
+      this.valueForm = new UntypedFormGroup({
+        value: new UntypedFormControl({ value: value, disabled: this.disabled }, [
+          Validators.required,
+        ]),
+        unit: new UntypedFormControl({ value: unit, disabled: this.disabled }, [
+          Validators.required,
+        ]),
+      })
+    } else {
+      this.valueForm = new UntypedFormGroup({
+        value: new UntypedFormControl({ value: this.item?.value, disabled: this.disabled }, [
+          Validators.required,
+        ]),
+      })
+    }
 
     this.subscriptions.add(
-      this.valueForm.get('value').valueChanges.subscribe((value) => this.handleInputChange(value))
+      this.valueForm.valueChanges.subscribe((value) => this.handleInputChange(value))
     )
 
     this.valueForm?.get('value').markAllAsTouched()
@@ -85,21 +120,28 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe()
   }
 
-  handleInputChange(value): void {
+  handleInputChange(input: { value: string; unit: 'y' | 'M' | 'd' | 'h' | 'm' | 's' }): void {
     let newValue
-    if (value === null || value === undefined || !value.length || value === '-') {
-      newValue = value
+    if (
+      input.value === null ||
+      input.value === undefined ||
+      !input.value.length ||
+      input.value === '-'
+    ) {
+      newValue = input.value
     } else if (this.item?.valueType === AqlParameterValueType.Number) {
-      newValue = (parseInt(value?.toString(), 10) || 0).toString()
+      newValue = (parseInt(input.value?.toString(), 10) || 0).toString()
     } else if (this.item?.valueType === AqlParameterValueType.Double) {
       const numberPattern = new RegExp('^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$')
-      const isValid = numberPattern.test(value.replace(',', '.'))
-      newValue = isValid ? value : this.item.value
+      const isValid = numberPattern.test(input.value.replace(',', '.'))
+      newValue = isValid ? input.value : this.item.value
+    } else if (this.item?.valueType === AqlParameterValueType.Duration) {
+      newValue = moment.duration(input.value, input.unit)
     } else {
-      newValue = value
+      newValue = input.value
     }
 
-    if (newValue !== value) {
+    if (newValue !== input.value && this.item?.valueType !== AqlParameterValueType.Duration) {
       this.patchValue(newValue)
     } else {
       this.item.value = newValue
@@ -126,5 +168,11 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     newDate.set('minute', minute)
     newDate.set('second', second)
     this.item.value = newDate
+  }
+
+  numericValuesOnly(event: InputEvent): boolean {
+    console.log(event.data)
+    const pattern = /^\d*$/
+    return event.data === null || pattern.test(event.data)
   }
 }
