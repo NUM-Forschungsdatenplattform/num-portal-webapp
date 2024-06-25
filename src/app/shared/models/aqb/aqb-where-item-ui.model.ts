@@ -75,11 +75,8 @@ export class AqbWhereItemUiModel {
         return 'Double'
       case ReferenceModelType.Long:
         return 'Long'
-      case ReferenceModelType.String:
-      case ReferenceModelType.Code_phrase:
-        return 'String'
       default:
-        return rmType
+        return 'String'
     }
   }
 
