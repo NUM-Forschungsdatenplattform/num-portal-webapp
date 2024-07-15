@@ -18,7 +18,7 @@ export const json2 = {
       },
       symbol: 'EQ',
       value: {
-        _type: 'DV_TEXT',
+        _type: 'String',
         value: ' ',
       },
     },
@@ -31,7 +31,7 @@ export const json2 = {
       },
       symbol: 'EQ',
       value: {
-        _type: 'DV_BOOLEAN',
+        _type: 'Boolean',
         value: true,
       },
     },
@@ -46,7 +46,7 @@ export const json3 = {
       _type: 'ComparisonOperator',
       statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
       symbol: 'EQ',
-      value: { _type: 'DV_TEXT', value: ' ' },
+      value: { _type: 'String', value: ' ' },
     },
     {
       _type: 'LogicalOperator',
@@ -56,7 +56,7 @@ export const json3 = {
           _type: 'ComparisonOperator',
           statement: { _type: 'IdentifiedPath', path: 'path', root: 'o2' },
           symbol: 'EQ',
-          value: { _type: 'DV_BOOLEAN', value: true },
+          value: { _type: 'Boolean', value: true },
         },
         {
           _type: 'ComparisonOperator',
