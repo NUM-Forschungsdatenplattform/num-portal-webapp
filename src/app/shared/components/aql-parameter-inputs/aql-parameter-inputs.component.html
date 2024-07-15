@@ -110,5 +110,34 @@
       "
       data-test="aql-parameter-inputs__time-value-input"
     ></num-time-input>
+
+    <mat-form-field
+      floatLabel="always"
+      appearance="outline"
+      class="input num-tiny-input value-input"
+      *ngIf="item.valueType === AqlParameterValueType.Duration"
+    >
+      <mat-label *ngIf="mode === 'cohortBuilder'" id="duration-label">{{ item.name }}</mat-label>
+      <mat-label *ngIf="mode === 'aqb' || !item.name" id="duration-label">{{
+        'FORM.VALUE' | translate
+      }}</mat-label>
+      <input
+        aria-labelledby="duration-label"
+        formControlName="value"
+        inputmode="numeric"
+        matInput
+        type="text"
+        data-test="aql-parameter-inputs__value-input"
+        (beforeinput)="numericValuesOnly($event)"
+      />
+      <mat-select formControlName="unit" matSuffix>
+        <mat-option value="y">{{ 'UNITS.YEARS' | translate }}</mat-option>
+        <mat-option value="M">{{ 'UNITS.MONTHS' | translate }}</mat-option>
+        <mat-option value="d">{{ 'UNITS.DAYS' | translate }}</mat-option>
+        <mat-option value="h">{{ 'UNITS.HOURS' | translate }}</mat-option>
+        <mat-option value="m">{{ 'UNITS.MINUTES' | translate }}</mat-option>
+        <mat-option value="s">{{ 'UNITS.SECONDS' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </ng-container>
 </section>

@@ -1,10 +1,10 @@
 import { AqlParameterValueType } from 'src/app/shared/models/aql/aql-parameter-value-type.enum'
 import { DateHelperService } from '../helper/date-helper.service'
-import { Moment } from 'moment'
+import { Duration, Moment } from 'moment'
 
 export const convertParameterInputToType = (
   type: AqlParameterValueType,
-  inputValue: string | number | boolean | Date | Moment,
+  inputValue: string | number | boolean | Date | Moment | Duration,
   defaultToUndefined = false
 ): number | string | boolean => {
   let outputValue: number | string | boolean
@@ -29,7 +29,13 @@ export const convertParameterInputToType = (
     case AqlParameterValueType.Boolean:
       outputValue = inputValue && inputValue !== 'false'
       break
-
+    case AqlParameterValueType.Duration:
+      outputValue = inputValue
+        ? (inputValue as Duration).toISOString()
+        : defaultToUndefined
+          ? undefined
+          : ' '
+      break
     default:
       outputValue = inputValue ? inputValue.toString() : defaultToUndefined ? undefined : ' '
       break
