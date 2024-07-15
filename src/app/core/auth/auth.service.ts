@@ -118,7 +118,7 @@ export class AuthService {
         .toPromise()
         .finally(() => {
           if (!this.idle.isIdling()) {
-            this.initIdle()
+            this.resetIdle()
           }
         })
     }
