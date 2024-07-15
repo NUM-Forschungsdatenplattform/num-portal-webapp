@@ -47,6 +47,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
 
             this.prefillParameter(parameter, optionKeys)
             this.setPossibleOperators(parameter, response.type)
+            parameter.unit = response.unit
 
             this.checkParameterStatus()
             parameter.isMetaFetched = true
