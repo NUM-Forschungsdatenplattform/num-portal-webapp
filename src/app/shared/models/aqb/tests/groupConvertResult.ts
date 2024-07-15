@@ -2,7 +2,7 @@ export const json1 = {
   _type: 'ComparisonOperator',
   statement: { _type: 'IdentifiedPath', path: 'path', root: 'o1' },
   symbol: 'EQ',
-  value: { _type: 'DV_TEXT', value: ' ' },
+  value: { _type: 'String', value: ' ' },
 }
 
 export const json2 = {
