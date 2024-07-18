@@ -5,7 +5,7 @@ import { AqlParameterValueType } from './aql-parameter-value-type.enum'
 export interface IAqlParameter {
   name: string
   nameWithDollar: string
-  value: string | number | boolean | Date | moment.Moment
+  value: string | number | boolean | Date | moment.Moment | moment.Duration
   operator: AqlParameterOperator
   possibleOperators: AqlParameterOperator[]
   path: string
@@ -14,4 +14,5 @@ export interface IAqlParameter {
   valueType?: AqlParameterValueType
   isMetaFetched?: boolean
   isDisabled: boolean
+  unit?: string
 }

@@ -7,4 +7,5 @@ export enum AqlParameterValueType {
   String = 'STRING',
   Boolean = 'BOOLEAN',
   Options = 'OPTIONS',
+  Duration = 'DURATION',
 }

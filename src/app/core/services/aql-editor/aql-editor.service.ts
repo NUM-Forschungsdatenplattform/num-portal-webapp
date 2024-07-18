@@ -10,6 +10,7 @@ import { IArchetypeQueryBuilderResponse } from 'src/app/shared/models/archetype-
 import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/template/containment-node.interface'
 import { IEhrbaseTemplate } from 'src/app/shared/models/archetype-query-builder/template/ehrbase-template.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
+import { compareLocaleStringValues } from '../../utils/sort.utils'
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +35,11 @@ export class AqlEditorService {
   getTemplates(): Observable<IEhrbaseTemplate[]> {
     return this.httpClient.get<IEhrbaseTemplate[]>(`${this.baseUrl}/template`).pipe(
       tap((templates) => {
-        this.templates = templates
-        this.templatesSubject$.next(templates)
+        const tempSorted = templates.sort((a, b) =>
+          compareLocaleStringValues(a.description, b.description, a.templateId, b.templateId, true)
+        )
+        this.templates = tempSorted
+        this.templatesSubject$.next(tempSorted)
       }),
       catchError(this.handleError)
     )

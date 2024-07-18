@@ -139,6 +139,14 @@
     "PRIVACY_PUBLIC": "Public",
     "CATEGORY_NOT_DELETABLE": "Categories with assigned criterias can not be deleted."
   },
+  "UNITS": {
+    "YEARS": "years",
+    "MONTHS": "months",
+    "DAYS": "days",
+    "HOURS": "hours",
+    "MINUTES": "minutes",
+    "SECONDS": "seconds"
+  },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
     "SAVE_NAVIGATION_ERROR": "The navigation items could not be published. Please check your entries and try again.",
@@ -843,11 +851,13 @@
       "PUBLIC_KEYS_TITLE": "Public Keys"
     },
     "PUBLIC_KEY_LINKS": {
-      "INTRO": "Here you will find the links to the respective public keys for the secure transmission of data to Prod, or Pre-Prod.",
+      "INTRO": "Here you will find the links to the respective public keys for the secure transmission of data to Prod, Pre-Prod and Test",
       "LINK_PRE_PROD_HREF": "https://keys.num-codex.de/crr_public-key-pre-prod.pem",
       "LINK_PRE_PROD_DESCRIPTION": "Public Key for Pre-Prod",
       "LINK_PROD_HREF": "https://keys.num-codex.de/crr_public-key-prod.pem",
-      "LINK_PROD_DESCRIPTION": "Public Key for Prod"
+      "LINK_PROD_DESCRIPTION": "Public Key for Prod",
+      "LINK_TEST_HREF": "https://raw.githubusercontent.com/NUM-Forschungsdatenplattform/num-ops-guide/main/keys/test/crr-private-key.pub",
+      "LINK_TEST_DESCRIPTION": "Public Key for Test"
     }
   },
   "AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP": "If this checkbox is enabled, the value for the criterion can be set. If the checkbox is disabled, all patients are selected, where this criterion is documented regardless of the documented value."

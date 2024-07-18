@@ -47,6 +47,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
 
             this.prefillParameter(parameter, optionKeys)
             this.setPossibleOperators(parameter, response.type)
+            parameter.unit = response.unit
 
             this.checkParameterStatus()
             parameter.isMetaFetched = true
@@ -159,6 +160,8 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         return AqlParameterValueType.DateTime
       case ReferenceModelType.Dv_time:
         return AqlParameterValueType.Time
+      case ReferenceModelType.Dv_duration:
+        return AqlParameterValueType.Duration
 
       default:
         return AqlParameterValueType.String

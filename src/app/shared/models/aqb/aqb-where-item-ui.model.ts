@@ -70,16 +70,16 @@ export class AqbWhereItemUiModel {
   private convertRMType(rmType: ReferenceModelType): string {
     switch (rmType) {
       case ReferenceModelType.Boolean:
+      case ReferenceModelType.Dv_boolean:
         return 'Boolean'
       case ReferenceModelType.Double:
+      case ReferenceModelType.Dv_amount:
         return 'Double'
       case ReferenceModelType.Long:
+      case ReferenceModelType.Dv_count:
         return 'Long'
-      case ReferenceModelType.String:
-      case ReferenceModelType.Code_phrase:
-        return 'String'
       default:
-        return rmType
+        return 'String'
     }
   }
 
