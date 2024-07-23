@@ -74,6 +74,7 @@
     "MANAGER_TOOLS": "Manager Tools",
     "PROFILE": "Benutzerkonto",
     "SEARCH": "Suche",
+    "SEARCH_WITH_AQL": "Suche mit AQL",
     "SIGNOUT": "Abmelden",
     "SIGNIN": "Anmelden",
     "USER_MANUAL": "Benutzerhandbuch"
@@ -115,10 +116,10 @@
     "CREATE_QUERY": "Kriterium erstellen",
     "CREATE_QUERY_CONTENT": "Auf dieser Seite können Sie ein Kriterium erstellen. Zum Erstellen des Kriteriums steht Ihnen ein Kriterien-Builder zur Verfügung.\n\n*Pflichtfeld",
     "GENERAL_INFO_CONTENT": "Bitte geben Sie einen aussagekräftigen Titel sowie den Zweck und die Verwendung des Kriteriums ein.",
-    "BUILD_QUERY_CONTENT": "Erstellen Sie ein Kriterium im Kriterien-Builder. Danach können Sie das Kriterium im untenstehenden Editor bearbeiten.",
+    "BUILD_QUERY_CONTENT": "Erstellen Sie eine Abfrage im Abfrage-Builder. Danach können Sie die Abfrage im untenstehenden Editor bearbeiten.",
     "SEARCH_QUERIES": "Kriterium suchen",
     "SELECT_AT_LEAST_ONE": "Bitte wählen sie eine oder mehrere Kriterien aus",
-    "QUERY_BUILDER_DIALOG_HEADER": "Kriterien erstellen",
+    "QUERY_BUILDER_DIALOG_HEADER": "Abfrage erstellen",
     "AVAILABLE_QUERIES": "Verfügbare Kriterien",
     "SAVE_SUCCESS_MESSAGE": "Ihr Kriterium wurde erfolgreich erstellt.",
     "SAVE_ERROR_MESSAGE": "Ihr Kriterium konnte nicht erstellt werden.",
@@ -131,7 +132,7 @@
     "VALIDATION_ERROR": "Die Syntax des Kriteriums ist nicht valide",
     "VALIDATION_SUCCESS": "Die Syntax des Kriteriums ist valide",
     "HITS": {
-      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst das Kriterium definieren, um ein valides Ergebnis zu erhalten.",
+      "MESSAGE_SET_ALL_PARAMETERS": "Sie sollten zuerst die die Abfrage definieren, um ein valides Ergebnis zu erhalten.",
       "MESSAGE_ERROR_FEW_HITS": "Übereinstimmende Patienten liegen unter der Mindestschwelle.",
       "MESSAGE_ERROR_MESSAGE": "Konnte keine Patienten ermitteln. Bitte versuchen Sie es erneut."
     },
@@ -146,6 +147,10 @@
     "HOURS": "Stunden",
     "MINUTES": "Minuten",
     "SECONDS": "Sekunden"
+  },
+  "SEARCH_WITH_AQL": {
+    "BUILD_QUERY_CONTENT": "Erstellen Sie eine Abfrage im Abfrage-Builder. Danach können Sie die Abfrage im untenstehenden Editor bearbeiten.",
+    "QUERY_DATA": "Daten abrufen"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",
@@ -190,7 +195,7 @@
   "CONFIGURE": "Konfigurieren",
   "HITS": "Patienten",
   "AVAILABLE_PROJECTS": "Verfügbare Projekte",
-  "BUILD_QUERY": "Kriterium erstellen",
+  "BUILD_QUERY": "Abfrage erstellen",
   "AVAILABLE_EHR_TEMPLATES": "Verfügbare Rückgabeparameter",
   "SELECT_EHR_TEMPLATE": "Rückgabeparameter auswählen",
   "SELECTED_EHR_TEMPLATES": "Ausgewählte Rückgabeparameter",
@@ -263,7 +268,7 @@
     "CLEAR_ENTRY": "Eingabe löschen",
     "REQUEST_APPROVAL": "Genehmigung anfragen",
     "APPLY_SELECTION": "Auswahl Übernehmen",
-    "FORMAT_QUERY": "Abfrage formatieren",
+    "FORMAT_QUERY": "Formatieren",
     "VALIDATE_QUERY": "Überprüfen",
     "ADD_RESEARCHERS": "Forscher hinzufügen",
     "ADD_GROUP": "Gruppe hinzufügen",
@@ -277,7 +282,7 @@
     "SELECT": "Auswählen",
     "DESELECT": "Abwählen",
     "APPROVE_USER": "Benutzer bestätigen",
-    "OPEN_QUERY_BUILDER": "Kriterium erstellen",
+    "OPEN_QUERY_BUILDER": "Builder öffnen",
     "PREVIEW": "Vorschau",
     "EDIT": "Bearbeiten",
     "DELETE": "Löschen",

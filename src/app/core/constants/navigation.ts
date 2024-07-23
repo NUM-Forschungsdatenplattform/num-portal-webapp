@@ -9,6 +9,11 @@ export const mainNavItems: INavItem[] = [
     translationKey: 'NAVIGATION.DASHBOARD',
   },
   {
+    routeTo: 'search-with-aql',
+    icon: 'search',
+    translationKey: 'NAVIGATION.SEARCH_WITH_AQL',
+  },
+  {
     routeTo: 'search',
     icon: 'search',
     translationKey: 'NAVIGATION.SEARCH',
