@@ -44,7 +44,9 @@ export class PatientFilterService {
   getAllDatasetCount(): Observable<number> {
     return this.httpClient
       .post<number>(`${this.baseUrl}/aql/size`, {
-        query: 'SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value',
+        // TODO: revert to use EXISTS when https://github.com/ehrbase/ehrbase/issues/1346 is resolved
+        // SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value
+        query: 'SELECT e/ehr_id/value as ehrId FROM EHR e',
       })
       .pipe(
         tap((size) => {
