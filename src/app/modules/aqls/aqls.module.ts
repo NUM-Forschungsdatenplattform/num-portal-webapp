@@ -41,5 +41,6 @@ import { AqlBuilderWhereGroupComponent } from './components/aql-builder-where-gr
     AqlBuilderWhereGroupComponent,
   ],
   imports: [CommonModule, AqlsRoutingModule, SharedModule, LayoutModule, CodeEditorModule],
+  exports: [AqlEditorCeatorComponent],
 })
 export class AqlsModule {}
