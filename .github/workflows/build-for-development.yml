@@ -50,6 +50,7 @@ jobs:
   registry:
     needs: test_and_scan
     if: github.event.pull_request.merged == true
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -70,8 +71,3 @@ jobs:
         with:
           push: true
           tags: ghcr.io/num-forschungsdatenplattform/num-portal-webapp:develop
-
-
-
-
-
