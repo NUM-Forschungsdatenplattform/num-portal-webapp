@@ -18,7 +18,7 @@ describe('PatientFilterService', () => {
   const baseAqlUrl = 'localhost/api/aql'
   const baseProjectUrl = 'localhost/api/project'
   const patientQueryBody = {
-    query: 'SELECT e/ehr_id/value as ehrId FROM EHR e WHERE EXISTS e/ehr_id/value',
+    query: 'SELECT e/ehr_id/value as ehrId FROM EHR e',
   }
 
   const httpClient = {
