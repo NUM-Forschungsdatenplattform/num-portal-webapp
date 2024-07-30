@@ -93,7 +93,7 @@
     "pretty-quick": "^4.0.0",
     "protractor": "~7.0.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rimraf": "^5.0.5",
+    "rimraf": "^6.0.1",
     "ts-jest": "^28.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^4.8.4",
