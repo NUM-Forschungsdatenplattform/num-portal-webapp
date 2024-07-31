@@ -1,4 +1,5 @@
 import { Component } from '@angular/core'
+import { TestBed } from '@angular/core/testing'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
@@ -8,9 +9,7 @@ import { DialogService } from './dialog.service'
 
 describe('DialogService', () => {
   let service: DialogService
-  const dialog = {
-    open: () => ({}) as MatDialogRef<any, any>,
-  } as unknown as MatDialog
+  let dialog: MatDialog
 
   @Component({ selector: 'num-test-component', template: '' })
   class StubComponent {}
@@ -65,7 +64,17 @@ describe('DialogService', () => {
   }
 
   beforeEach(() => {
-    service = new DialogService(dialog)
+    const dialogMock = {
+      open: jest.fn().mockReturnValue({} as MatDialogRef<any, any>),
+    }
+
+    TestBed.configureTestingModule({
+      declarations: [StubComponent],
+      providers: [DialogService, { provide: MatDialog, useValue: dialogMock }],
+    })
+
+    service = TestBed.inject(DialogService)
+    dialog = TestBed.inject(MatDialog)
   })
 
   it('should be created', () => {
@@ -73,10 +82,6 @@ describe('DialogService', () => {
   })
 
   describe('On calling openDialog method', () => {
-    beforeEach(() => {
-      jest.spyOn(dialog, 'open')
-    })
-
     test.each([
       { disableClose: true, size: 'small' },
       { disableClose: true, size: 'large' },
@@ -86,11 +91,11 @@ describe('DialogService', () => {
       ({ disableClose, size }) => {
         const config = sizes[size].config
         service.openDialog(config, disableClose)
-        disableClose = disableClose ? true : false
+        const expectedDisableClose = disableClose ? true : false
         expect(dialog.open).toHaveBeenCalledWith(GenericDialogComponent, {
           ...sizes[size].size,
           data: config,
-          disableClose,
+          disableClose: expectedDisableClose,
         })
       }
     )

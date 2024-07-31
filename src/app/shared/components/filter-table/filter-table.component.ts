@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core'
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
+import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'num-filter-table',

@@ -4,7 +4,7 @@ import { ADD_RESEARCHERS_DIALOG_CONFIG } from './constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogAddResearchersComponent } from '../dialog-add-researchers/dialog-add-researchers.component'
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
+import { MatTableDataSource } from '@angular/material/table'
 
 @Component({
   selector: 'num-project-editor-researchers',

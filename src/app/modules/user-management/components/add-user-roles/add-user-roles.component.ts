@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
+import { MatTableDataSource } from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'

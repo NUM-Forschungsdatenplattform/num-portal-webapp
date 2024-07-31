@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core'
-import { MatLegacyTooltip as MatTooltip } from '@angular/material/legacy-tooltip'
+import { MatTooltip } from '@angular/material/tooltip'
 
 @Directive({
   selector: '[numTooltipNecessary]',

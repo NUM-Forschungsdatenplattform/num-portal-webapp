@@ -5,7 +5,7 @@ import moment from 'moment'
 
 describe('DateHelperService', () => {
   let service: DateHelperService
-  const dateString = '2021-01-02T11:12:13+0000'
+  const dateString = '2021-01-02T11:12:13+0100'
   const date = new Date(2021, 0, 2, 11, 12, 13)
   const momentDate = moment(date)
 

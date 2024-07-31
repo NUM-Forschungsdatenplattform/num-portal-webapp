@@ -4,7 +4,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
-
 import { ProjectEditorGeneralInfoKeywordsInputComponent } from './project-editor-general-info-keywords-input.component'
 import { MatChipInputEvent } from '@angular/material/chips'
 
@@ -35,31 +34,37 @@ describe('ProjectEditorGeneralInfoKeywordsInputComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  const mockKeyword = {
-    input: null,
-    value: 'keyword 1',
-  } as unknown as MatChipInputEvent
-
   describe('Adding/Removing Keywords', () => {
-    beforeEach(() => {
-      let keywords = []
+    let keywords: string[] = []
 
+    beforeEach(() => {
+      // Mock der keywords Getter und Setter
       jest.spyOn(component, 'keywords', 'get').mockImplementation(() => keywords)
       jest.spyOn(component, 'keywords', 'set').mockImplementation((value) => (keywords = value))
     })
 
-    it('should Add Keyword, if not dublicate', () => {
-      component.addKeyword(mockKeyword)
+    it('should add keyword if not a duplicate', () => {
+      const keyword = 'keyword 1'
+      const event = { input: null, chipInput: null, value: keyword } as MatChipInputEvent
+      component.addKeyword(event)
       expect(component.keywords.length).toEqual(1)
+      expect(component.keywords).toContain(keyword)
     })
 
-    it('should NOT add the Keyword again, since it is now dublicate', () => {
-      component.addKeyword(mockKeyword)
-      expect(component.keywords.length).toEqual(1)
+    it('should NOT add the keyword again if it is now a duplicate', () => {
+      const keyword = 'keyword 1'
+      const event = { input: null, chipInput: null, value: keyword } as MatChipInputEvent
+      component.addKeyword(event)
+      component.addKeyword(event) // Add again to test duplicate
+      expect(component.keywords.length).toEqual(1) // Should still be 1
+      expect(component.keywords).toContain(keyword)
     })
 
-    it('should remove Keyword', () => {
-      component.removeKeyword(0)
+    it('should remove keyword', () => {
+      const keyword = 'keyword 1'
+      const event = { input: null, chipInput: null, value: keyword } as MatChipInputEvent
+      component.addKeyword(event) // Add keyword first
+      component.removeKeyword(0) // Then remove it
       expect(component.keywords.length).toEqual(0)
     })
   })

@@ -1,7 +1,7 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes'
 import { Component, Input } from '@angular/core'
 import { UntypedFormGroup } from '@angular/forms'
-import { MatLegacyChipInputEvent as MatChipInputEvent } from '@angular/material/legacy-chips'
+import { MatChipInputEvent } from '@angular/material/chips'
 
 @Component({
   selector: 'num-project-editor-general-info-keywords-input',
@@ -30,8 +30,8 @@ export class ProjectEditorGeneralInfoKeywordsInputComponent {
       this.keywords = keywords.slice()
     }
 
-    if (event.input) {
-      event.input.value = ''
+    if (event.chipInput.inputElement) {
+      event.chipInput.inputElement.value = ''
     }
   }
 

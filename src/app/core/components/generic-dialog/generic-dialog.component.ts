@@ -8,10 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
-import {
-  MatLegacyDialogRef as MatDialogRef,
-  MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA,
-} from '@angular/material/legacy-dialog'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Subscription } from 'rxjs'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
 import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interface'

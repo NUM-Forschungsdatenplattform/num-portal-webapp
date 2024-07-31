@@ -20,7 +20,7 @@ import {
 } from '../dialog-add-attachments/dialog-add-attachments.component'
 import { DialogSize } from '../../models/dialog/dialog-size.enum'
 import { Subscription } from 'rxjs'
-import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog'
+import { MatDialogRef } from '@angular/material/dialog'
 import { GenericDialogComponent } from 'src/app/core/components/generic-dialog/generic-dialog.component'
 import {
   ConfirmationDialogInput,

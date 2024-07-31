@@ -13,10 +13,10 @@ import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator'
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog'
+import { MatTableDataSource } from '@angular/material/table'
+import { MatPaginator } from '@angular/material/paginator'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',

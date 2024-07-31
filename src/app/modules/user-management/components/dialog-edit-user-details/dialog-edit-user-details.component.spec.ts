@@ -3,6 +3,7 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatButtonHarness } from '@angular/material/button/testing'
+import { MatInputHarness } from '@angular/material/input/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
@@ -25,7 +26,6 @@ import { AddUserOrganizationComponent } from '../add-user-organization/add-user-
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
 import { DialogEditUserDetailsComponent } from './dialog-edit-user-details.component'
-import { MatInputHarness } from '@angular/material/input/testing'
 
 describe('DialogEditUserDetailsComponent', () => {
   let component: DialogEditUserDetailsComponent
@@ -35,13 +35,13 @@ describe('DialogEditUserDetailsComponent', () => {
   const organizationsSubject$ = new Subject<IOrganization>()
 
   const adminService = {
-    approveUser: jest.fn().mockImplementation(() => of('Success')),
-    addUserRoles: jest.fn(),
-    addUserOrganization: jest.fn(),
-    changeUserName: jest.fn(),
-    refreshFilterResult: jest.fn(),
-    getUnapprovedUsers: jest.fn(),
-    changeUserEnabledStatus: jest.fn(),
+    approveUser: jest.fn().mockReturnValue(of('Success')),
+    addUserRoles: jest.fn().mockReturnValue(of(mockUser.roles)),
+    addUserOrganization: jest.fn().mockReturnValue(of('Success')),
+    changeUserName: jest.fn().mockReturnValue(of('Test Changed User Changed')),
+    changeUserEnabledStatus: jest.fn().mockReturnValue(of('')),
+    refreshFilterResult: jest.fn().mockReturnValue(of()),
+    getUnapprovedUsers: jest.fn().mockReturnValue(of([])),
   } as unknown as AdminService
 
   const organizationService = {
@@ -52,7 +52,7 @@ describe('DialogEditUserDetailsComponent', () => {
 
   const userProfileSubject$ = new Subject<IUserProfile>()
   const profileService = {
-    get: jest.fn(),
+    get: jest.fn().mockReturnValue(of(mockUserProfile2)),
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
@@ -62,7 +62,7 @@ describe('DialogEditUserDetailsComponent', () => {
       return true
     },
     userInfoObservable$: userInfoSubject$.asObservable(),
-  } as AuthService
+  } as unknown as AuthService
 
   const mockToastMessageService = {
     openToast: jest.fn(),
@@ -86,22 +86,10 @@ describe('DialogEditUserDetailsComponent', () => {
         DirectivesModule,
       ],
       providers: [
-        {
-          provide: AdminService,
-          useValue: adminService,
-        },
-        {
-          provide: OrganizationService,
-          useValue: organizationService,
-        },
-        {
-          provide: ProfileService,
-          useValue: profileService,
-        },
-        {
-          provide: AuthService,
-          useValue: authService,
-        },
+        { provide: AdminService, useValue: adminService },
+        { provide: OrganizationService, useValue: organizationService },
+        { provide: ProfileService, useValue: profileService },
+        { provide: AuthService, useValue: authService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
     }).compileComponents()
@@ -114,12 +102,6 @@ describe('DialogEditUserDetailsComponent', () => {
     userProfileSubject$.next(mockUserProfile1)
     fixture.detectChanges()
     jest.spyOn(component.closeDialog, 'emit')
-    jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of())
-    jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of())
-    jest.spyOn(adminService, 'approveUser').mockImplementation((userId: string) => of(userId))
-    jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
-    jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of([]))
-    jest.spyOn(profileService, 'get').mockImplementation(() => of(mockUserProfile2))
   })
 
   afterEach(() => {
@@ -130,55 +112,52 @@ describe('DialogEditUserDetailsComponent', () => {
     expect(component).toBeTruthy()
   })
 
-  it('should emit the close event on confirmation', (done) => {
-    jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
-    jest.spyOn(adminService, 'addUserRoles').mockImplementation((id, roles) => of(roles))
-    component.handleDialogConfirm().then(() => {
-      expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
-      done()
-    })
+  it('should emit the close event on confirmation', async () => {
+    await component.handleDialogConfirm()
+    expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
   })
 
   it('should emit the close event on dialog cancel', () => {
-    jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
     component.handleDialogCancel()
     expect(component.closeDialog.emit).toHaveBeenCalledTimes(1)
   })
 
   describe('When roles are assigned and the dialog is confirmed', () => {
-    beforeEach(() => {
-      component.handleDialogConfirm()
+    beforeEach(async () => {
+      await component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
     it('should call addUserRoles with userId', () => {
       expect(adminService.addUserRoles).toHaveBeenCalledWith(mockUser.id, mockUser.roles)
     })
+
     it('should call refreshFilterResult', () => {
       expect(adminService.refreshFilterResult).toHaveBeenCalled()
     })
   })
 
   describe('When the organization was changed and the dialog is confirmed', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       component.organization = mockOrganization2
-      component.handleDialogConfirm()
+      await component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
     it('should call addUserOrganization with userId', () => {
       expect(adminService.addUserOrganization).toHaveBeenCalledWith(mockUser.id, mockOrganization2)
     })
+
     it('should call refreshFilterResult', () => {
       expect(adminService.refreshFilterResult).toHaveBeenCalled()
     })
   })
 
-  describe('When the editing of the user was successful', () => {
-    beforeEach(() => {
-      jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => of(mockUser.roles))
-      jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of('Success'))
-      component.handleDialogConfirm()
+  describe('When editing the user was successful', () => {
+    beforeEach(async () => {
+      jest.spyOn(adminService, 'addUserRoles').mockReturnValue(of(mockUser.roles))
+      jest.spyOn(adminService, 'addUserOrganization').mockReturnValue(of('Success'))
+      await component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
@@ -194,11 +173,10 @@ describe('DialogEditUserDetailsComponent', () => {
     })
   })
 
-  describe('When the editing of the user has failed', () => {
-    beforeEach(() => {
-      jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => throwError('error'))
-      jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of('Success'))
-      component.handleDialogConfirm()
+  describe('When editing the user has failed', () => {
+    beforeEach(async () => {
+      jest.spyOn(adminService, 'addUserRoles').mockReturnValue(throwError(() => new Error('error')))
+      await component.handleDialogConfirm()
       fixture.detectChanges()
     })
 
@@ -209,23 +187,9 @@ describe('DialogEditUserDetailsComponent', () => {
 
   describe('When editing the user name with valid data', () => {
     beforeEach(async () => {
-      jest.spyOn(adminService, 'changeUserEnabledStatus').mockReturnValue(of(''))
-      jest
-        .spyOn(adminService, 'changeUserName')
-        .mockImplementation((userId: string, firstName: string, lastName: string) =>
-          of(`${firstName} ${lastName}`)
-        )
-
-      jest
-        .spyOn(adminService, 'addUserRoles')
-        .mockImplementation((userId: string, roles: string[]) => of(roles))
-
-      jest.spyOn(mockToastMessageService, 'openToast')
-
       component.isApproval = false
       component.isUserNameEditMode = true
       component.userNameForm.patchValue({ firstName: 'Test Changed', lastName: 'User Changed' })
-
       await component.handleDialogConfirm()
       fixture.detectChanges()
     })
@@ -252,11 +216,7 @@ describe('DialogEditUserDetailsComponent', () => {
 
   describe('When editing the user name with invalid data', () => {
     beforeEach(async () => {
-      jest.spyOn(mockToastMessageService, 'openToast')
-
-      component.userNameForm.patchValue({
-        firstName: '',
-      })
+      component.userNameForm.patchValue({ firstName: '' })
       component.isUserNameEditMode = true
       await component.handleDialogConfirm()
       fixture.detectChanges()
@@ -273,12 +233,11 @@ describe('DialogEditUserDetailsComponent', () => {
 
   describe('When clicking on edit name buttons', () => {
     let editButton: MatButtonHarness
+
     beforeEach(async () => {
       loader = TestbedHarnessEnvironment.loader(fixture)
       editButton = await loader.getHarness(
-        MatButtonHarness.with({
-          selector: `[data-test="user-management__button__edit_user_name"]`,
-        })
+        MatButtonHarness.with({ selector: `[data-test="user-management__button__edit_user_name"]` })
       )
       await editButton.click()
     })
@@ -311,9 +270,11 @@ describe('DialogEditUserDetailsComponent', () => {
     })
 
     it('should not call changeUserName method of admin service on uncached data', async () => {
-      jest.spyOn(adminService, 'changeUserName')
+      const changeUserNameSpy = jest.spyOn(adminService, 'changeUserName')
+
       await component.handleDialogConfirm()
-      expect(adminService.changeUserName).not.toHaveBeenCalled()
+      fixture.detectChanges()
+      expect(changeUserNameSpy).not.toHaveBeenCalled()
     })
   })
 })
