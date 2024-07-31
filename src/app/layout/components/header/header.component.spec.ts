@@ -150,10 +150,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     router = TestBed.inject(Router)
-    const spy = jest
-      .spyOn(router, 'events', 'get')
-      .mockReturnValue(routerEventsSubject.asObservable())
-
+    jest.spyOn(router, 'events', 'get').mockReturnValue(routerEventsSubject.asObservable())
     fixture = TestBed.createComponent(HeaderComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
