@@ -31,12 +31,12 @@
           : (currentNavItem.translationKey | translate)
       }}
     </h1>
-
     <nav
       mat-tab-nav-bar
-      [backgroundColor]="'#fff'"
+      [backgroundColor]="'accent'"
       color="accent"
       *ngIf="currentTabNav && !unapprovedUser"
+      [tabPanel]="tabPanel"
     >
       <ng-container *ngFor="let tab of currentTabNav">
         <a
@@ -55,5 +55,6 @@
         </a>
       </ng-container>
     </nav>
+    <div mat-tab-nav-panel #tabPanel></div>
   </div>
 </section>
