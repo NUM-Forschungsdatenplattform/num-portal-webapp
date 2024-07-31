@@ -1,5 +1,5 @@
 import { Sort } from '@angular/material/sort'
-import { MatTableDataSource } from '@angular/material/table'
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
 
 export abstract class SortableTable<T> {
   dataSource = new MatTableDataSource<T>()

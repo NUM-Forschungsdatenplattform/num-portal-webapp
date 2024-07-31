@@ -10,8 +10,8 @@ import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dial
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
-import { MatDialogRef } from '@angular/material/dialog'
-import { MatPaginator } from '@angular/material/paginator'
+import { MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog'
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator'
 
 @Component({
   selector: 'num-approved-users-table',

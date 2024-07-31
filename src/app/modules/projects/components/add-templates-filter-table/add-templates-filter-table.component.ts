@@ -9,12 +9,12 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core'
-import { MatTableDataSource } from '@angular/material/table'
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table'
 import { Subscription } from 'rxjs'
 import { TemplateService } from 'src/app/core/services/template/template.service'
 import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-template-info-api.interface'
 import { ITemplateMetaDataApi } from 'src/app/shared/models/template/template-api.interface'
-import { MatPaginator } from '@angular/material/paginator'
+import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator'
 
 @Component({
   selector: 'num-add-templates-filter-table',
