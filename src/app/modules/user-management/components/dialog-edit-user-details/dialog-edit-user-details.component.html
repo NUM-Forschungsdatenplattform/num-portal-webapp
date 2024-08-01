@@ -6,7 +6,7 @@
     <div>{{ userDetails.firstName }} {{ userDetails.lastName }}</div>
     <button
       *ngIf="!isUserNameEditMode && !isApproval"
-      id="menu-toggle-button"
+      id="menu-toggle-button-1"
       color="accent"
       type="button"
       [attr.aria-label]="'BUTTON.EDIT' | translate"
@@ -41,7 +41,7 @@
     </mat-form-field>
 
     <button
-      id="menu-toggle-button"
+      id="menu-toggle-button-2"
       color="accent"
       type="button"
       [attr.aria-label]="'BUTTON.CANCEL' | translate"
