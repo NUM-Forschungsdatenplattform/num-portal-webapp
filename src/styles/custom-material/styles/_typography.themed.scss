@@ -7,12 +7,12 @@
     fa-icon {
       margin: 0 13px 0 0;
     }
-    &:not(.mat-display-1) {
+    &:not(.mat-headline-4) {
       margin: 0 0 20px 0 !important;
       letter-spacing: -0.63px !important;
     }
 
-    &.mat-display-1 {
+    &.mat-headline-4 {
       margin: 0 0 20px 0 !important;
       letter-spacing: 0 !important;
 
@@ -24,7 +24,7 @@
   }
 
   h2 {
-    &:not(.mat-display-2) {
+    &:not(.mat-headline-3) {
       letter-spacing: -0.23px !important;
       padding: 0 0 12px 0;
       margin: 0 0 20px 0 !important;
@@ -33,7 +33,7 @@
       border-bottom-color: mat-color($accent, 500);
     }
 
-    &.mat-display-2 {
+    &.mat-headline-3 {
       margin: 0 0 16px 0 !important;
       letter-spacing: 0 !important;
     }
@@ -69,7 +69,9 @@
     letter-spacing: 0 !important;
   }
 
-  a:not(.mat-button):not(.mat-list-item):not(.mat-tab-link):not(.command-bar__scenario-link) {
+  a:not(.mat-mdc-button):not(.mat-mdc-list-item):not(.mat-mdc-tab-link):not(
+      .command-bar__scenario-link
+    ) {
     color: mat-color($primary, 500);
     font-size: 16px !important;
     font-weight: 400 !important;

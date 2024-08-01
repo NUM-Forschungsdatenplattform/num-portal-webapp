@@ -2,7 +2,7 @@
   $accent: map-get($theme, accent);
 
   num-side-menu {
-    .mat-list-base {
+    .mat-mdc-list-base {
       padding-top: 0 !important;
     }
   }

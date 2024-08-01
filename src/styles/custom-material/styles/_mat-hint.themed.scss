@@ -1,7 +1,7 @@
 @mixin mat-hint_themed($theme) {
   $additional: map-get($theme, additional);
 
-  .mat-hint {
+  .mat-mdc-form-field-hint {
     color: mat-color($additional, dark-grey);
   }
 }
