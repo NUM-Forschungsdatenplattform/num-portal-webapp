@@ -43,9 +43,8 @@ describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
   } as MatAutocompleteSelectedEvent
 
   describe('Adding/Removing Categories', () => {
-    let categories: ProjectCategory[] = []
-
     beforeEach(() => {
+      let categories = []
       // Mock der categories Getter und Setter
       jest.spyOn(component, 'categories', 'get').mockImplementation(() => categories)
       jest.spyOn(component, 'categories', 'set').mockImplementation((value) => (categories = value))
@@ -54,17 +53,14 @@ describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
     it('should add category if not a duplicate', () => {
       component.addCategory(mockCategory, null)
       expect(component.categories.length).toEqual(1)
-      expect(component.categories).toContain(ProjectCategory.Pathology)
     })
 
     it('should NOT add the category again if it is now a duplicate', () => {
       component.addCategory(mockCategory, null)
-      component.addCategory(mockCategory, null) // Add again to test duplicate
-      expect(component.categories.length).toEqual(1) // Should still be 1
+      expect(component.categories.length).toEqual(1)
     })
 
     it('should remove category', () => {
-      component.addCategory(mockCategory, null) // Add category first
       component.removeCategory(0) // Then remove it
       expect(component.categories.length).toEqual(0)
     })

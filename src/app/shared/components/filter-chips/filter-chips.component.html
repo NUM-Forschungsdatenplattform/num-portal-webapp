@@ -1,6 +1,6 @@
 <label for="filter-chips">{{ 'FORM.FILTER' | translate }}</label>
-<mat-chip-list id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
-  <mat-chip
+<mat-chip-listbox id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
+  <mat-chip-option
     color="primary"
     *ngFor="let chip of filterChips"
     (click)="handleClickOnChip(chip)"
@@ -9,5 +9,5 @@
   >
     <fa-icon icon="check"></fa-icon>
     {{ chip.title | translate }}
-  </mat-chip>
-</mat-chip-list>
+  </mat-chip-option>
+</mat-chip-listbox>
