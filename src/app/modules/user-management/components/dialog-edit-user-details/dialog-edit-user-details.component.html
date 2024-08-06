@@ -59,14 +59,18 @@
   </section>
 </section>
 
-<mat-card class="filter-area mat-elevation-z4" *numUserHasRole="[availableRoles.SuperAdmin]">
+<mat-card
+  appearance="outlined"
+  class="filter-area mat-elevation-z4"
+  *numUserHasRole="[availableRoles.SuperAdmin]"
+>
   <num-add-user-organization
     [(selectedOrganization)]="organization"
     data-test="user-management__add-organization"
   ></num-add-user-organization>
 </mat-card>
 
-<mat-card class="filter-area mat-elevation-z4">
+<mat-card appearance="outlined" class="filter-area mat-elevation-z4">
   <num-add-user-roles
     [(selectedRoles)]="roles"
     data-test="user-management__add-roles"

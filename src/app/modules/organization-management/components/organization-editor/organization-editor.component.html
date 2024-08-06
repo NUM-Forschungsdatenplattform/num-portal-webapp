@@ -11,7 +11,7 @@
 </section>
 
 <section fxLayout="column" [formGroup]="form" class="num-margin-b-60">
-  <mat-card fxLayout="column" class="num-margin-b-60">
+  <mat-card appearance="outlined" fxLayout="column" class="num-margin-b-60">
     <mat-form-field appearance="outline" color="accent" *ngIf="organization.id === null">
       <mat-label id="name-label">{{ 'FORM.ORGANIZATION_NAME' | translate }}*</mat-label>
       <input

@@ -10,7 +10,7 @@
   </a>
 
   <ng-template ngFor let-item [ngForOf]="mainNavItems">
-    <a
+    <mat-list-item
       *numUserHasRole="item.roles"
       mat-list-item
       class="num-mat-list-item"
@@ -20,8 +20,8 @@
       [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
     >
       <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
-      <div>{{ item.translationKey | translate }}</div>
-    </a>
+      <span>{{ item.translationKey | translate }}</span>
+    </mat-list-item>
   </ng-template>
   <ng-template ngFor let-item [ngForOf]="mainNavItemsExternal">
     <a

@@ -4,9 +4,9 @@
   (searchTextChange)="handleSearchChange()"
 ></num-search>
 
-<h2 class="mat-display-2">{{ 'SELECT_A_EHR_TEMPLATE' | translate }}</h2>
+<h2 class="mat-headline-3">{{ 'SELECT_A_EHR_TEMPLATE' | translate }}</h2>
 
-<mat-card class="filter-area mat-elevation-z4 num-margin-b-20">
+<mat-card appearance="outlined" class="filter-area mat-elevation-z4 num-margin-b-20">
   <num-add-templates-filter-table
     [(selectedTemplates)]="dialogInput"
     data-test="dialog-add-template__add-template__filter-table"

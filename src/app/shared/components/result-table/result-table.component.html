@@ -4,7 +4,7 @@
     {{ resultSet?.name ? ', ' + resultSet?.name : '' }}
   </h4>
   <div *ngIf="resultSet && !resultSet.rows.length">
-    <mat-card class="mat-elevation-z1">
+    <mat-card appearance="outlined" class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center">
         <span>{{ 'DATA_EXPLORER.EMPTY_RESULT_SET' | translate }}</span>
       </div>
