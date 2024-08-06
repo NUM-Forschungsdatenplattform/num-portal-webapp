@@ -95,6 +95,9 @@
     }
   }
 
+  mat-expansion-panel {
+    box-shadow: none !important;
+  }
   .mat-expansion-panel {
     border-radius: 0 !important;
     .num-accordion-big & {
