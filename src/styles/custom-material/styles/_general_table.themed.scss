@@ -1,7 +1,7 @@
 @mixin general_table_themed($theme) {
   $accent: map-get($theme, accent);
 
-  .mat-row {
+  .mat-mdc-row {
     &--active,
     &--selected {
       background: mat-color($accent, 50);

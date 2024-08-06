@@ -69,7 +69,9 @@
     letter-spacing: 0 !important;
   }
 
-  a:not(.mat-button):not(.mat-list-item):not(.mat-tab-link):not(.command-bar__scenario-link) {
+  a:not(.mat-mdc-button):not(.mat-mdc-list-item):not(.mat-mdc-tab-link):not(
+      .command-bar__scenario-link
+    ) {
     color: mat-color($primary, 500);
     font-size: 16px !important;
     font-weight: 400 !important;
