@@ -15,8 +15,8 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',

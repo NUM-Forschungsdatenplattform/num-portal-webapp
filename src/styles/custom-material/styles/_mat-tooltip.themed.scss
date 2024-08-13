@@ -1,5 +1,5 @@
 @mixin mat-tooltip_themed($theme) {
-  .mat-tooltip {
+  .mat-mdc-tooltip {
     max-width: 50vw !important;
     word-wrap: break-word;
   }

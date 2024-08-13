@@ -1,24 +1,28 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ 'FORM.KEYWORDS' | translate }}</mat-label>
-  <mat-chip-list
+  <mat-chip-grid
     #keywordsChipList
     aria-label="Keywords selection"
     data-test="project-editor__general-info__keywords-chip-list"
   >
-    <mat-chip
+    <mat-chip-option
       *ngFor="let keyword of keywords; let i = index"
       (removed)="removeKeyword(i)"
       class="chip-primary"
       data-test="project-editor__general-info__keywords-chip-item"
+      removable
     >
       <span>{{ keyword }}</span>
-      <fa-icon
-        icon="times-circle"
+      <button
+        mat-icon-button
+        matChipRemove
+        aria-label="Remove keyword"
         class="chip__remove-icon"
         data-test="project-editor__general-info__keywords-remove-keyword-button"
-        matChipRemove
-      ></fa-icon>
-    </mat-chip>
+      >
+        <fa-icon icon="times-circle"></fa-icon>
+      </button>
+    </mat-chip-option>
     <input
       placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
       [matChipInputFor]="keywordsChipList"
@@ -28,5 +32,5 @@
       autocomplete="off"
       data-test="project-editor__general-info__keywords-input"
     />
-  </mat-chip-list>
+  </mat-chip-grid>
 </mat-form-field>

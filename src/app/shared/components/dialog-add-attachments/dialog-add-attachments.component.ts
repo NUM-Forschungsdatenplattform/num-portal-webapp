@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Inject, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { TranslateService } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
@@ -11,6 +10,7 @@ import { AttachmentUploadProgress } from '../../models/attachment/attachment-upl
 import { AttachmentUploadStatus } from '../../models/attachment/attachment-upload-status.enum'
 import { IGenericDialog } from '../../models/generic-dialog.interface'
 import { ToastMessageType } from '../../models/toast-message-type.enum'
+import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 
 export interface FileInputControl {
   fileName: FormControl<string>

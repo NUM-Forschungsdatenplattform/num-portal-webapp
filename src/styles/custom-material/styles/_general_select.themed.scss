@@ -1,7 +1,7 @@
 @mixin general_select_themed($theme) {
   $accent: map-get($theme, accent);
 
-  .mat-option {
+  .mat-mdc-option {
     &--active,
     &--selected {
       background: mat-color($accent, 50);

@@ -51,8 +51,11 @@ describe('DialogEditUserDetailsComponent', () => {
   } as unknown as OrganizationService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
+  const mockObservable = {
+    subscribe: () => {},
+  }
   const profileService = {
-    get: jest.fn(),
+    get: jest.fn().mockImplementation(() => of(mockObservable)),
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 

@@ -123,7 +123,7 @@
   </div>
 
   <ng-container *ngIf="!resultSet && !isDataSetLoading">
-    <mat-card class="mat-elevation-z1">
+    <mat-card appearance="outlined" class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center">
         <span>{{ 'DATA_EXPLORER.NO_RESULTS_YET' | translate }}</span>
         {{ resultSet }}
@@ -144,7 +144,7 @@
   </ng-container>
 
   <ng-template #loading>
-    <mat-card class="mat-elevation-z1">
+    <mat-card appearance="outlined" class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
         <mat-spinner color="accent" [diameter]="24"></mat-spinner>
         <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>

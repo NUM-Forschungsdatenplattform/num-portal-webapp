@@ -10,7 +10,7 @@
   </a>
 
   <ng-template ngFor let-item [ngForOf]="mainNavItems">
-    <a
+    <mat-list-item
       *numUserHasRole="item.roles"
       mat-list-item
       class="num-mat-list-item"
@@ -20,8 +20,8 @@
       [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
     >
       <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
-      <div>{{ item.translationKey | translate }}</div>
-    </a>
+      <span>{{ item.translationKey | translate }}</span>
+    </mat-list-item>
   </ng-template>
   <ng-template ngFor let-item [ngForOf]="mainNavItemsExternal">
     <a
@@ -32,7 +32,7 @@
       [attr.data-test]="'side-menu__main-nav__' + item.translationKey"
     >
       <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon"></fa-icon>
-      <div>{{ item.translationKey | translate }}</div>
+      <span>{{ item.translationKey | translate }}</span>
     </a>
   </ng-template>
 
@@ -48,7 +48,7 @@
         [attr.data-test]="'side-menu__nav-links__' + link.title"
       >
         <fa-icon size="lg" [fixedWidth]="true" icon="external-link-alt"></fa-icon>
-        <div>{{ link.title }}</div>
+        <span>{{ link.title }}</span>
       </a>
     </ng-template>
   </ng-template>
@@ -66,6 +66,6 @@
     [attr.data-test]="'side-menu__secondary-nav__' + item.translationKey"
   >
     <fa-icon size="lg" [fixedWidth]="true" [icon]="item.icon" routerLinkActive="active"></fa-icon>
-    <div>{{ item.translationKey | translate }}</div>
+    <span>{{ item.translationKey | translate }}</span>
   </a>
 </mat-nav-list>

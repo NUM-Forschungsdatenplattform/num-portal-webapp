@@ -30,8 +30,8 @@ export class ProjectEditorGeneralInfoKeywordsInputComponent {
       this.keywords = keywords.slice()
     }
 
-    if (event.input) {
-      event.input.value = ''
+    if (event.value) {
+      event.value = ''
     }
   }
 

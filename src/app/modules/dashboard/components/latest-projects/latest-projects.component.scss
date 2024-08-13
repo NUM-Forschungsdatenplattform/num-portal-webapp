@@ -6,7 +6,7 @@ table {
       word-break: break-word;
     }
 
-    &.mat-cell:not(:first-of-type):not(:last-of-type) {
+    &.mat-mdc-cell:not(:first-of-type):not(:last-of-type) {
       padding: 10px;
     }
   }
