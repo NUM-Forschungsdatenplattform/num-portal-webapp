@@ -17,7 +17,7 @@ export class AqbWhereGroupUiModel {
   constructor(baseGroup = false) {
     if (baseGroup) {
       const templateRestrictionGroup = new AqbWhereGroupUiModel()
-      templateRestrictionGroup.logicalOperator = LogicalOperator.Or
+      templateRestrictionGroup.logicalOperator = LogicalOperator.And
       this.children.push(templateRestrictionGroup)
       this.children.push(new AqbWhereGroupUiModel())
     }
