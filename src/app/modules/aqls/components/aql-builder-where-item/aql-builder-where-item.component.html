@@ -4,7 +4,7 @@
   </div>
 
   <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
-    <mat-label id="label">Operator</mat-label>
+    <mat-label>{{ 'LOGICAL_OPERATOR' | translate }}</mat-label>
     <mat-select
       [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
       [(value)]="item.comparisonOperator"
@@ -27,9 +27,9 @@
       class="input num-tiny-input value-input"
       *ngIf="item.isParameterType"
     >
-      <mat-label id="label">Parametername</mat-label>
+      <mat-label id="label">{{ 'PARAMETER_NAME' | translate }}</mat-label>
       <input
-        aria-labelledby="label"
+        [attr.aria-label]="'PARAMETER_NAME' | translate"
         type="text"
         matInput
         formControlName="value"
@@ -51,9 +51,9 @@
     class="num-tiny-input parameter-select"
     *ngIf="dialogMode === aqlBuilderDialogMode.AqlEditor"
   >
-    <mat-label id="label">Parameter</mat-label>
+    <mat-label>{{ 'PARAMETER' | translate }}</mat-label>
     <mat-select
-      [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+      [attr.aria-label]="'PARAMETER' | translate"
       [(value)]="item.isParameterType"
       data-test="aqb__where__item__is-parameter__selector"
     >
