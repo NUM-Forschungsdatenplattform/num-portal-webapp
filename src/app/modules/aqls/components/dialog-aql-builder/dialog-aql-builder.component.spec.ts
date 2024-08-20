@@ -89,7 +89,7 @@ describe('DialogAqlBuilderComponent', () => {
   describe('When the dialog is in aqlEditor mode', () => {
     beforeEach(() => {
       component.dialogInput = {
-        mode: AqlBuilderDialogMode.AqlEditor,
+        mode: AqlBuilderDialogMode.Criteria,
         model: new AqbUiModel(),
       }
 

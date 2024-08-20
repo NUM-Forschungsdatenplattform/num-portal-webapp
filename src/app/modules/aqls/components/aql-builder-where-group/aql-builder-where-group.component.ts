@@ -20,7 +20,7 @@ export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
   constructor() {}
 
   @Input()
-  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.Criteria
 
   @Input() group: AqbWhereGroupUiModel
 

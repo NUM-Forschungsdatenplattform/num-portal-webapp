@@ -33,7 +33,7 @@ const selectedItemWithoutRmType: IContainmentTreeNode = {
 export const selectClickTestCases: ISelectClickTest[] = [
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
     selectDestination: AqbSelectDestination.Select,
     clickEvent: {
       item: selectedItemWithRmType,
@@ -43,7 +43,7 @@ export const selectClickTestCases: ISelectClickTest[] = [
   },
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
     selectDestination: AqbSelectDestination.Select,
     clickEvent: {
       item: selectedItemWithoutRmType,
@@ -74,7 +74,7 @@ export const selectClickTestCases: ISelectClickTest[] = [
   // Where
   {
     result: false,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
     selectDestination: AqbSelectDestination.Where,
     clickEvent: {
       item: selectedItemWithoutRmType,
@@ -94,7 +94,7 @@ export const selectClickTestCases: ISelectClickTest[] = [
   },
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
     selectDestination: AqbSelectDestination.Where,
     clickEvent: {
       item: selectedItemWithRmType,
