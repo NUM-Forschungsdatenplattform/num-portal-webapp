@@ -8,6 +8,7 @@ import { QueryService } from '../../../../core/services/query/query.service'
 import { RESULT_SET_LOADING_ERROR } from '../../../search/components/manager-data-explorer/constants'
 import { IAqlExecutionResponse } from '../../../../shared/models/aql/execution/aql-execution-response.interface'
 import { Subscription } from 'rxjs'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 
 @Component({
   templateUrl: './search.component.html',
@@ -48,4 +49,6 @@ export class SearchComponent extends AqlEditorCeatorComponent implements OnDestr
       })
     )
   }
+
+  protected readonly AqlBuilderDialogMode = AqlBuilderDialogMode
 }
