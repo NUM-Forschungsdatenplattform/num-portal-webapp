@@ -465,7 +465,7 @@
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In the following list you can see the projects to which you have been released. You have access to a project until it is closed by the project lead.",
     "EXPLORE_PROJECT": "Retrieve project data",
-    "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.\n\nYou can either start the data retrieval directly or optionally restrict the data retrieval defined in the project even further.",
+    "EXPLORE_PROJECT_CONTENT": "On this page you have the possibility to retrieve the research data defined within the project.",
     "RESULT_SET": "Result Set",
     "NO_RESULTS_YET": "No results yet. Please press the button 'Retrieve Data' first.",
     "LOADING_RESULT_SET": "The result set is being loaded. Please wait a moment.",
