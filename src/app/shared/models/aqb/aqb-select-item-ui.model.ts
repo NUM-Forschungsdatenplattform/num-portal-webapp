@@ -13,14 +13,14 @@ export class AqbSelectItemUiModel {
   humanReadablePath: string
   compositionReferenceId: number
   archetypeReferenceId: number
-  isComposition: boolean
+  modelType: 'composition' | 'archetype' | 'ehr'
   templateId: string
 
   constructor(
     item: IContainmentTreeNode,
     compositionReferenceId: number,
     archetypeReferenceId: number,
-    isComposition: boolean,
+    modelType: 'composition' | 'archetype' | 'ehr',
     templateId: string
   ) {
     this.name = item.name || item.archetypeId
@@ -30,7 +30,7 @@ export class AqbSelectItemUiModel {
     this.humanReadablePath = item.humanReadablePath
     this.compositionReferenceId = compositionReferenceId
     this.archetypeReferenceId = archetypeReferenceId
-    this.isComposition = isComposition
+    this.modelType = modelType
     this.templateId = templateId
   }
 
@@ -39,7 +39,10 @@ export class AqbSelectItemUiModel {
       _type: AqbNodeType.SelectExpression,
       columnExpression: {
         _type: AqbNodeType.IdentifiedPath,
-        root: `${this.isComposition ? 'c' : 'o'}${this.archetypeReferenceId}`,
+        root:
+          this.modelType === 'ehr'
+            ? 'e'
+            : `${this.modelType === 'composition' ? 'c' : 'o'}${this.archetypeReferenceId}`,
         ...(this.aqlPath && { path: this.aqlPath }),
       },
       ...(this.givenName && { alias: this.givenName }),

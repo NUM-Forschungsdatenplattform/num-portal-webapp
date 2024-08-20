@@ -128,6 +128,7 @@
     "COMPILE_ERROR_MESSAGE": "The criterium could not be complied. Please check the criterium configuration and try again.",
     "GET_COMPOSITION_ERROR": "The template cannot be loaded. Please close the window and try again.",
     "COLUMNS": "Columns",
+    "NO_SELECT": "Please note: SELECT is not used to create a criterion.",
     "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
     "VALIDATION_ERROR": "The syntax of the criterium is not valid",
     "VALIDATION_SUCCESS": "The syntax of the criterium is valid",

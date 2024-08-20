@@ -149,7 +149,7 @@ describe('AqlEditorCeatorComponent', () => {
 
   describe('When a query is supposed to be created with the builder', () => {
     const dialogContentPayload: IAqlBuilderDialogInput = {
-      mode: AqlBuilderDialogMode.Criteria,
+      mode: AqlBuilderDialogMode.Search,
       model: new AqbUiModel(),
     }
     const dialogConfig: DialogConfig = {
@@ -158,7 +158,7 @@ describe('AqlEditorCeatorComponent', () => {
     }
 
     it('should open the dialog with the config including the content payload', () => {
-      component.openBuilderDialog(AqlBuilderDialogMode.Criteria)
+      component.openBuilderDialog(AqlBuilderDialogMode.Search)
       expect(mockDialogService.openDialog).toHaveBeenCalledTimes(1)
       expect(dialogCallParameter.dialogContentComponent).toEqual(
         dialogConfig.dialogContentComponent

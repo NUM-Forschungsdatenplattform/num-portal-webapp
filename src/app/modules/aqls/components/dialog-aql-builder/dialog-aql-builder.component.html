@@ -9,10 +9,14 @@
   ></num-aql-builder-templates>
 
   <section role="region" fxFlex="auto" fxLayout="column" fxLayoutGap="24px">
-    <num-aql-builder-select [aqbModel]="aqbModel"></num-aql-builder-select>
+    <num-aql-builder-select
+      [aqbModel]="aqbModel"
+      [dialogMode]="dialogInput.mode"
+    ></num-aql-builder-select>
     <num-aql-builder-contains
       [aqbModel]="aqbModel"
       [compositions]="compositions"
+      [dialogMode]="dialogInput.mode"
     ></num-aql-builder-contains>
     <num-aql-builder-where
       [aqbModel]="aqbModel"
@@ -31,7 +35,11 @@
 
   <num-button
     type="primary"
-    [isDisabled]="!aqbModel.select.length"
+    [isDisabled]="
+      dialogInput.mode === AqlBuilderDialogMode.Criteria
+        ? !aqbModel.contains.compositions.size
+        : !aqbModel.select.length
+    "
     (singleClick)="handleDialogConfirm()"
     data-test="aqb__confirm-button"
     >{{ 'BUTTON.APPLY_SELECTION' | translate }}</num-button

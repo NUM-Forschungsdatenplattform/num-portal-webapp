@@ -1,6 +1,33 @@
-<h2 class="mat-headline-3">From</h2>
+<h2 *ngIf="dialogMode !== AqlBuilderDialogMode.Criteria" class="mat-headline-3">From</h2>
 
-<div class="num-select-box contains" fxLayout="column" fxLayoutGap="20px">
+<div *ngIf="dialogMode === AqlBuilderDialogMode.Criteria">
+  <h2 class="mat-headline-3 pointer" (click)="setDestination()">From</h2>
+  <div
+    class="num-select-flag pointer"
+    [ngClass]="{
+      'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.From
+    }"
+    role="button"
+    tabindex="0"
+    aria-labelledby="section-heading"
+    (keydown.enter)="setDestination()"
+    (keydown.space)="setDestination()"
+    (click)="setDestination()"
+    data-test="aqb__select__set-destination-button"
+  >
+    <fa-icon icon="check"></fa-icon>
+  </div>
+</div>
+
+<div
+  class="num-select-box"
+  fxLayout="column"
+  fxLayoutGap="20px"
+  [ngClass]="{
+    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.From,
+    contains: dialogMode !== AqlBuilderDialogMode.Criteria
+  }"
+>
   <num-aql-builder-contains-group
     *ngFor="let composition of compositions; let i = index"
     role="list"

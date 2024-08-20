@@ -128,6 +128,7 @@
     "COMPILE_ERROR_MESSAGE": "Das Kriterium konnte nicht kompiliert werden. Bitte überprüfen Sie die Konfiguration des Kriteriums und versuchen Sie es erneut.",
     "GET_COMPOSITION_ERROR": "Dar Rückgabeparameter kann nicht geladen werden. Bitte schließen Sie das Fenster und versuchen Sie es erneut.",
     "COLUMNS": "Spalten",
+    "NO_SELECT": "Bitte beachten Sie: Für die Erstellung eines Kriteriums wird kein SELECT verwendet.",
     "WHERE_RESTRICTED_TO_COHORT": "Bitte beachten Sie: Die WHERE-Klausel ist auf die Kohorte beschränkt.",
     "VALIDATION_ERROR": "Die Syntax des Kriteriums ist nicht valide",
     "VALIDATION_SUCCESS": "Die Syntax des Kriteriums ist valide",

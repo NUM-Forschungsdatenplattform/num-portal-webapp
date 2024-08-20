@@ -1,36 +1,45 @@
-<h2 id="section-heading" class="mat-headline-3 pointer" (click)="setDestination()">Select</h2>
-<div
-  class="num-select-flag pointer"
-  [ngClass]="{
-    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Select
-  }"
-  role="button"
-  tabindex="0"
-  aria-labelledby="section-heading"
-  (keydown.enter)="setDestination()"
-  (keydown.space)="setDestination()"
-  (click)="setDestination()"
-  data-test="aqb__select__set-destination-button"
->
-  <fa-icon icon="check"></fa-icon>
+<div *ngIf="dialogMode === AqlBuilderDialogMode.Criteria">
+  <h2 id="section-heading" class="mat-headline-3">Select</h2>
+  <p>
+    {{ 'QUERIES.NO_SELECT' | translate }}
+  </p>
 </div>
-<div
-  class="num-select-box"
-  fxLayout="column"
-  [ngClass]="{
-    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Select
-  }"
->
-  <num-aql-builder-select-item
-    class="aqb-item mat-elevation-z2"
+
+<div *ngIf="dialogMode !== AqlBuilderDialogMode.Criteria">
+  <h2 id="section-heading" class="mat-headline-3 pointer" (click)="setDestination()">Select</h2>
+  <div
+    class="num-select-flag pointer"
     [ngClass]="{
-      'aqb-item--last': i === aqbModel.select.length - 1
+      'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Select
     }"
-    fxLayout="row"
-    fxLayoutAlign="space-between start"
-    *ngFor="let item of aqbModel.select; let i = index"
-    [item]="item"
-    (deleteItem)="deleteItem(i)"
-    data-test="aqb__select__item"
-  ></num-aql-builder-select-item>
+    role="button"
+    tabindex="0"
+    aria-labelledby="section-heading"
+    (keydown.enter)="setDestination()"
+    (keydown.space)="setDestination()"
+    (click)="setDestination()"
+    data-test="aqb__select__set-destination-button"
+  >
+    <fa-icon icon="check"></fa-icon>
+  </div>
+  <div
+    class="num-select-box"
+    fxLayout="column"
+    [ngClass]="{
+      'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Select
+    }"
+  >
+    <num-aql-builder-select-item
+      class="aqb-item mat-elevation-z2"
+      [ngClass]="{
+        'aqb-item--last': i === aqbModel.select.length - 1
+      }"
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+      *ngFor="let item of aqbModel.select; let i = index"
+      [item]="item"
+      (deleteItem)="deleteItem(i)"
+      data-test="aqb__select__item"
+    ></num-aql-builder-select-item>
+  </div>
 </div>
