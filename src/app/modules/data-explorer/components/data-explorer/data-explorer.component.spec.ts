@@ -183,6 +183,7 @@ describe('DataExplorerComponent', () => {
     router = TestBed.inject(Router)
     jest.restoreAllMocks()
     jest.clearAllMocks()
+    jest.spyOn(URL, 'createObjectURL').mockImplementation(() => 'url')
     jest.spyOn(router, 'navigate').mockImplementation()
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
     jest.spyOn(cohortService, 'update').mockImplementation(() => of(mockCohort1))
