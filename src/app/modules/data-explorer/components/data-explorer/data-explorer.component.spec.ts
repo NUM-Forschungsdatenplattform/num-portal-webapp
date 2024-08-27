@@ -460,15 +460,18 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should call the projectService.exportFile', () => {
+      // Mocking URL.createObjectURL
       const mockCreateUrl = jest.fn().mockReturnValue('url')
-      Object.defineProperty(URL, 'createObjectURL', {
-        value: () => mockCreateUrl,
-      })
+      const createObjectURLSpy = jest
+        .spyOn(URL, 'createObjectURL')
+        .mockImplementation(mockCreateUrl)
 
       component.exportFile('csv')
 
       expect(projectService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
+
+      createObjectURLSpy.mockRestore()
     })
 
     it('should trigger the download', () => {

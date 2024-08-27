@@ -1,4 +1,6 @@
 import 'jest-preset-angular/setup-jest'
+import 'zone.js'
+import 'zone.js/testing'
 import ResizeObserver from 'resize-observer-polyfill'
 
 Object.defineProperty(window, 'CSS', { value: null })

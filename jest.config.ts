@@ -27,14 +27,12 @@ const config: Config = {
   testResultsProcessor: 'jest-sonar-reporter',
   coverageDirectory: '<rootDir>/reports/coverage',
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(compilerOptions['paths'] || {}, {
+    ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
       prefix: '<rootDir>/',
     }),
     '^(.*)/environments/(.*)$': '<rootDir>/src/environments/environment.test.ts',
     '^lodash-es$': '<rootDir>/node_modules/lodash/index.js',
   },
-  // This custom resolver is only for handling problems with Jest v28 and can be removed with Jest v29
-  resolver: '<rootDir>/src/custom-test-resolver.js',
 }
 
 export default config
