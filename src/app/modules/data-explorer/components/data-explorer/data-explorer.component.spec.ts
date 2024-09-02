@@ -183,7 +183,6 @@ describe('DataExplorerComponent', () => {
     router = TestBed.inject(Router)
     jest.restoreAllMocks()
     jest.clearAllMocks()
-    jest.spyOn(URL, 'createObjectURL').mockImplementation(() => 'url')
     jest.spyOn(router, 'navigate').mockImplementation()
     jest.spyOn(cohortService, 'get').mockImplementation(() => of(mockCohort1))
     jest.spyOn(cohortService, 'update').mockImplementation(() => of(mockCohort1))
@@ -233,7 +232,7 @@ describe('DataExplorerComponent', () => {
 
       fixture.detectChanges()
       component.resolvedData.project = new ProjectUiModel(mockProject1)
-      expect(cohortService.get).toHaveBeenLastCalledWith(mockProject1.cohortId)
+      expect(cohortService.get).toHaveBeenCalledWith(mockProject1.cohortId)
 
       fixture.whenStable().then(() => {
         expect(component.isCohortsFetched).toBeTruthy()
@@ -249,9 +248,7 @@ describe('DataExplorerComponent', () => {
       fixture = TestBed.createComponent(DataExplorerComponent)
       component = fixture.componentInstance
       fixture.detectChanges()
-      expect(adminService.getUsersByIds).toHaveBeenLastCalledWith([
-        ...users.map((user) => user.userId),
-      ])
+      expect(adminService.getUsersByIds).toHaveBeenCalledWith([...users.map((user) => user.userId)])
 
       fixture.whenStable().then(() => {
         expect(component.isResearchersFetched).toBeTruthy()
@@ -461,18 +458,17 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should call the projectService.exportFile', () => {
-      // Mocking URL.createObjectURL
       const mockCreateUrl = jest.fn().mockReturnValue('url')
-      const createObjectURLSpy = jest
-        .spyOn(URL, 'createObjectURL')
-        .mockImplementation(mockCreateUrl)
+      Object.defineProperty(URL, 'createObjectURL', {
+        value: () => mockCreateUrl,
+        configurable: true,
+      })
 
       component.exportFile('csv')
 
       expect(projectService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
-
-      createObjectURLSpy.mockRestore()
+      expect(mockCreateUrl).toHaveBeenCalled()
     })
 
     it('should trigger the download', () => {
@@ -487,10 +483,12 @@ describe('DataExplorerComponent', () => {
 
       Object.defineProperty(document, 'createElement', {
         value: () => mockHtmlElement,
+        configurable: true,
       })
 
       Object.defineProperty(URL, 'createObjectURL', {
         value: () => mockCreateUrl,
+        configurable: true,
       })
 
       component.exportFile('csv')
@@ -542,6 +540,7 @@ describe('DataExplorerComponent', () => {
 
       Object.defineProperty(document, 'createElement', {
         value: () => mockHtmlElement,
+        configurable: true,
       })
 
       component.exportFile('json')

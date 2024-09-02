@@ -190,16 +190,19 @@ describe('ManagerDataRetrievComponent', () => {
 
     it('should call the patientFilterService.exportFile', () => {
       const mockCreateUrl = jest.fn().mockReturnValue('url')
-      const createObjectURLSpy = jest
-        .spyOn(URL, 'createObjectURL')
-        .mockImplementation(mockCreateUrl)
-
+      Object.defineProperty(URL, 'createObjectURL', {
+        value: () => mockCreateUrl,
+        configurable: true,
+        writable: true,
+      })
       component.exportFile('csv')
-
+      console.log(mockCreateUrl)
       expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
+      expect(downloadFile).toHaveBeenCalledWith('manager_preview', 'csv', expect.any(String))
+      expect(downloadFile).toHaveBeenCalledTimes(1)
+      console.log(downloadFile)
       expect(component.isExportLoading).toEqual(false)
-
-      createObjectURLSpy.mockRestore()
+      expect(mockCreateUrl).toHaveBeenCalledTimes(1)
     })
 
     it('should trigger the download', () => {
