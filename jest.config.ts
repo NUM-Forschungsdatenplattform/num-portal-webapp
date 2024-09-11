@@ -9,6 +9,11 @@ const config: Config = {
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
   testMatch: ['**/+(*.)+(spec).+(ts)'],
+  testEnvironment: 'jsdom',
+  snapshotFormat: {
+    escapeString: true,
+    printBasicPrototype: true,
+  },
   setupFilesAfterEnv: ['<rootDir>/src/setupTest.ts'],
   collectCoverage: true,
   collectCoverageFrom: [

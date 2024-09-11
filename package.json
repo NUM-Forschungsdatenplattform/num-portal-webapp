@@ -2,7 +2,6 @@
   "name": "num-portal-webapp",
   "version": "1.21.0-SNAPSHOT",
   "scripts": {
-    "postinstall": "ngcc",
     "ng": "ng",
     "start": "ng serve",
     "start:hmr": "ng serve --hmr",

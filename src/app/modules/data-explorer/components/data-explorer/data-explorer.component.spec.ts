@@ -452,69 +452,70 @@ describe('DataExplorerComponent', () => {
   })
 
   describe('When the Export CSV Button is clicked', () => {
+    let mockCreateUrl
+
     beforeEach(() => {
       jest.spyOn(projectService, 'exportFile').mockImplementation(() => of('some text'))
       component.compiledQuery = buildResponse
+      mockCreateUrl = jest.fn().mockReturnValue('url')
+      Object.defineProperty(window.URL, 'createObjectURL', {
+        value: mockCreateUrl,
+        writable: true,
+      })
     })
 
     it('should call the projectService.exportFile', () => {
-      const mockCreateUrl = jest.fn().mockReturnValue('url')
-      Object.defineProperty(URL, 'createObjectURL', {
-        value: () => mockCreateUrl,
-        configurable: true,
-      })
-
       component.exportFile('csv')
 
       expect(projectService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
       expect(mockCreateUrl).toHaveBeenCalled()
     })
+  })
 
-    it('should trigger the download', () => {
-      const filename = `csv_export_${component.project.id}.zip`
-      const mockHtmlElement = document.createElement('a')
+  it('should trigger the download', () => {
+    const filename = `csv_export_${component.project.id}.zip`
+    const mockHtmlElement = document.createElement('a')
 
-      mockHtmlElement.setAttribute = jest.fn()
-      mockHtmlElement.click = jest.fn()
-      mockHtmlElement.remove = jest.fn()
+    mockHtmlElement.setAttribute = jest.fn()
+    mockHtmlElement.click = jest.fn()
+    mockHtmlElement.remove = jest.fn()
 
-      const mockCreateUrl = jest.fn().mockReturnValue('url')
+    const mockCreateUrl = jest.fn().mockReturnValue('url')
 
-      Object.defineProperty(document, 'createElement', {
-        value: () => mockHtmlElement,
-        configurable: true,
-      })
-
-      Object.defineProperty(URL, 'createObjectURL', {
-        value: () => mockCreateUrl,
-        configurable: true,
-      })
-
-      component.exportFile('csv')
-
-      expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
-      expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
-      expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
+    Object.defineProperty(document, 'createElement', {
+      value: () => mockHtmlElement,
+      configurable: true,
     })
 
-    it('should show toast in case of error', () => {
-      jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
-      jest.spyOn(toastMessageService, 'openToast').mockImplementation()
-
-      component.exportFile('csv')
-      expect(projectService.exportFile).toHaveBeenCalledTimes(1)
-      expect(component.isExportLoading).toEqual(false)
-
-      const messageConfig: IToastMessageConfig = {
-        ...EXPORT_ERROR,
-        messageParameters: {
-          format: 'CSV',
-        },
-      }
-
-      expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
+    Object.defineProperty(URL, 'createObjectURL', {
+      value: () => mockCreateUrl,
+      configurable: true,
     })
+
+    component.exportFile('csv')
+
+    expect(mockHtmlElement.setAttribute).toHaveBeenCalledWith('download', filename)
+    expect(mockHtmlElement.click).toHaveBeenCalledTimes(1)
+    expect(mockHtmlElement.remove).toHaveBeenCalledTimes(1)
+  })
+
+  it('should show toast in case of error', () => {
+    jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+    jest.spyOn(toastMessageService, 'openToast').mockImplementation()
+
+    component.exportFile('csv')
+    expect(projectService.exportFile).toHaveBeenCalledTimes(1)
+    expect(component.isExportLoading).toEqual(false)
+
+    const messageConfig: IToastMessageConfig = {
+      ...EXPORT_ERROR,
+      messageParameters: {
+        format: 'CSV',
+      },
+    }
+
+    expect(toastMessageService.openToast).toHaveBeenCalledWith(messageConfig)
   })
 
   describe('When the Export JSON Button is clicked', () => {

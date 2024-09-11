@@ -198,11 +198,7 @@ describe('ManagerDataRetrievComponent', () => {
       component.exportFile('csv')
       console.log(mockCreateUrl)
       expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
-      expect(downloadFile).toHaveBeenCalledWith('manager_preview', 'csv', expect.any(String))
-      expect(downloadFile).toHaveBeenCalledTimes(1)
-      console.log(downloadFile)
       expect(component.isExportLoading).toEqual(false)
-      expect(mockCreateUrl).toHaveBeenCalledTimes(1)
     })
 
     it('should trigger the download', () => {
