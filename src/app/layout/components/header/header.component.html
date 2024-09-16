@@ -31,15 +31,9 @@
           : (currentNavItem.translationKey | translate)
       }}
     </h1>
-
-    <nav
-      mat-tab-nav-bar
-      [backgroundColor]="'#fff'"
-      color="accent"
-      *ngIf="currentTabNav && !unapprovedUser"
-    >
+    <nav mat-tab-nav-bar *ngIf="currentTabNav && !unapprovedUser" [tabPanel]="tabPanel">
       <ng-container *ngFor="let tab of currentTabNav">
-        <a
+        <span
           class="no-focus"
           mat-tab-link
           [routerLink]="tab.routeTo"
@@ -52,8 +46,9 @@
           *numUserHasRole="tab.roles"
         >
           {{ tab.translationKey | translate }}
-        </a>
+        </span>
       </ng-container>
     </nav>
+    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
   </div>
 </section>

@@ -26,7 +26,7 @@ import {
 } from './constants'
 
 /* eslint-disable @typescript-eslint/naming-convention */
-describe('AqlEditorCeatorComponent', () => {
+describe('AqlEditorCreatorComponent', () => {
   let component: AqlEditorCreatorComponent
   let fixture: ComponentFixture<AqlEditorCreatorComponent>
 
@@ -51,6 +51,7 @@ describe('AqlEditorCeatorComponent', () => {
 
   Object.defineProperty(window, 'monaco', {
     value: monacoMock,
+    configurable: true,
   })
 
   const editorInitEmitter = new EventEmitter<any>()
@@ -142,7 +143,7 @@ describe('AqlEditorCeatorComponent', () => {
     beforeEach(() => {
       editorInitEmitter.emit('test')
     })
-    it('should assign the reference to the editor in this componenent', () => {
+    it('should assign the reference to the editor in this component', () => {
       expect(component.editor).toEqual('test')
     })
   })
@@ -271,7 +272,7 @@ describe('AqlEditorCeatorComponent', () => {
     })
   })
 
-  describe('When the validation is not successfull', () => {
+  describe('When the validation is not successfully', () => {
     it('should display an error message to the user and return false', async () => {
       jest
         .spyOn(mockAqlEditorService, 'validateAql')
@@ -342,7 +343,7 @@ describe('AqlEditorCeatorComponent', () => {
       expect(component.determineHitsContent.count).toEqual(null)
     })
 
-    it('should display the generic error when a unkown error occurs', async () => {
+    it('should display the generic error when a unknown error occurs', async () => {
       jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 500 }))
       component.aqlQuery = 'test'
       await component.determineHits()

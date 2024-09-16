@@ -140,7 +140,8 @@ describe('SideMenuComponent', () => {
     userInfoSubject$.next(userInfo)
     fixture.detectChanges()
     const nativeElement = fixture.debugElement.nativeElement
-    const button = nativeElement.querySelector('.mat-list-item')
+    const button = nativeElement.querySelector('.num-mat-list-item')
+    console.log(button)
     button.click()
     expect(component.toggleSideMenu.emit).toHaveBeenCalledTimes(1)
   })

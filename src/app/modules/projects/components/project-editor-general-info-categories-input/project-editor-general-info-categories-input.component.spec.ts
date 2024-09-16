@@ -45,23 +45,23 @@ describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
   describe('Adding/Removing Categories', () => {
     beforeEach(() => {
       let categories = []
-
+      // Mock der categories Getter und Setter
       jest.spyOn(component, 'categories', 'get').mockImplementation(() => categories)
       jest.spyOn(component, 'categories', 'set').mockImplementation((value) => (categories = value))
     })
 
-    it('should Add Category, if not dublicate', () => {
+    it('should add category if not a duplicate', () => {
       component.addCategory(mockCategory, null)
       expect(component.categories.length).toEqual(1)
     })
 
-    it('should NOT add the Category again, since it is now dublicate', () => {
+    it('should NOT add the category again if it is now a duplicate', () => {
       component.addCategory(mockCategory, null)
       expect(component.categories.length).toEqual(1)
     })
 
-    it('should remove Category', () => {
-      component.removeCategory(0)
+    it('should remove category', () => {
+      component.removeCategory(0) // Then remove it
       expect(component.categories.length).toEqual(0)
     })
   })

@@ -1,3 +1,6 @@
+@import '../../../../styles/themes';
+$accent: map-get($num-portal-webapp-theme, accent);
+
 .toolbar {
   background: transparent;
   font-size: 14px;
@@ -7,9 +10,21 @@
   border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
 .mat-tab-label-active {
   color: black;
   opacity: 1;
+}
+.mat-mdc-tab-link.mat-mdc-tab-disabled {
+  cursor: default;
+}
+.mat-mdc-tab-link.mat-mdc-tab-disabled.mdc-tab-indicator--active {
+  color: mat-color($accent) !important;
+  opacity: 1;
+}
+
+.mat-mdc-tab-link {
+  cursor: pointer;
 }
 
 .header-image {

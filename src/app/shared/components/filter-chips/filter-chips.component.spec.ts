@@ -50,7 +50,7 @@ describe('FilterChipsComponent', () => {
   describe('When a filterChip is clicked', () => {
     it('should toggle the selected state', () => {
       const nativeElement = fixture.debugElement.nativeElement
-      const chip = nativeElement.querySelector('mat-chip')
+      const chip = nativeElement.querySelector('mat-chip-option')
       chip.click()
       expect(component.filterChips[0].isSelected).toEqual(true)
     })
@@ -58,7 +58,7 @@ describe('FilterChipsComponent', () => {
     it('should emit the change event', () => {
       jest.spyOn(component.selectionChange, 'emit').mockImplementation()
       const nativeElement = fixture.debugElement.nativeElement
-      const chip = nativeElement.querySelector('mat-chip')
+      const chip = nativeElement.querySelector('mat-chip-option')
       chip.click()
       expect(component.selectionChange.emit).toHaveBeenCalledWith(component.filterChips)
     })

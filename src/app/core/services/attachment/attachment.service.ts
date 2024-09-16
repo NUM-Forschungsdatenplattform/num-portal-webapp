@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, catchError, filter, map, Observable, of, tap, throwError } from 'rxjs'
+import { BehaviorSubject, catchError, filter, map, Observable, tap, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AttachmentUploadProgress } from 'src/app/shared/models/attachment/attachment-upload-progress.interface'
 import { AttachmentUploadStatus } from 'src/app/shared/models/attachment/attachment-upload-status.enum'

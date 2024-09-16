@@ -1,13 +1,15 @@
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
+@use '@angular/material/theming' as mat-themes;
+
 @import './font';
 @import './themes';
 @import './custom-material';
 @import './general-styles/_margin-bottom-classes';
 
-$num-typography: map-get($num-portal-webapp-theme, num-typography);
-@include mat-core($num-typography);
-@include angular-material-theme($num-portal-webapp-theme);
+@include mat.core();
 @include custom-material_themed($num-portal-webapp-theme);
+@include mat.all-component-themes($num-portal-webapp-theme);
+@include mat.typography-hierarchy($num-typography);
 
 html,
 body {

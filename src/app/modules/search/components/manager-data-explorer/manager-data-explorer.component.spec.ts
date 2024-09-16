@@ -192,10 +192,11 @@ describe('ManagerDataRetrievComponent', () => {
       const mockCreateUrl = jest.fn().mockReturnValue('url')
       Object.defineProperty(URL, 'createObjectURL', {
         value: () => mockCreateUrl,
+        configurable: true,
+        writable: true,
       })
-
       component.exportFile('csv')
-
+      console.log(mockCreateUrl)
       expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
     })

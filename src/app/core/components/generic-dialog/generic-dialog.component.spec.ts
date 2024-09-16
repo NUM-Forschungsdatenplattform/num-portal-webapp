@@ -7,7 +7,6 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { DialogSize } from 'src/app/shared/models/dialog/dialog-size.enum'
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing'
 import { GenericDialogComponent } from './generic-dialog.component'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 
@@ -52,11 +51,6 @@ describe('GenericDialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: dialogConfig },
         { provide: MatDialogRef, useValue: matDialogRef },
       ],
-    })
-    TestBed.overrideModule(BrowserDynamicTestingModule, {
-      set: {
-        entryComponents: [StubComponent],
-      },
     })
   })
 

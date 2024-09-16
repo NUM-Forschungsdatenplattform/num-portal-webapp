@@ -5,7 +5,7 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { Subject } from 'rxjs'
 
-describe('ToastService', () => {
+describe('ToastMessageService', () => {
   let service: ToastMessageService
 
   const translatedText = 'translatedText'
@@ -16,36 +16,36 @@ describe('ToastService', () => {
     duration: 5000,
   }
 
-  const snackbarCallOptions = {
+  const snackbarCallOptions: MatSnackBarConfig = {
     duration: toastConfig.duration,
     panelClass: ['num-toast', `num-toast-${toastConfig.type}`],
     verticalPosition: 'top',
-  } as MatSnackBarConfig
+  }
 
   const closeActionSubject$ = new Subject<void>()
+
+  // Mock für MatSnackBar
   const mockSnackbar = {
-    open: jest.fn().mockImplementation(() => {
-      return {
-        onAction: () => closeActionSubject$,
-      }
+    open: jest.fn().mockReturnValue({
+      onAction: () => closeActionSubject$,
     }),
   } as unknown as MatSnackBar
 
+  // Mock für TranslateService
   const mockTranslateService = {
-    instant: jest.fn(),
+    instant: jest.fn().mockReturnValue(translatedText),
   } as unknown as TranslateService
 
   beforeEach(() => {
     service = new ToastMessageService(mockSnackbar, mockTranslateService)
-    jest.spyOn(mockTranslateService, 'instant').mockImplementation(() => translatedText)
   })
 
-  it('should run #openToast()', async () => {
+  it('should call MatSnackBar open method with correct arguments', () => {
     service.openToast(toastConfig)
     expect(mockSnackbar.open).toHaveBeenCalledWith(translatedText, null, snackbarCallOptions)
   })
 
-  it('should run the callback and then dismiss the toast, if there is a callback', async () => {
+  it('should run the callback and then dismiss the toast if there is a callback', () => {
     let didCallbackRun = false
     const callbackToastConfig: IToastMessageConfig = {
       ...toastConfig,

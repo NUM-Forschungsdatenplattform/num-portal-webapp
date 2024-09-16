@@ -20,7 +20,7 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockUser } from 'src/mocks/data-mocks/admin.mock'
 import { mockOrganization2, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
-import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
+import { mockUserProfile1, mockUserProfile2 } from 'src/mocks/data-mocks/user-profile.mock'
 import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
 import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
 import { EDIT_USER_ERROR, EDIT_USER_SUCCESS, INVALID_USER_NAME_ERROR } from './constants'
@@ -51,7 +51,11 @@ describe('DialogEditUserDetailsComponent', () => {
   } as unknown as OrganizationService
 
   const userProfileSubject$ = new Subject<IUserProfile>()
+  const mockObservable = {
+    subscribe: () => {},
+  }
   const profileService = {
+    get: jest.fn().mockImplementation(() => of(mockObservable)),
     userProfileObservable$: userProfileSubject$.asObservable(),
   } as unknown as ProfileService
 
@@ -118,6 +122,7 @@ describe('DialogEditUserDetailsComponent', () => {
     jest.spyOn(adminService, 'approveUser').mockImplementation((userId: string) => of(userId))
     jest.spyOn(adminService, 'refreshFilterResult').mockImplementation(() => of())
     jest.spyOn(adminService, 'getUnapprovedUsers').mockImplementation(() => of([]))
+    jest.spyOn(profileService, 'get').mockImplementation(() => of(mockUserProfile2))
   })
 
   afterEach(() => {
@@ -308,7 +313,7 @@ describe('DialogEditUserDetailsComponent', () => {
       expect(component.userNameForm.get('lastName').value).toEqual(mockUser.lastName)
     })
 
-    it('should not call changeUnserName method of admin service on uncahched data', async () => {
+    it('should not call changeUserName method of admin service on uncached data', async () => {
       jest.spyOn(adminService, 'changeUserName')
       await component.handleDialogConfirm()
       expect(adminService.changeUserName).not.toHaveBeenCalled()

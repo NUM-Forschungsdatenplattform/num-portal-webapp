@@ -1,25 +1,29 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ 'FORM.CATEGORY' | translate }}</mat-label>
-  <mat-chip-list
+  <mat-chip-grid
     #categoryChipList
     aria-label="Category selection"
     data-test="project-editor__general-info__categories-chip-list"
   >
-    <mat-chip
+    <mat-chip-option
       *ngFor="let category of categories; let i = index"
       (removed)="removeCategory(i)"
       [value]="category"
       class="chip-primary"
       data-test="project-editor__general-info__category-chip"
+      removable
     >
       <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
-      <fa-icon
-        icon="times-circle"
+      <button
+        mat-icon-button
+        matChipRemove
+        aria-label="Remove category"
         class="chip__remove-icon"
         data-test="project-editor__general-info__categories-remove-category-button"
-        matChipRemove
-      ></fa-icon>
-    </mat-chip>
+      >
+        <fa-icon icon="times-circle"></fa-icon>
+      </button>
+    </mat-chip-option>
     <input
       #categoryInput
       placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
@@ -31,7 +35,7 @@
       (focus)="openCategoryAutocomplete()"
       data-test="project-editor__general-info__categories-input"
     />
-  </mat-chip-list>
+  </mat-chip-grid>
   <mat-autocomplete
     #categoryAutocomplete="matAutocomplete"
     (optionSelected)="addCategory($event, trigger)"

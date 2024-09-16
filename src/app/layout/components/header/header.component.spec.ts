@@ -26,7 +26,7 @@ describe('HeaderComponent', () => {
   let router: Router
   const routerEventsSubject = new Subject<ActivationEnd | ActivationStart>()
 
-  @Component({ selector: 'num-stub', template: '' })
+  @Component({ selector: 'num-stub', template: '<div mat-tab-nav-panel></div>' })
   class StubComponent {}
 
   const mockConfigService = {
@@ -150,8 +150,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     router = TestBed.inject(Router)
-    const routerAny = router as any
-    routerAny.events = routerEventsSubject.asObservable()
+    jest.spyOn(router, 'events', 'get').mockReturnValue(routerEventsSubject.asObservable())
     fixture = TestBed.createComponent(HeaderComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
@@ -271,19 +270,21 @@ describe('HeaderComponent', () => {
     }
     beforeEach(() => {
       routerEventsSubject.next(routerEvent)
-      harnessLoader = TestbedHarnessEnvironment.loader(fixture)
       fixture.detectChanges()
+      harnessLoader = TestbedHarnessEnvironment.loader(fixture)
     })
     it('should show all tabs to user with required roles', async () => {
       mockUserInfoSubject.next(mockManagerInfo)
+      fixture.detectChanges()
       const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
-      expect(tabLinks).toHaveLength(navItemsWithRestrictedTabs.tabNav.length)
+      expect(tabLinks.length).toBe(navItemsWithRestrictedTabs.tabNav.length)
     })
 
     it('should restrict tabs be only visible to allowed roles', async () => {
       mockUserInfoSubject.next(mockResearcherInfo)
+      fixture.detectChanges()
       const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
-      expect(tabLinks).toHaveLength(navItemsWithRestrictedTabs.tabNav.length - 1)
+      expect(tabLinks.length).toBe(navItemsWithRestrictedTabs.tabNav.length - 1)
     })
   })
 })
