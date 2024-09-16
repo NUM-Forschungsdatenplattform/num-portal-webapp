@@ -1,6 +1,6 @@
 {
   "name": "num-portal-webapp",
-  "version": "1.21.0",
+  "version": "1.20.0-SNAPSHOT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
