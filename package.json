@@ -47,7 +47,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@swimlane/ngx-charts": "^20.5.0",
     "angular-oauth2-oidc": "^17.0.2",
-    "echarts": "^5.4.3",
+    "echarts": "^5.5.1",
     "lodash-es": "^4.17.21",
     "moment": "^2.30.1",
     "monaco-editor": "^0.51.0",
