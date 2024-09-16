@@ -1,7 +1,9 @@
+@use '@angular/material' as mat;
+
 @mixin mat-hint_themed($theme) {
   $additional: map-get($theme, additional);
 
   .mat-mdc-form-field-hint {
-    color: mat-color($additional, dark-grey);
+    color: mat.get-color-from-palette($additional, dark-grey);
   }
 }

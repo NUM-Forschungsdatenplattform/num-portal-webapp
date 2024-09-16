@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @mixin color-classes_themed($theme) {
   $accent: map-get($theme, accent);
   $primary: map-get($theme, primary);
@@ -8,23 +10,23 @@
   .num-fc {
     &--primary,
     &--p {
-      color: mat-color($primary);
+      color: mat.get-color-from-palette($primary);
     }
     &--accent,
     &--a {
-      color: mat-color($accent);
+      color: mat.get-color-from-palette($accent);
     }
     &--warn,
     &--w {
-      color: mat-color($warn, warning);
+      color: mat.get-color-from-palette($warn, warning);
     }
     &--success,
     &--s {
-      color: mat-color($additional, success);
+      color: mat.get-color-from-palette($additional, success);
     }
     &--disabled,
     &--d {
-      color: mat-color($additional, mid-grey);
+      color: mat.get-color-from-palette($additional, mid-grey);
     }
   }
 
@@ -32,19 +34,19 @@
   .num-bc {
     &--primary,
     &--p {
-      background: mat-color($primary);
+      background: mat.get-color-from-palette($primary);
     }
     &--accent,
     &--a {
-      background: mat-color($accent);
+      background: mat.get-color-from-palette($accent);
     }
     &--warn,
     &--w {
-      background: mat-color($warn);
+      background: mat.get-color-from-palette($warn);
     }
     &--disabled,
     &--d {
-      background: mat-color($additional, mid-grey);
+      background: mat.get-color-from-palette($additional, mid-grey);
     }
   }
 }

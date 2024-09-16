@@ -1,7 +1,16 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+/* Define the grey palette if not already defined */
+$mat-grey: mat.define-palette(mat.$grey-palette);
+
+/* Define your custom variables */
+$dark-focused: rgba(0, 0, 0, 0.12);
+
 @function mat-light-theme-background($primary, $accent, $additional) {
   @return (
-    background: mat-color($additional, page-background),
-    disabled-button: mat-color($primary, 200),
+    background: mat.get-color-from-palette($additional, page-background),
+    disabled-button: mat.get-color-from-palette($primary, 200),
     // Defaults below
     status-bar: map_get($mat-grey, 300),
     app-bar: map_get($mat-grey, 100),

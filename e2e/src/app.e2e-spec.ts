@@ -9,8 +9,11 @@ describe('workspace-project App', () => {
   })
 
   it('should display welcome message', () => {
-    page.navigateTo()
-    expect(page.getTitleText()).toEqual('num-portal-webapp app is running!')
+    page.navigateTo().then(() => {
+      page.getTitleText().then((titleText) => {
+        expect(titleText).toEqual('num-portal-webapp app is running!')
+      })
+    })
   })
 
   afterEach(async () => {

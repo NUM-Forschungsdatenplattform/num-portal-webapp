@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @mixin table_responsive_themed($theme) {
   .table-responsive {
     display: block;

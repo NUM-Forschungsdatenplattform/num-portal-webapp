@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @mixin mat-list_themed($theme) {
   $accent: map-get($theme, accent);
 
@@ -14,20 +16,20 @@
     letter-spacing: 0.25px !important;
 
     &--active {
-      background: mat-color($accent, 50);
+      background: mat.get-color-from-palette($accent, 50);
       font-weight: 500 !important;
 
       fa-icon {
-        color: mat-color($accent);
+        color: mat.get-color-from-palette($accent);
       }
     }
 
     &:hover {
-      background: mat-color($accent, 100) !important;
+      background: mat.get-color-from-palette($accent, 100) !important;
     }
 
     &:focus {
-      background: mat-color($accent, 200) !important;
+      background: mat.get-color-from-palette($accent, 200) !important;
     }
 
     &.navbar-logo {
