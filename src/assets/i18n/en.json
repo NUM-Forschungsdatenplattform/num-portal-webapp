@@ -403,7 +403,8 @@
       "SELECT_FILES_LABEL": "Select file",
       "UPLOAD_DATE": "Date",
       "UPLOAD_SUCCESS_MESSAGE": "File {{fileName}} has been uploaded successfully.",
-      "UPLOAD": "Upload"
+      "UPLOAD": "Upload",
+      "SAVE_FIRST": "The project must be saved before attachments can be uploaded."
     },
     "CATEGORIES_NO_RESULTS": "No Results",
     "CHANGE_STATUS_SUCCESS": "The status of the project has been updated successfully.",
