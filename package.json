@@ -62,7 +62,7 @@
     "@angular-eslint/builder": "17.5.3",
     "@angular-eslint/eslint-plugin": "17.5.3",
     "@angular-eslint/eslint-plugin-template": "17.5.3",
-    "@angular-eslint/schematics": "17.5.3",
+    "@angular-eslint/schematics": "17.3.9",
     "@angular-eslint/template-parser": "17.5.3",
     "@angular/cli": "^17.3.9",
     "@angular/compiler-cli": "^17.3.12",
@@ -94,7 +94,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.6.2",
     "uuid": "^9.0.1"
   },
   "husky": {
