@@ -404,7 +404,8 @@
       "SELECT_FILES_LABEL": "Datei wählen",
       "UPLOAD_DATE": "Datum",
       "UPLOAD_SUCCESS_MESSAGE": "Datei {{fileName}} wurde erfolgreich hochgeladen.",
-      "UPLOAD": "Hochladen"
+      "UPLOAD": "Hochladen",
+      "SAVE_FIRST": "Das Projekt muss gespeichert werden, bevor Anhänge hochgeladen werden können."
     },
     "CATEGORIES_NO_RESULTS": "Keine Ergebnisse",
     "CHANGE_STATUS_SUCCESS": "Der Projektstatus wurde erfolgreich aktualisiert.",
