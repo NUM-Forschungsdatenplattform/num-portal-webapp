@@ -1,18 +1,20 @@
+@use '@angular/material' as mat;
+
 @mixin general_table_themed($theme) {
   $accent: map-get($theme, accent);
 
   .mat-mdc-row {
     &--active,
     &--selected {
-      background: mat-color($accent, 50);
+      background: mat.get-color-from-palette($accent, 50);
     }
 
     &:hover {
-      background: mat-color($accent, 100) !important;
+      background: mat.get-color-from-palette($accent, 100) !important;
     }
 
     &:focus {
-      background: mat-color($accent, 200) !important;
+      background: mat.get-color-from-palette($accent, 200) !important;
     }
   }
 

@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @mixin divider-classes_themed($theme) {
   $accent: map-get($theme, accent);
   $primary: map-get($theme, primary);
@@ -27,19 +29,19 @@
     &.num-divider-color {
       &--primary,
       &--p {
-        border-color: mat-color($primary);
+        border-color: mat.get-color-from-palette($primary);
       }
       &--accent,
       &--a {
-        border-color: mat-color($accent);
+        border-color: mat.get-color-from-palette($accent);
       }
       &--warn,
       &--w {
-        border-color: mat-color($warn);
+        border-color: mat.get-color-from-palette($warn);
       }
       &--grey,
       &--g {
-        border-color: mat-color($additional, light-grey);
+        border-color: mat.get-color-from-palette($additional, light-grey);
       }
     }
   }

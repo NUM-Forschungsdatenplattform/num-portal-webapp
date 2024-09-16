@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 @mixin color-variables_themed($theme) {
   $accent: map-get($theme, accent);
   $primary: map-get($theme, primary);
@@ -5,12 +7,12 @@
   $additional: map-get($theme, additional);
 
   :root {
-    --num-color--primary: #{mat-color($primary)};
-    --num-color--accent: #{mat-color($accent)};
-    --num-color--warn: #{mat-color($warn)};
-    --num-color--success: #{mat-color($additional, success)};
-    --num-color--light-grey: #{mat-color($additional, light-grey)};
-    --num-color--mid-grey: #{mat-color($additional, mid-grey)};
-    --num-color--dark-grey: #{mat-color($additional, dark-grey)};
+    --num-color--primary: #{mat.get-color-from-palette($primary)};
+    --num-color--accent: #{mat.get-color-from-palette($accent)};
+    --num-color--warn: #{mat.get-color-from-palette($warn)};
+    --num-color--success: #{mat.get-color-from-palette($additional, success)};
+    --num-color--light-grey: #{mat.get-color-from-palette($additional, light-grey)};
+    --num-color--mid-grey: #{mat.get-color-from-palette($additional, mid-grey)};
+    --num-color--dark-grey: #{mat.get-color-from-palette($additional, dark-grey)};
   }
 }
