@@ -468,7 +468,7 @@
   "DATA_EXPLORER": {
     "PROJECTS_OVERVIEW_CONTENT": "In der folgenden Liste sehen Sie die Projekte, zu denen Sie freigegeben wurden. Sie haben so lange auf ein Projekt Zugriff, bis es vom Projektleiter geschlossen wird.",
     "EXPLORE_PROJECT": "Projektdaten abrufen",
-    "EXPLORE_PROJECT_CONTENT": "Sie haben auf dieser Seite die Möglichkeit, die Forschungsdaten abzurufen, die im Rahmen des Projekts definiert sind.\n\nSie können entweder direkt den Datenabruf starten oder optional die im Projekt definierte Datenabfrage noch zusätzlich einschränken.",
+    "EXPLORE_PROJECT_CONTENT": "Sie haben auf dieser Seite die Möglichkeit, die Forschungsdaten abzurufen, die im Rahmen des Projekts definiert sind.",
     "RESULT_SET": "Ergebnissatz",
     "NO_RESULTS_YET": "Noch keine Ergebnisse. Bitte drücken Sie zuerst den Button 'Daten abrufen'.",
     "LOADING_RESULT_SET": "Die Ergebnisse werden gerade geladen. Bitte warten Sie einen Moment.",
