@@ -52,7 +52,7 @@
     "moment": "^2.30.1",
     "monaco-editor": "^0.51.0",
     "nanoid": "^4.0.2",
-    "ngx-echarts": "^8.0.1",
+    "ngx-echarts": "^18.0.0",
     "rxjs": "^7.8.1",
     "tslib": "^2.3.1",
     "zone.js": "~0.13.3"
