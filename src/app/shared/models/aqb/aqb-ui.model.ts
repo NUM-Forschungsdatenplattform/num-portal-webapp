@@ -31,7 +31,7 @@ export class AqbUiModel {
     const archetypeReferenceKey = archetypeId
     const templateId = clickEvent.templateId
 
-    const compositionReferenceId = this.setReference(compositionReferenceKey)
+    const compositionReferenceId = this.setReference(compositionReferenceKey + templateId)
     const archetypeReferenceId = this.setReference(archetypeReferenceKey + templateId)
 
     if (!this.usedTemplates.includes(clickEvent.templateId)) {
