@@ -52,6 +52,7 @@ describe('CodeEditorComponent', () => {
 
   Object.defineProperty(window, 'monaco', {
     value: monacoMock,
+    configurable: true,
   })
 
   const monacoLoaderService = {

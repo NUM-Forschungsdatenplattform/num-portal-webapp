@@ -2,7 +2,7 @@ import { IAqbContainmentNode } from 'src/app/shared/models/archetype-query-build
 import { AqbNodeType } from 'src/app/shared/models/archetype-query-builder/builder-request/aqb-node-type.enum'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 
-const archetypeToClassType = /openEHR-EHR-([A-Z]*)\..*/
+const archetypeToClassType = /openEHR-EHR-([_A-Z]*)\..*/
 
 export class AqbContainsItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
