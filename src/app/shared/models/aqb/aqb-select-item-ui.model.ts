@@ -7,7 +7,7 @@ import { IContainmentTreeNode } from '../../../modules/aqls/models/containment-t
 export class AqbSelectItemUiModel {
   readonly type = ConnectorNodeType.Aqb_Item
   name: string
-  givenName: string
+  givenName?: string
   rmType: ReferenceModelType
   aqlPath: string
   humanReadablePath: string
@@ -24,7 +24,7 @@ export class AqbSelectItemUiModel {
     templateId: string
   ) {
     this.name = item.name || item.archetypeId
-    this.givenName = item.givenName || ''
+    this.givenName = item.givenName
     this.rmType = item.rmType
     this.aqlPath = (item.aqlPath || '').replace(/^\//, '')
     this.humanReadablePath = item.humanReadablePath
