@@ -4,6 +4,7 @@ import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderContainsComponent } from './aql-builder-contains.component'
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 
 describe('AqlBuilderContainsComponent', () => {
   let component: AqlBuilderContainsComponent
@@ -35,6 +36,7 @@ describe('AqlBuilderContainsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AqlBuilderContainsComponent, ContainsGroupStubComponent],
+      imports: [FontAwesomeTestingModule],
     }).compileComponents()
   })
 

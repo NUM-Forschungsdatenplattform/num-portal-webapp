@@ -17,7 +17,7 @@ export class AqlBuilderWhereComponent {
   aqbModel: AqbUiModel
 
   @Input()
-  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.Criteria
 
   setDestination(): void {
     this.aqbModel.selectDestination = AqbSelectDestination.Where
