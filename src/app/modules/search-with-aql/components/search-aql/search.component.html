@@ -1,0 +1,97 @@
+<div fxLayout="column">
+  <section role="region" aria-labelledby="creator-label" fxLayoutGap="20px" class="num-margin-b-60">
+    <h2>{{ 'BUILD_QUERY' | translate }}</h2>
+    <mat-card>
+      <mat-card-content fxLayout="column" fxFlex="100%">
+        <p id="creator-label">
+          {{ 'SEARCH_WITH_AQL.BUILD_QUERY_CONTENT' | translate }}
+        </p>
+
+        <num-button
+          type="primary"
+          icon="plus"
+          class="num-margin-b-40"
+          (singleClick)="openBuilderDialog()"
+          data-test="aql-editor__aql-creator__open-builder-button"
+          >{{ 'BUTTON.OPEN_QUERY_BUILDER' | translate }}</num-button
+        >
+
+        <div style="height: 300px" class="num-margin-b-40">
+          <num-code-editor
+            class="editor"
+            style="height: 100%"
+            [(value)]="aqlQuery"
+            [formatObservable$]="formatObservable$"
+            [validationObservable$]="validationObservable$"
+            (editorInit)="onEditorInit($event)"
+          ></num-code-editor>
+        </div>
+
+        <div class="button-row num-margin-b-20" fxLayout="row" fxLayoutGap="20px">
+          <num-button
+            type="primary"
+            icon="align-left"
+            (singleClick)="format()"
+            data-test="aql-editor__aql-creator__format-button"
+            >{{ 'BUTTON.FORMAT_QUERY' | translate }}</num-button
+          >
+
+          <num-button
+            type="primary"
+            icon="align-left"
+            (singleClick)="validate(true)"
+            data-test="aql-editor__aql-creator__validate-button"
+            >{{ 'BUTTON.VALIDATE_QUERY' | translate }}</num-button
+          >
+        </div>
+
+        <num-editor-determine-hits
+          [isButtonDisabled]="!isValidForExecution || isExecutionLoading"
+          [content]="determineHitsContent"
+          (clicked)="determineHits()"
+        ></num-editor-determine-hits>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section role="region" fxLayout="column" fxFlex="100%">
+    <h2>{{ 'SEARCH_WITH_AQL.QUERY_DATA' | translate }}</h2>
+    <num-button
+      icon="play"
+      class="num-margin-b-60"
+      (singleClick)="getData()"
+      data-test="manager-data-explorer__retrieval-button"
+      >{{ 'BUTTON.GET_DATA' | translate }}</num-button
+    >
+
+    <div
+      *ngIf="resultSet && resultSet.length && !isDataSetLoading"
+      fxFlex
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="start center"
+      class="num-margin-b-40"
+    ></div>
+
+    <ng-container *ngIf="!isDataSetLoading; else loading">
+      <num-result-table
+        *ngFor="let template of resultSet; let i = index"
+        [resultSet]="template"
+        [isDataSetLoading]="isDataSetLoading"
+        [index]="i"
+        [totalTables]="resultSet.length"
+        class="num-margin-b-20"
+        data-test="manager-data-explorer__table"
+      ></num-result-table>
+    </ng-container>
+
+    <ng-template #loading>
+      <mat-card class="mat-elevation-z1">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+          <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+          <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
+        </div>
+      </mat-card>
+    </ng-template>
+  </section>
+</div>
