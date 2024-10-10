@@ -4,5 +4,9 @@
   .num-footer {
     background: mat-color($primary, 900);
     color: mat-contrast($primary, 900);
+
+    .mat-mdc-button:not(:disabled){
+      color: mat-contrast($primary, 900);
+    }
   }
 }
