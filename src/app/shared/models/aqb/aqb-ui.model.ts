@@ -54,7 +54,7 @@ export class AqbUiModel {
         isComposition,
         clickEvent.templateId
       )
-    } else {
+    } else if (this.selectDestination === AqbSelectDestination.Where) {
       const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
       this.pushToWhereClause(
         userGeneratedWhereClause,
@@ -110,7 +110,7 @@ export class AqbUiModel {
       clickEvent.item,
       compositionReferenceId,
       archetypeReferenceId,
-      isComposition,
+      isComposition ? 'composition' : 'archetype',
       templateId
     )
     this.select.push(aqbSelect)

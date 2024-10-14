@@ -74,6 +74,7 @@
     "MANAGER_TOOLS": "Manager Tools",
     "PROFILE": "User Account",
     "SEARCH": "Search",
+    "SEARCH_WITH_AQL": "Search with AQL",
     "SIGNOUT": "Sign out",
     "SIGNIN": "Sign in",
     "USER_MANUAL": "User Manual"
@@ -115,7 +116,7 @@
     "CREATE_QUERY": "Create",
     "CREATE_QUERY_CONTENT": "On this page you can create a criterium. To create the criterium a Builder is available.\n\n*Mandatory field",
     "GENERAL_INFO_CONTENT": "Please enter a descriptive title and the purpose and use of the criterium.",
-    "BUILD_QUERY_CONTENT": "Create the criterium in the Builder. Afterwards you can edit the criterium in the editor below.",
+    "BUILD_QUERY_CONTENT": "Create a query in the Builder. Afterwards you can edit the query in the editor below.",
     "SEARCH_QUERIES": "Criteria search",
     "SELECT_AT_LEAST_ONE": "Please select one or more Criteria",
     "QUERY_BUILDER_DIALOG_HEADER": "Builder",
@@ -127,11 +128,12 @@
     "COMPILE_ERROR_MESSAGE": "The criterium could not be complied. Please check the criterium configuration and try again.",
     "GET_COMPOSITION_ERROR": "The template cannot be loaded. Please close the window and try again.",
     "COLUMNS": "Columns",
+    "NO_SELECT": "Please note: SELECT is not used to create a criterion.",
     "WHERE_RESTRICTED_TO_COHORT": "Please note: the WHERE clause is restricted to the cohort.",
     "VALIDATION_ERROR": "The syntax of the criterium is not valid",
     "VALIDATION_SUCCESS": "The syntax of the criterium is valid",
     "HITS": {
-      "MESSAGE_SET_ALL_PARAMETERS": "You should first define the criterium to get a valid result.",
+      "MESSAGE_SET_ALL_PARAMETERS": "You should first define a query to get a valid result.",
       "MESSAGE_ERROR_FEW_HITS": "Matching Patients are below minimum threshold.",
       "MESSAGE_ERROR_MESSAGE": "Could not determine Patients. Please try again."
     },
@@ -146,6 +148,10 @@
     "HOURS": "hours",
     "MINUTES": "minutes",
     "SECONDS": "seconds"
+  },
+  "SEARCH_WITH_AQL": {
+    "BUILD_QUERY_CONTENT": "Create a query in the Builder. Afterwards you can edit the query in the editor below.",
+    "QUERY_DATA": "Retrieve data"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",
@@ -189,7 +195,7 @@
   "CONFIGURE": "Configure",
   "HITS": "Patients",
   "AVAILABLE_PROJECTS": "Available Projects",
-  "BUILD_QUERY": "Build the Criteria",
+  "BUILD_QUERY": "Build query",
   "AVAILABLE_EHR_TEMPLATES": "Available Return Parameters",
   "SELECT_EHR_TEMPLATE": "Select Return Parameters",
   "SELECTED_EHR_TEMPLATES": "Selected Return Parameters",
@@ -278,7 +284,7 @@
     "SELECT": "Select",
     "DESELECT": "Deselect",
     "APPROVE_USER": "Approve User",
-    "OPEN_QUERY_BUILDER": "Build criterium",
+    "OPEN_QUERY_BUILDER": "Open builder",
     "PREVIEW": "Preview",
     "EDIT": "Edit",
     "DELETE": "Delete",

@@ -150,7 +150,7 @@ describe('AqlEditorCreatorComponent', () => {
 
   describe('When a query is supposed to be created with the builder', () => {
     const dialogContentPayload: IAqlBuilderDialogInput = {
-      mode: AqlBuilderDialogMode.AqlEditor,
+      mode: AqlBuilderDialogMode.Search,
       model: new AqbUiModel(),
     }
     const dialogConfig: DialogConfig = {
@@ -159,7 +159,7 @@ describe('AqlEditorCreatorComponent', () => {
     }
 
     it('should open the dialog with the config including the content payload', () => {
-      component.openBuilderDialog()
+      component.openBuilderDialog(AqlBuilderDialogMode.Search)
       expect(mockDialogService.openDialog).toHaveBeenCalledTimes(1)
       expect(dialogCallParameter.dialogContentComponent).toEqual(
         dialogConfig.dialogContentComponent
@@ -177,7 +177,7 @@ describe('AqlEditorCreatorComponent', () => {
         selectedTemplateIds: ['temp1', 'temp2'],
       }
       beforeEach(() => {
-        component.openBuilderDialog()
+        component.openBuilderDialog(AqlBuilderDialogMode.Criteria)
         afterClosedSubject$.next(dialogOutput)
       })
       it('should set the dialog result to the component', () => {
@@ -189,7 +189,7 @@ describe('AqlEditorCreatorComponent', () => {
 
     it('should do nothing, when its not a confirm-close', () => {
       jest.spyOn(component, 'handleDialogConfirm')
-      component.openBuilderDialog()
+      component.openBuilderDialog(AqlBuilderDialogMode.Criteria)
       afterClosedSubject$.next()
       expect(component.handleDialogConfirm).not.toHaveBeenCalled()
     })

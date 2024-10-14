@@ -1,4 +1,5 @@
 export enum AqlBuilderDialogMode {
-  AqlEditor = 'AQL_EDITOR',
+  Criteria = 'CRITERIA',
   DataRetrieval = 'DATA_RETRIEVAL',
+  Search = 'SEARCH',
 }

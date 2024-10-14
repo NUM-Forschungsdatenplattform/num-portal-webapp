@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core'
 
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
+import { AqlBuilderDialogMode } from '../../../../shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 
 @Component({
   selector: 'num-aql-builder-select',
@@ -15,6 +16,9 @@ export class AqlBuilderSelectComponent {
   @Input()
   aqbModel: AqbUiModel
 
+  @Input()
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.Criteria
+
   deleteItem(index: number): void {
     this.aqbModel.select.splice(index, 1)
   }
@@ -22,4 +26,6 @@ export class AqlBuilderSelectComponent {
   setDestination(): void {
     this.aqbModel.selectDestination = AqbSelectDestination.Select
   }
+
+  protected readonly AqlBuilderDialogMode = AqlBuilderDialogMode
 }
