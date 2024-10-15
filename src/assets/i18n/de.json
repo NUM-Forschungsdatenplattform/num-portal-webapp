@@ -150,7 +150,7 @@
   },
   "SEARCH_WITH_AQL": {
     "BUILD_QUERY_CONTENT": "Erstellen Sie eine Abfrage im Abfrage-Builder. Danach können Sie die Abfrage im untenstehenden Editor bearbeiten.",
-    "QUERY_DATA": "Daten abrufen"
+    "QUERY_DATA": "Ergebnisse"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "Die Navigationselemente wurden erfolgreich veröffentlicht.",

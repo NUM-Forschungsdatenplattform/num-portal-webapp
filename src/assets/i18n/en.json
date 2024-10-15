@@ -150,7 +150,7 @@
   },
   "SEARCH_WITH_AQL": {
     "BUILD_QUERY_CONTENT": "Create a query in the Builder. Afterwards you can edit the query in the editor below.",
-    "QUERY_DATA": "Retrieve data"
+    "QUERY_DATA": "Results"
   },
   "CONTENT_EDITOR": {
     "SAVE_NAVIGATION_SUCCESS": "The navigations items were successfully published.",

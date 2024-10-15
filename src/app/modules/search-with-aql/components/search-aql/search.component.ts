@@ -33,6 +33,7 @@ export class SearchComponent extends AqlEditorCeatorComponent implements OnDestr
   }
 
   getData(): void {
+    this.determineHits()
     this.isDataSetLoading = true
     this.queryService.setQuery(this.aqlQuery)
     this.subscriptions.add(
@@ -42,6 +43,7 @@ export class SearchComponent extends AqlEditorCeatorComponent implements OnDestr
           this.isDataSetLoading = false
         },
         error: () => {
+          this.resultSet = null
           this.isDataSetLoading = false
           this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
         },

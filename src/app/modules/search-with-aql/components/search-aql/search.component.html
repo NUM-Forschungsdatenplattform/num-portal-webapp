@@ -48,30 +48,14 @@
         <num-editor-determine-hits
           [isButtonDisabled]="!isValidForExecution || isExecutionLoading"
           [content]="determineHitsContent"
-          (clicked)="determineHits()"
+          (clicked)="getData()"
         ></num-editor-determine-hits>
       </mat-card-content>
     </mat-card>
   </section>
 
   <section role="region" fxLayout="column" fxFlex="100%">
-    <h2>{{ 'SEARCH_WITH_AQL.QUERY_DATA' | translate }}</h2>
-    <num-button
-      icon="play"
-      class="num-margin-b-60"
-      (singleClick)="getData()"
-      data-test="manager-data-explorer__retrieval-button"
-      >{{ 'BUTTON.GET_DATA' | translate }}</num-button
-    >
-
-    <div
-      *ngIf="resultSet && !isDataSetLoading"
-      fxFlex
-      fxLayout="row"
-      fxLayoutGap="10px"
-      fxLayoutAlign="start center"
-      class="num-margin-b-40"
-    ></div>
+    <h2 *ngIf="resultSet && !isDataSetLoading">{{ 'SEARCH_WITH_AQL.QUERY_DATA' | translate }}</h2>
 
     <ng-container *ngIf="!isDataSetLoading; else loading">
       <num-result-table
