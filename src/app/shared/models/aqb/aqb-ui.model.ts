@@ -13,6 +13,8 @@ export class AqbUiModel {
   private referenceCounter = 0
   private references = new Map<string, number>()
   private usedTemplates: string[] = []
+  private compositionReferenceIdTemplateId = new Map<number, string>()
+  private archetypeReferenceIdTemplateId = new Map<number, string>()
 
   selectDestination = AqbSelectDestination.Select
 
@@ -33,6 +35,9 @@ export class AqbUiModel {
 
     const compositionReferenceId = this.setReference(compositionReferenceKey + templateId)
     const archetypeReferenceId = this.setReference(archetypeReferenceKey + templateId)
+
+    this.compositionReferenceIdTemplateId.set(compositionReferenceId, templateId)
+    this.archetypeReferenceIdTemplateId.set(archetypeReferenceId, templateId)
 
     if (!this.usedTemplates.includes(clickEvent.templateId)) {
       this.usedTemplates.push(clickEvent.templateId)
@@ -150,6 +155,11 @@ export class AqbUiModel {
       (item) => !compositionReferenceIds.includes(item.compositionReferenceId)
     )
 
+    const toDelete = compositionReferenceIds.map((item) =>
+      this.compositionReferenceIdTemplateId.get(item)
+    )
+    this.usedTemplates = this.usedTemplates.filter((item) => !toDelete.includes(item))
+
     const templateRestrictionWhereClause = this.where.children[0] as AqbWhereGroupUiModel
     const userGeneratedWhereClause = this.where.children[1] as AqbWhereGroupUiModel
 
@@ -163,6 +173,11 @@ export class AqbUiModel {
 
   handleDeletionByArchetypeReferenceIds(archetypeReferenceIds: number[]): void {
     this.deleteReferencesByIds(archetypeReferenceIds)
+
+    const toDelete = archetypeReferenceIds.map((item) =>
+      this.archetypeReferenceIdTemplateId.get(item)
+    )
+    this.usedTemplates = this.usedTemplates.filter((item) => !toDelete.includes(item))
 
     this.select = this.select.filter(
       (item) => !archetypeReferenceIds.includes(item.archetypeReferenceId)
