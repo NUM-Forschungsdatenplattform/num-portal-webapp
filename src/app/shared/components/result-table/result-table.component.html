@@ -1,7 +1,9 @@
 <section role="region" fxLayout="column">
   <h4>
-    {{ 'TABLE' | translate }} {{ index + 1 }} / {{ totalTables }}
-    {{ resultSet?.name ? ', ' + resultSet?.name : '' }}
+    <span *ngIf="totalTables > 1 || resultSet?.name">
+      {{ 'TABLE' | translate }} {{ index + 1 }} / {{ totalTables }}
+      {{ resultSet?.name ? ', ' + resultSet?.name : '' }}
+    </span>
   </h4>
   <div *ngIf="resultSet && !resultSet.rows.length">
     <mat-card appearance="outlined" class="mat-elevation-z1">

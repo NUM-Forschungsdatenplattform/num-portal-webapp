@@ -4,5 +4,5 @@ export interface IAqlExecutionResponse {
   q: string
   columns: IAqlExecutionColumn[]
   rows: any[]
-  name: string
+  name?: string
 }
