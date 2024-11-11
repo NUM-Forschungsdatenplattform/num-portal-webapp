@@ -20,7 +20,7 @@ export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
   item: AqbWhereItemUiModel
 
   @Input()
-  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.AqlEditor
+  dialogMode: AqlBuilderDialogMode = AqlBuilderDialogMode.Criteria
 
   @Output()
   deleteItem = new EventEmitter<string>()

@@ -18,6 +18,9 @@ import {
   VALIDATION_ERROR_CONFIG,
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
+import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
+import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
+import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 @Component({
   selector: 'num-aql-editor-creator',
@@ -30,7 +33,7 @@ export class AqlEditorCeatorComponent {
     private dialogService: DialogService,
     private aqlEditorService: AqlEditorService,
     private aqlService: AqlService,
-    private toastMessageService: ToastMessageService
+    public toastMessageService: ToastMessageService
   ) {}
   formatter = new NumAqlFormattingProvider()
   formatSubject$ = new Subject<monaco.editor.IMarkerData[] | void>()
@@ -114,9 +117,17 @@ export class AqlEditorCeatorComponent {
     )
   }
 
-  openBuilderDialog(): void {
+  openBuilderDialog(mode: AqlBuilderDialogMode): void {
+    if (mode === AqlBuilderDialogMode.Criteria) {
+      const node = new (class implements IContainmentTreeNode {
+        displayName = 'EHR'
+      })()
+      this.aqbModel.selectDestination = AqbSelectDestination.From
+      this.aqbModel.select = [new AqbSelectItemUiModel(node, 0, 0, 'ehr', '')]
+    }
+
     const dialogContentPayload: IAqlBuilderDialogInput = {
-      mode: AqlBuilderDialogMode.AqlEditor,
+      mode: mode,
       model: this.aqbModel,
       selectedTemplateIds: this.selectedTemplateIds,
     }
@@ -185,4 +196,6 @@ export class AqlEditorCeatorComponent {
       this.updateDetermineHits(null, 'QUERIES.HITS.MESSAGE_SET_ALL_PARAMETERS')
     }
   }
+
+  protected readonly AqlBuilderDialogMode = AqlBuilderDialogMode
 }

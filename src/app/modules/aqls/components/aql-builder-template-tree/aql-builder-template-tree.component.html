@@ -42,7 +42,8 @@
             class="mat-tree-node__display-name"
             [ngClass]="{
               'mat-tree-node__display-name--disabled':
-                mode === Mode.DataRetrieval && selectDestination === Destination.Select
+                (mode === Mode.DataRetrieval && selectDestination === Destination.Select) ||
+                (mode === Mode.Criteria && selectDestination === Destination.From)
             }"
             >{{ node.displayName }}</span
           >

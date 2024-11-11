@@ -30,7 +30,7 @@ describe('AqlBuilderSelectItemComponent', () => {
     containmentTreeNode,
     compositionReferenceId,
     archetypeReferenceId,
-    false,
+    'archetype',
     templateId
   )
 

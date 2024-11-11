@@ -31,9 +31,10 @@ const selectedItemWithoutRmType: IContainmentTreeNode = {
 }
 
 export const selectClickTestCases: ISelectClickTest[] = [
+  // Select
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Search,
     selectDestination: AqbSelectDestination.Select,
     clickEvent: {
       item: selectedItemWithRmType,
@@ -43,7 +44,7 @@ export const selectClickTestCases: ISelectClickTest[] = [
   },
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Search,
     selectDestination: AqbSelectDestination.Select,
     clickEvent: {
       item: selectedItemWithoutRmType,
@@ -74,7 +75,17 @@ export const selectClickTestCases: ISelectClickTest[] = [
   // Where
   {
     result: false,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
+    selectDestination: AqbSelectDestination.Where,
+    clickEvent: {
+      item: selectedItemWithoutRmType,
+      compositionId: 'comp1',
+      templateId: 'temp1',
+    },
+  },
+  {
+    result: false,
+    mode: AqlBuilderDialogMode.Search,
     selectDestination: AqbSelectDestination.Where,
     clickEvent: {
       item: selectedItemWithoutRmType,
@@ -94,7 +105,17 @@ export const selectClickTestCases: ISelectClickTest[] = [
   },
   {
     result: true,
-    mode: AqlBuilderDialogMode.AqlEditor,
+    mode: AqlBuilderDialogMode.Criteria,
+    selectDestination: AqbSelectDestination.Where,
+    clickEvent: {
+      item: selectedItemWithRmType,
+      compositionId: 'comp1',
+      templateId: 'temp1',
+    },
+  },
+  {
+    result: true,
+    mode: AqlBuilderDialogMode.Search,
     selectDestination: AqbSelectDestination.Where,
     clickEvent: {
       item: selectedItemWithRmType,
@@ -106,6 +127,27 @@ export const selectClickTestCases: ISelectClickTest[] = [
     result: true,
     mode: AqlBuilderDialogMode.DataRetrieval,
     selectDestination: AqbSelectDestination.Where,
+    clickEvent: {
+      item: selectedItemWithRmType,
+      compositionId: 'comp1',
+      templateId: 'temp1',
+    },
+  },
+  // From
+  {
+    result: true,
+    mode: AqlBuilderDialogMode.Criteria,
+    selectDestination: AqbSelectDestination.From,
+    clickEvent: {
+      item: selectedItemWithoutRmType,
+      compositionId: 'comp1',
+      templateId: 'temp1',
+    },
+  },
+  {
+    result: false,
+    mode: AqlBuilderDialogMode.Criteria,
+    selectDestination: AqbSelectDestination.From,
     clickEvent: {
       item: selectedItemWithRmType,
       compositionId: 'comp1',

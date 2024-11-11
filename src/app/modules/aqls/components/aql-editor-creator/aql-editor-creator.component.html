@@ -18,7 +18,7 @@
         icon="plus"
         class="num-margin-b-40"
         *numUserHasRole="[availableRoles.CriteriaEditor]"
-        (singleClick)="openBuilderDialog()"
+        (singleClick)="openBuilderDialog(AqlBuilderDialogMode.Criteria)"
         data-test="aql-editor__aql-creator__open-builder-button"
         >{{ 'BUTTON.OPEN_QUERY_BUILDER' | translate }}</num-button
       >
