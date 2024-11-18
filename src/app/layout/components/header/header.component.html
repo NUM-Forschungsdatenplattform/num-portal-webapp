@@ -33,19 +33,21 @@
     </h1>
     <nav mat-tab-nav-bar *ngIf="currentTabNav && !unapprovedUser" [tabPanel]="tabPanel">
       <ng-container *ngFor="let tab of currentTabNav">
-        <span
-          class="no-focus"
-          mat-tab-link
-          [routerLink]="tab.routeTo"
-          routerLinkActive
-          #rla="routerLinkActive"
-          [routerLinkActiveOptions]="{ exact: true }"
-          [active]="tab.id === currentTabNavSelected"
-          [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
-          [attr.data-test]="'header__tab-nav__' + tab.translationKey"
-          *numUserHasRole="tab.roles"
-        >
-          {{ tab.translationKey | translate }}
+        <span *featureIsActive="tab.feature">
+          <span
+            class="no-focus"
+            mat-tab-link
+            [routerLink]="tab.routeTo"
+            routerLinkActive
+            #rla="routerLinkActive"
+            [routerLinkActiveOptions]="{ exact: true }"
+            [active]="tab.id === currentTabNavSelected"
+            [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
+            [attr.data-test]="'header__tab-nav__' + tab.translationKey"
+            *numUserHasRole="tab.roles"
+          >
+            {{ tab.translationKey | translate }}
+          </span>
         </span>
       </ng-container>
     </nav>

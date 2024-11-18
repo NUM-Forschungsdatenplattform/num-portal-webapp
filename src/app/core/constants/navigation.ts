@@ -38,6 +38,7 @@ export const mainNavItems: INavItem[] = [
         translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         roles: [AvailableRoles.Manager],
         disabled: true,
+        feature: [AvailableFeatures.SearchWithAql],
       },
     ],
   },

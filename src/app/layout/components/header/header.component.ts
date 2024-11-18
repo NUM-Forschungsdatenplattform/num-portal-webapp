@@ -5,6 +5,7 @@ import INavItem from '../../models/nav-item.interface'
 import { mainNavItems, secondaryNavItemsLoggedIn } from '../../../core/constants/navigation'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { TranslateService } from '@ngx-translate/core'
+import { AvailableFeatures } from '../../../shared/models/feature/available-features.enum'
 
 @Component({
   selector: 'num-header',
@@ -74,4 +75,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentNavItem = navItem
     this.currentTabNav = navItem?.tabNav
   }
+
+  protected readonly AvailableFeatures = AvailableFeatures
 }

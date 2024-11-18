@@ -5,6 +5,7 @@ import { PatientFilterService } from 'src/app/core/services/patient-filter/patie
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { AvailableFeatures } from '../../../../shared/models/feature/available-features.enum'
 
 @Component({
   selector: 'num-data-filter',
@@ -47,4 +48,6 @@ export class DataFilterComponent implements OnInit {
       state: { project: this.currentProject.convertToApiInterface() },
     })
   }
+
+  protected readonly AvailableFeatures = AvailableFeatures
 }
