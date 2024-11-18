@@ -1,3 +1,3 @@
 export enum AvailableFeatures {
-  SearchWithAql,
+  SearchByManager,
 }

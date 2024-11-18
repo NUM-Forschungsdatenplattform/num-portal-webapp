@@ -13,7 +13,7 @@ export const mainNavItems: INavItem[] = [
     routeTo: 'search-with-aql',
     icon: 'search',
     translationKey: 'NAVIGATION.SEARCH_WITH_AQL',
-    feature: [AvailableFeatures.SearchWithAql],
+    feature: [AvailableFeatures.SearchByManager],
   },
   {
     routeTo: 'search',
@@ -38,7 +38,7 @@ export const mainNavItems: INavItem[] = [
         translationKey: 'NAVIGATION.DATA_RETRIEVAL',
         roles: [AvailableRoles.Manager],
         disabled: true,
-        feature: [AvailableFeatures.SearchWithAql],
+        feature: [AvailableFeatures.SearchByManager],
       },
     ],
   },
