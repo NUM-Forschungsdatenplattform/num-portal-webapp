@@ -1,2 +1,3 @@
 export enum AvailableFeatures {
+  SearchWithAql,
 }
