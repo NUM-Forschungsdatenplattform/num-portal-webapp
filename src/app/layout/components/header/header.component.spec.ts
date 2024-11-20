@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, ActivationEnd, ActivationStart, Router } from '
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { Subject } from 'rxjs'
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
 import { MaterialModule } from '../../material/material.module'
 import INavItem from '../../models/nav-item.interface'
 import { ButtonComponent } from '../../../shared/components/button/button.component'
@@ -19,6 +19,14 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { MatTabLinkHarness } from '@angular/material/tabs/testing'
 import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { AvailableFeatures } from '../../../shared/models/feature/available-features.enum'
+import { IFeature } from '../../../shared/models/feature/feature.interface'
+import { FeatureIsActiveDirective } from '../../../shared/directives/feature-is-active.directive'
+import { FeatureService } from '../../../core/services/feature/feature.service'
+import { HttpClientTestingModule, provideHttpClientTesting } from '@angular/common/http/testing'
+import { HttpClient, HttpHandler } from '@angular/common/http'
+import spyOn = jest.spyOn
+import { getFeature } from 'echarts/types/src/component/toolbox/featureManager'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
@@ -88,6 +96,7 @@ describe('HeaderComponent', () => {
         routeTo: 'restrictedToManager',
         translationKey: 'restrictedToManager',
         roles: [AvailableRoles.Manager],
+        feature: [AvailableFeatures.SearchByManager],
       },
     ],
   }
@@ -99,7 +108,6 @@ describe('HeaderComponent', () => {
     homeNavItem,
     navItemsWithRestrictedTabs,
   ]
-
   const mockUserInfoSubject = new Subject<IAuthUserInfo>()
   const mockAuthService = {
     get isLoggedIn(): boolean {
@@ -107,7 +115,6 @@ describe('HeaderComponent', () => {
     },
     userInfoObservable$: mockUserInfoSubject.asObservable(),
   } as unknown as AuthService
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -116,6 +123,7 @@ describe('HeaderComponent', () => {
         StubComponent,
         ButtonComponent,
         UserHasRoleDirective,
+        FeatureIsActiveDirective,
       ],
       imports: [
         FontAwesomeTestingModule,
@@ -144,6 +152,9 @@ describe('HeaderComponent', () => {
           provide: AppConfigService,
           useValue: mockConfigService,
         },
+        FeatureService,
+        HttpClient,
+        HttpHandler,
       ],
     }).compileComponents()
   })
@@ -268,12 +279,24 @@ describe('HeaderComponent', () => {
       sub: 'test-sub-2',
       groups: [AvailableRoles.Researcher],
     }
+    const mockFeature: AvailableFeatures[] = [AvailableFeatures.SearchByManager]
     beforeEach(() => {
       routerEventsSubject.next(routerEvent)
       fixture.detectChanges()
       harnessLoader = TestbedHarnessEnvironment.loader(fixture)
     })
     it('should show all tabs to user with required roles', async () => {
+      const featureService = TestBed.inject(FeatureService)
+      spyOn(featureService, 'getFeature').mockReturnValue(of(mockFeature))
+      const authService = TestBed.inject(AuthService)
+      const mockBehaviourManagerInfo: BehaviorSubject<IAuthUserInfo> = new BehaviorSubject(
+        mockManagerInfo
+      )
+      Object.defineProperty(
+        authService,
+        'userInfoObservable$',
+        mockBehaviourManagerInfo.asObservable()
+      )
       mockUserInfoSubject.next(mockManagerInfo)
       fixture.detectChanges()
       const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)

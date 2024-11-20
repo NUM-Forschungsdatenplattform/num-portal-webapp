@@ -5,7 +5,6 @@ import { AvailableFeatures } from '../models/feature/available-features.enum'
 
 @Directive({
   selector: '[featureIsActive]',
-  standalone: true,
 })
 export class FeatureIsActiveDirective implements OnInit, OnDestroy {
   constructor(
@@ -19,7 +18,9 @@ export class FeatureIsActiveDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.featureService.getFeature().subscribe((feature) => this.handleFeatures(feature))
+      this.featureService.getFeature().subscribe((feature) => {
+        return this.handleFeatures(feature)
+      })
     )
   }
 

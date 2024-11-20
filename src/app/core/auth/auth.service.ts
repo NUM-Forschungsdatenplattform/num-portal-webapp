@@ -20,7 +20,7 @@ const TIME_TO_WAIT_IDLE = 3600
 export class AuthService {
   private userInfo: IAuthUserInfo = { sub: undefined }
   private userInfoSubject$ = new BehaviorSubject(this.userInfo)
-  public userInfoObservable$ = this.userInfoSubject$.asObservable()
+  public userInfoObservable$: Observable<IAuthUserInfo> = this.userInfoSubject$.asObservable()
   public timedOut = false
   public lastPing?: Date = null
 

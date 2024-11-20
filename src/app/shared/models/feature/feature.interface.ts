@@ -1,3 +1,3 @@
 export interface IFeature {
-  searchWithAql: boolean
+  searchByManager: boolean
 }
