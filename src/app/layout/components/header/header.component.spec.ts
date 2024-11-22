@@ -281,31 +281,19 @@ describe('HeaderComponent', () => {
     }
     const mockFeature: AvailableFeatures[] = [AvailableFeatures.SearchByManager]
     beforeEach(() => {
+      const featureService = TestBed.inject(FeatureService)
+      spyOn(featureService, 'getFeature').mockReturnValue(of(mockFeature))
       routerEventsSubject.next(routerEvent)
       fixture.detectChanges()
       harnessLoader = TestbedHarnessEnvironment.loader(fixture)
     })
     it('should show all tabs to user with required roles', async () => {
-      const featureService = TestBed.inject(FeatureService)
-      spyOn(featureService, 'getFeature').mockReturnValue(of(mockFeature))
-      const authService = TestBed.inject(AuthService)
-      const mockBehaviourManagerInfo: BehaviorSubject<IAuthUserInfo> = new BehaviorSubject(
-        mockManagerInfo
-      )
-      Object.defineProperty(
-        authService,
-        'userInfoObservable$',
-        mockBehaviourManagerInfo.asObservable()
-      )
       mockUserInfoSubject.next(mockManagerInfo)
-      fixture.detectChanges()
       const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
       expect(tabLinks.length).toBe(navItemsWithRestrictedTabs.tabNav.length)
     })
-
     it('should restrict tabs be only visible to allowed roles', async () => {
       mockUserInfoSubject.next(mockResearcherInfo)
-      fixture.detectChanges()
       const tabLinks = await harnessLoader.getAllHarnesses(MatTabLinkHarness)
       expect(tabLinks.length).toBe(navItemsWithRestrictedTabs.tabNav.length - 1)
     })
