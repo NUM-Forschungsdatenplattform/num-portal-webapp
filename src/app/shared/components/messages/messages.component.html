@@ -1,0 +1,9 @@
+<div class="messages">
+  <num-message
+    *ngFor="let message of messages.data"
+    text="{{ message.text }}"
+    type="{{ message.type }}"
+    id="{{ message.id }}"
+    (click)="onMessageClick(message.id)"
+  ></num-message>
+</div>

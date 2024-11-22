@@ -1,0 +1,18 @@
+.message {
+  cursor: pointer;
+  background-color: #fff;
+  padding: 10px;
+  border: 2px solid;
+  margin: 10px 20px;
+  -webkit-box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.3);
+  &.error {
+    border-color: red;
+  }
+  &.warning {
+    border-color: orange;
+  }
+  &.info {
+    border-color: green;
+  }
+}

@@ -20,6 +20,8 @@ import { AttachmentsTableComponent } from './attachments-table/attachments-table
 import { DirectivesModule } from '../directives/directives.module'
 import { AttachmentsTableActionsComponent } from './attachments-table-actions/attachments-table-actions.component'
 import { DialogAddAttachmentsComponent } from './dialog-add-attachments/dialog-add-attachments.component'
+import { MessagesComponent } from './messages/messages.component'
+import { MessageComponent } from './messages/message/message.component'
 
 const SHARED_DECLARATIONS = [
   AqlParameterInputsComponent,
@@ -35,6 +37,8 @@ const SHARED_DECLARATIONS = [
   ResultTableComponent,
   SearchComponent,
   TimeInputComponent,
+  MessagesComponent,
+  MessageComponent,
 ]
 
 @NgModule({
