@@ -17,6 +17,8 @@ import { AuthService } from 'src/app/core/auth/auth.service'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { FeatureService } from '../../../../core/services/feature/feature.service'
+import { HttpClient, HttpHandler } from '@angular/common/http'
 
 describe('DataFilterComponent', () => {
   let component: DataFilterComponent
@@ -94,6 +96,9 @@ describe('DataFilterComponent', () => {
           provide: ActivatedRoute,
           useValue: mockActivatedRoute,
         },
+        FeatureService,
+        HttpClient,
+        HttpHandler,
       ],
     }).compileComponents()
   })
