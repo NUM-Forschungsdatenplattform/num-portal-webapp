@@ -4,7 +4,6 @@ import { ActivatedRouteSnapshot, ActivationEnd, ActivationStart, Router } from '
 import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
 import { MaterialModule } from '../../material/material.module'
 import INavItem from '../../models/nav-item.interface'
 import { ButtonComponent } from '../../../shared/components/button/button.component'
@@ -20,13 +19,11 @@ import { MatTabLinkHarness } from '@angular/material/tabs/testing'
 import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AvailableFeatures } from '../../../shared/models/feature/available-features.enum'
-import { IFeature } from '../../../shared/models/feature/feature.interface'
 import { FeatureIsActiveDirective } from '../../../shared/directives/feature-is-active.directive'
 import { FeatureService } from '../../../core/services/feature/feature.service'
-import { HttpClientTestingModule, provideHttpClientTesting } from '@angular/common/http/testing'
 import { HttpClient, HttpHandler } from '@angular/common/http'
 import spyOn = jest.spyOn
-import { getFeature } from 'echarts/types/src/component/toolbox/featureManager'
+import { of, Subject } from 'rxjs'
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent
