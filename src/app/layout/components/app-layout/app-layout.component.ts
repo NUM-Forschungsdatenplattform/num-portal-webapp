@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav'
 import { ProfileService } from '../../../core/services/profile/profile.service'
 import { Subscription } from 'rxjs'
 import { NavigationEnd, Router } from '@angular/router'
+import { AuthService } from 'src/app/core/auth/auth.service'
 
 @Component({
   selector: 'num-app-layout',
@@ -21,7 +22,8 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private mediaMatcher: MediaMatcher,
     private profileService: ProfileService,
-    private route: Router
+    private route: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,10 @@ export class AppLayoutComponent implements OnInit, OnDestroy {
         }
       })
     )
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn
   }
 
   isRouterOutletDisplayed(): boolean {
