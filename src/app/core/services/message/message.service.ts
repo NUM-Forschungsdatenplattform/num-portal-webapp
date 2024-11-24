@@ -6,6 +6,10 @@ export interface Message {
   text: string
   type: string
   id: string
+  hidden?: boolean
+}
+export interface Messages {
+  data: Message[]
 }
 
 @Injectable({

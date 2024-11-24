@@ -3,9 +3,16 @@
   background-color: #fff;
   padding: 10px;
   border: 2px solid;
-  margin: 10px 20px;
-  -webkit-box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.3);
+  margin: 10px 20px 0;
   box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.3);
+  transform: scaleY(1);
+  opacity: 1;
+  transition: all 0.3s ease;
+  &.hidden {
+    margin: 0 20px;
+    padding: 0 10px;
+    transform: scaleY(0);
+  }
   &.error {
     border-color: red;
   }
@@ -13,6 +20,6 @@
     border-color: orange;
   }
   &.info {
-    border-color: green;
+    border-color: #232323;
   }
 }

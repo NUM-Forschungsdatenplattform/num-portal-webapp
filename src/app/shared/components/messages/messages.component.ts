@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { MessageService } from 'src/app/core/services/message/message.service'
+import { Messages, MessageService } from 'src/app/core/services/message/message.service'
 
 @Component({
   selector: 'num-messages',
@@ -7,7 +7,7 @@ import { MessageService } from 'src/app/core/services/message/message.service'
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messages = {
+  messages: Messages = {
     data: [
       { text: 'Something happend!!', type: 'warning', id: '123' },
       { text: 'Something bad happend!!', type: 'error', id: '234' },
@@ -20,7 +20,12 @@ export class MessagesComponent implements OnInit {
 
   onMessageClick(id) {
     // Removes a message with a specific ID from messages.data
-    this.messages.data = this.messages.data.filter((message) => message.id !== id)
+    const index = this.messages.data.findIndex((message) => message.id === id)
+    this.messages.data[index].hidden = true
+    setTimeout(
+      () => (this.messages.data = this.messages.data.filter((message) => message.id !== id)),
+      300
+    )
   }
   loadMessages(): void {
     this.messageService.getMessages().subscribe(
