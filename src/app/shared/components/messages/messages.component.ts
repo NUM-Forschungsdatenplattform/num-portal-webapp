@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Messages, MessageService } from 'src/app/core/services/message/message.service'
+import { Observer } from 'rxjs'
 
 @Component({
   selector: 'num-messages',
@@ -26,16 +27,26 @@ export class MessagesComponent implements OnInit {
       () => (this.messages.data = this.messages.data.filter((message) => message.id !== id)),
       200
     )
+    // Send the ID to the backend
+    this.messageService.sendMessageClick(id).subscribe({
+      next: () => console.log(`Message ID ${id} sent to backend`),
+      error: (err) => console.error(`Error sending message ID ${id}`, err),
+    })
   }
   loadMessages(): void {
-    this.messageService.getMessages().subscribe(
-      (data) => {
+    const messageObserver: Observer<any> = {
+      next: (data) => {
         this.messages.data = data
       },
-      (error) => {
+      error: (error) => {
         console.error('Failed to load messages:', error)
-      }
-    )
+      },
+      complete: () => {
+        console.log('Message loading complete')
+      },
+    }
+
+    this.messageService.getMessages().subscribe(messageObserver)
   }
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method

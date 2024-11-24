@@ -23,4 +23,8 @@ export class MessageService {
   getMessages(): Observable<Message[]> {
     return this.http.get<Message[]>(this.apiUrl)
   }
+  sendMessageClick(id: string) {
+    // POST the ID to the backend
+    return this.http.post('http://localhost:9090/messages', { id })
+  }
 }
