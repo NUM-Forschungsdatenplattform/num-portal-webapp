@@ -24,7 +24,7 @@ export class MessagesComponent implements OnInit {
     this.messages.data[index].hidden = true
     setTimeout(
       () => (this.messages.data = this.messages.data.filter((message) => message.id !== id)),
-      300
+      200
     )
   }
   loadMessages(): void {
