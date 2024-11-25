@@ -13,6 +13,7 @@ import { VerticalBarChartComponent } from './components/vertical-bar-chart/verti
 import { DataFilterTemplatesComponent } from './components/data-filter-templates/data-filter-templates.component'
 import { ManagerDataExplorerComponent } from './components/manager-data-explorer/manager-data-explorer.component'
 import { SharedProjectsModule } from '../projects/shared-projects.module'
+import { DirectivesModule } from '../../shared/directives/directives.module'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SharedProjectsModule } from '../projects/shared-projects.module'
     SearchRoutingModule,
     SharedModule,
     SharedProjectsModule,
+    DirectivesModule,
   ],
 })
 export class SearchModule {}

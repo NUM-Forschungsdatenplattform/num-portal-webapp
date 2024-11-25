@@ -14,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from '../shared/directives/directives.module'
 import { SharedComponentsModule } from '../shared/components/shared-components.module'
 import { CUSTOM_ICONS } from './custom-icons'
-
 const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
 
 @NgModule({

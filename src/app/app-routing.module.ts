@@ -44,6 +44,19 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'search-with-aql',
+    canLoad: [RoleGuard, AuthGuard],
+    data: {
+      navId: 'search-with-aql',
+      roles: [AvailableRoles.Manager],
+      onlyApprovedUsers: true,
+    },
+    loadChildren: () =>
+      import(
+        /* webpackChunkName: "SearchWithAql.Module" */ './modules/search-with-aql/search-with-aql.module'
+      ).then((m) => m.SearchWithAqlModule),
+  },
+  {
     path: 'projects',
     canLoad: [RoleGuard, AuthGuard],
     data: {

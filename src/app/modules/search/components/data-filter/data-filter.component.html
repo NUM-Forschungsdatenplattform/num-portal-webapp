@@ -44,12 +44,14 @@
     >{{ 'BUTTON.APPLY_CONFIGURATION' | translate }}</num-button
   >
 
-  <num-button
-    *numUserHasRole="[availableRoles.Manager]"
-    id="go-to-data-retrival-button"
-    type="primary"
-    (singleClick)="gotToDataRetrival()"
-    data-test="data-filter__go-to-data-retrival-button"
-    >{{ 'BUTTON.START_DATA_RETRIEVAL' | translate }}</num-button
-  >
+  <div *featureIsActive="[AvailableFeatures.SearchByManager]">
+    <num-button
+      *numUserHasRole="[availableRoles.Manager]"
+      id="go-to-data-retrival-button"
+      type="primary"
+      (singleClick)="gotToDataRetrival()"
+      data-test="data-filter__go-to-data-retrival-button"
+      >{{ 'BUTTON.START_DATA_RETRIEVAL' | translate }}</num-button
+    >
+  </div>
 </div>
