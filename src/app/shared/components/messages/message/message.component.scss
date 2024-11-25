@@ -1,14 +1,19 @@
 .message {
   cursor: pointer;
   line-height: 24px;
-  background-color: #fff;
   padding: 10px;
   border: 2px solid;
   margin: 10px 20px 0;
   box-shadow: 0px 6px 5px -4px rgba(0, 0, 0, 0.3);
   transform: scaleY(1);
+  transform-origin: top;
   opacity: 1;
   transition: all 0.2s ease;
+  h3 {
+    border-bottom-width: 1px;
+    margin-bottom: 10px !important;
+    font-size: 18px;
+  }
   &.hidden {
     margin: 0 20px;
     padding: 0 10px;
@@ -17,11 +22,23 @@
   }
   &.error {
     border-color: red;
+    background-color: #fdeced;
+    h3 {
+      border-bottom-color: red;
+    }
   }
   &.warning {
     border-color: orange;
+    background-color: #fff7e9;
+    h3 {
+      border-bottom-color: orange;
+    }
   }
   &.info {
     border-color: #232323;
+    background-color: #ededed;
+    h3 {
+      border-bottom-color: #232323;
+    }
   }
 }

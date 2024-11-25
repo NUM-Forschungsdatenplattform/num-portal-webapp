@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
+import { Message } from 'src/app/core/services/message/message.service'
 
 @Component({
   selector: 'num-message',
@@ -6,9 +7,8 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./message.component.scss'],
 })
 export class MessageComponent implements OnInit {
-  @Input() text: string
-  @Input() type: string
   @Input() id: string
+  @Input() message: Message
   @Input() hidden: boolean
 
   constructor() {}
@@ -19,8 +19,8 @@ export class MessageComponent implements OnInit {
   }
   get dynamicClasses() {
     return {
-      hidden: this.hidden,
-      [this.type]: true,
+      hidden: this.message.hidden,
+      [this.message.type]: true,
     }
   }
 }

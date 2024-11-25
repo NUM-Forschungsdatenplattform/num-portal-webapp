@@ -1,1 +1,4 @@
-<div class="message" [ngClass]="dynamicClasses">{{ text }}</div>
+<div class="message" [ngClass]="dynamicClasses">
+  <h3 *ngIf="message.title">{{ message.title }}</h3>
+  <span [innerHtml]="message.text"></span>
+</div>

@@ -10,9 +10,23 @@ import { Observer } from 'rxjs'
 export class MessagesComponent implements OnInit {
   messages: Messages = {
     data: [
-      { text: 'Something happend!!', type: 'warning', id: '123' },
-      { text: 'Something bad happend!!', type: 'error', id: '234' },
-      { text: 'Something okay happend!!', type: 'info', id: '222' },
+      {
+        text: "I don't have a <strong>title</strong>.<br>But I do speak <i style='color: red'>HTML</i>",
+        type: 'warning',
+        id: '123',
+      },
+      {
+        title: 'Something bad happend!!',
+        text: 'click me and i will go away',
+        type: 'error',
+        id: '234',
+      },
+      {
+        title: 'Something okay happend!!',
+        text: 'click me and i will go away',
+        type: 'info',
+        id: '222',
+      },
     ],
   }
   constructor(private messageService: MessageService) {

@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
 export interface Message {
+  title?: string
   text: string
   type: string
   id: string
+  startDate?: Date
+  endDate?: Date
   hidden?: boolean
 }
 export interface Messages {
