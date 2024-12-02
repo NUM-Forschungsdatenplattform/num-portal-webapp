@@ -115,7 +115,7 @@ describe('PatientFilterService', () => {
     it('should call the backend - with success', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockResultFlatList))
       service.getProjectData(mockCohort1, templates).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/manager/execute/project', {
         cohort: mockCohort1,
         templates,
       })
@@ -131,7 +131,7 @@ describe('PatientFilterService', () => {
         .toPromise()
         .then(() => {})
         .catch(() => {})
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/manager/execute/project', {
         cohort: mockCohort1,
         templates,
       })

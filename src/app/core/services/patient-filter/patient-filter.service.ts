@@ -77,7 +77,7 @@ export class PatientFilterService {
 
   getProjectData(cohort: ICohortApi, templateIds: string[]): Observable<IAqlExecutionResponse[]> {
     return this.httpClient
-      .post<IAqlExecutionResponse[]>(`${this.baseUrl}/project/manager/execute`, {
+      .post<IAqlExecutionResponse[]>(`${this.baseUrl}/manager/execute/project`, {
         cohort,
         templates: templateIds,
       })
@@ -97,7 +97,7 @@ export class PatientFilterService {
   ): Observable<string> {
     return this.httpClient
       .post<string>(
-        `${this.baseUrl}/project/manager/export?format=${format}`,
+        `${this.baseUrl}/manager/export?format=${format}`,
         { cohort, templates },
         { responseType: (format === 'json' ? 'text' : 'blob') as 'json' }
       )
