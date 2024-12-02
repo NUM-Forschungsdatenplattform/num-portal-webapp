@@ -28,7 +28,7 @@ export class QueryService {
 
   getData(): Observable<IAqlExecutionResponse> {
     return this.httpClient
-      .post<IAqlExecutionResponse>(`${this.baseUrl}/query/execute`, {
+      .post<IAqlExecutionResponse>(`${this.baseUrl}/manager/execute/query`, {
         aql: this.query,
       })
       .pipe(
