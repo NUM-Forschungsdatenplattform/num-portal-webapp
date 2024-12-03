@@ -44,7 +44,7 @@ export class AqbContainsUiModel {
       if (compositions.length > 1) {
         const contains: IAqbLogicalOperatorNode<PossibleContains> = {
           _type: AqbNodeType.LogicalOperator,
-          symbol: LogicalOperator.Or,
+          symbol: LogicalOperator.And,
           values: compositions.map((composition) => composition.convertToApi()),
         }
         return contains
