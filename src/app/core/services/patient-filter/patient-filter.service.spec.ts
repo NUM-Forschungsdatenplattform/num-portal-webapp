@@ -16,7 +16,7 @@ import { PatientFilterService } from './patient-filter.service'
 describe('PatientFilterService', () => {
   let service: PatientFilterService
   const baseAqlUrl = 'localhost/api/aql'
-  const baseProjectUrl = 'localhost/api/project'
+  const baseUrl = 'localhost/api'
   const patientQueryBody = {
     query: 'SELECT e/ehr_id/value as ehrId FROM EHR e',
   }
@@ -115,7 +115,7 @@ describe('PatientFilterService', () => {
     it('should call the backend - with success', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockResultFlatList))
       service.getProjectData(mockCohort1, templates).subscribe()
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/manager/execute/project', {
         cohort: mockCohort1,
         templates,
       })
@@ -131,7 +131,7 @@ describe('PatientFilterService', () => {
         .toPromise()
         .then(() => {})
         .catch(() => {})
-      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/project/manager/execute', {
+      expect(httpClient.post).toHaveBeenCalledWith('localhost/api/manager/execute/project', {
         cohort: mockCohort1,
         templates,
       })
@@ -210,7 +210,7 @@ describe('PatientFilterService', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result JSON'))
       await service.exportFile(cohort, templates, 'json').toPromise()
       expect(httpClient.post).toHaveBeenCalledWith(
-        `${baseProjectUrl}/manager/export?format=json`,
+        `${baseUrl}/manager/export?format=json`,
         { cohort, templates },
         { responseType: 'text' }
       )
@@ -220,7 +220,7 @@ describe('PatientFilterService', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result CSV 1 Zip'))
       await service.exportFile(cohort, templates, 'csv').toPromise()
       expect(httpClient.post).toHaveBeenCalledWith(
-        `${baseProjectUrl}/manager/export?format=csv`,
+        `${baseUrl}/manager/export?format=csv`,
         { cohort, templates },
         { responseType: 'blob' as 'json' }
       )
@@ -230,7 +230,7 @@ describe('PatientFilterService', () => {
       jest.spyOn(httpClient, 'post').mockImplementation(() => of('Result CSV 2 Zip'))
       await service.exportFile(cohort, templates).toPromise()
       expect(httpClient.post).toHaveBeenCalledWith(
-        `${baseProjectUrl}/manager/export?format=csv`,
+        `${baseUrl}/manager/export?format=csv`,
         { cohort, templates },
         { responseType: 'blob' as 'json' }
       )

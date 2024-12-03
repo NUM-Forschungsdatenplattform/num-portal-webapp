@@ -17,6 +17,9 @@ import { AuthService } from 'src/app/core/auth/auth.service'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { mockCohort1 } from 'src/mocks/data-mocks/cohorts.mock'
+import { FeatureService } from '../../../../core/services/feature/feature.service'
+import { HttpClient, HttpHandler } from '@angular/common/http'
+import { AppConfigService } from '../../../../config/app-config.service'
 
 describe('DataFilterComponent', () => {
   let component: DataFilterComponent
@@ -30,6 +33,18 @@ describe('DataFilterComponent', () => {
     @Input() totalCohortSize: number
     @Output() determineHits = new EventEmitter()
   }
+
+  const mockConfigService = {
+    config: {
+      api: {
+        baseUrl: '/api',
+      },
+      welcomePageTitle: {
+        de: 'Test Seite',
+        en: 'Test page',
+      },
+    },
+  } as AppConfigService
 
   const mockPatientFilterService = {
     setCurrentProject: jest.fn(),
@@ -83,6 +98,10 @@ describe('DataFilterComponent', () => {
           useValue: mockCohortService,
         },
         {
+          provide: AppConfigService,
+          useValue: mockConfigService,
+        },
+        {
           provide: AuthService,
           useValue: authService,
         },
@@ -94,6 +113,9 @@ describe('DataFilterComponent', () => {
           provide: ActivatedRoute,
           useValue: mockActivatedRoute,
         },
+        FeatureService,
+        HttpClient,
+        HttpHandler,
       ],
     }).compileComponents()
   })
