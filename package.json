@@ -72,7 +72,7 @@
     "@types/node": "^16.18.72",
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^6.19.0",
+    "@typescript-eslint/parser": "^8.17.0",
     "angular-playground": "^10.1.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
