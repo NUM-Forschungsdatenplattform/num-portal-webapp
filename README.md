@@ -58,7 +58,7 @@ steps.
 
 #### II. Update translations
 
-![Diagram showing the workflow of updating and generating localozed content for Sphinx documentaions](https://www.sphinx-doc.org/en/master/_images/translation.svg "Sphinx translation workflow")
+[//]: # (![Diagram showing the workflow of updating and generating localozed content for Sphinx documentaions]&#40;https://www.sphinx-doc.org/en/master/_images/translation.svg "Sphinx translation workflow"&#41;)
 
 Sphinx uses a special procedure to generate the translated content. First use this script to 
 extract the required message catalogue `pot` file:
