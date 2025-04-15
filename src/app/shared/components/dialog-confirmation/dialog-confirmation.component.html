@@ -1,5 +1,5 @@
 <p
-  *ngIf="typeOf(this.dialogInput) !== 'string'; else withHtmlContent"
+  *ngIf="typeOf(dialogInput) !== 'string'; else withHtmlContent"
   [innerHtml]="$any(dialogInput.text)"
 ></p>
 

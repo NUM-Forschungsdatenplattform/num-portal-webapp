@@ -5,7 +5,8 @@
 @import './custom-material';
 @import './general-styles/_margin-bottom-classes';
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 @include custom-material_themed($num-portal-webapp-theme);
 @include mat.all-component-themes($num-portal-webapp-theme);
 @include mat.typography-hierarchy($num-typography);
