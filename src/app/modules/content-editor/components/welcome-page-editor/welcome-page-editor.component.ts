@@ -15,6 +15,7 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
   selector: 'num-welcome-page-editor',
   templateUrl: './welcome-page-editor.component.html',
   styleUrls: ['./welcome-page-editor.component.scss'],
+  standalone: false,
 })
 export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

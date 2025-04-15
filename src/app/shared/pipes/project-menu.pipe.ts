@@ -4,6 +4,7 @@ import { IUserProfile } from '../models/user/user-profile.interface'
 
 @Pipe({
   name: 'projectMenu',
+  standalone: false,
 })
 /**
  * This pipe generates the action menu items for the rows in the projects table

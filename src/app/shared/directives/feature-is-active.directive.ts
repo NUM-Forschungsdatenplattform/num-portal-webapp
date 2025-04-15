@@ -5,6 +5,7 @@ import { AvailableFeatures } from '../models/feature/available-features.enum'
 
 @Directive({
   selector: '[featureIsActive]',
+  standalone: false,
 })
 export class FeatureIsActiveDirective implements OnInit, OnDestroy {
   constructor(

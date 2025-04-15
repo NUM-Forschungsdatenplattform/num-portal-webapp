@@ -6,6 +6,7 @@ import { ContentService } from 'src/app/core/services/content/content.service'
   selector: 'num-metrics',
   templateUrl: './metrics.component.html',
   styleUrls: ['./metrics.component.scss'],
+  standalone: false,
 })
 export class MetricsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

@@ -11,6 +11,7 @@ import { AvailableFeatures } from '../../../shared/models/feature/available-feat
   selector: 'num-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  standalone: false,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

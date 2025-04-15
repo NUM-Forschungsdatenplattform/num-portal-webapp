@@ -5,6 +5,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   selector: 'num-dialog-save-profile',
   templateUrl: './dialog-save-profile.component.html',
   styleUrls: ['./dialog-save-profile.component.scss'],
+  standalone: false,
 })
 export class DialogSaveProfileComponent implements IGenericDialog<never> {
   constructor() {}

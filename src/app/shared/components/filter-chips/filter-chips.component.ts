@@ -5,6 +5,7 @@ import { IFilterItem } from '../../models/filter-chip.interface'
   selector: 'num-filter-chips',
   templateUrl: './filter-chips.component.html',
   styleUrls: ['./filter-chips.component.scss'],
+  standalone: false,
 })
 export class FilterChipsComponent {
   constructor() {}

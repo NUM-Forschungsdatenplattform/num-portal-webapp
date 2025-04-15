@@ -7,6 +7,7 @@ import { MatChipInputEvent } from '@angular/material/chips'
   selector: 'num-project-editor-general-info-keywords-input',
   templateUrl: './project-editor-general-info-keywords-input.component.html',
   styleUrls: ['./project-editor-general-info-keywords-input.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorGeneralInfoKeywordsInputComponent {
   constructor() {}

@@ -5,6 +5,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
   selector: 'num-cohort-builder',
   templateUrl: './cohort-builder.component.html',
   styleUrls: ['./cohort-builder.component.scss'],
+  standalone: false,
 })
 export class CohortBuilderComponent {
   @Input() cohortNode: CohortGroupUiModel

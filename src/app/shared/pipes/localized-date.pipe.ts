@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core'
 @Pipe({
   name: 'localizedDate',
   pure: false,
+  standalone: false,
 })
 export class LocalizedDatePipe implements PipeTransform {
   constructor(

@@ -20,6 +20,7 @@ import { MatPaginator } from '@angular/material/paginator'
   selector: 'num-add-templates-filter-table',
   templateUrl: './add-templates-filter-table.component.html',
   styleUrls: ['./add-templates-filter-table.component.scss'],
+  standalone: false,
 })
 export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription()

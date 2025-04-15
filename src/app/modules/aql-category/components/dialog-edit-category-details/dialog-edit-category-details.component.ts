@@ -10,6 +10,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   selector: 'num-dialog-edit-category-details',
   templateUrl: './dialog-edit-category-details.component.html',
   styleUrls: ['./dialog-edit-category-details.component.scss'],
+  standalone: false,
 })
 export class DialogEditCategoryDetailsComponent
   implements IGenericDialog<{ aqlCategory?: Omit<IAqlCategoryApi, 'id'> }>, OnInit

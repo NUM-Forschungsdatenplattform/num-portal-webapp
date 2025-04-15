@@ -8,6 +8,7 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
   selector: 'num-dialog-add-template',
   templateUrl: './dialog-add-template.component.html',
   styleUrls: ['./dialog-add-template.component.scss'],
+  standalone: false,
 })
 export class DialogAddTemplateComponent implements OnInit {
   @Output() closeDialog = new EventEmitter()

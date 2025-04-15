@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
   selector: 'num-data-explorer-projects',
   templateUrl: './data-explorer-projects.component.html',
   styleUrls: ['./data-explorer-projects.component.scss'],
+  standalone: false,
 })
 export class DataExplorerProjectsComponent implements OnInit {
   constructor(private projectService: ProjectService) {}

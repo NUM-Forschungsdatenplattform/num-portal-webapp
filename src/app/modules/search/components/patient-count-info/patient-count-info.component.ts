@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core'
   selector: 'num-patient-count-info',
   templateUrl: './patient-count-info.component.html',
   styleUrls: ['./patient-count-info.component.scss'],
+  standalone: false,
 })
 export class PatientCountInfoComponent {
   @Input() patientCount: number

@@ -6,6 +6,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   selector: 'num-dialog-confirm-project-approval',
   templateUrl: './dialog-confirm-project-approval.component.html',
   styleUrls: ['./dialog-confirm-project-approval.component.scss'],
+  standalone: false,
 })
 export class DialogConfirmProjectApprovalComponent implements IGenericDialog<never> {
   constructor() {}

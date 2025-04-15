@@ -18,6 +18,7 @@ import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb
   selector: 'num-aql-builder-contains-group',
   templateUrl: './aql-builder-contains-group.component.html',
   styleUrls: ['./aql-builder-contains-group.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
   readonly connectorNodeType = ConnectorNodeType

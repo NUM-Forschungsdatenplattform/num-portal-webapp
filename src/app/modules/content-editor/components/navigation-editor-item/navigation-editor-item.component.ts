@@ -7,6 +7,7 @@ import { InputErrorStateMatcher } from './error-state-matcher'
   selector: 'num-navigation-editor-item',
   templateUrl: './navigation-editor-item.component.html',
   styleUrls: ['./navigation-editor-item.component.scss'],
+  standalone: false,
 })
 export class NavigationEditorItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

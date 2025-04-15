@@ -16,6 +16,7 @@ import { SAVE_NAVIGATION_SUCCESS_CONFIG, SAVE_NAVIGATION_ERROR_CONFIG } from './
   selector: 'num-navigation-editor',
   templateUrl: './navigation-editor.component.html',
   styleUrls: ['./navigation-editor.component.scss'],
+  standalone: false,
 })
 export class NavigationEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs'
   selector: 'num-approved-users',
   templateUrl: './approved-users.component.html',
   styleUrls: ['./approved-users.component.scss'],
+  standalone: false,
 })
 export class ApprovedUsersComponent implements OnInit, OnDestroy {
   @ViewChild(ApprovedUsersTableComponent) table: ApprovedUsersTableComponent

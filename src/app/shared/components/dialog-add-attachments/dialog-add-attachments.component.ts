@@ -25,6 +25,7 @@ export interface UploadDialogData {
   selector: 'num-dialog-add-attachments',
   templateUrl: './dialog-add-attachments.component.html',
   styleUrls: ['./dialog-add-attachments.component.scss'],
+  standalone: false,
 })
 export class DialogAddAttachmentsComponent implements IGenericDialog<UploadDialogData> {
   @Output() closeDialog = new EventEmitter<{ file: File; description?: string } | void>()

@@ -14,6 +14,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
   selector: 'num-unapproved-users-table',
   templateUrl: './unapproved-users-table.component.html',
   styleUrls: ['./unapproved-users-table.component.scss'],
+  standalone: false,
 })
 export class UnapprovedUsersTableComponent
   extends SortableTable<IUser>

@@ -9,6 +9,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
   selector: 'num-project-editor-buttons',
   templateUrl: './project-editor-buttons.component.html',
   styleUrls: ['./project-editor-buttons.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorButtonsComponent {
   availableRoles = AvailableRoles

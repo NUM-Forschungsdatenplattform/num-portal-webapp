@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
+import { NgModule, inject, provideAppInitializer } from '@angular/core'
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
-import { APP_INITIALIZER } from '@angular/core'
+
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -37,11 +37,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
   ],
   providers: [
     { provide: OAuthStorage, useValue: localStorage },
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      deps: [AppConfigService, OAuthInitService, AuthService],
-      useFactory:
+    provideAppInitializer(() => {
+      const initializerFn = (
         (
           configService: AppConfigService,
           oauthInitService: OAuthInitService,
@@ -54,8 +51,10 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
                 authService.initTokenHandling()
               })
             })
-          ),
-    },
+          )
+      )(inject(AppConfigService), inject(OAuthInitService), inject(AuthService))
+      return initializerFn()
+    }),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: OAuthInterceptor,

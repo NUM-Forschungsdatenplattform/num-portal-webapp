@@ -6,6 +6,7 @@ import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
   selector: 'num-aql-builder-contains',
   templateUrl: './aql-builder-contains.component.html',
   styleUrls: ['./aql-builder-contains.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderContainsComponent {
   constructor() {}

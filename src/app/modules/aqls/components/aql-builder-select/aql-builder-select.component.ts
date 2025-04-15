@@ -7,6 +7,7 @@ import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
   selector: 'num-aql-builder-select',
   templateUrl: './aql-builder-select.component.html',
   styleUrls: ['./aql-builder-select.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderSelectComponent {
   AqbSelectDestination = AqbSelectDestination

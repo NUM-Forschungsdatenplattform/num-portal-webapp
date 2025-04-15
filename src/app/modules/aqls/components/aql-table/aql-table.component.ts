@@ -24,6 +24,7 @@ import { Sort } from '@angular/material/sort'
   selector: 'num-aql-table',
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
+  standalone: false,
 })
 export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
   user: IUserProfile

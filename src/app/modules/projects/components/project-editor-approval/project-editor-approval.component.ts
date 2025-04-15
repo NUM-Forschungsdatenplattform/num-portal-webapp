@@ -6,6 +6,7 @@ import { ApprovalOption } from '../../models/approval-option.enum'
   selector: 'num-project-editor-approval',
   templateUrl: './project-editor-approval.component.html',
   styleUrls: ['./project-editor-approval.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorApprovalComponent {
   constructor() {}

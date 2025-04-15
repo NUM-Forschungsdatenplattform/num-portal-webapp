@@ -9,6 +9,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   selector: 'num-project-editor-accordion',
   templateUrl: './project-editor-accordion.component.html',
   styleUrls: ['./project-editor-accordion.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorAccordionComponent {
   @Input() isResearchersFetched: boolean

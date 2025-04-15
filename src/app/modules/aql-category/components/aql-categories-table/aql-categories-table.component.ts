@@ -17,6 +17,7 @@ import { Sort } from '@angular/material/sort'
   selector: 'num-aql-categories-table',
   templateUrl: './aql-categories-table.component.html',
   styleUrls: ['./aql-categories-table.component.scss'],
+  standalone: false,
 })
 export class AqlCategoriesTableComponent
   extends SortableTable<IAqlCategoryApi>

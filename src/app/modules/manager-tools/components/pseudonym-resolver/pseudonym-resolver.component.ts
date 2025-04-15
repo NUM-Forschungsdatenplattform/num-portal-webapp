@@ -9,6 +9,7 @@ import { COPY_CLIPBOARD_SUCCESS_CONFIG, RESOLVE_ERROR_CONFIG } from './constants
   selector: 'num-pseudonym-resolver',
   templateUrl: './pseudonym-resolver.component.html',
   styleUrls: ['./pseudonym-resolver.component.scss'],
+  standalone: false,
 })
 export class PseudonymResolverComponent implements OnInit, OnDestroy {
   private subsriptions = new Subscription()

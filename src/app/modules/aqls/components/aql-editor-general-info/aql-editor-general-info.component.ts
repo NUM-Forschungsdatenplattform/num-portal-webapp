@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs'
   selector: 'num-aql-editor-general-info',
   templateUrl: './aql-editor-general-info.component.html',
   styleUrls: ['./aql-editor-general-info.component.scss'],
+  standalone: false,
 })
 export class AqlEditorGeneralInfoComponent implements OnDestroy, OnInit {
   @Input() availableCategories: any

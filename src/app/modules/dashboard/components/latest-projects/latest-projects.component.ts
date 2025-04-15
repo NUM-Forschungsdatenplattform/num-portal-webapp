@@ -6,6 +6,7 @@ import { ContentService } from 'src/app/core/services/content/content.service'
   selector: 'num-latest-projects',
   templateUrl: './latest-projects.component.html',
   styleUrls: ['./latest-projects.component.scss'],
+  standalone: false,
 })
 export class LatestProjectsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

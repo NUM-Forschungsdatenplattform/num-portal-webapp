@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs'
 @Component({
   selector: 'num-data-protection',
   templateUrl: './data-protection.component.html',
+  standalone: false,
 })
 export class DataProtectionComponent implements OnInit, OnDestroy {
   public subscriptions = new Subscription()

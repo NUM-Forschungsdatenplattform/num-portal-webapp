@@ -13,6 +13,7 @@ import { SortableTable } from 'src/app/shared/models/sortable-table.model'
   selector: 'num-data-explorer-projects-table',
   templateUrl: './data-explorer-projects-table.component.html',
   styleUrls: ['./data-explorer-projects-table.component.scss'],
+  standalone: false,
 })
 export class DataExplorerProjectsTableComponent
   extends SortableTable<IProjectApi>

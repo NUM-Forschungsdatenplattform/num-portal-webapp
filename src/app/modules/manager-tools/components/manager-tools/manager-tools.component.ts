@@ -4,6 +4,7 @@ import { Component } from '@angular/core'
   selector: 'num-manager-tools',
   templateUrl: './manager-tools.component.html',
   styleUrls: ['./manager-tools.component.scss'],
+  standalone: false,
 })
 export class ManagerToolsComponent {
   constructor() {}

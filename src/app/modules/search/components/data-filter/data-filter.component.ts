@@ -11,6 +11,7 @@ import { AvailableFeatures } from '../../../../shared/models/feature/available-f
   selector: 'num-data-filter',
   templateUrl: './data-filter.component.html',
   styleUrls: ['./data-filter.component.scss'],
+  standalone: false,
 })
 export class DataFilterComponent implements OnInit {
   availableRoles = AvailableRoles

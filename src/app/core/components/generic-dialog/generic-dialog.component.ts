@@ -17,6 +17,7 @@ import { DialogConfig } from '../../../shared/models/dialog/dialog-config.interf
   selector: 'num-generic-dialog',
   templateUrl: './generic-dialog.component.html',
   styleUrls: ['./generic-dialog.component.scss'],
+  standalone: false,
 })
 export class GenericDialogComponent implements AfterViewInit, OnDestroy {
   DialogSize = DialogSize

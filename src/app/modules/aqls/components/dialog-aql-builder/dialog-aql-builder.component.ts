@@ -18,6 +18,7 @@ import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-buil
   selector: 'num-dialog-aql-builder',
   templateUrl: './dialog-aql-builder.component.html',
   styleUrls: ['./dialog-aql-builder.component.scss'],
+  standalone: false,
 })
 export class DialogAqlBuilderComponent
   implements OnInit, OnDestroy, IGenericDialog<IAqlBuilderDialogInput>

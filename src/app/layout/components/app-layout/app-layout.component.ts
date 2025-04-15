@@ -9,6 +9,7 @@ import { NavigationEnd, Router } from '@angular/router'
   selector: 'num-app-layout',
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss'],
+  standalone: false,
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
   @ViewChild('drawer', { static: true }) public drawer: MatSidenav

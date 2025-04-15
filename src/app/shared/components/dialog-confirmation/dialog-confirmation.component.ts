@@ -12,6 +12,7 @@ export type ConfirmationDialogInput =
   selector: 'num-dialog-confirmation',
   templateUrl: './dialog-confirmation.component.html',
   styleUrls: ['./dialog-confirmation.component.scss'],
+  standalone: false,
 })
 export class DialogConfirmationComponent implements IGenericDialog<ConfirmationDialogInput> {
   dialogInput: ConfirmationDialogInput

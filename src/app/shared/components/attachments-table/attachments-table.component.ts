@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs'
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
+  standalone: false,
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>

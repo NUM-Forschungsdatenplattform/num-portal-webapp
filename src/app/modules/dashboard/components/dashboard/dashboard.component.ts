@@ -12,6 +12,7 @@ import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } f
   selector: 'num-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  standalone: false,
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

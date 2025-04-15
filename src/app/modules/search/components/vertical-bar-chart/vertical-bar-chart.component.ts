@@ -7,6 +7,7 @@ import { isEmpty, map } from 'lodash-es'
   selector: 'num-vertical-bar-chart',
   templateUrl: './vertical-bar-chart.component.html',
   styleUrls: ['./vertical-bar-chart.component.scss'],
+  standalone: false,
 })
 export class VerticalBarChartComponent implements OnChanges, OnInit {
   @Input() color: string

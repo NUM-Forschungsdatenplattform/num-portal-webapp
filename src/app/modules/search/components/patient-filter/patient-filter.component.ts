@@ -22,6 +22,7 @@ import { ConnectorNodeType } from '../../../../shared/models/connector-node-type
   selector: 'num-patient-filter',
   templateUrl: './patient-filter.component.html',
   styleUrls: ['./patient-filter.component.scss'],
+  standalone: false,
 })
 export class PatientFilterComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

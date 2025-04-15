@@ -9,6 +9,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   selector: 'num-dialog-aql-info',
   templateUrl: './dialog-aql-info.component.html',
   styleUrls: ['./dialog-aql-info.component.scss'],
+  standalone: false,
 })
 export class DialogAqlInfoComponent implements OnInit, OnDestroy, IGenericDialog<AqlUiModel> {
   private readonly OPERATOR_SUFFIX = '__OPERATOR'

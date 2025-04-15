@@ -9,6 +9,7 @@ import { AqlParameterValueType } from '../../../../shared/models/aql/aql-paramet
   selector: 'num-aql-builder-where-item',
   templateUrl: './aql-builder-where-item.component.html',
   styleUrls: ['./aql-builder-where-item.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode

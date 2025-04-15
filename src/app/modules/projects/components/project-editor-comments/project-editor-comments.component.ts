@@ -6,6 +6,7 @@ import { IProjectComment } from 'src/app/shared/models/project/project-comment.i
   selector: 'num-project-editor-comments',
   templateUrl: './project-editor-comments.component.html',
   styleUrls: ['./project-editor-comments.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorCommentsComponent {
   constructor() {}

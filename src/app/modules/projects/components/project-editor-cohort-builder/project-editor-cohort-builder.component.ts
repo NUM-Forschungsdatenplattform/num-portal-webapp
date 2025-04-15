@@ -10,6 +10,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
   selector: 'num-project-editor-cohort-builder',
   templateUrl: './project-editor-cohort-builder.component.html',
   styleUrls: ['./project-editor-cohort-builder.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorCohortBuilderComponent implements OnInit {
   private subscriptions = new Subscription()

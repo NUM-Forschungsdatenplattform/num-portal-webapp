@@ -5,6 +5,7 @@ import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
   selector: 'num-dialog-discard-profile',
   templateUrl: './dialog-discard-profile.component.html',
   styleUrls: ['./dialog-discard-profile.component.scss'],
+  standalone: false,
 })
 export class DialogDiscardProfileComponent implements IGenericDialog<never> {
   constructor() {}

@@ -12,6 +12,7 @@ import moment from 'moment'
   selector: 'num-aql-parameter-inputs',
   templateUrl: './aql-parameter-inputs.component.html',
   styleUrls: ['./aql-parameter-inputs.component.scss'],
+  standalone: false,
 })
 export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

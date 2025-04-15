@@ -13,6 +13,7 @@ import { ADD_DIALOG_CONFIG } from './constants'
   selector: 'num-add-templates',
   templateUrl: './add-templates.component.html',
   styleUrls: ['./add-templates.component.scss'],
+  standalone: false,
 })
 export class AddTemplatesComponent {
   constructor(

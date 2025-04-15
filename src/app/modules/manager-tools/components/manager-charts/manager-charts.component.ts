@@ -9,6 +9,7 @@ import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
   selector: 'num-manager-charts',
   templateUrl: './manager-charts.component.html',
   styleUrls: ['./manager-charts.component.scss'],
+  standalone: false,
 })
 export class ManagerChartsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs'
 @Component({
   templateUrl: './search.component.html',
   styleUrls: ['../../../aqls/components/aql-editor-creator/aql-editor-creator.component.scss'],
+  standalone: false,
 })
 export class SearchComponent extends AqlEditorCeatorComponent implements OnDestroy {
   constructor(

@@ -13,6 +13,7 @@ import moment from 'moment'
   selector: 'num-aql-connector-item',
   templateUrl: './aql-connector-item.component.html',
   styleUrls: ['./aql-connector-item.component.scss'],
+  standalone: false,
 })
 export class AqlConnectorItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

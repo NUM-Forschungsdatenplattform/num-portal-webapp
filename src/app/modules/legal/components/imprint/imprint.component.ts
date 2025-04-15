@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs'
 @Component({
   selector: 'num-imprint',
   templateUrl: './imprint.component.html',
+  standalone: false,
 })
 export class ImprintComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

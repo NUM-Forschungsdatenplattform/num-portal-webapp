@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table'
   selector: 'num-project-editor-researchers',
   templateUrl: './project-editor-researchers.component.html',
   styleUrls: ['./projet-editor-researchers.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorResearchersComponent implements OnInit {
   constructor(private dialogService: DialogService) {}

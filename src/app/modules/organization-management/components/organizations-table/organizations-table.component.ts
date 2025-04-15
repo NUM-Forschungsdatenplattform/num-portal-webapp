@@ -18,6 +18,7 @@ import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization
   selector: 'num-organizations-table',
   templateUrl: './organizations-table.component.html',
   styleUrls: ['./organizations-table.component.scss'],
+  standalone: false,
 })
 export class OrganizationsTableComponent
   extends SortableTable<IOrganization>

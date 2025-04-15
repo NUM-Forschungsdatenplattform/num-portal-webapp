@@ -13,6 +13,7 @@ import { EXPORT_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
   selector: 'num-manager-data-explorer',
   templateUrl: './manager-data-explorer.component.html',
   styleUrls: ['./manager-data-explorer.component.scss'],
+  standalone: false,
 })
 export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
   private subscriptions = new Subscription()

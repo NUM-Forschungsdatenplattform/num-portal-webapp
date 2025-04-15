@@ -8,6 +8,7 @@ import { environment } from '../../../../environments/environment'
   selector: 'num-time-input',
   templateUrl: './time-input.component.html',
   styleUrls: ['./time-input.component.scss'],
+  standalone: false,
 })
 export class TimeInputComponent implements OnInit, OnDestroy {
   /* istanbul ignore next */

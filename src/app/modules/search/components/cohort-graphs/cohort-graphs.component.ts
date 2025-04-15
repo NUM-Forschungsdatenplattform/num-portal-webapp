@@ -7,6 +7,7 @@ import { ICohortPreviewApi } from 'src/app/shared/models/cohort-preview.interfac
   selector: 'num-cohort-graphs',
   templateUrl: './cohort-graphs.component.html',
   styleUrls: ['./cohort-graphs.component.scss'],
+  standalone: false,
 })
 export class CohortGraphsComponent {
   @Input() determineHits: IDetermineHits

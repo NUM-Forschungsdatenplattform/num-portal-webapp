@@ -22,6 +22,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
   selector: 'num-dialog-edit-user-details',
   templateUrl: './dialog-edit-user-details.component.html',
   styleUrls: ['./dialog-edit-user-details.component.scss'],
+  standalone: false,
 })
 export class DialogEditUserDetailsComponent
   implements OnInit, IGenericDialog<{ user: IUser; isApproval: boolean }>

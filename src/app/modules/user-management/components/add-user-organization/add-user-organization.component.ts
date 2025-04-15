@@ -8,6 +8,7 @@ import { IOrganization } from 'src/app/shared/models/organization/organization.i
   selector: 'num-add-user-organization',
   templateUrl: './add-user-organization.component.html',
   styleUrls: ['./add-user-organization.component.scss'],
+  standalone: false,
 })
 export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

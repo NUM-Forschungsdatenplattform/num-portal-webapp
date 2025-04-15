@@ -26,6 +26,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
   selector: 'num-organization-editor',
   templateUrl: './organization-editor.component.html',
   styleUrls: ['./organization-editor.component.scss'],
+  standalone: false,
 })
 export class OrganizationEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

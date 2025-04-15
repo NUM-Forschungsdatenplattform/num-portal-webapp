@@ -19,6 +19,7 @@ import { INFO_DIALOG_CONFIG } from './constants'
   selector: 'num-aql-selection',
   templateUrl: './aql-selection.component.html',
   styleUrls: ['./aql-selection.component.scss'],
+  standalone: false,
 })
 export class AqlSelectionComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

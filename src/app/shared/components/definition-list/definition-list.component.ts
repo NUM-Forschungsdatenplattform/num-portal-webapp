@@ -6,6 +6,7 @@ import { DefinitionType } from '../../models/definition-type.enum'
   selector: 'num-definition-list',
   templateUrl: './definition-list.component.html',
   styleUrls: ['./definition-list.component.scss'],
+  standalone: false,
 })
 export class DefinitionListComponent {
   @Input() dataSource: IDefinitionList[]

@@ -5,6 +5,7 @@ import { IAuthUserInfo } from '../models/user/auth-user-info.interface'
 
 @Directive({
   selector: '[numUserHasRole]',
+  standalone: false,
 })
 export class UserHasRoleDirective implements OnInit, OnDestroy {
   constructor(

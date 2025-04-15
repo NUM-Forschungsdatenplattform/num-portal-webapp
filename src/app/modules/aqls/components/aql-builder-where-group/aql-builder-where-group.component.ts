@@ -10,6 +10,7 @@ import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-gr
   selector: 'num-aql-builder-where-group',
   templateUrl: './aql-builder-where-group.component.html',
   styleUrls: ['./aql-builder-where-group.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode

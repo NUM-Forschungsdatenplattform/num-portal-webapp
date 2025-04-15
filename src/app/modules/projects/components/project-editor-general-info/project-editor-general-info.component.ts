@@ -11,6 +11,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   selector: 'num-project-editor-general-info',
   templateUrl: './project-editor-general-info.component.html',
   styleUrls: ['./project-editor-general-info.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorGeneralInfoComponent implements OnInit, OnDestroy {
   constructor(

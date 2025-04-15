@@ -35,6 +35,7 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
   selector: 'num-attachments-table-actions',
   templateUrl: './attachments-table-actions.component.html',
   styleUrls: ['./attachments-table-actions.component.scss'],
+  standalone: false,
 })
 export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   @Input() attachments: ProjectAttachmentUiModel[]

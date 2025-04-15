@@ -21,6 +21,7 @@ import { TranslateService } from '@ngx-translate/core'
   selector: 'num-side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
+  standalone: false,
 })
 export class SideMenuComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

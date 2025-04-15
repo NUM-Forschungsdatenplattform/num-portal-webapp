@@ -10,6 +10,7 @@ import { EDIT_DIALOG_CONFIG } from './constants'
   selector: 'num-welcome-page-item',
   templateUrl: './welcome-page-item.component.html',
   styleUrls: ['./welcome-page-item.component.scss'],
+  standalone: false,
 })
 export class WelcomePageItemComponent implements OnInit {
   constructor(private dialogService: DialogService) {}

@@ -37,6 +37,7 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
   selector: 'num-data-explorer',
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
+  standalone: false,
 })
 export class DataExplorerComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

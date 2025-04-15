@@ -8,6 +8,7 @@ import { DASHBOARD_CARD_IMAGES, DEFAULT_DASHBOARD_CARD_IMAGE } from 'src/app/sha
   selector: 'num-dialog-edit-welcome-card',
   templateUrl: './dialog-edit-welcome-card.component.html',
   styleUrls: ['./dialog-edit-welcome-card.component.scss'],
+  standalone: false,
 })
 export class DialogEditWelcomeCardComponent implements OnInit, IGenericDialog<UntypedFormGroup> {
   constructor() {}

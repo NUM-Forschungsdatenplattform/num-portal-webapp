@@ -19,6 +19,7 @@ import { AppConfigService } from 'src/app/config/app-config.service'
   selector: 'num-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  standalone: false,
 })
 export class ProfileComponent implements OnInit {
   subscriptions = new Subscription()

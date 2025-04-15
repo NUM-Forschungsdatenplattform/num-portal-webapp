@@ -13,6 +13,7 @@ import { IContainmentTreeNode } from '../../models/containment-tree-node.interfa
   selector: 'num-aql-builder-template-tree',
   templateUrl: './aql-builder-template-tree.component.html',
   styleUrls: ['./aql-builder-template-tree.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderTemplateTreeComponent implements OnInit {
   constructor(private aqlEditorService: AqlEditorService) {}

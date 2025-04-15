@@ -7,6 +7,7 @@ import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-i
   selector: 'num-aql-builder-select-item',
   templateUrl: './aql-builder-select-item.component.html',
   styleUrls: ['./aql-builder-select-item.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderSelectItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

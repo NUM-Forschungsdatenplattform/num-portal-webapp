@@ -21,6 +21,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
   styleUrls: ['./dialog-add-researchers.component.scss'],
+  standalone: false,
 })
 export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGenericDialog<IUser[]> {
   private subscriptions = new Subscription()

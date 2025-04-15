@@ -6,6 +6,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
   selector: 'num-project-editor-templates',
   templateUrl: './project-editor-templates.component.html',
   styleUrls: ['./project-editor-templates.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorTemplatesComponent {
   constructor() {}

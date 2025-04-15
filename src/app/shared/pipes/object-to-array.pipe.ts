@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'objectToArray',
+  standalone: false,
 })
 export class ObjectToArrayPipe implements PipeTransform {
   transform = (objects: any = []) => {

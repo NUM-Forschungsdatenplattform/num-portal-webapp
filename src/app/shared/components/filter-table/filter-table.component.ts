@@ -13,6 +13,7 @@ import { MatTableDataSource } from '@angular/material/table'
   selector: 'num-filter-table',
   templateUrl: './filter-table.component.html',
   styleUrls: ['./filter-table.component.scss'],
+  standalone: false,
 })
 export class FilterTableComponent<T> implements OnInit, OnChanges {
   @Input() dataSource: MatTableDataSource<any>

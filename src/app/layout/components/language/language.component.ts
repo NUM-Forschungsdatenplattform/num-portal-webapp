@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core'
   selector: 'num-language',
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss'],
+  standalone: false,
 })
 export class LanguageComponent {
   constructor(

@@ -19,6 +19,7 @@ import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
   selector: 'num-aql-editor',
   templateUrl: './aql-editor.component.html',
   styleUrls: ['./aql-editor.component.scss'],
+  standalone: false,
 })
 export class AqlEditorComponent implements OnDestroy, OnInit {
   availableRoles = AvailableRoles

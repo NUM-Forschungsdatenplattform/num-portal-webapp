@@ -19,6 +19,7 @@ import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categor
   selector: 'num-aql-categories-management',
   templateUrl: './aql-categories-management.component.html',
   styleUrls: ['./aql-categories-management.component.scss'],
+  standalone: false,
 })
 export class AqlCategoriesManagementComponent implements OnDestroy {
   availableRoles = AvailableRoles

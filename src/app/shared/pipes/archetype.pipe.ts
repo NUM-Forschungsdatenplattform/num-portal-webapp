@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
   name: 'archetype',
+  standalone: false,
 })
 export class ArchetypePipe implements PipeTransform {
   transform(value: string, isSelect?: boolean): string {

@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 @Component({
   selector: 'num-button',
   templateUrl: './button.component.html',
+  standalone: false,
 })
 export class ButtonComponent {
   constructor() {}

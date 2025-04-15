@@ -6,6 +6,7 @@ import { IDetermineHits } from './determine-hits.interface'
   templateUrl: './editor-determine-hits.component.html',
   styleUrls: ['./editor-determine-hits.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class EditorDetermineHitsComponent {
   @Input() isButtonDisabled: boolean

@@ -8,6 +8,7 @@ import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-d
   selector: 'num-aql-builder-templates',
   templateUrl: './aql-builder-templates.component.html',
   styleUrls: ['./aql-builder-templates.component.scss'],
+  standalone: false,
 })
 export class AqlBuilderTemplatesComponent implements AfterViewChecked {
   constructor() {}

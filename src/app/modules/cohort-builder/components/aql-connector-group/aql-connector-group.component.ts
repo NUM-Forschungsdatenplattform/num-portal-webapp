@@ -21,6 +21,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
   selector: 'num-aql-connector-group',
   templateUrl: './aql-connector-group.component.html',
   styleUrls: ['./aql-connector-group.component.scss'],
+  standalone: false,
 })
 export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy {
   private eventSubscription: Subscription

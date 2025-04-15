@@ -10,6 +10,7 @@ import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
   selector: 'num-add-user-roles',
   templateUrl: './add-user-roles.component.html',
   styleUrls: ['./add-user-roles.component.scss'],
+  standalone: false,
 })
 export class AddUserRolesComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

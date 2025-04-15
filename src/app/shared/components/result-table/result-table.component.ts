@@ -9,6 +9,7 @@ import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-e
   selector: 'num-result-table',
   templateUrl: './result-table.component.html',
   styleUrls: ['./result-table.component.scss'],
+  standalone: false,
 })
 export class ResultTableComponent {
   constructor() {}

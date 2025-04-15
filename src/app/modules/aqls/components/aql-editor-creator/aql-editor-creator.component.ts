@@ -23,6 +23,7 @@ import {
   selector: 'num-aql-editor-creator',
   templateUrl: './aql-editor-creator.component.html',
   styleUrls: ['./aql-editor-creator.component.scss'],
+  standalone: false,
 })
 export class AqlEditorCeatorComponent {
   availableRoles = AvailableRoles

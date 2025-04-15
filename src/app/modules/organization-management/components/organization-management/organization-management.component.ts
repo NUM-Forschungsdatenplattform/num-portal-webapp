@@ -11,6 +11,7 @@ import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization
   selector: 'num-organization-management',
   templateUrl: './organization-management.component.html',
   styleUrls: ['./organization-management.component.scss'],
+  standalone: false,
 })
 export class OrganizationManagementComponent implements OnInit, OnDestroy {
   @ViewChild(OrganizationsTableComponent) table: OrganizationsTableComponent

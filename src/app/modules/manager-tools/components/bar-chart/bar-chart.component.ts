@@ -6,6 +6,7 @@ import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
   selector: 'num-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
+  standalone: false,
 })
 export class BarChartComponent {
   private chart: IBarChart

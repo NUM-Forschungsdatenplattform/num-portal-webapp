@@ -32,6 +32,7 @@ import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } f
   selector: 'num-projects-table',
   templateUrl: './projects-table.component.html',
   styleUrls: ['./projects-table.component.scss'],
+  standalone: false,
 })
 export class ProjectsTableComponent
   extends SortableTable<IProjectApi>

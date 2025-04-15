@@ -17,6 +17,7 @@ import { MatPaginator } from '@angular/material/paginator'
   selector: 'num-approved-users-table',
   templateUrl: './approved-users-table.component.html',
   styleUrls: ['./approved-users-table.component.scss'],
+  standalone: false,
 })
 export class ApprovedUsersTableComponent extends SortableTable<IUser> implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

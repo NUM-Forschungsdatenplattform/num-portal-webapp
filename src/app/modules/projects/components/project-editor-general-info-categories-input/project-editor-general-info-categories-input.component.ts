@@ -14,6 +14,7 @@ import { ProjectCategory } from '../../models/project-category.enum'
   selector: 'num-project-editor-general-info-categories-input',
   templateUrl: './project-editor-general-info-categories-input.component.html',
   styleUrls: ['./project-editor-general-info-categories-input.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit {
   constructor(private translate: TranslateService) {}

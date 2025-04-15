@@ -5,6 +5,7 @@ import { IUserProfile } from '../models/user/user-profile.interface'
 
 @Pipe({
   name: 'aqlMenu',
+  standalone: false,
 })
 /**
  * This pipe generates the action menu items for the rows in the aql table
