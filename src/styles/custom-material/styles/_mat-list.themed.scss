@@ -23,20 +23,20 @@
     letter-spacing: 0.25px !important;
 
     &--active {
-      background: mat.get-color-from-palette($accent, 50);
+      background: mat.m2-get-color-from-palette($accent, 50);
       font-weight: 500 !important;
 
       fa-icon {
-        color: mat.get-color-from-palette($accent);
+        color: mat.m2-get-color-from-palette($accent);
       }
     }
 
     &:hover {
-      background: mat.get-color-from-palette($accent, 100) !important;
+      background: mat.m2-get-color-from-palette($accent, 100) !important;
     }
 
     &:focus {
-      background: mat.get-color-from-palette($accent, 200) !important;
+      background: mat.m2-get-color-from-palette($accent, 200) !important;
     }
 
     &.navbar-logo {

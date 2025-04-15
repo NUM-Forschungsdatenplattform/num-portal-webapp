@@ -18,26 +18,26 @@
         font-weight: 400 !important;
 
         &:hover {
-          background: mat.get-color-from-palette($accent, 100);
+          background: mat.m2-get-color-from-palette($accent, 100);
         }
 
         &:focus,
         .cdk-keyboard-focused & {
-          background: mat.get-color-from-palette($accent, 200);
+          background: mat.m2-get-color-from-palette($accent, 200);
         }
       }
     }
 
     .mat-button-toggle-appearance-standard {
-      color: mat.get-color-from-palette($additional, mid-grey);
+      color: mat.m2-get-color-from-palette($additional, mid-grey);
 
       &.mat-button-toggle-checked {
-        color: mat.get-color-from-palette($primary);
-        background: mat.get-color-from-palette($mat-grey, 300);
+        color: mat.m2-get-color-from-palette($primary);
+        background: mat.m2-get-color-from-palette($mat-grey, 300);
       }
 
       &.mat-button-toggle + .mat-button-toggle {
-        border-left: solid 2px mat.get-color-from-palette($accent);
+        border-left: solid 2px mat.m2-get-color-from-palette($accent);
       }
     }
 

@@ -6,15 +6,15 @@
   .mat-mdc-option {
     &--active,
     &--selected {
-      background: mat.get-color-from-palette($accent, 50);
+      background: mat.m2-get-color-from-palette($accent, 50);
     }
 
     &:hover {
-      background: mat.get-color-from-palette($accent, 100) !important;
+      background: mat.m2-get-color-from-palette($accent, 100) !important;
     }
 
     &:focus {
-      background: mat.get-color-from-palette($accent, 200) !important;
+      background: mat.m2-get-color-from-palette($accent, 200) !important;
     }
   }
 }

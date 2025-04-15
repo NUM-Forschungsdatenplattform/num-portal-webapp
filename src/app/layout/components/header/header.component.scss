@@ -21,7 +21,7 @@ $accent: map-get($num-portal-webapp-theme, accent);
   cursor: default;
 }
 .mat-mdc-tab-link.mat-mdc-tab-disabled.mdc-tab-indicator--active {
-  color: mat.get-color-from-palette($accent) !important;
+  color: mat.m2-get-color-from-palette($accent) !important;
   opacity: 1;
 }
 

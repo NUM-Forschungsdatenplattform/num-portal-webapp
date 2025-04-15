@@ -10,7 +10,7 @@
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   .mat-mdc-icon-button.mat-mdc-button-disabled {
-    color: mat.get-color-from-palette($additional, light-grey);
+    color: mat.m2-get-color-from-palette($additional, light-grey);
   }
 
   .mat-mdc-button-base {
@@ -46,93 +46,93 @@
       line-height: 34px;
       border-width: 1px;
       border-style: solid;
-      border-color: mat.get-color-from-palette($primary, 500);
-      background: mat.get-color-from-palette($primary, 500);
+      border-color: mat.m2-get-color-from-palette($primary, 500);
+      background: mat.m2-get-color-from-palette($primary, 500);
       color: #fff;
       fa-icon {
-        color: mat.get-color-from-palette($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &:hover:not(.mat-mdc-button-disabled) {
-        background: mat.get-color-from-palette($primary, 700);
+        background: mat.m2-get-color-from-palette($primary, 700);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat.get-color-from-palette($primary, 700);
-        border-color: mat.get-color-from-palette($accent, 500);
+        background: mat.m2-get-color-from-palette($primary, 700);
+        border-color: mat.m2-get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &.mat-mdc-button-disabled {
-        background: mat.get-color-from-palette($primary, 100);
-        border-color: mat.get-color-from-palette($primary, 100);
+        background: mat.m2-get-color-from-palette($primary, 100);
+        border-color: mat.m2-get-color-from-palette($primary, 100);
         fa-icon {
-          color: mat.get-color-from-palette($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
       }
     }
 
     // Secondary Button
     &.mat-mdc-outlined-button.mat-primary {
-      border-color: mat.get-color-from-palette($primary, 500);
+      border-color: mat.m2-get-color-from-palette($primary, 500);
 
       fa-icon {
-        color: mat.get-color-from-palette($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &:hover:not(.mat-mdc-button-disabled) {
-        background: mat.get-color-from-palette($accent, 100);
+        background: mat.m2-get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat.get-color-from-palette($accent, 200);
+        background: mat.m2-get-color-from-palette($accent, 200);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &.mat-mdc-button-disabled {
         fa-icon {
-          color: mat.get-color-from-palette($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
-        color: mat.get-color-from-palette($additional, light-grey);
-        border-color: mat.get-color-from-palette($primary, 100);
+        color: mat.m2-get-color-from-palette($additional, light-grey);
+        border-color: mat.m2-get-color-from-palette($primary, 100);
       }
     }
 
     // Basic Button
     &.mat-mdc-button.mat-primary {
-      color: mat.get-color-from-palette($additional, mid-grey);
+      color: mat.m2-get-color-from-palette($additional, mid-grey);
 
       fa-icon {
-        color: mat.get-color-from-palette($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &:hover:not(.mat-mdc-button-disabled) {
-        background: mat.get-color-from-palette($accent, 100);
+        background: mat.m2-get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat.get-color-from-palette($accent, 200);
-        border-color: mat.get-color-from-palette($accent, 500);
+        background: mat.m2-get-color-from-palette($accent, 200);
+        border-color: mat.m2-get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       &.mat-mdc-button-disabled {
         fa-icon {
-          color: mat.get-color-from-palette($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
-        color: mat.get-color-from-palette($additional, mid-grey);
+        color: mat.m2-get-color-from-palette($additional, mid-grey);
       }
     }
   }

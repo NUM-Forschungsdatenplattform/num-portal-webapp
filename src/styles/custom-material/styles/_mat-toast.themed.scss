@@ -7,27 +7,27 @@
     font-weight: 100;
 
     &-success {
-      color: mat.get-color-from-palette($additional, dark-grey);
-      background-color: mat.get-color-from-palette($additional, success);
+      color: mat.m2-get-color-from-palette($additional, dark-grey);
+      background-color: mat.m2-get-color-from-palette($additional, success);
 
       .mat-button-wrapper {
-        color: mat.get-color-from-palette($additional, dark-grey);
+        color: mat.m2-get-color-from-palette($additional, dark-grey);
       }
     }
     &-warn {
-      color: mat.get-color-from-palette($additional, dark-grey);
-      background-color: mat.get-color-from-palette($additional, warning);
+      color: mat.m2-get-color-from-palette($additional, dark-grey);
+      background-color: mat.m2-get-color-from-palette($additional, warning);
 
       .mat-button-wrapper {
-        color: mat.get-color-from-palette($additional, dark-grey);
+        color: mat.m2-get-color-from-palette($additional, dark-grey);
       }
     }
     &-error {
-      color: mat.get-color-from-palette($additional, white);
-      background-color: mat.get-color-from-palette($additional, error);
+      color: mat.m2-get-color-from-palette($additional, white);
+      background-color: mat.m2-get-color-from-palette($additional, error);
 
       .mat-button-wrapper {
-        color: mat.get-color-from-palette($additional, white);
+        color: mat.m2-get-color-from-palette($additional, white);
       }
     }
 

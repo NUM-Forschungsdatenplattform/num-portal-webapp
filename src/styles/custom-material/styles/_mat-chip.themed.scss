@@ -7,15 +7,15 @@
 
   .mat-mdc-chip.mat-mdc-standard-chip {
     font-size: 14px;
-    background: mat.get-color-from-palette($additional, light-grey) !important;
+    background: mat.m2-get-color-from-palette($additional, light-grey) !important;
 
     &.mat-mdc-chip-selected.mat-primary,
     &.chip-primary {
-      background: mat.get-color-from-palette($primary, 500) !important;
-      color: mat.get-contrast-color-from-palette($primary, 500);
+      background: mat.m2-get-color-from-palette($primary, 500) !important;
+      color: mat.m2-get-contrast-color-from-palette($primary, 500);
 
       fa-icon {
-        color: mat.get-color-from-palette($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
     }
   }

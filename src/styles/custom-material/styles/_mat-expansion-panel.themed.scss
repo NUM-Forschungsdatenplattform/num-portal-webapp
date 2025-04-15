@@ -125,7 +125,7 @@
   .mat-expansion-panel-header {
     background-color: transparent;
     border-bottom-style: solid;
-    border-bottom-color: mat.get-color-from-palette($additional, light-grey);
+    border-bottom-color: mat.m2-get-color-from-palette($additional, light-grey);
     border-radius: 0 !important;
 
     .num-accordion-big & {
@@ -134,7 +134,7 @@
 
       &[aria-expanded='true'] {
         margin: 0 0 20px 0;
-        border-bottom-color: mat.get-color-from-palette($accent);
+        border-bottom-color: mat.m2-get-color-from-palette($accent);
       }
     }
 
@@ -148,14 +148,14 @@
 
       &[aria-expanded='true'] {
         margin: 0;
-        border-bottom-color: mat.get-color-from-palette($accent);
+        border-bottom-color: mat.m2-get-color-from-palette($accent);
       }
 
       &:hover {
-        background: mat.get-color-from-palette($accent, 100) !important;
+        background: mat.m2-get-color-from-palette($accent, 100) !important;
       }
       &:focus {
-        background: mat.get-color-from-palette($accent, 200) !important;
+        background: mat.m2-get-color-from-palette($accent, 200) !important;
       }
     }
   }
@@ -169,7 +169,7 @@
         0px 3px 1px -2px rgb(0 0 0 / 20%),
         0px 2px 2px 0px rgb(0 0 0 / 14%),
         0px 1px 5px 0px rgb(0 0 0 / 12%);
-      background-color: mat.get-color-from-palette($additional, white);
+      background-color: mat.m2-get-color-from-palette($additional, white);
 
       [aria-expanded='true'] & {
         margin: 0 0 32px 0;
@@ -178,7 +178,7 @@
 
     .num-accordion-small & {
       box-shadow: none;
-      background-color: mat.get-color-from-palette($additional, page-background);
+      background-color: mat.m2-get-color-from-palette($additional, page-background);
 
       [aria-expanded='true'] & {
         margin: 0;
@@ -197,7 +197,7 @@
   }
 
   .mat-expansion-indicator::after {
-    color: mat.get-color-from-palette($accent);
+    color: mat.m2-get-color-from-palette($accent);
     padding: 5px !important;
     margin-top: -10px;
     border-width: 0 3.5px 3.5px 0 !important;

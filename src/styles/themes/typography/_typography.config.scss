@@ -1,39 +1,39 @@
 @use '@angular/material' as mat;
 
 // $font-family: 'Roboto, monospace',
-// /* mat-h1 */ $headline: mat-typography-level(40px, 48px, 300),
-// /* mat-h2 */ $title: mat-typography-level(28px, 32px, 300),
-// /* mat-h3 */ $subheading-2: mat-typography-level(22px, 28px, 500),
-// /* mat-h4 */ $subheading-1: mat-typography-level(20px, 26px, 500),
+// __<<ngM2ThemingMigrationEscapedComment0>>__ $headline: mat-typography-level(40px, 48px, 300),
+// __<<ngM2ThemingMigrationEscapedComment1>>__ $title: mat-typography-level(28px, 32px, 300),
+// __<<ngM2ThemingMigrationEscapedComment2>>__ $subheading-2: mat-typography-level(22px, 28px, 500),
+// __<<ngM2ThemingMigrationEscapedComment3>>__ $subheading-1: mat-typography-level(20px, 26px, 500),
 // $button: mat-typography-level(14px, 16px, 400);
-// /* .mat-body, Base body text */ $body-1: mat-typography-level(16px, 24px, 400),
-// /* .mat-body-strong, Bolder body text. */ $body-2: mat-typography-level(16px, 24px, 500),
-// /* Smaller body and hint text. */ $caption: mat-typography-level(14px, 16px, 300),
-// /* Dialog H1 */ $display-1: mat-typography-level(22px, 28px, 400),
-// /* Dialog H2 */ $display-2: mat-typography-level(18px, 24px, 400),
-// /* Dialog H3 */ $display-3: mat-typography-level(16px, 24px, 500),
+// __<<ngM2ThemingMigrationEscapedComment4>>__ $body-1: mat-typography-level(16px, 24px, 400),
+// __<<ngM2ThemingMigrationEscapedComment5>>__ $body-2: mat-typography-level(16px, 24px, 500),
+// __<<ngM2ThemingMigrationEscapedComment6>>__ $caption: mat-typography-level(14px, 16px, 300),
+// __<<ngM2ThemingMigrationEscapedComment7>>__ $display-1: mat-typography-level(22px, 28px, 400),
+// __<<ngM2ThemingMigrationEscapedComment8>>__ $display-2: mat-typography-level(18px, 24px, 400),
+// __<<ngM2ThemingMigrationEscapedComment9>>__ $display-3: mat-typography-level(16px, 24px, 500),
 // $display-4: mat-typography-level(16px, 24px, 500),
 
 /* Define individual typography levels */
-$headline-1: mat.define-typography-level(40px, 48px, 300);
-$headline-2: mat.define-typography-level(28px, 32px, 300);
-$headline-3: mat.define-typography-level(22px, 28px, 500);
-$headline-4: mat.define-typography-level(20px, 26px, 500);
+$headline-1: mat.m2-define-typography-level(40px, 48px, 300);
+$headline-2: mat.m2-define-typography-level(28px, 32px, 300);
+$headline-3: mat.m2-define-typography-level(22px, 28px, 500);
+$headline-4: mat.m2-define-typography-level(20px, 26px, 500);
 
-$body-1: mat.define-typography-level(20px, 26px, 500);
+$body-1: mat.m2-define-typography-level(20px, 26px, 500);
 
-$button: mat.define-typography-level(14px, 16px, 400);
-$caption: mat.define-typography-level(14px, 16px, 300);
-$subtitle-2: mat.define-typography-level(16px, 24px, 500);
+$button: mat.m2-define-typography-level(14px, 16px, 400);
+$caption: mat.m2-define-typography-level(14px, 16px, 300);
+$subtitle-2: mat.m2-define-typography-level(16px, 24px, 500);
 
 // changed
-$headline-5: mat.define-typography-level(40px, 48px, 300);
-$headline-6: mat.define-typography-level(28px, 32px, 300);
-$body-2: mat.define-typography-level(16px, 24px, 400);
-$subtitle-1: mat.define-typography-level(22px, 28px, 500);
+$headline-5: mat.m2-define-typography-level(40px, 48px, 300);
+$headline-6: mat.m2-define-typography-level(28px, 32px, 300);
+$body-2: mat.m2-define-typography-level(16px, 24px, 400);
+$subtitle-1: mat.m2-define-typography-level(22px, 28px, 500);
 
 /* Combine them into a single typography config */
-$num-typography: mat.define-typography-config(
+$num-typography: mat.m2-define-typography-config(
   $font-family: 'Roboto, monospace',
   $headline-1: $headline-1,
   $headline-2: $headline-2,

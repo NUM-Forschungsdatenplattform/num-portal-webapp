@@ -7,7 +7,7 @@ $dark-secondary-text: rgba(0, 0, 0, 0.54);
 
 @function mat-light-theme-foreground($primary, $accent, $additional) {
   @return (
-    text: mat.get-color-from-palette($additional, dark-grey),
+    text: mat.m2-get-color-from-palette($additional, dark-grey),
     disabled-button: rgba(white, 0.65),
     // defaults below
     base: black,

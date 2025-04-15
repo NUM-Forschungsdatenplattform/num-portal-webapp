@@ -4,11 +4,11 @@
   $primary: map-get($theme, primary);
 
   .num-footer {
-    background: mat.get-color-from-palette($primary, 900);
-    color: mat.get-contrast-color-from-palette($primary, 900);
+    background: mat.m2-get-color-from-palette($primary, 900);
+    color: mat.m2-get-contrast-color-from-palette($primary, 900);
 
     .mat-mdc-button:not(:disabled) {
-      color: mat.get-contrast-color-from-palette($primary, 900);
+      color: mat.m2-get-contrast-color-from-palette($primary, 900);
     }
   }
 }
