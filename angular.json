@@ -15,12 +15,15 @@
       "prefix": "num",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/num-portal-webapp",
+            "outputPath": {
+              "base": "dist/num-portal-webapp"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -49,7 +52,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "keycloak-js"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "deploy": {
@@ -64,8 +68,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -80,9 +82,7 @@
               ]
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -139,12 +139,15 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/playground",
+            "outputPath": {
+              "base": "dist/playground"
+            },
             "index": "src/index.html",
-            "main": ".angular-playground//main.playground.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": ".angular-playground/tsconfig.playground.json",
             "aot": false,
             "assets": [
@@ -154,7 +157,8 @@
             "styles": [
               "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": ".angular-playground//main.playground.ts"
           },
           "configurations": {
             "production": {
@@ -163,9 +167,7 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false
+              "extractLicenses": true
             }
           }
         },

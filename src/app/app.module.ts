@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { APP_INITIALIZER } from '@angular/core'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -20,13 +20,13 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
 
 @NgModule({
   declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
     LayoutModule,
     AppRoutingModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
       loader: {
@@ -67,7 +67,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor'
       multi: true,
     },
     { provide: DateAdapter, useClass: MomentDateAdapter },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
