@@ -1,13 +1,12 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
-import { EChartsOption } from 'echarts'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { isEmpty, map } from 'lodash-es'
+import { EChartsCoreOption } from 'echarts/core'
 
 @Component({
   selector: 'num-vertical-bar-chart',
   templateUrl: './vertical-bar-chart.component.html',
   styleUrls: ['./vertical-bar-chart.component.scss'],
-  standalone: false,
 })
 export class VerticalBarChartComponent implements OnChanges, OnInit {
   @Input() color: string
@@ -19,8 +18,8 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
   @Input() graphName: string
   @Input() xAxisName: string
 
-  chartOptions: EChartsOption
-  updateOptions: EChartsOption
+  chartOptions: EChartsCoreOption
+  updateOptions: EChartsCoreOption
 
   initOptions = {
     renderer: 'svg',
@@ -63,7 +62,7 @@ export class VerticalBarChartComponent implements OnChanges, OnInit {
     ) {
       this.handleData(changes.data.currentValue)
     } else if (changes.xAxisName || changes.yAxisName) {
-      let updateOptions: EChartsOption = {}
+      let updateOptions: EChartsCoreOption = {}
       if (changes.xAxisName) {
         updateOptions = {
           ...updateOptions,

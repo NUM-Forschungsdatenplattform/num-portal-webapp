@@ -30,7 +30,7 @@ import { DirectivesModule } from '../../shared/directives/directives.module'
     CommonModule,
     LayoutModule,
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
+      echarts: () => import('echarts/index.common'),
     }),
     SearchRoutingModule,
     SharedModule,
