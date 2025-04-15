@@ -9,7 +9,7 @@
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-  .mat-mdc-icon-button.mat-button-disabled.mat-button-disabled {
+  .mat-mdc-icon-button.mat-mdc-button-disabled {
     color: mat.get-color-from-palette($additional, light-grey);
   }
 
@@ -47,13 +47,15 @@
       border-width: 1px;
       border-style: solid;
       border-color: mat.get-color-from-palette($primary, 500);
+      background: mat.get-color-from-palette($primary, 500);
+      color: #fff;
       fa-icon {
         color: mat.get-color-from-palette($accent, 500);
       }
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
+      &:hover:not(.mat-mdc-button-disabled) {
         background: mat.get-color-from-palette($primary, 700);
         box-shadow: $raised-shadow;
       }
@@ -65,7 +67,7 @@
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
+      &.mat-mdc-button-disabled {
         background: mat.get-color-from-palette($primary, 100);
         border-color: mat.get-color-from-palette($primary, 100);
         fa-icon {
@@ -84,7 +86,7 @@
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
+      &:hover:not(.mat-mdc-button-disabled) {
         background: mat.get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
@@ -95,7 +97,7 @@
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
+      &.mat-mdc-button-disabled {
         fa-icon {
           color: mat.get-color-from-palette($accent, 200);
         }
@@ -114,7 +116,7 @@
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
+      &:hover:not(.mat-mdc-button-disabled) {
         background: mat.get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
@@ -126,7 +128,7 @@
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
       /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
+      &.mat-mdc-button-disabled {
         fa-icon {
           color: mat.get-color-from-palette($accent, 200);
         }

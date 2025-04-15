@@ -3,15 +3,15 @@
 @mixin mat-chip_themed($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
+  $additional: map-get($theme, additional);
 
   .mat-mdc-chip.mat-mdc-standard-chip {
     font-size: 14px;
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
-    &.mat-chip-selected.mat-primary,
+    background: mat.get-color-from-palette($additional, light-grey) !important;
+
+    &.mat-mdc-chip-selected.mat-primary,
     &.chip-primary {
-      background: mat.get-color-from-palette($primary, 500);
+      background: mat.get-color-from-palette($primary, 500) !important;
       color: mat.get-contrast-color-from-palette($primary, 500);
 
       fa-icon {

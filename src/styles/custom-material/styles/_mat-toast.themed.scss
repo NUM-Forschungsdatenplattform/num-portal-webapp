@@ -9,9 +9,7 @@
     &-success {
       color: mat.get-color-from-palette($additional, dark-grey);
       background-color: mat.get-color-from-palette($additional, success);
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
       .mat-button-wrapper {
         color: mat.get-color-from-palette($additional, dark-grey);
       }
@@ -19,9 +17,7 @@
     &-warn {
       color: mat.get-color-from-palette($additional, dark-grey);
       background-color: mat.get-color-from-palette($additional, warning);
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
       .mat-button-wrapper {
         color: mat.get-color-from-palette($additional, dark-grey);
       }
@@ -29,16 +25,12 @@
     &-error {
       color: mat.get-color-from-palette($additional, white);
       background-color: mat.get-color-from-palette($additional, error);
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
       .mat-button-wrapper {
         color: mat.get-color-from-palette($additional, white);
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
     .mat-button-wrapper {
       font-weight: 400;
     }

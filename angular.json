@@ -43,9 +43,13 @@
                 "output": "./vs/base"
               }
             ],
-            "styles": ["src/styles/styles.scss"],
+            "styles": [
+              "src/styles/styles.scss"
+            ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["keycloak-js"]
+            "allowedCommonJsDependencies": [
+              "keycloak-js"
+            ]
           },
           "configurations": {
             "deploy": {
@@ -92,10 +96,10 @@
           },
           "configurations": {
             "deploy": {
-              "browserTarget": "num-portal-webapp:build:deploy"
+              "buildTarget": "num-portal-webapp:build:deploy"
             },
             "development": {
-              "browserTarget": "num-portal-webapp:build:development"
+              "buildTarget": "num-portal-webapp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -103,13 +107,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "num-portal-webapp:build"
+            "buildTarget": "num-portal-webapp:build"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -140,8 +147,13 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": ".angular-playground/tsconfig.playground.json",
             "aot": false,
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -160,7 +172,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "playground:build",
+            "buildTarget": "playground:build",
             "port": 4201
           }
         }
@@ -168,7 +180,9 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"],
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
     "analytics": false
   }
 }

@@ -32,7 +32,8 @@ $mat-light-theme-background: mat-light-theme-background(
     is-dark: false,
     foreground: $mat-light-theme-foreground,
     background: $mat-light-theme-background,
-    num-typography: $num-typography
+    typography: $num-typography,
+    density: 0
   );
 }
 

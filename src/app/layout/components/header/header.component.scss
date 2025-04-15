@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import '../../../../styles/themes';
 $accent: map-get($num-portal-webapp-theme, accent);
 
@@ -20,7 +21,7 @@ $accent: map-get($num-portal-webapp-theme, accent);
   cursor: default;
 }
 .mat-mdc-tab-link.mat-mdc-tab-disabled.mdc-tab-indicator--active {
-  color: mat-color($accent) !important;
+  color: mat.get-color-from-palette($accent) !important;
   opacity: 1;
 }
 
