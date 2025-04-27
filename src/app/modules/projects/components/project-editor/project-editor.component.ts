@@ -32,6 +32,7 @@ import { AttachmentService } from 'src/app/core/services/attachment/attachment.s
   selector: 'num-project-editor',
   templateUrl: './project-editor.component.html',
   styleUrls: ['./project-editor.component.scss'],
+  standalone: false,
 })
 export class ProjectEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

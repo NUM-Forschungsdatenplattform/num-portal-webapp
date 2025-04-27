@@ -42,6 +42,8 @@ export default defineConfig([globalIgnores(["**/dist", "**/coverage"]), {
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@angular-eslint/component-class-suffix": "off",
+        "@angular-eslint/prefer-standalone": "off",
+				
 
         "@typescript-eslint/no-unused-vars": ["warn", {
             argsIgnorePattern: "^_",
