@@ -20,7 +20,9 @@
     "docs:clean": "rimraf ./docs/build/html/*",
     "docs:extract-messages": "cd ./docs && sphinx-build -b gettext . _gettext && cd ..",
     "docs:update-l10n": "npm run docs:extract-messages && npm run docs:update-po",
-    "docs:update-po": "cd ./docs && sphinx-intl update -p _gettext && cd .."
+    "docs:update-po": "cd ./docs && sphinx-intl update -p _gettext && cd ..",
+    "prepare": "husky install",
+    "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html,ts}' && lint-staged"
   },
   "dependencies": {
     "@angular/animations": "^19.2.6",
@@ -47,20 +49,20 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "@npmcli/package-json": "^6.1.1",
     "@swimlane/ngx-charts": "^22.0.0-alpha.1",
-    "angular-oauth2-oidc": "^17.0.2",
+    "angular-oauth2-oidc": "^19.0.0",
     "echarts": "^5.6.0",
     "lodash-es": "^4.17.21",
     "moment": "^2.30.1",
-    "monaco-editor": "^0.51.0",
+    "monaco-editor": "^0.52.2",
     "nanoid": "^5.1.5",
     "ngx-echarts": "^19.0.0",
     "rxjs": "^7.8.2",
     "sass": "^1.86.3",
-    "tslib": "^2.3.1",
+    "tslib": "^2.8.1",
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.0",
+    "@angular-devkit/build-angular": "^19.2.7",
     "@angular-eslint/builder": "19.3.0",
     "@angular-eslint/eslint-plugin": "19.3.0",
     "@angular-eslint/eslint-plugin-template": "19.3.0",
@@ -71,25 +73,25 @@
     "@types/jasmine": "^5.1.7",
     "@types/jest": "^29.5.14",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^18.19.86",
-    "@types/uuid": "^9.0.8",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@types/node": "^22.14.1",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
     "angular-playground": "^11.0.0",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
-    "husky": "^4.3.8",
+    "husky": "^9.1.7",
     "jasmine-core": "^5.6.0",
     "jasmine-spec-reporter": "^7.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-junit": "^16.0.0",
-    "jest-preset-angular": "^14.5.4",
+    "jest-preset-angular": "^14.5.5",
     "jest-sonar-reporter": "^2.0.0",
     "lint-staged": "^15.5.1",
     "lodash": "^4.17.21",
-    "prettier": "3.2.4",
+    "prettier": "3.5.3",
     "pretty-quick": "^4.1.1",
     "protractor": "^7.0.0",
     "resize-observer-polyfill": "^1.5.1",
@@ -97,17 +99,11 @@
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
     "typescript": "5.8.3",
-    "uuid": "^9.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern 'src/**/*.{scss,html,ts}' && lint-staged"
-    }
+    "uuid": "^11.1.0"
   },
   "lint-staged": {
     "src/**/*.ts": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "jestSonar": {
