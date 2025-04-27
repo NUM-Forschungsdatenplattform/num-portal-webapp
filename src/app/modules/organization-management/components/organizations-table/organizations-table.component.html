@@ -34,25 +34,27 @@
         {{ 'FORM.ACTION' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        <button
-          *ngIf="isSuperAdmin"
-          mat-icon-button
-          data-test="all-organizations__table__context-action-button"
-          [matMenuTriggerFor]="menu"
-          [matMenuTriggerData]="{ element }"
-        >
-          <fa-icon icon="ellipsis-v"></fa-icon>
-        </button>
-        <button
-          *ngIf="!isSuperAdmin"
-          color="accent"
-          mat-icon-button
-          [attr.aria-label]="'BUTTON.SELECT' | translate"
-          data-test="all-organizations__table__action-button"
-          (click)="handleSelectClick(element)"
-        >
-          <fa-icon icon="pen" size="lg" [fixedWidth]="true"></fa-icon>
-        </button>
+        @if (isSuperAdmin) {
+          <button
+            mat-icon-button
+            data-test="all-organizations__table__context-action-button"
+            [matMenuTriggerFor]="menu"
+            [matMenuTriggerData]="{ element }"
+          >
+            <fa-icon icon="ellipsis-v"></fa-icon>
+          </button>
+        }
+        @if (!isSuperAdmin) {
+          <button
+            color="accent"
+            mat-icon-button
+            [attr.aria-label]="'BUTTON.SELECT' | translate"
+            data-test="all-organizations__table__action-button"
+            (click)="handleSelectClick(element)"
+          >
+            <fa-icon icon="pen" size="lg" [fixedWidth]="true"></fa-icon>
+          </button>
+        }
       </td>
     </ng-container>
 
@@ -79,13 +81,12 @@
         {{ 'ORGANIZATION_MANAGEMENT.ACTIVE' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        <fa-icon
-          *ngIf="!element.active"
-          icon="building-lock"
-          size="lg"
-          [fixedWidth]="true"
-        ></fa-icon>
-        <fa-icon *ngIf="element.active" icon="building" size="lg" [fixedWidth]="true"></fa-icon>
+        @if (!element.active) {
+          <fa-icon icon="building-lock" size="lg" [fixedWidth]="true"></fa-icon>
+        }
+        @if (element.active) {
+          <fa-icon icon="building" size="lg" [fixedWidth]="true"></fa-icon>
+        }
       </td>
     </ng-container>
 

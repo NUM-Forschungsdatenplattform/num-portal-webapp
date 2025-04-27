@@ -22,20 +22,22 @@
     (determineHitsClicked)="determineHits()"
   ></num-project-editor-accordion>
 
-  <num-project-editor-comments
-    *ngIf="project.id !== null && project.id !== undefined"
-    [isLoadingComplete]="isCommentsFetched"
-    [comments]="projectComments"
-    [form]="commentForm"
-    (postComment)="postComment()"
-    data-test="project-editor__comments"
-  ></num-project-editor-comments>
+  @if (project.id !== null && project.id !== undefined) {
+    <num-project-editor-comments
+      [isLoadingComplete]="isCommentsFetched"
+      [comments]="projectComments"
+      [form]="commentForm"
+      (postComment)="postComment()"
+      data-test="project-editor__comments"
+    ></num-project-editor-comments>
+  }
 
-  <num-project-editor-approval
-    *ngIf="mode === possibleModes.REVIEW"
-    [form]="approverForm"
-    data-test="project-editor__approval"
-  ></num-project-editor-approval>
+  @if (mode === possibleModes.REVIEW) {
+    <num-project-editor-approval
+      [form]="approverForm"
+      data-test="project-editor__approval"
+    ></num-project-editor-approval>
+  }
 
   <num-project-editor-buttons
     [editorMode]="mode"

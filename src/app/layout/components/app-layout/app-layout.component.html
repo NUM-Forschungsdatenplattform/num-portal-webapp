@@ -16,16 +16,17 @@
   <mat-sidenav-content fxLayout="column">
     <!-- Page Content -->
     <num-header role="banner" [unapprovedUser]="unapprovedUser">
-      <button
-        id="menu-toggle-button"
-        type="button"
-        [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
-        mat-icon-button
-        (click)="toggleMenu()"
-        *ngIf="isSmallDevice"
-      >
-        <fa-icon icon="bars"></fa-icon>
-      </button>
+      @if (isSmallDevice) {
+        <button
+          id="menu-toggle-button"
+          type="button"
+          [attr.aria-label]="'APPLAYOUT.TOGGLE.LABEL' | translate"
+          mat-icon-button
+          (click)="toggleMenu()"
+        >
+          <fa-icon icon="bars"></fa-icon>
+        </button>
+      }
     </num-header>
 
     <div class="safari-fix" fxLayout="row" fxLayoutAlign="center start" role="presentation">
@@ -36,21 +37,25 @@
         fxFlex.gt-md="90%"
         fxFlex.gt-lg="1200px"
       >
-        <router-outlet *ngIf="isRouterOutletDisplayed"></router-outlet>
-        <div *ngIf="!isRouterOutletDisplayed">
-          <p>
-            <fa-icon
-              class="num-fc--w"
-              icon="exclamation-circle"
-              size="lg"
-              [fixedWidth]="true"
-            ></fa-icon>
-            {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE' | translate }}
-          </p>
-          <p>
-            {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE_DESCRIPTION' | translate }}
-          </p>
-        </div>
+        @if (isRouterOutletDisplayed) {
+          <router-outlet></router-outlet>
+        }
+        @if (!isRouterOutletDisplayed) {
+          <div>
+            <p>
+              <fa-icon
+                class="num-fc--w"
+                icon="exclamation-circle"
+                size="lg"
+                [fixedWidth]="true"
+              ></fa-icon>
+              {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE' | translate }}
+            </p>
+            <p>
+              {{ 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE_DESCRIPTION' | translate }}
+            </p>
+          </div>
+        }
       </main>
     </div>
 

@@ -2,30 +2,30 @@
   <mat-expansion-panel-header data-test="project-editor__connector__define-cohort-button">
     <mat-panel-title>
       <h3 class="accordion" fxLayoutGap="8px">
-        <fa-icon
-          [icon]="['far', 'check-circle']"
-          *ngIf="cohortNode.children.length && cohortNode.areParameterConfigured"
-        ></fa-icon
-        ><span>{{ 'PROJECT.DEFINE_COHORT' | translate }}*</span>
+        @if (cohortNode.children.length && cohortNode.areParameterConfigured) {
+          <fa-icon [icon]="['far', 'check-circle']"></fa-icon>
+        }
+        <span>{{ 'PROJECT.DEFINE_COHORT' | translate }}*</span>
       </h3>
     </mat-panel-title>
   </mat-expansion-panel-header>
 
-  <section fxLayout="row" *ngIf="!isDisabled">
-    <num-filter-chips
-      [filterChips]="filterConfig.filterItem"
-      [multiSelect]="false"
-      (selectionChange)="handleFilterChange()"
-    ></num-filter-chips>
-
-    <num-search
-      fxFlexOffset="auto"
-      fxFlex="25%"
-      label="QUERIES.SEARCH_QUERIES"
-      [(searchText)]="filterConfig.searchText"
-      (searchTextChange)="handleSearchChange()"
-    ></num-search>
-  </section>
+  @if (!isDisabled) {
+    <section fxLayout="row">
+      <num-filter-chips
+        [filterChips]="filterConfig.filterItem"
+        [multiSelect]="false"
+        (selectionChange)="handleFilterChange()"
+      ></num-filter-chips>
+      <num-search
+        fxFlexOffset="auto"
+        fxFlex="25%"
+        label="QUERIES.SEARCH_QUERIES"
+        [(searchText)]="filterConfig.searchText"
+        (searchTextChange)="handleSearchChange()"
+      ></num-search>
+    </section>
+  }
 
   <num-cohort-builder
     [cohortNode]="cohortNode"
@@ -38,10 +38,11 @@
 
   <mat-divider class="num-d-c--g num-d-w--1 num-margin-b-20"></mat-divider>
 
-  <num-editor-determine-hits
-    *ngIf="!isDisabled"
-    [content]="determineHitsContent"
-    (clicked)="determineHitsClicked.emit()"
-    [isCohortValid]="isCohortValid"
-  ></num-editor-determine-hits>
+  @if (!isDisabled) {
+    <num-editor-determine-hits
+      [content]="determineHitsContent"
+      (clicked)="determineHitsClicked.emit()"
+      [isCohortValid]="isCohortValid"
+    ></num-editor-determine-hits>
+  }
 </mat-expansion-panel>

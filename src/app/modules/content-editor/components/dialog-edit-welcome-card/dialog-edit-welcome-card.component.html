@@ -90,23 +90,22 @@
       <mat-form-field appearance="outline" color="accent" fxFlex.gt-xs="50%">
         <mat-label>{{ 'CONTENT_EDITOR.CARD_IMAGE' | translate }}*</mat-label>
         <mat-select #imageId formControlName="imageId" data-test="edit-card__image-id__selector">
-          <mat-option
-            *ngFor="let image of images | keyvalue"
-            [value]="image.key"
-            [attr.data-test]="'edit-card__image-id__' + image.key"
-          >
-            {{ 'CONTENT_EDITOR.IMAGES.' + image.key | translate }}
-          </mat-option>
+          @for (image of images | keyvalue; track image) {
+            <mat-option [value]="image.key" [attr.data-test]="'edit-card__image-id__' + image.key">
+              {{ 'CONTENT_EDITOR.IMAGES.' + image.key | translate }}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
 
       <div class="image-preview">
         <div>{{ 'CONTENT_EDITOR.CARD_IMAGE_PREVIEW' | translate }}</div>
-        <img
-          *ngIf="images[imageId.value]"
-          [src]="'assets/cards/' + images[imageId.value]"
-          [alt]="'CONTENT_EDITOR.IMAGE_PREVIEW' | translate"
-        />
+        @if (images[imageId.value]) {
+          <img
+            [src]="'assets/cards/' + images[imageId.value]"
+            [alt]="'CONTENT_EDITOR.IMAGE_PREVIEW' | translate"
+          />
+        }
       </div>
     </section>
   </form>

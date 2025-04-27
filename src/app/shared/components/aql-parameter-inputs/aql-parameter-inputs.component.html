@@ -1,144 +1,152 @@
-<section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center" *ngIf="item">
-  <ng-container [formGroup]="valueForm">
-    <mat-form-field
-      *ngIf="
+@if (item) {
+  <section fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start center">
+    <ng-container [formGroup]="valueForm">
+      @if (
         item.valueType === AqlParameterValueType.Double ||
         item.valueType === AqlParameterValueType.Number ||
         item.valueType === AqlParameterValueType.String
-      "
-      floatLabel="always"
-      appearance="outline"
-      class="input num-tiny-input value-input"
-    >
-      <mat-label *ngIf="mode === 'cohortBuilder'" id="value-label">{{ item.name }}</mat-label>
-      <mat-label *ngIf="mode === 'aqb' || !item.name" id="value-label">{{
-        'FORM.VALUE' | translate
-      }}</mat-label>
-      <input
-        aria-labelledby="value-label"
-        formControlName="value"
-        [attr.inputmode]="item.valueType === AqlParameterValueType.String ? 'latin' : 'numeric'"
-        matInput
-        type="text"
-        data-test="aql-parameter-inputs__value-input"
-      />
-      <span *ngIf="item.unit" matSuffix>{{ item.unit }}</span>
-    </mat-form-field>
-
-    <mat-form-field
-      appearance="outline"
-      class="input num-tiny-input boolean-select"
-      *ngIf="item.valueType === AqlParameterValueType.Boolean"
-    >
-      <mat-label *ngIf="mode === 'cohortBuilder'" id="boolean-label">{{ item.name }}</mat-label>
-      <mat-label *ngIf="mode === 'aqb' || !item.name" id="boolean-label">{{
-        'FORM.VALUE' | translate
-      }}</mat-label>
-      <mat-select
-        aria-labelledby="boolean-label"
-        formControlName="value"
-        data-test="aql-parameter-inputs__boolean-value__selector"
-      >
-        <mat-option
-          *ngFor="let value of [true, false]"
-          [value]="value"
-          [attr.data-test]="'aql-parameter-inputs__boolean-value__' + value"
+      ) {
+        <mat-form-field
+          floatLabel="always"
+          appearance="outline"
+          class="input num-tiny-input value-input"
         >
-          {{ value }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field
-      appearance="outline"
-      class="input num-tiny-input options-select"
-      *ngIf="item.valueType === AqlParameterValueType.Options"
-    >
-      <mat-label *ngIf="mode === 'cohortBuilder'" id="options-label">{{ item.name }}</mat-label>
-      <mat-label *ngIf="mode === 'aqb' || !item.name" id="options-label">{{
-        'FORM.VALUE' | translate
-      }}</mat-label>
-      <mat-select
-        aria-labelledby="options-label"
-        formControlName="value"
-        data-test="aql-parameter-inputs__options-value__selector"
-      >
-        <mat-option
-          *ngFor="let option of item.options | keyvalue"
-          [value]="option.key"
-          [attr.data-test]="'aql-parameter-inputs__options-value__' + option.value"
-        >
-          {{ option.value + ' (' + option.key + ')' }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field
-      appearance="outline"
-      class="input num-tiny-input datepicker"
-      *ngIf="
+          @if (mode === 'cohortBuilder') {
+            <mat-label id="value-label">{{ item.name }}</mat-label>
+          }
+          @if (mode === 'aqb' || !item.name) {
+            <mat-label id="value-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+          }
+          <input
+            aria-labelledby="value-label"
+            formControlName="value"
+            [attr.inputmode]="item.valueType === AqlParameterValueType.String ? 'latin' : 'numeric'"
+            matInput
+            type="text"
+            data-test="aql-parameter-inputs__value-input"
+          />
+          @if (item.unit) {
+            <span matSuffix>{{ item.unit }}</span>
+          }
+        </mat-form-field>
+      }
+      @if (item.valueType === AqlParameterValueType.Boolean) {
+        <mat-form-field appearance="outline" class="input num-tiny-input boolean-select">
+          @if (mode === 'cohortBuilder') {
+            <mat-label id="boolean-label">{{ item.name }}</mat-label>
+          }
+          @if (mode === 'aqb' || !item.name) {
+            <mat-label id="boolean-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+          }
+          <mat-select
+            aria-labelledby="boolean-label"
+            formControlName="value"
+            data-test="aql-parameter-inputs__boolean-value__selector"
+          >
+            @for (value of [true, false]; track value) {
+              <mat-option
+                [value]="value"
+                [attr.data-test]="'aql-parameter-inputs__boolean-value__' + value"
+              >
+                {{ value }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      }
+      @if (item.valueType === AqlParameterValueType.Options) {
+        <mat-form-field appearance="outline" class="input num-tiny-input options-select">
+          @if (mode === 'cohortBuilder') {
+            <mat-label id="options-label">{{ item.name }}</mat-label>
+          }
+          @if (mode === 'aqb' || !item.name) {
+            <mat-label id="options-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+          }
+          <mat-select
+            aria-labelledby="options-label"
+            formControlName="value"
+            data-test="aql-parameter-inputs__options-value__selector"
+          >
+            @for (option of item.options | keyvalue; track option) {
+              <mat-option
+                [value]="option.key"
+                [attr.data-test]="'aql-parameter-inputs__options-value__' + option.value"
+              >
+                {{ option.value + ' (' + option.key + ')' }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      }
+      @if (
         item.valueType === AqlParameterValueType.Date ||
         item.valueType === AqlParameterValueType.DateTime
-      "
-    >
-      <mat-label *ngIf="mode === 'cohortBuilder'" id="datepicker-label">{{ item.name }}</mat-label>
-      <mat-label *ngIf="mode === 'aqb' || !item.name" id="datepicker-label">{{
-        'DATE_TIME.DATE' | translate
-      }}</mat-label>
-      <input
-        aria-labelledby="datepicker-label"
-        matInput
-        [matDatepicker]="picker"
-        [value]="item.value"
-        (dateChange)="datePickerChange($event)"
-        data-test="aql-parameter-inputs__datepicker-input"
-      />
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="picker"
-        data-test="aql-parameter-inputs__datepicker-toggle"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <num-time-input
-      appearance="outline"
-      [(date)]="item.value"
-      class="input num-tiny-input"
-      *ngIf="
+      ) {
+        <mat-form-field appearance="outline" class="input num-tiny-input datepicker">
+          @if (mode === 'cohortBuilder') {
+            <mat-label id="datepicker-label">{{ item.name }}</mat-label>
+          }
+          @if (mode === 'aqb' || !item.name) {
+            <mat-label id="datepicker-label">{{ 'DATE_TIME.DATE' | translate }}</mat-label>
+          }
+          <input
+            aria-labelledby="datepicker-label"
+            matInput
+            [matDatepicker]="picker"
+            [value]="item.value"
+            (dateChange)="datePickerChange($event)"
+            data-test="aql-parameter-inputs__datepicker-input"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+            data-test="aql-parameter-inputs__datepicker-toggle"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      }
+      @if (
         item.valueType === AqlParameterValueType.Time ||
         item.valueType === AqlParameterValueType.DateTime
-      "
-      data-test="aql-parameter-inputs__time-value-input"
-    ></num-time-input>
-
-    <mat-form-field
-      floatLabel="always"
-      appearance="outline"
-      class="input num-tiny-input value-input"
-      *ngIf="item.valueType === AqlParameterValueType.Duration"
-    >
-      <mat-label *ngIf="mode === 'cohortBuilder'" id="duration-label">{{ item.name }}</mat-label>
-      <mat-label *ngIf="mode === 'aqb' || !item.name" id="duration-label">{{
-        'FORM.VALUE' | translate
-      }}</mat-label>
-      <input
-        aria-labelledby="duration-label"
-        formControlName="value"
-        inputmode="numeric"
-        matInput
-        type="text"
-        data-test="aql-parameter-inputs__value-input"
-        (beforeinput)="numericValuesOnly($event)"
-      />
-      <mat-select formControlName="unit" matSuffix>
-        <mat-option value="y">{{ 'UNITS.YEARS' | translate }}</mat-option>
-        <mat-option value="M">{{ 'UNITS.MONTHS' | translate }}</mat-option>
-        <mat-option value="d">{{ 'UNITS.DAYS' | translate }}</mat-option>
-        <mat-option value="h">{{ 'UNITS.HOURS' | translate }}</mat-option>
-        <mat-option value="m">{{ 'UNITS.MINUTES' | translate }}</mat-option>
-        <mat-option value="s">{{ 'UNITS.SECONDS' | translate }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </ng-container>
-</section>
+      ) {
+        <num-time-input
+          appearance="outline"
+          [(date)]="item.value"
+          class="input num-tiny-input"
+          data-test="aql-parameter-inputs__time-value-input"
+        ></num-time-input>
+      }
+      @if (item.valueType === AqlParameterValueType.Duration) {
+        <mat-form-field
+          floatLabel="always"
+          appearance="outline"
+          class="input num-tiny-input value-input"
+        >
+          @if (mode === 'cohortBuilder') {
+            <mat-label id="duration-label">{{ item.name }}</mat-label>
+          }
+          @if (mode === 'aqb' || !item.name) {
+            <mat-label id="duration-label">{{ 'FORM.VALUE' | translate }}</mat-label>
+          }
+          <input
+            aria-labelledby="duration-label"
+            formControlName="value"
+            inputmode="numeric"
+            matInput
+            type="text"
+            data-test="aql-parameter-inputs__value-input"
+            (beforeinput)="numericValuesOnly($event)"
+          />
+          <mat-select formControlName="unit" matSuffix>
+            <mat-option value="y">{{ 'UNITS.YEARS' | translate }}</mat-option>
+            <mat-option value="M">{{ 'UNITS.MONTHS' | translate }}</mat-option>
+            <mat-option value="d">{{ 'UNITS.DAYS' | translate }}</mat-option>
+            <mat-option value="h">{{ 'UNITS.HOURS' | translate }}</mat-option>
+            <mat-option value="m">{{ 'UNITS.MINUTES' | translate }}</mat-option>
+            <mat-option value="s">{{ 'UNITS.SECONDS' | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      }
+    </ng-container>
+  </section>
+}

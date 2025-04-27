@@ -17,7 +17,7 @@
     <div
       class="card__image"
       [ngStyle]="{
-        'background-image': 'url(assets/cards/' + cardContent.imageId + ')'
+        'background-image': 'url(assets/cards/' + cardContent.imageId + ')',
       }"
     ></div>
     <section class="card__content" role="region" fxLayout="column">
@@ -42,10 +42,12 @@
         </p>
 
         <div>
-          <div *ngIf="cardContent.url">
-            <div>{{ 'CONTENT_EDITOR.CARD_URL' | translate }}:</div>
-            <a [href]="cardContent.url">{{ cardContent.url }}</a>
-          </div>
+          @if (cardContent.url) {
+            <div>
+              <div>{{ 'CONTENT_EDITOR.CARD_URL' | translate }}:</div>
+              <a [href]="cardContent.url">{{ cardContent.url }}</a>
+            </div>
+          }
 
           <div fxLayout="row" fxLayoutAlign="end">
             <num-button

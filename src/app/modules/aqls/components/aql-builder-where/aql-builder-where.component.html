@@ -2,7 +2,7 @@
 <div
   class="num-select-flag pointer"
   [ngClass]="{
-    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Where
+    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Where,
   }"
   role="button"
   tabindex="0"
@@ -20,19 +20,22 @@
   fxLayout="column"
   fxLayoutGap="20px"
   [ngClass]="{
-    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Where
+    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Where,
   }"
 >
-  <num-aql-builder-where-group
-    *ngIf="$any(aqbModel.where.children[1])?.children.length"
-    role="list"
-    class="group"
-    [dialogMode]="dialogMode"
-    [group]="aqbModel.where.children[1]"
-    [parentGroupIndex]="null"
-    data-test="aqb__where__group"
-  ></num-aql-builder-where-group>
+  @if ($any(aqbModel.where.children[1])?.children.length) {
+    <num-aql-builder-where-group
+      role="list"
+      class="group"
+      [dialogMode]="dialogMode"
+      [group]="aqbModel.where.children[1]"
+      [parentGroupIndex]="null"
+      data-test="aqb__where__group"
+    ></num-aql-builder-where-group>
+  }
 </div>
-<p *ngIf="dialogMode === aqlBuilderDialogMode.DataRetrieval">
-  {{ 'QUERIES.WHERE_RESTRICTED_TO_COHORT' | translate }}
-</p>
+@if (dialogMode === aqlBuilderDialogMode.DataRetrieval) {
+  <p>
+    {{ 'QUERIES.WHERE_RESTRICTED_TO_COHORT' | translate }}
+  </p>
+}

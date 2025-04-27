@@ -15,7 +15,9 @@
   {{ 'IMPRINT.TEXTS.REPRESENTATIVE_DESCRIPTION' | translate }}
 </p>
 
-<p *ngFor="let prof of profs">{{ prof }}</p>
+@for (prof of profs; track prof) {
+  <p>{{ prof }}</p>
+}
 
 <div class="mat-body-strong">{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TITLE' | translate }}</div>
 <p>{{ 'IMPRINT.TEXTS.REGISTRATION_NUMBER_TEXT' | translate }}</p>

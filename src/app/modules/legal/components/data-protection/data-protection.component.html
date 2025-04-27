@@ -26,9 +26,11 @@
 </p>
 
 <ul>
-  <li *ngFor="let li of generalDataList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of generalDataList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 
 <p>
@@ -45,9 +47,11 @@
   {{ 'DATA_PROTECTION.REGISTRATION_DESCRIPTION' | translate }}
 </p>
 <ul>
-  <li *ngFor="let li of registrationList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of registrationList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 <p>
   {{ 'DATA_PROTECTION.REGISTRATION_TEXT1' | translate }}
@@ -81,9 +85,11 @@
 </p>
 <p>{{ 'DATA_PROTECTION.COOKIES_TEXT3' | translate }}</p>
 <ul>
-  <li *ngFor="let li of cookiesList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of cookiesList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 <p>
   {{ 'DATA_PROTECTION.COOKIES_TEXT4' | translate }}
@@ -106,9 +112,11 @@
 <h3>{{ 'DATA_PROTECTION.RECIPIENTS.PART_B.TITLE' | translate }}</h3>
 <p>{{ 'DATA_PROTECTION.RECIPIENTS.PART_B.DESCRIPTION' | translate }}</p>
 <ul>
-  <li *ngFor="let li of recipientsList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of recipientsList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 
 <div class="num-margin-b-40"></div>
@@ -129,9 +137,11 @@
   {{ 'DATA_PROTECTION.RIGHTS.DESCRIPTION' | translate }}
 </p>
 <ul>
-  <li *ngFor="let li of rightsList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of rightsList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 
 <div class="num-margin-b-20"></div>
@@ -194,9 +204,11 @@
   {{ 'DATA_PROTECTION.RIGHTS.RIGHTS_PART_J.DESCRIPTION' | translate }}
 </p>
 <ul>
-  <li *ngFor="let li of decisionList">
-    {{ li.TEXT }}
-  </li>
+  @for (li of decisionList; track li) {
+    <li>
+      {{ li.TEXT }}
+    </li>
+  }
 </ul>
 
 <div class="num-margin-b-20"></div>

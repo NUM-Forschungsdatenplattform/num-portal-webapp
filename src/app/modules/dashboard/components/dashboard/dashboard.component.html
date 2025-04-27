@@ -3,12 +3,18 @@
     <h3 class="title">{{ 'DASHBOARD.INTRODUCTION.HEADER' | translate }}</h3>
   </div>
 
-  <div *ngFor="let block of blocks" fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
-    <div fxFlex="100%" class="content">
-      <h4 *ngIf="block.HEADER">{{ block.HEADER }}</h4>
-      <p *ngIf="block.BODY" [innerHtml]="block.BODY"></p>
+  @for (block of blocks; track block) {
+    <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction">
+      <div fxFlex="100%" class="content">
+        @if (block.HEADER) {
+          <h4>{{ block.HEADER }}</h4>
+        }
+        @if (block.BODY) {
+          <p [innerHtml]="block.BODY"></p>
+        }
+      </div>
     </div>
-  </div>
+  }
 
   <div fxLayout="row wrap" fxLayoutGap="50px" class="introduction num-margin-b-40">
     <div fxFlex="100%" class="content">
@@ -24,63 +30,65 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10%" class="num-margin-b-10">
-    <div fxFlex="33%" fxFlex.gt-md="25%" *ngFor="let logo of initiativeLogos">
-      <img
-        [attr.src]="participantLogosBaseUrl + logo"
-        class="initiative-logo"
-        alt="Initiative logo"
-      />
-    </div>
+    @for (logo of initiativeLogos; track logo) {
+      <div fxFlex="33%" fxFlex.gt-md="25%">
+        <img
+          [attr.src]="participantLogosBaseUrl + logo"
+          class="initiative-logo"
+          alt="Initiative logo"
+        />
+      </div>
+    }
   </div>
 </section>
 
 <num-metrics></num-metrics>
-<num-latest-projects *ngIf="isLoggedIn"></num-latest-projects>
+@if (isLoggedIn) {
+  <num-latest-projects></num-latest-projects>
+}
 
-<section fxLayout="column" class="section" *ngIf="isLoggedIn">
-  <div class="header">
-    <h3>{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}</h3>
-  </div>
-  <div fxLayout="row wrap">
-    <div
-      fxFlex.gt-sm="49%"
-      fxFlex.sm="49%"
-      fxFlex.xs="100%"
-      class="info-board"
-      [ngClass.xs]="{ 'no-margin-r': true }"
-      *ngFor="let card of cards"
-      (click)="openCardUrl(card.url)"
-    >
-      <img
-        class="content-image"
-        [attr.src]="'assets/cards/' + card.imageId?.toLowerCase() + '.jpg'"
-        alt="card-icon"
-      />
-
-      <fa-icon class="info-board--icon" icon="external-link-alt"></fa-icon>
-      <div class="content">
-        <h4>{{ card[displayLang]?.title }}</h4>
-        <p>
-          {{ card[displayLang]?.text }}
-        </p>
-      </div>
+@if (isLoggedIn) {
+  <section fxLayout="column" class="section">
+    <div class="header">
+      <h3>{{ 'DASHBOARD.INFO_CARD.HEADER' | translate }}</h3>
     </div>
-  </div>
-</section>
+    <div fxLayout="row wrap">
+      @for (card of cards; track card) {
+        <div
+          fxFlex.gt-sm="49%"
+          fxFlex.sm="49%"
+          fxFlex.xs="100%"
+          class="info-board"
+          [ngClass.xs]="{ 'no-margin-r': true }"
+          (click)="openCardUrl(card.url)"
+        >
+          <img
+            class="content-image"
+            [attr.src]="'assets/cards/' + card.imageId?.toLowerCase() + '.jpg'"
+            alt="card-icon"
+          />
+          <fa-icon class="info-board--icon" icon="external-link-alt"></fa-icon>
+          <div class="content">
+            <h4>{{ card[displayLang]?.title }}</h4>
+            <p>
+              {{ card[displayLang]?.text }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
 
 <section fxLayout="column" class="section">
   <div class="header" #participantsAnchor>
     <h3>{{ 'DASHBOARD.PARTICIPATING.HEADER' | translate }}</h3>
   </div>
   <div fxLayout="row wrap" class="participant">
-    <div
-      fxFlex.gt-sm="25%"
-      fxFlex.sm="33%"
-      fxFlex.xs="50%"
-      class="logo"
-      *ngFor="let logo of participantLogos"
-    >
-      <img class="partner-logo" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
-    </div>
+    @for (logo of participantLogos; track logo) {
+      <div fxFlex.gt-sm="25%" fxFlex.sm="33%" fxFlex.xs="50%" class="logo">
+        <img class="partner-logo" [attr.src]="participantLogosBaseUrl + logo" alt="partner-logo" />
+      </div>
+    }
   </div>
 </section>

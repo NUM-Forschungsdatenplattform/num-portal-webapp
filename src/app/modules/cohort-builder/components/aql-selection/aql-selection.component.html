@@ -1,42 +1,43 @@
 <mat-accordion class="num-accordion num-accordion-small">
-  <p class="no-results" *ngIf="noResults">
-    <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-    {{ 'NO_FILTER_RESULTS' | translate }}
-  </p>
-  <mat-expansion-panel *ngFor="let aqlGroup of groupedAqls | async">
-    <mat-expansion-panel-header
-      [attr.data-test]="'cohort-builder__aql-selection__category--' + aqlGroup.categoryId"
-      >{{ aqlGroup[currentLang] }}</mat-expansion-panel-header
-    >
-    <div
-      class="aql"
-      *ngFor="let aql of aqlGroup.aqls"
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
-    >
-      <div class="aql__meta">
-        <div class="aql__meta__name" data-test="cohort-builder__aql-selection__aql-name">
-          {{ currentLang === 'de' ? aql.name : aql.nameTranslated }}
-        </div>
-        <button
-          color="primary"
-          [attr.aria-label]="'BUTTON.MORE_INFO' | translate"
-          mat-icon-button
-          (click)="openAqlInfoDialog(aql)"
-          data-test="cohort-builder__aql-selection__more-info-button"
-        >
-          <fa-icon icon="info-circle" size="lg" [fixedWidth]="true"></fa-icon>
-        </button>
-      </div>
-      <button
-        color="accent"
-        [attr.aria-label]="'BUTTON.ADD' | translate"
-        mat-icon-button
-        (click)="emitAqlEvent(aql)"
-        data-test="cohort-builder__aql-selection__add-aql-button"
+  @if (noResults) {
+    <p class="no-results">
+      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+      {{ 'NO_FILTER_RESULTS' | translate }}
+    </p>
+  }
+  @for (aqlGroup of groupedAqls | async; track aqlGroup) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header
+        [attr.data-test]="'cohort-builder__aql-selection__category--' + aqlGroup.categoryId"
+        >{{ aqlGroup[currentLang] }}</mat-expansion-panel-header
       >
-        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-      </button>
-    </div>
-  </mat-expansion-panel>
+      @for (aql of aqlGroup.aqls; track aql) {
+        <div class="aql" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="aql__meta">
+            <div class="aql__meta__name" data-test="cohort-builder__aql-selection__aql-name">
+              {{ currentLang === 'de' ? aql.name : aql.nameTranslated }}
+            </div>
+            <button
+              color="primary"
+              [attr.aria-label]="'BUTTON.MORE_INFO' | translate"
+              mat-icon-button
+              (click)="openAqlInfoDialog(aql)"
+              data-test="cohort-builder__aql-selection__more-info-button"
+            >
+              <fa-icon icon="info-circle" size="lg" [fixedWidth]="true"></fa-icon>
+            </button>
+          </div>
+          <button
+            color="accent"
+            [attr.aria-label]="'BUTTON.ADD' | translate"
+            mat-icon-button
+            (click)="emitAqlEvent(aql)"
+            data-test="cohort-builder__aql-selection__add-aql-button"
+          >
+            <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+          </button>
+        </div>
+      }
+    </mat-expansion-panel>
+  }
 </mat-accordion>

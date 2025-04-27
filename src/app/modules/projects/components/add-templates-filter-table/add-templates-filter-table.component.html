@@ -9,17 +9,17 @@
   <ng-container matColumnDef="icon">
     <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
     <td mat-cell *matCellDef="let element">
-      <button
-        color="accent"
-        mat-icon-button
-        [attr.aria-label]="'BUTTON.SELECT' | translate"
-        *ngIf="!lookupSelectedTemplates[element.templateId]; else selectedIcon"
-        (click)="handleSelectClick(element)"
-        data-test="add-templates-filter__table__select-button"
-      >
-        <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
-      </button>
-      <ng-template #selectedIcon>
+      @if (!lookupSelectedTemplates[element.templateId]) {
+        <button
+          color="accent"
+          mat-icon-button
+          [attr.aria-label]="'BUTTON.SELECT' | translate"
+          (click)="handleSelectClick(element)"
+          data-test="add-templates-filter__table__select-button"
+        >
+          <fa-icon icon="plus" size="lg" [fixedWidth]="true"></fa-icon>
+        </button>
+      } @else {
         <button
           class="num-fc--d"
           mat-icon-button
@@ -29,7 +29,7 @@
         >
           <fa-icon icon="check" size="lg" [fixedWidth]="true"></fa-icon>
         </button>
-      </ng-template>
+      }
     </td>
   </ng-container>
 

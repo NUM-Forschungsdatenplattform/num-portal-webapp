@@ -20,9 +20,11 @@
 
   <section role="presentation">
     <h3>{{ 'DATA_EXPLORER.HEADLINE_RETRIEVE_SECTION' | translate }}</h3>
-    <p class="num-margin-b-20" *ngIf="!isFilteringDisabled">
-      {{ 'DATA_EXPLORER.INTRODUCTION_RETRIEVE_SECTION' | translate }}
-    </p>
+    @if (!isFilteringDisabled) {
+      <p class="num-margin-b-20">
+        {{ 'DATA_EXPLORER.INTRODUCTION_RETRIEVE_SECTION' | translate }}
+      </p>
+    }
   </section>
 
   <section
@@ -47,110 +49,110 @@
     >
 
     <div fxLayoutGap="20px" class="num-margin-b-10">
-      <num-button
-        *ngIf="!isFilteringDisabled"
-        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
-        type="secondary"
-        icon="undo"
-        (singleClick)="resetAqbModel()"
-        [attr.data-test]="'data-explorer__reset-customization-button'"
-        >{{ 'BUTTON.RESET_CUSTOMIZATION' | translate }}</num-button
-      >
-      <num-button
-        *ngIf="!isFilteringDisabled"
-        [isDisabled]="!isCompositionsFetched || isDataSetLoading"
-        type="secondary"
-        icon="pen"
-        (singleClick)="openBuilderDialog()"
-        [attr.data-test]="'data-explorer__customize-configuration-button'"
-        >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
-      >
+      @if (!isFilteringDisabled) {
+        <num-button
+          [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+          type="secondary"
+          icon="undo"
+          (singleClick)="resetAqbModel()"
+          [attr.data-test]="'data-explorer__reset-customization-button'"
+          >{{ 'BUTTON.RESET_CUSTOMIZATION' | translate }}</num-button
+        >
+      }
+      @if (!isFilteringDisabled) {
+        <num-button
+          [isDisabled]="!isCompositionsFetched || isDataSetLoading"
+          type="secondary"
+          icon="pen"
+          (singleClick)="openBuilderDialog()"
+          [attr.data-test]="'data-explorer__customize-configuration-button'"
+          >{{ 'BUTTON.CUSTOMIZE_CONFIGURATION' | translate }}</num-button
+        >
+      }
     </div>
   </section>
 
-  <section
-    class="configuration-loading"
-    fxLayout="row"
-    fxLayoutAlign="start center"
-    fxLayoutGap="8px"
-    *ngIf="!isCompositionsFetched"
-    [attr.data-test]="'data-explorer__configuration-is-loading'"
-  >
-    <mat-spinner color="accent" [diameter]="24"></mat-spinner>
-    <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
-  </section>
+  @if (!isCompositionsFetched) {
+    <section
+      class="configuration-loading"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="8px"
+      [attr.data-test]="'data-explorer__configuration-is-loading'"
+    >
+      <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+      <span>{{ 'DATA_EXPLORER.CONFIGURATION_LOADING' | translate }}</span>
+    </section>
+  }
 
   <h3 id="result-set-header">{{ 'DATA_EXPLORER.RESULT_SET' | translate }}</h3>
-  <span class="num-margin-b-20" *ngIf="!isFilteringDisabled"
-    >{{ 'DATA_EXPLORER.CONFIGURATION' | translate }}:
-    {{ 'DATA_EXPLORER.' + configuration | translate }}</span
-  >
-
-  <div
-    *ngIf="resultSet && resultSet.length && !isDataSetLoading"
-    fxFlex
-    fxLayout="row"
-    fxLayoutGap="10px"
-    fxLayoutAlign="start center"
-    class="num-margin-b-40"
-  >
-    <num-button
-      type="secondary"
-      icon="file-download"
-      (singleClick)="exportFile('csv')"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
-      data-test="data-explorer__export-csv-button"
+  @if (!isFilteringDisabled) {
+    <span class="num-margin-b-20"
+      >{{ 'DATA_EXPLORER.CONFIGURATION' | translate }}:
+      {{ 'DATA_EXPLORER.' + configuration | translate }}</span
     >
-      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
-    </num-button>
+  }
 
-    <num-button
-      type="secondary"
-      icon="file-download"
-      (singleClick)="exportFile('json')"
-      [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
-      data-test="data-explorer__export-json-button"
+  @if (resultSet && resultSet.length && !isDataSetLoading) {
+    <div
+      fxFlex
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="start center"
+      class="num-margin-b-40"
     >
-      {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
-    </num-button>
+      <num-button
+        type="secondary"
+        icon="file-download"
+        (singleClick)="exportFile('csv')"
+        [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+        data-test="data-explorer__export-csv-button"
+      >
+        {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'CSV' } }}
+      </num-button>
+      <num-button
+        type="secondary"
+        icon="file-download"
+        (singleClick)="exportFile('json')"
+        [isDisabled]="!isCompositionsFetched || !compiledQuery || isExportLoading"
+        data-test="data-explorer__export-json-button"
+      >
+        {{ 'DATA_EXPLORER.EXPORT' | translate: { format: 'JSON' } }}
+      </num-button>
+      @if (isExportLoading) {
+        <mat-spinner color="accent" [diameter]="20" class="export-csv_spinner"></mat-spinner>
+      }
+    </div>
+  }
 
-    <mat-spinner
-      *ngIf="isExportLoading"
-      color="accent"
-      [diameter]="20"
-      class="export-csv_spinner"
-    ></mat-spinner>
-  </div>
-
-  <ng-container *ngIf="!resultSet && !isDataSetLoading">
+  @if (!resultSet && !isDataSetLoading) {
     <mat-card appearance="outlined" class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center">
         <span>{{ 'DATA_EXPLORER.NO_RESULTS_YET' | translate }}</span>
         {{ resultSet }}
       </div>
     </mat-card>
-  </ng-container>
+  }
 
-  <ng-container *ngIf="!isDataSetLoading; else loading">
-    <num-result-table
-      *ngFor="let template of resultSet; let i = index"
-      [resultSet]="template"
-      [isDataSetLoading]="isDataSetLoading"
-      [index]="i"
-      [totalTables]="resultSet.length"
-      class="num-margin-b-20"
-      data-test="data-explorer__table"
-    ></num-result-table>
-  </ng-container>
-
-  <ng-template #loading>
+  @if (!isDataSetLoading) {
+    @for (template of resultSet; track template; let i = $index) {
+      <num-result-table
+        [resultSet]="template"
+        [isDataSetLoading]="isDataSetLoading"
+        [index]="i"
+        [totalTables]="resultSet.length"
+        class="num-margin-b-20"
+        data-test="data-explorer__table"
+      ></num-result-table>
+    }
+  } @else {
     <mat-card appearance="outlined" class="mat-elevation-z1">
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
         <mat-spinner color="accent" [diameter]="24"></mat-spinner>
         <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
       </div>
     </mat-card>
-  </ng-template>
+  }
 
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
   <div role="presentation" fxLayout="row" fxLayoutAlign="space-between">

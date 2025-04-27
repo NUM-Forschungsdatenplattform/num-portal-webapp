@@ -2,7 +2,7 @@
 <div
   class="num-select-flag pointer"
   [ngClass]="{
-    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Select
+    'num-select-flag--active': aqbModel.selectDestination === AqbSelectDestination.Select,
   }"
   role="button"
   tabindex="0"
@@ -18,19 +18,20 @@
   class="num-select-box"
   fxLayout="column"
   [ngClass]="{
-    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Select
+    'num-select-box--active': aqbModel.selectDestination === AqbSelectDestination.Select,
   }"
 >
-  <num-aql-builder-select-item
-    class="aqb-item mat-elevation-z2"
-    [ngClass]="{
-      'aqb-item--last': i === aqbModel.select.length - 1
-    }"
-    fxLayout="row"
-    fxLayoutAlign="space-between start"
-    *ngFor="let item of aqbModel.select; let i = index"
-    [item]="item"
-    (deleteItem)="deleteItem(i)"
-    data-test="aqb__select__item"
-  ></num-aql-builder-select-item>
+  @for (item of aqbModel.select; track item; let i = $index) {
+    <num-aql-builder-select-item
+      class="aqb-item mat-elevation-z2"
+      [ngClass]="{
+        'aqb-item--last': i === aqbModel.select.length - 1,
+      }"
+      fxLayout="row"
+      fxLayoutAlign="space-between start"
+      [item]="item"
+      (deleteItem)="deleteItem(i)"
+      data-test="aqb__select__item"
+    ></num-aql-builder-select-item>
+  }
 </div>

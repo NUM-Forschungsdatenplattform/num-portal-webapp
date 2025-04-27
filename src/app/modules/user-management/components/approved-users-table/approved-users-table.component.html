@@ -57,9 +57,11 @@
         {{ 'USER.ROLES' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        <div *ngFor="let role of element.roles | availableRoles">
-          {{ 'ROLE.' + role | translate }}
-        </div>
+        @for (role of element.roles | availableRoles; track role) {
+          <div>
+            {{ 'ROLE.' + role | translate }}
+          </div>
+        }
       </td>
     </ng-container>
 
@@ -77,8 +79,12 @@
         {{ 'USER_MANAGEMENT.ACTIVE' | translate }}
       </th>
       <td mat-cell *matCellDef="let element">
-        <fa-icon *ngIf="!element.enabled" icon="user-lock" size="lg" [fixedWidth]="true"></fa-icon>
-        <fa-icon *ngIf="element.enabled" icon="user" size="lg" [fixedWidth]="true"></fa-icon>
+        @if (!element.enabled) {
+          <fa-icon icon="user-lock" size="lg" [fixedWidth]="true"></fa-icon>
+        }
+        @if (element.enabled) {
+          <fa-icon icon="user" size="lg" [fixedWidth]="true"></fa-icon>
+        }
       </td>
     </ng-container>
 

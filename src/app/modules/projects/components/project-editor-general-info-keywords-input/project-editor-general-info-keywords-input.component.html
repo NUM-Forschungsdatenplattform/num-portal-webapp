@@ -5,24 +5,25 @@
     aria-label="Keywords selection"
     data-test="project-editor__general-info__keywords-chip-list"
   >
-    <mat-chip-option
-      *ngFor="let keyword of keywords; let i = index"
-      (removed)="removeKeyword(i)"
-      class="chip-primary"
-      data-test="project-editor__general-info__keywords-chip-item"
-      removable
-    >
-      <span>{{ keyword }}</span>
-      <button
-        mat-icon-button
-        matChipRemove
-        aria-label="Remove keyword"
-        class="chip__remove-icon"
-        data-test="project-editor__general-info__keywords-remove-keyword-button"
+    @for (keyword of keywords; track keyword; let i = $index) {
+      <mat-chip-option
+        (removed)="removeKeyword(i)"
+        class="chip-primary"
+        data-test="project-editor__general-info__keywords-chip-item"
+        removable
       >
-        <fa-icon icon="times-circle"></fa-icon>
-      </button>
-    </mat-chip-option>
+        <span>{{ keyword }}</span>
+        <button
+          mat-icon-button
+          matChipRemove
+          aria-label="Remove keyword"
+          class="chip__remove-icon"
+          data-test="project-editor__general-info__keywords-remove-keyword-button"
+        >
+          <fa-icon icon="times-circle"></fa-icon>
+        </button>
+      </mat-chip-option>
+    }
     <input
       placeholder="{{ 'FORM.ENTER_KEYWORD' | translate }}"
       [matChipInputFor]="keywordsChipList"

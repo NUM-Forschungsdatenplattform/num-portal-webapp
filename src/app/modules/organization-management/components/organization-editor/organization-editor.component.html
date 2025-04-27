@@ -1,29 +1,31 @@
 <section>
-  <ng-container *ngIf="organization.id !== null">
+  @if (organization.id !== null) {
     <h2>{{ 'ORGANIZATION_MANAGEMENT.EDIT_HEADER' | translate }}</h2>
     <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.EDIT_DESCRIPTION' | translate }}</p>
-  </ng-container>
+  }
 
-  <ng-container *ngIf="organization.id === null">
+  @if (organization.id === null) {
     <h2>{{ 'ORGANIZATION_MANAGEMENT.CREATE_HEADER' | translate }}</h2>
     <p class="num-margin-b-40">{{ 'ORGANIZATION_MANAGEMENT.CREATE_DESCRIPTION' | translate }}</p>
-  </ng-container>
+  }
 </section>
 
 <section fxLayout="column" [formGroup]="form" class="num-margin-b-60">
   <mat-card appearance="outlined" fxLayout="column" class="num-margin-b-60">
-    <mat-form-field appearance="outline" color="accent" *ngIf="organization.id === null">
-      <mat-label id="name-label">{{ 'FORM.ORGANIZATION_NAME' | translate }}*</mat-label>
-      <input
-        formControlName="name"
-        matInput
-        [placeholder]="'FORM.ORGANIZATION_NAME_PLACEHOLDER' | translate"
-        aria-labelledby="title-label"
-        data-test="organization-editor__name-input"
-      />
-    </mat-form-field>
+    @if (organization.id === null) {
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label id="name-label">{{ 'FORM.ORGANIZATION_NAME' | translate }}*</mat-label>
+        <input
+          formControlName="name"
+          matInput
+          [placeholder]="'FORM.ORGANIZATION_NAME_PLACEHOLDER' | translate"
+          aria-labelledby="title-label"
+          data-test="organization-editor__name-input"
+        />
+      </mat-form-field>
+    }
 
-    <ng-container *ngIf="organization.id !== null">
+    @if (organization.id !== null) {
       <section
         fxLayout="column"
         fxLayout.gt-xs="row"
@@ -49,7 +51,6 @@
           />
         </mat-form-field>
       </section>
-
       <section
         fxLayout="column"
         fxLayout.gt-xs="row"
@@ -76,7 +77,6 @@
             data-test="organization-editor__add-domain-input"
           />
         </mat-form-field>
-
         <num-button
           type="primary"
           (singleClick)="addDomain()"
@@ -86,20 +86,19 @@
           >{{ 'BUTTON.ADD' | translate }}</num-button
         >
       </section>
-
       <section
         class="mail-domain-list"
         [ngStyle.gt-xs]="{ 'max-width': 'calc(100% - 200px)' }"
         [ngStyle.gt-md]="{ 'max-width.px': 600 }"
       >
-        <p
-          class="mail-domain-list__empty"
-          *ngIf="!form.get('mailDomains').value.length; else mailDomains"
-          data-test="organization-editor__mailDomains-table__empty"
-        >
-          {{ 'ORGANIZATION_MANAGEMENT.MAIL_DOMAIN_EMPTY' | translate }}
-        </p>
-        <ng-template #mailDomains>
+        @if (!form.get('mailDomains').value.length) {
+          <p
+            class="mail-domain-list__empty"
+            data-test="organization-editor__mailDomains-table__empty"
+          >
+            {{ 'ORGANIZATION_MANAGEMENT.MAIL_DOMAIN_EMPTY' | translate }}
+          </p>
+        } @else {
           <table
             mat-table
             [dataSource]="form.get('mailDomains').value"
@@ -108,12 +107,10 @@
           >
             <ng-container matColumnDef="domain">
               <th scope="col" mat-header-cell *matHeaderCellDef>domain</th>
-
               <td mat-cell *matCellDef="let element">
                 {{ element }}
               </td>
             </ng-container>
-
             <ng-container matColumnDef="icon">
               <th scope="col" mat-header-cell *matHeaderCellDef>icon</th>
               <td mat-cell *matCellDef="let element; let i = index">
@@ -129,7 +126,6 @@
                 </button>
               </td>
             </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns" hidden></tr>
             <tr
               class="num-mat-table-row"
@@ -137,7 +133,7 @@
               *matRowDef="let row; columns: displayedColumns"
             ></tr>
           </table>
-        </ng-template>
+        }
       </section>
       <section>
         <span
@@ -159,7 +155,7 @@
           >{{ 'BUTTON.UPDATE_ORGANIZATION' | translate }}</num-button
         >
       </section>
-    </ng-container>
+    }
   </mat-card>
   <mat-divider class="num-d-w--1 num-margin-b-40"></mat-divider>
 
@@ -170,13 +166,14 @@
       data-test="organization-editor__back-button"
       >{{ 'BUTTON.BACK' | translate }}</num-button
     >
-    <num-button
-      *ngIf="organization.id === null"
-      type="primary"
-      (singleClick)="create()"
-      [isDisabled]="form.get('name').invalid || isLoading"
-      data-test="organization-editor__create-button"
-      >{{ 'BUTTON.CREATE_ORGANIZATION' | translate }}</num-button
-    >
+    @if (organization.id === null) {
+      <num-button
+        type="primary"
+        (singleClick)="create()"
+        [isDisabled]="form.get('name').invalid || isLoading"
+        data-test="organization-editor__create-button"
+        >{{ 'BUTTON.CREATE_ORGANIZATION' | translate }}</num-button
+      >
+    }
   </section>
 </section>

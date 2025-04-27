@@ -5,25 +5,26 @@
     aria-label="Category selection"
     data-test="project-editor__general-info__categories-chip-list"
   >
-    <mat-chip-option
-      *ngFor="let category of categories; let i = index"
-      (removed)="removeCategory(i)"
-      [value]="category"
-      class="chip-primary"
-      data-test="project-editor__general-info__category-chip"
-      removable
-    >
-      <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
-      <button
-        mat-icon-button
-        matChipRemove
-        aria-label="Remove category"
-        class="chip__remove-icon"
-        data-test="project-editor__general-info__categories-remove-category-button"
+    @for (category of categories; track category; let i = $index) {
+      <mat-chip-option
+        (removed)="removeCategory(i)"
+        [value]="category"
+        class="chip-primary"
+        data-test="project-editor__general-info__category-chip"
+        removable
       >
-        <fa-icon icon="times-circle"></fa-icon>
-      </button>
-    </mat-chip-option>
+        <span>{{ 'PROJECT.CATEGORIES.' + category | translate }}</span>
+        <button
+          mat-icon-button
+          matChipRemove
+          aria-label="Remove category"
+          class="chip__remove-icon"
+          data-test="project-editor__general-info__categories-remove-category-button"
+        >
+          <fa-icon icon="times-circle"></fa-icon>
+        </button>
+      </mat-chip-option>
+    }
     <input
       #categoryInput
       placeholder="{{ 'FORM.SELECT_CATEGORY' | translate }}"
@@ -42,19 +43,15 @@
     autoActiveFirstOption
     data-test="project-editor__general-info__categories-autocomplete"
   >
-    <mat-option
-      *ngFor="let category of filteredCategories | async"
-      [value]="category"
-      data-test="project-editor__general-info__category-option"
-    >
-      {{ 'PROJECT.CATEGORIES.' + category | translate }}
-    </mat-option>
-    <mat-option
-      *ngIf="isNoResults"
-      disabled
-      data-test="project-editor__general-info__category-option__no-results"
-    >
-      {{ 'PROJECT.CATEGORIES_NO_RESULTS' | translate }}
-    </mat-option>
+    @for (category of filteredCategories | async; track category) {
+      <mat-option [value]="category" data-test="project-editor__general-info__category-option">
+        {{ 'PROJECT.CATEGORIES.' + category | translate }}
+      </mat-option>
+    }
+    @if (isNoResults) {
+      <mat-option disabled data-test="project-editor__general-info__category-option__no-results">
+        {{ 'PROJECT.CATEGORIES_NO_RESULTS' | translate }}
+      </mat-option>
+    }
   </mat-autocomplete>
 </mat-form-field>

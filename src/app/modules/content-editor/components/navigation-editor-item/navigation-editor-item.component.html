@@ -5,7 +5,7 @@
   class="mat-elevation-z4 item-box"
   [ngClass]="{
     'item-box--error': form.invalid,
-    'item-box--empty': form.get('url').value === '' && form.get('title').value === ''
+    'item-box--empty': form.get('url').value === '' && form.get('title').value === '',
   }"
 >
   <form [formGroup]="form" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="20px">
@@ -22,13 +22,17 @@
         [errorStateMatcher]="titleErrorStateMatcher"
         [placeholder]="'CONTENT_EDITOR.URL_TEXT_PLACEHOLDER' | translate"
       />
-      <mat-hint *ngIf="!form.errors?.titleRequired"
-        >{{ titleInput.value?.length || 0 }}/20 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
-      >
-      <mat-hint *ngIf="form.errors?.titleRequired">
-        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-        {{ 'PROVIDE_URL_TEXT' | translate }}</mat-hint
-      >
+      @if (!form.errors?.titleRequired) {
+        <mat-hint
+          >{{ titleInput.value?.length || 0 }}/20 {{ 'FORM.CHARACTERS' | translate }}</mat-hint
+        >
+      }
+      @if (form.errors?.titleRequired) {
+        <mat-hint>
+          <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+          {{ 'PROVIDE_URL_TEXT' | translate }}</mat-hint
+        >
+      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" fxFlex.gt-sm="100%">
@@ -43,27 +47,34 @@
         data-test="content-editor__navigation__item__url-input"
       />
 
-      <mat-hint *ngIf="form.get('url').invalid">
-        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-        {{ 'INVALID_URL' | translate }} https://domainname.de</mat-hint
-      >
+      @if (form.get('url').invalid) {
+        <mat-hint>
+          <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+          {{ 'INVALID_URL' | translate }} https://domainname.de</mat-hint
+        >
+      }
 
-      <mat-hint *ngIf="form.errors?.urlRequired">
-        <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-        {{ 'PROVIDE_URL' | translate }}</mat-hint
-      >
+      @if (form.errors?.urlRequired) {
+        <mat-hint>
+          <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+          {{ 'PROVIDE_URL' | translate }}</mat-hint
+        >
+      }
     </mat-form-field>
   </form>
 
   <section class="bottom-row" fxLayout="row" fxLayoutAlign="end center">
-    <num-button
-      type="basic"
-      *ngIf="!isLoading"
-      (singleClick)="clearInput()"
-      data-test="content-editor__navigation__item__clear-button"
-      >{{ 'BUTTON.CLEAR_ENTRY' | translate }}</num-button
-    >
+    @if (!isLoading) {
+      <num-button
+        type="basic"
+        (singleClick)="clearInput()"
+        data-test="content-editor__navigation__item__clear-button"
+        >{{ 'BUTTON.CLEAR_ENTRY' | translate }}</num-button
+      >
+    }
 
-    <mat-spinner *ngIf="isLoading" color="accent" [diameter]="24"></mat-spinner>
+    @if (isLoading) {
+      <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+    }
   </section>
 </mat-card>

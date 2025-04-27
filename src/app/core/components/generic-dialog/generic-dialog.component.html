@@ -10,42 +10,43 @@
     >
       {{ dialogConfig.title | translate }}
     </h1>
-    <fa-icon
-      *ngIf="dialogConfig.hasCloseIcon"
-      role="button"
-      [attr.aria-label]="'BUTTON.CANCEL' | translate"
-      class="pointer close-icon"
-      icon="times"
-      (click)="handleDialogClose()"
-      [fixedWidth]="true"
-    ></fa-icon>
+    @if (dialogConfig.hasCloseIcon) {
+      <fa-icon
+        role="button"
+        [attr.aria-label]="'BUTTON.CANCEL' | translate"
+        class="pointer close-icon"
+        icon="times"
+        (click)="handleDialogClose()"
+        [fixedWidth]="true"
+      ></fa-icon>
+    }
   </section>
 
   <mat-dialog-content>
     <ng-template #dialogContent></ng-template>
   </mat-dialog-content>
 
-  <div
-    *ngIf="!dialogConfig.hideGenericButtons"
-    mat-dialog-actions
-    fxFlexOffset="auto"
-    [fxLayoutAlign]="
-      !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText ? 'center' : 'space-between'
-    "
-    class="button-row"
-  >
-    <num-button
-      type="secondary"
-      (singleClick)="handleDialogCancel()"
-      *ngIf="dialogConfig.cancelButtonText"
-      >{{ dialogConfig.cancelButtonText | translate }}</num-button
+  @if (!dialogConfig.hideGenericButtons) {
+    <div
+      mat-dialog-actions
+      fxFlexOffset="auto"
+      [fxLayoutAlign]="
+        !dialogConfig.cancelButtonText || !dialogConfig.confirmButtonText
+          ? 'center'
+          : 'space-between'
+      "
+      class="button-row"
     >
-
-    <num-button
-      type="primary"
-      (singleClick)="handleDialogConfirm()"
-      *ngIf="dialogConfig.confirmButtonText"
-      >{{ dialogConfig.confirmButtonText | translate }}</num-button
-    >
-  </div>
+      @if (dialogConfig.cancelButtonText) {
+        <num-button type="secondary" (singleClick)="handleDialogCancel()">{{
+          dialogConfig.cancelButtonText | translate
+        }}</num-button>
+      }
+      @if (dialogConfig.confirmButtonText) {
+        <num-button type="primary" (singleClick)="handleDialogConfirm()">{{
+          dialogConfig.confirmButtonText | translate
+        }}</num-button>
+      }
+    </div>
+  }
 </section>

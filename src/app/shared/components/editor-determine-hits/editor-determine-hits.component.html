@@ -22,28 +22,30 @@
     {{ 'BUTTON.DETERMINE' | translate }}
   </num-button>
 
-  <mat-spinner *ngIf="content?.isLoading" color="accent" [diameter]="24"></mat-spinner>
+  @if (content?.isLoading) {
+    <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+  }
 
-  <div
-    *ngIf="!content?.isLoading"
-    data-test="generic-determine-hits__error-message"
-    aria-live="polite"
-  >
-    <ng-container *ngIf="isButtonDisabled">{{ content?.defaultMessage | translate }}</ng-container>
-    <ng-container
-      *ngIf="!isButtonDisabled && isCohortValid?.valid === true && isCohortValid?.hasAql === true"
-      >{{ content?.message | translate }}</ng-container
-    >
-    <mat-hint class="parameter-error" *ngIf="isCohortValid?.hasAql === false">
-      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-      {{ 'PROJECT.HITS.MESSAGE_NO_AQL' | translate }}</mat-hint
-    >
-    <mat-hint
-      class="parameter-error"
-      *ngIf="isCohortValid?.valid === false && isCohortValid?.hasAql === true"
-    >
-      <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
-      {{ 'PROJECT.HITS.MESSAGE_INVALID_AQL' | translate }}</mat-hint
-    >
-  </div>
+  @if (!content?.isLoading) {
+    <div data-test="generic-determine-hits__error-message" aria-live="polite">
+      @if (isButtonDisabled) {
+        {{ content?.defaultMessage | translate }}
+      }
+      @if (!isButtonDisabled && isCohortValid?.valid === true && isCohortValid?.hasAql === true) {
+        {{ content?.message | translate }}
+      }
+      @if (isCohortValid?.hasAql === false) {
+        <mat-hint class="parameter-error">
+          <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+          {{ 'PROJECT.HITS.MESSAGE_NO_AQL' | translate }}</mat-hint
+        >
+      }
+      @if (isCohortValid?.valid === false && isCohortValid?.hasAql === true) {
+        <mat-hint class="parameter-error">
+          <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
+          {{ 'PROJECT.HITS.MESSAGE_INVALID_AQL' | translate }}</mat-hint
+        >
+      }
+    </div>
+  }
 </section>

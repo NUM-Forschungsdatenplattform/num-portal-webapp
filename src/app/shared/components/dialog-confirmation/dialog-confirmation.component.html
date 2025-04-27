@@ -1,8 +1,5 @@
-<p
-  *ngIf="typeOf(dialogInput) !== 'string'; else withHtmlContent"
-  [innerHtml]="$any(dialogInput.text)"
-></p>
-
-<ng-template #withHtmlContent>
+@if (typeOf(dialogInput) !== 'string') {
+  <p [innerHtml]="$any(dialogInput.text)"></p>
+} @else {
   <p>{{ dialogInput | translate }}</p>
-</ng-template>
+}
