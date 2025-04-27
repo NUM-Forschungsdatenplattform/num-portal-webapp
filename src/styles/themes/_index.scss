@@ -1,23 +1,26 @@
 @use '@angular/material' as mat;
 
-@import './colors/accent-theme.palette.scss';
-@import './colors/primary-theme.palette.scss';
-@import './colors/additional-theme.palette.scss';
-@import './theme-palettes/mat-light-theme-background';
-@import './theme-palettes/mat-light-theme-foreground';
-@import './typography/typography.config';
+@use 'colors/accent-theme.palette.scss';
+@use 'colors/primary-theme.palette.scss';
+@use 'colors/additional-theme.palette.scss';
+@use 'theme-palettes/mat-light-theme-background';
+@use 'theme-palettes/mat-light-theme-foreground';
+@use 'typography/typography.config';
 
-$num-portal-webapp-primary: mat.m2-define-palette($num-primary-palette);
-$num-portal-webapp-accent: mat.m2-define-palette($num-accent-palette);
-$num-portal-webapp-additional: mat.m2-define-palette($num-additional-palette, error);
+$num-portal-webapp-primary: mat.m2-define-palette(primary-theme.$num-primary-palette);
+$num-portal-webapp-accent: mat.m2-define-palette(accent-theme.$num-accent-palette);
+$num-portal-webapp-additional: mat.m2-define-palette(
+  additional-theme.$num-additional-palette,
+  error
+);
 
-$mat-light-theme-foreground: mat-light-theme-foreground(
+$mat-light-theme-foreground: mat-light-theme-foreground.mat-light-theme-foreground(
   $num-portal-webapp-primary,
   $num-portal-webapp-accent,
   $num-portal-webapp-additional
 );
 
-$mat-light-theme-background: mat-light-theme-background(
+$mat-light-theme-background: mat-light-theme-background.mat-light-theme-background(
   $num-portal-webapp-primary,
   $num-portal-webapp-accent,
   $num-portal-webapp-additional
@@ -32,7 +35,7 @@ $mat-light-theme-background: mat-light-theme-background(
     is-dark: false,
     foreground: $mat-light-theme-foreground,
     background: $mat-light-theme-background,
-    typography: $num-typography,
+    typography: typography.$num-typography,
     density: 0
   );
 }

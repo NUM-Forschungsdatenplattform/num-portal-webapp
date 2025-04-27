@@ -1,7 +1,8 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin mat-toast_themed($theme) {
-  $additional: map-get($theme, additional);
+  $additional: map.get($theme, additional);
 
   .num-toast {
     font-weight: 100;

@@ -1,8 +1,9 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin select-destination_themed($theme) {
-  $accent: map-get($theme, accent);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
 
   $width: 20px;
   $height: 40px;

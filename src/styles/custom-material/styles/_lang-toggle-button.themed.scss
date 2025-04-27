@@ -1,9 +1,12 @@
+@use 'sass:map';
+@use '../../themes/theme-palettes/mat-light-theme-background';
+
 @use '@angular/material' as mat;
 
 @mixin language-component_themed($theme) {
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
 
   .num-mat-lang-toggle-button {
     border: none;
@@ -33,7 +36,7 @@
 
       &.mat-button-toggle-checked {
         color: mat.m2-get-color-from-palette($primary);
-        background: mat.m2-get-color-from-palette($mat-grey, 300);
+        background: mat.m2-get-color-from-palette(mat-light-theme-background.$mat-grey, 300);
       }
 
       &.mat-button-toggle + .mat-button-toggle {

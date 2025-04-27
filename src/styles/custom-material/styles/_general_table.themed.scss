@@ -1,7 +1,8 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin general_table_themed($theme) {
-  $accent: map-get($theme, accent);
+  $accent: map.get($theme, accent);
 
   .mat-mdc-row {
     &--active,

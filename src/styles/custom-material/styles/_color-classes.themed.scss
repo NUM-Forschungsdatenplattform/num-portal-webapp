@@ -1,10 +1,11 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin color-classes_themed($theme) {
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
-  $warn: map-get($theme, warn);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
+  $warn: map.get($theme, warn);
 
   .num-fg-color,
   .num-fc {

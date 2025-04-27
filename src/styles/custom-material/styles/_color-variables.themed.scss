@@ -1,10 +1,11 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin color-variables_themed($theme) {
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $warn: map-get($theme, warn);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $warn: map.get($theme, warn);
+  $additional: map.get($theme, additional);
 
   :root {
     --num-color--primary: #{mat.m2-get-color-from-palette($primary)};

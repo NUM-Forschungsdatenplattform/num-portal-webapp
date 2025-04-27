@@ -1,7 +1,8 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin footer_themed($theme) {
-  $primary: map-get($theme, primary);
+  $primary: map.get($theme, primary);
 
   .num-footer {
     background: mat.m2-get-color-from-palette($primary, 900);

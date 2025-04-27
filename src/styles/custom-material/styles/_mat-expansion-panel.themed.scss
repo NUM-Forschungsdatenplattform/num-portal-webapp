@@ -1,8 +1,9 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin mat-expansion-panel_themed($theme) {
-  $accent: map-get($theme, accent);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
 
   // .num-accordion {
   //   &-big {

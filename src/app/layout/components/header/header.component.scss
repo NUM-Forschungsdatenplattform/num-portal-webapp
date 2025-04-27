@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
-@import '../../../../styles/themes';
-$accent: map-get($num-portal-webapp-theme, accent);
+@use 'sass:map';
+@use '../../../../styles/themes';
+$accent: map.get(themes.$num-portal-webapp-theme, accent);
 
 .toolbar {
   background: transparent;

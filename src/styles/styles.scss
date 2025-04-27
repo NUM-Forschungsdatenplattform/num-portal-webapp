@@ -1,15 +1,16 @@
 @use '@angular/material' as mat;
 
-@import './font';
-@import './themes';
-@import './custom-material';
-@import './general-styles/_margin-bottom-classes';
+@use 'font';
+@use 'themes';
+@use 'custom-material';
+@use 'general-styles/_margin-bottom-classes';
+@use 'themes/typography/typography.config';
 
 @include mat.elevation-classes();
 @include mat.app-background();
-@include custom-material_themed($num-portal-webapp-theme);
-@include mat.all-component-themes($num-portal-webapp-theme);
-@include mat.typography-hierarchy($num-typography);
+@include custom-material.custom-material_themed(themes.$num-portal-webapp-theme);
+@include mat.all-component-themes(themes.$num-portal-webapp-theme);
+@include mat.typography-hierarchy(typography.$num-typography);
 
 html,
 body {

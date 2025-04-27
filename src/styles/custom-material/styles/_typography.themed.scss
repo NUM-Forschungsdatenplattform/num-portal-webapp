@@ -1,9 +1,10 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin typography_themed($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $additional: map-get($theme, additional);
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
 
   h1 {
     fa-icon {

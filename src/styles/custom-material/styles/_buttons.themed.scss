@@ -1,11 +1,12 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 @mixin buttons($theme) {
   $raised-shadow:
     0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
   /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/

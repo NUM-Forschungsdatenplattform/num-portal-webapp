@@ -1,7 +1,8 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 
 @mixin mat-list_themed($theme) {
-  $accent: map-get($theme, accent);
+  $accent: map.get($theme, accent);
 
   num-side-menu {
     .mat-mdc-list-base {
