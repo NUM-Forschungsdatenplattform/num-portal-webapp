@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject } from 'rxjs'
@@ -77,13 +76,13 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent, StubFilterChipsComponent, SearchComponent],
+      declarations: [ProjectsTableComponent, SearchComponent],
       imports: [
+        StubFilterChipsComponent,
         MaterialModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
         PipesModule,
         FontAwesomeTestingModule,
       ],

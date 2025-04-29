@@ -38,8 +38,9 @@ describe('ManagerChartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerChartsComponent, BarChartStubComponent],
+      declarations: [ManagerChartsComponent],
       imports: [
+        BarChartStubComponent,
         MaterialModule,
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: FakeLoader },

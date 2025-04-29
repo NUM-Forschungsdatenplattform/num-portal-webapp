@@ -53,14 +53,11 @@ describe('ProjectEditorCohortBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ProjectEditorCohortBuilderComponent,
+      declarations: [ProjectEditorCohortBuilderComponent, SearchComponent],
+      imports: [
         StubCohortBuilderComponent,
         StubEditorDetermineHitsComponent,
-        SearchComponent,
         StubFilterChipsComponent,
-      ],
-      imports: [
         MaterialModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),

@@ -28,8 +28,9 @@ describe('AqlBuilderSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderSelectComponent, SelectItemStubComponent],
+      declarations: [AqlBuilderSelectComponent],
       imports: [
+        SelectItemStubComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

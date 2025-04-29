@@ -8,7 +8,6 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
-import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AqlEditorComponent } from './aql-editor.component'
 import { of, Subject } from 'rxjs'
@@ -75,18 +74,14 @@ describe('AqlEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AqlEditorComponent,
+      declarations: [AqlEditorComponent, ButtonComponent],
+      imports: [
+        UserHasRoleStubDirective,
         StubGeneralInfoComponent,
         StubEditorCreatorComponent,
-        ButtonComponent,
-        UserHasRoleStubDirective,
-      ],
-      imports: [
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        RouterTestingModule,
         NoopAnimationsModule,
       ],
       providers: [

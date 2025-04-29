@@ -57,13 +57,10 @@ describe('DialogAddResearchersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DialogAddResearchersComponent,
-        SearchComponent,
+      declarations: [DialogAddResearchersComponent, SearchComponent],
+      imports: [
         FilterTableStubComponent,
         StubFilterChipsComponent,
-      ],
-      imports: [
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),

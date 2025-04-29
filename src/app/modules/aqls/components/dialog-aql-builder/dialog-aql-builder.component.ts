@@ -119,7 +119,7 @@ export class DialogAqlBuilderComponent
         result,
       }
       this.closeDialog.emit(dialogReturn)
-    } catch (error) {
+    } catch (_) {
       this.toastMessageService.openToast(COMPILE_ERROR_CONFIG)
     }
   }

@@ -41,8 +41,9 @@ describe('AqlConnectorItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlConnectorItemComponent, AqlParameterInputsComponent],
+      declarations: [AqlConnectorItemComponent],
       imports: [
+        AqlParameterInputsComponent,
         FormsModule,
         MaterialModule,
         TranslateModule.forRoot(),

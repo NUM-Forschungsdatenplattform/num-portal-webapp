@@ -11,7 +11,6 @@ import {
   mockAqlCategory1,
   mockAqlCategory2,
 } from 'src/mocks/data-mocks/aql-categories.mock'
-import { RouterTestingModule } from '@angular/router/testing'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -20,6 +19,7 @@ import { DELETE_AQL_CATEGORY_DIALOG_CONFIG } from '../constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { AqlCategoryMenuKeys } from '../menu-item'
 import { MatSort } from '@angular/material/sort'
+import { provideRouter } from '@angular/router'
 
 describe('AqlCategoriesTableComponent', () => {
   let component: AqlCategoriesTableComponent
@@ -55,10 +55,10 @@ describe('AqlCategoriesTableComponent', () => {
         NoopAnimationsModule,
         FontAwesomeTestingModule,
         MaterialModule,
-        RouterTestingModule.withRoutes([]),
         TranslateModule.forRoot(),
       ],
       providers: [
+        provideRouter([]),
         {
           provide: AqlCategoryService,
           useValue: mockAqlCategoryService,

@@ -32,8 +32,9 @@ describe('AddUserOrganizationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddUserOrganizationComponent, MockObjectToArrayPipe],
+      declarations: [AddUserOrganizationComponent],
       imports: [
+        MockObjectToArrayPipe,
         MaterialModule,
         FontAwesomeTestingModule,
         NoopAnimationsModule,

@@ -18,12 +18,12 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
-      declarations: [
-        ContactComponent,
+      imports: [
         ContactHandlingStubComponent,
         OperationAdministrationStubComponent,
+        TranslateModule.forRoot(),
       ],
+      declarations: [ContactComponent],
       providers: [TranslateService],
     }).compileComponents()
   })

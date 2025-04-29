@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
@@ -12,9 +11,10 @@ import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organ
 import { OrganizationsTableComponent } from './organizations-table.component'
 import { MatSort } from '@angular/material/sort'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
+import { provideHttpClient } from '@angular/common/http'
 
 describe('OrganizationsTableComponent', () => {
   let component: OrganizationsTableComponent
@@ -35,15 +35,15 @@ describe('OrganizationsTableComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [OrganizationsTableComponent],
       imports: [
-        HttpClientTestingModule,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,
-        RouterTestingModule.withRoutes([]),
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: OrganizationService,
           useValue: organizationService,

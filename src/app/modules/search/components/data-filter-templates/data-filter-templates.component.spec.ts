@@ -36,8 +36,9 @@ describe('DataFilterTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataFilterTemplatesComponent, AddTemplatesStubComponent],
+      declarations: [DataFilterTemplatesComponent],
       imports: [
+        AddTemplatesStubComponent,
         NoopAnimationsModule,
         FontAwesomeModule,
         LayoutModule,

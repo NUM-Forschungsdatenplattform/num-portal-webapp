@@ -129,7 +129,7 @@ export class AqlCategoriesTableComponent
         type: ToastMessageType.Success,
         message: 'QUERY_CATEGORIES.DELETE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERY_CATEGORIES.DELETE_ERROR_MESSAGE',

@@ -240,7 +240,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
         type: ToastMessageType.Success,
         message: 'QUERIES.DELETE_QUERY_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERIES.DELETE_QUERY_ERROR_MESSAGE',

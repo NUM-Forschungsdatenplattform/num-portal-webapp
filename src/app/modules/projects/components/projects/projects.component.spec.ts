@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
@@ -34,11 +33,11 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsComponent, ProjectsTableStubComponent],
+      declarations: [ProjectsComponent],
       imports: [
+        ProjectsTableStubComponent,
         NoopAnimationsModule,
         MaterialModule,
-        RouterTestingModule,
         SharedModule,
         TranslateModule.forRoot(),
       ],

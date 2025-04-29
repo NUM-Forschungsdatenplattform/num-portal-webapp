@@ -1,8 +1,13 @@
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {
+  HttpClient,
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http'
 import { inject, TestBed } from '@angular/core/testing'
 import { OAuthStorage, OAuthService } from 'angular-oauth2-oidc'
 import { OAuthInterceptor } from './oauth.interceptor'
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'
 
 describe('OAuthInterceptor', () => {
   let authInterceptor: OAuthInterceptor
@@ -17,8 +22,9 @@ describe('OAuthInterceptor', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
         { provide: OAuthStorage, useValue: authStorage },
         { provide: OAuthService, useValue: authService },
         {
@@ -43,7 +49,7 @@ describe('OAuthInterceptor', () => {
   describe('When the intercepted url is not excluded', () => {
     it('should add an Authorization header', inject(
       [HttpClient, HttpTestingController],
-      (http: HttpClient, httpMock: HttpTestingController) => {
+      (http: HttpClient, httpMock = TestBed.inject(HttpTestingController)) => {
         http.get('/data').subscribe((response) => {
           expect(response).toBeTruthy()
         })
@@ -59,7 +65,7 @@ describe('OAuthInterceptor', () => {
   describe('When the intercepted url is excluded', () => {
     it('should add no Authorization header', inject(
       [HttpClient, HttpTestingController],
-      (http: HttpClient, httpMock: HttpTestingController) => {
+      (http: HttpClient, httpMock = TestBed.inject(HttpTestingController)) => {
         http.get('/assets').subscribe((response) => {
           expect(response).toBeTruthy()
         })
@@ -71,7 +77,11 @@ describe('OAuthInterceptor', () => {
   describe('When the Backend returns 401: Unauthorized', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
-      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
+      (
+        http: HttpClient,
+        httpMock = TestBed.inject(HttpTestingController),
+        injectedAuthService: OAuthService
+      ) => {
         const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
         const data = 'Unauthorized'
 
@@ -88,7 +98,11 @@ describe('OAuthInterceptor', () => {
   describe('When the Backend returns another error', () => {
     it('should not logout the user', inject(
       [HttpClient, HttpTestingController, OAuthService],
-      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: OAuthService) => {
+      (
+        http: HttpClient,
+        httpMock = TestBed.inject(HttpTestingController),
+        injectedAuthService: OAuthService
+      ) => {
         const mockErrorResponse = { status: 500, statusText: 'Internal Server Error' }
         const data = 'Internal Server Error'
 

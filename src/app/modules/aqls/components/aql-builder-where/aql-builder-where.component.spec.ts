@@ -21,8 +21,8 @@ describe('AqlBuilderWhereComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereComponent, WhereGroupStubComponent],
-      imports: [FontAwesomeTestingModule, TranslateModule.forRoot()],
+      declarations: [AqlBuilderWhereComponent],
+      imports: [WhereGroupStubComponent, FontAwesomeTestingModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

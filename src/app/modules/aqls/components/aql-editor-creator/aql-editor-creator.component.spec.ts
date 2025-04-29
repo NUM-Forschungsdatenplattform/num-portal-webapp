@@ -25,7 +25,6 @@ import {
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
 
-/* eslint-disable @typescript-eslint/naming-convention */
 describe('AqlEditorCreatorComponent', () => {
   let component: AqlEditorCreatorComponent
   let fixture: ComponentFixture<AqlEditorCreatorComponent>
@@ -110,14 +109,15 @@ describe('AqlEditorCreatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AqlEditorCreatorComponent,
-        CodeEditorStubComponent,
-        ButtonComponent,
-        EditorDetermineHitsStubComponent,
+      declarations: [AqlEditorCreatorComponent, ButtonComponent],
+      imports: [
         UserHasRoleStubDirective,
+        CodeEditorStubComponent,
+        EditorDetermineHitsStubComponent,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         { provide: AqlEditorService, useValue: mockAqlEditorService },

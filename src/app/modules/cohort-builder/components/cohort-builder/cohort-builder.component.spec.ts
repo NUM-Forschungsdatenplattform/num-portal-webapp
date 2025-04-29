@@ -21,12 +21,8 @@ describe('CohortBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        CohortBuilderComponent,
-        StubAqlSelectionComponent,
-        StubAqlConnectorGroupComponent,
-      ],
-      imports: [LayoutModule],
+      declarations: [CohortBuilderComponent],
+      imports: [StubAqlSelectionComponent, StubAqlConnectorGroupComponent, LayoutModule],
     }).compileComponents()
   })
 

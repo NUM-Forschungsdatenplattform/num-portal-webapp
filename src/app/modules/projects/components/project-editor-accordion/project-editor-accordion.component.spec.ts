@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -54,20 +53,17 @@ describe('ProjectEditorAccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ProjectEditorAccordionComponent,
+      declarations: [ProjectEditorAccordionComponent],
+      imports: [
+        StubProjectEditorResearchers,
         StubGeneralInfoComponent,
         StubProjectEditorCohortBuilderComponent,
-        StubProjectEditorResearchers,
         StubProjectEditorTemplatesComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
       ],
     }).compileComponents()
   })

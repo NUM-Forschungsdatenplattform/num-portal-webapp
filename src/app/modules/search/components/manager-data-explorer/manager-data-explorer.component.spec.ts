@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
@@ -83,11 +82,11 @@ describe('ManagerDataRetrievComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerDataExplorerComponent, ResultTableComponentStub, ButtonComponent],
+      declarations: [ManagerDataExplorerComponent, ButtonComponent],
       imports: [
+        ResultTableComponentStub,
         MaterialModule,
         FontAwesomeTestingModule,
-        RouterTestingModule,
         TranslateModule.forRoot(),
       ],
       providers: [
@@ -196,7 +195,6 @@ describe('ManagerDataRetrievComponent', () => {
         writable: true,
       })
       component.exportFile('csv')
-      console.log(mockCreateUrl)
       expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
     })

@@ -65,13 +65,11 @@ describe('AttachmentsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AttachmentsTableComponent,
-        AttachmentsTableActionsStubComponent,
-        LocalizedDateStubPipe,
-        ToolTipNecessaryStubDirective,
-      ],
+      declarations: [AttachmentsTableComponent],
       imports: [
+        ToolTipNecessaryStubDirective,
+        LocalizedDateStubPipe,
+        AttachmentsTableActionsStubComponent,
         CommonModule,
         MatCheckboxModule,
         MatSortModule,

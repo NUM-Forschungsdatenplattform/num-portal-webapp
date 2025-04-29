@@ -50,7 +50,7 @@ describe('ProjectEditorButtonsComponent', () => {
     jest.spyOn(component.saveAsApprovalRequest, 'emit')
     jest.spyOn(component.saveAsApprovalReply, 'emit')
     jest.spyOn(component.startEdit, 'emit')
-    jest.spyOn(component.cancel, 'emit')
+    jest.spyOn(component.cancelEdit, 'emit')
   })
 
   afterEach(() => {
@@ -84,7 +84,7 @@ describe('ProjectEditorButtonsComponent', () => {
     it('it should emit the cancel event on back button click', () => {
       backButton.querySelector('button').click()
       fixture.detectChanges()
-      expect(component.cancel.emit).toHaveBeenCalledTimes(1)
+      expect(component.cancelEdit.emit).toHaveBeenCalledTimes(1)
     })
 
     const previewCases = [

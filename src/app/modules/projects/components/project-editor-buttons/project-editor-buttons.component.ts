@@ -34,7 +34,7 @@ export class ProjectEditorButtonsComponent {
   @Output() saveAsApprovalRequest = new EventEmitter()
   @Output() saveAsApprovalReply = new EventEmitter()
   @Output() startEdit = new EventEmitter()
-  @Output() cancel = new EventEmitter()
+  @Output() cancelEdit = new EventEmitter()
   @Output() exportPrint = new EventEmitter()
 
   get approvalDecision(): ApprovalOption {

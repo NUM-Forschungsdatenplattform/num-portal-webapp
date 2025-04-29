@@ -23,8 +23,9 @@ describe('AqlBuilderWhereGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereGroupComponent, ButtonComponent, WhereItemStubComponent],
+      declarations: [AqlBuilderWhereGroupComponent, ButtonComponent],
       imports: [
+        WhereItemStubComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

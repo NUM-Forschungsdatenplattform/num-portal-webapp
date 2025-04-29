@@ -43,13 +43,9 @@ describe('ApprovedUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ApprovedUsersComponent,
-        SearchComponent,
-        StubFilterChipsComponent,
-        ApprovedUsersTableComponent,
-      ],
+      declarations: [ApprovedUsersComponent, SearchComponent, ApprovedUsersTableComponent],
       imports: [
+        StubFilterChipsComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

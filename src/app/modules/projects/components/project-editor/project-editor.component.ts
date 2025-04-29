@@ -285,7 +285,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         type: ToastMessageType.Success,
         message: 'PROJECT.SAVE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.project.status = this.savedProjectStatus
       this.toast.openToast({
         type: ToastMessageType.Error,

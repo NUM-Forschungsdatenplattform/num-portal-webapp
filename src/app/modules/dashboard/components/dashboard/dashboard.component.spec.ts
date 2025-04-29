@@ -2,7 +2,7 @@ import { ComponentFixture, getTestBed, TestBed } from '@angular/core/testing'
 import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { DashboardComponent } from './dashboard.component'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
@@ -12,6 +12,7 @@ import { ContentService } from '../../../../core/services/content/content.servic
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { mockDashboardCards } from '../../../../../mocks/data-mocks/dashboard-cards.mock'
 import { Component, Injector } from '@angular/core'
+import { provideHttpClient } from '@angular/common/http'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -44,15 +45,18 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent, MetricsStubComponent, LatestProjectsStubComponent],
+      declarations: [DashboardComponent],
       imports: [
+        MetricsStubComponent,
+        LatestProjectsStubComponent,
         TranslateModule.forRoot(),
-        HttpClientTestingModule,
         DirectivesModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: OAuthService,
           useValue: oauthService,

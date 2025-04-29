@@ -13,8 +13,8 @@ describe('ManagerToolsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerToolsComponent, ManagerChartsComponent, PseudonymResolverComponent],
-      imports: [],
+      declarations: [ManagerToolsComponent],
+      imports: [ManagerChartsComponent, PseudonymResolverComponent],
     }).compileComponents()
   })
 

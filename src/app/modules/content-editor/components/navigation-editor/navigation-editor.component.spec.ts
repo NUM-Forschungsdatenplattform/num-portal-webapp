@@ -38,8 +38,9 @@ describe('NavigationEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NavigationEditorComponent, NavigationEditorItemStubComponent, ButtonComponent],
+      declarations: [NavigationEditorComponent, ButtonComponent],
       imports: [
+        NavigationEditorItemStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),

@@ -1,7 +1,5 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
+import { Router, RouterModule } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { IAppConfig } from 'src/app/config/app-config.model'
@@ -9,6 +7,8 @@ import { AppConfigService } from 'src/app/config/app-config.service'
 import { MaterialModule } from '../../material/material.module'
 
 import { FooterComponent } from './footer.component'
+import { provideHttpClient } from '@angular/common/http'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 
 describe('FooterComponent', () => {
   let component: FooterComponent
@@ -21,10 +21,10 @@ describe('FooterComponent', () => {
       imports: [
         FontAwesomeTestingModule,
         MaterialModule,
+        RouterModule.forRoot([]),
         TranslateModule.forRoot(),
-        HttpClientTestingModule,
-        RouterTestingModule.withRoutes([]),
       ],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents()
   })
 

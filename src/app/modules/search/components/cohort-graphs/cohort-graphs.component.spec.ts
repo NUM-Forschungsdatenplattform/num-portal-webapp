@@ -42,8 +42,13 @@ describe('CohortGraphsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CohortGraphsComponent, VerticalBarChartComponentStub],
-      imports: [MatDividerModule, SharedModule, TranslateModule.forRoot()],
+      declarations: [CohortGraphsComponent],
+      imports: [
+        VerticalBarChartComponentStub,
+        MatDividerModule,
+        SharedModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AuthService,

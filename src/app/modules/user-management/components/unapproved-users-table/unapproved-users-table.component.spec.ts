@@ -55,8 +55,9 @@ describe('UnapprovedUsersTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UnapprovedUsersTableComponent, StubLocalizedDatePipe],
+      declarations: [UnapprovedUsersTableComponent],
       imports: [
+        StubLocalizedDatePipe,
         MaterialModule,
         NoopAnimationsModule,
         FontAwesomeTestingModule,

@@ -35,13 +35,9 @@ describe('AqlConnectorGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AqlConnectorGroupComponent,
-        StubAqlConnectorItemComponent,
-        GroupIndexPipe,
-        ButtonComponent,
-      ],
+      declarations: [AqlConnectorGroupComponent, GroupIndexPipe, ButtonComponent],
       imports: [
+        StubAqlConnectorItemComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

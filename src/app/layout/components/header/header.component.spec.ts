@@ -1,7 +1,12 @@
 import { Component } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { ActivatedRouteSnapshot, ActivationEnd, ActivationStart, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
+import {
+  ActivatedRouteSnapshot,
+  ActivationEnd,
+  ActivationStart,
+  Router,
+  RouterModule,
+} from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from '../../material/material.module'
@@ -117,17 +122,17 @@ describe('HeaderComponent', () => {
       declarations: [
         HeaderComponent,
         LanguageComponent,
-        StubComponent,
         ButtonComponent,
         UserHasRoleDirective,
         FeatureIsActiveDirective,
       ],
       imports: [
+        StubComponent,
         FontAwesomeTestingModule,
         MaterialModule,
         FlexLayoutModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([
+        RouterModule.forRoot([
           {
             path: 'third',
             component: StubComponent,

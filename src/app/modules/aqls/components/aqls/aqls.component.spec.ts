@@ -31,8 +31,8 @@ describe('AqlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlsComponent, AqlTableStubComponent],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      declarations: [AqlsComponent],
+      imports: [AqlTableStubComponent, MaterialModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: AqlService,

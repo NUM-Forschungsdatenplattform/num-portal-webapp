@@ -104,7 +104,7 @@ describe('AqlService', () => {
     it('should call the api - with error', async () => {
       try {
         await service.getAll().toPromise()
-      } catch (err) {
+      } catch (_) {
         //
       } finally {
         expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')

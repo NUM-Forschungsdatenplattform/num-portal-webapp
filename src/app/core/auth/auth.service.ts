@@ -108,7 +108,7 @@ export class AuthService {
 
     try {
       userInfo = await this.oauthService.loadUserProfile()
-    } catch (error) {
+    } catch (_) {
       this.clearUserInfo()
       throw new Error('Failed to fetch userInfo')
     }

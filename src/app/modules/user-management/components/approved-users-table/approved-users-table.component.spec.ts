@@ -54,8 +54,9 @@ describe('ApprovedUsersTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ApprovedUsersTableComponent, MockLocalizedDatePipe, AvailableRolesPipe],
+      declarations: [ApprovedUsersTableComponent, AvailableRolesPipe],
       imports: [
+        MockLocalizedDatePipe,
         MaterialModule,
         NoopAnimationsModule,
         FontAwesomeTestingModule,

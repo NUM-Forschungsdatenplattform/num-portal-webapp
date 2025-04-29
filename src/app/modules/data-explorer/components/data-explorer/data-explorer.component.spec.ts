@@ -13,7 +13,6 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { RouterTestingModule } from '@angular/router/testing'
 import { DataExplorerComponent } from './data-explorer.component'
 import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
@@ -128,19 +127,15 @@ describe('DataExplorerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DataExplorerComponent,
-        StubProjectEditorAccordionComponent,
-        ButtonComponent,
-        ResultTableStubComponent,
-      ],
+      declarations: [DataExplorerComponent, ButtonComponent],
       imports: [
+        StubProjectEditorAccordionComponent,
+        ResultTableStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {

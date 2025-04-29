@@ -20,8 +20,13 @@ describe('DataExplorerProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataExplorerProjectsComponent, DataExplorerProjectsTableStubComponent],
-      imports: [MaterialModule, NoopAnimationsModule, TranslateModule.forRoot()],
+      declarations: [DataExplorerProjectsComponent],
+      imports: [
+        DataExplorerProjectsTableStubComponent,
+        MaterialModule,
+        NoopAnimationsModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: ProjectService,

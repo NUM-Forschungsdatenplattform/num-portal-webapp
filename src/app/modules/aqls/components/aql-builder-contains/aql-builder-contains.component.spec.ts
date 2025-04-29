@@ -34,7 +34,8 @@ describe('AqlBuilderContainsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderContainsComponent, ContainsGroupStubComponent],
+      imports: [ContainsGroupStubComponent],
+      declarations: [AqlBuilderContainsComponent],
     }).compileComponents()
   })
 

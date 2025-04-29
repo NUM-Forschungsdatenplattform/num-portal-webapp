@@ -39,8 +39,9 @@ describe('GenericDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GenericDialogComponent, StubComponent, ButtonComponent],
+      declarations: [GenericDialogComponent, ButtonComponent],
       imports: [
+        StubComponent,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,

@@ -4,7 +4,7 @@
     <num-button
       id="back-button"
       type="secondary"
-      (singleClick)="cancel.emit()"
+      (singleClick)="cancelEdit.emit()"
       data-test="project-editor__buttons__back-button"
       >{{
         (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate

@@ -102,7 +102,7 @@ export class AqlEditorCeatorComponent {
         }
         return true
       }
-    } catch (error) {
+    } catch (_) {
       this.toastMessageService.openToast(VALIDATION_ERROR_CONFIG)
       return false
     }

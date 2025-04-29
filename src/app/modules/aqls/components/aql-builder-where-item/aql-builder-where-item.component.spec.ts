@@ -38,8 +38,9 @@ describe('AqlBuilderWhereItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereItemComponent, AqlParameterInputsComponent],
+      declarations: [AqlBuilderWhereItemComponent],
       imports: [
+        AqlParameterInputsComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

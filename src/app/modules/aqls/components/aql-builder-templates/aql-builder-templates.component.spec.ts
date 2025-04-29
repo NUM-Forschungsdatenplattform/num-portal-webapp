@@ -21,8 +21,9 @@ describe('AqlBuilderTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderTemplatesComponent, TemplatesStubComponent],
+      declarations: [AqlBuilderTemplatesComponent],
       imports: [
+        TemplatesStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),

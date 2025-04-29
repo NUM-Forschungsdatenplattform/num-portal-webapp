@@ -16,7 +16,6 @@ import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
 import { Router } from '@angular/router'
 import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
-import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
@@ -79,20 +78,16 @@ describe('AqlTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AqlTableComponent,
-        SearchComponent,
+      declarations: [AqlTableComponent, SearchComponent],
+      imports: [
+        MockLocalizedDatePipe,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
-        MockLocalizedDatePipe,
-      ],
-      imports: [
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
         PipesModule,
       ],
       providers: [

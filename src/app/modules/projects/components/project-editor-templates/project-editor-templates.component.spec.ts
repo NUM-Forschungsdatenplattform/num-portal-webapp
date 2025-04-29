@@ -23,8 +23,9 @@ describe('ProjectEditorTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorTemplatesComponent, ButtonComponent, StubAddTemplatesComponent],
+      declarations: [ProjectEditorTemplatesComponent, ButtonComponent],
       imports: [
+        StubAddTemplatesComponent,
         NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,

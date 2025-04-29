@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing'
 import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateService } from '@ngx-translate/core'
 import { UserManualUrlResolver } from './usermanualurl.resolver'
 
@@ -13,9 +12,7 @@ describe('ProjectMenuPipe', () => {
   } as unknown as TranslateService
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([])],
-    }).compileComponents()
+    TestBed.configureTestingModule({}).compileComponents()
     const router = TestBed.inject(Router)
 
     resolver = new UserManualUrlResolver(mockTranslateService, router)

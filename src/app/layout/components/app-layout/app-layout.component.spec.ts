@@ -7,7 +7,6 @@ import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
-import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
 import { Component, EventEmitter, Output } from '@angular/core'
 import { of, Subject } from 'rxjs'
@@ -21,7 +20,7 @@ import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, provideRouter, Router } from '@angular/router'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -100,30 +99,26 @@ describe('AppLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppLayoutComponent,
-        HeaderComponent,
+      declarations: [AppLayoutComponent, HeaderComponent, LanguageComponent],
+      imports: [
         SideMenuComponentStub,
-        LanguageComponent,
         FooterStubComponent,
         HomeStubComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([
+        DirectivesModule,
+        SharedComponentsModule,
+      ],
+      providers: [
+        provideRouter([
           {
             path: 'home',
             component: HomeStubComponent,
           },
         ]),
-        DirectivesModule,
-        SharedComponentsModule,
-      ],
-      providers: [
         {
           provide: OAuthService,
           useValue: oauthService,

@@ -113,6 +113,10 @@ export class AttachmentsTableComponent
    * cases all elements will be selected.
    */
   masterToggle() {
-    this.isAllSelected() ? this.selection.clear() : this.selection.select(...this.dataSource.data)
+    if (this.isAllSelected()) {
+      this.selection.clear()
+    } else {
+      this.selection.select(...this.dataSource.data)
+    }
   }
 }

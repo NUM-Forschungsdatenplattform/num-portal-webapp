@@ -24,8 +24,13 @@ describe('UnapprovedUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UnapprovedUsersComponent, UserTableStubComponent],
-      imports: [MaterialModule, NoopAnimationsModule, TranslateModule.forRoot()],
+      declarations: [UnapprovedUsersComponent],
+      imports: [
+        UserTableStubComponent,
+        MaterialModule,
+        NoopAnimationsModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AdminService,

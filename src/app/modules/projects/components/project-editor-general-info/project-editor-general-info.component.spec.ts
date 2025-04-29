@@ -44,14 +44,12 @@ describe('ProjectEditorGeneralInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ProjectEditorGeneralInfoComponent,
-        DefinitionListStubComponent,
+      declarations: [ProjectEditorGeneralInfoComponent],
+      imports: [
         ProjectEditorGeneralInfoKeywordsInputComponent,
         ProjectEditorGeneralInfoCategoriesInputComponent,
+        DefinitionListStubComponent,
         AttachmentsTableStubComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

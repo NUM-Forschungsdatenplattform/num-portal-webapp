@@ -17,8 +17,8 @@ describe('DataProtectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataProtectionComponent, OperationAdministrationStubComponent],
-      imports: [TranslateModule.forRoot()],
+      declarations: [DataProtectionComponent],
+      imports: [OperationAdministrationStubComponent, TranslateModule.forRoot()],
       providers: [TranslateService],
     }).compileComponents()
   })

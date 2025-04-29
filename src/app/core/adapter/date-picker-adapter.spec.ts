@@ -1,23 +1,27 @@
 import { Platform } from '@angular/cdk/platform'
 import { CustomDatePickerAdapter } from './date-picker-adapter'
+import { TestBed } from '@angular/core/testing'
 
 describe('DateHelperService', () => {
   let adapter: CustomDatePickerAdapter
-  const platform = new Platform({})
-  platform.isBrowser = true
-  platform.WEBKIT = true
-  platform.ANDROID = false
-  platform.BLINK = false
-  platform.EDGE = false
-  platform.FIREFOX = false
-  platform.IOS = false
-  platform.SAFARI = false
-  platform.TRIDENT = false
+  let platform: Platform
 
   const date = new Date(2021, 1, 12)
 
-  beforeEach(() => {
-    adapter = new CustomDatePickerAdapter('de', platform)
+  beforeEach(async () => {
+    TestBed.runInInjectionContext(() => {
+      platform = new Platform({})
+      platform.isBrowser = true
+      platform.WEBKIT = true
+      platform.ANDROID = false
+      platform.BLINK = false
+      platform.EDGE = false
+      platform.FIREFOX = false
+      platform.IOS = false
+      platform.SAFARI = false
+      platform.TRIDENT = false
+      adapter = new CustomDatePickerAdapter('de', platform)
+    })
   })
 
   it('should be created', () => {

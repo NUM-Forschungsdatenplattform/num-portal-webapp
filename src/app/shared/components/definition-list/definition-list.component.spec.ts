@@ -26,8 +26,8 @@ describe('DifinationListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AttachmentsTableStubComponent, DefinitionListComponent],
-      imports: [TranslateModule.forRoot(), FontAwesomeTestingModule],
+      declarations: [DefinitionListComponent],
+      imports: [AttachmentsTableStubComponent, TranslateModule.forRoot(), FontAwesomeTestingModule],
     }).compileComponents()
   })
 

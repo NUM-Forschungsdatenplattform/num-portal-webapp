@@ -62,15 +62,16 @@ describe('DialogAqlBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DialogAqlBuilderComponent,
+      declarations: [DialogAqlBuilderComponent, ButtonComponent],
+      imports: [
         TemplatesStubComponent,
         SelectStubComponent,
         ContainsStubComponent,
         WhereStubComponent,
-        ButtonComponent,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         { provide: AqlEditorService, useValue: aqlEditorService },
         { provide: ToastMessageService, useValue: mockToastMessageService },

@@ -14,6 +14,7 @@ describe('Directive: UserHasRoleDirective', () => {
     template: `<div>
       <span *numUserHasRole="allowedRoles">${testContent}</span>
     </div>`,
+    standalone: false,
   })
   class TestUserHasRoleComponent {
     allowedRoles: string[] = []

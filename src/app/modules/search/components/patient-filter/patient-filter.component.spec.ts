@@ -103,14 +103,10 @@ describe('PatientFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      declarations: [PatientCountInfoComponent, PatientFilterComponent, SearchComponent],
+      imports: [
         CohortBuilderComponentStub,
         CohortGraphsComponentStub,
-        PatientCountInfoComponent,
-        PatientFilterComponent,
-        SearchComponent,
-      ],
-      imports: [
         MaterialModule,
         ReactiveFormsModule,
         NoopAnimationsModule,

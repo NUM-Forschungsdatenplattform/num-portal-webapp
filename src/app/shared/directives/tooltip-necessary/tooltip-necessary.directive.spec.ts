@@ -19,6 +19,7 @@ describe('TooltipNecessaryDirective', () => {
         }
       `,
     ],
+    standalone: false,
   })
   class TestTooltipNecessaryComponent {
     @Input() textContent = ''

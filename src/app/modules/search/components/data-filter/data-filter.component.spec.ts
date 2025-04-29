@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
@@ -79,12 +78,12 @@ describe('DataFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataFilterComponent, ButtonComponent, StubDataFilterTemplatesComponent],
+      declarations: [DataFilterComponent, ButtonComponent],
       imports: [
+        StubDataFilterTemplatesComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        RouterTestingModule,
         NoopAnimationsModule,
         DirectivesModule,
       ],

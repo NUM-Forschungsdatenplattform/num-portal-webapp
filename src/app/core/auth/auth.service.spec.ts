@@ -124,12 +124,12 @@ describe('Auth Service', () => {
 
   describe('When the user wants goes afk idle process should be used', () => {
     it('Should call the resetIdle method, than logout', () => {
-      jest.spyOn(authService, 'initIdle')
+      jest.spyOn(authService, 'resetIdle')
       jest.spyOn(authService, 'logout')
       idle.setIdleTime(1)
       idle.setTimeoutTime(1)
-      expect(authService.resetIdle).toHaveBeenCalled
-      expect(oauthService.logOut).toHaveBeenCalled
+      expect(authService.resetIdle).toHaveBeenCalled()
+      expect(oauthService.logOut).toHaveBeenCalled()
     })
   })
 

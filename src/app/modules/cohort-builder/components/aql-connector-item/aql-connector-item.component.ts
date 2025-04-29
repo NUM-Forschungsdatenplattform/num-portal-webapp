@@ -126,7 +126,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
     try {
       const date = new Date(dateString)
       return date instanceof Date && !isNaN(date as any) ? date : new Date()
-    } catch (error) {
+    } catch (_) {
       return new Date()
     }
   }
@@ -138,7 +138,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         .map((part) => parseInt(part, 10))
       const date = new Date(2012, 11, 21, hour, minute, second)
       return date instanceof Date && !isNaN(date as any) ? date : new Date()
-    } catch (error) {
+    } catch (_) {
       return new Date()
     }
   }

@@ -64,7 +64,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
         message: 'QUERY_CATEGORIES.CREATE_SUCCESS_MESSAGE',
       })
       this.aqlCategoriesTableComponent.getAll()
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERY_CATEGORIES.CREATE_ERROR_MESSAGE',
@@ -82,7 +82,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
         type: ToastMessageType.Success,
         message: 'QUERY_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERY_CATEGORIES.UPDATE_ERROR_MESSAGE',

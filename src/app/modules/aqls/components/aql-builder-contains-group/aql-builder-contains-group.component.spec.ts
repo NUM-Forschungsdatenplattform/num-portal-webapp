@@ -28,12 +28,12 @@ describe('AqlBuilderContainsGroupComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         AqlBuilderContainsGroupComponent,
-        ContainsItemStubComponent,
         ButtonComponent,
         ArchetypePipe,
         GroupIndexPipe,
       ],
       imports: [
+        ContainsItemStubComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

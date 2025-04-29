@@ -3,7 +3,6 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { ReactiveFormsModule } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { ActivatedRoute, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { Subject, of } from 'rxjs'
@@ -28,10 +27,11 @@ import {
 } from './constants'
 
 import { OrganizationEditorComponent } from './organization-editor.component'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { mockUserProfile1 } from 'src/mocks/data-mocks/user-profile.mock'
+import { provideHttpClient } from '@angular/common/http'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 
 describe('OrganizationEditorComponent', () => {
   let component: OrganizationEditorComponent
@@ -79,10 +79,10 @@ describe('OrganizationEditorComponent', () => {
         TranslateModule.forRoot(),
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        RouterTestingModule,
-        HttpClientTestingModule,
       ],
       providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: route,

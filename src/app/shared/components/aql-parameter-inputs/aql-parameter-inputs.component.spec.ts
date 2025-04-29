@@ -24,8 +24,9 @@ describe('AqlParameterInputsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlParameterInputsComponent, TimeInputStubComponent],
+      declarations: [AqlParameterInputsComponent],
       imports: [
+        TimeInputStubComponent,
         MaterialModule,
         ReactiveFormsModule,
         FormsModule,

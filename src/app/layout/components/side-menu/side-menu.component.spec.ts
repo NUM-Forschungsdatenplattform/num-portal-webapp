@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
-import { RouterTestingModule } from '@angular/router/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
@@ -15,7 +14,9 @@ import { COOKIE_DIALOG_CONFIG } from './constants'
 import { Component } from '@angular/core'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { USERMANUAL } from 'src/app/core/constants/constants'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
+import { provideRouter } from '@angular/router'
+import { provideHttpClient } from '@angular/common/http'
 
 describe('SideMenuComponent', () => {
   let component: SideMenuComponent
@@ -63,21 +64,23 @@ describe('SideMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SideMenuComponent, TestRouterTargetComponentStub],
+      declarations: [SideMenuComponent],
       imports: [
+        TestRouterTargetComponentStub,
         FontAwesomeTestingModule,
         MaterialModule,
-        RouterTestingModule.withRoutes([
+        TranslateModule.forRoot(),
+        DirectivesModule,
+      ],
+      providers: [
+        provideRouter([
           { path: '#login', component: TestRouterTargetComponentStub },
           { path: '#logout', component: TestRouterTargetComponentStub },
           { path: 'test', component: TestRouterTargetComponentStub },
           { path: 'home', component: TestRouterTargetComponentStub },
         ]),
-        TranslateModule.forRoot(),
-        DirectivesModule,
-        HttpClientTestingModule,
-      ],
-      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: OAuthService,
           useValue: oauthService,
