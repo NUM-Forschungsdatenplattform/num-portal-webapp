@@ -6,18 +6,12 @@
   $accent: map.get($theme, accent);
   $additional: map.get($theme, additional);
 
-  .mat-mdc-chip.mat-mdc-standard-chip {
-    font-size: 14px;
-    background: mat.m2-get-color-from-palette($additional, light-grey) !important;
-
-    &.mat-mdc-chip-selected.mat-primary,
-    &.chip-primary {
-      background: mat.m2-get-color-from-palette($primary, 500) !important;
-      color: mat.m2-get-contrast-color-from-palette($primary, 500);
-
-      fa-icon {
-        color: mat.m2-get-color-from-palette($accent, 500);
-      }
-    }
-  }
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: mat.m2-get-color-from-palette($additional, lighter-grey),
+      elevated-selected-container-color: mat.m2-get-color-from-palette($primary, 500),
+      selected-label-text-color: mat.m2-get-color-from-palette($primary, 500-contrast),
+      with-icon-selected-icon-color: mat.m2-get-color-from-palette($accent, 500),
+    )
+  );
 }
