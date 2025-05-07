@@ -58,15 +58,15 @@ export class ProfileComponent implements OnInit {
   fetchData(): void {
     this.isLoading = true
     this.subscriptions.add(
-      this.profileService.get().subscribe(
-        (data) => {
+      this.profileService.get().subscribe({
+        next: (data) => {
           this.handleData(data)
           this.isLoading = false
         },
-        () => {
+        error: () => {
           this.isLoading = false
-        }
-      )
+        },
+      })
     )
   }
 
@@ -105,13 +105,13 @@ export class ProfileComponent implements OnInit {
         if (result === true) {
           const firstName = this.profileForm.get('firstName').value
           const lastName = this.profileForm.get('lastName').value
-          this.profileService.changeUserName(firstName, lastName).subscribe(
-            () => {
+          this.profileService.changeUserName(firstName, lastName).subscribe({
+            next: () => {
               const newProfile = Object.assign(this.profile, { firstName, lastName })
               this.handleSaveSuccess(newProfile)
             },
-            () => this.handleSaveError()
-          )
+            error: () => this.handleSaveError(),
+          })
         }
       })
     )

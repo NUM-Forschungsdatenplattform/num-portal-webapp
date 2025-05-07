@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http'
-import { firstValueFrom, of, Subject, throwError, timer } from 'rxjs'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { firstValueFrom, lastValueFrom, of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import {
@@ -74,11 +74,13 @@ describe('ProjectService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
       jest.spyOn(service, 'handleError')
-      service
-        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en')
-        .toPromise()
+
+      const allPag$ = service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en')
+      lastValueFrom(allPag$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -98,10 +100,12 @@ describe('ProjectService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .get(1)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
+
+      const project$ = service.get(1)
+      lastValueFrom(project$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/project/${1}`)
@@ -119,10 +123,12 @@ describe('ProjectService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .create(mockProject1Local)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
+
+      const projectCreate$ = service.create(mockProject1Local)
+      lastValueFrom(projectCreate$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/project`, mockProject1Local)
@@ -159,10 +165,12 @@ describe('ProjectService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'put').mockImplementationOnce(() => throwError('Error'))
-      service
-        .update(mockProject1Local, 1)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'put')
+        .mockImplementationOnce(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
+
+      const projectUpdate$ = service.update(mockProject1Local, 1)
+      lastValueFrom(projectUpdate$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.put).toHaveBeenCalledWith(`localhost/api/project/${1}`, mockProject1Local)
@@ -178,10 +186,12 @@ describe('ProjectService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'delete').mockImplementationOnce(() => throwError('Error'))
-      service
-        .delete(1)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'delete')
+        .mockImplementationOnce(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
+
+      const projectDelete$ = service.delete(1)
+      lastValueFrom(projectDelete$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.delete).toHaveBeenCalledWith(`localhost/api/project/${1}`)
@@ -204,10 +214,12 @@ describe('ProjectService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .executeAdHocAql('query', 1, false)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
+
+      const adHocAql$ = service.executeAdHocAql('query', 1, false)
+      lastValueFrom(adHocAql$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
@@ -245,12 +257,12 @@ describe('ProjectService', () => {
     it('should first fetch the project and then reject', (done) => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockProject1Local))
       jest.spyOn(httpClient, 'put').mockImplementation(() => of(mockProject1Local))
-      service
-        .updateStatusById(1, ProjectStatus.Published)
-        .toPromise()
+
+      const projectStatusUpdate$ = service.updateStatusById(1, ProjectStatus.Published)
+      lastValueFrom(projectStatusUpdate$)
         .then((_) => {})
         .catch((error) => {
-          expect(error).toEqual('STATUS_NOT_SWITCHABLE')
+          expect(error.message).toEqual('STATUS_NOT_SWITCHABLE')
           done()
         })
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/1`)
@@ -265,9 +277,9 @@ describe('ProjectService', () => {
 
       service.getMyPublishedProjects().subscribe()
 
-      service.myPublishedProjectsObservable$
-        .toPromise()
-        .then((result) => expect(result).toEqual([mockProject2, mockProject3]))
+      lastValueFrom(service.myPublishedProjectsObservable$).then((result) =>
+        expect(result).toEqual([mockProject2, mockProject3])
+      )
     })
   })
 
@@ -305,7 +317,9 @@ describe('ProjectService', () => {
       const anyService = service as any
 
       anyService.projects = []
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
 
       service.filteredProjectsObservable$
         .pipe(skipUntil(timer(anyService.throttleTime / 2)))

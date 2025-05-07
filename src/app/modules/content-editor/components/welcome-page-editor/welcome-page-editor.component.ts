@@ -59,15 +59,15 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   }
 
   fetchData(): void {
-    this.contentService.getCards().subscribe(
-      (data) => {
+    this.contentService.getCards().subscribe({
+      next: (data) => {
         this.handleData(data)
         this.isLoading = false
       },
-      () => {
+      error: () => {
         this.isLoading = false
-      }
-    )
+      },
+    })
   }
 
   handleData(cards: IDashboardCard[]): void {
@@ -154,10 +154,10 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   save(): void {
     this.isLoading = true
     const dashboardCards = this.getCardsForApi()
-    this.contentService.updateCards(dashboardCards).subscribe(
-      () => this.handleSaveSuccess(dashboardCards),
-      () => this.handleSaveError()
-    )
+    this.contentService.updateCards(dashboardCards).subscribe({
+      next: () => this.handleSaveSuccess(dashboardCards),
+      error: () => this.handleSaveError(),
+    })
   }
 
   discard(): void {

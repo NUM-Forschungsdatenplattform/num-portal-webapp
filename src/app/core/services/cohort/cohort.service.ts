@@ -58,6 +58,6 @@ export class CohortService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
   }
 }

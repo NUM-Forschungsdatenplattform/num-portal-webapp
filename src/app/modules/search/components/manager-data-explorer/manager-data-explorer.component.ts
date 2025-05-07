@@ -58,16 +58,16 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
           },
           this.currentProject.templates.map((template) => template.templateId)
         )
-        .subscribe(
-          (result) => {
+        .subscribe({
+          next: (result) => {
             this.resultSet = result
             this.isDataSetLoading = false
           },
-          () => {
+          error: () => {
             this.isDataSetLoading = false
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+          },
+        })
     )
   }
 
@@ -86,12 +86,12 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
           this.currentProject.templates.map((template) => template.templateId),
           format
         )
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             downloadFile('manager_preview', format, response)
             this.isExportLoading = false
           },
-          (_) => {
+          error: (_) => {
             this.isExportLoading = false
             this.toastMessageService.openToast({
               ...EXPORT_ERROR,
@@ -99,8 +99,8 @@ export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
                 format: format.toUpperCase(),
               },
             })
-          }
-        )
+          },
+        })
     )
   }
 }

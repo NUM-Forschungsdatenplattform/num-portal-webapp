@@ -381,7 +381,14 @@ describe('ProjectEditorComponent On Creation', () => {
       jest
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
-      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError({ status: 451 }))
+      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              status: 451,
+            })
+        )
+      )
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -401,7 +408,9 @@ describe('ProjectEditorComponent On Creation', () => {
       jest
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
-      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(cohortService, 'getSize')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -421,7 +430,7 @@ describe('ProjectEditorComponent On Creation', () => {
       const mockCohortObservable = of(mockCohort1)
       jest
         .spyOn(projectService, 'create')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 400 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 400 })))
       jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
       component.resolvedData = {
         error: null,

@@ -199,7 +199,9 @@ describe('DialogEditUserDetailsComponent', () => {
 
   describe('When the editing of the user has failed', () => {
     beforeEach(() => {
-      jest.spyOn(adminService, 'addUserRoles').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(adminService, 'addUserRoles')
+        .mockImplementation(() => throwError(() => new Error('error')))
       jest.spyOn(adminService, 'addUserOrganization').mockImplementation(() => of('Success'))
       component.handleDialogConfirm()
       fixture.detectChanges()

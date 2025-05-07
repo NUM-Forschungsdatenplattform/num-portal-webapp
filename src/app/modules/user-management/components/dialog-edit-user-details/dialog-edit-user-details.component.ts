@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
 import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
-import { forkJoin, Observable, of } from 'rxjs'
+import { forkJoin, lastValueFrom, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -130,12 +130,9 @@ export class DialogEditUserDetailsComponent
       : of(null)
 
     try {
-      await forkJoin([
-        approveUserTask$,
-        addRolesTask$,
-        addOrganizationTask$,
-        this.userNameTask$(),
-      ]).toPromise()
+      await lastValueFrom(
+        forkJoin([approveUserTask$, addRolesTask$, addOrganizationTask$, this.userNameTask$()])
+      )
       const messageConfig: IToastMessageConfig = {
         ...(this.isApproval ? APPROVE_USER_SUCCESS : EDIT_USER_SUCCESS),
         messageParameters: {

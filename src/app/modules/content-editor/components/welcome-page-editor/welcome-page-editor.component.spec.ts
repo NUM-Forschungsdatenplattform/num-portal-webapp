@@ -176,7 +176,9 @@ describe('WelcomePageEditorComponent', () => {
     })
 
     it('should show the error message', () => {
-      jest.spyOn(mockContentService, 'updateCards').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(mockContentService, 'updateCards')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
       component.save()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(SAVE_ERROR_CONFIG)

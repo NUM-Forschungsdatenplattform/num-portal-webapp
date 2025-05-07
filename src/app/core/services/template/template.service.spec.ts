@@ -1,5 +1,5 @@
 import { TemplateService } from './template.service'
-import { of, throwError, timer } from 'rxjs'
+import { lastValueFrom, of, throwError, timer } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { mockTemplates } from '../../../../mocks/data-mocks/templates.mock'
 import { AppConfigService } from '../../../config/app-config.service'
@@ -42,12 +42,11 @@ describe('TemplateService', () => {
     })
 
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAll()
-        .toPromise()
-        .catch(() => {})
+
+      const allTemplates$ = service.getAll()
+      lastValueFrom(allTemplates$).catch(() => {})
       expect(httpClient.get).toHaveBeenCalledWith(baseUrl)
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -58,7 +57,7 @@ describe('TemplateService', () => {
       const anyService = service as any
 
       anyService.templates = []
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
 
       service.filteredTemplatesObservable$
         .pipe(skipUntil(timer(anyService.throttleTime / 2)))

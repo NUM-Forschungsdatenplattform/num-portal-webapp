@@ -54,16 +54,16 @@ export class PseudonymResolverComponent implements OnInit, OnDestroy {
           this.form.get('projectId').value.trim(),
           this.form.get('pseudonym').value.trim()
         )
-        .subscribe(
-          (resolvedPseudonym) => {
+        .subscribe({
+          next: (resolvedPseudonym) => {
             this.isLoading = false
             this.resolvedPseudonym = resolvedPseudonym
           },
-          (_) => {
+          error: (_) => {
             this.isLoading = false
             this.toastMessageService.openToast(RESOLVE_ERROR_CONFIG)
-          }
-        )
+          },
+        })
     }
   }
 

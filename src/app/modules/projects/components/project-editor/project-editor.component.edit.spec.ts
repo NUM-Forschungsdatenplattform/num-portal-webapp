@@ -385,7 +385,7 @@ describe('ProjectEditorComponent', () => {
     })
 
     it('should NOT navigate and show Error message on Failure to Save', (done) => {
-      jest.spyOn(projectService, 'update').mockImplementationOnce(() => throwError({}))
+      jest.spyOn(projectService, 'update').mockImplementationOnce(() => throwError(() => {}))
 
       component.save().then(() => {
         expect(mockToast.openToast).toHaveBeenCalledWith({

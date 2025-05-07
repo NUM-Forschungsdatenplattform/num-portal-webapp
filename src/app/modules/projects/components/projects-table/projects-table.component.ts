@@ -265,7 +265,7 @@ export class ProjectsTableComponent
             }),
             catchError((error) => {
               this.toastMessageService.openToast(CHANGE_STATUS_ERROR)
-              return of(error)
+              return of(error.message)
             })
           )
           .subscribe(() => this.getAll())

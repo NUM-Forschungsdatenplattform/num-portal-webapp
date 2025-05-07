@@ -12,7 +12,7 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 // Constants
 import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
 
 @Component({
@@ -57,7 +57,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
 
   async create(data: Omit<IAqlCategoryApi, 'id'>): Promise<void> {
     try {
-      await this.aqlCategoryService.save(data).toPromise()
+      await lastValueFrom(this.aqlCategoryService.save(data))
 
       this.toast.openToast({
         type: ToastMessageType.Success,
@@ -74,7 +74,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
 
   async update(data: Omit<IAqlCategoryApi, 'id'>, id: number): Promise<void> {
     try {
-      await this.aqlCategoryService.update(data, id).toPromise()
+      await lastValueFrom(this.aqlCategoryService.update(data, id))
 
       this.aqlCategoriesTableComponent.getAll()
 

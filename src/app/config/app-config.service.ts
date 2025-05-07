@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { IAppConfig } from './app-config.model'
+import { lastValueFrom } from 'rxjs'
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigService {
@@ -13,9 +14,8 @@ export class AppConfigService {
 
   public loadConfig(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.http
-        .get<IAppConfig>(this.CONFIG_URL)
-        .toPromise()
+      const config$ = this.http.get<IAppConfig>(this.CONFIG_URL)
+      lastValueFrom(config$)
         .then((config) => {
           this.config = config
           return resolve()

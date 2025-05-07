@@ -39,7 +39,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
       map((userProfile: IUserProfile) => {
         if (!this.isSuperAdmin(userProfile) && !this.isOwnOrganization(userProfile, +requestedId)) {
           this.router.navigate(['organizations', userProfile.organization.id, 'editor'])
-          throwError(new Error('Forbidden to modify as organization admin'))
+          throwError(() => new Error('Forbidden to modify as organization admin'))
         } else {
           return isNaN(+requestedId) ? 'new' : +requestedId
         }
@@ -57,7 +57,7 @@ export class OrganizationResolver implements Resolve<IOrganizationResolved> {
       timeout(10000),
       catchError((error) => {
         this.router.navigate(['organizations'])
-        return throwError(error)
+        return throwError(() => error)
       })
     )
   }

@@ -108,7 +108,7 @@ export class PatientFilterService {
     if (this.currentProject) {
       return of(this.currentProject)
     } else {
-      return throwError('NO_CURRENT_PROJECT')
+      return throwError(() => new Error('NO_CURRENT_PROJECT'))
     }
   }
 
@@ -126,6 +126,6 @@ export class PatientFilterService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
   }
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { UntypedFormControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
@@ -112,7 +112,7 @@ export class DialogAqlBuilderComponent
   async handleDialogConfirm(): Promise<void> {
     const aqbApiModel = this.aqbModel.convertToApi()
     try {
-      const result = await this.aqlEditorService.buildAql(aqbApiModel).toPromise()
+      const result = await lastValueFrom(this.aqlEditorService.buildAql(aqbApiModel))
       const dialogReturn: IAqlBuilderDialogOutput = {
         model: this.aqbModel,
         selectedTemplateIds: this.selectedTemplates.value,

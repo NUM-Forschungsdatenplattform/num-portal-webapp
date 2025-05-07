@@ -139,7 +139,7 @@ describe('AddTemplatesComponent', () => {
     it('should call the cohort service and display the error message on error', () => {
       jest
         .spyOn(mockCohortService, 'getSizeForTemplates')
-        .mockImplementation(() => throwError('Sorry, not today!'))
+        .mockImplementation(() => throwError(() => new Error('Sorry, not today!')))
 
       const { cohortGroup } = component.project.convertToApiInterface()
 

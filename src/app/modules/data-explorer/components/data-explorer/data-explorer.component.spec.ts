@@ -302,7 +302,9 @@ describe('DataExplorerComponent', () => {
 
   describe('When the component gets initialized and the templates are specified but can not be compiled or fetched', () => {
     beforeEach(() => {
-      jest.spyOn(aqlEditorService, 'getContainment').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(aqlEditorService, 'getContainment')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
@@ -432,7 +434,9 @@ describe('DataExplorerComponent', () => {
 
   describe('When the resultSet cannot be fetched', () => {
     beforeEach(() => {
-      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(projectService, 'executeAdHocAql')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
       component.compiledQuery = buildResponse
     })
@@ -496,7 +500,9 @@ describe('DataExplorerComponent', () => {
   })
 
   it('should show toast in case of error', () => {
-    jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+    jest
+      .spyOn(projectService, 'exportFile')
+      .mockImplementation(() => throwError(() => new Error('Error')))
     jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
     component.exportFile('csv')
@@ -547,7 +553,9 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should show toast in case of error', () => {
-      jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(projectService, 'exportFile')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('json')

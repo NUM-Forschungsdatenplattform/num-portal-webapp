@@ -36,8 +36,8 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
       this.hasParameterError = true
     } else {
       this.aql.parameters.forEach((parameter) => {
-        this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe(
-          (response) => {
+        this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe({
+          next: (response) => {
             parameter.options = response.options
             const optionKeys = Object.keys(parameter.options)
             if (optionKeys.length) {
@@ -53,10 +53,10 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
             this.checkParameterStatus()
             parameter.isMetaFetched = true
           },
-          (_) => {
+          error: (_) => {
             this.hasParameterError = true
-          }
-        )
+          },
+        })
       })
     }
   }

@@ -1,3 +1,4 @@
+import { lastValueFrom } from 'rxjs'
 import { WebpackTranslateLoader } from './webpack-translate-loader'
 
 describe('WebpackTranslateLoader', () => {
@@ -8,7 +9,7 @@ describe('WebpackTranslateLoader', () => {
   })
 
   test.each(['de', 'en'])('should load the language', async (lang) => {
-    const result = loader.getTranslation(lang).toPromise()
+    const result = lastValueFrom(loader.getTranslation(lang))
     expect(result).toBeDefined()
   })
 })

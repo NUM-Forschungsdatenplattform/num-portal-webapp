@@ -82,8 +82,11 @@ describe('AqlBuilderTemplateTreeComponent', () => {
         `[data-test="aqb__containment__${templateId}__node__${archetypeId}__${name}"]`
       ) as HTMLElement
 
-      const clickEvent = document.createEvent('MouseEvents')
-      clickEvent.initEvent('dblclick', true, true)
+      const clickEvent = new MouseEvent('dblclick', {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+      })
       nodeElement.dispatchEvent(clickEvent)
       fixture.detectChanges()
 
@@ -107,7 +110,9 @@ describe('AqlBuilderTemplateTreeComponent', () => {
 
   describe('When it gets initialized but can not load the containment', () => {
     it('should display a message to the user', async () => {
-      jest.spyOn(aqlEditorService, 'getContainment').mockImplementation((_) => throwError('error'))
+      jest
+        .spyOn(aqlEditorService, 'getContainment')
+        .mockImplementation((_) => throwError(() => new Error('Error')))
       fixture.detectChanges()
       await fixture.whenStable()
       const nativeElement = fixture.debugElement.nativeElement

@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { AqlParameterService } from './aql-parameter.service'
 
@@ -53,11 +53,11 @@ describe('AqlCategoryService', () => {
     })
 
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getValues(aqlPath, archetypeId)
-        .toPromise()
+
+      const aqlParmeter$ = service.getValues(aqlPath, archetypeId)
+      lastValueFrom(aqlParmeter$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/values`, { params })

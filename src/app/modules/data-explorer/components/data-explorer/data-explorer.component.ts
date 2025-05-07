@@ -138,16 +138,16 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             return this.aqlEditorService.buildAql(apiModel)
           })
         )
-        .subscribe(
-          (compiledQuery) => {
+        .subscribe({
+          next: (compiledQuery) => {
             this.compiledQuery = compiledQuery
             this.isCompositionsFetched = true
           },
-          () => {
+          error: () => {
             this.isCompositionsFetched = true
             this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-          }
-        )
+          },
+        })
     )
   }
 
@@ -231,16 +231,16 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     const apiModel = this.aqbModel.convertToApi()
 
     this.subscriptions.add(
-      this.aqlEditorService.buildAql(apiModel).subscribe(
-        (compiledQuery) => {
+      this.aqlEditorService.buildAql(apiModel).subscribe({
+        next: (compiledQuery) => {
           this.compiledQuery = compiledQuery
           this.getDataSet()
         },
-        (_) => {
+        error: (_) => {
           this.isDataSetLoading = false
           this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-        }
-      )
+        },
+      })
     )
   }
 
@@ -255,17 +255,17 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.projectService
         .executeAdHocAql(this.compiledQuery.q, this.project.id, defaultConfiguration)
-        .subscribe(
-          (resultSet) => {
+        .subscribe({
+          next: (resultSet) => {
             this.resultSet = resultSet
             this.isDataSetLoading = false
           },
-          (_err) => {
+          error: (_err) => {
             this.isDataSetLoading = false
             this.resultSet = undefined
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+          },
+        })
     )
   }
 
@@ -278,12 +278,12 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.projectService
         .exportFile(this.project.id, this.compiledQuery.q, format, defaultConfiguration)
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             downloadFile(this.project.id, format, response)
             this.isExportLoading = false
           },
-          () => {
+          error: () => {
             this.isExportLoading = false
 
             const messageConfig: IToastMessageConfig = {
@@ -294,8 +294,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             }
 
             this.toastMessageService.openToast(messageConfig)
-          }
-        )
+          },
+        })
     )
   }
 }

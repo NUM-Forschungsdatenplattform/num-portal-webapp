@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { OrganizationService } from './organization.service'
 import { mockOrganization1, mockOrganizations } from 'src/mocks/data-mocks/organizations.mock'
@@ -37,11 +37,11 @@ describe('OrganizationService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAllPag(0, 2)
-        .toPromise()
+
+      const allPag$ = service.getAllPag(0, 2)
+      lastValueFrom(allPag$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/organization/all?page=0&size=2')
@@ -56,11 +56,11 @@ describe('OrganizationService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAll()
-        .toPromise()
+
+      const allOrg$ = service.getAll()
+      lastValueFrom(allOrg$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/organization')
@@ -79,10 +79,12 @@ describe('OrganizationService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .get(12345)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const org$ = service.get(12345)
+      lastValueFrom(org$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/organization/12345`)
@@ -104,7 +106,9 @@ describe('OrganizationService', () => {
     })
 
     it('should call the api and handle errors if they occur', async () => {
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Sorry! Error!'))
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new Error('Sorry! Error!')))
       jest.spyOn(service, 'handleError')
       await service.create(mockOrganization1).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
@@ -125,7 +129,9 @@ describe('OrganizationService', () => {
     })
 
     it('should call the api and handle errors if they occur', async () => {
-      jest.spyOn(httpClient, 'put').mockImplementationOnce(() => throwError('Sorry! Error!'))
+      jest
+        .spyOn(httpClient, 'put')
+        .mockImplementationOnce(() => throwError(() => new Error('Sorry! Error!')))
       jest.spyOn(service, 'handleError')
       service.update(id, mockOrganization1).subscribe()
       expect(httpClient.put).toHaveBeenCalledWith(request.url, request.body)

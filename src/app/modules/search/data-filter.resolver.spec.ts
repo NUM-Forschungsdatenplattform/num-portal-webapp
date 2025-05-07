@@ -1,5 +1,5 @@
 import { Router } from '@angular/router'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { PatientFilterService } from 'src/app/core/services/patient-filter/patient-filter.service'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { DataFilterResolver } from './data-filter.resolver'
@@ -37,14 +37,12 @@ describe('AqlsResolver', () => {
   it('should redirect to the search page if there is no current projec', (done) => {
     jest
       .spyOn(patientFilterService, 'getCurrentProject')
-      .mockImplementation(() => throwError('Nope'))
+      .mockImplementation(() => throwError(() => new Error('Nope')))
 
-    resolver
-      .resolve()
-      .toPromise()
-      .then((_) => {
-        expect(mockRouter.navigate).toHaveBeenCalledWith(['search'])
-        done()
-      })
+    const resolved$ = resolver.resolve()
+    lastValueFrom(resolved$, { defaultValue: 0 }).then((_) => {
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['search'])
+      done()
+    })
   })
 })

@@ -11,7 +11,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { IProjectResolved } from '../../models/project-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { of, Subscription } from 'rxjs'
+import { lastValueFrom, of, Subscription } from 'rxjs'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ApprovalOption } from '../../models/approval-option.enum'
@@ -247,17 +247,17 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
     if (cohort.id === null || cohort.id === undefined) {
-      return this.cohortService.create(cohort).toPromise()
+      return lastValueFrom(this.cohortService.create(cohort))
     } else {
-      return this.cohortService.update(cohort, cohort.id).toPromise()
+      return lastValueFrom(this.cohortService.update(cohort, cohort.id))
     }
   }
 
   saveProject(project: IProjectApi): Promise<IProjectApi> {
     if (project.id === null || project.id === undefined) {
-      return this.projectService.create(project).toPromise()
+      return lastValueFrom(this.projectService.create(project))
     } else {
-      return this.projectService.update(project, project.id).toPromise()
+      return lastValueFrom(this.projectService.update(project, project.id))
     }
   }
 
@@ -346,8 +346,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         }),
         catchError((error) => {
           // TODO: Show message to user
-          console.log(error)
-          return of(error)
+          console.log(error.message)
+          return of(error.message)
         })
       )
       .subscribe()
@@ -393,12 +393,10 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         const usedOutsideEu = this.projectForm.get('usedOutsideEu').value
 
         try {
-          await this.cohortService
-            .getSize(cohort.cohortGroup, usedOutsideEu)
-            .toPromise()
-            .then((result) => {
-              this.updateDetermineHits(result, '')
-            })
+          const cohortSize$ = this.cohortService.getSize(cohort.cohortGroup, usedOutsideEu)
+          await lastValueFrom(cohortSize$).then((result) => {
+            this.updateDetermineHits(result, '')
+          })
         } catch (error) {
           if (error.status === 451) {
             // *** Error 451 means too few hits ***
@@ -422,15 +420,15 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.isExportLoading = true
 
     this.subscriptions.add(
-      this.projectService.exportPrint(this.project.id, currentLang).subscribe(
-        (response) => {
+      this.projectService.exportPrint(this.project.id, currentLang).subscribe({
+        next: (response) => {
           downloadFile(`${this.project.id}_${currentLang}`, 'txt', response)
           this.isExportLoading = false
         },
-        () => {
+        error: () => {
           this.isExportLoading = false
-        }
-      )
+        },
+      })
     )
   }
 

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError } from 'rxjs'
+import { lastValueFrom, of, Subject, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { mockRoles, mockUser, mockUsers, mockUsersToFilter } from 'src/mocks/data-mocks/admin.mock'
@@ -46,11 +46,11 @@ describe('AdminService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' })
-        .toPromise()
+
+      const allPag$ = service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' })
+      lastValueFrom(allPag$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -73,10 +73,12 @@ describe('AdminService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getUnapprovedUsers()
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const unapprovedUsers$ = service.getUnapprovedUsers()
+      lastValueFrom(unapprovedUsers$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -99,10 +101,12 @@ describe('AdminService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getApprovedUsers()
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const approvedUsers$ = service.getApprovedUsers()
+      lastValueFrom(approvedUsers$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -133,10 +137,12 @@ describe('AdminService', () => {
         responseType: 'text' as 'json',
       }
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .approveUser(id)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const approvedUser$ = service.approveUser(id)
+      lastValueFrom(approvedUser$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
@@ -157,10 +163,12 @@ describe('AdminService', () => {
     })
     it(`should call the api - with error`, () => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getUserById(mockUser.id)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const user$ = service.getUserById(mockUser.id)
+      lastValueFrom(user$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/${mockUser.id}`)
@@ -178,10 +186,12 @@ describe('AdminService', () => {
     it(`should call the api - with error`, () => {
       const id = '123-456'
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'get').mockImplementationOnce(() => throwError('Error'))
-      service
-        .getUserRoles(id)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'get')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const userRoles$ = service.getUserRoles(id)
+      lastValueFrom(userRoles$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/${id}/role`)
@@ -201,10 +211,12 @@ describe('AdminService', () => {
       const roles = ['TEST_ROLE1', 'TEST_ROLE2']
       const id = '123-456'
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .addUserRoles(id, roles)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const addUserRoles$ = service.addUserRoles(id, roles)
+      lastValueFrom(addUserRoles$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(`localhost/api/admin/user/${id}/role`, roles)
@@ -234,10 +246,12 @@ describe('AdminService', () => {
         responseType: 'text' as 'json',
       }
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .addUserOrganization(id, organization)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const addUserOrg$ = service.addUserOrganization(id, organization)
+      lastValueFrom(addUserOrg$)
         .then((_) => {})
         .catch((_) => {})
 
@@ -263,7 +277,7 @@ describe('AdminService', () => {
   describe('When a batch of users are requested by their ids', () => {
     it('should call the api for each id and return the set', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockUserProfile1))
-      const result = await service.getUsersByIds(['1', '2', '3']).toPromise()
+      const result = await lastValueFrom(service.getUsersByIds(['1', '2', '3']))
       expect(result.length).toEqual(3)
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/1`)
       expect(httpClient.get).toHaveBeenCalledWith(`localhost/api/admin/user/2`)
@@ -312,10 +326,12 @@ describe('AdminService', () => {
         responseType: 'text' as 'json',
       }
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementationOnce(() => throwError('Error'))
-      service
-        .changeUserName(id, userName.firstName, userName.lastName)
-        .toPromise()
+      jest
+        .spyOn(httpClient, 'post')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
+
+      const changeUserName$ = service.changeUserName(id, userName.firstName, userName.lastName)
+      lastValueFrom(changeUserName$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(

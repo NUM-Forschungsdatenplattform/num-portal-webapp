@@ -148,7 +148,7 @@ describe('AqlCategoriesTableComponent', () => {
 
   describe('On fail to delete the AQL', () => {
     beforeEach(() => {
-      jest.spyOn(mockAqlCategoryService, 'delete').mockImplementation(() => throwError({}))
+      jest.spyOn(mockAqlCategoryService, 'delete').mockImplementation(() => throwError(() => {}))
     })
 
     it('should show Error toast', async () => {

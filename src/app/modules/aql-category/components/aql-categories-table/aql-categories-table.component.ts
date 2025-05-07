@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AqlCategoryTableColumn } from 'src/app/shared/models/aql/category/aql-category-table.interface'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
@@ -121,7 +121,7 @@ export class AqlCategoriesTableComponent
 
   async delete(id: number): Promise<void> {
     try {
-      await this.aqlCategoryService.delete(id).toPromise()
+      await lastValueFrom(this.aqlCategoryService.delete(id))
 
       this.getAll()
 

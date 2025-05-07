@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable, Subscription } from 'rxjs'
+import { lastValueFrom, Observable, Subscription } from 'rxjs'
 import { catchError, filter, map, take } from 'rxjs/operators'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { CohortService } from 'src/app/core/services/cohort/cohort.service'
@@ -99,14 +99,14 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
   }
 
   setCurrentProject(): void {
-    this.patientFilterService.getCurrentProject().subscribe(
-      (project) => {
+    this.patientFilterService.getCurrentProject().subscribe({
+      next: (project) => {
         this.project = project
       },
-      (_) => {
+      error: (_) => {
         this.project = new ProjectUiModel()
-      }
-    )
+      },
+    })
   }
 
   private checkChild(child) {
@@ -157,7 +157,7 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
         try {
           this.updateDetermineHits(null, '', true)
           const cohortGroupApi: ICohortGroupApi = this.cohortNode.convertToApi()
-          const count = await this.getCount(cohortGroupApi).toPromise()
+          const count = await lastValueFrom(this.getCount(cohortGroupApi))
           this.updateDetermineHits(count, '')
         } catch (error) {
           if (error.status === 451) {
@@ -181,10 +181,10 @@ export class PatientFilterComponent implements OnInit, OnDestroy {
       }
       this.chartDataSubscription = this.patientFilterService
         .getPreviewData(cohortGroupApi, false)
-        .subscribe(
-          () => (this.isChartDataLoading = false),
-          () => (this.isChartDataLoading = false)
-        )
+        .subscribe({
+          next: () => (this.isChartDataLoading = false),
+          error: () => (this.isChartDataLoading = false),
+        })
     }
     return this.cohortService.getSize(cohortGroupApi, false).pipe(
       catchError((error) => {

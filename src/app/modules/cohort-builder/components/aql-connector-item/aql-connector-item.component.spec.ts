@@ -129,7 +129,9 @@ describe('AqlConnectorItemComponent', () => {
     })
 
     it('should flag the item with a parameter error when one parameter could not be resolved', () => {
-      jest.spyOn(mockAqlParameterService, 'getValues').mockImplementation(() => throwError('Error'))
+      jest
+        .spyOn(mockAqlParameterService, 'getValues')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       component.aql = new AqlUiModel(mockAql3, false, testcases[0].parameters)
 
       fixture.detectChanges()

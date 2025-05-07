@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { mockDashboardMetrics } from 'src/mocks/data-mocks/dashboard-metrics.mock'
@@ -37,7 +37,7 @@ describe('ContentService', () => {
     it('should call the api - with success and set the links to the subject and service', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockNavigationLinks))
       jest.spyOn((service as any).navigationLinksSubject$, 'next')
-      await service.getNavigationLinks().toPromise()
+      await lastValueFrom(service.getNavigationLinks())
 
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/navigation')
       expect((service as any).navigationLinks).toEqual(mockNavigationLinks)
@@ -47,11 +47,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getNavigationLinks()
-        .toPromise()
+
+      const navigationLinks$ = service.getNavigationLinks()
+      await lastValueFrom(navigationLinks$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/navigation')
@@ -66,7 +66,7 @@ describe('ContentService', () => {
       }
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockNavigationLinks))
       jest.spyOn((service as any).navigationLinksSubject$, 'next')
-      await service.updateNavigationLinks(mockNavigationLinks).toPromise()
+      await lastValueFrom(service.updateNavigationLinks(mockNavigationLinks))
 
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/navigation',
@@ -83,11 +83,11 @@ describe('ContentService', () => {
       const httpOptions = {
         responseType: 'text' as 'json',
       }
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .updateNavigationLinks(mockNavigationLinks)
-        .toPromise()
+
+      const navigationLinks$ = service.updateNavigationLinks(mockNavigationLinks)
+      await lastValueFrom(navigationLinks$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
@@ -103,7 +103,7 @@ describe('ContentService', () => {
     it('should call the api - with success and set the cards to the subject and service', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDashboardCards))
       jest.spyOn((service as any).cardsSubject$, 'next')
-      await service.getCards().toPromise()
+      await lastValueFrom(service.getCards())
 
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/cards')
       expect((service as any).cards).toEqual(mockDashboardCards)
@@ -111,11 +111,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getCards()
-        .toPromise()
+
+      const cards$ = service.getCards()
+      await lastValueFrom(cards$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/cards')
@@ -130,7 +130,7 @@ describe('ContentService', () => {
       }
       jest.spyOn(httpClient, 'post').mockImplementation(() => of(mockDashboardCards))
       jest.spyOn((service as any).cardsSubject$, 'next')
-      await service.updateCards(mockDashboardCards).toPromise()
+      await lastValueFrom(service.updateCards(mockDashboardCards))
 
       expect(httpClient.post).toHaveBeenCalledWith(
         'localhost/api/content/cards',
@@ -145,11 +145,11 @@ describe('ContentService', () => {
       const httpOptions = {
         responseType: 'text' as 'json',
       }
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .updateCards(mockDashboardCards)
-        .toPromise()
+
+      const updateCards$ = service.updateCards(mockDashboardCards)
+      await lastValueFrom(updateCards$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.post).toHaveBeenCalledWith(
@@ -165,7 +165,7 @@ describe('ContentService', () => {
     it('should call the api - with success and set the metrics to the subject and service', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDashboardMetrics))
       jest.spyOn((service as any).metricsSubject$, 'next')
-      await service.getMetrics().toPromise()
+      await lastValueFrom(service.getMetrics())
 
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/metrics')
       expect((service as any).metrics).toEqual(mockDashboardMetrics)
@@ -173,11 +173,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getMetrics()
-        .toPromise()
+
+      const metric$ = service.getMetrics()
+      await lastValueFrom(metric$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/metrics')
@@ -189,7 +189,7 @@ describe('ContentService', () => {
     it('should call the api - with success and set the projects to the subject and service', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockDashboardProjects))
       jest.spyOn((service as any).projectsSubject$, 'next')
-      await service.getLatestProjects().toPromise()
+      await lastValueFrom(service.getLatestProjects())
 
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/latest-projects')
       expect((service as any).projects).toEqual(mockDashboardProjects)
@@ -197,11 +197,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getLatestProjects()
-        .toPromise()
+
+      const latestProject$ = service.getLatestProjects()
+      await lastValueFrom(latestProject$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/latest-projects')
@@ -219,11 +219,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getClinics()
-        .toPromise()
+
+      const clinic$ = service.getClinics()
+      await lastValueFrom(clinic$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic')
@@ -243,11 +243,11 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getSofaScoreDistribution('clinic1')
-        .toPromise()
+
+      const sofaScoreDist$ = service.getSofaScoreDistribution('clinic1')
+      await lastValueFrom(sofaScoreDist$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -267,11 +267,10 @@ describe('ContentService', () => {
     })
 
     it('should call the api - with error', async () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      await service
-        .getSofaScoreAverage()
-        .toPromise()
+      const sofaScoreAvg$ = service.getSofaScoreAverage()
+      await lastValueFrom(sofaScoreAvg$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/content/graph/clinic/sofaAverage')

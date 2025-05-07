@@ -2,7 +2,7 @@ import { Component, OnDestroy, ViewChild } from '@angular/core'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { take } from 'rxjs/operators'
 import { IAqlApi } from '../../../../shared/models/aql/aql.interface'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { MatPaginator } from '@angular/material/paginator'
 import { IItemVisibility } from '../../../../shared/models/item-visibility.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
@@ -232,7 +232,7 @@ export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestr
 
   async delete(id: number): Promise<void> {
     try {
-      await this.aqlService.delete(id).toPromise()
+      await lastValueFrom(this.aqlService.delete(id))
 
       this.getAll()
 

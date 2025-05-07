@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, Route, Router, RouterStateSnapshot } from '@angular/router'
-import { Subject } from 'rxjs'
+import { lastValueFrom, Subject } from 'rxjs'
 import { AuthService } from '../auth.service'
 
 import { RoleGuard } from './role.guard'
@@ -55,18 +55,16 @@ describe('RoleGuard', () => {
     it('grants access to the route in [canActivate] guard', async () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       userInfoSubject$.next(userInfo)
-      return guard
-        .canActivate(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result).toBeTruthy()
-        })
+      const canActivate$ = guard.canActivate(activatedRoute, state)
+      return lastValueFrom(canActivate$).then((result) => {
+        expect(result).toBeTruthy()
+      })
     })
 
-    it('grants access to the route in [canLoad] guard', async () => {
+    it('grants access to the route in [canMatch] guard', async () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       userInfoSubject$.next(userInfo)
-      const result = await guard.canLoad(route)
+      const result = await guard.canMatch(route)
       expect(result).toBeTruthy()
     })
   })
@@ -103,27 +101,25 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
-      guard
-        .canActivate(activatedRoute, state)
-        .toPromise()
-        .then(() => {
-          expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
-          done()
-        })
+
+      const canActivate$ = guard.canActivate(activatedRoute, state)
+      lastValueFrom(canActivate$).then(() => {
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
+        done()
+      })
       userInfoSubject$.next(userInfoUndefined)
     })
 
-    it('grants no access to the route in [canLoad] guard and redirects to home', (done) => {
+    it('grants no access to the route in [canMatch] guard and redirects to home', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
-      guard
-        .canLoad(route)
-        .toPromise()
-        .then(() => {
-          expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
-          done()
-        })
+
+      const canMatch$ = guard.canMatch(route)
+      lastValueFrom(canMatch$).then(() => {
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
+        done()
+      })
       userInfoSubject$.next(userInfoUndefined)
     })
 
@@ -134,29 +130,28 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
-      guard
-        .canActivate(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result).toBeTruthy()
-          done()
-        })
+
+      const canActivate$ = guard.canActivate(activatedRoute, state)
+
+      lastValueFrom(canActivate$).then((result) => {
+        expect(result).toBeTruthy()
+        done()
+      })
       jest.advanceTimersByTime(1000)
 
       userInfoSubject$.next(userInfoCorrect)
     })
 
-    it('grants access to the route in [canLoad] guard if the userInfo is pushed within 2000ms', (done) => {
+    it('grants access to the route in [canMatch] guard if the userInfo is pushed within 2000ms', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
-      guard
-        .canLoad(route)
-        .toPromise()
-        .then((result) => {
-          expect(result).toBeTruthy()
-          done()
-        })
+
+      const canMatch$ = guard.canMatch(route)
+      lastValueFrom(canMatch$).then((result) => {
+        expect(result).toBeTruthy()
+        done()
+      })
       jest.advanceTimersByTime(1000)
 
       userInfoSubject$.next(userInfoCorrect)
@@ -169,14 +164,13 @@ describe('RoleGuard', () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfoUndefined)
-      guard
-        .canActivate(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result).toBeFalsy()
-          expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
-          done()
-        })
+
+      const canActivate$ = guard.canActivate(activatedRoute, state)
+      lastValueFrom(canActivate$).then((result) => {
+        expect(result).toBeFalsy()
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
+        done()
+      })
       jest.advanceTimersByTime(1000)
 
       userInfoSubject$.next(userInfoWrongRoles)
@@ -210,11 +204,11 @@ describe('RoleGuard', () => {
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
     })
 
-    it('grants no access to the route in [canLoad] guard and redirects to home', async () => {
+    it('grants no access to the route in [canMatch] guard and redirects to home', async () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       jest.spyOn(mockRouter, 'navigate').mockResolvedValue(true)
       userInfoSubject$.next(userInfo)
-      await guard.canLoad(route)
+      await guard.canMatch(route)
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
     })
   })
@@ -241,27 +235,24 @@ describe('RoleGuard', () => {
     it('grants no access to the route in [canActivate] guard', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       userInfoSubject$.next(userInfoWithoutRoles)
-      guard
-        .canActivate(activatedRoute, state)
-        .toPromise()
-        .then(() => {
-          expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
-          done()
-        })
+
+      const canActivate$ = guard.canActivate(activatedRoute, state)
+      lastValueFrom(canActivate$).then(() => {
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
+        done()
+      })
       userInfoSubject$.next(userInfoWithoutRoles)
     })
 
-    it('grants no access to the route in [canLoad] guard', (done) => {
+    it('grants no access to the route in [canMatch] guard', (done) => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(true)
       userInfoSubject$.next(userInfoWithoutRoles)
 
-      guard
-        .canLoad(route)
-        .toPromise()
-        .then(() => {
-          expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
-          done()
-        })
+      const canMatch$ = guard.canMatch(route)
+      lastValueFrom(canMatch$).then(() => {
+        expect(mockRouter.navigate).toHaveBeenCalledWith(['/home'])
+        done()
+      })
       userInfoSubject$.next(userInfoWithoutRoles)
     })
   })
@@ -292,11 +283,11 @@ describe('RoleGuard', () => {
       expect(authService.login).toHaveBeenCalledWith('http://localhost/test/url')
     })
 
-    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canLoad] guard', async () => {
+    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canMatch] guard', async () => {
       jest.spyOn(authService, 'isLoggedIn', 'get').mockReturnValue(false)
       jest.spyOn(authService, 'login')
 
-      await guard.canLoad(route)
+      await guard.canMatch(route)
       expect(authService.login).toHaveBeenCalledWith('http://localhost/test/url')
     })
   })
@@ -318,8 +309,8 @@ describe('RoleGuard', () => {
       expect(result).toBeTruthy()
     })
 
-    it('it grants access to the route in [canLoad] guard', async () => {
-      const result = await guard.canLoad(route)
+    it('it grants access to the route in [canMatch] guard', async () => {
+      const result = await guard.canMatch(route)
       expect(result).toBeTruthy()
     })
   })

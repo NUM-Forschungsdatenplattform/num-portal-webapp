@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
@@ -118,7 +118,7 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     }
     const aqlQuery = this.getAqlForApi()
     try {
-      await this.aqlService.save(aqlQuery).toPromise()
+      await lastValueFrom(this.aqlService.save(aqlQuery))
       this.router.navigate(['aqls'], {})
 
       this.toast.openToast({
@@ -144,7 +144,7 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     }
     const aqlQuery = this.getAqlForApi()
     try {
-      await this.aqlService.update(aqlQuery, this.aql?.id).toPromise()
+      await lastValueFrom(this.aqlService.update(aqlQuery, this.aql?.id))
       this.router.navigate(['aqls'], {})
 
       this.toast.openToast({

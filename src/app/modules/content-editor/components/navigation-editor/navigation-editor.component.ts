@@ -112,16 +112,16 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
       return validLinks
     }, [])
 
-    this.contentService.updateNavigationLinks(navigationLinks).subscribe(
-      () => {
+    this.contentService.updateNavigationLinks(navigationLinks).subscribe({
+      next: () => {
         this.toastMessageService.openToast(SAVE_NAVIGATION_SUCCESS_CONFIG)
         this.isLoading = false
       },
-      () => {
+      error: () => {
         this.toastMessageService.openToast(SAVE_NAVIGATION_ERROR_CONFIG)
         this.isLoading = false
-      }
-    )
+      },
+    })
   }
 
   discard(): void {

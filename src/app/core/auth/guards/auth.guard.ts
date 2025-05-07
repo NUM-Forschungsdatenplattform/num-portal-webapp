@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core'
 import {
   CanActivate,
-  CanLoad,
   Route,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
+  CanMatch,
 } from '@angular/router'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { filter, map, take } from 'rxjs/operators'
 import { ToastMessageType } from '../../../shared/models/toast-message-type.enum'
 import { ProfileService } from '../../services/profile/profile.service'
 import { ToastMessageService } from '../../services/toast-message/toast-message.service'
+import { lastValueFrom } from 'rxjs'
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate, CanMatch {
   constructor(
     private oauthService: OAuthService,
     private profileService: ProfileService,
@@ -27,7 +28,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     return this.isAllowed(route, redirectUri)
   }
 
-  canLoad(route: Route): Promise<boolean> {
+  canMatch(route: Route): Promise<boolean> {
     const redirectUri = window.location.origin + '/' + route.path
     return this.isAllowed(route, redirectUri)
   }
@@ -48,13 +49,12 @@ export class AuthGuard implements CanActivate, CanLoad {
           message: 'APPLAYOUT.INFO.UNAPPROVED_USER_MESSAGE_DESCRIPTION',
         })
       }
-      return this.profileService.userProfileObservable$
-        .pipe(
-          filter((profile) => !!profile.id),
-          take(1),
-          map((profile) => profile.approved)
-        )
-        .toPromise()
+      const filteredUserProfile$ = this.profileService.userProfileObservable$.pipe(
+        filter((profile) => !!profile.id),
+        take(1),
+        map((profile) => profile.approved)
+      )
+      return lastValueFrom(filteredUserProfile$, { defaultValue: false })
     }
 
     return this.oauthService.loadDiscoveryDocumentAndLogin({ customRedirectUri: redirectUri })

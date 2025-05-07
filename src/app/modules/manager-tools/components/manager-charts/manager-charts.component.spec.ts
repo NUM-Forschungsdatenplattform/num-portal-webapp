@@ -119,7 +119,7 @@ describe('ManagerChartsComponent', () => {
     beforeEach(() => {
       jest
         .spyOn(contentService, 'getSofaScoreAverage')
-        .mockImplementation(() => throwError('Error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       component.getSofaScoreAverage()
     })
 
@@ -132,7 +132,7 @@ describe('ManagerChartsComponent', () => {
     beforeEach(() => {
       jest
         .spyOn(contentService, 'getSofaScoreDistribution')
-        .mockImplementation(() => throwError('Error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       component.getSofaScoreDistribution()
     })
 

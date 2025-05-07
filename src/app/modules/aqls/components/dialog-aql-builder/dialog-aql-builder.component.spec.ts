@@ -149,7 +149,9 @@ describe('DialogAqlBuilderComponent', () => {
     })
 
     it('should show an error message if the compiling fails after dialog confirmation', async () => {
-      jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(aqlEditorService, 'buildAql')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
       await component.handleDialogConfirm()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(COMPILE_ERROR_CONFIG)

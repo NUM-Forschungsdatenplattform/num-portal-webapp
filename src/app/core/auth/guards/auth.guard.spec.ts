@@ -51,10 +51,10 @@ describe('AuthGuard', () => {
       })
     })
 
-    it('grants access to the route in [canLoad] guard', async () => {
+    it('grants access to the route in [canMatch] guard', async () => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
-      const result = await guard.canLoad(route)
+      const result = await guard.canMatch(route)
       expect(result).toBeTruthy()
     })
   })
@@ -66,10 +66,10 @@ describe('AuthGuard', () => {
       },
     } as Route
 
-    it('grants access to the route in [canLoad] guard when the user is approved', (done) => {
+    it('grants access to the route in [canMatch] guard when the user is approved', (done) => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
-      guard.canLoad(route).then((result) => {
+      guard.canMatch(route).then((result) => {
         expect(result).toBeTruthy()
         done()
       })
@@ -77,10 +77,10 @@ describe('AuthGuard', () => {
       userProfileSubject$.next(mockUserProfile1)
     })
 
-    it('grants no access to the route in [canLoad] guard when the user is approved', (done) => {
+    it('grants no access to the route in [canMatch] guard when the user is approved', (done) => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
-      guard.canLoad(route).then((result) => {
+      guard.canMatch(route).then((result) => {
         expect(result).toBeFalsy()
         done()
       })
@@ -88,11 +88,11 @@ describe('AuthGuard', () => {
       userProfileSubject$.next(mockUserProfileUnapproved)
     })
 
-    it('the toastMessage is shown in [canLoad] guard when the user is approved', (done) => {
+    it('the toastMessage is shown in [canMatch] guard when the user is approved', (done) => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(true)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(true)
       jest.spyOn(mockToastService, 'openToast')
-      guard.canLoad(route).then((result) => {
+      guard.canMatch(route).then((result) => {
         expect(mockToastService.openToast).toHaveBeenCalled()
         expect(result).toBeFalsy()
         done()
@@ -122,12 +122,12 @@ describe('AuthGuard', () => {
       })
     })
 
-    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canLoad] guard', async () => {
+    it('calls authService.loadDiscoveryDocumentAndLogin to let the user login in [canMatch] guard', async () => {
       jest.spyOn(authService, 'hasValidAccessToken').mockReturnValue(false)
       jest.spyOn(authService, 'hasValidIdToken').mockReturnValue(false)
       jest.spyOn(authService, 'loadDiscoveryDocumentAndLogin')
 
-      await guard.canLoad(route)
+      await guard.canMatch(route)
       expect(authService.loadDiscoveryDocumentAndLogin).toHaveBeenCalledWith({
         customRedirectUri: host + '/' + path,
       })

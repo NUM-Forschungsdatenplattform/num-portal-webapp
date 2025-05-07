@@ -222,11 +222,11 @@ describe('PatientFilterComponent', () => {
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 451 })))
 
       jest
         .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 451 })))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -240,11 +240,11 @@ describe('PatientFilterComponent', () => {
     it('should show a general error message for unknown errors', async () => {
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 500 })))
 
       jest
         .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 500 })))
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
         component.isCohortValid.valid = true
@@ -272,7 +272,7 @@ describe('PatientFilterComponent', () => {
       jest.spyOn(mockPatientFilterService, 'resetPreviewData')
       jest
         .spyOn(mockPatientFilterService, 'getPreviewData')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 451 })))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -337,7 +337,7 @@ describe('PatientFilterComponent', () => {
     it('should show an error for to few hits', async () => {
       jest
         .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 451 })))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -355,7 +355,7 @@ describe('PatientFilterComponent', () => {
     it('should show a general error message for unknown errors', async () => {
       jest
         .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 500 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 500 })))
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
         component.isCohortValid.valid = true
@@ -368,7 +368,7 @@ describe('PatientFilterComponent', () => {
       jest.spyOn(mockPatientFilterService, 'resetPreviewData')
       jest
         .spyOn(mockCohortService, 'getSize')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 451 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 451 })))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true

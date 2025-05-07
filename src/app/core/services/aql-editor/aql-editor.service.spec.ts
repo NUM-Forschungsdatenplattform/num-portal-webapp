@@ -43,7 +43,7 @@ describe('AqlEditorService', () => {
     })
 
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.getTemplates().subscribe()
       expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/template`)
@@ -104,15 +104,15 @@ describe('AqlEditorService', () => {
 
     it('should handle the error', (done) => {
       jest.spyOn(service, 'handleError')
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
 
-      service.buildAql(mockComplexContains).subscribe(
-        () => {},
-        (error) => {
+      service.buildAql(mockComplexContains).subscribe({
+        next: () => {},
+        error: (error) => {
           expect(error).toBeDefined()
           done()
-        }
-      )
+        },
+      })
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql`, mockComplexContains)
       expect(service.handleError).toHaveBeenCalled()
     })
@@ -138,16 +138,16 @@ describe('AqlEditorService', () => {
     })
 
     it('should call the api and handle the error', (done) => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
 
-      service.validateAql(query).subscribe(
-        () => {},
-        (error) => {
+      service.validateAql(query).subscribe({
+        next: () => {},
+        error: (error) => {
           expect(error).toBeDefined()
           done()
-        }
-      )
+        },
+      })
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/aql/validate`, { q: query })
       expect(service.handleError).toHaveBeenCalled()
     })

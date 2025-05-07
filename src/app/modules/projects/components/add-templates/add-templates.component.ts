@@ -54,18 +54,18 @@ export class AddTemplatesComponent {
     this.hitCounter = {}
     const { cohortGroup } = this.project.convertToApiInterface()
     const templateIds = this.project.templates.map((template) => template.templateId)
-    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe(
-      (result) => {
+    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe({
+      next: (result) => {
         this.isHitCounterLoading = false
         this.hitCounter = result
       },
-      (_) => {
+      error: (_) => {
         this.isHitCounterLoading = false
         this.toastMessageService.openToast({
           type: ToastMessageType.Error,
           message: 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE',
         })
-      }
-    )
+      },
+    })
   }
 }

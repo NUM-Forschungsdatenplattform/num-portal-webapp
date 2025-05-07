@@ -184,7 +184,9 @@ describe('AqlEditorComponent', () => {
     })
 
     it('should call the AQL save method with error', async () => {
-      jest.spyOn(aqlService, 'save').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(aqlService, 'save')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({
@@ -212,7 +214,9 @@ describe('AqlEditorComponent', () => {
       })
     })
     it('should call the AQL update method with error', async () => {
-      jest.spyOn(aqlService, 'update').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(aqlService, 'update')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({

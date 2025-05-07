@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core'
 import { Keepalive } from '@ng-idle/keepalive'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { BehaviorSubject, Observable, of } from 'rxjs'
+import { BehaviorSubject, lastValueFrom, Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
@@ -114,13 +114,11 @@ export class AuthService {
     }
 
     if (this.userInfo.sub !== userInfo?.info?.sub) {
-      await this.createUser(userInfo.info.sub)
-        .toPromise()
-        .finally(() => {
-          if (!this.idle.isIdling()) {
-            this.resetIdle()
-          }
-        })
+      await lastValueFrom(this.createUser(userInfo.info.sub)).finally(() => {
+        if (!this.idle.isIdling()) {
+          this.resetIdle()
+        }
+      })
     }
 
     this.userInfo = userInfo.info

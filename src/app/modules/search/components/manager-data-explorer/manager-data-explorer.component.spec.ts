@@ -159,7 +159,7 @@ describe('ManagerDataRetrievComponent', () => {
       fixture.detectChanges()
       jest
         .spyOn(mockPatientFilterService, 'getProjectData')
-        .mockImplementation(() => throwError('Error fetching data'))
+        .mockImplementation(() => throwError(() => new Error('Error fetching data')))
 
       component.getData()
     })
@@ -208,7 +208,7 @@ describe('ManagerDataRetrievComponent', () => {
     it('should show toast in case of error', () => {
       jest
         .spyOn(mockPatientFilterService, 'exportFile')
-        .mockImplementation(() => throwError('error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('csv')
@@ -250,7 +250,7 @@ describe('ManagerDataRetrievComponent', () => {
     it('should show toast in case of error', () => {
       jest
         .spyOn(mockPatientFilterService, 'exportFile')
-        .mockImplementation(() => throwError('error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('json')

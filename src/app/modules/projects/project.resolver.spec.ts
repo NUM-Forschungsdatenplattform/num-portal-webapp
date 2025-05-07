@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
@@ -44,7 +44,7 @@ describe('Project Resolver', () => {
         paramMap,
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
 
       expect(result.error).toBeNull()
       expect(result.project).toBeInstanceOf(ProjectUiModel)
@@ -64,7 +64,7 @@ describe('Project Resolver', () => {
         paramMap,
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
 
       expect(result.error).toBeNull()
       expect(result.project).toBeInstanceOf(ProjectUiModel)
@@ -79,7 +79,7 @@ describe('Project Resolver', () => {
         paramMap,
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(result.error).toBeDefined()
       expect(result.project.id).toEqual(null)
     })
@@ -92,20 +92,20 @@ describe('Project Resolver', () => {
         paramMap,
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(result.project.id).toEqual(1)
     })
 
     it('should navigate back to the project overview if the project is not found', async () => {
       jest.spyOn(mockRouter, 'navigate').mockImplementation()
-      projectService.get = jest.fn().mockImplementation(() => throwError('Error'))
+      projectService.get = jest.fn().mockImplementation(() => throwError(() => new Error('Error')))
       const paramMap = convertToParamMap({ id: 123 })
       const queryParamMap = convertToParamMap({ mode: 'edit' })
       const activatedRoute = {
         paramMap,
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
-      await resolver.resolve(activatedRoute, state).toPromise()
+      await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(mockRouter.navigate).toHaveBeenCalledWith(['/projects'])
     })
 
@@ -119,7 +119,7 @@ describe('Project Resolver', () => {
         queryParamMap,
       } as unknown as ActivatedRouteSnapshot
 
-      await resolver.resolve(activatedRoute, state).toPromise()
+      await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(projectService.updateStatusById).toHaveBeenCalledWith(1, ProjectStatus.Reviewing)
     })
   })

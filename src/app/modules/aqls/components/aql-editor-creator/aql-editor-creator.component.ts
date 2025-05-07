@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Subject } from 'rxjs'
+import { lastValueFrom, Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -91,7 +91,7 @@ export class AqlEditorCeatorComponent {
   async validate(showSuccess?: boolean): Promise<boolean> {
     let validationResult: IAqlValidationResponse
     try {
-      validationResult = await this.aqlEditorService.validateAql(this.aqlQuery).toPromise()
+      validationResult = await lastValueFrom(this.aqlEditorService.validateAql(this.aqlQuery))
       if (!validationResult.valid) {
         this.setError(validationResult)
         return false
@@ -156,12 +156,10 @@ export class AqlEditorCeatorComponent {
       this.updateDetermineHits(null, '', true)
 
       try {
-        await this.aqlService
-          .getSize(this.aqlQuery)
-          .toPromise()
-          .then((result) => {
-            this.updateDetermineHits(result, '')
-          })
+        const size$ = this.aqlService.getSize(this.aqlQuery)
+        await lastValueFrom(size$).then((result) => {
+          this.updateDetermineHits(result, '')
+        })
       } catch (error) {
         if (error.status === 451) {
           // *** Error 451 means too few hits ***

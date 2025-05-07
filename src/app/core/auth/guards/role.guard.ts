@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 import {
   CanActivate,
-  CanLoad,
   Route,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
+  CanMatch,
 } from '@angular/router'
 import { from, Observable } from 'rxjs'
 import { of } from 'rxjs'
@@ -16,7 +16,7 @@ import { AuthService } from '../auth.service'
 @Injectable({
   providedIn: 'root',
 })
-export class RoleGuard implements CanActivate, CanLoad {
+export class RoleGuard implements CanActivate, CanMatch {
   userInfo: IAuthUserInfo
 
   constructor(
@@ -33,7 +33,7 @@ export class RoleGuard implements CanActivate, CanLoad {
     return this.isAllowed(route, redirectUri)
   }
 
-  canLoad(route: Route): Observable<boolean> {
+  canMatch(route: Route): Observable<boolean> {
     const redirectUri = window.location.origin + '/' + route.path
     return this.isAllowed(route, redirectUri)
   }
