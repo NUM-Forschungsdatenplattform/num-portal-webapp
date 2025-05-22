@@ -9,23 +9,21 @@
       padding-top: 0 !important;
     }
   }
-
   .mdc-list-item__primary-text {
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    line-height: 20px !important;
-    letter-spacing: 0.25px !important;
+    --mdc-list-list-item-label-text-size: 16px;
+    --mdc-list-list-item-label-text-line-height: 20px;
+    --mdc-list-list-item-label-text-tracking: 0.25px;
   }
 
   .num-mat-list-item {
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    line-height: 20px !important;
-    letter-spacing: 0.25px !important;
+    --mdc-list-list-item-label-text-size: 16px;
+    --mdc-list-list-item-label-text-weight: 400;
+    --mdc-list-list-item-label-text-line-height: 20px;
+    --mdc-list-list-item-label-text-tracking: 0.25px;
 
     &--active {
       background: mat.m2-get-color-from-palette($accent, 50);
-      font-weight: 500 !important;
+      --mdc-list-list-item-label-text-weight: 500;
 
       fa-icon {
         color: mat.m2-get-color-from-palette($accent);

@@ -20,6 +20,12 @@
 @use 'styles/mat-toast.themed';
 @use 'styles/mat-tooltip.themed';
 @use 'styles/table-responsive.themed';
+@use 'styles/mat-sidenav.themed';
+@use 'styles/mat-card.themed';
+@use 'styles/mat-slide-toggle.themed';
+@use 'styles/mat-dialog.themed';
+@use 'styles/mat-form-field.themed';
+@use 'styles/mat-paginator.themed';
 
 /* export themed mixins */
 @mixin custom-material_themed($theme) {
@@ -32,7 +38,6 @@
   @include footer.footer_themed($theme);
   @include typography.typography_themed($theme);
   @include buttons.buttons($theme);
-  @include mat-chip.mat-chip_themed($theme);
   @include mat-hint.mat-hint_themed($theme);
   @include mat-expansion-panel.mat-expansion-panel_themed($theme);
   @include general_select.general_select_themed($theme);
@@ -41,4 +46,14 @@
   @include mat-toast.mat-toast_themed($theme);
   @include mat-tooltip.mat-tooltip_themed($theme);
   @include table-responsive.table_responsive_themed($theme);
+  @include mat-sidenav.mat-sidenav_themed($theme);
+}
+
+@mixin custom-material-3_themed() {
+  @include mat-slide-toggle.mat-slide-toggle_themed();
+  @include mat-chip.mat-chip_themed();
+  @include mat-dialog.mat-dialog_themed();
+  @include mat-card.mat-card_themed();
+  @include mat-form-field.mat-form-field_themed();
+  @include mat-paginator.mat-paginator_themed();
 }

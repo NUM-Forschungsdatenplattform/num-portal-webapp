@@ -5,6 +5,6 @@
   $additional: map.get($theme, additional);
 
   .mat-mdc-form-field-hint {
-    color: mat.m2-get-color-from-palette($additional, dark-grey);
+    color: mat.m2-get-color-from-palette($additional, lighter-grey);
   }
 }

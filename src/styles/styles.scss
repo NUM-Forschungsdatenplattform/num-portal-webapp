@@ -1,14 +1,37 @@
 @use '@angular/material' as mat;
+@use 'sass:map';
 
 @use 'font';
 @use 'themes';
 @use 'custom-material';
 @use 'general-styles/_margin-bottom-classes';
 @use 'themes/typography/typography.config';
+@use 'themes/colors/colors_theme-colors.scss' as m3-collor-palette;
 
+// M2 Theming
+@include mat.typography-hierarchy(typography.$num-typography);
 @include custom-material.custom-material_themed(themes.$num-portal-webapp-theme);
 @include mat.all-component-themes(themes.$num-portal-webapp-theme);
-@include mat.typography-hierarchy(typography.$num-typography);
+
+// M3 Theming
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: m3-collor-palette.$primary-palette,
+        tertiary: m3-collor-palette.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+  @include mat.theme-overrides(
+    (
+      primary: var(--num-color--primary),
+    )
+  );
+  @include custom-material.custom-material-3_themed();
+}
 
 html,
 body {
