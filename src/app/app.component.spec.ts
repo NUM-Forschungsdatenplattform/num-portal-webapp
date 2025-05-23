@@ -1,7 +1,6 @@
 import { Component } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
-import { ProfileService } from './core/services/profile/profile.service'
 import { AppLayoutComponent } from './layout/components/app-layout/app-layout.component'
 
 describe('AppComponent', () => {
