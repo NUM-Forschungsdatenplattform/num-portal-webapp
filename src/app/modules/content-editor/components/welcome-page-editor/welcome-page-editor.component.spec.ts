@@ -14,6 +14,7 @@ import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 
 import { WelcomePageEditorComponent } from './welcome-page-editor.component'
+import { WelcomePageItemComponent } from '../welcome-page-item/welcome-page-item.component'
 
 describe('WelcomePageEditorComponent', () => {
   let component: WelcomePageEditorComponent
@@ -63,8 +64,9 @@ describe('WelcomePageEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WelcomePageEditorComponent, ButtonComponent],
       imports: [
+        WelcomePageEditorComponent,
+        ButtonComponent,
         WelcomePageItemStubComponent,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
@@ -85,7 +87,16 @@ describe('WelcomePageEditorComponent', () => {
           useValue: mockDialogService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(WelcomePageEditorComponent, {
+        remove: {
+          imports: [WelcomePageItemComponent],
+        },
+        add: {
+          imports: [WelcomePageItemStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

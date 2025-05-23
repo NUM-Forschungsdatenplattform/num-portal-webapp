@@ -9,8 +9,7 @@ describe('DialogConfirmProjectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogConfirmProjectComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [DialogConfirmProjectComponent, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

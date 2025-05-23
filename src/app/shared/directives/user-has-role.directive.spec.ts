@@ -40,7 +40,8 @@ describe('Directive: UserHasRoleDirective', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestUserHasRoleComponent, UserHasRoleDirective],
+      declarations: [TestUserHasRoleComponent],
+      imports: [UserHasRoleDirective],
       providers: [
         {
           provide: AuthService,

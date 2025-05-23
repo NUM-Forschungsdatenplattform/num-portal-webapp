@@ -25,6 +25,7 @@ jest.mock('src/app/core/utils/download-file.utils', () => ({
   downloadFile: jest.fn().mockImplementation(() => ''),
 }))
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
+import { ResultTableComponent } from 'src/app/shared/components/result-table/result-table.component'
 
 describe('ManagerDataRetrievComponent', () => {
   let component: ManagerDataExplorerComponent
@@ -82,8 +83,9 @@ describe('ManagerDataRetrievComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerDataExplorerComponent, ButtonComponent],
       imports: [
+        ManagerDataExplorerComponent,
+        ButtonComponent,
         ResultTableComponentStub,
         MaterialModule,
         FontAwesomeTestingModule,
@@ -111,7 +113,16 @@ describe('ManagerDataRetrievComponent', () => {
           useValue: mockActivatedRoute,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ManagerDataExplorerComponent, {
+        remove: {
+          imports: [ResultTableComponent],
+        },
+        add: {
+          imports: [ResultTableComponentStub],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

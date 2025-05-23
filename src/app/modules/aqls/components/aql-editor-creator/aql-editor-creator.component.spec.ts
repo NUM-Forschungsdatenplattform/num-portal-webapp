@@ -25,6 +25,9 @@ import {
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
 import { HttpErrorResponse } from '@angular/common/http'
+import { CodeEditorComponent } from 'src/app/modules/code-editor/components/code-editor/code-editor.component'
+import { EditorDetermineHitsComponent } from 'src/app/shared/components/editor-determine-hits/editor-determine-hits.component'
+import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 
 describe('AqlEditorCreatorComponent', () => {
   let component: AqlEditorCreatorComponent
@@ -110,8 +113,9 @@ describe('AqlEditorCreatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlEditorCreatorComponent, ButtonComponent],
       imports: [
+        AqlEditorCreatorComponent,
+        ButtonComponent,
         UserHasRoleStubDirective,
         CodeEditorStubComponent,
         EditorDetermineHitsStubComponent,
@@ -125,7 +129,20 @@ describe('AqlEditorCreatorComponent', () => {
         { provide: AqlService, useValue: mockAqlService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlEditorCreatorComponent, {
+        remove: {
+          imports: [UserHasRoleDirective, CodeEditorComponent, EditorDetermineHitsComponent],
+        },
+        add: {
+          imports: [
+            UserHasRoleStubDirective,
+            CodeEditorStubComponent,
+            EditorDetermineHitsStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

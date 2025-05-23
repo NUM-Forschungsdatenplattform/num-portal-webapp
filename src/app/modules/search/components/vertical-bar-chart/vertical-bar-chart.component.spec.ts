@@ -14,8 +14,8 @@ describe('VerticalBarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [VerticalBarChartComponent],
       imports: [
+        VerticalBarChartComponent,
         NgxEchartsModule.forRoot({
           echarts: () => import('echarts/index.common'),
         }),

@@ -40,8 +40,9 @@ describe('WelcomePageItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WelcomePageItemComponent, ButtonComponent],
       imports: [
+        WelcomePageItemComponent,
+        ButtonComponent,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,

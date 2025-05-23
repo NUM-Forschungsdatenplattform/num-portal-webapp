@@ -14,6 +14,9 @@ import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 
 import { ProjectEditorCohortBuilderComponent } from './project-editor-cohort-builder.component'
+import { CohortBuilderComponent } from 'src/app/modules/cohort-builder/components/cohort-builder/cohort-builder.component'
+import { EditorDetermineHitsComponent } from 'src/app/shared/components/editor-determine-hits/editor-determine-hits.component'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
 
 describe('ProjectEditorCohortBuilderComponent', () => {
   let component: ProjectEditorCohortBuilderComponent
@@ -53,8 +56,9 @@ describe('ProjectEditorCohortBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorCohortBuilderComponent, SearchComponent],
       imports: [
+        ProjectEditorCohortBuilderComponent,
+        SearchComponent,
         StubCohortBuilderComponent,
         StubEditorDetermineHitsComponent,
         StubFilterChipsComponent,
@@ -70,7 +74,20 @@ describe('ProjectEditorCohortBuilderComponent', () => {
           useValue: mockAqlService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorCohortBuilderComponent, {
+        remove: {
+          imports: [FilterChipsComponent, CohortBuilderComponent, EditorDetermineHitsComponent],
+        },
+        add: {
+          imports: [
+            StubCohortBuilderComponent,
+            StubEditorDetermineHitsComponent,
+            StubFilterChipsComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

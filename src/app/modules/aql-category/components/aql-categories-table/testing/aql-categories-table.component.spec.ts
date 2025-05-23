@@ -50,8 +50,8 @@ describe('AqlCategoriesTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlCategoriesTableComponent],
       imports: [
+        AqlCategoriesTableComponent,
         NoopAnimationsModule,
         FontAwesomeTestingModule,
         MaterialModule,

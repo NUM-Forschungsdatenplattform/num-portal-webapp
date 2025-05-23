@@ -18,6 +18,10 @@ import { COMPILE_ERROR_CONFIG } from './constants'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 import { selectClickTestCases } from './tests/select-click-testcases'
+import { AqlBuilderContainsComponent } from '../aql-builder-contains/aql-builder-contains.component'
+import { AqlBuilderSelectComponent } from '../aql-builder-select/aql-builder-select.component'
+import { AqlBuilderTemplatesComponent } from '../aql-builder-templates/aql-builder-templates.component'
+import { AqlBuilderWhereComponent } from '../aql-builder-where/aql-builder-where.component'
 
 describe('DialogAqlBuilderComponent', () => {
   let component: DialogAqlBuilderComponent
@@ -62,8 +66,9 @@ describe('DialogAqlBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAqlBuilderComponent, ButtonComponent],
       imports: [
+        DialogAqlBuilderComponent,
+        ButtonComponent,
         TemplatesStubComponent,
         SelectStubComponent,
         ContainsStubComponent,
@@ -76,7 +81,26 @@ describe('DialogAqlBuilderComponent', () => {
         { provide: AqlEditorService, useValue: aqlEditorService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DialogAqlBuilderComponent, {
+        remove: {
+          imports: [
+            AqlBuilderTemplatesComponent,
+            AqlBuilderSelectComponent,
+            AqlBuilderContainsComponent,
+            AqlBuilderWhereComponent,
+          ],
+        },
+        add: {
+          imports: [
+            TemplatesStubComponent,
+            SelectStubComponent,
+            ContainsStubComponent,
+            WhereStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

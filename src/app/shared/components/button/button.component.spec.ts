@@ -10,8 +10,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ButtonComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule],
+      imports: [ButtonComponent, MaterialModule, FontAwesomeTestingModule],
     }).compileComponents()
   })
 

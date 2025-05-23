@@ -14,6 +14,7 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 import { GroupIndexPipe } from 'src/app/shared/pipes/group-index.pipe'
 import { mockAql1, mockAql2, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { AqlConnectorGroupComponent } from './aql-connector-group.component'
+import { AqlConnectorItemComponent } from '../aql-connector-item/aql-connector-item.component'
 
 describe('AqlConnectorGroupComponent', () => {
   let component: AqlConnectorGroupComponent
@@ -35,8 +36,10 @@ describe('AqlConnectorGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlConnectorGroupComponent, GroupIndexPipe, ButtonComponent],
       imports: [
+        AqlConnectorGroupComponent,
+        GroupIndexPipe,
+        ButtonComponent,
         StubAqlConnectorItemComponent,
         MaterialModule,
         TranslateModule.forRoot(),
@@ -46,7 +49,16 @@ describe('AqlConnectorGroupComponent', () => {
         FormsModule,
       ],
       providers: [{ provide: CohortBuilderService, useValue: mockCohortBuilderService }],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlConnectorGroupComponent, {
+        remove: {
+          imports: [AqlConnectorItemComponent],
+        },
+        add: {
+          imports: [StubAqlConnectorItemComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

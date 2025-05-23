@@ -98,8 +98,15 @@ describe('AttachmentTableActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestHostComponent, AttachmentsTableActionsComponent, ButtonComponent],
-      imports: [CommonModule, FontAwesomeTestingModule, MatButtonModule, TranslateModule.forRoot()],
+      declarations: [TestHostComponent],
+      imports: [
+        AttachmentsTableActionsComponent,
+        ButtonComponent,
+        CommonModule,
+        FontAwesomeTestingModule,
+        MatButtonModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AttachmentService,

@@ -71,8 +71,9 @@ describe('OrganizationEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrganizationEditorComponent, ButtonComponent],
       imports: [
+        OrganizationEditorComponent,
+        ButtonComponent,
         FlexLayoutModule,
         MaterialModule,
         NoopAnimationsModule,

@@ -6,6 +6,7 @@ import { of } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { DataExplorerProjectsComponent } from './data-explorer-projects.component'
+import { DataExplorerProjectsTableComponent } from '../data-explorer-projects-table/data-explorer-projects-table.component'
 
 describe('DataExplorerProjectsComponent', () => {
   let component: DataExplorerProjectsComponent
@@ -20,8 +21,8 @@ describe('DataExplorerProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataExplorerProjectsComponent],
       imports: [
+        DataExplorerProjectsComponent,
         DataExplorerProjectsTableStubComponent,
         MaterialModule,
         NoopAnimationsModule,
@@ -33,7 +34,16 @@ describe('DataExplorerProjectsComponent', () => {
           useValue: projectService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DataExplorerProjectsComponent, {
+        remove: {
+          imports: [DataExplorerProjectsTableComponent],
+        },
+        add: {
+          imports: [DataExplorerProjectsTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

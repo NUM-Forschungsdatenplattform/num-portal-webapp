@@ -13,8 +13,9 @@ describe('ProjectEditorResearchersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorResearchersComponent, ButtonComponent],
       imports: [
+        ProjectEditorResearchersComponent,
+        ButtonComponent,
         TranslateModule.forRoot(),
         MaterialModule,
         FontAwesomeTestingModule,

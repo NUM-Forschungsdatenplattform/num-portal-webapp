@@ -12,6 +12,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 
 import { DataExplorerProjectsTableComponent } from './data-explorer-projects-table.component'
 import { MatSort } from '@angular/material/sort'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('DataExplorerProjectsTableComponent', () => {
   let component: DataExplorerProjectsTableComponent
@@ -33,8 +34,8 @@ describe('DataExplorerProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataExplorerProjectsTableComponent],
       imports: [
+        DataExplorerProjectsTableComponent,
         MockLocalizedDatePipe,
         MaterialModule,
         NoopAnimationsModule,
@@ -48,7 +49,16 @@ describe('DataExplorerProjectsTableComponent', () => {
           useValue: projectService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DataExplorerProjectsTableComponent, {
+        remove: {
+          imports: [LocalizedDatePipe],
+        },
+        add: {
+          imports: [MockLocalizedDatePipe],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

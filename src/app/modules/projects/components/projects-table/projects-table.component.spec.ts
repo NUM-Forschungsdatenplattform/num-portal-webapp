@@ -29,6 +29,7 @@ import { ProjectMenuKeys } from './menu-items'
 
 import { ProjectsTableComponent } from './projects-table.component'
 import { MatSort } from '@angular/material/sort'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
 
 describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
@@ -76,8 +77,9 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent, SearchComponent],
       imports: [
+        ProjectsTableComponent,
+        SearchComponent,
         StubFilterChipsComponent,
         MaterialModule,
         NoopAnimationsModule,
@@ -104,7 +106,16 @@ describe('ProjectsTableComponent', () => {
           useValue: mockToastMessageService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectsTableComponent, {
+        remove: {
+          imports: [FilterChipsComponent],
+        },
+        add: {
+          imports: [StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

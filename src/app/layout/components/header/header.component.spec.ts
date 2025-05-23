@@ -119,14 +119,12 @@ describe('HeaderComponent', () => {
   } as unknown as AuthService
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         HeaderComponent,
         LanguageComponent,
         ButtonComponent,
         UserHasRoleDirective,
         FeatureIsActiveDirective,
-      ],
-      imports: [
         StubComponent,
         FontAwesomeTestingModule,
         MaterialModule,

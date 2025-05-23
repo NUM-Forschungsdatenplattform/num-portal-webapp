@@ -21,8 +21,9 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LatestProjectsComponent, LocalizedDatePipe],
       imports: [
+        LatestProjectsComponent,
+        LocalizedDatePipe,
         TranslateModule.forRoot(),
         FlexLayoutModule,
         FontAwesomeTestingModule,

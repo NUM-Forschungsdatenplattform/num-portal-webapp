@@ -18,8 +18,8 @@ describe('AqlEditorGeneralInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlEditorGeneralInfoComponent],
       imports: [
+        AqlEditorGeneralInfoComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

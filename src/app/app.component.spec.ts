@@ -1,6 +1,8 @@
 import { Component } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
+import { ProfileService } from './core/services/profile/profile.service'
+import { AppLayoutComponent } from './layout/components/app-layout/app-layout.component'
 
 describe('AppComponent', () => {
   @Component({ selector: 'num-app-layout', template: '' })
@@ -8,9 +10,17 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppLayoutStubComponent],
-      declarations: [AppComponent],
-    }).compileComponents()
+      imports: [AppLayoutStubComponent, AppComponent],
+    })
+      .overrideComponent(AppComponent, {
+        remove: {
+          imports: [AppLayoutComponent],
+        },
+        add: {
+          imports: [AppLayoutStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   it('should create the app', () => {

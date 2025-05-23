@@ -17,8 +17,8 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FooterComponent],
       imports: [
+        FooterComponent,
         FontAwesomeTestingModule,
         MaterialModule,
         RouterModule.forRoot([]),

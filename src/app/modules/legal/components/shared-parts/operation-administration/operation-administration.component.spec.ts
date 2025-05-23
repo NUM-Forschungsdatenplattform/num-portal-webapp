@@ -5,8 +5,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 describe('OperationAdministrationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
-      declarations: [OperationAdministrationComponent],
+      imports: [OperationAdministrationComponent, TranslateModule.forRoot()],
       providers: [TranslateService],
     }).compileComponents()
   })

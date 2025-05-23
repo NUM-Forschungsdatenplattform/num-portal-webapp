@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, getTestBed } from '@angular/core/testing'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { DataProtectionComponent } from './data-protection.component'
 import { LangChangeEvent } from '@ngx-translate/core'
+import { OperationAdministrationComponent } from '../shared-parts/operation-administration/operation-administration.component'
 
 describe('DataProtectionComponent', () => {
   let component: DataProtectionComponent
@@ -17,10 +18,22 @@ describe('DataProtectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataProtectionComponent],
-      imports: [OperationAdministrationStubComponent, TranslateModule.forRoot()],
+      imports: [
+        DataProtectionComponent,
+        OperationAdministrationStubComponent,
+        TranslateModule.forRoot(),
+      ],
       providers: [TranslateService],
-    }).compileComponents()
+    })
+      .overrideComponent(DataProtectionComponent, {
+        remove: {
+          imports: [OperationAdministrationComponent],
+        },
+        add: {
+          imports: [OperationAdministrationStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

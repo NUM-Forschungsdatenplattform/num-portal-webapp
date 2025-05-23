@@ -15,6 +15,7 @@ import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 
 import { AqlConnectorItemComponent } from './aql-connector-item.component'
+import { AqlParameterInputsComponent } from 'src/app/shared/components/aql-parameter-inputs/aql-parameter-inputs.component'
 
 interface ITestCaseForThis {
   parameterValueResponse: Partial<IAqlParameterValuesApi>
@@ -33,7 +34,7 @@ describe('AqlConnectorItemComponent', () => {
 
   const valueChangeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-parameter-inputs', template: '' })
-  class AqlParameterInputsComponent {
+  class AqlParameterInputsStubComponent {
     @Input() item: any
     @Input() disabled: boolean
     @Output() valueChange = valueChangeEmitter
@@ -41,9 +42,9 @@ describe('AqlConnectorItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlConnectorItemComponent],
       imports: [
-        AqlParameterInputsComponent,
+        AqlConnectorItemComponent,
+        AqlParameterInputsStubComponent,
         FormsModule,
         MaterialModule,
         TranslateModule.forRoot(),
@@ -51,7 +52,16 @@ describe('AqlConnectorItemComponent', () => {
         NoopAnimationsModule,
       ],
       providers: [{ provide: AqlParameterService, useValue: mockAqlParameterService }],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlConnectorItemComponent, {
+        remove: {
+          imports: [AqlParameterInputsComponent],
+        },
+        add: {
+          imports: [AqlParameterInputsStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

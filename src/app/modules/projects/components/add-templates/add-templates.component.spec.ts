@@ -54,8 +54,13 @@ describe('AddTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddTemplatesComponent],
-      imports: [NoopAnimationsModule, SharedModule, LayoutModule, TranslateModule.forRoot()],
+      imports: [
+        AddTemplatesComponent,
+        NoopAnimationsModule,
+        SharedModule,
+        LayoutModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         {

@@ -14,7 +14,6 @@ import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { SearchComponent } from 'src/app/shared/components/search/search.component'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
@@ -73,20 +72,17 @@ describe('DialogEditUserDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DialogEditUserDetailsComponent,
         AddUserRolesComponent,
         AddUserOrganizationComponent,
         SearchComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        DirectivesModule,
       ],
       providers: [
         {

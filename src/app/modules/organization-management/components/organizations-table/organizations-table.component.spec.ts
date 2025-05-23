@@ -33,8 +33,8 @@ describe('OrganizationsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrganizationsTableComponent],
       imports: [
+        OrganizationsTableComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

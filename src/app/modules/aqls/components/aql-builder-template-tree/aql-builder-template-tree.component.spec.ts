@@ -25,8 +25,8 @@ describe('AqlBuilderTemplateTreeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderTemplateTreeComponent],
       imports: [
+        AqlBuilderTemplateTreeComponent,
         NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,

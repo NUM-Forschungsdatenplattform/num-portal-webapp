@@ -11,8 +11,8 @@ describe('DialogEditCategoryDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogEditCategoryDetailsComponent],
       imports: [
+        DialogEditCategoryDetailsComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

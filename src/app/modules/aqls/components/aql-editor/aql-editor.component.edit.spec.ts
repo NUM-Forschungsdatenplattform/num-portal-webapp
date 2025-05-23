@@ -17,6 +17,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
+import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
+import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
+import { AqlEditorGeneralInfoComponent } from '../aql-editor-general-info/aql-editor-general-info.component'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -74,8 +77,9 @@ describe('AqlEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlEditorComponent, ButtonComponent],
       imports: [
+        AqlEditorComponent,
+        ButtonComponent,
         UserHasRoleStubDirective,
         StubGeneralInfoComponent,
         StubEditorCreatorComponent,
@@ -102,7 +106,16 @@ describe('AqlEditorComponent', () => {
           useValue: authService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlEditorComponent, {
+        remove: {
+          imports: [AqlEditorGeneralInfoComponent, AqlEditorCeatorComponent, UserHasRoleDirective],
+        },
+        add: {
+          imports: [StubGeneralInfoComponent, StubEditorCreatorComponent, UserHasRoleStubDirective],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

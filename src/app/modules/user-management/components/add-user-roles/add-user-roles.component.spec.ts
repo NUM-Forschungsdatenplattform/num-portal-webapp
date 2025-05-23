@@ -21,8 +21,12 @@ describe('AddUserRolesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddUserRolesComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [
+        AddUserRolesComponent,
+        MaterialModule,
+        FontAwesomeTestingModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: ProfileService,

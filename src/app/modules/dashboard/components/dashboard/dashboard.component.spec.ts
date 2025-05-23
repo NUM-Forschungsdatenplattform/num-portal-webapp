@@ -4,7 +4,6 @@ import { OAuthService } from 'angular-oauth2-oidc'
 import { DashboardComponent } from './dashboard.component'
 import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { IAppConfig } from 'src/app/config/app-config.model'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { of, Subject } from 'rxjs'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
@@ -13,6 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { mockDashboardCards } from '../../../../../mocks/data-mocks/dashboard-cards.mock'
 import { Component, Injector } from '@angular/core'
 import { provideHttpClient } from '@angular/common/http'
+import { LatestProjectsComponent } from '../latest-projects/latest-projects.component'
+import { MetricsComponent } from '../metrics/metrics.component'
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent
@@ -45,12 +46,11 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
       imports: [
+        DashboardComponent,
         MetricsStubComponent,
         LatestProjectsStubComponent,
         TranslateModule.forRoot(),
-        DirectivesModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
       ],
@@ -70,7 +70,16 @@ describe('DashboardComponent', () => {
           useValue: mockContentService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DashboardComponent, {
+        remove: {
+          imports: [MetricsComponent, LatestProjectsComponent],
+        },
+        add: {
+          imports: [MetricsStubComponent, LatestProjectsStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

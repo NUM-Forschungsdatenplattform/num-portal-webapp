@@ -36,6 +36,10 @@ import {
   attachmentApiMock2,
   attachmentApiMock3,
 } from 'src/mocks/data-mocks/project-attachment.mock'
+import { ProjectEditorAccordionComponent } from '../project-editor-accordion/project-editor-accordion.component'
+import { ProjectEditorApprovalComponent } from '../project-editor-approval/project-editor-approval.component'
+import { ProjectEditorButtonsComponent } from '../project-editor-buttons/project-editor-buttons.component'
+import { ProjectEditorCommentsComponent } from '../project-editor-comments/project-editor-comments.component'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -153,8 +157,9 @@ describe('ProjectEditorComponent On Creation', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorComponent, ButtonComponent],
       imports: [
+        ProjectEditorComponent,
+        ButtonComponent,
         StubProjectEditorAccordionComponent,
         ProjectEditorButtonsStubComponent,
         ProjectEditorCommentsStubComponent,
@@ -198,7 +203,26 @@ describe('ProjectEditorComponent On Creation', () => {
           useValue: mockAttachmentService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorComponent, {
+        remove: {
+          imports: [
+            ProjectEditorAccordionComponent,
+            ProjectEditorCommentsComponent,
+            ProjectEditorApprovalComponent,
+            ProjectEditorButtonsComponent,
+          ],
+        },
+        add: {
+          imports: [
+            StubProjectEditorAccordionComponent,
+            ProjectEditorButtonsStubComponent,
+            ProjectEditorCommentsStubComponent,
+            ProjectEditorApprovalStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

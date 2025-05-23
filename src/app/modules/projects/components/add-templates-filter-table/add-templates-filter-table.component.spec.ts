@@ -35,8 +35,12 @@ describe('AddTemplatesFilterTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddTemplatesFilterTableComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [
+        AddTemplatesFilterTableComponent,
+        MaterialModule,
+        FontAwesomeTestingModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: TemplateService,

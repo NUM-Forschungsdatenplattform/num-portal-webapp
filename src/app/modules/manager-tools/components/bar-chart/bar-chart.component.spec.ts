@@ -11,8 +11,12 @@ describe('BarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BarChartComponent],
-      imports: [TranslateModule.forRoot(), NoopAnimationsModule, NgxChartsModule],
+      imports: [
+        BarChartComponent,
+        TranslateModule.forRoot(),
+        NoopAnimationsModule,
+        NgxChartsModule,
+      ],
     }).compileComponents()
   })
 

@@ -14,8 +14,9 @@ describe('EditorDetermineHitsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditorDetermineHitsComponent, ButtonComponent],
       imports: [
+        EditorDetermineHitsComponent,
+        ButtonComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

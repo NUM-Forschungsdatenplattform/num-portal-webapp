@@ -20,8 +20,10 @@ describe('ProjectEditorCommentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorCommentsComponent, ButtonComponent, LocalizedDatePipe],
       imports: [
+        ProjectEditorCommentsComponent,
+        ButtonComponent,
+        LocalizedDatePipe,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

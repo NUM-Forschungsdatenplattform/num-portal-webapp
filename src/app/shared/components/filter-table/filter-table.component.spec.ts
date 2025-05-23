@@ -16,8 +16,8 @@ describe('FilterTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FilterTableComponent],
       imports: [
+        FilterTableComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

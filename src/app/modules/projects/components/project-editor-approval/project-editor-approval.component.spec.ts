@@ -17,8 +17,8 @@ describe('ProjectEditorApprovalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorApprovalComponent],
       imports: [
+        ProjectEditorApprovalComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

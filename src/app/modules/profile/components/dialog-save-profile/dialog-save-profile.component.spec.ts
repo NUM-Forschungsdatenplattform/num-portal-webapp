@@ -12,8 +12,13 @@ describe('DialogSaveProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogSaveProfileComponent, ButtonComponent],
-      imports: [MaterialModule, NoopAnimationsModule, TranslateModule.forRoot()],
+      imports: [
+        DialogSaveProfileComponent,
+        ButtonComponent,
+        MaterialModule,
+        NoopAnimationsModule,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents()
   })
 

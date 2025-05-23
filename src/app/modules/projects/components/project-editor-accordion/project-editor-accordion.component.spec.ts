@@ -11,6 +11,10 @@ import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
+import { ProjectEditorCohortBuilderComponent } from '../project-editor-cohort-builder/project-editor-cohort-builder.component'
+import { ProjectEditorGeneralInfoComponent } from '../project-editor-general-info/project-editor-general-info.component'
+import { ProjectEditorResearchersComponent } from '../project-editor-researchers/project-editor-researchers.component'
+import { ProjectEditorTemplatesComponent } from '../project-editor-templates/project-editor-templates.component'
 
 describe('ProjectEditorAccordionComponent', () => {
   let component: ProjectEditorAccordionComponent
@@ -53,8 +57,8 @@ describe('ProjectEditorAccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorAccordionComponent],
       imports: [
+        ProjectEditorAccordionComponent,
         StubProjectEditorResearchers,
         StubGeneralInfoComponent,
         StubProjectEditorCohortBuilderComponent,
@@ -65,7 +69,26 @@ describe('ProjectEditorAccordionComponent', () => {
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorAccordionComponent, {
+        remove: {
+          imports: [
+            ProjectEditorCohortBuilderComponent,
+            ProjectEditorGeneralInfoComponent,
+            ProjectEditorTemplatesComponent,
+            ProjectEditorResearchersComponent,
+          ],
+        },
+        add: {
+          imports: [
+            StubProjectEditorResearchers,
+            StubGeneralInfoComponent,
+            StubProjectEditorCohortBuilderComponent,
+            StubProjectEditorTemplatesComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

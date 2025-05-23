@@ -24,6 +24,8 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { MatSort } from '@angular/material/sort'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -78,8 +80,9 @@ describe('AqlTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlTableComponent, SearchComponent],
       imports: [
+        AqlTableComponent,
+        SearchComponent,
         MockLocalizedDatePipe,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
@@ -108,7 +111,16 @@ describe('AqlTableComponent', () => {
           useValue: mockToast,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlTableComponent, {
+        remove: {
+          imports: [LocalizedDatePipe, FilterChipsComponent],
+        },
+        add: {
+          imports: [MockLocalizedDatePipe, StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

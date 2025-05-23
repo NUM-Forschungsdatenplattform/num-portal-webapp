@@ -3,7 +3,6 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { SideMenuComponent } from './side-menu.component'
 import { MaterialModule } from '../../material/material.module'
 import { TranslateModule } from '@ngx-translate/core'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { OAuthService } from 'angular-oauth2-oidc'
 import { of, Subject } from 'rxjs'
@@ -64,13 +63,12 @@ describe('SideMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SideMenuComponent],
       imports: [
+        SideMenuComponent,
         TestRouterTargetComponentStub,
         FontAwesomeTestingModule,
         MaterialModule,
         TranslateModule.forRoot(),
-        DirectivesModule,
       ],
       providers: [
         provideRouter([

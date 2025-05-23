@@ -28,8 +28,14 @@ describe('ProjectEditorButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorButtonsComponent, ButtonComponent, UserHasRoleDirective],
-      imports: [TranslateModule.forRoot(), MaterialModule, FontAwesomeTestingModule],
+      imports: [
+        ProjectEditorButtonsComponent,
+        ButtonComponent,
+        UserHasRoleDirective,
+        TranslateModule.forRoot(),
+        MaterialModule,
+        FontAwesomeTestingModule,
+      ],
       providers: [
         {
           provide: AuthService,

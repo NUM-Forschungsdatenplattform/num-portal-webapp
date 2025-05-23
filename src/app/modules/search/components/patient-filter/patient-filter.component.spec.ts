@@ -35,6 +35,8 @@ import {
 import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
 import { PatientCountInfoHarness } from '../patient-count-info/testing/patient-count-info.harness'
 import { PatientFilterComponent } from './patient-filter.component'
+import { CohortBuilderComponent } from 'src/app/modules/cohort-builder/components/cohort-builder/cohort-builder.component'
+import { CohortGraphsComponent } from '../cohort-graphs/cohort-graphs.component'
 
 describe('PatientFilterComponent', () => {
   let component: PatientFilterComponent
@@ -103,8 +105,10 @@ describe('PatientFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PatientCountInfoComponent, PatientFilterComponent, SearchComponent],
       imports: [
+        PatientCountInfoComponent,
+        PatientFilterComponent,
+        SearchComponent,
         CohortBuilderComponentStub,
         CohortGraphsComponentStub,
         MaterialModule,
@@ -140,7 +144,16 @@ describe('PatientFilterComponent', () => {
           useValue: mockAqlService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(PatientFilterComponent, {
+        remove: {
+          imports: [CohortBuilderComponent, CohortGraphsComponent],
+        },
+        add: {
+          imports: [CohortBuilderComponentStub, CohortGraphsComponentStub],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

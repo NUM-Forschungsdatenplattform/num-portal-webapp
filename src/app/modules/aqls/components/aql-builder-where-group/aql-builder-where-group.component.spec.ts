@@ -10,6 +10,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-group-ui.model'
 
 import { AqlBuilderWhereGroupComponent } from './aql-builder-where-group.component'
+import { AqlBuilderWhereItemComponent } from '../aql-builder-where-item/aql-builder-where-item.component'
 
 describe('AqlBuilderWhereGroupComponent', () => {
   let component: AqlBuilderWhereGroupComponent
@@ -23,8 +24,9 @@ describe('AqlBuilderWhereGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereGroupComponent, ButtonComponent],
       imports: [
+        AqlBuilderWhereGroupComponent,
+        ButtonComponent,
         WhereItemStubComponent,
         MaterialModule,
         NoopAnimationsModule,
@@ -33,7 +35,16 @@ describe('AqlBuilderWhereGroupComponent', () => {
         ReactiveFormsModule,
         PipesModule,
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlBuilderWhereGroupComponent, {
+        remove: {
+          imports: [AqlBuilderWhereItemComponent],
+        },
+        add: {
+          imports: [WhereItemStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

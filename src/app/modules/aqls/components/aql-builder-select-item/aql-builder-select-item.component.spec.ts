@@ -36,8 +36,9 @@ describe('AqlBuilderSelectItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderSelectItemComponent, ArchetypePipe],
       imports: [
+        AqlBuilderSelectItemComponent,
+        ArchetypePipe,
         MaterialModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),

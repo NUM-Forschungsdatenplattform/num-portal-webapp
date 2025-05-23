@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { Component } from '@angular/core'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { UnapprovedUsersComponent } from './unapproved-users.component'
+import { UnapprovedUsersTableComponent } from '../unapproved-users-table/unapproved-users-table.component'
 
 describe('UnapprovedUsersComponent', () => {
   let component: UnapprovedUsersComponent
@@ -20,13 +21,13 @@ describe('UnapprovedUsersComponent', () => {
   } as AdminService
 
   @Component({ selector: 'num-unapproved-users-table', template: '' })
-  class UserTableStubComponent {}
+  class UnapprovedUsersTableStubComponent {}
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UnapprovedUsersComponent],
       imports: [
-        UserTableStubComponent,
+        UnapprovedUsersComponent,
+        UnapprovedUsersTableStubComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
@@ -37,7 +38,16 @@ describe('UnapprovedUsersComponent', () => {
           useValue: adminService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(UnapprovedUsersComponent, {
+        remove: {
+          imports: [UnapprovedUsersTableComponent],
+        },
+        add: {
+          imports: [UnapprovedUsersTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

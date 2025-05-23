@@ -12,8 +12,8 @@ describe('TimeInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TimeInputComponent],
       imports: [
+        TimeInputComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

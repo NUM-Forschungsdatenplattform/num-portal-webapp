@@ -14,8 +14,9 @@ describe('NavigationEditorItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NavigationEditorItemComponent, ButtonComponent],
       imports: [
+        NavigationEditorItemComponent,
+        ButtonComponent,
         NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),

@@ -9,8 +9,7 @@ describe('PatientCountInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PatientCountInfoComponent],
-      imports: [TranslateModule.forRoot()],
+      imports: [PatientCountInfoComponent, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

@@ -6,6 +6,7 @@ import { Observable, of, throwError } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ManagerChartsComponent } from './manager-charts.component'
+import { BarChartComponent } from '../bar-chart/bar-chart.component'
 
 const translations: any = { CARDS_TITLE: 'This is a test' }
 
@@ -38,8 +39,8 @@ describe('ManagerChartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerChartsComponent],
       imports: [
+        ManagerChartsComponent,
         BarChartStubComponent,
         MaterialModule,
         TranslateModule.forRoot({
@@ -53,7 +54,16 @@ describe('ManagerChartsComponent', () => {
           useValue: contentService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ManagerChartsComponent, {
+        remove: {
+          imports: [BarChartComponent],
+        },
+        add: {
+          imports: [BarChartStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

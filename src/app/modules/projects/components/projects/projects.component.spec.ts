@@ -11,6 +11,7 @@ import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interfa
 import { SharedModule } from 'src/app/shared/shared.module'
 
 import { ProjectsComponent } from './projects.component'
+import { ProjectsTableComponent } from '../projects-table/projects-table.component'
 
 describe('ProjectsComponent', () => {
   let component: ProjectsComponent
@@ -33,8 +34,8 @@ describe('ProjectsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsComponent],
       imports: [
+        ProjectsComponent,
         ProjectsTableStubComponent,
         NoopAnimationsModule,
         MaterialModule,
@@ -51,7 +52,16 @@ describe('ProjectsComponent', () => {
           useValue: authService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectsComponent, {
+        remove: {
+          imports: [ProjectsTableComponent],
+        },
+        add: {
+          imports: [ProjectsTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

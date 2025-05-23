@@ -9,9 +9,10 @@ import { AuthService } from 'src/app/core/auth/auth.service'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { OrganizationManagementComponent } from './organization-management.component'
 import { IFilterItem } from '../../../../shared/models//filter-chip.interface'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
+import { OrganizationsTableComponent } from '../organizations-table/organizations-table.component'
 
 describe('OrganizationManagementComponent', () => {
   let fixture: ComponentFixture<OrganizationManagementComponent>
@@ -43,14 +44,14 @@ describe('OrganizationManagementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OrganizationManagementComponent, ButtonComponent],
       imports: [
+        OrganizationManagementComponent,
+        ButtonComponent,
         StubOrganizationsTable,
         FilterChipsStubComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
-        DirectivesModule,
         FontAwesomeTestingModule,
       ],
       providers: [
@@ -63,7 +64,16 @@ describe('OrganizationManagementComponent', () => {
           useValue: authService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(OrganizationManagementComponent, {
+        remove: {
+          imports: [FilterChipsComponent, OrganizationsTableComponent],
+        },
+        add: {
+          imports: [StubOrganizationsTable, FilterChipsStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

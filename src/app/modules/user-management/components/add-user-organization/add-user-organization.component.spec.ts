@@ -13,6 +13,7 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { Subject } from 'rxjs'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Pipe, PipeTransform } from '@angular/core'
+import { ObjectToArrayPipe } from 'src/app/shared/pipes/object-to-array.pipe'
 
 describe('AddUserOrganizationComponent', () => {
   let component: AddUserOrganizationComponent
@@ -32,8 +33,8 @@ describe('AddUserOrganizationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddUserOrganizationComponent],
       imports: [
+        AddUserOrganizationComponent,
         MockObjectToArrayPipe,
         MaterialModule,
         FontAwesomeTestingModule,
@@ -46,7 +47,16 @@ describe('AddUserOrganizationComponent', () => {
           useValue: organizationService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AddUserOrganizationComponent, {
+        remove: {
+          imports: [ObjectToArrayPipe],
+        },
+        add: {
+          imports: [MockObjectToArrayPipe],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

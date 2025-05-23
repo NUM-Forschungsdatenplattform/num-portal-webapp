@@ -8,6 +8,7 @@ import { By } from '@angular/platform-browser'
 import { Component, Input } from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { ProjectUiModel } from '../../models/project/project-ui.model'
+import { AttachmentsTableComponent } from '../attachments-table/attachments-table.component'
 
 describe('DifinationListComponent', () => {
   let component: DefinitionListComponent
@@ -26,9 +27,22 @@ describe('DifinationListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DefinitionListComponent],
-      imports: [AttachmentsTableStubComponent, TranslateModule.forRoot(), FontAwesomeTestingModule],
-    }).compileComponents()
+      imports: [
+        DefinitionListComponent,
+        AttachmentsTableStubComponent,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+      ],
+    })
+      .overrideComponent(DefinitionListComponent, {
+        remove: {
+          imports: [AttachmentsTableComponent],
+        },
+        add: {
+          imports: [AttachmentsTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

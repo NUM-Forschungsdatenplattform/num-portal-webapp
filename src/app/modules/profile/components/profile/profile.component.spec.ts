@@ -49,8 +49,9 @@ describe('ProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProfileComponent, ButtonComponent],
       imports: [
+        ProfileComponent,
+        ButtonComponent,
         LayoutModule,
         MaterialModule,
         ReactiveFormsModule,

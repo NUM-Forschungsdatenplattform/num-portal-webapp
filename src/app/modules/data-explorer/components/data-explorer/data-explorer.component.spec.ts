@@ -39,6 +39,8 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { ProjectEditorAccordionComponent } from 'src/app/modules/projects/components/project-editor-accordion/project-editor-accordion.component'
+import { ResultTableComponent } from 'src/app/shared/components/result-table/result-table.component'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -127,8 +129,9 @@ describe('DataExplorerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataExplorerComponent, ButtonComponent],
       imports: [
+        DataExplorerComponent,
+        ButtonComponent,
         StubProjectEditorAccordionComponent,
         ResultTableStubComponent,
         NoopAnimationsModule,
@@ -171,7 +174,16 @@ describe('DataExplorerComponent', () => {
           useValue: profileService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DataExplorerComponent, {
+        remove: {
+          imports: [ProjectEditorAccordionComponent, ResultTableComponent],
+        },
+        add: {
+          imports: [StubProjectEditorAccordionComponent, ResultTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

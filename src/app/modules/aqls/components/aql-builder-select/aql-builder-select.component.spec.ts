@@ -9,6 +9,7 @@ import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-i
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderSelectComponent } from './aql-builder-select.component'
+import { AqlBuilderSelectItemComponent } from '../aql-builder-select-item/aql-builder-select-item.component'
 
 describe('AqlBuilderSelectComponent', () => {
   let component: AqlBuilderSelectComponent
@@ -28,15 +29,24 @@ describe('AqlBuilderSelectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderSelectComponent],
       imports: [
+        AqlBuilderSelectComponent,
         SelectItemStubComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
         NoopAnimationsModule,
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlBuilderSelectComponent, {
+        remove: {
+          imports: [AqlBuilderSelectItemComponent],
+        },
+        add: {
+          imports: [SelectItemStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

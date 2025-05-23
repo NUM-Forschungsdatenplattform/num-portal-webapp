@@ -26,8 +26,9 @@ describe('PseudonymResolverComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PseudonymResolverComponent, ButtonComponent],
       imports: [
+        PseudonymResolverComponent,
+        ButtonComponent,
         MaterialModule,
         NoopAnimationsModule,
         ReactiveFormsModule,

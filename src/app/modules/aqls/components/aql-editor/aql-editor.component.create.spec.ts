@@ -19,6 +19,8 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
+import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
+import { AqlEditorGeneralInfoComponent } from '../aql-editor-general-info/aql-editor-general-info.component'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -79,8 +81,9 @@ describe('AqlEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlEditorComponent, ButtonComponent],
       imports: [
+        AqlEditorComponent,
+        ButtonComponent,
         UserHasRoleStubDirective,
         StubGeneralInfoComponent,
         StubEditorCreatorComponent,
@@ -111,7 +114,16 @@ describe('AqlEditorComponent', () => {
           useValue: mockToast,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlEditorComponent, {
+        remove: {
+          imports: [AqlEditorGeneralInfoComponent, AqlEditorCeatorComponent],
+        },
+        add: {
+          imports: [StubGeneralInfoComponent, StubEditorCreatorComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

@@ -22,6 +22,9 @@ import { ProjectUiModel } from '../../models/project/project-ui.model'
 import { mockProject12 } from 'src/mocks/data-mocks/project.mock'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { BehaviorSubject } from 'rxjs'
+import { TooltipNecessaryDirective } from '../../directives/tooltip-necessary/tooltip-necessary.directive'
+import { LocalizedDatePipe } from '../../pipes/localized-date.pipe'
+import { AttachmentsTableActionsComponent } from '../attachments-table-actions/attachments-table-actions.component'
 
 const attachmentUiMocks = attachmentApiMocks.map(
   (attachmentApiMock) => new ProjectAttachmentUiModel(attachmentApiMock)
@@ -65,8 +68,8 @@ describe('AttachmentsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AttachmentsTableComponent],
       imports: [
+        AttachmentsTableComponent,
         ToolTipNecessaryStubDirective,
         LocalizedDateStubPipe,
         AttachmentsTableActionsStubComponent,
@@ -83,7 +86,20 @@ describe('AttachmentsTableComponent', () => {
           useValue: projectMockService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AttachmentsTableComponent, {
+        remove: {
+          imports: [TooltipNecessaryDirective, LocalizedDatePipe, AttachmentsTableActionsComponent],
+        },
+        add: {
+          imports: [
+            ToolTipNecessaryStubDirective,
+            LocalizedDateStubPipe,
+            AttachmentsTableActionsStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
 
     fixture = TestBed.createComponent(AttachmentsTableComponent)
     component = fixture.componentInstance

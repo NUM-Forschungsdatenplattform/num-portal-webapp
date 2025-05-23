@@ -11,6 +11,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { SharedModule } from 'src/app/shared/shared.module'
 
 import { DataFilterTemplatesComponent } from './data-filter-templates.component'
+import { AddTemplatesComponent } from 'src/app/modules/projects/components/add-templates/add-templates.component'
 
 describe('DataFilterTemplatesComponent', () => {
   let component: DataFilterTemplatesComponent
@@ -36,8 +37,8 @@ describe('DataFilterTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataFilterTemplatesComponent],
       imports: [
+        DataFilterTemplatesComponent,
         AddTemplatesStubComponent,
         NoopAnimationsModule,
         FontAwesomeModule,
@@ -46,7 +47,16 @@ describe('DataFilterTemplatesComponent', () => {
         TranslateModule.forRoot(),
       ],
       providers: [{ provide: DialogService, useValue: mockDialogService }],
-    }).compileComponents()
+    })
+      .overrideComponent(DataFilterTemplatesComponent, {
+        remove: {
+          imports: [AddTemplatesComponent],
+        },
+        add: {
+          imports: [AddTemplatesStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

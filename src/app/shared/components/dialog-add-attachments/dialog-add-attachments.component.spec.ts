@@ -50,7 +50,6 @@ describe('DialogAddAttachmentsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddAttachmentsComponent],
       providers: [
         {
           provide: MAT_DIALOG_DATA,
@@ -66,6 +65,7 @@ describe('DialogAddAttachmentsComponent', () => {
         },
       ],
       imports: [
+        DialogAddAttachmentsComponent,
         CommonModule,
         FontAwesomeTestingModule,
         MatInputModule,
