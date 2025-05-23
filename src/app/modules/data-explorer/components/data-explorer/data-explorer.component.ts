@@ -32,12 +32,29 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 import { cloneDeep } from 'lodash-es'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ProjectEditorAccordionComponent } from '../../../projects/components/project-editor-accordion/project-editor-accordion.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MatCard } from '@angular/material/card'
+import { ResultTableComponent } from '../../../../shared/components/result-table/result-table.component'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-data-explorer',
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    ProjectEditorAccordionComponent,
+    ButtonComponent,
+    MatProgressSpinner,
+    MatCard,
+    ResultTableComponent,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class DataExplorerComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

@@ -11,26 +11,23 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { FONT_AWESOME_ICONS } from './font-awesome-icons'
 import { FooterComponent } from './components/footer/footer.component'
 import { TranslateModule } from '@ngx-translate/core'
-import { DirectivesModule } from '../shared/directives/directives.module'
+
 import { SharedComponentsModule } from '../shared/components/shared-components.module'
 import { CUSTOM_ICONS } from './custom-icons'
 const SHARED_MODULES = [MaterialModule, FlexLayoutModule, FontAwesomeModule]
 
 @NgModule({
-  declarations: [
-    AppLayoutComponent,
-    HeaderComponent,
-    SideMenuComponent,
-    LanguageComponent,
-    FooterComponent,
-  ],
   imports: [
     ...SHARED_MODULES,
     CommonModule,
     RouterModule,
     TranslateModule,
-    DirectivesModule,
     SharedComponentsModule,
+    AppLayoutComponent,
+    HeaderComponent,
+    SideMenuComponent,
+    LanguageComponent,
+    FooterComponent,
   ],
   exports: [...SHARED_MODULES, AppLayoutComponent],
 })

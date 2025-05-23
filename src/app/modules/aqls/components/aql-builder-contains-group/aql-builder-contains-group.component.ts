@@ -13,12 +13,34 @@ import { AqbContainsGroupUiModel } from '../../../../shared/models/aqb/aqb-conta
 import { debounce } from 'lodash-es'
 import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.enum'
 import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { AqlBuilderContainsItemComponent } from '../aql-builder-contains-item/aql-builder-contains-item.component'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
+import { GroupIndexPipe } from '../../../../shared/pipes/group-index.pipe'
+import { ArchetypePipe } from '../../../../shared/pipes/archetype.pipe'
 
 @Component({
   selector: 'num-aql-builder-contains-group',
   templateUrl: './aql-builder-contains-group.component.html',
   styleUrls: ['./aql-builder-contains-group.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    AqlBuilderContainsItemComponent,
+    NgClass,
+    ExtendedModule,
+    ButtonComponent,
+    TranslatePipe,
+    GroupIndexPipe,
+    ArchetypePipe,
+  ],
 })
 export class AqlBuilderContainsGroupComponent implements OnInit, OnChanges {
   readonly connectorNodeType = ConnectorNodeType

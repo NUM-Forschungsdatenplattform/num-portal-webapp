@@ -1,5 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { cloneDeep } from 'lodash-es'
 import { forkJoin, lastValueFrom, Observable, of } from 'rxjs'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
@@ -17,12 +23,42 @@ import {
   INVALID_USER_NAME_ERROR,
 } from './constants'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { MatCard } from '@angular/material/card'
+import { AddUserOrganizationComponent } from '../add-user-organization/add-user-organization.component'
+import { AddUserRolesComponent } from '../add-user-roles/add-user-roles.component'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { MatTooltip } from '@angular/material/tooltip'
+import { AsyncPipe } from '@angular/common'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-dialog-edit-user-details',
   templateUrl: './dialog-edit-user-details.component.html',
   styleUrls: ['./dialog-edit-user-details.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatIconButton,
+    FaIconComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    UserHasRoleDirective,
+    MatCard,
+    AddUserOrganizationComponent,
+    AddUserRolesComponent,
+    MatCheckbox,
+    MatTooltip,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class DialogEditUserDetailsComponent
   implements OnInit, IGenericDialog<{ user: IUser; isApproval: boolean }>

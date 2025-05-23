@@ -5,7 +5,7 @@ import { OrganizationService } from 'src/app/core/services/organization/organiza
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { OrganizationTableColumn } from '../../models/organization-table-column.interface'
-import { Sort } from '@angular/material/sort'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { DialogService } from '../../../../core/services/dialog/dialog.service'
@@ -13,12 +13,52 @@ import { DELETE_ORGANIZATION_DIALOG_CONFIG } from './constants'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatMenu, MatMenuContent, MatMenuItem, MatMenuTrigger } from '@angular/material/menu'
+import { MatTooltip } from '@angular/material/tooltip'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatPaginator } from '@angular/material/paginator'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-organizations-table',
   templateUrl: './organizations-table.component.html',
   styleUrls: ['./organizations-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatMenu,
+    MatMenuContent,
+    MatMenuItem,
+    MatTooltip,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatMenuTrigger,
+    FaIconComponent,
+    MatSortHeader,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+  ],
 })
 export class OrganizationsTableComponent
   extends SortableTable<IOrganization>

@@ -8,12 +8,27 @@ import { AqbUiModel } from 'src/app/shared/models/aqb/aqb-ui.model'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { EXPORT_ERROR, RESULT_SET_LOADING_ERROR } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { ResultTableComponent } from '../../../../shared/components/result-table/result-table.component'
+import { MatCard } from '@angular/material/card'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-manager-data-explorer',
   templateUrl: './manager-data-explorer.component.html',
   styleUrls: ['./manager-data-explorer.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    ButtonComponent,
+    MatProgressSpinner,
+    ResultTableComponent,
+    MatCard,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class ManagerDataExplorerComponent implements OnDestroy, OnInit {
   private subscriptions = new Subscription()

@@ -10,18 +10,53 @@ import {
 } from '@angular/core'
 import { ProjectAttachmentUiModel } from '../../models/project/project-attachment-ui.model'
 import { SortableTable } from '../../models/sortable-table.model'
-import { MatSort } from '@angular/material/sort'
+import { MatSort, MatSortHeader } from '@angular/material/sort'
 import { SelectionModel } from '@angular/cdk/collections'
 import { ProjectStatus } from '../../models/project/project-status.enum'
 import { ProjectUiModel } from '../../models/project/project-ui.model'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { Subscription } from 'rxjs'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { TooltipNecessaryDirective } from '../../directives/tooltip-necessary/tooltip-necessary.directive'
+import { AttachmentsTableActionsComponent } from '../attachments-table-actions/attachments-table-actions.component'
+import { TranslatePipe } from '@ngx-translate/core'
+import { LocalizedDatePipe } from '../../pipes/localized-date.pipe'
 
 @Component({
   selector: 'num-attachments-table',
   templateUrl: './attachments-table.component.html',
   styleUrls: ['./attachments-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCheckbox,
+    MatCellDef,
+    MatCell,
+    MatSortHeader,
+    TooltipNecessaryDirective,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    AttachmentsTableActionsComponent,
+    TranslatePipe,
+    LocalizedDatePipe,
+  ],
 })
 export class AttachmentsTableComponent
   extends SortableTable<ProjectAttachmentUiModel>

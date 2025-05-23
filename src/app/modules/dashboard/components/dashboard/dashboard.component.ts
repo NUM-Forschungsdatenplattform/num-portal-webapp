@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { ContentService } from 'src/app/core/services/content/content.service'
@@ -7,12 +7,24 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
 import { AppConfigService } from '../../../../config/app-config.service'
 import { INITIATIVE_CLINICS_LOGOS, LOGOS_BASE_URL, PARTICIPANT_CLINICS_LOGOS } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MetricsComponent } from '../metrics/metrics.component'
+import { LatestProjectsComponent } from '../latest-projects/latest-projects.component'
+import { ExtendedModule } from '@angular/flex-layout/extended'
 
 @Component({
   selector: 'num-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FaIconComponent,
+    MetricsComponent,
+    LatestProjectsComponent,
+    ExtendedModule,
+    TranslatePipe,
+  ],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

@@ -22,17 +22,29 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { DefinitionType } from 'src/app/shared/models/definition-type.enum'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ProjectEditorAccordionComponent } from '../project-editor-accordion/project-editor-accordion.component'
+import { ProjectEditorCommentsComponent } from '../project-editor-comments/project-editor-comments.component'
+import { ProjectEditorApprovalComponent } from '../project-editor-approval/project-editor-approval.component'
+import { ProjectEditorButtonsComponent } from '../project-editor-buttons/project-editor-buttons.component'
 
 @Component({
   selector: 'num-project-editor',
   templateUrl: './project-editor.component.html',
   styleUrls: ['./project-editor.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    ProjectEditorAccordionComponent,
+    ProjectEditorCommentsComponent,
+    ProjectEditorApprovalComponent,
+    ProjectEditorButtonsComponent,
+    TranslatePipe,
+  ],
 })
 export class ProjectEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

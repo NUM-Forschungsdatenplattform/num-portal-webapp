@@ -18,7 +18,12 @@ import { SharedProjectsModule } from './shared-projects.module'
 import { DialogConfirmProjectApprovalComponent } from './components/dialog-confirm-project-approval/dialog-confirm-project-approval.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    ProjectsRoutingModule,
+    SharedModule,
+    LayoutModule,
+    SharedProjectsModule,
     ProjectsComponent,
     ProjectEditorComponent,
     DialogAddTemplateComponent,
@@ -31,6 +36,5 @@ import { DialogConfirmProjectApprovalComponent } from './components/dialog-confi
     ProjectEditorApprovalComponent,
     DialogConfirmProjectApprovalComponent,
   ],
-  imports: [CommonModule, ProjectsRoutingModule, SharedModule, LayoutModule, SharedProjectsModule],
 })
 export class ProjectsModule {}

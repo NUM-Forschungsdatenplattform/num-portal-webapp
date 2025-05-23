@@ -10,13 +10,15 @@ import { OperationAdministrationComponent } from './components/shared-parts/oper
 import { ContactHandlingComponent } from './components/shared-parts/contact-handling/contact-handling.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    LegalRoutingModule,
+    SharedModule,
     ImprintComponent,
     ContactComponent,
     DataProtectionComponent,
     OperationAdministrationComponent,
     ContactHandlingComponent,
   ],
-  imports: [CommonModule, LegalRoutingModule, SharedModule],
 })
 export class LegalModule {}

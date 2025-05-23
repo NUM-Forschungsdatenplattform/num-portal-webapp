@@ -1,17 +1,41 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core'
-import { ActivationEnd, Router, RouterEvent } from '@angular/router'
+import { ActivationEnd, Router, RouterEvent, RouterLinkActive, RouterLink } from '@angular/router'
 import { Subscription } from 'rxjs'
 import INavItem from '../../models/nav-item.interface'
 import { mainNavItems, secondaryNavItemsLoggedIn } from '../../../core/constants/navigation'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { AvailableFeatures } from '../../../shared/models/feature/available-features.enum'
+import { MatToolbar } from '@angular/material/toolbar'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { LanguageComponent } from '../language/language.component'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { NgClass } from '@angular/common'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatTabNav, MatTabLink, MatTabNavPanel } from '@angular/material/tabs'
+import { FeatureIsActiveDirective } from '../../../shared/directives/feature-is-active.directive'
+import { UserHasRoleDirective } from '../../../shared/directives/user-has-role.directive'
 
 @Component({
   selector: 'num-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: false,
+  imports: [
+    MatToolbar,
+    FlexModule,
+    LanguageComponent,
+    ExtendedModule,
+    NgClass,
+    FaIconComponent,
+    MatTabNav,
+    FeatureIsActiveDirective,
+    UserHasRoleDirective,
+    MatTabLink,
+    RouterLinkActive,
+    RouterLink,
+    MatTabNavPanel,
+    TranslatePipe,
+  ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

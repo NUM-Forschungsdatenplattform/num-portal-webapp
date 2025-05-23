@@ -6,12 +6,31 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { AvailableFeatures } from '../../../../shared/models/feature/available-features.enum'
+import { DataFilterTemplatesComponent } from '../data-filter-templates/data-filter-templates.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { MatCard } from '@angular/material/card'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { FeatureIsActiveDirective } from '../../../../shared/directives/feature-is-active.directive'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-data-filter',
   templateUrl: './data-filter.component.html',
   styleUrls: ['./data-filter.component.scss'],
-  standalone: false,
+  imports: [
+    DataFilterTemplatesComponent,
+    UserHasRoleDirective,
+    MatCard,
+    FlexModule,
+    FaIconComponent,
+    MatDivider,
+    ButtonComponent,
+    FeatureIsActiveDirective,
+    TranslatePipe,
+  ],
 })
 export class DataFilterComponent implements OnInit {
   availableRoles = AvailableRoles

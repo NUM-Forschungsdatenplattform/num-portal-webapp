@@ -7,13 +7,52 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core'
-import { MatTableDataSource } from '@angular/material/table'
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatSort } from '@angular/material/sort'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { TranslatePipe } from '@ngx-translate/core'
+import { NestedAccessPipe } from '../../pipes/nested-access.pipe'
+import { IsSelectedPipe } from '../../pipes/is-selected.pipe'
 
 @Component({
   selector: 'num-filter-table',
   templateUrl: './filter-table.component.html',
   styleUrls: ['./filter-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    NgClass,
+    ExtendedModule,
+    TranslatePipe,
+    NestedAccessPipe,
+    IsSelectedPipe,
+  ],
 })
 export class FilterTableComponent<T> implements OnInit, OnChanges {
   @Input() dataSource: MatTableDataSource<any>

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
-import { Sort } from '@angular/material/sort'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
@@ -12,12 +12,48 @@ import { ApprovedUsersTableColumn } from 'src/app/shared/models/user/approved-ta
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatPaginator } from '@angular/material/paginator'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe'
+import { AvailableRolesPipe } from '../../../../shared/pipes/available-roles.pipe'
 
 @Component({
   selector: 'num-approved-users-table',
   templateUrl: './approved-users-table.component.html',
   styleUrls: ['./approved-users-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatSortHeader,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+    LocalizedDatePipe,
+    AvailableRolesPipe,
+  ],
 })
 export class ApprovedUsersTableComponent extends SortableTable<IUser> implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

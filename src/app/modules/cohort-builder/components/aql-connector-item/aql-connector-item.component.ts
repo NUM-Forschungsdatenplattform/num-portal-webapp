@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
@@ -8,12 +8,35 @@ import { IAqlParameter } from 'src/app/shared/models/aql/aql-parameter.interface
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import moment from 'moment'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { AqlParameterInputsComponent } from '../../../../shared/components/aql-parameter-inputs/aql-parameter-inputs.component'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { FormsModule } from '@angular/forms'
+import { MatTooltip } from '@angular/material/tooltip'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatIconButton } from '@angular/material/button'
 
 @Component({
   selector: 'num-aql-connector-item',
   templateUrl: './aql-connector-item.component.html',
   styleUrls: ['./aql-connector-item.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    AqlParameterInputsComponent,
+    MatCheckbox,
+    FormsModule,
+    MatTooltip,
+    MatHint,
+    FaIconComponent,
+    MatIconButton,
+    TranslatePipe,
+  ],
 })
 export class AqlConnectorItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

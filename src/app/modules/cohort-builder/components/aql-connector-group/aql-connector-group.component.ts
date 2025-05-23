@@ -16,12 +16,38 @@ import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.e
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { MatSlideToggle } from '@angular/material/slide-toggle'
+import { FormsModule } from '@angular/forms'
+import { AqlConnectorItemComponent } from '../aql-connector-item/aql-connector-item.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
+import { GroupIndexPipe } from '../../../../shared/pipes/group-index.pipe'
 
 @Component({
   selector: 'num-aql-connector-group',
   templateUrl: './aql-connector-group.component.html',
   styleUrls: ['./aql-connector-group.component.scss'],
-  standalone: false,
+  imports: [
+    NgClass,
+    ExtendedModule,
+    FaIconComponent,
+    FlexModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatSlideToggle,
+    FormsModule,
+    AqlConnectorItemComponent,
+    ButtonComponent,
+    TranslatePipe,
+    GroupIndexPipe,
+  ],
 })
 export class AqlConnectorGroupComponent implements OnInit, OnChanges, OnDestroy {
   private eventSubscription: Subscription

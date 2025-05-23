@@ -4,12 +4,25 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 import { IDefinitionList } from 'src/app/shared/models/definition-list.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { MatAccordion } from '@angular/material/expansion'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ProjectEditorCohortBuilderComponent } from '../project-editor-cohort-builder/project-editor-cohort-builder.component'
+import { ProjectEditorGeneralInfoComponent } from '../project-editor-general-info/project-editor-general-info.component'
+import { ProjectEditorTemplatesComponent } from '../project-editor-templates/project-editor-templates.component'
+import { ProjectEditorResearchersComponent } from '../project-editor-researchers/project-editor-researchers.component'
 
 @Component({
   selector: 'num-project-editor-accordion',
   templateUrl: './project-editor-accordion.component.html',
   styleUrls: ['./project-editor-accordion.component.scss'],
-  standalone: false,
+  imports: [
+    MatAccordion,
+    FlexModule,
+    ProjectEditorCohortBuilderComponent,
+    ProjectEditorGeneralInfoComponent,
+    ProjectEditorTemplatesComponent,
+    ProjectEditorResearchersComponent,
+  ],
 })
 export class ProjectEditorAccordionComponent {
   @Input() isResearchersFetched: boolean

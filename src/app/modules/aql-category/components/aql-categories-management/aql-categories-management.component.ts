@@ -14,12 +14,22 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
 import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-categories-management',
   templateUrl: './aql-categories-management.component.html',
   styleUrls: ['./aql-categories-management.component.scss'],
-  standalone: false,
+  imports: [
+    AqlCategoriesTableComponent,
+    UserHasRoleDirective,
+    FlexModule,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class AqlCategoriesManagementComponent implements OnDestroy {
   availableRoles = AvailableRoles

@@ -1,12 +1,14 @@
 import { Component } from '@angular/core'
 import { DateAdapter } from '@angular/material/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatButtonToggleGroup, MatButtonToggle } from '@angular/material/button-toggle'
 
 @Component({
   selector: 'num-language',
   templateUrl: './language.component.html',
   styleUrls: ['./language.component.scss'],
-  standalone: false,
+  imports: [FaIconComponent, MatButtonToggleGroup, MatButtonToggle, TranslatePipe],
 })
 export class LanguageComponent {
   constructor(

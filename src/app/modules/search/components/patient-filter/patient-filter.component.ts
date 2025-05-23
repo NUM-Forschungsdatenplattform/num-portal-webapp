@@ -17,12 +17,33 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
+import { PatientCountInfoComponent } from '../patient-count-info/patient-count-info.component'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import { CohortBuilderComponent } from '../../../cohort-builder/components/cohort-builder/cohort-builder.component'
+import { CohortGraphsComponent } from '../cohort-graphs/cohort-graphs.component'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { AsyncPipe } from '@angular/common'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-patient-filter',
   templateUrl: './patient-filter.component.html',
   styleUrls: ['./patient-filter.component.scss'],
-  standalone: false,
+  imports: [
+    PatientCountInfoComponent,
+    FlexModule,
+    FilterChipsComponent,
+    SearchComponent,
+    CohortBuilderComponent,
+    CohortGraphsComponent,
+    MatDivider,
+    ButtonComponent,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class PatientFilterComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

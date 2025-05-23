@@ -15,13 +15,35 @@ import { COOKIE_DIALOG_CONFIG } from './constants'
 import { HttpClient } from '@angular/common/http'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { USERMANUAL } from 'src/app/core/constants/constants'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
+import { MatNavList, MatListItem, MatDivider } from '@angular/material/list'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { RouterLink, RouterLinkActive } from '@angular/router'
+import { FeatureIsActiveDirective } from '../../../shared/directives/feature-is-active.directive'
+import { UserHasRoleDirective } from '../../../shared/directives/user-has-role.directive'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { NgClass, AsyncPipe } from '@angular/common'
 
 @Component({
   selector: 'num-side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
-  standalone: false,
+  imports: [
+    MatNavList,
+    FlexModule,
+    MatListItem,
+    RouterLink,
+    FeatureIsActiveDirective,
+    UserHasRoleDirective,
+    RouterLinkActive,
+    FaIconComponent,
+    ExtendedModule,
+    NgClass,
+    MatDivider,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class SideMenuComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

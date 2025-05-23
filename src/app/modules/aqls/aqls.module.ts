@@ -8,7 +8,7 @@ import { AqlEditorComponent } from './components/aql-editor/aql-editor.component
 import { AqlEditorGeneralInfoComponent } from './components/aql-editor-general-info/aql-editor-general-info.component'
 import { AqlsComponent } from './components/aqls/aqls.component'
 import { AqlEditorCeatorComponent } from './components/aql-editor-creator/aql-editor-creator.component'
-import { CodeEditorModule } from '../code-editor/code-editor.module'
+
 import { DialogAqlBuilderComponent } from './components/dialog-aql-builder/dialog-aql-builder.component'
 import { AqlBuilderTemplatesComponent } from './components/aql-builder-templates/aql-builder-templates.component'
 import { AqlBuilderSelectComponent } from './components/aql-builder-select/aql-builder-select.component'
@@ -22,7 +22,11 @@ import { AqlBuilderWhereItemComponent } from './components/aql-builder-where-ite
 import { AqlBuilderWhereGroupComponent } from './components/aql-builder-where-group/aql-builder-where-group.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    AqlsRoutingModule,
+    SharedModule,
+    LayoutModule,
     AqlsComponent,
     AqlTableComponent,
     AqlEditorComponent,
@@ -40,7 +44,6 @@ import { AqlBuilderWhereGroupComponent } from './components/aql-builder-where-gr
     AqlBuilderWhereItemComponent,
     AqlBuilderWhereGroupComponent,
   ],
-  imports: [CommonModule, AqlsRoutingModule, SharedModule, LayoutModule, CodeEditorModule],
   exports: [AqlEditorCeatorComponent],
 })
 export class AqlsModule {}

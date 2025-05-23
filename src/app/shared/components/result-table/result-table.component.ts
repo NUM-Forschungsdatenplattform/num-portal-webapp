@@ -1,15 +1,51 @@
 import { Component, Input, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { MatSort } from '@angular/material/sort'
-import { MatTableDataSource } from '@angular/material/table'
+import { MatSort, MatSortHeader } from '@angular/material/sort'
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
 import { IAqlExecutionColumn } from 'src/app/shared/models/aql/execution/aql-execution-column.interface'
 import { IAqlExecutionResponse } from 'src/app/shared/models/aql/execution/aql-execution-response.interface'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard } from '@angular/material/card'
+import { MatTooltip } from '@angular/material/tooltip'
+import { JsonPipe } from '@angular/common'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-result-table',
   templateUrl: './result-table.component.html',
   styleUrls: ['./result-table.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatCard,
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatSortHeader,
+    MatTooltip,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    JsonPipe,
+    TranslatePipe,
+  ],
 })
 export class ResultTableComponent {
   constructor() {}

@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { Sort } from '@angular/material/sort'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
 import { Params, Router } from '@angular/router'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { of, Subscription } from 'rxjs'
 import { catchError, take, tap } from 'rxjs/operators'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -27,12 +27,56 @@ import {
   WITHDRAW_APPROVAL_DIALOG_CONFIG,
 } from './constants'
 import { APPROVER_MENU, COORDINATOR_MENU, MENU_ITEM_PREVIEW, ProjectMenuKeys } from './menu-items'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatMenu, MatMenuContent, MatMenuItem, MatMenuTrigger } from '@angular/material/menu'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { ProjectMenuPipe } from '../../../../shared/pipes/project-menu.pipe'
 
 @Component({
   selector: 'num-projects-table',
   templateUrl: './projects-table.component.html',
   styleUrls: ['./projects-table.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FilterChipsComponent,
+    SearchComponent,
+    MatTable,
+    MatSort,
+    MatMenu,
+    MatMenuContent,
+    MatMenuItem,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatMenuTrigger,
+    FaIconComponent,
+    MatSortHeader,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+    ProjectMenuPipe,
+  ],
 })
 export class ProjectsTableComponent
   extends SortableTable<IProjectApi>

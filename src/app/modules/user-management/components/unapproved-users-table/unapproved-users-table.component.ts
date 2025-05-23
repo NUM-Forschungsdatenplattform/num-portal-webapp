@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { Subscription } from 'rxjs'
-import { Sort } from '@angular/material/sort'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
 import { IUser } from 'src/app/shared/models/user/user.interface'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG } from './constants'
@@ -9,12 +9,47 @@ import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { DialogEditUserDetailsComponent } from '../dialog-edit-user-details/dialog-edit-user-details.component'
 import { UnapprovedUsersTableColumn } from 'src/app/shared/models/user/unapproved-table-column.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatPaginator } from '@angular/material/paginator'
+import { TranslatePipe } from '@ngx-translate/core'
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe'
 
 @Component({
   selector: 'num-unapproved-users-table',
   templateUrl: './unapproved-users-table.component.html',
   styleUrls: ['./unapproved-users-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatSortHeader,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+    LocalizedDatePipe,
+  ],
 })
 export class UnapprovedUsersTableComponent
   extends SortableTable<IUser>

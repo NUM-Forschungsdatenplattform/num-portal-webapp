@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
-import { TranslateService } from '@ngx-translate/core'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
@@ -14,12 +20,30 @@ import {
   SAVE_SUCCESS_CONFIG,
 } from './constants'
 import { AppConfigService } from 'src/app/config/app-config.service'
+import { MatCard, MatCardContent } from '@angular/material/card'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { MatDivider } from '@angular/material/list'
 
 @Component({
   selector: 'num-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  standalone: false,
+  imports: [
+    MatCard,
+    MatCardContent,
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    ButtonComponent,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class ProfileComponent implements OnInit {
   subscriptions = new Subscription()

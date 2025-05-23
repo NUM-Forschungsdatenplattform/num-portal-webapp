@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common'
 import { TranslateModule } from '@ngx-translate/core'
-import { DirectivesModule } from './directives/directives.module'
+
 import { SharedComponentsModule } from './components/shared-components.module'
 import localeEn from '@angular/common/locales/en'
 import localeDe from '@angular/common/locales/de'
@@ -16,7 +16,6 @@ const SHARED_MODULES = [
   TranslateModule,
   FormsModule,
   ReactiveFormsModule,
-  DirectivesModule,
   PipesModule,
   SharedComponentsModule,
 ]

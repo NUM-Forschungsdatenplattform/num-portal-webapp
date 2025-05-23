@@ -1,15 +1,43 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ManagerService } from 'src/app/core/services/manager/manager.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { COPY_CLIPBOARD_SUCCESS_CONFIG, RESOLVE_ERROR_CONFIG } from './constants'
+import { MatCard } from '@angular/material/card'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-pseudonym-resolver',
   templateUrl: './pseudonym-resolver.component.html',
   styleUrls: ['./pseudonym-resolver.component.scss'],
-  standalone: false,
+  imports: [
+    MatCard,
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatProgressSpinner,
+    MatIconButton,
+    FaIconComponent,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class PseudonymResolverComponent implements OnInit, OnDestroy {
   private subsriptions = new Subscription()

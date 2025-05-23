@@ -4,12 +4,25 @@ import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { ProjectStatus } from 'src/app/shared/models/project/project-status.enum'
 import { ApprovalOption } from '../../models/approval-option.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { NgTemplateOutlet } from '@angular/common'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-project-editor-buttons',
   templateUrl: './project-editor-buttons.component.html',
   styleUrls: ['./project-editor-buttons.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatDivider,
+    ButtonComponent,
+    NgTemplateOutlet,
+    UserHasRoleDirective,
+    TranslatePipe,
+  ],
 })
 export class ProjectEditorButtonsComponent {
   availableRoles = AvailableRoles

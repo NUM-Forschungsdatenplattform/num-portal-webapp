@@ -4,7 +4,6 @@ import { MatTooltip } from '@angular/material/tooltip'
 @Directive({
   selector: '[numTooltipNecessary]',
   providers: [MatTooltip],
-  standalone: false,
 })
 export class TooltipNecessaryDirective {
   private htmlElement: HTMLElement

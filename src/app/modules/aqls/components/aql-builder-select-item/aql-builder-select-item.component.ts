@@ -1,13 +1,36 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqbSelectItemUiModel } from '../../../../shared/models/aqb/aqb-select-item-ui.model'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
+import { ArchetypePipe } from '../../../../shared/pipes/archetype.pipe'
 
 @Component({
   selector: 'num-aql-builder-select-item',
   templateUrl: './aql-builder-select-item.component.html',
   styleUrls: ['./aql-builder-select-item.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatIconButton,
+    FaIconComponent,
+    TranslatePipe,
+    ArchetypePipe,
+  ],
 })
 export class AqlBuilderSelectItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

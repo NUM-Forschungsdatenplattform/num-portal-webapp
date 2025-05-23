@@ -1,5 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { cloneDeep } from 'lodash-es'
 import { Observable, Subscription, throwError } from 'rxjs'
@@ -21,12 +27,62 @@ import {
   UPDATING_SUCCESS,
 } from './constants'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard } from '@angular/material/card'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatTooltip } from '@angular/material/tooltip'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-organization-editor',
   templateUrl: './organization-editor.component.html',
   styleUrls: ['./organization-editor.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCard,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    ExtendedModule,
+    ButtonComponent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatTooltip,
+    MatCheckbox,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class OrganizationEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()

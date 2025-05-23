@@ -1,9 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core'
 import { AvailableRoles } from '../models/available-roles.enum'
-@Pipe({
-  name: 'availableRoles',
-  standalone: false,
-})
+@Pipe({ name: 'availableRoles' })
 export class AvailableRolesPipe implements PipeTransform {
   availableRoles = Object.values(AvailableRoles) as string[]
   transform(userRoles: string[]): string[] {

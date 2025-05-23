@@ -3,12 +3,16 @@ import { cloneDeep } from 'lodash-es'
 import { Subscription } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { IOrganization } from 'src/app/shared/models/organization/organization.interface'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { TranslatePipe } from '@ngx-translate/core'
+import { ObjectToArrayPipe } from '../../../../shared/pipes/object-to-array.pipe'
 
 @Component({
   selector: 'num-add-user-organization',
   templateUrl: './add-user-organization.component.html',
   styleUrls: ['./add-user-organization.component.scss'],
-  standalone: false,
+  imports: [MatFormField, MatLabel, MatSelect, MatOption, TranslatePipe, ObjectToArrayPipe],
 })
 export class AddUserOrganizationComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

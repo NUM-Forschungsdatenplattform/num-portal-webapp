@@ -18,12 +18,28 @@ import {
   VALIDATION_ERROR_CONFIG,
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard, MatCardContent } from '@angular/material/card'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { CodeEditorComponent } from '../../../code-editor/components/code-editor/code-editor.component'
+import { EditorDetermineHitsComponent } from '../../../../shared/components/editor-determine-hits/editor-determine-hits.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-editor-creator',
   templateUrl: './aql-editor-creator.component.html',
   styleUrls: ['./aql-editor-creator.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    MatCard,
+    MatCardContent,
+    UserHasRoleDirective,
+    ButtonComponent,
+    CodeEditorComponent,
+    EditorDetermineHitsComponent,
+    TranslatePipe,
+  ],
 })
 export class AqlEditorCeatorComponent {
   availableRoles = AvailableRoles

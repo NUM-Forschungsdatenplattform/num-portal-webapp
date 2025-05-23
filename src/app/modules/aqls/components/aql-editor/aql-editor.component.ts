@@ -14,12 +14,26 @@ import { lastValueFrom, Subscription } from 'rxjs'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { AqlEditorGeneralInfoComponent } from '../aql-editor-general-info/aql-editor-general-info.component'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-editor',
   templateUrl: './aql-editor.component.html',
   styleUrls: ['./aql-editor.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    AqlEditorGeneralInfoComponent,
+    AqlEditorCeatorComponent,
+    MatDivider,
+    ButtonComponent,
+    UserHasRoleDirective,
+    TranslatePipe,
+  ],
 })
 export class AqlEditorComponent implements OnDestroy, OnInit {
   availableRoles = AvailableRoles

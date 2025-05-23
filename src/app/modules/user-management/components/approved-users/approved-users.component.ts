@@ -4,12 +4,22 @@ import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { ApprovedUsersTableComponent } from '../approved-users-table/approved-users-table.component'
 import { Subscription } from 'rxjs'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-approved-users',
   templateUrl: './approved-users.component.html',
   styleUrls: ['./approved-users.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FilterChipsComponent,
+    SearchComponent,
+    ApprovedUsersTableComponent,
+    TranslatePipe,
+  ],
 })
 export class ApprovedUsersComponent implements OnInit, OnDestroy {
   @ViewChild(ApprovedUsersTableComponent) table: ApprovedUsersTableComponent

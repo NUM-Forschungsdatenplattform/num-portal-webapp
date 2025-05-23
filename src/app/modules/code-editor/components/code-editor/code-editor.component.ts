@@ -21,7 +21,6 @@ import { environment } from 'src/environments/environment'
   selector: 'num-code-editor',
   templateUrl: './code-editor.component.html',
   styleUrls: ['./code-editor.component.scss'],
-  standalone: false,
 })
 export class CodeEditorComponent implements AfterViewInit, OnDestroy {
   /* istanbul ignore next */

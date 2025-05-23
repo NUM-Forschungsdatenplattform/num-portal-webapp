@@ -3,10 +3,7 @@ import { Subscription } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { IAuthUserInfo } from '../models/user/auth-user-info.interface'
 
-@Directive({
-  selector: '[numUserHasRole]',
-  standalone: false,
-})
+@Directive({ selector: '[numUserHasRole]' })
 export class UserHasRoleDirective implements OnInit, OnDestroy {
   constructor(
     private templateRef: TemplateRef<any>,

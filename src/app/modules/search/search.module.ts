@@ -13,18 +13,8 @@ import { VerticalBarChartComponent } from './components/vertical-bar-chart/verti
 import { DataFilterTemplatesComponent } from './components/data-filter-templates/data-filter-templates.component'
 import { ManagerDataExplorerComponent } from './components/manager-data-explorer/manager-data-explorer.component'
 import { SharedProjectsModule } from '../projects/shared-projects.module'
-import { DirectivesModule } from '../../shared/directives/directives.module'
 
 @NgModule({
-  declarations: [
-    CohortGraphsComponent,
-    DataFilterComponent,
-    PatientCountInfoComponent,
-    PatientFilterComponent,
-    DataFilterTemplatesComponent,
-    VerticalBarChartComponent,
-    ManagerDataExplorerComponent,
-  ],
   imports: [
     CohortBuilderModule,
     CommonModule,
@@ -35,7 +25,13 @@ import { DirectivesModule } from '../../shared/directives/directives.module'
     SearchRoutingModule,
     SharedModule,
     SharedProjectsModule,
-    DirectivesModule,
+    CohortGraphsComponent,
+    DataFilterComponent,
+    PatientCountInfoComponent,
+    PatientFilterComponent,
+    DataFilterTemplatesComponent,
+    VerticalBarChartComponent,
+    ManagerDataExplorerComponent,
   ],
 })
 export class SearchModule {}

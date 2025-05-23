@@ -1,19 +1,53 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MatPaginator } from '@angular/material/paginator'
-import { Sort } from '@angular/material/sort'
-import { MatTableDataSource } from '@angular/material/table'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { DataExplorerProjectTableColumns } from 'src/app/shared/models/project/data-explorer-project-table.interface'
 import { IProjectApi } from 'src/app/shared/models/project/project-api.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe'
 
 @Component({
   selector: 'num-data-explorer-projects-table',
   templateUrl: './data-explorer-projects-table.component.html',
   styleUrls: ['./data-explorer-projects-table.component.scss'],
-  standalone: false,
+  imports: [
+    MatTable,
+    MatSort,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatSortHeader,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+    LocalizedDatePipe,
+  ],
 })
 export class DataExplorerProjectsTableComponent
   extends SortableTable<IProjectApi>

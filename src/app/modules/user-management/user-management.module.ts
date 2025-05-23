@@ -13,7 +13,11 @@ import { UnapprovedUsersComponent } from './components/unapproved-users/unapprov
 import { UserManagementRoutingModule } from './user-management-routing.module'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    UserManagementRoutingModule,
+    SharedModule,
+    LayoutModule,
     UnapprovedUsersComponent,
     UnapprovedUsersTableComponent,
     AddUserRolesComponent,
@@ -22,6 +26,5 @@ import { UserManagementRoutingModule } from './user-management-routing.module'
     ApprovedUsersTableComponent,
     DialogEditUserDetailsComponent,
   ],
-  imports: [CommonModule, UserManagementRoutingModule, SharedModule, LayoutModule],
 })
 export class UserManagementModule {}

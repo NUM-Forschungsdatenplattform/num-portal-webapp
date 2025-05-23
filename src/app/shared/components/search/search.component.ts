@@ -9,15 +9,39 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { environment } from '../../../../environments/environment'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  standalone: false,
+  imports: [
+    FormsModule,
+    FlexModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    FaIconComponent,
+    MatSuffix,
+    NgClass,
+    ExtendedModule,
+    TranslatePipe,
+  ],
 })
 export class SearchComponent implements OnInit, OnChanges, OnDestroy {
   /* istanbul ignore next */

@@ -8,11 +8,14 @@ import { DialogEditCategoryDetailsComponent } from './components/dialog-edit-cat
 import { AqlCategoriesManagementComponent } from './components/aql-categories-management/aql-categories-management.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    SharedModule,
+    LayoutModule,
+    AQLCategoryRoutingModule,
     AqlCategoriesTableComponent,
     DialogEditCategoryDetailsComponent,
     AqlCategoriesManagementComponent,
   ],
-  imports: [CommonModule, SharedModule, LayoutModule, AQLCategoryRoutingModule],
 })
 export class AqlCategoryModule {}

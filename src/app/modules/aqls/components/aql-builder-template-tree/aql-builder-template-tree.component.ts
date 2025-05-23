@@ -7,7 +7,14 @@ import {
   Output,
   ViewChild,
 } from '@angular/core'
-import { MatTree, MatTreeNestedDataSource } from '@angular/material/tree'
+import {
+  MatTree,
+  MatTreeNestedDataSource,
+  MatTreeNodeDef,
+  MatNestedTreeNode,
+  MatTreeNodeToggle,
+  MatTreeNodeOutlet,
+} from '@angular/material/tree'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { IContainmentNodeField } from 'src/app/shared/models/archetype-query-builder/template/containment-node-field.interface'
@@ -15,12 +22,38 @@ import { IContainmentNode } from 'src/app/shared/models/archetype-query-builder/
 import { IAqbSelectClick } from '../../../../shared/models/aqb/aqb-select-click.interface'
 import { AqbSelectDestination } from '../../../../shared/models/aqb/aqb-select-destination.enum'
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
+import {
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+  MatExpansionPanelTitle,
+} from '@angular/material/expansion'
+import { MatIconButton } from '@angular/material/button'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatProgressBar } from '@angular/material/progress-bar'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-builder-template-tree',
   templateUrl: './aql-builder-template-tree.component.html',
   styleUrls: ['./aql-builder-template-tree.component.scss'],
-  standalone: false,
+  imports: [
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelTitle,
+    MatTree,
+    MatTreeNodeDef,
+    MatNestedTreeNode,
+    MatTreeNodeToggle,
+    MatIconButton,
+    NgClass,
+    ExtendedModule,
+    FaIconComponent,
+    MatTreeNodeOutlet,
+    MatProgressBar,
+    TranslatePipe,
+  ],
 })
 export class AqlBuilderTemplateTreeComponent implements OnInit {
   constructor(

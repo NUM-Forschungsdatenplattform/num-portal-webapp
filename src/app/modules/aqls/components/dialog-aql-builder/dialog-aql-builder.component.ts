@@ -13,12 +13,27 @@ import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-b
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { COMPILE_ERROR_CONFIG } from './constants'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { AqlBuilderTemplatesComponent } from '../aql-builder-templates/aql-builder-templates.component'
+import { AqlBuilderSelectComponent } from '../aql-builder-select/aql-builder-select.component'
+import { AqlBuilderContainsComponent } from '../aql-builder-contains/aql-builder-contains.component'
+import { AqlBuilderWhereComponent } from '../aql-builder-where/aql-builder-where.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-dialog-aql-builder',
   templateUrl: './dialog-aql-builder.component.html',
   styleUrls: ['./dialog-aql-builder.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    AqlBuilderTemplatesComponent,
+    AqlBuilderSelectComponent,
+    AqlBuilderContainsComponent,
+    AqlBuilderWhereComponent,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class DialogAqlBuilderComponent
   implements OnInit, OnDestroy, IGenericDialog<IAqlBuilderDialogInput>

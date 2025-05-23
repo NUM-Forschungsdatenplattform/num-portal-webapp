@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-contact-handling',
   templateUrl: './contact-handling.component.html',
-  standalone: false,
+  imports: [TranslatePipe],
 })
 export class ContactHandlingComponent {
   constructor() {}

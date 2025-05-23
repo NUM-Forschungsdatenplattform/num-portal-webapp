@@ -16,15 +16,63 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlTableColumns } from 'src/app/shared/models/aql/aql-table.interface'
 import { SortableTable } from 'src/app/shared/models/sortable-table.model'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { IAqlCategoryIdNameMap } from 'src/app/shared/models/aql/category/aql-category-id-name-map.interface'
-import { Sort } from '@angular/material/sort'
+import { Sort, MatSort, MatSortHeader } from '@angular/material/sort'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatMenu, MatMenuContent, MatMenuItem, MatMenuTrigger } from '@angular/material/menu'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatTooltip } from '@angular/material/tooltip'
+import { AqlMenuPipe } from '../../../../shared/pipes/aql-menu.pipe'
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe'
 
 @Component({
   selector: 'num-aql-table',
   templateUrl: './aql-table.component.html',
   styleUrls: ['./aql-table.component.scss'],
-  standalone: false,
+  imports: [
+    FlexModule,
+    FilterChipsComponent,
+    SearchComponent,
+    MatTable,
+    MatSort,
+    MatMenu,
+    MatMenuContent,
+    MatMenuItem,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    MatMenuTrigger,
+    FaIconComponent,
+    MatSortHeader,
+    MatTooltip,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+    AqlMenuPipe,
+    LocalizedDatePipe,
+  ],
 })
 export class AqlTableComponent extends SortableTable<IAqlApi> implements OnDestroy {
   user: IUserProfile

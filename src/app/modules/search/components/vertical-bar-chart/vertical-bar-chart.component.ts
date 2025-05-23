@@ -2,12 +2,14 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { isEmpty, map } from 'lodash-es'
 import { EChartsCoreOption } from 'echarts/core'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { NgxEchartsDirective } from 'ngx-echarts'
 
 @Component({
   selector: 'num-vertical-bar-chart',
   templateUrl: './vertical-bar-chart.component.html',
   styleUrls: ['./vertical-bar-chart.component.scss'],
-  standalone: false,
+  imports: [FlexModule, NgxEchartsDirective],
 })
 export class VerticalBarChartComponent implements OnChanges, OnInit {
   @Input() color: string
