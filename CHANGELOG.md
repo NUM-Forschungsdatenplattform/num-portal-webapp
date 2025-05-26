@@ -133,7 +133,6 @@ The format is based on [Keep a Changelog][keep a changelog] and this project adh
 - Organizations table: Sorting now works ([#216])
 - Data Explorer: Downloaded ZIP files are no longer corrupt ([#218])
 - Data Explorer: Project table sort now works ([#219])
-- Dev-Tooling: Playground compilation fixed by no longer using ivy ([#222])
 
 ### Security
 
