@@ -6,11 +6,24 @@ import { Subscription } from 'rxjs'
 import { DEFAULT_ORGANIZATION_FILTER } from 'src/app/core/constants/default-filter-organization'
 import { OrganizationsTableComponent } from '../organizations-table/organizations-table.component'
 import { OrganizationUserFilterChipId } from 'src/app/shared/models/organization/organization-filter-chip.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-organization-management',
   templateUrl: './organization-management.component.html',
   styleUrls: ['./organization-management.component.scss'],
+  imports: [
+    FlexModule,
+    FilterChipsComponent,
+    OrganizationsTableComponent,
+    UserHasRoleDirective,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class OrganizationManagementComponent implements OnInit, OnDestroy {
   @ViewChild(OrganizationsTableComponent) table: OrganizationsTableComponent

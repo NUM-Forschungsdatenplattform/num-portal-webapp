@@ -1,13 +1,31 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { environment } from '../../../../environments/environment'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-time-input',
   templateUrl: './time-input.component.html',
   styleUrls: ['./time-input.component.scss'],
+  imports: [
+    FormsModule,
+    FlexModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    TranslatePipe,
+  ],
 })
 export class TimeInputComponent implements OnInit, OnDestroy {
   /* istanbul ignore next */

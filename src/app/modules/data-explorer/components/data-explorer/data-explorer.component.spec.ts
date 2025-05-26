@@ -13,7 +13,6 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { RouterTestingModule } from '@angular/router/testing'
 import { DataExplorerComponent } from './data-explorer.component'
 import { IProjectResolved } from 'src/app/modules/projects/models/project-resolved.interface'
 import { mockUsers } from 'src/mocks/data-mocks/admin.mock'
@@ -40,6 +39,8 @@ import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.interface'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { ProjectEditorAccordionComponent } from 'src/app/modules/projects/components/project-editor-accordion/project-editor-accordion.component'
+import { ResultTableComponent } from 'src/app/shared/components/result-table/result-table.component'
 
 describe('DataExplorerComponent', () => {
   let component: DataExplorerComponent
@@ -128,19 +129,16 @@ describe('DataExplorerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        DataExplorerComponent,
-        StubProjectEditorAccordionComponent,
-        ButtonComponent,
-        ResultTableStubComponent,
-      ],
       imports: [
+        DataExplorerComponent,
+        ButtonComponent,
+        StubProjectEditorAccordionComponent,
+        ResultTableStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {
@@ -176,7 +174,16 @@ describe('DataExplorerComponent', () => {
           useValue: profileService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DataExplorerComponent, {
+        remove: {
+          imports: [ProjectEditorAccordionComponent, ResultTableComponent],
+        },
+        add: {
+          imports: [StubProjectEditorAccordionComponent, ResultTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -307,7 +314,9 @@ describe('DataExplorerComponent', () => {
 
   describe('When the component gets initialized and the templates are specified but can not be compiled or fetched', () => {
     beforeEach(() => {
-      jest.spyOn(aqlEditorService, 'getContainment').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(aqlEditorService, 'getContainment')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => of(buildResponse))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
@@ -437,7 +446,9 @@ describe('DataExplorerComponent', () => {
 
   describe('When the resultSet cannot be fetched', () => {
     beforeEach(() => {
-      jest.spyOn(projectService, 'executeAdHocAql').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(projectService, 'executeAdHocAql')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
       component.compiledQuery = buildResponse
     })
@@ -501,7 +512,9 @@ describe('DataExplorerComponent', () => {
   })
 
   it('should show toast in case of error', () => {
-    jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+    jest
+      .spyOn(projectService, 'exportFile')
+      .mockImplementation(() => throwError(() => new Error('Error')))
     jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
     component.exportFile('csv')
@@ -552,7 +565,9 @@ describe('DataExplorerComponent', () => {
     })
 
     it('should show toast in case of error', () => {
-      jest.spyOn(projectService, 'exportFile').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(projectService, 'exportFile')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(toastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('json')

@@ -10,13 +10,17 @@ import { ManagerChartsComponent } from './components/manager-charts/manager-char
 import { PseudonymResolverComponent } from './components/pseudonym-resolver/pseudonym-resolver.component'
 
 @NgModule({
-  declarations: [
+  exports: [ManagerToolsComponent, BarChartComponent],
+  imports: [
+    CommonModule,
+    ManagerToolsRoutingModule,
+    NgxChartsModule,
+    SharedModule,
+    LayoutModule,
     ManagerToolsComponent,
     BarChartComponent,
     ManagerChartsComponent,
     PseudonymResolverComponent,
   ],
-  exports: [ManagerToolsComponent, BarChartComponent],
-  imports: [CommonModule, ManagerToolsRoutingModule, NgxChartsModule, SharedModule, LayoutModule],
 })
 export class ManagerToolsModule {}

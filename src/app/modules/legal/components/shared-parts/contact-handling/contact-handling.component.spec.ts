@@ -6,8 +6,7 @@ describe('ContactHandlingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot()],
-      declarations: [ContactHandlingComponent],
-      providers: [TranslateService],
+      providers: [ContactHandlingComponent, TranslateService],
     }).compileComponents()
   })
 

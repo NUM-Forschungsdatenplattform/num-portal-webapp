@@ -25,8 +25,9 @@ describe('AqlBuilderContainsItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderContainsItemComponent, ArchetypePipe],
       imports: [
+        AqlBuilderContainsItemComponent,
+        ArchetypePipe,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

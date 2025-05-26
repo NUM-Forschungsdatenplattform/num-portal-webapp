@@ -14,8 +14,9 @@ describe('ResultTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResultTableComponent, ButtonComponent],
       imports: [
+        ResultTableComponent,
+        ButtonComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),

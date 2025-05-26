@@ -8,11 +8,14 @@ import { LayoutModule } from 'src/app/layout/layout.module'
 import { OrganizationsTableComponent } from './components/organizations-table/organizations-table.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    OrganizationManagementRoutingModule,
+    SharedModule,
+    LayoutModule,
     OrganizationManagementComponent,
     OrganizationEditorComponent,
     OrganizationsTableComponent,
   ],
-  imports: [CommonModule, OrganizationManagementRoutingModule, SharedModule, LayoutModule],
 })
 export class OrganizationManagementModule {}

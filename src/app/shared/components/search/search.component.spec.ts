@@ -14,8 +14,8 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchComponent],
       imports: [
+        SearchComponent,
         NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,

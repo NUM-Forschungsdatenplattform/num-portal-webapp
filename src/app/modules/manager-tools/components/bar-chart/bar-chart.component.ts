@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
 import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
+import { BarChartModule } from '@swimlane/ngx-charts'
 
 @Component({
   selector: 'num-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss'],
+  imports: [BarChartModule],
 })
 export class BarChartComponent {
   private chart: IBarChart

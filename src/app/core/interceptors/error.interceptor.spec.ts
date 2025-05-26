@@ -1,6 +1,11 @@
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {
+  HttpClient,
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http'
 import { inject, TestBed } from '@angular/core/testing'
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'
 import { ErrorInterceptor } from './error.interceptor'
 import { AuthService } from '../auth/auth.service'
 import { ProfileService } from '../services/profile/profile.service'
@@ -18,8 +23,9 @@ describe('ErrorInterceptor', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
         { provide: AuthService, ProfileService, useValue: authService, profileService },
         {
           provide: HTTP_INTERCEPTORS,
@@ -43,7 +49,11 @@ describe('ErrorInterceptor', () => {
   describe('When the Backend returns 401: Unauthorized', () => {
     it('should logout the user', inject(
       [HttpClient, HttpTestingController, AuthService],
-      (http: HttpClient, httpMock: HttpTestingController, injectedAuthService: AuthService) => {
+      (
+        http: HttpClient,
+        httpMock = TestBed.inject(HttpTestingController),
+        injectedAuthService: AuthService
+      ) => {
         const mockErrorResponse = { status: 401, statusText: 'Unauthorized' }
         const data = 'Unauthorized'
 

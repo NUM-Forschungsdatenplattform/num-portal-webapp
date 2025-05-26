@@ -18,6 +18,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { MatTableDataSource } from '@angular/material/table'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
+import { FilterTableComponent } from 'src/app/shared/components/filter-table/filter-table.component'
 
 describe('DialogAddResearchersComponent', () => {
   let component: DialogAddResearchersComponent
@@ -57,13 +59,11 @@ describe('DialogAddResearchersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DialogAddResearchersComponent,
         SearchComponent,
         FilterTableStubComponent,
         StubFilterChipsComponent,
-      ],
-      imports: [
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
@@ -79,7 +79,16 @@ describe('DialogAddResearchersComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DialogAddResearchersComponent, {
+        remove: {
+          imports: [FilterChipsComponent, FilterTableComponent],
+        },
+        add: {
+          imports: [FilterTableStubComponent, StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

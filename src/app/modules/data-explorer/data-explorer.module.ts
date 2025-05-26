@@ -9,17 +9,15 @@ import { DataExplorerProjectsTableComponent } from './components/data-explorer-p
 import { SharedProjectsModule } from '../projects/shared-projects.module'
 
 @NgModule({
-  declarations: [
-    DataExplorerComponent,
-    DataExplorerProjectsComponent,
-    DataExplorerProjectsTableComponent,
-  ],
   imports: [
     CommonModule,
     DataExplorerRoutingModule,
     SharedModule,
     LayoutModule,
     SharedProjectsModule,
+    DataExplorerComponent,
+    DataExplorerProjectsComponent,
+    DataExplorerProjectsTableComponent,
   ],
 })
 export class DataExplorerModule {}

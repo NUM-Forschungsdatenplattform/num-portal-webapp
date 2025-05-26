@@ -18,6 +18,10 @@ import { COMPILE_ERROR_CONFIG } from './constants'
 
 import { DialogAqlBuilderComponent } from './dialog-aql-builder.component'
 import { selectClickTestCases } from './tests/select-click-testcases'
+import { AqlBuilderContainsComponent } from '../aql-builder-contains/aql-builder-contains.component'
+import { AqlBuilderSelectComponent } from '../aql-builder-select/aql-builder-select.component'
+import { AqlBuilderTemplatesComponent } from '../aql-builder-templates/aql-builder-templates.component'
+import { AqlBuilderWhereComponent } from '../aql-builder-where/aql-builder-where.component'
 
 describe('DialogAqlBuilderComponent', () => {
   let component: DialogAqlBuilderComponent
@@ -62,20 +66,41 @@ describe('DialogAqlBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         DialogAqlBuilderComponent,
+        ButtonComponent,
         TemplatesStubComponent,
         SelectStubComponent,
         ContainsStubComponent,
         WhereStubComponent,
-        ButtonComponent,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         { provide: AqlEditorService, useValue: aqlEditorService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DialogAqlBuilderComponent, {
+        remove: {
+          imports: [
+            AqlBuilderTemplatesComponent,
+            AqlBuilderSelectComponent,
+            AqlBuilderContainsComponent,
+            AqlBuilderWhereComponent,
+          ],
+        },
+        add: {
+          imports: [
+            TemplatesStubComponent,
+            SelectStubComponent,
+            ContainsStubComponent,
+            WhereStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -148,7 +173,9 @@ describe('DialogAqlBuilderComponent', () => {
     })
 
     it('should show an error message if the compiling fails after dialog confirmation', async () => {
-      jest.spyOn(aqlEditorService, 'buildAql').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(aqlEditorService, 'buildAql')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
       await component.handleDialogConfirm()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(COMPILE_ERROR_CONFIG)

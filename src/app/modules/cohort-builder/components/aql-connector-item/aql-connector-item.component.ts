@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterService } from 'src/app/core/services/aql-parameter/aql-parameter.service'
 import { AqlParameterOperator } from 'src/app/shared/models/aql/aql-parameter-operator.type'
@@ -8,11 +8,35 @@ import { IAqlParameter } from 'src/app/shared/models/aql/aql-parameter.interface
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { ReferenceModelType } from 'src/app/shared/models/archetype-query-builder/referencemodel-type.enum'
 import moment from 'moment'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { AqlParameterInputsComponent } from '../../../../shared/components/aql-parameter-inputs/aql-parameter-inputs.component'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { FormsModule } from '@angular/forms'
+import { MatTooltip } from '@angular/material/tooltip'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatIconButton } from '@angular/material/button'
 
 @Component({
   selector: 'num-aql-connector-item',
   templateUrl: './aql-connector-item.component.html',
   styleUrls: ['./aql-connector-item.component.scss'],
+  imports: [
+    FlexModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    AqlParameterInputsComponent,
+    MatCheckbox,
+    FormsModule,
+    MatTooltip,
+    MatHint,
+    FaIconComponent,
+    MatIconButton,
+    TranslatePipe,
+  ],
 })
 export class AqlConnectorItemComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
@@ -35,8 +59,8 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
       this.hasParameterError = true
     } else {
       this.aql.parameters.forEach((parameter) => {
-        this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe(
-          (response) => {
+        this.aqlParameterService.getValues(parameter.path, parameter.archetypeId).subscribe({
+          next: (response) => {
             parameter.options = response.options
             const optionKeys = Object.keys(parameter.options)
             if (optionKeys.length) {
@@ -52,10 +76,10 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
             this.checkParameterStatus()
             parameter.isMetaFetched = true
           },
-          (_) => {
+          error: (_) => {
             this.hasParameterError = true
-          }
-        )
+          },
+        })
       })
     }
   }
@@ -125,7 +149,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
     try {
       const date = new Date(dateString)
       return date instanceof Date && !isNaN(date as any) ? date : new Date()
-    } catch (error) {
+    } catch (_) {
       return new Date()
     }
   }
@@ -137,7 +161,7 @@ export class AqlConnectorItemComponent implements OnInit, OnDestroy {
         .map((part) => parseInt(part, 10))
       const date = new Date(2012, 11, 21, hour, minute, second)
       return date instanceof Date && !isNaN(date as any) ? date : new Date()
-    } catch (error) {
+    } catch (_) {
       return new Date()
     }
   }

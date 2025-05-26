@@ -28,8 +28,10 @@ describe('DialogAddTemplateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAddTemplateComponent, SearchComponent, AddTemplatesFilterTableComponent],
       imports: [
+        DialogAddTemplateComponent,
+        SearchComponent,
+        AddTemplatesFilterTableComponent,
         NoopAnimationsModule,
         ReactiveFormsModule,
         MaterialModule,

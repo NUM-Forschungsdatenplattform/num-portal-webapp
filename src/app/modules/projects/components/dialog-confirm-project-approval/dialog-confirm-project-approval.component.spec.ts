@@ -14,8 +14,9 @@ describe('DialogConfirmProjectApprovalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogConfirmProjectApprovalComponent, ButtonComponent],
       imports: [
+        DialogConfirmProjectApprovalComponent,
+        ButtonComponent,
         MaterialModule,
         ReactiveFormsModule,
         NoopAnimationsModule,

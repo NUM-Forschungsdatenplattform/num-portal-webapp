@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { Component } from '@angular/core'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
+import { AqlTableComponent } from '../aql-table/aql-table.component'
 
 describe('AqlsComponent', () => {
   let component: AqlsComponent
@@ -31,8 +32,7 @@ describe('AqlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlsComponent, AqlTableStubComponent],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      imports: [AqlsComponent, AqlTableStubComponent, MaterialModule, TranslateModule.forRoot()],
       providers: [
         {
           provide: AqlService,
@@ -43,7 +43,16 @@ describe('AqlsComponent', () => {
           useValue: mockAqlCategoryService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlsComponent, {
+        remove: {
+          imports: [AqlTableComponent],
+        },
+        add: {
+          imports: [AqlTableStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

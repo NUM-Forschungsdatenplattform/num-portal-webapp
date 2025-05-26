@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, Subject, throwError, timer } from 'rxjs'
+import { lastValueFrom, of, Subject, throwError, timer } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { IAqlFilter } from 'src/app/shared/models/aql/aql-filter.interface'
 import {
@@ -77,11 +77,10 @@ describe('AqlService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en')
-        .toPromise()
+      const allPag$ = service.getAllPag(0, 2, 'ASC', 'name', { type: 'OWNED' }, 'en')
+      lastValueFrom(allPag$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -93,7 +92,7 @@ describe('AqlService', () => {
 
   describe('When a call to getAll method comes in', () => {
     beforeEach(() => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.getAllObservable$ = undefined
       const date = new Date()
@@ -103,8 +102,8 @@ describe('AqlService', () => {
 
     it('should call the api - with error', async () => {
       try {
-        await service.getAll().toPromise()
-      } catch (err) {
+        await lastValueFrom(service.getAll())
+      } catch (_) {
         //
       } finally {
         expect(httpClient.get).toHaveBeenCalledWith('localhost/api/aql')
@@ -123,8 +122,8 @@ describe('AqlService', () => {
     })
 
     it('should cache get all requests', async () => {
-      await service.getAll().toPromise()
-      await service.getAll().toPromise()
+      await lastValueFrom(service.getAll(), { defaultValue: 0 })
+      await lastValueFrom(service.getAll(), { defaultValue: 0 })
       expect(httpClient.get).toHaveBeenCalledTimes(1)
     })
   })
@@ -136,24 +135,22 @@ describe('AqlService', () => {
       service.getAllObservable$ = undefined
     })
     it('should return with a single aql found on the backend', async () => {
-      const result = await service.get(1).toPromise()
+      const result = await lastValueFrom(service.get(1))
       expect(result.id).toEqual(1)
     })
 
     it('should return with a single aql found in memory', async () => {
-      await service.getAll().toPromise()
-      const result = await service.get(1).toPromise()
+      await lastValueFrom(service.getAll())
+      const result = await lastValueFrom(service.get(1))
       expect(result.id).toEqual(1)
     })
 
     it('should return with an not found error when not found', async () => {
-      await service
-        .get(123)
-        .toPromise()
-        .catch((error) => {
-          expect(error).toBeTruthy()
-          expect(error).toEqual(new Error('Not Found'))
-        })
+      const aql$ = service.get(123)
+      await lastValueFrom(aql$).catch((error) => {
+        expect(error).toBeTruthy()
+        expect(error).toEqual(new Error('Not Found'))
+      })
     })
   })
 
@@ -217,7 +214,7 @@ describe('AqlService', () => {
       const anyService = service as any
 
       anyService.aqls = []
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
 
       service.filteredAqlsObservable$
         .pipe(skipUntil(timer(anyService.throttleTime / 2)))
@@ -288,7 +285,7 @@ describe('AqlService', () => {
     })
 
     it('should call handleError on api error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.save(mockAql1).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAql1)
@@ -306,7 +303,9 @@ describe('AqlService', () => {
 
     it('should call handleError on api error', () => {
       const aqlId = 1
-      jest.spyOn(httpClient, 'delete').mockImplementation(() => throwError('Error'))
+      jest
+        .spyOn(httpClient, 'delete')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.delete(aqlId).subscribe()
       expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`)
@@ -324,7 +323,7 @@ describe('AqlService', () => {
 
     it('should call handleError on api error', () => {
       const aqlId = 1
-      jest.spyOn(httpClient, 'put').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'put').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.update(mockAql1, aqlId).subscribe()
       expect(httpClient.put).toHaveBeenCalledWith(`${baseUrl}/${aqlId}`, mockAql1)
@@ -342,7 +341,7 @@ describe('AqlService', () => {
     })
 
     it('should call handleError on api error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.getSize('query').subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(`${baseUrl}/size`, {

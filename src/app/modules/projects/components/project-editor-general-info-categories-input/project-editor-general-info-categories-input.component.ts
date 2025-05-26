@@ -1,19 +1,47 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
   MatAutocompleteTrigger,
 } from '@angular/material/autocomplete'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { ProjectCategory } from '../../models/project-category.enum'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatChipGrid, MatChipOption, MatChipRemove, MatChipInput } from '@angular/material/chips'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatOption } from '@angular/material/select'
+import { AsyncPipe } from '@angular/common'
 
 @Component({
   selector: 'num-project-editor-general-info-categories-input',
   templateUrl: './project-editor-general-info-categories-input.component.html',
   styleUrls: ['./project-editor-general-info-categories-input.component.scss'],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatChipGrid,
+    MatChipOption,
+    MatIconButton,
+    MatChipRemove,
+    FaIconComponent,
+    FormsModule,
+    MatAutocompleteTrigger,
+    MatChipInput,
+    ReactiveFormsModule,
+    MatAutocomplete,
+    MatOption,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class ProjectEditorGeneralInfoCategoriesInputComponent implements OnInit {
   constructor(private translate: TranslateService) {}

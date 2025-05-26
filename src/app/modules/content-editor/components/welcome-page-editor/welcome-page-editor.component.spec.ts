@@ -14,6 +14,7 @@ import { mockDashboardCards } from 'src/mocks/data-mocks/dashboard-cards.mock'
 import { SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 
 import { WelcomePageEditorComponent } from './welcome-page-editor.component'
+import { WelcomePageItemComponent } from '../welcome-page-item/welcome-page-item.component'
 
 describe('WelcomePageEditorComponent', () => {
   let component: WelcomePageEditorComponent
@@ -63,8 +64,10 @@ describe('WelcomePageEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [WelcomePageEditorComponent, ButtonComponent, WelcomePageItemStubComponent],
       imports: [
+        WelcomePageEditorComponent,
+        ButtonComponent,
+        WelcomePageItemStubComponent,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,
@@ -84,7 +87,16 @@ describe('WelcomePageEditorComponent', () => {
           useValue: mockDialogService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(WelcomePageEditorComponent, {
+        remove: {
+          imports: [WelcomePageItemComponent],
+        },
+        add: {
+          imports: [WelcomePageItemStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -175,7 +187,9 @@ describe('WelcomePageEditorComponent', () => {
     })
 
     it('should show the error message', () => {
-      jest.spyOn(mockContentService, 'updateCards').mockImplementation(() => throwError('error'))
+      jest
+        .spyOn(mockContentService, 'updateCards')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
       component.save()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(SAVE_ERROR_CONFIG)

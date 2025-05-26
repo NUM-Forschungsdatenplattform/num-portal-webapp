@@ -17,7 +17,7 @@ import { EditorDetermineHitsComponent } from './editor-determine-hits/editor-det
 import { AqlParameterInputsComponent } from './aql-parameter-inputs/aql-parameter-inputs.component'
 import { ResultTableComponent } from './result-table/result-table.component'
 import { AttachmentsTableComponent } from './attachments-table/attachments-table.component'
-import { DirectivesModule } from '../directives/directives.module'
+
 import { AttachmentsTableActionsComponent } from './attachments-table-actions/attachments-table-actions.component'
 import { DialogAddAttachmentsComponent } from './dialog-add-attachments/dialog-add-attachments.component'
 
@@ -38,7 +38,6 @@ const SHARED_DECLARATIONS = [
 ]
 
 @NgModule({
-  declarations: SHARED_DECLARATIONS,
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -48,7 +47,7 @@ const SHARED_DECLARATIONS = [
     ReactiveFormsModule,
     TranslateModule,
     PipesModule,
-    DirectivesModule,
+    ...SHARED_DECLARATIONS,
   ],
   exports: SHARED_DECLARATIONS,
 })

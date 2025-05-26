@@ -1,15 +1,45 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { MatTableDataSource } from '@angular/material/table'
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { filter, map, take } from 'rxjs/operators'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { AvailableRoles } from 'src/app/shared/models/available-roles.enum'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-add-user-roles',
   templateUrl: './add-user-roles.component.html',
   styleUrls: ['./add-user-roles.component.scss'],
+  imports: [
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    TranslatePipe,
+  ],
 })
 export class AddUserRolesComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

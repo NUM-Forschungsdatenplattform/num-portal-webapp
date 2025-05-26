@@ -32,11 +32,29 @@ import { IToastMessageConfig } from 'src/app/shared/models/toast-message-config.
 import { cloneDeep } from 'lodash-es'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ProjectEditorAccordionComponent } from '../../../projects/components/project-editor-accordion/project-editor-accordion.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MatCard } from '@angular/material/card'
+import { ResultTableComponent } from '../../../../shared/components/result-table/result-table.component'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-data-explorer',
   templateUrl: './data-explorer.component.html',
   styleUrls: ['./data-explorer.component.scss'],
+  imports: [
+    FlexModule,
+    ProjectEditorAccordionComponent,
+    ButtonComponent,
+    MatProgressSpinner,
+    MatCard,
+    ResultTableComponent,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class DataExplorerComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
@@ -137,16 +155,16 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             return this.aqlEditorService.buildAql(apiModel)
           })
         )
-        .subscribe(
-          (compiledQuery) => {
+        .subscribe({
+          next: (compiledQuery) => {
             this.compiledQuery = compiledQuery
             this.isCompositionsFetched = true
           },
-          () => {
+          error: () => {
             this.isCompositionsFetched = true
             this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-          }
-        )
+          },
+        })
     )
   }
 
@@ -230,16 +248,16 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     const apiModel = this.aqbModel.convertToApi()
 
     this.subscriptions.add(
-      this.aqlEditorService.buildAql(apiModel).subscribe(
-        (compiledQuery) => {
+      this.aqlEditorService.buildAql(apiModel).subscribe({
+        next: (compiledQuery) => {
           this.compiledQuery = compiledQuery
           this.getDataSet()
         },
-        (_) => {
+        error: (_) => {
           this.isDataSetLoading = false
           this.toastMessageService.openToast(COMPOSITION_LOADING_ERROR)
-        }
-      )
+        },
+      })
     )
   }
 
@@ -254,17 +272,17 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.projectService
         .executeAdHocAql(this.compiledQuery.q, this.project.id, defaultConfiguration)
-        .subscribe(
-          (resultSet) => {
+        .subscribe({
+          next: (resultSet) => {
             this.resultSet = resultSet
             this.isDataSetLoading = false
           },
-          (_err) => {
+          error: (_err) => {
             this.isDataSetLoading = false
             this.resultSet = undefined
             this.toastMessageService.openToast(RESULT_SET_LOADING_ERROR)
-          }
-        )
+          },
+        })
     )
   }
 
@@ -277,12 +295,12 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.projectService
         .exportFile(this.project.id, this.compiledQuery.q, format, defaultConfiguration)
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             downloadFile(this.project.id, format, response)
             this.isExportLoading = false
           },
-          () => {
+          error: () => {
             this.isExportLoading = false
 
             const messageConfig: IToastMessageConfig = {
@@ -293,8 +311,8 @@ export class DataExplorerComponent implements OnInit, OnDestroy {
             }
 
             this.toastMessageService.openToast(messageConfig)
-          }
-        )
+          },
+        })
     )
   }
 }

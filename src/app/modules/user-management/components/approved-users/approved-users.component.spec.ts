@@ -14,6 +14,7 @@ import { IUserFilter } from 'src/app/shared/models/user/user-filter.interface'
 import { IFilterItem } from 'src/app/shared/models/filter-chip.interface'
 import { UserFilterChipId } from '../../../../shared/models/user/user-filter-chip.enum'
 import { ApprovedUsersTableComponent } from '../approved-users-table/approved-users-table.component'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
 
 describe('ApprovedUsersComponent', () => {
   let component: ApprovedUsersComponent
@@ -43,13 +44,11 @@ describe('ApprovedUsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         ApprovedUsersComponent,
         SearchComponent,
-        StubFilterChipsComponent,
         ApprovedUsersTableComponent,
-      ],
-      imports: [
+        StubFilterChipsComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
@@ -62,7 +61,16 @@ describe('ApprovedUsersComponent', () => {
           useValue: adminService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ApprovedUsersComponent, {
+        remove: {
+          imports: [FilterChipsComponent],
+        },
+        add: {
+          imports: [StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

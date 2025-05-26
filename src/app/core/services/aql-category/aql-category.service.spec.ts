@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { AqlCategoryService } from './aql-category.service'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { mockAqlCategories, mockAqlCategory1 } from 'src/mocks/data-mocks/aql-categories.mock'
 
@@ -41,11 +41,11 @@ describe('AqlCategoryService', () => {
       expect(httpClient.get).toHaveBeenCalled()
     })
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
-      service
-        .getAllPag(0, 2, 'ASC', 'name')
-        .toPromise()
+
+      const allPag$ = service.getAllPag(0, 2, 'ASC', 'name')
+      lastValueFrom(allPag$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith(
@@ -57,14 +57,13 @@ describe('AqlCategoryService', () => {
 
   describe('When a call to getAll method comes in', () => {
     beforeEach(() => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
     })
 
     it('should call the api - with error', () => {
-      service
-        .getAll()
-        .toPromise()
+      const allAqlCategories$ = service.getAll()
+      lastValueFrom(allAqlCategories$)
         .then((_) => {})
         .catch((_) => {})
 
@@ -89,24 +88,22 @@ describe('AqlCategoryService', () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(mockAqlCategories))
     })
     it('should return with a single aql found on the backend', async () => {
-      const result = await service.get(1).toPromise()
+      const result = await lastValueFrom(service.get(1))
       expect(result.id).toEqual(1)
     })
 
     it('should return with a single aql found in memory', async () => {
-      await service.getAll().toPromise()
-      const result = await service.get(1).toPromise()
+      await lastValueFrom(service.getAll())
+      const result = await lastValueFrom(service.get(1))
       expect(result.id).toEqual(1)
     })
 
     it('should return with an not found error when not found', async () => {
-      await service
-        .get(123)
-        .toPromise()
-        .catch((error) => {
-          expect(error).toBeTruthy()
-          expect(error).toEqual(new Error('AQL category with id 123 not found'))
-        })
+      const aqlCategory$ = service.get(123)
+      await lastValueFrom(aqlCategory$).catch((error) => {
+        expect(error).toBeTruthy()
+        expect(error).toEqual(new Error('AQL category with id 123 not found'))
+      })
     })
   })
 
@@ -118,7 +115,7 @@ describe('AqlCategoryService', () => {
     })
 
     it('should call handleError on api error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.save(mockAqlCategory1).subscribe()
       expect(httpClient.post).toHaveBeenCalledWith(baseUrl, mockAqlCategory1)
@@ -136,7 +133,9 @@ describe('AqlCategoryService', () => {
 
     it('should call handleError on api error', () => {
       const aqlCategoryId = 1
-      jest.spyOn(httpClient, 'delete').mockImplementation(() => throwError('Error'))
+      jest
+        .spyOn(httpClient, 'delete')
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.delete(aqlCategoryId).subscribe()
       expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/${aqlCategoryId}`)
@@ -154,7 +153,7 @@ describe('AqlCategoryService', () => {
 
     it('should call handleError on api error', () => {
       const aqlCategoryId = 1
-      jest.spyOn(httpClient, 'put').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'put').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
       service.update(mockAqlCategory1, aqlCategoryId).subscribe()
       expect(httpClient.put).toHaveBeenCalledWith(`${baseUrl}/${aqlCategoryId}`, mockAqlCategory1)

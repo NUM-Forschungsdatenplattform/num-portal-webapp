@@ -10,7 +10,15 @@ import { MetricsComponent } from './components/metrics/metrics.component'
 import { LatestProjectsComponent } from './components/latest-projects/latest-projects.component'
 
 @NgModule({
-  declarations: [DashboardComponent, MetricsComponent, LatestProjectsComponent],
-  imports: [CommonModule, DashboardRoutingModule, SharedModule, ExtendedModule, LayoutModule],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    ExtendedModule,
+    LayoutModule,
+    DashboardComponent,
+    MetricsComponent,
+    LatestProjectsComponent,
+  ],
 })
 export class DashboardModule {}

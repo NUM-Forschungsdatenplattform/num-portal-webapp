@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { UntypedFormControl } from '@angular/forms'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
 import { AqbContainsCompositionUiModel } from '../../../../shared/models/aqb/aqb-contains-composition-ui.model'
@@ -13,11 +13,27 @@ import { IAqlBuilderDialogOutput } from 'src/app/shared/models/archetype-query-b
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { COMPILE_ERROR_CONFIG } from './constants'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { AqlBuilderTemplatesComponent } from '../aql-builder-templates/aql-builder-templates.component'
+import { AqlBuilderSelectComponent } from '../aql-builder-select/aql-builder-select.component'
+import { AqlBuilderContainsComponent } from '../aql-builder-contains/aql-builder-contains.component'
+import { AqlBuilderWhereComponent } from '../aql-builder-where/aql-builder-where.component'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-dialog-aql-builder',
   templateUrl: './dialog-aql-builder.component.html',
   styleUrls: ['./dialog-aql-builder.component.scss'],
+  imports: [
+    FlexModule,
+    AqlBuilderTemplatesComponent,
+    AqlBuilderSelectComponent,
+    AqlBuilderContainsComponent,
+    AqlBuilderWhereComponent,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class DialogAqlBuilderComponent
   implements OnInit, OnDestroy, IGenericDialog<IAqlBuilderDialogInput>
@@ -111,14 +127,14 @@ export class DialogAqlBuilderComponent
   async handleDialogConfirm(): Promise<void> {
     const aqbApiModel = this.aqbModel.convertToApi()
     try {
-      const result = await this.aqlEditorService.buildAql(aqbApiModel).toPromise()
+      const result = await lastValueFrom(this.aqlEditorService.buildAql(aqbApiModel))
       const dialogReturn: IAqlBuilderDialogOutput = {
         model: this.aqbModel,
         selectedTemplateIds: this.selectedTemplates.value,
         result,
       }
       this.closeDialog.emit(dialogReturn)
-    } catch (error) {
+    } catch (_) {
       this.toastMessageService.openToast(COMPILE_ERROR_CONFIG)
     }
   }

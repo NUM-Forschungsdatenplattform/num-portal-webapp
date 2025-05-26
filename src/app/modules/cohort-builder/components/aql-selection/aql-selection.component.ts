@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { groupBy } from 'lodash-es'
 import { combineLatest, Observable, Subscription } from 'rxjs'
 import { map, tap } from 'rxjs/operators'
@@ -14,11 +14,30 @@ import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { INFO_DIALOG_CONFIG } from './constants'
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+} from '@angular/material/expansion'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatIconButton } from '@angular/material/button'
+import { AsyncPipe } from '@angular/common'
 
 @Component({
   selector: 'num-aql-selection',
   templateUrl: './aql-selection.component.html',
   styleUrls: ['./aql-selection.component.scss'],
+  imports: [
+    MatAccordion,
+    FaIconComponent,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    FlexModule,
+    MatIconButton,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class AqlSelectionComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

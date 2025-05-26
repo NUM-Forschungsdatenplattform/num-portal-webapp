@@ -54,7 +54,7 @@ export class ProfileService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
   }
 
   setUnapproveUser(unapproved: boolean): void {

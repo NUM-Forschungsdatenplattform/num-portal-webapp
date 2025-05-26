@@ -11,8 +11,7 @@ describe('DialogAqlInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogAqlInfoComponent],
-      imports: [MaterialModule, TranslateModule.forRoot()],
+      imports: [DialogAqlInfoComponent, MaterialModule, TranslateModule.forRoot()],
     }).compileComponents()
   })
 

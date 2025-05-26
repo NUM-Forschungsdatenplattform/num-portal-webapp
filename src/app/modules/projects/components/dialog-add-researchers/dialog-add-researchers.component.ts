@@ -17,10 +17,27 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { DialogConfig } from '../../../../shared/models/dialog/dialog-config.interface'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { FilterChipsComponent } from '../../../../shared/components/filter-chips/filter-chips.component'
+import { SearchComponent } from '../../../../shared/components/search/search.component'
+import { MatCard } from '@angular/material/card'
+import { FilterTableComponent } from '../../../../shared/components/filter-table/filter-table.component'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   templateUrl: './dialog-add-researchers.component.html',
   styleUrls: ['./dialog-add-researchers.component.scss'],
+  imports: [
+    FlexModule,
+    FilterChipsComponent,
+    SearchComponent,
+    MatCard,
+    FilterTableComponent,
+    MatPaginator,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class DialogAddResearchersComponent implements OnInit, OnDestroy, IGenericDialog<IUser[]> {
   private subscriptions = new Subscription()

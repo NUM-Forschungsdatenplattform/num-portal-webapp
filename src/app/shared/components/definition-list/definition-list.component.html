@@ -1,35 +1,35 @@
 <dl>
-  <ng-container *ngFor="let dataRow of dataSource; let rowIndex = index">
+  @for (dataRow of dataSource; track dataRow; let rowIndex = $index) {
     <dt class="mat-body-strong">{{ dataRow.title | translate }}</dt>
     <dd>
-      <ng-container *ngIf="!dataRow.type || dataRow?.type === definitionType.String">{{
-        dataRow.description || '-'
-      }}</ng-container>
-
-      <ng-container *ngIf="dataRow?.type === definitionType.Array">
-        <ng-container *ngIf="dataRow?.description?.length !== 0; else emptyIterable">
-          <span class="num-display-chip" *ngFor="let chip of dataRow.description">{{
-            dataRow.title !== 'FORM.CATEGORY' ? chip : ('PROJECT.CATEGORIES.' + chip | translate)
-          }}</span>
-        </ng-container>
-      </ng-container>
-
+      @if (!dataRow.type || dataRow?.type === definitionType.String) {
+        {{ dataRow.description || '-' }}
+      }
+      @if (dataRow?.type === definitionType.Array) {
+        @if (dataRow?.description?.length !== 0) {
+          @for (chip of dataRow.description; track chip) {
+            <span class="num-display-chip">{{
+              dataRow.title !== 'FORM.CATEGORY' ? chip : ('PROJECT.CATEGORIES.' + chip | translate)
+            }}</span>
+          }
+        } @else {
+          <ng-container> - </ng-container>
+        }
+      }
       <!-- <ng-container *ngIf="dataRow?.type === definitionType.Table">
-        <ng-container *ngIf="dataRow?.description?.length > 0; else emptyIterable">
-          <num-attachments-table
-            [attachments]="dataRow?.description"
-            [isInPreview]="true"
-            [project]="dataRow.extraOptions?.project"
-            [showSelectColumn]="dataRow.extraOptions?.showAttachmentSelects"
-          ></num-attachments-table>
-        </ng-container>
-      </ng-container> -->
-
-      <ng-container *ngIf="dataRow?.type === definitionType.Date">{{
-        dataRow.description | date: 'dd.MM.yyyy' || '-'
-      }}</ng-container>
-
-      <ng-container *ngIf="dataRow?.type === definitionType.Boolean">
+      <ng-container *ngIf="dataRow?.description?.length > 0; else emptyIterable">
+        <num-attachments-table
+          [attachments]="dataRow?.description"
+          [isInPreview]="true"
+          [project]="dataRow.extraOptions?.project"
+          [showSelectColumn]="dataRow.extraOptions?.showAttachmentSelects"
+        ></num-attachments-table>
+      </ng-container>
+    </ng-container> -->
+      @if (dataRow?.type === definitionType.Date) {
+        {{ dataRow.description | date: 'dd.MM.yyyy' || '-' }}
+      }
+      @if (dataRow?.type === definitionType.Boolean) {
         <div fxLayout="row" fxLayoutAlign="flex-start center">
           <fa-icon
             [icon]="dataRow.description ? 'check' : 'times'"
@@ -41,11 +41,7 @@
             {{ dataRow.description ? ('FORM.YES' | translate) : ('FORM.NO' | translate) }}
           </p>
         </div>
-      </ng-container>
+      }
     </dd>
-  </ng-container>
+  }
 </dl>
-
-<ng-template #emptyIterable>
-  <ng-container> - </ng-container>
-</ng-template>

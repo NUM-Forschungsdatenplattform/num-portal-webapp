@@ -1,0 +1,9 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin mat-dialog_themed() {
+  .mat-mdc-dialog-title {
+    --mdc-dialog-subhead-size: 16px;
+    --mdc-dialog-subhead-weight: 400;
+  }
+}

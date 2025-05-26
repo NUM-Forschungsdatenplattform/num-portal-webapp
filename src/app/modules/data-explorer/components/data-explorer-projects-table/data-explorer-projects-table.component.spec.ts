@@ -2,7 +2,6 @@ import { Pipe, PipeTransform } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject } from 'rxjs'
@@ -13,6 +12,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 
 import { DataExplorerProjectsTableComponent } from './data-explorer-projects-table.component'
 import { MatSort } from '@angular/material/sort'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('DataExplorerProjectsTableComponent', () => {
   let component: DataExplorerProjectsTableComponent
@@ -34,14 +34,14 @@ describe('DataExplorerProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataExplorerProjectsTableComponent, MockLocalizedDatePipe],
       imports: [
+        DataExplorerProjectsTableComponent,
+        MockLocalizedDatePipe,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
         PipesModule,
         FontAwesomeTestingModule,
-        RouterTestingModule.withRoutes([]),
       ],
       providers: [
         {
@@ -49,7 +49,16 @@ describe('DataExplorerProjectsTableComponent', () => {
           useValue: projectService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(DataExplorerProjectsTableComponent, {
+        remove: {
+          imports: [LocalizedDatePipe],
+        },
+        add: {
+          imports: [MockLocalizedDatePipe],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

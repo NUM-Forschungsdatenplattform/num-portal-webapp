@@ -30,7 +30,7 @@ describe('AppConfigService', () => {
     })
 
     it('rejects with an error on error', async () => {
-      jest.spyOn(httpClient, 'get').mockReturnValue(throwError(new Error('Error')))
+      jest.spyOn(httpClient, 'get').mockReturnValue(throwError(() => new Error('Error')))
       appConfigService
         .loadConfig()
         .catch((error) => {

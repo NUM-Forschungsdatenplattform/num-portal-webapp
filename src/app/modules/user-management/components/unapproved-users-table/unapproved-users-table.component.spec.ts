@@ -18,6 +18,7 @@ import { mockUserProfile1, mockUserProfile3 } from 'src/mocks/data-mocks/user-pr
 import { Pipe, PipeTransform } from '@angular/core'
 import { PipesModule } from 'src/app/shared/pipes/pipes.module'
 import { MatSort } from '@angular/material/sort'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('UnapprovedUsersTableComponent', () => {
   let component: UnapprovedUsersTableComponent
@@ -55,8 +56,9 @@ describe('UnapprovedUsersTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UnapprovedUsersTableComponent, StubLocalizedDatePipe],
       imports: [
+        UnapprovedUsersTableComponent,
+        StubLocalizedDatePipe,
         MaterialModule,
         NoopAnimationsModule,
         FontAwesomeTestingModule,
@@ -74,7 +76,16 @@ describe('UnapprovedUsersTableComponent', () => {
           useValue: profileService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(UnapprovedUsersTableComponent, {
+        remove: {
+          imports: [LocalizedDatePipe],
+        },
+        add: {
+          imports: [StubLocalizedDatePipe],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

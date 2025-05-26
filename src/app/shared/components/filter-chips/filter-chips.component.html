@@ -1,12 +1,13 @@
 <label for="filter-chips">{{ 'FORM.FILTER' | translate }}</label>
 <mat-chip-listbox id="filter-chips" aria-label="Filter" [multiple]="multiSelect">
-  <mat-chip-option
-    color="primary"
-    *ngFor="let chip of filterChips"
-    (click)="handleClickOnChip(chip)"
-    [selected]="chip.isSelected"
-    [attr.data-test]="'generic-filter-chip__' + chip.title"
-  >
-    {{ chip.title | translate }}
-  </mat-chip-option>
+  @for (chip of filterChips; track chip) {
+    <mat-chip-option
+      color="primary"
+      (click)="handleClickOnChip(chip)"
+      [selected]="chip.isSelected"
+      [attr.data-test]="'generic-filter-chip__' + chip.title"
+    >
+      {{ chip.title | translate }}
+    </mat-chip-option>
+  }
 </mat-chip-listbox>

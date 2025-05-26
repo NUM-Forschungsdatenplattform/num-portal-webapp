@@ -14,8 +14,9 @@ describe('DialogEditWelcomeCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogEditWelcomeCardComponent, ButtonComponent],
       imports: [
+        DialogEditWelcomeCardComponent,
+        ButtonComponent,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
         MaterialModule,

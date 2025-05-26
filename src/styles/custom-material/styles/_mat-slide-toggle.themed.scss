@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../themes/colors/accent-theme.palette' as accent-collor-palette;
+@use '../../themes/colors/additional-theme.palette' as additional-collor-palette;
+
+@mixin mat-slide-toggle_themed() {
+  $accent: accent-collor-palette.$num-accent-palette;
+  $additional: additional-collor-palette.$num-additional-palette;
+
+  @include mat.slide-toggle-overrides(
+    (
+      selected-icon-color: map.get($additional, white),
+      selected-track-color: map.get($accent, 300),
+      selected-hover-track-color: map.get($accent, 300),
+      selected-focus-track-color: map.get($accent, 300),
+      selected-handle-color: map.get($accent, 600),
+      selected-hover-handle-color: map.get($accent, 600),
+      selected-focus-handle-color: map.get($accent, 600),
+      unselected-icon-color: map.get($additional, white),
+      unselected-track-color: map.get($additional, lighter-grey),
+      unselected-hover-track-color: map.get($additional, lighter-grey),
+      unselected-focus-track-color: map.get($additional, lighter-grey),
+      unselected-handle-color: map.get($additional, mid-grey),
+      unselected-hover-handle-color: map.get($additional, black),
+      unselected-focus-handle-color: map.get($additional, black),
+    )
+  );
+}

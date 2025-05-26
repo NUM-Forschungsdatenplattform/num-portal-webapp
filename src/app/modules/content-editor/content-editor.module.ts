@@ -10,13 +10,16 @@ import { WelcomePageItemComponent } from './components/welcome-page-item/welcome
 import { DialogEditWelcomeCardComponent } from './components/dialog-edit-welcome-card/dialog-edit-welcome-card.component'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    ContentEditorRoutingModule,
+    SharedModule,
+    LayoutModule,
     WelcomePageEditorComponent,
     NavigationEditorComponent,
     NavigationEditorItemComponent,
     WelcomePageItemComponent,
     DialogEditWelcomeCardComponent,
   ],
-  imports: [CommonModule, ContentEditorRoutingModule, SharedModule, LayoutModule],
 })
 export class ContentEditorModule {}

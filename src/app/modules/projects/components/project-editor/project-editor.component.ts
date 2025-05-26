@@ -11,7 +11,7 @@ import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { IProjectResolved } from '../../models/project-resolved.interface'
 import { AdminService } from 'src/app/core/services/admin/admin.service'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { of, Subscription } from 'rxjs'
+import { lastValueFrom, of, Subscription } from 'rxjs'
 import { PossibleProjectEditorMode } from 'src/app/shared/models/project/possible-project-editor-mode.enum'
 import { IProjectComment } from 'src/app/shared/models/project/project-comment.interface'
 import { ApprovalOption } from '../../models/approval-option.enum'
@@ -22,16 +22,29 @@ import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { ConnectorNodeType } from '../../../../shared/models/connector-node-type.enum'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { DefinitionType } from 'src/app/shared/models/definition-type.enum'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ProjectEditorAccordionComponent } from '../project-editor-accordion/project-editor-accordion.component'
+import { ProjectEditorCommentsComponent } from '../project-editor-comments/project-editor-comments.component'
+import { ProjectEditorApprovalComponent } from '../project-editor-approval/project-editor-approval.component'
+import { ProjectEditorButtonsComponent } from '../project-editor-buttons/project-editor-buttons.component'
 
 @Component({
   selector: 'num-project-editor',
   templateUrl: './project-editor.component.html',
   styleUrls: ['./project-editor.component.scss'],
+  imports: [
+    FlexModule,
+    ProjectEditorAccordionComponent,
+    ProjectEditorCommentsComponent,
+    ProjectEditorApprovalComponent,
+    ProjectEditorButtonsComponent,
+    TranslatePipe,
+  ],
 })
 export class ProjectEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
@@ -108,7 +121,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
       defaultMessage: 'PROJECT.HITS.MESSAGE_SET_ALL_PARAMETERS',
     }
     this.profileService.get().subscribe((user) => {
-      this.isUserProjectAdmin = user.id === this.project.coordinator?.id ?? false
+      this.isUserProjectAdmin = user.id === this.project.coordinator?.id ? true : false
     })
 
     this.subscriptions.add(
@@ -246,17 +259,17 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
 
   saveCohort(cohort: ICohortApi): Promise<ICohortApi> {
     if (cohort.id === null || cohort.id === undefined) {
-      return this.cohortService.create(cohort).toPromise()
+      return lastValueFrom(this.cohortService.create(cohort))
     } else {
-      return this.cohortService.update(cohort, cohort.id).toPromise()
+      return lastValueFrom(this.cohortService.update(cohort, cohort.id))
     }
   }
 
   saveProject(project: IProjectApi): Promise<IProjectApi> {
     if (project.id === null || project.id === undefined) {
-      return this.projectService.create(project).toPromise()
+      return lastValueFrom(this.projectService.create(project))
     } else {
-      return this.projectService.update(project, project.id).toPromise()
+      return lastValueFrom(this.projectService.update(project, project.id))
     }
   }
 
@@ -284,7 +297,7 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         type: ToastMessageType.Success,
         message: 'PROJECT.SAVE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.project.status = this.savedProjectStatus
       this.toast.openToast({
         type: ToastMessageType.Error,
@@ -345,8 +358,8 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         }),
         catchError((error) => {
           // TODO: Show message to user
-          console.log(error)
-          return of(error)
+          console.log(error.message)
+          return of(error.message)
         })
       )
       .subscribe()
@@ -392,12 +405,10 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
         const usedOutsideEu = this.projectForm.get('usedOutsideEu').value
 
         try {
-          await this.cohortService
-            .getSize(cohort.cohortGroup, usedOutsideEu)
-            .toPromise()
-            .then((result) => {
-              this.updateDetermineHits(result, '')
-            })
+          const cohortSize$ = this.cohortService.getSize(cohort.cohortGroup, usedOutsideEu)
+          await lastValueFrom(cohortSize$).then((result) => {
+            this.updateDetermineHits(result, '')
+          })
         } catch (error) {
           if (error.status === 451) {
             // *** Error 451 means too few hits ***
@@ -421,15 +432,15 @@ export class ProjectEditorComponent implements OnInit, OnDestroy {
     this.isExportLoading = true
 
     this.subscriptions.add(
-      this.projectService.exportPrint(this.project.id, currentLang).subscribe(
-        (response) => {
+      this.projectService.exportPrint(this.project.id, currentLang).subscribe({
+        next: (response) => {
           downloadFile(`${this.project.id}_${currentLang}`, 'txt', response)
           this.isExportLoading = false
         },
-        () => {
+        error: () => {
           this.isExportLoading = false
-        }
-      )
+        },
+      })
     )
   }
 

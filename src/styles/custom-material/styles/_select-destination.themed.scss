@@ -1,6 +1,9 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 @mixin select-destination_themed($theme) {
-  $accent: map-get($theme, accent);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
 
   $width: 20px;
   $height: 40px;
@@ -8,7 +11,7 @@
   .num-select-flag {
     width: $width;
     height: $height;
-    background: mat-color($additional, light-grey);
+    background: mat.m2-get-color-from-palette($additional, light-grey);
     float: left;
     margin-left: -$width;
     border-top-left-radius: 10px;
@@ -19,13 +22,13 @@
     font-size: 14px;
 
     &:focus {
-      outline: solid 2px mat-color($accent, 500);
+      outline: solid 2px mat.m2-get-color-from-palette($accent, 500);
     }
 
     &--active,
     &:active {
       outline: none !important;
-      background: mat-color($accent, 500);
+      background: mat.m2-get-color-from-palette($accent, 500);
     }
 
     &--disabled {
@@ -37,7 +40,7 @@
     outline-offset: -1px;
     outline-width: 1px;
     outline-style: solid;
-    outline-color: mat-color($additional, light-grey);
+    outline-color: mat.m2-get-color-from-palette($additional, light-grey);
     padding: 20px;
     width: 100%;
     min-height: 200px;
@@ -48,11 +51,11 @@
     }
 
     &.contains {
-      outline-color: mat-color($additional, mid-grey);
+      outline-color: mat.m2-get-color-from-palette($additional, mid-grey);
     }
 
     &--active {
-      outline-color: mat-color($accent, 500);
+      outline-color: mat.m2-get-color-from-palette($accent, 500);
       outline-width: 2px;
       outline-offset: -2px;
     }

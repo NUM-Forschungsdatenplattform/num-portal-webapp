@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../themes/colors/additional-theme.palette' as additional-collor-palette;
+
+@mixin mat-card_themed() {
+  $additional: additional-collor-palette.$num-additional-palette;
+
+  @include mat.card-overrides(
+    (
+      elevated-container-color: map.get($additional, white),
+      elevated-container-elevation: 0px 1px 3px rgba(0, 0, 0, 0.2),
+    )
+  );
+}

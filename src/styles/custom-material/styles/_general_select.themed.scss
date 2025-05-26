@@ -1,18 +1,47 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 @mixin general_select_themed($theme) {
-  $accent: map-get($theme, accent);
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
+
+  .mat-mdc-select-panel {
+    background-color: mat.m2-get-color-from-palette($additional, white) !important;
+    backdrop-filter: none;
+  }
 
   .mat-mdc-option {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0px;
+    line-height: 20px;
+
     &--active,
     &--selected {
-      background: mat-color($accent, 50);
+      background: mat.m2-get-color-from-palette($accent, 50);
     }
 
     &:hover {
-      background: mat-color($accent, 100) !important;
+      background: mat.m2-get-color-from-palette($accent, 100) !important;
     }
+  }
 
-    &:focus {
-      background: mat-color($accent, 200) !important;
-    }
+  .mat-mdc-option.mdc-list-item--selected {
+    color: mat.m2-get-color-from-palette($primary, 400);
+  }
+
+  .mat-mdc-select-trigger {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: mat.m2-get-color-from-palette($additional, light-grey-contrast);
+  }
+
+  .mdc-text-field--filled {
+    --mdc-filled-text-field-container-color: #{map.get($additional, lighter-grey)};
+    --mdc-filled-text-field-label-text-size: 16px;
+    --mdc-filled-text-field-label-text-weight: 400;
+    --mdc-filled-text-field-label-text-tracking: 0.5px;
   }
 }

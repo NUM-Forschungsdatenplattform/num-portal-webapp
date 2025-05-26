@@ -14,6 +14,7 @@ import { mockCohortPreviewData } from 'src/mocks/data-mocks/cohort-graph.mock'
 import { VerticalBarChartHarness } from '../vertical-bar-chart/testing/vertical-bar-chart.harness'
 
 import { CohortGraphsComponent } from './cohort-graphs.component'
+import { VerticalBarChartComponent } from '../vertical-bar-chart/vertical-bar-chart.component'
 
 describe('CohortGraphsComponent', () => {
   let component: CohortGraphsComponent
@@ -42,15 +43,29 @@ describe('CohortGraphsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CohortGraphsComponent, VerticalBarChartComponentStub],
-      imports: [MatDividerModule, SharedModule, TranslateModule.forRoot()],
+      imports: [
+        CohortGraphsComponent,
+        VerticalBarChartComponentStub,
+        MatDividerModule,
+        SharedModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AuthService,
           useValue: authService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(CohortGraphsComponent, {
+        remove: {
+          imports: [VerticalBarChartComponent],
+        },
+        add: {
+          imports: [VerticalBarChartComponentStub],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

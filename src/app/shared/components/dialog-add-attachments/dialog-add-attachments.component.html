@@ -13,10 +13,11 @@
   </mat-form-field>
 </form>
 
-<mat-progress-bar
-  *ngIf="(uploadProgress$ | async).status === attachmentUploadStatus.IN_PROGRESS"
-  mode="determinate"
-  [value]="(uploadProgress$ | async).percentage"
-></mat-progress-bar>
+@if ((uploadProgress$ | async).status === attachmentUploadStatus.IN_PROGRESS) {
+  <mat-progress-bar
+    mode="determinate"
+    [value]="(uploadProgress$ | async).percentage"
+  ></mat-progress-bar>
+}
 
 <input #fileInput accept=".pdf" type="file" hidden (change)="handleFileSelect($event)" />

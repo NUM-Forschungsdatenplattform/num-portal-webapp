@@ -90,6 +90,6 @@ export class TemplateService {
   }
 
   handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError(error)
+    return throwError(() => error)
   }
 }

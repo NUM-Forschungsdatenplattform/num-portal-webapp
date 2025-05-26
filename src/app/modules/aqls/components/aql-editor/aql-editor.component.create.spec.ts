@@ -8,7 +8,6 @@ import { MaterialModule } from 'src/app/layout/material/material.module'
 import { ButtonComponent } from 'src/app/shared/components/button/button.component'
 import { AqlEditorUiModel } from 'src/app/shared/models/aql/aql-editor-ui.model'
 import { IAqlResolved } from '../../models/aql-resolved.interface'
-import { RouterTestingModule } from '@angular/router/testing'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { AqlEditorComponent } from './aql-editor.component'
 import { of, Subject, throwError } from 'rxjs'
@@ -20,6 +19,8 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { mockAqlCategories } from 'src/mocks/data-mocks/aql-categories.mock'
+import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
+import { AqlEditorGeneralInfoComponent } from '../aql-editor-general-info/aql-editor-general-info.component'
 
 describe('AqlEditorComponent', () => {
   let component: AqlEditorComponent
@@ -80,18 +81,15 @@ describe('AqlEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         AqlEditorComponent,
-        StubGeneralInfoComponent,
-        StubEditorCreatorComponent,
         ButtonComponent,
         UserHasRoleStubDirective,
-      ],
-      imports: [
+        StubGeneralInfoComponent,
+        StubEditorCreatorComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,
-        RouterTestingModule,
         NoopAnimationsModule,
       ],
       providers: [
@@ -116,7 +114,16 @@ describe('AqlEditorComponent', () => {
           useValue: mockToast,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlEditorComponent, {
+        remove: {
+          imports: [AqlEditorGeneralInfoComponent, AqlEditorCeatorComponent],
+        },
+        add: {
+          imports: [StubGeneralInfoComponent, StubEditorCreatorComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -189,7 +196,9 @@ describe('AqlEditorComponent', () => {
     })
 
     it('should call the AQL save method with error', async () => {
-      jest.spyOn(aqlService, 'save').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(aqlService, 'save')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
       component.save().then(() => {
         expect(aqlService.save).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({
@@ -217,7 +226,9 @@ describe('AqlEditorComponent', () => {
       })
     })
     it('should call the AQL update method with error', async () => {
-      jest.spyOn(aqlService, 'update').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(aqlService, 'update')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
       component.update().then(() => {
         expect(aqlService.update).toHaveBeenCalledTimes(1)
         expect(mockToast.openToast).toHaveBeenCalledWith({

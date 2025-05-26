@@ -11,6 +11,10 @@ import { IDefinitionList } from '../../../../shared/models/definition-list.inter
 import { ProjectAttachmentUiModel } from '../../../../shared/models/project/project-attachment-ui.model'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { mockProject2 } from 'src/mocks/data-mocks/project.mock'
+import { AttachmentsTableComponent } from 'src/app/shared/components/attachments-table/attachments-table.component'
+import { DefinitionListComponent } from 'src/app/shared/components/definition-list/definition-list.component'
+import { ProjectEditorGeneralInfoCategoriesInputComponent } from '../project-editor-general-info-categories-input/project-editor-general-info-categories-input.component'
+import { ProjectEditorGeneralInfoKeywordsInputComponent } from '../project-editor-general-info-keywords-input/project-editor-general-info-keywords-input.component'
 
 describe('ProjectEditorGeneralInfoComponent', () => {
   let component: ProjectEditorGeneralInfoComponent
@@ -22,12 +26,12 @@ describe('ProjectEditorGeneralInfoComponent', () => {
   }
 
   @Component({ selector: 'num-project-editor-general-info-keywords-input', template: '' })
-  class ProjectEditorGeneralInfoKeywordsInputComponent {
+  class ProjectEditorGeneralInfoKeywordsInputStubComponent {
     @Input() form: FormGroup
   }
 
   @Component({ selector: 'num-project-editor-general-info-categories-input', template: '' })
-  class ProjectEditorGeneralInfoCategoriesInputComponent {
+  class ProjectEditorGeneralInfoCategoriesInputStubComponent {
     @Input() form: FormGroup
   }
 
@@ -44,21 +48,38 @@ describe('ProjectEditorGeneralInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        ProjectEditorGeneralInfoComponent,
-        DefinitionListStubComponent,
-        ProjectEditorGeneralInfoKeywordsInputComponent,
-        ProjectEditorGeneralInfoCategoriesInputComponent,
-        AttachmentsTableStubComponent,
-      ],
       imports: [
+        ProjectEditorGeneralInfoComponent,
+        ProjectEditorGeneralInfoKeywordsInputStubComponent,
+        ProjectEditorGeneralInfoCategoriesInputStubComponent,
+        DefinitionListStubComponent,
+        AttachmentsTableStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorGeneralInfoComponent, {
+        remove: {
+          imports: [
+            ProjectEditorGeneralInfoKeywordsInputComponent,
+            ProjectEditorGeneralInfoCategoriesInputComponent,
+            DefinitionListComponent,
+            AttachmentsTableComponent,
+          ],
+        },
+        add: {
+          imports: [
+            ProjectEditorGeneralInfoKeywordsInputStubComponent,
+            ProjectEditorGeneralInfoCategoriesInputStubComponent,
+            DefinitionListStubComponent,
+            AttachmentsTableStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

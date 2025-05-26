@@ -24,8 +24,11 @@ import {
   VALIDATION_ERROR_CONFIG,
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
+import { HttpErrorResponse } from '@angular/common/http'
+import { CodeEditorComponent } from 'src/app/modules/code-editor/components/code-editor/code-editor.component'
+import { EditorDetermineHitsComponent } from 'src/app/shared/components/editor-determine-hits/editor-determine-hits.component'
+import { UserHasRoleDirective } from 'src/app/shared/directives/user-has-role.directive'
 
-/* eslint-disable @typescript-eslint/naming-convention */
 describe('AqlEditorCreatorComponent', () => {
   let component: AqlEditorCreatorComponent
   let fixture: ComponentFixture<AqlEditorCreatorComponent>
@@ -110,21 +113,36 @@ describe('AqlEditorCreatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         AqlEditorCreatorComponent,
-        CodeEditorStubComponent,
         ButtonComponent,
-        EditorDetermineHitsStubComponent,
         UserHasRoleStubDirective,
+        CodeEditorStubComponent,
+        EditorDetermineHitsStubComponent,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
       ],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
       providers: [
         { provide: DialogService, useValue: mockDialogService },
         { provide: AqlEditorService, useValue: mockAqlEditorService },
         { provide: AqlService, useValue: mockAqlService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlEditorCreatorComponent, {
+        remove: {
+          imports: [UserHasRoleDirective, CodeEditorComponent, EditorDetermineHitsComponent],
+        },
+        add: {
+          imports: [
+            UserHasRoleStubDirective,
+            CodeEditorStubComponent,
+            EditorDetermineHitsStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -276,7 +294,7 @@ describe('AqlEditorCreatorComponent', () => {
     it('should display an error message to the user and return false', async () => {
       jest
         .spyOn(mockAqlEditorService, 'validateAql')
-        .mockImplementationOnce(() => throwError('error'))
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
 
       const result = await component.validate()
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(VALIDATION_ERROR_CONFIG)
@@ -294,7 +312,12 @@ describe('AqlEditorCreatorComponent', () => {
     })
 
     it('should display the too few hits error when it occurs', async () => {
-      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 451 }))
+      const mockTooFewHitsErr = {
+        status: 451,
+      }
+      jest
+        .spyOn(mockAqlService, 'getSize')
+        .mockImplementation(() => throwError(() => mockTooFewHitsErr))
       component.aqlQuery = 'test'
       await component.determineHits()
       expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
@@ -303,14 +326,13 @@ describe('AqlEditorCreatorComponent', () => {
     })
 
     it('should display the validation error when it occurs', async () => {
-      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
-        throwError({
-          status: 400,
-          error: {
-            errors: [JSON.stringify(validationResponse)],
-          },
-        })
-      )
+      const mockErr = {
+        status: 400,
+        error: {
+          errors: [JSON.stringify(validationResponse)],
+        },
+      }
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError(() => mockErr))
       component.aqlQuery = 'test'
       await component.determineHits()
       expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
@@ -320,12 +342,15 @@ describe('AqlEditorCreatorComponent', () => {
 
     it('should display the generic error when a 400 is not caused by validation', async () => {
       jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
-        throwError({
-          status: 400,
-          error: {
-            errors: [JSON.stringify({ valid: true })],
-          },
-        })
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              status: 400,
+              error: {
+                errors: [JSON.stringify({ valid: true })],
+              },
+            })
+        )
       )
       component.aqlQuery = 'test'
       await component.determineHits()
@@ -335,7 +360,14 @@ describe('AqlEditorCreatorComponent', () => {
     })
 
     it('should display the generic error when a 400 is not caused by validation', async () => {
-      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 400 }))
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              status: 400,
+            })
+        )
+      )
       component.aqlQuery = 'test'
       await component.determineHits()
       expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)
@@ -344,7 +376,14 @@ describe('AqlEditorCreatorComponent', () => {
     })
 
     it('should display the generic error when a unknown error occurs', async () => {
-      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() => throwError({ status: 500 }))
+      jest.spyOn(mockAqlService, 'getSize').mockImplementation(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              status: 500,
+            })
+        )
+      )
       component.aqlQuery = 'test'
       await component.determineHits()
       expect(mockAqlService.getSize).toHaveBeenCalledTimes(1)

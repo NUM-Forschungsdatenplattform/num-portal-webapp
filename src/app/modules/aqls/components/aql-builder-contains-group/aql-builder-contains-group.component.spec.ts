@@ -26,14 +26,12 @@ describe('AqlBuilderContainsGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         AqlBuilderContainsGroupComponent,
-        ContainsItemStubComponent,
         ButtonComponent,
         ArchetypePipe,
         GroupIndexPipe,
-      ],
-      imports: [
+        ContainsItemStubComponent,
         MaterialModule,
         TranslateModule.forRoot(),
         FontAwesomeTestingModule,

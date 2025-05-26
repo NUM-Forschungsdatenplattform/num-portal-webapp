@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
@@ -61,7 +61,7 @@ describe('CohortService', () => {
           body: mockCohortGroup,
         }
 
-        const result = await service.getSize(mockCohortGroup, allowUsageOutsideEu).toPromise()
+        const result = await lastValueFrom(service.getSize(mockCohortGroup, allowUsageOutsideEu))
 
         expect(httpClient.post).toHaveBeenCalledWith(request.url, request.body)
         expect(result).toEqual(cohortSize)
@@ -69,7 +69,7 @@ describe('CohortService', () => {
     )
 
     it('should call the api and handle erros', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
 
       service.getSize(mockCohortGroup).subscribe()
 
@@ -115,7 +115,9 @@ describe('CohortService', () => {
     })
 
     it('should call the api and handle errors if they occur', () => {
-      jest.spyOn(httpClient, 'put').mockImplementationOnce(() => throwError('Not today'))
+      jest
+        .spyOn(httpClient, 'put')
+        .mockImplementationOnce(() => throwError(() => new Error('Not today')))
       service.update(mockCohort, id).subscribe()
       expect(httpClient.put).toHaveBeenCalledWith(request.url, request.body)
       expect(service.handleError).toHaveBeenCalledTimes(1)

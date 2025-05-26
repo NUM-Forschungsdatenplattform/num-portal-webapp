@@ -10,6 +10,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { Component, Input } from '@angular/core'
 import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
+import { AddTemplatesComponent } from '../add-templates/add-templates.component'
 
 @Component({ selector: 'num-add-templates', template: '' })
 class StubAddTemplatesComponent {
@@ -23,15 +24,26 @@ describe('ProjectEditorTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorTemplatesComponent, ButtonComponent, StubAddTemplatesComponent],
       imports: [
+        ProjectEditorTemplatesComponent,
+        ButtonComponent,
+        StubAddTemplatesComponent,
         NoopAnimationsModule,
         MaterialModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
         FormsModule,
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorTemplatesComponent, {
+        remove: {
+          imports: [AddTemplatesComponent],
+        },
+        add: {
+          imports: [StubAddTemplatesComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

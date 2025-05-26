@@ -30,13 +30,11 @@
           [(value)]="selectedClinic"
           data-test="charts__clinic__selector"
         >
-          <mat-option
-            *ngFor="let clinic of clinics"
-            [value]="clinic"
-            [attr.data-test]="'charts__select-clinic__' + clinic"
-          >
-            {{ clinic }}
-          </mat-option>
+          @for (clinic of clinics; track clinic) {
+            <mat-option [value]="clinic" [attr.data-test]="'charts__select-clinic__' + clinic">
+              {{ clinic }}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <num-bar-chart [chartData]="chartSofaScore"> </num-bar-chart>

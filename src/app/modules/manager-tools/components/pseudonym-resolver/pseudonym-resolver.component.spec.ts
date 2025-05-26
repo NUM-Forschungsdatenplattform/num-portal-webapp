@@ -26,8 +26,9 @@ describe('PseudonymResolverComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PseudonymResolverComponent, ButtonComponent],
       imports: [
+        PseudonymResolverComponent,
+        ButtonComponent,
         MaterialModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -91,7 +92,7 @@ describe('PseudonymResolverComponent', () => {
     it('should display the error message if the service fails to resolve', () => {
       jest
         .spyOn(mockManagerService, 'resolvePseudonym')
-        .mockImplementation(() => throwError('Error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       component.resolvePseudonym()
       expect(mockManagerService.resolvePseudonym).toHaveBeenCalledWith(projectId, pseudonym)
       expect(mockToastMessageService.openToast).toHaveBeenCalledWith(RESOLVE_ERROR_CONFIG)

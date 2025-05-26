@@ -9,17 +9,48 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core'
-import { MatTableDataSource } from '@angular/material/table'
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
 import { Subscription } from 'rxjs'
 import { TemplateService } from 'src/app/core/services/template/template.service'
 import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-template-info-api.interface'
 import { ITemplateMetaDataApi } from 'src/app/shared/models/template/template-api.interface'
 import { MatPaginator } from '@angular/material/paginator'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-add-templates-filter-table',
   templateUrl: './add-templates-filter-table.component.html',
   styleUrls: ['./add-templates-filter-table.component.scss'],
+  imports: [
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TranslatePipe,
+  ],
 })
 export class AddTemplatesFilterTableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription()

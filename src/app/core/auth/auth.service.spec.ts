@@ -9,6 +9,7 @@ import { IAuthUserProfile } from 'src/app/shared/models/user/auth-user-profile.i
 import { mockOAuthUser } from 'src/mocks/data-mocks/admin.mock'
 import { ProfileService } from '../services/profile/profile.service'
 import { AuthService } from './auth.service'
+import { EventEmitter } from '@angular/core'
 
 describe('Auth Service', () => {
   let authService: AuthService
@@ -50,7 +51,7 @@ describe('Auth Service', () => {
     setInterrupts: () => jest.fn(),
     setTimeoutTime: () => jest.fn(),
     onIdleEnd: { subscribe: () => {} },
-    onTimeout: { subscribe: () => {} },
+    onTimeout: new EventEmitter<number>(),
   } as unknown as Idle
 
   const keepAlive = {
@@ -117,19 +118,20 @@ describe('Auth Service', () => {
 
   describe('When createUser is called with error', () => {
     it('createUser called with error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       authService.createUser('test')
     })
   })
 
-  describe('When the user wants goes afk idle process should be used', () => {
-    it('Should call the resetIdle method, than logout', () => {
-      jest.spyOn(authService, 'initIdle')
+  describe('When the user goes afk the idle process should be used', () => {
+    it('Should call the clearUserInfo method, then logout when the idle process times out', () => {
       jest.spyOn(authService, 'logout')
-      idle.setIdleTime(1)
-      idle.setTimeoutTime(1)
-      expect(authService.resetIdle).toHaveBeenCalled
-      expect(oauthService.logOut).toHaveBeenCalled
+      const authServiceClearUserSpy = jest.spyOn(AuthService.prototype as any, 'clearUserInfo')
+      jest.spyOn(oauthService, 'logOut')
+      idle.onTimeout.emit(1)
+      expect(oauthService.logOut).toHaveBeenCalled()
+      expect(authServiceClearUserSpy).toHaveBeenCalled()
+      expect(authService.logout).toHaveBeenCalled()
     })
   })
 

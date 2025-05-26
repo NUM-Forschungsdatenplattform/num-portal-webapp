@@ -1,14 +1,17 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { cloneDeep } from 'lodash-es'
 import { Subscription } from 'rxjs'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { IGenericDialog } from 'src/app/shared/models/generic-dialog.interface'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatDivider } from '@angular/material/list'
 
 @Component({
   selector: 'num-dialog-aql-info',
   templateUrl: './dialog-aql-info.component.html',
   styleUrls: ['./dialog-aql-info.component.scss'],
+  imports: [FlexModule, MatDivider, TranslatePipe],
 })
 export class DialogAqlInfoComponent implements OnInit, OnDestroy, IGenericDialog<AqlUiModel> {
   private readonly OPERATOR_SUFFIX = '__OPERATOR'

@@ -8,11 +8,25 @@ import { IProjectTemplateInfoApi } from 'src/app/shared/models/project/project-t
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { ADD_DIALOG_CONFIG } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatProgressSpinner } from '@angular/material/progress-spinner'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-add-templates',
   templateUrl: './add-templates.component.html',
   styleUrls: ['./add-templates.component.scss'],
+  imports: [
+    FlexModule,
+    MatProgressSpinner,
+    MatIconButton,
+    FaIconComponent,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class AddTemplatesComponent {
   constructor(
@@ -53,18 +67,18 @@ export class AddTemplatesComponent {
     this.hitCounter = {}
     const { cohortGroup } = this.project.convertToApiInterface()
     const templateIds = this.project.templates.map((template) => template.templateId)
-    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe(
-      (result) => {
+    this.cohortService.getSizeForTemplates(cohortGroup, templateIds).subscribe({
+      next: (result) => {
         this.isHitCounterLoading = false
         this.hitCounter = result
       },
-      (_) => {
+      error: (_) => {
         this.isHitCounterLoading = false
         this.toastMessageService.openToast({
           type: ToastMessageType.Error,
           message: 'PROJECT.HITS.MESSAGE_ERROR_MESSAGE',
         })
-      }
-    )
+      },
+    })
   }
 }

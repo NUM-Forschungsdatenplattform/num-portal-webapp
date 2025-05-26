@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { AppConfigService } from 'src/app/config/app-config.service'
 
 import { ManagerService } from './manager.service'
@@ -36,7 +36,7 @@ describe('ManagerService', () => {
 
     it('should call the api with the projectId and pseudonym', async () => {
       jest.spyOn(httpClient, 'get').mockImplementation(() => of(resolvedValue))
-      const result = await service.resolvePseudonym(projectId, pseudonym).toPromise()
+      const result = await lastValueFrom(service.resolvePseudonym(projectId, pseudonym))
       expect(httpClient.get).toHaveBeenCalledWith(
         `${appConfig.config.api.baseUrl}/project/${projectId}/resolve/${pseudonym}`,
         { responseType: 'text' }
@@ -45,11 +45,10 @@ describe('ManagerService', () => {
     })
 
     it('should call the api and handle errors', (done) => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
 
-      service
-        .resolvePseudonym(projectId, pseudonym)
-        .toPromise()
+      const resolvePseudonym$ = service.resolvePseudonym(projectId, pseudonym)
+      lastValueFrom(resolvePseudonym$)
         .then(() => {
           // Nothing here, we just need the catch
         })

@@ -13,6 +13,7 @@ import { mockNavigationLinks } from 'src/mocks/data-mocks/navigation-links.mock'
 import { SAVE_NAVIGATION_ERROR_CONFIG, SAVE_NAVIGATION_SUCCESS_CONFIG } from './constants'
 
 import { NavigationEditorComponent } from './navigation-editor.component'
+import { NavigationEditorItemComponent } from '../navigation-editor-item/navigation-editor-item.component'
 
 describe('NavigationEditorComponent', () => {
   let component: NavigationEditorComponent
@@ -38,8 +39,10 @@ describe('NavigationEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NavigationEditorComponent, NavigationEditorItemStubComponent, ButtonComponent],
       imports: [
+        NavigationEditorComponent,
+        ButtonComponent,
+        NavigationEditorItemStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),
@@ -50,7 +53,16 @@ describe('NavigationEditorComponent', () => {
         { provide: ContentService, useValue: mockContentService },
         { provide: ToastMessageService, useValue: mockToastMessageService },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(NavigationEditorComponent, {
+        remove: {
+          imports: [NavigationEditorItemComponent],
+        },
+        add: {
+          imports: [NavigationEditorItemStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

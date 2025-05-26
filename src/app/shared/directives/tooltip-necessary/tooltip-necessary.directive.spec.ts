@@ -19,6 +19,7 @@ describe('TooltipNecessaryDirective', () => {
         }
       `,
     ],
+    standalone: false,
   })
   class TestTooltipNecessaryComponent {
     @Input() textContent = ''
@@ -27,8 +28,8 @@ describe('TooltipNecessaryDirective', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestTooltipNecessaryComponent, TooltipNecessaryDirective],
-      imports: [MatTooltipModule],
+      declarations: [TestTooltipNecessaryComponent],
+      imports: [TooltipNecessaryDirective, MatTooltipModule],
     }).compileComponents()
     fixture = TestBed.createComponent(TestTooltipNecessaryComponent)
     component = fixture.componentInstance

@@ -9,7 +9,14 @@ import { DialogSaveProfileComponent } from './components/dialog-save-profile/dia
 import { DialogDiscardProfileComponent } from './components/dialog-discard-profile/dialog-discard-profile.component'
 
 @NgModule({
-  declarations: [ProfileComponent, DialogSaveProfileComponent, DialogDiscardProfileComponent],
-  imports: [CommonModule, ProfileRoutingModule, SharedModule, LayoutModule],
+  imports: [
+    CommonModule,
+    ProfileRoutingModule,
+    SharedModule,
+    LayoutModule,
+    ProfileComponent,
+    DialogSaveProfileComponent,
+    DialogDiscardProfileComponent,
+  ],
 })
 export class ProfileModule {}

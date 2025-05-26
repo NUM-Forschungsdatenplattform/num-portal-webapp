@@ -1,12 +1,15 @@
+@use 'sass:map';
+@use '../../themes/theme-palettes/mat-light-theme-background';
+
+@use '@angular/material' as mat;
+
 @mixin language-component_themed($theme) {
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
 
   .num-mat-lang-toggle-button {
     border: none;
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
     .mat-button-toggle {
       background-color: transparent;
 
@@ -17,39 +20,33 @@
         font-weight: 400 !important;
 
         &:hover {
-          background: mat-color($accent, 100);
+          background: mat.m2-get-color-from-palette($accent, 100);
         }
 
         &:focus,
         .cdk-keyboard-focused & {
-          background: mat-color($accent, 200);
+          background: mat.m2-get-color-from-palette($accent, 200);
         }
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
     .mat-button-toggle-appearance-standard {
-      color: mat-color($additional, mid-grey);
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+      color: mat.m2-get-color-from-palette($additional, mid-grey);
+
       &.mat-button-toggle-checked {
-        color: mat-color($primary);
+        color: mat.m2-get-color-from-palette($primary);
+        background: mat.m2-get-color-from-palette(mat-light-theme-background.$mat-grey, 300);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
       &.mat-button-toggle + .mat-button-toggle {
-        border-left: solid 2px mat-color($accent);
+        border-left: solid 2px mat.m2-get-color-from-palette($accent);
       }
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
     .cdk-keyboard-focused .mat-button-toggle-focus-overlay {
       display: none;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version. */
+
     .mat-button-toggle-label-content {
       line-height: 32px;
     }

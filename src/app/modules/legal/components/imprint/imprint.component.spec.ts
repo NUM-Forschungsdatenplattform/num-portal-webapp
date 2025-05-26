@@ -11,8 +11,7 @@ describe('ImprintComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot()],
-      declarations: [ImprintComponent],
-      providers: [TranslateService],
+      providers: [ImprintComponent, TranslateService],
     }).compileComponents()
   })
 

@@ -1,14 +1,29 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { IBarChart } from 'src/app/shared/models/charts/bar-chart.interface'
 import { CHART_SOFA_SCORE, CHART_SOFA_SCORE_AVG } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard } from '@angular/material/card'
+import { BarChartComponent } from '../bar-chart/bar-chart.component'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
 
 @Component({
   selector: 'num-manager-charts',
   templateUrl: './manager-charts.component.html',
   styleUrls: ['./manager-charts.component.scss'],
+  imports: [
+    FlexModule,
+    MatCard,
+    BarChartComponent,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    TranslatePipe,
+  ],
 })
 export class ManagerChartsComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
@@ -58,8 +73,8 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
 
     this.sofaScoreDistributionSubscription = this.contentService
       .getSofaScoreDistribution(this.selectedClinic)
-      .subscribe(
-        (chartData) => {
+      .subscribe({
+        next: (chartData) => {
           const result = Object.entries(chartData).map((entry) => {
             return { name: entry[0], value: entry[1] }
           })
@@ -69,19 +84,19 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             data: result,
           }
         },
-        (_error) => {
+        error: (_error) => {
           this.chartSofaScore = {
             ...CHART_SOFA_SCORE,
             data: [],
           }
-        }
-      )
+        },
+      })
   }
 
   getSofaScoreAverage(): void {
     this.subscriptions.add(
-      this.contentService.getSofaScoreAverage().subscribe(
-        (chartData) => {
+      this.contentService.getSofaScoreAverage().subscribe({
+        next: (chartData) => {
           const result = Object.entries(chartData).map((entry) => {
             return { name: entry[0], value: entry[1] }
           })
@@ -91,13 +106,13 @@ export class ManagerChartsComponent implements OnInit, OnDestroy {
             data: result,
           }
         },
-        (_error) => {
+        error: (_error) => {
           this.chartSofaScoreAvg = {
             ...CHART_SOFA_SCORE_AVG,
             data: [],
           }
-        }
-      )
+        },
+      })
     )
   }
 

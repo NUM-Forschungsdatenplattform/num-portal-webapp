@@ -69,7 +69,7 @@ describe('DialogService', () => {
     }
 
     TestBed.configureTestingModule({
-      declarations: [StubComponent],
+      imports: [StubComponent],
       providers: [DialogService, { provide: MatDialog, useValue: dialogMock }],
     })
 

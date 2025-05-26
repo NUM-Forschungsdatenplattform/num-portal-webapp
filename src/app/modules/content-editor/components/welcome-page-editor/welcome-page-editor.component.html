@@ -23,19 +23,20 @@
   cdkDropList
   (cdkDropListDropped)="drop($event)"
 >
-  <num-welcome-page-item
-    class="num-welcome-page-item"
-    *ngFor="let form of dashboardCards.controls; let i = index"
-    data-test="content-editor__welcome__item"
-    [index]="i"
-    [isLast]="i === dashboardCards.controls.length - 1"
-    [form]="form"
-    [isLoading]="isLoading"
-    [displayLang]="displayLang"
-    (moveUp)="moveItem(i, i - 1)"
-    (moveDown)="moveItem(i, i + 1)"
-    (delete)="deleteItem(i)"
-  ></num-welcome-page-item>
+  @for (form of dashboardCards.controls; track form; let i = $index) {
+    <num-welcome-page-item
+      class="num-welcome-page-item"
+      data-test="content-editor__welcome__item"
+      [index]="i"
+      [isLast]="i === dashboardCards.controls.length - 1"
+      [form]="form"
+      [isLoading]="isLoading"
+      [displayLang]="displayLang"
+      (moveUp)="moveItem(i, i - 1)"
+      (moveDown)="moveItem(i, i + 1)"
+      (delete)="deleteItem(i)"
+    ></num-welcome-page-item>
+  }
 </section>
 
 <mat-divider class="num-d-w--1 num-margin-b-20"></mat-divider>

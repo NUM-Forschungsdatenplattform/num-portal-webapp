@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { ActivatedRoute, Params, Router } from '@angular/router'
+import { ActivatedRoute, Params, provideRouter, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, throwError } from 'rxjs'
@@ -21,14 +21,13 @@ import { mockProject1 } from 'src/mocks/data-mocks/project.mock'
 import { IProjectResolved } from '../../models/project-resolved.interface'
 import { ProjectEditorComponent } from './project-editor.component'
 import { IDefinitionList } from '../../../../shared/models/definition-list.interface'
-import { RouterTestingModule } from '@angular/router/testing'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlUiModel } from 'src/app/shared/models/aql/aql-ui.model'
 import { mockAql1, mockAql3 } from 'src/mocks/data-mocks/aqls.mock'
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
-import { HttpErrorResponse } from '@angular/common/http'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
@@ -37,6 +36,10 @@ import {
   attachmentApiMock2,
   attachmentApiMock3,
 } from 'src/mocks/data-mocks/project-attachment.mock'
+import { ProjectEditorAccordionComponent } from '../project-editor-accordion/project-editor-accordion.component'
+import { ProjectEditorApprovalComponent } from '../project-editor-approval/project-editor-approval.component'
+import { ProjectEditorButtonsComponent } from '../project-editor-buttons/project-editor-buttons.component'
+import { ProjectEditorCommentsComponent } from '../project-editor-comments/project-editor-comments.component'
 
 describe('ProjectEditorComponent On Creation', () => {
   let component: ProjectEditorComponent
@@ -148,30 +151,29 @@ describe('ProjectEditorComponent On Creation', () => {
     @Output() saveAsApprovalRequest = saveAsApprovalRequestEmitter
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
-    @Output() cancel = cancelEmitter
+    @Output() cancelEdit = cancelEmitter
     @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         ProjectEditorComponent,
-        StubProjectEditorAccordionComponent,
         ButtonComponent,
+        StubProjectEditorAccordionComponent,
         ProjectEditorButtonsStubComponent,
         ProjectEditorCommentsStubComponent,
         ProjectEditorApprovalStubComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
-        HttpClientTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
       providers: [
+        provideRouter([{ path: '**', redirectTo: '' }]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: route,
@@ -201,7 +203,26 @@ describe('ProjectEditorComponent On Creation', () => {
           useValue: mockAttachmentService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorComponent, {
+        remove: {
+          imports: [
+            ProjectEditorAccordionComponent,
+            ProjectEditorCommentsComponent,
+            ProjectEditorApprovalComponent,
+            ProjectEditorButtonsComponent,
+          ],
+        },
+        add: {
+          imports: [
+            StubProjectEditorAccordionComponent,
+            ProjectEditorButtonsStubComponent,
+            ProjectEditorCommentsStubComponent,
+            ProjectEditorApprovalStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -384,7 +405,14 @@ describe('ProjectEditorComponent On Creation', () => {
       jest
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
-      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError({ status: 451 }))
+      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() =>
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              status: 451,
+            })
+        )
+      )
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -404,7 +432,9 @@ describe('ProjectEditorComponent On Creation', () => {
       jest
         .spyOn(component, 'getProjectForApi')
         .mockReturnValueOnce({ project: mockProject1, cohort: mockCohort1 })
-      jest.spyOn(cohortService, 'getSize').mockImplementationOnce(() => throwError('Error'))
+      jest
+        .spyOn(cohortService, 'getSize')
+        .mockImplementationOnce(() => throwError(() => new Error('Error')))
 
       component.checkCohortValidation = function () {
         component.isCohortValid.hasAql = true
@@ -424,7 +454,7 @@ describe('ProjectEditorComponent On Creation', () => {
       const mockCohortObservable = of(mockCohort1)
       jest
         .spyOn(projectService, 'create')
-        .mockImplementation(() => throwError(new HttpErrorResponse({ status: 400 })))
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ status: 400 })))
       jest.spyOn(cohortService, 'create').mockImplementation(() => mockCohortObservable)
       component.resolvedData = {
         error: null,

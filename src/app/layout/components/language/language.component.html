@@ -5,6 +5,7 @@
   [attr.aria-label]="'LANGUAGE.LABEL' | translate"
   (change)="setLocale(group.value)"
   [value]="translate.currentLang"
+  [hideSingleSelectionIndicator]="true"
 >
   <mat-button-toggle value="de" data-test="header__top-row__lang-button-german">{{
     'LANGUAGE.GERMAN' | translate

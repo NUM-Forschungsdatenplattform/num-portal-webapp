@@ -11,6 +11,7 @@ import { AqbWhereItemUiModel } from '../../../../shared/models/aqb/aqb-where-ite
 import { IContainmentTreeNode } from '../../models/containment-tree-node.interface'
 
 import { AqlBuilderWhereItemComponent } from './aql-builder-where-item.component'
+import { AqlParameterInputsComponent } from 'src/app/shared/components/aql-parameter-inputs/aql-parameter-inputs.component'
 
 describe('AqlBuilderWhereItemComponent', () => {
   let component: AqlBuilderWhereItemComponent
@@ -18,7 +19,7 @@ describe('AqlBuilderWhereItemComponent', () => {
 
   const valueChangeEmitter = new EventEmitter()
   @Component({ selector: 'num-aql-parameter-inputs', template: '' })
-  class AqlParameterInputsComponent {
+  class AqlParameterInputsStubComponent {
     @Input() item: any
     @Input() disabled: boolean
     @Output() valueChange = valueChangeEmitter
@@ -38,8 +39,9 @@ describe('AqlBuilderWhereItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereItemComponent, AqlParameterInputsComponent],
       imports: [
+        AqlBuilderWhereItemComponent,
+        AqlParameterInputsStubComponent,
         MaterialModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
@@ -47,7 +49,16 @@ describe('AqlBuilderWhereItemComponent', () => {
         ReactiveFormsModule,
         PipesModule,
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlBuilderWhereItemComponent, {
+        remove: {
+          imports: [AqlParameterInputsComponent],
+        },
+        add: {
+          imports: [AqlParameterInputsStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

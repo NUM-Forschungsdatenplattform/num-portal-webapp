@@ -4,65 +4,56 @@
     <num-button
       id="back-button"
       type="secondary"
-      (singleClick)="cancel.emit()"
+      (singleClick)="cancelEdit.emit()"
       data-test="project-editor__buttons__back-button"
       >{{
         (editorMode === possibleModes.PREVIEW ? 'BUTTON.BACK' : 'BUTTON.CANCEL') | translate
       }}</num-button
     >
 
-    <div
-      role="presentation"
-      fxLayout="row"
-      fxLayoutAlign="space-between"
-      fxLayoutGap="8px"
-      [ngSwitch]="editorMode"
-    >
-      <ng-container
-        *ngSwitchCase="possibleModes.PREVIEW"
-        [ngTemplateOutlet]="previewButtonRow"
-      ></ng-container>
-
-      <ng-container
-        *ngSwitchCase="possibleModes.REVIEW"
-        [ngTemplateOutlet]="reviewButtonRow"
-      ></ng-container>
-
-      <ng-container
-        *ngSwitchCase="possibleModes.EDIT"
-        [ngTemplateOutlet]="editButtonRow"
-      ></ng-container>
+    <div role="presentation" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="8px">
+      @switch (editorMode) {
+        @case (possibleModes.PREVIEW) {
+          <ng-container [ngTemplateOutlet]="previewButtonRow"></ng-container>
+        }
+        @case (possibleModes.REVIEW) {
+          <ng-container [ngTemplateOutlet]="reviewButtonRow"></ng-container>
+        }
+        @case (possibleModes.EDIT) {
+          <ng-container [ngTemplateOutlet]="editButtonRow"></ng-container>
+        }
+      }
     </div>
   </div>
 </section>
 
 <ng-template #exportButton>
-  <num-button
-    *ngIf="false"
-    id="export"
-    type="secondary"
-    (singleClick)="exportPrint.emit()"
-    [isDisabled]="!isSavedProject || isExportLoading"
-    data-test="project-editor__buttons__export-button"
-    >{{ 'BUTTON.EXPORT' | translate }}</num-button
-  >
+  @if (false) {
+    <num-button
+      id="export"
+      type="secondary"
+      (singleClick)="exportPrint.emit()"
+      [isDisabled]="!isSavedProject || isExportLoading"
+      data-test="project-editor__buttons__export-button"
+      >{{ 'BUTTON.EXPORT' | translate }}</num-button
+    >
+  }
 </ng-template>
 
 <ng-template #editButtonRow>
   <ng-container [ngTemplateOutlet]="exportButton"></ng-container>
-  <num-button
-    id="primary-save"
-    type="primary"
-    *ngIf="
-      projectStatus === possibleStatus.Approved || projectStatus === possibleStatus.Published;
-      else fullEdit
-    "
-    (singleClick)="saveResearchers.emit()"
-    [isDisabled]="!isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined"
-    data-test="project-editor__buttons__primary-save-button"
-    >{{ 'BUTTON.SAVE' | translate }}</num-button
-  >
-  <ng-template #fullEdit>
+  @if (projectStatus === possibleStatus.Approved || projectStatus === possibleStatus.Published) {
+    <num-button
+      id="primary-save"
+      type="primary"
+      (singleClick)="saveResearchers.emit()"
+      [isDisabled]="
+        !isFormValid || !isResearchersDefined || !isTemplatesDefined || !isCohortDefined
+      "
+      data-test="project-editor__buttons__primary-save-button"
+      >{{ 'BUTTON.SAVE' | translate }}</num-button
+    >
+  } @else {
     <num-button
       id="secondary-save"
       type="secondary"
@@ -88,7 +79,7 @@
       data-test="project-editor__buttons__request-approval-button"
       >{{ 'BUTTON.REQUEST_APPROVAL' | translate }}</num-button
     >
-  </ng-template>
+  }
 </ng-template>
 
 <ng-template #reviewButtonRow>

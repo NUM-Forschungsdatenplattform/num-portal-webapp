@@ -10,15 +10,30 @@ import { take } from 'rxjs/operators'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 import { AqlEditorCeatorComponent } from '../aql-editor-creator/aql-editor-creator.component'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { AvailableRoles } from '../../../../shared/models/available-roles.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { AqlEditorGeneralInfoComponent } from '../aql-editor-general-info/aql-editor-general-info.component'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-editor',
   templateUrl: './aql-editor.component.html',
   styleUrls: ['./aql-editor.component.scss'],
+  imports: [
+    FlexModule,
+    AqlEditorGeneralInfoComponent,
+    AqlEditorCeatorComponent,
+    MatDivider,
+    ButtonComponent,
+    UserHasRoleDirective,
+    TranslatePipe,
+  ],
 })
 export class AqlEditorComponent implements OnDestroy, OnInit {
   availableRoles = AvailableRoles
@@ -117,14 +132,14 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     }
     const aqlQuery = this.getAqlForApi()
     try {
-      await this.aqlService.save(aqlQuery).toPromise()
+      await lastValueFrom(this.aqlService.save(aqlQuery))
       this.router.navigate(['aqls'], {})
 
       this.toast.openToast({
         type: ToastMessageType.Success,
         message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERIES.SAVE_ERROR_MESSAGE',
@@ -143,14 +158,14 @@ export class AqlEditorComponent implements OnDestroy, OnInit {
     }
     const aqlQuery = this.getAqlForApi()
     try {
-      await this.aqlService.update(aqlQuery, this.aql?.id).toPromise()
+      await lastValueFrom(this.aqlService.update(aqlQuery, this.aql?.id))
       this.router.navigate(['aqls'], {})
 
       this.toast.openToast({
         type: ToastMessageType.Success,
         message: 'QUERIES.SAVE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERIES.SAVE_ERROR_MESSAGE',

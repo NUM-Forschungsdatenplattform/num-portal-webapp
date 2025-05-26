@@ -2,7 +2,7 @@ import { SimpleChange } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateModule } from '@ngx-translate/core'
-import { BarSeriesOption, XAXisComponentOption } from 'echarts'
+import { BarSeriesOption, XAXisComponentOption } from 'echarts/types/dist/echarts'
 import { NgxEchartsModule } from 'ngx-echarts'
 import { IDictionary } from 'src/app/shared/models/dictionary.interface'
 import { mockAgeGraphData } from 'src/mocks/data-mocks/cohort-graph.mock'
@@ -14,10 +14,10 @@ describe('VerticalBarChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [VerticalBarChartComponent],
       imports: [
+        VerticalBarChartComponent,
         NgxEchartsModule.forRoot({
-          echarts: () => import('echarts'),
+          echarts: () => import('echarts/index.common'),
         }),
         NoopAnimationsModule,
         TranslateModule.forRoot(),

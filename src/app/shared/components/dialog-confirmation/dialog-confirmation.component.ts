@@ -1,5 +1,6 @@
 import { Component, EventEmitter } from '@angular/core'
 import { IGenericDialog } from '../../models/generic-dialog.interface'
+import { TranslatePipe } from '@ngx-translate/core'
 
 export type ConfirmationDialogInput =
   | string
@@ -12,6 +13,7 @@ export type ConfirmationDialogInput =
   selector: 'num-dialog-confirmation',
   templateUrl: './dialog-confirmation.component.html',
   styleUrls: ['./dialog-confirmation.component.scss'],
+  imports: [TranslatePipe],
 })
 export class DialogConfirmationComponent implements IGenericDialog<ConfirmationDialogInput> {
   dialogInput: ConfirmationDialogInput

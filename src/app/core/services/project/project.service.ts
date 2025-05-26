@@ -156,7 +156,7 @@ export class ProjectService {
           }
         }
 
-        return throwError('STATUS_NOT_SWITCHABLE')
+        return throwError(() => new Error('STATUS_NOT_SWITCHABLE'))
       }),
       tap(() => {
         this.getAll().subscribe()

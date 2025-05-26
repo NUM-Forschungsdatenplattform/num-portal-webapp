@@ -63,6 +63,7 @@ describe('AttachmentTableActionsComponent', () => {
         [showDownloadButton]="showDownloadButton"
       ></num-attachments-table-actions>
     </div>`,
+    standalone: false,
   })
   class TestHostComponent {
     attachments: ProjectAttachmentUiModel[] = []
@@ -97,8 +98,15 @@ describe('AttachmentTableActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AttachmentsTableActionsComponent, ButtonComponent, TestHostComponent],
-      imports: [CommonModule, FontAwesomeTestingModule, MatButtonModule, TranslateModule.forRoot()],
+      declarations: [TestHostComponent],
+      imports: [
+        AttachmentsTableActionsComponent,
+        ButtonComponent,
+        CommonModule,
+        FontAwesomeTestingModule,
+        MatButtonModule,
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AttachmentService,

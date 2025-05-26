@@ -55,27 +55,28 @@
   </section>
 
   <section role="region" fxLayout="column" fxFlex="100%">
-    <h2 *ngIf="resultSet && !isDataSetLoading">{{ 'SEARCH_WITH_AQL.QUERY_DATA' | translate }}</h2>
+    @if (resultSet && !isDataSetLoading) {
+      <h2>{{ 'SEARCH_WITH_AQL.QUERY_DATA' | translate }}</h2>
+    }
 
-    <ng-container *ngIf="!isDataSetLoading; else loading">
-      <num-result-table
-        *ngIf="resultSet"
-        [resultSet]="resultSet"
-        [isDataSetLoading]="isDataSetLoading"
-        [index]="1"
-        [totalTables]="1"
-        class="num-margin-b-20"
-        data-test="manager-data-explorer__table"
-      ></num-result-table>
-    </ng-container>
-
-    <ng-template #loading>
+    @if (!isDataSetLoading) {
+      @if (resultSet) {
+        <num-result-table
+          [resultSet]="resultSet"
+          [isDataSetLoading]="isDataSetLoading"
+          [index]="1"
+          [totalTables]="1"
+          class="num-margin-b-20"
+          data-test="manager-data-explorer__table"
+        ></num-result-table>
+      }
+    } @else {
       <mat-card class="mat-elevation-z1">
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
           <mat-spinner color="accent" [diameter]="24"></mat-spinner>
           <span>{{ 'DATA_EXPLORER.LOADING_RESULT_SET' | translate }}</span>
         </div>
       </mat-card>
-    </ng-template>
+    }
   </section>
 </div>

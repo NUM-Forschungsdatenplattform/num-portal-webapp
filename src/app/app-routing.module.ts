@@ -19,7 +19,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    canLoad: [AuthGuard],
+    canMatch: [AuthGuard],
     data: {
       navId: 'profile',
       onlyApprovedUsers: true,
@@ -31,7 +31,7 @@ export const routes: Routes = [
   },
   {
     path: 'search',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     canDeactivate: [CanDeactivateSearchGuard],
     data: {
       navId: 'search',
@@ -45,7 +45,7 @@ export const routes: Routes = [
   },
   {
     path: 'search-with-aql',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'search-with-aql',
       roles: [AvailableRoles.Manager],
@@ -58,7 +58,7 @@ export const routes: Routes = [
   },
   {
     path: 'projects',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'projects',
       roles: [AvailableRoles.StudyCoordinator, AvailableRoles.StudyApprover],
@@ -71,7 +71,7 @@ export const routes: Routes = [
   },
   {
     path: 'data-explorer',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'data-explorer',
       roles: [AvailableRoles.Researcher],
@@ -84,7 +84,7 @@ export const routes: Routes = [
   },
   {
     path: 'aqls',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'aqls',
       roles: [AvailableRoles.CriteriaEditor],
@@ -97,7 +97,7 @@ export const routes: Routes = [
   },
   {
     path: 'users',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'users',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
@@ -110,7 +110,7 @@ export const routes: Routes = [
   },
   {
     path: 'organizations',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'organizations',
       roles: [AvailableRoles.OrganizationAdmin, AvailableRoles.SuperAdmin],
@@ -123,7 +123,7 @@ export const routes: Routes = [
   },
   {
     path: 'content-editor',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'content-editor',
       roles: [AvailableRoles.ContentAdmin],
@@ -136,7 +136,7 @@ export const routes: Routes = [
   },
   {
     path: 'manager-tools',
-    canLoad: [RoleGuard, AuthGuard],
+    canMatch: [RoleGuard, AuthGuard],
     data: {
       navId: 'manager-tools',
       roles: [AvailableRoles.Manager],
@@ -150,7 +150,7 @@ export const routes: Routes = [
   {
     path: 'user-manual',
     resolve: { url: UserManualUrlResolver },
-    canLoad: [RoleGuard],
+    canMatch: [RoleGuard],
     data: {
       navId: 'user-manual',
     },

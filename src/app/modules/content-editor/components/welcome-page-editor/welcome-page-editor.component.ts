@@ -1,20 +1,41 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { IDashboardCard } from 'src/app/shared/models/content/dashboard-card.interface'
-import { CdkDragDrop } from '@angular/cdk/drag-drop'
-import { TranslateService } from '@ngx-translate/core'
+import { CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { DEFAULT_DASHBOARD_CARD_IMAGE } from 'src/app/shared/constants'
 import { DialogConfig } from 'src/app/shared/models/dialog/dialog-config.interface'
 import { ADD_DIALOG_CONFIG, SAVE_ERROR_CONFIG, SAVE_SUCCESS_CONFIG } from './constants'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { WelcomePageItemComponent } from '../welcome-page-item/welcome-page-item.component'
+import { MatDivider } from '@angular/material/list'
 
 @Component({
   selector: 'num-welcome-page-editor',
   templateUrl: './welcome-page-editor.component.html',
   styleUrls: ['./welcome-page-editor.component.scss'],
+  imports: [
+    ButtonComponent,
+    FlexModule,
+    CdkDropList,
+    FormsModule,
+    ReactiveFormsModule,
+    WelcomePageItemComponent,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
@@ -58,15 +79,15 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   }
 
   fetchData(): void {
-    this.contentService.getCards().subscribe(
-      (data) => {
+    this.contentService.getCards().subscribe({
+      next: (data) => {
         this.handleData(data)
         this.isLoading = false
       },
-      () => {
+      error: () => {
         this.isLoading = false
-      }
-    )
+      },
+    })
   }
 
   handleData(cards: IDashboardCard[]): void {
@@ -153,10 +174,10 @@ export class WelcomePageEditorComponent implements OnInit, OnDestroy {
   save(): void {
     this.isLoading = true
     const dashboardCards = this.getCardsForApi()
-    this.contentService.updateCards(dashboardCards).subscribe(
-      () => this.handleSaveSuccess(dashboardCards),
-      () => this.handleSaveError()
-    )
+    this.contentService.updateCards(dashboardCards).subscribe({
+      next: () => this.handleSaveSuccess(dashboardCards),
+      error: () => this.handleSaveError(),
+    })
   }
 
   discard(): void {

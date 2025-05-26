@@ -1,14 +1,16 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 @mixin buttons($theme) {
   $raised-shadow:
     0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-  /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-  .mat-mdc-icon-button.mat-button-disabled.mat-button-disabled {
-    color: mat-color($additional, light-grey);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
+
+  .mat-mdc-icon-button.mat-mdc-button-disabled {
+    color: mat.m2-get-color-from-palette($additional, light-grey);
   }
 
   .mat-mdc-button-base {
@@ -18,9 +20,13 @@
     font-size: inherit !important;
   }
 
+  a.mat-mdc-button.link-button,
+  a.mat-mdc-unelevated-button.link-button,
+  a.mat-mdc-text-button.link-button {
+    text-decoration: underline;
+  }
+
   .num-button {
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
     &.mat-mdc-button .mat-button-wrapper > *,
     &.mat-mdc-outlined-button .mat-button-wrapper > *,
     &.mat-mdc-raised-button .mat-button-wrapper > *,
@@ -31,8 +37,6 @@
     fa-icon {
       margin: 0 4px 0 0;
     }
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-    /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
     &.cdk-keyboard-focused .mat-button-focus-overlay {
       display: none;
     }
@@ -42,85 +46,83 @@
       line-height: 34px;
       border-width: 1px;
       border-style: solid;
-      border-color: mat-color($primary, 500);
+      border-color: mat.m2-get-color-from-palette($primary, 500);
+      background: mat.m2-get-color-from-palette($primary, 500);
+      color: mat.m2-get-color-from-palette($primary, 500-contrast);
+      // Typography Config was not used for Buttons before upgrade to v19, default set back to 0.8333rem
+      --mdc-filled-button-label-text-size: 0.83333rem;
+
       fa-icon {
-        color: mat-color($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
-        background: mat-color($primary, 700);
+      &:hover:not(.mat-mdc-button-disabled) {
+        background: mat.m2-get-color-from-palette($primary, 700);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat-color($primary, 700);
-        border-color: mat-color($accent, 500);
+        background: mat.m2-get-color-from-palette($primary, 700);
+        border-color: mat.m2-get-color-from-palette($accent, 500);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
-        background: mat-color($primary, 100);
-        border-color: mat-color($primary, 100);
+      &.mat-mdc-button-disabled {
+        background: mat.m2-get-color-from-palette($additional, lighter-grey);
+        color: mat.m2-get-color-from-palette($additional, mid-grey);
+        border-color: mat.m2-get-color-from-palette($primary, 500);
         fa-icon {
-          color: mat-color($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
       }
     }
 
     // Secondary Button
     &.mat-mdc-outlined-button.mat-primary {
-      border-color: mat-color($primary, 500);
+      border-color: mat.m2-get-color-from-palette($primary, 500);
+      color: mat.m2-get-color-from-palette($primary, 500);
+
+      // Typography Config was not used for Buttons before upgrade to v19, default set back to 0.8333rem
+      --mdc-outlined-button-label-text-size: 0.83333rem;
 
       fa-icon {
-        color: mat-color($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
-        background: mat-color($accent, 100);
+      &:hover:not(.mat-mdc-button-disabled) {
+        background: mat.m2-get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat-color($accent, 200);
+        background: mat.m2-get-color-from-palette($accent, 200);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
+      &.mat-mdc-button-disabled {
         fa-icon {
-          color: mat-color($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
-        color: mat-color($additional, light-grey);
-        border-color: mat-color($primary, 100);
+        color: mat.m2-get-color-from-palette($additional, mid-grey);
+        border-color: mat.m2-get-color-from-palette($primary, 400);
       }
     }
 
     // Basic Button
     &.mat-mdc-button.mat-primary {
-      color: mat-color($additional, mid-grey);
+      color: mat.m2-get-color-from-palette($additional, mid-grey);
 
       fa-icon {
-        color: mat-color($accent, 500);
+        color: mat.m2-get-color-from-palette($accent, 500);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &:hover:not(.mat-button-disabled) {
-        background: mat-color($accent, 100);
+      &:hover:not(.mat-mdc-button-disabled) {
+        background: mat.m2-get-color-from-palette($accent, 100);
         box-shadow: $raised-shadow;
       }
 
       &.cdk-keyboard-focused {
-        background: mat-color($accent, 200);
-        border-color: mat-color($accent, 500);
+        background: mat.m2-get-color-from-palette($accent, 200);
+        border-color: mat.m2-get-color-from-palette($accent, 500);
       }
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      /* TODO(mdc-migration): The following rule targets internal classes of button that may no longer apply for the MDC version.*/
-      &.mat-button-disabled {
+      &.mat-mdc-button-disabled {
         fa-icon {
-          color: mat-color($accent, 200);
+          color: mat.m2-get-color-from-palette($accent, 200);
         }
-        color: mat-color($additional, mid-grey);
+        color: mat.m2-get-color-from-palette($additional, light-grey);
       }
     }
   }

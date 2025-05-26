@@ -15,8 +15,8 @@ describe('ProjectEditorGeneralInfoCategoriesInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorGeneralInfoCategoriesInputComponent],
       imports: [
+        ProjectEditorGeneralInfoCategoriesInputComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

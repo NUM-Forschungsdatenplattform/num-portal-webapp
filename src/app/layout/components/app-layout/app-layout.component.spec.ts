@@ -7,12 +7,10 @@ import { MediaMatcher } from '@angular/cdk/layout'
 import { TranslateModule } from '@ngx-translate/core'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { HeaderComponent } from '../header/header.component'
-import { RouterTestingModule } from '@angular/router/testing'
 import { LanguageComponent } from '../language/language.component'
 import { Component, EventEmitter, Output } from '@angular/core'
 import { of, Subject } from 'rxjs'
 import { OAuthService } from 'angular-oauth2-oidc'
-import { DirectivesModule } from 'src/app/shared/directives/directives.module'
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module'
 import { HttpClient } from '@angular/common/http'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
@@ -21,7 +19,8 @@ import { AuthService } from '../../../core/auth/auth.service'
 import { ContentService } from '../../../core/services/content/content.service'
 import { mockNavigationLinks } from '../../../../mocks/data-mocks/navigation-links.mock'
 import { AppConfigService } from 'src/app/config/app-config.service'
-import { NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, provideRouter, Router } from '@angular/router'
+import { FooterComponent } from '../footer/footer.component'
 
 describe('AppLayoutComponent', () => {
   let component: AppLayoutComponent
@@ -69,7 +68,7 @@ describe('AppLayoutComponent', () => {
     matchMedia: jest.fn().mockImplementation(() => mediaQueryList),
   } as unknown as MediaMatcher
 
-  @Component({ selector: 'num-footer', template: '' })
+  @Component({ selector: 'num-footer', template: '', standalone: true })
   class FooterStubComponent {}
 
   @Component({
@@ -100,30 +99,28 @@ describe('AppLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      declarations: [],
+      imports: [
         AppLayoutComponent,
         HeaderComponent,
-        SideMenuComponentStub,
         LanguageComponent,
+        SideMenuComponentStub,
         FooterStubComponent,
         HomeStubComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         FlexLayoutModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([
+        SharedComponentsModule,
+      ],
+      providers: [
+        provideRouter([
           {
             path: 'home',
             component: HomeStubComponent,
           },
         ]),
-        DirectivesModule,
-        SharedComponentsModule,
-      ],
-      providers: [
         {
           provide: OAuthService,
           useValue: oauthService,
@@ -153,7 +150,16 @@ describe('AppLayoutComponent', () => {
           useValue: mockConfigService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AppLayoutComponent, {
+        remove: {
+          imports: [FooterComponent],
+        },
+        add: {
+          imports: [FooterStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   describe('On small devices', () => {

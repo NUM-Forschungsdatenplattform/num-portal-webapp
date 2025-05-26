@@ -15,9 +15,9 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'
     SharedModule,
     OAuthModule.forRoot(),
     NgIdleKeepaliveModule.forRoot(),
+    GenericDialogComponent,
   ],
   providers: [AqlService, CohortService],
-  declarations: [GenericDialogComponent],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

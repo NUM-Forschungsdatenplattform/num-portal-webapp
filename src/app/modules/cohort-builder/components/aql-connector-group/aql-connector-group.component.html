@@ -17,8 +17,10 @@
   [ngClass]="{ 'num-select-box--active': isActive }"
 >
   <section role="toolbar" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <span class="mat-body-strong"
-      ><span class="not-icon" *ngIf="cohortGroup.isNegated">&not;</span>
+    <span class="mat-body-strong">
+      @if (cohortGroup.isNegated) {
+        <span class="not-icon">&not;</span>
+      }
       {{ groupType | translate }} {{ groupIndex | groupIndex }}</span
     >
 
@@ -33,13 +35,14 @@
         [disabled]="cohortGroup.children.length <= 1 || isDisabled"
         data-test="cohort-builder__group__logical-operator__selector"
       >
-        <mat-option
-          *ngFor="let operator of logicalOperatorArray"
-          [value]="operator"
-          [attr.data-test]="'cohort-builder__group__logical-operator__' + operator"
-        >
-          {{ operator }}
-        </mat-option>
+        @for (operator of logicalOperatorArray; track operator) {
+          <mat-option
+            [value]="operator"
+            [attr.data-test]="'cohort-builder__group__logical-operator__' + operator"
+          >
+            {{ operator }}
+          </mat-option>
+        }
       </mat-select>
     </mat-form-field>
 
@@ -54,64 +57,62 @@
     >
   </section>
 
-  <section role="listitem" *ngFor="let child of cohortGroup.children; let i = index">
-    <num-aql-connector-group
-      role="list"
-      class="group"
-      *ngIf="child.type === connectorNodeType.Group"
-      [cohortGroup]="child"
-      [parentGroupIndex]="groupIndex"
-      [index]="i"
-      [isDisabled]="isDisabled"
-      [ngClass]="{
-        'group--last': i === cohortGroup.children.length - 1
-      }"
-      (delete)="deleteChildGroup($event, i)"
-      data-test="cohort-builder__group"
-    ></num-aql-connector-group>
+  @for (child of cohortGroup.children; track child; let i = $index) {
+    <section role="listitem">
+      @if (child.type === connectorNodeType.Group) {
+        <num-aql-connector-group
+          role="list"
+          class="group"
+          [cohortGroup]="child"
+          [parentGroupIndex]="groupIndex"
+          [index]="i"
+          [isDisabled]="isDisabled"
+          [ngClass]="{
+            'group--last': i === cohortGroup.children.length - 1,
+          }"
+          (delete)="deleteChildGroup($event, i)"
+          data-test="cohort-builder__group"
+        ></num-aql-connector-group>
+      }
+      @if (child.type === connectorNodeType.Aql) {
+        <num-aql-connector-item
+          class="aql mat-elevation-z2"
+          [ngClass]="{
+            'aql--last': i === cohortGroup.children.length - 1,
+            configured: $any(child).areParameterConfigured,
+          }"
+          [aql]="child"
+          [isDisabled]="isDisabled"
+          (deleteItem)="deleteChildItem(i)"
+          role="listitem"
+          fxLayout="row"
+          fxLayoutAlign="space-between start"
+          data-test="cohort-builder__aql"
+        ></num-aql-connector-item>
+      }
+    </section>
+  }
 
-    <num-aql-connector-item
-      class="aql mat-elevation-z2"
-      [ngClass]="{
-        'aql--last': i === cohortGroup.children.length - 1,
-        configured: $any(child).areParameterConfigured
-      }"
-      *ngIf="child.type === connectorNodeType.Aql"
-      [aql]="child"
-      [isDisabled]="isDisabled"
-      (deleteItem)="deleteChildItem(i)"
-      role="listitem"
-      fxLayout="row"
-      fxLayoutAlign="space-between start"
-      data-test="cohort-builder__aql"
-    ></num-aql-connector-item>
-  </section>
-
-  <section
-    role="presentation"
-    class="button-row"
-    fxLayoutGap="20px"
-    fxLayout="row wrap"
-    *ngIf="!isDisabled"
-  >
-    <num-button
-      [isDisabled]="isDisabled"
-      type="secondary"
-      icon="plus"
-      (singleClick)="addGroup()"
-      data-test="cohort-builder__group__add-group-button"
-      >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
-    >
-
-    <span fxFlex></span>
-
-    <num-button
-      [isDisabled]="isDisabled"
-      *ngIf="groupType === connectorGroupType.Sub"
-      type="basic"
-      (singleClick)="deleteSelf()"
-      data-test="cohort-builder__group__delete-group-button"
-      >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
-    >
-  </section>
+  @if (!isDisabled) {
+    <section role="presentation" class="button-row" fxLayoutGap="20px" fxLayout="row wrap">
+      <num-button
+        [isDisabled]="isDisabled"
+        type="secondary"
+        icon="plus"
+        (singleClick)="addGroup()"
+        data-test="cohort-builder__group__add-group-button"
+        >{{ 'BUTTON.ADD_GROUP' | translate }}</num-button
+      >
+      <span fxFlex></span>
+      @if (groupType === connectorGroupType.Sub) {
+        <num-button
+          [isDisabled]="isDisabled"
+          type="basic"
+          (singleClick)="deleteSelf()"
+          data-test="cohort-builder__group__delete-group-button"
+          >{{ 'BUTTON.DELETE_GROUP' | translate }}</num-button
+        >
+      }
+    </section>
+  }
 </div>

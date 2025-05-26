@@ -19,8 +19,12 @@ describe('MetricsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MetricsComponent],
-      imports: [TranslateModule.forRoot(), FlexLayoutModule, FontAwesomeTestingModule],
+      imports: [
+        MetricsComponent,
+        TranslateModule.forRoot(),
+        FlexLayoutModule,
+        FontAwesomeTestingModule,
+      ],
       providers: [
         {
           provide: ContentService,

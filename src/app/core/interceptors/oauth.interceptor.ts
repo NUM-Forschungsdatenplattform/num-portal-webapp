@@ -39,6 +39,6 @@ export class OAuthInterceptor implements HttpInterceptor {
     } else if (error.status === 409 && error.url.includes('/admin/user/')) {
       return of()
     }
-    return throwError(error)
+    return throwError(() => error)
   }
 }

@@ -1,7 +1,9 @@
-import 'jest-preset-angular/setup-jest'
+import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone'
 import 'zone.js'
 import 'zone.js/testing'
 import ResizeObserver from 'resize-observer-polyfill'
+
+setupZoneTestEnv()
 
 Object.defineProperty(window, 'CSS', { value: null })
 Object.defineProperty(window, 'getComputedStyle', {

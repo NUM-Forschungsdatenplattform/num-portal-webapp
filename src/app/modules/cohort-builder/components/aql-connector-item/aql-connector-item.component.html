@@ -1,65 +1,68 @@
 <section role="region" fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="start start">
   <div>{{ currentLang === 'de' ? aql.name : aql.nameTranslated }}</div>
 
-  <ng-template #parameterError>
+  @if (!hasParameterError) {
+    <div fxLayout="column" fxLayoutGap="8px">
+      @for (parameter of aql.parameters; track parameter) {
+        <div fxLayoutGap="8px" fxLayout="row">
+          @if (parameter.isMetaFetched) {
+            <mat-form-field appearance="outline" class="input num-tiny-input operator-select">
+              <mat-label id="label">Operator</mat-label>
+              <mat-select
+                [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
+                [(value)]="parameter.operator"
+                [disabled]="isDisabled || parameter.isDisabled"
+                data-test="cohort-builder__item__logical-operator__selector"
+              >
+                @for (operator of parameter.possibleOperators; track operator) {
+                  <mat-option
+                    [value]="operator"
+                    [attr.data-test]="'cohort-builder__item__logical-operator__' + operator"
+                  >
+                    {{ operator }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          }
+          @if (parameter.isMetaFetched) {
+            <num-aql-parameter-inputs
+              [item]="parameter"
+              mode="cohortBuilder"
+              (valueChange)="checkParameterStatus()"
+              [disabled]="isDisabled || parameter.isDisabled"
+            ></num-aql-parameter-inputs>
+          }
+          @if (parameter.isMetaFetched) {
+            <mat-checkbox
+              color="accent"
+              [ngModel]="!parameter.isDisabled"
+              [matTooltip]="'AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP' | translate"
+              (ngModelChange)="parameter.isDisabled = !parameter.isDisabled"
+              data-test="cohort-builder__item__isDisabled-checkbox"
+            ></mat-checkbox>
+          }
+        </div>
+      }
+    </div>
+  } @else {
     <mat-hint class="parameter-error">
       <fa-icon [fixedWidth]="true" class="num-fc--w" icon="exclamation-circle"></fa-icon>
       {{ 'QUERIES.PARAMETER_ERROR' | translate }}</mat-hint
     >
-  </ng-template>
-
-  <div fxLayout="column" fxLayoutGap="8px" *ngIf="!hasParameterError; else parameterError">
-    <div *ngFor="let parameter of aql.parameters" fxLayoutGap="8px" fxLayout="row">
-      <mat-form-field
-        appearance="outline"
-        class="input num-tiny-input operator-select"
-        *ngIf="parameter.isMetaFetched"
-      >
-        <mat-label id="label">Operator</mat-label>
-        <mat-select
-          [attr.aria-label]="'LOGICAL_OPERATOR' | translate"
-          [(value)]="parameter.operator"
-          [disabled]="isDisabled || parameter.isDisabled"
-          data-test="cohort-builder__item__logical-operator__selector"
-        >
-          <mat-option
-            *ngFor="let operator of parameter.possibleOperators"
-            [value]="operator"
-            [attr.data-test]="'cohort-builder__item__logical-operator__' + operator"
-          >
-            {{ operator }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <num-aql-parameter-inputs
-        *ngIf="parameter.isMetaFetched"
-        [item]="parameter"
-        mode="cohortBuilder"
-        (valueChange)="checkParameterStatus()"
-        [disabled]="isDisabled || parameter.isDisabled"
-      ></num-aql-parameter-inputs>
-
-      <mat-checkbox
-        *ngIf="parameter.isMetaFetched"
-        color="accent"
-        [ngModel]="!parameter.isDisabled"
-        [matTooltip]="'AQL_CONNECTOR_ITEM_CHECKBOX_TOOLTIP' | translate"
-        (ngModelChange)="parameter.isDisabled = !parameter.isDisabled"
-        data-test="cohort-builder__item__isDisabled-checkbox"
-      ></mat-checkbox>
-    </div>
-  </div>
+  }
 </section>
 
-<section class="right-panel" fxLayoutAlign="end center" *ngIf="!isDisabled">
-  <button
-    color="primary"
-    mat-icon-button
-    (click)="deleteSelf()"
-    [attr.aria-label]="'BUTTON.DELETE' | translate"
-    data-test="cohort-builder__item__delete-button"
-  >
-    <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
-  </button>
-</section>
+@if (!isDisabled) {
+  <section class="right-panel" fxLayoutAlign="end center">
+    <button
+      color="primary"
+      mat-icon-button
+      (click)="deleteSelf()"
+      [attr.aria-label]="'BUTTON.DELETE' | translate"
+      data-test="cohort-builder__item__delete-button"
+    >
+      <fa-icon icon="trash" size="lg" [fixedWidth]="true"></fa-icon>
+    </button>
+  </section>
+}

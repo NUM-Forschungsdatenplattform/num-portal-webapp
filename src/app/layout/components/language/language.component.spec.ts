@@ -16,8 +16,12 @@ describe('LanguageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LanguageComponent],
-      imports: [TranslateModule.forRoot(), FontAwesomeTestingModule, MaterialModule],
+      imports: [
+        LanguageComponent,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+        MaterialModule,
+      ],
       providers: [
         TranslateService,
         {

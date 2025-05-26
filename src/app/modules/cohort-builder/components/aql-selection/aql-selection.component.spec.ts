@@ -41,8 +41,12 @@ describe('AqlSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlSelectionComponent],
-      imports: [MaterialModule, TranslateModule.forRoot(), FontAwesomeTestingModule],
+      imports: [
+        AqlSelectionComponent,
+        MaterialModule,
+        TranslateModule.forRoot(),
+        FontAwesomeTestingModule,
+      ],
       providers: [
         { provide: CohortBuilderService, useValue: mockCohortBuilderService },
         { provide: AqlService, useValue: mockAqlService },

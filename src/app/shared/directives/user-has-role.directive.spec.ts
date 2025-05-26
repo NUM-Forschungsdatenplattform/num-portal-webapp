@@ -14,6 +14,7 @@ describe('Directive: UserHasRoleDirective', () => {
     template: `<div>
       <span *numUserHasRole="allowedRoles">${testContent}</span>
     </div>`,
+    standalone: false,
   })
   class TestUserHasRoleComponent {
     allowedRoles: string[] = []
@@ -39,7 +40,8 @@ describe('Directive: UserHasRoleDirective', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestUserHasRoleComponent, UserHasRoleDirective],
+      declarations: [TestUserHasRoleComponent],
+      imports: [UserHasRoleDirective],
       providers: [
         {
           provide: AuthService,

@@ -3,9 +3,7 @@ import { Subscription } from 'rxjs'
 import { FeatureService } from '../../core/services/feature/feature.service'
 import { AvailableFeatures } from '../models/feature/available-features.enum'
 
-@Directive({
-  selector: '[featureIsActive]',
-})
+@Directive({ selector: '[featureIsActive]' })
 export class FeatureIsActiveDirective implements OnInit, OnDestroy {
   constructor(
     private templateRef: TemplateRef<any>,

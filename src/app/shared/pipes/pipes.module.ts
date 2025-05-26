@@ -23,8 +23,7 @@ const SHARED_DECLARATIONS = [
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS],
-  imports: [CommonModule],
+  imports: [CommonModule, ...SHARED_DECLARATIONS],
   exports: [...SHARED_DECLARATIONS],
 })
 export class PipesModule {}

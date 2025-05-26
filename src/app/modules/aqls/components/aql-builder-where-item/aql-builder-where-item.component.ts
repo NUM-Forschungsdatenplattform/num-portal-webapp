@@ -1,14 +1,44 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { AqlBuilderDialogMode } from 'src/app/shared/models/archetype-query-builder/aql-builder-dialog-mode.enum'
 import { AqbWhereItemUiModel } from '../../../../shared/models/aqb/aqb-where-item-ui.model'
 import { AqlParameterValueType } from '../../../../shared/models/aql/aql-parameter-value-type.enum'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { MatInput } from '@angular/material/input'
+import { AqlParameterInputsComponent } from '../../../../shared/components/aql-parameter-inputs/aql-parameter-inputs.component'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { TranslatePipe } from '@ngx-translate/core'
+import { ArchetypePipe } from '../../../../shared/pipes/archetype.pipe'
 
 @Component({
   selector: 'num-aql-builder-where-item',
   templateUrl: './aql-builder-where-item.component.html',
   styleUrls: ['./aql-builder-where-item.component.scss'],
+  imports: [
+    FlexModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    MatOption,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInput,
+    AqlParameterInputsComponent,
+    MatIconButton,
+    FaIconComponent,
+    TranslatePipe,
+    ArchetypePipe,
+  ],
 })
 export class AqlBuilderWhereItemComponent implements OnInit, OnDestroy {
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode

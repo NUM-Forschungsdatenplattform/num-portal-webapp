@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ActivatedRoute, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { of, Subject, throwError } from 'rxjs'
@@ -26,6 +25,7 @@ jest.mock('src/app/core/utils/download-file.utils', () => ({
   downloadFile: jest.fn().mockImplementation(() => ''),
 }))
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
+import { ResultTableComponent } from 'src/app/shared/components/result-table/result-table.component'
 
 describe('ManagerDataRetrievComponent', () => {
   let component: ManagerDataExplorerComponent
@@ -83,11 +83,12 @@ describe('ManagerDataRetrievComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ManagerDataExplorerComponent, ResultTableComponentStub, ButtonComponent],
       imports: [
+        ManagerDataExplorerComponent,
+        ButtonComponent,
+        ResultTableComponentStub,
         MaterialModule,
         FontAwesomeTestingModule,
-        RouterTestingModule,
         TranslateModule.forRoot(),
       ],
       providers: [
@@ -112,7 +113,16 @@ describe('ManagerDataRetrievComponent', () => {
           useValue: mockActivatedRoute,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ManagerDataExplorerComponent, {
+        remove: {
+          imports: [ResultTableComponent],
+        },
+        add: {
+          imports: [ResultTableComponentStub],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -160,7 +170,7 @@ describe('ManagerDataRetrievComponent', () => {
       fixture.detectChanges()
       jest
         .spyOn(mockPatientFilterService, 'getProjectData')
-        .mockImplementation(() => throwError('Error fetching data'))
+        .mockImplementation(() => throwError(() => new Error('Error fetching data')))
 
       component.getData()
     })
@@ -196,7 +206,6 @@ describe('ManagerDataRetrievComponent', () => {
         writable: true,
       })
       component.exportFile('csv')
-      console.log(mockCreateUrl)
       expect(mockPatientFilterService.exportFile).toHaveBeenCalledTimes(1)
       expect(component.isExportLoading).toEqual(false)
     })
@@ -210,7 +219,7 @@ describe('ManagerDataRetrievComponent', () => {
     it('should show toast in case of error', () => {
       jest
         .spyOn(mockPatientFilterService, 'exportFile')
-        .mockImplementation(() => throwError('error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('csv')
@@ -252,7 +261,7 @@ describe('ManagerDataRetrievComponent', () => {
     it('should show toast in case of error', () => {
       jest
         .spyOn(mockPatientFilterService, 'exportFile')
-        .mockImplementation(() => throwError('error'))
+        .mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(mockToastMessageService, 'openToast').mockImplementation()
 
       component.exportFile('json')

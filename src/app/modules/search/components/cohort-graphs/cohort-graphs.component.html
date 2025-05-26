@@ -13,24 +13,28 @@
   <mat-divider class="num-divider-color--grey num-divider-width--1 num-margin-b-20"></mat-divider>
 
   <ng-container *numUserHasRole="[availableRoles.Manager]">
-    <mat-spinner *ngIf="isChartDataLoading" color="accent" [diameter]="24"></mat-spinner>
-    <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px" *ngIf="previewData.count > 0">
-      <num-vertical-bar-chart
-        color="#5F0D22"
-        [data]="previewData.ages"
-        fxFlex="50%"
-        fxFlex.lt-lg="100%"
-        [graphName]="'CHARTS.COHORT_AGE.TITLE' | translate"
-        [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
-      ></num-vertical-bar-chart>
-      <num-vertical-bar-chart
-        color="#EB586A"
-        [data]="previewData.hospitals"
-        fxFlex="50%"
-        fxFlex.lt-lg="100%"
-        [graphName]="'CHARTS.COHORT_HOSPITALS.TITLE' | translate"
-        [xAxisName]="'CHARTS.COHORT_HOSPITALS.XLABEL' | translate"
-      ></num-vertical-bar-chart>
-    </div>
+    @if (isChartDataLoading) {
+      <mat-spinner color="accent" [diameter]="24"></mat-spinner>
+    }
+    @if (previewData.count > 0) {
+      <div fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="32px">
+        <num-vertical-bar-chart
+          color="#5F0D22"
+          [data]="previewData.ages"
+          fxFlex="50%"
+          fxFlex.lt-lg="100%"
+          [graphName]="'CHARTS.COHORT_AGE.TITLE' | translate"
+          [xAxisName]="'CHARTS.COHORT_AGE.XLABEL' | translate"
+        ></num-vertical-bar-chart>
+        <num-vertical-bar-chart
+          color="#EB586A"
+          [data]="previewData.hospitals"
+          fxFlex="50%"
+          fxFlex.lt-lg="100%"
+          [graphName]="'CHARTS.COHORT_HOSPITALS.TITLE' | translate"
+          [xAxisName]="'CHARTS.COHORT_HOSPITALS.XLABEL' | translate"
+        ></num-vertical-bar-chart>
+      </div>
+    }
   </ng-container>
 </div>

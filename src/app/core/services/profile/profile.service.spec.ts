@@ -1,5 +1,5 @@
 import { ProfileService } from './profile.service'
-import { of, throwError } from 'rxjs'
+import { lastValueFrom, of, throwError } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { mockUserProfile1 } from '../../../../mocks/data-mocks/user-profile.mock'
 import { AppConfigService } from '../../../config/app-config.service'
@@ -31,14 +31,13 @@ describe('ProfileService', () => {
 
   describe('When a call to get method comes in', () => {
     beforeEach(() => {
-      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'get').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
     })
 
     it('should call the api - with error', () => {
-      service
-        .get()
-        .toPromise()
+      const userProfile$ = service.get()
+      lastValueFrom(userProfile$)
         .then((_) => {})
         .catch((_) => {})
       expect(httpClient.get).toHaveBeenCalledWith('localhost/api/profile')
@@ -77,12 +76,11 @@ describe('ProfileService', () => {
     })
 
     it('should call the api - with error', () => {
-      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError('Error'))
+      jest.spyOn(httpClient, 'post').mockImplementation(() => throwError(() => new Error('Error')))
       jest.spyOn(service, 'handleError')
 
-      service
-        .changeUserName(firstName, lastName)
-        .toPromise()
+      const userNameResponse$ = service.changeUserName(firstName, lastName)
+      lastValueFrom(userNameResponse$)
         .then((_) => {})
         .catch((_) => {})
 

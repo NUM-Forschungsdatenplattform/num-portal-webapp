@@ -4,7 +4,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
-import { of, Subject, throwError } from 'rxjs'
+import { lastValueFrom, of, Subject, throwError } from 'rxjs'
 import { OrganizationService } from 'src/app/core/services/organization/organization.service'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
 import { IUserProfile } from 'src/app/shared/models/user/user-profile.interface'
@@ -43,14 +43,13 @@ describe('OrganizationResolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result.error).toBeNull()
-          expect(result.organization.id).toBeNull()
-          done()
-        })
+
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).then((result) => {
+        expect(result.error).toBeNull()
+        expect(result.organization.id).toBeNull()
+        done()
+      })
 
       jest.advanceTimersByTime(1000)
       userProfileSubject$.next(mockUserProfile3)
@@ -65,14 +64,12 @@ describe('OrganizationResolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result.error).toBeNull()
-          expect(result.organization.id).toEqual(1)
-          done()
-        })
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).then((result) => {
+        expect(result.error).toBeNull()
+        expect(result.organization.id).toEqual(1)
+        done()
+      })
 
       jest.advanceTimersByTime(1000)
       userProfileSubject$.next(mockUserProfile3)
@@ -82,18 +79,18 @@ describe('OrganizationResolver', () => {
       jest.useFakeTimers()
       const paramMap = convertToParamMap({ id: '1' })
 
-      jest.spyOn(organizationService, 'get').mockImplementation(() => throwError('Error'))
+      jest
+        .spyOn(organizationService, 'get')
+        .mockImplementation(() => throwError(() => new Error('Error')))
 
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .catch((_error) => {
-          expect(router.navigate).toHaveBeenCalledWith(['organizations'])
-          done()
-        })
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).catch((_error) => {
+        expect(router.navigate).toHaveBeenCalledWith(['organizations'])
+        done()
+      })
 
       jest.advanceTimersByTime(1000)
       userProfileSubject$.next(mockUserProfile3)
@@ -108,17 +105,15 @@ describe('OrganizationResolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .catch((_error) => {
-          expect(router.navigate).toHaveBeenCalledWith([
-            'organizations',
-            mockOrganization1.id,
-            'editor',
-          ])
-          done()
-        })
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).catch((_error) => {
+        expect(router.navigate).toHaveBeenCalledWith([
+          'organizations',
+          mockOrganization1.id,
+          'editor',
+        ])
+        done()
+      })
 
       jest.advanceTimersByTime(1000)
       userProfileSubject$.next(mockUserProfile1)
@@ -132,14 +127,12 @@ describe('OrganizationResolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .then((result) => {
-          expect(result.error).toBeNull()
-          expect(result.organization.id).toEqual(1)
-          done()
-        })
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).then((result) => {
+        expect(result.error).toBeNull()
+        expect(result.organization.id).toEqual(1)
+        done()
+      })
 
       jest.advanceTimersByTime(1000)
       userProfileSubject$.next(mockUserProfile1)
@@ -154,13 +147,11 @@ describe('OrganizationResolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      resolver
-        .resolve(activatedRoute, state)
-        .toPromise()
-        .catch((_error) => {
-          expect(router.navigate).toHaveBeenCalledWith(['organizations'])
-          done()
-        })
+      const resolvedOrg$ = resolver.resolve(activatedRoute, state)
+      lastValueFrom(resolvedOrg$).catch((_error) => {
+        expect(router.navigate).toHaveBeenCalledWith(['organizations'])
+        done()
+      })
 
       jest.advanceTimersByTime(11000)
       userProfileSubject$.next()

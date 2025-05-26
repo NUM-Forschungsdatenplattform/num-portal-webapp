@@ -31,8 +31,12 @@ describe('FilterChipsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FilterChipsComponent],
-      imports: [MaterialModule, FontAwesomeTestingModule, TranslateModule.forRoot()],
+      imports: [
+        FilterChipsComponent,
+        MaterialModule,
+        FontAwesomeTestingModule,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents()
   })
 

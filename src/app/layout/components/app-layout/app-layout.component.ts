@@ -1,14 +1,34 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
 import { MediaMatcher } from '@angular/cdk/layout'
-import { MatSidenav } from '@angular/material/sidenav'
+import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav'
 import { ProfileService } from '../../../core/services/profile/profile.service'
 import { Subscription } from 'rxjs'
-import { NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router'
+import { SideMenuComponent } from '../side-menu/side-menu.component'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { HeaderComponent } from '../header/header.component'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { FooterComponent } from '../footer/footer.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-app-layout',
   templateUrl: './app-layout.component.html',
   styleUrls: ['./app-layout.component.scss'],
+  imports: [
+    MatSidenavContainer,
+    MatSidenav,
+    SideMenuComponent,
+    FlexModule,
+    MatSidenavContent,
+    HeaderComponent,
+    MatIconButton,
+    FaIconComponent,
+    RouterOutlet,
+    FooterComponent,
+    TranslatePipe,
+  ],
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
   @ViewChild('drawer', { static: true }) public drawer: MatSidenav

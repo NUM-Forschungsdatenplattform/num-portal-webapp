@@ -2,9 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core'
 import { IItemVisibility } from '../models/item-visibility.interface'
 import { IUserProfile } from '../models/user/user-profile.interface'
 
-@Pipe({
-  name: 'projectMenu',
-})
+@Pipe({ name: 'projectMenu' })
 /**
  * This pipe generates the action menu items for the rows in the projects table
  * by hiding and disabling specific elements based on the ItemVisibility interface

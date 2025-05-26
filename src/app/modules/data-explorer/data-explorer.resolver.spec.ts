@@ -4,12 +4,13 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router'
-import { of, Subject, throwError } from 'rxjs'
+import { lastValueFrom, of, Subject, throwError } from 'rxjs'
 import { AuthService } from 'src/app/core/auth/auth.service'
 import { ProjectService } from 'src/app/core/services/project/project.service'
 import { IAuthUserInfo } from 'src/app/shared/models/user/auth-user-info.interface'
 import { mockProject2, mockProject3 } from 'src/mocks/data-mocks/project.mock'
 import { DataExplorerResolver } from './data-explorer.resolver'
+import { HttpErrorResponse } from '@angular/common/http'
 
 describe('Data Explorer Resolver', () => {
   let resolver: DataExplorerResolver
@@ -42,7 +43,7 @@ describe('Data Explorer Resolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      await resolver.resolve(activatedRoute, state).toPromise()
+      await lastValueFrom(resolver.resolve(activatedRoute, state), { defaultValue: 0 })
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
@@ -55,7 +56,7 @@ describe('Data Explorer Resolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(result.project.id).toEqual(3)
     })
 
@@ -68,7 +69,7 @@ describe('Data Explorer Resolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      await resolver.resolve(activatedRoute, state).toPromise()
+      await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
@@ -81,18 +82,20 @@ describe('Data Explorer Resolver', () => {
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      await resolver.resolve(activatedRoute, state).toPromise()
+      await lastValueFrom(resolver.resolve(activatedRoute, state))
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
 
     it('should return an error message and navigate back to overview if the id is not found', async () => {
-      projectService.get = jest.fn().mockImplementation(() => throwError('Error'))
+      projectService.get = jest
+        .fn()
+        .mockImplementation(() => throwError(() => new HttpErrorResponse({ error: 'Error' })))
       const paramMap = convertToParamMap({ id: 123 })
       const activatedRoute = {
         paramMap,
       } as unknown as ActivatedRouteSnapshot
-      const result = await resolver.resolve(activatedRoute, state).toPromise()
-      expect(result).toBe('Error')
+      const result = await lastValueFrom(resolver.resolve(activatedRoute, state))
+      expect(result.error).toBe('Error')
       expect(router.navigate).toHaveBeenCalledWith(['data-explorer/projects'])
     })
   })

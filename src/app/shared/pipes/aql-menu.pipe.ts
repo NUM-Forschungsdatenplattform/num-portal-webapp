@@ -3,9 +3,7 @@ import { IItemVisibility } from '../models/item-visibility.interface'
 import { AqlOwner } from '../../modules/aqls/components/aql-table/menu-item'
 import { IUserProfile } from '../models/user/user-profile.interface'
 
-@Pipe({
-  name: 'aqlMenu',
-})
+@Pipe({ name: 'aqlMenu' })
 /**
  * This pipe generates the action menu items for the rows in the aql table
  * by hiding and disabling specific elements based on the ItemVisibility interface

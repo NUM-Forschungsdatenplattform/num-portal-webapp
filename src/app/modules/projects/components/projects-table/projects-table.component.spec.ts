@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject } from 'rxjs'
@@ -30,6 +29,7 @@ import { ProjectMenuKeys } from './menu-items'
 
 import { ProjectsTableComponent } from './projects-table.component'
 import { MatSort } from '@angular/material/sort'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
 
 describe('ProjectsTableComponent', () => {
   let component: ProjectsTableComponent
@@ -77,13 +77,14 @@ describe('ProjectsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectsTableComponent, StubFilterChipsComponent, SearchComponent],
       imports: [
+        ProjectsTableComponent,
+        SearchComponent,
+        StubFilterChipsComponent,
         MaterialModule,
         NoopAnimationsModule,
         ReactiveFormsModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
         PipesModule,
         FontAwesomeTestingModule,
       ],
@@ -105,7 +106,16 @@ describe('ProjectsTableComponent', () => {
           useValue: mockToastMessageService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectsTableComponent, {
+        remove: {
+          imports: [FilterChipsComponent],
+        },
+        add: {
+          imports: [StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

@@ -6,51 +6,55 @@
   <num-language></num-language>
 </mat-toolbar>
 
-<section role="heading" fxLayout="row" fxLayoutAlign="center start" *ngIf="currentNavItem">
-  <div
-    [ngClass]="{
-      'titlebar num-margin-b-60': currentNavItem?.routeTo !== 'home'
-    }"
-    role="presentation"
-    fxLayout="column"
-    fxLayoutAlign="center start"
-    fxFlex="95%"
-    fxFlex.gt-md="90%"
-    fxFlex.gt-lg="1200px"
-  >
-    <h1 data-test="header__page-headline">
-      <fa-icon
-        class="num-fc--a"
-        [icon]="currentNavItem.icon"
-        size="sm"
-        [fixedWidth]="true"
-      ></fa-icon>
-      {{
-        currentNavItem.routeTo === 'home'
-          ? welcomePageTitle[currentLang]
-          : (currentNavItem.translationKey | translate)
-      }}
-    </h1>
-    <nav mat-tab-nav-bar *ngIf="currentTabNav && !unapprovedUser" [tabPanel]="tabPanel">
-      <ng-container *ngFor="let tab of currentTabNav">
-        <span *featureIsActive="tab.feature">
-          <span
-            class="no-focus"
-            mat-tab-link
-            [routerLink]="tab.routeTo"
-            routerLinkActive
-            #rla="routerLinkActive"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [active]="tab.id === currentTabNavSelected"
-            [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
-            [attr.data-test]="'header__tab-nav__' + tab.translationKey"
-            *numUserHasRole="tab.roles"
-          >
-            {{ tab.translationKey | translate }}
-          </span>
-        </span>
-      </ng-container>
-    </nav>
-    <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
-  </div>
-</section>
+@if (currentNavItem) {
+  <section role="heading" fxLayout="row" fxLayoutAlign="center start">
+    <div
+      [ngClass]="{
+        'titlebar num-margin-b-60': currentNavItem?.routeTo !== 'home',
+      }"
+      role="presentation"
+      fxLayout="column"
+      fxLayoutAlign="center start"
+      fxFlex="95%"
+      fxFlex.gt-md="90%"
+      fxFlex.gt-lg="1200px"
+    >
+      <h1 data-test="header__page-headline">
+        <fa-icon
+          class="num-fc--a"
+          [icon]="currentNavItem.icon"
+          size="sm"
+          [fixedWidth]="true"
+        ></fa-icon>
+        {{
+          currentNavItem.routeTo === 'home'
+            ? welcomePageTitle[currentLang]
+            : (currentNavItem.translationKey | translate)
+        }}
+      </h1>
+      @if (currentTabNav && !unapprovedUser) {
+        <nav mat-tab-nav-bar [tabPanel]="tabPanel">
+          @for (tab of currentTabNav; track tab) {
+            <span *featureIsActive="tab.feature">
+              <span
+                class="no-focus"
+                mat-tab-link
+                [routerLink]="tab.routeTo"
+                routerLinkActive
+                #rla="routerLinkActive"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [active]="tab.id === currentTabNavSelected"
+                [disabled]="tab.id === currentTabNavSelected || tab.disabled === true"
+                [attr.data-test]="'header__tab-nav__' + tab.translationKey"
+                *numUserHasRole="tab.roles"
+              >
+                {{ tab.translationKey | translate }}
+              </span>
+            </span>
+          }
+        </nav>
+      }
+      <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+    </div>
+  </section>
+}

@@ -1,7 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Component, EventEmitter, Inject, Output } from '@angular/core'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { TranslateService } from '@ngx-translate/core'
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Observable } from 'rxjs'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
@@ -11,6 +18,12 @@ import { AttachmentUploadStatus } from '../../models/attachment/attachment-uploa
 import { IGenericDialog } from '../../models/generic-dialog.interface'
 import { ToastMessageType } from '../../models/toast-message-type.enum'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatMiniFabButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { MatProgressBar } from '@angular/material/progress-bar'
+import { AsyncPipe } from '@angular/common'
 
 export interface FileInputControl {
   fileName: FormControl<string>
@@ -25,6 +38,18 @@ export interface UploadDialogData {
   selector: 'num-dialog-add-attachments',
   templateUrl: './dialog-add-attachments.component.html',
   styleUrls: ['./dialog-add-attachments.component.scss'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatMiniFabButton,
+    FaIconComponent,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatProgressBar,
+    AsyncPipe,
+    TranslatePipe,
+  ],
 })
 export class DialogAddAttachmentsComponent implements IGenericDialog<UploadDialogData> {
   @Output() closeDialog = new EventEmitter<{ file: File; description?: string } | void>()

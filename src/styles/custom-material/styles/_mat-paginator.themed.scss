@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../themes/colors/additional-theme.palette' as additional-collor-palette;
+
+@mixin mat-paginator_themed() {
+  $additional: additional-collor-palette.$num-additional-palette;
+
+  @include mat.paginator-overrides(
+    (
+      container-text-size: 16px,
+      container-text-weight: 400,
+      disabled-icon-color: var(--num-color--light-grey),
+      select-trigger-text-size: 16px,
+    )
+  );
+}

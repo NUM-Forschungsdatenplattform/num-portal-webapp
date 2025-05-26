@@ -17,34 +17,39 @@
       <num-button type="secondary" (singleClick)="cancel()" data-test="aql-editor__cancel-button">{{
         'BUTTON.CANCEL' | translate
       }}</num-button>
-      <div *ngIf="!isEditMode">
-        <num-button
-          type="primary"
-          (singleClick)="save()"
-          [isDisabled]="!aqlForm.valid"
-          *numUserHasRole="[availableRoles.CriteriaEditor]"
-          data-test="aql-editor__save-button"
-          >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
-        >
-      </div>
-      <div *ngIf="isEditMode" fxLayout="row" fxLayoutGap="10px" class="editmode-on">
-        <num-button
-          [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
-          *numUserHasRole="[availableRoles.CriteriaEditor]"
-          (singleClick)="save()"
-          [isDisabled]="!aqlForm.valid"
-          data-test="aql-editor__save-as-clone-button"
-          >{{ 'BUTTON.SAVE_AS_CLONE' | translate }}</num-button
-        >
-        <num-button
-          type="primary"
-          (singleClick)="update()"
-          *ngIf="isCurrentUserOwner"
-          [isDisabled]="!aqlForm.valid"
-          data-test="aql-editor__save-as-update-button"
-          >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
-        >
-      </div>
+      @if (!isEditMode) {
+        <div>
+          <num-button
+            type="primary"
+            (singleClick)="save()"
+            [isDisabled]="!aqlForm.valid"
+            *numUserHasRole="[availableRoles.CriteriaEditor]"
+            data-test="aql-editor__save-button"
+            >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
+          >
+        </div>
+      }
+      @if (isEditMode) {
+        <div fxLayout="row" fxLayoutGap="10px" class="editmode-on">
+          <num-button
+            [type]="isCurrentUserOwner ? 'secondary' : 'primary'"
+            *numUserHasRole="[availableRoles.CriteriaEditor]"
+            (singleClick)="save()"
+            [isDisabled]="!aqlForm.valid"
+            data-test="aql-editor__save-as-clone-button"
+            >{{ 'BUTTON.SAVE_AS_CLONE' | translate }}</num-button
+          >
+          @if (isCurrentUserOwner) {
+            <num-button
+              type="primary"
+              (singleClick)="update()"
+              [isDisabled]="!aqlForm.valid"
+              data-test="aql-editor__save-as-update-button"
+              >{{ 'BUTTON.SAVE_QUERY' | translate }}</num-button
+            >
+          }
+        </div>
+      }
     </div>
   </section>
 </section>

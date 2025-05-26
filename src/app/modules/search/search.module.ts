@@ -13,10 +13,18 @@ import { VerticalBarChartComponent } from './components/vertical-bar-chart/verti
 import { DataFilterTemplatesComponent } from './components/data-filter-templates/data-filter-templates.component'
 import { ManagerDataExplorerComponent } from './components/manager-data-explorer/manager-data-explorer.component'
 import { SharedProjectsModule } from '../projects/shared-projects.module'
-import { DirectivesModule } from '../../shared/directives/directives.module'
 
 @NgModule({
-  declarations: [
+  imports: [
+    CohortBuilderModule,
+    CommonModule,
+    LayoutModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts/index.common'),
+    }),
+    SearchRoutingModule,
+    SharedModule,
+    SharedProjectsModule,
     CohortGraphsComponent,
     DataFilterComponent,
     PatientCountInfoComponent,
@@ -24,18 +32,6 @@ import { DirectivesModule } from '../../shared/directives/directives.module'
     DataFilterTemplatesComponent,
     VerticalBarChartComponent,
     ManagerDataExplorerComponent,
-  ],
-  imports: [
-    CohortBuilderModule,
-    CommonModule,
-    LayoutModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    SearchRoutingModule,
-    SharedModule,
-    SharedProjectsModule,
-    DirectivesModule,
   ],
 })
 export class SearchModule {}

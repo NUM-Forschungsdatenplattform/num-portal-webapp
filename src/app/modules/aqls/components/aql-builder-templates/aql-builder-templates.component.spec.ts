@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
 
 import { AqlBuilderTemplatesComponent } from './aql-builder-templates.component'
+import { AqlBuilderTemplateTreeComponent } from '../aql-builder-template-tree/aql-builder-template-tree.component'
 
 describe('AqlBuilderTemplatesComponent', () => {
   let component: AqlBuilderTemplatesComponent
@@ -21,14 +22,24 @@ describe('AqlBuilderTemplatesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderTemplatesComponent, TemplatesStubComponent],
       imports: [
+        AqlBuilderTemplatesComponent,
+        TemplatesStubComponent,
         NoopAnimationsModule,
         MaterialModule,
         TranslateModule.forRoot(),
         ReactiveFormsModule,
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlBuilderTemplatesComponent, {
+        remove: {
+          imports: [AqlBuilderTemplateTreeComponent],
+        },
+        add: {
+          imports: [TemplatesStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

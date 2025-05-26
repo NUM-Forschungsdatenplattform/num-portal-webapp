@@ -61,7 +61,7 @@ describe('CodeEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CodeEditorComponent],
+      imports: [CodeEditorComponent],
       providers: [{ provide: MonacoLoaderService, useValue: monacoLoaderService }],
     }).compileComponents()
   })

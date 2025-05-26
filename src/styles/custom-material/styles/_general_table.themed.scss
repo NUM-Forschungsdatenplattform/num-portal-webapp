@@ -1,18 +1,40 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 @mixin general_table_themed($theme) {
-  $accent: map-get($theme, accent);
+  $accent: map.get($theme, accent);
+  $additional: map.get($theme, additional);
+
+  .mat-table-card {
+    @include mat.elevation(1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: mat.m2-get-color-from-palette($additional, white) !important;
+    --mat-table-background-color: white;
+    --mdc-typography-body2-font-size: 14px;
+    --mat-table-row-item-label-text-size: 14px;
+  }
+
+  .mat-mdc-table {
+    th.mat-mdc-header-cell,
+    td.mat-mdc-cell {
+      font-size: 14px;
+    }
+  }
 
   .mat-mdc-row {
     &--active,
     &--selected {
-      background: mat-color($accent, 50);
+      background: mat.m2-get-color-from-palette($accent, 50);
     }
 
     &:hover {
-      background: mat-color($accent, 100) !important;
+      background: mat.m2-get-color-from-palette($accent, 100) !important;
     }
 
     &:focus {
-      background: mat-color($accent, 200) !important;
+      background: mat.m2-get-color-from-palette($accent, 200) !important;
     }
   }
 

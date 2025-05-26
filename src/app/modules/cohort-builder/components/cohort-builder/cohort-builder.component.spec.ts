@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { LayoutModule } from 'src/app/layout/layout.module'
 import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-ui.model'
 import { CohortBuilderComponent } from './cohort-builder.component'
+import { AqlConnectorGroupComponent } from '../aql-connector-group/aql-connector-group.component'
+import { AqlSelectionComponent } from '../aql-selection/aql-selection.component'
 
 describe('CohortBuilderComponent', () => {
   let component: CohortBuilderComponent
@@ -21,13 +23,22 @@ describe('CohortBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         CohortBuilderComponent,
         StubAqlSelectionComponent,
         StubAqlConnectorGroupComponent,
+        LayoutModule,
       ],
-      imports: [LayoutModule],
-    }).compileComponents()
+    })
+      .overrideComponent(CohortBuilderComponent, {
+        remove: {
+          imports: [AqlSelectionComponent, AqlConnectorGroupComponent],
+        },
+        add: {
+          imports: [StubAqlSelectionComponent, StubAqlConnectorGroupComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

@@ -5,11 +5,32 @@ import { ConnectorGroupType } from 'src/app/shared/models/connector-group-type.e
 import { ConnectorNodeType } from 'src/app/shared/models/connector-node-type.enum'
 import { LogicalOperator } from 'src/app/shared/models/logical-operator.enum'
 import { AqbWhereGroupUiModel } from '../../../../shared/models/aqb/aqb-where-group-ui.model'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField } from '@angular/material/form-field'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { AqlBuilderWhereItemComponent } from '../aql-builder-where-item/aql-builder-where-item.component'
+import { NgClass } from '@angular/common'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
+import { GroupIndexPipe } from '../../../../shared/pipes/group-index.pipe'
 
 @Component({
   selector: 'num-aql-builder-where-group',
   templateUrl: './aql-builder-where-group.component.html',
   styleUrls: ['./aql-builder-where-group.component.scss'],
+  imports: [
+    FlexModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    AqlBuilderWhereItemComponent,
+    NgClass,
+    ExtendedModule,
+    ButtonComponent,
+    TranslatePipe,
+    GroupIndexPipe,
+  ],
 })
 export class AqlBuilderWhereGroupComponent implements OnInit, OnChanges {
   readonly aqlBuilderDialogMode = AqlBuilderDialogMode

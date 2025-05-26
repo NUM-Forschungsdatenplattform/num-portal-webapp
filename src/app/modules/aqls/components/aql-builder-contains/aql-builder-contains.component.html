@@ -1,15 +1,16 @@
 <h2 class="mat-headline-3">From</h2>
 
 <div class="num-select-box contains" fxLayout="column" fxLayoutGap="20px">
-  <num-aql-builder-contains-group
-    *ngFor="let composition of compositions; let i = index"
-    role="list"
-    class="group"
-    [group]="composition"
-    [parentGroupIndex]="null"
-    [index]="i"
-    (deleteArchetypesByReferenceIds)="deleteArchetypesByReferenceIds($event)"
-    (deleteCompositionByReferenceId)="deleteCompositionByReferenceId($event)"
-    data-test="aqb__contains__group"
-  ></num-aql-builder-contains-group>
+  @for (composition of compositions; track composition; let i = $index) {
+    <num-aql-builder-contains-group
+      role="list"
+      class="group"
+      [group]="composition"
+      [parentGroupIndex]="null"
+      [index]="i"
+      (deleteArchetypesByReferenceIds)="deleteArchetypesByReferenceIds($event)"
+      (deleteCompositionByReferenceId)="deleteCompositionByReferenceId($event)"
+      data-test="aqb__contains__group"
+    ></num-aql-builder-contains-group>
+  }
 </div>

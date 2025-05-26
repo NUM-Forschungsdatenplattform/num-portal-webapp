@@ -24,8 +24,7 @@ const SHARED_DECLARATIONS = [
 ]
 
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS],
-  imports: [CommonModule, SharedModule, LayoutModule, CohortBuilderModule],
+  imports: [CommonModule, SharedModule, LayoutModule, CohortBuilderModule, ...SHARED_DECLARATIONS],
   exports: [...SHARED_DECLARATIONS],
 })
 export class SharedProjectsModule {}

@@ -13,8 +13,8 @@ describe('ProjectEditorGeneralInfoKeywordsInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditorGeneralInfoKeywordsInputComponent],
       imports: [
+        ProjectEditorGeneralInfoKeywordsInputComponent,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,

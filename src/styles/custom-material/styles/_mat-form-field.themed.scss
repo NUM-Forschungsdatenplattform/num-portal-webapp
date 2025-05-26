@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../themes/colors/additional-theme.palette' as additional-collor-palette;
+
+@mixin mat-form-field_themed() {
+  $additional: additional-collor-palette.$num-additional-palette;
+
+  @include mat.form-field-overrides(
+    (
+      outlined-label-text-color: map.get($additional, mid-grey),
+      outlined-label-text-size: 16px,
+      outlined-label-text-weight: 400,
+      outlined-focus-outline-color: var(--num-color--accent),
+      outlined-focus-label-text-color: var(--num-color--accent),
+      container-text-size: 16px,
+      container-text-weight: 400,
+      outlined-label-text-populated-size: 16px,
+    )
+  );
+}

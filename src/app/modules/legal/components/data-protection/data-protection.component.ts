@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
+import { OperationAdministrationComponent } from '../shared-parts/operation-administration/operation-administration.component'
 
 @Component({
   selector: 'num-data-protection',
   templateUrl: './data-protection.component.html',
+  imports: [OperationAdministrationComponent, TranslatePipe],
 })
 export class DataProtectionComponent implements OnInit, OnDestroy {
   public subscriptions = new Subscription()

@@ -1,19 +1,22 @@
-@mixin mat-chip_themed($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../themes/colors/additional-theme.palette' as additional-collor-palette;
 
+@mixin mat-chip_themed() {
+  $additional: additional-collor-palette.$num-additional-palette;
+
+  @include mat.chips-overrides(
+    (
+      elevated-container-color: map.get($additional, lighter-grey),
+      elevated-selected-container-color: var(--mat-sys-primary),
+      selected-label-text-color: var(--mat-sys-on-primary),
+      with-icon-selected-icon-color: var(--mat-sys-on-primary),
+      label-text-color: var(--mat-sys-on-surface),
+    )
+  );
+
+  // Overrides API does not support Typography for some reason, using class-scope and Token instead
   .mat-mdc-chip.mat-mdc-standard-chip {
-    font-size: 14px;
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
-    /* TODO(mdc-migration): The following rule targets internal classes of chips that may no longer apply for the MDC version. */
-    &.mat-chip-selected.mat-primary,
-    &.chip-primary {
-      background: mat-color($primary, 500);
-      color: mat-contrast($primary, 500);
-
-      fa-icon {
-        color: mat-color($accent, 500);
-      }
-    }
+    --mdc-chip-label-text-size: 14px;
   }
 }

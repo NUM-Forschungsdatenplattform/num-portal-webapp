@@ -1,8 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { MatButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { NgTemplateOutlet } from '@angular/common'
 
 @Component({
   selector: 'num-button',
   templateUrl: './button.component.html',
+  imports: [MatButton, FaIconComponent, NgTemplateOutlet],
 })
 export class ButtonComponent {
   constructor() {}

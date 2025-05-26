@@ -12,8 +12,13 @@ describe('DialogDiscardProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DialogDiscardProfileComponent, ButtonComponent],
-      imports: [MaterialModule, NoopAnimationsModule, TranslateModule.forRoot()],
+      imports: [
+        DialogDiscardProfileComponent,
+        ButtonComponent,
+        MaterialModule,
+        NoopAnimationsModule,
+        TranslateModule.forRoot(),
+      ],
     }).compileComponents()
   })
 

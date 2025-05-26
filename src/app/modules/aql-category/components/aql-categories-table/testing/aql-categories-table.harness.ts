@@ -1,14 +1,13 @@
 // Third Party dependencies
 
-import { AsyncFactoryFn, ComponentHarness, TestElement } from '@angular/cdk/testing'
+import { ComponentHarness, TestElement } from '@angular/cdk/testing'
 import { MatTableHarness, MatTableHarnessColumnsText } from '@angular/material/table/testing'
 
 export class AqlCategoriesTableHarness extends ComponentHarness {
   static hostSelector = '.aql-category-table'
-
-  protected getTable: AsyncFactoryFn<MatTableHarness> = this.locatorFor(MatTableHarness)
-  protected getRowMenuButtons: AsyncFactoryFn<TestElement[]> = this.locatorForAll('button')
-  protected getMenuItems: AsyncFactoryFn<TestElement[]> = this.locatorForAll('.mat-menu-item')
+  protected getTable: () => Promise<MatTableHarness> = this.locatorFor(MatTableHarness)
+  protected getRowMenuButtons: () => Promise<TestElement[]> = this.locatorForAll('button')
+  protected getMenuItems: () => Promise<TestElement[]> = this.locatorForAll('.mat-menu-item')
 
   async getAllTableRows(): Promise<MatTableHarnessColumnsText> {
     const table = await this.getTable()

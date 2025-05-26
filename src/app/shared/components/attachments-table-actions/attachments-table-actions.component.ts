@@ -10,7 +10,7 @@ import { ProjectAttachmentUiModel } from '../../models/project/project-attachmen
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 import { downloadPdf } from 'src/app/core/utils/download-file.utils'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
-import { TranslateService } from '@ngx-translate/core'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { HttpErrorResponse } from '@angular/common/http'
 import { ToastMessageType } from '../../models/toast-message-type.enum'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -30,11 +30,13 @@ import { ProjectUiModel } from '../../models/project/project-ui.model'
 import { ProjectStatus } from '../../models/project/project-status.enum'
 import { DomSanitizer } from '@angular/platform-browser'
 import { ProjectService } from 'src/app/core/services/project/project.service'
+import { ButtonComponent } from '../button/button.component'
 
 @Component({
   selector: 'num-attachments-table-actions',
   templateUrl: './attachments-table-actions.component.html',
   styleUrls: ['./attachments-table-actions.component.scss'],
+  imports: [ButtonComponent, TranslatePipe],
 })
 export class AttachmentsTableActionsComponent implements OnChanges, OnDestroy {
   @Input() attachments: ProjectAttachmentUiModel[]

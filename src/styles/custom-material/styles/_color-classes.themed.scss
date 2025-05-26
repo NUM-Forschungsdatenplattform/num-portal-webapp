@@ -1,30 +1,33 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 @mixin color-classes_themed($theme) {
-  $accent: map-get($theme, accent);
-  $primary: map-get($theme, primary);
-  $additional: map-get($theme, additional);
-  $warn: map-get($theme, warn);
+  $accent: map.get($theme, accent);
+  $primary: map.get($theme, primary);
+  $additional: map.get($theme, additional);
+  $warn: map.get($theme, warn);
 
   .num-fg-color,
   .num-fc {
     &--primary,
     &--p {
-      color: mat-color($primary);
+      color: mat.m2-get-color-from-palette($primary);
     }
     &--accent,
     &--a {
-      color: mat-color($accent);
+      color: mat.m2-get-color-from-palette($accent);
     }
     &--warn,
     &--w {
-      color: mat-color($warn, warning);
+      color: mat.m2-get-color-from-palette($warn, warning);
     }
     &--success,
     &--s {
-      color: mat-color($additional, success);
+      color: mat.m2-get-color-from-palette($additional, success);
     }
     &--disabled,
     &--d {
-      color: mat-color($additional, mid-grey);
+      color: mat.m2-get-color-from-palette($additional, mid-grey);
     }
   }
 
@@ -32,19 +35,19 @@
   .num-bc {
     &--primary,
     &--p {
-      background: mat-color($primary);
+      background: mat.m2-get-color-from-palette($primary);
     }
     &--accent,
     &--a {
-      background: mat-color($accent);
+      background: mat.m2-get-color-from-palette($accent);
     }
     &--warn,
     &--w {
-      background: mat-color($warn);
+      background: mat.m2-get-color-from-palette($warn);
     }
     &--disabled,
     &--d {
-      background: mat-color($additional, mid-grey);
+      background: mat.m2-get-color-from-palette($additional, mid-grey);
     }
   }
 }

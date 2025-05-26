@@ -10,62 +10,61 @@
       [(value)]="item.comparisonOperator"
       data-test="aqb__where__item__logical-operator__selector"
     >
-      <mat-option
-        *ngFor="let operator of item.comparisonOperatorOptions"
-        [value]="operator.value"
-        [attr.data-test]="'aqb__where__item__logical-operator__' + operator.value"
-      >
-        {{ operator.sign }}
-      </mat-option>
+      @for (operator of item.comparisonOperatorOptions; track operator) {
+        <mat-option
+          [value]="operator.value"
+          [attr.data-test]="'aqb__where__item__logical-operator__' + operator.value"
+        >
+          {{ operator.sign }}
+        </mat-option>
+      }
     </mat-select>
   </mat-form-field>
 
   <ng-container [formGroup]="parameterForm">
-    <mat-form-field
-      floatLabel="always"
-      appearance="outline"
-      class="input num-tiny-input value-input"
-      *ngIf="item.isParameterType"
-    >
-      <mat-label id="label">{{ 'PARAMETER_NAME' | translate }}</mat-label>
-      <input
-        [attr.aria-label]="'PARAMETER_NAME' | translate"
-        type="text"
-        matInput
-        formControlName="value"
-        data-test="aqb__where__item__parameter-name-input"
-      />
-    </mat-form-field>
+    @if (item.isParameterType) {
+      <mat-form-field
+        floatLabel="always"
+        appearance="outline"
+        class="input num-tiny-input value-input"
+      >
+        <mat-label id="label">{{ 'PARAMETER_NAME' | translate }}</mat-label>
+        <input
+          [attr.aria-label]="'PARAMETER_NAME' | translate"
+          type="text"
+          matInput
+          formControlName="value"
+          data-test="aqb__where__item__parameter-name-input"
+        />
+      </mat-form-field>
+    }
   </ng-container>
 
-  <num-aql-parameter-inputs
-    *ngIf="!item.isParameterType"
-    [item]="item"
-    mode="aqb"
-  ></num-aql-parameter-inputs>
+  @if (!item.isParameterType) {
+    <num-aql-parameter-inputs [item]="item" mode="aqb"></num-aql-parameter-inputs>
+  }
 </section>
 
 <section class="right-panel" fxLayoutGap="10px" fxLayoutAlign="end center">
-  <mat-form-field
-    appearance="outline"
-    class="num-tiny-input parameter-select"
-    *ngIf="dialogMode === aqlBuilderDialogMode.AqlEditor"
-  >
-    <mat-label>{{ 'PARAMETER' | translate }}</mat-label>
-    <mat-select
-      [attr.aria-label]="'PARAMETER' | translate"
-      [(value)]="item.isParameterType"
-      data-test="aqb__where__item__is-parameter__selector"
-    >
-      <mat-option
-        *ngFor="let parameter of item.parameterTypeOptions"
-        [value]="parameter.value"
-        [attr.data-test]="'aqb__where__item__is-parameter__' + parameter.value"
+  @if (dialogMode === aqlBuilderDialogMode.AqlEditor) {
+    <mat-form-field appearance="outline" class="num-tiny-input parameter-select">
+      <mat-label>{{ 'PARAMETER' | translate }}</mat-label>
+      <mat-select
+        [attr.aria-label]="'PARAMETER' | translate"
+        [(value)]="item.isParameterType"
+        data-test="aqb__where__item__is-parameter__selector"
       >
-        {{ parameter.text | translate }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+        @for (parameter of item.parameterTypeOptions; track parameter) {
+          <mat-option
+            [value]="parameter.value"
+            [attr.data-test]="'aqb__where__item__is-parameter__' + parameter.value"
+          >
+            {{ parameter.text | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
 
   <button
     color="primary"

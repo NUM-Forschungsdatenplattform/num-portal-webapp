@@ -6,13 +6,11 @@
     multiple
     data-test="aqb__templates-selection"
   >
-    <mat-option
-      *ngFor="let template of templates"
-      [value]="template"
-      [attr.data-test]="'aqb__templates-selection__' + template"
-    >
-      {{ template }}
-    </mat-option>
+    @for (template of templates; track template) {
+      <mat-option [value]="template" [attr.data-test]="'aqb__templates-selection__' + template">
+        {{ template }}
+      </mat-option>
+    }
   </mat-select>
 </mat-form-field>
 
@@ -21,11 +19,12 @@
   [@.disabled]="!isViewRendered"
   [multi]="false"
 >
-  <num-aql-builder-template-tree
-    *ngFor="let templateId of selectedTemplates.value"
-    [templateId]="templateId"
-    [selectDestination]="selectDestination"
-    [mode]="mode"
-    (selectedItem)="selectedItem.emit($event)"
-  ></num-aql-builder-template-tree>
+  @for (templateId of selectedTemplates.value; track templateId) {
+    <num-aql-builder-template-tree
+      [templateId]="templateId"
+      [selectDestination]="selectDestination"
+      [mode]="mode"
+      (selectedItem)="selectedItem.emit($event)"
+    ></num-aql-builder-template-tree>
+  }
 </mat-accordion>

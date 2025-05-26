@@ -2,8 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { ActivatedRoute, Params, Router } from '@angular/router'
-import { RouterTestingModule } from '@angular/router/testing'
+import { ActivatedRoute, Params, provideRouter, Router } from '@angular/router'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { BehaviorSubject, of, Subject, throwError } from 'rxjs'
@@ -35,13 +34,12 @@ import { CohortGroupUiModel } from 'src/app/shared/models/project/cohort-group-u
 import { IDetermineHits } from 'src/app/shared/components/editor-determine-hits/determine-hits.interface'
 
 jest.mock('src/app/core/utils/download-file.utils', () => ({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   __esModule: true,
   downloadFile: jest.fn().mockImplementation(() => ''),
 }))
 import { downloadFile } from 'src/app/core/utils/download-file.utils'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
-import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { provideHttpClientTesting } from '@angular/common/http/testing'
 import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-attachment-ui.model'
 import { AttachmentService } from 'src/app/core/services/attachment/attachment.service'
 import {
@@ -49,6 +47,11 @@ import {
   attachmentApiMock2,
   attachmentApiMock3,
 } from 'src/mocks/data-mocks/project-attachment.mock'
+import { provideHttpClient } from '@angular/common/http'
+import { ProjectEditorAccordionComponent } from '../project-editor-accordion/project-editor-accordion.component'
+import { ProjectEditorApprovalComponent } from '../project-editor-approval/project-editor-approval.component'
+import { ProjectEditorButtonsComponent } from '../project-editor-buttons/project-editor-buttons.component'
+import { ProjectEditorCommentsComponent } from '../project-editor-comments/project-editor-comments.component'
 
 describe('ProjectEditorComponent', () => {
   let component: ProjectEditorComponent
@@ -170,30 +173,29 @@ describe('ProjectEditorComponent', () => {
     @Output() saveAsApprovalRequest = saveAsApprovalRequestEmitter
     @Output() saveAsApprovalReply = saveAsApprovalReplyEmitter
     @Output() startEdit = startEditEmitter
-    @Output() cancel = cancelEmitter
+    @Output() cancelEdit = cancelEmitter
     @Output() exportPrint = exportEmitter
   }
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         ProjectEditorComponent,
-        StubProjectEditorAccordionComponent,
         ButtonComponent,
+        StubProjectEditorAccordionComponent,
         ProjectEditorButtonsStubComponent,
         ProjectEditorCommentsStubComponent,
         ProjectEditorApprovalStubComponent,
-      ],
-      imports: [
-        HttpClientTestingModule,
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([{ path: '**', redirectTo: '' }]),
       ],
       providers: [
+        provideRouter([{ path: '**', redirectTo: '' }]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
           useValue: route,
@@ -227,7 +229,26 @@ describe('ProjectEditorComponent', () => {
           useValue: mockAttachmentService,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorComponent, {
+        remove: {
+          imports: [
+            ProjectEditorAccordionComponent,
+            ProjectEditorCommentsComponent,
+            ProjectEditorApprovalComponent,
+            ProjectEditorButtonsComponent,
+          ],
+        },
+        add: {
+          imports: [
+            StubProjectEditorAccordionComponent,
+            ProjectEditorButtonsStubComponent,
+            ProjectEditorCommentsStubComponent,
+            ProjectEditorApprovalStubComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -388,7 +409,7 @@ describe('ProjectEditorComponent', () => {
     })
 
     it('should NOT navigate and show Error message on Failure to Save', (done) => {
-      jest.spyOn(projectService, 'update').mockImplementationOnce(() => throwError({}))
+      jest.spyOn(projectService, 'update').mockImplementationOnce(() => throwError(() => {}))
 
       component.save().then(() => {
         expect(mockToast.openToast).toHaveBeenCalledWith({

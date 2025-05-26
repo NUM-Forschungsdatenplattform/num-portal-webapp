@@ -12,13 +12,24 @@ import { ToastMessageType } from 'src/app/shared/models/toast-message-type.enum'
 
 // Constants
 import { EDIT_AQL_CATEGORY_DIALOG_CONFIG } from './constants'
-import { Subscription } from 'rxjs'
+import { lastValueFrom, Subscription } from 'rxjs'
 import { AqlCategoriesTableComponent } from '../aql-categories-table/aql-categories-table.component'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-categories-management',
   templateUrl: './aql-categories-management.component.html',
   styleUrls: ['./aql-categories-management.component.scss'],
+  imports: [
+    AqlCategoriesTableComponent,
+    UserHasRoleDirective,
+    FlexModule,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class AqlCategoriesManagementComponent implements OnDestroy {
   availableRoles = AvailableRoles
@@ -56,14 +67,14 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
 
   async create(data: Omit<IAqlCategoryApi, 'id'>): Promise<void> {
     try {
-      await this.aqlCategoryService.save(data).toPromise()
+      await lastValueFrom(this.aqlCategoryService.save(data))
 
       this.toast.openToast({
         type: ToastMessageType.Success,
         message: 'QUERY_CATEGORIES.CREATE_SUCCESS_MESSAGE',
       })
       this.aqlCategoriesTableComponent.getAll()
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERY_CATEGORIES.CREATE_ERROR_MESSAGE',
@@ -73,7 +84,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
 
   async update(data: Omit<IAqlCategoryApi, 'id'>, id: number): Promise<void> {
     try {
-      await this.aqlCategoryService.update(data, id).toPromise()
+      await lastValueFrom(this.aqlCategoryService.update(data, id))
 
       this.aqlCategoriesTableComponent.getAll()
 
@@ -81,7 +92,7 @@ export class AqlCategoriesManagementComponent implements OnDestroy {
         type: ToastMessageType.Success,
         message: 'QUERY_CATEGORIES.UPDATE_SUCCESS_MESSAGE',
       })
-    } catch (error) {
+    } catch (_) {
       this.toast.openToast({
         type: ToastMessageType.Error,
         message: 'QUERY_CATEGORIES.UPDATE_ERROR_MESSAGE',

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { Subject } from 'rxjs'
+import { lastValueFrom, Subject } from 'rxjs'
 import { AqlEditorService } from 'src/app/core/services/aql-editor/aql-editor.service'
 import { AqlService } from 'src/app/core/services/aql/aql.service'
 import { DialogService } from 'src/app/core/services/dialog/dialog.service'
@@ -18,11 +18,28 @@ import {
   VALIDATION_ERROR_CONFIG,
   VALIDATION_SUCCESS_CONFIG,
 } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard, MatCardContent } from '@angular/material/card'
+import { UserHasRoleDirective } from '../../../../shared/directives/user-has-role.directive'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { CodeEditorComponent } from '../../../code-editor/components/code-editor/code-editor.component'
+import { EditorDetermineHitsComponent } from '../../../../shared/components/editor-determine-hits/editor-determine-hits.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-aql-editor-creator',
   templateUrl: './aql-editor-creator.component.html',
   styleUrls: ['./aql-editor-creator.component.scss'],
+  imports: [
+    FlexModule,
+    MatCard,
+    MatCardContent,
+    UserHasRoleDirective,
+    ButtonComponent,
+    CodeEditorComponent,
+    EditorDetermineHitsComponent,
+    TranslatePipe,
+  ],
 })
 export class AqlEditorCeatorComponent {
   availableRoles = AvailableRoles
@@ -90,7 +107,7 @@ export class AqlEditorCeatorComponent {
   async validate(showSuccess?: boolean): Promise<boolean> {
     let validationResult: IAqlValidationResponse
     try {
-      validationResult = await this.aqlEditorService.validateAql(this.aqlQuery).toPromise()
+      validationResult = await lastValueFrom(this.aqlEditorService.validateAql(this.aqlQuery))
       if (!validationResult.valid) {
         this.setError(validationResult)
         return false
@@ -101,7 +118,7 @@ export class AqlEditorCeatorComponent {
         }
         return true
       }
-    } catch (error) {
+    } catch (_) {
       this.toastMessageService.openToast(VALIDATION_ERROR_CONFIG)
       return false
     }
@@ -155,12 +172,10 @@ export class AqlEditorCeatorComponent {
       this.updateDetermineHits(null, '', true)
 
       try {
-        await this.aqlService
-          .getSize(this.aqlQuery)
-          .toPromise()
-          .then((result) => {
-            this.updateDetermineHits(result, '')
-          })
+        const size$ = this.aqlService.getSize(this.aqlQuery)
+        await lastValueFrom(size$).then((result) => {
+          this.updateDetermineHits(result, '')
+        })
       } catch (error) {
         if (error.status === 451) {
           // *** Error 451 means too few hits ***

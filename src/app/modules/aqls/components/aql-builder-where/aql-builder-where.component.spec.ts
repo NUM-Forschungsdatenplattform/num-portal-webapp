@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { AqbUiModel } from '../../../../shared/models/aqb/aqb-ui.model'
 
 import { AqlBuilderWhereComponent } from './aql-builder-where.component'
+import { AqlBuilderWhereGroupComponent } from '../aql-builder-where-group/aql-builder-where-group.component'
 
 describe('AqlBuilderWhereComponent', () => {
   let component: AqlBuilderWhereComponent
@@ -21,9 +22,22 @@ describe('AqlBuilderWhereComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlBuilderWhereComponent, WhereGroupStubComponent],
-      imports: [FontAwesomeTestingModule, TranslateModule.forRoot()],
-    }).compileComponents()
+      imports: [
+        AqlBuilderWhereComponent,
+        WhereGroupStubComponent,
+        FontAwesomeTestingModule,
+        TranslateModule.forRoot(),
+      ],
+    })
+      .overrideComponent(AqlBuilderWhereComponent, {
+        remove: {
+          imports: [AqlBuilderWhereGroupComponent],
+        },
+        add: {
+          imports: [WhereGroupStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

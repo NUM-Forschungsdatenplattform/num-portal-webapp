@@ -111,7 +111,7 @@ describe('AttachmentService', () => {
 
       try {
         await firstValueFrom(service.downloadAttachment(fileId))
-      } catch (error) {
+      } catch (_) {
         expect(service.handleError).toHaveBeenCalled()
       }
     })

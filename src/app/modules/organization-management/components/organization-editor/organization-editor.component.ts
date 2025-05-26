@@ -1,5 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { cloneDeep } from 'lodash-es'
 import { Observable, Subscription, throwError } from 'rxjs'
@@ -21,11 +27,62 @@ import {
   UPDATING_SUCCESS,
 } from './constants'
 import { ProfileService } from 'src/app/core/services/profile/profile.service'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatCard } from '@angular/material/card'
+import { MatFormField, MatLabel } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { ExtendedModule } from '@angular/flex-layout/extended'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table'
+import { MatIconButton } from '@angular/material/button'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+import { MatTooltip } from '@angular/material/tooltip'
+import { MatCheckbox } from '@angular/material/checkbox'
+import { MatDivider } from '@angular/material/list'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-organization-editor',
   templateUrl: './organization-editor.component.html',
   styleUrls: ['./organization-editor.component.scss'],
+  imports: [
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCard,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    ExtendedModule,
+    ButtonComponent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIconButton,
+    FaIconComponent,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatTooltip,
+    MatCheckbox,
+    MatDivider,
+    TranslatePipe,
+  ],
 })
 export class OrganizationEditorComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription()
@@ -103,8 +160,8 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     this.isLoading = true
     const name = this.form.get('name').value
     const organization = this.organization.convertToApi({ name })
-    this.organizationService.create(organization).subscribe(
-      (result) => {
+    this.organizationService.create(organization).subscribe({
+      next: (result) => {
         this.isLoading = false
         this.organization = new OrganizationUiModel(result)
         this.router.navigate(['organizations', this.organization.id, 'editor'])
@@ -116,11 +173,11 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         }
         this.toastMessageService.openToast(messageConfig)
       },
-      () => {
+      error: () => {
         this.isLoading = false
         this.toastMessageService.openToast(CREATION_ERROR)
-      }
-    )
+      },
+    })
   }
 
   update(id: number, organization: IOrganization): Observable<IOrganization> {
@@ -132,7 +189,7 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
       }),
       catchError((error) => {
         this.isLoading = false
-        return throwError(error)
+        return throwError(() => error)
       })
     )
   }
@@ -141,14 +198,14 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     const name = this.form.get('name').value
     const active = this.form.get('active').value
     const organization = this.organization.convertToApi({ name, active })
-    this.update(this.organization.id, organization).subscribe(
-      (_updatedOrganization) => {
+    this.update(this.organization.id, organization).subscribe({
+      next: (_updatedOrganization) => {
         this.toastMessageService.openToast(UPDATING_SUCCESS)
       },
-      (_error) => {
+      error: (_error) => {
         this.toastMessageService.openToast(UPDATING_ERROR)
-      }
-    )
+      },
+    })
   }
 
   addDomain(): void {
@@ -160,8 +217,8 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
         mailDomains: [...this.organization.mailDomains, newDomain],
       })
 
-      this.update(this.organization.id, organization).subscribe(
-        (updatedOrganization) => {
+      this.update(this.organization.id, organization).subscribe({
+        next: (updatedOrganization) => {
           this.toastMessageService.openToast(ADDING_DOMAIN_SUCCESS)
           this.form.patchValue({
             newDomain: '',
@@ -172,15 +229,15 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
             this.form.get('newDomain').markAsUntouched()
           }, 0)
         },
-        (error) => {
+        error: (error) => {
           const firstError = error.error?.errors[0]
           if (firstError?.includes('Organization mail domain already exists')) {
             this.toastMessageService.openToast(ADDING_DOMAIN_ERROR_TAKEN)
           } else {
             this.toastMessageService.openToast(ADDING_DOMAIN_ERROR_GENERIC)
           }
-        }
-      )
+        },
+      })
     }
   }
 
@@ -189,16 +246,16 @@ export class OrganizationEditorComponent implements OnInit, OnDestroy {
     mailDomains.splice(index, 1)
     const organization = this.organization.convertToApi({ mailDomains })
 
-    this.update(this.organization.id, organization).subscribe(
-      (updatedOrganization) => {
+    this.update(this.organization.id, organization).subscribe({
+      next: (updatedOrganization) => {
         this.toastMessageService.openToast(DELETING_DOMAIN_SUCCESS)
         this.form.patchValue({
           mailDomains: updatedOrganization.mailDomains,
         })
       },
-      (_error) => {
+      error: (_error) => {
         this.toastMessageService.openToast(DELETING_DOMAIN_ERROR)
-      }
-    )
+      },
+    })
   }
 }

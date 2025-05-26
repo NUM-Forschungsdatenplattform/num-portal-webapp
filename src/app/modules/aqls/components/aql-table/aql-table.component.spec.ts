@@ -16,7 +16,6 @@ import { IFilterItem } from '../../../../shared/models/filter-chip.interface'
 import { Router } from '@angular/router'
 import { IUserProfile } from '../../../../shared/models/user/user-profile.interface'
 import { ProfileService } from '../../../../core/services/profile/profile.service'
-import { RouterTestingModule } from '@angular/router/testing'
 import { PipesModule } from '../../../../shared/pipes/pipes.module'
 import { AqlMenuKeys } from './menu-item'
 import { mockAql1 } from '../../../../../mocks/data-mocks/aqls.mock'
@@ -25,6 +24,8 @@ import { ToastMessageService } from 'src/app/core/services/toast-message/toast-m
 import { IAqlCategoryApi } from 'src/app/shared/models/aql/category/aql-category.interface'
 import { AqlCategoryService } from 'src/app/core/services/aql-category/aql-category.service'
 import { MatSort } from '@angular/material/sort'
+import { FilterChipsComponent } from 'src/app/shared/components/filter-chips/filter-chips.component'
+import { LocalizedDatePipe } from 'src/app/shared/pipes/localized-date.pipe'
 
 describe('AqlTableComponent', () => {
   let component: AqlTableComponent
@@ -79,20 +80,17 @@ describe('AqlTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         AqlTableComponent,
         SearchComponent,
+        MockLocalizedDatePipe,
         DefinitionListStubComponent,
         StubFilterChipsComponent,
-        MockLocalizedDatePipe,
-      ],
-      imports: [
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
         PipesModule,
       ],
       providers: [
@@ -113,7 +111,16 @@ describe('AqlTableComponent', () => {
           useValue: mockToast,
         },
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlTableComponent, {
+        remove: {
+          imports: [LocalizedDatePipe, FilterChipsComponent],
+        },
+        add: {
+          imports: [MockLocalizedDatePipe, StubFilterChipsComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
@@ -233,7 +240,7 @@ describe('AqlTableComponent', () => {
 
   describe('On fail to delete the AQL', () => {
     beforeEach(() => {
-      jest.spyOn(aqlService, 'delete').mockImplementation(() => throwError({}))
+      jest.spyOn(aqlService, 'delete').mockImplementation(() => throwError(() => {}))
     })
 
     it('should show Error toast', (done) => {

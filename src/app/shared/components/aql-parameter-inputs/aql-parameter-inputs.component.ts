@@ -1,17 +1,51 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms'
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms'
 import { DateAdapter } from '@angular/material/core'
-import { MatDatepickerInputEvent } from '@angular/material/datepicker'
-import { TranslateService } from '@ngx-translate/core'
+import {
+  MatDatepickerInputEvent,
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker'
+import { TranslateService, TranslatePipe } from '@ngx-translate/core'
 import { Subscription } from 'rxjs'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
 import moment from 'moment'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
+import { MatInput } from '@angular/material/input'
+import { MatSelect, MatOption } from '@angular/material/select'
+import { TimeInputComponent } from '../time-input/time-input.component'
+import { KeyValuePipe } from '@angular/common'
 
 @Component({
   selector: 'num-aql-parameter-inputs',
   templateUrl: './aql-parameter-inputs.component.html',
   styleUrls: ['./aql-parameter-inputs.component.scss'],
+  imports: [
+    FlexModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatSuffix,
+    MatSelect,
+    MatOption,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepicker,
+    TimeInputComponent,
+    KeyValuePipe,
+    TranslatePipe,
+  ],
 })
 export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()

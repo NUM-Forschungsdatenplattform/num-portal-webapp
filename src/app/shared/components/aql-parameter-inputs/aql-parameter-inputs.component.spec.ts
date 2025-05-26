@@ -12,6 +12,7 @@ import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type
 import { IItem } from '../../models/item.interface'
 import { AqlParameterInputsComponent } from './aql-parameter-inputs.component'
 import moment from 'moment'
+import { TimeInputComponent } from '../time-input/time-input.component'
 
 describe('AqlParameterInputsComponent', () => {
   let component: AqlParameterInputsComponent
@@ -24,15 +25,25 @@ describe('AqlParameterInputsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlParameterInputsComponent, TimeInputStubComponent],
       imports: [
+        AqlParameterInputsComponent,
+        TimeInputStubComponent,
         MaterialModule,
         ReactiveFormsModule,
         FormsModule,
         NoopAnimationsModule,
         TranslateModule.forRoot(),
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(AqlParameterInputsComponent, {
+        remove: {
+          imports: [TimeInputComponent],
+        },
+        add: {
+          imports: [TimeInputStubComponent],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {

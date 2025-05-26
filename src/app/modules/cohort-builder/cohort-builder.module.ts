@@ -8,16 +8,22 @@ import { LayoutModule } from 'src/app/layout/layout.module'
 import { SharedModule } from 'src/app/shared/shared.module'
 import { DialogAqlInfoComponent } from './components/dialog-aql-info/dialog-aql-info.component'
 
-const SHARED_DECLARATIONS = [
-  CohortBuilderComponent,
-  AqlSelectionComponent,
-  AqlConnectorGroupComponent,
-  AqlConnectorItemComponent,
-]
-
 @NgModule({
-  declarations: [...SHARED_DECLARATIONS, DialogAqlInfoComponent],
-  imports: [CommonModule, LayoutModule, SharedModule],
-  exports: [...SHARED_DECLARATIONS],
+  imports: [
+    CommonModule,
+    LayoutModule,
+    SharedModule,
+    CohortBuilderComponent,
+    AqlSelectionComponent,
+    AqlConnectorGroupComponent,
+    AqlConnectorItemComponent,
+    DialogAqlInfoComponent,
+  ],
+  exports: [
+    CohortBuilderComponent,
+    AqlSelectionComponent,
+    AqlConnectorGroupComponent,
+    AqlConnectorItemComponent,
+  ],
 })
 export class CohortBuilderModule {}

@@ -67,8 +67,9 @@ describe('AqlCategoriesManagementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AqlCategoriesManagementComponent, AqlCategoriesTableComponent],
       imports: [
+        AqlCategoriesManagementComponent,
+        AqlCategoriesTableComponent,
         NoopAnimationsModule,
         FontAwesomeModule,
         LayoutModule,
@@ -164,7 +165,7 @@ describe('AqlCategoriesManagementComponent', () => {
 
   describe('When update of AQL category failed', () => {
     beforeEach(() => {
-      jest.spyOn(mockAqlCategoryService, 'update').mockImplementation(() => throwError({}))
+      jest.spyOn(mockAqlCategoryService, 'update').mockImplementation(() => throwError(() => {}))
     })
 
     it('should show the error to the user', async () => {
@@ -223,7 +224,7 @@ describe('AqlCategoriesManagementComponent', () => {
 
   describe('When an error occurs on creating a new category', () => {
     beforeEach(() => {
-      jest.spyOn(mockAqlCategoryService, 'save').mockImplementation(() => throwError({}))
+      jest.spyOn(mockAqlCategoryService, 'save').mockImplementation(() => throwError(() => {}))
     })
 
     it('should show an error toast to the user', async () => {

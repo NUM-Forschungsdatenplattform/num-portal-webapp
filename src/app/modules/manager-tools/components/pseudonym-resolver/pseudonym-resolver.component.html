@@ -31,32 +31,32 @@
     </mat-form-field>
   </form>
 
-  <mat-spinner
-    class="num-margin-b-20"
-    color="accent"
-    [diameter]="20"
-    *ngIf="isLoading; else content"
-  ></mat-spinner>
-
-  <ng-template #content>
-    <span class="mat-body-strong" *ngIf="resolvedPseudonym">Patient</span>
-    <section role="row" class="resolved num-margin-b-20" *ngIf="resolvedPseudonym">
-      <span data-test="manager-tools__resolve-pseudonym__pseudonym-value">{{
-        resolvedPseudonym
-      }}</span>
-      <button
-        *ngIf="hasClipboardApi"
-        id="clipboard-button"
-        type="button"
-        [attr.aria-label]="'BUTTON.COPY_TO_CLIPBOARD' | translate"
-        mat-icon-button
-        (click)="copyToClipboard()"
-        data-test="manager-tools__resolve-pseudonym__clipboard-button"
-      >
-        <fa-icon icon="clipboard" size="lg" class="num-fc--a"></fa-icon>
-      </button>
-    </section>
-  </ng-template>
+  @if (isLoading) {
+    <mat-spinner class="num-margin-b-20" color="accent" [diameter]="20"></mat-spinner>
+  } @else {
+    @if (resolvedPseudonym) {
+      <span class="mat-body-strong">Patient</span>
+    }
+    @if (resolvedPseudonym) {
+      <section role="row" class="resolved num-margin-b-20">
+        <span data-test="manager-tools__resolve-pseudonym__pseudonym-value">{{
+          resolvedPseudonym
+        }}</span>
+        @if (hasClipboardApi) {
+          <button
+            id="clipboard-button"
+            type="button"
+            [attr.aria-label]="'BUTTON.COPY_TO_CLIPBOARD' | translate"
+            mat-icon-button
+            (click)="copyToClipboard()"
+            data-test="manager-tools__resolve-pseudonym__clipboard-button"
+          >
+            <fa-icon icon="clipboard" size="lg" class="num-fc--a"></fa-icon>
+          </button>
+        }
+      </section>
+    }
+  }
 
   <num-button
     [isDisabled]="isLoading || form.invalid"

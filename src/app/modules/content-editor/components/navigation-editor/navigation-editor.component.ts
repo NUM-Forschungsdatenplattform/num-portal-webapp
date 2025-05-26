@@ -5,17 +5,33 @@ import {
   UntypedFormGroup,
   ValidationErrors,
   Validators,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms'
 import { Subscription } from 'rxjs'
 import { ContentService } from 'src/app/core/services/content/content.service'
 import { ToastMessageService } from 'src/app/core/services/toast-message/toast-message.service'
 import { INavigationLink } from 'src/app/shared/models/content/navigation-link.interface'
 import { SAVE_NAVIGATION_SUCCESS_CONFIG, SAVE_NAVIGATION_ERROR_CONFIG } from './constants'
+import { FlexModule } from '@angular/flex-layout/flex'
+import { NavigationEditorItemComponent } from '../navigation-editor-item/navigation-editor-item.component'
+import { MatDivider } from '@angular/material/list'
+import { ButtonComponent } from '../../../../shared/components/button/button.component'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
   selector: 'num-navigation-editor',
   templateUrl: './navigation-editor.component.html',
   styleUrls: ['./navigation-editor.component.scss'],
+  imports: [
+    FormsModule,
+    FlexModule,
+    ReactiveFormsModule,
+    NavigationEditorItemComponent,
+    MatDivider,
+    ButtonComponent,
+    TranslatePipe,
+  ],
 })
 export class NavigationEditorComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
@@ -111,16 +127,16 @@ export class NavigationEditorComponent implements OnInit, OnDestroy {
       return validLinks
     }, [])
 
-    this.contentService.updateNavigationLinks(navigationLinks).subscribe(
-      () => {
+    this.contentService.updateNavigationLinks(navigationLinks).subscribe({
+      next: () => {
         this.toastMessageService.openToast(SAVE_NAVIGATION_SUCCESS_CONFIG)
         this.isLoading = false
       },
-      () => {
+      error: () => {
         this.toastMessageService.openToast(SAVE_NAVIGATION_ERROR_CONFIG)
         this.isLoading = false
-      }
-    )
+      },
+    })
   }
 
   discard(): void {

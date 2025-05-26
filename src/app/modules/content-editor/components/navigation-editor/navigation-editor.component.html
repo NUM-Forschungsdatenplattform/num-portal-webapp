@@ -6,13 +6,14 @@
 
 <section class="num-margin-b-60">
   <form [formGroup]="navigationForm" fxLayout="column" fxLayoutGap="40px">
-    <num-navigation-editor-item
-      *ngFor="let form of navigationLinks.controls; let i = index"
-      data-test="content-editor__navigation__item"
-      [index]="i + 1"
-      [form]="form"
-      [isLoading]="isLoading"
-    ></num-navigation-editor-item>
+    @for (form of navigationLinks.controls; track form; let i = $index) {
+      <num-navigation-editor-item
+        data-test="content-editor__navigation__item"
+        [index]="i + 1"
+        [form]="form"
+        [isLoading]="isLoading"
+      ></num-navigation-editor-item>
+    }
   </form>
 </section>
 

@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-import { RouterTestingModule } from '@angular/router/testing'
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing'
 import { TranslateModule } from '@ngx-translate/core'
 import { MaterialModule } from 'src/app/layout/material/material.module'
@@ -12,6 +11,10 @@ import { ProjectAttachmentUiModel } from 'src/app/shared/models/project/project-
 import { ProjectUiModel } from 'src/app/shared/models/project/project-ui.model'
 
 import { ProjectEditorAccordionComponent } from './project-editor-accordion.component'
+import { ProjectEditorCohortBuilderComponent } from '../project-editor-cohort-builder/project-editor-cohort-builder.component'
+import { ProjectEditorGeneralInfoComponent } from '../project-editor-general-info/project-editor-general-info.component'
+import { ProjectEditorResearchersComponent } from '../project-editor-researchers/project-editor-researchers.component'
+import { ProjectEditorTemplatesComponent } from '../project-editor-templates/project-editor-templates.component'
 
 describe('ProjectEditorAccordionComponent', () => {
   let component: ProjectEditorAccordionComponent
@@ -54,22 +57,38 @@ describe('ProjectEditorAccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
+      imports: [
         ProjectEditorAccordionComponent,
+        StubProjectEditorResearchers,
         StubGeneralInfoComponent,
         StubProjectEditorCohortBuilderComponent,
-        StubProjectEditorResearchers,
         StubProjectEditorTemplatesComponent,
-      ],
-      imports: [
         NoopAnimationsModule,
         MaterialModule,
         ReactiveFormsModule,
         FontAwesomeTestingModule,
         TranslateModule.forRoot(),
-        RouterTestingModule.withRoutes([]),
       ],
-    }).compileComponents()
+    })
+      .overrideComponent(ProjectEditorAccordionComponent, {
+        remove: {
+          imports: [
+            ProjectEditorCohortBuilderComponent,
+            ProjectEditorGeneralInfoComponent,
+            ProjectEditorTemplatesComponent,
+            ProjectEditorResearchersComponent,
+          ],
+        },
+        add: {
+          imports: [
+            StubProjectEditorResearchers,
+            StubGeneralInfoComponent,
+            StubProjectEditorCohortBuilderComponent,
+            StubProjectEditorTemplatesComponent,
+          ],
+        },
+      })
+      .compileComponents()
   })
 
   beforeEach(() => {
