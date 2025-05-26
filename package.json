@@ -57,12 +57,12 @@
     "zone.js": "^0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.13",
     "@angular-eslint/builder": "19.5.0",
     "@angular-eslint/eslint-plugin": "19.5.0",
     "@angular-eslint/eslint-plugin-template": "19.5.0",
     "@angular-eslint/schematics": "19.5.0",
     "@angular-eslint/template-parser": "19.5.0",
+    "@angular/build": "^19.2.13",
     "@angular/cli": "^19.2.13",
     "@angular/compiler-cli": "^19.2.13",
     "@types/jasmine": "^5.1.7",
