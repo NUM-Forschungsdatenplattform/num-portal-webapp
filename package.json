@@ -43,7 +43,7 @@
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
     "@npmcli/package-json": "^6.1.1",
-    "@swimlane/ngx-charts": "^22.0.0-alpha.1",
+    "@swimlane/ngx-charts": "^22.0.0",
     "angular-oauth2-oidc": "^19.0.0",
     "echarts": "^5.6.0",
     "lodash-es": "^4.17.21",
