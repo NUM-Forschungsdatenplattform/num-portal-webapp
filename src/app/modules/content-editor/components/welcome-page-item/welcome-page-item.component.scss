@@ -32,7 +32,7 @@ $raised-shadow:
   }
 
   &__image {
-    margin: -16px 20px -16px -16px !important;
+    margin-right: 20px !important;
     background-size: cover;
     background-position: center;
     width: 33%;
@@ -46,10 +46,6 @@ $raised-shadow:
 
   &__content {
     width: 66%;
-
-    &__edit-button {
-      margin: -10px;
-    }
 
     &__main {
       height: 100%;
