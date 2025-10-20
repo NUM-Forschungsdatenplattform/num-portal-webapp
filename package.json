@@ -65,7 +65,7 @@
     "@angular/build": "^19.2.13",
     "@angular/cli": "^19.2.13",
     "@angular/compiler-cli": "^19.2.13",
-    "@types/jasmine": "^5.1.7",
+    "@types/jasmine": "^5.1.12",
     "@types/jest": "^29.5.14",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.14.1",
