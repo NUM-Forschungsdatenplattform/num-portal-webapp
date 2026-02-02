@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    canLoad: [RoleGuard],
+    canMatch: [RoleGuard],
     data: {
       tabNavId: 'aql-categories',
       roles: [AvailableRoles.Manager],
