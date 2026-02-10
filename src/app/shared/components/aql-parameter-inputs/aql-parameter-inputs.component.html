@@ -67,7 +67,15 @@
             formControlName="value"
             data-test="aql-parameter-inputs__options-value__selector"
           >
-            @for (option of item.options | keyvalue; track option) {
+            <mat-option>
+              <ngx-mat-select-search 
+                [formControl]="optionsFilterCtrl"
+                [placeholderLabel]="'QUERIES.SEARCH_QUERIES' | translate"
+                [noEntriesFoundLabel]="'PROJECT.CATEGORIES_NO_RESULTS' | translate">
+                        <fa-icon [icon]="faXmark" ngxMatSelectSearchClear></fa-icon>
+              </ngx-mat-select-search>
+            </mat-option>
+            @for (option of filteredOptions; track option.key) {
               <mat-option
                 [value]="option.key"
                 [attr.data-test]="'aql-parameter-inputs__options-value__' + option.value"

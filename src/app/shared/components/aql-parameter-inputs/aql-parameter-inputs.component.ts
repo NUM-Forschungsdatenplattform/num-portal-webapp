@@ -14,7 +14,8 @@ import {
   MatDatepicker,
 } from '@angular/material/datepicker'
 import { TranslateService, TranslatePipe } from '@ngx-translate/core'
-import { Subscription } from 'rxjs'
+import { Subject, Subscription } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
 import { AqlParameterValueType } from '../../models/aql/aql-parameter-value-type.enum'
 import { IItem } from '../../models/item.interface'
 import moment from 'moment'
@@ -23,7 +24,9 @@ import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input'
 import { MatSelect, MatOption } from '@angular/material/select'
 import { TimeInputComponent } from '../time-input/time-input.component'
-import { KeyValuePipe } from '@angular/common'
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'num-aql-parameter-inputs',
@@ -39,17 +42,26 @@ import { KeyValuePipe } from '@angular/common'
     MatSuffix,
     MatSelect,
     MatOption,
+    NgxMatSelectSearchModule,
+    FontAwesomeModule,
     MatDatepickerInput,
     MatDatepickerToggle,
     MatDatepicker,
     TimeInputComponent,
-    KeyValuePipe,
     TranslatePipe,
   ],
 })
 export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription()
+  private _onDestroy = new Subject<void>()
   AqlParameterValueType = AqlParameterValueType
+  faXmark = faXmark
+
+  // FormControl für die Options-Suche
+  public optionsFilterCtrl: UntypedFormControl = new UntypedFormControl()
+  
+  // Gefilterte Options Array
+  public filteredOptions: Array<{ key: string; value: string }> = []
 
   private localItem: IItem = null
   @Input()
@@ -60,6 +72,12 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
     const isInitial = this.localItem === null
     if (isInitial || this.localItem.value !== newValue.value) {
       this.localItem = newValue
+      
+      // Initialisiere gefilterte Optionen wenn valueType Options ist
+      if (newValue?.valueType === AqlParameterValueType.Options && newValue.options) {
+        this.initializeOptionsFilter()
+      }
+      
       if (!isInitial) {
         this.valueChange.emit()
       }
@@ -88,6 +106,37 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
   ) {}
 
   valueForm: UntypedFormGroup
+  private initializeOptionsFilter(): void {
+    const optionsArray = Object.entries(this.item.options).map(([key, value]) => ({
+      key,
+      value: value as string
+    }))
+    
+    this.filteredOptions = optionsArray
+    
+    this.subscriptions.add(
+      this.optionsFilterCtrl.valueChanges
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterOptions(optionsArray)
+        })
+    )
+  }
+
+  private filterOptions(optionsArray: Array<{ key: string; value: string }>): void {
+    const search = this.optionsFilterCtrl.value
+    
+    if (!search) {
+      this.filteredOptions = optionsArray
+      return
+    }
+    
+    const searchLower = search.toLowerCase()
+    this.filteredOptions = optionsArray.filter(option => 
+      option.value.toLowerCase().includes(searchLower) || 
+      option.key.toLowerCase().includes(searchLower)
+    )
+  }
 
   ngOnInit(): void {
     if (
@@ -101,6 +150,9 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
           this.dateAdapter.setLocale(lang.lang ? lang.lang : 'de-DE')
         })
       )
+    }    
+    if (this.item?.valueType === AqlParameterValueType.Options && this.item.options) {
+      this.initializeOptionsFilter()
     }
     if (this.item.valueType === AqlParameterValueType.Duration) {
       let value: string = '',
@@ -152,6 +204,8 @@ export class AqlParameterInputsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
+    this._onDestroy.next()
+    this._onDestroy.complete()
   }
 
   handleInputChange(input: { value: string; unit: 'y' | 'M' | 'd' | 'h' | 'm' | 's' }): void {
